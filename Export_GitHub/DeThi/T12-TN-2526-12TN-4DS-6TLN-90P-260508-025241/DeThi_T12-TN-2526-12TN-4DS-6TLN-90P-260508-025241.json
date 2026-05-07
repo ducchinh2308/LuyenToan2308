@@ -1,0 +1,183 @@
+{
+  "maDe": "T12-TN-2526-12TN-4DS-6TLN-90P-260508-025241",
+  "tenDe": "ĐỀ SỐ 3",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "2604-687",
+      "cauDan": "Tìm nguyên hàm của hàm số $f(x)=2\\sin x$.",
+      "paA": "$\\displaystyle \\int 2\\sin x\\,\\mathrm{d}x = 2\\cos x + C$",
+      "paB": "$\\displaystyle \\int 2\\sin x\\,\\mathrm{d}x = 2\\sin^2 x + C$",
+      "paC": "$\\displaystyle \\int 2\\sin x\\,\\mathrm{d}x = \\sin 2x + C$",
+      "paD": "$\\displaystyle \\int 2\\sin x\\,\\mathrm{d}x = -2\\cos x + C$"
+    },
+    {
+      "maCau": "2604-688",
+      "cauDan": "Cho $\\displaystyle \\int_{-\\pi}^{\\pi} f(x)\\,\\mathrm{d}x = 2$ và $\\displaystyle \\int_{-\\pi}^{\\pi} g(x)\\,\\mathrm{d}x = -3$. Tính tích phân $\\displaystyle \\int_{-\\pi}^{\\pi} (2f(x)+g(x))\\,\\mathrm{d}x$.",
+      "paA": "$\\displaystyle \\int_{-\\pi}^{\\pi} (2f(x)+g(x))\\,\\mathrm{d}x = 1$",
+      "paB": "$\\displaystyle \\int_{-\\pi}^{\\pi} (2f(x)+g(x))\\,\\mathrm{d}x = -1$",
+      "paC": "$\\displaystyle \\int_{-\\pi}^{\\pi} (2f(x)+g(x))\\,\\mathrm{d}x = -5$",
+      "paD": "$\\displaystyle \\int_{-\\pi}^{\\pi} (2f(x)+g(x))\\,\\mathrm{d}x = 5$"
+    },
+    {
+      "maCau": "2604-689",
+      "cauDan": "Tính tích phân $\\displaystyle \\int_0^1 x^2\\,\\mathrm{d}x$.",
+      "paA": "$\\displaystyle \\int_0^1 x^2\\,\\mathrm{d}x = \\frac{1}{3}$",
+      "paB": "$\\displaystyle \\int_0^1 x^2\\,\\mathrm{d}x = 0$",
+      "paC": "$\\displaystyle \\int_0^1 x^2\\,\\mathrm{d}x = -\\frac{1}{3}$",
+      "paD": "$\\displaystyle \\int_0^1 x^2\\,\\mathrm{d}x = 1$"
+    },
+    {
+      "maCau": "2604-690",
+      "cauDan": "Gọi $S$ là diện tích hình phẳng giới hạn bởi đồ thị hàm số $y=f(x)$, trục $Ox$, hai đường thẳng $x=a$, $x=b$ ($a<b$). Chọn đáp án đúng.",
+      "paA": "$\\displaystyle S = \\int_a^b f(x)\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle S = \\int_a^b |f(x)|\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle S = \\left| \\int_a^b f(x)\\,\\mathrm{d}x \\right|$",
+      "paD": "$\\displaystyle S = \\int_b^a |f(x)|\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "2604-691",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi đồ thị hàm số $f(x)=x^2+1$, $g(x)=-2x-1$, hai đường thẳng $x=0$, $x=1$ là",
+      "paA": "$2$",
+      "paB": "$\\displaystyle \\frac{10}{3}$",
+      "paC": "$10$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "2604-692",
+      "cauDan": "Cho hình phẳng giới hạn bởi đường cong $y=\\sqrt{x^2+1}$, trục hoành và hai đường thẳng $x=0$, $x=1$. Khối tròn xoay tạo thành khi quay hình phẳng quanh trục hoành có thể tích $V$ là bao nhiêu?",
+      "paA": "$\\displaystyle V = \\frac{4\\pi}{3}$",
+      "paB": "$\\displaystyle V = 2\\pi$",
+      "paC": "$\\displaystyle V = \\frac{4}{3}$",
+      "paD": "$\\displaystyle V = 2$"
+    },
+    {
+      "maCau": "2604-693",
+      "cauDan": "Mặt phẳng $(P)\\colon 2x-y-z-2=0$ có véc tơ pháp tuyến là",
+      "paA": "$\\vec{n}=(-1;-1;2)$",
+      "paB": "$\\vec{n}=(2;1;1)$",
+      "paC": "$\\vec{n}=(2;-1;1)$",
+      "paD": "$\\vec{n}=(-2;1;1)$"
+    },
+    {
+      "maCau": "2604-694",
+      "cauDan": "Phương trình mặt phẳng đi qua điểm $A(-1;1;2)$ vuông góc với đường thẳng $\\Delta\\colon \\begin{cases} x=1+2t \\\\ y=2-t \\\\ z=-1+t \\end{cases}$ có phương trình",
+      "paA": "$2x-y+z+1=0$",
+      "paB": "$2x-y-z+4=0$",
+      "paC": "$x+2y-z-1=0$",
+      "paD": "$x-2y+z+1=0$"
+    },
+    {
+      "maCau": "2604-695",
+      "cauDan": "Mặt cầu tâm $H(-1;1;3)$ và tiếp xúc với mặt phẳng $(\\alpha)\\colon 2x-y-2z-6=0$ có phương trình?",
+      "paA": "$(x-1)^2+(y+1)^2+(z+3)^2=5$",
+      "paB": "$(x-1)^2+(y+1)^2+(z+3)^2=25$",
+      "paC": "$(x+1)^2+(y-1)^2+(z-3)^2=5$",
+      "paD": "$(x+1)^2+(y-1)^2+(z-3)^2=25$"
+    },
+    {
+      "maCau": "2604-696",
+      "cauDan": "Hình 1 mô phỏng một trạm thu phát sóng điện thoại di động đặt ở vị trí $I(1;2;2)$ trong không gian $Oxyz$ (đơn vị trên mỗi trục là kilômét) và được thiết kế với đường kính phủ sóng là $10000$ m.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/2604-696_0ed92_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\textbf{Hình 1}\r\n\t\\end{center}\r\n\tTìm phương trình mặt cầu mô tả ranh giới miền bên trong và bên ngoài vùng phủ sóng của trạm phát sóng điện thoại?",
+      "paA": "$(x+1)^2+(y+2)^2+(z+2)^2=25$",
+      "paB": "$(x-1)^2+(y-2)^2+(z-2)^2=10$",
+      "paC": "$(x-1)^2+(y-2)^2+(z-2)^2=100$",
+      "paD": "$(x-1)^2+(y-2)^2+(z-2)^2=25$"
+    },
+    {
+      "maCau": "2604-697",
+      "cauDan": "Cho hai biến cố $A$ và $B$ là hai biến cố độc lập, với $P(A)=0{,}2024$; $P(B)=0{,}2025$. Tính $P(A|B)$.",
+      "paA": "$0{,}7976$",
+      "paB": "$0{,}7975$",
+      "paC": "$0{,}2025$",
+      "paD": "$0{,}2024$"
+    },
+    {
+      "maCau": "2604-698",
+      "cauDan": "Một công ty may có hai chi nhánh cùng sản xuất một loại áo, trong đó có $56\\%$ áo ở chi nhánh I và $44\\%$ áo ở chi nhánh II. Tại chi nhánh I có $75\\%$ áo chất lượng cao và tại chi nhánh II có $68\\%$ áo chất lượng cao (kích thước và hình dáng bề ngoài của các áo là như nhau). Chọn ngẫu nhiên $1$ áo. Xác suất chọn được áo chất lượng cao là (làm tròn đến chữ số thập phân thứ hai)",
+      "paA": "$0{,}72$",
+      "paB": "$0{,}35$",
+      "paC": "$0{,}82$",
+      "paD": "$0{,}55$"
+    },
+    {
+      "maCau": "2604-699",
+      "cauDan": "Cho hàm số $\\displaystyle y = f(x) = \\frac{x+1}{x}$. Trong các khẳng định sau, khẳng định nào đúng, khẳng định nào sai?",
+      "paA": "Hàm số $f(x)$ có nguyên hàm trên khoảng $(0;+\\infty)$ là $F(x)=x+\\ln x+C$",
+      "paB": "Nếu $F(x)$ là nguyên hàm của $f(x)$ và $F(1)=1$ thì $F(x)=x+\\ln|x|+1$",
+      "paC": "$\\displaystyle \\int_2^5 \\left( 2x+\\frac{f(x)}{x+1} \\right)\\,\\mathrm{d}x = \\frac{21}{a}+\\ln\\frac{b}{c}$ với $\\displaystyle \\left(\\frac{b}{c}\\right.$ là phân số tối giản$\\left.\\right)$, khi đó $a+b+c=8$",
+      "paD": "Diện tích hình phẳng giới hạn bởi đồ thị hàm số $y=f(x)-1$, trục hoành và hai đường thẳng $x=2$, $x=6$ là $S=2\\ln 3$"
+    },
+    {
+      "maCau": "2604-700",
+      "cauDan": "Để đảm bảo an toàn khi lưu thông trên đường, các xe ô tô khi dừng đèn đỏ phải cách nhau tối thiểu $1$ m. Ô tô A đang chạy với vận tốc $16$ m/s bỗng gặp ô tô B đang dừng đèn đỏ phía trước nên ô tô A đạp phanh và chuyển động chậm dần đều với vận tốc $v(t)=16-4t$ (m/s), trong đó $t$ là khoảng thời gian tính bằng giây kể từ thời điểm ô tô A bắt đầu đạp phanh. Các mệnh đề sau đúng hay sai?",
+      "paA": "Quãng đường $s(t)$ mà xe ô tô A đi được trong thời gian $t$ (giây) là một nguyên hàm của hàm số $v(t)$",
+      "paB": "Thời gian từ lúc ô tô A giảm tốc độ cho đến khi dừng hẳn là $5$ giây",
+      "paC": "Quãng đường ô tô A đi được kể từ thời điểm bắt đầu hãm phanh đến lúc dừng lại là $\\displaystyle s=\\int_0^5 v(t)\\,\\mathrm{d}t$",
+      "paD": "Để hai ô tô A và B khi dừng lại đạt khoảng cách an toàn thì ô tô A phải đạp phanh khi cách ô tô B một khoảng tối thiểu là $30$ mét"
+    },
+    {
+      "maCau": "2604-701",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\displaystyle d\\colon \\frac{x-1}{2}=\\frac{y}{-1}=\\frac{z+2}{3}$ và mặt phẳng $(P)\\colon x+2y-2z+1=0$. Các mệnh đề sau đúng hay sai?",
+      "paA": "Đường thẳng $d$ đi qua điểm $M(1;0;-2)$",
+      "paB": "Mặt phẳng $(P)$ có véctơ pháp tuyến $\\vec{n}_P=(-1;-2;2)$",
+      "paC": "Điểm $M(1;0;-2)$ thuộc $d$ và có $d(M,(P))=2$",
+      "paD": "Góc giữa đường thẳng và mặt phẳng bằng $\\approx 46^\\circ$"
+    },
+    {
+      "maCau": "2604-702",
+      "cauDan": "Trong hệ trục tọa độ $Oxyz$, cho mặt cầu $(S)\\colon x^2+y^2+z^2-2x+4y+2z-3=0$. Các mệnh đề sau đúng hay sai?",
+      "paA": "Mặt cầu $(S)$ có đường kính bằng $3$",
+      "paB": "Điểm $M(1;2;3)$ nằm ngoài mặt cầu",
+      "paC": "Mặt phẳng $(P)\\colon 2x+y-z+3=0$ không cắt mặt cầu $(S)$",
+      "paD": "Mặt phẳng chứa trục $Ox$ và cắt mặt cầu $(S)$ theo giao tuyến là một đường tròn bán kính bằng $3$ có phương trình $y-3z=0$"
+    },
+    {
+      "maCau": "2604-703",
+      "cauDan": "Chướng ngại vật \"tường cong\" trong một sân thi đấu X-Game là một khối bê tông có chiều cao từ mặt đất lên là $3$ m. Giao của mặt tường cong và mặt đất là đoạn thẳng $AB = 2$ m. Giao diện của mặt tường cong cắt bởi mặt phẳng vuông góc với $AB$ tại $A$ là một hình tam giác vuông cong $ACE$ với $AC = 4$ m, $CE = 3$ m và cạnh cong $AE$ nằm trên một đường parabol có trục đối xứng vuông góc với mặt đất. Tại vị trí $M$ là trung điểm $AC$ thì đường cong có độ cao $1$ m (xem hình bên). Tính thể tích bê tông cần sử dụng để tạo nên khối đường cong đó (kết quả làm tròn đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/2604-703_bceb8_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "maCau": "2604-704",
+      "cauDan": "Biết $\\displaystyle \\int_1^3 \\frac{x^2+2}{x}\\,\\mathrm{d}x = a+b\\ln c$, với $a,b,c \\in \\mathbb{Z}, c<9$. Tính tổng $S = a+b+c$.",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "maCau": "2604-705",
+      "cauDan": "Trong không gian $Oxyz$ cho hai đường thẳng $d_1\\colon \\begin{cases} x=1+at \\\\ y=t \\\\ z=-1+2t \\end{cases}$ và $d_2\\colon \\begin{cases} x=1-t' \\\\ y=2+2t' \\\\ z=3+t' \\end{cases}$. Tìm $a$ để hai đường thẳng $d_1$ và $d_2$ vuông góc nhau.",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "maCau": "2604-706",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\displaystyle d\\colon \\frac{x}{1}=\\frac{y-1}{1}=\\frac{z-2}{-1}$ và mặt phẳng $(P)\\colon x+2y+z-4=0$. Hình chiếu vuông góc của $d$ trên $(P)$ là đường thẳng có vectơ chỉ phương $\\vec{u}=(a;b;-4)$. Tính $a+b$.",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "maCau": "2604-707",
+      "cauDan": "Tỉ lệ người nghiện thuốc lá ở một vùng là $30\\%$. Biết tỉ lệ viêm họng của người không nghiện thuốc là $40\\%$. Gặp ngẫu nhiên một người trong vùng thì xác suất để người đó nghiện thuốc và bị viêm họng là $0{,}21$. Xác suất để người đó không nghiện thuốc và bị viêm họng là bao nhiêu phần trăm?",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "maCau": "2604-708",
+      "cauDan": "Trong một đợt nghiên cứu tỷ lệ ung thư do hút thuốc lá gây nên, người ta thấy rằng tại tỉnh A tỉ lệ người dân của tỉnh nghiện thuốc lá là $20\\%$; tỉ lệ người bị bệnh ung thư trong số người nghiện thuốc lá là $70\\%$, trong số người không nghiện thuốc lá là $15\\%$. Hỏi khi gặp một người bị bệnh ung thư tại tỉnh này thì xác suất người đó nghiện thuốc lá là bao nhiêu?",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    }
+  ]
+}
