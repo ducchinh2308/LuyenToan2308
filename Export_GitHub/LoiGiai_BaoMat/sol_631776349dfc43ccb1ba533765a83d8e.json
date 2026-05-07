@@ -1,0 +1,112 @@
+[
+  {
+    "maBaoMat": "id_dd3cc868e5",
+    "dapAn": "B",
+    "loiGiai": "Dựa vào bảng xét dấu của đạo hàm ta có $y' < 0$ trên các khoảng $(-\\infty; 1)$ và $(3; 4)$"
+  },
+  {
+    "maBaoMat": "id_73573ddc95",
+    "dapAn": "C",
+    "loiGiai": "Độ lệch chuẩn bằng căn bậc hai của phương sai nên $s^2 = 3^2 = 9$."
+  },
+  {
+    "maBaoMat": "id_9c6984ad7e",
+    "dapAn": "B",
+    "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/2603-3068_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTheo đó hàm số đã cho có $4$ điểm cực trị."
+  },
+  {
+    "maBaoMat": "id_a530d5e9f0",
+    "dapAn": "B",
+    "loiGiai": "Dựa vào đồ thị ta có đồ thị này là đồ thị của hàm số $y = ax^3 + bx^2 + cx + d$ có $a > 0$ và hàm số có hai điểm cực trị $x_1 < 0 < x_2$.\\\\\r\n\t\tTa có $y = x^3 - 2x + 1 \\Rightarrow y' = 3x^2 - 2 = 0$ có hai nghiệm $x_1, x_2$ trái dấu thỏa mãn."
+  },
+  {
+    "maBaoMat": "id_7e96a34c14",
+    "dapAn": "B",
+    "loiGiai": "Vì $\\vec{u} = 2\\vec{a} + \\vec{b} - \\vec{c} = (4+0-1; 6-2+2; 6-1-1) = (3;6;4)$."
+  },
+  {
+    "maBaoMat": "id_e582bf8ecf",
+    "dapAn": "C",
+    "loiGiai": "Dựa vào đồ thị ta có hàm số đồng biến $(2; +\\infty)$."
+  },
+  {
+    "maBaoMat": "id_b9b5444f09",
+    "dapAn": "C",
+    "loiGiai": "Tiệm cận đứng của đồ thị hàm số là $x = 1$."
+  },
+  {
+    "maBaoMat": "id_2513fbb9eb",
+    "dapAn": "A",
+    "loiGiai": "Dựa vào đồ thị hàm số ta có $M = 1$ và $m = -4$.\\\\\r\n\t\tDo đó $M - m = 5$."
+  },
+  {
+    "maBaoMat": "id_fc80145f34",
+    "dapAn": "C",
+    "loiGiai": "Hình chiếu vuông góc của điểm $M(x_0; y_0; z_0)$ trên trục $Ox$ là điểm $M'(x_0;0;0)$.\\\\\r\n\t\tDo đó, hình chiếu vuông góc của điểm $M(2;1;-3)$ trên trục $Ox$ có tọa độ là $(2;0;0)$."
+  },
+  {
+    "maBaoMat": "id_c0133ef291",
+    "dapAn": "D",
+    "loiGiai": "Độ dài của vectơ $\\vec{a} = (x;y;z)$ được tính bằng công thức $\\left|\\vec{a}\\right| = \\sqrt{x^2+y^2+z^2}$.\\\\\r\n\t\tVới $\\vec{a} = (2;-2;6)$, ta có:\\\\\r\n\t\t$\\left|\\vec{a}\\right| = \\sqrt{2^2 + (-2)^2 + 6^2} = \\sqrt{4 + 4 + 36} = \\sqrt{44} = \\sqrt{4 \\cdot 11} = 2\\sqrt{11}$."
+  },
+  {
+    "maBaoMat": "id_42e2373ba6",
+    "dapAn": "C",
+    "loiGiai": "Khoảng biến thiên của mẫu số liệu ghép nhóm là hiệu giữa giá trị lớn nhất của đầu mút trên của lớp cuối cùng và giá trị nhỏ nhất của đầu mút dưới của lớp đầu tiên.\\\\\r\n\t\tLớp đầu tiên là $[0;4)$, có giá trị nhỏ nhất là $0$.\\\\\r\n\t\tLớp cuối cùng là $[16;20)$, có giá trị lớn nhất là $20$.\\\\\r\n\t\tKhoảng biến thiên $R = 20 - 0 = 20$."
+  },
+  {
+    "maBaoMat": "id_b6bbe2bd02",
+    "dapAn": "B",
+    "loiGiai": "Tích vô hướng của hai vectơ $\\vec{a} = (x_1; y_1; z_1)$ và $\\vec{b} = (x_2; y_2; z_2)$ được tính bằng công thức $\\vec{a} \\cdot \\vec{b} = x_1x_2 + y_1y_2 + z_1z_2$.\\\\\r\n\t\tVới $\\vec{a} = (2;3;3)$ và $\\vec{b} = (3;2;-1)$, ta có: $\\vec{a} \\cdot \\vec{b} = (2)(3) + (3)(2) + (3)(-1) = 6 + 6 - 3 = 12 - 3 = 9$."
+  },
+  {
+    "maBaoMat": "id_0f81d336de",
+    "dapAn": "TTFT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Xét hàm số $\\displaystyle y = \\frac{x^2 - 3x + 6}{x - 1}$ có:\\\\\r\n\t\t\t+ Tập xác định: $D = \\mathbb{R} \\setminus \\{1\\}$.\\\\\r\n\t\t\t+ $\\displaystyle y' = \\frac{x^2 - 2x - 3}{(x - 1)^2}$.\\\\\r\n\t\t\t+ $\\displaystyle y' = 0 \\Leftrightarrow \\frac{x^2 - 2x - 3}{(x - 1)^2} = 0 \\Leftrightarrow x^2 - 2x - 3 = 0 \\Leftrightarrow \\begin{bmatrix} x = -1 \\Rightarrow y = -5 \\\\ x = 3 \\Rightarrow y = 3 \\end{bmatrix}$.\\\\\r\n\t\t\tSuy ra điểm cực tiểu của đồ thị hàm số là $(3; 3)$.\\\\\r\n\t\t\tSuy ra $a^2 + b = 3^2 + 3 = 12$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle y = \\frac{x^2 - 3x + 6}{x - 1} = x - 2 + \\frac{4}{x - 1}$.\\\\\r\n\t\t\tSuy ra $\\displaystyle \\lim_{x \\to +\\infty} \\left[ y - (x - 2) \\right] = \\lim_{x \\to +\\infty} \\frac{4}{x - 1} = 0$.\\\\\r\n\t\t\tSuy ra tiệm cận xiên của đồ thị hàm số là $y = x - 2$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle \\lim_{x \\to 1^+} y = \\lim_{x \\to 1^+} \\frac{x^2 - 3x + 6}{x - 1} = +\\infty$ suy ra đường tiệm cận đứng của đồ thị hàm số là $x = 1$.\\\\\r\n\t\t\tSuy ra giao điểm của hai đường tiệm cận là $I(1; -1)$.\\\\\r\n\t\t\t+ Tại điểm có hoành độ $x = 2 \\Rightarrow y = 4, y'(2) = -3$.\\\\\r\n\t\t\tSuy ra tiếp tuyến với đồ thị hàm số đã cho tại điểm có hoành độ $x = 2$ có phương trình: $y = -3(x - 2) + 4 \\Leftrightarrow y = -3x + 10$.\\\\\r\n\t\t\t+ Tiếp tuyến $y = -3x + 10$ cắt tiệm cận đứng $x = 1$ tại $A(1; 7)$, cắt tiệm cận xiên $y = x - 2$ tại $B(3; 1)$.\\\\\r\n\t\t\tKhi đó: $\\vec{IA} = (0; 8), \\vec{IB} = (2; 2)$.\\\\\r\n\t\t\tSuy ra diện tích tam giác $IAB$ là $\\displaystyle S = \\frac{1}{2} |0 \\cdot 2 - 2 \\cdot 8| = 8$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle \\frac{x^2 - 3x + 6}{x - 1} = m \\, (1) \\Leftrightarrow x^2 - (m + 3)x + m + 6 = 0 \\, (2) \\; (x \\neq 1)$.\\\\\r\n\t\t\tPhương trình $(1)$ có hai nghiệm phân biệt $\\Leftrightarrow \\begin{cases} m^2 + 2m - 15 > 0 \\\\ 1^2 - (m + 3) \\cdot 1 + m + 6 \\neq 0 \\end{cases} \\Leftrightarrow \\begin{bmatrix} m < -3 \\\\ m > 5 \\end{bmatrix} \\, (*)$.\\\\\r\n\t\t\tĐặt $f(x) = x^2 - (m + 3)x + m + 6$.\\\\\r\n\t\t\tHai nghiệm phân biệt $x_1, x_2$ thỏa mãn $x_1 < 2 < x_2 < 15 \\Leftrightarrow \\begin{cases} 1 \\cdot f(2) < 0 \\\\ 1 \\cdot f(15) > 0 \\\\ \\displaystyle -\\frac{b}{2a} < 15 \\end{cases} \\Leftrightarrow \\begin{cases} 4 - m < 0 \\\\ 186 - 14m > 0 \\\\ m < 27 \\end{cases} \\Leftrightarrow \\begin{cases} m > 4 \\\\ \\displaystyle m < \\frac{186}{14} \\\\ m < 27 \\end{cases} \\Leftrightarrow \\displaystyle 4 < m < \\frac{186}{14}$.\\\\\r\n\t\t\tGiao với điều kiện $(*)$ suy ra $\\displaystyle 4 < m < \\frac{186}{14}$.\\\\\r\n\t\t\tSuy ra có $9$ giá trị nguyên của tham số $m$.\\\\\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maBaoMat": "id_deede39c43",
+    "dapAn": "FFTT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tại $t = 0$, $\\displaystyle h(0) = 4\\cos\\left( \\frac{\\pi \\cdot 0}{6} + \\frac{\\pi}{3} \\right) + 10 = 12$.\\\\\r\n\t\t\t\\itemch $\\displaystyle h'(t) = -\\frac{2\\pi}{3}\\sin\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right)$.\\\\\r\n\t\t\t\\itemch $\\displaystyle -1 \\le \\cos\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) \\le 1 \\Leftrightarrow -4 \\le 4\\cos\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) \\le 4 \\Leftrightarrow 6 \\le 4\\cos\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) + 10 \\le 14$.\\\\\r\n\t\t\tVậy mực nước thấp nhất là $6$ mét.\\\\\r\n\t\t\tDấu bằng xảy ra khi $\\displaystyle \\cos\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) = -1 \\Leftrightarrow \\frac{\\pi t}{6} + \\frac{\\pi}{3} = \\pi + k2\\pi \\Leftrightarrow \\frac{\\pi t}{6} = \\frac{2\\pi}{3} + k2\\pi \\Leftrightarrow t = 4 + k12$.\\\\\r\n\t\t\t$0 \\le t \\le 24 \\Leftrightarrow 0 \\le 4 + k12 \\le 24 \\Leftrightarrow \\displaystyle -\\frac{1}{3} \\le k \\le \\frac{7}{4} \\Rightarrow k \\in \\{0; 1\\}$.\\\\\r\n\t\t\tVà mức nước này xuất hiện tại hai thời điểm khác nhau.\\\\\r\n\t\t\t\\itemch $\\displaystyle h'(t) = -\\frac{2\\pi}{3}\\sin\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) = 0 \\Leftrightarrow \\sin\\left( \\frac{\\pi t}{6} + \\frac{\\pi}{3} \\right) = 0$.\\\\\r\n\t\t\t$\\displaystyle \\Leftrightarrow \\frac{\\pi t}{6} + \\frac{\\pi}{3} = k\\pi \\Leftrightarrow \\frac{\\pi t}{6} = k\\pi - \\frac{\\pi}{3} \\Leftrightarrow t = 6k - 2$.\\\\\r\n\t\t\t$0 \\le t \\le 6 \\Leftrightarrow 0 \\le 6k - 2 \\le 6 \\Leftrightarrow \\displaystyle \\frac{1}{3} \\le k \\le \\frac{4}{3} \\Rightarrow k \\in \\{1\\}$ hay $t = 4$.\\\\\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maBaoMat": "id_ba8177e0df",
+    "dapAn": "TFFT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Xác định tọa độ các đỉnh của hình hộp chữ nhật:\\\\\r\n\t\t\tTa có $A(0;0;0)$, $B(3;0;0)$, $D(0;3;0)$, $D'(0;3;-3)$.\\\\\r\n\t\t\tVì $ABCD.A'B'C'D'$ là hình hộp chữ nhật:\\\\\r\n\t\t\t$\\vec{AC} = \\vec{AB} + \\vec{AD} = (3; 3; 0) \\Rightarrow C(3; 3; 0)$.\\\\\r\n\t\t\tTương tự $A'(0; 0; -3)$; $B'(3; 0; -3)$; $C'(3; 3; -3)$.\\\\\r\n\t\t\tTa có $A'(0; 0; -3)$, $B'(3; 0; -3)$, $C'(3; 3; -3)$.\\\\\r\n\t\t\tXét các véctơ:\\\\\r\n\t\t\t$\\vec{A'B'} = (3; 0; 0)$; $\\vec{A'C'} = (3; 3; 0) \\Rightarrow \\left[ \\vec{A'B'}, \\vec{A'C'} \\right] = (0; 0; 9)$.\\\\\r\n\t\t\tDiện tích tam giác $A'B'C'$ là $\\displaystyle S = \\frac{1}{2} \\left\\| \\left[ \\vec{A'B'}, \\vec{A'C'} \\right] \\right\\| = \\frac{\\sqrt{0^2 + 0^2 + 9^2}}{2} = 4{,}5$.\\\\\r\n\t\t\t\\itemch Theo tính toán, $C(3; 3; 0)$.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AC} = (3; 3; 0)$.\\\\\r\n\t\t\tTa có $B'(3; 0; -3)$ và $G(2; 1; -2)$.\\\\\r\n\t\t\t$\\Rightarrow \\vec{B'G} = (-1; 1; 1) \\Rightarrow \\vec{AC} \\cdot \\vec{B'G} = 3(-1) + 3 \\cdot 1 + 0 \\cdot 1 = 0$.\\\\\r\n\t\t\t$\\Rightarrow AC \\perp B'G$.\\\\\r\n\t\t\t\\itemch Ta có $B(3; 0; 0)$, $B'(3; 0; -3)$, $D'(0; 3; -3)$.\\\\\r\n\t\t\tSuy ra $\\displaystyle G = \\left( \\frac{6}{3}; \\frac{3}{3}; \\frac{-6}{3} \\right) = (2; 1; -2)$.\\\\\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maBaoMat": "id_5adb74ffed",
+    "dapAn": "TFFT",
+    "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/2603-3081_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Trong mặt phẳng $(ABCD)$ dựng $HK \\perp CD$.\\\\\r\n\t\t\tTheo giả thiết $SH \\perp (ABCD) \\Rightarrow SH \\perp CD$.\\\\\r\n\t\t\tKhi đó ta có $CD \\perp (SHK) \\Rightarrow CD \\perp SK$, khi đó góc phẳng của nhị diện $[S, CD, A]$ là góc $\\widehat{SKH}$.\\\\\r\n\t\t\tDo $ABCD$ là hình thoi có $\\widehat{BAD} = 120^\\circ \\Rightarrow \\widehat{ABC} = 60^\\circ$.\\\\\r\n\t\t\tVậy các tam giác $\\Delta ABC$, $\\Delta ADC$ là các tam giác đều cạnh $4a$.\\\\\r\n\t\t\tTrong tam giác vuông $HKC$ có $\\displaystyle HK = HC \\cdot \\sin\\widehat{HCK} = 3a \\cdot \\sin 60^\\circ = \\frac{3a\\sqrt{3}}{2}$.\\\\\r\n\t\t\tTrong tam giác vuông $SHK$ có $\\displaystyle \\tan\\widehat{SKH} = \\frac{SH}{HK} = \\frac{a\\sqrt{3}}{\\frac{3a\\sqrt{3}}{2}} = \\frac{2}{3}$.\\\\\r\n\t\t\t\\itemch Thể tích khối chóp $S.ABCD$ là:\\\\\r\n\t\t\t$\\displaystyle V = \\frac{1}{3} S_{ABCD} \\cdot SH = \\frac{1}{3} AB \\cdot AD \\cdot \\sin\\widehat{BAD} \\cdot SH = \\frac{1}{3} 4a \\cdot 4a \\frac{\\sqrt{3}}{2} \\cdot a\\sqrt{3} = 8a^3$.\\\\\r\n\t\t\t\\itemch Do $ABCD$ là hình thoi nên $BO \\perp AC$.\\\\\r\n\t\t\tMặt khác ta có $SH \\perp (ABCD) \\Rightarrow BO \\perp SH$ nên $BO \\perp (SAC)$.\\\\\r\n\t\t\t$SO$ là hình chiếu của $SB$ lên $(SAC)$.\\\\\r\n\t\t\tVậy $\\left( SB, (SAC) \\right) = \\widehat{SB, SO} = \\widehat{BSO}$.\\\\\r\n\t\t\t\\itemch Chọn hệ trục $Oxyz$ với $Ox$ trên $OA$ chiều dương từ $O$ đến $A$.\\\\\r\n\t\t\t$Oy$ trên $OB$ chiều dương từ $O$ đến $B$.\\\\\r\n\t\t\t$Oz$ hướng lên trên.\\\\\r\n\t\t\tKhi đó $\\displaystyle A(2a; 0; 0)$, $\\displaystyle S(a; 0; a\\sqrt{3})$ nên $\\displaystyle P\\left( \\frac{3a}{2}; 0; \\frac{a\\sqrt{3}}{2} \\right)$.\\\\\r\n\t\t\t$B(0; 2a\\sqrt{3}; 0)$, $C(-2a; 0; 0)$ nên $N(-a; a\\sqrt{3}; 0)$.\\\\\r\n\t\t\t$D(0; -2a\\sqrt{3}; 0)$ nên $M(-a; -a\\sqrt{3}; 0)$.\\\\\r\n\t\t\tKhi đó $\\displaystyle d(SM; PN) = \\frac{\\left| \\left[ \\vec{SM}, \\vec{NP} \\right] \\cdot \\vec{SN} \\right|}{\\left\\| \\left[ \\vec{SM}, \\vec{NP} \\right] \\right\\|} = \\frac{2a\\sqrt{39}}{13}$.\\\\\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maBaoMat": "id_b6274913be",
+    "dapAn": "20,6",
+    "loiGiai": "Thể tích phần nước dâng là $30 \\cdot 30 \\cdot 2 = 1800\\text{ (cm}^3\\text{)}$.\\\\\r\n\t\tThể tích phần rỗng là $\\displaystyle \\frac{160}{0{,}8} = 200\\text{ (cm}^3\\text{)}$.\\\\\r\n\t\tThể tích chóp là $1800 + 200 = 2000\\text{ (cm}^3\\text{)}$.\\\\\r\n\t\tGiả sử chiều cao của chóp là $h\\text{ (cm)}$.\\\\\r\n\t\tThể tích của chóp là $\\displaystyle \\frac{1}{3} \\cdot h \\cdot 20 \\cdot 20 = \\frac{400}{3}h\\text{ (cm}^3\\text{)}$.\\\\\r\n\t\t$\\displaystyle \\Rightarrow \\frac{400}{3}h = 2000 \\Rightarrow h = 15$.\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/2603-3082_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t$\\Delta SOB$ vuông tại $O$, $SO = 15$\\\\\r\n\t\t$\\displaystyle OB = \\frac{BD}{2} = \\frac{20\\sqrt{2}}{2} = 10\\sqrt{2} \\Rightarrow SB = \\sqrt{SO^2 + OB^2} = \\sqrt{15^2 + (10\\sqrt{2})^2} = \\sqrt{425} \\approx 20{,}6\\text{ (cm)}$.\\\\\r\n\t\tVậy, độ dài cạnh bên của hình chóp xấp xỉ $20{,}6\\text{cm}$."
+  },
+  {
+    "maBaoMat": "id_874547a10f",
+    "dapAn": "3",
+    "loiGiai": "$\\displaystyle y = g(x) = \\ln\\frac{(x-2)^2(x+5)}{(x-4)(x+1)}$ xác định khi $\\displaystyle \\frac{(x-2)^2(x+5)}{(x-4)(x+1)} > 0 \\Leftrightarrow \\frac{x+5}{(x-4)(x+1)} > 0$.\\\\\r\n\t\tBảng xét dấu của $\\displaystyle \\frac{(x-2)^2(x+5)}{(x-4)(x+1)}$:\r\n\t\t\\begin{center}\\\\<img src='HinhAnh/2603-3083_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTXĐ của hàm số là $(-5; -1) \\cup (4; +\\infty)$.\\\\\r\n\t\t$\\displaystyle \\lim_{x \\to +\\infty} \\ln\\frac{(x-2)^2(x+5)}{(x-4)(x+1)} = \\ln \\left[ \\lim_{x \\to +\\infty} \\frac{(x-2)\\left(1 - \\frac{2}{x}\\right)\\left(1 + \\frac{5}{x}\\right)}{\\left(1 - \\frac{4}{x}\\right)\\left(1 + \\frac{1}{x}\\right)} \\right] = +\\infty$.\\\\\r\n\t\t$\\Rightarrow$ Đồ thị hàm số không có tiệm cận ngang.\\\\\r\n\t\t$\\displaystyle \\lim_{x \\to 4^+} \\ln\\frac{(x-2)^2(x+5)}{(x-4)(x+1)} = \\ln \\left[ \\lim_{x \\to 4^+} \\frac{(x-2)^2(x+5)}{(x-4)(x+1)} \\right] = +\\infty$.\\\\\r\n\t\t$\\Rightarrow$ Đồ thị hàm số có một tiệm cận đứng là đường thẳng $x = 4$.\\\\\r\n\t\t$\\displaystyle \\lim_{x \\to -1^-} \\ln\\frac{(x-2)^2(x+5)}{(x-4)(x+1)} = \\ln \\left[ \\lim_{x \\to -1^-} \\frac{(x-2)^2(x+5)}{(x-4)(x+1)} \\right] = +\\infty$.\\\\\r\n\t\t$\\Rightarrow$ Đồ thị hàm số có một tiệm cận đứng là đường thẳng $x = -1$.\\\\\r\n\t\t$\\displaystyle \\lim_{x \\to -5^+} \\ln\\frac{(x-2)^2(x+5)}{(x-4)(x+1)} = \\ln \\left[ \\lim_{x \\to -5^+} \\frac{(x-2)^2(x+5)}{(x-4)(x+1)} \\right] = -\\infty$.\\\\\r\n\t\t$\\Rightarrow$ Đồ thị hàm số có một tiệm cận đứng là đường thẳng $x = -5$.\\\\\r\n\t\tVậy, đồ thị hàm số đã cho có $3$ đường tiệm cận."
+  },
+  {
+    "maBaoMat": "id_d1be4f3ad9",
+    "dapAn": "432",
+    "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/2603-3084_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $m$ là khối lượng dự tính của cánh quạt khi đó tổng khối lượng thực tế của $9$ cánh quạt là $9m + 45$.\\\\\r\n\t\tDo chia thành $3$ nhóm có khối lượng bằng nhau nên khối lượng mỗi nhóm là $3m + 15$.\\\\\r\n\t\tSố cách chia $9$ cánh quạt thành $3$ nhóm có $1$ cách là $(m+1; m+5; m+9)$; $(m+2; m+6; m+7)$; $(m+3; m+4; m+8)$.\\\\\r\n\t\tDo mỗi nhóm gắn vào rotor tạo thành một tam giác đều nên ta gắn $1$ nhóm vào $1$ tam giác thì có $2$ cách gắn $2$ nhóm còn lại. Trong mỗi nhóm lại có $3!$ cách gắn nên số cách gắn cánh quạt vào rotor trên là $2 \\cdot 3! \\cdot 3! \\cdot 3! = 432$ cách.\\\\"
+  },
+  {
+    "maBaoMat": "id_c61272ea11",
+    "dapAn": "140",
+    "loiGiai": "Tổng lợi nhuận của Bên B là: $F(x) = R(x) - px - C(x)$ xác định trên $(0; 150)$.\\\\\r\n\t\t$F(x) = 300x - x^2 - px - x^2 - 20x - 500 = -2x^2 + (280 - p)x - 500\\text{ (nghìn đồng)}$.\\\\\r\n\t\tLợi nhuận của Bên B lớn nhất khi $\\displaystyle x = \\frac{280 - p}{4} \\Rightarrow p = 280 - 4x\\text{ (nghìn đồng)}$.\\\\\r\n\t\tDoanh thu của Bên A là $T = px = (280 - 4x)x = 280x - 4x^2$.\\\\\r\n\t\tDoanh thu của Bên A lớn nhất đạt được khi $\\displaystyle x = \\frac{280}{8} = 35$.\\\\\r\n\t\tVậy $p = 280 - 4 \\cdot 35 = 140\\text{ (nghìn đồng)}$."
+  },
+  {
+    "maBaoMat": "id_d9c7bb31e2",
+    "dapAn": "157",
+    "loiGiai": "Trên đoạn $BB'$ gọi $B_0$ thỏa $B'B_0 = 16cm$ và $B_1, B_2 \\in BB_0$ theo thứ tự lần lượt là điểm chạm của con kiến vào cạnh $BB'$ ở hai lần.\\\\\r\n\t\tTrên đoạn $CC'$ gọi $C_0$ thỏa $CC_0 = 16cm$ và $C_1, C_2 \\in CC_0$ theo thứ tự lần lượt là điểm chạm của con kiến vào cạnh $CC'$ ở hai lần.\\\\\r\n\t\tTrên đoạn $DD'$ gọi $D_1$ là điểm chạm của con kiến vào cạnh $DD'$.\\\\\r\n\t\tKhi đó đường đi của con kiến là một đường gấp khúc liên tục $A'B_1C_1B_2C_2D_1A$ được trải phẳng như hình vẽ bên dưới:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/2603-3086_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTrải phẳng hình.\\\\\r\n\t\tQuãng đường mà con kiến đi là $L = A'B_1 + B_1C_1 + C_1B_2 + B_2C_2 + C_2D_1 + D_1A$.\\\\\r\n\t\tQuãng đường $L$ ngắn nhất khi và chỉ khi quãng đường đi của con kiến có ít đoạn gấp khúc nhất.\\\\\r\n\t\tTH1. $L_{\\min} = A'A$ điều này không thể xảy ra vì các điểm chạm $B_i, C_i$ đều không thoả mãn đề bài.\\\\\r\n\t\tTH2. Đường đi của con kiến gồm hai đường gấp khúc.\\\\\r\n\t\tTa có:\\\\\r\n\t\t$L = (A'B_1 + B_1C_1) + (C_1B_2 + B_2C_2 + C_2D_1 + D_1A)$\\\\\r\n\t\t$\\displaystyle L \\ge A'C_1 + C_1A \\ge A'C_0 + C_0A = \\sqrt{40^2 + 64^2} + \\sqrt{16^2 + 80^2} \\approx 157cm$."
+  },
+  {
+    "maBaoMat": "id_0e2f1f72fe",
+    "dapAn": "698",
+    "loiGiai": "Số phần tử của không gian mẫu $n(\\Omega) = A_{11}^5 = 55440$.\\\\\r\n\t\tTính số phần tử của biến cố $Y$ như sau:\\\\\r\n\t\tXếp số $13$ ở ô $O$ có $1$ cách.\\\\\r\n\t\tTa gọi các số ở ô $A, C, B, D$ lần lượt là $a, c, b, d$ thỏa $a+c = b+d$ và là các số phân biệt thuộc tập hợp $Y = \\{2;4;6;8;10;12;14;16;18;20\\}$. Đặt $S = a+c = b+d$ ta có $S \\in [10; 34]$.\\\\TH1: $S=10$ có hai bộ số $(2;8), (4;6)$ nên có số cách xếp $2 \\cdot 2! \\cdot 2! = 8$.\\\\\r\n\t\tTH2: $S=12$ có hai bộ số $(2;10), (4;8)$ nên có số cách xếp $2 \\cdot 2! \\cdot 2! = 8$.\\\\\r\n\t\tTH3: $S=14$ có ba bộ số $(2;12), (4;10), (6;8)$ nên có số cách xếp $3 \\cdot 2! \\cdot 2 \\cdot 2! = 24$.\\\\\r\n\t\tTH4: $S=16$ có ba bộ số $(2;14), (4;12), (6;10)$ nên có số cách xếp $3 \\cdot 2! \\cdot 2 \\cdot 2! = 24$.\\\\\r\n\t\tTH5: $S=18$ có bốn bộ số $(2;16), (4;14), (6;12), (8;10)$ nên có số cách xếp $4 \\cdot 2! \\cdot 3 \\cdot 2! = 48$.\\\\\r\n\t\tTH6: $S=20$ có bốn bộ số $(2;18), (4;16), (6;14), (8;12)$ nên có số cách xếp $4 \\cdot 2! \\cdot 3 \\cdot 2! = 48$.\\\\\r\n\t\tTH7: $S=22$ có năm bộ số $(2;20), (4;18), (6;16), (8;14), (10;12)$ nên có số cách xếp là $5 \\cdot 2! \\cdot 4 \\cdot 2! = 80$.\\\\\r\n\t\tTH8: $S=24$ có bốn bộ số $(4;20), (6;18), (8;16), (10;14)$ nên có số cách xếp $4 \\cdot 2! \\cdot 3 \\cdot 2! = 48$.\\\\\r\n\t\tTH9: $S=26$ có bốn bộ số $(6;20), (8;18), (10;16), (12;14)$ nên có số cách xếp $4 \\cdot 2! \\cdot 3 \\cdot 2! = 48$.\\\\\r\n\t\tTH10: $S=28$ có ba bộ số $(8;20), (10;18), (12;16)$ nên có số cách xếp $3 \\cdot 2! \\cdot 2 \\cdot 2! = 24$.\\\\\r\n\t\tTH11: $S=30$ có ba bộ số $(10;20), (12;18), (14;16)$ nên có số cách xếp $3 \\cdot 2! \\cdot 2 \\cdot 2! = 24$.\\\\\r\n\t\tTH12: $S=32$ có hai bộ số $(12;20), (14;18)$ nên có số cách xếp $2 \\cdot 2! \\cdot 2! = 8$.\\\\\r\n\t\tTH13: $S=34$ có hai bộ số $(14;20), (16;18)$ nên có số cách xếp $2 \\cdot 2! \\cdot 2! = 8$.\\\\\r\n\t\tVậy số phần tử của biến cố $Y$ là $n(Y) = 4(8 + 24 + 48) + 80 = 400$.\\\\\r\n\t\tXác suất của biến cố $Y$ là $\\displaystyle P(Y) = \\frac{400}{55440} = \\frac{5}{693}$.\\\\\r\n\t\tVậy $a + b = 5 + 693 = 698$."
+  }
+]
