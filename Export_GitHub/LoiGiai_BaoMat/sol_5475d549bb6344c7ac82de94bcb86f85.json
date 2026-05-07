@@ -1,0 +1,112 @@
+[
+  {
+    "maCau": "2604-623",
+    "dapAn": "D",
+    "loiGiai": "Thay tọa độ các điểm vào phương trình mặt phẳng $(P)\\colon 2x-y+z-2=0$ ta có:\\\\\r\n\t\tVới $Q(1;-2;2)$: $\\displaystyle 2(1)-(-2)+2-2 = 4 \\neq 0$.\\\\\r\n\t\tVới $P(2;-1;1)$: $\\displaystyle 2(2)-(-1)+1-2 = 4 \\neq 0$.\\\\\r\n\t\tVới $M(1;1;-1)$: $\\displaystyle 2(1)-1+(-1)-2 = -2 \\neq 0$.\\\\\r\n\t\tVới $N(1;-1;-1)$: $\\displaystyle 2(1)-(-1)+(-1)-2 = 0$."
+  },
+  {
+    "maCau": "2604-624",
+    "dapAn": "D",
+    "loiGiai": "Ta có $\\displaystyle \\int (6x^2-10x+1)\\,\\mathrm{d}x = 2x^3-5x^2+x+C$."
+  },
+  {
+    "maCau": "2604-625",
+    "dapAn": "C",
+    "loiGiai": "Từ phương trình mặt cầu, ta có $a=4$, $b=-5$, $c=3$ và $d=4$.\\\\\r\n\t\tTâm của mặt cầu là $I(4;-5;3)$.\\\\\r\n\t\tBán kính $\\displaystyle R=\\sqrt{a^2+b^2+c^2-d} = \\sqrt{16+25+9-4} = \\sqrt{46}$."
+  },
+  {
+    "maCau": "2604-626",
+    "dapAn": "C",
+    "loiGiai": "Ta có $\\displaystyle \\int \\mathrm{e}^{2x-1}\\,\\mathrm{d}x = \\frac{1}{2}\\mathrm{e}^{2x-1}+C$."
+  },
+  {
+    "maCau": "2604-627",
+    "dapAn": "B",
+    "loiGiai": "Quãng đường vật đi được là $\\displaystyle S = \\int_3^6 (2t^2-t+6)\\,\\mathrm{d}t$.\\\\\r\n\t\t$\\displaystyle S = \\left( \\frac{2t^3}{3} - \\frac{t^2}{2} + 6t \\right)\\Big|_3^6 = 162 - 31{,}5 = 130{,}5\\,(\\mathrm{m})$."
+  },
+  {
+    "maCau": "2604-628",
+    "dapAn": "B",
+    "loiGiai": "Diện tích hình phẳng cần tìm là $\\displaystyle S = \\int_{-1}^2 \\left| \\frac{x+1}{x+2} \\right|\\,\\mathrm{d}x$.\\\\\r\n\t\tVì trên $[-1;2]$ ta có $x+2>0$ nên phương trình hoành độ giao điểm $\\displaystyle \\frac{x+1}{x+2}=0 \\Leftrightarrow x=-1$.\\\\\r\n\t\t$\\displaystyle S = \\int_{-1}^2 \\left( 1 - \\frac{1}{x+2} \\right)\\,\\mathrm{d}x = \\left( x - \\ln|x+2| \\right)\\Big|_{-1}^2$.\\\\\r\n\t\t$\\displaystyle S = (2-\\ln 4) - (-1-\\ln 1) = 3 - \\ln 4 = 3 - 2\\ln 2$."
+  },
+  {
+    "maCau": "2604-629",
+    "dapAn": "A",
+    "loiGiai": "Ta có $\\displaystyle \\int \\left( 2\\sin x + \\frac{5}{\\cos^2 x} \\right)\\,\\mathrm{d}x = -2\\cos x + 5\\tan x + C$."
+  },
+  {
+    "maCau": "2604-630",
+    "dapAn": "B",
+    "loiGiai": "Ta có $\\displaystyle I = \\int_1^2 \\left( \\frac{3}{x} + 2 - x \\right)\\,\\mathrm{d}x$.\\\\\r\n\t\t$\\displaystyle I = \\left( 3\\ln|x| + 2x - \\frac{x^2}{2} \\right)\\Big|_1^2 = \\left( 3\\ln 2 + 4 - 2 \\right) - \\left( 3\\ln 1 + 2 - \\frac{1}{2} \\right) = 3\\ln 2 + \\frac{1}{2} = 0{,}5+3\\ln 2$."
+  },
+  {
+    "maCau": "2604-631",
+    "dapAn": "C",
+    "loiGiai": "Ta có $\\displaystyle F(x) = \\int \\frac{3}{x}\\,\\mathrm{d}x = 3\\ln|x|+C$.\\\\\r\n\t\tTheo giả thiết $\\displaystyle F(\\mathrm{e}^2)=4 \\Rightarrow 3\\ln(\\mathrm{e}^2)+C=4 \\Rightarrow 6+C=4 \\Rightarrow C=-2$.\\\\\r\n\t\tVậy nguyên hàm cần tìm là $F(x)=3\\ln|x|-2$."
+  },
+  {
+    "maCau": "2604-632",
+    "dapAn": "D",
+    "loiGiai": "Đường thẳng đi qua $M(2;-1;3)$ và có VTCP $\\vec{u}(1;2;-4)$ có phương trình chính tắc là $\\displaystyle \\frac{x-2}{1}=\\frac{y+1}{2}=\\frac{z-3}{-4}$."
+  },
+  {
+    "maCau": "2604-633",
+    "dapAn": "C",
+    "loiGiai": "Đường thẳng $d$ có một vectơ chỉ phương là $\\vec{u}=(6;12;-9)$.\\\\\r\n\t\tChọn vectơ cùng phương với $\\vec{u}$ là $\\displaystyle \\vec{u_1} = \\frac{1}{3}\\vec{u} = (2;4;-3)$."
+  },
+  {
+    "maCau": "2604-634",
+    "dapAn": "C",
+    "loiGiai": "Áp dụng công thức xác suất có điều kiện, ta có $\\displaystyle P(A|B)=\\frac{P(AB)}{P(B)}$.\\\\\r\n\t\tSuy ra $\\displaystyle P(AB) = P(A|B) \\cdot P(B) = 0{,}1 \\cdot 0{,}6 = 0{,}06$."
+  },
+  {
+    "maCau": "2604-635",
+    "dapAn": "FFFT",
+    "loiGiai": "Ta có $\\displaystyle f(x) = \\int \\left( 4x + \\frac{5}{x^2} \\right)\\,\\mathrm{d}x = 2x^2 - \\frac{5}{x} + C$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Khi $f(5)=52 \\Rightarrow 2(25) - 1 + C = 52 \\Rightarrow C = 3$. Vậy $\\displaystyle f(x)=2x^2-\\frac{5}{x}+3$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Khi $f(-1)=10 \\Rightarrow 2(1) + 5 + C = 10 \\Rightarrow C = 3$. Khi đó $\\displaystyle f(x) = 2x^2 - \\frac{5}{x} + 3 = 0 \\Leftrightarrow \\frac{2x^3+3x-5}{x}=0 \\Rightarrow 2x^3+3x-5=0$. Xét hàm số $g(x)=2x^3+3x-5$ có $g'(x)=6x^2+3>0$, do đó phương trình chỉ có $1$ nghiệm duy nhất $x=1$, nên mệnh đề sai.\r\n\t\t\t\\itemch Khi đồ thị hàm số đi qua $N\\left(2;\\frac{3}{4}\\right)$, ta có $\\displaystyle f(2) = 2(4) - \\frac{5}{2} + C = \\frac{3}{4} \\Rightarrow C = -\\frac{19}{4}$. Suy ra $\\displaystyle f(4) = 2(16) - \\frac{5}{4} - \\frac{19}{4} = 32 - 6 = 26 \\neq \\frac{5}{4}$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Khi đồ thị hàm số đi qua $Q(1;-12) \\Rightarrow f(1) = 2 - 5 + C = -12 \\Rightarrow C = -9$. Suy ra $\\displaystyle f(x) = 2x^2 - \\frac{5}{x} - 9$. Khi đó hàm số $\\displaystyle y=xf(x) = x\\left( 2x^2 - \\frac{5}{x} - 9 \\right) = 2x^3-9x-5$. Ta có $y'=6x^2-9=0 \\Leftrightarrow x^2=\\frac{3}{2}$, phương trình $y'=0$ có $2$ nghiệm phân biệt nên hàm số có $2$ điểm cực trị, do đó mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maCau": "2604-636",
+    "dapAn": "FTFT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hình chiếu của điểm $B(-1;2;3)$ lên mặt phẳng $(Oxz)$ là $B'(-1;0;3)$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Ta có $\\vec{AB}=(-1;-3;-4)$ và $\\vec{AC}=(3;-5;-16)$. Suy ra $[\\vec{AB},\\vec{AC}] = (28;-28;14) = 14(2;-2;1)$. Vậy một vectơ pháp tuyến của mặt phẳng $(ABC)$ là $\\vec{n}=(2;-2;1)$, do đó mệnh đề đúng.\r\n\t\t\t\\itemch Mặt phẳng $(ABC)$ đi qua $A(0;5;7)$ và nhận $\\vec{n}=(2;-2;1)$ làm vectơ pháp tuyến có phương trình: $2(x-0)-2(y-5)+1(z-7)=0 \\Leftrightarrow 2x-2y+z+3=0$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Bán kính mặt cầu tâm $S$ tiếp xúc với mặt phẳng $(ABC)$ là $\\displaystyle R = \\mathrm{d}(S,(ABC)) = \\frac{|2(1)-2(-2)+3+3|}{\\sqrt{2^2+(-2)^2+1^2}} = \\frac{12}{3} = 4$. Phương trình mặt cầu là $(x-1)^2+(y+2)^2+(z-3)^2=16$, do đó mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maCau": "2604-637",
+    "dapAn": "TFFF",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $P(\\overline{B})=1-P(B)=1-0{,}6=0{,}4$, do đó mệnh đề đúng.\r\n\t\t\t\\itemch Theo công thức ta có $\\displaystyle P(A|\\overline{B}) = \\frac{P(A\\cap\\overline{B})}{P(\\overline{B})} \\Rightarrow P(A\\cap\\overline{B}) = 0{,}2 \\cdot 0{,}4 = 0{,}08$. Lại có $P(A) = P(A\\cap B) + P(A\\cap\\overline{B}) \\Rightarrow P(A\\cap B) = 0{,}3 - 0{,}08 = 0{,}22 \\neq 0{,}3$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Từ tính toán trên ta có $P(A\\cap\\overline{B})=0{,}08 \\neq 0{,}1$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Ta có $\\displaystyle P(A|B) = \\frac{P(A\\cap B)}{P(B)} = \\frac{0{,}22}{0{,}6} \\approx 0{,}367 \\neq 0{,}75$, do đó mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maCau": "2604-638",
+    "dapAn": "FFTT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{AB}=(-2;2;-1)$. Bán kính mặt cầu là $R=AB=\\sqrt{(-2)^2+2^2+(-1)^2}=\\sqrt{9}=3$. Phương trình mặt cầu $(S)$ là $x^2+(y-4)^2+(z-2)^2=9$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Đường thẳng $AB$ có $\\vec{u_{AB}}=(-2;2;-1)$, đường thẳng $d$ có $\\vec{u_d}=(1;5;-1)$. Ta có $\\displaystyle \\cos(AB,d) = \\frac{|-2\\cdot 1+2\\cdot 5+(-1)\\cdot (-1)|}{\\sqrt{4+4+1}\\sqrt{1+25+1}} = \\frac{9}{3\\sqrt{27}} = \\frac{1}{\\sqrt{3}} \\Rightarrow (AB,d) \\approx 54^\\circ 44'$, do đó mệnh đề sai.\r\n\t\t\t\\itemch Đường thẳng $AB$ đi qua $A(0;4;2)$ và có VTCP $\\vec{AB}=(-2;2;-1)$ nên PTTS là $\\begin{cases} x=-2t \\\\ y=4+2t \\\\ z=2-t \\end{cases}$. Đường thẳng $AB$ đi qua $B(-2;6;1)$ và có VTCP $\\vec{AB}=(-2;2;-1)$ nên PTCT là $\\displaystyle \\frac{x+2}{-2}=\\frac{y-6}{2}=\\frac{z-1}{-1}$, do đó mệnh đề đúng.\r\n\t\t\t\\itemch Giao điểm $M$ của $AB$ và $d$ thỏa hệ phương trình: $\\begin{cases} -2t' = -6+t \\\\ 4+2t' = -2+5t \\\\ 2-t' = 2-t \\end{cases} \\Leftrightarrow \\begin{cases} t'=2 \\\\ t=2 \\end{cases}$. Suy ra $M(-4;8;0)$. Do đó $a=-4, b=8, c=0$ suy ra $b-a+c=8-(-4)+0=12$, do đó mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+  },
+  {
+    "maCau": "2604-639",
+    "dapAn": "113",
+    "loiGiai": "Dựa vào hình vẽ, khối tròn xoay được tạo thành khi quay nửa hình tròn bán kính $R=3$ quanh trục hoành, kết quả tạo thành một khối cầu.\\\\\r\n\t\tThể tích khối cầu là $\\displaystyle V = \\frac{4}{3}\\pi R^3 = \\frac{4}{3}\\pi \\cdot 3^3 = 36\\pi \\approx 113$."
+  },
+  {
+    "maCau": "2604-640",
+    "dapAn": "79",
+    "loiGiai": "Mặt phẳng thứ nhất có vectơ pháp tuyến $\\vec{n_1}=(1;-1;1)$.\\\\\r\n\t\tMặt phẳng thứ hai có vectơ pháp tuyến $\\vec{n_2}=(2;1;-2)$.\\\\\r\n\t\tGọi $\\alpha$ là góc giữa hai mặt phẳng, ta có $\\displaystyle \\cos \\alpha = \\frac{|\\vec{n_1} \\cdot \\vec{n_2}|}{\\left|\\vec{n_1}\\right|\\left|\\vec{n_2}\\right|} = \\frac{|1\\cdot 2+(-1)\\cdot 1+1\\cdot (-2)|}{\\sqrt{1^2+(-1)^2+1^2}\\sqrt{2^2+1^2+(-2)^2}} = \\frac{|-1|}{\\sqrt{3}\\cdot 3} = \\frac{1}{3\\sqrt{3}}$.\\\\\r\n\t\tSuy ra $\\alpha \\approx 78{,}9^\\circ$. Làm tròn đến hàng đơn vị ta được $79^\\circ$."
+  },
+  {
+    "maCau": "2604-641",
+    "dapAn": "0,4",
+    "loiGiai": "Diện tích thiết diện của vật thể là $\\displaystyle S(x) = \\frac{1}{2} \\cdot \\frac{1-x^2}{2} \\cdot (1+x^2) = \\frac{1-x^4}{4}$.\\\\\r\n\t\tThể tích vật thể là $\\displaystyle V = \\int_{-1}^1 S(x)\\,\\mathrm{d}x = \\int_{-1}^1 \\frac{1-x^4}{4}\\,\\mathrm{d}x = \\frac{1}{4} \\left( x - \\frac{x^5}{5} \\right)\\Big|_{-1}^1 = \\frac{1}{4} \\left( \\frac{4}{5} - \\left(-\\frac{4}{5}\\right) \\right) = \\frac{1}{4} \\cdot \\frac{8}{5} = \\frac{2}{5} = 0{,}4$."
+  },
+  {
+    "maCau": "2604-642",
+    "dapAn": "0,9",
+    "loiGiai": "Để khoảng cách $AB$ ngắn nhất thì $B$ phải là hình chiếu vuông góc của $A$ lên mặt phẳng $(\\alpha)$.\\\\\r\n\t\tGọi $d$ là đường thẳng đi qua $A$ và vuông góc với $(\\alpha)$, phương trình của $d$ là: $\\begin{cases} x=3+t \\\\ y=-1-6t \\\\ z=2+t \\end{cases}$.\\\\\r\n\t\tTọa độ điểm $B$ là nghiệm của hệ phương trình:\r\n\t\t$\\displaystyle (3+t)-6(-1-6t)+(2+t)-5=0 \\Leftrightarrow 38t+6=0 \\Leftrightarrow t=-\\frac{3}{19}$.\\\\\r\n\t\tSuy ra tọa độ $\\displaystyle B\\left( \\frac{54}{19} ; -\\frac{1}{19} ; \\frac{35}{19} \\right)$.\\\\\r\n\t\tDo đó $\\displaystyle a+b-c = \\frac{54}{19} + \\left(-\\frac{1}{19}\\right) - \\frac{35}{19} = \\frac{18}{19} \\approx 0{,}947$.\\\\\r\n\t\tLàm tròn đến hàng phần chục ta được $0{,}9$."
+  },
+  {
+    "maCau": "2604-643",
+    "dapAn": "3,0",
+    "loiGiai": "Dựa vào hình vẽ, hình phẳng được giới hạn phía trên bởi parabol $y=3x-x^2$. Giới hạn phía dưới là đường thẳng $y=\\frac{x}{2}$ (từ $x=0$ đến $x=2$) và đường thẳng $y=-x+3$ (từ $x=2$ đến $x=3$). Giao điểm của hai đường thẳng là nghiệm phương trình $\\displaystyle \\frac{x}{2}=-x+3 \\Leftrightarrow x=2$.\\\\\r\n\t\tDiện tích hình phẳng cần tìm là:\\\\\r\n\t\t$\\displaystyle S = \\int_0^3 (3x-x^2)\\,\\mathrm{d}x - \\left( \\int_0^2 \\frac{x}{2}\\,\\mathrm{d}x + \\int_2^3 (-x+3)\\,\\mathrm{d}x \\right)$.\\\\\r\n\t\t$\\displaystyle S = \\left( \\frac{3x^2}{2} - \\frac{x^3}{3} \\right)\\Big|_0^3 - \\left( \\frac{x^2}{4}\\Big|_0^2 + \\left( -\\frac{x^2}{2}+3x \\right)\\Big|_2^3 \\right)$.\\\\\r\n\t\t$\\displaystyle S = 4{,}5 - \\left( 1 + 0{,}5 \\right) = 4{,}5 - 1{,}5 = 3$.\\\\\r\n\t\tLàm tròn đến hàng phần chục ta được $3{,}0$."
+  },
+  {
+    "maCau": "2604-644",
+    "dapAn": "0,45",
+    "loiGiai": "Số học sinh có đăng kí ít nhất một trường là $40 - 3 = 37$ em.\\\\\r\n\t\tGọi $A$ là tập các học sinh đăng kí thi ĐHQG, $B$ là tập các học sinh đăng kí thi ĐHBK.\\\\\r\n\t\tTa có $n(A\\cup B) = n(A) + n(B) - n(A\\cap B) \\Rightarrow 37 = 22 + 25 - n(A\\cap B) \\Rightarrow n(A\\cap B) = 10$.\\\\\r\n\t\tXác suất để một học sinh đăng kí thi ĐHBK biết rằng em đó đã đăng kí thi ĐHQG là xác suất có điều kiện:\\\\\r\n\t\t$\\displaystyle P = \\frac{n(A\\cap B)}{n(A)} = \\frac{10}{22} = \\frac{5}{11} \\approx 0{,}4545...$"
+  }
+]
