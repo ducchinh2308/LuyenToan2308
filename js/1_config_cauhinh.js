@@ -5,17 +5,15 @@
 // ---------------------------------------------------------------------
 // 1.1. KẾT NỐI MÁY CHỦ SUPABASE (Thay thế hoàn toàn Firebase)
 // ---------------------------------------------------------------------
-// Sử dụng "Chìa khóa xanh" (Anon Public Key) an toàn tuyệt đối
 const SUPABASE_URL = 'https://ffjrjgujzhkjetqyuska.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
 
 // Khởi tạo đối tượng supabase toàn cục để 4 file còn lại xài chung
 window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// BẪY LỖI TOÀN CỤC CHỐNG MÀN HÌNH TRẮNG (Đã nâng cấp hiện đại hơn)
+// BẪY LỖI TOÀN CỤC CHỐNG MÀN HÌNH TRẮNG
 window.onerror = function (message, source, lineno, colno, error) {
     console.error("❌ LỖI HỆ THỐNG:", message, "tại dòng", lineno);
-    // Chỉ hiện thông báo nếu lỗi không phải từ các thư viện bên thứ 3 (như MathJax)
     if (source && source.includes("js/")) {
         alert(`⚠️ HỆ THỐNG PHÁT HIỆN LỖI CODE:\n\nChi tiết: ${message}\nTại file: ${source}\nDòng số: ${lineno}\n\nVui lòng báo lại Thầy Chính hoặc F12 xem chi tiết!`);
     }
@@ -25,37 +23,33 @@ window.onerror = function (message, source, lineno, colno, error) {
 // ---------------------------------------------------------------------
 // 1.2. KHAI BÁO BIẾN TRẠNG THÁI HỆ THỐNG (SYSTEM STATE)
 // ---------------------------------------------------------------------
-// 🌟 Mẹo thông minh cũ: Giả lập SĐT thành Email để Auth dễ dàng
 const SYSTEM_DOMAIN = "@thaychinh.edu.vn";
-let isLoginMode = true;                   // Trạng thái Form: true = Đăng nhập, false = Đăng ký
+let isLoginMode = true;
 
 // Các biến quản lý dữ liệu Admin/Giáo viên
-window.khoCauHoiAdmin = new Map();        // Bộ nhớ tạm chứa toàn bộ câu hỏi (dùng Map để truy xuất siêu tốc)
-window.lopHocDangChon = null;             // Lưu ID của lớp học đang được click xem chi tiết ở Admin
+window.khoCauHoiAdmin = new Map();
+window.lopHocDangChon = null;
 
 // Các biến quản lý dữ liệu Phòng thi của Học sinh
-window.toanBoDuLieu = [];                 // (Dự phòng) Mảng chứa dữ liệu thô
-window.treeData = {};                     // (Dự phòng) Cây dữ liệu phân cấp
-window.duLieuDeHienTai = [];              // Mảng chứa chi tiết các câu hỏi của đề đang làm
-window.tongSoCauDeHienTai = 0;            // Tổng số câu trong đề
-window.soCauDaLam = 0;                    // Số câu học sinh đã tick chọn
-window.baiDaNop = false;                  // Cờ đánh dấu học sinh đã nộp bài chưa
-window.thongTinDeHienTai = null;          // Object chứa vỏ cấu hình của đề đang làm (thời gian, id, tên...)
-window.idKetQuaDangLam = null;            // Lưu ID của bài thi trên Database để chốt điểm
+window.toanBoDuLieu = [];
+window.treeData = {};
+window.duLieuDeHienTai = [];
+window.tongSoCauDeHienTai = 0;
+window.soCauDaLam = 0;
+window.baiDaNop = false;
+window.thongTinDeHienTai = null;
+window.idKetQuaDangLam = null;
 
 // Các biến quản lý Thời gian làm bài
-window.timerInterval = null;              // Biến chứa bộ đếm ngược (để clearInterval khi nộp)
-window.thoiGianConLai = 0;                // Số giây còn lại của bài thi
-window.thoiDiemBatDauLamBai = 0;          // Timestamp lúc bấm Bắt đầu (để tính thời gian làm thực tế)
+window.timerInterval = null;
+window.thoiGianConLai = 0;
+window.thoiDiemBatDauLamBai = 0;
 
 // ---------------------------------------------------------------------
 // 1.3. KHAI BÁO CÁC PHẦN TỬ GIAO DIỆN CHÍNH (DOM ELEMENTS)
 // ---------------------------------------------------------------------
-// Khung bố cục chính
 const khungDangNhap = document.getElementById('khung-dang-nhap');
 const khungDeThi = document.getElementById('khung-de-thi');
-
-// Menu góc phải trên cùng (Thông tin User & Nút tiện ích)
 const statusText = document.getElementById('status');
 const btnLogout = document.getElementById('btnLogout');
 
@@ -67,34 +61,27 @@ const loginError = document.getElementById('login-error');
 const linkToggleAuth = document.getElementById('link-toggle-auth');
 const btnSubmitAuth = document.getElementById('btnSubmitAuth');
 
-// Các ô Input cơ bản
 const txtPhone = document.getElementById('txtPhone');
 const txtPassword = document.getElementById('txtPassword');
 const btnTogglePassword = document.getElementById('btnTogglePassword');
 
-// Các ô Input dành riêng cho Đăng ký mới
 const txtHoTen = document.getElementById('txtHoTen');
 const txtRealEmail = document.getElementById('txtRealEmail');
 const txtConfirmPassword = document.getElementById('txtConfirmPassword');
 const groupConfirmPassword = document.getElementById('group-confirm-password');
 const btnToggleConfirmPassword = document.getElementById('btnToggleConfirmPassword');
 
-// Nhóm chọn Vai trò (Giáo viên / Học sinh)
 const groupChonVaiTro = document.getElementById('group-chon-vai-tro');
 const radVaiTros = document.getElementsByName('radVaiTro');
 const msgGvWarning = document.getElementById('msg-gv-warning');
 
-// Nhóm thông tin Học sinh / Lớp học
 const groupThongTinTruong = document.getElementById('group-thong-tin-truong');
 const txtTruong = document.getElementById('txtTruong');
 const txtTinh = document.getElementById('txtTinh');
-const txtLop = document.getElementById('txtLop');     // Khối lớp (10, 11, 12)
-const txtMaLop = document.getElementById('txtMaLop'); // Mã lớp gia nhập (4 ký tự)
+const txtLop = document.getElementById('txtLop');
+const txtMaLop = document.getElementById('txtMaLop');
 
-// 🚀 Nâng cấp nhỏ: Báo kết nối thành công trong Console (F12) để dễ theo dõi
 console.log("%c✅ HỆ THỐNG ĐÃ KHỞI ĐỘNG VÀ KẾT NỐI SUPABASE THÀNH CÔNG!", "color: #27ae60; font-size: 14px; font-weight: bold;");
-
-
 
 // =====================================================================
 // 🚀 BỔ SUNG: GẮN SỰ KIỆN NÚT BẤM ĐĂNG NHẬP / ĐĂNG KÝ (SUPABASE AUTH)
@@ -167,7 +154,6 @@ if (btnToggleConfirmPassword && txtConfirmPassword) {
 if (btnSubmitAuth) {
     btnSubmitAuth.addEventListener('click', async () => {
         try {
-            // Ép xóa mọi khoảng trắng nếu học sinh lỡ tay gõ dư
             const phone = txtPhone.value.replace(/\s+/g, '');
             const pass = txtPassword.value;
             const realEmail = txtRealEmail ? txtRealEmail.value.trim() : "";
@@ -183,7 +169,7 @@ if (btnSubmitAuth) {
                 return;
             }
 
-            const supabaseEmail = phone + "@thaychinh.edu.vn";
+            const supabaseEmail = phone + SYSTEM_DOMAIN;
             btnSubmitAuth.innerText = "⏳ Đang xử lý...";
             btnSubmitAuth.disabled = true;
             loginError.style.display = 'none';
@@ -194,9 +180,8 @@ if (btnSubmitAuth) {
                     email: supabaseEmail, password: pass
                 });
 
-                if (error) throw error; // Quăng lỗi cho khối Catch xử lý
+                if (error) throw error;
 
-                // Đăng nhập thành công
                 btnSubmitAuth.innerText = "ĐĂNG NHẬP";
                 btnSubmitAuth.disabled = false;
                 txtPassword.value = "";
@@ -216,9 +201,10 @@ if (btnSubmitAuth) {
 
                 if (roleChon === "hocsinh") {
                     if (maLopNhap === "") throw new Error("Bạn bắt buộc phải nhập Mã Lớp!");
-                    const { data: docLopRef, error: errLop } = await window.supabaseClient.from("LopHoc").select("*").eq("maLop", maLopNhap).single();
+                    // Sửa tên bảng LopHoc -> lop_hoc, cột maLop -> ma_lop
+                    const { data: docLopRef, error: errLop } = await window.supabaseClient.from("lop_hoc").select("*").eq("ma_lop", maLopNhap).single();
                     if (errLop || !docLopRef) throw new Error(`Mã lớp [${maLopNhap}] không tồn tại!`);
-                    tenLopXinVao = docLopRef.tenLop || maLopNhap;
+                    tenLopXinVao = docLopRef.ten_lop || maLopNhap;
                 }
 
                 const { data: authData, error: authErr } = await window.supabaseClient.auth.signUp({
@@ -230,16 +216,37 @@ if (btnSubmitAuth) {
                 if (authData.user) {
                     let trangThaiBanDau = (roleChon === "giaovien") ? "chopheduyet" : "dapheduyet";
 
-                    const { error: errInsert } = await window.supabaseClient.from("HocSinh").insert([{
-                        uid: authData.user.id, ten: hoTen, sdt: phone, emailLienHe: realEmail, truong: truong, tinh: tinh, khoiLop: khoiLopHienTai, ngayDangKy: new Date().toISOString(), vaiTro: roleChon, trangThai: trangThaiBanDau, matKhau: pass, loaiTaiKhoan: "CoLop", danhSachMaLop: []
+                    // Sửa tên bảng HocSinh -> hoc_sinh và các cột snake_case
+                    const { error: errInsert } = await window.supabaseClient.from("hoc_sinh").insert([{
+                        uid: authData.user.id,
+                        ten: hoTen,
+                        sdt: phone,
+                        email_lien_he: realEmail,
+                        truong: truong,
+                        tinh: tinh,
+                        khoi_lop: khoiLopHienTai,
+                        ngay_dang_ky: new Date().toISOString(),
+                        vai_tro: roleChon,
+                        trang_thai: trangThaiBanDau,
+                        mat_khau: pass,
+                        loai_tai_khoan: "CoLop",
+                        danh_sach_ma_lop: []
                     }]);
 
                     if (errInsert) throw errInsert;
 
                     if (roleChon === "hocsinh" && maLopNhap !== "") {
                         const reqId = `${authData.user.id}_${maLopNhap}_xinvaolop`;
-                        await window.supabaseClient.from("YeuCauHocSinh").insert([{
-                            id: reqId, uid_hoc_sinh: authData.user.id, ten_hoc_sinh: hoTen, ma_lop: maLopNhap, tenDe: tenLopXinVao, loaiYeuCau: 'xinvaolop', lyDo: `Học sinh đăng ký tài khoản mới`, trang_thai: 0
+                        // Sửa tên bảng YeuCauHocSinh -> yeu_cau_hoc_sinh và các cột snake_case
+                        await window.supabaseClient.from("yeu_cau_hoc_sinh").insert([{
+                            id: reqId,
+                            uid_hoc_sinh: authData.user.id,
+                            ten_hoc_sinh: hoTen,
+                            ma_lop: maLopNhap,
+                            ten_de: tenLopXinVao,
+                            loai_yeu_cau: 'xinvaolop',
+                            ly_do: `Học sinh đăng ký tài khoản mới`,
+                            trang_thai: 0
                         }]);
                     }
 
@@ -249,17 +256,16 @@ if (btnSubmitAuth) {
                         alert(`🎉 Chào mừng ${hoTen}! Đăng ký thành công.\n⏳ Yêu cầu xin vào lớp [${tenLopXinVao}] đã được gửi.`);
                     }
                     await window.supabaseClient.auth.signOut();
-                    isLoginMode = true; linkToggleAuth.click();
+                    isLoginMode = true;
+                    if (linkToggleAuth) linkToggleAuth.click();
                     btnSubmitAuth.innerText = "ĐĂNG NHẬP"; btnSubmitAuth.disabled = false;
                 }
             }
         } catch (err) {
-            // 🚨 NẾU CÓ BẤT KỲ LỖI GÌ, SẼ CHẠY VÀO ĐÂY VÀ BÁO CHỮ ĐỎ TRÊN MÀN HÌNH
             btnSubmitAuth.innerText = isLoginMode ? "ĐĂNG NHẬP" : "ĐĂNG KÝ";
             btnSubmitAuth.disabled = false;
 
             let msg = err.message;
-            // Phiên dịch lỗi cho thân thiện
             if (msg.includes("Invalid login")) msg = "Sai Số điện thoại hoặc Mật khẩu!";
             else if (msg.includes("already registered")) msg = "Số điện thoại này đã được sử dụng!";
             else if (msg.includes("rate limit")) msg = "Hệ thống đang bận, vui lòng thử lại sau 1 phút!";
