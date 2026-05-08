@@ -188,7 +188,7 @@ if (btnSubmitAuth) {
                 // Dịch một số lỗi phổ biến của Supabase sang tiếng Việt cho thân thiện
                 let thongBaoLoi = authErr.message;
                 if (thongBaoLoi.includes("User already registered")) {
-                    thongBaoLoi = "Số điện thoại này đã được sử dụng!";
+                    thongBaoLoi = "Số điện thoại này đã được sử dụng rồi!";
                 } else if (thongBaoLoi.includes("rate limit")) {
                     thongBaoLoi = "Hệ thống đang quá tải hoặc bạn thao tác quá nhanh. Vui lòng đợi vài phút!";
                 } else if (thongBaoLoi.includes("Password should be")) {
