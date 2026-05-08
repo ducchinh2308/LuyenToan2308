@@ -163,120 +163,109 @@ if (btnToggleConfirmPassword && txtConfirmPassword) {
     });
 }
 
-// 4. XỬ LÝ NÚT BẤM ĐĂNG NHẬP / ĐĂNG KÝ VỚI SUPABASE
+// 4. XỬ LÝ NÚT BẤM ĐĂNG NHẬP / ĐĂNG KÝ VỚI SUPABASE (BẢN CHỐNG KẸT)
 if (btnSubmitAuth) {
     btnSubmitAuth.addEventListener('click', async () => {
-        const phone = txtPhone.value.trim(); const pass = txtPassword.value;
-        const realEmail = txtRealEmail ? txtRealEmail.value.trim() : "";
+        try {
+            // Ép xóa mọi khoảng trắng nếu học sinh lỡ tay gõ dư
+            const phone = txtPhone.value.replace(/\s+/g, '');
+            const pass = txtPassword.value;
+            const realEmail = txtRealEmail ? txtRealEmail.value.trim() : "";
 
-        if (!phone || !pass) { loginError.innerText = "Vui lòng nhập đủ SĐT và Mật khẩu!"; loginError.style.display = 'block'; return; }
-        if (pass.length < 6) { loginError.innerText = "Mật khẩu phải từ 6 ký tự!"; loginError.style.display = 'block'; return; }
-
-        const supabaseEmail = phone + SYSTEM_DOMAIN; // Nối đuôi để tạo email ảo
-        btnSubmitAuth.innerText = "⏳ Đang xử lý..."; btnSubmitAuth.disabled = true; loginError.style.display = 'none';
-
-        if (isLoginMode) {
-            // === THỰC HIỆN ĐĂNG NHẬP ===
-            // Gọi Supabase đăng ký
-            const { data: authData, error: authErr } = await window.supabaseClient.auth.signUp({
-                email: supabaseEmail, password: pass
-            });
-
-            if (authErr) {
-                btnSubmitAuth.innerText = "ĐĂNG KÝ"; btnSubmitAuth.disabled = false;
-
-                // Dịch một số lỗi phổ biến của Supabase sang tiếng Việt cho thân thiện
-                let thongBaoLoi = authErr.message;
-                if (thongBaoLoi.includes("User already registered")) {
-                    thongBaoLoi = "Số điện thoại này đã được sử dụng rồi!";
-                } else if (thongBaoLoi.includes("rate limit")) {
-                    thongBaoLoi = "Hệ thống đang quá tải hoặc bạn thao tác quá nhanh. Vui lòng đợi vài phút!";
-                } else if (thongBaoLoi.includes("Password should be")) {
-                    thongBaoLoi = "Mật khẩu chưa đạt yêu cầu bảo mật!";
-                }
-
-                loginError.innerText = "❌ Lỗi: " + thongBaoLoi;
+            if (!phone || !pass) {
+                loginError.innerText = "Vui lòng nhập đủ SĐT và Mật khẩu!";
                 loginError.style.display = 'block';
                 return;
             }
-        } else {
-            // === THỰC HIỆN ĐĂNG KÝ ===
-            const hoTen = txtHoTen ? txtHoTen.value.trim() : "";
-            if (!hoTen) { loginError.innerText = "❌ Vui lòng nhập Họ tên!"; loginError.style.display = 'block'; btnSubmitAuth.disabled = false; btnSubmitAuth.innerText = "ĐĂNG KÝ"; return; }
-            if (pass !== (txtConfirmPassword ? txtConfirmPassword.value : "")) { loginError.innerText = "❌ Mật khẩu nhập lại không khớp!"; loginError.style.display = 'block'; btnSubmitAuth.disabled = false; btnSubmitAuth.innerText = "ĐĂNG KÝ"; return; }
-
-            let roleChon = document.querySelector('input[name="radVaiTro"]:checked')?.value || 'hocsinh';
-            const tinh = txtTinh ? txtTinh.value.trim() : "";
-            const truong = (txtTruong && roleChon === "hocsinh") ? txtTruong.value.trim() : "";
-            const khoiLopHienTai = (txtLop && roleChon === "hocsinh") ? txtLop.value.trim() : "";
-            let maLopNhap = (txtMaLop && roleChon === "hocsinh") ? txtMaLop.value.trim().toUpperCase() : "";
-            let tenLopXinVao = "";
-
-            // Kiểm tra Mã lớp trước khi đăng ký cho học sinh
-            if (roleChon === "hocsinh") {
-                if (maLopNhap === "") {
-                    loginError.innerText = "❌ Bạn bắt buộc phải nhập Mã Lớp để đăng ký!"; loginError.style.display = 'block';
-                    btnSubmitAuth.disabled = false; btnSubmitAuth.innerText = "ĐĂNG KÝ"; return;
-                }
-                const { data: docLopRef } = await window.supabaseClient.from("LopHoc").select("*").eq("maLop", maLopNhap).single();
-                if (!docLopRef) {
-                    loginError.innerText = `❌ Mã lớp [${maLopNhap}] không tồn tại trên hệ thống!`; loginError.style.display = 'block';
-                    btnSubmitAuth.disabled = false; btnSubmitAuth.innerText = "ĐĂNG KÝ"; return;
-                }
-                tenLopXinVao = docLopRef.tenLop || maLopNhap;
-            }
-
-            // Gọi Supabase đăng ký
-            const { data: authData, error: authErr } = await window.supabaseClient.auth.signUp({
-                email: supabaseEmail, password: pass
-            });
-
-            if (authErr) {
-                btnSubmitAuth.innerText = "ĐĂNG KÝ"; btnSubmitAuth.disabled = false;
-
-                // Dịch một số lỗi phổ biến của Supabase sang tiếng Việt cho thân thiện
-                let thongBaoLoi = authErr.message;
-                if (thongBaoLoi.includes("User already registered")) {
-                    thongBaoLoi = "Số điện thoại này đã được sử dụng rồi!";
-                } else if (thongBaoLoi.includes("rate limit")) {
-                    thongBaoLoi = "Hệ thống đang quá tải hoặc bạn thao tác quá nhanh. Vui lòng đợi vài phút!";
-                } else if (thongBaoLoi.includes("Password should be")) {
-                    thongBaoLoi = "Mật khẩu chưa đạt yêu cầu bảo mật!";
-                }
-
-                loginError.innerText = "❌ Lỗi: " + thongBaoLoi;
+            if (pass.length < 6) {
+                loginError.innerText = "Mật khẩu phải từ 6 ký tự!";
                 loginError.style.display = 'block';
                 return;
             }
 
-            // Nếu tạo User thành công thì lưu vào Database
-            if (authData.user) {
-                let trangThaiBanDau = (roleChon === "giaovien") ? "chopheduyet" : "dapheduyet";
+            const supabaseEmail = phone + "@thaychinh.edu.vn";
+            btnSubmitAuth.innerText = "⏳ Đang xử lý...";
+            btnSubmitAuth.disabled = true;
+            loginError.style.display = 'none';
 
-                // 1. Thêm vào bảng HocSinh
-                await window.supabaseClient.from("HocSinh").insert([{
-                    uid: authData.user.id, ten: hoTen, sdt: phone, emailLienHe: realEmail, truong: truong, tinh: tinh, khoiLop: khoiLopHienTai, ngayDangKy: new Date().toISOString(), vaiTro: roleChon, trangThai: trangThaiBanDau, matKhau: pass, loaiTaiKhoan: "CoLop", danhSachMaLop: []
-                }]);
+            if (isLoginMode) {
+                // === THỰC HIỆN ĐĂNG NHẬP ===
+                const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+                    email: supabaseEmail, password: pass
+                });
 
-                // 2. Xin vào lớp tự động
-                if (roleChon === "hocsinh" && maLopNhap !== "") {
-                    const reqId = `${authData.user.id}_${maLopNhap}_xinvaolop`;
-                    await window.supabaseClient.from("YeuCauHocSinh").insert([{
-                        id: reqId, uid_hoc_sinh: authData.user.id, ten_hoc_sinh: hoTen, ma_lop: maLopNhap, tenDe: tenLopXinVao, loaiYeuCau: 'xinvaolop', lyDo: `Học sinh đăng ký tài khoản mới`, trang_thai: 0
+                if (error) throw error; // Quăng lỗi cho khối Catch xử lý
+
+                // Đăng nhập thành công
+                btnSubmitAuth.innerText = "ĐĂNG NHẬP";
+                btnSubmitAuth.disabled = false;
+                txtPassword.value = "";
+
+            } else {
+                // === THỰC HIỆN ĐĂNG KÝ ===
+                const hoTen = txtHoTen ? txtHoTen.value.trim() : "";
+                if (!hoTen) throw new Error("Vui lòng nhập Họ tên!");
+                if (pass !== (txtConfirmPassword ? txtConfirmPassword.value : "")) throw new Error("Mật khẩu nhập lại không khớp!");
+
+                let roleChon = document.querySelector('input[name="radVaiTro"]:checked')?.value || 'hocsinh';
+                const tinh = txtTinh ? txtTinh.value.trim() : "";
+                const truong = (txtTruong && roleChon === "hocsinh") ? txtTruong.value.trim() : "";
+                const khoiLopHienTai = (txtLop && roleChon === "hocsinh") ? txtLop.value.trim() : "";
+                let maLopNhap = (txtMaLop && roleChon === "hocsinh") ? txtMaLop.value.trim().toUpperCase() : "";
+                let tenLopXinVao = "";
+
+                if (roleChon === "hocsinh") {
+                    if (maLopNhap === "") throw new Error("Bạn bắt buộc phải nhập Mã Lớp!");
+                    const { data: docLopRef, error: errLop } = await window.supabaseClient.from("LopHoc").select("*").eq("maLop", maLopNhap).single();
+                    if (errLop || !docLopRef) throw new Error(`Mã lớp [${maLopNhap}] không tồn tại!`);
+                    tenLopXinVao = docLopRef.tenLop || maLopNhap;
+                }
+
+                const { data: authData, error: authErr } = await window.supabaseClient.auth.signUp({
+                    email: supabaseEmail, password: pass
+                });
+
+                if (authErr) throw authErr;
+
+                if (authData.user) {
+                    let trangThaiBanDau = (roleChon === "giaovien") ? "chopheduyet" : "dapheduyet";
+
+                    const { error: errInsert } = await window.supabaseClient.from("HocSinh").insert([{
+                        uid: authData.user.id, ten: hoTen, sdt: phone, emailLienHe: realEmail, truong: truong, tinh: tinh, khoiLop: khoiLopHienTai, ngayDangKy: new Date().toISOString(), vaiTro: roleChon, trangThai: trangThaiBanDau, matKhau: pass, loaiTaiKhoan: "CoLop", danhSachMaLop: []
                     }]);
-                }
 
-                if (trangThaiBanDau === "chopheduyet") {
-                    alert("✅ Đăng ký thành công!\n⏳ Tài khoản đang chờ Admin phê duyệt.");
+                    if (errInsert) throw errInsert;
+
+                    if (roleChon === "hocsinh" && maLopNhap !== "") {
+                        const reqId = `${authData.user.id}_${maLopNhap}_xinvaolop`;
+                        await window.supabaseClient.from("YeuCauHocSinh").insert([{
+                            id: reqId, uid_hoc_sinh: authData.user.id, ten_hoc_sinh: hoTen, ma_lop: maLopNhap, tenDe: tenLopXinVao, loaiYeuCau: 'xinvaolop', lyDo: `Học sinh đăng ký tài khoản mới`, trang_thai: 0
+                        }]);
+                    }
+
+                    if (trangThaiBanDau === "chopheduyet") {
+                        alert("✅ Đăng ký thành công!\n⏳ Tài khoản đang chờ Admin phê duyệt.");
+                    } else {
+                        alert(`🎉 Chào mừng ${hoTen}! Đăng ký thành công.\n⏳ Yêu cầu xin vào lớp [${tenLopXinVao}] đã được gửi.`);
+                    }
                     await window.supabaseClient.auth.signOut();
                     isLoginMode = true; linkToggleAuth.click();
-                } else {
-                    alert(`🎉 Chào mừng ${hoTen}! Đăng ký thành công.\n⏳ Yêu cầu xin vào lớp [${tenLopXinVao}] đã được gửi. Vui lòng chờ Thầy duyệt!`);
-                    await window.supabaseClient.auth.signOut();
-                    isLoginMode = true; linkToggleAuth.click();
+                    btnSubmitAuth.innerText = "ĐĂNG NHẬP"; btnSubmitAuth.disabled = false;
                 }
-                btnSubmitAuth.innerText = "ĐĂNG NHẬP"; btnSubmitAuth.disabled = false;
             }
+        } catch (err) {
+            // 🚨 NẾU CÓ BẤT KỲ LỖI GÌ, SẼ CHẠY VÀO ĐÂY VÀ BÁO CHỮ ĐỎ TRÊN MÀN HÌNH
+            btnSubmitAuth.innerText = isLoginMode ? "ĐĂNG NHẬP" : "ĐĂNG KÝ";
+            btnSubmitAuth.disabled = false;
+
+            let msg = err.message;
+            // Phiên dịch lỗi cho thân thiện
+            if (msg.includes("Invalid login")) msg = "Sai Số điện thoại hoặc Mật khẩu!";
+            else if (msg.includes("already registered")) msg = "Số điện thoại này đã được sử dụng!";
+            else if (msg.includes("rate limit")) msg = "Hệ thống đang bận, vui lòng thử lại sau 1 phút!";
+
+            loginError.innerText = "❌ Lỗi: " + msg;
+            loginError.style.display = 'block';
         }
     });
 }
