@@ -25,9 +25,9 @@ window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
         if (typeof window.hienThiNutDoiMatKhau === 'function') window.hienThiNutDoiMatKhau(true);
 
         try {
-            // Lấy hồ sơ tài khoản từ bảng HocSinh
+            // Lấy hồ sơ tài khoản từ bảng hoc_sinh
             const { data: userData, error } = await window.supabaseClient
-                .from("HocSinh")
+                .from("hoc_sinh")
                 .select("*")
                 .eq("uid", user.id)
                 .single();
@@ -39,8 +39,8 @@ window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
                 return;
             }
 
-            let vaiTro = userData.vaiTro || "hocsinh";
-            let trangThai = userData.trangThai || "dapheduyet";
+            let vaiTro = userData.vai_tro || "hocsinh";
+            let trangThai = userData.trang_thai || "dapheduyet";
             let tenNguoiDung = (userData.ten && userData.sdt) ? `${userData.ten} (${userData.sdt})` : (userData.ten || user.email);
 
             // Kiểm duyệt trạng thái khóa/chờ duyệt
@@ -111,8 +111,8 @@ window.xuLyDoiMatKhau = async (btnDoiMatKhau) => {
         // Lấy ID user hiện tại
         const { data: { user } } = await window.supabaseClient.auth.getUser();
 
-        // Cập nhật mk hiển thị trong bảng HocSinh (nếu thầy vẫn muốn lưu text thường để quản lý)
-        await window.supabaseClient.from("HocSinh").update({ matKhau: matKhauMoi }).eq("uid", user.id);
+        // Cập nhật mk hiển thị trong bảng hoc_sinh
+        await window.supabaseClient.from("hoc_sinh").update({ mat_khau: matKhauMoi }).eq("uid", user.id);
 
         alert("✅ ĐỔI MẬT KHẨU THÀNH CÔNG!\nVui lòng đăng nhập lại.");
         await window.supabaseClient.auth.signOut();
@@ -136,15 +136,15 @@ window.taiDanhSachLopAdmin = async () => {
             const ten = prompt("📝 Nhập tên lớp mới (VD: Toán 12A1 - Thầy Chính):");
             if (!ten || ten.trim() === "") return;
 
-            const maLopMoi = taoMaNgauNhien(4);
+            const maLopMoi = tao_ma_ngau_nhien(4);
             btnThem.innerText = "⏳ Đang tạo...";
 
             try {
-                const { error } = await window.supabaseClient.from("LopHoc").insert([{
-                    maLop: maLopMoi,
-                    tenLop: ten.trim(),
-                    hocSinhIds: [],
-                    giaoVienIds: []
+                const { error } = await window.supabaseClient.from("lop_hoc").insert([{
+                    ma_lop: maLopMoi,
+                    ten_lop: ten.trim(),
+                    hoc_sinh_ids: [],
+                    giao_vien_ids: []
                 }]);
                 if (error) throw error;
 
@@ -161,7 +161,7 @@ window.taiDanhSachLopAdmin = async () => {
     khungList.innerHTML = `<div style="text-align:center; color:#999; padding:20px;">⏳ Đang tải...</div>`;
 
     try {
-        const { data: dsLop, error } = await window.supabaseClient.from("LopHoc").select("*");
+        const { data: dsLop, error } = await window.supabaseClient.from("lop_hoc").select("*");
         if (error) throw error;
 
         if (!dsLop || dsLop.length === 0) {
@@ -169,28 +169,28 @@ window.taiDanhSachLopAdmin = async () => {
             return;
         }
 
-        dsLop.sort((a, b) => (a.tenLop || "").localeCompare(b.tenLop || ""));
+        dsLop.sort((a, b) => (a.ten_lop || "").localeCompare(b.ten_lop || ""));
 
         let html = `<div style="display:flex; flex-direction:column; gap:8px;">`;
         dsLop.forEach((l, index) => {
             const stt = index + 1;
-            const soHS = l.hocSinhIds ? l.hocSinhIds.length : 0;
-            const bg = (window.lopHocDangChon === l.maLop) ? '#fff5f5' : '#fff';
-            const border = (window.lopHocDangChon === l.maLop) ? '#c0392b' : '#eee';
+            const soHS = l.hoc_sinh_ids ? l.hoc_sinh_ids.length : 0;
+            const bg = (window.lopHocDangChon === l.ma_lop) ? '#fff5f5' : '#fff';
+            const border = (window.lopHocDangChon === l.ma_lop) ? '#c0392b' : '#eee';
 
             html += `
-                <div style="padding: 12px; background: ${bg}; border: 1px solid ${border}; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s;" onclick="xemChiTietLopAdmin('${l.maLop}', '${l.tenLop}')">
+                <div style="padding: 12px; background: ${bg}; border: 1px solid ${border}; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s;" onclick="xemChiTietLopAdmin('${l.ma_lop}', '${l.ten_lop}')">
                     <div style="display: flex; align-items: center; gap: 12px;">
                         <div style="width: 28px; height: 28px; background: #e9ecef; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #495057; font-size: 13px; border: 1px solid #ced4da; flex-shrink: 0;">${stt}</div>
                         <div>
-                            <strong style="color: #c0392b; font-size: 15px;">${l.tenLop}</strong><br>
+                            <strong style="color: #c0392b; font-size: 15px;">${l.ten_lop}</strong><br>
                             <div style="display: flex; gap: 8px; margin-top: 4px;">
-                                <span style="font-size: 12px; color: #0056b3; background: #e8f4f8; padding: 2px 8px; border-radius: 10px; font-weight: bold; border: 1px solid #b8daff;">Mã: ${l.maLop}</span>
+                                <span style="font-size: 12px; color: #0056b3; background: #e8f4f8; padding: 2px 8px; border-radius: 10px; font-weight: bold; border: 1px solid #b8daff;">Mã: ${l.ma_lop}</span>
                                 <span style="font-size: 12px; color: #666; background: #e9ecef; padding: 2px 8px; border-radius: 10px; border: 1px solid #ddd;">Sĩ số: ${soHS}</span>
                             </div>
                         </div>
                     </div>
-                    <div><button onclick="xoaLopHoc(event, '${l.maLop}', '${l.tenLop}')" style="background:#dc3545; color:white; border:none; padding:6px 10px; border-radius:4px; font-size: 12px; cursor: pointer; font-weight:bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Xóa</button></div>
+                    <div><button onclick="xoaLopHoc(event, '${l.ma_lop}', '${l.ten_lop}')" style="background:#dc3545; color:white; border:none; padding:6px 10px; border-radius:4px; font-size: 12px; cursor: pointer; font-weight:bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Xóa</button></div>
                 </div>`;
         });
         html += `</div>`;
@@ -208,8 +208,8 @@ window.xemChiTietLopAdmin = async (idLop, tenLop) => {
     khungChiTiet.innerHTML = `<div style="text-align:center; color:#999; padding:20px;">⏳ Đang lấy danh sách học sinh...</div>`;
 
     try {
-        const { data: lopDoc } = await window.supabaseClient.from("LopHoc").select("*").eq("maLop", idLop).single();
-        const hocSinhIds = (lopDoc && lopDoc.hocSinhIds) ? lopDoc.hocSinhIds : [];
+        const { data: lopDoc } = await window.supabaseClient.from("lop_hoc").select("*").eq("ma_lop", idLop).single();
+        const hocSinhIds = (lopDoc && lopDoc.hoc_sinh_ids) ? lopDoc.hoc_sinh_ids : [];
 
         if (hocSinhIds.length === 0) {
             khungChiTiet.innerHTML = `<div style="text-align:center; color:#d35400; padding:20px; font-weight:bold;">Lớp này chưa có học sinh nào. <br>Bấm "Gán Học Sinh" để thêm.</div>`;
@@ -218,7 +218,7 @@ window.xemChiTietLopAdmin = async (idLop, tenLop) => {
 
         // Lấy thông tin các học sinh bằng toán tử "in" của Supabase
         const { data: dsHocSinhTrongLop, error } = await window.supabaseClient
-            .from("HocSinh")
+            .from("hoc_sinh")
             .select("*")
             .in("uid", hocSinhIds);
 
@@ -238,7 +238,7 @@ window.xemChiTietLopAdmin = async (idLop, tenLop) => {
             html += `<tr style="border-bottom:1px solid #eee;">
                 <td style="padding:10px; text-align:center;"><div style="width: 28px; height: 28px; background: #e9ecef; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #495057; font-size: 13px; border: 1px solid #ced4da; margin: 0 auto;">${index + 1}</div></td>
                 <td style="padding:10px;"><strong style="color:#0056b3; font-size:14px;">${data.ten || 'Chưa tên'}</strong><br><span style="color:#666; font-size:12px;">📞 ${data.sdt || '---'}</span></td>
-                <td style="padding:10px; font-weight:bold; color:#2c3e50;">${data.khoiLop || '---'}</td>
+                <td style="padding:10px; font-weight:bold; color:#2c3e50;">${data.khoi_lop || '---'}</td>
                 <td style="padding:10px; color:#00796b;">${data.truong || '---'}</td>
                 <td style="padding:10px; text-align:center;"><button onclick="goHocSinhKhoiLop('${idLop}', '${data.uid}', '${data.ten}')" style="background:#f39c12; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Xóa khỏi lớp</button></td>
             </tr>`;
@@ -252,7 +252,7 @@ window.xemChiTietLopAdmin = async (idLop, tenLop) => {
 window.xoaLopHoc = async (e, id, ten) => {
     e.stopPropagation();
     if (!confirm(`⚠️ XÓA LỚP: ${ten}?\nMọi dữ liệu gán học sinh của lớp này sẽ biến mất. Tài khoản học sinh KHÔNG bị xóa.`)) return;
-    await window.supabaseClient.from("LopHoc").delete().eq("maLop", id);
+    await window.supabaseClient.from("lop_hoc").delete().eq("ma_lop", id);
 
     if (window.lopHocDangChon === id) {
         document.getElementById('admin-chitiet-lop').innerHTML = "👈 Vui lòng chọn một lớp bên trái để xem danh sách.";
@@ -266,17 +266,17 @@ window.xoaLopHoc = async (e, id, ten) => {
 window.goHocSinhKhoiLop = async (idLop, idHocSinh, ten) => {
     if (!confirm(`Bạn muốn gỡ học sinh ${ten} khỏi lớp này?`)) return;
 
-    // Thuật toán: Lấy mảng hiện tại -> Cắt ID -> Cập nhật lại mảng (thay cho arrayRemove của Firebase)
-    const { data: lopDoc } = await window.supabaseClient.from("LopHoc").select("hocSinhIds").eq("maLop", idLop).single();
-    const { data: hsDoc } = await window.supabaseClient.from("HocSinh").select("danhSachMaLop").eq("uid", idHocSinh).single();
+    // Thuật toán: Lấy mảng hiện tại -> Cắt ID -> Cập nhật lại mảng
+    const { data: lopDoc } = await window.supabaseClient.from("lop_hoc").select("hoc_sinh_ids").eq("ma_lop", idLop).single();
+    const { data: hsDoc } = await window.supabaseClient.from("hoc_sinh").select("danh_sach_ma_lop").eq("uid", idHocSinh).single();
 
-    let idsLopMoi = (lopDoc.hocSinhIds || []).filter(i => i !== idHocSinh);
-    let idsHocSinhMoi = (hsDoc.danhSachMaLop || []).filter(i => i !== idLop);
+    let idsLopMoi = (lopDoc.hoc_sinh_ids || []).filter(i => i !== idHocSinh);
+    let idsHocSinhMoi = (hsDoc.danh_sach_ma_lop || []).filter(i => i !== idLop);
 
-    // Cập nhật song song bằng Promise.all thay cho Batch
+    // Cập nhật song song
     await Promise.all([
-        window.supabaseClient.from("LopHoc").update({ hocSinhIds: idsLopMoi }).eq("maLop", idLop),
-        window.supabaseClient.from("HocSinh").update({ danhSachMaLop: idsHocSinhMoi }).eq("uid", idHocSinh)
+        window.supabaseClient.from("lop_hoc").update({ hoc_sinh_ids: idsLopMoi }).eq("ma_lop", idLop),
+        window.supabaseClient.from("hoc_sinh").update({ danh_sach_ma_lop: idsHocSinhMoi }).eq("uid", idHocSinh)
     ]);
 
     const tenLop = document.getElementById('title-chi-tiet-lop').innerText.replace("🏫 Lớp: ", "");
@@ -292,7 +292,7 @@ window.taiDanhSachGiaoVien = async () => {
     khungDisplay.innerHTML = `<div style="padding: 20px; text-align: center; color: #999;">⏳ Đang tải danh sách giáo viên...</div>`;
 
     try {
-        const { data: dsGiaoVien, error } = await window.supabaseClient.from("HocSinh").select("*").eq("vaiTro", "giaovien");
+        const { data: dsGiaoVien, error } = await window.supabaseClient.from("hoc_sinh").select("*").eq("vai_tro", "giaovien");
         if (error) throw error;
 
         if (!dsGiaoVien || dsGiaoVien.length === 0) {
@@ -305,7 +305,7 @@ window.taiDanhSachGiaoVien = async () => {
             <thead><tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;"><th style="padding: 15px; text-align: center; width: 60px;">STT</th><th style="padding: 15px;">Họ tên / SĐT</th><th style="padding: 15px;">Tỉnh/TP</th><th style="padding: 15px;">Mật khẩu</th><th style="padding: 15px;">Trạng thái</th><th style="padding: 15px; text-align: center;">Hành động</th></tr></thead><tbody id="tbody-giao-vien">`;
 
         dsGiaoVien.forEach(data => {
-            const trangThai = data.trangThai || "chopheduyet";
+            const trangThai = data.trang_thai || "chopheduyet";
             const mauTrangThai = (trangThai === "dapheduyet") ? "#28a745" : "#f39c12";
             const tenTrangThai = (trangThai === "dapheduyet") ? "✅ Đã duyệt" : "⏳ Chờ duyệt";
             const searchTag = `${data.ten} ${data.sdt} ${data.tinh}`.toLowerCase();
@@ -315,7 +315,7 @@ window.taiDanhSachGiaoVien = async () => {
                     <td class="stt-gv-column" style="padding: 15px; text-align: center; font-weight: bold; color: #666;"></td>
                     <td style="padding: 15px;"><strong style="color:#c0392b;">${data.ten || "Chưa tên"}</strong><br><span style="color: #666; font-size: 12px;">📞 ${data.sdt}</span></td>
                     <td style="padding: 15px; color: #0056b3; font-weight: bold;">${data.tinh || "Chưa cập nhật"}</td>
-                    <td style="padding: 15px;"><code style="background:#fff5f5; padding:4px 8px; border-radius:4px; color:#c0392b; font-weight:bold; border: 1px solid #fed7d7;">${data.matKhau || '******'}</code></td>
+                    <td style="padding: 15px;"><code style="background:#fff5f5; padding:4px 8px; border-radius:4px; color:#c0392b; font-weight:bold; border: 1px solid #fed7d7;">${data.mat_khau || '******'}</code></td>
                     <td style="padding: 15px; font-weight: bold; color: ${mauTrangThai}; font-size: 13px;">${tenTrangThai}</td>
                     <td style="padding: 15px; text-align: center;">
                         ${trangThai === "chopheduyet" ? `<button class="btn-duyet-gv" data-uid="${data.uid}" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 5px;">✅ Phê duyệt</button>` : `<button class="btn-khoa-gv" data-uid="${data.uid}" data-name="${data.ten}" style="background: #f39c12; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 5px;">🔒 Khóa</button>`}
@@ -346,12 +346,12 @@ window.taiDanhSachHocSinh = async () => {
 
     try {
         // Tải danh bạ Lớp để lấy Tên Lớp
-        const { data: snapLop } = await window.supabaseClient.from("LopHoc").select("*");
+        const { data: snapLop } = await window.supabaseClient.from("lop_hoc").select("*");
         let tuDienLop = {};
-        if (snapLop) snapLop.forEach(lop => { tuDienLop[lop.maLop] = lop.tenLop; });
+        if (snapLop) snapLop.forEach(lop => { tuDienLop[lop.ma_lop] = lop.ten_lop; });
 
         // Tải danh sách Học sinh
-        const { data: dsHocSinh, error } = await window.supabaseClient.from("HocSinh").select("*").eq("vaiTro", "hocsinh");
+        const { data: dsHocSinh, error } = await window.supabaseClient.from("hoc_sinh").select("*").eq("vai_tro", "hocsinh");
         if (error) throw error;
 
         if (!dsHocSinh || dsHocSinh.length === 0) {
@@ -366,9 +366,9 @@ window.taiDanhSachHocSinh = async () => {
         dsHocSinh.forEach((data, index) => {
             const uid = data.uid;
             const stt = index + 1;
-            const trangThai = data.trangThai || "dapheduyet";
+            const trangThai = data.trang_thai || "dapheduyet";
 
-            let dsMaLop = data.danhSachMaLop || [];
+            let dsMaLop = data.danh_sach_ma_lop || [];
 
             let htmlLopHS = dsMaLop.length > 0
                 ? dsMaLop.map(ma => {
@@ -385,9 +385,9 @@ window.taiDanhSachHocSinh = async () => {
                 <tr class="row-hs" data-search="${(data.ten + ' ' + data.sdt + ' ' + dsMaLop.join(' ')).toLowerCase()}" style="border-bottom: 1px solid #eee;">
                     <td style="padding: 12px; text-align: center;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: #e3f2fd; color: #1976d2; font-weight: bold; font-size: 12px; border: 1px solid #bbdefb;">${stt}</span></td>
                     <td style="padding: 12px;"><strong style="color:#0056b3; font-size: 14px;">${data.ten || "Chưa tên"}</strong><br><span style="color: #555; font-size: 12px;">📞 ${data.sdt}</span></td>
-                    <td style="padding: 12px;"><span style="color:#2c3e50; font-weight:bold;">K.${data.khoiLop || ""}</span><br><small style="color:#666;">${data.truong || ""}</small></td>
+                    <td style="padding: 12px;"><span style="color:#2c3e50; font-weight:bold;">K.${data.khoi_lop || ""}</span><br><small style="color:#666;">${data.truong || ""}</small></td>
                     <td style="padding: 12px; color: #6c757d;">${data.tinh || ""}</td>
-                    <td style="padding: 12px;"><code style="background:#f3f0ff; padding:3px 6px; border-radius:4px; color:#6741d9;">${data.matKhau || '******'}</code></td>
+                    <td style="padding: 12px;"><code style="background:#f3f0ff; padding:3px 6px; border-radius:4px; color:#6741d9;">${data.mat_khau || '******'}</code></td>
                     <td style="padding: 12px; font-weight: bold; color: ${(trangThai === "dapheduyet") ? "#28a745" : "#dc3545"};">${(trangThai === "dapheduyet") ? "Đang mở" : "Chờ duyệt"}</td>
                     <td style="padding: 13px; text-align: center;">${htmlLopHS}</td>
                     <td style="padding: 12px; text-align: center;">
@@ -418,7 +418,7 @@ window.ganSuKienAdmin = () => {
     document.querySelectorAll('.btn-duyet-gv').forEach(btn => {
         btn.onclick = async () => {
             btn.innerText = "⏳...";
-            await window.supabaseClient.from("HocSinh").update({ trangThai: "dapheduyet" }).eq("uid", btn.getAttribute('data-uid'));
+            await window.supabaseClient.from("hoc_sinh").update({ trang_thai: "dapheduyet" }).eq("uid", btn.getAttribute('data-uid'));
             taiDanhSachGiaoVien();
         };
     });
@@ -426,7 +426,7 @@ window.ganSuKienAdmin = () => {
         btn.onclick = async () => {
             if (confirm(`Khóa tài khoản của giáo viên: ${btn.getAttribute('data-name')}?`)) {
                 btn.innerText = "⏳...";
-                await window.supabaseClient.from("HocSinh").update({ trangThai: "chopheduyet" }).eq("uid", btn.getAttribute('data-uid'));
+                await window.supabaseClient.from("hoc_sinh").update({ trang_thai: "chopheduyet" }).eq("uid", btn.getAttribute('data-uid'));
                 taiDanhSachGiaoVien();
             }
         };
@@ -435,7 +435,7 @@ window.ganSuKienAdmin = () => {
         btn.onclick = async () => {
             if (confirm(`⚠️ CẢNH BÁO: XÓA VĨNH VIỄN hồ sơ giáo viên ${btn.getAttribute('data-name')}?`)) {
                 btn.innerText = "Đang xóa...";
-                await window.supabaseClient.from("HocSinh").delete().eq("uid", btn.getAttribute('data-uid'));
+                await window.supabaseClient.from("hoc_sinh").delete().eq("uid", btn.getAttribute('data-uid'));
                 taiDanhSachGiaoVien();
             }
         };
@@ -446,7 +446,7 @@ window.ganSuKienAdmin = () => {
         btn.onclick = async () => {
             if (!confirm(`⚠️ CẢNH BÁO: XÓA VĨNH VIỄN học sinh ${btn.getAttribute('data-name')}?`)) return;
             btn.innerText = "Đang xóa...";
-            await window.supabaseClient.from("HocSinh").delete().eq("uid", btn.getAttribute('data-uid'));
+            await window.supabaseClient.from("hoc_sinh").delete().eq("uid", btn.getAttribute('data-uid'));
             taiDanhSachHocSinh();
         };
     });
@@ -456,7 +456,7 @@ window.thayDoiTrangThaiHS = async (uid, hanhDong, tenHS) => {
     const thaoTac = hanhDong === 'khoa' ? 'KHÓA' : 'PHÊ DUYỆT';
     if (!confirm(`Chắc chắn muốn ${thaoTac} tài khoản của học sinh: ${tenHS}?`)) return;
     try {
-        await window.supabaseClient.from("HocSinh").update({ trangThai: (hanhDong === 'duyet') ? "dapheduyet" : "chopheduyet" }).eq("uid", uid);
+        await window.supabaseClient.from("hoc_sinh").update({ trang_thai: (hanhDong === 'duyet') ? "dapheduyet" : "chopheduyet" }).eq("uid", uid);
         taiDanhSachHocSinh();
     } catch (error) { alert("❌ Lỗi: " + error.message); }
 };
@@ -464,14 +464,13 @@ window.thayDoiTrangThaiHS = async (uid, hanhDong, tenHS) => {
 // ---------------------------------------------------------------------
 // 4.4. KHO HỌC LIỆU & GIAO NHIỆM VỤ (BẢN MẪU & BÀI TẬP)
 // ---------------------------------------------------------------------
-// (Lưu ý: Các bảng Học Liệu và Nhiệm Vụ phải được tạo trên Supabase)
 window.taiKhoHocLieu = async () => {
     const khungDe = document.getElementById('admin-list-kho-hoc-lieu');
     if (!khungDe) return;
     khungDe.innerHTML = `<div style="text-align:center; padding:40px;"><div style="font-size:24px;">⏳</div>Đang tải Kho Học liệu...</div>`;
 
     try {
-        const { data: dsHocLieu, error } = await window.supabaseClient.from("HocLieu").select("*").order('ngayTao', { ascending: false });
+        const { data: dsHocLieu, error } = await window.supabaseClient.from("hoc_lieu").select("*").order('ngay_tao', { ascending: false });
         if (error) throw error;
 
         let html = `
@@ -492,32 +491,32 @@ window.taiKhoHocLieu = async () => {
             </tr>`;
 
         dsHocLieu.forEach((hl, index) => {
-            let badgeLoai = hl.trangThai === 1
+            let badgeLoai = hl.trang_thai === 1
                 ? '<span style="background:#e6f4ea; color:#1e7e34; padding:4px 8px; border-radius:20px; font-weight:bold; border:1px solid #c3e6cb; font-size:11px;">🌍 Thư viện Public</span>'
                 : '<span style="background:#fff5f5; color:#c0392b; padding:4px 8px; border-radius:20px; font-weight:bold; border:1px solid #f5c6cb; font-size:11px;">🔒 Kho Nội bộ</span>';
 
-            const chuoiCauTruc = hl.cauTruc || (hl.danhSachCauHoi ? hl.danhSachCauHoi.length + " câu" : "0 câu");
-            const quyMoHtml = chuoiCauTruc.includes("câu") ? chuoiCauTruc : `${chuoiCauTruc} (${hl.danhSachCauHoi?.length || 0} câu)`;
-            const searchTag = `${hl.maDe || hl.id} ${hl.tenHocLieu || ''} ${hl.tenDe || ''} ${hl.nguoiTao || ''}`.toLowerCase();
+            const chuoiCauTruc = hl.cau_truc || (hl.danh_sach_cau_hoi ? hl.danh_sach_cau_hoi.length + " câu" : "0 câu");
+            const quyMoHtml = chuoiCauTruc.includes("câu") ? chuoiCauTruc : `${chuoiCauTruc} (${hl.danh_sach_cau_hoi?.length || 0} câu)`;
+            const searchTag = `${hl.ma_de || hl.id} ${hl.ten_hoc_lieu || ''} ${hl.ten_de || ''} ${hl.nguoi_tao || ''}`.toLowerCase();
 
             html += `
                 <tr class="row-hoc-lieu" data-search="${searchTag}" style="border-bottom:1px solid #eee; background:#fff; transition: 0.2s;" onmouseover="this.style.background='#fdfdfe'" onmouseout="this.style.background='#fff'">
                     <td style="padding:15px; text-align:center;"><div style="width: 28px; height: 28px; background: #e9ecef; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #495057; border: 1px solid #ced4da; margin: 0 auto;">${index + 1}</div></td>
-                    <td style="padding:15px;"><strong style="color:#0056b3; font-size:14px;">${hl.maDe || hl.id || "---"}</strong></td>
+                    <td style="padding:15px;"><strong style="color:#0056b3; font-size:14px;">${hl.ma_de || hl.id || "---"}</strong></td>
                     <td style="padding:15px;">
-                        <strong style="color:#2c3e50; font-size:15px;">${hl.tenHocLieu || hl.tenDe || "Chưa có tên"}</strong>
-                        <div style="margin-top:6px; font-size:12px; color:#6c757d; font-weight:bold;">⏳ ${hl.thoiGian || 90} phút | <span style="color:#d35400;">📋 ${quyMoHtml}</span></div>
+                        <strong style="color:#2c3e50; font-size:15px;">${hl.ten_hoc_lieu || hl.ten_de || "Chưa có tên"}</strong>
+                        <div style="margin-top:6px; font-size:12px; color:#6c757d; font-weight:bold;">⏳ ${hl.thoi_gian || 90} phút | <span style="color:#d35400;">📋 ${quyMoHtml}</span></div>
                     </td>
                     <td style="padding:15px;">
-                        <div style="font-weight:bold; color:#d35400; font-size:12px;">👤 ${hl.nguoiTao || "Hệ thống"}</div>
-                        <div style="color:#6c757d; font-size:11px; margin-top:4px;">🕒 ${new Date(hl.ngayTao).toLocaleDateString('vi-VN')}</div>
+                        <div style="font-weight:bold; color:#d35400; font-size:12px;">👤 ${hl.nguoi_tao || "Hệ thống"}</div>
+                        <div style="color:#6c757d; font-size:11px; margin-top:4px;">🕒 ${new Date(hl.ngay_tao).toLocaleDateString('vi-VN')}</div>
                     </td>
                     <td style="padding:15px; text-align:center;">${badgeLoai}</td>
                     <td style="padding:15px; text-align:center;">
                         <div style="display:flex; justify-content:center; gap:6px;">
                             <button onclick="alert('Chức năng sửa Học Liệu đang hoàn thiện trên Supabase!')" style="background:#f8f9fa; color:#0056b3; border:1px solid #0056b3; padding:6px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">✏️ Sửa</button>
-                            <button onclick="xoaHocLieu(event, '${hl.maDe || hl.id}', '${hl.tenHocLieu || "Học liệu"}')" style="background:#f8f9fa; color:#dc3545; border:1px solid #dc3545; padding:6px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">🗑️ Xóa</button>
-                            <button onclick="moPopupGiaoNhiemVu('${hl.maDe || hl.id}')" style="background:#ff9ff3; color:#833471; border:1px solid #f368e0; padding:6px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">🚀 GIAO NV</button>
+                            <button onclick="xoaHocLieu(event, '${hl.ma_de || hl.id}', '${hl.ten_hoc_lieu || "Học liệu"}')" style="background:#f8f9fa; color:#dc3545; border:1px solid #dc3545; padding:6px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">🗑️ Xóa</button>
+                            <button onclick="moPopupGiaoNhiemVu('${hl.ma_de || hl.id}')" style="background:#ff9ff3; color:#833471; border:1px solid #f368e0; padding:6px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">🚀 GIAO NV</button>
                         </div>
                     </td>
                 </tr>`;
@@ -538,7 +537,7 @@ window.xoaHocLieu = async (event, maDe, tenDe) => {
     if (!confirm(`⚠️ XÓA BẢN GỐC HỌC LIỆU [${tenDe}]?\nLưu ý: Hành động này KHÔNG làm mất các Nhiệm vụ đã giao cho học sinh.`)) return;
     event.target.innerText = "⏳...";
     try {
-        await window.supabaseClient.from("HocLieu").delete().eq("maDe", maDe);
+        await window.supabaseClient.from("hoc_lieu").delete().eq("ma_de", maDe);
         taiKhoHocLieu();
     } catch (error) { alert("Lỗi xóa: " + error.message); }
 };
@@ -555,20 +554,20 @@ window.moPopupGiaoNhiemVu = async (idHlGoc) => {
     let chuoiCauTrucChuan = "";
 
     try {
-        const { data: docHl } = await window.supabaseClient.from("HocLieu").select("*").eq("maDe", idHlGoc).single();
-        const { data: snapLop } = await window.supabaseClient.from("LopHoc").select("*");
+        const { data: docHl } = await window.supabaseClient.from("hoc_lieu").select("*").eq("ma_de", idHlGoc).single();
+        const { data: snapLop } = await window.supabaseClient.from("lop_hoc").select("*");
 
         if (!docHl) { alert("Bản mẫu Học liệu không tồn tại!"); overlay.remove(); return; }
         hlGoc = docHl;
 
-        chuoiCauTrucChuan = hlGoc.cauTruc || (hlGoc.danhSachCauHoi ? hlGoc.danhSachCauHoi.length + " câu" : "0 câu");
-        quyMoHtml = chuoiCauTrucChuan.includes("câu") ? chuoiCauTrucChuan : `${chuoiCauTrucChuan} (${hlGoc.danhSachCauHoi?.length || 0} câu)`;
+        chuoiCauTrucChuan = hlGoc.cau_truc || (hlGoc.danh_sach_cau_hoi ? hlGoc.danh_sach_cau_hoi.length + " câu" : "0 câu");
+        quyMoHtml = chuoiCauTrucChuan.includes("câu") ? chuoiCauTrucChuan : `${chuoiCauTrucChuan} (${hlGoc.danh_sach_cau_hoi?.length || 0} câu)`;
 
         if (!snapLop || snapLop.length === 0) {
             optLopHTML += `<div style="color:#dc3545; font-size:12px; text-align:center;">Chưa có lớp nào! Hãy tạo lớp trước.</div>`;
         } else {
-            snapLop.sort((a, b) => (a.tenLop || "").localeCompare(b.tenLop || "")).forEach(d => {
-                optLopHTML += `<label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 5px; padding: 4px; border-bottom: 1px solid #f8f9fa; transition: 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='transparent'"><input type="checkbox" class="chk-lop-nhan" value="${d.maLop}" style="transform: scale(1.2);"> <span style="font-weight:bold; color:#0056b3;">${d.tenLop || d.maLop}</span></label>`;
+            snapLop.sort((a, b) => (a.ten_lop || "").localeCompare(b.ten_lop || "")).forEach(d => {
+                optLopHTML += `<label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 5px; padding: 4px; border-bottom: 1px solid #f8f9fa; transition: 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='transparent'"><input type="checkbox" class="chk-lop-nhan" value="${d.ma_lop}" style="transform: scale(1.2);"> <span style="font-weight:bold; color:#0056b3;">${d.ten_lop || d.ma_lop}</span></label>`;
             });
         }
         optLopHTML += `</div>`;
@@ -583,8 +582,8 @@ window.moPopupGiaoNhiemVu = async (idHlGoc) => {
             <div style="padding: 20px; overflow-y: auto;">
                 <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px dashed #ccc; margin-bottom:15px;">
                     <div style="font-size:12px; color:#666; margin-bottom:5px;">Trích xuất từ Bản gốc:</div>
-                    <strong style="color:#0056b3; font-size:16px;">${hlGoc.tenHocLieu || hlGoc.tenDe || "Chưa có tên"}</strong>
-                    <div style="margin-top:5px; font-size:13px; color:#d35400;">Quy mô: <strong>${quyMoHtml}</strong> | ${hlGoc.thoiGian || 90} phút</div>
+                    <strong style="color:#0056b3; font-size:16px;">${hlGoc.ten_hoc_lieu || hlGoc.ten_de || "Chưa có tên"}</strong>
+                    <div style="margin-top:5px; font-size:13px; color:#d35400;">Quy mô: <strong>${quyMoHtml}</strong> | ${hlGoc.thoi_gian || 90} phút</div>
                 </div>
 
                 <div style="display:flex; gap:15px; margin-bottom:15px;">
@@ -636,30 +635,30 @@ window.moPopupGiaoNhiemVu = async (idHlGoc) => {
         let dsNhiemVuMoi = [];
         dsLopChon.forEach(maLop => {
             dsNhiemVuMoi.push({
-                maNhiemVu: "NV_" + taoMaNgauNhien(5),
-                tenDe: "[NV] " + (hlGoc.tenHocLieu || hlGoc.tenDe || "Chưa có tên"),
-                thoiGian: hlGoc.thoiGian || 90,
-                danhSachCauHoi: hlGoc.danhSachCauHoi || [],
-                cauTruc: chuoiCauTrucChuan,
-                khoiLop: hlGoc.khoiLop || "",
-                nguoiTao: hlGoc.nguoiTao || "Giáo viên",
-                maLopChoPhep: maLop,
-                loaiNhiemVu: parseInt(document.getElementById('nv-loai').value) || 1,
-                thoiGianGiao: rawTGiao ? new Date(rawTGiao).toISOString() : new Date().toISOString(),
-                hanChot: rawHanChot ? new Date(rawHanChot).toISOString() : null,
-                soLanLamBai: parseInt(document.getElementById('nv-solan').value) || 0,
-                coTronCauHoi: document.getElementById('nv-troncau').checked,
-                choXemDapAn: document.getElementById('nv-xemdapan').checked,
-                choXemLoiGiai: document.getElementById('nv-xemloigiai').checked,
-                loiNhan: document.getElementById('nv-loinhan').value.trim(),
-                ngayTao: new Date().toISOString(),
-                idBanGoc: idHlGoc,
-                trangThai: 2
+                ma_nhiem_vu: "NV_" + tao_ma_ngau_nhien(5),
+                ten_de: "[NV] " + (hlGoc.ten_hoc_lieu || hlGoc.ten_de || "Chưa có tên"),
+                thoi_gian: hlGoc.thoi_gian || 90,
+                danh_sach_cau_hoi: hlGoc.danh_sach_cau_hoi || [],
+                cau_truc: chuoiCauTrucChuan,
+                khoi_lop: hlGoc.khoi_lop || "",
+                nguoi_tao: hlGoc.nguoi_tao || "Giáo viên",
+                ma_lop_cho_phep: maLop,
+                loai_nhiem_vu: parseInt(document.getElementById('nv-loai').value) || 1,
+                thoi_gian_giao: rawTGiao ? new Date(rawTGiao).toISOString() : new Date().toISOString(),
+                han_chot: rawHanChot ? new Date(rawHanChot).toISOString() : null,
+                so_lan_lam_bai: parseInt(document.getElementById('nv-solan').value) || 0,
+                co_tron_cau_hoi: document.getElementById('nv-troncau').checked,
+                cho_xem_dap_an: document.getElementById('nv-xemdapan').checked,
+                cho_xem_loi_giai: document.getElementById('nv-xemloigiai').checked,
+                loi_nhan: document.getElementById('nv-loinhan').value.trim(),
+                ngay_tao: new Date().toISOString(),
+                id_ban_goc: idHlGoc,
+                trang_thai: 2
             });
         });
 
         try {
-            const { error } = await window.supabaseClient.from("NhiemVu").insert(dsNhiemVuMoi);
+            const { error } = await window.supabaseClient.from("nhiem_vu").insert(dsNhiemVuMoi);
             if (error) throw error;
 
             alert(`🎉 GIAO NHIỆM VỤ THÀNH CÔNG CHO ${dsLopChon.length} LỚP!`);
