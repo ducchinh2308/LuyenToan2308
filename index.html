@@ -200,105 +200,6 @@
             color: #6c757d;
             user-select: none;
         }
-
-        /* 🌟 CSS CHO CHẤM THÔNG BÁO ĐỎ TRÊN MENU */
-        .btn-dash {
-            overflow: visible !important; /* Bắt buộc để chấm đỏ không bị lẹm góc */
-        }
-
-        .badge-notify {
-            position: absolute;
-            top: -6px;
-            right: 2px;
-            background-color: #ff4757;
-            color: white;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-weight: bold;
-            border: 1px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            z-index: 99;
-            pointer-events: none; /* Tránh cản trở khi click nút */
-            animation: pulse-red 2s infinite;
-        }
-
-        @keyframes pulse-red {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* =========================================================
-           🌟 GIAO DIỆN TỐI ƯU CHO MÀN HÌNH ĐIỆN THOẠI (< 768px)
-           ========================================================= */
-        @media screen and (max-width: 768px) {
-
-            /* --- 1. KHU VỰC PHÒNG THI (Dành cho HS làm bài & GV Soi bài) --- */
-            .thanh-ben-trai,
-            .thanh-ben-phai {
-                display: none !important; /* Ẩn menu trái/phải */
-            }
-
-            .phan-de-thi {
-                width: 100% !important;
-                max-width: 100% !important;
-                flex: 1 1 100% !important;
-                margin: 0 !important;
-                padding: 10px !important;
-                box-sizing: border-box !important;
-            }
-
-            /* --- 2. KHU VỰC BẢNG ĐIỀU KHIỂN (Dashboard GV / Admin) --- */
-            #dashboard-container > div {
-                flex-direction: column !important; /* Đẩy Menu lên trên, Nội dung xuống dưới */
-                height: auto !important;
-            }
-
-            .sidebar-admin, .sidebar-gv, .sidebar-hs {
-                flex: none !important;
-                width: 100% !important;
-                margin-bottom: 15px !important;
-            }
-
-            #tabs-vung-chuc-nang {
-                padding: 15px !important; /* Thu nhỏ lề để tiết kiệm diện tích */
-                height: auto !important;
-                overflow: visible !important;
-            }
-
-            /* --- CHO PHÉP VUỐT NGANG CÁC BẢNG DỮ LIỆU --- */
-            .tab-content-dash table {
-                display: block !important;
-                width: 100% !important;
-                overflow-x: auto !important;
-                white-space: nowrap !important;
-            }
-
-                /* 🌟 TUYỆT CHIÊU: GHIM CỘT "HÀNH ĐỘNG" CỐ ĐỊNH Ở MÉP PHẢI ĐIỆN THOẠI */
-                .tab-content-dash table th:last-child,
-                .tab-content-dash table td:last-child {
-                    position: sticky !important;
-                    right: 0 !important;
-                    background-color: inherit !important; /* Lấy màu nền của dòng hiện tại */
-                    box-shadow: -3px 0px 5px rgba(0,0,0,0.05) !important; /* Đổ bóng để tạo cảm giác xếp lớp */
-                    z-index: 2 !important;
-                }
-
-                /* Riêng tiêu đề (th) cần z-index cao hơn để không bị đè */
-                .tab-content-dash table th:last-child {
-                    background-color: #f1f3f5 !important;
-                    z-index: 3 !important;
-                }
-        }
     </style>
 </head>
 
@@ -319,6 +220,7 @@
         <p id="form-subtitle">Chào mừng bạn trở lại phòng thi</p>
 
         <input type="text" id="txtPhone" placeholder="Số điện thoại của bạn">
+
         <input type="text" id="txtHoTen" placeholder="Họ và tên" style="display: none;">
 
         <div id="group-chon-vai-tro">
@@ -375,5 +277,6 @@
     <script src="js/3_ui_dunggiaodien.js"></script>
     <script src="js/4_admin_nghiepvuquanlyvagiaovien.js"></script>
     <script src="js/5_exam_phongthivanopbai.js"></script>
+
 </body>
 </html>
