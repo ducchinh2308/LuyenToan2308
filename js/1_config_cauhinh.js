@@ -177,16 +177,27 @@ if (btnSubmitAuth) {
 
         if (isLoginMode) {
             // === THỰC HIỆN ĐĂNG NHẬP ===
-            const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+            // Gọi Supabase đăng ký
+            const { data: authData, error: authErr } = await window.supabaseClient.auth.signUp({
                 email: supabaseEmail, password: pass
             });
 
-            if (error) {
-                btnSubmitAuth.innerText = "ĐĂNG NHẬP"; btnSubmitAuth.disabled = false;
-                loginError.innerText = "❌ Sai Số điện thoại hoặc Mật khẩu!"; loginError.style.display = 'block';
-            } else {
-                btnSubmitAuth.innerText = "ĐĂNG NHẬP"; btnSubmitAuth.disabled = false; txtPassword.value = "";
-                // Mọi giao diện Dashboard sẽ được File 4 lo tiếp theo
+            if (authErr) {
+                btnSubmitAuth.innerText = "ĐĂNG KÝ"; btnSubmitAuth.disabled = false;
+
+                // Dịch một số lỗi phổ biến của Supabase sang tiếng Việt cho thân thiện
+                let thongBaoLoi = authErr.message;
+                if (thongBaoLoi.includes("User already registered")) {
+                    thongBaoLoi = "Số điện thoại này đã được sử dụng!";
+                } else if (thongBaoLoi.includes("rate limit")) {
+                    thongBaoLoi = "Hệ thống đang quá tải hoặc bạn thao tác quá nhanh. Vui lòng đợi vài phút!";
+                } else if (thongBaoLoi.includes("Password should be")) {
+                    thongBaoLoi = "Mật khẩu chưa đạt yêu cầu bảo mật!";
+                }
+
+                loginError.innerText = "❌ Lỗi: " + thongBaoLoi;
+                loginError.style.display = 'block';
+                return;
             }
         } else {
             // === THỰC HIỆN ĐĂNG KÝ ===
