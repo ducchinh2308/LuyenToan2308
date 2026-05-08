@@ -2,38 +2,51 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống Luyện Toán Thầy Chính</title>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            background: #f4f7f9;
             padding: 20px;
             max-width: 900px;
             margin: auto;
-            background: #f4f7f9;
         }
 
         .box {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
 
-        .cau-hoi {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
+        h2 {
+            color: #2c3e50;
+            text-align: center;
         }
+
+        .cau-hoi {
+            border-bottom: 1px solid #e1e8ed;
+            padding: 20px 0;
+        }
+
+            .cau-hoi img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin-top: 10px;
+            }
 
         .dap-an-label {
             display: block;
-            margin: 8px 0;
+            margin: 10px 0;
             cursor: pointer;
-            padding: 5px;
-            border-radius: 4px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.2s;
         }
 
             .dap-an-label:hover {
@@ -41,20 +54,42 @@
             }
 
         .btn {
-            background: #2c3e50;
+            background: #3498db;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
         }
 
+            .btn:hover {
+                background: #2980b9;
+            }
+
         .loi-giai {
-            background: #fff9db;
+            background: #fff8e1;
             padding: 15px;
-            border-left: 5px solid #fcc419;
-            margin-top: 10px;
+            border-left: 5px solid #f1c40f;
+            margin-top: 15px;
+            display: none;
+            border-radius: 0 5px 5px 0;
+        }
+
+            .loi-giai img {
+                max-width: 100%;
+                margin-top: 10px;
+            }
+
+        .ket-qua {
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
+            margin-bottom: 20px;
             display: none;
         }
     </style>
@@ -62,114 +97,159 @@
 <body>
 
     <div class="box" id="nhap-ma-de">
-        <h2>VÀO PHÒNG THI</h2>
-        <input type="text" id="txtMaDe" placeholder="Nhập mã đề (VD: T12CK2_001)" style="padding: 10px; width: 250px;">
-        <button class="btn" onclick="taiDeThi()">Bắt đầu làm bài</button>
+        <h2>📝 VÀO PHÒNG THI THẦY CHÍNH</h2>
+        <input type="text" id="txtMaDe" placeholder="Nhập mã đề (VD: T12CK2_001)" style="padding: 12px; width: 100%; box-sizing: border-box; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <button class="btn" onclick="taiDeThi()">Vào thi ngay</button>
     </div>
 
     <div id="vung-lam-bai" style="display:none;">
         <div class="box">
             <h2 id="ten-de"></h2>
+            <div id="ket-qua-diem" class="ket-qua"></div>
             <div id="danh-sach-cau-hoi"></div>
-            <button class="btn" id="btnNopBai" onclick="nopBai()">Nộp bài & Xem lời giải</button>
+            <button class="btn" id="btnNopBai" onclick="nopBai()" style="margin-top: 20px; background: #e74c3c;">Nộp bài & Xem lời giải</button>
         </div>
     </div>
 
     <script>
-    // 🛑 CẤU HÌNH SUPABASE (Thầy dán URL và Key Anon của thầy vào đây)
+        // 🛑 THẦY CHÍNH NHỚ DÁN URL VÀ KEY SUPABASE CỦA THẦY VÀO ĐÂY NHÉ:
         const SUPABASE_URL = 'https://ffjrjgujzhkjetqyuska.supabase.co';
         const SUPABASE_KEY = 'sb_secret_eCe0UJMeWq6F3BzxZzNxRg_tf6xd9eR';
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    let duLieuDeGoc = null;
+        let duLieuDeGoc = null;
 
-    async function taiDeThi() {
-        const maDe = document.getElementById('txtMaDe').value.trim().toUpperCase();
-        if(!maDe) return alert("Vui lòng nhập mã đề!");
+        // --- 1. TẢI ĐỀ THI TỪ GITHUB (Thư mục DeThi) ---
+        async function taiDeThi() {
+            const maDe = document.getElementById('txtMaDe').value.trim().toUpperCase();
+            if (!maDe) return alert("Vui lòng nhập mã đề!");
 
-        try {
-            // Tải file JSON từ GitHub (đường dẫn tương đối)
-            const response = await fetch(`./Export_GitHub/${maDe}/DeThi_${maDe}.json`);
-            if(!response.ok) throw new Error("Không tìm thấy mã đề này!");
+            try {
+                // Trỏ vào đúng thư mục Đề Thi mới phân tách
+                const response = await fetch(`./Export_GitHub/DeThi/${maDe}/DeThi_${maDe}.json`);
+                if (!response.ok) throw new Error("Không tìm thấy mã đề này! Thầy Chính chưa xuất bản hoặc bạn nhập sai.");
 
-            duLieuDeGoc = await response.json();
-            hienThiDeThi(duLieuDeGoc);
-        } catch (err) {
-            alert(err.message);
+                duLieuDeGoc = await response.json();
+                hienThiDeThi(duLieuDeGoc);
+            } catch (err) {
+                alert(err.message);
+            }
         }
-    }
 
-    function hienThiDeThi(data) {
-        document.getElementById('nhap-ma-de').style.display = 'none';
-        document.getElementById('vung-lam-bai').style.display = 'block';
-        document.getElementById('ten-de').innerText = data.tenDe;
+        // --- 2. HIỂN THỊ CÂU HỎI VÀ HÌNH ẢNH ---
+        function hienThiDeThi(data) {
+            document.getElementById('nhap-ma-de').style.display = 'none';
+            document.getElementById('vung-lam-bai').style.display = 'block';
+            document.getElementById('ten-de').innerText = data.tenDe;
 
-        const container = document.getElementById('danh-sach-cau-hoi');
-        container.innerHTML = '';
+            const container = document.getElementById('danh-sach-cau-hoi');
+            container.innerHTML = '';
 
-        data.danhSachCauHoi.forEach((c, index) => {
-            const html = `
-                <div class="cau-hoi" id="wrap-cau-${c.maCau}">
-                    <p><strong>Câu ${index + 1}:</strong> ${c.cauDan}</p>
-                    ${['A', 'B', 'C', 'D'].map(p => `
-                        <label class="dap-an-label">
-                            <input type="radio" name="ans-${c.maCau}" value="${p}"> ${p}. ${c['pa' + p]}
-                        </label>
-                    `).join('')}
-                    <div class="loi-giai" id="lg-${c.maCau}"></div>
-                </div>
-            `;
-            container.innerHTML += html;
-        });
-        MathJax.typeset(); // Vẽ lại công thức toán
-    }
+            data.danhSachCauHoi.forEach((c, index) => {
+                const html = `
+                    <div class="cau-hoi" id="wrap-cau-${c.maCau}">
+                        <p><strong>Câu ${index + 1}:</strong> MÃ CÂU: ${c.maCau}</p>
+                        ${c.cauDan ? `<img src="${c.cauDan}" alt="Câu dẫn">` : ''}
 
-    async function nopBai() {
-        if(!confirm("Bạn có chắc chắn muốn nộp bài?")) return;
+                        ${['A', 'B', 'C', 'D'].map(p => `
+                            <label class="dap-an-label">
+                                <input type="radio" name="ans-${c.maCau}" value="${p}">
+                                <strong>${p}.</strong>
+                                ${c['pa' + p] ? `<img src="${c['pa' + p]}" alt="Phương án ${p}" style="display:inline-block; vertical-align:middle;">` : ''}
+                            </label>
+                        `).join('')}
 
-        const maDe = duLieuDeGoc.maDe;
-        const answers = {};
-        duLieuDeGoc.danhSachCauHoi.forEach(c => {
-            const selected = document.querySelector(`input[name="ans-${c.maCau}"]:checked`);
-            answers[c.maCau] = selected ? selected.value : "";
-        });
-
-        // 🛡️ BƯỚC BẢO MẬT: Gửi bài lên Supabase để lấy "Chìa khóa" lời giải
-        // Giả sử học sinh dùng email "hocsinh@gmail.com" (Thầy có thể thêm ô nhập email)
-        const { data, error } = await supabase
-            .from('KetQuaThi')
-            .insert([{ email_hoc_sinh: 'student_test', ma_de: maDe, bai_lam: JSON.stringify(answers) }])
-            .select();
-
-        if (error) return alert("Lỗi nộp bài: " + error.message);
-
-        // Nộp bài xong, Supabase (qua luật RLS) sẽ cho phép ta đọc bảng KhoaBaoMat
-        const { data: keyData } = await supabase
-            .from('KhoaBaoMat')
-            .select('link_loi_giai, chuoi_dap_an')
-            .eq('ma_de', maDe)
-            .single();
-
-        if(keyData) {
-            taiLoiGiai(keyData.link_loi_giai, keyData.chuoi_dap_an);
+                        <div class="loi-giai" id="lg-${c.maCau}"></div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+            MathJax.typeset();
         }
-    }
 
-    async function taiLoiGiai(tenFileLG, chuoiDapAnDung) {
-        const maDe = duLieuDeGoc.maDe;
-        const res = await fetch(`./Export_GitHub/${maDe}/${tenFileLG}`);
-        const listLG = await res.json();
+        // --- 3. NỘP BÀI LÊN SUPABASE LẤY CHÌA KHÓA ---
+        async function nopBai() {
+            if (!confirm("Bạn có chắc chắn muốn nộp bài?")) return;
+            document.getElementById('btnNopBai').innerText = "Đang chấm điểm...";
+            document.getElementById('btnNopBai').disabled = true;
 
-        listLG.forEach(item => {
-            const divLG = document.getElementById(`lg-${item.maCau}`);
-            divLG.innerHTML = `<strong>Đáp án đúng: ${item.dapAn}</strong><br><em>Lời giải:</em><br>${item.loiGiai}`;
-            divLG.style.display = 'block';
-        });
+            const maDe = duLieuDeGoc.maDe;
 
-        document.getElementById('btnNopBai').style.display = 'none';
-        MathJax.typeset();
-        alert("Đã chấm điểm xong! Cuộn xuống để xem lời giải chi tiết.");
-    }
+            // Học sinh sẽ không lấy kết quả từ CSDL mà ta lấy luôn key để web tự chấm
+            const { data: keyData, error } = await supabase
+                .from('KhoaBaoMat')
+                .select('link_loi_giai, chuoi_dap_an')
+                .eq('ma_de', maDe)
+                .single();
+
+            if (error || !keyData) {
+                alert("Lỗi truy xuất hệ thống chấm điểm!");
+                document.getElementById('btnNopBai').innerText = "Nộp bài & Xem lời giải";
+                document.getElementById('btnNopBai').disabled = false;
+                return;
+            }
+
+            taiLoiGiaiVaChamDiem(keyData.link_loi_giai, keyData.chuoi_dap_an);
+        }
+
+        // --- 4. GIẢI MÃ BÍ MẬT & HIỂN THỊ LỜI GIẢI ---
+        async function taiLoiGiaiVaChamDiem(tenFileLG, chuoiDapAnDung) {
+            const maDe = duLieuDeGoc.maDe;
+
+            // Bước A: Tạo từ điển giải mã từ chuỗi Supabase (MaCau|MaBaoMat|DapAn)
+            const dictGiaiMa = {};
+            const mangDapAn = chuoiDapAnDung.split(',');
+            let soCauDung = 0;
+
+            mangDapAn.forEach(item => {
+                const parts = item.split('|');
+                if (parts.length === 3) {
+                    // parts[0] = maCau, parts[1] = maBaoMat, parts[2] = dapAn
+                    dictGiaiMa[parts[1]] = { maCau: parts[0], dapAnDung: parts[2] };
+
+                    // Chấm điểm luôn
+                    const selected = document.querySelector(`input[name="ans-${parts[0]}"]:checked`);
+                    if (selected && selected.value === parts[2]) {
+                        soCauDung++;
+                    }
+                }
+            });
+
+            // Hiển thị điểm số
+            const tongSoCau = mangDapAn.length;
+            const divDiem = document.getElementById('ket-qua-diem');
+            divDiem.innerText = `Điểm của bạn: ${((soCauDung / tongSoCau) * 10).toFixed(2)} (${soCauDung}/${tongSoCau} câu)`;
+            divDiem.style.display = 'block';
+
+            // Bước B: Tải file lời giải bí mật từ Bể chứa
+            try {
+                const res = await fetch(`./Export_GitHub/LoiGiai_BaoMat/${tenFileLG}`);
+                const listLG = await res.json();
+
+                // Bước C: Ráp lời giải vào đúng câu hỏi nhờ Bản đồ giải mã
+                listLG.forEach(itemLG => {
+                    // itemLG.maBaoMat là chuỗi id_xxx vô nghĩa
+                    const thongTinThat = dictGiaiMa[itemLG.maBaoMat];
+
+                    if (thongTinThat) {
+                        const divLG = document.getElementById(`lg-${thongTinThat.maCau}`);
+                        divLG.innerHTML = `
+                            <strong style="color:#d35400;">Đáp án đúng: ${itemLG.dapAn}</strong><br>
+                            <em>Lời giải chi tiết:</em><br>
+                            ${itemLG.loiGiai ? `<img src="${itemLG.loiGiai}" alt="Lời giải">` : 'Chưa có lời giải chi tiết.'}
+                        `;
+                        divLG.style.display = 'block';
+                    }
+                });
+
+                document.getElementById('btnNopBai').style.display = 'none'; // Ẩn nút nộp
+                MathJax.typeset();
+                alert("Đã chấm điểm xong! Cuộn xuống để xem lời giải chi tiết.");
+
+            } catch (e) {
+                alert("Không thể tải file lời giải chi tiết!");
+            }
+        }
     </script>
 </body>
 </html>
