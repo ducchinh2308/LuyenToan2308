@@ -1,0 +1,142 @@
+root {
+            --primary: #2980b9;
+            --secondary: #34495e;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--secondary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .navbar h1 {
+                margin: 0;
+                font-size: 20px;
+            }
+
+        .nav-user {
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-logout {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Container & Cards */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Inputs & Buttons */
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+            .btn:hover {
+                opacity: 0.9;
+            }
+
+        /* Sections (To toggle visibility) */
+        #khu-vuc-dang-nhap, #khu-vuc-dang-ky, #khu-vuc-dashboard, #khu-vuc-lam-bai {
+            display: none;
+        }
+
+        .active-section {
+            display: block !important;
+        }
+
+        /* CSS cho phần làm bài */
+        .cau-hoi {
+            border-bottom: 1px solid #e1e8ed;
+            padding: 20px 0;
+        }
+
+            .cau-hoi img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin-top: 10px;
+            }
+
+        .dap-an-label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+            .dap-an-label:hover {
+                background: #eef2f7;
+            }
+
+        .loi-giai {
+            background: #fff8e1;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            margin-top: 15px;
+            display: none;
+            border-radius: 0 5px 5px 0;
+        }
+
+            .loi-giai img {
+                max-width: 100%;
+                margin-top: 10px;
+            }
+
+        .ket-qua {
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
