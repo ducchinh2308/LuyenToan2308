@@ -6,12 +6,71 @@
     <title>Hệ thống Luyện Toán - Thầy Chính</title>
 
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <script src="app.js"></script>
+    <div id="khung-dang-nhap" style="max-width: 450px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h2 id="form-title" style="text-align: center; color: #2c3e50;">ĐĂNG NHẬP</h2>
+        <div id="login-error" style="display:none; color: white; background: #dc3545; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align:center; font-weight: bold;"></div>
+
+        <label style="font-weight: bold; font-size: 14px;">Số điện thoại (Dùng làm tài khoản):</label>
+        <input type="text" id="txtPhone" placeholder="Nhập SĐT..." style="width: 100%; padding: 12px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+
+        <label style="font-weight: bold; font-size: 14px;">Mật khẩu:</label>
+        <div style="display: flex; margin-top: 5px; margin-bottom: 15px;">
+            <input type="password" id="txtPassword" placeholder="Nhập mật khẩu..." style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; outline: none;">
+            <button id="btnTogglePassword" style="padding: 0 15px; border: 1px solid #ccc; border-left: none; background: #eee; cursor: pointer; border-radius: 0 5px 5px 0;">👁️</button>
+        </div>
+
+        <div id="group-confirm-password" style="display:none;">
+            <label style="font-weight: bold; font-size: 14px;">Nhập lại mật khẩu:</label>
+            <div style="display: flex; margin-top: 5px; margin-bottom: 15px;">
+                <input type="password" id="txtConfirmPassword" placeholder="Xác nhận mật khẩu..." style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; outline: none;">
+                <button id="btnToggleConfirmPassword" style="padding: 0 15px; border: 1px solid #ccc; border-left: none; background: #eee; cursor: pointer; border-radius: 0 5px 5px 0;">👁️</button>
+            </div>
+        </div>
+
+        <input type="text" id="txtHoTen" placeholder="Họ và Tên thật..." style="display:none; width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        <input type="email" id="txtRealEmail" placeholder="Email liên hệ (Để lấy lại MK)..." style="display:none; width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+
+        <div id="group-chon-vai-tro" style="display:none; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 5px; border: 1px solid #eee;">
+            <strong style="display:block; margin-bottom:8px; font-size: 14px;">Bạn là:</strong>
+            <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="radVaiTro" value="hocsinh" checked> 🎓 Học sinh</label>
+            <label style="cursor: pointer;"><input type="radio" name="radVaiTro" value="giaovien"> 👨‍🏫 Giáo viên</label>
+            <div id="msg-gv-warning" style="display:none; margin-top: 10px; font-size: 12px; color: #d35400; font-style: italic;">*Tài khoản Giáo viên cần được Admin duyệt mới có thể sử dụng hệ thống.</div>
+        </div>
+
+        <div id="group-thong-tin-truong" style="display:none; gap: 10px; margin-bottom: 15px;">
+            <input type="text" id="txtTinh" placeholder="Tỉnh/TP..." style="flex:1; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="txtTruong" placeholder="Trường THPT..." style="flex:2; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+            <input type="text" id="txtLop" placeholder="Khối..." style="width:60px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        </div>
+
+        <div style="display:none; margin-bottom: 20px;">
+            <input type="text" id="txtMaLop" placeholder="Mã Lớp Học (Giáo viên cung cấp)..." style="width: 100%; padding: 12px; border: 1px solid #28a745; border-radius: 5px; box-sizing: border-box; background: #f4fdf6;">
+            <small style="color: #666; font-size: 12px;">*Bắt buộc phải có mã lớp mới được đăng ký.</small>
+        </div>
+
+        <button id="btnSubmitAuth" style="width: 100%; padding: 14px; background: #0056b3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.2s;">ĐĂNG NHẬP</button>
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="#" id="link-toggle-auth" style="color: #0056b3; text-decoration: none; font-weight: bold;">Chưa có tài khoản? Đăng ký ngay</a>
+        </div>
+    </div>
+
+    <div id="khung-de-thi" style="display:none;"></div>
+
+    <span id="status" style="display:none;"></span>
+    <button id="btnLogout" style="display:none;">Đăng xuất</button>
+
+    <script src="js/1_config_cauhinh.js"></script>
+    <script src="js/2_utils_congcudungchung.js"></script>
+    <script src="js/3_ui_dunggiaodien.js"></script>
+    <script src="js/4_admin_nghiepvuquanlyvagiaovien.js"></script>
+    <script src="js/5_exam_phongthivanopbai.js"></script>
+
 </body>
 </html>
