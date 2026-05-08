@@ -3,74 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống Luyện Toán - Thầy Chính</title>
+    <title>Hệ thống luyện thi Toán - Thầy Chính</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
     <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 10px 20px;
+            line-height: 1.5;
+            background-color: #f0f2f5;
+            color: #2c3e50;
+        }
+
+        /* Tối ưu hóa tiêu đề trang */
+        .header-section {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+            .header-section h1 {
+                color: #0056b3;
+                margin: 0;
+                font-weight: 900;
+                font-size: 28px;
+                letter-spacing: 0.5px;
+            }
+
+            .header-section h3 {
+                color: #d35400;
+                margin: 5px 0 0 0;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+        /* Thanh trạng thái và nút Đăng xuất */
+        .status-bar {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        #status {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        #btnLogout {
+            display: none;
+            margin-left: 10px;
+            padding: 4px 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Khung đăng nhập thu gọn */
+        #khung-dang-nhap {
+            max-width: 400px;
+            margin: 10px auto;
+            padding: 20px 25px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+            #khung-dang-nhap h2 {
+                color: #000080;
+                text-align: center;
+                margin: 0 0 5px 0;
+                font-size: 22px;
+                font-weight: 900;
+            }
+
+            #khung-dang-nhap p {
+                text-align: center;
+                color: #6c757d;
+                font-size: 13px;
+                margin: 0 0 12px 0;
+            }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        /* Khu vực chọn vai trò */
+        #group-chon-vai-tro {
+            display: none;
+            margin-bottom: 10px;
+            text-align: left;
+            background: #ffffff;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .role-label {
+            font-weight: bold;
+            color: #495057;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .role-options {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .role-option {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Nút xác nhận chính */
+        #btnSubmitAuth {
+            width: 100%;
+            padding: 11px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+            #btnSubmitAuth:hover {
+                background: #004494;
+            }
+
+            #btnSubmitAuth:active {
+                transform: scale(0.98);
+            }
+
+        /* Liên kết chuyển đổi đăng ký/đăng nhập */
+        .auth-toggle {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        #link-toggle-auth {
+            color: #d35400;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            #link-toggle-auth:hover {
+                text-decoration: underline;
+            }
+
+        /* Biểu tượng con mắt */
+        .eye-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #6c757d;
+            user-select: none;
+        }
+
+        /* 🌟 CSS CHO CHẤM THÔNG BÁO ĐỎ TRÊN MENU */
+        .btn-dash {
+            overflow: visible !important; /* Bắt buộc để chấm đỏ không bị lẹm góc */
+        }
+
+        .badge-notify {
+            position: absolute;
+            top: -6px;
+            right: 2px;
+            background-color: #ff4757;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+            border: 1px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 99;
+            pointer-events: none; /* Tránh cản trở khi click nút */
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* =========================================================
+           🌟 GIAO DIỆN TỐI ƯU CHO MÀN HÌNH ĐIỆN THOẠI (< 768px)
+           ========================================================= */
+        @media screen and (max-width: 768px) {
+
+            /* --- 1. KHU VỰC PHÒNG THI (Dành cho HS làm bài & GV Soi bài) --- */
+            .thanh-ben-trai,
+            .thanh-ben-phai {
+                display: none !important; /* Ẩn menu trái/phải */
+            }
+
+            .phan-de-thi {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 1 1 100% !important;
+                margin: 0 !important;
+                padding: 10px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* --- 2. KHU VỰC BẢNG ĐIỀU KHIỂN (Dashboard GV / Admin) --- */
+            #dashboard-container > div {
+                flex-direction: column !important; /* Đẩy Menu lên trên, Nội dung xuống dưới */
+                height: auto !important;
+            }
+
+            .sidebar-admin, .sidebar-gv, .sidebar-hs {
+                flex: none !important;
+                width: 100% !important;
+                margin-bottom: 15px !important;
+            }
+
+            #tabs-vung-chuc-nang {
+                padding: 15px !important; /* Thu nhỏ lề để tiết kiệm diện tích */
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            /* --- CHO PHÉP VUỐT NGANG CÁC BẢNG DỮ LIỆU --- */
+            .tab-content-dash table {
+                display: block !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+            }
+
+                /* 🌟 TUYỆT CHIÊU: GHIM CỘT "HÀNH ĐỘNG" CỐ ĐỊNH Ở MÉP PHẢI ĐIỆN THOẠI */
+                .tab-content-dash table th:last-child,
+                .tab-content-dash table td:last-child {
+                    position: sticky !important;
+                    right: 0 !important;
+                    background-color: inherit !important; /* Lấy màu nền của dòng hiện tại */
+                    box-shadow: -3px 0px 5px rgba(0,0,0,0.05) !important; /* Đổ bóng để tạo cảm giác xếp lớp */
+                    z-index: 2 !important;
+                }
+
+                /* Riêng tiêu đề (th) cần z-index cao hơn để không bị đè */
+                .tab-content-dash table th:last-child {
+                    background-color: #f1f3f5 !important;
+                    z-index: 3 !important;
+                }
+        }
+    </style>
 </head>
+
 <body>
 
-    <div id="khung-dang-nhap" style="max-width: 450px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <h2 id="form-title" style="text-align: center; color: #2c3e50;">ĐĂNG NHẬP</h2>
-        <div id="login-error" style="color: white; background: #dc3545; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align:center; font-weight: bold;"></div>
+    <div class="header-section">
+        <h1>ÔN LUYỆN TOÁN</h1>
+        <h3>THẦY CHÍNH - THPT GIA ĐỊNH - 0987979648</h3>
+    </div>
 
-        <label style="font-weight: bold; font-size: 14px;">Số điện thoại (Dùng làm tài khoản):</label>
-        <input type="text" id="txtPhone" placeholder="Nhập SĐT..." style="width: 100%; padding: 12px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+    <div class="status-bar">
+        <span id="status">Đang kết nối hệ thống...</span>
+        <button id="btnLogout">Đăng xuất</button>
+    </div>
 
-        <label style="font-weight: bold; font-size: 14px;">Mật khẩu:</label>
-        <div style="display: flex; margin-top: 5px; margin-bottom: 15px;">
-            <input type="password" id="txtPassword" placeholder="Nhập mật khẩu..." style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; outline: none;">
-            <button id="btnTogglePassword" style="padding: 0 15px; border: 1px solid #ccc; border-left: none; background: #eee; cursor: pointer; border-radius: 0 5px 5px 0;">👁️</button>
-        </div>
+    <div id="khung-dang-nhap">
+        <h2 id="form-title">ĐĂNG NHẬP</h2>
+        <p id="form-subtitle">Chào mừng bạn trở lại phòng thi</p>
 
-        <div id="group-confirm-password" style="display:none;">
-            <label style="font-weight: bold; font-size: 14px;">Nhập lại mật khẩu:</label>
-            <div style="display: flex; margin-top: 5px; margin-bottom: 15px;">
-                <input type="password" id="txtConfirmPassword" placeholder="Xác nhận mật khẩu..." style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; outline: none;">
-                <button id="btnToggleConfirmPassword" style="padding: 0 15px; border: 1px solid #ccc; border-left: none; background: #eee; cursor: pointer; border-radius: 0 5px 5px 0;">👁️</button>
+        <input type="text" id="txtPhone" placeholder="Số điện thoại của bạn">
+        <input type="text" id="txtHoTen" placeholder="Họ và tên" style="display: none;">
+
+        <div id="group-chon-vai-tro">
+            <label class="role-label">Bạn đăng ký với vai trò:</label>
+            <div class="role-options">
+                <label class="role-option">
+                    <input type="radio" name="radVaiTro" value="hocsinh" checked style="transform: scale(1.1);"> 👨‍🎓 Học sinh
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="radVaiTro" value="giaovien" style="transform: scale(1.1);"> 👨‍🏫 Giáo viên
+                </label>
+            </div>
+            <div id="msg-gv-warning" style="display: none; color: #d35400; font-size: 11px; margin-top: 8px; font-style: italic; border-top: 1px dashed #eee; padding-top: 6px;">
+                ⚠️ Tài khoản Giáo viên cần quản trị viên phê duyệt.
             </div>
         </div>
 
-        <input type="text" id="txtHoTen" placeholder="Họ và Tên thật..." style="display:none; width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-        <input type="email" id="txtRealEmail" placeholder="Email liên hệ (Để lấy lại MK)..." style="display:none; width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-
-        <div id="group-chon-vai-tro" style="display:none; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 5px; border: 1px solid #eee;">
-            <strong style="display:block; margin-bottom:8px; font-size: 14px;">Bạn là:</strong>
-            <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="radVaiTro" value="hocsinh" checked> 🎓 Học sinh</label>
-            <label style="cursor: pointer;"><input type="radio" name="radVaiTro" value="giaovien"> 👨‍🏫 Giáo viên</label>
-            <div id="msg-gv-warning" style="display:none; margin-top: 10px; font-size: 12px; color: #d35400; font-style: italic;">*Tài khoản Giáo viên cần được Admin duyệt mới có thể sử dụng hệ thống.</div>
+        <div id="group-thong-tin-truong" style="display: none; gap: 10px; margin-bottom: 10px;">
+            <input type="text" id="txtLop" class="form-control" placeholder="Khối (VD: 12)" style="flex: 1;">
+            <input type="text" id="txtTruong" class="form-control" placeholder="Trường học" style="flex: 2;">
+            <input type="text" id="txtTinh" class="form-control" placeholder="Tỉnh/TP" style="flex: 1.5;">
         </div>
 
-        <div id="group-thong-tin-truong" style="display:none; gap: 10px; margin-bottom: 15px;">
-            <input type="text" id="txtTinh" placeholder="Tỉnh/TP..." style="flex:1; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-            <input type="text" id="txtTruong" placeholder="Trường THPT..." style="flex:2; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-            <input type="text" id="txtLop" placeholder="Khối..." style="width:60px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        <div id="group-ma-lop" style="display: none; margin-bottom: 15px;">
+            <input type="text" id="txtMaLop" class="form-control" placeholder="Nhập Mã Lớp (3 ký tự) do Giáo viên cấp để vào" style="width: 100%; border: 2px solid #28a745; background: #e6f4ea;">
         </div>
 
-        <div style="display:none; margin-bottom: 20px;">
-            <input type="text" id="txtMaLop" placeholder="Mã Lớp Học (Giáo viên cung cấp)..." style="width: 100%; padding: 12px; border: 1px solid #28a745; border-radius: 5px; box-sizing: border-box; background: #f4fdf6;">
-            <small style="color: #666; font-size: 12px;">*Bắt buộc phải có mã lớp mới được đăng ký.</small>
+        <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi" style="display: none;">
+
+        <div style="position: relative; width: 100%; margin-bottom: 10px;">
+            <input type="password" id="txtPassword" placeholder="Mật khẩu (tối thiểu 6 ký tự)" style="margin-bottom: 0;">
+            <span id="btnTogglePassword" class="eye-toggle" title="Xem/Ẩn mật khẩu">👁️</span>
         </div>
 
-        <button id="btnSubmitAuth" style="width: 100%; padding: 14px; background: #0056b3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.2s;">ĐĂNG NHẬP</button>
-        <div style="text-align: center; margin-top: 15px;">
-            <a href="#" id="link-toggle-auth" style="color: #0056b3; text-decoration: none; font-weight: bold;">Chưa có tài khoản? Đăng ký ngay</a>
+        <div id="group-confirm-password" style="position: relative; width: 100%; margin-bottom: 12px; display: none;">
+            <input type="password" id="txtConfirmPassword" placeholder="Xác nhận lại mật khẩu" style="margin-bottom: 0;">
+            <span id="btnToggleConfirmPassword" class="eye-toggle" title="Xem/Ẩn mật khẩu">👁️</span>
+        </div>
+
+        <button id="btnSubmitAuth">VÀO PHÒNG THI</button>
+
+        <p id="login-error" style="color: #dc3545; font-size: 13px; text-align: center; display: none; margin-top: 10px; font-weight: bold;"></p>
+
+        <div class="auth-toggle">
+            <a href="#" id="link-toggle-auth">Chưa có tài khoản? Đăng ký ngay</a>
         </div>
     </div>
 
-    <div id="khung-de-thi" style="display:none;"></div>
-
-    <span id="status" style="display:none;"></span>
-    <button id="btnLogout" style="display:none;">Đăng xuất</button>
+    <div id="dashboard-container" style="display: none; width: 100%; max-width: 1400px; margin: 20px auto;"></div>
+    <div id="khung-de-thi" style="max-width: 900px; margin: 0 auto; display: none;"></div>
 
     <script src="js/1_config_cauhinh.js"></script>
     <script src="js/2_utils_congcudungchung.js"></script>
     <script src="js/3_ui_dunggiaodien.js"></script>
     <script src="js/4_admin_nghiepvuquanlyvagiaovien.js"></script>
     <script src="js/5_exam_phongthivanopbai.js"></script>
-
 </body>
 </html>
