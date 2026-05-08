@@ -6,13 +6,22 @@
 // 4.1. TRẠM GÁC XÁC THỰC TÀI KHOẢN (SUPABASE AUTH STATE CHANGE)
 // ---------------------------------------------------------------------
 window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
+    // Khai báo rõ ràng các thành phần giao diện để không bị vấp lỗi
+    const uiKhungDangNhap = document.getElementById('khung-dang-nhap');
+    const uiBtnLogout = document.getElementById('btnLogout');
+    const uiStatusText = document.getElementById('status');
+    const uiKhungDeThi = document.getElementById('khung-de-thi');
+
     const user = session?.user;
+
     if (user) {
         // Đã đăng nhập
-        khungDangNhap.style.display = 'none';
-        btnLogout.style.display = 'inline-block';
-        statusText.style.display = 'inline-block';
-        statusText.innerText = "⏳ Đang xác thực phân quyền...";
+        if (uiKhungDangNhap) uiKhungDangNhap.style.display = 'none';
+        if (uiBtnLogout) uiBtnLogout.style.display = 'inline-block';
+        if (uiStatusText) {
+            uiStatusText.style.display = 'inline-block';
+            uiStatusText.innerText = "⏳ Đang xác thực phân quyền...";
+        }
         if (typeof window.hienThiNutDoiMatKhau === 'function') window.hienThiNutDoiMatKhau(true);
 
         try {
@@ -25,9 +34,8 @@ window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
 
             // Nếu mất hồ sơ do Admin xóa
             if (error || !userData) {
-                alert("🔄 Hồ sơ của bạn đã bị Admin dọn dẹp hoặc không tồn tại. Vui lòng đăng ký lại!");
+                alert("🔄 Hồ sơ của bạn không tồn tại. Vui lòng đăng ký lại!");
                 await window.supabaseClient.auth.signOut();
-                if (isLoginMode) linkToggleAuth.click(); // Mở tab đăng ký
                 return;
             }
 
@@ -40,39 +48,50 @@ window.supabaseClient.auth.onAuthStateChange(async (event, session) => {
                 await window.supabaseClient.auth.signOut();
                 const msg = (vaiTro === "giaovien")
                     ? "⏳ Tài khoản Giáo viên của bạn đang chờ Admin phê duyệt."
-                    : "🔒 Tài khoản của bạn hiện đang bị khóa. Vui lòng liên hệ Thầy Chính để mở lại!";
+                    : "🔒 Tài khoản của bạn hiện đang chờ duyệt hoặc bị khóa!";
                 alert(msg);
                 return;
             }
 
             // Vượt qua trạm gác -> Vẽ Dashboard
-            window.mainContainer.style.display = 'none';
-            khungDeThi.style.display = 'none';
-            window.dashboardContainer.style.display = 'block';
+            if (window.mainContainer) window.mainContainer.style.display = 'none';
+            if (uiKhungDeThi) uiKhungDeThi.style.display = 'none';
+            if (window.dashboardContainer) window.dashboardContainer.style.display = 'block';
 
             if (vaiTro === "hocsinh") {
-                statusText.innerHTML = `🎓 Học sinh: <strong>${tenNguoiDung}</strong>`;
-                statusText.style.color = "#059669";
+                if (uiStatusText) {
+                    uiStatusText.innerHTML = `🎓 Học sinh: <strong>${tenNguoiDung}</strong>`;
+                    uiStatusText.style.color = "#059669";
+                }
                 window.dungGiaoDienDashboard(vaiTro, tenNguoiDung);
             } else if (vaiTro === "giaovien" || vaiTro === "admin") {
-                statusText.innerHTML = `👨‍🏫 ${vaiTro === "admin" ? "Admin" : "Giáo viên"}: <strong>${tenNguoiDung}</strong>`;
-                statusText.style.color = (vaiTro === "admin") ? "#c0392b" : "#0056b3";
+                if (uiStatusText) {
+                    uiStatusText.innerHTML = `👨‍🏫 ${vaiTro === "admin" ? "Admin" : "Giáo viên"}: <strong>${tenNguoiDung}</strong>`;
+                    uiStatusText.style.color = (vaiTro === "admin") ? "#c0392b" : "#0056b3";
+                }
                 window.dungGiaoDienDashboard(vaiTro, tenNguoiDung);
             }
 
         } catch (error) {
             console.error("Lỗi phân quyền:", error);
-            statusText.innerText = "❌ Lỗi xác thực quyền truy cập!";
+            if (uiStatusText) uiStatusText.innerText = "❌ Lỗi xác thực quyền truy cập!";
         }
     } else {
         // Chưa đăng nhập
-        khungDangNhap.style.display = 'block';
-        window.mainContainer.style.display = 'none';
-        khungDeThi.style.display = 'none';
-        window.dashboardContainer.style.display = 'none';
-        btnLogout.style.display = 'none';
-        statusText.style.display = 'none';
+        if (uiKhungDangNhap) uiKhungDangNhap.style.display = 'block';
+        if (window.mainContainer) window.mainContainer.style.display = 'none';
+        if (uiKhungDeThi) uiKhungDeThi.style.display = 'none';
+        if (window.dashboardContainer) window.dashboardContainer.style.display = 'none';
+        if (uiBtnLogout) uiBtnLogout.style.display = 'none';
+        if (uiStatusText) uiStatusText.style.display = 'none';
         if (typeof window.hienThiNutDoiMatKhau === 'function') window.hienThiNutDoiMatKhau(false);
+
+        // Trả lại trạng thái nút Đăng nhập ở File 1 (Nếu nó bị kẹt)
+        const btnSubmitAuth = document.getElementById('btnSubmitAuth');
+        if (btnSubmitAuth) {
+            btnSubmitAuth.innerText = "ĐĂNG NHẬP";
+            btnSubmitAuth.disabled = false;
+        }
     }
 });
 
