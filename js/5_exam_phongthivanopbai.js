@@ -705,7 +705,7 @@ if (khungDeThiDOM) {
     });
 }
 
-const btnLogout = document.getElementById('btnLogout');
+
 if (btnLogout) {
     btnLogout.addEventListener('click', () => window.supabaseClient.auth.signOut().catch(e => console.error("Lỗi Đăng xuất", e)));
 }
