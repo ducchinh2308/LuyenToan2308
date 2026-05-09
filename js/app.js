@@ -207,11 +207,14 @@ function ham_2_3_an_hien_mat_khau(inputId) {
     }
 }
 
-// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính (Đã thêm luồng xử lý)
+// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
 async function ham_2_4_xu_ly_submit() {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
     const errorMsg = document.getElementById('login-error');
+
+    // Tạm thời đóng lệnh dừng khẩn cấp (khi nào lỗi thì thầy bỏ // ra để dùng)
+    
 
     // 1. Reset thông báo lỗi
     errorMsg.style.display = 'none';
@@ -225,37 +228,35 @@ async function ham_2_4_xu_ly_submit() {
 
     if (AppState.isLoginMode) {
         // ====================================================
-        // LUỒNG ĐĂNG NHẬP
+        // LUỒNG ĐĂNG NHẬP (Lấy trực tiếp dữ liệu đang gõ trên form)
         // ====================================================
         document.getElementById('status').innerText = `Đang xác thực...`;
 
         try {
-            // [GIẢ LẬP ĐĂNG NHẬP ĐỂ TEST GIAO DIỆN]
-            // Khi nào nối Supabase thật, thầy sẽ thay khối IF này bằng lệnh supabase.auth.signInWithPassword
-            if (sdt === "090" && pass === "123") {
+            
+            // Gắn dữ liệu người dùng vào biến toàn cục dựa trên số vừa gõ
+            AppState.user = {
+                sdt: sdt,
+                ten: tenNguoiDung
+            };
+            AppState.role = vaiTro;
 
-                // Gắn dữ liệu người dùng vào biến toàn cục
-                AppState.user = { sdt: sdt, ten: "Thầy Chính" };
-                AppState.role = "admin";
+             debugger; 
 
-                document.getElementById('status').innerText = `Đăng nhập thành công!`;
+            document.getElementById('status').innerText = `Đăng nhập thành công!`;
 
-                // Gọi hàm chuyển màn hình
-                ham_3_1_ve_dashboard_admin();
-
-            } else {
-                throw new Error("Tài khoản hoặc mật khẩu không đúng! (Gợi ý test: SĐT 090, Pass 123)");
-            }
+            // Gọi hàm chuyển màn hình Dashboard
+            ham_3_1_ve_dashboard_admin();
 
         } catch (error) {
-            errorMsg.innerText = error.message;
+            errorMsg.innerText = "Lỗi trong quá trình đăng nhập: " + error.message;
             errorMsg.style.display = 'block';
             document.getElementById('status').innerText = `Lỗi đăng nhập`;
         }
 
     } else {
         // ====================================================
-        // LUỒNG ĐĂNG KÝ (Tạm thời giả lập)
+        // LUỒNG ĐĂNG KÝ
         // ====================================================
         const passConfirm = document.getElementById('txtConfirmPassword').value;
         const hoTen = document.getElementById('txtHoTen').value.trim();
@@ -275,13 +276,16 @@ async function ham_2_4_xu_ly_submit() {
 
         // Giả lập delay 1.5s rồi báo thành công
         setTimeout(() => {
-            alert("Đăng ký thành công! Vui lòng đăng nhập.");
+            alert(`Đăng ký thành công cho SĐT: ${sdt}! Vui lòng đăng nhập.`);
             document.getElementById('status').innerText = `Hệ thống sẵn sàng`;
             ham_2_1_chuyen_doi_che_do(); // Lật lại màn hình đăng nhập
+
+            // Tự động điền sẵn SĐT vừa đăng ký vào ô đăng nhập cho tiện
+            document.getElementById('txtPhone').value = sdt;
+            document.getElementById('txtPassword').value = '';
         }, 1500);
     }
 }
-
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
     AppState.user = null;
