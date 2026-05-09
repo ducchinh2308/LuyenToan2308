@@ -7,8 +7,8 @@ const AppState = {
 };
 
 // Khởi tạo kết nối Supabase (Thầy thay Key thật của thầy vào đây)
-const SUPABASE_URL = 'https://xyz.supabase.co';
-const SUPABASE_KEY = 'eyJhbGci...';
+const SUPABASE_URL = 'https://ffjrjgujzhkjetqyuska.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
 // const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
@@ -123,8 +123,9 @@ function ham_1_2_dung_khung_html() {
 
 
 // ==============================================================================
-// KHỐI 2: TƯƠNG TÁC GIAO DIỆN & XỬ LÝ ĐĂNG NHẬP/ĐĂNG KÝ
+// KHỐI 2: XỬ LÝ ĐĂNG NHẬP (DÒ TÌM TRONG SUPABASE)
 // ==============================================================================
+
 
 // Hàm 2.1: Chuyển đổi qua lại giữa Form Đăng nhập và Đăng ký
 function ham_2_1_chuyen_doi_che_do() {
@@ -207,85 +208,67 @@ function ham_2_3_an_hien_mat_khau(inputId) {
     }
 }
 
-// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
+// ==============================================================================
+// KHỐI 2: XỬ LÝ ĐĂNG NHẬP (DÒ TÌM TRONG SUPABASE)
+// ==============================================================================
+
+// Hàm 2.4: Bắt sự kiện và dò tìm tài khoản trong bảng 'hoc_sinh'
 async function ham_2_4_xu_ly_submit() {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
     const errorMsg = document.getElementById('login-error');
 
-    // Tạm thời đóng lệnh dừng khẩn cấp (khi nào lỗi thì thầy bỏ // ra để dùng)
-    
-
-    // 1. Reset thông báo lỗi
+    // 1. Dọn dẹp trạng thái
     errorMsg.style.display = 'none';
+    document.getElementById('status').innerText = `Đang kết nối Database...`;
 
-    // 2. Kiểm tra rỗng
     if (!sdt || !pass) {
-        errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
-        errorMsg.style.display = 'block';
+        ham_1_2_hien_thi_loi('login-error', "Vui lòng nhập đủ SĐT và Mật khẩu!");
         return;
     }
 
-    if (AppState.isLoginMode) {
-        // ====================================================
-        // LUỒNG ĐĂNG NHẬP (Lấy trực tiếp dữ liệu đang gõ trên form)
-        // ====================================================
-        document.getElementById('status').innerText = `Đang xác thực...`;
+    try {
+        // 2. Lệnh "Dò" trong bảng hoc_sinh
+        // Tìm dòng nào có sdt khớp VÀ mat_khau khớp
+        const { data: userFound, error } = await supabase
+            .from('hoc_sinh')
+            .select('*')
+            .eq('sdt', sdt)
+            .eq('mat_khau', pass)
+            .single(); // Chỉ lấy 1 kết quả duy nhất
 
-        try {
-            
-            // Gắn dữ liệu người dùng vào biến toàn cục dựa trên số vừa gõ
-            AppState.user = {
-                sdt: sdt,
-                ten: tenNguoiDung
-            };
-            AppState.role = vaiTro;
+        if (error || !userFound) {
+            throw new Error("Tài khoản hoặc mật khẩu không đúng!");
+        }
 
-             debugger; 
+        // 3. Kiểm tra xem tài khoản có bị khóa không
+        if (userFound.trang_thai === 0 || userFound.trang_thai === 'khoa') {
+            throw new Error("Tài khoản của bạn hiện đang bị khóa!");
+        }
 
-            document.getElementById('status').innerText = `Đăng nhập thành công!`;
+        // 4. Đăng nhập thành công -> Lưu thông tin vào AppState
+        AppState.user = userFound;
+        AppState.role = userFound.vai_tro;
 
-            // Gọi hàm chuyển màn hình Dashboard
+        document.getElementById('status').innerText = `Chào ${userFound.ten}!`;
+        console.log("Đăng nhập thành công. Vai trò:", AppState.role);
+
+        // 5. Phân luồng Dashboard dựa trên vai trò dò được
+        if (AppState.role === 'admin' || AppState.role === 'giaovien') {
             ham_3_1_ve_dashboard_admin();
-
-        } catch (error) {
-            errorMsg.innerText = "Lỗi trong quá trình đăng nhập: " + error.message;
-            errorMsg.style.display = 'block';
-            document.getElementById('status').innerText = `Lỗi đăng nhập`;
+        } else {
+            // ham_4_1_ve_dashboard_hocsinh(); // Sẽ viết ở khối sau
+            alert("Chào Học sinh! Dashboard học sinh đang được xây dựng.");
         }
 
-    } else {
-        // ====================================================
-        // LUỒNG ĐĂNG KÝ
-        // ====================================================
-        const passConfirm = document.getElementById('txtConfirmPassword').value;
-        const hoTen = document.getElementById('txtHoTen').value.trim();
-
-        if (!hoTen) {
-            errorMsg.innerText = "Vui lòng nhập Họ và tên!";
-            errorMsg.style.display = 'block';
-            return;
-        }
-        if (pass !== passConfirm) {
-            errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
-            errorMsg.style.display = 'block';
-            return;
-        }
-
-        document.getElementById('status').innerText = `Đang tạo tài khoản...`;
-
-        // Giả lập delay 1.5s rồi báo thành công
-        setTimeout(() => {
-            alert(`Đăng ký thành công cho SĐT: ${sdt}! Vui lòng đăng nhập.`);
-            document.getElementById('status').innerText = `Hệ thống sẵn sàng`;
-            ham_2_1_chuyen_doi_che_do(); // Lật lại màn hình đăng nhập
-
-            // Tự động điền sẵn SĐT vừa đăng ký vào ô đăng nhập cho tiện
-            document.getElementById('txtPhone').value = sdt;
-            document.getElementById('txtPassword').value = '';
-        }, 1500);
+    } catch (error) {
+        console.error("Lỗi Auth:", error.message);
+        ham_1_2_hien_thi_loi('login-error', error.message);
+        document.getElementById('status').innerText = `Đăng nhập thất bại`;
     }
 }
+
+
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
     AppState.user = null;
