@@ -18,6 +18,7 @@ const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
 
 // Hàm 1.1: Bơm toàn bộ CSS vào trang
 function ham_1_1_nhung_css() {
+    console.log("Đang vào hàm ham_1_1_nhung_css");
     const cssContent = `
         body { font-family: 'Roboto', sans-serif; padding: 10px 20px; line-height: 1.5; background-color: #f0f2f5; color: #2c3e50; margin: 0;}
         .header-section { text-align: center; margin-bottom: 10px; }
@@ -50,7 +51,7 @@ function ham_1_1_nhung_css() {
 
 // Hàm 1.2: Dựng bộ khung HTML lõi vào thẻ <div id="app">
 function ham_1_2_dung_khung_html() {
-    console.log("Đang vẽ giao diện...");
+    console.log("Đang vào hàm 1_2");
     const htmlContent = `
         <div class="header-section">
             <h1>ÔN LUYỆN TOÁN</h1>
@@ -130,6 +131,7 @@ function ham_1_2_dung_khung_html() {
 
 // Hàm 2.1: Chuyển đổi qua lại giữa Form Đăng nhập và Đăng ký
 function ham_2_1_chuyen_doi_che_do() {
+    console.log("Đang vào hàm ham_2_1");
     AppState.isLoginMode = !AppState.isLoginMode; // Lật trạng thái
 
     // Lấy các element cần ẩn/hiện
@@ -181,6 +183,7 @@ function ham_2_1_chuyen_doi_che_do() {
 
 // Hàm 2.2: Xử lý thay đổi giao diện khi chọn Radio Vai trò (Học sinh / Giáo viên)
 function ham_2_2_thay_doi_vai_tro(vaiTroMoi) {
+    console.log("Đang vào hàm ham_2_2");
     AppState.role = vaiTroMoi;
 
     const groupTruong = document.getElementById('group-thong-tin-truong');
@@ -201,6 +204,7 @@ function ham_2_2_thay_doi_vai_tro(vaiTroMoi) {
 
 // Hàm 2.3: Xử lý icon con mắt Ẩn/Hiện mật khẩu
 function ham_2_3_an_hien_mat_khau(inputId) {
+    console.log("Đang vào hàm ham_2_3");
     const input = document.getElementById(inputId);
     if (input.type === 'password') {
         input.type = 'text';
@@ -219,6 +223,7 @@ async function ham_2_4_xu_ly_submit() {
     const pass = document.getElementById('txtPassword').value;
     const errorMsg = document.getElementById('login-error');
 
+    console.log("Đang vào hàm ham_2_4");
     // 1. Dọn dẹp trạng thái
     errorMsg.style.display = 'none';
     document.getElementById('status').innerText = `Đang kết nối Database...`;
@@ -272,6 +277,7 @@ async function ham_2_4_xu_ly_submit() {
 
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
+    console.log("Đang vào hàm ham_2_5");
     AppState.user = null;
 
     // Ẩn nút đăng xuất và Dashboard
