@@ -9,7 +9,7 @@ const AppState = {
 // Khởi tạo kết nối Supabase (Thầy thay Key thật của thầy vào đây)
 const SUPABASE_URL = 'https://ffjrjgujzhkjetqyuska.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
 // ==============================================================================
@@ -236,7 +236,7 @@ async function ham_2_4_xu_ly_submit() {
     try {
         // 2. Lệnh "Dò" trong bảng hoc_sinh
         // Tìm dòng nào có sdt khớp VÀ mat_khau khớp
-        const { data: userFound, error } = await supabase
+        const { data: userFound, error } = await _supabase
             .from('hoc_sinh')
             .select('*')
             .eq('sdt', sdt)
