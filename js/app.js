@@ -262,7 +262,7 @@ async function ham_2_4_xu_ly_submit() {
         const soDT = userFound.sdt || 'N/A';
 
         // In ra màn hình bằng Template String chuẩn
-        document.getElementById('status').innerText = `Chào ${vaiTro}: ${hoTen} (${soDT})!`;
+        document.getElementById('status').innerText = `Chào ${vaiTro}: ${hoTen}-${soDT}`;
 
 
         console.log("Đăng nhập thành công. Vai trò:", AppState.role, "!");
