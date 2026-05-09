@@ -365,6 +365,16 @@ window.onload = function () {
 // KHỐI 4: QUẢN LÝ LỚP HỌC
 // ==============================================================================
 
+// Hàm 4.0: Sinh mã lớp ngẫu nhiên 5 ký tự
+function ham_4_0_sinh_ma_lop() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 5; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 // Hàm 4.1: Vẽ giao diện Quản lý lớp học
 async function ham_4_1_ve_quan_ly_lop() {
     console.log("App: Đang vào màn hình Quản lý lớp học");
@@ -396,49 +406,71 @@ async function ham_4_1_ve_quan_ly_lop() {
     ham_4_4_tai_danh_sach_lop();
 }
 
-// Hàm 4.2: Hiện/Ẩn Form thêm lớp
+// Hàm 4.2: Vẽ Form thêm lớp mới
 function ham_4_2_hien_form_them_lop() {
-    const f = document.getElementById('form-them-lop');
-    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    const maLopTuDong = ham_4_0_sinh_ma_lop(); // Hàm sinh 5 ký tự ngẫu nhiên
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 600px; background: white; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
+            <h3 style="color: #0056b3;">TẠO LỚP HỌC MỚI</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold;">Giáo viên quản lý:</label>
+                <input type="text" value="${AppState.user.ten}" disabled 
+                       style="width: 100%; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 5px; color: #555;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold;">Mã lớp (Hệ thống tự tạo):</label>
+                <input type="text" id="txtMaLop" value="${maLopTuDong}" disabled 
+                       style="width: 100%; padding: 10px; background: #fff3e0; border: 1px solid #ffe0b2; border-radius: 5px; font-weight: bold; color: #e65100;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-weight: bold;">Tên lớp học:</label>
+                <input type="text" id="txtTenLop" placeholder="Ví dụ: Toán 12 - Nhóm A1" 
+                       style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 5px;">
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button onclick="ham_4_3_luu_lop_moi()" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">XÁC NHẬN TẠO</button>
+                <button onclick="ham_4_1_ve_quan_ly_lop()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">HỦY</button>
+            </div>
+        </div>
+    `;
 }
 
-// Hàm 4.3: Lưu lớp mới vào Supabase
+// Hàm 4.3: Lưu lớp mới vào bảng 'lop_hoc'
 async function ham_4_3_luu_lop_moi() {
-    const maLop = document.getElementById('txt_ma_lop_moi').value.trim().toUpperCase();
-    const tenLop = document.getElementById('txt_ten_lop_moi').value.trim();
-    const errorMsg = document.getElementById('msg-lop-error');
+    const maLop = document.getElementById('txtMaLop').value;
+    const tenLop = document.getElementById('txtTenLop').value.trim();
 
-    if (maLop.length < 3 || !tenLop) {
-        errorMsg.innerText = "Vui lòng nhập Mã lớp (3-5 ký tự) và Tên lớp!";
-        errorMsg.style.display = 'block';
+    if (!tenLop) {
+        alert("Thầy vui lòng nhập Tên lớp!");
         return;
     }
 
     try {
-        const { data, error } = await _supabase
+        // Thực hiện lệnh nạp vào Database
+        const { error } = await _supabase
             .from('lop_hoc')
-            .insert([
-                {
-                    ma_lop: maLop,
-                    ten_lop: tenLop,
-                    uid_gv_tao: AppState.user.uid, // Lấy UID từ người đang đăng nhập
-                    trang_thai: 1,
-                    hoc_sinh_ids: []
-                }
-            ]);
+            .insert([{
+                ma_lop: maLop,
+                ten_lop: tenLop,
+                uid_gv_tao: AppState.user.uid, // LẤY UID ĐỂ LƯU (Quan trọng)
+                trang_thai: 1,
+                hoc_sinh_ids: [],
+                ngay_tao: new Date().toISOString() // Lưu mốc thời gian chuẩn
+            }]);
 
         if (error) throw error;
 
-        alert("Thêm lớp thành công!");
-        document.getElementById('txt_ma_lop_moi').value = '';
-        document.getElementById('txt_ten_lop_moi').value = '';
-        ham_4_2_hien_form_them_lop(); // Ẩn form
-        ham_4_4_tai_danh_sach_lop(); // Tải lại danh sách
+        alert("Thành công! Lớp " + maLop + " đã được tạo.");
+        ham_4_1_ve_quan_ly_lop(); // Quay lại danh sách để xem kết quả
 
     } catch (error) {
-        console.error("Lỗi thêm lớp:", error.message);
-        errorMsg.innerText = "Lỗi: " + error.message;
-        errorMsg.style.display = 'block';
+        alert("Lỗi lưu lớp: " + error.message);
     }
 }
 
