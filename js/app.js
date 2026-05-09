@@ -473,7 +473,7 @@ async function ham_4_3_luu_lop_moi(btnElement) {
     btnElement.disabled = true;
     btnElement.innerText = "ĐANG LƯU... VUI LÒNG ĐỢI";
     btnElement.style.background = "#6c757d"; // Đổi sang màu xám
-
+    console.log(maLop);
     try {
         const { error } = await _supabase
             .from('lop_hoc')
