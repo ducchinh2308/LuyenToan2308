@@ -396,13 +396,19 @@ function ham_4_1_ve_quan_ly_lop() {
     ham_4_4_tai_danh_sach_lop();
 }
 
-// Hàm 4.2: Vẽ giao diện Form tạo lớp mới (Đã thêm biến 'this' vào nút bấm)
+// Hàm 4.2: Vẽ giao diện Form tạo lớp mới (Cập nhật Giờ Phút Giây & Chuyền Mã)
 function ham_4_2_hien_form_them_lop() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
     const maLopTuDong = ham_4_0_sinh_ma_lop();
     const tenGiaoVien = AppState.user.ten || "Giáo viên";
-    const ngayHienTai = new Date().toLocaleDateString('vi-VN');
+
+    // CẬP NHẬT: Lấy thời gian hiển thị đầy đủ Giờ:Phút:Giây - Ngày/Tháng/Năm
+    const thoiGianHienTai = new Date().toLocaleString('vi-VN', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour12: false
+    });
 
     vungLamViec.innerHTML = `
         <div style="max-width: 650px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 0 auto;">
@@ -418,8 +424,8 @@ function ham_4_2_hien_form_them_lop() {
                 </div>
 
                 <div>
-                    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Ngày tạo (Tự động):</label>
-                    <input type="text" value="${ngayHienTai}" readonly 
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px;">Thời gian tạo (Tự động):</label>
+                    <input type="text" value="${thoiGianHienTai}" readonly 
                            style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; color: #5f6368; box-sizing: border-box;">
                 </div>
 
@@ -445,7 +451,7 @@ function ham_4_2_hien_form_them_lop() {
             </div>
 
             <div style="margin-top: 25px; display: flex; gap: 12px;">
-                <button onclick="ham_4_3_luu_lop_moi(this)" 
+                <button onclick="ham_4_3_luu_lop_moi(this, '${maLopTuDong}')" 
                         style="flex: 2; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
                     XÁC NHẬN LƯU THÔNG TIN
                 </button>
@@ -458,10 +464,11 @@ function ham_4_2_hien_form_them_lop() {
     `;
 }
 
-// Hàm 4.3: Lấy dữ liệu và Insert vào Database (Có chống Double Click)
-async function ham_4_3_luu_lop_moi(btnElement) {
-    console.log("đã đến hàm ham_4_3_luu_lop_moi");
-    const maLop = document.getElementById('txtMaLop').value;
+// Hàm 4.3: Lấy dữ liệu và Insert vào Database (Bắt mã trực tiếp từ tham số)
+async function ham_4_3_luu_lop_moi(btnElement, maLopChuyenVao) {
+    // 1. Nhận trực tiếp mã lớp từ nút bấm (Không cần chọc vào DOM để tìm nữa)
+    const maLop = maLopChuyenVao;
+
     const tenLop = document.getElementById('txtTenLop').value.trim();
     const trangThai = parseInt(document.getElementById('selTrangThai').value);
 
@@ -470,11 +477,11 @@ async function ham_4_3_luu_lop_moi(btnElement) {
         return;
     }
 
-    // 1. CHỐNG BẤM NHIỀU LẦN: Khóa nút bấm và đổi chữ
+    // Khóa nút bấm chống double-click
     btnElement.disabled = true;
     btnElement.innerText = "ĐANG LƯU... VUI LÒNG ĐỢI";
-    btnElement.style.background = "#6c757d"; // Đổi sang màu xám
-    console.log(maLop);
+    btnElement.style.background = "#6c757d";
+
     try {
         const { error } = await _supabase
             .from('lop_hoc')
@@ -484,13 +491,12 @@ async function ham_4_3_luu_lop_moi(btnElement) {
                 uid_gv_tao: AppState.user.uid,
                 trang_thai: trangThai,
                 hoc_sinh_ids: [],
-                ngay_tao: new Date().toISOString()
+                ngay_tao: new Date().toISOString() // Giữ nguyên giờ chuẩn quốc tế để lưu DB
             }]);
 
         if (error) {
-            // 2. BẮT LỖI TRÙNG MÃ (Mã lỗi của PostgreSQL là 23505)
             if (error.code === '23505') {
-                throw new Error("Mã lớp này đã tồn tại trên hệ thống do ngẫu nhiên trùng. Thầy hãy bấm Quay lại và Tạo lại để lấy mã mới nhé!");
+                throw new Error("Mã lớp bị trùng lặp ngẫu nhiên. Thầy hãy bấm Quay lại và Tạo lại để lấy mã mới nhé!");
             }
             throw error;
         }
@@ -502,7 +508,7 @@ async function ham_4_3_luu_lop_moi(btnElement) {
         console.error("Lỗi tạo lớp:", error.message);
         alert("Không thể lưu lớp: " + error.message);
 
-        // 3. MỞ KHÓA LẠI NÚT NẾU BỊ LỖI
+        // Mở khóa lại nút nếu bị lỗi
         btnElement.disabled = false;
         btnElement.innerText = "XÁC NHẬN LƯU THÔNG TIN";
         btnElement.style.background = "#1a73e8";
