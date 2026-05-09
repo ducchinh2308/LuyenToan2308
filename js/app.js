@@ -460,6 +460,7 @@ function ham_4_2_hien_form_them_lop() {
 
 // Hàm 4.3: Lấy dữ liệu và Insert vào Database (Có chống Double Click)
 async function ham_4_3_luu_lop_moi(btnElement) {
+    console.log("đã đến hàm ham_4_3_luu_lop_moi");
     const maLop = document.getElementById('txtMaLop').value;
     const tenLop = document.getElementById('txtTenLop').value.trim();
     const trangThai = parseInt(document.getElementById('selTrangThai').value);
