@@ -229,7 +229,7 @@ async function ham_2_4_xu_ly_submit() {
     document.getElementById('status').innerText = `Đang kết nối Database...`;
 
     if (!sdt || !pass) {
-        ham_1_2_hien_thi_loi('login-error', "Vui lòng nhập đủ SĐT và Mật khẩu!");
+        ham_1_2_dung_khung_html('login-error', "Vui lòng nhập đủ SĐT và Mật khẩu!");
         return;
     }
 
