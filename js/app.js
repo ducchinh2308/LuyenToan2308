@@ -503,11 +503,12 @@ async function ham_4_3_luu_lop_moi() {
     }
 }
 
-// Hàm 4.4: Tải danh sách lớp từ Supabase và vẽ bảng
+// Hàm 4.4: Tải danh sách lớp và hiển thị đầy đủ thông tin
 async function ham_4_4_tai_danh_sach_lop() {
     const renderArea = document.getElementById('danh-sach-lop-render');
 
     try {
+        // Lấy dữ liệu lớp của chính giáo viên đang đăng nhập
         const { data: dsLop, error } = await _supabase
             .from('lop_hoc')
             .select('*')
@@ -516,37 +517,44 @@ async function ham_4_4_tai_danh_sach_lop() {
 
         if (error) throw error;
 
-        if (dsLop.length === 0) {
-            renderArea.innerHTML = `<p style="text-align: center; color: #666;">Thầy chưa có lớp học nào. Hãy bấm "Thêm Lớp Mới".</p>`;
+        if (!dsLop || dsLop.length === 0) {
+            renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">Thầy chưa có lớp học nào.</p>`;
             return;
         }
 
         let htmlTable = `
-            <table style="width: 100%; border-collapse: collapse; background: white;">
+            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                 <thead>
-                    <tr style="background: #f1f1f1; text-align: left;">
-                        <th style="padding: 12px; border: 1px solid #ddd;">Mã Lớp</th>
-                        <th style="padding: 12px; border: 1px solid #ddd;">Tên Lớp</th>
-                        <th style="padding: 12px; border: 1px solid #ddd;">Sĩ số</th>
-                        <th style="padding: 12px; border: 1px solid #ddd;">Ngày tạo</th>
-                        <th style="padding: 12px; border: 1px solid #ddd;">Thao tác</th>
+                    <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6;">
+                        <th style="padding: 12px; border: 1px solid #eee;">Mã Lớp</th>
+                        <th style="padding: 12px; border: 1px solid #eee;">Tên Lớp</th>
+                        <th style="padding: 12px; border: 1px solid #eee;">GV Tạo</th>
+                        <th style="padding: 12px; border: 1px solid #eee;">Trạng Thái</th>
+                        <th style="padding: 12px; border: 1px solid #eee;">Sĩ số</th>
+                        <th style="padding: 12px; border: 1px solid #eee;">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
         `;
 
         dsLop.forEach(lop => {
-            const ngayTao = new Date(lop.ngay_tao).toLocaleDateString('vi-VN');
+            const txtTrangThai = lop.trang_thai == 1 ? '<span style="color: green;">● Mở</span>' : '<span style="color: red;">● Khóa</span>';
             const siSo = lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0;
+            const tenGv = AppState.user.ten; // Vì chỉ lấy lớp của chính thầy nên hiển thị tên thầy
+
             htmlTable += `
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #d35400;">${lop.ma_lop}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">${lop.ten_lop}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">${siSo} HS</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">${ngayTao}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">
-                        <button style="color: blue; cursor: pointer; border: none; background: none;">Sửa</button> | 
-                        <button style="color: red; cursor: pointer; border: none; background: none;">Xóa</button>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${lop.ma_lop}</td>
+                    <td style="padding: 10px; border: 1px solid #eee;">${lop.ten_lop}</td>
+                    <td style="padding: 10px; border: 1px solid #eee; font-style: italic;">${tenGv}</td>
+                    <td style="padding: 10px; border: 1px solid #eee; font-size: 13px;">${txtTrangThai}</td>
+                    <td style="padding: 10px; border: 1px solid #eee;">${siSo} HS</td>
+                    <td style="padding: 10px; border: 1px solid #eee;">
+                        <button onclick="ham_4_5_sua_lop('${lop.ma_lop}', '${lop.ten_lop}', ${lop.trang_thai})" 
+                                style="color: #007bff; cursor: pointer; border: none; background: none; font-weight: bold;">Sửa</button>
+                        <span style="color: #ccc;"> | </span>
+                        <button onclick="ham_4_6_xoa_lop('${lop.ma_lop}')" 
+                                style="color: #dc3545; cursor: pointer; border: none; background: none; font-weight: bold;">Xóa</button>
                     </td>
                 </tr>
             `;
@@ -557,6 +565,50 @@ async function ham_4_4_tai_danh_sach_lop() {
 
     } catch (error) {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+    }
+}
+
+// Hàm 4.5: Sửa thông tin lớp (Đổi tên và Trạng thái)
+async function ham_4_5_sua_lop(maLop, tenCu, trangThaiCu) {
+    const tenMoi = prompt("Nhập tên lớp mới:", tenCu);
+    if (tenMoi === null) return; // Bấm Cancel thì thôi
+
+    const trangThaiMoi = confirm(`Bấm OK để MỞ lớp, Cancel để KHÓA lớp.\n(Trạng thái hiện tại: ${trangThaiCu == 1 ? 'Mở' : 'Khóa'})`) ? 1 : 0;
+
+    try {
+        const { error } = await _supabase
+            .from('lop_hoc')
+            .update({ ten_lop: tenMoi, trang_thai: trangThaiMoi })
+            .eq('ma_lop', maLop);
+
+        if (error) throw error;
+
+        alert(`Cập nhật lớp ${maLop} thành công!`);
+        ham_4_4_tai_danh_sach_lop(); // Tải lại bảng
+
+    } catch (error) {
+        alert("Lỗi khi sửa: " + error.message);
+    }
+}
+
+// Hàm 4.6: Xóa lớp học
+async function ham_4_6_xoa_lop(maLop) {
+    const xacNhan = confirm(`CẢNH BÁO: Thầy có chắc chắn muốn XÓA lớp ${maLop} không?\nToàn bộ dữ liệu liên quan sẽ biến mất.`);
+    if (!xacNhan) return;
+
+    try {
+        const { error } = await _supabase
+            .from('lop_hoc')
+            .delete()
+            .eq('ma_lop', maLop);
+
+        if (error) throw error;
+
+        alert("Đã xóa lớp thành công!");
+        ham_4_4_tai_danh_sach_lop(); // Tải lại bảng
+
+    } catch (error) {
+        alert("Lỗi khi xóa: " + error.message);
     }
 }
 
