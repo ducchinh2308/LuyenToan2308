@@ -255,9 +255,16 @@ async function ham_2_4_xu_ly_submit() {
         // 4. Đăng nhập thành công -> Lưu thông tin vào AppState
         AppState.user = userFound;
         AppState.role = userFound.vai_tro;
-        debugger();
-        // Sử dụng Optional Chaining (?.) để nếu không thấy user thì không bị crash web
-        document.getElementById('status').innerText = `Chào ${userFound?.vai_tro}: ${userFound?.ten}(${userFound?.sdt})!`;
+        
+        // LƯU Ý: Kiểm tra kỹ các trường thông tin trước khi in
+        const vaiTro = userFound.vai_tro || 'N/A';
+        const hoTen = userFound.ten || 'Chưa đặt tên';
+        const soDT = userFound.sdt || 'N/A';
+
+        // In ra màn hình bằng Template String chuẩn
+        document.getElementById('status').innerText = `Chào ${vaiTro}: ${hoTen} (${soDT})!`;
+
+
         console.log("Đăng nhập thành công. Vai trò:", AppState.role, "!");
 
         // 5. Phân luồng Dashboard dựa trên vai trò dò được
