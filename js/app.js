@@ -337,7 +337,7 @@ function ham_3_1_ve_dashboard_admin() {
                 <button style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3);">
                     📩 Duyệt Yêu Cầu Học Sinh
                 </button>
-                <button style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
+                <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
                     🏫 Quản Lý Lớp Học
                 </button>
             </div>
@@ -359,4 +359,143 @@ window.onload = function () {
     // Thêm dòng này để xác nhận code đã chạy đến đây
     document.getElementById('status').innerText = "Hệ thống sẵn sàng";
 };
+
+
+// ==============================================================================
+// KHỐI 4: QUẢN LÝ LỚP HỌC
+// ==============================================================================
+
+// Hàm 4.1: Vẽ giao diện Quản lý lớp học
+async function ham_4_1_ve_quan_ly_lop() {
+    console.log("App: Đang vào màn hình Quản lý lớp học");
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+    // 1. Vẽ giao diện khung (Nút thêm và bảng danh sách)
+    vungLamViec.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0; color: #0056b3;">Danh sách lớp học thầy quản lý</h3>
+            <button onclick="ham_4_2_hien_form_them_lop()" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                + Thêm Lớp Mới
+            </button>
+        </div>
+
+        <div id="form-them-lop" style="display: none; background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="margin-top: 0;">Tạo lớp học mới</h4>
+            <div style="display: grid; grid-template-columns: 1fr 2fr auto; gap: 10px;">
+                <input type="text" id="txt_ma_lop_moi" placeholder="Mã lớp (VD: 12T1)" maxlength="5">
+                <input type="text" id="txt_ten_lop_moi" placeholder="Tên lớp (VD: Toán 12 - Nhóm Chiều Thứ 2)">
+                <button onclick="ham_4_3_luu_lop_moi()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Lưu Lớp</button>
+            </div>
+            <p id="msg-lop-error" style="color: red; font-size: 12px; margin-top: 10px; display: none;"></p>
+        </div>
+
+        <div id="danh-sach-lop-render">Đang tải danh sách lớp...</div>
+    `;
+
+    // 2. Gọi hàm tải dữ liệu lớp từ Supabase
+    ham_4_4_tai_danh_sach_lop();
+}
+
+// Hàm 4.2: Hiện/Ẩn Form thêm lớp
+function ham_4_2_hien_form_them_lop() {
+    const f = document.getElementById('form-them-lop');
+    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+
+// Hàm 4.3: Lưu lớp mới vào Supabase
+async function ham_4_3_luu_lop_moi() {
+    const maLop = document.getElementById('txt_ma_lop_moi').value.trim().toUpperCase();
+    const tenLop = document.getElementById('txt_ten_lop_moi').value.trim();
+    const errorMsg = document.getElementById('msg-lop-error');
+
+    if (maLop.length < 3 || !tenLop) {
+        errorMsg.innerText = "Vui lòng nhập Mã lớp (3-5 ký tự) và Tên lớp!";
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    try {
+        const { data, error } = await _supabase
+            .from('lop_hoc')
+            .insert([
+                {
+                    ma_lop: maLop,
+                    ten_lop: tenLop,
+                    uid_gv_tao: AppState.user.uid, // Lấy UID từ người đang đăng nhập
+                    trang_thai: 1,
+                    hoc_sinh_ids: []
+                }
+            ]);
+
+        if (error) throw error;
+
+        alert("Thêm lớp thành công!");
+        document.getElementById('txt_ma_lop_moi').value = '';
+        document.getElementById('txt_ten_lop_moi').value = '';
+        ham_4_2_hien_form_them_lop(); // Ẩn form
+        ham_4_4_tai_danh_sach_lop(); // Tải lại danh sách
+
+    } catch (error) {
+        console.error("Lỗi thêm lớp:", error.message);
+        errorMsg.innerText = "Lỗi: " + error.message;
+        errorMsg.style.display = 'block';
+    }
+}
+
+// Hàm 4.4: Tải danh sách lớp từ Supabase và vẽ bảng
+async function ham_4_4_tai_danh_sach_lop() {
+    const renderArea = document.getElementById('danh-sach-lop-render');
+
+    try {
+        const { data: dsLop, error } = await _supabase
+            .from('lop_hoc')
+            .select('*')
+            .eq('uid_gv_tao', AppState.user.uid)
+            .order('ngay_tao', { ascending: false });
+
+        if (error) throw error;
+
+        if (dsLop.length === 0) {
+            renderArea.innerHTML = `<p style="text-align: center; color: #666;">Thầy chưa có lớp học nào. Hãy bấm "Thêm Lớp Mới".</p>`;
+            return;
+        }
+
+        let htmlTable = `
+            <table style="width: 100%; border-collapse: collapse; background: white;">
+                <thead>
+                    <tr style="background: #f1f1f1; text-align: left;">
+                        <th style="padding: 12px; border: 1px solid #ddd;">Mã Lớp</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Tên Lớp</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Sĩ số</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Ngày tạo</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        dsLop.forEach(lop => {
+            const ngayTao = new Date(lop.ngay_tao).toLocaleDateString('vi-VN');
+            const siSo = lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0;
+            htmlTable += `
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #d35400;">${lop.ma_lop}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">${lop.ten_lop}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">${siSo} HS</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">${ngayTao}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">
+                        <button style="color: blue; cursor: pointer; border: none; background: none;">Sửa</button> | 
+                        <button style="color: red; cursor: pointer; border: none; background: none;">Xóa</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        htmlTable += `</tbody></table>`;
+        renderArea.innerHTML = htmlTable;
+
+    } catch (error) {
+        renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+    }
+}
 
