@@ -396,7 +396,7 @@ function ham_4_1_ve_quan_ly_lop() {
     ham_4_4_tai_danh_sach_lop();
 }
 
-// Hàm 4.2: Vẽ giao diện Form tạo lớp mới
+// Hàm 4.2: Vẽ giao diện Form tạo lớp mới (Đã thêm biến 'this' vào nút bấm)
 function ham_4_2_hien_form_them_lop() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
@@ -404,7 +404,6 @@ function ham_4_2_hien_form_them_lop() {
     const tenGiaoVien = AppState.user.ten || "Giáo viên";
     const ngayHienTai = new Date().toLocaleDateString('vi-VN');
 
-    // Thay thế toàn bộ vùng làm việc bằng Form nhập liệu
     vungLamViec.innerHTML = `
         <div style="max-width: 650px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 0 auto;">
             <h3 style="margin-top: 0; color: #1a73e8; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-bottom: 20px;">
@@ -446,7 +445,7 @@ function ham_4_2_hien_form_them_lop() {
             </div>
 
             <div style="margin-top: 25px; display: flex; gap: 12px;">
-                <button onclick="ham_4_3_luu_lop_moi()" 
+                <button onclick="ham_4_3_luu_lop_moi(this)" 
                         style="flex: 2; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
                     XÁC NHẬN LƯU THÔNG TIN
                 </button>
@@ -459,8 +458,8 @@ function ham_4_2_hien_form_them_lop() {
     `;
 }
 
-// Hàm 4.3: Lấy dữ liệu trên Form và Insert vào Database
-async function ham_4_3_luu_lop_moi() {
+// Hàm 4.3: Lấy dữ liệu và Insert vào Database (Có chống Double Click)
+async function ham_4_3_luu_lop_moi(btnElement) {
     const maLop = document.getElementById('txtMaLop').value;
     const tenLop = document.getElementById('txtTenLop').value.trim();
     const trangThai = parseInt(document.getElementById('selTrangThai').value);
@@ -469,6 +468,11 @@ async function ham_4_3_luu_lop_moi() {
         alert("Thầy chưa nhập Tên lớp học!");
         return;
     }
+
+    // 1. CHỐNG BẤM NHIỀU LẦN: Khóa nút bấm và đổi chữ
+    btnElement.disabled = true;
+    btnElement.innerText = "ĐANG LƯU... VUI LÒNG ĐỢI";
+    btnElement.style.background = "#6c757d"; // Đổi sang màu xám
 
     try {
         const { error } = await _supabase
@@ -482,15 +486,25 @@ async function ham_4_3_luu_lop_moi() {
                 ngay_tao: new Date().toISOString()
             }]);
 
-        if (error) throw error;
+        if (error) {
+            // 2. BẮT LỖI TRÙNG MÃ (Mã lỗi của PostgreSQL là 23505)
+            if (error.code === '23505') {
+                throw new Error("Mã lớp này đã tồn tại trên hệ thống do ngẫu nhiên trùng. Thầy hãy bấm Quay lại và Tạo lại để lấy mã mới nhé!");
+            }
+            throw error;
+        }
 
         alert(`Khởi tạo lớp ${maLop} thành công!`);
-        // Chuyển lại về màn hình danh sách lớp
         ham_4_1_ve_quan_ly_lop();
 
     } catch (error) {
         console.error("Lỗi tạo lớp:", error.message);
         alert("Không thể lưu lớp: " + error.message);
+
+        // 3. MỞ KHÓA LẠI NÚT NẾU BỊ LỖI
+        btnElement.disabled = false;
+        btnElement.innerText = "XÁC NHẬN LƯU THÔNG TIN";
+        btnElement.style.background = "#1a73e8";
     }
 }
 
