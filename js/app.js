@@ -292,6 +292,10 @@ function ham_2_5_xu_ly_dang_xuat() {
     document.getElementById('status').innerText = 'Vui lòng đăng nhập';
 }
 
+
+
+
+
 // ==============================================================================
 // KHỐI 3: GIAO DIỆN QUẢN TRỊ VIÊN (ADMIN DASHBOARD)
 // ==============================================================================
