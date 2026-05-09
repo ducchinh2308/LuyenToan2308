@@ -256,7 +256,8 @@ async function ham_2_4_xu_ly_submit() {
         AppState.user = userFound;
         AppState.role = userFound.vai_tro;
         debugger();
-        document.getElementById('status').innerText = `Chào ${userFound.vai_tro}: ${userFound.ten}(${userFound.sdt})!`;
+        // Sử dụng Optional Chaining (?.) để nếu không thấy user thì không bị crash web
+        document.getElementById('status').innerText = `Chào ${userFound?.vai_tro}: ${userFound?.ten}(${userFound?.sdt})!`;
         console.log("Đăng nhập thành công. Vai trò:", AppState.role, "!");
 
         // 5. Phân luồng Dashboard dựa trên vai trò dò được
