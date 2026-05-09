@@ -9,7 +9,7 @@ const AppState = {
 // Khởi tạo kết nối Supabase (Thầy thay Key thật của thầy vào đây)
 const SUPABASE_URL = 'https://ffjrjgujzhkjetqyuska.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
-// const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
 // ==============================================================================
