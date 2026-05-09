@@ -511,6 +511,7 @@ async function ham_4_3_luu_lop_moi(btnElement) {
 
 // Hàm 4.4: Tải danh sách lớp từ Database và hiển thị Bảng
 async function ham_4_4_tai_danh_sach_lop() {
+    console.log("đã đến hàm ham_4_4_tai danh sach lop");
     const renderArea = document.getElementById('danh-sach-lop-render');
 
     try {
