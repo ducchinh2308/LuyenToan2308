@@ -207,13 +207,16 @@ function ham_2_3_an_hien_mat_khau(inputId) {
     }
 }
 
-// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
-function ham_2_4_xu_ly_submit() {
+// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính (Đã thêm luồng xử lý)
+async function ham_2_4_xu_ly_submit() {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
     const errorMsg = document.getElementById('login-error');
 
-    // Kiểm tra rỗng chung
+    // 1. Reset thông báo lỗi
+    errorMsg.style.display = 'none';
+
+    // 2. Kiểm tra rỗng
     if (!sdt || !pass) {
         errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
         errorMsg.style.display = 'block';
@@ -221,15 +224,39 @@ function ham_2_4_xu_ly_submit() {
     }
 
     if (AppState.isLoginMode) {
-        // LOGIC GỌI SUPABASE ĐĂNG NHẬP
-        console.log("Thực hiện ĐĂNG NHẬP với SĐT:", sdt);
-        document.getElementById('status').innerText = `Đang đăng nhập...`;
+        // ====================================================
+        // LUỒNG ĐĂNG NHẬP
+        // ====================================================
+        document.getElementById('status').innerText = `Đang xác thực...`;
 
-        // Code Supabase Auth sẽ viết ở đây
-        // ...
+        try {
+            // [GIẢ LẬP ĐĂNG NHẬP ĐỂ TEST GIAO DIỆN]
+            // Khi nào nối Supabase thật, thầy sẽ thay khối IF này bằng lệnh supabase.auth.signInWithPassword
+            if (sdt === "090" && pass === "123") {
+
+                // Gắn dữ liệu người dùng vào biến toàn cục
+                AppState.user = { sdt: sdt, ten: "Thầy Chính" };
+                AppState.role = "admin";
+
+                document.getElementById('status').innerText = `Đăng nhập thành công!`;
+
+                // Gọi hàm chuyển màn hình
+                ham_3_1_ve_dashboard_admin();
+
+            } else {
+                throw new Error("Tài khoản hoặc mật khẩu không đúng! (Gợi ý test: SĐT 090, Pass 123)");
+            }
+
+        } catch (error) {
+            errorMsg.innerText = error.message;
+            errorMsg.style.display = 'block';
+            document.getElementById('status').innerText = `Lỗi đăng nhập`;
+        }
 
     } else {
-        // LOGIC GỌI SUPABASE ĐĂNG KÝ
+        // ====================================================
+        // LUỒNG ĐĂNG KÝ (Tạm thời giả lập)
+        // ====================================================
         const passConfirm = document.getElementById('txtConfirmPassword').value;
         const hoTen = document.getElementById('txtHoTen').value.trim();
 
@@ -244,33 +271,74 @@ function ham_2_4_xu_ly_submit() {
             return;
         }
 
-        console.log("Thực hiện ĐĂNG KÝ với Vai trò:", AppState.role);
         document.getElementById('status').innerText = `Đang tạo tài khoản...`;
 
-        // Code Supabase Insert bảng hoc_sinh sẽ viết ở đây
-        // ...
+        // Giả lập delay 1.5s rồi báo thành công
+        setTimeout(() => {
+            alert("Đăng ký thành công! Vui lòng đăng nhập.");
+            document.getElementById('status').innerText = `Hệ thống sẵn sàng`;
+            ham_2_1_chuyen_doi_che_do(); // Lật lại màn hình đăng nhập
+        }, 1500);
     }
 }
 
-// Hàm 2.5: Xử lý Đăng xuất
+// Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
-    console.log("Đã đăng xuất");
-    // supabase.auth.signOut();
+    AppState.user = null;
+
+    // Ẩn nút đăng xuất và Dashboard
     document.getElementById('btnLogout').style.display = 'none';
+    document.getElementById('dashboard-container').style.display = 'none';
+
+    // Hiện lại khung đăng nhập
+    document.getElementById('khung-dang-nhap').style.display = 'block';
+
+    // Reset form
+    document.getElementById('txtPassword').value = '';
     document.getElementById('status').innerText = 'Vui lòng đăng nhập';
 }
 
 // ==============================================================================
-// KHỐI 3: KHỞI ĐỘNG HỆ THỐNG
+// KHỐI 3: GIAO DIỆN QUẢN TRỊ VIÊN (ADMIN DASHBOARD)
 // ==============================================================================
 
-// Hàm 3.1: Hàm mồi chạy đầu tiên khi tải trang
-window.onload = function () {
-    // 1. Nạp CSS
-    ham_1_1_nhung_css();
-    // 2. Vẽ bộ khung HTML
-    ham_1_2_dung_khung_html();
+// Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
+function ham_3_1_ve_dashboard_admin() {
+    // 1. Ẩn form đăng nhập
+    document.getElementById('khung-dang-nhap').style.display = 'none';
 
-    // Đổi trạng thái kết nối
-    document.getElementById('status').innerText = "Hệ thống sẵn sàng";
-};
+    // 2. Hiện nút Đăng xuất trên thanh trạng thái
+    document.getElementById('btnLogout').style.display = 'inline-block';
+
+    // 3. Vẽ cấu trúc HTML của Dashboard
+    const dashboard = document.getElementById('dashboard-container');
+    dashboard.style.display = 'block';
+
+    dashboard.innerHTML = `
+        <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+            <p style="font-size: 16px; color: #495057;">Xin chào thầy <strong>${AppState.user.ten}</strong>!</p>
+            
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button style="padding: 15px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(40,167,69,0.3);">
+                    📚 Kho Học Liệu & Đề Thi
+                </button>
+                <button style="padding: 15px 25px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(23,162,184,0.3);">
+                    🚀 Quản Lý Nhiệm Vụ
+                </button>
+                <button style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3);">
+                    📩 Duyệt Yêu Cầu Học Sinh
+                </button>
+                <button style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
+                    🏫 Quản Lý Lớp Học
+                </button>
+            </div>
+            
+            <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+                <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+            </div>
+        </div>
+    `;
+}
