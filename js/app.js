@@ -50,6 +50,7 @@ function ham_1_1_nhung_css() {
 
 // Hàm 1.2: Dựng bộ khung HTML lõi vào thẻ <div id="app">
 function ham_1_2_dung_khung_html() {
+    console.log("Đang vẽ giao diện...");
     const htmlContent = `
         <div class="header-section">
             <h1>ÔN LUYỆN TOÁN</h1>
@@ -329,3 +330,15 @@ function ham_3_1_ve_dashboard_admin() {
         </div>
     `;
 }
+
+
+// Đảm bảo mọi thứ được vẽ ra khi trang web load xong
+window.onload = function () {
+    console.log("Hệ thống bắt đầu khởi chạy...");
+    ham_1_1_nhung_css();
+    ham_1_2_dung_khung_html();
+
+    // Thêm dòng này để xác nhận code đã chạy đến đây
+    document.getElementById('status').innerText = "Hệ thống sẵn sàng";
+};
+
