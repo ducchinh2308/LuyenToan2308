@@ -492,7 +492,7 @@ function ham_4_1_ve_quan_ly_lop() {
 // PHẦN A: TẠO LỚP & CHỌN HỌC SINH
 // ------------------------------------------------------------------------------
 
-// Hàm 4.2: Vẽ Form tạo lớp (Bổ sung phần tải danh sách học sinh)
+// Hàm 4.2: Vẽ Form tạo lớp học mới
 function ham_4_2_hien_form_them_lop() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     const maLopTuDong = ham_4_0_sinh_ma_lop();
@@ -505,12 +505,17 @@ function ham_4_2_hien_form_them_lop() {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div>
                     <label style="font-weight: bold; font-size: 14px;">Mã lớp:</label>
-                    <input type="text" value="${maLopTuDong}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border-radius: 6px; color: #d93025; font-weight: bold; box-sizing: border-box;">
+                    <input type="text" value="${maLopTuDong}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border-radius: 6px; color: #d93025; font-weight: bold; box-sizing: border-box; border: 1px solid #ddd;">
                 </div>
+                
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Ngày giờ tạo:</label>
-                    <input type="text" value="${thoiGianHienTai}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border-radius: 6px; box-sizing: border-box;">
+                    <label style="font-weight: bold; font-size: 14px;">Trạng thái ban đầu:</label>
+                    <select id="selTrangThaiLopMoi" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">
+                        <option value="1">1 - Đang mở (Hoạt động ngay)</option>
+                        <option value="0">0 - Đóng (Tạm khóa)</option>
+                    </select>
                 </div>
+
                 <div style="grid-column: span 2;">
                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên lớp học (*):</label>
                     <input type="text" id="txtTenLop" placeholder="Ví dụ: TOÁN 12 - NHÓM CHIỀU THỨ 2" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
@@ -518,14 +523,16 @@ function ham_4_2_hien_form_them_lop() {
             </div>
 
             <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #1a73e8; border-radius: 8px; background: #f8fbff;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Danh sách học sinh thêm vào lớp:</label>
                     <button onclick="ham_4_8_tai_danh_sach_hoc_sinh_de_chon()" style="padding: 6px 12px; background: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
                         Tải danh sách Học sinh
                     </button>
                 </div>
-                <div id="khung-checkbox-hs" style="margin-top: 15px; max-height: 200px; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <p style="color: #666; font-size: 13px; grid-column: span 2;">Bấm "Tải danh sách" để hiển thị học sinh hệ thống...</p>
+                <input type="text" oninput="ham_4_16_loc_hs_luc_tao_lop(this.value)" placeholder="🔍 Tìm tên hoặc SĐT..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box;">
+                
+                <div id="khung-checkbox-hs" style="max-height: 200px; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <p style="color: #666; font-size: 13px; grid-column: span 2;">Bấm "Tải danh sách" để hiển thị học sinh...</p>
                 </div>
             </div>
 
@@ -577,9 +584,13 @@ async function ham_4_8_tai_danh_sach_hoc_sinh_de_chon() {
     }
 }
 
-// Hàm 4.3: Lưu lớp mới kèm theo danh sách ID Học sinh đã check
+// Hàm 4.3: Lưu lớp mới kèm theo trạng thái và danh sách học sinh
 async function ham_4_3_luu_lop_moi(btnElement, maLop) {
     const tenLop = document.getElementById('txtTenLop').value.trim();
+
+    // ĐỌC TRẠNG THÁI TỪ COMBOBOX (Chuyển sang số Integer)
+    const trangThai = parseInt(document.getElementById('selTrangThaiLopMoi').value);
+
     if (!tenLop) return alert("Thầy chưa nhập Tên lớp học!");
 
     // Thu thập danh sách UID học sinh được check
@@ -594,18 +605,18 @@ async function ham_4_3_luu_lop_moi(btnElement, maLop) {
             ma_lop: maLop,
             ten_lop: tenLop,
             uid_gv_tao: AppState.user.uid,
-            trang_thai: 1,
-            hoc_sinh_ids: mangUidHocSinh, // Lưu mảng UID vào Database
+            trang_thai: trangThai,         // NẠP TRẠNG THÁI 0/1 VÀO ĐÂY
+            hoc_sinh_ids: mangUidHocSinh,
             ngay_tao: new Date().toISOString()
         }]);
 
         if (error) {
-            if (error.code === '23505') throw new Error("Mã lớp trùng lặp ngẫu nhiên. Vui lòng tạo lại.");
+            if (error.code === '23505') throw new Error("Mã lớp bị trùng, vui lòng thử lại.");
             throw error;
         }
 
-        alert(`Khởi tạo lớp ${maLop} thành công với ${mangUidHocSinh.length} học sinh!`);
-        ham_4_1_ve_quan_ly_lop();
+        alert(`Khởi tạo lớp ${maLop} thành công!`);
+        ham_4_4_tai_danh_sach_lop(); // Quay lại bảng danh sách lớp
 
     } catch (error) {
         alert("Lỗi: " + error.message);
@@ -613,7 +624,6 @@ async function ham_4_3_luu_lop_moi(btnElement, maLop) {
         btnElement.innerText = "XÁC NHẬN LƯU LỚP HỌC";
     }
 }
-
 // ------------------------------------------------------------------------------
 // PHẦN B: BẢNG DANH SÁCH (SẮP XẾP) & XEM CHI TIẾT
 // ------------------------------------------------------------------------------
@@ -648,12 +658,11 @@ async function ham_4_4_tai_danh_sach_lop() {
     }
 }
 
-// Hàm 4.10: Vẽ bảng (Tích hợp Sort và Click dòng)
+// Hàm 4.10: Vẽ bảng (Đã thêm cột Trạng thái sau cột Sĩ số)
 function ham_4_10_ve_bang_du_lieu() {
     const renderArea = document.getElementById('danh-sach-lop-render');
-    let dsLop = [...BangLopState.duLieu]; // Copy mảng để sort
+    let dsLop = [...BangLopState.duLieu];
 
-    // Thuật toán Sắp xếp (Sort)
     const cot = BangLopState.cotDangSort;
     const heSo = BangLopState.tangDan ? 1 : -1;
 
@@ -663,7 +672,6 @@ function ham_4_10_ve_bang_du_lieu() {
         return 0;
     });
 
-    // Ký hiệu Sort để hiển thị trên tiêu đề cột
     const iconSort = BangLopState.tangDan ? '▲' : '▼';
 
     let htmlTable = `
@@ -673,9 +681,12 @@ function ham_4_10_ve_bang_du_lieu() {
                     <th style="padding: 12px; border: 1px solid #eee; width: 50px; text-align: center;">STT</th>
                     <th style="padding: 12px; border: 1px solid #eee;">Mã Lớp</th>
                     <th style="padding: 12px; border: 1px solid #eee;">Tên Lớp</th>
-                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('uid_gv_tao')">GV Tạo ${cot === 'uid_gv_tao' ? iconSort : '↕'}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ten_gv_tao')">GV Tạo ${cot === 'ten_gv_tao' ? iconSort : '↕'}</th>
                     <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ngay_tao')">Ngày Giờ Tạo ${cot === 'ngay_tao' ? iconSort : '↕'}</th>
                     <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Sĩ số</th>
+                    
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Trạng thái</th>
+                    
                     <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Thao tác</th>
                 </tr>
             </thead>
@@ -686,23 +697,25 @@ function ham_4_10_ve_bang_du_lieu() {
         const ngayGio = new Date(lop.ngay_tao).toLocaleString('vi-VN');
         const siSo = lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0;
 
+        // Định dạng hiển thị Trạng thái (0: Đóng - Đỏ, 1: Mở - Xanh)
+        const nhãnTrạngThái = lop.trang_thai == 1
+            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px; border: 1px solid #c6f6d5;">Đang mở</span>`
+            : `<span style="background: #fff1f0; color: #dc3545; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px; border: 1px solid #ffa39e;">Đang đóng</span>`;
+
         htmlTable += `
             <tr style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'" onclick="ham_4_9_xem_chi_tiet_lop('${lop.ma_lop}')">
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${lop.ma_lop}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${lop.ten_lop}</td>
-                
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #28a745;">👨‍🏫 ${lop.ten_gv_tao}</td>
-                
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">👨‍🏫 ${lop.ten_gv_tao}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${ngayGio}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${siSo}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${siSo}</td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${nhãnTrạngThái}</td>
+                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;" onclick="event.stopPropagation()">
-                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px; box-shadow: 0 2px 4px rgba(243, 156, 18, 0.2);">
-                        Sửa
-                    </button>
-                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);">
-                        Xóa
-                    </button>
+                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
                 </td>
             </tr>
         `;
@@ -725,7 +738,6 @@ function ham_4_11_thay_doi_sort(cotMoi) {
 
 // Hàm 4.9: Bấm vào dòng để xem chi tiết Lớp và Danh sách Học sinh
 async function ham_4_9_xem_chi_tiet_lop(maLop) {
-    console.log(ham_4_9_xem_chi_tiet_lop);
     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
     if (!lop) return;
 
@@ -753,25 +765,48 @@ async function ham_4_9_xem_chi_tiet_lop(maLop) {
             }
         }
 
+        // Định dạng nhãn Trạng thái để hiển thị trong chi tiết
+        const nhãnTrạngThái = lop.trang_thai == 1
+            ? `<span style="color: #28a745; font-weight: bold;">✅ Đang mở (Hoạt động)</span>`
+            : `<span style="color: #dc3545; font-weight: bold;">❌ Đang đóng (Tạm dừng)</span>`;
+
         vungLamViec.innerHTML = `
-            <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8;">
-                <h3 style="color: #1a73e8; margin-top: 0;">Thông tin chi tiết lớp: ${lop.ten_lop} (${lop.ma_lop})</h3>
-                <p><strong>Ngày giờ tạo:</strong> ${new Date(lop.ngay_tao).toLocaleString('vi-VN')}</p>
-                <p><strong>Giáo viên tạo:</strong> ${lop.ten_gv_tao}</p> <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
-                <h4 style="color: #d35400;">Danh sách Học sinh (${lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0})</h4>
-                ${htmlHocSinh}
-                <button onclick="ham_4_1_ve_quan_ly_lop()" style="margin-top: 20px; padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                    Quay Lại Bảng Lớp Học
-                </button>
+            <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <h3 style="color: #1a73e8; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                    Thông tin chi tiết lớp: ${lop.ten_lop} (${lop.ma_lop})
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <p style="margin: 5px 0;"><strong>Ngày giờ tạo:</strong> ${new Date(lop.ngay_tao).toLocaleString('vi-VN')}</p>
+                    <p style="margin: 5px 0;"><strong>Giáo viên tạo:</strong> ${lop.ten_gv_tao}</p>
+                    
+                    <p style="margin: 5px 0;"><strong>Trạng thái lớp:</strong> ${nhãnTrạngThái}</p>
+                    
+                    <p style="margin: 5px 0;"><strong>Sĩ số hiện tại:</strong> ${lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0} học sinh</p>
+                </div>
+
+                <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+                <h4 style="color: #d35400; margin-bottom: 10px;">👥 Danh sách Học sinh tham gia:</h4>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #f0f0f0;">
+                    ${htmlHocSinh}
+                </div>
+
+                <div style="margin-top: 25px; display: flex; gap: 10px;">
+                    <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                        ⬅ Quay Lại
+                    </button>
+                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="padding: 10px 20px; background: #f39c12; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                        ✏️ Chỉnh sửa lớp này
+                    </button>
+                </div>
             </div>
         `;
 
     } catch (error) {
         vungLamViec.innerHTML = `<p style="color: red;">Lỗi tải chi tiết: ${error.message}</p>
-                                 <button onclick="ham_4_1_ve_quan_ly_lop()">Quay lại</button>`;
+                                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button>`;
     }
 }
-
 // ==============================================================================
 // PHẦN C: CHỈNH SỬA VÀ XÓA LỚP HỌC
 // ==============================================================================
