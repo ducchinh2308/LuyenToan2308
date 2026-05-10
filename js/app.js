@@ -309,7 +309,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
-                    uid: 'UID_' + new Date().getTime(), // Dùng tiền tố UID_ (User ID) trung lập
+                    uid: crypto.randomUUID(),
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
