@@ -1024,3 +1024,168 @@ async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
         btn.innerText = "LƯU THAY ĐỔI";
     }
 }
+
+
+
+// ==============================================================================
+// KHỐI 5: QUẢN LÝ HỌC SINH (TÍCH HỢP SORT, KHÓA/MỞ TÀI KHOẢN)
+// ==============================================================================
+
+// Biến lưu trữ trạng thái bảng Học sinh để Sắp xếp siêu tốc
+const BangHocSinhState = {
+    duLieu: [],
+    cotDangSort: 'ngay_tham_gia',
+    tangDan: false // false = Mới nhất xếp trên
+};
+
+// Hàm 5.1: Vẽ bộ khung giao diện Quản lý học sinh
+function ham_5_1_ve_quan_ly_hoc_sinh() {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+    vungLamViec.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0; color: #6f42c1;">Danh sách Học sinh trên hệ thống</h3>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="ham_5_2_tai_danh_sach_hoc_sinh()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                    🔄 Làm mới dữ liệu
+                </button>
+            </div>
+        </div>
+        <div id="danh-sach-hs-render">
+            <p style="text-align: center; color: #666;">Đang tải dữ liệu học sinh từ máy chủ...</p>
+        </div>
+    `;
+
+    // Gọi hàm tải dữ liệu
+    ham_5_2_tai_danh_sach_hoc_sinh();
+}
+
+// Hàm 5.2: Tải dữ liệu từ Supabase và nạp vào Biến State
+async function ham_5_2_tai_danh_sach_hoc_sinh() {
+    const renderArea = document.getElementById('danh-sach-hs-render');
+    try {
+        const { data: dsHocSinh, error } = await _supabase
+            .from('hoc_sinh')
+            .select('*')
+            .eq('vai_tro', 'hocsinh');
+
+        if (error) throw error;
+
+        BangHocSinhState.duLieu = dsHocSinh || [];
+        ham_5_10_ve_bang_hoc_sinh(); // Gọi hàm vẽ bảng
+
+    } catch (error) {
+        renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+    }
+}
+
+// Hàm 5.10: Vẽ Bảng học sinh (Có sắp xếp)
+function ham_5_10_ve_bang_hoc_sinh() {
+    const renderArea = document.getElementById('danh-sach-hs-render');
+    let dsHocSinh = [...BangHocSinhState.duLieu];
+
+    if (dsHocSinh.length === 0) {
+        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học sinh nào đăng ký vào hệ thống.</p>`;
+        return;
+    }
+
+    // Thuật toán Sort
+    const cot = BangHocSinhState.cotDangSort;
+    const heSo = BangHocSinhState.tangDan ? 1 : -1;
+    dsHocSinh.sort((a, b) => {
+        let valA = a[cot] || '';
+        let valB = b[cot] || '';
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        if (valA < valB) return -1 * heSo;
+        if (valA > valB) return 1 * heSo;
+        return 0;
+    });
+
+    const iconSort = BangHocSinhState.tangDan ? '▲' : '▼';
+
+    let htmlTable = `
+        <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 14px;">
+            <thead>
+                <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer;">
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center; width: 50px;">STT</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;">SĐT</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('truong')">Trường / Khối ${cot === 'truong' ? iconSort : '↕'}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ngay_tham_gia')">Ngày Đăng Ký ${cot === 'ngay_tham_gia' ? iconSort : '↕'}</th>
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Trạng Thái</th>
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    dsHocSinh.forEach((hs, index) => {
+        const ngayDK = new Date(hs.ngay_tham_gia).toLocaleDateString('vi-VN');
+        const truongKhoi = `${hs.truong || 'N/A'} ${hs.khoi_lop ? '- Khối ' + hs.khoi_lop : ''}`;
+
+        // Nhãn trạng thái
+        const nhanTrangThai = hs.trang_thai == 1
+            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px;">Bình thường</span>`
+            : `<span style="background: #fff1f0; color: #dc3545; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px;">Bị Khóa</span>`;
+
+        // Nút Khóa / Mở thay đổi theo trạng thái hiện tại
+        const btnKhoaMo = hs.trang_thai == 1
+            ? `<button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', 0, '${hs.ten}')" style="padding: 5px 10px; background: #fff1f0; color: #dc3545; border: 1px solid #ffa39e; border-radius: 4px; font-weight: bold; cursor: pointer;">Khóa</button>`
+            : `<button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', 1, '${hs.ten}')" style="padding: 5px 10px; background: #e6ffed; color: #28a745; border: 1px solid #c6f6d5; border-radius: 4px; font-weight: bold; cursor: pointer;">Mở Khóa</button>`;
+
+        htmlTable += `
+            <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1;">${hs.ten}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${hs.sdt}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${truongKhoi}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${ngayDK}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${nhanTrangThai}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
+                    <button style="padding: 5px 10px; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+                    ${btnKhoaMo}
+                </td>
+            </tr>
+        `;
+    });
+
+    htmlTable += `</tbody></table>`;
+    renderArea.innerHTML = htmlTable;
+}
+
+// Hàm 5.11: Xử lý Click tiêu đề để sắp xếp
+function ham_5_11_thay_doi_sort(cotMoi) {
+    if (BangHocSinhState.cotDangSort === cotMoi) {
+        BangHocSinhState.tangDan = !BangHocSinhState.tangDan;
+    } else {
+        BangHocSinhState.cotDangSort = cotMoi;
+        BangHocSinhState.tangDan = true;
+    }
+    ham_5_10_ve_bang_hoc_sinh();
+}
+
+// Hàm 5.3: Thực hiện Khóa hoặc Mở khóa tài khoản học sinh
+async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
+    const hanhDong = trangThaiMoi === 0 ? "KHÓA" : "MỞ KHÓA";
+    if (!confirm(`Thầy có chắc chắn muốn ${hanhDong} tài khoản của học sinh: ${tenHS}?`)) return;
+
+    document.getElementById('danh-sach-hs-render').innerHTML = `<p style="text-align: center; color: #f39c12;">Đang xử lý...</p>`;
+
+    try {
+        const { error } = await _supabase
+            .from('hoc_sinh')
+            .update({ trang_thai: trangThaiMoi })
+            .eq('uid', uid);
+
+        if (error) throw error;
+
+        // Tải lại bảng sau khi cập nhật thành công
+        ham_5_2_tai_danh_sach_hoc_sinh();
+
+    } catch (error) {
+        alert(`Lỗi khi ${hanhDong}: ` + error.message);
+        ham_5_10_ve_bang_hoc_sinh(); // Lỗi thì vẽ lại bảng như cũ
+    }
+}
