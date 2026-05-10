@@ -229,7 +229,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     if (AppState.isLoginMode) {
         // ====================================================
-        // LUỒNG 1: ĐĂNG NHẬP (Giữ nguyên)
+        // LUỒNG 1: ĐĂNG NHẬP
         // ====================================================
         document.getElementById('status').innerText = `Đang xác thực...`;
         try {
@@ -247,11 +247,17 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             AppState.user = userFound;
             AppState.role = userFound.vai_tro;
 
+            // Cập nhật thời gian đăng nhập cuối vào Database
+            await _supabase
+                .from('hoc_sinh')
+                .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+                .eq('uid', userFound.uid);
+
             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
                 ham_3_1_ve_dashboard_admin();
             } else {
                 alert("Chào học sinh! Hệ thống đang chuyển vào phòng thi.");
-                // Sau này sẽ nối với hàm vẽ giao diện cho học sinh: ham_3_2_ve_dashboard_hocsinh();
+                // Sau này sẽ gọi hàm: ham_3_2_ve_dashboard_hocsinh();
             }
         } catch (error) {
             errorMsg.innerText = error.message;
@@ -261,21 +267,20 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     } else {
         // ====================================================
-        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH (HOÀN CHỈNH)
+        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH
         // ====================================================
-        console.log("Vào đăng ký học sinh");
+        console.log("App: Đang xử lý đăng ký tài khoản");
 
-        // Đọc thông tin cơ bản
+        // Đọc thông tin từ Form
         const hoTen = document.getElementById('txtHoTen').value.trim();
         const passConfirm = document.getElementById('txtConfirmPassword').value;
 
-        // Đọc thông tin bổ sung (Khối, Tỉnh, Trường, Mã lớp)
         const khoi = document.getElementById('selKhoi') ? document.getElementById('selKhoi').value : '';
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLopJoin') ? document.getElementById('txtMaLopJoin').value.trim().toUpperCase() : '';
 
-        // 1. Kiểm tra tính hợp lệ của Form
+        // 1. Kiểm tra tính hợp lệ
         if (!hoTen || !tinh || !truong) {
             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
             errorMsg.style.display = 'block';
@@ -292,11 +297,11 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             return;
         }
 
-        document.getElementById('status').innerText = `Đang xử lý đăng ký...`;
-        if (btnElement) btnElement.disabled = true; // Khóa nút chống bấm đúp
+        document.getElementById('status').innerText = `Đang kết nối cơ sở dữ liệu...`;
+        if (btnElement) btnElement.disabled = true;
 
         try {
-            // 2. Kiểm tra xem Số điện thoại đã tồn tại trong hệ thống chưa
+            // 2. Kiểm tra trùng số điện thoại
             const { data: checkSdt, error: checkError } = await _supabase
                 .from('hoc_sinh')
                 .select('sdt')
@@ -307,36 +312,29 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
             }
 
-            console.log("CHUẨN BỊ LƯU HỌC SINH ĐẦY ĐỦ THÔNG TIN");
-
-            // 3. Thực hiện lưu Học sinh mới vào Database kèm các trường bổ sung
+            // 3. Thực hiện lưu vào Database (Khớp 100% với cấu trúc bảng)
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
-                    uid: crypto.randomUUID(),           // Sinh mã UUID chuẩn
+                    uid: crypto.randomUUID(),
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
                     vai_tro: 'hocsinh',
                     trang_thai: 1,
-                    ngay_tham_gia: new Date().toISOString(),
-
-                    // Nạp các cột mới
                     khoi_lop: khoi,
                     tinh: tinh,
                     truong: truong,
-                    // Lưu mảng chứa mã lớp (nếu có nhập)
-                    lop_ids: maLopVao ? [maLopVao] : []
+                    danh_sach_ma_lop: maLopVao ? [maLopVao] : [], // Sử dụng đúng tên cột mới
+                    ngay_tham_gia: new Date().toISOString()
                 }]);
 
             if (insertError) throw insertError;
 
-            // 4. Báo thành công và chuyển về màn hình đăng nhập
-            alert(`Đăng ký thành công tài khoản cho học sinh: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
+            // 4. Hoàn tất
+            alert(`Đăng ký thành công tài khoản cho: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
 
-            ham_2_1_chuyen_doi_che_do(); // Hàm lật lại Form Đăng nhập
-
-            // Xóa rỗng mật khẩu, giữ nguyên số điện thoại vừa đăng ký để HS tiện đăng nhập luôn
+            ham_2_1_chuyen_doi_che_do();
             document.getElementById('txtPassword').value = '';
             document.getElementById('status').innerText = `Vui lòng đăng nhập để vào thi`;
 
@@ -345,11 +343,10 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             errorMsg.style.display = 'block';
             document.getElementById('status').innerText = `Đăng ký thất bại`;
         } finally {
-            if (btnElement) btnElement.disabled = false; // Mở khóa nút
+            if (btnElement) btnElement.disabled = false;
         }
     }
 }
-
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
     console.log("Đang vào hàm ham_2_5");
