@@ -766,9 +766,13 @@ function ham_4_10_ve_bang_du_lieu() {
                 <td style="padding: 10px; border: 1px solid #eee;">${ngayGio}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${siSo}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${nhãnTrạngThái}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="event.stopPropagation()">
-                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="color: #f39c12; background: none; border: none; font-weight: bold; cursor: pointer; margin-right: 10px;">Sửa</button>
-                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="color: #dc3545; background: none; border: none; font-weight: bold; cursor: pointer;">Xóa</button>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;" onclick="event.stopPropagation()">
+                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px; box-shadow: 0 2px 4px rgba(243, 156, 18, 0.2);">
+                        Sửa
+                    </button>
+                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);">
+                        Xóa
+                    </button>
                 </td>
             </tr>
         `;
