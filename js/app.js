@@ -1277,13 +1277,13 @@ async function ham_6_2_tai_danh_sach_hoc_lieu() {
     }
 }
 
-// Hàm 6.10: Vẽ Bảng Học Liệu (Đầy đủ 12 trường thông tin)
+// Hàm 6.10: Vẽ Bảng Học Liệu (Cập nhật hiển thị Quy mô & Cấu trúc)
 function ham_6_10_ve_bang_hoc_lieu() {
     const renderArea = document.getElementById('danh-sach-hl-render');
     let dsHL = [...BangHocLieuState.duLieu];
 
     if (dsHL.length === 0) {
-        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học liệu hoặc đề thi nào trong kho.</p>`;
+        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học liệu hoặc đề thi nào.</p>`;
         return;
     }
 
@@ -1293,10 +1293,8 @@ function ham_6_10_ve_bang_hoc_lieu() {
     dsHL.sort((a, b) => {
         let valA = a[cot] === null || a[cot] === undefined ? '' : a[cot];
         let valB = b[cot] === null || b[cot] === undefined ? '' : b[cot];
-
         if (typeof valA === 'string') valA = valA.toLowerCase();
         if (typeof valB === 'string') valB = valB.toLowerCase();
-
         if (valA < valB) return -1 * heSo;
         if (valA > valB) return 1 * heSo;
         return 0;
@@ -1311,19 +1309,19 @@ function ham_6_10_ve_bang_hoc_lieu() {
                 <thead>
                     <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center; width: 40px;">STT</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; position: sticky; left: 0; background: #f8f9fa; z-index: 1;">Thao tác</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Thao tác</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ma_hoc_lieu')">Mã HL ${getIcon('ma_hoc_lieu')}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ten_hoc_lieu')">Tên Học Liệu / Đề Thi ${getIcon('ten_hoc_lieu')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('loai_kiem_tra')">Loại / Phân loại ${getIcon('loai_kiem_tra')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('loai_kiem_tra')">Phân loại ${getIcon('loai_kiem_tra')}</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('khoi_lop')">Khối ${getIcon('khoi_lop')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('thoi_gian_lam_bai')">Thời gian làm bài ${getIcon('thoi_gian_lam_bai')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('quy_mo_cau_hoi')">Số câu hỏi ${getIcon('quy_mo_cau_hoi')}</th>
+                        
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('quy_mo_cau_hoi')">Quy mô / Cấu trúc ${getIcon('quy_mo_cau_hoi')}</th>
+                        
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('thoi_gian_lam_bai')">Thời gian ${getIcon('thoi_gian_lam_bai')}</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('trang_thai')">Trạng thái ${getIcon('trang_thai')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ten_gv_tao')">Giáo viên tạo ${getIcon('ten_gv_tao')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ngay_tao')">Ngày tạo ${getIcon('ngay_tao')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Mảng câu hỏi (danh_sach_cau_hoi)</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Metadata</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">ID (UUID gốc)</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Giáo viên</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Ngày tạo</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Mã câu hỏi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1332,39 +1330,44 @@ function ham_6_10_ve_bang_hoc_lieu() {
     dsHL.forEach((hl, index) => {
         const ngayTao = hl.ngay_tao ? new Date(hl.ngay_tao).toLocaleString('vi-VN') : '-';
 
-        // Xử lý Thời gian: Có số thì là phút, rỗng/0 thì là không giới hạn
-        const thoiGian = (hl.thoi_gian_lam_bai && hl.thoi_gian_lam_bai > 0)
-            ? `<span style="color: #dc3545; font-weight: bold;">⏳ ${hl.thoi_gian_lam_bai} phút</span>`
-            : `<span style="color: #6c757d; font-style: italic;">Không giới hạn</span>`;
+        // 1. Xử lý quy mô câu hỏi kết hợp cấu trúc từ metadata
+        const chuoiCauTruc = (hl.metadata && hl.metadata.cau_truc) ? hl.metadata.cau_truc : '';
+        const hienThiQuyMo = chuoiCauTruc
+            ? `<div style="font-weight: bold; color: #6f42c1;">${chuoiCauTruc}</div><div style="font-size: 11px; color: #666;">(${hl.quy_mo_cau_hoi} câu)</div>`
+            : `<span style="font-weight: bold;">${hl.quy_mo_cau_hoi} câu</span>`;
 
-        // Xử lý Trạng thái: Công khai (Xanh), Nội bộ (Cam)
+        // 2. Xử lý thời gian
+        const thoiGian = (hl.thoi_gian_lam_bai > 0)
+            ? `<span style="color: #dc3545; font-weight: bold;">⏳ ${hl.thoi_gian_lam_bai}p</span>`
+            : `<span style="color: #6c757d; font-style: italic;">Tự luyện</span>`;
+
+        // 3. Trạng thái
         const trangThaiText = hl.trang_thai === 'cong_khai'
-            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 8px; border-radius: 12px; font-weight: bold;">Công khai</span>`
-            : `<span style="background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 12px; font-weight: bold;">Nội bộ</span>`;
-
-        // Rút gọn danh sách câu hỏi tránh làm bảng quá dài
-        const mangCauHoi = hl.danh_sach_cau_hoi ? hl.danh_sach_cau_hoi.join(', ') : '';
-        const hienThiMangCH = mangCauHoi.length > 30 ? mangCauHoi.substring(0, 30) + '...' : (mangCauHoi || '[]');
+            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 8px; border-radius: 12px; font-weight: bold; font-size: 11px;">Công khai</span>`
+            : `<span style="background: #f1f3f4; color: #666; padding: 4px 8px; border-radius: 12px; font-weight: bold; font-size: 11px;">Nội bộ</span>`;
 
         htmlTable += `
             <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap; position: sticky; left: 0; background: inherit; z-index: 1;">
-                    <button style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
-                    <button style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
+                    <button onclick="alert('Tính năng sửa đang làm')" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Sửa</button>
                 </td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu || '-'}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hl.ten_hoc_lieu || '-'}</td>
-                <td style="padding: 10px; border: 1px solid #eee;">${hl.loai_kiem_tra || '-'}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${hl.khoi_lop || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hl.ten_hoc_lieu}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${hl.loai_kiem_tra}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${hl.khoi_lop}</td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; line-height: 1.2;">
+                    ${hienThiQuyMo}
+                </td>
+                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${thoiGian}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hl.quy_mo_cau_hoi || 0}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${trangThaiText}</td>
-                <td style="padding: 10px; border: 1px solid #eee;">👨‍🏫 ${hl.ten_gv_tao}</td>
-                <td style="padding: 10px; border: 1px solid #eee;">${ngayTao}</td>
-                <td style="padding: 10px; border: 1px solid #eee; color: #666; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${mangCauHoi}">[${hienThiMangCH}]</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-size: 11px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${JSON.stringify(hl.metadata || {})}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-family: monospace; color: #888; font-size: 11px;">${hl.id}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-size: 12px;">${hl.ten_gv_tao}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-size: 11px; color: #666;">${ngayTao}</td>
+                <td style="padding: 10px; border: 1px solid #eee; color: #999; font-size: 11px; max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    ${hl.danh_sach_cau_hoi ? hl.danh_sach_cau_hoi.join(', ') : '[]'}
+                </td>
             </tr>
         `;
     });
@@ -1385,11 +1388,11 @@ function ham_6_11_thay_doi_sort(cotMoi) {
 }
 
 
-// Hàm 6.0: Sinh mã học liệu tự động (Dạng HL-XXXXX)
+// Hàm 6.0: Sinh mã học liệu tự động (Dạng HL_XXXXXXX gồm 7 ký tự ngẫu nhiên)
 function ham_6_0_sinh_ma_hoc_lieu() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = 'HL-';
-    for (let i = 0; i < 5; i++) {
+    let result = 'HL_';
+    for (let i = 0; i < 7; i++) {
         result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return result;
@@ -1408,8 +1411,8 @@ function ham_6_3_hien_form_them_hoc_lieu() {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Mã định danh (Có thể sửa):</label>
-                    <input type="text" id="txtMaHocLieu" value="${maHLTuDong}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-weight: bold; color: #d35400;">
+                    <label style="font-weight: bold; font-size: 14px;">Mã định danh (Cố định):</label>
+                    <input type="text" id="txtMaHocLieu" value="${maHLTuDong}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-weight: bold; color: #d35400; cursor: not-allowed;">
                 </div>
                 
                 <div>
@@ -1424,7 +1427,7 @@ function ham_6_3_hien_form_them_hoc_lieu() {
 
                 <div style="grid-column: span 2;">
                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên Học liệu / Đề thi (*):</label>
-                    <input type="text" id="txtTenHocLieu" placeholder="Ví dụ: Đề thi thử THPT QG Môn Toán - Lần 1" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
+                    <input type="text" id="txtTenHocLieu" placeholder="Ví dụ: Đề thi thử Toán - Chuẩn 2025" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
                 </div>
 
                 <div>
@@ -1441,6 +1444,11 @@ function ham_6_3_hien_form_them_hoc_lieu() {
                     <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
                     <input type="number" id="numThoiGian" placeholder="Để 0 nếu là tự luyện" value="0" min="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
                 </div>
+                
+                <div>
+                    <label style="font-weight: bold; font-size: 14px; color: #6f42c1;">Cấu trúc / Mô tả quy mô:</label>
+                    <input type="text" id="txtCauTruc" placeholder="VD: 12TN-4DS-6TLN hoặc 1 file PDF..." style="width: 100%; padding: 10px; border: 1px solid #6f42c1; border-radius: 6px; box-sizing: border-box;">
+                </div>
 
                 <div>
                     <label style="font-weight: bold; font-size: 14px;">Trạng thái lưu trữ:</label>
@@ -1451,14 +1459,16 @@ function ham_6_3_hien_form_them_hoc_lieu() {
                 </div>
             </div>
 
-            <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #6f42c1; border-radius: 8px; background: #f8fbff;">
-                <label style="font-weight: bold; font-size: 14px; color: #6f42c1; display: block; margin-bottom: 10px;">
-                    Mảng Danh Sách Mã Câu Hỏi (Nhập các ID6):
-                </label>
-                <p style="font-size: 12px; color: #666; margin-top: -5px; margin-bottom: 10px;">
-                    💡 Có thể copy/paste nhiều mã cùng lúc. Cách nhau bằng khoảng trắng, dấu phẩy (,), hoặc xuống dòng đều được hệ thống tự bóc tách.
-                </p>
-                <textarea id="txtDanhSachCauHoi" rows="4" placeholder="Ví dụ: ID6A, ID6B, ID6C..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: monospace;"></textarea>
+            <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #e67e22; border-radius: 8px; background: #fffaf0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">Mảng Mã Câu Hỏi ID6:</label>
+                    
+                    <span id="lblDemCauHoi" style="background: #d35400; color: white; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px;">
+                        Đã nhập: 0 câu
+                    </span>
+                </div>
+                
+                <textarea id="txtDanhSachCauHoi" oninput="ham_6_5_xu_ly_nhap_id(this.value)" rows="4" placeholder="Dán các mã ID6 vào đây..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: monospace;"></textarea>
             </div>
 
             <div style="display: flex; gap: 12px;">
@@ -1473,7 +1483,7 @@ function ham_6_3_hien_form_them_hoc_lieu() {
     `;
 }
 
-// Hàm 6.4: Đọc dữ liệu, chuẩn hóa Mảng câu hỏi và Lưu vào Supabase
+// Hàm 6.4: Lưu dữ liệu Học liệu vào Supabase
 async function ham_6_4_luu_hoc_lieu_moi(btn) {
     const maHL = document.getElementById('txtMaHocLieu').value.trim();
     const tenHL = document.getElementById('txtTenHocLieu').value.trim();
@@ -1482,16 +1492,15 @@ async function ham_6_4_luu_hoc_lieu_moi(btn) {
     const thoiGian = parseInt(document.getElementById('numThoiGian').value) || 0;
     const trangThai = document.getElementById('selTrangThaiHL').value;
 
-    // Đọc chuỗi mã câu hỏi và "bóc tách" nó thành Array
-    const chuoiCH = document.getElementById('txtDanhSachCauHoi').value;
-    // Tách bằng biểu thức chính quy: khoảng trắng, dấu phẩy, dấu chấm phẩy, xuống dòng
-    const mangCauHoiRaw = chuoiCH.split(/[\s,;]+/).filter(id => id.trim() !== '');
+    // Đọc trường Cấu trúc mới
+    const cauTruc = document.getElementById('txtCauTruc').value.trim();
 
-    // Loại bỏ các ID trùng lặp (nếu thầy vô tình copy trùng)
+    // Chuẩn hóa mảng ID
+    const chuoiCH = document.getElementById('txtDanhSachCauHoi').value;
+    const mangCauHoiRaw = chuoiCH.split(/[\s,;]+/).filter(id => id.trim() !== '');
     const mangCauHoiChuan = [...new Set(mangCauHoiRaw)];
 
     if (!tenHL) return alert("Thầy vui lòng nhập Tên Học Liệu / Đề thi!");
-    if (!maHL) return alert("Mã định danh không được để trống!");
 
     btn.disabled = true;
     btn.innerText = "ĐANG LƯU DỮ LIỆU...";
@@ -1503,24 +1512,40 @@ async function ham_6_4_luu_hoc_lieu_moi(btn) {
             khoi_lop: khoiLop,
             loai_kiem_tra: loaiKT,
             thoi_gian_lam_bai: thoiGian,
-            quy_mo_cau_hoi: mangCauHoiChuan.length, // Tự động đếm số lượng câu hỏi
-            danh_sach_cau_hoi: mangCauHoiChuan,      // Nạp mảng chuẩn vào cột JSON
+            quy_mo_cau_hoi: mangCauHoiChuan.length,
+            danh_sach_cau_hoi: mangCauHoiChuan,
             trang_thai: trangThai,
             uid_gv_tao: AppState.user.uid,
+            // NẠP CẤU TRÚC VÀO METADATA TẠI ĐÂY
+            metadata: { cau_truc: cauTruc },
             ngay_tao: new Date().toISOString()
         }]);
 
-        if (error) {
-            if (error.code === '23505') throw new Error("Mã học liệu này đã tồn tại, vui lòng đổi mã khác!");
-            throw error;
-        }
+        if (error) throw error;
 
-        alert(`Đã tạo thành công Học liệu: ${tenHL} (Gồm ${mangCauHoiChuan.length} câu hỏi)`);
-        ham_6_1_ve_quan_ly_hoc_lieu(); // Quay lại bảng danh sách
+        alert(`Đã tạo thành công! (Quy mô: ${mangCauHoiChuan.length} câu)`);
+        ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (error) {
         alert("Lỗi lưu học liệu: " + error.message);
         btn.disabled = false;
         btn.innerText = "LƯU HỌC LIỆU / ĐỀ THI";
+    }
+}
+
+// Hàm 6.5: Tự động đếm ID và nhận diện cấu trúc chuẩn 2025
+function ham_6_5_xu_ly_nhap_id(chuoiGoc) {
+    const mangCH = chuoiGoc.split(/[\s,;]+/).filter(id => id.trim() !== '');
+    const soLuong = [...new Set(mangCH)].length; // Đếm số lượng ID không trùng
+
+    // Cập nhật nhãn hiển thị số lượng
+    document.getElementById('lblDemCauHoi').innerText = `Đã nhập: ${soLuong} câu`;
+
+    // Nếu dán vào đúng 22 câu, tự động gợi ý cấu trúc chuẩn 2025
+    const txtCauTruc = document.getElementById('txtCauTruc');
+    if (soLuong === 22 && txtCauTruc.value === '') {
+        txtCauTruc.value = '12TN-4DS-6TLN';
+        txtCauTruc.style.background = '#e6ffed'; // Nháy màu xanh báo hiệu auto-fill
+        setTimeout(() => txtCauTruc.style.background = 'white', 1000);
     }
 }
