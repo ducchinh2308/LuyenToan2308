@@ -722,6 +722,7 @@ function ham_4_11_thay_doi_sort(cotMoi) {
 
 // Hàm 4.9: Bấm vào dòng để xem chi tiết Lớp và Danh sách Học sinh
 async function ham_4_9_xem_chi_tiet_lop(maLop) {
+    console.log(ham_4_9_xem_chi_tiet_lop);
     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
     if (!lop) return;
 
