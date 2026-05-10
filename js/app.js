@@ -217,71 +217,123 @@ function ham_2_3_an_hien_mat_khau(inputId) {
 // KHỐI 2: XỬ LÝ ĐĂNG NHẬP (DÒ TÌM TRONG SUPABASE)
 // ==============================================================================
 
-// Hàm 2.4: Bắt sự kiện và dò tìm tài khoản trong bảng 'hoc_sinh'
-async function ham_2_4_xu_ly_submit() {
+// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
+async function ham_2_4_xu_ly_submit(btnElement) {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
     const errorMsg = document.getElementById('login-error');
 
-    console.log("Đang vào hàm ham_2_4");
-    // 1. Dọn dẹp trạng thái
     errorMsg.style.display = 'none';
-    document.getElementById('status').innerText = `Đang kết nối Database...`;
 
     if (!sdt || !pass) {
-        ham_1_2_dung_khung_html('login-error', "Vui lòng nhập đủ SĐT và Mật khẩu!");
+        errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+        errorMsg.style.display = 'block';
         return;
     }
 
-    try {
-        // 2. Lệnh "Dò" trong bảng hoc_sinh
-        // Tìm dòng nào có sdt khớp VÀ mat_khau khớp
-        const { data: userFound, error } = await _supabase
-            .from('hoc_sinh')
-            .select('*')
-            .eq('sdt', sdt)
-            .eq('mat_khau', pass)
-            .single(); // Chỉ lấy 1 kết quả duy nhất
+    if (AppState.isLoginMode) {
+        // ====================================================
+        // LUỒNG 1: ĐĂNG NHẬP (Thầy giữ nguyên code cũ phần này)
+        // ====================================================
+        document.getElementById('status').innerText = `Đang xác thực...`;
+        try {
+            const { data: userFound, error } = await _supabase
+                .from('hoc_sinh')
+                .select('*')
+                .eq('sdt', sdt)
+                .eq('mat_khau', pass)
+                .maybeSingle();
 
-        if (error || !userFound) {
-            throw new Error("Tài khoản hoặc mật khẩu không đúng!");
+            if (error) throw error;
+            if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+            if (userFound.trang_thai === 0) throw new Error("Tài khoản đang bị khóa!");
+
+            AppState.user = userFound;
+            AppState.role = userFound.vai_tro;
+
+            if (AppState.role === 'admin' || AppState.role === 'giaovien') {
+                ham_3_1_ve_dashboard_admin();
+            } else {
+                alert("Chào học sinh! Hệ thống đang chuyển vào phòng thi.");
+                // Sau này sẽ nối với hàm vẽ giao diện cho học sinh: ham_3_2_ve_dashboard_hocsinh();
+            }
+        } catch (error) {
+            errorMsg.innerText = error.message;
+            errorMsg.style.display = 'block';
+            document.getElementById('status').innerText = `Lỗi đăng nhập`;
         }
 
-        // 3. Kiểm tra xem tài khoản có bị khóa không
-        if (userFound.trang_thai === 0 || userFound.trang_thai === 'khoa') {
-            throw new Error("Tài khoản của bạn hiện đang bị khóa!");
+    } else {
+        // ====================================================
+        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH (CODE MỚI)
+        // ====================================================
+        const hoTen = document.getElementById('txtHoTen').value.trim();
+        const passConfirm = document.getElementById('txtConfirmPassword').value;
+
+        // 1. Kiểm tra tính hợp lệ của Form
+        if (!hoTen) {
+            errorMsg.innerText = "Vui lòng nhập Họ và tên!";
+            errorMsg.style.display = 'block';
+            return;
+        }
+        if (pass !== passConfirm) {
+            errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+            errorMsg.style.display = 'block';
+            return;
+        }
+        if (sdt.length < 9) {
+            errorMsg.innerText = "Số điện thoại không hợp lệ!";
+            errorMsg.style.display = 'block';
+            return;
         }
 
-        // 4. Đăng nhập thành công -> Lưu thông tin vào AppState
-        AppState.user = userFound;
-        AppState.role = userFound.vai_tro;
-        
-        // LƯU Ý: Kiểm tra kỹ các trường thông tin trước khi in
-        const vaiTro = userFound.vai_tro || 'N/A';
-        const hoTen = userFound.ten || 'Chưa đặt tên';
-        const soDT = userFound.sdt || 'N/A';
+        document.getElementById('status').innerText = `Đang xử lý đăng ký...`;
+        if (btnElement) btnElement.disabled = true; // Khóa nút chống bấm đúp
 
-        // In ra màn hình bằng Template String chuẩn
-        document.getElementById('status').innerText = `Chào ${vaiTro}: ${hoTen}-${soDT}`;
+        try {
+            // 2. Kiểm tra xem Số điện thoại đã tồn tại trong hệ thống chưa
+            const { data: checkSdt, error: checkError } = await _supabase
+                .from('hoc_sinh')
+                .select('sdt')
+                .eq('sdt', sdt)
+                .maybeSingle();
 
+            if (checkSdt) {
+                throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
+            }
 
-        console.log("Đăng nhập thành công. Vai trò:", AppState.role, "!");
+            // 3. Thực hiện lưu Học sinh mới vào Database
+            const { error: insertError } = await _supabase
+                .from('hoc_sinh')
+                .insert([{
+                    sdt: sdt,
+                    mat_khau: pass,
+                    ten: hoTen,
+                    vai_tro: 'hocsinh', // Mặc định ai tự đăng ký cũng là học sinh
+                    trang_thai: 1,      // Mở tài khoản ngay lập tức
+                    ngay_tao: new Date().toISOString()
+                }]);
 
-        // 5. Phân luồng Dashboard dựa trên vai trò dò được
-        if (AppState.role === 'admin' || AppState.role === 'giaovien') {
-            ham_3_1_ve_dashboard_admin();
-        } else {
-            // ham_4_1_ve_dashboard_hocsinh(); // Sẽ viết ở khối sau
-            alert("Chào Học sinh! Dashboard học sinh đang được xây dựng.");
+            if (insertError) throw insertError;
+
+            // 4. Báo thành công và chuyển về màn hình đăng nhập
+            alert(`Đăng ký thành công tài khoản cho học sinh: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
+
+            ham_2_1_chuyen_doi_che_do(); // Hàm lật lại Form Đăng nhập của thầy
+
+            // Xóa rỗng mật khẩu, giữ nguyên số điện thoại vừa đăng ký để HS tiện đăng nhập luôn
+            document.getElementById('txtPassword').value = '';
+            document.getElementById('status').innerText = `Vui lòng đăng nhập để vào thi`;
+
+        } catch (error) {
+            errorMsg.innerText = error.message;
+            errorMsg.style.display = 'block';
+            document.getElementById('status').innerText = `Đăng ký thất bại`;
+        } finally {
+            if (btnElement) btnElement.disabled = false; // Mở khóa nút
         }
-
-    } catch (error) {
-        console.error("Lỗi Auth:", error.message);
-        ham_1_2_hien_thi_loi('login-error', error.message);
-        document.getElementById('status').innerText = `Đăng nhập thất bại`;
     }
 }
-
 
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
