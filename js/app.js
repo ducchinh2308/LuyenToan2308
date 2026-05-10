@@ -1398,13 +1398,13 @@ function ham_6_0_sinh_ma_hoc_lieu() {
     return result;
 }
 
-// Hàm 6.3: Vẽ Form thêm mới Học Liệu / Đề Thi (Hỗ trợ cấu trúc 3 phần 2025)
+// Hàm 6.3: Vẽ Form thêm mới Học Liệu / Đề Thi (Có đủ Trạng thái)
 function ham_6_3_hien_form_them_hoc_lieu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     const maHLTuDong = ham_6_0_sinh_ma_hoc_lieu();
 
     vungLamViec.innerHTML = `
-        <div style="max-width: 900px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <div style="max-width: 900px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h3 style="color: #28a745; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">
                 TẠO HỌC LIỆU / ĐỀ THI (CHUẨN 2025)
             </h3>
@@ -1427,64 +1427,66 @@ function ham_6_3_hien_form_them_hoc_lieu() {
 
                 <div>
                     <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
-                    <input type="number" id="numThoiGian" placeholder="Để 0 nếu là tự luyện" value="0" min="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
+                    <input type="number" id="numThoiGian" value="0" min="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
                 </div>
 
                 <div style="grid-column: span 3;">
                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên Học liệu / Đề thi (*):</label>
-                    <input type="text" id="txtTenHocLieu" placeholder="Ví dụ: Đề thi thử THPT QG Môn Toán - Lần 1" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
+                    <input type="text" id="txtTenHocLieu" placeholder="Ví dụ: Đề thi thử HK2 Toán 12" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
                 </div>
 
                 <div>
                     <label style="font-weight: bold; font-size: 14px;">Phân loại:</label>
                     <select id="selLoaiKiemTra" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
                         <option value="Thi thử">Đề Thi / Thi thử</option>
-                        <option value="Học liệu tự luyện">Học liệu tự luyện (Không tính giờ)</option>
+                        <option value="Học liệu tự luyện">Học liệu tự luyện</option>
                     </select>
                 </div>
 
-                <div style="grid-column: span 2;">
-                    <label style="font-weight: bold; font-size: 14px; color: #6f42c1;">Cấu trúc (Tự động tạo):</label>
-                    <input type="text" id="txtCauTruc" placeholder="VD: 12TN - 4DS - 6TLN" style="width: 100%; padding: 10px; border: 1px solid #6f42c1; border-radius: 6px; box-sizing: border-box; background: #f8fbff; font-weight: bold;">
+                <div>
+                    <label style="font-weight: bold; font-size: 14px;">Trạng thái:</label>
+                    <select id="selTrangThaiHL" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">
+                        <option value="cong_khai">1 - Công khai (Mở)</option>
+                        <option value="noi_bo">0 - Nội bộ (Đóng)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="font-weight: bold; font-size: 14px; color: #6f42c1;">Cấu trúc (Tự động):</label>
+                    <input type="text" id="txtCauTruc" readonly style="width: 100%; padding: 10px; border: 1px solid #6f42c1; border-radius: 6px; box-sizing: border-box; background: #f8fbff; font-weight: bold;">
                 </div>
             </div>
 
             <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #e67e22; border-radius: 8px; background: #fffaf0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">Mảng Mã Câu Hỏi ID6 (Dán theo từng phần):</label>
+                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">Mảng Mã Câu Hỏi ID6:</label>
                     <span id="lblTongCauHoi" style="background: #d35400; color: white; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px;">Tổng: 0 câu</span>
                 </div>
-                
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
                     <div>
-                        <label style="font-size: 12px; font-weight: bold; color: #1a73e8;">Phần 1: TN nhiều P.Án (<span id="demTN">0</span>)</label>
-                        <textarea id="txtID_TN" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" placeholder="Dán mã TN..." style="width: 100%; padding: 8px; border: 1px solid #1a73e8; border-radius: 4px; box-sizing: border-box; font-family: monospace; font-size: 11px; resize: vertical;"></textarea>
+                        <label style="font-size: 11px; font-weight: bold; color: #1a73e8;">PHẦN 1: TN (<span id="demTN">0</span>)</label>
+                        <textarea id="txtID_TN" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" style="width: 100%; padding: 8px; border: 1px solid #1a73e8; border-radius: 4px; font-family: monospace; font-size: 11px;"></textarea>
                     </div>
                     <div>
-                        <label style="font-size: 12px; font-weight: bold; color: #d35400;">Phần 2: Đúng / Sai (<span id="demDS">0</span>)</label>
-                        <textarea id="txtID_DS" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" placeholder="Dán mã ĐS..." style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px; box-sizing: border-box; font-family: monospace; font-size: 11px; resize: vertical;"></textarea>
+                        <label style="font-size: 11px; font-weight: bold; color: #d35400;">PHẦN 2: Đ/S (<span id="demDS">0</span>)</label>
+                        <textarea id="txtID_DS" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px; font-family: monospace; font-size: 11px;"></textarea>
                     </div>
                     <div>
-                        <label style="font-size: 12px; font-weight: bold; color: #28a745;">Phần 3: Trả lời ngắn (<span id="demTLN">0</span>)</label>
-                        <textarea id="txtID_TLN" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" placeholder="Dán mã TLN..." style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px; box-sizing: border-box; font-family: monospace; font-size: 11px; resize: vertical;"></textarea>
+                        <label style="font-size: 11px; font-weight: bold; color: #28a745;">PHẦN 3: TL NGẮN (<span id="demTLN">0</span>)</label>
+                        <textarea id="txtID_TLN" oninput="ham_6_5_tinh_toan_cau_truc()" rows="5" style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px; font-family: monospace; font-size: 11px;"></textarea>
                     </div>
                 </div>
             </div>
 
             <div style="display: flex; gap: 12px;">
-                <button onclick="ham_6_4_luu_hoc_lieu_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
-                    LƯU ĐỀ THI / HỌC LIỆU
-                </button>
-                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                    HỦY QUAY LẠI
-                </button>
+                <button onclick="ham_6_4_luu_hoc_lieu_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">LƯU DỮ LIỆU</button>
+                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">HỦY</button>
             </div>
         </div>
     `;
 }
 
-
-// Hàm 6.4: Lưu dữ liệu Học liệu vào Supabase (Hỗ trợ cấu trúc 3 phần)
+// Hàm 6.4: Lưu dữ liệu (Đã sửa lỗi không đọc Trạng thái)
 async function ham_6_4_luu_hoc_lieu_moi(btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
     const tenHL = document.getElementById('txtTenHocLieu').value.trim();
@@ -1493,20 +1495,20 @@ async function ham_6_4_luu_hoc_lieu_moi(btn) {
     const thoiGian = parseInt(document.getElementById('numThoiGian').value) || 0;
     const cauTruc = document.getElementById('txtCauTruc').value.trim();
 
-    // Thu thập và chuẩn hóa mã từ 3 ô
+    // ĐÃ SỬA: Đọc trạng thái từ ComboBox thầy chọn
+    const trangThai = document.getElementById('selTrangThaiHL').value;
+
     const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
     const arrTN = bocTach(document.getElementById('txtID_TN').value);
     const arrDS = bocTach(document.getElementById('txtID_DS').value);
     const arrTLN = bocTach(document.getElementById('txtID_TLN').value);
 
-    // Gộp thành 1 mảng duy nhất để lưu DB
     const mangGopChung = [...arrTN, ...arrDS, ...arrTLN];
-    const tongCauHoi = mangGopChung.length;
 
-    if (!tenHL) return alert("Thầy vui lòng nhập Tên Học Liệu / Đề thi!");
+    if (!tenHL) return alert("Thầy vui lòng nhập Tên Học Liệu!");
 
     btn.disabled = true;
-    btn.innerText = "ĐANG LƯU DỮ LIỆU...";
+    btn.innerText = "ĐANG LƯU...";
 
     try {
         const { error } = await _supabase.from('hoc_lieu').insert([{
@@ -1515,11 +1517,10 @@ async function ham_6_4_luu_hoc_lieu_moi(btn) {
             khoi_lop: khoiLop,
             loai_kiem_tra: loaiKT,
             thoi_gian_lam_bai: thoiGian,
-            quy_mo_cau_hoi: tongCauHoi,
+            quy_mo_cau_hoi: mangGopChung.length,
             danh_sach_cau_hoi: mangGopChung,
-            trang_thai: 'cong_khai', // Mặc định mở luôn cho lẹ
+            trang_thai: trangThai, // LẤY ĐÚNG GIÁ TRỊ THẦY CHỌN
             uid_gv_tao: AppState.user.uid,
-            // NẠP METADATA: LƯU TRỮ CHÍNH XÁC SỐ LƯỢNG TỪNG PHẦN
             metadata: {
                 cau_truc: cauTruc,
                 so_tn: arrTN.length,
@@ -1531,13 +1532,13 @@ async function ham_6_4_luu_hoc_lieu_moi(btn) {
 
         if (error) throw error;
 
-        alert(`Đã tạo thành công Đề: ${tenHL}\nCấu trúc: ${cauTruc} (Tổng: ${tongCauHoi} câu)`);
+        alert(`Đã tạo thành công!`);
         ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (error) {
-        alert("Lỗi lưu đề thi: " + error.message);
+        alert("Lỗi: " + error.message);
         btn.disabled = false;
-        btn.innerText = "LƯU ĐỀ THI / HỌC LIỆU";
+        btn.innerText = "LƯU DỮ LIỆU";
     }
 }
 
