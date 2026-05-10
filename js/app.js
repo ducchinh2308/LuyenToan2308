@@ -308,13 +308,16 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
+                    uid: 'UID_' + new Date().getTime(), // Dùng tiền tố UID_ (User ID) trung lập
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
-                    vai_tro: 'hocsinh', // Mặc định ai tự đăng ký cũng là học sinh
-                    trang_thai: 1,      // Mở tài khoản ngay lập tức
+                    vai_tro: 'hocsinh',
+                    trang_thai: 1,
                     ngay_tham_gia: new Date().toISOString()
                 }]);
+
+
 
             if (insertError) throw insertError;
 
