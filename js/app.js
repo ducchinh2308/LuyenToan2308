@@ -708,35 +708,42 @@ async function ham_4_4_tai_danh_sach_lop() {
     }
 }
 
-// Hàm 4.10: Vẽ bảng (Đã thêm cột Trạng thái sau cột Sĩ số)
+// Hàm 4.10: Vẽ bảng (Cho phép Sort tất cả các cột)
 function ham_4_10_ve_bang_du_lieu() {
     const renderArea = document.getElementById('danh-sach-lop-render');
     let dsLop = [...BangLopState.duLieu];
 
+    // Thuật toán Sắp xếp
     const cot = BangLopState.cotDangSort;
     const heSo = BangLopState.tangDan ? 1 : -1;
 
     dsLop.sort((a, b) => {
-        if (a[cot] < b[cot]) return -1 * heSo;
-        if (a[cot] > b[cot]) return 1 * heSo;
+        let valA = a[cot] === null || a[cot] === undefined ? '' : a[cot];
+        let valB = b[cot] === null || b[cot] === undefined ? '' : b[cot];
+
+        // Nếu là chuỗi thì đưa về chữ thường để so sánh chuẩn
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        if (valA < valB) return -1 * heSo;
+        if (valA > valB) return 1 * heSo;
         return 0;
     });
 
-    const iconSort = BangLopState.tangDan ? '▲' : '▼';
+    const iconSort = BangLopState.tangDan ? ' ▲' : ' ▼';
+    const getIcon = (tenCot) => (cot === tenCot ? iconSort : ' ↕');
 
     let htmlTable = `
         <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 14px;">
             <thead>
-                <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer;">
+                <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer; white-space: nowrap;">
                     <th style="padding: 12px; border: 1px solid #eee; width: 50px; text-align: center;">STT</th>
-                    <th style="padding: 12px; border: 1px solid #eee;">Mã Lớp</th>
-                    <th style="padding: 12px; border: 1px solid #eee;">Tên Lớp</th>
-                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ten_gv_tao')">GV Tạo ${cot === 'ten_gv_tao' ? iconSort : '↕'}</th>
-                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ngay_tao')">Ngày Giờ Tạo ${cot === 'ngay_tao' ? iconSort : '↕'}</th>
-                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Sĩ số</th>
-                    
-                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Trạng thái</th>
-                    
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ma_lop')">Mã Lớp ${getIcon('ma_lop')}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ten_lop')">Tên Lớp ${getIcon('ten_lop')}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ten_gv_tao')">GV Tạo ${getIcon('ten_gv_tao')}</th>
+                    <th style="padding: 12px; border: 1px solid #eee;" onclick="ham_4_11_thay_doi_sort('ngay_tao')">Ngày Tạo ${getIcon('ngay_tao')}</th>
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;" onclick="ham_4_11_thay_doi_sort('hoc_sinh_ids')">Sĩ số ${getIcon('hoc_sinh_ids')}</th>
+                    <th style="padding: 12px; border: 1px solid #eee; text-align: center;" onclick="ham_4_11_thay_doi_sort('trang_thai')">Trạng thái ${getIcon('trang_thai')}</th>
                     <th style="padding: 12px; border: 1px solid #eee; text-align: center;">Thao tác</th>
                 </tr>
             </thead>
@@ -746,26 +753,22 @@ function ham_4_10_ve_bang_du_lieu() {
     dsLop.forEach((lop, index) => {
         const ngayGio = new Date(lop.ngay_tao).toLocaleString('vi-VN');
         const siSo = lop.hoc_sinh_ids ? lop.hoc_sinh_ids.length : 0;
-
-        // Định dạng hiển thị Trạng thái (0: Đóng - Đỏ, 1: Mở - Xanh)
         const nhãnTrạngThái = lop.trang_thai == 1
-            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px; border: 1px solid #c6f6d5;">Đang mở</span>`
-            : `<span style="background: #fff1f0; color: #dc3545; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px; border: 1px solid #ffa39e;">Đang đóng</span>`;
+            ? `<span style="color: #28a745; font-weight: bold;">● Mở</span>`
+            : `<span style="color: #dc3545; font-weight: bold;">● Đóng</span>`;
 
         htmlTable += `
-            <tr style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'" onclick="ham_4_9_xem_chi_tiet_lop('${lop.ma_lop}')">
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
+            <tr style="border-bottom: 1px solid #eee; cursor: pointer;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'" onclick="ham_4_9_xem_chi_tiet_lop('${lop.ma_lop}')">
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${index + 1}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${lop.ma_lop}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${lop.ten_lop}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">👨‍🏫 ${lop.ten_gv_tao}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${lop.ten_gv_tao}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${ngayGio}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${siSo}</td>
-                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${siSo}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${nhãnTrạngThái}</td>
-                
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;" onclick="event.stopPropagation()">
-                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
-                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="event.stopPropagation()">
+                    <button onclick="ham_4_12_hien_form_sua_lop('${lop.ma_lop}')" style="color: #f39c12; background: none; border: none; font-weight: bold; cursor: pointer; margin-right: 10px;">Sửa</button>
+                    <button onclick="ham_4_14_xoa_lop('${lop.ma_lop}')" style="color: #dc3545; background: none; border: none; font-weight: bold; cursor: pointer;">Xóa</button>
                 </td>
             </tr>
         `;
@@ -1079,13 +1082,13 @@ async function ham_5_2_tai_danh_sach_hoc_sinh() {
     }
 }
 
-// Hàm 5.10: Vẽ Bảng học sinh (Đầy đủ thông tin)
+// Hàm 5.10: Vẽ Bảng học sinh (Đầy đủ tất cả các cột theo yêu cầu)
 function ham_5_10_ve_bang_hoc_sinh() {
     const renderArea = document.getElementById('danh-sach-hs-render');
     let dsHocSinh = [...BangHocSinhState.duLieu];
 
     if (dsHocSinh.length === 0) {
-        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học sinh nào đăng ký vào hệ thống.</p>`;
+        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học sinh nào.</p>`;
         return;
     }
 
@@ -1093,10 +1096,8 @@ function ham_5_10_ve_bang_hoc_sinh() {
     const cot = BangHocSinhState.cotDangSort;
     const heSo = BangHocSinhState.tangDan ? 1 : -1;
     dsHocSinh.sort((a, b) => {
-        let valA = a[cot] || '';
-        let valB = b[cot] || '';
-        if (typeof valA === 'string') valA = valA.toLowerCase();
-        if (typeof valB === 'string') valB = valB.toLowerCase();
+        let valA = a[cot] === null ? '' : a[cot];
+        let valB = b[cot] === null ? '' : b[cot];
         if (valA < valB) return -1 * heSo;
         if (valA > valB) return 1 * heSo;
         return 0;
@@ -1104,68 +1105,62 @@ function ham_5_10_ve_bang_hoc_sinh() {
 
     const iconSort = BangHocSinhState.tangDan ? '▲' : '▼';
 
-    // Bảng có thanh cuộn ngang (overflow-x: auto) để không bị vỡ bố cục nếu màn hình nhỏ
     let htmlTable = `
-        <div style="overflow-x: auto;">
-            <table style="width: 100%; min-width: 1000px; border-collapse: collapse; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 13px;">
+        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
+            <table style="width: 100%; min-width: 1800px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead>
-                    <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; cursor: pointer; white-space: nowrap;">
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; width: 40px;">STT</th>
+                    <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">STT</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Thao tác</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">SĐT (Tài khoản)</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('truong')">Trường / Khối / Tỉnh</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Mã Lớp Vào</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('lan_dang_nhap_cuoi')">Hoạt động cuối ${cot === 'lan_dang_nhap_cuoi' ? iconSort : '↕'}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: right;" onclick="ham_5_11_thay_doi_sort('diem_tich_luy')">Điểm TL ${cot === 'diem_tich_luy' ? iconSort : '↕'}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Trạng Thái</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; position: sticky; right: 0; background: #f8f9fa;">Thao tác</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('sdt')">SĐT ${cot === 'sdt' ? iconSort : '↕'}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Mật khẩu</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Trường</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Tỉnh</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Khối</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Mã lớp tham gia</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('diem_tich_luy')">Điểm TL ${cot === 'diem_tich_luy' ? iconSort : '↕'}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Trạng thái</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('lan_dang_nhap_cuoi')">Đăng nhập cuối ${cot === 'lan_dang_nhap_cuoi' ? iconSort : '↕'}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Ngày tham gia</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Metadata</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">UID (Mã định danh)</th>
                     </tr>
                 </thead>
                 <tbody>
     `;
 
     dsHocSinh.forEach((hs, index) => {
-        // Xử lý các trường dữ liệu cho gọn
-        const truongKhoiTinh = `<strong>${hs.truong || 'N/A'}</strong> ${hs.khoi_lop ? '(Khối ' + hs.khoi_lop + ')' : ''} ${hs.tinh ? '- ' + hs.tinh : ''}`;
+        const ngayThamGia = hs.ngay_tham_gia ? new Date(hs.ngay_tham_gia).toLocaleString('vi-VN') : '-';
+        const ngayCuoi = hs.lan_dang_nhap_cuoi ? new Date(hs.lan_dang_nhap_cuoi).toLocaleString('vi-VN') : 'Chưa vào';
+        const maLop = (hs.danh_sach_ma_lop && hs.danh_sach_ma_lop.length > 0) ? hs.danh_sach_ma_lop.join(', ') : '-';
 
-        const maLop = (hs.danh_sach_ma_lop && hs.danh_sach_ma_lop.length > 0)
-            ? hs.danh_sach_ma_lop.join(', ')
-            : '<span style="color: #999;">Chưa có</span>';
-
-        const dangNhapCuoi = hs.lan_dang_nhap_cuoi
-            ? new Date(hs.lan_dang_nhap_cuoi).toLocaleString('vi-VN')
-            : '<span style="color: #999;">Chưa đăng nhập</span>';
-
-        const ngayDK = new Date(hs.ngay_tham_gia).toLocaleDateString('vi-VN');
-
-        // Nhãn trạng thái
-        const nhanTrangThai = hs.trang_thai == 1
-            ? `<span style="color: #28a745; font-weight: bold;">● Mở</span>`
-            : `<span style="color: #dc3545; font-weight: bold;">● Khóa</span>`;
-
-        const btnKhoaMo = hs.trang_thai == 1
-            ? `<button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', 0, '${hs.ten}')" style="padding: 4px 8px; background: #fff1f0; color: #dc3545; border: 1px solid #ffa39e; border-radius: 4px; font-size: 12px; cursor: pointer;">Khóa</button>`
-            : `<button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', 1, '${hs.ten}')" style="padding: 4px 8px; background: #e6ffed; color: #28a745; border: 1px solid #c6f6d5; border-radius: 4px; font-size: 12px; cursor: pointer;">Mở</button>`;
+        // Màu sắc cho trạng thái
+        const mauTrangThai = hs.trang_thai == 1 ? '#28a745' : '#dc3545';
+        const chuTrangThai = hs.trang_thai == 1 ? 'Mở' : 'Khóa';
 
         htmlTable += `
-            <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1;">${hs.ten}</td>
-                <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-weight: bold;">${hs.sdt}</td>
-                <td style="padding: 10px; border: 1px solid #eee;">${truongKhoiTinh}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #1a73e8;">${maLop}</td>
-                <td style="padding: 10px; border: 1px solid #eee;">
-                    <div style="font-weight: bold; color: #333;">${dangNhapCuoi}</div>
-                    <div style="font-size: 11px; color: #666;">ĐK: ${ngayDK}</div>
+            <tr style="border-bottom: 1px solid #eee; white-space: nowrap;">
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${index + 1}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">
+                    <button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', ${hs.trang_thai == 1 ? 0 : 1}, '${hs.ten}')" 
+                            style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; background: ${hs.trang_thai == 1 ? '#fff1f0' : '#e6ffed'}; color: ${hs.trang_thai == 1 ? '#dc3545' : '#28a745'}; font-weight: bold;">
+                        ${hs.trang_thai == 1 ? 'Khóa' : 'Mở'}
+                    </button>
                 </td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: right; font-weight: bold; font-size: 14px; color: #e67e22;">
-                    ${hs.diem_tich_luy || 0}
-                </td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${nhanTrangThai}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap; position: sticky; right: 0; background: inherit;">
-                    <button style="padding: 4px 8px; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; font-size: 12px; cursor: pointer; margin-right: 5px;">Sửa</button>
-                    ${btnKhoaMo}
-                </td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hs.ten}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${hs.sdt}</td>
+                <td style="padding: 10px; border: 1px solid #eee; color: #666;">${hs.mat_khau}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${hs.truong || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${hs.tinh || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${hs.khoi_lop || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-weight: bold;">${maLop}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hs.diem_tich_luy || 0}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${ngayCuoi}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${ngayThamGia}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-size: 10px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">${JSON.stringify(hs.metadata)}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-family: monospace; color: #888; font-size: 11px;">${hs.uid}</td>
             </tr>
         `;
     });
@@ -1173,6 +1168,9 @@ function ham_5_10_ve_bang_hoc_sinh() {
     htmlTable += `</tbody></table></div>`;
     renderArea.innerHTML = htmlTable;
 }
+
+
+
 // Hàm 5.11: Xử lý Click tiêu đề để sắp xếp
 function ham_5_11_thay_doi_sort(cotMoi) {
     if (BangHocSinhState.cotDangSort === cotMoi) {
