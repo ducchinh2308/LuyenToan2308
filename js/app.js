@@ -561,8 +561,10 @@ async function ham_4_4_tai_danh_sach_lop() {
                     <td style="padding: 10px; border: 1px solid #eee; font-size: 13px;">${txtTrangThai}</td>
                     <td style="padding: 10px; border: 1px solid #eee;">${siSo} HS</td>
                     <td style="padding: 10px; border: 1px solid #eee;">
-                        <button onclick="ham_4_5_sua_lop('${lop.ma_lop}', '${lop.ten_lop}', ${lop.trang_thai})" 
-                                style="color: #007bff; cursor: pointer; border: none; background: none; font-weight: bold;">Sửa</button>
+                        <button onclick="ham_4_5_sua_lop('${lop.ma_lop}', '${lop.ten_lop}', ${lop.trang_thai}, '${lop.ngay_tao}')" 
+                                style="color: #007bff; cursor: pointer; border: none; background: none; font-weight: bold;">
+                            Sửa
+                        </button>
                         <span style="color: #ccc;"> | </span>
                         <button onclick="ham_4_6_xoa_lop('${lop.ma_lop}')" 
                                 style="color: #dc3545; cursor: pointer; border: none; background: none; font-weight: bold;">Xóa</button>
@@ -579,26 +581,71 @@ async function ham_4_4_tai_danh_sach_lop() {
     }
 }
 
-// Hàm 4.5: Sửa thông tin lớp
-async function ham_4_5_sua_lop(maLop, tenCu, trangThaiCu) {
-    const tenMoi = prompt(`Đổi tên lớp (Mã: ${maLop}):`, tenCu);
-    if (tenMoi === null) return;
+// Hàm 4.5: Vẽ giao diện Form SỬA lớp học (Nạp lại dữ liệu cũ)
+async function ham_4_5_sua_lop(maLop, tenCu, trangThaiCu, ngayTaoGốc) {
+    console.log("App: Đang mở form sửa cho lớp " + maLop);
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
-    const msgTrangThai = trangThaiCu == 1 ? "Lớp đang MỞ. Bấm OK để tiếp tục MỞ, Cancel để KHÓA." : "Lớp đang KHÓA. Bấm OK để MỞ lớp, Cancel để tiếp tục KHÓA.";
-    const trangThaiMoi = confirm(msgTrangThai) ? 1 : 0;
+    // Chuyển đổi ngày tạo sang định dạng hiển thị Giờ:Phút:Giây
+    const thoiGianHienThi = new Date(ngayTaoGốc).toLocaleString('vi-VN', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour12: false
+    });
 
-    try {
-        const { error } = await _supabase
-            .from('lop_hoc')
-            .update({ ten_lop: tenMoi, trang_thai: trangThaiMoi })
-            .eq('ma_lop', maLop);
+    // Vẽ lại Form giống hệt form tạo mới nhưng nạp dữ liệu cũ
+    vungLamViec.innerHTML = `
+        <div style="max-width: 650px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 0 auto;">
+            <h3 style="margin-top: 0; color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-bottom: 20px;">
+                CẬP NHẬT THÔNG TIN LỚP
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div>
+                    <label style="font-weight: bold; font-size: 14px;">Mã lớp (Không được sửa):</label>
+                    <input type="text" id="txtMaLop_Edit" value="${maLop}" readonly 
+                           style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; font-weight: bold; color: #555; box-sizing: border-box;">
+                </div>
 
-        if (error) throw error;
-        ham_4_4_tai_danh_sach_lop();
+                <div>
+                    <label style="font-weight: bold; font-size: 14px;">Ngày khởi tạo:</label>
+                    <input type="text" value="${thoiGianHienThi}" readonly 
+                           style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; color: #5f6368; box-sizing: border-box;">
+                </div>
 
-    } catch (error) {
-        alert("Lỗi khi sửa: " + error.message);
-    }
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 14px;">Giáo viên quản lý:</label>
+                    <input type="text" value="${AppState.user.ten}" readonly 
+                           style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; color: #3c4043; box-sizing: border-box;">
+                </div>
+
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 14px; color: #f39c12;">Tên lớp học:</label>
+                    <input type="text" id="txtTenLop_Edit" value="${tenCu}" 
+                           style="width: 100%; padding: 10px; border: 2px solid #f39c12; border-radius: 6px; outline: none; box-sizing: border-box;">
+                </div>
+
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 14px;">Trạng thái lớp:</label>
+                    <select id="selTrangThai_Edit" style="width: 100%; padding: 10px; border: 1px solid #dadce0; border-radius: 6px; background: white; box-sizing: border-box;">
+                        <option value="1" ${trangThaiCu == 1 ? 'selected' : ''}>1 - Đang Mở (Học sinh có thể vào)</option>
+                        <option value="0" ${trangThaiCu == 0 ? 'selected' : ''}>0 - Đang Khóa (Tạm ngừng truy cập)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; display: flex; gap: 12px;">
+                <button onclick="ham_4_7_cap_nhat_lop(this, '${maLop}')" 
+                        style="flex: 2; padding: 12px; background: #f39c12; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    XÁC NHẬN CẬP NHẬT
+                </button>
+                <button onclick="ham_4_1_ve_quan_ly_lop()" 
+                        style="flex: 1; padding: 12px; background: #f1f3f4; color: #3c4043; border: 1px solid #dadce0; border-radius: 6px; cursor: pointer;">
+                    HỦY BỎ
+                </button>
+            </div>
+        </div>
+    `;
 }
 
 // Hàm 4.6: Xóa lớp học
@@ -616,5 +663,40 @@ async function ham_4_6_xoa_lop(maLop) {
 
     } catch (error) {
         alert("Lỗi khi xóa: " + error.message);
+    }
+}
+// Hàm 4.7: Thực hiện lệnh UPDATE dữ liệu lên Supabase
+async function ham_4_7_cap_nhat_lop(btnElement, maLop) {
+    const tenMoi = document.getElementById('txtTenLop_Edit').value.trim();
+    const trangThaiMoi = parseInt(document.getElementById('selTrangThai_Edit').value);
+
+    if (!tenMoi) {
+        alert("Thầy không được để trống Tên lớp!");
+        return;
+    }
+
+    // Khóa nút bấm
+    btnElement.disabled = true;
+    btnElement.innerText = "ĐANG CẬP NHẬT...";
+
+    try {
+        const { error } = await _supabase
+            .from('lop_hoc')
+            .update({
+                ten_lop: tenMoi,
+                trang_thai: trangThaiMoi
+            })
+            .eq('ma_lop', maLop);
+
+        if (error) throw error;
+
+        alert(`Lớp ${maLop} đã được cập nhật thông tin mới.`);
+        ham_4_1_ve_quan_ly_lop(); // Quay lại danh sách
+
+    } catch (error) {
+        console.error("Lỗi cập nhật:", error.message);
+        alert("Lỗi: " + error.message);
+        btnElement.disabled = false;
+        btnElement.innerText = "XÁC NHẬN CẬP NHẬT";
     }
 }
