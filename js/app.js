@@ -311,7 +311,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     ten: hoTen,
                     vai_tro: 'hocsinh', // Mặc định ai tự đăng ký cũng là học sinh
                     trang_thai: 1,      // Mở tài khoản ngay lập tức
-                    ngay_tao: new Date().toISOString()
+                    ngay_tham_gia: new Date().toISOString()
                 }]);
 
             if (insertError) throw insertError;
