@@ -279,6 +279,9 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+        console.log(maLopVao);
+
+
 
         // 1. Kiểm tra tính hợp lệ
         if (!hoTen || !tinh || !truong) {
@@ -311,6 +314,29 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             if (checkSdt) {
                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
             }
+
+
+            // =========================================================
+            // BƯỚC MỚI: KIỂM TRA MÃ LỚP CÓ TỒN TẠI KHÔNG (NẾU CÓ NHẬP)
+            // =========================================================
+            if (maLopVao !== '') {
+                const { data: checkLop, error: loiCheckLop } = await _supabase
+                    .from('lop_hoc')
+                    .select('ma_lop')
+                    .eq('ma_lop', maLopVao)
+                    .maybeSingle(); // maybeSingle() sẽ trả về null nếu không tìm thấy
+
+                if (loiCheckLop) throw loiCheckLop;
+
+                // Nếu checkLop là null -> Mã lớp không có thật trong Database
+                if (!checkLop) {
+                    throw new Error(`Mã lớp "${maLopVao}" không tồn tại. Học sinh vui lòng kiểm tra lại hoặc để trống nếu chưa có lớp!`);
+                }
+            }
+            // =========================================================
+
+
+
 
             // 3. Thực hiện lưu vào Database (Khớp 100% với cấu trúc bảng)
             const { error: insertError } = await _supabase
