@@ -805,15 +805,17 @@ async function ham_4_12_hien_form_sua_lop(maLop) {
     vungLamViec.innerHTML = `<p style="text-align: center;">Đang tải dữ liệu lớp và học sinh...</p>`;
 
     try {
-        // Tải lại danh sách học sinh để đảm bảo mới nhất (nếu chưa có trong biến gốc)
-        if (_dsHocSinhGoc.length === 0) {
-            const { data } = await _supabase
-                .from('hoc_sinh')
-                .select('uid, ten, sdt, truong')
-                .eq('vai_tro', 'hocsinh')
-                .order('ten', { ascending: true });
-            _dsHocSinhGoc = data || [];
-        }
+        // Tải danh sách học sinh mới nhất đổ vào biến _dsHocSinhGoc
+        const { data } = await _supabase
+            .from('hoc_sinh')
+            .select('uid, ten, sdt, truong')
+            .eq('vai_tro', 'hocsinh')
+            .order('ten', { ascending: true });
+
+        _dsHocSinhGoc = data || []; // Gán vào biến toàn cục đã khai báo ở Bước 1
+
+        // Chuẩn bị mảng ID học sinh cũ để nạp vào hàm Search
+        const mảngIdCũ = JSON.stringify(lop.hoc_sinh_ids || []);
 
         vungLamViec.innerHTML = `
             <div style="max-width: 750px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
@@ -840,7 +842,7 @@ async function ham_4_12_hien_form_sua_lop(maLop) {
                 <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #1a73e8; border-radius: 8px; background: #f8fbff;">
                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 10px;">Danh sách học sinh (Tích chọn để thay đổi):</label>
                     
-                    <input type="text" oninput="ham_3_3_b_loc_hoc_sinh_tai_cho(this.value, 'vung-chon-hs-sua', ${JSON.stringify(lop.hoc_sinh_ids || [])})" 
+                    <input type="text" oninput="ham_4_15_loc_hoc_sinh_sua_lop(this.value, '${mảngIdCũ}')" 
                            placeholder="🔍 Tìm tên hoặc SĐT..." 
                            style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box;">
 
@@ -864,23 +866,42 @@ async function ham_4_12_hien_form_sua_lop(maLop) {
     }
 }
 
-// Hàm 4.12.b: Tạo HTML danh sách học sinh có kiểm tra trạng thái đã tham gia lớp chưa
+// Hàm 4.15: Lọc tìm kiếm học sinh ngay tại chỗ cho Form Sửa Lớp
+function ham_4_15_loc_hoc_sinh_sua_lop(keyword, chuoiIdsDaCo) {
+    const idsDaCo = JSON.parse(chuoiIdsDaCo || '[]');
+    const key = keyword.toLowerCase().trim();
+    const vungList = document.getElementById('vung-chon-hs-sua');
+
+    // Lọc từ biến gốc
+    const dsLoc = _dsHocSinhGoc.filter(hs =>
+        hs.ten.toLowerCase().includes(key) ||
+        (hs.sdt && hs.sdt.includes(key))
+    );
+
+    // Vẽ lại danh sách đã lọc (vẫn truyền idsDaCo để giữ dấu tick)
+    vungList.innerHTML = ham_4_12_b_tao_list_hs_sua(dsLoc, idsDaCo);
+}
+
+// Hàm 4.12.b: Tạo HTML danh sách checkbox
 function ham_4_12_b_tao_list_hs_sua(danhSach, idsDaCo) {
     if (danhSach.length === 0) return '<p style="font-size: 12px; color: #999;">Không có dữ liệu...</p>';
 
     return danhSach.map(hs => {
+        // Kiểm tra xem ID của học sinh này có nằm trong mảng của lớp không
         const isChecked = idsDaCo.includes(hs.uid) ? 'checked' : '';
         return `
             <div style="padding: 6px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center;">
                 <input type="checkbox" class="chk-hs-sua-lop" value="${hs.uid}" id="sua_hs_${hs.uid}" ${isChecked} style="margin-right: 10px; transform: scale(1.2);">
                 <label for="sua_hs_${hs.uid}" style="cursor: pointer; font-size: 14px;">
                     <span style="font-weight: bold;">${hs.ten}</span> 
-                    <span style="color: #666; font-size: 12px;"> - ${hs.sdt}</span>
+                    <span style="color: #666; font-size: 12px;"> - SĐT: ${hs.sdt}</span>
                 </label>
             </div>
         `;
     }).join('');
 }
+
+
 
 // Hàm 4.13: Lưu cập nhật toàn diện lớp học
 async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
