@@ -267,6 +267,8 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         // ====================================================
         // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH (CODE MỚI)
         // ====================================================
+
+        console.log("Vào đăng ký học sinh");
         const hoTen = document.getElementById('txtHoTen').value.trim();
         const passConfirm = document.getElementById('txtConfirmPassword').value;
 
