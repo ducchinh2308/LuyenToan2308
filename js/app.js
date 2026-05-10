@@ -278,7 +278,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
-        const maLopVao = document.getElementById('txtMaLopJoin') ? document.getElementById('txtMaLopJoin').value.trim().toUpperCase() : '';
+        const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
 
         // 1. Kiểm tra tính hợp lệ
         if (!hoTen || !tinh || !truong) {
