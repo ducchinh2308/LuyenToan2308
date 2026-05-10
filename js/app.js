@@ -304,6 +304,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
             }
 
+            console.log("CHUẨN BỊ LƯU HỌC SINH");
             // 3. Thực hiện lưu Học sinh mới vào Database
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
