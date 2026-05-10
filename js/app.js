@@ -275,7 +275,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const hoTen = document.getElementById('txtHoTen').value.trim();
         const passConfirm = document.getElementById('txtConfirmPassword').value;
 
-        const khoi = document.getElementById('selKhoi') ? document.getElementById('selKhoi').value : '';
+        const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLopJoin') ? document.getElementById('txtMaLopJoin').value.trim().toUpperCase() : '';
