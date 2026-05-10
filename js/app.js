@@ -247,6 +247,30 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             AppState.user = userFound;
             AppState.role = userFound.vai_tro;
 
+            // ================================================================
+            // BƯỚC MỚI: TẠO CHUỖI ĐỊNH DANH ĐỂ HIỂN THỊ TRÊN TIÊU ĐỀ
+            // ================================================================
+            let tenVaiTro = '';
+            if (AppState.role === 'admin') tenVaiTro = 'Admin';
+            else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+            else tenVaiTro = 'Học sinh';
+
+            // Viết hoa toàn bộ Tên (Ví dụ: HUỲNH ĐỨC CHÍNH)
+            let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+
+            // Ghép chuỗi theo đúng format: Vai trò: TÊN (SĐT)
+            let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+            // Nạp chuỗi vào thẻ status (Thay thế chữ Đang xác thực...)
+            let lblStatus = document.getElementById('status');
+            if (lblStatus) {
+                lblStatus.innerText = `👤 ${chuoiHienThi}`;
+                lblStatus.style.color = '#1a73e8'; // Đổi sang màu xanh dương cho nổi bật
+                lblStatus.style.fontWeight = 'bold'; // In đậm lên cho đẹp
+            }
+            // ================================================================
+
+
             // Cập nhật thời gian đăng nhập cuối vào Database
             await _supabase
                 .from('hoc_sinh')
@@ -397,7 +421,6 @@ function ham_2_5_xu_ly_dang_xuat() {
 // ==============================================================================
 // KHỐI 3: GIAO DIỆN QUẢN TRỊ VIÊN (ADMIN DASHBOARD)
 // ==============================================================================
-
 // Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
 function ham_3_1_ve_dashboard_admin() {
     // 1. Ẩn form đăng nhập
@@ -406,14 +429,38 @@ function ham_3_1_ve_dashboard_admin() {
     // 2. Hiện nút Đăng xuất trên thanh trạng thái
     document.getElementById('btnLogout').style.display = 'inline-block';
 
-    // 3. Vẽ cấu trúc HTML của Dashboard
+    // ================================================================
+    // 3. XỬ LÝ CHUỖI HIỂN THỊ TÊN TRÊN THANH TRẠNG THÁI (Góc trên cùng)
+    // ================================================================
+    let tenVaiTro = '';
+    if (AppState.role === 'admin') tenVaiTro = 'Admin';
+    else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+    else tenVaiTro = 'Học sinh';
+
+    // Viết hoa toàn bộ Tên (Ví dụ: HUỲNH ĐỨC CHÍNH)
+    let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+
+    // Ghép chuỗi theo đúng format: Vai trò: TÊN (SĐT)
+    let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+    // Nạp chuỗi vào thẻ status (Thay thế chữ "Đang xác thực...")
+    const lblStatus = document.getElementById('status');
+    if (lblStatus) {
+        lblStatus.innerText = `👤 ${chuoiHienThi}`;
+        lblStatus.style.color = '#1a73e8'; // Màu xanh dương cho nổi bật
+        lblStatus.style.fontWeight = 'bold';
+    }
+
+    // ================================================================
+    // 4. Vẽ cấu trúc HTML của Dashboard
+    // ================================================================
     const dashboard = document.getElementById('dashboard-container');
     dashboard.style.display = 'block';
 
     dashboard.innerHTML = `
         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
             <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
-            <p style="font-size: 16px; color: #495057;">Xin chào thầy <strong>${AppState.user.ten}</strong>!</p>
+            <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
             
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
             
@@ -429,6 +476,9 @@ function ham_3_1_ve_dashboard_admin() {
                 </button>
                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
                     🏫 Quản Lý Lớp Học
+                </button>
+                <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 15px 25px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(111,66,193,0.3);">
+                    🎓 Quản Lý Học Sinh
                 </button>
             </div>
             
