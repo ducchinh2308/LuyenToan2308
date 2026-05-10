@@ -465,7 +465,7 @@ function ham_3_1_ve_dashboard_admin() {
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
             
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button style="padding: 15px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(40,167,69,0.3);">
+                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="padding: 15px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(40,167,69,0.3);">
                     📚 Kho Học Liệu & Đề Thi
                 </button>
                 <button style="padding: 15px 25px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(23,162,184,0.3);">
@@ -1209,3 +1209,179 @@ async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
         ham_5_10_ve_bang_hoc_sinh(); // Lỗi thì vẽ lại bảng như cũ
     }
 }
+
+
+// ==============================================================================
+// KHỐI 6: QUẢN LÝ KHO HỌC LIỆU VÀ ĐỀ THI (BẢNG hoc_lieu)
+// ==============================================================================
+
+// Biến lưu trữ trạng thái bảng Học liệu để Sắp xếp
+const BangHocLieuState = {
+    duLieu: [],
+    cotDangSort: 'ngay_tao',
+    tangDan: false // Mới nhất xếp trên
+};
+
+// Hàm 6.1: Vẽ bộ khung giao diện Quản lý Học Liệu
+function ham_6_1_ve_quan_ly_hoc_lieu() {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+    vungLamViec.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0; color: #28a745;">📚 Quản lý Kho Học Liệu & Đề Thi</h3>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="ham_6_2_tai_danh_sach_hoc_lieu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                    🔄 Làm mới dữ liệu
+                </button>
+                <button onclick="alert('Chức năng thêm mới đang được xây dựng!')" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
+                    + Tạo Học Liệu / Đề Thi
+                </button>
+            </div>
+        </div>
+        <div id="danh-sach-hl-render">
+            <p style="text-align: center; color: #666;">Đang tải dữ liệu học liệu từ máy chủ...</p>
+        </div>
+    `;
+
+    ham_6_2_tai_danh_sach_hoc_lieu();
+}
+
+// Hàm 6.2: Tải dữ liệu từ bảng hoc_lieu và lấy thêm tên Giáo viên tạo
+async function ham_6_2_tai_danh_sach_hoc_lieu() {
+    const renderArea = document.getElementById('danh-sach-hl-render');
+    try {
+        const { data: dsHocLieu, error } = await _supabase.from('hoc_lieu').select('*');
+        if (error) throw error;
+
+        // Bổ sung: Lấy tên giáo viên tạo (giống phần Lớp học)
+        const danhSachUidGv = [...new Set((dsHocLieu || []).map(hl => hl.uid_gv_tao).filter(id => id))];
+        let tuDienTenGv = {};
+
+        if (danhSachUidGv.length > 0) {
+            const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
+            if (dsGv) {
+                dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
+            }
+        }
+
+        // Gắn tên giáo viên vào dữ liệu
+        BangHocLieuState.duLieu = (dsHocLieu || []).map(hl => ({
+            ...hl,
+            ten_gv_tao: tuDienTenGv[hl.uid_gv_tao] || 'Không xác định'
+        }));
+
+        ham_6_10_ve_bang_hoc_lieu();
+
+    } catch (error) {
+        renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+    }
+}
+
+// Hàm 6.10: Vẽ Bảng Học Liệu (Đầy đủ 12 trường thông tin)
+function ham_6_10_ve_bang_hoc_lieu() {
+    const renderArea = document.getElementById('danh-sach-hl-render');
+    let dsHL = [...BangHocLieuState.duLieu];
+
+    if (dsHL.length === 0) {
+        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học liệu hoặc đề thi nào trong kho.</p>`;
+        return;
+    }
+
+    // Thuật toán Sort
+    const cot = BangHocLieuState.cotDangSort;
+    const heSo = BangHocLieuState.tangDan ? 1 : -1;
+    dsHL.sort((a, b) => {
+        let valA = a[cot] === null || a[cot] === undefined ? '' : a[cot];
+        let valB = b[cot] === null || b[cot] === undefined ? '' : b[cot];
+
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        if (valA < valB) return -1 * heSo;
+        if (valA > valB) return 1 * heSo;
+        return 0;
+    });
+
+    const iconSort = BangHocLieuState.tangDan ? ' ▲' : ' ▼';
+    const getIcon = (tenCot) => (cot === tenCot ? iconSort : ' ↕');
+
+    let htmlTable = `
+        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
+            <table style="width: 100%; min-width: 1600px; border-collapse: collapse; background: white; font-size: 13px;">
+                <thead>
+                    <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; width: 40px;">STT</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; position: sticky; left: 0; background: #f8f9fa; z-index: 1;">Thao tác</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ma_hoc_lieu')">Mã HL ${getIcon('ma_hoc_lieu')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ten_hoc_lieu')">Tên Học Liệu / Đề Thi ${getIcon('ten_hoc_lieu')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('loai_kiem_tra')">Loại / Phân loại ${getIcon('loai_kiem_tra')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('khoi_lop')">Khối ${getIcon('khoi_lop')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('thoi_gian_lam_bai')">Thời gian làm bài ${getIcon('thoi_gian_lam_bai')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('quy_mo_cau_hoi')">Số câu hỏi ${getIcon('quy_mo_cau_hoi')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6_11_thay_doi_sort('trang_thai')">Trạng thái ${getIcon('trang_thai')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ten_gv_tao')">Giáo viên tạo ${getIcon('ten_gv_tao')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6_11_thay_doi_sort('ngay_tao')">Ngày tạo ${getIcon('ngay_tao')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Mảng câu hỏi (danh_sach_cau_hoi)</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Metadata</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">ID (UUID gốc)</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    dsHL.forEach((hl, index) => {
+        const ngayTao = hl.ngay_tao ? new Date(hl.ngay_tao).toLocaleString('vi-VN') : '-';
+
+        // Xử lý Thời gian: Có số thì là phút, rỗng/0 thì là không giới hạn
+        const thoiGian = (hl.thoi_gian_lam_bai && hl.thoi_gian_lam_bai > 0)
+            ? `<span style="color: #dc3545; font-weight: bold;">⏳ ${hl.thoi_gian_lam_bai} phút</span>`
+            : `<span style="color: #6c757d; font-style: italic;">Không giới hạn</span>`;
+
+        // Xử lý Trạng thái: Công khai (Xanh), Nội bộ (Cam)
+        const trangThaiText = hl.trang_thai === 'cong_khai'
+            ? `<span style="background: #e6ffed; color: #28a745; padding: 4px 8px; border-radius: 12px; font-weight: bold;">Công khai</span>`
+            : `<span style="background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 12px; font-weight: bold;">Nội bộ</span>`;
+
+        // Rút gọn danh sách câu hỏi tránh làm bảng quá dài
+        const mangCauHoi = hl.danh_sach_cau_hoi ? hl.danh_sach_cau_hoi.join(', ') : '';
+        const hienThiMangCH = mangCauHoi.length > 30 ? mangCauHoi.substring(0, 30) + '...' : (mangCauHoi || '[]');
+
+        htmlTable += `
+            <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap; position: sticky; left: 0; background: inherit; z-index: 1;">
+                    <button style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+                    <button style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+                </td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hl.ten_hoc_lieu || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${hl.loai_kiem_tra || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${hl.khoi_lop || '-'}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${thoiGian}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hl.quy_mo_cau_hoi || 0}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${trangThaiText}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">👨‍🏫 ${hl.ten_gv_tao}</td>
+                <td style="padding: 10px; border: 1px solid #eee;">${ngayTao}</td>
+                <td style="padding: 10px; border: 1px solid #eee; color: #666; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${mangCauHoi}">[${hienThiMangCH}]</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-size: 11px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${JSON.stringify(hl.metadata || {})}</td>
+                <td style="padding: 10px; border: 1px solid #eee; font-family: monospace; color: #888; font-size: 11px;">${hl.id}</td>
+            </tr>
+        `;
+    });
+
+    htmlTable += `</tbody></table></div>`;
+    renderArea.innerHTML = htmlTable;
+}
+
+// Hàm 6.11: Xử lý thay đổi cột Sắp xếp
+function ham_6_11_thay_doi_sort(cotMoi) {
+    if (BangHocLieuState.cotDangSort === cotMoi) {
+        BangHocLieuState.tangDan = !BangHocLieuState.tangDan;
+    } else {
+        BangHocLieuState.cotDangSort = cotMoi;
+        BangHocLieuState.tangDan = true;
+    }
+    ham_6_10_ve_bang_hoc_lieu();
+}
+
+
