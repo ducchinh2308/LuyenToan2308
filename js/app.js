@@ -461,6 +461,7 @@ const BangLopState = {
     cotDangSort: 'ngay_tao',
     tangDan: false // false = Giảm dần (Mới nhất xếp trên)
 };
+let _dsHocSinhGoc = [];
 
 // Hàm 4.0: Sinh mã lớp ngẫu nhiên 5 ký tự
 function ham_4_0_sinh_ma_lop() {
