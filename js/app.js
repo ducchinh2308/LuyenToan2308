@@ -2314,8 +2314,8 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 </div>
 
                 <div style="display: flex; gap: 15px;">
-                    <button style="flex: 2; padding: 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
-                        💾 (Nút Lưu sẽ làm ở bước sau)
+                    <button onclick="ham_7_4_luu_nhiem_vu_moi('${maNV}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s;">
+                        💾 XÁC NHẬN GIAO BÀI
                     </button>
                     <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
                         HỦY
