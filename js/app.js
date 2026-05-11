@@ -1634,104 +1634,104 @@ function ham_6_5_tinh_toan_cau_truc() {
     txtCauTruc.value = mangCauTruc.join(' - ');
 }
 
-// ==============================================================
-// Hàm 6.6: Vẽ Form chỉnh sửa (Đã sửa lỗi lệch cột HTML)
+/// ==============================================================
+// Hàm 6.6: Vẽ Form chỉnh sửa (Hiện đầy đủ Mã Gốc, Mã Đề, Mã Giải)
 // ==============================================================
 function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
     const dsCauHoi = data.danh_sach_cau_hoi || [];
-    let htmlDanhSachCau = '';
+    let htmlRows = '';
 
     dsCauHoi.forEach((item, index) => {
         const parts = item.split('|');
+        let maGoc, maAoDe, maAoGiai, dapAn;
 
-        // Thuật toán thông minh: Tự nhận diện đề cũ (3 khúc) hay đề mới (4 khúc)
-        const isNewFormat = parts.length >= 4;
-        const maCauGoc = isNewFormat ? parts[0] : "Chưa cập nhật mã"; // Nếu đề cũ thì báo chưa có
-        const maAoDe = isNewFormat ? parts[1] : parts[0];
+        // Xử lý linh hoạt cho cả đề cũ (3 khúc) và đề mới (4 khúc)
+        if (parts.length >= 4) {
+            [maGoc, maAoDe, maAoGiai, dapAn] = parts;
+        } else {
+            maGoc = "N/A";
+            [maAoDe, maAoGiai, dapAn] = parts;
+        }
 
-        // Luôn luôn lấy phần tử cuối cùng của mảng làm Đáp án
-        const dapAnHienTai = parts[parts.length - 1];
-
-        htmlDanhSachCau += `
-            <tr id="row_cau_${index}" style="border-bottom: 1px solid #eee;">
-                <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
-                <td style="padding: 8px; font-weight: bold; color: #1a73e8;">${maCauGoc}</td>
-                <td style="padding: 8px; color: #999; font-size: 11px; font-family: monospace;">${maAoDe}</td>
+        htmlRows += `
+            <tr class="row-cau-hoi" data-original-string="${item}" style="border-bottom: 1px solid #eee;">
+                <td class="stt-cau" style="padding: 8px; text-align: center; font-weight: bold; color: #666;">${index + 1}</td>
+                <td style="padding: 8px; font-weight: bold; color: #1a73e8;">${maGoc}</td>
+                <td style="padding: 8px; color: #e67e22; font-size: 11px; font-family: monospace;">${maAoDe}</td>
+                <td style="padding: 8px; color: #28a745; font-size: 11px; font-family: monospace;">${maAoGiai}</td>
                 <td style="padding: 8px; text-align: center;">
-                    <input type="text" id="dapan_${index}" value="${dapAnHienTai}" 
-                        style="width: 70px; padding: 6px; border: 2px solid #28a745; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f; outline: none;">
+                    <input type="text" class="input-dap-an" value="${dapAn}" 
+                        style="width: 70px; padding: 5px; border: 2px solid #ddd; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f;">
                 </td>
                 <td style="padding: 8px; text-align: center;">
-                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 5px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">🗑️ Xóa</button>
+                    <button onclick="ham_6_xoa_cau_truc_tiep(this)" 
+                        style="padding: 5px 10px; background: #fff1f0; color: #d32f2f; border: 1px solid #ffa39e; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️ Xóa</button>
                 </td>
             </tr>
         `;
     });
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-
     vungLamViec.innerHTML = `
-        <div style="max-width: 900px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">
-                ✏️ CHỈNH SỬA & CHỮA CHÁY: <span style="color: #d35400;">${data.ma_hoc_lieu}</span>
+        <div style="max-width: 1000px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h3 style="color: #f39c12; margin-top: 0; display: flex; justify-content: space-between; align-items: center;">
+                <span>✏️ CHỈNH SỬA HỌC LIỆU: <small style="color:#666">${data.ma_hoc_lieu}</small></span>
+                <span id="lblSoCauHienTai" style="background: #f39c12; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Tổng: ${dsCauHoi.length} câu</span>
             </h3>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                <div style="grid-column: span 2;">
-                    <label style="font-weight: bold;">Tên Học Liệu / Đề Thi (*):</label>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div>
+                    <label style="font-weight: bold; font-size: 13px;">Tên Học Liệu:</label>
                     <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
                 </div>
                 <div>
-                    <label style="font-weight: bold;">Trạng thái lưu trữ:</label>
-                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; font-weight: bold;">
-                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ (Đóng)</option>
-                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai (Mở)</option>
+                    <label style="font-weight: bold; font-size: 13px;">Trạng thái:</label>
+                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
+                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
                     </select>
                 </div>
                 <div>
-                    <label style="font-weight: bold;">Thời gian (Phút):</label>
+                    <label style="font-weight: bold; font-size: 13px;">Thời gian (Phút):</label>
                     <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
                 </div>
             </div>
 
             <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                <h4 style="margin-top: 0; color: #d32f2f;">🔥 CAN THIỆP KHẨN CẤP ĐÁP ÁN</h4>
-                <p style="font-size: 12px; color: #666;">Thầy có thể sửa trực tiếp vào ô Đáp Án bên dưới. Hệ thống sẽ tự động cập nhật điểm số theo đáp án mới này.</p>
-                
-                <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white;">
+                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px;">
+                    <table id="tblSuaCauHoi" style="width: 100%; border-collapse: collapse; font-size: 12px; background: white;">
                         <thead style="background: #e9ecef; position: sticky; top: 0; z-index: 1;">
                             <tr>
                                 <th style="padding: 10px; border: 1px solid #ccc; width: 40px;">STT</th>
-                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu Gốc</th>
-                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Ẩn (Hệ thống)</th>
-                                <th style="padding: 10px; border: 1px solid #ccc; width: 100px;">Đáp Án</th>
-                                <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Thao tác</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Gốc</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu (Ẩn)</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Giải (Ẩn)</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Đáp Án</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 60px;">Xóa</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            ${htmlDanhSachCau}
+                        <tbody id="tbodySuaCauHoi">
+                            ${htmlRows}
                         </tbody>
                     </table>
                 </div>
-                
-                <textarea id="data_bando_goc" style="display:none;">${JSON.stringify(dsCauHoi)}</textarea>
             </div>
 
             <div style="display: flex; gap: 12px;">
-                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
-                    💾 LƯU THAY ĐỔI & CHỐT ĐÁP ÁN
+                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                    💾 XÁC NHẬN LƯU THAY ĐỔI
                 </button>
-                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
-                    ❌ HỦY QUAY LẠI
+                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 15px; background: #f1f3f4; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                    HỦY
                 </button>
             </div>
         </div>
     `;
 }
+
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
     const row = document.getElementById(`row_cau_${index}`);
@@ -1748,47 +1748,51 @@ function ham_6_xoa_cau_hoi_tam_thoi(index) {
     }
 }
 
-// ==============================================================
-// Hàm 6.7: Đẩy lệnh Update lên Supabase (Gồm cả Bản đồ kho báu)
-// ==============================================================
+// Hàm 6.6.b: Xóa dòng và cập nhật lại toàn bộ STT + Tổng số câu
+function ham_6_xoa_cau_truc_tiep(btn) {
+    if (!confirm("Thầy có chắc chắn muốn loại bỏ câu hỏi này khỏi đề không?")) return;
+
+    // 1. Tìm dòng tr chứa nút bấm và xóa nó đi
+    const row = btn.closest('tr');
+    row.remove();
+
+    // 2. Đánh lại số thứ tự (STT) cho các dòng còn lại
+    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+    rows.forEach((r, index) => {
+        r.querySelector('.stt-cau').innerText = index + 1;
+    });
+
+    // 3. Cập nhật lại nhãn "Tổng: X câu" trên tiêu đề
+    document.getElementById('lblSoCauHienTai').innerText = `Tổng: ${rows.length} câu`;
+}
+
+
 async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
     const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
     const trangThaiMoi = document.getElementById('sua_trangThai').value;
 
-    if (!tenMoi) return alert("Tên Học Liệu không được để trống!");
-
-    const banDoGoc = JSON.parse(document.getElementById('data_bando_goc').value);
+    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
+    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
     let banDoMoi = [];
 
-    for (let i = 0; i < banDoGoc.length; i++) {
-        const row = document.getElementById(`row_cau_${i}`);
-        // Bỏ qua các câu đã bị thầy nhấn nút Xóa
-        if (row && row.dataset.deleted !== "true") {
-            const dapAnMoi = document.getElementById(`dapan_${i}`).value.trim().toUpperCase();
+    rows.forEach(row => {
+        const originalString = row.getAttribute('data-original-string');
+        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
 
-            // Tách chuỗi hiện tại ra mảng
-            let parts = banDoGoc[i].split('|');
+        let parts = originalString.split('|');
+        // Luôn đè đáp án mới vào khúc cuối cùng
+        parts[parts.length - 1] = dapAnMoi;
 
-            // Ghi đè đáp án mới vào đúng vị trí cuối cùng của mảng
-            parts[parts.length - 1] = dapAnMoi;
+        banDoMoi.push(parts.join('|'));
+    });
 
-            // Ráp lại thành chuỗi và đẩy vào Bản đồ mới
-            banDoMoi.push(parts.join('|'));
-        }
-    }
-
-    if (banDoMoi.length === 0) return alert("Không thể xóa hết tất cả các câu hỏi được!");
+    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
 
     btnNode.disabled = true;
-    btnNode.innerText = "ĐANG ĐÓNG GÓI LẠI...";
+    btnNode.innerText = "ĐANG ĐÓNG GÓI...";
 
     try {
-        const hlHienTai = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
-        let metaDataMoi = hlHienTai.metadata || {};
-        metaDataMoi.da_chinh_sua_web = true;
-
-        // Bắn API Update
         const { error } = await _supabase
             .from('hoc_lieu')
             .update({
@@ -1796,19 +1800,19 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
                 thoi_gian_lam_bai: thoiGianMoi,
                 trang_thai: trangThaiMoi,
                 danh_sach_cau_hoi: banDoMoi,
-                quy_mo_cau_hoi: banDoMoi.length,
-                metadata: metaDataMoi
+                quy_mo_cau_hoi: banDoMoi.length
+                // Thầy có thể cập nhật thêm cấu trúc TN-DS-TLN vào metadata ở đây nếu cần
             })
             .eq('ma_hoc_lieu', maHocLieu);
 
         if (error) throw error;
 
-        alert("✅ Đã chốt sổ Bản đồ Kho báu và Thông tin mới!");
-        ham_6_2_tai_danh_sach_hoc_lieu(); // Tải lại bảng danh sách
+        alert("✅ Đã cập nhật học liệu thành công!");
+        ham_6_2_tai_danh_sach_hoc_lieu(); // Quay lại danh sách chính
 
     } catch (error) {
-        alert("Lỗi khi lưu dữ liệu: " + error.message);
+        alert("Lỗi: " + error.message);
         btnNode.disabled = false;
-        btnNode.innerText = "💾 LƯU THAY ĐỔI & CHỐT ĐÁP ÁN";
+        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
     }
 }
