@@ -1401,92 +1401,52 @@ function ham_6_0_sinh_ma_hoc_lieu(loaiPrefix) {
 
 
 
-// Hàm 6.3: Vẽ Form (Cập nhật Combobox có sự kiện đổi mã)
-function ham_6_3_hien_form_them_hoc_lieu() {
-    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-
-    // Mặc định ban đầu là Đề thi (DE)
-    const maHLBanDau = ham_6_0_sinh_ma_hoc_lieu('DE');
-
-    vungLamViec.innerHTML = `
-        <div style="max-width: 900px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #28a745; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">
-                TẠO HỌC LIỆU / ĐỀ THI MỚI
-            </h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                <div style="grid-column: span 1;">
-                    <label style="font-weight: bold; font-size: 14px;">Mã định danh (Tự động):</label>
-                    <input type="text" id="txtMaHocLieu" value="${maHLBanDau}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #ddd; border-radius: 6px; font-weight: bold; color: #d35400; cursor: not-allowed;">
-                </div>
-
-                <div style="grid-column: span 1;">
-                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">Phân loại học liệu:</label>
-                    <select id="selLoaiKiemTra" onchange="ham_6_3_b_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                        <option value="DE">Đề thi thử / Chính thức</option>
-                        <option value="BG">Bài giảng (Slide/PDF)</option>
-                        <option value="TL">Tài liệu / Bài tập tự luyện</option>
-                        <option value="VD">Video bài giảng</option>
-                        <option value="KT">Bài kiểm tra định kỳ</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label style="font-weight: bold; font-size: 14px;">Khối lớp:</label>
-                    <select id="selKhoiLopHL" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
-                        <option value="12">Khối 12</option>
-                        <option value="11">Khối 11</option>
-                        <option value="10">Khối 10</option>
-                        <option value="Khác">Khác</option>
-                    </select>
-                </div>
-
-                <div style="grid-column: span 3;">
-                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên Học liệu / Đề thi (*):</label>
-                    <input type="text" id="txtTenHocLieu" placeholder="Nhập tên học liệu..." style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
-                </div>
-                
-                <div>
-                    <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
-                    <input type="number" id="numThoiGian" value="0" min="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
-                </div>
-                <div>
-                    <label style="font-weight: bold; font-size: 14px;">Trạng thái:</label>
-                    <select id="selTrangThaiHL" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
-                        <option value="cong_khai">Công khai</option>
-                        <option value="noi_bo">Nội bộ</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-weight: bold; font-size: 14px;">Cấu trúc:</label>
-                    <input type="text" id="txtCauTruc" readonly style="width: 100%; padding: 10px; background: #f8fbff; border: 1px solid #ddd; border-radius: 6px;">
-                </div>
-            </div>
-
-            <div id="vung-nhap-id6-3-phan"> ... </div> 
-
-            <div style="display: flex; gap: 12px; margin-top: 20px;">
-                <button onclick="ham_6_4_luu_hoc_lieu_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">LƯU DỮ LIỆU</button>
-                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">HỦY</button>
-            </div>
-        </div>
-    `;
+// Hàm 6.0: Sinh mã định danh ngẫu nhiên theo loại
+function ham_6_0_sinh_ma_hoc_lieu(loaiPrefix) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let randomPart = '';
+    for (let i = 0; i < 7; i++) {
+        randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return `HL_${loaiPrefix}_${randomPart}`;
 }
 
-// Hàm 6.3.b: Cập nhật mã định danh tức thì khi đổi Combobox
+// Hàm 6.3.b: Cập nhật mã định danh tức thì khi đổi Combobox Phân loại
 function ham_6_3_b_cap_nhat_ma_theo_loai() {
     const loaiChon = document.getElementById('selLoaiKiemTra').value;
     const maMoi = ham_6_0_sinh_ma_hoc_lieu(loaiChon);
-
     const txtMa = document.getElementById('txtMaHocLieu');
     txtMa.value = maMoi;
 
-    // Hiệu ứng nháy nhẹ để báo hiệu mã đã đổi
-    txtMa.style.transition = '0.3s';
+    // Hiệu ứng đổi màu nhẹ để báo hiệu mã đã thay đổi
     txtMa.style.background = '#fff3cd';
     setTimeout(() => { txtMa.style.background = '#f1f3f4'; }, 300);
 }
 
+// Hàm 6.5: Tính toán cấu trúc 2025 và đếm số lượng câu hỏi thời gian thực
+function ham_6_5_tinh_toan_cau_truc() {
+    const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
+
+    const arrTN = bocTach(document.getElementById('txtID_TN').value);
+    const arrDS = bocTach(document.getElementById('txtID_DS').value);
+    const arrTLN = bocTach(document.getElementById('txtID_TLN').value);
+
+    // Cập nhật số lượng hiển thị trên từng ô
+    document.getElementById('demTN').innerText = arrTN.length;
+    document.getElementById('demDS').innerText = arrDS.length;
+    document.getElementById('demTLN').innerText = arrTLN.length;
+
+    const tong = arrTN.length + arrDS.length + arrTLN.length;
+    document.getElementById('lblTongCauHoi').innerText = `Tổng: ${tong} câu`;
+
+    // Tự động tạo chuỗi cấu trúc ví dụ: 12TN-4DS-6TLN
+    let mangMôTả = [];
+    if (arrTN.length > 0) mangMôTả.push(`${arrTN.length}TN`);
+    if (arrDS.length > 0) mangMôTả.push(`${arrDS.length}DS`);
+    if (arrTLN.length > 0) mangMôTả.push(`${arrTLN.length}TLN`);
+
+    document.getElementById('txtCauTruc').value = mangMôTả.join(' - ');
+}
 
 
 
