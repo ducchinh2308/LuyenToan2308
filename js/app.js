@@ -2232,7 +2232,11 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                         <div>
                             <label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label>
                             <select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                                <option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option><option value="Khác">Khác</option>
+                                <option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option>
+                                <option value="9">Khối 9</option><option value="8">Khối 8</option><option value="7">Khối 7</option>
+                                <option value="6">Khối 6</option><option value="5">Khối 5</option><option value="4">Khối 4</option>
+                                <option value="3">Khối 3</option><option value="2">Khối 2</option><option value="1">Khối 1</option>
+                                <option value="Khác">Khác</option>
                             </select>
                         </div>
                         <div>
