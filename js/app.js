@@ -1634,65 +1634,89 @@ function ham_6_5_tinh_toan_cau_truc() {
     txtCauTruc.value = mangCauTruc.join(' - ');
 }
 
-
-
 // ==============================================================
-// Hàm 6.6: Vẽ Form chỉnh sửa (Nạp sẵn dữ liệu từ State)
+// Hàm 6.6: Vẽ Form chỉnh sửa (Bổ sung Can thiệp Đáp án/Xóa câu)
 // ==============================================================
 function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
-    // 1. Tìm thông tin học liệu ngay trong mảng đã tải sẵn (cực nhanh)
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
-    if (!data) return alert("Dữ liệu không tồn tại hoặc đã bị xóa!");
+    if (!data) return alert("Dữ liệu không tồn tại!");
+
+    // Parse Bản đồ kho báu ra để render
+    // Dạng mảng: ["q_123|sol_456|A", "q_789|sol_012|T-F-T-F"]
+    const dsCauHoi = data.danh_sach_cau_hoi || [];
+
+    let htmlDanhSachCau = '';
+    dsCauHoi.forEach((item, index) => {
+        const parts = item.split('|');
+        const maCau = parts[0];
+        const dapAnGoc = parts[2] || '';
+
+        htmlDanhSachCau += `
+            <tr id="row_cau_${index}" style="border-bottom: 1px solid #eee;">
+                <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
+                <td style="padding: 8px; color: #666; font-family: monospace;">${maCau}</td>
+                <td style="padding: 8px;">
+                    <input type="text" id="dapan_${index}" value="${dapAnGoc}" style="width: 80px; padding: 4px; border: 1px solid #1a73e8; border-radius: 4px; text-align: center; font-weight: bold; text-transform: uppercase;">
+                </td>
+                <td style="padding: 8px; text-align: center;">
+                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️ Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
-    // 2. Render Form (Cấu trúc tương đồng Hàm 6.3 nhưng bỏ phần cấu trúc câu hỏi)
     vungLamViec.innerHTML = `
-        <div style="max-width: 800px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <div style="max-width: 900px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h3 style="color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">
-                ✏️ CHỈNH SỬA HỌC LIỆU: <span style="color: #d35400;">${data.ma_hoc_lieu}</span>
+                ✏️ CHỈNH SỬA & CHỮA CHÁY: <span style="color: #d35400;">${data.ma_hoc_lieu}</span>
             </h3>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; margin-top: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div style="grid-column: span 2;">
-                    <label style="font-weight: bold; font-size: 14px;">Tên Học Liệu / Đề Thi (*):</label>
-                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                    <label style="font-weight: bold;">Tên Học Liệu / Đề Thi (*):</label>
+                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
                 </div>
-
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Khối Lớp:</label>
-                    <select id="sua_khoiLop" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                        <option value="12" ${data.khoi_lop === '12' ? 'selected' : ''}>Khối 12</option>
-                        <option value="11" ${data.khoi_lop === '11' ? 'selected' : ''}>Khối 11</option>
-                        <option value="10" ${data.khoi_lop === '10' ? 'selected' : ''}>Khối 10</option>
-                        <option value="Khác" ${data.khoi_lop === 'Khác' ? 'selected' : ''}>Khác / Luyện thi</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
-                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                </div>
-
-                <div style="grid-column: span 2;">
-                    <label style="font-weight: bold; font-size: 14px; color: #d32f2f;">Trạng thái lưu trữ (Có cho HS thi không?):</label>
-                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; margin-top: 5px; font-weight: bold;">
+                    <label style="font-weight: bold;">Trạng thái lưu trữ:</label>
+                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; font-weight: bold;">
                         <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ (Đóng)</option>
                         <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai (Mở)</option>
                     </select>
                 </div>
+                <div>
+                    <label style="font-weight: bold;">Thời gian (Phút):</label>
+                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                </div>
             </div>
 
-            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px dashed #e67e22; margin-bottom: 20px;">
-                <p style="margin: 0; font-size: 13px; color: #856404; line-height: 1.5;">
-                    <b>⚠️ Lưu ý bảo mật:</b> Thầy chỉ có thể sửa thông tin nhận diện (Tên, Khối, Thời gian, Trạng thái). 
-                    Nội dung danh sách câu hỏi và "Bản đồ kho báu" đã được khóa chặt từ công cụ C# khi xuất bản để đảm bảo Đề thi không bị thao túng.
-                </p>
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                <h4 style="margin-top: 0; color: #d32f2f;">🔥 CAN THIỆP KHẨN CẤP (BẢN ĐỒ KHO BÁU)</h4>
+                <p style="font-size: 12px; color: #666;">Thầy có thể sửa chữ ở cột Đáp Án hoặc Bỏ câu hỏi bị sai đề. Nếu muốn Thêm câu, vui lòng dùng công cụ C# để xuất bản lại cho an toàn.</p>
+                
+                <div style="max-height: 250px; overflow-y: auto; border: 1px solid #ccc;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white;">
+                        <thead style="background: #e9ecef; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 8px; border: 1px solid #ccc;">STT</th>
+                                <th style="padding: 8px; border: 1px solid #ccc;">Mã Câu (Khóa)</th>
+                                <th style="padding: 8px; border: 1px solid #ccc;">Đáp Án</th>
+                                <th style="padding: 8px; border: 1px solid #ccc;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${htmlDanhSachCau}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <textarea id="data_bando_goc" style="display:none;">${JSON.stringify(dsCauHoi)}</textarea>
             </div>
 
             <div style="display: flex; gap: 12px;">
-                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s;">
-                    💾 LƯU THAY ĐỔI
+                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
+                    💾 LƯU THAY ĐỔI & CHỐT ĐÁP ÁN
                 </button>
                 <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
                     ❌ HỦY QUAY LẠI
@@ -1702,45 +1726,78 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
     `;
 }
 
+// Cờ đánh dấu câu bị xóa tạm thời trên giao diện
+function ham_6_xoa_cau_hoi_tam_thoi(index) {
+    const row = document.getElementById(`row_cau_${index}`);
+    const input = document.getElementById(`dapan_${index}`);
+
+    if (row.style.opacity === '0.3') {
+        row.style.opacity = '1';
+        input.disabled = false;
+        row.dataset.deleted = "false";
+    } else {
+        row.style.opacity = '0.3';
+        input.disabled = true;
+        row.dataset.deleted = "true"; // Đánh dấu đã xóa
+    }
+}
+
 // ==============================================================
-// Hàm 6.7: Đẩy lệnh Update thông tin lên Supabase
+// Hàm 6.7: Đẩy lệnh Update lên Supabase (Gồm cả Bản đồ kho báu)
 // ==============================================================
 async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
-    // 1. Lấy dữ liệu từ Form
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
-    const khoiMoi = document.getElementById('sua_khoiLop').value;
     const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
     const trangThaiMoi = document.getElementById('sua_trangThai').value;
 
-    if (!tenMoi) return alert("Thầy vui lòng không để trống Tên Học Liệu!");
+    if (!tenMoi) return alert("Tên Học Liệu không được để trống!");
 
-    // Khóa nút để tránh click đúp
+    // 1. Quét lại toàn bộ Bảng Đáp án để lập Bản đồ mới
+    const banDoGoc = JSON.parse(document.getElementById('data_bando_goc').value);
+    let banDoMoi = [];
+
+    for (let i = 0; i < banDoGoc.length; i++) {
+        const row = document.getElementById(`row_cau_${i}`);
+        // Nếu không bị đánh dấu xóa, thì cập nhật đáp án mới
+        if (row && row.dataset.deleted !== "true") {
+            const dapAnMoi = document.getElementById(`dapan_${i}`).value.trim().toUpperCase();
+            const parts = banDoGoc[i].split('|');
+            banDoMoi.push(`${parts[0]}|${parts[1]}|${dapAnMoi}`);
+        }
+    }
+
+    if (banDoMoi.length === 0) return alert("Không thể xóa hết tất cả các câu hỏi được!");
+
     btnNode.disabled = true;
-    btnNode.innerText = "ĐANG LƯU...";
+    btnNode.innerText = "ĐANG ĐÓNG GÓI LẠI...";
 
     try {
-        // 2. Cập nhật lên Supabase theo mã học liệu
+        // Lấy lại metadata cũ để update, nhưng đánh dấu là đã chỉnh sửa
+        const hlHienTai = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
+        let metaDataMoi = hlHienTai.metadata || {};
+        metaDataMoi.da_chinh_sua_web = true;
+
+        // 2. Bắn API Update
         const { error } = await _supabase
             .from('hoc_lieu')
             .update({
                 ten_hoc_lieu: tenMoi,
-                khoi_lop: khoiMoi,
                 thoi_gian_lam_bai: thoiGianMoi,
-                trang_thai: trangThaiMoi
+                trang_thai: trangThaiMoi,
+                danh_sach_cau_hoi: banDoMoi, // Ghi đè mảng mới
+                quy_mo_cau_hoi: banDoMoi.length, // Cập nhật lại tổng số câu
+                metadata: metaDataMoi
             })
             .eq('ma_hoc_lieu', maHocLieu);
 
         if (error) throw error;
 
-        alert("✅ Cập nhật thông tin học liệu thành công!");
-
-        // 3. Render lại toàn bộ giao diện bảng (Nó sẽ tự động fetch lại API để lấy dữ liệu mới nhất)
-        ham_6_1_ve_quan_ly_hoc_lieu();
+        alert("✅ Đã chốt sổ Bản đồ Kho báu và Thông tin mới!");
+        ham_6_2_tai_danh_sach_hoc_lieu(); // Tải lại bảng
 
     } catch (error) {
         alert("Lỗi khi lưu dữ liệu: " + error.message);
         btnNode.disabled = false;
-        btnNode.innerText = "💾 LƯU THAY ĐỔI";
+        btnNode.innerText = "💾 LƯU THAY ĐỔI & CHỐT ĐÁP ÁN";
     }
 }
-
