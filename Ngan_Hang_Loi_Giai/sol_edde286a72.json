@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_edde286a72",
-  "dapAn": "10",
-  "loiGiai": "Để độ dài $AB$ ngắn nhất thì $B$ phải là hình chiếu vuông góc của $A$ lên mặt phẳng $(\\alpha)$.\\\\\r\n\t\tĐường thẳng $d$ đi qua $A$ và vuông góc với $(\\alpha)$ có phương trình tham số: $x=4+t$, $y=5+2t$, $z=2-2t$.\\\\\r\n\t\tTọa độ điểm $B$ là giao điểm của $d$ và $(\\alpha)$. Thay vào ta được:\\\\\r\n\t\t$(4+t)+2(5+2t)-2(2-2t)-1=0 \\Leftrightarrow 9t+9=0 \\Leftrightarrow t=-1$.\\\\\r\n\t\tThay $t=-1$ vào $d$, ta được $B(3;3;4)$.\\\\\r\n\t\tSuy ra $a=3, b=3, c=4$. Tổng $S = a+b+c = 10$.\\\\"
-}
