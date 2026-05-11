@@ -2400,7 +2400,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
     // 2. Thu thập danh sách lớp đã được check
     const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
     const dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
-
+    
     // Bắt lỗi dữ liệu (Validate)
     if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
     if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
@@ -2451,7 +2451,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
             quy_mo_cau_hoi: quyMo,
             cau_truc_de: cauTruc,
-            danh_sach_lop: JSON.stringify(dsLopChon), // Ép mảng thành chuỗi JSON để lưu cho an toàn
+            danh_sach_lop: dsLopChon,
             thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
             thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
             so_luot_lam_bai: soLuot,
