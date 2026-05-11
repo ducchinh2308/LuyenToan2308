@@ -2121,8 +2121,124 @@ async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
     }
 }
 
-// Hàm 7.3: (GIỮ CHỖ) Mở Form Thêm Nhiệm Vụ Mới
-function ham_7_3_hien_form_them_nhiem_vu() {
-    alert("Chức năng tạo Nhiệm Vụ mới đang được xây dựng ở bước tiếp theo!");
-    // Sẽ thiết kế form tương tự Hàm 6.3 nhưng combo box chọn Học Liệu Gốc thay vì dán mã câu hỏi.
+// ==============================================================
+// Hàm 7.3: Vẽ Form tạo nhiệm vụ mới (Load sẵn danh sách Học liệu)
+// ==============================================================
+async function ham_7_3_hien_form_them_nhiem_vu() {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+    // 1. Sinh mã nhiệm vụ ngẫu nhiên (hoặc thầy có thể sửa thành ô cho nhập tay nếu muốn)
+    const maNV = "NV" + Math.floor(Math.random() * 1000000);
+
+    // 2. Lấy danh sách Học liệu từ Supabase để đổ vào Combobox (Chỉ lấy đề Công khai hoặc Nội bộ của GV này)
+    const { data: dsHocLieu } = await _supabase
+        .from('hoc_lieu')
+        .select('ma_hoc_lieu, ten_hoc_lieu')
+        .order('ngay_tao', { ascending: false });
+
+    let htmlOptions = (dsHocLieu || []).map(hl =>
+        `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`
+    ).join('');
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 800px; background: white; padding: 30px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+            <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px;">🎯 TẠO NHIỆM VỤ GIAO BÀI MỚI</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div style="grid-column: span 2;">
+                    <label style="font-weight:bold;">Tên nhiệm vụ (*):</label>
+                    <input type="text" id="add_nv_ten" placeholder="Ví dụ: Kiểm tra cuối chương 1 - Lớp 12A1" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                </div>
+
+                <div style="grid-column: span 2;">
+                    <label style="font-weight:bold; color: #d35400;">Chọn đề thi từ Kho Học Liệu (*):</label>
+                    <select id="add_nv_maHL" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; margin-top: 5px; font-weight: bold; cursor: pointer;">
+                        <option value="">-- Bấm để chọn một Đề thi/Học liệu --</option>
+                        ${htmlOptions}
+                    </select>
+                </div>
+
+                <div>
+                    <label style="font-weight:bold;">Giao cho lớp (*):</label>
+                    <input type="text" id="add_nv_lop" placeholder="VD: 12A1, Khối 12..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                </div>
+
+                <div>
+                    <label style="font-weight:bold;">Đảo câu hỏi & đáp án:</label>
+                    <select id="add_nv_dao" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                        <option value="true">✅ Có - Tự động trộn đề</option>
+                        <option value="false">❌ Không - Giữ nguyên thứ tự</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="font-weight:bold;">Thời gian mở đề (Bắt đầu):</label>
+                    <input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                    <small style="color:#666; font-size: 11px;">Bỏ trống nếu muốn mở vô thời hạn</small>
+                </div>
+
+                <div>
+                    <label style="font-weight:bold;">Thời gian đóng đề (Kết thúc):</label>
+                    <input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                    <small style="color:#666; font-size: 11px;">Bỏ trống nếu không có hạn chót</small>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button onclick="ham_7_4_luu_nhiem_vu_moi('${maNV}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">💾 XÁC NHẬN GIAO BÀI</button>
+                <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">HỦY</button>
+            </div>
+        </div>
+    `;
+}
+
+// ==============================================================
+// Hàm 7.4: Lưu nhiệm vụ mới vào Database Supabase
+// ==============================================================
+async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
+    const ten = document.getElementById('add_nv_ten').value.trim();
+    const maHL = document.getElementById('add_nv_maHL').value;
+    const lop = document.getElementById('add_nv_lop').value.trim();
+    const dao = document.getElementById('add_nv_dao').value === 'true';
+    const mo = document.getElementById('add_nv_mo').value;
+    const dong = document.getElementById('add_nv_dong').value;
+
+    if (!ten || !maHL || !lop) {
+        return alert("Thầy vui lòng điền đầy đủ Tên nhiệm vụ, Lớp giao và Chọn đề thi nhé!");
+    }
+
+    // Nếu có nhập cả giờ mở và giờ đóng, kiểm tra logic thời gian
+    if (mo && dong) {
+        if (new Date(mo) >= new Date(dong)) {
+            return alert("Lỗi: Thời gian đóng phải sau thời gian mở!");
+        }
+    }
+
+    btnNode.disabled = true;
+    btnNode.innerText = "ĐANG TẠO NHIỆM VỤ...";
+
+    try {
+        const { error } = await _supabase.from('nhiem_vu').insert([{
+            ma_nhiem_vu: maNV,
+            ten_nhiem_vu: ten,
+            ma_hoc_lieu: maHL,
+            lop_giao: lop,
+            thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
+            thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
+            dao_cau_hoi: dao,
+            trang_thai: 'dang_mo', // Trạng thái mặc định ban đầu
+            uid_gv_tao: AppState.user.uid,
+            ngay_tao: new Date().toISOString()
+        }]);
+
+        if (error) throw error;
+
+        alert("✅ Đã tạo nhiệm vụ giao bài thành công!");
+        ham_7_1_ve_quan_ly_nhiem_vu(); // Quay về danh sách để xem thành quả
+
+    } catch (error) {
+        alert("Lỗi khi tạo nhiệm vụ: " + error.message);
+        btnNode.disabled = false;
+        btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
+    }
 }
