@@ -2458,8 +2458,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             cau_hinh_dap_an: cauHinhDapAn,
             trang_thai_loi_giai: taoFileGiai,
             trang_thai: trangThai,
-            // Nếu có hệ thống đăng nhập, lấy UID GV. Nếu test thì để mặc định
-            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : 'Admin',
+            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
             ngay_tao: new Date().toISOString()
         };
 
