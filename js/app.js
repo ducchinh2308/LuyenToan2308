@@ -1641,25 +1641,29 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
-    // Parse Bản đồ kho báu ra để render
-    // Dạng mảng: ["q_123|sol_456|A", "q_789|sol_012|T-F-T-F"]
     const dsCauHoi = data.danh_sach_cau_hoi || [];
 
     let htmlDanhSachCau = '';
     dsCauHoi.forEach((item, index) => {
         const parts = item.split('|');
-        const maCau = parts[0];
-        const dapAnGoc = parts[2] || '';
+
+        // Bóc tách theo cấu trúc 4 thành phần mới
+        const maCauGoc = parts[0]; // Đây là cái thầy muốn thấy (ID6_...)
+        const maAoDe = parts[1];
+        const maAoGiai = parts[2];
+        const dapAnHienTai = parts[3] || '';
 
         htmlDanhSachCau += `
             <tr id="row_cau_${index}" style="border-bottom: 1px solid #eee;">
                 <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
-                <td style="padding: 8px; color: #666; font-family: monospace;">${maCau}</td>
+                <td style="padding: 8px; font-weight: bold; color: #2c3e50;">${maCauGoc}</td>
+                <td style="padding: 8px; color: #999; font-size: 11px; font-family: monospace;">${maAoDe}</td>
                 <td style="padding: 8px;">
-                    <input type="text" id="dapan_${index}" value="${dapAnGoc}" style="width: 80px; padding: 4px; border: 1px solid #1a73e8; border-radius: 4px; text-align: center; font-weight: bold; text-transform: uppercase;">
+                    <input type="text" id="dapan_${index}" value="${dapAnHienTai}" 
+                        style="width: 70px; padding: 5px; border: 2px solid #1a73e8; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f;">
                 </td>
                 <td style="padding: 8px; text-align: center;">
-                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️ Xóa</button>
+                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 4px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️</button>
                 </td>
             </tr>
         `;
@@ -1758,11 +1762,13 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
 
     for (let i = 0; i < banDoGoc.length; i++) {
         const row = document.getElementById(`row_cau_${i}`);
-        // Nếu không bị đánh dấu xóa, thì cập nhật đáp án mới
         if (row && row.dataset.deleted !== "true") {
             const dapAnMoi = document.getElementById(`dapan_${i}`).value.trim().toUpperCase();
             const parts = banDoGoc[i].split('|');
-            banDoMoi.push(`${parts[0]}|${parts[1]}|${dapAnMoi}`);
+
+            // parts[0]: Mã Gốc, parts[1]: Mã Ảo Đề, parts[2]: Mã Ảo Giải
+            // Ráp lại đủ 4 món để không bị mất dữ liệu gốc
+            banDoMoi.push(`${parts[0]}|${parts[1]}|${parts[2]}|${dapAnMoi}`);
         }
     }
 
