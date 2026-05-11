@@ -1350,7 +1350,9 @@ function ham_6_10_ve_bang_hoc_lieu() {
             <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-                    <button onclick="alert('Tính năng sửa đang làm')" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Sửa</button>
+
+                    <button onclick="ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}')" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s;">Sửa</button>
+
                 </td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hl.ten_hoc_lieu}</td>
@@ -1633,4 +1635,112 @@ function ham_6_5_tinh_toan_cau_truc() {
 }
 
 
+
+// ==============================================================
+// Hàm 6.6: Vẽ Form chỉnh sửa (Nạp sẵn dữ liệu từ State)
+// ==============================================================
+function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
+    // 1. Tìm thông tin học liệu ngay trong mảng đã tải sẵn (cực nhanh)
+    const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
+    if (!data) return alert("Dữ liệu không tồn tại hoặc đã bị xóa!");
+
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+    // 2. Render Form (Cấu trúc tương đồng Hàm 6.3 nhưng bỏ phần cấu trúc câu hỏi)
+    vungLamViec.innerHTML = `
+        <div style="max-width: 800px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h3 style="color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">
+                ✏️ CHỈNH SỬA HỌC LIỆU: <span style="color: #d35400;">${data.ma_hoc_lieu}</span>
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; margin-top: 20px;">
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 14px;">Tên Học Liệu / Đề Thi (*):</label>
+                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                </div>
+
+                <div>
+                    <label style="font-weight: bold; font-size: 14px;">Khối Lớp:</label>
+                    <select id="sua_khoiLop" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                        <option value="12" ${data.khoi_lop === '12' ? 'selected' : ''}>Khối 12</option>
+                        <option value="11" ${data.khoi_lop === '11' ? 'selected' : ''}>Khối 11</option>
+                        <option value="10" ${data.khoi_lop === '10' ? 'selected' : ''}>Khối 10</option>
+                        <option value="Khác" ${data.khoi_lop === 'Khác' ? 'selected' : ''}>Khác / Luyện thi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
+                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                </div>
+
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 14px; color: #d32f2f;">Trạng thái lưu trữ (Có cho HS thi không?):</label>
+                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; margin-top: 5px; font-weight: bold;">
+                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ (Đóng)</option>
+                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai (Mở)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px dashed #e67e22; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 13px; color: #856404; line-height: 1.5;">
+                    <b>⚠️ Lưu ý bảo mật:</b> Thầy chỉ có thể sửa thông tin nhận diện (Tên, Khối, Thời gian, Trạng thái). 
+                    Nội dung danh sách câu hỏi và "Bản đồ kho báu" đã được khóa chặt từ công cụ C# khi xuất bản để đảm bảo Đề thi không bị thao túng.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s;">
+                    💾 LƯU THAY ĐỔI
+                </button>
+                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
+                    ❌ HỦY QUAY LẠI
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// ==============================================================
+// Hàm 6.7: Đẩy lệnh Update thông tin lên Supabase
+// ==============================================================
+async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
+    // 1. Lấy dữ liệu từ Form
+    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+    const khoiMoi = document.getElementById('sua_khoiLop').value;
+    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+    const trangThaiMoi = document.getElementById('sua_trangThai').value;
+
+    if (!tenMoi) return alert("Thầy vui lòng không để trống Tên Học Liệu!");
+
+    // Khóa nút để tránh click đúp
+    btnNode.disabled = true;
+    btnNode.innerText = "ĐANG LƯU...";
+
+    try {
+        // 2. Cập nhật lên Supabase theo mã học liệu
+        const { error } = await _supabase
+            .from('hoc_lieu')
+            .update({
+                ten_hoc_lieu: tenMoi,
+                khoi_lop: khoiMoi,
+                thoi_gian_lam_bai: thoiGianMoi,
+                trang_thai: trangThaiMoi
+            })
+            .eq('ma_hoc_lieu', maHocLieu);
+
+        if (error) throw error;
+
+        alert("✅ Cập nhật thông tin học liệu thành công!");
+
+        // 3. Render lại toàn bộ giao diện bảng (Nó sẽ tự động fetch lại API để lấy dữ liệu mới nhất)
+        ham_6_1_ve_quan_ly_hoc_lieu();
+
+    } catch (error) {
+        alert("Lỗi khi lưu dữ liệu: " + error.message);
+        btnNode.disabled = false;
+        btnNode.innerText = "💾 LƯU THAY ĐỔI";
+    }
+}
 
