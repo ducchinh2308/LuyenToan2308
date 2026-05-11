@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7939be0ace",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Nguyên hàm $F(x) = \\displaystyle \\int \\left(4x-\\displaystyle \\frac{2}{x^2}\\right)\\mathrm{d}x = 2x^2+\\displaystyle \\frac{2}{x}+C$.\r\n\t\t\tVì $F(1)=5$ nên $2(1)^2+\\displaystyle \\frac{2}{1}+C=5 \\Rightarrow C=1$.\r\n\t\t\tSuy ra $F(x)=2x^2+\\displaystyle \\frac{2}{x}+1$.\r\n\t\t\tKhi đó $F(2) = 2(2)^2+\\displaystyle \\frac{2}{2}+1 = 8+1+1=10$.\r\n\t\t\t\\itemch Do tập xác định bài toán xét là $(0;+\\infty)$ nên không xét điểm có hoành độ âm.\r\n\t\t\t\\itemch Ta có $F'(x) = 4x-\\displaystyle \\frac{2}{x^2} = 0 \\Leftrightarrow 4x^3-2=0 \\Leftrightarrow x^3=\\displaystyle \\frac{1}{2} \\Leftrightarrow x=\\sqrt[3]{\\displaystyle \\frac{1}{2}}$.\r\n\t\t\tPhương trình $F'(x)=0$ có đúng 1 nghiệm đổi dấu nên hàm số có 1 cực trị.\r\n\t\t\t\\itemch Theo kết quả tìm được ở ý a, ta có $F(x)=2x^2+\\displaystyle \\frac{2}{x}+1$, vậy phát biểu sai.\r\n\t\t\\end{itemchoice}"
+}
