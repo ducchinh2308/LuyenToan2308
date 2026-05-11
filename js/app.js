@@ -2433,8 +2433,8 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
         cauHinhDapAn = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
     }
 
-    // 5. Trạng thái tạo file giải
-    const taoFileGiai = document.getElementById('add_nv_taofilegiai').checked ? 'DANG_XU_LY' : 'CHO_DONG_GOI';
+    // 5. Trạng thái tạo file giải (1: Tạo luôn, 0: Chờ tạo)
+    const taoFileGiai = document.getElementById('add_nv_taofilegiai').checked ? 1 : 0;
 
     // Đổi trạng thái Nút để tránh bấm 2 lần
     btnNode.disabled = true;
