@@ -1347,22 +1347,23 @@ function ham_6_10_ve_bang_hoc_lieu() {
             : `<span style="background: #f1f3f4; color: #666; padding: 4px 8px; border-radius: 12px; font-weight: bold; font-size: 11px;">Nội bộ</span>`;
 
         htmlTable += `
-            <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='white'">
+            <tr onclick="ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}', false)" 
+                style="border-bottom: 1px solid #eee; transition: 0.2s; cursor: pointer;" 
+                onmouseover="this.style.background='#f1f8ff'" 
+                onmouseout="this.style.background='white'">
+                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
+                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-
-                    <button onclick="ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}')" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s;">Sửa</button>
-
+                    <button onclick="event.stopPropagation(); ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}', true)" style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+                    <button onclick="event.stopPropagation(); ham_6_8_xoa_hoc_lieu('${hl.ma_hoc_lieu}', '${hl.ten_hoc_lieu}')" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
                 </td>
+                
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hl.ten_hoc_lieu}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${hl.loai_kiem_tra}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${hl.khoi_lop}</td>
-                
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; line-height: 1.2;">
-                    ${hienThiQuyMo}
-                </td>
-                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; line-height: 1.2;">${hienThiQuyMo}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${thoiGian}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${trangThaiText}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-size: 12px;">${hl.ten_gv_tao}</td>
@@ -1634,12 +1635,18 @@ function ham_6_5_tinh_toan_cau_truc() {
     txtCauTruc.value = mangCauTruc.join(' - ');
 }
 
-/// ==============================================================
-// Hàm 6.6: Vẽ Form chỉnh sửa (Hiện đầy đủ Mã Gốc, Mã Đề, Mã Giải)
 // ==============================================================
-function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
+// Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA)
+// ==============================================================
+function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
+
+    // Cài đặt giao diện tùy theo chế độ
+    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
+    const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
+    const disabledAttr = choPhepSua ? "" : "disabled"; // Khóa input/select
+    const hienThiCotXoa = choPhepSua ? "" : "display: none;"; // Ẩn cột thao tác xóa câu
 
     const dsCauHoi = data.danh_sach_cau_hoi || [];
     let htmlRows = '';
@@ -1648,7 +1655,6 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
         const parts = item.split('|');
         let maGoc, maAoDe, maAoGiai, dapAn;
 
-        // Xử lý linh hoạt cho cả đề cũ (3 khúc) và đề mới (4 khúc)
         if (parts.length >= 4) {
             [maGoc, maAoDe, maAoGiai, dapAn] = parts;
         } else {
@@ -1663,40 +1669,59 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
                 <td style="padding: 8px; color: #e67e22; font-size: 11px; font-family: monospace;">${maAoDe}</td>
                 <td style="padding: 8px; color: #28a745; font-size: 11px; font-family: monospace;">${maAoGiai}</td>
                 <td style="padding: 8px; text-align: center;">
-                    <input type="text" class="input-dap-an" value="${dapAn}" 
-                        style="width: 70px; padding: 5px; border: 2px solid #ddd; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f;">
+                    <input type="text" class="input-dap-an" value="${dapAn}" ${disabledAttr}
+                        style="width: 70px; padding: 5px; border: 2px solid ${choPhepSua ? '#ddd' : 'transparent'}; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f; background: transparent;">
                 </td>
-                <td style="padding: 8px; text-align: center;">
+                <td style="padding: 8px; text-align: center; ${hienThiCotXoa}">
                     <button onclick="ham_6_xoa_cau_truc_tiep(this)" 
-                        style="padding: 5px 10px; background: #fff1f0; color: #d32f2f; border: 1px solid #ffa39e; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️ Xóa</button>
+                        style="padding: 5px 10px; background: #fff1f0; color: #d32f2f; border: 1px solid #ffa39e; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️</button>
                 </td>
             </tr>
         `;
     });
 
+    // Xử lý nút bấm phía dưới (Nếu xem thì chỉ có nút Đóng)
+    let htmlNutBam = '';
+    if (choPhepSua) {
+        htmlNutBam = `
+            <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                💾 XÁC NHẬN LƯU THAY ĐỔI
+            </button>
+            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 15px; background: #f1f3f4; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                HỦY
+            </button>
+        `;
+    } else {
+        htmlNutBam = `
+            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px;">
+                ⬅️ QUAY LẠI DANH SÁCH
+            </button>
+        `;
+    }
+
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `
         <div style="max-width: 1000px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #f39c12; margin-top: 0; display: flex; justify-content: space-between; align-items: center;">
-                <span>✏️ CHỈNH SỬA HỌC LIỆU: <small style="color:#666">${data.ma_hoc_lieu}</small></span>
-                <span id="lblSoCauHienTai" style="background: #f39c12; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Tổng: ${dsCauHoi.length} câu</span>
+            <h3 style="color: ${mauTieuDe}; margin-top: 0; display: flex; justify-content: space-between; align-items: center;">
+                <span>${tieuDe}: <small style="color:#666">${data.ma_hoc_lieu}</small></span>
+                <span id="lblSoCauHienTai" style="background: ${mauTieuDe}; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Tổng: ${dsCauHoi.length} câu</span>
             </h3>
 
             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div>
                     <label style="font-weight: bold; font-size: 13px;">Tên Học Liệu:</label>
-                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
                 </div>
                 <div>
                     <label style="font-weight: bold; font-size: 13px;">Trạng thái:</label>
-                    <select id="sua_trangThai" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                    <select id="sua_trangThai" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
                         <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
                         <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
                     </select>
                 </div>
                 <div>
                     <label style="font-weight: bold; font-size: 13px;">Thời gian (Phút):</label>
-                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
                 </div>
             </div>
 
@@ -1710,7 +1735,7 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
                                 <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu (Ẩn)</th>
                                 <th style="padding: 10px; border: 1px solid #ccc;">Mã Giải (Ẩn)</th>
                                 <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Đáp Án</th>
-                                <th style="padding: 10px; border: 1px solid #ccc; width: 60px;">Xóa</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 60px; ${hienThiCotXoa}">Xóa</th>
                             </tr>
                         </thead>
                         <tbody id="tbodySuaCauHoi">
@@ -1721,16 +1746,14 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
             </div>
 
             <div style="display: flex; gap: 12px;">
-                <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
-                    💾 XÁC NHẬN LƯU THAY ĐỔI
-                </button>
-                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 15px; background: #f1f3f4; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                    HỦY
-                </button>
+                ${htmlNutBam}
             </div>
         </div>
     `;
 }
+
+
+
 
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
@@ -1814,5 +1837,32 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
         alert("Lỗi: " + error.message);
         btnNode.disabled = false;
         btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+    }
+}
+
+
+// ==============================================================
+// Hàm 6.8: Xóa vĩnh viễn Học Liệu khỏi cơ sở dữ liệu
+// ==============================================================
+async function ham_6_8_xoa_hoc_lieu(maHocLieu, tenHocLieu) {
+    // 1. Cảnh báo bảo mật 2 lớp
+    const xacNhan = confirm(`⚠️ NGUY HIỂM:\nThầy có chắc chắn muốn XÓA VĨNH VIỄN học liệu:\n[ ${maHocLieu} ] - ${tenHocLieu}\n\nHành động này không thể hoàn tác!`);
+    if (!xacNhan) return;
+
+    try {
+        // 2. Bắn API Delete lên Supabase
+        const { error } = await _supabase
+            .from('hoc_lieu')
+            .delete()
+            .eq('ma_hoc_lieu', maHocLieu);
+
+        if (error) throw error;
+
+        // 3. Thông báo và tải lại bảng
+        alert('🗑️ Đã xóa học liệu thành công!');
+        ham_6_2_tai_danh_sach_hoc_lieu(); // Fetch lại dữ liệu mới nhất
+
+    } catch (error) {
+        alert('Lỗi khi xóa học liệu: ' + error.message);
     }
 }
