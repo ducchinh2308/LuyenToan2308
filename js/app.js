@@ -2129,8 +2129,13 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
 
     try {
-        // 1. Sinh mã NV tự động (NV_ + 6 ký tự số)
-        const maNV = "NV_" + Math.floor(100000 + Math.random() * 900000);
+        // 1. Sinh mã NV tự động (NV_ + 6 ký tự ngẫu nhiên Chữ & Số)
+        const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let chuoiNgauNhien = '';
+        for (let i = 0; i < 6; i++) {
+            chuoiNgauNhien += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
+        }
+        const maNV = "NV_" + chuoiNgauNhien;
 
         // 2. Lấy danh sách Học Liệu
         const { data: dsHocLieu } = await _supabase.from('hoc_lieu').select('*').order('ngay_tao', { ascending: false });
@@ -2142,18 +2147,43 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
             htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
         });
 
-        // 3. Lấy danh sách Lớp (Giả định thầy có bảng 'lop' trên Supabase, nếu chưa có nó sẽ hiện danh sách mẫu)
-        const { data: dsLop } = await _supabase.from('lop').select('*');
+        // 3. Lấy danh sách Lớp thực tế của hệ thống
+        let dsLop = [];
+
+        // ƯU TIÊN 1: Lấy ngay từ biến State của Khối Quản lý Lớp (Nếu thầy đã làm và đặt tên là BangLopState)
+        // Việc này giúp Form mở ra ngay lập tức mà không cần đợi load mạng
+        if (typeof BangLopState !== 'undefined' && BangLopState.duLieu && BangLopState.duLieu.length > 0) {
+            dsLop = BangLopState.duLieu;
+        } else {
+            // ƯU TIÊN 2: Nếu chưa có State, bắt buộc phải gọi Supabase. 
+            // ⚠️ LƯU Ý: Thầy hãy sửa chữ 'lop_hoc' dưới đây thành ĐÚNG TÊN BẢNG danh sách lớp trên Supabase của thầy nhé! (VD: 'lop', 'danh_sach_lop')
+            const { data, error } = await _supabase.from('lop_hoc').select('*');
+            if (!error && data) {
+                dsLop = data;
+            }
+        }
+
         let htmlLop = '';
-        if (dsLop && dsLop.length > 0) {
+        if (dsLop.length > 0) {
             dsLop.forEach(l => {
-                htmlLop += `<label style="display: inline-block; width: 120px; margin-bottom: 8px;"><input type="checkbox" class="chk-lop" value="${l.ma}"> ${l.ten}</label>`;
+                // Thuật toán nhận diện cột: Hệ thống tự rà quét xem bảng của thầy đang dùng tên cột là 'ma_lop' hay 'ma', 'ten_lop' hay 'ten'
+                const maLop = l.ma_lop || l.ma || l.id;
+                const tenLop = l.ten_lop || l.ten || l.name || maLop;
+
+                htmlLop += `
+                    <label style="display: inline-flex; align-items: center; width: 140px; margin-bottom: 10px; cursor: pointer;">
+                        <input type="checkbox" class="chk-lop" value="${maLop}" style="transform: scale(1.3); margin-right: 8px;"> 
+                        <span style="font-weight: bold; color: #1a73e8; font-size: 14px;">${tenLop}</span>
+                    </label>
+                `;
             });
         } else {
-            // Danh sách dự phòng nếu chưa kết nối bảng Lớp
-            ['12A1', '12A2', '12A3', '11A1', '10A1'].forEach(l => {
-                htmlLop += `<label style="display: inline-block; width: 100px; margin-bottom: 8px;"><input type="checkbox" class="chk-lop" value="${l}"> Lớp ${l}</label>`;
-            });
+            htmlLop = `
+                <div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px;">
+                    <span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span><br>
+                    <span style="font-size: 12px; color: #666;">Thầy vui lòng kiểm tra lại tên bảng trên Supabase (hiện đang query bảng 'lop_hoc').</span>
+                </div>
+            `;
         }
 
         // 4. Render HTML
