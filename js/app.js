@@ -1635,35 +1635,37 @@ function ham_6_5_tinh_toan_cau_truc() {
 }
 
 // ==============================================================
-// Hàm 6.6: Vẽ Form chỉnh sửa (Bổ sung Can thiệp Đáp án/Xóa câu)
+// Hàm 6.6: Vẽ Form chỉnh sửa (Đã sửa lỗi lệch cột HTML)
 // ==============================================================
 function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
     const dsCauHoi = data.danh_sach_cau_hoi || [];
-
     let htmlDanhSachCau = '';
+
     dsCauHoi.forEach((item, index) => {
         const parts = item.split('|');
 
-        // Bóc tách theo cấu trúc 4 thành phần mới
-        const maCauGoc = parts[0]; // Đây là cái thầy muốn thấy (ID6_...)
-        const maAoDe = parts[1];
-        const maAoGiai = parts[2];
-        const dapAnHienTai = parts[3] || '';
+        // Thuật toán thông minh: Tự nhận diện đề cũ (3 khúc) hay đề mới (4 khúc)
+        const isNewFormat = parts.length >= 4;
+        const maCauGoc = isNewFormat ? parts[0] : "Chưa cập nhật mã"; // Nếu đề cũ thì báo chưa có
+        const maAoDe = isNewFormat ? parts[1] : parts[0];
+
+        // Luôn luôn lấy phần tử cuối cùng của mảng làm Đáp án
+        const dapAnHienTai = parts[parts.length - 1];
 
         htmlDanhSachCau += `
             <tr id="row_cau_${index}" style="border-bottom: 1px solid #eee;">
                 <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
-                <td style="padding: 8px; font-weight: bold; color: #2c3e50;">${maCauGoc}</td>
+                <td style="padding: 8px; font-weight: bold; color: #1a73e8;">${maCauGoc}</td>
                 <td style="padding: 8px; color: #999; font-size: 11px; font-family: monospace;">${maAoDe}</td>
-                <td style="padding: 8px;">
+                <td style="padding: 8px; text-align: center;">
                     <input type="text" id="dapan_${index}" value="${dapAnHienTai}" 
-                        style="width: 70px; padding: 5px; border: 2px solid #1a73e8; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f;">
+                        style="width: 70px; padding: 6px; border: 2px solid #28a745; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f; outline: none;">
                 </td>
                 <td style="padding: 8px; text-align: center;">
-                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 4px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️</button>
+                    <button onclick="ham_6_xoa_cau_hoi_tam_thoi(${index})" style="padding: 5px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">🗑️ Xóa</button>
                 </td>
             </tr>
         `;
@@ -1696,17 +1698,18 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
             </div>
 
             <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                <h4 style="margin-top: 0; color: #d32f2f;">🔥 CAN THIỆP KHẨN CẤP (BẢN ĐỒ KHO BÁU)</h4>
-                <p style="font-size: 12px; color: #666;">Thầy có thể sửa chữ ở cột Đáp Án hoặc Bỏ câu hỏi bị sai đề. Nếu muốn Thêm câu, vui lòng dùng công cụ C# để xuất bản lại cho an toàn.</p>
+                <h4 style="margin-top: 0; color: #d32f2f;">🔥 CAN THIỆP KHẨN CẤP ĐÁP ÁN</h4>
+                <p style="font-size: 12px; color: #666;">Thầy có thể sửa trực tiếp vào ô Đáp Án bên dưới. Hệ thống sẽ tự động cập nhật điểm số theo đáp án mới này.</p>
                 
-                <div style="max-height: 250px; overflow-y: auto; border: 1px solid #ccc;">
+                <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white;">
-                        <thead style="background: #e9ecef; position: sticky; top: 0;">
+                        <thead style="background: #e9ecef; position: sticky; top: 0; z-index: 1;">
                             <tr>
-                                <th style="padding: 8px; border: 1px solid #ccc;">STT</th>
-                                <th style="padding: 8px; border: 1px solid #ccc;">Mã Câu (Khóa)</th>
-                                <th style="padding: 8px; border: 1px solid #ccc;">Đáp Án</th>
-                                <th style="padding: 8px; border: 1px solid #ccc;">Thao tác</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 40px;">STT</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu Gốc</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Ẩn (Hệ thống)</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 100px;">Đáp Án</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1729,7 +1732,6 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu) {
         </div>
     `;
 }
-
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
     const row = document.getElementById(`row_cau_${index}`);
@@ -1756,19 +1758,23 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
 
     if (!tenMoi) return alert("Tên Học Liệu không được để trống!");
 
-    // 1. Quét lại toàn bộ Bảng Đáp án để lập Bản đồ mới
     const banDoGoc = JSON.parse(document.getElementById('data_bando_goc').value);
     let banDoMoi = [];
 
     for (let i = 0; i < banDoGoc.length; i++) {
         const row = document.getElementById(`row_cau_${i}`);
+        // Bỏ qua các câu đã bị thầy nhấn nút Xóa
         if (row && row.dataset.deleted !== "true") {
             const dapAnMoi = document.getElementById(`dapan_${i}`).value.trim().toUpperCase();
-            const parts = banDoGoc[i].split('|');
 
-            // parts[0]: Mã Gốc, parts[1]: Mã Ảo Đề, parts[2]: Mã Ảo Giải
-            // Ráp lại đủ 4 món để không bị mất dữ liệu gốc
-            banDoMoi.push(`${parts[0]}|${parts[1]}|${parts[2]}|${dapAnMoi}`);
+            // Tách chuỗi hiện tại ra mảng
+            let parts = banDoGoc[i].split('|');
+
+            // Ghi đè đáp án mới vào đúng vị trí cuối cùng của mảng
+            parts[parts.length - 1] = dapAnMoi;
+
+            // Ráp lại thành chuỗi và đẩy vào Bản đồ mới
+            banDoMoi.push(parts.join('|'));
         }
     }
 
@@ -1778,20 +1784,19 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
     btnNode.innerText = "ĐANG ĐÓNG GÓI LẠI...";
 
     try {
-        // Lấy lại metadata cũ để update, nhưng đánh dấu là đã chỉnh sửa
         const hlHienTai = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
         let metaDataMoi = hlHienTai.metadata || {};
         metaDataMoi.da_chinh_sua_web = true;
 
-        // 2. Bắn API Update
+        // Bắn API Update
         const { error } = await _supabase
             .from('hoc_lieu')
             .update({
                 ten_hoc_lieu: tenMoi,
                 thoi_gian_lam_bai: thoiGianMoi,
                 trang_thai: trangThaiMoi,
-                danh_sach_cau_hoi: banDoMoi, // Ghi đè mảng mới
-                quy_mo_cau_hoi: banDoMoi.length, // Cập nhật lại tổng số câu
+                danh_sach_cau_hoi: banDoMoi,
+                quy_mo_cau_hoi: banDoMoi.length,
                 metadata: metaDataMoi
             })
             .eq('ma_hoc_lieu', maHocLieu);
@@ -1799,7 +1804,7 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
         if (error) throw error;
 
         alert("✅ Đã chốt sổ Bản đồ Kho báu và Thông tin mới!");
-        ham_6_2_tai_danh_sach_hoc_lieu(); // Tải lại bảng
+        ham_6_2_tai_danh_sach_hoc_lieu(); // Tải lại bảng danh sách
 
     } catch (error) {
         alert("Lỗi khi lưu dữ liệu: " + error.message);
