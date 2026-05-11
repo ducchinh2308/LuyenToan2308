@@ -1808,7 +1808,7 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
         if (error) throw error;
 
         alert("✅ Đã cập nhật học liệu thành công!");
-        ham_6_2_tai_danh_sach_hoc_lieu(); // Quay lại danh sách chính
+        ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (error) {
         alert("Lỗi: " + error.message);
