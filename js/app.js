@@ -2385,51 +2385,95 @@ function ham_7_3_c_xu_ly_hen_gio_cong_bo() {
 }
 
 // ==============================================================
-// Hàm 7.4: Lưu nhiệm vụ mới vào Database Supabase
+// Hàm 7.4: Thu thập dữ liệu Form và Lưu Nhiệm vụ mới
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
-    const ten = document.getElementById('add_nv_ten').value.trim();
+    // 1. Thu thập các ô Input Text / Select cơ bản
+    const tenNV = document.getElementById('add_nv_ten').value.trim();
+    const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
-    const lop = document.getElementById('add_nv_lop').value.trim();
-    const dao = document.getElementById('add_nv_dao').value === 'true';
+    const trangThai = document.getElementById('add_nv_trangthai').value;
+    const soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
     const mo = document.getElementById('add_nv_mo').value;
     const dong = document.getElementById('add_nv_dong').value;
 
-    if (!ten || !maHL || !lop) {
-        return alert("Thầy vui lòng điền đầy đủ Tên nhiệm vụ, Lớp giao và Chọn đề thi nhé!");
-    }
+    // 2. Thu thập danh sách lớp đã được check
+    const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
+    const dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
 
-    // Nếu có nhập cả giờ mở và giờ đóng, kiểm tra logic thời gian
+    // Bắt lỗi dữ liệu (Validate)
+    if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
+    if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
+    if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
+
+    // Kiểm tra logic thời gian
     if (mo && dong) {
         if (new Date(mo) >= new Date(dong)) {
-            return alert("Lỗi: Thời gian đóng phải sau thời gian mở!");
+            return alert("❌ Lỗi thời gian: Thời gian kết thúc phải nằm SAU thời gian bắt đầu!");
         }
     }
 
+    // 3. Xử lý thông tin ngầm từ Học liệu (Chỉ lấy nếu có dùng Học liệu)
+    let quyMo = 0;
+    let cauTruc = '';
+    if (maHL !== "KHONG_DUNG") {
+        const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
+        if (hlData) {
+            quyMo = hlData.quy_mo_cau_hoi || 0;
+            cauTruc = (hlData.metadata && hlData.metadata.cau_truc) ? hlData.metadata.cau_truc : '';
+        }
+    }
+
+    // 4. Xử lý logic cấu hình Đáp án & Lời giải
+    let cauHinhDapAn = document.getElementById('add_nv_cauhinh_dapan').value;
+    if (cauHinhDapAn === "HEN_GIO") {
+        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
+        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ công bố thì phải nhập Giờ vào nhé!");
+        // Lưu gộp theo chuẩn: KieuCongBo|ThoiGian
+        cauHinhDapAn = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
+    }
+
+    // 5. Trạng thái tạo file giải
+    const taoFileGiai = document.getElementById('add_nv_taofilegiai').checked ? 'DANG_XU_LY' : 'CHO_DONG_GOI';
+
+    // Đổi trạng thái Nút để tránh bấm 2 lần
     btnNode.disabled = true;
-    btnNode.innerText = "ĐANG TẠO NHIỆM VỤ...";
+    btnNode.innerText = "⏳ ĐANG KHỞI TẠO NHIỆM VỤ...";
 
     try {
-        const { error } = await _supabase.from('nhiem_vu').insert([{
+        // 6. Bắn lệnh Insert lên Supabase
+        const payload = {
             ma_nhiem_vu: maNV,
-            ten_nhiem_vu: ten,
-            ma_hoc_lieu: maHL,
-            lop_giao: lop,
+            ten_nhiem_vu: tenNV,
+            loai_nhiem_vu: loaiNV,
+            ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
+            khoi_lop: document.getElementById('add_nv_khoi').value,
+            loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
+            quy_mo_cau_hoi: quyMo,
+            cau_truc_de: cauTruc,
+            danh_sach_lop: JSON.stringify(dsLopChon), // Ép mảng thành chuỗi JSON để lưu cho an toàn
             thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
             thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-            dao_cau_hoi: dao,
-            trang_thai: 'dang_mo', // Trạng thái mặc định ban đầu
-            uid_gv_tao: AppState.user.uid,
+            so_luot_lam_bai: soLuot,
+            cau_hinh_dap_an: cauHinhDapAn,
+            trang_thai_loi_giai: taoFileGiai,
+            trang_thai: trangThai,
+            // Nếu có hệ thống đăng nhập, lấy UID GV. Nếu test thì để mặc định
+            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : 'Admin',
             ngay_tao: new Date().toISOString()
-        }]);
+        };
+
+        const { error } = await _supabase.from('nhiem_vu').insert([payload]);
 
         if (error) throw error;
 
-        alert("✅ Đã tạo nhiệm vụ giao bài thành công!");
-        ham_7_1_ve_quan_ly_nhiem_vu(); // Quay về danh sách để xem thành quả
+        alert(`✅ Phù... Giao bài thành công!\nMã nhiệm vụ: ${maNV}`);
+
+        // Sinh xong thì load lại cái Bảng danh sách Nhiệm Vụ
+        ham_7_1_ve_quan_ly_nhiem_vu();
 
     } catch (error) {
-        alert("Lỗi khi tạo nhiệm vụ: " + error.message);
+        alert("Lỗi máy chủ khi tạo nhiệm vụ: " + error.message);
         btnNode.disabled = false;
         btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
     }
