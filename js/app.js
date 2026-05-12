@@ -297,8 +297,24 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
                 ham_3_1_ve_dashboard_admin();
             } else {
-                alert("Chào học sinh! Hệ thống đang chuyển vào phòng thi.");
-                // Sau này sẽ gọi hàm: ham_3_2_ve_dashboard_hocsinh();
+
+                // ====================================================
+                // KÍCH HOẠT GIAO DIỆN HỌC SINH (GỌI KHỐI 8)
+                // ====================================================
+                // 1. Ẩn form đăng nhập, hiện nút đăng xuất
+                document.getElementById('khung-dang-nhap').style.display = 'none';
+                document.getElementById('btnLogout').style.display = 'inline-block';
+                document.getElementById('dashboard-container').style.display = 'block';
+
+                // 2. Lấy mã lớp của học sinh (Từ mảng danh_sach_ma_lop lúc đăng ký)
+                let maLopHocSinh = "";
+                if (AppState.user.danh_sach_ma_lop && AppState.user.danh_sach_ma_lop.length > 0) {
+                    maLopHocSinh = AppState.user.danh_sach_ma_lop[0];
+                }
+
+                // 3. Gọi hàm tải nhiệm vụ từ file khoi8_lambai.js
+                ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, maLopHocSinh, AppState.user.ten);
+
             }
         } catch (error) {
             errorMsg.innerText = error.message;

@@ -21,7 +21,7 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh
     GocHocSinhState.ma_lop = maLopHocSinh;
     GocHocSinhState.ten = tenHocSinh;
 
-    const renderArea = document.getElementById('vung-lam-viec-chinh'); // Tùy vào ID vùng hiển thị của thầy
+    const renderArea = document.getElementById('dashboard-container');
     if (!renderArea) return;
 
     renderArea.innerHTML = `<div style="text-align: center; padding: 50px;"><h3 style="color:#1a73e8;">⏳ Đang tải bài tập của bạn...</h3></div>`;
