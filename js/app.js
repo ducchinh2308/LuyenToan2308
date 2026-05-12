@@ -1097,7 +1097,9 @@ function ham_4_12_b_tao_list_hs_sua(danhSach, idsDaCo) {
 
 
 
-// Hàm 4.13: Lưu cập nhật toàn diện lớp học
+// ==============================================================
+// Hàm 4.13: Lưu cập nhật toàn diện lớp học (CÓ ĐỒNG BỘ HỌC SINH)
+// ==============================================================
 async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
     const tenMoi = document.getElementById('txtTenLopSua').value.trim();
     const trangThaiMoi = parseInt(document.getElementById('selTrangThaiLopSua').value);
@@ -1109,23 +1111,68 @@ async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
     if (!tenMoi) return alert("Thầy vui lòng không để trống Tên lớp!");
 
     btn.disabled = true;
-    btn.innerText = "ĐANG CẬP NHẬT...";
+    btn.innerText = "⏳ ĐANG ĐỒNG BỘ...";
 
     try {
-        const { error } = await _supabase
+        // BƯỚC 1: LẤY DỮ LIỆU LỚP CŨ ĐỂ TÌM SỰ THAY ĐỔI (AI VÀO, AI RA)
+        const { data: lopCu } = await _supabase
+            .from('lop_hoc')
+            .select('hoc_sinh_ids')
+            .eq('ma_lop', maLop)
+            .single();
+
+        const mangUidCu = lopCu?.hoc_sinh_ids || [];
+
+        // BƯỚC 2: CẬP NHẬT THÔNG TIN VÀO BẢNG 'lop_hoc'
+        const { error: errLop } = await _supabase
             .from('lop_hoc')
             .update({
                 ten_lop: tenMoi,
                 trang_thai: trangThaiMoi,
-                hoc_sinh_ids: mangUidMoi
+                hoc_sinh_ids: mangUidMoi // Truyền mảng trực tiếp
             })
             .eq('ma_lop', maLop);
 
-        if (error) throw error;
+        if (errLop) throw errLop;
 
-        alert(`Đã cập nhật thành công lớp ${maLop}!`);
-        ham_4_1_ve_quan_ly_lop();
-        ham_4_4_tai_danh_sach_lop(); // Tải lại bảng lớp
+        // BƯỚC 3: ĐỒNG BỘ HỒ SƠ CHO TỪNG HỌC SINH (Tìm ai thêm, ai bị loại)
+        const dsThem = mangUidMoi.filter(id => !mangUidCu.includes(id));
+        const dsLoai = mangUidCu.filter(id => !mangUidMoi.includes(id));
+        const tatCaHsAnhHuong = [...new Set([...dsThem, ...dsLoai])];
+
+        if (tatCaHsAnhHuong.length > 0) {
+            for (const uid of tatCaHsAnhHuong) {
+                // Lấy mảng mã lớp hiện tại của học sinh
+                const { data: hsData } = await _supabase
+                    .from('hoc_sinh')
+                    .select('danh_sach_ma_lop')
+                    .eq('uid', uid)
+                    .single();
+
+                let dsLopCuaHS = hsData?.danh_sach_ma_lop || [];
+                if (!Array.isArray(dsLopCuaHS)) dsLopCuaHS = [];
+
+                if (dsThem.includes(uid)) {
+                    // Nếu là học sinh mới được tích: Ghi danh
+                    if (!dsLopCuaHS.includes(maLop)) dsLopCuaHS.push(maLop);
+                } else if (dsLoai.includes(uid)) {
+                    // Nếu là học sinh bị bỏ tích: Xóa mã lớp này đi
+                    dsLopCuaHS = dsLopCuaHS.filter(m => m !== maLop);
+                }
+
+                // Cập nhật lại vào Database
+                await _supabase
+                    .from('hoc_sinh')
+                    .update({ danh_sach_ma_lop: dsLopCuaHS })
+                    .eq('uid', uid);
+            }
+        }
+
+        alert(`✅ Đã cập nhật thành công lớp ${maLop} và đồng bộ học sinh!`);
+
+        // BƯỚC 4: VỀ GIAO DIỆN CHÍNH RỒI MỚI TẢI LẠI (Fix dứt điểm lỗi null)
+        ham_4_1_ve_quan_ly_lop(); // Dựng lại HTML chứa id 'danh-sach-lop-render'
+        ham_4_4_tai_danh_sach_lop(); // Lúc này gọi load dữ liệu là an toàn 100%
 
     } catch (error) {
         alert("Lỗi cập nhật: " + error.message);
@@ -1134,7 +1181,6 @@ async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
         btn.innerText = "LƯU THAY ĐỔI";
     }
 }
-
 
 
 // ==============================================================================
