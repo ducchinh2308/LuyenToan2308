@@ -1,16 +1,20 @@
-﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "khoi8_lambai.js cập nhật lúc 18h27 - Ngày 12/05";
+﻿// ==============================================================
+// KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
+// ==============================================================
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 18h27 - Ngày 12/05";
 
-// In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
-console.log(`%c🚀 HỆ THỐNG ĐANG CHẠY BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+// In ra Console với màu Xanh lá để phân biệt với màu Cam của app.js
+console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
-// Nếu thầy lười mở F12, thầy có thể cho nó in luôn một dòng chữ mờ mờ ở góc dưới màn hình:
-window.onload = () => {
+// Dùng addEventListener để KHÔNG ghi đè lệnh onload của app.js
+window.addEventListener('load', () => {
     let versionBadge = document.createElement('div');
-    versionBadge.innerHTML = `Phiên bản: ${APP_VERSION}`;
-    versionBadge.style.cssText = "position: fixed; bottom: 5px; right: 5px; font-size: 11px; color: #aaa; z-index: 9999;";
+    versionBadge.innerHTML = KHOI8_VERSION;
+    // Dịch lên bottom: 20px để nằm ngay trên dòng của app.js
+    versionBadge.style.cssText = "position: fixed; bottom: 20px; right: 5px; font-size: 11px; color: #28a745; z-index: 9999; font-weight: bold;";
     document.body.appendChild(versionBadge);
-};
+});
+// ==============================================================
 
 
 
