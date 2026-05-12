@@ -24,22 +24,45 @@ const GocHocSinhState = {
 };
 
 // ==============================================================
-// Hàm 8.1: Dựng Bộ Khung Giao Diện (App Shell)
+// Hàm 8.1: Dựng Bộ Khung Giao Diện (ĐÃ NÂNG CẤP HIỂN THỊ TÊN LỚP)
 // ==============================================================
-function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
-    // 🌟 Lưu vào State dạng Mảng
+async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
+    // 1. Lưu vào State
     GocHocSinhState.uid = uidHocSinh;
-    GocHocSinhState.danh_sach_ma_lop = dsMaLopHocSinh || []; // Lưu cả mảng
+    GocHocSinhState.danh_sach_ma_lop = dsMaLopHocSinh || [];
     GocHocSinhState.ten = tenHocSinh;
 
     const renderArea = document.getElementById('dashboard-container');
     if (!renderArea) return alert("Lỗi: Không tìm thấy khung hiển thị!");
 
-    // 🌟 Ráp các mã lớp thành chuỗi để hiển thị đẹp (VD: 12A1, 12A2, Nâng Cao)
-    const chuoiHienThiLop = GocHocSinhState.danh_sach_ma_lop.length > 0
-        ? GocHocSinhState.danh_sach_ma_lop.join(', ')
-        : 'Chưa cập nhật lớp';
+    // 2. Hiện trạng thái chờ (Vì cần 1 chút thời gian để tra cứu tên lớp)
+    renderArea.innerHTML = `<div style="text-align:center; padding: 50px; color: #1a73e8; font-weight:bold;">⏳ Đang thiết lập không gian học tập...</div>`;
 
+    // 🌟 3. TRA CỨU TÊN LỚP TỪ DATABASE
+    let chuoiHienThiLop = "Chưa cập nhật lớp";
+
+    if (GocHocSinhState.danh_sach_ma_lop.length > 0) {
+        try {
+            // Lấy cột 'ten_lop' của những lớp nằm trong danh sách mã lớp
+            const { data: dsLop, error } = await _supabase
+                .from('lop_hoc')
+                .select('ten_lop')
+                .in('ma_lop', GocHocSinhState.danh_sach_ma_lop);
+
+            if (!error && dsLop && dsLop.length > 0) {
+                // Rút trích mảng tên lớp và ghép lại bằng dấu phẩy
+                chuoiHienThiLop = dsLop.map(l => l.ten_lop).join(', ');
+            } else {
+                // Nếu không tìm thấy tên, tạm hiện Mã lớp
+                chuoiHienThiLop = GocHocSinhState.danh_sach_ma_lop.join(', ');
+            }
+        } catch (err) {
+            // Dự phòng lỗi mạng
+            chuoiHienThiLop = GocHocSinhState.danh_sach_ma_lop.join(', ');
+        }
+    }
+
+    // 4. RÁP GIAO DIỆN CHÍNH
     renderArea.innerHTML = `
         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 1200px; margin: 0 auto;">
             
@@ -62,61 +85,80 @@ function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
         </div>
     `;
 
+    // 5. Mặc định mở Tab Nhiệm vụ khi vừa tải xong khung
     ham_8_2_tab_nhiem_vu_bat_buoc();
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (FIX LỖI SO SÁNH THỜI GIAN)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP ĐA LỚP & CHI TIẾT NHIỆM VỤ)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tải bài tập của Lớp...</h3></div>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tổng hợp bài tập từ các lớp...</h3></div>`;
 
     try {
-        const { data: dsNV, error } = await _supabase
+        // 1. TẠO CHUỖI TRUY VẤN TÌM NHIỀU LỚP
+        let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
+        if (dsLop.length === 0) dsLop = ["#HOC_SINH_CHUA_CO_LOP#"];
+
+        // Sinh chuỗi dạng: danh_sach_lop.cs.["12A1"],danh_sach_lop.cs.["12A2"]
+        const orQuery = dsLop.map(ma => `danh_sach_lop.cs.[${JSON.stringify(ma)}]`).join(',');
+
+        // 2. LẤY NHIỆM VỤ TỪ DATABASE
+        const { data: dsNV, error: errNV } = await _supabase
             .from('nhiem_vu')
             .select('*')
             .eq('trang_thai', 1)
-            .contains('danh_sach_lop', JSON.stringify([GocHocSinhState.ma_lop]))
+            .or(orQuery) // 🌟 Dùng .or để tìm trong tất cả các lớp của HS
             .order('ngay_tao', { ascending: false });
 
-        if (error) throw error;
+        if (errNV) throw errNV;
         GocHocSinhState.danhSachNhiemVu = dsNV || [];
+        console.log(`📦 Tìm thấy: ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ thuộc các lớp: ${dsLop.join(', ')}`);
 
-        // 🌟 IN KẾT QUẢ RA CONSOLE (F12) ĐỂ KIỂM TRA
-        console.log(`📦 Tìm thấy: ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ cho lớp ${GocHocSinhState.ma_lop}`);
+        // 3. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
+        let tuDienLop = {};
+        let tuDienGv = {};
+        let tapUidGv = new Set();
 
-        // Lấy giờ hiện tại chuẩn của thiết bị
+        // 3.1. Lấy Tên lớp và UID Giáo viên tạo lớp
+        const { data: dataLop } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop, uid_gv_tao').in('ma_lop', dsLop);
+        if (dataLop) {
+            dataLop.forEach(l => {
+                tuDienLop[l.ma_lop] = l.ten_lop;
+                if (l.uid_gv_tao) tapUidGv.add(l.uid_gv_tao);
+            });
+        }
+
+        // 3.2. Gom thêm UID giáo viên tạo nhiệm vụ (nếu có)
+        GocHocSinhState.danhSachNhiemVu.forEach(nv => {
+            if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao);
+        });
+
+        // 3.3. Truy vấn lấy Tên giáo viên
+        if (tapUidGv.size > 0) {
+            const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
+            if (dataGv) {
+                dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten);
+            }
+        }
+
+        // 4. PHÂN LOẠI NHIỆM VỤ
         const now = new Date();
-
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
 
-        // 🌟 BÍ KÍP XỬ LÝ TIMEZONE AN TOÀN
-        const anToanThoiGian = (chuoiThoiGian) => {
-            if (!chuoiThoiGian) return null;
-            // Nếu chuỗi có chữ Z ở cuối, JS sẽ tự động dịch UTC -> Giờ địa phương khi new Date()
-            // Nếu không có, ta ép nó hiểu theo chuẩn ISO để tránh lệch múi giờ
-            return new Date(chuoiThoiGian);
-        };
+        const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
 
         GocHocSinhState.danhSachNhiemVu.forEach(nv => {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
 
-            // LOGIC PHÂN LOẠI CHUẨN
-            if (tMo && now.getTime() < tMo.getTime()) {
-                // Hiện tại nhỏ hơn giờ mở -> CHƯA MỞ
-                dsChuaMo.push(nv);
-            } else if (tDong && now.getTime() > tDong.getTime()) {
-                // Hiện tại lớn hơn giờ đóng -> ĐÃ ĐÓNG
-                dsDaDong.push(nv);
-            } else {
-                // Không lọt 2 trường hợp trên -> ĐANG MỞ
-                dsDangMo.push(nv);
-            }
+            if (tMo && now.getTime() < tMo.getTime()) dsChuaMo.push(nv);
+            else if (tDong && now.getTime() > tDong.getTime()) dsDaDong.push(nv);
+            else dsDangMo.push(nv);
         });
 
-        // 🌟 HÀM PHỤ: Tính toán khoảng thời gian sinh động
+        // 🌟 HÀM PHỤ 1: Đếm ngược thời gian còn lại
         const tinhThoiGian = (targetDate, isPast) => {
             if (!targetDate) return "";
             const diff = isPast ? (now.getTime() - targetDate.getTime()) : (targetDate.getTime() - now.getTime());
@@ -131,28 +173,53 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             if (h > 0) str += `${h} giờ `;
             if (m > 0 && d === 0) str += `${m} phút`;
 
-            return isPast ? `(Đã mở: ${str})` : `(Còn lại: ${str})`;
+            return isPast ? `(Mở cách đây ${str})` : `(Còn ${str})`;
         };
 
-        // 🌟 HÀM PHỤ: VẼ GIAO DIỆN THẺ (CARD)
+        // 🌟 HÀM PHỤ 2: Tính thời gian trôi qua (Cách đây bao lâu)
+        const thoiGianTroiQua = (dateStr) => {
+            if (!dateStr) return "Không rõ";
+            const date = new Date(dateStr);
+            const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+            let interval = seconds / 86400;
+            if (interval > 1) return Math.floor(interval) + " ngày trước";
+            interval = seconds / 3600;
+            if (interval > 1) return Math.floor(interval) + " giờ trước";
+            interval = seconds / 60;
+            if (interval > 1) return Math.floor(interval) + " phút trước";
+            return "Vừa xong";
+        };
+
+        // 🌟 HÀM PHỤ 3: VẼ GIAO DIỆN THẺ (CARD)
         const renderCard = (nv, loai) => {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
+            const tTao = nv.ngay_tao;
 
-            // Format thời gian hiển thị cực chuẩn theo giờ Việt Nam
             const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
             const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
 
-            let cauTrucText = "Chưa có thông tin";
-            if (nv.cau_truc_de) {
-                cauTrucText = nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de;
-            }
+            // Xử lý Cấu trúc đề & Số lượt
+            const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
             const quyMoText = (nv.quy_mo_cau_hoi && nv.quy_mo_cau_hoi > 0) ? `Tổng: ${nv.quy_mo_cau_hoi} câu` : "";
+
+            // Tra cứu Lớp học của nhiệm vụ này
+            let tenLopHienThi = "Không xác định";
+            try {
+                const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+                // Tìm những mã lớp trùng với danh sách lớp của học sinh, rồi lấy tên
+                const cacLopKhop = mangLopCuaNV.filter(m => dsLop.includes(m)).map(m => tuDienLop[m] || m);
+                if (cacLopKhop.length > 0) tenLopHienThi = cacLopKhop.join(', ');
+            } catch (e) { }
+
+            // Tra cứu Giáo viên
+            const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
 
             let nutHanhDong = "", mauVien = "", mauNen = "";
             if (loai === 'DANG_MO') {
                 mauVien = "#28a745"; mauNen = "#f4fdf6";
-                nutHanhDong = `<button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">🚀 VÀO LÀM BÀI</button>`;
+                nutHanhDong = `<button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
             } else if (loai === 'CHUA_MO') {
                 mauVien = "#ffc107"; mauNen = "#fffbf0";
                 nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
@@ -164,33 +231,41 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return `
                 <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
                     
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                         <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
-                        <span style="font-size: 11px; padding: 4px 8px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 12px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
+                        <span style="font-size: 10px; padding: 4px 6px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 4px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
                             ${nv.loai_nhiem_vu}
                         </span>
                     </div>
 
+                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 12px; color: #555; border: 1px dashed #ddd;">
+                        <div style="margin-bottom: 4px;">🎯 <b>Môn/Lớp:</b> <span style="color: #1a73e8; font-weight:bold;">${tenLopHienThi}</span></div>
+                        <div style="margin-bottom: 4px;">👤 <b>Giao bởi:</b> <span>${tenGV}</span></div>
+                        <div>🕒 <b>Ngày tạo:</b> ${fTime(new Date(tTao))} <span style="color:#d35400; font-style: italic;">(${thoiGianTroiQua(tTao)})</span></div>
+                    </div>
+
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
-                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;">
-                            ⏱️ Làm bài: <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
+                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
+                            ⏱️ <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
                         </span>
-                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;" title="${cauTrucText}">
-                            📦 <b>${quyMoText}</b> (Cấu trúc: ${cauTrucText})
+                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
+                            📦 <b>${quyMoText}</b>
                         </span>
-                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;">
+                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
                             🔄 Lượt: <b>0 / ${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</b>
                         </span>
                     </div>
 
-                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 15px; font-size: 13px; border-left: 3px solid #ced4da;">
+                    <div style="margin-bottom: 15px; font-size: 13px;">
                         <div style="margin-bottom: 5px;">
                             <span style="color: #28a745; font-weight: bold;">🟢 MỞ:</span> ${fTime(tMo)} 
                             <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhThoiGian(tMo, true) : ""}</span>
                         </div>
                         <div>
                             <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG:</span> ${fTime(tDong)}
-                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold;">${tDong && now.getTime() < tDong.getTime() ? tinhThoiGian(tDong, false) : ""}</span>
+                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold; background: #fff3cd; padding: 2px 4px; border-radius: 3px;">
+                                ${tDong && now.getTime() < tDong.getTime() ? tinhThoiGian(tDong, false) : ""}
+                            </span>
                         </div>
                     </div>
 
