@@ -2201,7 +2201,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                             <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
                             <select id="add_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
                                 <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}">📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
-                                <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}">📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
+                                <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}"selected>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
                             </select>
                             <p style="font-size: 11px; color: #666; margin-top: 8px; font-style: italic;">
                                 🛡️ <strong style="color:#d35400;">Bảo mật:</strong> File Lời giải đang được mã hóa ẩn. Hệ thống chỉ bắt đầu tiến hành dịch và ráp file khi có Lệnh hoặc khi đến Thời điểm công bố.
