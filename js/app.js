@@ -2633,7 +2633,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
                 loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
                 quy_mo_cau_hoi: quyMo,
                 cau_truc_de: cauTruc,
-                danh_sach_lop: JSON.stringify([maLop]), // LƯU Ý: Phải parse thành chuỗi JSON để không lỗi định dạng DB
+                danh_sach_lop: [maLop], //JSON.stringify([maLop]), // LƯU Ý: Phải parse thành chuỗi JSON để không lỗi định dạng DB
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
                 thoi_gian_lam_bai: tgLamBai,
@@ -3257,7 +3257,7 @@ async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
                 ten_nhiem_vu: tenNV,
                 khoi_lop: khoi,
                 loai_kiem_tra: loaiKT,
-                danh_sach_lop: JSON.stringify(dsLopChon),
+                danh_sach_lop: dsLopChon, //JSON.stringify(dsLopChon),
                 thoi_gian_lam_bai: tgLamBai,
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
