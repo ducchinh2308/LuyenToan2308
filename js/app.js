@@ -1871,7 +1871,6 @@ async function ham_6_8_xoa_hoc_lieu(maHocLieu, tenHocLieu) {
 
 
 
-
 // ==============================================================================
 // KHỐI 7: QUẢN LÝ NHIỆM VỤ - GIAO BÀI (BẢNG nhiem_vu)
 // ==============================================================================
@@ -1880,6 +1879,35 @@ const BangNhiemVuState = {
     duLieu: [],
     cotDangSort: 'ngay_tao',
     tangDan: false
+};
+
+// ==============================================================================
+// TỪ ĐIỂN HẰNG SỐ CẤU HÌNH NHIỆM VỤ (Chỉ sửa ở đây nếu muốn thay đổi)
+// ==============================================================================
+const CFG_NV = {
+    DAO_DE: {
+        KHONG: "KHONG_DAO",
+        CO_BAN: "DAO_CAU_ABCD",     // Đảo Câu + ABCD
+        TOAN_DIEN: "DAO_CAU_ABCD_DS" // Đảo Câu + ABCD + Ý Đúng/Sai
+    },
+    THOI_DIEM: {
+        KHOA: "KHOA_HOAN_TOAN",
+        SAU_NOP: "SAU_KHI_NOP",
+        SAU_HET_HAN: "SAU_KHI_HET_HAN",
+        HEN_GIO: "HEN_GIO"
+    },
+    MUC_DO: {
+        KHONG: "NONE",
+        DAPAN_DIEM: "CHI_DAPAN",
+        FULL_LOIGIAI: "FULL_LOIGIAI"
+    },
+    FILE_GIAI: {
+        CHUA_LENH: "CHUA_CO_LENH",
+        DANG_CHO: "DANG_CHO_RAP_FILE",
+        DANG_XU_LY: "DANG_XU_LY",
+        HOAN_THANH: "DA_HOAN_THANH",
+        LOI: "LOI_DONG_GOI"
+    }
 };
 
 // Hàm 7.1: Vẽ bộ khung giao diện Quản lý Nhiệm Vụ
@@ -1913,17 +1941,17 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
         const { data: dsNhiemVu, error } = await _supabase.from('nhiem_vu').select('*').order('ngay_tao', { ascending: false });
         if (error) throw error;
 
-        // Bổ sung lấy tên GV tương tự khối 6
         const danhSachUidGv = [...new Set((dsNhiemVu || []).map(nv => nv.uid_gv_tao).filter(id => id))];
         let tuDienTenGv = {};
         if (danhSachUidGv.length > 0) {
+            // Thay 'hoc_sinh' thành bảng GV thực tế của thầy nếu cần
             const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
             if (dsGv) dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
         }
 
         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
             ...nv,
-            ten_gv_giao: tuDienTenGv[nv.uid_gv_giao] || 'Không xác định'
+            ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định'
         }));
 
         ham_7_10_ve_bang_nhiem_vu();
@@ -1932,9 +1960,7 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
     }
 }
 
-// ==============================================================
-// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Hiển thị trực quan)
-// ==============================================================
+// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ
 function ham_7_10_ve_bang_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
@@ -1943,13 +1969,12 @@ function ham_7_10_ve_bang_nhiem_vu() {
         renderArea.innerHTML = `
             <div style="text-align: center; padding: 30px; background: white; border-radius: 8px; border: 1px dashed #ccc;">
                 <h4 style="color: #666;">Chưa có nhiệm vụ giao bài nào.</h4>
-                <p style="font-size: 13px; color: #999;">Hãy bấm "+ Tạo Nhiệm Vụ Mới" để bắt đầu giao bài cho học sinh nhé.</p>
             </div>`;
         return;
     }
 
     let htmlTable = `
-        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
             <table style="width: 100%; min-width: 1300px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <tr>
@@ -1974,85 +1999,56 @@ function ham_7_10_ve_bang_nhiem_vu() {
         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
-        // 1. Tính toán Tình trạng thực tế
         let textTinhTrang = "";
-        // Nếu giáo viên chủ động chọn trạng thái là 0 (Đóng/Tạm dừng)
-        if (nv.trang_thai === '0' || nv.trang_thai === 0) {
-            textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#e9ecef; color:#495057; border-radius:4px; font-weight:bold; font-size:11px;">⏸️ ĐÃ KHÓA</span>`;
-        } else {
-            // Xét theo thời gian
-            if (!timeMo && !timeDong) {
-                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#e3f2fd; color:#0d47a1; border-radius:4px; font-weight:bold; font-size:11px;">♾️ VÔ HẠN</span>`;
-            } else if (timeMo && now < timeMo) {
-                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#fff3cd; color:#856404; border-radius:4px; font-weight:bold; font-size:11px;">⏳ CHƯA MỞ</span>`;
-            } else if (timeDong && now > timeDong) {
-                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#f8d7da; color:#721c24; border-radius:4px; font-weight:bold; font-size:11px;">🛑 ĐÃ ĐÓNG</span>`;
-            } else {
-                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#d4edda; color:#155724; border-radius:4px; font-weight:bold; font-size:11px;">▶️ ĐANG MỞ</span>`;
-            }
+        if (nv.trang_thai === '0' || nv.trang_thai === 0) textTinhTrang = `<span style="padding:4px 8px; background:#e9ecef; color:#495057; border-radius:4px; font-weight:bold; font-size:11px;">⏸️ ĐÃ KHÓA</span>`;
+        else {
+            if (!timeMo && !timeDong) textTinhTrang = `<span style="padding:4px 8px; background:#e3f2fd; color:#0d47a1; border-radius:4px; font-weight:bold; font-size:11px;">♾️ VÔ HẠN</span>`;
+            else if (timeMo && now < timeMo) textTinhTrang = `<span style="padding:4px 8px; background:#fff3cd; color:#856404; border-radius:4px; font-weight:bold; font-size:11px;">⏳ CHƯA MỞ</span>`;
+            else if (timeDong && now > timeDong) textTinhTrang = `<span style="padding:4px 8px; background:#f8d7da; color:#721c24; border-radius:4px; font-weight:bold; font-size:11px;">🛑 ĐÃ ĐÓNG</span>`;
+            else textTinhTrang = `<span style="padding:4px 8px; background:#d4edda; color:#155724; border-radius:4px; font-weight:bold; font-size:11px;">▶️ ĐANG MỞ</span>`;
         }
 
-        // 2. Xử lý hiển thị Danh sách lớp (từ chuỗi JSON sang dạng văn bản đọc được)
         let lopHienThi = '';
         try {
             let arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : nv.danh_sach_lop;
             if (Array.isArray(arrLop)) lopHienThi = arrLop.join(', ');
             else lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
-        } catch (e) {
-            lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
-        }
+        } catch (e) { lopHienThi = nv.danh_sach_lop || 'Chưa phân công'; }
 
-        // 3. Xử lý hiển thị cấu hình Đảo đề (Từ JSON)
-        let bieuTuongDao = '<span style="color: #ccc; font-size: 13px;" title="Cố định thứ tự gốc">⏸️ Không đảo</span>';
+        // Bóc tách JSON hiển thị đảo đề
+        let bieuTuongDao = '<span style="color: #ccc; font-size: 13px;" title="Cố định">⏸️ Không đảo</span>';
         if (nv.dao_cau_hoi) {
             try {
                 let dao = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
-                if (dao.cau && dao.abcd && dao.ds) {
-                    bieuTuongDao = '<span style="color: #d35400; font-size: 13px; font-weight:bold;" title="Đảo Câu, Đảo ABCD, Đảo ý ĐS">🌪️ Đảo toàn bộ</span>';
-                } else if (dao.cau && dao.abcd) {
-                    bieuTuongDao = '<span style="color: #28a745; font-size: 13px; font-weight:bold;" title="Đảo Câu & Đảo ABCD">🔀 Đảo cơ bản</span>';
-                }
+                if (dao.cau && dao.abcd && dao.ds) bieuTuongDao = '<span style="color: #d35400; font-size: 13px; font-weight:bold;">🌪️ Đảo toàn bộ</span>';
+                else if (dao.cau && dao.abcd) bieuTuongDao = '<span style="color: #28a745; font-size: 13px; font-weight:bold;">🔀 Đảo cơ bản</span>';
             } catch (e) { }
         }
 
-
-
-        // 4. Format thời gian đẹp mắt
         const formatTime = (dateObj) => {
             if (!dateObj) return '<span style="color:#aaa;">-</span>';
             return dateObj.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
         };
 
-        // 5. Build từng dòng của bảng
         htmlTable += `
-            <tr onclick="/* ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', false) (Sẽ làm sau) */" 
-                style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;"
-                onmouseover="this.style.background='#f4f8ff'" onmouseout="this.style.background='white'">
-                
+            <tr style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f4f8ff'" onmouseout="this.style.background='white'">
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #555;">${index + 1}</td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-                    <button onclick="event.stopPropagation(); alert('Chức năng sửa sẽ cập nhật sau');" style="padding: 5px 10px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">Sửa</button>
+                    <button onclick="event.stopPropagation(); ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', true);" style="padding: 5px 10px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">Sửa</button>
                     <button onclick="event.stopPropagation(); alert('Chức năng xóa sẽ cập nhật sau');" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-left: 5px;">Xóa</button>
                 </td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1; text-align: center;">${nv.ma_nhiem_vu}</td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #333;">${nv.ten_nhiem_vu}
                     <div style="font-size: 11px; color: #666; font-weight: normal; margin-top: 3px;">Loại: ${nv.loai_nhiem_vu || 'Không xác định'}</div>
                 </td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-family: monospace; text-align: center; font-weight: bold;">
                     ${nv.ma_hoc_lieu || '<span style="color:#aaa; font-weight:normal;">Không dùng HL</span>'}
                 </td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px; font-weight: bold; color: #1a73e8; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${lopHienThi}">
                     ${lopHienThi}
                 </td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeMo)}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeDong)}</td>
-                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${bieuTuongDao}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${textTinhTrang}</td>
             </tr>
@@ -2063,137 +2059,8 @@ function ham_7_10_ve_bang_nhiem_vu() {
     renderArea.innerHTML = htmlTable;
 }
 
-// Hàm 7.6: Mở form Xem / Sửa Nhiệm Vụ
-function ham_7_6_mo_form_nhiem_vu(maNhiemVu, choPhepSua = true) {
-    const data = BangNhiemVuState.duLieu.find(nv => nv.ma_nhiem_vu === maNhiemVu);
-    if (!data) return alert("Dữ liệu nhiệm vụ không tồn tại!");
 
-    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA NHIỆM VỤ" : "👁️ XEM CHI TIẾT NHIỆM VỤ";
-    const disabledAttr = choPhepSua ? "" : "disabled";
-
-    // Format thời gian cho thẻ <input type="datetime-local">
-    const formatDateTimeLocal = (isoString) => {
-        if (!isoString) return "";
-        const d = new Date(isoString);
-        return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-    };
-
-    let htmlNutBam = choPhepSua
-        ? `<button onclick="ham_7_7_luu_cap_nhat_nhiem_vu('${data.ma_nhiem_vu}', this)" style="flex: 2; padding: 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">💾 LƯU THAY ĐỔI NHIỆM VỤ</button>
-           <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">HỦY QUAY LẠI</button>`
-        : `<button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⬅️ TRỞ VỀ DANH SÁCH</button>`;
-
-    vungLamViec.innerHTML = `
-        <div style="max-width: 800px; background: #ffffff; padding: 25px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #6f42c1; border-bottom: 2px solid #eee; padding-bottom: 10px;">${tieuDe}: ${data.ma_nhiem_vu}</h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                <div style="grid-column: span 2;">
-                    <label style="font-weight: bold;">Tên Nhiệm Vụ:</label>
-                    <input type="text" id="nv_ten" value="${data.ten_nhiem_vu}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                </div>
-                
-                <div>
-                    <label style="font-weight: bold;">Học Liệu Gốc (Không được sửa):</label>
-                    <input type="text" value="${data.ma_hoc_lieu}" disabled style="width: 100%; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px; color: #d35400; font-weight:bold;">
-                </div>
-                
-                <div>
-                    <label style="font-weight: bold;">Giao cho Lớp/Nhóm:</label>
-                    <input type="text" id="nv_lop" value="${data.lop_giao}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                </div>
-
-                <div>
-                    <label style="font-weight: bold;">Thời Gian Mở:</label>
-                    <input type="datetime-local" id="nv_mo" value="${formatDateTimeLocal(data.thoi_gian_mo)}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                </div>
-
-                <div>
-                    <label style="font-weight: bold;">Thời Gian Đóng:</label>
-                    <input type="datetime-local" id="nv_dong" value="${formatDateTimeLocal(data.thoi_gian_dong)}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                </div>
-                
-               
-                let dao = {cau: false, abcd: false, ds: false};
-                try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch(e){}
-
-                <div style="grid-column: span 2;">
-                    <label style="font-weight: bold;">Chế độ Đảo đề:</label>
-                    <select id="nv_che_do_dao" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
-                        <option value="KHONG_DAO" ${!dao.cau ? 'selected' : ''}>❌ Không đảo gì cả</option>
-                        <option value="DAO_CAU_ABCD" ${dao.cau && !dao.ds ? 'selected' : ''}>🔀 Đảo Câu hỏi + Đảo đáp án ABCD (Nhóm TN)</option>
-                        <option value="DAO_CAU_ABCD_DS" ${dao.cau && dao.ds ? 'selected' : ''}>🌪️ Đảo Câu + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 12px; margin-top: 30px;">
-                ${htmlNutBam}
-            </div>
-        </div>
-    `;
-}
-
-// Hàm 7.7: Update Nhiệm Vụ
-async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
-    const ten = document.getElementById('nv_ten').value.trim();
-    const lop = document.getElementById('nv_lop').value.trim();
-    const mo = document.getElementById('nv_mo').value;
-    const dong = document.getElementById('nv_dong').value;
-
-    const cheDoDao = document.getElementById('nv_che_do_dao').value;
-    let configDaoDe = { cau: false, abcd: false, ds: false };
-    if (cheDoDao === "DAO_CAU_ABCD") configDaoDe = { cau: true, abcd: true, ds: false };
-    else if (cheDoDao === "DAO_CAU_ABCD_DS") configDaoDe = { cau: true, abcd: true, ds: true };
-
-
-    if (!ten || !lop) return alert("Vui lòng điền đủ Tên nhiệm vụ và Lớp giao!");
-
-    btnNode.disabled = true;
-    btnNode.innerText = "ĐANG LƯU...";
-
-    try {
-        const { error } = await _supabase
-            .from('nhiem_vu')
-            .update({
-                ten_nhiem_vu: ten,
-                lop_giao: lop,
-                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
-                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-                dao_cau_hoi: configDaoDe
-            })
-            .eq('ma_nhiem_vu', maNhiemVu);
-
-        if (error) throw error;
-        alert("✅ Đã cập nhật Nhiệm Vụ thành công!");
-        ham_7_1_ve_quan_ly_nhiem_vu();
-
-    } catch (error) {
-        alert("Lỗi: " + error.message);
-        btnNode.disabled = false;
-        btnNode.innerText = "💾 LƯU THAY ĐỔI NHIỆM VỤ";
-    }
-}
-
-// Hàm 7.8: Xóa Nhiệm Vụ
-async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
-    if (!confirm(`⚠️ XÓA NHIỆM VỤ:\nThầy có chắc muốn xóa vĩnh viễn nhiệm vụ [${maNhiemVu}]? Toàn bộ kết quả thi của học sinh trong nhiệm vụ này cũng sẽ bị ảnh hưởng!`)) return;
-
-    try {
-        const { error } = await _supabase.from('nhiem_vu').delete().eq('ma_nhiem_vu', maNhiemVu);
-        if (error) throw error;
-
-        alert('🗑️ Đã xóa nhiệm vụ thành công!');
-        ham_7_2_tai_danh_sach_nhiem_vu();
-    } catch (error) {
-        alert('Lỗi khi xóa: ' + error.message);
-    }
-}
-
-// ==============================================================
-// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Menu Đảo đề 3 Chế độ)
-// ==============================================================
+// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới)
 async function ham_7_3_hien_form_them_nhiem_vu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
@@ -2215,9 +2082,8 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         });
 
         let dsLop = [];
-        if (typeof BangLopState !== 'undefined' && BangLopState.duLieu && BangLopState.duLieu.length > 0) {
-            dsLop = BangLopState.duLieu;
-        } else {
+        if (typeof BangLopState !== 'undefined' && BangLopState.duLieu && BangLopState.duLieu.length > 0) dsLop = BangLopState.duLieu;
+        else {
             const { data, error } = await _supabase.from('lop_hoc').select('*');
             if (!error && data) dsLop = data;
         }
@@ -2235,25 +2101,18 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 `;
             });
         } else {
-            htmlLop = `
-                <div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px;">
-                    <span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span>
-                </div>
-            `;
+            htmlLop = `<div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px;"><span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span></div>`;
         }
 
         vungLamViec.innerHTML = `
             <div style="max-width: 950px; background: white; padding: 25px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-                <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; display:flex; justify-content: space-between;">
-                    <span>🎯 TẠO NHIỆM VỤ MỚI</span>
-                    <span style="color: #666; font-size: 14px;">Giáo viên: ${AppState.user?.ten || 'Admin'}</span>
-                </h3>
+                <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px;">🎯 TẠO NHIỆM VỤ MỚI</h3>
                 
                 <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #495057;">1. Thông tin chung</h4>
                     <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px;">
                         <div>
-                            <label style="font-weight:bold; font-size: 13px;">Mã NV (Tự động):</label>
+                            <label style="font-weight:bold; font-size: 13px;">Mã NV:</label>
                             <input type="text" id="add_nv_ma" value="${maNV}" readonly style="width: 100%; padding: 8px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; font-weight:bold; color: #dc3545; cursor: not-allowed;">
                         </div>
                         <div>
@@ -2265,7 +2124,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                             <select id="add_nv_loai" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                                 <option value="Làm đề (Online)">📝 Làm đề (Online)</option>
                                 <option value="Tự luận (Nộp ảnh)">📷 Làm Tự luận (Chụp ảnh nộp)</option>
-                                <option value="Xem bài giảng">📺 Xem Video / Slide</option>
                             </select>
                         </div>
                     </div>
@@ -2274,28 +2132,15 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 <div style="background: #e6f2ff; border: 1px solid #b8daff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
                     <div style="margin-bottom: 15px;">
-                        <label style="font-weight:bold; font-size: 13px; color: #d35400;">Chọn Đề thi gốc từ Kho Học Liệu (*):</label>
-                        <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold; cursor: pointer;">
+                        <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
                             <option value="">-- Vui lòng chọn một đề thi --</option>
                             ${htmlOptionsHL}
                         </select>
                     </div>
                     <div id="khu_vuc_thong_tin_hl" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; opacity: 0.5; pointer-events: none;">
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label>
-                            <select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                                <option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option>
-                                <option value="Khác">Khác</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Loại kiểm tra:</label>
-                            <input type="text" id="add_nv_loaiKT" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold; color: #6f42c1;">Quy mô / Cấu trúc:</label>
-                            <input type="text" id="add_nv_quymo" readonly placeholder="Hệ thống tự lấy..." style="width: 100%; padding: 6px; background:#f4f4f4; border: 1px dotted #6f42c1; border-radius: 4px; color:#6f42c1; font-weight:bold;">
-                        </div>
+                        <div><label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label><select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"><option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option><option value="Khác">Khác</option></select></div>
+                        <div><label style="font-size: 12px; font-weight:bold;">Loại kiểm tra:</label><input type="text" id="add_nv_loaiKT" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                        <div><label style="font-size: 12px; font-weight:bold; color: #6f42c1;">Quy mô:</label><input type="text" id="add_nv_quymo" readonly style="width: 100%; padding: 6px; background:#f4f4f4; border: 1px dotted #6f42c1; border-radius: 4px; color:#6f42c1; font-weight:bold;"></div>
                     </div>
                 </div>
 
@@ -2303,10 +2148,10 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                     <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đảo đề</h4>
                     
                     <div style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
-                        <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho các Lớp (*):</label>
+                        <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho Lớp (*):</label>
                         <div style="margin-bottom: 10px;">
-                            <button onclick="ham_7_3_b_chon_tat_ca_lop(true)" style="padding: 3px 8px; font-size: 11px; cursor: pointer;">Chọn tất cả</button>
-                            <button onclick="ham_7_3_b_chon_tat_ca_lop(false)" style="padding: 3px 8px; font-size: 11px; cursor: pointer;">Bỏ chọn</button>
+                            <button onclick="ham_7_3_b_chon_tat_ca_lop(true)" style="padding: 3px 8px; font-size: 11px;">Chọn tất cả</button>
+                            <button onclick="ham_7_3_b_chon_tat_ca_lop(false)" style="padding: 3px 8px; font-size: 11px;">Bỏ chọn</button>
                         </div>
                         <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px; max-height: 100px; overflow-y: auto;">
                             ${htmlLop}
@@ -2315,56 +2160,53 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
                         <div>
-                            <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
+                            <label style="font-size: 12px; font-weight:bold;">Trạng thái:</label>
                             <select id="add_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
                                 <option value="1">🟢 Mở (Kích hoạt)</option>
                                 <option value="0">🔴 Đóng (Tạm dừng)</option>
                             </select>
                         </div>
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label>
-                            <input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Thời gian Bắt đầu:</label>
-                            <input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Thời gian Kết thúc:</label>
-                            <input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
+                        <div><label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label><input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                        <div><label style="font-size: 12px; font-weight:bold;">Mở Lúc:</label><input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                        <div><label style="font-size: 12px; font-weight:bold;">Đóng Lúc:</label><input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                     </div>
 
                     <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
-                        <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 8px; color: #d35400;">🔀 Chế độ Đảo đề (Tự động giữ nguyên form TN, ĐS, TLN):</label>
+                        <label style="font-weight:bold; font-size: 13px; color: #d35400;">🔀 Chế độ Đảo đề (Dùng JSON):</label>
                         <select id="add_nv_che_do_dao" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; font-weight: bold; font-size: 14px;">
-                            <option value="KHONG_DAO">❌ Không đảo gì cả (Học sinh làm y hệt đề gốc)</option>
-                            <option value="DAO_CAU_ABCD" selected>🔀 Đảo Câu hỏi + Đảo đáp án ABCD (Nhóm TN) --- [MẶC ĐỊNH]</option>
-                            <option value="DAO_CAU_ABCD_DS">🌪️ Đảo Câu hỏi + Đảo ABCD (Nhóm TN) + Đảo ý a,b,c,d (Nhóm ĐS)</option>
+                            <option value="${CFG_NV.DAO_DE.KHONG}">❌ Không đảo gì cả</option>
+                            <option value="${CFG_NV.DAO_DE.CO_BAN}" selected>🔀 Đảo Câu hỏi + Đảo ABCD (Nhóm TN)</option>
+                            <option value="${CFG_NV.DAO_DE.TOAN_DIEN}">🌪️ Đảo Câu hỏi + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
                         </select>
                     </div>
                 </div>
 
                 <div style="background: #e6ffed; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                    <h4 style="margin-top: 0; color: #28a745;">4. Cấu hình Công bố Đáp án & Lời giải</h4>
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+                    <h4 style="margin-top: 0; color: #28a745;">4. Cấu hình Công bố & Bảo mật</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div>
                             <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
-                            <select id="add_nv_cauhinh_dapan" onchange="ham_7_3_c_xu_ly_hen_gio_cong_bo()" style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px;">
-                                <option value="KHOA_HOAN_TOAN">Khóa hoàn toàn (Học sinh không bao giờ thấy)</option>
-                                <option value="SAU_KHI_NOP">Cho xem ngay sau khi học sinh Nộp bài</option>
-                                <option value="SAU_KHI_HET_HAN">Chỉ cho xem sau khi Hết hạn thời gian Đóng đề</option>
-                                <option value="HEN_GIO">⏰ Hẹn một giờ cụ thể...</option>
+                            <select id="add_nv_thoigiano" onchange="ham_7_3_c_xu_ly_cong_bo()" style="width: 100%; padding: 10px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
+                                <option value="${CFG_NV.THOI_DIEM.KHOA}">🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
+                                <option value="${CFG_NV.THOI_DIEM.SAU_NOP}">✅ Ngay sau khi nộp bài</option>
+                                <option value="${CFG_NV.THOI_DIEM.SAU_HET_HAN}">⏳ Sau khi hết hạn Đóng đề</option>
+                                <option value="${CFG_NV.THOI_DIEM.HEN_GIO}">⏰ Hẹn một giờ cụ thể...</option>
                             </select>
+                            <div id="khu_vuc_hen_gio" style="display: none; margin-top: 10px;">
+                                <label style="font-size: 12px; color: #d35400; font-weight:bold;">Giờ kích hoạt:</label>
+                                <input type="datetime-local" id="add_nv_giocongbo" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
+                            </div>
                         </div>
-                        <div id="khu_vuc_hen_gio" style="display: none;">
-                            <label style="font-weight:bold; font-size: 13px; color: #d35400;">Giờ công bố:</label>
-                            <input type="datetime-local" id="add_nv_giocongbo" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
+                        <div id="khu_vuc_muc_do" style="opacity: 0.3; pointer-events: none;">
+                            <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
+                            <select id="add_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
+                                <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}">📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
+                                <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}">📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
+                            </select>
+                            <p style="font-size: 11px; color: #666; margin-top: 8px; font-style: italic;">
+                                🛡️ <strong style="color:#d35400;">Bảo mật:</strong> File Lời giải đang được mã hóa ẩn. Hệ thống chỉ bắt đầu tiến hành dịch và ráp file khi có Lệnh hoặc khi đến Thời điểm công bố.
+                            </p>
                         </div>
-                    </div>
-                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
-                        <input type="checkbox" id="add_nv_taofilegiai" checked style="transform: scale(1.3);">
-                        <label style="font-size: 13px; font-weight:bold;">Đóng gói file Lời Giải ngay sau khi lưu.</label>
                     </div>
                 </div>
 
@@ -2387,30 +2229,23 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 // CÁC HÀM BỔ TRỢ XỬ LÝ GIAO DIỆN (UI LOGIC)
 // ==============================================================
 
-// Hàm 7.3.a: Tự động điền dữ liệu khi chọn Học Liệu
 function ham_7_3_a_xu_ly_chon_hoc_lieu() {
     const maHL = document.getElementById('add_nv_maHL').value;
     const khuVucInfo = document.getElementById('khu_vuc_thong_tin_hl');
 
     if (maHL === "KHONG_DUNG" || maHL === "") {
-        // Mờ đi và không cho thao tác
         khuVucInfo.style.opacity = "0.3";
         khuVucInfo.style.pointerEvents = "none";
         document.getElementById('add_nv_khoi').value = "Khác";
         document.getElementById('add_nv_loaiKT').value = "";
         document.getElementById('add_nv_quymo').value = "";
     } else {
-        // Hiện rõ lên và tự động điền
         khuVucInfo.style.opacity = "1";
         khuVucInfo.style.pointerEvents = "auto";
-
-        // Tìm data trong mảng tạm
         const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
         if (hlData) {
             document.getElementById('add_nv_khoi').value = hlData.khoi_lop || "Khác";
             document.getElementById('add_nv_loaiKT').value = hlData.loai_kiem_tra || "";
-
-            // Xử lý chuỗi quy mô
             let chuoiQuyMo = `${hlData.quy_mo_cau_hoi} câu`;
             if (hlData.metadata && hlData.metadata.cau_truc) {
                 chuoiQuyMo = `${hlData.metadata.cau_truc} (${chuoiQuyMo})`;
@@ -2420,27 +2255,30 @@ function ham_7_3_a_xu_ly_chon_hoc_lieu() {
     }
 }
 
-// Hàm 7.3.b: Chọn / Bỏ chọn tất cả checkbox Lớp
 function ham_7_3_b_chon_tat_ca_lop(isCheck) {
     const checkboxes = document.querySelectorAll('.chk-lop');
     checkboxes.forEach(chk => chk.checked = isCheck);
 }
 
-// Hàm 7.3.c: Ẩn hiện ô chọn Ngày Giờ Công bố
-function ham_7_3_c_xu_ly_hen_gio_cong_bo() {
-    const select = document.getElementById('add_nv_cauhinh_dapan').value;
-    const khuVucHenGio = document.getElementById('khu_vuc_hen_gio');
+// Hàm 7.3.c: Ẩn hiện logic Cấu hình Công bố (Sử dụng Hằng số)
+function ham_7_3_c_xu_ly_cong_bo() {
+    const thoiDiem = document.getElementById('add_nv_thoigiano').value;
 
-    if (select === "HEN_GIO") {
-        khuVucHenGio.style.display = "block";
+    document.getElementById('khu_vuc_hen_gio').style.display = (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) ? "block" : "none";
+    if (thoiDiem !== CFG_NV.THOI_DIEM.HEN_GIO) document.getElementById('add_nv_giocongbo').value = "";
+
+    const khuVucMucDo = document.getElementById('khu_vuc_muc_do');
+    if (thoiDiem === CFG_NV.THOI_DIEM.KHOA) {
+        khuVucMucDo.style.opacity = "0.3";
+        khuVucMucDo.style.pointerEvents = "none";
     } else {
-        khuVucHenGio.style.display = "none";
-        document.getElementById('add_nv_giocongbo').value = ""; // Xóa trắng
+        khuVucMucDo.style.opacity = "1";
+        khuVucMucDo.style.pointerEvents = "auto";
     }
 }
 
 // ==============================================================
-// Hàm 7.4: Thu thập dữ liệu và chuyển chế độ đảo đề thành JSON
+// Hàm 7.4: Thu thập dữ liệu và Lưu Nhiệm vụ (Áp dụng Hằng số)
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
     const tenNV = document.getElementById('add_nv_ten').value.trim();
@@ -2472,25 +2310,28 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
         }
     }
 
-    let cauHinhDapAn = document.getElementById('add_nv_cauhinh_dapan').value;
-    if (cauHinhDapAn === "HEN_GIO") {
-        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
-        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
-        cauHinhDapAn = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
-    }
-
-    // 🌟 5. CHUYỂN ĐỔI CHẾ ĐỘ THẦY CHỌN THÀNH OBJECT JSON ĐỂ LƯU DATABASE
+    // 🌟 THU THẬP JSON: Cấu hình Đảo đề
     const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
-    let configDaoDe = { cau: false, abcd: false, ds: false }; // Mặc định là Không đảo gì cả
-
-    if (cheDoDao === "DAO_CAU_ABCD") {
+    let configDaoDe = { cau: false, abcd: false, ds: false };
+    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
         configDaoDe = { cau: true, abcd: true, ds: false };
-    } else if (cheDoDao === "DAO_CAU_ABCD_DS") {
+    } else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) {
         configDaoDe = { cau: true, abcd: true, ds: true };
     }
 
+    // 🌟 THU THẬP JSON: Cấu hình Công bố
+    const thoiDiem = document.getElementById('add_nv_thoigiano').value;
+    const mucDo = document.getElementById('add_nv_mucdo').value;
+    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
+
+    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
+        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
+        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
+        configCongBo.thoi_diem = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
+    }
+
     btnNode.disabled = true;
-    btnNode.innerText = "⏳ ĐANG KHỞI TẠO NHIỆM VỤ...";
+    btnNode.innerText = "⏳ ĐANG KHỞI TẠO...";
 
     try {
         const payload = {
@@ -2506,14 +2347,15 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
             thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
             so_luot_lam_bai: soLuot,
-            cau_hinh_dap_an: cauHinhDapAn,
-            trang_thai_loi_giai: document.getElementById('add_nv_taofilegiai').checked ? 'DANG_XU_LY' : 'CHO_DONG_GOI',
-            trang_thai: trangThai,
 
-            // 👉 Ném cục JSON xáo trộn vào đây, Supabase sẽ tự nhận (vì cột đã là jsonb)
+            cau_hinh_dap_an: configCongBo,
             dao_cau_hoi: configDaoDe,
 
-            uid_gv_giao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
+            // 🌟 CHỐNG HACK: Mặc định chờ lệnh
+            trang_thai_loi_giai: CFG_NV.FILE_GIAI.CHUA_LENH,
+            trang_thai: trangThai,
+
+            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
             ngay_tao: new Date().toISOString()
         };
 
