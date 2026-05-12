@@ -2484,7 +2484,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
             so_luot_lam_bai: soLuot,
             cau_hinh_dap_an: cauHinhDapAn,
-            trang_thai_loi_giai: document.getElementById('add_nv_taofilegiai').checked ? 1 : 0,
+            trang_thai_loi_giai: document.getElementById('add_nv_taofilegiai').checked ? 'DANG_XU_LY' : 'CHO_DONG_GOI',
             trang_thai: trangThai,
 
             // 👉 Ném cục JSON xáo trộn vào đây, Supabase sẽ tự nhận (vì cột đã là jsonb)
