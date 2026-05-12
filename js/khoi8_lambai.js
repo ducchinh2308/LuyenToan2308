@@ -1,4 +1,20 @@
-﻿// ==============================================================
+﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
+const APP_VERSION = "khoi8_lambai.js cập nhật lúc 18h27 - Ngày 12/05";
+
+// In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
+console.log(`%c🚀 HỆ THỐNG ĐANG CHẠY BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+
+// Nếu thầy lười mở F12, thầy có thể cho nó in luôn một dòng chữ mờ mờ ở góc dưới màn hình:
+window.onload = () => {
+    let versionBadge = document.createElement('div');
+    versionBadge.innerHTML = `Phiên bản: ${APP_VERSION}`;
+    versionBadge.style.cssText = "position: fixed; bottom: 5px; right: 5px; font-size: 11px; color: #aaa; z-index: 9999;";
+    document.body.appendChild(versionBadge);
+};
+
+
+
+// ==============================================================
 // KHỐI 8: GIAO DIỆN HỌC SINH (STUDENT PORTAL & THI ONLINE)
 // File: khoi8_lambai.js
 // ==============================================================
@@ -13,16 +29,19 @@ const GocHocSinhState = {
 
 // ==============================================================
 // Hàm 8.1: Tải danh sách Nhiệm vụ dành riêng cho Học sinh
-// (Hàm này sẽ được gọi khi học sinh đăng nhập thành công)
 // ==============================================================
 async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh) {
-    // Lưu thông tin học sinh vào State để dùng cho lúc Nộp bài
+    // Lưu thông tin học sinh vào State
     GocHocSinhState.uid = uidHocSinh;
     GocHocSinhState.ma_lop = maLopHocSinh;
     GocHocSinhState.ten = tenHocSinh;
 
+    // ĐÃ CHỐT ĐÚNG TÊN ID KHUNG CỦA THẦY LÀ: dashboard-container
     const renderArea = document.getElementById('dashboard-container');
-    if (!renderArea) return;
+    if (!renderArea) {
+        console.error("LỖI NGHIÊM TRỌNG: Không tìm thấy thẻ div có id='dashboard-container' trong HTML");
+        return;
+    }
 
     renderArea.innerHTML = `<div style="text-align: center; padding: 50px;"><h3 style="color:#1a73e8;">⏳ Đang tải bài tập của bạn...</h3></div>`;
 
@@ -48,7 +67,7 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh
         ham_8_2_ve_dashboard_hoc_sinh();
 
     } catch (error) {
-        renderArea.innerHTML = `<div style="text-align: center; color: red; padding: 20px;">❌ Lỗi tải dữ liệu: ${error.message}</div>`;
+        renderArea.innerHTML = `<div style="text-align: center; color: red; padding: 20px; font-weight: bold;">❌ Lỗi tải dữ liệu: ${error.message}</div>`;
     }
 }
 
@@ -56,7 +75,8 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh
 // Hàm 8.2: Vẽ Bảng điều khiển (Phân loại Bài tập ra 3 cột)
 // ==============================================================
 function ham_8_2_ve_dashboard_hoc_sinh() {
-    const renderArea = document.getElementById('vung-lam-viec-chinh'); // Thầy nhớ đổi ID này cho khớp với thẻ div ngoài HTML nhé
+    // ĐÃ CHỐT ĐÚNG TÊN ID Ở ĐÂY LUÔN:
+    const renderArea = document.getElementById('dashboard-container');
     const now = new Date();
 
     let dsChuaMo = [];
@@ -77,7 +97,7 @@ function ham_8_2_ve_dashboard_hoc_sinh() {
         }
     });
 
-    // 🌟 HÀM PHỤ: Vẽ Giao diện 1 Thẻ Bài Tập (Card)
+    // Hàm phụ: Vẽ Giao diện 1 Thẻ Bài Tập (Card)
     const renderCard = (nv, loai) => {
         const tDongStr = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không giới hạn";
 
@@ -104,14 +124,14 @@ function ham_8_2_ve_dashboard_hoc_sinh() {
                 </div>
                 <div style="font-size: 13px; color: #555; margin-bottom: 15px; line-height: 1.6;">
                     <div>⏰ Hạn chót: <strong style="color: #d35400;">${tDongStr}</strong></div>
-                    <div>🔄 Số lượt cho phép: <strong>${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</strong></div>
+                    <div>🔄 Số lượt: <strong>${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</strong></div>
                 </div>
                 ${nutHanhDong}
             </div>
         `;
     };
 
-    // 🌟 Ghép HTML 3 Cột
+    // Ghép HTML 3 Cột
     let html = `
         <div style="max-width: 1100px; margin: 0 auto; padding: 20px; font-family: sans-serif;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 20px;">
@@ -148,13 +168,7 @@ async function ham_8_3_cua_an_ninh(maNhiemVu) {
     const nv = GocHocSinhState.danhSachNhiemVu.find(n => n.ma_nhiem_vu === maNhiemVu);
     if (!nv) return alert("❌ Không tìm thấy dữ liệu nhiệm vụ!");
 
-    // Tạm thời hiển thị Alert để test luồng
     alert(`Đã qua cửa an ninh!\nChuẩn bị mở phòng thi cho bài: ${nv.ten_nhiem_vu}\nHệ thống sẽ load học liệu ${nv.ma_hoc_lieu || 'Trống'}...`);
-
-    // Todo ở bước tiếp theo: 
-    // 1. Fetch bảng 'ket_qua_thi' để đếm số lượt học sinh này đã làm.
-    // 2. Nếu (đã làm >= số lượt tối đa) -> Chặn lại.
-    // 3. Nếu hợp lệ -> Gọi hàm ham_8_4_mo_phong_thi(nv)
 }
 
 function ham_8_x_xem_ket_qua(maNhiemVu) {
