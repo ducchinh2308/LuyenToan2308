@@ -1932,31 +1932,37 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
     }
 }
 
-// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ
+// ==============================================================
+// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Hiển thị trực quan)
+// ==============================================================
 function ham_7_10_ve_bang_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
 
     if (dsNV.length === 0) {
-        renderArea.innerHTML = `<p style="text-align: center; padding: 20px; background: white; border-radius: 8px;">Chưa có nhiệm vụ nào được giao.</p>`;
+        renderArea.innerHTML = `
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 8px; border: 1px dashed #ccc;">
+                <h4 style="color: #666;">Chưa có nhiệm vụ giao bài nào.</h4>
+                <p style="font-size: 13px; color: #999;">Hãy bấm "+ Tạo Nhiệm Vụ Mới" để bắt đầu giao bài cho học sinh nhé.</p>
+            </div>`;
         return;
     }
 
     let htmlTable = `
-        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
-            <table style="width: 100%; min-width: 1200px; border-collapse: collapse; background: white; font-size: 13px;">
+        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <table style="width: 100%; min-width: 1300px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <tr>
-                        <th style="padding: 10px; border: 1px solid #eee; width: 40px;">STT</th>
-                        <th style="padding: 10px; border: 1px solid #eee; width: 100px;">Thao tác</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Mã NV</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Tên Nhiệm Vụ</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Mã Học Liệu Gốc</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Lớp Giao</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Thời Gian Mở</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Thời Gian Đóng</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Đảo Câu</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Tình Trạng</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 120px;">Thao tác</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Mã NV</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; text-align: left;">Tên Nhiệm Vụ</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Học Liệu</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; max-width: 150px;">Giao Cho</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Mở Lúc</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Đóng Lúc</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 80px;">Đảo Đề</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Tình Trạng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1968,37 +1974,76 @@ function ham_7_10_ve_bang_nhiem_vu() {
         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
-        // Tính toán tình trạng thực tế dựa vào thời gian
+        // 1. Tính toán Tình trạng thực tế
         let textTinhTrang = "";
-        if (!timeMo || !timeDong) {
-            textTinhTrang = `<span style="color: #666; font-weight:bold;">Không giới hạn</span>`;
-        } else if (now < timeMo) {
-            textTinhTrang = `<span style="color: #f39c12; font-weight:bold;">Chưa bắt đầu</span>`;
-        } else if (now >= timeMo && now <= timeDong) {
-            textTinhTrang = `<span style="color: #28a745; font-weight:bold;">Đang diễn ra</span>`;
+        // Nếu giáo viên chủ động chọn trạng thái là 0 (Đóng/Tạm dừng)
+        if (nv.trang_thai === '0' || nv.trang_thai === 0) {
+            textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#e9ecef; color:#495057; border-radius:4px; font-weight:bold; font-size:11px;">⏸️ ĐÃ KHÓA</span>`;
         } else {
-            textTinhTrang = `<span style="color: #dc3545; font-weight:bold;">Đã kết thúc</span>`;
+            // Xét theo thời gian
+            if (!timeMo && !timeDong) {
+                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#e3f2fd; color:#0d47a1; border-radius:4px; font-weight:bold; font-size:11px;">♾️ VÔ HẠN</span>`;
+            } else if (timeMo && now < timeMo) {
+                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#fff3cd; color:#856404; border-radius:4px; font-weight:bold; font-size:11px;">⏳ CHƯA MỞ</span>`;
+            } else if (timeDong && now > timeDong) {
+                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#f8d7da; color:#721c24; border-radius:4px; font-weight:bold; font-size:11px;">🛑 ĐÃ ĐÓNG</span>`;
+            } else {
+                textTinhTrang = `<span style="display:inline-block; padding:4px 8px; background:#d4edda; color:#155724; border-radius:4px; font-weight:bold; font-size:11px;">▶️ ĐANG MỞ</span>`;
+            }
         }
 
-        const daoCauText = nv.dao_cau_hoi ? "✅ Có" : "❌ Không";
+        // 2. Xử lý hiển thị Danh sách lớp (từ chuỗi JSON sang dạng văn bản đọc được)
+        let lopHienThi = '';
+        try {
+            let arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : nv.danh_sach_lop;
+            if (Array.isArray(arrLop)) lopHienThi = arrLop.join(', ');
+            else lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
+        } catch (e) {
+            lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
+        }
 
+        // 3. Biểu tượng Đảo đề (Đảo cả câu & đáp án ABCD)
+        const bieuTuongDao = nv.dao_cau_hoi
+            ? '<span style="color: #28a745; font-size: 18px;" title="Có trộn câu hỏi và đảo đáp án A,B,C,D">🔀</span>'
+            : '<span style="color: #ccc; font-size: 18px;" title="Cố định thứ tự gốc">⏸️</span>';
+
+        // 4. Format thời gian đẹp mắt
+        const formatTime = (dateObj) => {
+            if (!dateObj) return '<span style="color:#aaa;">-</span>';
+            return dateObj.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        };
+
+        // 5. Build từng dòng của bảng
         htmlTable += `
-            <tr onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', false)" 
+            <tr onclick="/* ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', false) (Sẽ làm sau) */" 
                 style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;"
-                onmouseover="this.style.background='#f8f0ff'" onmouseout="this.style.background='white'">
+                onmouseover="this.style.background='#f4f8ff'" onmouseout="this.style.background='white'">
                 
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #555;">${index + 1}</td>
+                
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-                    <button onclick="event.stopPropagation(); ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', true)" style="padding: 4px 8px; background: #f39c12; color: white; border: none; border-radius: 4px; cursor: pointer;">Sửa</button>
-                    <button onclick="event.stopPropagation(); ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Xóa</button>
+                    <button onclick="event.stopPropagation(); alert('Chức năng sửa sẽ cập nhật sau');" style="padding: 5px 10px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">Sửa</button>
+                    <button onclick="event.stopPropagation(); alert('Chức năng xóa sẽ cập nhật sau');" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-left: 5px;">Xóa</button>
                 </td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${nv.ten_nhiem_vu}</td>
-                <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-family: monospace;">${nv.ma_hoc_lieu}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${nv.lop_giao}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${timeMo ? timeMo.toLocaleString('vi-VN') : '-'}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${timeDong ? timeDong.toLocaleString('vi-VN') : '-'}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${daoCauText}</td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1; text-align: center;">${nv.ma_nhiem_vu}</td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #333;">${nv.ten_nhiem_vu}
+                    <div style="font-size: 11px; color: #666; font-weight: normal; margin-top: 3px;">Loại: ${nv.loai_nhiem_vu || 'Không xác định'}</div>
+                </td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-family: monospace; text-align: center; font-weight: bold;">
+                    ${nv.ma_hoc_lieu || '<span style="color:#aaa; font-weight:normal;">Không dùng HL</span>'}
+                </td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px; font-weight: bold; color: #1a73e8; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${lopHienThi}">
+                    ${lopHienThi}
+                </td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeMo)}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeDong)}</td>
+                
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${bieuTuongDao}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${textTinhTrang}</td>
             </tr>
         `;
