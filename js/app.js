@@ -2042,7 +2042,7 @@ function ham_7_10_ve_bang_nhiem_vu() {
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #555;">${index + 1}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
                     <button onclick="event.stopPropagation(); ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}', true);" style="padding: 5px 10px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">Sửa</button>
-                    <button onclick="event.stopPropagation(); alert('Chức năng xóa sẽ cập nhật sau');" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-left: 5px;">Xóa</button>
+                    <button onclick="event.stopPropagation(); ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}');" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-left: 5px;">Xóa</button>
                 </td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1; text-align: center;">${nv.ma_nhiem_vu}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #333;">${nv.ten_nhiem_vu}
@@ -2421,5 +2421,34 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         alert("Lỗi máy chủ khi tạo nhiệm vụ: " + error.message);
         btnNode.disabled = false;
         btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
+    }
+}
+
+// ==============================================================
+// Hàm 7.8: Xóa Nhiệm Vụ (Có cảnh báo an toàn)
+// ==============================================================
+async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
+    // 1. Cảnh báo nguy hiểm trước khi thực thi
+    const loiCanhBao = `⚠️ CẢNH BÁO NGUY HIỂM:\n\nThầy có chắc chắn muốn xóa vĩnh viễn nhiệm vụ [ ${maNhiemVu} ] không?\n\nLưu ý: Hành động này KHÔNG THỂ HOÀN TÁC. Toàn bộ kết quả thi, lịch sử làm bài của học sinh thuộc nhiệm vụ này cũng có thể bị xóa sạch!`;
+
+    if (!confirm(loiCanhBao)) {
+        return; // Nếu thầy bấm "Hủy / Cancel" thì dừng lại, không làm gì cả
+    }
+
+    try {
+        // 2. Gửi lệnh Delete lên Supabase
+        const { error } = await _supabase
+            .from('nhiem_vu')
+            .delete()
+            .eq('ma_nhiem_vu', maNhiemVu);
+
+        if (error) throw error;
+
+        // 3. Thông báo thành công và tải lại bảng
+        alert('🗑️ Đã xóa nhiệm vụ thành công!');
+        ham_7_2_tai_danh_sach_nhiem_vu();
+
+    } catch (error) {
+        alert('❌ Lỗi hệ thống khi xóa nhiệm vụ: ' + error.message);
     }
 }
