@@ -2880,6 +2880,11 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
         return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
     };
 
+
+
+
+
+
     // 2. NHẬN DIỆN TÍNH CHẤT (TỰ DO HAY BẮT BUỘC)
     let lopDaGiao = [];
     try {
@@ -2887,6 +2892,10 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     } catch (e) { lopDaGiao = []; }
 
     const laTuDo = lopDaGiao.includes("#LUYEN_TAP_TU_DO#");
+
+
+
+
 
     // 3. DANH SÁCH LỚP (Chỉ lấy nếu cần thiết)
     if (!laTuDo && (!window.tempDsLop || window.tempDsLop.length === 0)) {
@@ -2909,12 +2918,38 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
         });
     }
 
+
+
+
+
+
+
     // 4. BÓC TÁCH JSON ĐẢO ĐỀ & CÔNG BỐ (Để nạp vào các select)
     let dao = { cau: false, abcd: false, ds: false };
     try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch (e) { }
     let modeDao = CFG_NV.DAO_DE.KHONG;
     if (dao.cau && dao.abcd && dao.ds) modeDao = CFG_NV.DAO_DE.TOAN_DIEN;
     else if (dao.cau && dao.abcd) modeDao = CFG_NV.DAO_DE.CO_BAN;
+
+
+        // 5. BÓC TÁCH JSON CÔNG BỐ
+        let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
+        try { congBo = typeof data.cau_hinh_dap_an === 'string' ? JSON.parse(data.cau_hinh_dap_an) : (data.cau_hinh_dap_an || congBo); } catch (e) { }
+
+        let thoiDiemVal = congBo.thoi_diem || CFG_NV.THOI_DIEM.KHOA;
+        let thoiDiemSelect = thoiDiemVal;
+        let gioHen = "";
+        if (thoiDiemVal.startsWith("HEN_GIO|")) {
+            thoiDiemSelect = CFG_NV.THOI_DIEM.HEN_GIO;
+            gioHen = formatToLocal(thoiDiemVal.split("|")[1]);
+        }
+
+
+
+
+
+
+
 
     // ================= VẼ GIAO DIỆN CHÍNH =================
     vungLamViec.innerHTML = `
