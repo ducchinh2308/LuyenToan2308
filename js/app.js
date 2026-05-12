@@ -1974,7 +1974,9 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
-// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Nâng cấp thông tin chi tiết + Có cột LOẠI NV)
+// ==============================================================
+// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Bản hoàn chỉnh - Có Sắp xếp + Loại NV)
+// ==============================================================
 function ham_7_10_ve_bang_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
@@ -1984,6 +1986,26 @@ function ham_7_10_ve_bang_nhiem_vu() {
         return;
     }
 
+    // 🌟 HÀM PHỤ ĐÚC THẺ <th> CÓ SORT
+    const taoThSort = (cotDB, tenHienThi, width = '') => {
+        let icon = "<span style='color:#ccc; font-size:10px; margin-left:5px;'>↕️</span>";
+        let bgStyle = "";
+
+        if (BangNhiemVuState.cotDangSort === cotDB) {
+            icon = BangNhiemVuState.tangDan
+                ? "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔼</span>"
+                : "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔽</span>";
+            bgStyle = "background-color: #e6f2ff;";
+        }
+
+        return `<th onclick="ham_7_11_sort_nhiem_vu('${cotDB}')" 
+                    style="padding: 12px 10px; border: 1px solid #eee; width: ${width}; cursor: pointer; user-select: none; transition: 0.2s; ${bgStyle}"
+                    onmouseover="this.style.backgroundColor='#e2e6ea'" 
+                    onmouseout="this.style.backgroundColor='${bgStyle ? '#e6f2ff' : 'transparent'}'">
+                    ${tenHienThi} ${icon}
+                </th>`;
+    };
+
     let htmlTable = `
         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
             <table style="width: 100%; min-width: 1600px; border-collapse: collapse; background: white; font-size: 13px;">
@@ -1991,14 +2013,16 @@ function ham_7_10_ve_bang_nhiem_vu() {
                     <tr>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 120px;">Thao tác</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Mã NV</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee; text-align: left;">Tên Nhiệm Vụ</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 110px;">Loại NV</th> <th style="padding: 12px 10px; border: 1px solid #eee;">Giao Cho</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 80px;">Số Lượt</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Mở Lúc</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Đóng Lúc</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Đảo Đề</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Tình Trạng</th>
+                        
+                        ${taoThSort('ma_nhiem_vu', 'Mã NV')}
+                        ${taoThSort('ten_nhiem_vu', 'Tên Nhiệm Vụ')}
+                        ${taoThSort('loai_nhiem_vu', 'Loại NV', '110px')}
+                        ${taoThSort('danh_sach_lop', 'Giao Cho')}
+                        ${taoThSort('so_luot_lam_bai', 'Số Lượt', '80px')}
+                        ${taoThSort('thoi_gian_mo', 'Mở Lúc')}
+                        ${taoThSort('thoi_gian_dong', 'Đóng Lúc')}
+                        ${taoThSort('dao_cau_hoi', 'Đảo Đề', '130px')}
+                        ${taoThSort('trang_thai', 'Tình Trạng')}
                     </tr>
                 </thead>
                 <tbody>
@@ -2029,10 +2053,10 @@ function ham_7_10_ve_bang_nhiem_vu() {
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
         // ==========================================
-        // 🌟 XỬ LÝ BADGE CHO CỘT LOẠI NHIỆM VỤ
+        // XỬ LÝ BADGE CHO CỘT LOẠI NHIỆM VỤ
         // ==========================================
         let loaiHienThi = "❓ Khác";
-        let badgeColor = "#6c757d"; // Màu xám mặc định
+        let badgeColor = "#6c757d"; // Màu xám
 
         if (nv.loai_nhiem_vu === "Làm đề (Online)") {
             loaiHienThi = "📝 Làm đề";
@@ -2050,10 +2074,9 @@ function ham_7_10_ve_bang_nhiem_vu() {
             loaiHienThi = nv.loai_nhiem_vu;
         }
 
-        // Tạo chuỗi HTML cho cái nhãn
         const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
 
-        // 1. Xử lý Giao Cho (Hiện Tên lớp + Mã)
+        // 1. Xử lý Giao Cho
         let arrLop = [];
         try { arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
         let hienThiLop = arrLop.map(ma => {
@@ -2065,18 +2088,15 @@ function ham_7_10_ve_bang_nhiem_vu() {
         // 2. Xử lý Số lượt
         const soLuot = (nv.so_luot_lam_bai == 0 || !nv.so_luot_lam_bai) ? "♾️ Vô hạn" : `${nv.so_luot_lam_bai} lượt`;
 
-        // 3. Xử lý Đảo đề (Hiện chi tiết theo đúng cấu hình)
+        // 3. Xử lý Đảo đề
         let txtDaoDe = "<span style='color:#999; font-size: 12px;'>❌ Không đảo</span>";
         if (nv.dao_cau_hoi) {
             try {
                 const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
-
                 if (d.cau && d.abcd && d.ds) {
-                    // Mức độ TOAN_DIEN
                     txtDaoDe = "<div style='color:#d35400; font-weight:bold; font-size:11px; line-height:1.5;' title='Đảo toàn diện'>🌪️ Đảo Câu + ABCD<br>+ Ý Đúng/Sai</div>";
                 }
                 else if (d.cau && d.abcd) {
-                    // Mức độ CO_BAN
                     txtDaoDe = "<div style='color:#28a745; font-weight:bold; font-size:11px;' title='Đảo cơ bản'>🔀 Đảo Câu + ABCD</div>";
                 }
             } catch (e) { }
@@ -2085,7 +2105,7 @@ function ham_7_10_ve_bang_nhiem_vu() {
         const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
 
         htmlTable += `
-            <tr style="border-bottom: 1px solid #eee;">
+            <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f4f8ff'" onmouseout="this.style.background='white'">
                 <td style="padding: 10px; text-align: center;">${index + 1}</td>
                 <td style="padding: 10px; text-align: center; white-space: nowrap;">
                     <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #ffc107; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">Sửa</button>
@@ -2093,8 +2113,8 @@ function ham_7_10_ve_bang_nhiem_vu() {
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
                 <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
-                
-                <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td> <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
+                <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td>
+                <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
                 <td style="padding: 10px; text-align: center; font-weight: bold;">${soLuot}</td>
                 <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
                 <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
@@ -2109,6 +2129,8 @@ function ham_7_10_ve_bang_nhiem_vu() {
     htmlTable += `</tbody></table></div>`;
     renderArea.innerHTML = htmlTable;
 }
+
+
 
 // Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới)
 async function ham_7_3_hien_form_them_nhiem_vu() {
@@ -2281,6 +2303,56 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 // ==============================================================
 // CÁC HÀM BỔ TRỢ XỬ LÝ GIAO DIỆN (UI LOGIC)
 // ==============================================================
+
+// ==============================================================
+// Hàm 7.11: Xử lý Logic Sắp xếp (Sort) cho Bảng Nhiệm Vụ
+// ==============================================================
+function ham_7_11_sort_nhiem_vu(cotSort) {
+    // 1. Đảo chiều nếu bấm lại cột cũ, hoặc mặc định Tăng dần nếu bấm cột mới
+    if (BangNhiemVuState.cotDangSort === cotSort) {
+        BangNhiemVuState.tangDan = !BangNhiemVuState.tangDan;
+    } else {
+        BangNhiemVuState.cotDangSort = cotSort;
+        BangNhiemVuState.tangDan = true;
+    }
+
+    const isAsc = BangNhiemVuState.tangDan;
+
+    // 2. Chạy thuật toán sắp xếp mảng
+    BangNhiemVuState.duLieu.sort((a, b) => {
+        let valA = a[cotSort];
+        let valB = b[cotSort];
+
+        // Xử lý giá trị rỗng (đẩy xuống cuối hoặc lên đầu tùy chiều)
+        if (valA === null || valA === undefined) valA = '';
+        if (valB === null || valB === undefined) valB = '';
+
+        // Ép kiểu dữ liệu đặc thù để sort chính xác
+        if (cotSort === 'thoi_gian_mo' || cotSort === 'thoi_gian_dong') {
+            valA = valA ? new Date(valA).getTime() : (isAsc ? Infinity : -Infinity);
+            valB = valB ? new Date(valB).getTime() : (isAsc ? Infinity : -Infinity);
+        } else if (cotSort === 'so_luot_lam_bai') {
+            valA = Number(valA) || 0;
+            valB = Number(valB) || 0;
+        } else if (typeof valA === 'object' || typeof valB === 'object') {
+            // Dành cho cột jsonb như danh_sach_lop, dao_cau_hoi
+            valA = JSON.stringify(valA);
+            valB = JSON.stringify(valB);
+        }
+
+        // So sánh chuỗi
+        if (typeof valA === 'string' && typeof valB === 'string') {
+            return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+
+        // So sánh số
+        return isAsc ? (valA > valB ? 1 : -1) : (valA < valB ? 1 : -1);
+    });
+
+    // 3. Gọi vẽ lại bảng
+    ham_7_10_ve_bang_nhiem_vu();
+}
+
 
 function ham_7_3_a_xu_ly_chon_hoc_lieu() {
     const maHL = document.getElementById('add_nv_maHL').value;
