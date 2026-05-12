@@ -2078,7 +2078,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         for (let i = 0; i < 6; i++) {
             chuoiNgauNhien += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
         }
-        const maNV = "NV_DE_" + chuoiNgauNhien;
+        const maNV_MacDinh = "NV_DE_" + chuoiNgauNhien;
 
         const { data: dsHocLieu } = await _supabase.from('hoc_lieu').select('*').order('ngay_tao', { ascending: false });
         window.tempDsHocLieu = dsHocLieu || [];
