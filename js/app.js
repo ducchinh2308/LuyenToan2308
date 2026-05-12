@@ -1190,7 +1190,9 @@ function ham_5_11_thay_doi_sort(cotMoi) {
 
 // Hàm 5.3: Thực hiện Khóa hoặc Mở khóa tài khoản học sinh
 async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
-    const hanhDong = trangThaiMoi === 0 ? "MỞ KHÓA" : "KHÓA";
+    // Ép kiểu về số nguyên cho an toàn, 0 là KHÓA, 1 là MỞ KHÓA
+    const hanhDong = parseInt(trangThaiMoi) === 0 ? "KHÓA" : "MỞ KHÓA";
+
     if (!confirm(`Thầy có chắc chắn muốn ${hanhDong} tài khoản của học sinh: ${tenHS}?`)) return;
 
     document.getElementById('danh-sach-hs-render').innerHTML = `<p style="text-align: center; color: #f39c12;">Đang xử lý...</p>`;
@@ -1198,7 +1200,7 @@ async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
     try {
         const { error } = await _supabase
             .from('hoc_sinh')
-            .update({ trang_thai: trangThaiMoi })
+            .update({ trang_thai: parseInt(trangThaiMoi) }) // Lưu ý đẩy đúng dạng số lên Database
             .eq('uid', uid);
 
         if (error) throw error;
