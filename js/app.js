@@ -1118,6 +1118,7 @@ function ham_5_10_ve_bang_hoc_sinh() {
                     <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">STT</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Thao tác</th>
+                        <th style="padding: 10px; border: 1px solid #eee;">Trạng thái</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('sdt')">SĐT ${cot === 'sdt' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Mật khẩu</th>
@@ -1126,7 +1127,6 @@ function ham_5_10_ve_bang_hoc_sinh() {
                         <th style="padding: 10px; border: 1px solid #eee;">Khối</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Mã lớp tham gia</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('diem_tich_luy')">Điểm TL ${cot === 'diem_tich_luy' ? iconSort : '↕'}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;">Trạng thái</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('lan_dang_nhap_cuoi')">Đăng nhập cuối ${cot === 'lan_dang_nhap_cuoi' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Ngày tham gia</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Metadata</th>
@@ -1154,6 +1154,7 @@ function ham_5_10_ve_bang_hoc_sinh() {
                         ${hs.trang_thai == 1 ? 'Khóa' : 'Mở'}
                     </button>
                 </td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hs.ten}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${hs.sdt}</td>
                 <td style="padding: 10px; border: 1px solid #eee; color: #666;">${hs.mat_khau}</td>
@@ -1161,8 +1162,7 @@ function ham_5_10_ve_bang_hoc_sinh() {
                 <td style="padding: 10px; border: 1px solid #eee;">${hs.tinh || '-'}</td>
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${hs.khoi_lop || '-'}</td>
                 <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-weight: bold;">${maLop}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hs.diem_tich_luy || 0}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hs.diem_tich_luy || 0}</td>                
                 <td style="padding: 10px; border: 1px solid #eee;">${ngayCuoi}</td>
                 <td style="padding: 10px; border: 1px solid #eee;">${ngayThamGia}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-size: 10px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">${JSON.stringify(hs.metadata)}</td>
