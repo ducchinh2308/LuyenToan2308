@@ -95,7 +95,7 @@ function ham_1_2_dung_khung_html() {
                 <input type="text" id="txtMaLop" placeholder="Nhập Mã Lớp (5 ký tự) do Giáo viên cấp để vào" style="width: 100%; border: 2px solid #28a745; background: #e6f4ea;">
             </div>
 
-            <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi" style="display: none;">
+            <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi";">
 
             <div style="position: relative; width: 100%; margin-bottom: 10px;">
                 <input type="password" id="txtPassword" placeholder="Mật khẩu (tối thiểu 6 ký tự)" style="margin-bottom: 0;">
