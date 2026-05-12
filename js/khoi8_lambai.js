@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 0h21 - Ngày 13/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 0h41 - Ngày 13/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -93,6 +93,9 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         if (error) throw error;
         GocHocSinhState.danhSachNhiemVu = dsNV || [];
 
+        // 🌟 IN KẾT QUẢ RA CONSOLE (F12) ĐỂ KIỂM TRA
+        console.log(`📦 Tìm thấy: ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ cho lớp ${GocHocSinhState.ma_lop}`);
+
         // Lấy giờ hiện tại chuẩn của thiết bị
         const now = new Date();
 
@@ -110,7 +113,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
 
-            // LOGIC PHÂN LOẠI CHUẨN XÁC
+            // LOGIC PHÂN LOẠI CHUẨN
             if (tMo && now.getTime() < tMo.getTime()) {
                 // Hiện tại nhỏ hơn giờ mở -> CHƯA MỞ
                 dsChuaMo.push(nv);
