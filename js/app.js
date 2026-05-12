@@ -2864,7 +2864,7 @@ async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
 
 
 // ==============================================================
-// Hàm 7.6: Mở form Xem / Sửa Nhiệm Vụ (BẢN CẬP NHẬT 1 CỘT & THỜI GIAN LÀM BÀI)
+// Hàm 7.6: Mở form Xem / Sửa Nhiệm Vụ (BẢN CẬP NHẬT 1 CỘT & TỰ ĐỘNG NHẬN DIỆN TỰ DO)
 // ==============================================================
 async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     const data = BangNhiemVuState.duLieu.find(nv => nv.ma_nhiem_vu === maNhiemVu);
@@ -2873,45 +2873,32 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang nạp toàn bộ dữ liệu nhiệm vụ...</p></div>`;
 
-    // 1. FORMAT THỜI GIAN
+    // 1. FORMAT THỜI GIAN CHO INPUT DATETIME-LOCAL
     const formatToLocal = (isoStr) => {
         if (!isoStr) return "";
         const d = new Date(isoStr);
         return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
     };
 
-    // 2. BÓC TÁCH JSON ĐẢO ĐỀ
-    let dao = { cau: false, abcd: false, ds: false };
-    try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch (e) { }
-    let modeDao = CFG_NV.DAO_DE.KHONG;
-    if (dao.cau && dao.abcd && dao.ds) modeDao = CFG_NV.DAO_DE.TOAN_DIEN;
-    else if (dao.cau && dao.abcd) modeDao = CFG_NV.DAO_DE.CO_BAN;
-
-    // 3. BÓC TÁCH JSON CÔNG BỐ
-    let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
-    try { congBo = typeof data.cau_hinh_dap_an === 'string' ? JSON.parse(data.cau_hinh_dap_an) : (data.cau_hinh_dap_an || congBo); } catch (e) { }
-
-    let thoiDiemVal = congBo.thoi_diem || CFG_NV.THOI_DIEM.KHOA;
-    let thoiDiemSelect = thoiDiemVal;
-    let gioHen = "";
-    if (thoiDiemVal.startsWith("HEN_GIO|")) {
-        thoiDiemSelect = CFG_NV.THOI_DIEM.HEN_GIO;
-        gioHen = formatToLocal(thoiDiemVal.split("|")[1]);
-    }
-
-    // 4. DANH SÁCH LỚP
-    if (!window.tempDsLop || window.tempDsLop.length === 0) {
-        const { data: dsLop, error } = await _supabase.from('lop_hoc').select('*');
-        if (!error) window.tempDsLop = dsLop;
-    }
+    // 2. NHẬN DIỆN TÍNH CHẤT (TỰ DO HAY BẮT BUỘC)
     let lopDaGiao = [];
-    try { lopDaGiao = typeof data.danh_sach_lop === 'string' ? JSON.parse(data.danh_sach_lop) : (data.danh_sach_lop || []); } catch (e) { }
+    try {
+        lopDaGiao = typeof data.danh_sach_lop === 'string' ? JSON.parse(data.danh_sach_lop) : (data.danh_sach_lop || []);
+    } catch (e) { lopDaGiao = []; }
+
+    const laTuDo = lopDaGiao.includes("#LUYEN_TAP_TU_DO#");
+
+    // 3. DANH SÁCH LỚP (Chỉ lấy nếu cần thiết)
+    if (!laTuDo && (!window.tempDsLop || window.tempDsLop.length === 0)) {
+        const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
+        if (dsLop) window.tempDsLop = dsLop;
+    }
 
     let htmlLop = '';
-    if (window.tempDsLop && window.tempDsLop.length > 0) {
+    if (!laTuDo && window.tempDsLop) {
         window.tempDsLop.forEach(l => {
             const maLop = l.ma_lop || l.ma || l.id;
-            const tenLop = l.ten_lop || l.ten || l.name || maLop;
+            const tenLop = l.ten_lop || l.ten || maLop;
             const isChecked = lopDaGiao.includes(maLop) ? "checked" : "";
             htmlLop += `
                 <label style="display: inline-flex; align-items: center; width: 140px; margin-bottom: 10px; cursor: pointer;">
@@ -2922,23 +2909,12 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
         });
     }
 
-    // 5. NÚT LỆNH RÁP FILE GIẢI
-    let btnTaoFileGiai = "";
-    if (data.trang_thai_loi_giai === CFG_NV.FILE_GIAI.CHUA_LENH || data.trang_thai_loi_giai === CFG_NV.FILE_GIAI.LOI) {
-        btnTaoFileGiai = `
-            <button onclick="ham_7_9_kich_hoat_tao_file_giai('${data.ma_nhiem_vu}')" style="padding: 12px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 20px; width: 100%; box-shadow: 0 2px 4px rgba(111,66,193,0.2);">
-                🚀 PHÁT LỆNH: RÁP FILE LỜI GIẢI CHI TIẾT
-            </button>
-        `;
-    } else {
-        btnTaoFileGiai = `
-            <div style="padding: 12px; background: #f8f9fa; border: 1px dashed #6f42c1; border-radius: 6px; text-align: center; margin-bottom: 20px; color: #6f42c1; font-weight: bold;">
-                📢 Trạng thái file giải hiện tại: ${data.trang_thai_loi_giai}
-            </div>
-        `;
-    }
-
-    const trangThaiHienTai = String(data.trang_thai);
+    // 4. BÓC TÁCH JSON ĐẢO ĐỀ & CÔNG BỐ (Để nạp vào các select)
+    let dao = { cau: false, abcd: false, ds: false };
+    try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch (e) { }
+    let modeDao = CFG_NV.DAO_DE.KHONG;
+    if (dao.cau && dao.abcd && dao.ds) modeDao = CFG_NV.DAO_DE.TOAN_DIEN;
+    else if (dao.cau && dao.abcd) modeDao = CFG_NV.DAO_DE.CO_BAN;
 
     // ================= VẼ GIAO DIỆN CHÍNH =================
     vungLamViec.innerHTML = `
@@ -2948,47 +2924,36 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                 <span style="color: #d35400; font-size: 16px;">[ Mã: ${data.ma_nhiem_vu} ]</span>
             </h3>
 
-            ${btnTaoFileGiai}
-
             <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                <h4 style="margin-top: 0; color: #495057;">1. Thông tin chung & Học Liệu</h4>
-                <div style="margin-bottom:15px;">
+                <h4 style="margin-top: 0; color: #495057;">1. Thông tin chung</h4>
+                <div style="margin-bottom: 15px;">
                     <label style="font-weight:bold; font-size: 13px;">Tên Nhiệm Vụ (*):</label>
-                    <input type="text" id="edit_nv_ten" value="${data.ten_nhiem_vu}" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; box-sizing: border-box;">
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                    <div>
-                        <label style="font-size: 12px; font-weight:bold;">Mã Học Liệu:</label>
-                        <input type="text" value="${data.ma_hoc_lieu || 'Không dùng'}" readonly style="width: 100%; padding: 8px; background:#e9ecef; border: 1px solid #ccc; border-radius: 4px; font-weight:bold;">
-                    </div>
-                    <div>
-                        <label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label>
-                        <input type="text" id="edit_nv_khoi" value="${data.khoi_lop || ''}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                    </div>
-                    <div>
-                        <label style="font-size: 12px; font-weight:bold;">Loại kiểm tra:</label>
-                        <input type="text" id="edit_nv_loaiKT" value="${data.loai_kiem_tra || ''}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                    </div>
+                    <input type="text" id="edit_nv_ten" value="${data.ten_nhiem_vu}" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; box-sizing: border-box; font-weight: bold;">
                 </div>
             </div>
 
             <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                <h4 style="margin-top: 0; color: #d35400;">2. Phân công & Cấu hình (1 Cột)</h4>
+                <h4 style="margin-top: 0; color: #d35400;">2. Phân công & Quy định (Bản 1 Cột)</h4>
                 
-                <div style="margin-bottom: 20px;">
-                    <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 8px;">Danh sách Lớp:</label>
+                <div style="margin-bottom: 15px; padding: 10px; background: ${laTuDo ? '#fff3e0' : '#e3f2fd'}; border-radius: 6px; border: 1px solid #ccc;">
+                    <span style="font-weight: bold;">Tính chất: </span> 
+                    ${laTuDo ? '<b style="color: #d35400;">🌍 LUYỆN TẬP TỰ DO</b>' : '<b style="color: #0056b3;">🎯 NHIỆM VỤ BẮT BUỘC</b>'}
+                    <input type="hidden" id="edit_nv_tinhchat" value="${laTuDo ? 'TU_DO' : 'BAT_BUOC'}">
+                </div>
+
+                <div id="khung_chon_lop_edit" style="margin-bottom: 20px; display: ${laTuDo ? 'none' : 'block'};">
+                    <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 8px;">Giao cho các Lớp:</label>
                     <div style="background: white; padding: 15px; border: 1px solid #ddd; border-radius: 6px; max-height: 120px; overflow-y: auto;">
                         ${htmlLop}
                     </div>
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 12px;">
-                    
                     <div style="display: flex; align-items: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
                         <label style="width: 180px; font-size: 13px; font-weight:bold;">🟢 Trạng thái NV:</label>
                         <select id="edit_nv_trangthai" style="flex: 1; padding: 8px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
-                            <option value="1" ${trangThaiHienTai !== '0' ? 'selected' : ''}>🟢 Mở (Kích hoạt)</option>
-                            <option value="0" ${trangThaiHienTai === '0' ? 'selected' : ''}>🔴 Khóa (Tạm dừng)</option>
+                            <option value="1" ${String(data.trang_thai) !== '0' ? 'selected' : ''}>🟢 Mở (Kích hoạt)</option>
+                            <option value="0" ${String(data.trang_thai) === '0' ? 'selected' : ''}>🔴 Khóa (Tạm dừng)</option>
                         </select>
                     </div>
 
@@ -2998,8 +2963,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                     </div>
 
                     <div style="display: flex; align-items: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
-                        <label style="width: 180px; font-size: 13px; font-weight:bold;">🔄 Số lượt làm bài:</label>
-                        <input type="number" id="edit_nv_soluot" value="${data.so_luot_lam_bai || 0}" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <label style="width: 180px; font-size: 13px; font-weight:bold;">🔄 Số lượt tối đa:</label>
+                        <input type="number" id="edit_nv_soluot" value="${data.so_luot_lam_bai || 0}" ${laTuDo ? 'disabled' : ''} style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: ${laTuDo ? '#f5f5f5' : 'white'};">
                     </div>
 
                     <div style="display: flex; align-items: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
@@ -3009,9 +2974,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
 
                     <div style="display: flex; align-items: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
                         <label style="width: 180px; font-size: 13px; font-weight:bold;">⛔ Đóng Lúc:</label>
-                        <input type="datetime-local" id="edit_nv_dong" value="${formatToLocal(data.thoi_gian_dong)}" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input type="datetime-local" id="edit_nv_dong" value="${formatToLocal(data.thoi_gian_dong)}" ${laTuDo ? 'disabled' : ''} style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: ${laTuDo ? '#f5f5f5' : 'white'};">
                     </div>
-
                 </div>
 
                 <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
@@ -3024,34 +2988,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                 </div>
             </div>
 
-            <div style="background: #e6ffed; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
-                <h4 style="margin-top: 0; color: #28a745;">3. Cấu hình Công bộ & Bảo mật</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div>
-                        <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
-                        <select id="edit_nv_thoigiano" onchange="document.getElementById('khu_vuc_hen_gio_edit').style.display = (this.value === 'HEN_GIO') ? 'block' : 'none'" style="width: 100%; padding: 10px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
-                            <option value="${CFG_NV.THOI_DIEM.KHOA}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.KHOA ? 'selected' : ''}>🔒 Khóa hoàn toàn</option>
-                            <option value="${CFG_NV.THOI_DIEM.SAU_NOP}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.SAU_NOP ? 'selected' : ''}>✅ Ngay sau nộp bài</option>
-                            <option value="${CFG_NV.THOI_DIEM.SAU_HET_HAN}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.SAU_HET_HAN ? 'selected' : ''}>⏳ Sau khi hết hạn Đóng</option>
-                            <option value="${CFG_NV.THOI_DIEM.HEN_GIO}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.HEN_GIO ? 'selected' : ''}>⏰ Hẹn một giờ cụ thể...</option>
-                        </select>
-                        <div id="khu_vuc_hen_gio_edit" style="display: ${thoiDiemSelect === CFG_NV.THOI_DIEM.HEN_GIO ? 'block' : 'none'}; margin-top: 10px;">
-                            <label style="font-size: 12px; color: #d35400; font-weight:bold;">Giờ kích hoạt:</label>
-                            <input type="datetime-local" id="edit_nv_giocongbo" value="${gioHen}" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
-                        </div>
-                    </div>
-                    <div>
-                        <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
-                        <select id="edit_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
-                            <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}" ${congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM ? 'selected' : ''}>📊 Đáp án & Điểm</option>
-                            <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}" ${congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI ? 'selected' : ''}>📚 Đáp án & Lời giải chi tiết</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
             <div style="display: flex; gap: 15px;">
-                <button onclick="ham_7_7_luu_cap_nhat_nhiem_vu('${data.ma_nhiem_vu}', this)" style="flex: 2; padding: 15px; background: #ffc107; color: #333; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                <button onclick="ham_7_7_luu_cap_nhat_nhiem_vu('${data.ma_nhiem_vu}', this)" style="flex: 2; padding: 15px; background: #ffc107; color: #333; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     💾 LƯU CẬP NHẬT
                 </button>
                 <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
