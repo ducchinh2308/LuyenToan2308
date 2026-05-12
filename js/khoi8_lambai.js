@@ -97,24 +97,40 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tổng hợp bài tập từ các lớp...</h3></div>`;
 
     try {
-        // 1. TẠO CHUỖI TRUY VẤN TÌM NHIỀU LỚP
+        // 1. TẠO CHUỖI TRUY VẤN TÌM NHIỀU LỚP (Cấu trúc lại để PostgREST không bị nhầm lẫn)
         let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
-        if (dsLop.length === 0) dsLop = ["#HOC_SINH_CHUA_CO_LOP#"];
+        if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
 
-        // Sinh chuỗi dạng: danh_sach_lop.cs.["12A1"],danh_sach_lop.cs.["12A2"]
-        const orQuery = dsLop.map(ma => `danh_sach_lop.cs.[${JSON.stringify(ma)}]`).join(',');
+        // 🌟 BÍ KÍP: Bọc giá trị mảng JSON trong dấu ngoặc kép và escape dấu ngoặc kép bên trong
+        // Kết quả mong muốn: danh_sach_lop.cs."[\"C321R\"]",danh_sach_lop.cs."[\"57CF1\"]"
+        const orQuery = dsLop.map(ma => {
+            const giaTriJson = JSON.stringify([ma]); // Tạo ra chuỗi ["C321R"]
+            // Escape dấu " thành \" để truyền vào chuỗi .or() an toàn
+            const giaTriSafe = giaTriJson.replace(/"/g, '\\"');
+            return `danh_sach_lop.cs."${giaTriSafe}"`;
+        }).join(',');
 
         // 2. LẤY NHIỆM VỤ TỪ DATABASE
         const { data: dsNV, error: errNV } = await _supabase
             .from('nhiem_vu')
             .select('*')
             .eq('trang_thai', 1)
-            .or(orQuery) // 🌟 Dùng .or để tìm trong tất cả các lớp của HS
+            .or(orQuery)
             .order('ngay_tao', { ascending: false });
 
-        if (errNV) throw errNV;
+        if (errNV) {
+            console.error("❌ Lỗi truy vấn:", errNV.message);
+            throw errNV;
+        }
+
         GocHocSinhState.danhSachNhiemVu = dsNV || [];
-        console.log(`📦 Tìm thấy: ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ thuộc các lớp: ${dsLop.join(', ')}`);
+
+        // 🌟 KIỂM TRA LẠI BIẾN HIỂN THỊ
+        // Thầy lưu ý: Vì giờ học sinh có nhiều lớp, nên in GocHocSinhState.danh_sach_ma_lop thay vì ma_lop
+        console.log(`📦 Đã nạp thành công: ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ.`);
+        console.log(`Lớp học đang quét:`, GocHocSinhState.danh_sach_ma_lop);
+
+
 
         // 3. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
         let tuDienLop = {};
