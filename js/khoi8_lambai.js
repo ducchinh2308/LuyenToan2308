@@ -76,7 +76,7 @@ function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh) {
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (Nâng cấp Giao diện Thẻ)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (FIX LỖI SO SÁNH THỜI GIAN)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -93,22 +93,40 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         if (error) throw error;
         GocHocSinhState.danhSachNhiemVu = dsNV || [];
 
+        // Lấy giờ hiện tại chuẩn của thiết bị
         const now = new Date();
+
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
 
-        GocHocSinhState.danhSachNhiemVu.forEach(nv => {
-            const tMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
-            const tDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+        // 🌟 BÍ KÍP XỬ LÝ TIMEZONE AN TOÀN
+        const anToanThoiGian = (chuoiThoiGian) => {
+            if (!chuoiThoiGian) return null;
+            // Nếu chuỗi có chữ Z ở cuối, JS sẽ tự động dịch UTC -> Giờ địa phương khi new Date()
+            // Nếu không có, ta ép nó hiểu theo chuẩn ISO để tránh lệch múi giờ
+            return new Date(chuoiThoiGian);
+        };
 
-            if (tMo && now < tMo) dsChuaMo.push(nv);
-            else if (tDong && now > tDong) dsDaDong.push(nv);
-            else dsDangMo.push(nv);
+        GocHocSinhState.danhSachNhiemVu.forEach(nv => {
+            const tMo = anToanThoiGian(nv.thoi_gian_mo);
+            const tDong = anToanThoiGian(nv.thoi_gian_dong);
+
+            // LOGIC PHÂN LOẠI CHUẨN XÁC
+            if (tMo && now.getTime() < tMo.getTime()) {
+                // Hiện tại nhỏ hơn giờ mở -> CHƯA MỞ
+                dsChuaMo.push(nv);
+            } else if (tDong && now.getTime() > tDong.getTime()) {
+                // Hiện tại lớn hơn giờ đóng -> ĐÃ ĐÓNG
+                dsDaDong.push(nv);
+            } else {
+                // Không lọt 2 trường hợp trên -> ĐANG MỞ
+                dsDangMo.push(nv);
+            }
         });
 
         // 🌟 HÀM PHỤ: Tính toán khoảng thời gian sinh động
         const tinhThoiGian = (targetDate, isPast) => {
             if (!targetDate) return "";
-            const diff = isPast ? (now - targetDate) : (targetDate - now);
+            const diff = isPast ? (now.getTime() - targetDate.getTime()) : (targetDate.getTime() - now.getTime());
             if (diff <= 0) return isPast ? "Vừa xong" : "Đã hết hạn";
 
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -125,20 +143,19 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
         // 🌟 HÀM PHỤ: VẼ GIAO DIỆN THẺ (CARD)
         const renderCard = (nv, loai) => {
-            // Xử lý Ngày tháng
-            const tMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
-            const tDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
-            const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không quy định";
+            const tMo = anToanThoiGian(nv.thoi_gian_mo);
+            const tDong = anToanThoiGian(nv.thoi_gian_dong);
 
-            // Xử lý Cấu trúc đề & Số câu
+            // Format thời gian hiển thị cực chuẩn theo giờ Việt Nam
+            const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+            const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
+
             let cauTrucText = "Chưa có thông tin";
             if (nv.cau_truc_de) {
-                // Nếu thầy lưu JSON hoặc Text, tạm in text. Hoặc ưu tiên in số lượng câu
                 cauTrucText = nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de;
             }
             const quyMoText = (nv.quy_mo_cau_hoi && nv.quy_mo_cau_hoi > 0) ? `Tổng: ${nv.quy_mo_cau_hoi} câu` : "";
 
-            // Xử lý màu sắc theo Loại Card
             let nutHanhDong = "", mauVien = "", mauNen = "";
             if (loai === 'DANG_MO') {
                 mauVien = "#28a745"; mauNen = "#f4fdf6";
@@ -180,7 +197,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                         </div>
                         <div>
                             <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG:</span> ${fTime(tDong)}
-                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold;">${tDong && now < tDong ? tinhThoiGian(tDong, false) : ""}</span>
+                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold;">${tDong && now.getTime() < tDong.getTime() ? tinhThoiGian(tDong, false) : ""}</span>
                         </div>
                     </div>
 
