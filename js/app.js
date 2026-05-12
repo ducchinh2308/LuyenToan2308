@@ -2303,10 +2303,10 @@ function ham_7_3_d_cap_nhat_ma_nv() {
 }
 
 // ==============================================================
-// Hàm 7.4: Thu thập dữ liệu và Lưu Nhiệm vụ (Áp dụng Hằng số)
+// Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
-    const maNV = document.getElementById('add_nv_ma').value; // Hút mã linh hoạt
+    const maNVTrenForm = document.getElementById('add_nv_ma').value; // Mã đang hiện trên form
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
@@ -2318,6 +2318,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
     const dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
 
+    // 1. Kiểm tra đầu vào
     if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
     if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
     if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
@@ -2326,6 +2327,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
     }
 
+    // 2. Lấy thông tin học liệu chung
     let quyMo = 0;
     let cauTruc = '';
     if (maHL !== "KHONG_DUNG") {
@@ -2336,7 +2338,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         }
     }
 
-    // 🌟 THU THẬP JSON: Cấu hình Đảo đề
+    // 3. THU THẬP JSON: Cấu hình Đảo đề
     const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
     let configDaoDe = { cau: false, abcd: false, ds: false };
     if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
@@ -2345,7 +2347,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         configDaoDe = { cau: true, abcd: true, ds: true };
     }
 
-    // 🌟 THU THẬP JSON: Cấu hình Công bố
+    // 4. THU THẬP JSON: Cấu hình Công bố
     const thoiDiem = document.getElementById('add_nv_thoigiano').value;
     const mucDo = document.getElementById('add_nv_mucdo').value;
     let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
@@ -2353,43 +2355,66 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
         const gioCongBo = document.getElementById('add_nv_giocongbo').value;
         if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
-        configCongBo.thoi_diem = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
+        configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
     }
 
     btnNode.disabled = true;
-    btnNode.innerText = "⏳ ĐANG KHỞI TẠO...";
+    btnNode.innerText = "⏳ ĐANG KHỞI TẠO CÁC NHIỆM VỤ...";
 
     try {
-        const payload = {
-            ma_nhiem_vu: maNV,
-            ten_nhiem_vu: tenNV,
-            loai_nhiem_vu: loaiNV,
-            ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
-            khoi_lop: document.getElementById('add_nv_khoi').value,
-            loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
-            quy_mo_cau_hoi: quyMo,
-            cau_truc_de: cauTruc,
-            danh_sach_lop: dsLopChon,
-            thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
-            thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-            so_luot_lam_bai: soLuot,
+        // Chuẩn bị Tiền tố và Bộ ký tự để sinh mã mới nếu giao nhiều lớp
+        const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        const prefix = "NV_" + (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") + "_";
 
-            cau_hinh_dap_an: configCongBo,
-            dao_cau_hoi: configDaoDe,
+        // 🌟 BƯỚC QUAN TRỌNG: TẠO MẢNG DỮ LIỆU TÁCH RIÊNG THEO TỪNG LỚP
+        const insertPayloads = dsLopChon.map((maLop) => {
+            let maNV_ChinhThuc = "";
 
-            // 🌟 CHỐNG HACK: Mặc định chờ lệnh
-            trang_thai_loi_giai: CFG_NV.FILE_GIAI.CHUA_LENH,
-            trang_thai: trangThai,
+            // Nếu chỉ giao 1 lớp, dùng luôn cái mã đang hiện trên màn hình
+            // Nếu giao nhiều lớp, đẻ mã mới tinh cho từng lớp
+            if (dsLopChon.length === 1) {
+                maNV_ChinhThuc = maNVTrenForm;
+            } else {
+                let randomStr = '';
+                for (let i = 0; i < 6; i++) {
+                    randomStr += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
+                }
+                maNV_ChinhThuc = prefix + randomStr;
+            }
 
-            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
-            ngay_tao: new Date().toISOString()
-        };
+            return {
+                ma_nhiem_vu: maNV_ChinhThuc,
+                ten_nhiem_vu: tenNV,
+                loai_nhiem_vu: loaiNV,
+                ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
+                khoi_lop: document.getElementById('add_nv_khoi').value,
+                loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
+                quy_mo_cau_hoi: quyMo,
+                cau_truc_de: cauTruc,
+                danh_sach_lop: [maLop], // Vẫn lưu mảng nhưng chỉ chứa đúng 1 lớp
+                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
+                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
+                so_luot_lam_bai: soLuot,
+                cau_hinh_dap_an: configCongBo,
+                dao_cau_hoi: configDaoDe,
+                trang_thai_loi_giai: CFG_NV.FILE_GIAI.CHUA_LENH,
+                trang_thai: trangThai,
+                uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
+                ngay_tao: new Date().toISOString()
+            };
+        });
 
-        const { error } = await _supabase.from('nhiem_vu').insert([payload]);
+        // Bắn 1 lúc toàn bộ mảng lên Supabase (Bulk Insert)
+        const { error } = await _supabase.from('nhiem_vu').insert(insertPayloads);
 
         if (error) throw error;
 
-        alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNV}`);
+        if (dsLopChon.length === 1) {
+            alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+        } else {
+            alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
+        }
+
         ham_7_1_ve_quan_ly_nhiem_vu();
 
     } catch (error) {
