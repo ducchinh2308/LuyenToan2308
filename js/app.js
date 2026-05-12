@@ -1907,7 +1907,7 @@ const CFG_NV = {
         DANG_XU_LY: "DANG_XU_LY",
         HOAN_THANH: "DA_HOAN_THANH",
         LOI: "LOI_DONG_GOI"
-    }
+    },
     // 🌟 THÊM MỚI: Từ điển quy định Tiền tố cho từng loại nhiệm vụ
     PREFIX_LOAI: {
         "Làm đề (Online)": "DE",
