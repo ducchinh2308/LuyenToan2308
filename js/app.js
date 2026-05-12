@@ -712,12 +712,40 @@ async function ham_4_3_luu_lop_moi(btnElement, maLop) {
 // ------------------------------------------------------------------------------
 
 // Hàm 4.4: Lấy dữ liệu và gọi hàm Vẽ bảng
+//async function ham_4_4_tai_danh_sach_lop() {
+//    try {
+//        const { data: dsLop, error } = await _supabase.from('lop_hoc').select('*');
+//        if (error) throw error;
+
+//        // BƯỚC MỚI: Tra cứu tên Giáo viên tạo từ bảng hoc_sinh
+//        const danhSachUidGv = [...new Set((dsLop || []).map(l => l.uid_gv_tao).filter(id => id))];
+//        let tuDienTenGv = {};
+
+//        if (danhSachUidGv.length > 0) {
+//            const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
+//            if (dsGv) {
+//                dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
+//            }
+//        }
+
+//        // Gắn tên giáo viên vào dữ liệu lớp để dùng ở các hàm sau
+//        BangLopState.duLieu = (dsLop || []).map(lop => ({
+//            ...lop,
+//            ten_gv_tao: tuDienTenGv[lop.uid_gv_tao] || 'Hệ thống'
+//        }));
+
+//        ham_4_10_ve_bang_du_lieu();
+
+//    } catch (error) {
+//        document.getElementById('danh-sach-lop-render').innerHTML = `<p style="color: red;">Lỗi: ${error.message}</p>`;
+//    }
+//}
+// Hàm 4.4: Lấy dữ liệu và gọi hàm Vẽ bảng (Bản FIX lỗi Null)
 async function ham_4_4_tai_danh_sach_lop() {
     try {
         const { data: dsLop, error } = await _supabase.from('lop_hoc').select('*');
         if (error) throw error;
 
-        // BƯỚC MỚI: Tra cứu tên Giáo viên tạo từ bảng hoc_sinh
         const danhSachUidGv = [...new Set((dsLop || []).map(l => l.uid_gv_tao).filter(id => id))];
         let tuDienTenGv = {};
 
@@ -728,16 +756,25 @@ async function ham_4_4_tai_danh_sach_lop() {
             }
         }
 
-        // Gắn tên giáo viên vào dữ liệu lớp để dùng ở các hàm sau
         BangLopState.duLieu = (dsLop || []).map(lop => ({
             ...lop,
             ten_gv_tao: tuDienTenGv[lop.uid_gv_tao] || 'Hệ thống'
         }));
 
+        // Gọi hàm vẽ bảng
         ham_4_10_ve_bang_du_lieu();
 
     } catch (error) {
-        document.getElementById('danh-sach-lop-render').innerHTML = `<p style="color: red;">Lỗi: ${error.message}</p>`;
+        console.error("Lỗi tải danh sách lớp:", error.message);
+
+        // 🌟 KIỂM TRA AN TOÀN TRƯỚC KHI GÁN INNERHTML
+        const khungRender = document.getElementById('danh-sach-lop-render');
+        if (khungRender) {
+            khungRender.innerHTML = `<p style="color: red;">Lỗi: ${error.message}</p>`;
+        } else {
+            // Nếu không tìm thấy khung render, có thể báo qua alert hoặc console
+            alert("Lỗi tải danh sách lớp: " + error.message);
+        }
     }
 }
 
