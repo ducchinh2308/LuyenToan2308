@@ -1190,8 +1190,8 @@ function ham_5_11_thay_doi_sort(cotMoi) {
 
 // Hàm 5.3: Thực hiện Khóa hoặc Mở khóa tài khoản học sinh
 async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
-    // Ép kiểu về số nguyên cho an toàn, 0 là KHÓA, 1 là MỞ KHÓA
-    const hanhDong = parseInt(trangThaiMoi) === 0 ? "KHÓA" : "MỞ KHÓA";
+    // Chỉ cần gán đúng chữ: Nếu trạng thái muốn đổi thành là 1 -> Hiện "MỞ KHÓA", ngược lại hiện "KHÓA"
+    const hanhDong = parseInt(trangThaiMoi) === 1 ? "MỞ KHÓA" : "KHÓA";
 
     if (!confirm(`Thầy có chắc chắn muốn ${hanhDong} tài khoản của học sinh: ${tenHS}?`)) return;
 
@@ -1200,7 +1200,7 @@ async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
     try {
         const { error } = await _supabase
             .from('hoc_sinh')
-            .update({ trang_thai: parseInt(trangThaiMoi) }) // Lưu ý đẩy đúng dạng số lên Database
+            .update({ trang_thai: parseInt(trangThaiMoi) })
             .eq('uid', uid);
 
         if (error) throw error;
@@ -1210,7 +1210,7 @@ async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
 
     } catch (error) {
         alert(`Lỗi khi ${hanhDong}: ` + error.message);
-        ham_5_10_ve_bang_hoc_sinh(); // Lỗi thì vẽ lại bảng như cũ
+        ham_5_10_ve_bang_hoc_sinh();
     }
 }
 
