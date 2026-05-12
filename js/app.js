@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 20h38 - Ngày 12/05";
+const APP_VERSION = "app.js cập nhật lúc 20h45 - Ngày 12/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
@@ -3005,48 +3005,145 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
 // ==============================================================
 // Hàm 7.7: Thu thập và Gửi Cập nhật Nhiệm vụ (FULL JSON & THỜI GIAN LÀM BÀI)
 // ==============================================================
+//async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
+//    const tenNV = document.getElementById('edit_nv_ten').value.trim();
+//    const khoi = document.getElementById('edit_nv_khoi').value;
+//    const loaiKT = document.getElementById('edit_nv_loaiKT').value;
+//    const trangThai = document.getElementById('edit_nv_trangthai').value;
+
+//    // 🌟 LẤY THỜI GIAN LÀM BÀI MỚI
+//    const tgLamBai = parseInt(document.getElementById('edit_nv_thoigian').value) || 0;
+
+//    let soLuot = parseInt(document.getElementById('edit_nv_soluot').value) || 0;
+//    let mo = document.getElementById('edit_nv_mo').value;
+//    let dong = document.getElementById('edit_nv_dong').value;
+
+//    // Danh sách lớp mới
+//    const chkLop = document.querySelectorAll('.chk-lop-edit:checked');
+//    const dsLopChon = Array.from(chkLop).map(chk => chk.value);
+
+//    // 1. Kiểm tra đầu vào
+//    if (!tenNV || dsLopChon.length === 0) return alert("❌ Tên nhiệm vụ và Lớp giao không được để trống!");
+
+//    // 🌟 LOGIC BẢO VỆ TÍNH CHẤT TỰ DO
+//    if (dsLopChon.includes("#LUYEN_TAP_TU_DO#")) {
+//        soLuot = 0;   // Ép về Vô hạn
+//        dong = null;  // Ép về Không hạn chót
+//    }
+
+//    // Cấu hình Đảo Đề
+//    const cheDoDao = document.getElementById('edit_nv_che_do_dao').value;
+//    let configDaoDe = { cau: false, abcd: false, ds: false };
+//    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) configDaoDe = { cau: true, abcd: true, ds: false };
+//    else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) configDaoDe = { cau: true, abcd: true, ds: true };
+
+//    // Cấu hình Công Bố
+//    let thoiDiem = document.getElementById('edit_nv_thoigiano').value;
+//    const mucDo = document.getElementById('edit_nv_mucdo').value;
+//    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
+//        const gioHen = document.getElementById('edit_nv_giocongbo').value;
+//        if (!gioHen) return alert("❌ Thầy phải nhập Giờ công bố!");
+//        thoiDiem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioHen).toISOString()}`;
+//    }
+//    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
+
+//    btnNode.disabled = true;
+//    btnNode.innerText = "⏳ ĐANG LƯU...";
+
+//    try {
+//        const { error } = await _supabase
+//            .from('nhiem_vu')
+//            .update({
+//                ten_nhiem_vu: tenNV,
+//                khoi_lop: khoi,
+//                loai_kiem_tra: loaiKT,
+//                danh_sach_lop: JSON.stringify(dsLopChon), // Đảm bảo đúng định dạng jsonb
+//                thoi_gian_lam_bai: tgLamBai,              // 🌟 LƯU THỜI GIAN LÀM BÀI VÀO DB
+//                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
+//                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
+//                so_luot_lam_bai: soLuot,
+//                trang_thai: trangThai,
+//                dao_cau_hoi: configDaoDe,
+//                cau_hinh_dap_an: configCongBo
+//            })
+//            .eq('ma_nhiem_vu', maNhiemVu);
+
+//        if (error) throw error;
+
+//        alert("✅ Đã cập nhật Nhiệm Vụ thành công!");
+//        ham_7_1_ve_quan_ly_nhiem_vu();
+
+//    } catch (error) {
+//        alert("Lỗi: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 LƯU CẬP NHẬT";
+//    }
+//}
+
+
+// ==============================================================
+// Hàm 7.7: Thu thập và Gửi Cập nhật Nhiệm vụ (FIX LỖI NULL VALUE)
+// ==============================================================
 async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
-    const tenNV = document.getElementById('edit_nv_ten').value.trim();
-    const khoi = document.getElementById('edit_nv_khoi').value;
-    const loaiKT = document.getElementById('edit_nv_loaiKT').value;
-    const trangThai = document.getElementById('edit_nv_trangthai').value;
+    // 1. Lấy các thông tin cơ bản (Luôn tồn tại)
+    const elTen = document.getElementById('edit_nv_ten');
+    const elKhoi = document.getElementById('edit_nv_khoi');
+    const elLoaiKT = document.getElementById('edit_nv_loaiKT');
+    const elTrangThai = document.getElementById('edit_nv_trangthai');
+    const elTG = document.getElementById('edit_nv_thoigian');
+    const elSoLuot = document.getElementById('edit_nv_soluot');
+    const elMo = document.getElementById('edit_nv_mo');
+    const elDong = document.getElementById('edit_nv_dong');
+    const elTinhChat = document.getElementById('edit_nv_tinhchat');
 
-    // 🌟 LẤY THỜI GIAN LÀM BÀI MỚI
-    const tgLamBai = parseInt(document.getElementById('edit_nv_thoigian').value) || 0;
+    const tenNV = elTen ? elTen.value.trim() : "";
+    const khoi = elKhoi ? elKhoi.value : "";
+    const loaiKT = elLoaiKT ? elLoaiKT.value : "";
+    const trangThai = elTrangThai ? elTrangThai.value : "1";
+    const tgLamBai = elTG ? (parseInt(elTG.value) || 0) : 0;
+    const tinhChat = elTinhChat ? elTinhChat.value : "BAT_BUOC";
 
-    let soLuot = parseInt(document.getElementById('edit_nv_soluot').value) || 0;
-    let mo = document.getElementById('edit_nv_mo').value;
-    let dong = document.getElementById('edit_nv_dong').value;
+    let soLuot = elSoLuot ? (parseInt(elSoLuot.value) || 0) : 0;
+    let mo = elMo ? elMo.value : null;
+    let dong = elDong ? elDong.value : null;
 
-    // Danh sách lớp mới
-    const chkLop = document.querySelectorAll('.chk-lop-edit:checked');
-    const dsLopChon = Array.from(chkLop).map(chk => chk.value);
-
-    // 1. Kiểm tra đầu vào
-    if (!tenNV || dsLopChon.length === 0) return alert("❌ Tên nhiệm vụ và Lớp giao không được để trống!");
-
-    // 🌟 LOGIC BẢO VỆ TÍNH CHẤT TỰ DO
-    if (dsLopChon.includes("#LUYEN_TAP_TU_DO#")) {
-        soLuot = 0;   // Ép về Vô hạn
-        dong = null;  // Ép về Không hạn chót
+    // 2. Xử lý danh sách lớp (Chỉ lấy nếu không phải bài tự do)
+    let dsLopChon = [];
+    if (tinhChat === "TU_DO") {
+        dsLopChon = ["#LUYEN_TAP_TU_DO#"];
+        soLuot = 0;
+        dong = null;
+    } else {
+        const chkLop = document.querySelectorAll('.chk-lop-edit:checked');
+        dsLopChon = Array.from(chkLop).map(chk => chk.value);
     }
 
-    // Cấu hình Đảo Đề
-    const cheDoDao = document.getElementById('edit_nv_che_do_dao').value;
-    let configDaoDe = { cau: false, abcd: false, ds: false };
-    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) configDaoDe = { cau: true, abcd: true, ds: false };
-    else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) configDaoDe = { cau: true, abcd: true, ds: true };
+    if (!tenNV || dsLopChon.length === 0) return alert("❌ Tên nhiệm vụ và Lớp giao không được để trống!");
 
-    // Cấu hình Công Bố
-    let thoiDiem = document.getElementById('edit_nv_thoigiano').value;
-    const mucDo = document.getElementById('edit_nv_mucdo').value;
-    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
-        const gioHen = document.getElementById('edit_nv_giocongbo').value;
-        if (!gioHen) return alert("❌ Thầy phải nhập Giờ công bố!");
+    // 3. Cấu hình Đảo Đề (Kiểm tra an toàn)
+    const elDao = document.getElementById('edit_nv_che_do_dao');
+    let configDaoDe = { cau: false, abcd: false, ds: false };
+    if (elDao) {
+        if (elDao.value === CFG_NV.DAO_DE.CO_BAN) configDaoDe = { cau: true, abcd: true, ds: false };
+        else if (elDao.value === CFG_NV.DAO_DE.TOAN_DIEN) configDaoDe = { cau: true, abcd: true, ds: true };
+    }
+
+    // 4. Cấu hình Công Bố (Kiểm tra an toàn cho các ô có thể bị ẩn)
+    const elThoiDiem = document.getElementById('edit_nv_thoigiano');
+    const elMucDo = document.getElementById('edit_nv_mucdo');
+    const elGioHen = document.getElementById('edit_nv_giocongbo');
+
+    let thoiDiem = elThoiDiem ? elThoiDiem.value : CFG_NV.THOI_DIEM.KHOA;
+    let mucDo = elMucDo ? elMucDo.value : CFG_NV.MUC_DO.KHONG;
+
+    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO && elGioHen) {
+        const gioHen = elGioHen.value;
+        if (!gioHen) return alert("❌ Thầy phải nhập Giờ công bộ!");
         thoiDiem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioHen).toISOString()}`;
     }
     let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
 
+    // 5. Gửi cập nhật
     btnNode.disabled = true;
     btnNode.innerText = "⏳ ĐANG LƯU...";
 
@@ -3057,8 +3154,8 @@ async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
                 ten_nhiem_vu: tenNV,
                 khoi_lop: khoi,
                 loai_kiem_tra: loaiKT,
-                danh_sach_lop: JSON.stringify(dsLopChon), // Đảm bảo đúng định dạng jsonb
-                thoi_gian_lam_bai: tgLamBai,              // 🌟 LƯU THỜI GIAN LÀM BÀI VÀO DB
+                danh_sach_lop: JSON.stringify(dsLopChon),
+                thoi_gian_lam_bai: tgLamBai,
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
                 so_luot_lam_bai: soLuot,
@@ -3079,6 +3176,8 @@ async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
         btnNode.innerText = "💾 LƯU CẬP NHẬT";
     }
 }
+
+
 // ==============================================================
 // Hàm 7.9: Kích hoạt lệnh ráp file lời giải (Issue Command)
 // ==============================================================
