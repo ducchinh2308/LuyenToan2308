@@ -24,16 +24,30 @@
 
     <div id="app"></div>
 
-    //<script src="js/app.js?v=1.5"></script>
+    
     <script>
-        // Tự động tạo ra một đuôi số ngẫu nhiên theo thời gian thực (ví dụ: ?v=1715511313000)
+        // 1. Lấy mốc thời gian hiện tại để lừa trình duyệt tải bản mới nhất
         var phienBanMoiNhat = new Date().getTime();
 
-        var script = document.createElement('script');
-        script.src = 'js/app.js?v=' + phienBanMoiNhat;
+        // 2. Danh sách các file JS cần nhúng (Thứ tự rất quan trọng: Nền móng để trên, chức năng để dưới)
+        var danhSachFiles = [
+            'js/app.js',
+            'js/khoi8_lambai.js'
+            // Sau này có tách thêm file khoi9, khoi10... thầy cứ phẩy rồi gõ thêm tên file vào đây là xong
+        ];
 
-        // Gắn file js vào web
-        document.body.appendChild(script);
+        // 3. Vòng lặp tự động đúc thẻ <script> và gắn vào trang
+        danhSachFiles.forEach(function (file) {
+            var script = document.createElement('script');
+            script.src = file + '?v=' + phienBanMoiNhat;
+
+            // 🌟 Lệnh này CỰC KỲ QUAN TRỌNG: Ép các file phải chạy theo đúng thứ tự từ trên xuống dưới
+            script.async = false;
+
+            document.body.appendChild(script);
+        });
     </script>
+
+
 </body>
 </html>
