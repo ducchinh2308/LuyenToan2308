@@ -2600,8 +2600,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                     <div>
                         <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
                         <select id="edit_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
-                            <option value="1" ${data.trang_thai == '1' ? 'selected' : ''}>🟢 Mở (Đang giao)</option>
-                            <option value="0" ${data.trang_thai == '0' ? 'selected' : ''}>🔴 Đóng (Tạm dừng)</option>
+                            <option value="1" ${String(data.trang_thai) !== '0' ? 'selected' : ''}>🟢 Mở (Đang giao)</option>
+                            <option value="0" ${String(data.trang_thai) === '0' ? 'selected' : ''}>🔴 Đóng (Tạm dừng)</option>
                         </select>
                     </div>
                     <div>
