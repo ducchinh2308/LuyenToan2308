@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 18h27 - Ngày 12/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 18h54 - Ngày 12/05";
 
 // In ra Console với màu Xanh lá để phân biệt với màu Cam của app.js
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");

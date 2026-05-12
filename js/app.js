@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 18h24 - Ngày 12/05";
+const APP_VERSION = "app.js cập nhật lúc 18h53 - Ngày 12/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
@@ -2107,10 +2107,17 @@ function ham_7_10_ve_bang_nhiem_vu() {
 
         const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
 
-        // 1. Xử lý Giao Cho
+        // 1. Xử lý Giao Cho (Hiện Tên lớp hoặc Nhãn Tự Do)
         let arrLop = [];
         try { arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
+
         let hienThiLop = arrLop.map(ma => {
+            // 🌟 NẾU LÀ MÃ TỰ DO THÌ IN TEM MÀU NỔI BẬT
+            if (ma === "#LUYEN_TAP_TU_DO#") {
+                return `<div style="margin-top: 5px;"><span style="background:#17a2b8; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🌍 LUYỆN TẬP TỰ DO</span></div>`;
+            }
+
+            // Nếu là mã lớp bình thường -> Vẽ như cũ
             const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
             const tenLop = lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn";
             return `<div style="margin-bottom:2px;"><b>${tenLop}</b> <small style="color:#666;">(${ma})</small></div>`;
@@ -2163,7 +2170,7 @@ function ham_7_10_ve_bang_nhiem_vu() {
 
 
 
-// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới)
+// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới + Bổ sung TÍNH CHẤT)
 async function ham_7_3_hien_form_them_nhiem_vu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
@@ -2252,7 +2259,21 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đảo đề</h4>
                     
-                    <div style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <div style="margin-bottom: 15px; padding: 10px; background: #e8f4fd; border: 1px solid #b8daff; border-radius: 6px;">
+                        <label style="font-size: 12px; font-weight:bold; color: #0056b3;">Tính chất bài tập:</label>
+                        <div style="display: flex; gap: 20px; margin-top: 5px;">
+                            <label style="cursor: pointer; font-weight: bold; font-size: 13px;">
+                                <input type="radio" name="add_nv_tinhchat" value="BAT_BUOC" checked onchange="document.getElementById('khung_chon_lop').style.display='block'"> 
+                                🎯 Bắt buộc (Giao cho Lớp)
+                            </label>
+                            <label style="cursor: pointer; font-weight: bold; font-size: 13px; color: #d35400;">
+                                <input type="radio" name="add_nv_tinhchat" value="TU_DO" onchange="document.getElementById('khung_chon_lop').style.display='none'"> 
+                                🌍 Luyện tập tự do (Mở cho tất cả)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="khung_chon_lop" style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
                         <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho Lớp (*):</label>
                         <div style="margin-bottom: 10px;">
                             <button onclick="ham_7_3_b_chon_tat_ca_lop(true)" style="padding: 3px 8px; font-size: 11px;">Chọn tất cả</button>
@@ -2265,13 +2286,12 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
                         <div>
-                        <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
-                        <select id="edit_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
-                            <option value="1" ${String(data.trang_thai) !== '0' ? 'selected' : ''}>🟢 Mở (Đang giao)</option>
-                            <option value="0" ${String(data.trang_thai) === '0' ? 'selected' : ''}>🔴 Khóa (Tạm dừng)</option> </select>
-                    </div>
-
-
+                            <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
+                            <select id="add_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
+                                <option value="1" selected>🟢 Mở (Kích hoạt)</option>
+                                <option value="0">🔴 Khóa (Tạm dừng)</option>
+                            </select>
+                        </div>
                         <div><label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label><input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Mở Lúc:</label><input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Đóng Lúc:</label><input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
@@ -2331,7 +2351,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         vungLamViec.innerHTML = `<p style="color:red; text-align:center;">Lỗi khởi tạo form: ${error.message}</p>`;
     }
 }
-
 // ==============================================================
 // CÁC HÀM BỔ TRỢ XỬ LÝ GIAO DIỆN (UI LOGIC)
 // ==============================================================
@@ -2385,7 +2404,7 @@ function ham_7_11_sort_nhiem_vu(cotSort) {
     ham_7_10_ve_bang_nhiem_vu();
 }
 
-
+// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới)
 function ham_7_3_a_xu_ly_chon_hoc_lieu() {
     const maHL = document.getElementById('add_nv_maHL').value;
     const khuVucInfo = document.getElementById('khu_vuc_thong_tin_hl');
@@ -2451,27 +2470,42 @@ function ham_7_3_d_cap_nhat_ma_nv() {
 
 // ==============================================================
 // Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
+// (Bổ sung logic phân biệt Bắt buộc / Tự do)
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
-    const maNVTrenForm = document.getElementById('add_nv_ma').value; // Mã đang hiện trên form
+    const maNVTrenForm = document.getElementById('add_nv_ma').value;
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
     const trangThai = document.getElementById('add_nv_trangthai').value;
-    const soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
-    const mo = document.getElementById('add_nv_mo').value;
-    const dong = document.getElementById('add_nv_dong').value;
 
-    const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
-    const dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
+    // Đọc tính chất bài tập từ Radio button
+    const tinhChat = document.querySelector('input[name="add_nv_tinhchat"]:checked').value;
 
-    // 1. Kiểm tra đầu vào
+    let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
+    let mo = document.getElementById('add_nv_mo').value;
+    let dong = document.getElementById('add_nv_dong').value;
+    let dsLopChon = [];
+
+    // 1. KIỂM TRA ĐẦU VÀO VÀ ĐIỀU CHỈNH THEO TÍNH CHẤT
     if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
     if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
-    if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
 
-    if (mo && dong && new Date(mo) >= new Date(dong)) {
-        return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
+    if (tinhChat === "TU_DO") {
+        // Tự động ép cấu hình "thả ga" cho bài Luyện tập tự do
+        dsLopChon = ["#LUYEN_TAP_TU_DO#"];
+        soLuot = 0;   // Vô hạn
+        dong = null;  // Không hạn chót
+    } else {
+        // Nếu là bài bắt buộc, bắt buộc phải chọn Lớp
+        const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
+        dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
+        if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
+
+        // Kiểm tra logic thời gian đối với bài Bắt buộc
+        if (mo && dong && new Date(mo) >= new Date(dong)) {
+            return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
+        }
     }
 
     // 2. Lấy thông tin học liệu chung
@@ -2517,8 +2551,6 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         const insertPayloads = dsLopChon.map((maLop) => {
             let maNV_ChinhThuc = "";
 
-            // Nếu chỉ giao 1 lớp, dùng luôn cái mã đang hiện trên màn hình
-            // Nếu giao nhiều lớp, đẻ mã mới tinh cho từng lớp
             if (dsLopChon.length === 1) {
                 maNV_ChinhThuc = maNVTrenForm;
             } else {
@@ -2538,7 +2570,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
                 loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
                 quy_mo_cau_hoi: quyMo,
                 cau_truc_de: cauTruc,
-                danh_sach_lop: [maLop], // Vẫn lưu mảng nhưng chỉ chứa đúng 1 lớp
+                danh_sach_lop: JSON.stringify([maLop]), // LƯU Ý: Phải parse thành chuỗi JSON để không lỗi định dạng DB
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
                 so_luot_lam_bai: soLuot,
@@ -2557,7 +2589,11 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         if (error) throw error;
 
         if (dsLopChon.length === 1) {
-            alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+            if (tinhChat === "TU_DO") {
+                alert(`✅ Đã mở phòng LUYỆN TẬP TỰ DO thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+            } else {
+                alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+            }
         } else {
             alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
         }
