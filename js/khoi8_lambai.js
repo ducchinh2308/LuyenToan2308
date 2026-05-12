@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 0h41 - Ngày 13/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 1h12 - Ngày 13/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -87,7 +87,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             .from('nhiem_vu')
             .select('*')
             .eq('trang_thai', 1)
-            .contains('danh_sach_lop', `["${GocHocSinhState.ma_lop}"]`)
+            .contains('danh_sach_lop', `[\"${GocHocSinhState.ma_lop}\"]`)
             .order('ngay_tao', { ascending: false });
 
         if (error) throw error;
