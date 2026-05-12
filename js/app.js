@@ -1190,7 +1190,7 @@ function ham_5_11_thay_doi_sort(cotMoi) {
 
 // Hàm 5.3: Thực hiện Khóa hoặc Mở khóa tài khoản học sinh
 async function ham_5_3_khoa_mo_tai_khoan(uid, trangThaiMoi, tenHS) {
-    const hanhDong = trangThaiMoi === 0 ? "KHÓA" : "MỞ KHÓA";
+    const hanhDong = trangThaiMoi === 0 ? "MỞ KHÓA" : "KHÓA";
     if (!confirm(`Thầy có chắc chắn muốn ${hanhDong} tài khoản của học sinh: ${tenHS}?`)) return;
 
     document.getElementById('danh-sach-hs-render').innerHTML = `<p style="text-align: center; color: #f39c12;">Đang xử lý...</p>`;
