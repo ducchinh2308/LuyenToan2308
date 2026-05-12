@@ -1908,6 +1908,13 @@ const CFG_NV = {
         HOAN_THANH: "DA_HOAN_THANH",
         LOI: "LOI_DONG_GOI"
     }
+    // 🌟 THÊM MỚI: Từ điển quy định Tiền tố cho từng loại nhiệm vụ
+    PREFIX_LOAI: {
+        "Làm đề (Online)": "DE",
+        "Tự luận (Nộp ảnh)": "TL",
+        "Xem bài giảng": "BG",
+        "Khảo sát": "KS"
+    }
 };
 
 // Hàm 7.1: Vẽ bộ khung giao diện Quản lý Nhiệm Vụ
@@ -2071,7 +2078,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         for (let i = 0; i < 6; i++) {
             chuoiNgauNhien += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
         }
-        const maNV = "NV_" + chuoiNgauNhien;
+        const maNV = "NV_DE_" + chuoiNgauNhien;
 
         const { data: dsHocLieu } = await _supabase.from('hoc_lieu').select('*').order('ngay_tao', { ascending: false });
         window.tempDsHocLieu = dsHocLieu || [];
@@ -2112,8 +2119,8 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                     <h4 style="margin-top: 0; color: #495057;">1. Thông tin chung</h4>
                     <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px;">
                         <div>
-                            <label style="font-weight:bold; font-size: 13px;">Mã NV:</label>
-                            <input type="text" id="add_nv_ma" value="${maNV}" readonly style="width: 100%; padding: 8px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; font-weight:bold; color: #dc3545; cursor: not-allowed;">
+                            <label style="font-weight:bold; font-size: 13px;">Mã NV (Tự động):</label>
+                            <input type="text" id="add_nv_ma" value="${maNV_MacDinh}" data-random="${chuoiNgauNhien}" readonly style="width: 100%; padding: 8px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; font-weight:bold; color: #dc3545; cursor: not-allowed;">
                         </div>
                         <div>
                             <label style="font-weight:bold; font-size: 13px;">Tên Nhiệm Vụ (*):</label>
@@ -2121,9 +2128,11 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                         </div>
                         <div>
                             <label style="font-weight:bold; font-size: 13px;">Loại nhiệm vụ:</label>
-                            <select id="add_nv_loai" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <select id="add_nv_loai" onchange="ham_7_3_d_cap_nhat_ma_nv()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                                 <option value="Làm đề (Online)">📝 Làm đề (Online)</option>
                                 <option value="Tự luận (Nộp ảnh)">📷 Làm Tự luận (Chụp ảnh nộp)</option>
+                                <option value="Xem bài giảng">📺 Xem Video / Slide</option>
+                                <option value="Khảo sát">📊 Khảo sát / Lấy ý kiến</option>
                             </select>
                         </div>
                     </div>
@@ -2211,9 +2220,10 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 </div>
 
                 <div style="display: flex; gap: 15px;">
-                    <button onclick="ham_7_4_luu_nhiem_vu_moi('${maNV}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                    <button onclick="ham_7_4_luu_nhiem_vu_moi(this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
                         💾 XÁC NHẬN GIAO BÀI
                     </button>
+
                     <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
                         HỦY
                     </button>
@@ -2277,10 +2287,26 @@ function ham_7_3_c_xu_ly_cong_bo() {
     }
 }
 
+// Hàm 7.3.d: Tự động cập nhật Mã NV khi đổi Loại Nhiệm Vụ
+function ham_7_3_d_cap_nhat_ma_nv() {
+    const loaiNV = document.getElementById('add_nv_loai').value;
+    const inputMa = document.getElementById('add_nv_ma');
+
+    // Lấy chuỗi 6 số ngẫu nhiên đã được cất giấu trong thuộc tính data-random
+    const randomStr = inputMa.getAttribute('data-random');
+
+    // Tra từ điển lấy Tiền tố (DE, TL, BG...), nếu không có thì mặc định là KH (Khác)
+    const prefix = CFG_NV.PREFIX_LOAI[loaiNV] || "KH";
+
+    // Ghép lại và hiển thị ra ô Input
+    inputMa.value = `NV_${prefix}_${randomStr}`;
+}
+
 // ==============================================================
 // Hàm 7.4: Thu thập dữ liệu và Lưu Nhiệm vụ (Áp dụng Hằng số)
 // ==============================================================
-async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
+async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
+    const maNV = document.getElementById('add_nv_ma').value; // Hút mã linh hoạt
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
