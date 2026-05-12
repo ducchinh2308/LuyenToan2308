@@ -87,7 +87,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             .from('nhiem_vu')
             .select('*')
             .eq('trang_thai', 1)
-            .contains('danh_sach_lop', `[\"${GocHocSinhState.ma_lop}\"]`)
+            .contains('danh_sach_lop', [GocHocSinhState.ma_lop])
             .order('ngay_tao', { ascending: false });
 
         if (error) throw error;
