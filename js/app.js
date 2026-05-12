@@ -2038,13 +2038,20 @@ function ham_7_10_ve_bang_nhiem_vu() {
         // 2. Xử lý Số lượt
         const soLuot = (nv.so_luot_lam_bai == 0 || !nv.so_luot_lam_bai) ? "♾️ Vô hạn" : `${nv.so_luot_lam_bai} lượt`;
 
-        // 3. Xử lý Đảo đề (Dùng tên dễ hiểu)
-        let txtDaoDe = "❌ Không đảo";
+        // 3. Xử lý Đảo đề (Hiện chi tiết theo đúng cấu hình)
+        let txtDaoDe = "<span style='color:#999; font-size: 12px;'>❌ Không đảo</span>";
         if (nv.dao_cau_hoi) {
             try {
                 const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
-                if (d.cau && d.abcd && d.ds) txtDaoDe = "🌪️ Đảo toàn diện";
-                else if (d.cau && d.abcd) txtDaoDe = "🔀 Đảo cơ bản";
+
+                if (d.cau && d.abcd && d.ds) {
+                    // Mức độ TOAN_DIEN
+                    txtDaoDe = "<div style='color:#d35400; font-weight:bold; font-size:11px; line-height:1.5;' title='Đảo toàn diện'>🌪️ Đảo Câu + ABCD<br>+ Ý Đúng/Sai</div>";
+                }
+                else if (d.cau && d.abcd) {
+                    // Mức độ CO_BAN
+                    txtDaoDe = "<div style='color:#28a745; font-weight:bold; font-size:11px;' title='Đảo cơ bản'>🔀 Đảo Câu + ABCD</div>";
+                }
             } catch (e) { }
         }
 
