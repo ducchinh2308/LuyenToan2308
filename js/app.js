@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 20h24 - Ngày 12/05";
+const APP_VERSION = "app.js cập nhật lúc 20h38 - Ngày 12/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
