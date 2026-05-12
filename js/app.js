@@ -1923,7 +1923,7 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
 
         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
             ...nv,
-            ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định'
+            ten_gv_giao: tuDienTenGv[nv.uid_gv_giao] || 'Không xác định'
         }));
 
         ham_7_10_ve_bang_nhiem_vu();
@@ -2002,10 +2002,20 @@ function ham_7_10_ve_bang_nhiem_vu() {
             lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
         }
 
-        // 3. Biểu tượng Đảo đề (Đảo cả câu & đáp án ABCD)
-        const bieuTuongDao = nv.dao_cau_hoi
-            ? '<span style="color: #28a745; font-size: 18px;" title="Có trộn câu hỏi và đảo đáp án A,B,C,D">🔀</span>'
-            : '<span style="color: #ccc; font-size: 18px;" title="Cố định thứ tự gốc">⏸️</span>';
+        // 3. Xử lý hiển thị cấu hình Đảo đề (Từ JSON)
+        let bieuTuongDao = '<span style="color: #ccc; font-size: 13px;" title="Cố định thứ tự gốc">⏸️ Không đảo</span>';
+        if (nv.dao_cau_hoi) {
+            try {
+                let dao = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
+                if (dao.cau && dao.abcd && dao.ds) {
+                    bieuTuongDao = '<span style="color: #d35400; font-size: 13px; font-weight:bold;" title="Đảo Câu, Đảo ABCD, Đảo ý ĐS">🌪️ Đảo toàn bộ</span>';
+                } else if (dao.cau && dao.abcd) {
+                    bieuTuongDao = '<span style="color: #28a745; font-size: 13px; font-weight:bold;" title="Đảo Câu & Đảo ABCD">🔀 Đảo cơ bản</span>';
+                }
+            } catch (e) { }
+        }
+
+
 
         // 4. Format thời gian đẹp mắt
         const formatTime = (dateObj) => {
@@ -2104,9 +2114,17 @@ function ham_7_6_mo_form_nhiem_vu(maNhiemVu, choPhepSua = true) {
                     <input type="datetime-local" id="nv_dong" value="${formatDateTimeLocal(data.thoi_gian_dong)}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
                 </div>
                 
-                <div style="grid-column: span 2; display: flex; align-items: center; gap: 10px;">
-                    <input type="checkbox" id="nv_daocau" ${data.dao_cau_hoi ? 'checked' : ''} ${disabledAttr} style="transform: scale(1.5);">
-                    <label style="font-weight: bold; color: #28a745;">Cho phép hệ thống tự động đảo vị trí câu hỏi & đáp án khi học sinh làm bài.</label>
+               
+                let dao = {cau: false, abcd: false, ds: false};
+                try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch(e){}
+
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold;">Chế độ Đảo đề:</label>
+                    <select id="nv_che_do_dao" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;">
+                        <option value="KHONG_DAO" ${!dao.cau ? 'selected' : ''}>❌ Không đảo gì cả</option>
+                        <option value="DAO_CAU_ABCD" ${dao.cau && !dao.ds ? 'selected' : ''}>🔀 Đảo Câu hỏi + Đảo đáp án ABCD (Nhóm TN)</option>
+                        <option value="DAO_CAU_ABCD_DS" ${dao.cau && dao.ds ? 'selected' : ''}>🌪️ Đảo Câu + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
+                    </select>
                 </div>
             </div>
 
@@ -2123,7 +2141,12 @@ async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
     const lop = document.getElementById('nv_lop').value.trim();
     const mo = document.getElementById('nv_mo').value;
     const dong = document.getElementById('nv_dong').value;
-    const daocau = document.getElementById('nv_daocau').checked;
+
+    const cheDoDao = document.getElementById('nv_che_do_dao').value;
+    let configDaoDe = { cau: false, abcd: false, ds: false };
+    if (cheDoDao === "DAO_CAU_ABCD") configDaoDe = { cau: true, abcd: true, ds: false };
+    else if (cheDoDao === "DAO_CAU_ABCD_DS") configDaoDe = { cau: true, abcd: true, ds: true };
+
 
     if (!ten || !lop) return alert("Vui lòng điền đủ Tên nhiệm vụ và Lớp giao!");
 
@@ -2138,7 +2161,7 @@ async function ham_7_7_luu_cap_nhat_nhiem_vu(maNhiemVu, btnNode) {
                 lop_giao: lop,
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-                dao_cau_hoi: daocau
+                dao_cau_hoi: configDaoDe
             })
             .eq('ma_nhiem_vu', maNhiemVu);
 
