@@ -2169,14 +2169,13 @@ async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
 }
 
 // ==============================================================
-// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Phiên bản Full 17 Tiêu chí + Đảo Đề Nâng Cao)
+// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Menu Đảo đề 3 Chế độ)
 // ==============================================================
 async function ham_7_3_hien_form_them_nhiem_vu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
 
     try {
-        // 1. Sinh mã NV tự động (NV_ + 6 ký tự ngẫu nhiên Chữ & Số)
         const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         let chuoiNgauNhien = '';
         for (let i = 0; i < 6; i++) {
@@ -2184,7 +2183,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         }
         const maNV = "NV_" + chuoiNgauNhien;
 
-        // 2. Lấy danh sách Học Liệu
         const { data: dsHocLieu } = await _supabase.from('hoc_lieu').select('*').order('ngay_tao', { ascending: false });
         window.tempDsHocLieu = dsHocLieu || [];
 
@@ -2193,7 +2191,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
             htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
         });
 
-        // 3. Lấy danh sách Lớp thực tế của hệ thống
         let dsLop = [];
         if (typeof BangLopState !== 'undefined' && BangLopState.duLieu && BangLopState.duLieu.length > 0) {
             dsLop = BangLopState.duLieu;
@@ -2217,13 +2214,11 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         } else {
             htmlLop = `
                 <div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px;">
-                    <span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span><br>
-                    <span style="font-size: 12px; color: #666;">Thầy vui lòng kiểm tra lại tên bảng trên Supabase.</span>
+                    <span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span>
                 </div>
             `;
         }
 
-        // 4. Render HTML
         vungLamViec.innerHTML = `
             <div style="max-width: 950px; background: white; padding: 25px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
                 <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; display:flex; justify-content: space-between;">
@@ -2248,7 +2243,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                                 <option value="Làm đề (Online)">📝 Làm đề (Online)</option>
                                 <option value="Tự luận (Nộp ảnh)">📷 Làm Tự luận (Chụp ảnh nộp)</option>
                                 <option value="Xem bài giảng">📺 Xem Video / Slide</option>
-                                <option value="Khảo sát">📊 Khảo sát / Lấy ý kiến</option>
                             </select>
                         </div>
                     </div>
@@ -2256,7 +2250,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                 <div style="background: #e6f2ff; border: 1px solid #b8daff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
-                    
                     <div style="margin-bottom: 15px;">
                         <label style="font-weight:bold; font-size: 13px; color: #d35400;">Chọn Đề thi gốc từ Kho Học Liệu (*):</label>
                         <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold; cursor: pointer;">
@@ -2264,15 +2257,11 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                             ${htmlOptionsHL}
                         </select>
                     </div>
-
                     <div id="khu_vuc_thong_tin_hl" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; opacity: 0.5; pointer-events: none;">
                         <div>
                             <label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label>
                             <select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
                                 <option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option>
-                                <option value="9">Khối 9</option><option value="8">Khối 8</option><option value="7">Khối 7</option>
-                                <option value="6">Khối 6</option><option value="5">Khối 5</option><option value="4">Khối 4</option>
-                                <option value="3">Khối 3</option><option value="2">Khối 2</option><option value="1">Khối 1</option>
                                 <option value="Khác">Khác</option>
                             </select>
                         </div>
@@ -2288,7 +2277,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 </div>
 
                 <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                    <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Thời gian & Đảo đề</h4>
+                    <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đảo đề</h4>
                     
                     <div style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
                         <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho các Lớp (*):</label>
@@ -2312,7 +2301,6 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                         <div>
                             <label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label>
                             <input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                            <small style="font-size: 10px; color:#666;">(0 là vô hạn)</small>
                         </div>
                         <div>
                             <label style="font-size: 12px; font-weight:bold;">Thời gian Bắt đầu:</label>
@@ -2325,30 +2313,20 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                     </div>
 
                     <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
-                        <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 8px; color: #d35400;">🔀 Cấu hình Đảo đề (Hệ thống sẽ giữ nguyên form TN, ĐS, TLN):</label>
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap; background: white; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
-                            <label style="cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">
-                                <input type="checkbox" id="add_nv_dao_cau" checked style="transform: scale(1.2); margin-right: 5px;"> 
-                                Đảo vị trí Câu hỏi
-                            </label>
-                            <label style="cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">
-                                <input type="checkbox" id="add_nv_dao_abcd" checked style="transform: scale(1.2); margin-right: 5px;"> 
-                                Đảo đáp án A, B, C, D (Nhóm TN)
-                            </label>
-                            <label style="cursor: pointer; font-size: 13px; font-weight: bold; color: #333;">
-                                <input type="checkbox" id="add_nv_dao_ds" checked style="transform: scale(1.2); margin-right: 5px;"> 
-                                Đảo ý a, b, c, d (Nhóm ĐS)
-                            </label>
-                        </div>
+                        <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 8px; color: #d35400;">🔀 Chế độ Đảo đề (Tự động giữ nguyên form TN, ĐS, TLN):</label>
+                        <select id="add_nv_che_do_dao" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; font-weight: bold; font-size: 14px;">
+                            <option value="KHONG_DAO">❌ Không đảo gì cả (Học sinh làm y hệt đề gốc)</option>
+                            <option value="DAO_CAU_ABCD" selected>🔀 Đảo Câu hỏi + Đảo đáp án ABCD (Nhóm TN) --- [MẶC ĐỊNH]</option>
+                            <option value="DAO_CAU_ABCD_DS">🌪️ Đảo Câu hỏi + Đảo ABCD (Nhóm TN) + Đảo ý a,b,c,d (Nhóm ĐS)</option>
+                        </select>
                     </div>
                 </div>
 
                 <div style="background: #e6ffed; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #28a745;">4. Cấu hình Công bố Đáp án & Lời giải</h4>
-                    
                     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
                         <div>
-                            <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố (Điểm, Đáp án, Lời giải chi tiết):</label>
+                            <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
                             <select id="add_nv_cauhinh_dapan" onchange="ham_7_3_c_xu_ly_hen_gio_cong_bo()" style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px;">
                                 <option value="KHOA_HOAN_TOAN">Khóa hoàn toàn (Học sinh không bao giờ thấy)</option>
                                 <option value="SAU_KHI_NOP">Cho xem ngay sau khi học sinh Nộp bài</option>
@@ -2361,15 +2339,14 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                             <input type="datetime-local" id="add_nv_giocongbo" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
                         </div>
                     </div>
-
                     <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
                         <input type="checkbox" id="add_nv_taofilegiai" checked style="transform: scale(1.3);">
-                        <label style="font-size: 13px; font-weight:bold;">Đóng gói file Lời Giải ngay sau khi lưu (Khuyên dùng). Nếu bỏ chọn, thầy có thể đóng gói thủ công sau.</label>
+                        <label style="font-size: 13px; font-weight:bold;">Đóng gói file Lời Giải ngay sau khi lưu.</label>
                     </div>
                 </div>
 
                 <div style="display: flex; gap: 15px;">
-                    <button onclick="ham_7_4_luu_nhiem_vu_moi('${maNV}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s;">
+                    <button onclick="ham_7_4_luu_nhiem_vu_moi('${maNV}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
                         💾 XÁC NHẬN GIAO BÀI
                     </button>
                     <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
@@ -2440,10 +2417,9 @@ function ham_7_3_c_xu_ly_hen_gio_cong_bo() {
 }
 
 // ==============================================================
-// Hàm 7.4: Thu thập dữ liệu Form và Lưu Nhiệm vụ mới (Nâng cấp cấu hình Đảo đề JSON)
+// Hàm 7.4: Thu thập dữ liệu và chuyển chế độ đảo đề thành JSON
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
-    // 1. Thu thập các ô Input Text / Select cơ bản
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
@@ -2452,23 +2428,17 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
     const mo = document.getElementById('add_nv_mo').value;
     const dong = document.getElementById('add_nv_dong').value;
 
-    // 2. Thu thập danh sách lớp đã được check
     const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
     const dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
 
-    // Bắt lỗi dữ liệu (Validate)
     if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
     if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
     if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
 
-    // Kiểm tra logic thời gian
-    if (mo && dong) {
-        if (new Date(mo) >= new Date(dong)) {
-            return alert("❌ Lỗi thời gian: Thời gian kết thúc phải nằm SAU thời gian bắt đầu!");
-        }
+    if (mo && dong && new Date(mo) >= new Date(dong)) {
+        return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
     }
 
-    // 3. Xử lý thông tin ngầm từ Học liệu
     let quyMo = 0;
     let cauTruc = '';
     if (maHL !== "KHONG_DUNG") {
@@ -2479,27 +2449,27 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
         }
     }
 
-    // 4. Xử lý logic cấu hình Đáp án & Lời giải
     let cauHinhDapAn = document.getElementById('add_nv_cauhinh_dapan').value;
     if (cauHinhDapAn === "HEN_GIO") {
         const gioCongBo = document.getElementById('add_nv_giocongbo').value;
-        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ công bố thì phải nhập Giờ vào nhé!");
+        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
         cauHinhDapAn = `HEN_GIO|${new Date(gioCongBo).toISOString()}`;
     }
 
-    // 🌟 5. GOM CẤU HÌNH ĐẢO ĐỀ VÀO CHUẨN JSON
-    const configDaoDe = {
-        cau: document.getElementById('add_nv_dao_cau').checked,
-        abcd: document.getElementById('add_nv_dao_abcd').checked,
-        ds: document.getElementById('add_nv_dao_ds').checked
-    };
+    // 🌟 5. CHUYỂN ĐỔI CHẾ ĐỘ THẦY CHỌN THÀNH OBJECT JSON ĐỂ LƯU DATABASE
+    const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
+    let configDaoDe = { cau: false, abcd: false, ds: false }; // Mặc định là Không đảo gì cả
 
-    // Đổi trạng thái Nút để tránh bấm 2 lần
+    if (cheDoDao === "DAO_CAU_ABCD") {
+        configDaoDe = { cau: true, abcd: true, ds: false };
+    } else if (cheDoDao === "DAO_CAU_ABCD_DS") {
+        configDaoDe = { cau: true, abcd: true, ds: true };
+    }
+
     btnNode.disabled = true;
     btnNode.innerText = "⏳ ĐANG KHỞI TẠO NHIỆM VỤ...";
 
     try {
-        // 6. Bắn lệnh Insert lên Supabase
         const payload = {
             ma_nhiem_vu: maNV,
             ten_nhiem_vu: tenNV,
@@ -2509,18 +2479,17 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
             quy_mo_cau_hoi: quyMo,
             cau_truc_de: cauTruc,
-            danh_sach_lop: dsLopChon, // Bắn thẳng mảng vì cột này đã là JSONB
+            danh_sach_lop: dsLopChon,
             thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
             thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
             so_luot_lam_bai: soLuot,
             cau_hinh_dap_an: cauHinhDapAn,
-
-            // Lưu ý: Chỗ này em đang dùng chữ 'DANG_XU_LY'. 
-            // Nếu ở bước trước thầy sửa DB thành Integer thì đổi đoạn này thành số 1 và số 0 nhé!
             trang_thai_loi_giai: document.getElementById('add_nv_taofilegiai').checked ? 'DANG_XU_LY' : 'CHO_DONG_GOI',
-
             trang_thai: trangThai,
-            dao_cau_hoi: configDaoDe, // 🌟 Bắn thẳng Object JS vào cột JSONB, Supabase sẽ tự dịch
+
+            // 👉 Ném cục JSON xáo trộn vào đây, Supabase sẽ tự nhận (vì cột đã là jsonb)
+            dao_cau_hoi: configDaoDe,
+
             uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
             ngay_tao: new Date().toISOString()
         };
@@ -2529,9 +2498,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
 
         if (error) throw error;
 
-        alert(`✅ Tuyệt vời! Đã giao bài thành công.\nMã nhiệm vụ: ${maNV}`);
-
-        // Sinh xong thì load lại cái Bảng danh sách Nhiệm Vụ
+        alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNV}`);
         ham_7_1_ve_quan_ly_nhiem_vu();
 
     } catch (error) {
