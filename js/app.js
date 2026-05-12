@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 18h53 - Ngày 12/05";
+const APP_VERSION = "app.js cập nhật lúc 19h16 - Ngày 12/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
@@ -2292,6 +2292,13 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                                 <option value="0">🔴 Khóa (Tạm dừng)</option>
                             </select>
                         </div>
+
+                        <div>
+                            <label style="font-size: 12px; font-weight:bold; color: #d35400;">Thời gian (phút):</label>
+                            <input type="number" id="add_nv_thoigian" placeholder="VD: 45" min="0" style="width: 100%; padding: 6px; border: 1px solid #d35400; border-radius: 4px; font-weight: bold;">
+                        </div>
+
+
                         <div><label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label><input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Mở Lúc:</label><input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Đóng Lúc:</label><input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
@@ -2479,9 +2486,12 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     const maHL = document.getElementById('add_nv_maHL').value;
     const trangThai = document.getElementById('add_nv_trangthai').value;
 
+
+
     // Đọc tính chất bài tập từ Radio button
     const tinhChat = document.querySelector('input[name="add_nv_tinhchat"]:checked').value;
-
+    
+    let tgLamBai = parseInt(document.getElementById('add_nv_thoigian').value) || 0;
     let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
     let mo = document.getElementById('add_nv_mo').value;
     let dong = document.getElementById('add_nv_dong').value;
@@ -2573,6 +2583,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
                 danh_sach_lop: JSON.stringify([maLop]), // LƯU Ý: Phải parse thành chuỗi JSON để không lỗi định dạng DB
                 thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
                 thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
+                thoi_gian_lam_bai: tgLamBai,
                 so_luot_lam_bai: soLuot,
                 cau_hinh_dap_an: configCongBo,
                 dao_cau_hoi: configDaoDe,
