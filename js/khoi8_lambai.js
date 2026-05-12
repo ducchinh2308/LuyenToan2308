@@ -26,52 +26,42 @@ const GocHocSinhState = {
 // ==============================================================
 // Hàm 8.1: Dựng Bộ Khung Giao Diện (App Shell)
 // ==============================================================
-function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh) {
-    // Lưu thông tin học sinh
+function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
+    // 🌟 Lưu vào State dạng Mảng
     GocHocSinhState.uid = uidHocSinh;
-    GocHocSinhState.ma_lop = maLopHocSinh;
+    GocHocSinhState.danh_sach_ma_lop = dsMaLopHocSinh || []; // Lưu cả mảng
     GocHocSinhState.ten = tenHocSinh;
 
     const renderArea = document.getElementById('dashboard-container');
     if (!renderArea) return alert("Lỗi: Không tìm thấy khung hiển thị!");
 
-    // Thiết kế giống hệt giao diện Giáo Viên: Nút ở trên, Nội dung ở dưới
+    // 🌟 Ráp các mã lớp thành chuỗi để hiển thị đẹp (VD: 12A1, 12A2, Nâng Cao)
+    const chuoiHienThiLop = GocHocSinhState.danh_sach_ma_lop.length > 0
+        ? GocHocSinhState.danh_sach_ma_lop.join(', ')
+        : 'Chưa cập nhật lớp';
+
     renderArea.innerHTML = `
         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 1200px; margin: 0 auto;">
             
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
                 <h2 style="color: #1a73e8; margin: 0; font-size: 20px;">🎓 GÓC HỌC TẬP</h2>
                 <div style="font-weight: bold; color: #495057; font-size: 14px;">
-                    Chào em, <span style="color:#d35400;">${tenHocSinh}</span> (Lớp: ${maLopHocSinh || 'Chưa cập nhật'})
+                    Chào em, <span style="color:#d35400;">${tenHocSinh}</span> (Lớp: <span style="color:#1a73e8;">${chuoiHienThiLop}</span>)
                 </div>
             </div>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
-                <button onclick="ham_8_2_tab_nhiem_vu_bat_buoc()" style="flex: 1; min-width: 140px; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">
-                    🚀 NHIỆM VỤ LỚP
-                </button>
-                <button onclick="ham_8_3_tab_luyen_tap_tu_do()" style="flex: 1; min-width: 140px; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">
-                    🌍 TỰ LUYỆN
-                </button>
-                <button onclick="ham_8_4_tab_ket_qua()" style="flex: 1; min-width: 140px; padding: 12px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.3);">
-                    📊 KẾT QUẢ
-                </button>
-                <button onclick="ham_8_5_tab_ho_so()" style="flex: 1; min-width: 140px; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(108,117,125,0.3);">
-                    👤 HỒ SƠ
-                </button>
-                <button onclick="ham_8_6_tab_dau_truong_live()" style="flex: 1; min-width: 140px; padding: 12px; background: #dc3545; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(220,53,69,0.3);">
-                    ⚔️ LIVE QUIZ
-                </button>
+                <button onclick="ham_8_2_tab_nhiem_vu_bat_buoc()" style="flex: 1; min-width: 140px; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 NHIỆM VỤ LỚP</button>
+                <button onclick="ham_8_3_tab_luyen_tap_tu_do()" style="flex: 1; min-width: 140px; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">🌍 TỰ LUYỆN</button>
+                <button onclick="ham_8_4_tab_ket_qua()" style="flex: 1; min-width: 140px; padding: 12px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.3);">📊 KẾT QUẢ</button>
+                <button onclick="ham_8_5_tab_ho_so()" style="flex: 1; min-width: 140px; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(108,117,125,0.3);">👤 HỒ SƠ</button>
+                <button onclick="ham_8_6_tab_dau_truong_live()" style="flex: 1; min-width: 140px; padding: 12px; background: #dc3545; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(220,53,69,0.3);">⚔️ LIVE QUIZ</button>
             </div>
             
-            <div id="vung-lam-viec-hoc-sinh" style="padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 300px;">
-                <p style="color: #6c757d; text-align: center; margin-top: 50px;">Đang nạp dữ liệu...</p>
-            </div>
-            
+            <div id="vung-lam-viec-hoc-sinh" style="padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 300px;"></div>
         </div>
     `;
 
-    // Mặc định vừa vào sẽ load luôn Tab Nhiệm Vụ Bắt Buộc
     ham_8_2_tab_nhiem_vu_bat_buoc();
 }
 

@@ -306,14 +306,14 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 document.getElementById('btnLogout').style.display = 'inline-block';
                 document.getElementById('dashboard-container').style.display = 'block';
 
-                // 2. Lấy mã lớp của học sinh (Từ mảng danh_sach_ma_lop lúc đăng ký)
-                let maLopHocSinh = "";
-                if (AppState.user.danh_sach_ma_lop && AppState.user.danh_sach_ma_lop.length > 0) {
-                    maLopHocSinh = AppState.user.danh_sach_ma_lop[0];
+                // 2. 🌟 LẤY TOÀN BỘ DANH SÁCH LỚP CỦA HỌC SINH
+                let dsMaLopHocSinh = [];
+                if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+                    dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
                 }
 
-                // 3. Gọi hàm tải nhiệm vụ từ file khoi8_lambai.js
-                ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, maLopHocSinh, AppState.user.ten);
+                // 3. Gọi hàm tải nhiệm vụ, truyền CẢ MẢNG sang
+                ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
 
             }
         } catch (error) {
