@@ -1941,19 +1941,25 @@ function ham_7_1_ve_quan_ly_nhiem_vu() {
     ham_7_2_tai_danh_sach_nhiem_vu();
 }
 
-// Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu
+// Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu (Bổ sung lấy tên lớp)
 async function ham_7_2_tai_danh_sach_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     try {
         const { data: dsNhiemVu, error } = await _supabase.from('nhiem_vu').select('*').order('ngay_tao', { ascending: false });
         if (error) throw error;
 
+        // 1. Lấy tên GV
         const danhSachUidGv = [...new Set((dsNhiemVu || []).map(nv => nv.uid_gv_tao).filter(id => id))];
         let tuDienTenGv = {};
         if (danhSachUidGv.length > 0) {
-            // Thay 'hoc_sinh' thành bảng GV thực tế của thầy nếu cần
             const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
             if (dsGv) dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
+        }
+
+        // 2. Lấy Tên Lớp làm từ điển (Nếu chưa có)
+        if (!window.tempDsLop) {
+            const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
+            window.tempDsLop = dsLop || [];
         }
 
         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
@@ -1966,34 +1972,30 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
-
-// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ
+// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Nâng cấp thông tin chi tiết)
 function ham_7_10_ve_bang_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
 
     if (dsNV.length === 0) {
-        renderArea.innerHTML = `
-            <div style="text-align: center; padding: 30px; background: white; border-radius: 8px; border: 1px dashed #ccc;">
-                <h4 style="color: #666;">Chưa có nhiệm vụ giao bài nào.</h4>
-            </div>`;
+        renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Chưa có nhiệm vụ nào.</h4></div>`;
         return;
     }
 
     let htmlTable = `
         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
-            <table style="width: 100%; min-width: 1300px; border-collapse: collapse; background: white; font-size: 13px;">
+            <table style="width: 100%; min-width: 1500px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <tr>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 120px;">Thao tác</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Mã NV</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; text-align: left;">Tên Nhiệm Vụ</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Học Liệu</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee; max-width: 150px;">Giao Cho</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Giao Cho</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 80px;">Số Lượt</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Mở Lúc</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Đóng Lúc</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 80px;">Đảo Đề</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee;">Đảo Đề</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Tình Trạng</th>
                     </tr>
                 </thead>
@@ -2002,70 +2004,69 @@ function ham_7_10_ve_bang_nhiem_vu() {
 
     const now = new Date();
 
+    // Hàm phụ tính khoảng thời gian
+    const tinhKhoangThoiGian = (targetDate, isPast) => {
+        if (!targetDate) return "";
+        const diff = isPast ? (now - targetDate) : (targetDate - now);
+        if (diff <= 0) return isPast ? "vừa xong" : "hết hạn";
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+
+        let result = [];
+        if (d > 0) result.push(`${d}n`);
+        if (h > 0) result.push(`${h}g`);
+        if (m > 0 && d === 0) result.push(`${m}p`);
+
+        return isPast ? `(đã mở ${result.join(' ')})` : `(còn ${result.join(' ')})`;
+    };
+
     dsNV.forEach((nv, index) => {
         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
-        let textTinhTrang = "";
-        if (nv.trang_thai === '0' || nv.trang_thai === 0) textTinhTrang = `<span style="padding:4px 8px; background:#e9ecef; color:#495057; border-radius:4px; font-weight:bold; font-size:11px;">⏸️ ĐÃ KHÓA</span>`;
-        else {
-            if (!timeMo && !timeDong) textTinhTrang = `<span style="padding:4px 8px; background:#e3f2fd; color:#0d47a1; border-radius:4px; font-weight:bold; font-size:11px;">♾️ VÔ HẠN</span>`;
-            else if (timeMo && now < timeMo) textTinhTrang = `<span style="padding:4px 8px; background:#fff3cd; color:#856404; border-radius:4px; font-weight:bold; font-size:11px;">⏳ CHƯA MỞ</span>`;
-            else if (timeDong && now > timeDong) textTinhTrang = `<span style="padding:4px 8px; background:#f8d7da; color:#721c24; border-radius:4px; font-weight:bold; font-size:11px;">🛑 ĐÃ ĐÓNG</span>`;
-            else textTinhTrang = `<span style="padding:4px 8px; background:#d4edda; color:#155724; border-radius:4px; font-weight:bold; font-size:11px;">▶️ ĐANG MỞ</span>`;
-        }
+        // 1. Xử lý Giao Cho (Hiện Tên lớp + Mã)
+        let arrLop = [];
+        try { arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
+        let hienThiLop = arrLop.map(ma => {
+            const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
+            const tenLop = lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn";
+            return `<div style="margin-bottom:2px;"><b>${tenLop}</b> <small style="color:#666;">(${ma})</small></div>`;
+        }).join('');
 
-        let lopHienThi = '';
-        try {
-            let arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : nv.danh_sach_lop;
-            if (Array.isArray(arrLop)) lopHienThi = arrLop.join(', ');
-            else lopHienThi = nv.danh_sach_lop || 'Chưa phân công';
-        } catch (e) { lopHienThi = nv.danh_sach_lop || 'Chưa phân công'; }
+        // 2. Xử lý Số lượt
+        const soLuot = (nv.so_luot_lam_bai == 0 || !nv.so_luot_lam_bai) ? "♾️ Vô hạn" : `${nv.so_luot_lam_bai} lượt`;
 
-        // Bóc tách JSON hiển thị đảo đề
-        let bieuTuongDao = '<span style="color: #ccc; font-size: 13px;" title="Cố định">⏸️ Không đảo</span>';
+        // 3. Xử lý Đảo đề (Dùng tên dễ hiểu)
+        let txtDaoDe = "❌ Không đảo";
         if (nv.dao_cau_hoi) {
             try {
-                let dao = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
-                if (dao.cau && dao.abcd && dao.ds) bieuTuongDao = '<span style="color: #d35400; font-size: 13px; font-weight:bold;">🌪️ Đảo toàn bộ</span>';
-                else if (dao.cau && dao.abcd) bieuTuongDao = '<span style="color: #28a745; font-size: 13px; font-weight:bold;">🔀 Đảo cơ bản</span>';
+                const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
+                if (d.cau && d.abcd && d.ds) txtDaoDe = "🌪️ Đảo toàn diện";
+                else if (d.cau && d.abcd) txtDaoDe = "🔀 Đảo cơ bản";
             } catch (e) { }
         }
 
-        const formatTime = (dateObj) => {
-            if (!dateObj) return '<span style="color:#aaa;">-</span>';
-            return dateObj.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-        };
+        const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
 
         htmlTable += `
-            <tr style="border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f4f8ff'" onmouseout="this.style.background='white'">
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #555;">${index + 1}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-                    
-                    <button onclick="event.stopPropagation(); ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" 
-                            style="padding: 5px 10px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">
-                        Sửa
-                    </button>
-
-                        <button onclick="event.stopPropagation(); ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}');"
-                        style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-left: 5px;">
-                        Xóa
-                    </button>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px; text-align: center;">${index + 1}</td>
+                <td style="padding: 10px; text-align: center; white-space: nowrap;">
+                    <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #ffc107; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">Sửa</button>
+                    <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; margin-left:5px;">Xóa</button>
                 </td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #6f42c1; text-align: center;">${nv.ma_nhiem_vu}</td>
-                <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #333;">${nv.ten_nhiem_vu}
-                    <div style="font-size: 11px; color: #666; font-weight: normal; margin-top: 3px;">Loại: ${nv.loai_nhiem_vu || 'Không xác định'}</div>
+                <td style="padding: 10px; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
+                <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
+                <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
+                <td style="padding: 10px; text-align: center; font-weight: bold;">${soLuot}</td>
+                <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
+                <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
+                <td style="padding: 10px; text-align: center;">${txtDaoDe}</td>
+                <td style="padding: 10px; text-align: center;">
+                    ${nv.trang_thai == 0 ? '<span style="color:#999;">⏸️ ĐÃ KHÓA</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545;">🛑 ĐÃ ĐÓNG</span>' : '<span style="color:#28a745;">▶️ ĐANG MỞ</span>')}
                 </td>
-                <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-family: monospace; text-align: center; font-weight: bold;">
-                    ${nv.ma_hoc_lieu || '<span style="color:#aaa; font-weight:normal;">Không dùng HL</span>'}
-                </td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px; font-weight: bold; color: #1a73e8; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${lopHienThi}">
-                    ${lopHienThi}
-                </td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeMo)}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-size: 12px;">${formatTime(timeDong)}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${bieuTuongDao}</td>
-                <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${textTinhTrang}</td>
             </tr>
         `;
     });
