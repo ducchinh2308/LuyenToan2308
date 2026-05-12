@@ -1092,6 +1092,7 @@ async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
         if (error) throw error;
 
         alert(`Đã cập nhật thành công lớp ${maLop}!`);
+        ham_4_1_ve_quan_ly_lop();
         ham_4_4_tai_danh_sach_lop(); // Tải lại bảng lớp
 
     } catch (error) {
