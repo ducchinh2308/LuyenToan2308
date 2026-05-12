@@ -95,7 +95,7 @@ function ham_1_2_dung_khung_html() {
                 <input type="text" id="txtMaLop" placeholder="Nhập Mã Lớp (5 ký tự) do Giáo viên cấp để vào" style="width: 100%; border: 2px solid #28a745; background: #e6f4ea;">
             </div>
 
-            <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi";">
+            <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi" style="display: none;">
 
             <div style="position: relative; width: 100%; margin-bottom: 10px;">
                 <input type="password" id="txtPassword" placeholder="Mật khẩu (tối thiểu 6 ký tự)" style="margin-bottom: 0;">
@@ -131,7 +131,7 @@ function ham_1_2_dung_khung_html() {
 
 // Hàm 2.1: Chuyển đổi qua lại giữa Form Đăng nhập và Đăng ký
 function ham_2_1_chuyen_doi_che_do() {
-    console.log("Đang vào hàm ham_2_1");
+    //console.log("Đang vào hàm ham_2_1");
     AppState.isLoginMode = !AppState.isLoginMode; // Lật trạng thái
 
     // Lấy các element cần ẩn/hiện
@@ -175,6 +175,8 @@ function ham_2_1_chuyen_doi_che_do() {
         txtHoTen.style.display = 'block';
         groupVaiTro.style.display = 'block';
         groupConfirmPass.style.display = 'block';
+        txtEmail.style.display = 'block';
+
 
         // Gọi lại hàm kiểm tra vai trò để hiện đúng các trường phụ thuộc
         ham_2_2_thay_doi_vai_tro(AppState.role);
@@ -183,7 +185,7 @@ function ham_2_1_chuyen_doi_che_do() {
 
 // Hàm 2.2: Xử lý thay đổi giao diện khi chọn Radio Vai trò (Học sinh / Giáo viên)
 function ham_2_2_thay_doi_vai_tro(vaiTroMoi) {
-    console.log("Đang vào hàm ham_2_2");
+    //console.log("Đang vào hàm ham_2_2");
     AppState.role = vaiTroMoi;
 
     const groupTruong = document.getElementById('group-thong-tin-truong');
@@ -204,7 +206,7 @@ function ham_2_2_thay_doi_vai_tro(vaiTroMoi) {
 
 // Hàm 2.3: Xử lý icon con mắt Ẩn/Hiện mật khẩu
 function ham_2_3_an_hien_mat_khau(inputId) {
-    console.log("Đang vào hàm ham_2_3");
+    //console.log("Đang vào hàm ham_2_3");
     const input = document.getElementById(inputId);
     if (input.type === 'password') {
         input.type = 'text';
@@ -399,7 +401,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 }
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
-    console.log("Đang vào hàm ham_2_5");
+    //console.log("Đang vào hàm ham_2_5");
     AppState.user = null;
 
     // Ẩn nút đăng xuất và Dashboard
