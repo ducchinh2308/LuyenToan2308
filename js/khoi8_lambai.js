@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 19h00 - Ngày 12/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 19h17 - Ngày 12/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -76,14 +76,13 @@ function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, maLopHocSinh, tenHocSinh) {
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp"
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (Nâng cấp Giao diện Thẻ)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tải bài tập của Lớp...</h3></div>`;
 
     try {
-        // Chỉ lấy những bài đang MỞ và cấu hình JSON có chứa Mã Lớp của học sinh này
         const { data: dsNV, error } = await _supabase
             .from('nhiem_vu')
             .select('*')
@@ -92,10 +91,8 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             .order('ngay_tao', { ascending: false });
 
         if (error) throw error;
-
         GocHocSinhState.danhSachNhiemVu = dsNV || [];
 
-        // Render 3 trạng thái (Dùng CSS Grid để Mobile tự động rớt xuống thành 1 cột dọc)
         const now = new Date();
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
 
@@ -108,43 +105,95 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             else dsDangMo.push(nv);
         });
 
-        // Hàm phụ vẽ Card nhiệm vụ
-        const renderCard = (nv, loai) => {
-            const tDongStr = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không giới hạn";
-            let nutHanhDong = "", mauVien = "";
+        // 🌟 HÀM PHỤ: Tính toán khoảng thời gian sinh động
+        const tinhThoiGian = (targetDate, isPast) => {
+            if (!targetDate) return "";
+            const diff = isPast ? (now - targetDate) : (targetDate - now);
+            if (diff <= 0) return isPast ? "Vừa xong" : "Đã hết hạn";
 
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+
+            let str = "";
+            if (d > 0) str += `${d} ngày `;
+            if (h > 0) str += `${h} giờ `;
+            if (m > 0 && d === 0) str += `${m} phút`;
+
+            return isPast ? `(Đã mở: ${str})` : `(Còn lại: ${str})`;
+        };
+
+        // 🌟 HÀM PHỤ: VẼ GIAO DIỆN THẺ (CARD)
+        const renderCard = (nv, loai) => {
+            // Xử lý Ngày tháng
+            const tMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
+            const tDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+            const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không quy định";
+
+            // Xử lý Cấu trúc đề & Số câu
+            let cauTrucText = "Chưa có thông tin";
+            if (nv.cau_truc_de) {
+                // Nếu thầy lưu JSON hoặc Text, tạm in text. Hoặc ưu tiên in số lượng câu
+                cauTrucText = nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de;
+            }
+            const quyMoText = (nv.quy_mo_cau_hoi && nv.quy_mo_cau_hoi > 0) ? `Tổng: ${nv.quy_mo_cau_hoi} câu` : "";
+
+            // Xử lý màu sắc theo Loại Card
+            let nutHanhDong = "", mauVien = "", mauNen = "";
             if (loai === 'DANG_MO') {
-                mauVien = "border-left: 5px solid #28a745;";
-                nutHanhDong = `<button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">VÀO LÀM BÀI</button>`;
+                mauVien = "#28a745"; mauNen = "#f4fdf6";
+                nutHanhDong = `<button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">🚀 VÀO LÀM BÀI</button>`;
             } else if (loai === 'CHUA_MO') {
-                const tMoStr = new Date(nv.thoi_gian_mo).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-                mauVien = "border-left: 5px solid #ffc107;";
-                nutHanhDong = `<button disabled style="width: 100%; padding: 10px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">Mở lúc: ${tMoStr}</button>`;
+                mauVien = "#ffc107"; mauNen = "#fffbf0";
+                nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
             } else if (loai === 'DA_DONG') {
-                mauVien = "border-left: 5px solid #dc3545;";
-                nutHanhDong = `<button onclick="alert('Xem điểm')" style="width: 100%; padding: 10px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">XEM KẾT QUẢ</button>`;
+                mauVien = "#dc3545"; mauNen = "#fff5f6";
+                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 XEM KẾT QUẢ / LỜI GIẢI</button>`;
             }
 
             return `
-                <div style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); ${mauVien}">
-                    <h4 style="margin: 0 0 5px 0; color: #333; font-size: 15px;">${nv.ten_nhiem_vu}</h4>
-                    <span style="font-size: 10px; padding: 3px 8px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 12px; color: #666;">${nv.loai_nhiem_vu}</span>
-                    <div style="font-size: 12px; color: #555; margin: 10px 0; line-height: 1.6;">
-                        <div>⏰ Đóng: <strong style="color: #d35400;">${tDongStr}</strong></div>
-                        <div>🔄 Lượt: <strong>${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</strong></div>
+                <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
+                        <span style="font-size: 11px; padding: 4px 8px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 12px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
+                            ${nv.loai_nhiem_vu}
+                        </span>
                     </div>
+
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;">
+                            ⏱️ Làm bài: <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
+                        </span>
+                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;" title="${cauTrucText}">
+                            📦 <b>${quyMoText}</b> (Cấu trúc: ${cauTrucText})
+                        </span>
+                        <span style="font-size: 12px; background: #f1f3f5; color: #495057; padding: 4px 8px; border-radius: 4px; border: 1px solid #dee2e6;">
+                            🔄 Lượt: <b>0 / ${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</b>
+                        </span>
+                    </div>
+
+                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 15px; font-size: 13px; border-left: 3px solid #ced4da;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="color: #28a745; font-weight: bold;">🟢 MỞ:</span> ${fTime(tMo)} 
+                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhThoiGian(tMo, true) : ""}</span>
+                        </div>
+                        <div>
+                            <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG:</span> ${fTime(tDong)}
+                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold;">${tDong && now < tDong ? tinhThoiGian(tDong, false) : ""}</span>
+                        </div>
+                    </div>
+
                     ${nutHanhDong}
                 </div>
             `;
         };
 
-        // 🌟 Chìa khóa Responsive nằm ở 'grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))'
-        // Trên máy tính: Nó dàn thành 3 cột. Trên điện thoại: Tự động xếp dọc từ trên xuống dưới.
         vungLamViec.innerHTML = `
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
                 <div style="background: #f8fff9; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
                     <h3 style="margin-top: 0; color: #28a745; text-align: center; font-size: 15px;">▶️ ĐANG MỞ (${dsDangMo.length})</h3>
-                    ${dsDangMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Không có bài.</p>' : dsDangMo.map(nv => renderCard(nv, 'DANG_MO')).join('')}
+                    ${dsDangMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Chưa có bài tập.</p>' : dsDangMo.map(nv => renderCard(nv, 'DANG_MO')).join('')}
                 </div>
                 <div style="background: #fffdf8; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
                     <h3 style="margin-top: 0; color: #d35400; text-align: center; font-size: 15px;">⏳ SẮP MỞ (${dsChuaMo.length})</h3>
@@ -161,6 +210,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
 }
+
 
 // ==============================================================
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
