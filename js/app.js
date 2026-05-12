@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 19h16 - Ngày 12/05";
+const APP_VERSION = "app.js cập nhật lúc 20h06 - Ngày 12/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
@@ -2257,51 +2257,63 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                 </div>
 
                 <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                    <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đảo đề</h4>
-                    
+                    <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đăng ký</h4>
+
                     <div style="margin-bottom: 15px; padding: 10px; background: #e8f4fd; border: 1px solid #b8daff; border-radius: 6px;">
                         <label style="font-size: 12px; font-weight:bold; color: #0056b3;">Tính chất bài tập:</label>
                         <div style="display: flex; gap: 20px; margin-top: 5px;">
                             <label style="cursor: pointer; font-weight: bold; font-size: 13px;">
-                                <input type="radio" name="add_nv_tinhchat" value="BAT_BUOC" checked onchange="document.getElementById('khung_chon_lop').style.display='block'"> 
+                                <input type="radio" name="add_nv_tinhchat" value="BAT_BUOC" checked onchange="document.getElementById('khung_chon_lop').style.display='block'">
                                 🎯 Bắt buộc (Giao cho Lớp)
                             </label>
                             <label style="cursor: pointer; font-weight: bold; font-size: 13px; color: #d35400;">
-                                <input type="radio" name="add_nv_tinhchat" value="TU_DO" onchange="document.getElementById('khung_chon_lop').style.display='none'"> 
+                                <input type="radio" name="add_nv_tinhchat" value="TU_DO" onchange="document.getElementById('khung_chon_lop').style.display='none'">
                                 🌍 Luyện tập tự do (Mở cho tất cả)
                             </label>
                         </div>
                     </div>
 
-                    <div id="khung_chon_lop" style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                    <div id="khung_chon_lop" style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
                         <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho Lớp (*):</label>
                         <div style="margin-bottom: 10px;">
                             <button onclick="ham_7_3_b_chon_tat_ca_lop(true)" style="padding: 3px 8px; font-size: 11px;">Chọn tất cả</button>
                             <button onclick="ham_7_3_b_chon_tat_ca_lop(false)" style="padding: 3px 8px; font-size: 11px;">Bỏ chọn</button>
                         </div>
-                        <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px; max-height: 100px; overflow-y: auto;">
+                        <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px; max-height: 120px; overflow-y: auto;">
                             ${htmlLop}
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
-                            <select id="add_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        
+                        <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+                            <label style="width: 160px; font-size: 13px; font-weight:bold;">🟢 Trạng thái NV:</label>
+                            <select id="add_nv_trangthai" style="flex: 1; padding: 8px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
                                 <option value="1" selected>🟢 Mở (Kích hoạt)</option>
                                 <option value="0">🔴 Khóa (Tạm dừng)</option>
                             </select>
                         </div>
 
-                        <div>
-                            <label style="font-size: 12px; font-weight:bold; color: #d35400;">Thời gian (phút):</label>
-                            <input type="number" id="add_nv_thoigian" placeholder="VD: 45" min="0" style="width: 100%; padding: 6px; border: 1px solid #d35400; border-radius: 4px; font-weight: bold;">
+                        <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+                            <label style="width: 160px; font-size: 13px; font-weight:bold; color: #d35400;">⏱️ Thời gian làm (phút):</label>
+                            <input type="number" id="add_nv_thoigian" placeholder="Ví dụ: 45, 90..." min="0" style="flex: 1; padding: 8px; border: 1px solid #d35400; border-radius: 4px; font-weight: bold;">
                         </div>
 
+                        <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+                            <label style="width: 160px; font-size: 13px; font-weight:bold;">🔄 Số lượt làm bài:</label>
+                            <input type="number" id="add_nv_soluot" value="0" min="0" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        </div>
 
-                        <div><label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label><input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                        <div><label style="font-size: 12px; font-weight:bold;">Mở Lúc:</label><input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
-                        <div><label style="font-size: 12px; font-weight:bold;">Đóng Lúc:</label><input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                        <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+                            <label style="width: 160px; font-size: 13px; font-weight:bold;">📅 Mở Lúc:</label>
+                            <input type="datetime-local" id="add_nv_mo" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
+                        </div>
+
+                        <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+                            <label style="width: 160px; font-size: 13px; font-weight:bold;">⛔ Đóng Lúc:</label>
+                            <input type="datetime-local" id="add_nv_dong" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
+                        </div>
+
                     </div>
 
                     <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
@@ -2358,6 +2370,9 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         vungLamViec.innerHTML = `<p style="color:red; text-align:center;">Lỗi khởi tạo form: ${error.message}</p>`;
     }
 }
+
+
+
 // ==============================================================
 // CÁC HÀM BỔ TRỢ XỬ LÝ GIAO DIỆN (UI LOGIC)
 // ==============================================================
