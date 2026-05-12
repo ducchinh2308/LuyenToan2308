@@ -667,11 +667,11 @@ async function ham_4_8_tai_danh_sach_hoc_sinh_de_chon() {
     }
 }
 
-// Hàm 4.3: Lưu lớp mới kèm theo trạng thái và danh sách học sinh
+// ==============================================================
+// Hàm 4.3: Lưu lớp mới + Cập nhật hồ sơ Học sinh + Fix lỗi Load danh sách
+// ==============================================================
 async function ham_4_3_luu_lop_moi(btnElement, maLop) {
     const tenLop = document.getElementById('txtTenLop').value.trim();
-
-    // ĐỌC TRẠNG THÁI TỪ COMBOBOX (Chuyển sang số Integer)
     const trangThai = parseInt(document.getElementById('selTrangThaiLopMoi').value);
 
     if (!tenLop) return alert("Thầy chưa nhập Tên lớp học!");
@@ -681,25 +681,57 @@ async function ham_4_3_luu_lop_moi(btnElement, maLop) {
     const mangUidHocSinh = Array.from(dsCheckbox).map(chk => chk.value);
 
     btnElement.disabled = true;
-    btnElement.innerText = "ĐANG LƯU...";
+    btnElement.innerText = "⏳ ĐANG LƯU...";
 
     try {
-        const { error } = await _supabase.from('lop_hoc').insert([{
+        // BƯỚC 1: LƯU VÀO BẢNG LỚP HỌC
+        const { error: errLop } = await _supabase.from('lop_hoc').insert([{
             ma_lop: maLop,
             ten_lop: tenLop,
             uid_gv_tao: AppState.user.uid,
-            trang_thai: trangThai,         // NẠP TRẠNG THÁI 0/1 VÀO ĐÂY
-            hoc_sinh_ids: mangUidHocSinh,
+            trang_thai: trangThai,
+            hoc_sinh_ids: mangUidHocSinh, // Lưu mảng trực tiếp, không stringify
             ngay_tao: new Date().toISOString()
         }]);
 
-        if (error) {
-            if (error.code === '23505') throw new Error("Mã lớp bị trùng, vui lòng thử lại.");
-            throw error;
+        if (errLop) {
+            if (errLop.code === '23505') throw new Error("Mã lớp bị trùng, vui lòng thử lại.");
+            throw errLop;
         }
 
-        alert(`Khởi tạo lớp ${maLop} thành công!`);
-        ham_4_4_tai_danh_sach_lop(); // Quay lại bảng danh sách lớp
+        // BƯỚC 2: CẬP NHẬT 'danh_sach_ma_lop' CHO TỪNG HỌC SINH ĐƯỢC CHỌN
+        if (mangUidHocSinh.length > 0) {
+            btnElement.innerText = "⏳ ĐANG GHI DANH HS...";
+
+            for (const uid of mangUidHocSinh) {
+                // 2.1. Lấy mảng lớp hiện tại của học sinh
+                const { data: hsData } = await _supabase
+                    .from('hoc_sinh')
+                    .select('danh_sach_ma_lop')
+                    .eq('uid', uid)
+                    .single();
+
+                let dsLopCu = hsData?.danh_sach_ma_lop;
+                if (!Array.isArray(dsLopCu)) dsLopCu = [];
+
+                // 2.2. Thêm mã lớp mới nếu chưa có
+                if (!dsLopCu.includes(maLop)) {
+                    dsLopCu.push(maLop);
+
+                    // 2.3. Cập nhật lại vào Database
+                    await _supabase
+                        .from('hoc_sinh')
+                        .update({ danh_sach_ma_lop: dsLopCu })
+                        .eq('uid', uid);
+                }
+            }
+        }
+
+        alert(`✅ Khởi tạo lớp ${maLop} và ghi danh học sinh thành công!`);
+
+        // BƯỚC 3: FIX LỖI LOAD DANH SÁCH (Phải về trang chính trước để có khung render)
+        // Thay vì gọi thẳng ham_4_4, ta gọi hàm vẽ khung giao diện chính trước
+        ham_4_1_ve_quan_ly_lop();
 
     } catch (error) {
         alert("Lỗi: " + error.message);
