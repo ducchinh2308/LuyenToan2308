@@ -1,4 +1,19 @@
-﻿// ==============================================================================
+﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
+const APP_VERSION = "Cập nhật lúc 17h55 - Ngày 12/05";
+
+// In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
+console.log(`%c🚀 HỆ THỐNG ĐANG CHẠY BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+
+// Nếu thầy lười mở F12, thầy có thể cho nó in luôn một dòng chữ mờ mờ ở góc dưới màn hình:
+window.onload = () => {
+    let versionBadge = document.createElement('div');
+    versionBadge.innerHTML = `Phiên bản: ${APP_VERSION}`;
+    versionBadge.style.cssText = "position: fixed; bottom: 5px; right: 5px; font-size: 11px; color: #aaa; z-index: 9999;";
+    document.body.appendChild(versionBadge);
+};
+
+
+// ==============================================================================
 // KHỐI 0: CẤU HÌNH & TRẠNG THÁI (CONFIG & STATE)
 // ==============================================================================
 const AppState = {
