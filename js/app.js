@@ -2120,7 +2120,7 @@ function ham_7_10_ve_bang_nhiem_vu() {
                 <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
                 <td style="padding: 10px; text-align: center;">${txtDaoDe}</td>
                 <td style="padding: 10px; text-align: center;">
-                    ${nv.trang_thai == 0 ? '<span style="color:#999;">⏸️ ĐÃ KHÓA</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545;">🛑 ĐÃ ĐÓNG</span>' : '<span style="color:#28a745;">▶️ ĐANG MỞ</span>')}
+                    ${nv.trang_thai == 0 ? '<span style="color:#999; font-weight:bold;">⏸️ ĐÃ KHÓA (Thủ công)</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545; font-weight:bold;">🛑 ĐÃ ĐÓNG (Hết hạn)</span>' : '<span style="color:#28a745; font-weight:bold;">▶️ ĐANG MỞ</span>')}
                 </td>
             </tr>
         `;
@@ -2234,12 +2234,13 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
                         <div>
-                            <label style="font-size: 12px; font-weight:bold;">Trạng thái:</label>
-                            <select id="add_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
-                                <option value="1">🟢 Mở (Kích hoạt)</option>
-                                <option value="0">🔴 Đóng (Tạm dừng)</option>
-                            </select>
-                        </div>
+                        <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
+                        <select id="edit_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
+                            <option value="1" ${String(data.trang_thai) !== '0' ? 'selected' : ''}>🟢 Mở (Đang giao)</option>
+                            <option value="0" ${String(data.trang_thai) === '0' ? 'selected' : ''}>🔴 Khóa (Tạm dừng)</option> </select>
+                    </div>
+
+
                         <div><label style="font-size: 12px; font-weight:bold;">Số lượt làm bài:</label><input type="number" id="add_nv_soluot" value="0" min="0" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Mở Lúc:</label><input type="datetime-local" id="add_nv_mo" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Đóng Lúc:</label><input type="datetime-local" id="add_nv_dong" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
