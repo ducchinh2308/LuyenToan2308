@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 19h17 - Ngày 12/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 20h51 - Ngày 12/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -215,8 +215,67 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 // ==============================================================
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
-function ham_8_3_tab_luyen_tap_tu_do() {
-    document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#17a2b8; text-align:center;">🌍 Khu vực Luyện Tập Tự Do (Sắp ra mắt)</h3>`;
+// ==============================================================
+// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO"
+// ==============================================================
+async function ham_8_3_tab_luyen_tap_tu_do() {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang mở kho đề luyện tập...</h3></div>`;
+
+    try {
+        // Lấy những bài có mã lớp đặc biệt dành cho tự luyện
+        const { data: dsTuDo, error } = await _supabase
+            .from('nhiem_vu')
+            .select('*')
+            .eq('trang_thai', 1)
+            .contains('danh_sach_lop', `["#LUYEN_TAP_TU_DO#"]`)
+            .order('ngay_tao', { ascending: false });
+
+        if (error) throw error;
+
+        if (!dsTuDo || dsTuDo.length === 0) {
+            vungLamViec.innerHTML = `
+                <div style="text-align: center; padding: 50px; color: #666;">
+                    <p style="font-size: 50px;">🍃</p>
+                    <p>Kho luyện tập hiện đang trống. Thầy sẽ sớm bổ sung các đề thi hay cho các em!</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Vẽ danh sách đề luyện tập (Thiết kế dạng danh sách lướt cho nhẹ nhàng)
+        let htmlList = `
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 8px; color: #0056b3; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #0056b3;">
+                    ✨ <b>Góc tự học:</b> Đây là các đề thi mở tự do, không giới hạn thời gian và số lượt làm. Các em có thể luyện tập bất cứ lúc nào để nâng cao kỹ năng!
+                </div>
+        `;
+
+        dsTuDo.forEach(nv => {
+            htmlList += `
+                <div style="background: white; border: 1px solid #dee2e6; border-radius: 10px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+                    <div style="flex: 1; padding-right: 15px;">
+                        <h4 style="margin: 0 0 8px 0; color: #2c3e50; font-size: 15px;">${nv.ten_nhiem_vu}</h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <span style="font-size: 11px; color: #666;">⏱️ ${nv.thoi_gian_lam_bai || 0} phút</span>
+                            <span style="font-size: 11px; color: #666;">📦 ${nv.quy_mo_cau_hoi || 0} câu</span>
+                            <span style="font-size: 11px; color: #17a2b8; font-weight: bold;">🌍 Tự do</span>
+                        </div>
+                    </div>
+                    <button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" 
+                            style="padding: 10px 20px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">
+                        LUYỆN TẬP
+                    </button>
+                </div>
+            `;
+        });
+
+        htmlList += `</div>`;
+        vungLamViec.innerHTML = htmlList;
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi: ${error.message}</div>`;
+    }
 }
 
 function ham_8_4_tab_ket_qua() {
