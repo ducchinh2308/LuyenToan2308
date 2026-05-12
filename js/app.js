@@ -1974,7 +1974,7 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
-// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Nâng cấp thông tin chi tiết)
+// Hàm 7.10: Vẽ Bảng Danh Sách Nhiệm Vụ (Nâng cấp thông tin chi tiết + Có cột LOẠI NV)
 function ham_7_10_ve_bang_nhiem_vu() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
@@ -1986,14 +1986,14 @@ function ham_7_10_ve_bang_nhiem_vu() {
 
     let htmlTable = `
         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
-            <table style="width: 100%; min-width: 1500px; border-collapse: collapse; background: white; font-size: 13px;">
+            <table style="width: 100%; min-width: 1600px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <tr>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 120px;">Thao tác</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Mã NV</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; text-align: left;">Tên Nhiệm Vụ</th>
-                        <th style="padding: 12px 10px; border: 1px solid #eee;">Giao Cho</th>
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 110px;">Loại NV</th> <th style="padding: 12px 10px; border: 1px solid #eee;">Giao Cho</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 80px;">Số Lượt</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Mở Lúc</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee;">Đóng Lúc</th>
@@ -2027,6 +2027,31 @@ function ham_7_10_ve_bang_nhiem_vu() {
     dsNV.forEach((nv, index) => {
         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+
+        // ==========================================
+        // 🌟 XỬ LÝ BADGE CHO CỘT LOẠI NHIỆM VỤ
+        // ==========================================
+        let loaiHienThi = "❓ Khác";
+        let badgeColor = "#6c757d"; // Màu xám mặc định
+
+        if (nv.loai_nhiem_vu === "Làm đề (Online)") {
+            loaiHienThi = "📝 Làm đề";
+            badgeColor = "#17a2b8"; // Xanh lơ
+        } else if (nv.loai_nhiem_vu === "Tự luận (Nộp ảnh)") {
+            loaiHienThi = "📷 Tự luận";
+            badgeColor = "#6f42c1"; // Tím
+        } else if (nv.loai_nhiem_vu === "Xem bài giảng") {
+            loaiHienThi = "📺 Video";
+            badgeColor = "#e83e8c"; // Hồng
+        } else if (nv.loai_nhiem_vu === "Khảo sát") {
+            loaiHienThi = "📊 Khảo sát";
+            badgeColor = "#fd7e14"; // Cam
+        } else if (nv.loai_nhiem_vu) {
+            loaiHienThi = nv.loai_nhiem_vu;
+        }
+
+        // Tạo chuỗi HTML cho cái nhãn
+        const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
 
         // 1. Xử lý Giao Cho (Hiện Tên lớp + Mã)
         let arrLop = [];
@@ -2068,7 +2093,8 @@ function ham_7_10_ve_bang_nhiem_vu() {
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
                 <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
-                <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
+                
+                <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td> <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
                 <td style="padding: 10px; text-align: center; font-weight: bold;">${soLuot}</td>
                 <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
                 <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
@@ -2083,7 +2109,6 @@ function ham_7_10_ve_bang_nhiem_vu() {
     htmlTable += `</tbody></table></div>`;
     renderArea.innerHTML = htmlTable;
 }
-
 
 // Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới)
 async function ham_7_3_hien_form_them_nhiem_vu() {
