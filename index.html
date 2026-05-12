@@ -24,7 +24,16 @@
 
     <div id="app"></div>
 
-    <script src="js/app.js?v=1.5"></script>
+    //<script src="js/app.js?v=1.5"></script>
+    <script>
+        // Tự động tạo ra một đuôi số ngẫu nhiên theo thời gian thực (ví dụ: ?v=1715511313000)
+        var phienBanMoiNhat = new Date().getTime();
 
+        var script = document.createElement('script');
+        script.src = 'js/app.js?v=' + phienBanMoiNhat;
+
+        // Gắn file js vào web
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
