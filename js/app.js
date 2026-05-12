@@ -2490,7 +2490,7 @@ async function ham_7_4_luu_nhiem_vu_moi(maNV, btnNode) {
             // 👉 Ném cục JSON xáo trộn vào đây, Supabase sẽ tự nhận (vì cột đã là jsonb)
             dao_cau_hoi: configDaoDe,
 
-            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
+            uid_gv_giao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
             ngay_tao: new Date().toISOString()
         };
 
