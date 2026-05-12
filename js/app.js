@@ -2645,6 +2645,9 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
         `;
     }
 
+    // Trước khi vẽ HTML, thầy có thể tạo một biến kiểm tra cho chắc chắn
+    const trangThaiHienTai = String(data.trang_thai); // Ép về chuỗi để so sánh
+
     // ================= VẼ GIAO DIỆN CHÍNH =================
     vungLamViec.innerHTML = `
         <div style="max-width: 950px; background: white; padding: 25px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
@@ -2698,8 +2701,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                     <div>
                         <label style="font-size: 12px; font-weight:bold;">Trạng thái NV:</label>
                         <select id="edit_nv_trangthai" style="width: 100%; padding: 6px; border: 1px solid #28a745; border-radius: 4px;">
-                            <option value="1" ${String(data.trang_thai) !== '0' ? 'selected' : ''}>🟢 Mở (Đang giao)</option>
-                            <option value="0" ${String(data.trang_thai) === '0' ? 'selected' : ''}>🔴 Đóng (Tạm dừng)</option>
+                            <option value="1" ${trangThaiHienTai !== '0' ? 'selected' : ''}>🟢 Mở (Kích hoạt)</option>
+                            <option value="0" ${trangThaiHienTai === '0' ? 'selected' : ''}>🔴 Khóa (Tạm dừng)</option>
                         </select>
                     </div>
                     <div>
