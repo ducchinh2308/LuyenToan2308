@@ -27,6 +27,9 @@ const SUPABASE_KEY = 'sb_publishable_SB93ie45-i5-iDFiIuOtNQ_jMvMT8Xt';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
+const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308/";
+
+
 // ==============================================================================
 // KHỐI 1: DỰNG GIAO DIỆN & CSS (UI BUILDER)
 // ==============================================================================

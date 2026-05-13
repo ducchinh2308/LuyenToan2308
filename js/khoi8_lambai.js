@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 9h25 - Ngày 13/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 10h25 - Ngày 13/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -486,24 +486,25 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
 }
 
 // ==============================================================
-// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ chuẩn JSON Object)
+// Hàm 8.8: Khởi tạo Phòng thi (Kết hợp Đáp án Supabase + Nội dung GitHub)
 // ==============================================================
 async function ham_8_8_khoi_tao_phong_thi(nv) {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 100px;">
             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang kết nối ngân hàng đề thi...</h3>
+            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang đồng bộ dữ liệu đề thi...</h3>
             <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
         </div>
     `;
 
     try {
-        // 1. Lấy ma_hoc_lieu từ nhiệm vụ
         const maHocLieu = nv.ma_hoc_lieu;
         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
 
-        // 2. Lấy "Bản đồ kho báu" (chứa đáp án và mã câu) từ bảng hoc_lieu
+        // =========================================================
+        // 1. MỞ KÉT SUPABASE: Lấy mảng Đáp án (chính là chuỗi JSON thầy vừa gửi)
+        // =========================================================
         const { data: dataHocLieu, error: errHL } = await _supabase
             .from('hoc_lieu')
             .select('danh_sach_cau_hoi')
@@ -512,52 +513,64 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
         if (errHL) throw errHL;
 
-        // Dữ liệu lúc này đã là mảng Object JSON xịn xò (VD: [{ma_cau_hoi: "...", dap_an: "A"}, ...])
-        const dsCauHoiMap = dataHocLieu?.danh_sach_cau_hoi || [];
-        if (dsCauHoiMap.length === 0) throw new Error("Học liệu này đang trống!");
+        // dsMapDapAn lúc này chính là: [{"dap_an": "A", "ma_cau_hoi": "q_..."}, ...]
+        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
+        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Học liệu này trống!");
 
-        // 3. Rút trích mảng các mã câu hỏi để gọi API
-        const mangIdMaHoa = dsCauHoiMap.map(item => item.ma_cau_hoi);
+        // =========================================================
+        // 2. LÊN GITHUB: Lấy nội dung text/ảnh của câu hỏi
+        // =========================================================
+        
+        // Đường dẫn file json dựa theo cấu trúc tool C# của thầy: Kho_De_Thi/MaDe/DeThi_MaDe.json
+        const urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maHocLieu}/DeThi_${maHocLieu}.json`;
 
-        // 4. Bốc nội dung thực tế (Câu dẫn, Phương án A B C D) từ Ngân hàng câu hỏi
-        const { data: dsNoiDung, error: errNH } = await _supabase
-            .from('ngan_hang_cau_hoi')
-            .select('*')
-            .in('ma_cau_hoi', mangIdMaHoa);
+        console.log("🔍 Đang tải nội dung từ GitHub:", urlFileGitHub);
 
-        if (errNH) throw errNH;
+        const response = await fetch(urlFileGitHub);
+        if (!response.ok) {
+            throw new Error("Không tải được đề từ GitHub! Vui lòng kiểm tra lại link: " + urlFileGitHub);
+        }
 
-        // 5. Gộp "Bản đồ đáp án" và "Nội dung câu hỏi" lại làm một
-        const deThiHoanChinh = dsCauHoiMap.map(mapItem => {
-            const noiDung = dsNoiDung.find(c => c.ma_cau_hoi === mapItem.ma_cau_hoi) || {};
+        const dataGitHub = await response.json();
+
+        // dsNoiDungGH chứa mảng: [{maCau: "q_...", cauDan: "...", paA: "..."}, ...]
+        const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
+
+        // =========================================================
+        // 3. RÁP ĐỀ: Nối nội dung (GitHub) với đáp án (Supabase)
+        // =========================================================
+        const deThiHoanChinh = dsMapDapAn.map(mapItem => {
+            // So khớp: mã bên Supabase là "ma_cau_hoi", mã bên C# GitHub là "maCau"
+            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+
             return {
-                ...mapItem,  // Chứa ma_cau_hoi, dap_an...
-                ...noiDung   // Chứa cauDan, paA, paB, paC, paD...
+                ...mapItem,  // Lấy đáp án và mã gốc
+                ...noiDung   // Lấy nội dung hiển thị (cauDan, paA, kieuCau...)
             };
         });
 
-        // 6. Trộn thứ tự câu hỏi (Gọi Hàm 8.9)
+        // 4. Trộn thứ tự câu hỏi (Hàm 8.9)
         const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
 
-        // 7. Khởi tạo State Phiên Làm Bài
+        // 5. Lưu vào Phiên làm bài
         window.PhienLamBai = {
             ma_nhiem_vu: nv.ma_nhiem_vu,
             ten_nhiem_vu: nv.ten_nhiem_vu,
-            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60, // Đổi phút ra giây
+            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60,
             tong_so_cau: deThiDaTron.length,
             danh_sach_cau_hoi: deThiDaTron,
             dap_an_hoc_sinh: {},
             id_timer: null
         };
 
-        console.log("📦 Đề thi đã nạp thành công:", window.PhienLamBai);
+        console.log("📦 RÁP ĐỀ THÀNH CÔNG:", window.PhienLamBai);
 
-        // 8. Chuyển sang vẽ giao diện làm bài (Hàm 8.10)
+        // 6. Mở giao diện thi
         ham_8_10_ve_giao_dien_lam_bai();
 
     } catch (err) {
+        console.error("LỖI NẠP ĐỀ:", err);
         alert("Lỗi nạp đề thi: " + err.message);
-        // Gọi lại Hàm 8.1 để xây lại toàn bộ giao diện (Tabs + Vùng làm việc)
         ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
     }
 }
