@@ -557,7 +557,8 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
     } catch (err) {
         alert("Lỗi nạp đề thi: " + err.message);
-        ham_8_2_tab_nhiem_vu_bat_buoc(); // Quay lại trang trước nếu lỗi
+        // Gọi lại Hàm 8.1 để xây lại toàn bộ giao diện (Tabs + Vùng làm việc)
+        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
     }
 }
 
