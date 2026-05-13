@@ -798,6 +798,8 @@ function renderCauHoiHienTai() {
 
     // 🌟 BƯỚC 1: Lấy thư mục gốc chứa ảnh của đề này
     const thuMucAnh = phien.base_url_anh;
+    console.log("thuMucAnh: " + thuMucAnh);
+
 
     // 🌟 BƯỚC 2: Tạo màng lọc để ráp đường dẫn tuyệt đối cho ảnh
     const xuLyAnh = (noiDung) => {
