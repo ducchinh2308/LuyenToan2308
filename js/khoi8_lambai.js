@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI8_VERSION = "Khối 8: Cập nhật lúc 7h43 - Ngày 13/05";
+const KHOI8_VERSION = "Khối 8: Cập nhật lúc 9h25 - Ngày 13/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
@@ -427,9 +427,9 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
     if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu bài tập!");
 
     try {
-        // 2. Kiểm tra số lượt đã làm thực tế từ Database (Bảng ket_qua)
+        // 2. Kiểm tra số lượt đã làm thực tế từ Database (DÙNG BẢNG ket_qua_thi CỦA THẦY)
         const { data: cacLuotDaLam, error } = await _supabase
-            .from('ket_qua')
+            .from('ket_qua_thi') // <--- Đã sửa thành ket_qua_thi
             .select('id')
             .eq('ma_nhiem_vu', maNhiemVu)
             .eq('uid_hoc_sinh', GocHocSinhState.uid);
@@ -450,6 +450,9 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
             });
         }
 
+        // 🌟 LƯU LẠI LẦN THI ĐỂ DÙNG LÚC NỘP BÀI (Hàm 8.11)
+        window.LanThuHienTai = soLuotHienTai + 1;
+
         // 3. Hiện bảng thông tin xác nhận tâm lý cho học sinh
         const thoiGianHienThi = nv.thoi_gian_lam_bai > 0 ? `${nv.thoi_gian_lam_bai} phút` : "Tự do";
 
@@ -459,7 +462,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
                 <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-size: 14px;">
                     <p>📝 <b>Nhiệm vụ:</b> <span style="color:#1a73e8; font-weight: bold;">${nv.ten_nhiem_vu}</span></p>
                     <p>⏱️ <b>Thời gian:</b> ${thoiGianHienThi}</p>
-                    <p>🔄 <b>Lượt làm:</b> Lần thứ ${soLuotHienTai + 1} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
+                    <p>🔄 <b>Lượt làm:</b> Lần thứ ${window.LanThuHienTai} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
                     <hr>
                     <p style="color: #d32f2f; font-weight: bold; font-style: italic; margin:0;">⚠️ Lưu ý: Đồng hồ sẽ bắt đầu đếm ngược ngay khi em bấm nút BẮT ĐẦU.</p>
                 </div>
@@ -481,7 +484,6 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
         alert("Lỗi kiểm tra an ninh: " + err.message);
     }
 }
-
 
 // ==============================================================
 // Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ chuẩn JSON Object)
