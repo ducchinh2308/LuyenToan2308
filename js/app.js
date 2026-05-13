@@ -2615,6 +2615,10 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
+
+    // 🌟 CHÈN CONSOLE.LOG VÀO ĐÂY ĐỂ BẮT QUẢ TANG:
+    console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
+
     const trangThai = document.getElementById('add_nv_trangthai').value;
 
 
