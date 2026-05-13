@@ -483,80 +483,109 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
 
 
 // ==============================================================
-// Hàm 8.8: Khởi tạo Phòng thi & Ghi nhận phiên làm bài
+// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ chuẩn JSON Object)
 // ==============================================================
 async function ham_8_8_khoi_tao_phong_thi(nv) {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 100px;">
             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang nạp đề thi...</h3>
+            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang kết nối ngân hàng đề thi...</h3>
             <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
         </div>
     `;
 
     try {
-        // 1. Lấy danh sách ID câu hỏi (Giả sử thầy lưu mảng ID trong cột 'danh_sach_id_cau_hoi')
-        const mangIdCauHoi = nv.danh_sach_id_cau_hoi || [];
-        if (mangIdCauHoi.length === 0) throw new Error("Đề thi này chưa có nội dung câu hỏi!");
+        // 1. Lấy ma_hoc_lieu từ nhiệm vụ
+        const maHocLieu = nv.ma_hoc_lieu;
+        if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
 
-        // 2. Truy vấn dữ liệu chi tiết câu hỏi từ ngân hàng
-        const { data: dsCauHoi, error } = await _supabase
+        // 2. Lấy "Bản đồ kho báu" (chứa đáp án và mã câu) từ bảng hoc_lieu
+        const { data: dataHocLieu, error: errHL } = await _supabase
+            .from('hoc_lieu')
+            .select('danh_sach_cau_hoi')
+            .eq('ma_hoc_lieu', maHocLieu)
+            .single();
+
+        if (errHL) throw errHL;
+
+        // Dữ liệu lúc này đã là mảng Object JSON xịn xò (VD: [{ma_cau_hoi: "...", dap_an: "A"}, ...])
+        const dsCauHoiMap = dataHocLieu?.danh_sach_cau_hoi || [];
+        if (dsCauHoiMap.length === 0) throw new Error("Học liệu này đang trống!");
+
+        // 3. Rút trích mảng các mã câu hỏi để gọi API
+        const mangIdMaHoa = dsCauHoiMap.map(item => item.ma_cau_hoi);
+
+        // 4. Bốc nội dung thực tế (Câu dẫn, Phương án A B C D) từ Ngân hàng câu hỏi
+        const { data: dsNoiDung, error: errNH } = await _supabase
             .from('ngan_hang_cau_hoi')
             .select('*')
-            .in('id', mangIdCauHoi);
+            .in('ma_cau_hoi', mangIdMaHoa);
 
-        if (error) throw error;
+        if (errNH) throw errNH;
 
-        // 3. Gọi hàm 8.9 để trộn câu hỏi và đáp án
-        const deThiDaTron = ham_8_9_tron_de_thi(dsCauHoi);
+        // 5. Gộp "Bản đồ đáp án" và "Nội dung câu hỏi" lại làm một
+        const deThiHoanChinh = dsCauHoiMap.map(mapItem => {
+            const noiDung = dsNoiDung.find(c => c.ma_cau_hoi === mapItem.ma_cau_hoi) || {};
+            return {
+                ...mapItem,  // Chứa ma_cau_hoi, dap_an...
+                ...noiDung   // Chứa cauDan, paA, paB, paC, paD...
+            };
+        });
 
-        // 4. Lưu trạng thái làm bài vào một biến toàn cục mới
+        // 6. Trộn thứ tự câu hỏi (Gọi Hàm 8.9)
+        const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
+
+        // 7. Khởi tạo State Phiên Làm Bài
         window.PhienLamBai = {
             ma_nhiem_vu: nv.ma_nhiem_vu,
             ten_nhiem_vu: nv.ten_nhiem_vu,
-            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60, // Đổi ra giây
+            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60, // Đổi phút ra giây
             tong_so_cau: deThiDaTron.length,
             danh_sach_cau_hoi: deThiDaTron,
-            dap_an_hoc_sinh: {}, // Lưu dạng { index: "A" }
+            dap_an_hoc_sinh: {},
             id_timer: null
         };
 
-        // 5. Chuyển sang giao diện làm bài (Sẽ code tiếp hàm 8.10)
+        console.log("📦 Đề thi đã nạp thành công:", window.PhienLamBai);
+
+        // 8. Chuyển sang vẽ giao diện làm bài (Hàm 8.10)
         ham_8_10_ve_giao_dien_lam_bai();
 
     } catch (err) {
-        alert("Lỗi: " + err.message);
-        ham_8_2_tab_nhiem_vu_bat_buoc();
+        alert("Lỗi nạp đề thi: " + err.message);
+        ham_8_2_tab_nhiem_vu_bat_buoc(); // Quay lại trang trước nếu lỗi
     }
 }
 
-
-
 // ==============================================================
-// Hàm 8.9: Trộn ngẫu nhiên Câu hỏi và Đáp án (Shuffle)
+// Hàm 8.9: Trộn thứ tự câu hỏi (Chống gian lận)
 // ==============================================================
 function ham_8_9_tron_de_thi(mangCauHoi) {
-    // 1. Trộn thứ tự các câu hỏi
+    // 1. Trộn thứ tự các câu hỏi với nhau (Shuffle mảng)
     let dsTron = mangCauHoi.sort(() => Math.random() - 0.5);
 
-    // 2. Trộn thứ tự các đáp án trong từng câu
+    // 2. Định hình lại số thứ tự và chốt Kiểu câu
     return dsTron.map((item, index) => {
-        // Gom 4 đáp án vào mảng để trộn
-        let cacOption = [
-            { id: 'A', text: item.option_a },
-            { id: 'B', text: item.option_b },
-            { id: 'C', text: item.option_c },
-            { id: 'D', text: item.option_d }
-        ];
 
-        // Trộn đáp án
-        cacOption = cacOption.sort(() => Math.random() - 0.5);
+        // Cố gắng lấy kiểu câu từ Database (nếu C# có đẩy lên)
+        let kieuNhanDien = item.kieuCau || item.kieu_cau || "";
+
+        // LOGIC THÔNG MINH: Nếu Database thiếu kieuCau, ta "bắt mạch" từ đáp án
+        if (!kieuNhanDien && item.dap_an) {
+            if (item.dap_an.length === 4 && (item.dap_an.includes('T') || item.dap_an.includes('F'))) {
+                kieuNhanDien = "DS"; // Đúng sai (TFTF)
+            } else if (!['A', 'B', 'C', 'D'].includes(item.dap_an) && item.dap_an.length !== 4) {
+                kieuNhanDien = "TLN"; // Trả lời ngắn (số)
+            } else {
+                kieuNhanDien = "TN"; // Trắc nghiệm mặc định
+            }
+        }
 
         return {
             ...item,
-            index_stt: index + 1,
-            cac_lua_chon_da_tron: cacOption
+            index_stt: index + 1, // Đánh số thứ tự hiển thị (Câu 1, 2, 3...)
+            kieuCau: kieuNhanDien // Gắn lại nhãn chuẩn để Hàm 8.10 vẽ giao diện cho đúng
         };
     });
 }
