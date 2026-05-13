@@ -558,6 +558,12 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
         
         // Lấy đường dẫn thư mục gốc chứa ảnh (Bỏ tên file .json đi và đi thẳng vào thư mục HinhAnh)
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+
+        // Lấy đường dẫn thư mục chứa đề thi (bỏ tên file .json) và cộng thêm thư mục HinhAnh bên trong
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+        console.log("urlFileGitHub:" + urlFileGitHub);
+        console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
+
         // 5. LƯU VÀO PHIÊN LÀM BÀI
         window.PhienLamBai = {
             ma_nhiem_vu: nv.ma_nhiem_vu,
