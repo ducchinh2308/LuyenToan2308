@@ -527,7 +527,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
                 maDeGoc = maHocLieu.replace("HL_DE_", "");
             }
 
-            const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308";
+            const LINK_GITHUB_GOC =  "https://ducchinh2308.github.io/LuyenToan2308";
             // Ép đúng cấu trúc file trên Github của thầy
             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
@@ -678,18 +678,148 @@ function ham_8_10_ve_giao_dien_lam_bai() {
 // ==============================================================
 
 // 1. Vẽ nội dung câu hỏi dựa trên Phân loại (Trắc nghiệm, Đúng/Sai, Trả lời ngắn)
+//function renderCauHoiHienTai() {
+//    const phien = window.PhienLamBai;
+//    const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
+//    const khuVuc = document.getElementById('khu-vuc-cau-hoi');
+//    // 🌟 BƯỚC 1: Lấy thư mục gốc chứa ảnh của đề này
+//    const thuMucAnh = phien.base_url_anh;
+
+//    // 🌟 BƯỚC 2: Tạo màng lọc để ráp đường dẫn tuyệt đối cho ảnh
+//    const xuLyAnh = (noiDung) => {
+//        if (!noiDung) return "";
+//        // Quét tìm tất cả các thẻ src="tên_ảnh" và nhét thư mục gốc vào trước
+//        return noiDung.replace(/src="([^"]+)"/g, (match, tenFile) => {
+//            // Bỏ qua nếu ảnh đã là link web ngoài hoặc dạng base64
+//            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
+//            return `src="${thuMucAnh}/${tenFile}"`;
+//        });
+//    };
+//    // Lấy đáp án đã chọn (nếu có)
+//    const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
+
+//    // 🌟 BƯỚC 3: Cho câu dẫn chui qua màng lọc ảnh
+//    const noiDungCauDan = xuLyAnh(cau.cauDan || cau.noi_dung || "Đang tải nội dung...");
+
+//    let htmlNoiDung = `
+//        <div style="margin-bottom: 15px;">
+//            <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span>
+//            ${noiDungCauDan}
+//        </div>
+//    `;
+
+//    //// Lấy đáp án đã chọn (nếu có)
+//    //const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
+
+//    //let htmlNoiDung = `
+//    //    <div style="margin-bottom: 15px;">
+//    //        <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span>
+//    //        ${cau.cauDan || cau.noi_dung || "Đang tải nội dung..."}
+//    //    </div>
+//    //`;
+
+//    // TÙY BIẾN GIAO DIỆN THEO KIỂU CÂU HỎI
+//    if (cau.kieuCau === "TN" || !cau.kieuCau) {
+//        // --- LOẠI 1: TRẮC NGHIỆM A B C D ---
+//        htmlNoiDung += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
+//        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
+//            const nhan = String.fromCharCode(65 + i); // A, B, C, D
+//            const isChecked = dapAnCu === nhan ? "checked" : "";
+//            const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
+
+//            htmlNoiDung += `
+//                <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;">
+//                    <input type="radio" name="dapan_${cau.ma_cau_hoi}" value="${nhan}" ${isChecked} onchange="luuDapAn('${cau.ma_cau_hoi}', '${nhan}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
+//                    <div style="flex:1;"><b>${nhan}.</b> ${cau[key] || "..."}</div>
+//                </label>
+//            `;
+//        });
+//        htmlNoiDung += `</div>`;
+
+//    } else if (cau.kieuCau === "DS") {
+//        // --- LOẠI 2: ĐÚNG / SAI ---
+//        htmlNoiDung += `<div style="background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 15px; font-size: 13px;">💡 Yêu cầu: Chọn Đúng (Đ) hoặc Sai (S) cho từng ý A, B, C, D.</div>`;
+//        htmlNoiDung += `<table style="width: 100%; border-collapse: collapse;">`;
+
+//        // dapAnCu của phần này lưu dạng mảng hoặc object, VD: {A: 'T', B: 'F'}
+//        const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
+
+//        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
+//            const nhan = String.fromCharCode(65 + i);
+//            const chonD = chonDS[nhan] === 'T' ? "checked" : "";
+//            const chonS = chonDS[nhan] === 'F' ? "checked" : "";
+
+//            htmlNoiDung += `
+//                <tr style="border-bottom: 1px dashed #ddd;">
+//                    <td style="padding: 10px 5px; width: 50px; text-align:center;"><b>${nhan}</b></td>
+//                    <td style="padding: 10px 5px;">${cau[key] || "..."}</td>
+//                    <td style="padding: 10px 5px; width: 100px; text-align: center; white-space: nowrap;">
+//                        <label style="margin-right: 10px; cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="T" ${chonD} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'T')"> Đ</label>
+//                        <label style="cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="F" ${chonS} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'F')"> S</label>
+//                    </td>
+//                </tr>
+//            `;
+//        });
+//        htmlNoiDung += `</table>`;
+
+//    } else if (cau.kieuCau === "TLN") {
+//        // --- LOẠI 3: TRẢ LỜI NGẮN ---
+//        htmlNoiDung += `
+//            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; border: 1px solid #b6d4fe; text-align: center;">
+//                <label style="font-weight: bold; color: #084298; display: block; margin-bottom: 10px;">✍️ NHẬP ĐÁP ÁN CỦA EM VÀO ĐÂY:</label>
+//                <input type="text" value="${dapAnCu}" onblur="luuDapAn('${cau.ma_cau_hoi}', this.value)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 18px; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none;">
+//                <div style="font-size: 12px; color: #666; margin-top: 8px;">(Lưu ý: Nếu đáp án là phân số, nhập dưới dạng thập phân. Ví dụ: 0,5 hoặc 0.5)</div>
+//            </div>
+//        `;
+//    }
+
+//    khuVuc.innerHTML = htmlNoiDung;
+
+//    // Cập nhật trạng thái nút (Vô hiệu hóa nút "Trước" nếu ở câu 1...)
+//    document.getElementById('btn-cau-truoc').disabled = (phien.cau_hien_tai === 0);
+//    document.getElementById('btn-cau-sau').disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
+
+//    // Đánh dấu nút đang chọn trên bảng điều hướng
+//    document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
+//    document.getElementById(`nut-cau-${phien.cau_hien_tai}`).style.border = "3px solid #1a73e8";
+
+//    // Render lại toán học (MathJax/KaTeX nếu thầy có xài)
+//    if (window.MathJax) MathJax.typesetPromise();
+//}
+
+
+
+
+// 1. Vẽ nội dung câu hỏi dựa trên Phân loại (Trắc nghiệm, Đúng/Sai, Trả lời ngắn)
 function renderCauHoiHienTai() {
     const phien = window.PhienLamBai;
     const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
     const khuVuc = document.getElementById('khu-vuc-cau-hoi');
 
+    // 🌟 BƯỚC 1: Lấy thư mục gốc chứa ảnh của đề này
+    const thuMucAnh = phien.base_url_anh;
+
+    // 🌟 BƯỚC 2: Tạo màng lọc để ráp đường dẫn tuyệt đối cho ảnh
+    const xuLyAnh = (noiDung) => {
+        if (!noiDung) return "";
+        // Quét tìm tất cả các thẻ src="tên_ảnh" và nhét thư mục gốc vào trước
+        return noiDung.replace(/src="([^"]+)"/g, (match, tenFile) => {
+            // Bỏ qua nếu ảnh đã là link web ngoài hoặc dạng base64
+            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
+            return `src="${thuMucAnh}/${tenFile}"`;
+        });
+    };
+
     // Lấy đáp án đã chọn (nếu có)
     const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
+
+    // 🌟 BƯỚC 3: Cho câu dẫn chui qua màng lọc ảnh
+    const noiDungCauDan = xuLyAnh(cau.cauDan || cau.noi_dung || "Đang tải nội dung...");
 
     let htmlNoiDung = `
         <div style="margin-bottom: 15px;">
             <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span> 
-            ${cau.cauDan || cau.noi_dung || "Đang tải nội dung..."} 
+            ${noiDungCauDan} 
         </div>
     `;
 
@@ -702,10 +832,13 @@ function renderCauHoiHienTai() {
             const isChecked = dapAnCu === nhan ? "checked" : "";
             const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
 
+            // 🌟 Cho nội dung đáp án A, B, C, D chui qua màng lọc ảnh
+            const noiDungPA = xuLyAnh(cau[key] || "...");
+
             htmlNoiDung += `
                 <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;">
                     <input type="radio" name="dapan_${cau.ma_cau_hoi}" value="${nhan}" ${isChecked} onchange="luuDapAn('${cau.ma_cau_hoi}', '${nhan}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-                    <div style="flex:1;"><b>${nhan}.</b> ${cau[key] || "..."}</div>
+                    <div style="flex:1;"><b>${nhan}.</b> ${noiDungPA}</div>
                 </label>
             `;
         });
@@ -716,7 +849,6 @@ function renderCauHoiHienTai() {
         htmlNoiDung += `<div style="background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 15px; font-size: 13px;">💡 Yêu cầu: Chọn Đúng (Đ) hoặc Sai (S) cho từng ý A, B, C, D.</div>`;
         htmlNoiDung += `<table style="width: 100%; border-collapse: collapse;">`;
 
-        // dapAnCu của phần này lưu dạng mảng hoặc object, VD: {A: 'T', B: 'F'}
         const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
 
         ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
@@ -724,10 +856,13 @@ function renderCauHoiHienTai() {
             const chonD = chonDS[nhan] === 'T' ? "checked" : "";
             const chonS = chonDS[nhan] === 'F' ? "checked" : "";
 
+            // 🌟 Lọc ảnh cho các ý A, B, C, D của câu Đúng/Sai
+            const noiDungDS = xuLyAnh(cau[key] || "...");
+
             htmlNoiDung += `
                 <tr style="border-bottom: 1px dashed #ddd;">
                     <td style="padding: 10px 5px; width: 50px; text-align:center;"><b>${nhan}</b></td>
-                    <td style="padding: 10px 5px;">${cau[key] || "..."}</td>
+                    <td style="padding: 10px 5px;">${noiDungDS}</td>
                     <td style="padding: 10px 5px; width: 100px; text-align: center; white-space: nowrap;">
                         <label style="margin-right: 10px; cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="T" ${chonD} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'T')"> Đ</label>
                         <label style="cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="F" ${chonS} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'F')"> S</label>
@@ -750,17 +885,21 @@ function renderCauHoiHienTai() {
 
     khuVuc.innerHTML = htmlNoiDung;
 
-    // Cập nhật trạng thái nút (Vô hiệu hóa nút "Trước" nếu ở câu 1...)
+    // Cập nhật trạng thái nút
     document.getElementById('btn-cau-truoc').disabled = (phien.cau_hien_tai === 0);
     document.getElementById('btn-cau-sau').disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
 
-    // Đánh dấu nút đang chọn trên bảng điều hướng
+    // Đánh dấu nút trên bảng điều hướng
     document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
-    document.getElementById(`nut-cau-${phien.cau_hien_tai}`).style.border = "3px solid #1a73e8";
+    const nutHienTai = document.getElementById(`nut-cau-${phien.cau_hien_tai}`);
+    if (nutHienTai) nutHienTai.style.border = "3px solid #1a73e8";
 
-    // Render lại toán học (MathJax/KaTeX nếu thầy có xài)
+    // Render lại toán học (MathJax)
     if (window.MathJax) MathJax.typesetPromise();
 }
+
+
+
 
 // 2. Lưu đáp án (TN và TLN)
 function luuDapAn(maCau, giaTri) {
