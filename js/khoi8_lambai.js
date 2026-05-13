@@ -555,9 +555,9 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
         const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
 
-        // Lấy đường dẫn thư mục gốc chứa ảnh (Bỏ phần tên file .json đi)
-        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/'));
-
+        
+        // Lấy đường dẫn thư mục gốc chứa ảnh (Bỏ tên file .json đi và đi thẳng vào thư mục HinhAnh)
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
         // 5. LƯU VÀO PHIÊN LÀM BÀI
         window.PhienLamBai = {
             ma_nhiem_vu: nv.ma_nhiem_vu,
