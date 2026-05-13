@@ -262,7 +262,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             let nutHanhDong = "", mauVien = "", mauNen = "";
             if (loai === 'DANG_MO') {
                 mauVien = "#28a745"; mauNen = "#f4fdf6";
-                nutHanhDong = `<button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
+                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
             } else if (loai === 'CHUA_MO') {
                 mauVien = "#ffc107"; mauNen = "#fffbf0";
                 nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
@@ -390,7 +390,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
                             <span style="font-size: 11px; color: #17a2b8; font-weight: bold;">🌍 Tự do</span>
                         </div>
                     </div>
-                    <button onclick="ham_8_x_cua_an_ninh('${nv.ma_nhiem_vu}')" 
+                    <button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" 
                             style="padding: 10px 20px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">
                         LUYỆN TẬP
                     </button>
@@ -418,6 +418,145 @@ function ham_8_6_tab_dau_truong_live() {
     document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#dc3545; text-align:center;">⚔️ Phòng Đấu Trường (Sắp ra mắt)</h3>`;
 }
 
-function ham_8_x_cua_an_ninh(maNhiemVu) {
-    alert(`Chuẩn bị vào phòng thi mã: ${maNhiemVu}`);
+// ==============================================================
+// Hàm 8.7: Cửa An Ninh - Kiểm tra lượt làm và Xác nhận vào thi
+// ==============================================================
+async function ham_8_7_cua_an_ninh(maNhiemVu) {
+    // 1. Tìm thông tin nhiệm vụ trong danh sách đã tải về
+    const nv = GocHocSinhState.danhSachNhiemVu.find(item => item.ma_nhiem_vu === maNhiemVu);
+    if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu bài tập!");
+
+    try {
+        // 2. Kiểm tra số lượt đã làm thực tế từ Database
+        const { data: cacLuotDaLam, error } = await _supabase
+            .from('ket_qua')
+            .select('id')
+            .eq('ma_nhiem_vu', maNhiemVu)
+            .eq('uid_hoc_sinh', GocHocSinhState.uid);
+
+        if (error) throw error;
+
+        const soLuotHienTai = cacLuotDaLam ? cacLuotDaLam.length : 0;
+        const gioiHanLuot = nv.so_luot_lam_bai || 0; // 0 là vô hạn
+
+        if (gioiHanLuot > 0 && soLuotHienTai >= gioiHanLuot) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Hết lượt làm bài!',
+                text: `Bài tập này giới hạn ${gioiHanLuot} lượt làm. Em đã hoàn thành đủ số lượt.`,
+                confirmButtonColor: '#d33'
+            });
+        }
+
+        // 3. Hiện bảng thông tin xác nhận tâm lý cho học sinh
+        const thoiGianHienThi = nv.thoi_gian_lam_bai > 0 ? `${nv.thoi_gian_lam_bai} phút` : "Tự do";
+
+        Swal.fire({
+            title: 'XÁC NHẬN VÀO LÀM BÀI',
+            html: `
+                <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-size: 14px;">
+                    <p>📝 <b>Nhiệm vụ:</b> <span style="color:#1a73e8;">${nv.ten_nhiem_vu}</span></p>
+                    <p>⏱️ <b>Thời gian:</b> ${thoiGianHienThi}</p>
+                    <p>🔄 <b>Lượt làm:</b> Lần thứ ${soLuotHienTai + 1} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
+                    <hr>
+                    <p style="color: #d32f2f; font-weight: bold; font-style: italic; margin:0;">⚠️ Lưu ý: Đồng hồ sẽ bắt đầu đếm ngược ngay khi em bấm nút BẮT ĐẦU.</p>
+                </div>
+            `,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: '🚀 BẮT ĐẦU LÀM BÀI',
+            cancelButtonText: 'Để sau'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Chuyển sang hàm khởi tạo phòng thi
+                ham_8_8_khoi_tao_phong_thi(nv);
+            }
+        });
+
+    } catch (err) {
+        alert("Lỗi kiểm tra an ninh: " + err.message);
+    }
+}
+
+
+
+// ==============================================================
+// Hàm 8.8: Khởi tạo Phòng thi & Ghi nhận phiên làm bài
+// ==============================================================
+async function ham_8_8_khoi_tao_phong_thi(nv) {
+    const vungLamViec = document.getElementById('dashboard-container');
+    vungLamViec.innerHTML = `
+        <div style="text-align: center; padding: 100px;">
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang nạp đề thi...</h3>
+            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+        </div>
+    `;
+
+    try {
+        // 1. Lấy danh sách ID câu hỏi (Giả sử thầy lưu mảng ID trong cột 'danh_sach_id_cau_hoi')
+        const mangIdCauHoi = nv.danh_sach_id_cau_hoi || [];
+        if (mangIdCauHoi.length === 0) throw new Error("Đề thi này chưa có nội dung câu hỏi!");
+
+        // 2. Truy vấn dữ liệu chi tiết câu hỏi từ ngân hàng
+        const { data: dsCauHoi, error } = await _supabase
+            .from('ngan_hang_cau_hoi')
+            .select('*')
+            .in('id', mangIdCauHoi);
+
+        if (error) throw error;
+
+        // 3. Gọi hàm 8.9 để trộn câu hỏi và đáp án
+        const deThiDaTron = ham_8_9_tron_de_thi(dsCauHoi);
+
+        // 4. Lưu trạng thái làm bài vào một biến toàn cục mới
+        window.PhienLamBai = {
+            ma_nhiem_vu: nv.ma_nhiem_vu,
+            ten_nhiem_vu: nv.ten_nhiem_vu,
+            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60, // Đổi ra giây
+            tong_so_cau: deThiDaTron.length,
+            danh_sach_cau_hoi: deThiDaTron,
+            dap_an_hoc_sinh: {}, // Lưu dạng { index: "A" }
+            id_timer: null
+        };
+
+        // 5. Chuyển sang giao diện làm bài (Sẽ code tiếp hàm 8.10)
+        ham_8_10_ve_giao_dien_lam_bai();
+
+    } catch (err) {
+        alert("Lỗi: " + err.message);
+        ham_8_2_tab_nhiem_vu_bat_buoc();
+    }
+}
+
+
+
+// ==============================================================
+// Hàm 8.9: Trộn ngẫu nhiên Câu hỏi và Đáp án (Shuffle)
+// ==============================================================
+function ham_8_9_tron_de_thi(mangCauHoi) {
+    // 1. Trộn thứ tự các câu hỏi
+    let dsTron = mangCauHoi.sort(() => Math.random() - 0.5);
+
+    // 2. Trộn thứ tự các đáp án trong từng câu
+    return dsTron.map((item, index) => {
+        // Gom 4 đáp án vào mảng để trộn
+        let cacOption = [
+            { id: 'A', text: item.option_a },
+            { id: 'B', text: item.option_b },
+            { id: 'C', text: item.option_c },
+            { id: 'D', text: item.option_d }
+        ];
+
+        // Trộn đáp án
+        cacOption = cacOption.sort(() => Math.random() - 0.5);
+
+        return {
+            ...item,
+            index_stt: index + 1,
+            cac_lua_chon_da_tron: cacOption
+        };
+    });
 }
