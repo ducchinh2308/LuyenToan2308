@@ -486,73 +486,44 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
 }
 
 // ==============================================================
-// Hàm 8.8: Khởi tạo Phòng thi (Kết hợp Đáp án Supabase + Nội dung GitHub)
+// Hàm 8.8: Khởi tạo Phòng thi (Lấy Link trực tiếp từ Database)
 // ==============================================================
 async function ham_8_8_khoi_tao_phong_thi(nv) {
     const vungLamViec = document.getElementById('dashboard-container');
-    vungLamViec.innerHTML = `
-        <div style="text-align: center; padding: 100px;">
-            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang đồng bộ dữ liệu đề thi...</h3>
-            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-        </div>
-    `;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 100px;"><h3>⚡ Đang nạp đề thi...</h3></div>`;
 
     try {
         const maHocLieu = nv.ma_hoc_lieu;
         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
 
-        // =========================================================
-        // 1. MỞ KÉT SUPABASE: Lấy mảng Đáp án (chính là chuỗi JSON thầy vừa gửi)
-        // =========================================================
+        // 1. Lấy cả Đáp án VÀ Link GitHub từ Supabase
         const { data: dataHocLieu, error: errHL } = await _supabase
             .from('hoc_lieu')
-            .select('danh_sach_cau_hoi')
+            .select('danh_sach_cau_hoi, url_github') // <-- Lấy thêm cột url_github
             .eq('ma_hoc_lieu', maHocLieu)
             .single();
 
         if (errHL) throw errHL;
+        if (!dataHocLieu.url_github) throw new Error("Học liệu này thiếu Link nội dung trên GitHub!");
 
-        // dsMapDapAn lúc này chính là: [{"dap_an": "A", "ma_cau_hoi": "q_..."}, ...]
-        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
-        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Học liệu này trống!");
+        // 2. Tải nội dung từ link "chính chủ" do C# cung cấp
+        console.log("🚀 Đang tải đề từ link Database cung cấp:", dataHocLieu.url_github);
 
-        // =========================================================
-        // 2. LÊN GITHUB: Lấy nội dung text/ảnh của câu hỏi
-        // =========================================================
-        
-        // Đường dẫn file json dựa theo cấu trúc tool C# của thầy: Kho_De_Thi/MaDe/DeThi_MaDe.json
-        const urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maHocLieu}/DeThi_${maHocLieu}.json`;
-
-        console.log("🔍 Đang tải nội dung từ GitHub:", urlFileGitHub);
-
-        const response = await fetch(urlFileGitHub);
-        if (!response.ok) {
-            throw new Error("Không tải được đề từ GitHub! Vui lòng kiểm tra lại link: " + urlFileGitHub);
-        }
+        const response = await fetch(dataHocLieu.url_github);
+        if (!response.ok) throw new Error("Không thể tải file từ GitHub. Link có thể bị sai hoặc chưa kịp đồng bộ.");
 
         const dataGitHub = await response.json();
-
-        // dsNoiDungGH chứa mảng: [{maCau: "q_...", cauDan: "...", paA: "..."}, ...]
         const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
 
-        // =========================================================
-        // 3. RÁP ĐỀ: Nối nội dung (GitHub) với đáp án (Supabase)
-        // =========================================================
+        // 3. Ráp đề (Kết hợp mảng đáp án và mảng nội dung)
+        const dsMapDapAn = dataHocLieu.danh_sach_cau_hoi || [];
         const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-            // So khớp: mã bên Supabase là "ma_cau_hoi", mã bên C# GitHub là "maCau"
             const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
-
-            return {
-                ...mapItem,  // Lấy đáp án và mã gốc
-                ...noiDung   // Lấy nội dung hiển thị (cauDan, paA, kieuCau...)
-            };
+            return { ...mapItem, ...noiDung };
         });
 
-        // 4. Trộn thứ tự câu hỏi (Hàm 8.9)
+        // 4. Khởi tạo phiên và vào thi
         const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
-
-        // 5. Lưu vào Phiên làm bài
         window.PhienLamBai = {
             ma_nhiem_vu: nv.ma_nhiem_vu,
             ten_nhiem_vu: nv.ten_nhiem_vu,
@@ -563,18 +534,13 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
             id_timer: null
         };
 
-        console.log("📦 RÁP ĐỀ THÀNH CÔNG:", window.PhienLamBai);
-
-        // 6. Mở giao diện thi
         ham_8_10_ve_giao_dien_lam_bai();
 
     } catch (err) {
-        console.error("LỖI NẠP ĐỀ:", err);
-        alert("Lỗi nạp đề thi: " + err.message);
+        alert("Lỗi nạp đề: " + err.message);
         ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
     }
 }
-
 // ==============================================================
 // Hàm 8.9: Trộn thứ tự câu hỏi (Chống gian lận)
 // ==============================================================
