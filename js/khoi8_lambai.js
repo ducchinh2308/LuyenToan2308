@@ -810,6 +810,7 @@ function renderCauHoiHienTai() {
             if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
             return `src="${thuMucAnh}/${tenFile}"`;
         });
+        console.log("noidung: " + noiDung);
     };
 
     // Lấy đáp án đã chọn (nếu có)
