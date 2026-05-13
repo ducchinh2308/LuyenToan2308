@@ -560,3 +560,256 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         };
     });
 }
+
+// ==============================================================
+// Hàm 8.10: Vẽ Giao Diện Phòng Thi (Code Mới)
+// ==============================================================
+function ham_8_10_ve_giao_dien_lam_bai() {
+    const vungLamViec = document.getElementById('dashboard-container');
+    const phien = window.PhienLamBai;
+
+    // Mặc định mở câu đầu tiên
+    phien.cau_hien_tai = phien.cau_hien_tai || 0;
+
+    // 1. DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 2 CỘT)
+    vungLamViec.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; background: #f0f2f5; padding: 15px; border-radius: 8px;">
+            
+            <div style="flex: 1 1 65%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
+                    <h3 style="margin: 0; color: #1a73e8;">${phien.ten_nhiem_vu}</h3>
+                    <div style="font-size: 20px; font-weight: bold; color: #dc3545; background: #fff3cd; padding: 5px 15px; border-radius: 5px; border: 1px solid #ffeeba;">
+                        ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
+                    </div>
+                </div>
+                
+                <div id="khu-vuc-cau-hoi" style="min-height: 300px; font-size: 16px; line-height: 1.6;"></div>
+                
+                <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px;">
+                    <button id="btn-cau-truoc" onclick="chuyenCauHoi(-1)" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">⬅️ Câu trước</button>
+                    <button id="btn-cau-sau" onclick="chuyenCauHoi(1)" style="padding: 10px 20px; background: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Câu tiếp ➡️</button>
+                </div>
+            </div>
+
+            <div style="flex: 1 1 30%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start;">
+                <h4 style="margin-top: 0; text-align: center; color: #495057;">BẢNG ĐIỀU HƯỚNG</h4>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; color: #666;">
+                    <span>Tổng số: <b>${phien.tong_so_cau}</b></span>
+                    <span>Đã làm: <b id="so-cau-da-lam" style="color: #28a745;">0</b></span>
+                </div>
+                
+                <div id="bang-nut-cau-hoi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 8px; margin-bottom: 25px;">
+                    </div>
+                
+                <button onclick="ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3);">
+                    ✅ NỘP BÀI
+                </button>
+            </div>
+        </div>
+    `;
+
+    // 2. KHỞI ĐỘNG CÁC THÀNH PHẦN
+    renderBangDieuHuong();
+    renderCauHoiHienTai();
+    batDauDemNguoc();
+}
+
+// ==============================================================
+// CÁC HÀM PHỤ TRỢ CHO PHÒNG THI
+// ==============================================================
+
+// 1. Vẽ nội dung câu hỏi dựa trên Phân loại (Trắc nghiệm, Đúng/Sai, Trả lời ngắn)
+function renderCauHoiHienTai() {
+    const phien = window.PhienLamBai;
+    const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
+    const khuVuc = document.getElementById('khu-vuc-cau-hoi');
+
+    // Lấy đáp án đã chọn (nếu có)
+    const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
+
+    let htmlNoiDung = `
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span> 
+            ${cau.cauDan || cau.noi_dung || "Đang tải nội dung..."} 
+        </div>
+    `;
+
+    // TÙY BIẾN GIAO DIỆN THEO KIỂU CÂU HỎI
+    if (cau.kieuCau === "TN" || !cau.kieuCau) {
+        // --- LOẠI 1: TRẮC NGHIỆM A B C D ---
+        htmlNoiDung += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
+        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
+            const nhan = String.fromCharCode(65 + i); // A, B, C, D
+            const isChecked = dapAnCu === nhan ? "checked" : "";
+            const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
+
+            htmlNoiDung += `
+                <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;">
+                    <input type="radio" name="dapan_${cau.ma_cau_hoi}" value="${nhan}" ${isChecked} onchange="luuDapAn('${cau.ma_cau_hoi}', '${nhan}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
+                    <div style="flex:1;"><b>${nhan}.</b> ${cau[key] || "..."}</div>
+                </label>
+            `;
+        });
+        htmlNoiDung += `</div>`;
+
+    } else if (cau.kieuCau === "DS") {
+        // --- LOẠI 2: ĐÚNG / SAI ---
+        htmlNoiDung += `<div style="background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 15px; font-size: 13px;">💡 Yêu cầu: Chọn Đúng (Đ) hoặc Sai (S) cho từng ý A, B, C, D.</div>`;
+        htmlNoiDung += `<table style="width: 100%; border-collapse: collapse;">`;
+
+        // dapAnCu của phần này lưu dạng mảng hoặc object, VD: {A: 'T', B: 'F'}
+        const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
+
+        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
+            const nhan = String.fromCharCode(65 + i);
+            const chonD = chonDS[nhan] === 'T' ? "checked" : "";
+            const chonS = chonDS[nhan] === 'F' ? "checked" : "";
+
+            htmlNoiDung += `
+                <tr style="border-bottom: 1px dashed #ddd;">
+                    <td style="padding: 10px 5px; width: 50px; text-align:center;"><b>${nhan}</b></td>
+                    <td style="padding: 10px 5px;">${cau[key] || "..."}</td>
+                    <td style="padding: 10px 5px; width: 100px; text-align: center; white-space: nowrap;">
+                        <label style="margin-right: 10px; cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="T" ${chonD} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'T')"> Đ</label>
+                        <label style="cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="F" ${chonS} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'F')"> S</label>
+                    </td>
+                </tr>
+            `;
+        });
+        htmlNoiDung += `</table>`;
+
+    } else if (cau.kieuCau === "TLN") {
+        // --- LOẠI 3: TRẢ LỜI NGẮN ---
+        htmlNoiDung += `
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; border: 1px solid #b6d4fe; text-align: center;">
+                <label style="font-weight: bold; color: #084298; display: block; margin-bottom: 10px;">✍️ NHẬP ĐÁP ÁN CỦA EM VÀO ĐÂY:</label>
+                <input type="text" value="${dapAnCu}" onblur="luuDapAn('${cau.ma_cau_hoi}', this.value)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 18px; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none;">
+                <div style="font-size: 12px; color: #666; margin-top: 8px;">(Lưu ý: Nếu đáp án là phân số, nhập dưới dạng thập phân. Ví dụ: 0,5 hoặc 0.5)</div>
+            </div>
+        `;
+    }
+
+    khuVuc.innerHTML = htmlNoiDung;
+
+    // Cập nhật trạng thái nút (Vô hiệu hóa nút "Trước" nếu ở câu 1...)
+    document.getElementById('btn-cau-truoc').disabled = (phien.cau_hien_tai === 0);
+    document.getElementById('btn-cau-sau').disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
+
+    // Đánh dấu nút đang chọn trên bảng điều hướng
+    document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
+    document.getElementById(`nut-cau-${phien.cau_hien_tai}`).style.border = "3px solid #1a73e8";
+
+    // Render lại toán học (MathJax/KaTeX nếu thầy có xài)
+    if (window.MathJax) MathJax.typesetPromise();
+}
+
+// 2. Lưu đáp án (TN và TLN)
+function luuDapAn(maCau, giaTri) {
+    window.PhienLamBai.dap_an_hoc_sinh[maCau] = giaTri.trim();
+    renderBangDieuHuong(); // Cập nhật màu xanh
+
+    // Nếu là trắc nghiệm, bấm xong tự nhảy câu sau cho lẹ
+    if (["A", "B", "C", "D"].includes(giaTri)) {
+        setTimeout(() => chuyenCauHoi(1), 300);
+    }
+}
+
+// 3. Lưu đáp án (Đúng/Sai)
+function luuDapAnDS(maCau, y, giaTri) {
+    if (!window.PhienLamBai.dap_an_hoc_sinh[maCau]) {
+        window.PhienLamBai.dap_an_hoc_sinh[maCau] = {};
+    }
+    window.PhienLamBai.dap_an_hoc_sinh[maCau][y] = giaTri;
+    renderBangDieuHuong(); // Cập nhật màu
+}
+
+// 4. Bảng điều hướng
+function renderBangDieuHuong() {
+    const phien = window.PhienLamBai;
+    const bangNut = document.getElementById('bang-nut-cau-hoi');
+    let htmlNut = "";
+    let cauDaLam = 0;
+
+    phien.danh_sach_cau_hoi.forEach((cau, index) => {
+        const daTraLoi = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
+
+        // Kiểm tra xem đã trả lời chưa (DS cần trả lời đủ 4 ý mới tính là xong)
+        let isDone = false;
+        if (cau.kieuCau === "DS") {
+            if (daTraLoi && Object.keys(daTraLoi).length === 4) isDone = true;
+        } else {
+            if (daTraLoi && daTraLoi !== "") isDone = true;
+        }
+
+        if (isDone) cauDaLam++;
+
+        const bg = isDone ? "#d4edda" : "#f8f9fa";
+        const color = isDone ? "#155724" : "#495057";
+
+        htmlNut += `<button id="nut-cau-${index}" class="nut-cau-hoi" onclick="nhayDenCau(${index})" style="padding: 10px 0; background: ${bg}; color: ${color}; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; cursor: pointer;">${cau.index_stt}</button>`;
+    });
+
+    bangNut.innerHTML = htmlNut;
+    document.getElementById('so-cau-da-lam').innerText = cauDaLam;
+}
+
+// 5. Chuyển đổi câu hỏi
+function chuyenCauHoi(buoc) {
+    const phien = window.PhienLamBai;
+    const newIndex = phien.cau_hien_tai + buoc;
+    if (newIndex >= 0 && newIndex < phien.tong_so_cau) {
+        phien.cau_hien_tai = newIndex;
+        renderCauHoiHienTai();
+    }
+}
+
+function nhayDenCau(index) {
+    window.PhienLamBai.cau_hien_tai = index;
+    renderCauHoiHienTai();
+}
+
+// 6. Đồng hồ đếm ngược
+function batDauDemNguoc() {
+    const phien = window.PhienLamBai;
+    if (phien.thoi_gian_con_lai <= 0) {
+        document.getElementById('dong-ho-dem-nguoc').innerText = "Tự do";
+        return; // Không giới hạn thời gian
+    }
+
+    clearInterval(phien.id_timer); // Xóa timer cũ nếu có
+
+    phien.id_timer = setInterval(() => {
+        phien.thoi_gian_con_lai--;
+
+        const phut = Math.floor(phien.thoi_gian_con_lai / 60);
+        const giay = phien.thoi_gian_con_lai % 60;
+
+        const textHienThi = `${phut.toString().padStart(2, '0')}:${giay.toString().padStart(2, '0')}`;
+        const elmDongHo = document.getElementById('dong-ho-dem-nguoc');
+        if (elmDongHo) elmDongHo.innerText = textHienThi;
+
+        // Cảnh báo khi còn 1 phút
+        if (phien.thoi_gian_con_lai === 60) {
+            Swal.fire({
+                title: 'Sắp hết giờ!',
+                text: 'Chỉ còn 1 phút, các em nhanh tay kiểm tra lại đáp án nhé!',
+                icon: 'warning',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        }
+
+        // Hết giờ -> Tự động nộp bài
+        if (phien.thoi_gian_con_lai <= 0) {
+            clearInterval(phien.id_timer);
+            Swal.fire({
+                title: 'HẾT GIỜ!',
+                text: 'Hệ thống đang tự động thu bài...',
+                icon: 'info',
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+            setTimeout(() => ham_8_11_thuc_thi_nop_bai(), 2000); // Tự động gọi nộp bài
+        }
+    }, 1000);
+}
