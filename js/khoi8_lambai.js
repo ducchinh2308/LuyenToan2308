@@ -422,12 +422,12 @@ function ham_8_6_tab_dau_truong_live() {
 // Hàm 8.7: Cửa An Ninh - Kiểm tra lượt làm và Xác nhận vào thi
 // ==============================================================
 async function ham_8_7_cua_an_ninh(maNhiemVu) {
-    // 1. Tìm thông tin nhiệm vụ trong danh sách đã tải về
+    // 1. Tìm thông tin nhiệm vụ trong danh sách đã tải về ở GocHocSinhState
     const nv = GocHocSinhState.danhSachNhiemVu.find(item => item.ma_nhiem_vu === maNhiemVu);
     if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu bài tập!");
 
     try {
-        // 2. Kiểm tra số lượt đã làm thực tế từ Database
+        // 2. Kiểm tra số lượt đã làm thực tế từ Database (Bảng ket_qua)
         const { data: cacLuotDaLam, error } = await _supabase
             .from('ket_qua')
             .select('id')
@@ -436,9 +436,11 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
 
         if (error) throw error;
 
+        // Đếm số lượt đã nộp bài
         const soLuotHienTai = cacLuotDaLam ? cacLuotDaLam.length : 0;
         const gioiHanLuot = nv.so_luot_lam_bai || 0; // 0 là vô hạn
 
+        // Chặn lại nếu đã làm hết số lượt cho phép
         if (gioiHanLuot > 0 && soLuotHienTai >= gioiHanLuot) {
             return Swal.fire({
                 icon: 'error',
@@ -455,7 +457,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
             title: 'XÁC NHẬN VÀO LÀM BÀI',
             html: `
                 <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-size: 14px;">
-                    <p>📝 <b>Nhiệm vụ:</b> <span style="color:#1a73e8;">${nv.ten_nhiem_vu}</span></p>
+                    <p>📝 <b>Nhiệm vụ:</b> <span style="color:#1a73e8; font-weight: bold;">${nv.ten_nhiem_vu}</span></p>
                     <p>⏱️ <b>Thời gian:</b> ${thoiGianHienThi}</p>
                     <p>🔄 <b>Lượt làm:</b> Lần thứ ${soLuotHienTai + 1} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
                     <hr>
@@ -470,7 +472,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
             cancelButtonText: 'Để sau'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Chuyển sang hàm khởi tạo phòng thi
+                // Chuyển sang Hàm 8.8: Khởi tạo phòng thi và bốc đề
                 ham_8_8_khoi_tao_phong_thi(nv);
             }
         });
@@ -479,7 +481,6 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
         alert("Lỗi kiểm tra an ninh: " + err.message);
     }
 }
-
 
 
 // ==============================================================
