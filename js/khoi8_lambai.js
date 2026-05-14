@@ -801,16 +801,22 @@ function renderCauHoiHienTai() {
     console.log("thuMucAnh: " + thuMucAnh);
 
 
-    // 🌟 BƯỚC 2: Tạo màng lọc để ráp đường dẫn tuyệt đối cho ảnh
+    // 🌟 BƯỚC 2: Tạo màng lọc thông minh (Chống nháy đơn, nháy kép & xử lý đường dẫn thừa)
     const xuLyAnh = (noiDung) => {
         if (!noiDung) return "";
-        // Quét tìm tất cả các thẻ src="tên_ảnh" và nhét thư mục gốc vào trước
-        return noiDung.replace(/src="([^"]+)"/g, (match, tenFile) => {
+
+        // Dùng Regex lấy cả nháy đơn (') và nháy kép (")
+        return noiDung.replace(/src=['"]([^'"]+)['"]/g, (match, duongDanCu) => {
             // Bỏ qua nếu ảnh đã là link web ngoài hoặc dạng base64
-            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
-            return `src="${thuMucAnh}/${tenFile}"`;
+            if (duongDanCu.startsWith('http') || duongDanCu.startsWith('data:')) return match;
+
+            // duongDanCu đang là "HinhAnh/q_...png"
+            // Ta dùng lệnh split('/').pop() để CHỈ LẤY CÁI TÊN FILE CUỐI CÙNG, vứt bỏ mọi thư mục thừa
+            const tenFileAnh = duongDanCu.split('/').pop();
+
+            // Ráp với thuMucAnh (đã có sẵn chữ /HinhAnh ở Hàm 8.8)
+            return `src="${thuMucAnh}/${tenFileAnh}"`;
         });
-        console.log("noidung: " + noiDung);
     };
 
     // Lấy đáp án đã chọn (nếu có)
