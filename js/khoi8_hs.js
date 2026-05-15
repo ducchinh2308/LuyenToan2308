@@ -1308,7 +1308,7 @@ function ham_8_10_ve_giao_dien_lam_bai() {
         // Vẽ Tiêu đề bên cột điều hướng
         let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
         htmlNavLeft += `<div style="margin-bottom: 15px;">
-                            <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍 PHẦN ${tenNav}</h4>
+                            <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍${tenNav}</h4>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
         danhSach.forEach(cau => {
