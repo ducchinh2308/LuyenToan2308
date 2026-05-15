@@ -1313,14 +1313,19 @@ function ham_8_10_ve_giao_dien_lam_bai() {
 
         danhSach.forEach(cau => {
             // Ráp câu hỏi vào cột Phải
-            htmlContentRight += taoGiaoDienCauHoi(cau, sttChung, loaiCau);
+            htmlContentRight += ham_8_11_taoGiaoDienCauHoi(cau, sttChung, loaiCau);
 
             // Ráp nút bấm vào cột Trái
             const maCau = cau.ma_cau_hoi || cau.maCau;
             htmlNavLeft += `
                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
-                     style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s;" 
-                     onmouseover="if(!this.classList.contains('da-lam')) this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) this.style.background='#fff'">
+                     style="display: flex; flex-direction: column; align-items: center; 
+                     justify-content: center; width: 42px; height: 42px; background: #fff; 
+                     border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; 
+                     color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s;" 
+                     onmouseover="if(!this.classList.contains('da-lam')) 
+                     this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) 
+                     this.style.background='#fff'">
                     <span style="line-height: 1;">${sttChung}</span>
                     <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
                 </div>`;
@@ -1403,22 +1408,30 @@ function ham_8_10_ve_giao_dien_lam_bai() {
 }
 
 // =====================================================================
-// HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp màng lọc ảnh)
+// HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
-function taoGiaoDienCauHoi(cau, stt, loaiCau) {
+function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
     const maCau = cau.ma_cau_hoi || cau.maCau;
     const thuMucAnh = window.PhienLamBai.base_url_anh;
 
-    const xuLyAnh = (noiDung) => {
+    // 🌟 BỘ LỌC KÉP: Dịch LaTeX trước -> Vá đường dẫn ảnh sau
+    const xuLyNoiDung = (noiDung) => {
         if (!noiDung) return "";
-        return noiDung.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
+
+        // 1. Chạy qua bộ dịch LaTeX của thầy để xử lý công thức, bảng, TikZ
+        let htmlDich = dichLaTeX(noiDung);
+
+        // 2. Quét qua nội dung đã dịch để vá đường dẫn ảnh tuyệt đối
+        return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
             if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
             const cleanFile = tenFile.split('/').pop();
             return `src="${thuMucAnh}/${cleanFile}"`;
         });
     };
 
-    let cauDan = xuLyAnh(cau.cauDan || cau.noiDungHtml || "");
+    // Áp dụng bộ lọc kép cho Câu dẫn
+    let cauDan = xuLyNoiDung(cau.cauDan || cau.noiDungHtml || "");
+
     let htmlBlock = `
         <div id="cau-${maCau}" data-loaicau="${loaiCau}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
             <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
@@ -1435,7 +1448,7 @@ function taoGiaoDienCauHoi(cau, stt, loaiCau) {
             htmlBlock += `
                 <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #f8f9fa; transition: 0.2s;" onmouseover="this.style.background='#e8f0fe'" onmouseout="if(!this.querySelector('input').checked) this.style.background='#f8f9fa'">
                     <input type="radio" name="dapan_${maCau}" value="${pa.idGoc}" onchange="luuDapAn('${maCau}', '${pa.idGoc}', this)" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-                    <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyAnh(pa.text)}</div>
+                    <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyNoiDung(pa.text)}</div>
                 </label>`;
         });
         htmlBlock += `</div>`;
@@ -1447,7 +1460,7 @@ function taoGiaoDienCauHoi(cau, stt, loaiCau) {
             const nhanThuong = ['a', 'b', 'c', 'd'][idx];
             htmlBlock += `
                 <div class="dong-ds" style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyAnh(y.text)}</div>
+                    <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
                     <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da;">
                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #28a745;">
                             <input type="radio" name="ds_${maCau}_${y.id}" value="T" onchange="luuDapAnDS('${maCau}', '${y.id}', 'T', this)" style="transform: scale(1.3);"> Đúng
@@ -1461,14 +1474,25 @@ function taoGiaoDienCauHoi(cau, stt, loaiCau) {
         htmlBlock += `</div>`;
     }
     else if (loaiCau === "TLN") {
+        const inputStyle = "width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid #1a73e8; border-radius: 8px; color: #000080; outline: none; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-transform: uppercase;";
+        const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); luuDapAn('${maCau}', ans, this);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
+
         htmlBlock += `
             <div class="cau-tln-container" style="margin-top: 15px; padding: 25px; background: #e8f4f8; border-radius: 8px; border: 1px dashed #b8daff; text-align: center;">
-                <label style="font-weight: bold; color: #0056b3; font-size: 16px; margin-bottom: 15px; display: block;">✏️ Nhập đáp án vào đây:</label>
-                <input type="text" onblur="luuDapAn('${maCau}', this.value, this)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 20px; font-weight: bold; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none;">
+                <label style="font-weight: bold; color: #0056b3; font-size: 16px; margin-bottom: 20px; display: block;">✏️ Điền đáp án của em vào 4 ô trống:</label>
+                <div class="tln-inputs" style="display: flex; justify-content: center; gap: 12px;">
+                    <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+                    <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+                    <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+                    <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+                </div>
+                <div style="font-size: 13px; color: #6c757d; margin-top: 15px;">(Mỗi ô điền 1 ký tự, bao gồm cả dấu trừ "-" hoặc dấu phẩy ",")</div>
             </div>`;
     }
+
     return htmlBlock + `</div>`;
 }
+
 
 // =====================================================================
 // HÀM BỔ TRỢ: XỬ LÝ LƯU ĐÁP ÁN & CẬP NHẬT GIAO DIỆN NAV
