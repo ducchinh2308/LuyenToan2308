@@ -919,7 +919,7 @@ window.ham_8_thoat_phong_thi = async () => {
 };
 
 // =====================================================================
-// HÀM 8.11: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE
+// HÀM 8.11: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (BẢN FULL THÔNG TIN)
 // =====================================================================
 async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
@@ -935,6 +935,7 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
     const phien = window.PhienLamBai;
     let chiTietBaiLam = [];
 
+    // 1. DUYỆT QUA TỪNG CÂU ĐỂ CHẤM ĐIỂM
     phien.danh_sach_cau_hoi.forEach(cau => {
         const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || cau.dap_an_hoc_sinh; // Backup
         let diemCauNay = 0;
@@ -973,12 +974,30 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
     });
 
     try {
+        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI
+        const tBatDau = phien.thoi_diem_bat_dau || Date.now();
+        const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
+        const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+
+        // 3. HỎI SUPABASE XEM HS ĐÃ LÀM NHIỆM VỤ NÀY MẤY LẦN ĐỂ LẤY "LẦN THỨ"
+        const { count, error: countErr } = await _supabase
+            .from('ket_qua_thi')
+            .select('*', { count: 'exact', head: true })
+            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+            .eq('ma_nhiem_vu', phien.ma_nhiem_vu);
+
+        if (countErr) throw countErr;
+        const lanThuHienTai = (count || 0) + 1; // Đã làm count lần -> Lần này là count + 1
+
+        // 4. ĐÓNG GÓI DỮ LIỆU ĐỂ BẮN LÊN BẢNG
         const luotLam = {
             uid_hoc_sinh: GocHocSinhState.uid,
             ma_nhiem_vu: phien.ma_nhiem_vu,
+            lan_thu: lanThuHienTai,                           // 🌟 Đã có Lần thứ
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
-            ngay_nop: new Date().toISOString()
+            thoi_gian_lam_bai: thoiGianLamBaiStr,             // 🌟 Đã có Thời gian thực tế
+            thoi_gian_nop: new Date().toISOString()
         };
 
         const { error } = await _supabase.from('ket_qua_thi').insert([luotLam]);
