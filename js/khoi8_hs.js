@@ -114,50 +114,50 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         //console.log("🔍 [DEBUG 1] Danh sách lớp của HS:", dsLop);
         //console.log("🔍 [DEBUG 2] Chuỗi .or() gửi lên DB:", orQuery);
 
-        try {
-            // ==========================================
-            // 🌟 TEST 1: BỐC THỬ 2 BÀI BẤT KỲ ĐỂ SOI DỮ LIỆU GỐC
-            // ==========================================
-            //console.log("🔍 [DEBUG 3] Đang soi dữ liệu gốc trong bảng nhiem_vu...");
-            const { data: testDB } = await _supabase
-                .from('nhiem_vu')
-                .select('ma_nhiem_vu, danh_sach_lop')
-                .limit(2);
+        //try {
+        //    // ==========================================
+        //    // 🌟 TEST 1: BỐC THỬ 2 BÀI BẤT KỲ ĐỂ SOI DỮ LIỆU GỐC
+        //    // ==========================================
+        //    //console.log("🔍 [DEBUG 3] Đang soi dữ liệu gốc trong bảng nhiem_vu...");
+        //    //const { data: testDB } = await _supabase
+        //    //    .from('nhiem_vu')
+        //    //    .select('ma_nhiem_vu, danh_sach_lop')
+        //    //    .limit(2);
 
-            if (testDB && testDB.length > 0) {
-                testDB.forEach((nv, index) => {
-                    //console.log(`\n--- BÀI TEST SỐ ${index + 1} (Mã: ${nv.ma_nhiem_vu}) ---`);
-                    //console.log(`Dữ liệu thực tế:`, nv.danh_sach_lop);
-                    //console.log(`Kiểu dữ liệu (typeof):`, typeof nv.danh_sach_lop);
+        //    //if (testDB && testDB.length > 0) {
+        //    //    testDB.forEach((nv, index) => {
+        //    //        //console.log(`\n--- BÀI TEST SỐ ${index + 1} (Mã: ${nv.ma_nhiem_vu}) ---`);
+        //    //        //console.log(`Dữ liệu thực tế:`, nv.danh_sach_lop);
+        //    //        //console.log(`Kiểu dữ liệu (typeof):`, typeof nv.danh_sach_lop);
 
-                    //if (typeof nv.danh_sach_lop === 'string') {
-                    //    console.error(`🚨 PHÁT HIỆN LỖI: DB đang hiểu đây là CHUỖI (String). Lệnh .cs (contains) sẽ TỪ CHỐI TÌM KIẾM dòng này!`);
-                    //} else if (Array.isArray(nv.danh_sach_lop)) {
-                    //    console.log(`✅ Cấu trúc chuẩn: Mảng JSON.`);
-                    //}
-                });
-                console.log("------------------------------------------\n");
-            }
+        //    //        //if (typeof nv.danh_sach_lop === 'string') {
+        //    //        //    console.error(`🚨 PHÁT HIỆN LỖI: DB đang hiểu đây là CHUỖI (String). Lệnh .cs (contains) sẽ TỪ CHỐI TÌM KIẾM dòng này!`);
+        //    //        //} else if (Array.isArray(nv.danh_sach_lop)) {
+        //    //        //    console.log(`✅ Cấu trúc chuẩn: Mảng JSON.`);
+        //    //        //}
+        //    //    });
+        //    //    console.log("------------------------------------------\n");
+        //    }
 
-            // ==========================================
-            // 🌟 TEST 2: GỌI LỆNH TRUY VẤN NHƯ CŨ
-            // ==========================================
-            console.log("🔍 [DEBUG 4] Bắt đầu gọi truy vấn .or()...");
-            const { data: dsNV, error: errNV } = await _supabase
-                .from('nhiem_vu')
-                .select('*')
-                .eq('trang_thai', 1)
-                .or(orQuery)
-                .order('ngay_tao', { ascending: false });
+        //    // ==========================================
+        //    // 🌟 TEST 2: GỌI LỆNH TRUY VẤN NHƯ CŨ
+        //    // ==========================================
+        //    //console.log("🔍 [DEBUG 4] Bắt đầu gọi truy vấn .or()...");
+        //    //const { data: dsNV, error: errNV } = await _supabase
+        //    //    .from('nhiem_vu')
+        //    //    .select('*')
+        //    //    .eq('trang_thai', 1)
+        //    //    .or(orQuery)
+        //    //    .order('ngay_tao', { ascending: false });
 
-            if (errNV) throw errNV;
+        //    //if (errNV) throw errNV;
 
-            GocHocSinhState.danhSachNhiemVu = dsNV || [];
-            //console.log(`📦 [DEBUG 5] Kết quả: Đã tìm thấy ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ.`);
+        //    //GocHocSinhState.danhSachNhiemVu = dsNV || [];
+        //    ////console.log(`📦 [DEBUG 5] Kết quả: Đã tìm thấy ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ.`);
 
-        } catch (error) {
-            //console.error("❌ LỖI TRUY VẤN:", error);
-        }
+        //} catch (error) {
+        //    //console.error("❌ LỖI TRUY VẤN:", error);
+        //}
 
         // 3. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
         let tuDienLop = {};
@@ -292,7 +292,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                             ⏱️ <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
                         </span>
                         <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
-                            📦 <b>${quyMoText}</b>
+                            📦 <b>${nv.cau_truc_de}</b> 
                         </span>
                         <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
                             🔄 Lượt: <b>0 / ${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</b>
