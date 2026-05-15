@@ -627,10 +627,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
 // =====================================================================
 // HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
 // =====================================================================
-// =====================================================================
-// HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
-// =====================================================================
-function ham_8_10_ve_giao_dien_lam_bai() {
+    function ham_8_10_ve_giao_dien_lam_bai() {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.style.display = 'none';
 
@@ -977,7 +974,7 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
 
     try {
         const luotLam = {
-            ma_hoc_sinh: GocHocSinhState.uid,
+            uid_hoc_sinh: GocHocSinhState.uid,
             ma_nhiem_vu: phien.ma_nhiem_vu,
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
