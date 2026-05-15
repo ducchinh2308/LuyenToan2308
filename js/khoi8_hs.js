@@ -386,7 +386,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
                         <h4 style="margin: 0 0 8px 0; color: #2c3e50; font-size: 15px;">${nv.ten_nhiem_vu}</h4>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <span style="font-size: 11px; color: #666;">⏱️ ${nv.thoi_gian_lam_bai || 0} phút</span>
-                            <span style="font-size: 11px; color: #666;">📦 ${nv.quy_mo_cau_hoi || 0} câu</span>
+                            <span style="font-size: 11px; color: #666;">📦 ${nv.cau_truc_de|| 0}</span>
                             <span style="font-size: 11px; color: #17a2b8; font-weight: bold;">🌍 Tự do</span>
                         </div>
                     </div>
