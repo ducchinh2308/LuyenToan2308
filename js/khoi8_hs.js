@@ -550,7 +550,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
         // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
         // =========================================================
         const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_goc) || {};
             return { ...mapItem, ...noiDung };
         });
 
@@ -1317,6 +1317,7 @@ function ham_8_10_ve_giao_dien_lam_bai() {
 
             // Ráp nút bấm vào cột Trái
             const maCau = cau.ma_cau_hoi || cau.maCau;
+            console.log(cau.maCau);
             htmlNavLeft += `
                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
                      style="display: flex; flex-direction: column; align-items: center; 
