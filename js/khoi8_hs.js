@@ -634,6 +634,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     const phien = window.PhienLamBai;
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
+        phien.thoi_diem_bat_dau = Date.now();
 
     // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
     let dsTN = [], dsDS = [], dsTLN = [];
@@ -975,7 +976,7 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
 
     try {
         // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI
-        const tBatDau = phien.thoi_diem_bat_dau || Date.now();
+        const tBatDau = phien.thoi_diem_bat_dau;// || Date.now();
         const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
         const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
