@@ -1306,7 +1306,7 @@ function ham_8_10_ve_giao_dien_lam_bai() {
         htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
 
         // Vẽ Tiêu đề bên cột điều hướng
-        let tenNav = loaiCau === 'TN' ? 'TRẮC NGHIỆM' : (loaiCau === 'DS' ? 'ĐÚNG/SAI' : 'TRẢ LỜI NGẮN');
+        let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
         htmlNavLeft += `<div style="margin-bottom: 15px;">
                             <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍 PHẦN ${tenNav}</h4>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
@@ -1340,7 +1340,7 @@ function ham_8_10_ve_giao_dien_lam_bai() {
     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
 
     rootDiv.innerHTML = `
-        <div style="flex: 0 0 250px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+        <div style="flex: 0 0 100px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
             
             <div style="padding: 15px; border-bottom: 1px solid #eee;">
                 <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát (Chưa nộp)</button>
