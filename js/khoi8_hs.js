@@ -111,14 +111,14 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return `danh_sach_lop.cs."${giaTriSafe}"`;
         }).join(',');
 
-        console.log("🔍 [DEBUG 1] Danh sách lớp của HS:", dsLop);
-        console.log("🔍 [DEBUG 2] Chuỗi .or() gửi lên DB:", orQuery);
+        //console.log("🔍 [DEBUG 1] Danh sách lớp của HS:", dsLop);
+        //console.log("🔍 [DEBUG 2] Chuỗi .or() gửi lên DB:", orQuery);
 
         try {
              //==========================================
              //🌟 TEST 1: BỐC THỬ 2 BÀI BẤT KỲ ĐỂ SOI DỮ LIỆU GỐC
              //==========================================
-            console.log("🔍 [DEBUG 3] Đang soi dữ liệu gốc trong bảng nhiem_vu...");
+            //console.log("🔍 [DEBUG 3] Đang soi dữ liệu gốc trong bảng nhiem_vu...");
             const { data: testDB } = await _supabase
                 .from('nhiem_vu')
                 .select('ma_nhiem_vu, danh_sach_lop')
