@@ -550,7 +550,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
         // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
         // =========================================================
         const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_goc) || {};
+            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
             return { ...mapItem, ...noiDung };
         });
 
@@ -621,657 +621,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     });
 }
 
-//// =====================================================================
-//// HÀM 8.10: VẼ GIAO DIỆN PHÒNG THI (LAYOUT 3 CỘT CHUẨN LMS)
-//// =====================================================================
-//function ham_8_10_ve_giao_dien_lam_bai() {
-//    const vungLamViec = document.getElementById('dashboard-container');
-//    const phien = window.PhienLamBai;
 
-//    // Mặc định mở câu đầu tiên
-//    phien.cau_hien_tai = phien.cau_hien_tai || 0;
-
-//    // 🌟 BƯỚC 1: KHÓA CHẶT THANH CUỘN CỦA TRANG GỐC (Chế độ Immersive Mode)
-//    // Giúp học sinh không bị phân tâm bởi các thành phần khác của web
-//    document.body.style.overflow = 'hidden';
-//    document.documentElement.style.overflow = 'hidden';
-
-//    // 🌟 BƯỚC 2: DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 3 CỘT TUYỆT ĐẸP)
-//    vungLamViec.innerHTML = `
-//        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; padding: 15px; gap: 15px; box-sizing: border-box; z-index: 99999;">
-
-//            <div style="flex: 0 0 260px; background: #fff; border-radius: 8px; padding: 15px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-//                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 15px; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">🔙 Trở về Bảng điều khiển</button>
-
-//                <div style="background: #0056b3; color: white; padding: 12px; border-radius: 6px; text-align: center; margin-bottom: 15px;">
-//                    <h3 style="margin: 0; font-size: 14px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">ℹ️ THÔNG TIN NHIỆM VỤ</h3>
-//                </div>
-//                <div style="background: #f8f9fa; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-//                    <div style="font-size: 11px; color: #64748b; font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Tên Nhiệm vụ:</div>
-//                    <div style="color: #c0392b; font-size: 15px; font-weight: 900; line-height: 1.4;">${phien.ten_nhiem_vu}</div>
-//                    <div style="margin-top: 8px; font-family: monospace; font-size: 11px; color: #64748b; background: #e2e8f0; display: inline-block; padding: 2px 6px; border-radius: 4px;">Mã NV: ${phien.ma_nhiem_vu ? phien.ma_nhiem_vu.slice(-5) : "---"}</div>
-//                </div>
-//                <div style="border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
-//                    <div style="color: #64748b; font-size: 11px;">Thời lượng / Quy mô:</div>
-//                    <div style="font-weight: bold; color: #d35400; font-size: 14px;">⏱️ ${Math.floor((phien.thoi_gian_con_lai || 0) / 60)} phút</div>
-//                    <div style="font-weight: bold; color: #27ae60; font-size: 13px; margin-top: 4px;">📊 ${phien.tong_so_cau} câu hỏi</div>
-//                </div>
-//            </div>
-
-//            <div style="flex: 1; display: flex; flex-direction: column; background: #fff; border-radius: 8px; padding: 25px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;">
-
-//                <div id="khu-vuc-cau-hoi" style="flex: 1; font-size: 16px; line-height: 1.6;">
-//                    <div style="text-align:center; padding:50px; color:#999;">⏳ Đang tải nội dung...</div>
-//                </div>
-
-//                <div style="display: flex; justify-content: space-between; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
-//                    <button id="btn-cau-truoc" onclick="if(typeof chuyenCauHoi === 'function') chuyenCauHoi(-1)" style="padding: 12px 25px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">⬅️ Câu trước</button>
-//                    <button id="btn-cau-sau" onclick="if(typeof chuyenCauHoi === 'function') chuyenCauHoi(1)" style="padding: 12px 25px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#155db8'" onmouseout="this.style.background='#1a73e8'">Câu tiếp theo ➡️</button>
-//                </div>
-//            </div>
-
-//            <div style="flex: 0 0 280px; background: #fff; border-radius: 8px; padding: 15px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-//                <h3 style="margin-top: 0; font-size: 16px; text-align: center; color: #495057; border-bottom: 2px solid #ced4da; padding-bottom: 10px;">📌 MỤC LỤC CÂU HỎI</h3>
-
-//                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; font-size: 28px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
-//                    ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
-//                </div>
-
-//                <div id="thong-ke-tien-do" style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 10px; margin-bottom: 15px; border-radius: 6px; font-size: 15px;">
-//                    Đã làm: <span id="so-cau-da-lam" style="color: #28a745;">0</span> / ${phien.tong_so_cau}
-//                </div>
-
-//                <div id="bang-nut-cau-hoi" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; align-content: flex-start; flex: 1;">
-//                    </div>
-
-//                <button id="btn-nop-bai" onclick="if(typeof ham_8_11_xac_nhan_nop_bai === 'function') ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s; margin-top: auto;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                    📤 NỘP BÀI THI
-//                </button>
-//            </div>
-//        </div>
-//    `;
-
-//    // 🌟 BƯỚC 3: KHỞI ĐỘNG CÁC THÀNH PHẦN (Gọi lại các hàm thầy đã định nghĩa)
-//    if (typeof renderBangDieuHuong === 'function') renderBangDieuHuong();
-//    if (typeof renderCauHoiHienTai === 'function') renderCauHoiHienTai();
-//    if (typeof batDauDemNguoc === 'function') batDauDemNguoc();
-//}
-
-//// -----------------------------------------------------------------------------
-//// HÀM BỔ TRỢ: THOÁT PHÒNG THI (TRẢ LẠI THANH CUỘN CHO TRÌNH DUYỆT)
-//// (Thầy chép thêm hàm này để nút "Quay lại Bảng điều khiển" hoạt động chuẩn)
-//// -----------------------------------------------------------------------------
-//window.ham_8_thoat_phong_thi = async () => {
-//    const phien = window.PhienLamBai;
-
-//    // Kiểm tra nếu đã tick chọn đáp án thì cảnh báo
-//    const daLam = phien.dap_an_hoc_sinh ? Object.keys(phien.dap_an_hoc_sinh).length : 0;
-//    if (daLam > 0) {
-//        if (!confirm("⚠️ BẠN ĐANG TRONG PHÒNG THI!\nNếu thoát ra bây giờ, hệ thống sẽ TỰ ĐỘNG NỘP BÀI và chốt điểm hiện tại. Bạn có chắc chắn?")) {
-//            return;
-//        }
-//        // Gọi hàm nộp bài ép buộc nếu thầy có thiết kế (truyền tham số true để không hỏi lại)
-//        if (typeof ham_8_11_xac_nhan_nop_bai === 'function') {
-//            ham_8_11_xac_nhan_nop_bai(true);
-//            return; // Đợi hàm nộp bài xử lý chuyển trang
-//        }
-//    }
-
-//    // 1. Trả lại thanh cuộn gốc cho trang web
-//    document.body.style.overflow = '';
-//    document.documentElement.style.overflow = '';
-
-//    // 2. Dọn dẹp đồng hồ
-//    if (phien.id_timer) clearInterval(phien.id_timer);
-
-//    // 3. Ẩn giao diện thi, hiện lại bảng điều khiển
-//    // (Thầy thay đổi ID tùy theo cách đặt tên ngoài Dashboard của thầy)
-//    document.getElementById('dashboard-container').innerHTML = ''; // Xóa sạch khung phòng thi
-
-//    // Gọi hàm load lại danh sách nhiệm vụ của Khối 8
-//    if (typeof ham_8_1_tai_nhiem_vu_cua_toi === 'function') {
-//        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
-//    } else {
-//        alert("Đã thoát phòng thi an toàn!");
-//        location.reload(); // Fallback nếu không tìm thấy hàm
-//    }
-//};
-
-//// ==============================================================
-//// Hàm 8.10: Vẽ Giao Diện Phòng Thi (Code Mới)
-//// ==============================================================
-////function ham_8_10_ve_giao_dien_lam_bai() {
-////    const vungLamViec = document.getElementById('dashboard-container');
-////    const phien = window.PhienLamBai;
-
-////    // Mặc định mở câu đầu tiên
-////    phien.cau_hien_tai = phien.cau_hien_tai || 0;
-
-////    // 1. DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 2 CỘT)
-////    vungLamViec.innerHTML = `
-////        <div style="display: flex; flex-wrap: wrap; gap: 20px; background: #f0f2f5; padding: 15px; border-radius: 8px;">
-
-////            <div style="flex: 1 1 65%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-////                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
-////                    <h3 style="margin: 0; color: #1a73e8;">${phien.ten_nhiem_vu}</h3>
-////                    <div style="font-size: 20px; font-weight: bold; color: #dc3545; background: #fff3cd; padding: 5px 15px; border-radius: 5px; border: 1px solid #ffeeba;">
-////                        ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
-////                    </div>
-////                </div>
-
-////                <div id="khu-vuc-cau-hoi" style="min-height: 300px; font-size: 16px; line-height: 1.6;"></div>
-
-////                <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px;">
-////                    <button id="btn-cau-truoc" onclick="chuyenCauHoi(-1)" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">⬅️ Câu trước</button>
-////                    <button id="btn-cau-sau" onclick="chuyenCauHoi(1)" style="padding: 10px 20px; background: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Câu tiếp ➡️</button>
-////                </div>
-////            </div>
-
-////            <div style="flex: 1 1 30%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start;">
-////                <h4 style="margin-top: 0; text-align: center; color: #495057;">BẢNG ĐIỀU HƯỚNG</h4>
-////                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; color: #666;">
-////                    <span>Tổng số: <b>${phien.tong_so_cau}</b></span>
-////                    <span>Đã làm: <b id="so-cau-da-lam" style="color: #28a745;">0</b></span>
-////                </div>
-
-////                <div id="bang-nut-cau-hoi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 8px; margin-bottom: 25px;">
-////                    </div>
-
-////                <button onclick="ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3);">
-////                    ✅ NỘP BÀI
-////                </button>
-////            </div>
-////        </div>
-////    `;
-
-////    // 2. KHỞI ĐỘNG CÁC THÀNH PHẦN
-////    renderBangDieuHuong();
-////    renderCauHoiHienTai();
-////    batDauDemNguoc();
-////}
-
-//// ==============================================================
-//// CÁC HÀM PHỤ TRỢ CHO PHÒNG THI
-//// ==============================================================
-
-//// 1. Vẽ nội dung câu hỏi dựa trên Phân loại (Trắc nghiệm, Đúng/Sai, Trả lời ngắn)
-////function renderCauHoiHienTai() {
-////    const phien = window.PhienLamBai;
-////    const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
-////    const khuVuc = document.getElementById('khu-vuc-cau-hoi');
-////    // 🌟 BƯỚC 1: Lấy thư mục gốc chứa ảnh của đề này
-////    const thuMucAnh = phien.base_url_anh;
-
-////    // 🌟 BƯỚC 2: Tạo màng lọc để ráp đường dẫn tuyệt đối cho ảnh
-////    const xuLyAnh = (noiDung) => {
-////        if (!noiDung) return "";
-////        // Quét tìm tất cả các thẻ src="tên_ảnh" và nhét thư mục gốc vào trước
-////        return noiDung.replace(/src="([^"]+)"/g, (match, tenFile) => {
-////            // Bỏ qua nếu ảnh đã là link web ngoài hoặc dạng base64
-////            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
-////            return `src="${thuMucAnh}/${tenFile}"`;
-////        });
-////    };
-////    // Lấy đáp án đã chọn (nếu có)
-////    const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
-
-////    // 🌟 BƯỚC 3: Cho câu dẫn chui qua màng lọc ảnh
-////    const noiDungCauDan = xuLyAnh(cau.cauDan || cau.noi_dung || "Đang tải nội dung...");
-
-////    let htmlNoiDung = `
-////        <div style="margin-bottom: 15px;">
-////            <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span>
-////            ${noiDungCauDan}
-////        </div>
-////    `;
-
-////    //// Lấy đáp án đã chọn (nếu có)
-////    //const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
-
-////    //let htmlNoiDung = `
-////    //    <div style="margin-bottom: 15px;">
-////    //        <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span>
-////    //        ${cau.cauDan || cau.noi_dung || "Đang tải nội dung..."}
-////    //    </div>
-////    //`;
-
-////    // TÙY BIẾN GIAO DIỆN THEO KIỂU CÂU HỎI
-////    if (cau.kieuCau === "TN" || !cau.kieuCau) {
-////        // --- LOẠI 1: TRẮC NGHIỆM A B C D ---
-////        htmlNoiDung += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
-////        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
-////            const nhan = String.fromCharCode(65 + i); // A, B, C, D
-////            const isChecked = dapAnCu === nhan ? "checked" : "";
-////            const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
-
-////            htmlNoiDung += `
-////                <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;">
-////                    <input type="radio" name="dapan_${cau.ma_cau_hoi}" value="${nhan}" ${isChecked} onchange="luuDapAn('${cau.ma_cau_hoi}', '${nhan}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-////                    <div style="flex:1;"><b>${nhan}.</b> ${cau[key] || "..."}</div>
-////                </label>
-////            `;
-////        });
-////        htmlNoiDung += `</div>`;
-
-////    } else if (cau.kieuCau === "DS") {
-////        // --- LOẠI 2: ĐÚNG / SAI ---
-////        htmlNoiDung += `<div style="background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 15px; font-size: 13px;">💡 Yêu cầu: Chọn Đúng (Đ) hoặc Sai (S) cho từng ý A, B, C, D.</div>`;
-////        htmlNoiDung += `<table style="width: 100%; border-collapse: collapse;">`;
-
-////        // dapAnCu của phần này lưu dạng mảng hoặc object, VD: {A: 'T', B: 'F'}
-////        const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
-
-////        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
-////            const nhan = String.fromCharCode(65 + i);
-////            const chonD = chonDS[nhan] === 'T' ? "checked" : "";
-////            const chonS = chonDS[nhan] === 'F' ? "checked" : "";
-
-////            htmlNoiDung += `
-////                <tr style="border-bottom: 1px dashed #ddd;">
-////                    <td style="padding: 10px 5px; width: 50px; text-align:center;"><b>${nhan}</b></td>
-////                    <td style="padding: 10px 5px;">${cau[key] || "..."}</td>
-////                    <td style="padding: 10px 5px; width: 100px; text-align: center; white-space: nowrap;">
-////                        <label style="margin-right: 10px; cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="T" ${chonD} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'T')"> Đ</label>
-////                        <label style="cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="F" ${chonS} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'F')"> S</label>
-////                    </td>
-////                </tr>
-////            `;
-////        });
-////        htmlNoiDung += `</table>`;
-
-////    } else if (cau.kieuCau === "TLN") {
-////        // --- LOẠI 3: TRẢ LỜI NGẮN ---
-////        htmlNoiDung += `
-////            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; border: 1px solid #b6d4fe; text-align: center;">
-////                <label style="font-weight: bold; color: #084298; display: block; margin-bottom: 10px;">✍️ NHẬP ĐÁP ÁN CỦA EM VÀO ĐÂY:</label>
-////                <input type="text" value="${dapAnCu}" onblur="luuDapAn('${cau.ma_cau_hoi}', this.value)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 18px; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none;">
-////                <div style="font-size: 12px; color: #666; margin-top: 8px;">(Lưu ý: Nếu đáp án là phân số, nhập dưới dạng thập phân. Ví dụ: 0,5 hoặc 0.5)</div>
-////            </div>
-////        `;
-////    }
-
-////    khuVuc.innerHTML = htmlNoiDung;
-
-////    // Cập nhật trạng thái nút (Vô hiệu hóa nút "Trước" nếu ở câu 1...)
-////    document.getElementById('btn-cau-truoc').disabled = (phien.cau_hien_tai === 0);
-////    document.getElementById('btn-cau-sau').disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
-
-////    // Đánh dấu nút đang chọn trên bảng điều hướng
-////    document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
-////    document.getElementById(`nut-cau-${phien.cau_hien_tai}`).style.border = "3px solid #1a73e8";
-
-////    // Render lại toán học (MathJax/KaTeX nếu thầy có xài)
-////    if (window.MathJax) MathJax.typesetPromise();
-////}
-
-
-
-
-////// 1. Vẽ nội dung câu hỏi dựa trên Phân loại (Trắc nghiệm, Đúng/Sai, Trả lời ngắn)
-////function renderCauHoiHienTai() {
-////    const phien = window.PhienLamBai;
-////    const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
-////    const khuVuc = document.getElementById('khu-vuc-cau-hoi');
-
-////    // 🌟 BƯỚC 1: Lấy thư mục gốc chứa ảnh của đề này
-////    const thuMucAnh = phien.base_url_anh;
-////    console.log("thuMucAnh: " + thuMucAnh);
-
-
-////    // 🌟 BƯỚC 2: Tạo màng lọc thông minh (Chống nháy đơn, nháy kép & xử lý đường dẫn thừa)
-////    const xuLyAnh = (noiDung) => {
-////        if (!noiDung) return "";
-
-////        // Dùng Regex lấy cả nháy đơn (') và nháy kép (")
-////        return noiDung.replace(/src=['"]([^'"]+)['"]/g, (match, duongDanCu) => {
-////            // Bỏ qua nếu ảnh đã là link web ngoài hoặc dạng base64
-////            if (duongDanCu.startsWith('http') || duongDanCu.startsWith('data:')) return match;
-
-////            // duongDanCu đang là "HinhAnh/q_...png"
-////            // Ta dùng lệnh split('/').pop() để CHỈ LẤY CÁI TÊN FILE CUỐI CÙNG, vứt bỏ mọi thư mục thừa
-////            const tenFileAnh = duongDanCu.split('/').pop();
-
-////            // Ráp với thuMucAnh (đã có sẵn chữ /HinhAnh ở Hàm 8.8)
-////            return `src="${thuMucAnh}/${tenFileAnh}"`;
-////        });
-////    };
-
-////    // Lấy đáp án đã chọn (nếu có)
-////    const dapAnCu = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || "";
-
-////    // 🌟 BƯỚC 3: Cho câu dẫn chui qua màng lọc ảnh
-////    const noiDungCauDan = xuLyAnh(cau.cauDan || cau.noi_dung || "Đang tải nội dung...");
-
-////    let htmlNoiDung = `
-////        <div style="margin-bottom: 15px;">
-////            <span style="font-weight: bold; color: #d35400;">Câu ${cau.index_stt}:</span>
-////            ${noiDungCauDan}
-////        </div>
-////    `;
-
-////    // TÙY BIẾN GIAO DIỆN THEO KIỂU CÂU HỎI
-////    if (cau.kieuCau === "TN" || !cau.kieuCau) {
-////        // --- LOẠI 1: TRẮC NGHIỆM A B C D ---
-////        htmlNoiDung += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
-////        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
-////            const nhan = String.fromCharCode(65 + i); // A, B, C, D
-////            const isChecked = dapAnCu === nhan ? "checked" : "";
-////            const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
-
-////            // 🌟 Cho nội dung đáp án A, B, C, D chui qua màng lọc ảnh
-////            const noiDungPA = xuLyAnh(cau[key] || "...");
-
-////            htmlNoiDung += `
-////                <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;">
-////                    <input type="radio" name="dapan_${cau.ma_cau_hoi}" value="${nhan}" ${isChecked} onchange="luuDapAn('${cau.ma_cau_hoi}', '${nhan}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-////                    <div style="flex:1;"><b>${nhan}.</b> ${noiDungPA}</div>
-////                </label>
-////            `;
-////        });
-////        htmlNoiDung += `</div>`;
-
-////    } else if (cau.kieuCau === "DS") {
-////        // --- LOẠI 2: ĐÚNG / SAI ---
-////        htmlNoiDung += `<div style="background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 15px; font-size: 13px;">💡 Yêu cầu: Chọn Đúng (Đ) hoặc Sai (S) cho từng ý A, B, C, D.</div>`;
-////        htmlNoiDung += `<table style="width: 100%; border-collapse: collapse;">`;
-
-////        const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
-
-////        ['paA', 'paB', 'paC', 'paD'].forEach((key, i) => {
-////            const nhan = String.fromCharCode(65 + i);
-////            const chonD = chonDS[nhan] === 'T' ? "checked" : "";
-////            const chonS = chonDS[nhan] === 'F' ? "checked" : "";
-
-////            // 🌟 Lọc ảnh cho các ý A, B, C, D của câu Đúng/Sai
-////            const noiDungDS = xuLyAnh(cau[key] || "...");
-
-////            htmlNoiDung += `
-////                <tr style="border-bottom: 1px dashed #ddd;">
-////                    <td style="padding: 10px 5px; width: 50px; text-align:center;"><b>${nhan}</b></td>
-////                    <td style="padding: 10px 5px;">${noiDungDS}</td>
-////                    <td style="padding: 10px 5px; width: 100px; text-align: center; white-space: nowrap;">
-////                        <label style="margin-right: 10px; cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="T" ${chonD} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'T')"> Đ</label>
-////                        <label style="cursor:pointer;"><input type="radio" name="ds_${cau.ma_cau_hoi}_${nhan}" value="F" ${chonS} onchange="luuDapAnDS('${cau.ma_cau_hoi}', '${nhan}', 'F')"> S</label>
-////                    </td>
-////                </tr>
-////            `;
-////        });
-////        htmlNoiDung += `</table>`;
-
-////    } else if (cau.kieuCau === "TLN") {
-////        // --- LOẠI 3: TRẢ LỜI NGẮN ---
-////        htmlNoiDung += `
-////            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; border: 1px solid #b6d4fe; text-align: center;">
-////                <label style="font-weight: bold; color: #084298; display: block; margin-bottom: 10px;">✍️ NHẬP ĐÁP ÁN CỦA EM VÀO ĐÂY:</label>
-////                <input type="text" value="${dapAnCu}" onblur="luuDapAn('${cau.ma_cau_hoi}', this.value)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 18px; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none;">
-////                <div style="font-size: 12px; color: #666; margin-top: 8px;">(Lưu ý: Nếu đáp án là phân số, nhập dưới dạng thập phân. Ví dụ: 0,5 hoặc 0.5)</div>
-////            </div>
-////        `;
-////    }
-
-////    khuVuc.innerHTML = htmlNoiDung;
-
-////    // Cập nhật trạng thái nút
-////    document.getElementById('btn-cau-truoc').disabled = (phien.cau_hien_tai === 0);
-////    document.getElementById('btn-cau-sau').disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
-
-////    // Đánh dấu nút trên bảng điều hướng
-////    document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
-////    const nutHienTai = document.getElementById(`nut-cau-${phien.cau_hien_tai}`);
-////    if (nutHienTai) nutHienTai.style.border = "3px solid #1a73e8";
-
-////    // Render lại toán học (MathJax)
-////    if (window.MathJax) MathJax.typesetPromise();
-////}
-
-
-//// =================================================================
-//// HÀM VẼ GIAO DIỆN CÂU HỎI (KẾT HỢP GIAO DIỆN CŨ & LOGIC MỚI)
-//// =================================================================
-//function renderCauHoiHienTai() {
-//    const phien = window.PhienLamBai;
-//    const cau = phien.danh_sach_cau_hoi[phien.cau_hien_tai];
-//    const khuVuc = document.getElementById('khu-vuc-cau-hoi'); // ID của thẻ div chứa câu hỏi
-
-//    // 🌟 BƯỚC 1: Màng lọc xử lý link ảnh tuyệt đối
-//    const thuMucAnh = phien.base_url_anh;
-//    const xuLyAnh = (noiDung) => {
-//        if (!noiDung) return "";
-//        return noiDung.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
-//            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
-//            const cleanFile = tenFile.split('/').pop();
-//            return `src="${thuMucAnh}/${cleanFile}"`;
-//        });
-//    };
-
-//    // Lấy thông tin cơ bản
-//    const stt = phien.cau_hien_tai + 1;
-//    const maCau = cau.ma_cau_hoi || cau.maCau;
-//    const loaiCau = cau.kieuCau || cau.loaiCau || "TN";
-//    const idDang = cau.idDang || "";
-//    const tenDe = phien.ten_nhiem_vu || "Đề thi";
-//    const dapAnCu = phien.dap_an_hoc_sinh[maCau] || "";
-
-//    // Xử lý ảnh cho Câu dẫn
-//    const cauDan = xuLyAnh(cau.cauDan || cau.noiDungHtml || "Đang tải nội dung...");
-
-//    // 🌟 BƯỚC 2: Vẽ Header của Câu hỏi (Giao diện cũ cực đẹp)
-//    let html = `
-//        <div id="cau-${maCau}" data-loaicau="${loaiCau}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
-//            <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-//                <span style="display: flex; align-items: baseline; gap: 8px;">
-//                    <strong style="font-weight: 900; color: #000080;">(${loaiCau}) Câu ${stt}:</strong>
-//                    <span style="font-size: 14px; color: #6c757d; font-weight: normal;">[${maCau}]</span>
-//                </span>
-//                <span style="font-size: 14px; color: #0056b3; text-align: right;">
-//                    <strong>${tenDe}</strong><br><span style="font-size: 13px; color: #6c757d;">ID Dạng: ${idDang}</span>
-//                </span>
-//            </p>
-//            <div style="font-size: 17px; line-height: 1.6; margin-bottom: 20px; margin-top: 15px; overflow-x: auto;">
-//                ${cauDan}
-//            </div>
-//    `;
-
-//    // 🌟 BƯỚC 3: Vẽ Khối trả lời tùy theo loại câu hỏi
-//    if (loaiCau === "TN" || !cau.kieuCau) {
-//        // --- TRẮC NGHIỆM 4 ĐÁP ÁN ---
-//        html += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
-
-//        // Nếu đề có mảng trộn sẵn thì dùng, không thì dùng A, B, C, D mặc định
-//        const mangPA = cau.dsTron || [
-//            { idGoc: 'A', text: cau.paA }, { idGoc: 'B', text: cau.paB },
-//            { idGoc: 'C', text: cau.paC }, { idGoc: 'D', text: cau.paD }
-//        ];
-
-//        mangPA.forEach((pa, idx) => {
-//            const nhan = String.fromCharCode(65 + idx); // A, B, C, D
-//            const noiDungPA = xuLyAnh(pa.text || "...");
-//            const isChecked = (dapAnCu === pa.idGoc) ? "checked" : "";
-
-//            // Đổi màu nếu được chọn
-//            const bg = isChecked ? "#e8f0fe" : "#f8f9fa";
-//            const border = isChecked ? "#b8daff" : "#ced4da";
-
-//            html += `
-//                <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid ${border}; border-radius: 6px; cursor: pointer; background: ${bg}; transition: 0.2s;" onmouseover="this.style.background='#e8f0fe'" onmouseout="if(!this.querySelector('input').checked) this.style.background='${bg}'">
-//                    <input type="radio" name="dapan_${maCau}" value="${pa.idGoc}" ${isChecked} onchange="luuDapAn('${maCau}', '${pa.idGoc}')" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-//                    <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${noiDungPA}</div>
-//                </label>
-//            `;
-//        });
-//        html += `</div>`;
-
-//    } else if (loaiCau === "DS") {
-//        // --- ĐÚNG / SAI ---
-//        html += `<div style="font-weight: bold; color: #d35400; margin-bottom: 15px; background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; font-size: 14px;">✅ Yêu cầu: Chọn Đúng hoặc Sai cho từng phát biểu.</div>`;
-//        html += `<div class="cau-ds">`;
-
-//        const chonDS = typeof dapAnCu === 'object' ? dapAnCu : {};
-//        const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
-
-//        mangY.forEach((y, idx) => {
-//            const nhanThuong = ['a', 'b', 'c', 'd'][idx];
-//            const noiDungY = xuLyAnh(y.text || "...");
-//            const chonD = chonDS[y.id] === 'T' ? "checked" : "";
-//            const chonS = chonDS[y.id] === 'F' ? "checked" : "";
-
-//            html += `
-//                <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s;">
-//                    <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${noiDungY}</div>
-//                    <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
-//                        <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 15px; color: #28a745;">
-//                            <input type="radio" name="ds_${maCau}_${y.id}" value="T" ${chonD} onchange="luuDapAnDS('${maCau}', '${y.id}', 'T')" style="transform: scale(1.3); cursor: pointer;"> Đúng
-//                        </label>
-//                        <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 15px; color: #dc3545;">
-//                            <input type="radio" name="ds_${maCau}_${y.id}" value="F" ${chonS} onchange="luuDapAnDS('${maCau}', '${y.id}', 'F')" style="transform: scale(1.3); cursor: pointer;"> Sai
-//                        </label>
-//                    </div>
-//                </div>
-//            `;
-//        });
-//        html += `</div>`;
-
-//    } else if (loaiCau === "TLN") {
-//        // --- TRẢ LỜI NGẮN ---
-//        html += `
-//            <div style="margin-top: 15px; padding: 25px; background: #e8f4f8; border-radius: 8px; border: 1px dashed #b8daff; text-align: center;">
-//                <label style="font-weight: bold; color: #0056b3; font-size: 16px; margin-bottom: 15px; display: block;">✏️ Nhập đáp án của em vào đây:</label>
-//                <input type="text" value="${typeof dapAnCu === 'string' ? dapAnCu : ''}" onblur="luuDapAn('${maCau}', this.value)" style="width: 80%; max-width: 300px; padding: 12px; font-size: 20px; font-weight: bold; text-align: center; border: 2px solid #1a73e8; border-radius: 6px; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                <div style="font-size: 12px; color: #6c757d; margin-top: 15px;">(Nếu đáp án là phân số, vui lòng chuyển sang thập phân. VD: 0,5 hoặc 0.5)</div>
-//            </div>
-//        `;
-//    }
-
-//    // Đóng thẻ .cau-hoi
-//    html += `</div>`;
-//    khuVuc.innerHTML = html;
-
-//    // 🌟 BƯỚC 4: Cập nhật hiệu ứng cho Nút điều hướng & Bảng số thứ tự
-//    const btnTruoc = document.getElementById('btn-cau-truoc');
-//    if (btnTruoc) btnTruoc.disabled = (phien.cau_hien_tai === 0);
-
-//    const btnSau = document.getElementById('btn-cau-sau');
-//    if (btnSau) btnSau.disabled = (phien.cau_hien_tai === phien.tong_so_cau - 1);
-
-//    // Xóa màu đỏ/xanh cũ ở bảng lưới để chọn lại
-//    document.querySelectorAll('.nut-cau-hoi').forEach(btn => btn.style.border = "1px solid #ddd");
-//    const nutHienTai = document.getElementById(`nut-cau-${phien.cau_hien_tai}`);
-//    if (nutHienTai) nutHienTai.style.border = "3px solid #1a73e8";
-
-//    // 🌟 BƯỚC 5: Kích hoạt MathJax (Vẽ lại công thức Toán)
-//    if (window.MathJax) MathJax.typesetPromise();
-//}
-
-//// 2. Lưu đáp án (TN và TLN)
-//function luuDapAn(maCau, giaTri) {
-//    window.PhienLamBai.dap_an_hoc_sinh[maCau] = giaTri.trim();
-//    renderBangDieuHuong(); // Cập nhật màu xanh
-
-//    // Nếu là trắc nghiệm, bấm xong tự nhảy câu sau cho lẹ
-//    if (["A", "B", "C", "D"].includes(giaTri)) {
-//        setTimeout(() => chuyenCauHoi(1), 300);
-//    }
-//}
-
-//// 3. Lưu đáp án (Đúng/Sai)
-//function luuDapAnDS(maCau, y, giaTri) {
-//    if (!window.PhienLamBai.dap_an_hoc_sinh[maCau]) {
-//        window.PhienLamBai.dap_an_hoc_sinh[maCau] = {};
-//    }
-//    window.PhienLamBai.dap_an_hoc_sinh[maCau][y] = giaTri;
-//    renderBangDieuHuong(); // Cập nhật màu
-//}
-
-//// 4. Bảng điều hướng
-//function renderBangDieuHuong() {
-//    const phien = window.PhienLamBai;
-//    const bangNut = document.getElementById('bang-nut-cau-hoi');
-//    let htmlNut = "";
-//    let cauDaLam = 0;
-
-//    phien.danh_sach_cau_hoi.forEach((cau, index) => {
-//        const daTraLoi = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
-
-//        // Kiểm tra xem đã trả lời chưa (DS cần trả lời đủ 4 ý mới tính là xong)
-//        let isDone = false;
-//        if (cau.kieuCau === "DS") {
-//            if (daTraLoi && Object.keys(daTraLoi).length === 4) isDone = true;
-//        } else {
-//            if (daTraLoi && daTraLoi !== "") isDone = true;
-//        }
-
-//        if (isDone) cauDaLam++;
-
-//        const bg = isDone ? "#d4edda" : "#f8f9fa";
-//        const color = isDone ? "#155724" : "#495057";
-
-//        htmlNut += `<button id="nut-cau-${index}" class="nut-cau-hoi" onclick="nhayDenCau(${index})" style="padding: 10px 0; background: ${bg}; color: ${color}; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; cursor: pointer;">${cau.index_stt}</button>`;
-//    });
-
-//    bangNut.innerHTML = htmlNut;
-//    document.getElementById('so-cau-da-lam').innerText = cauDaLam;
-//}
-
-//// 5. Chuyển đổi câu hỏi
-//function chuyenCauHoi(buoc) {
-//    const phien = window.PhienLamBai;
-//    const newIndex = phien.cau_hien_tai + buoc;
-//    if (newIndex >= 0 && newIndex < phien.tong_so_cau) {
-//        phien.cau_hien_tai = newIndex;
-//        renderCauHoiHienTai();
-//    }
-//}
-
-//function nhayDenCau(index) {
-//    window.PhienLamBai.cau_hien_tai = index;
-//    renderCauHoiHienTai();
-//}
-
-//// 6. Đồng hồ đếm ngược
-//function batDauDemNguoc() {
-//    const phien = window.PhienLamBai;
-//    if (phien.thoi_gian_con_lai <= 0) {
-//        document.getElementById('dong-ho-dem-nguoc').innerText = "Tự do";
-//        return; // Không giới hạn thời gian
-//    }
-
-//    clearInterval(phien.id_timer); // Xóa timer cũ nếu có
-
-//    phien.id_timer = setInterval(() => {
-//        phien.thoi_gian_con_lai--;
-
-//        const phut = Math.floor(phien.thoi_gian_con_lai / 60);
-//        const giay = phien.thoi_gian_con_lai % 60;
-
-//        const textHienThi = `${phut.toString().padStart(2, '0')}:${giay.toString().padStart(2, '0')}`;
-//        const elmDongHo = document.getElementById('dong-ho-dem-nguoc');
-//        if (elmDongHo) elmDongHo.innerText = textHienThi;
-
-//        // Cảnh báo khi còn 1 phút
-//        if (phien.thoi_gian_con_lai === 60) {
-//            Swal.fire({
-//                title: 'Sắp hết giờ!',
-//                text: 'Chỉ còn 1 phút, các em nhanh tay kiểm tra lại đáp án nhé!',
-//                icon: 'warning',
-//                timer: 3000,
-//                showConfirmButton: false
-//            });
-//        }
-
-//        // Hết giờ -> Tự động nộp bài
-//        if (phien.thoi_gian_con_lai <= 0) {
-//            clearInterval(phien.id_timer);
-//            Swal.fire({
-//                title: 'HẾT GIỜ!',
-//                text: 'Hệ thống đang tự động thu bài...',
-//                icon: 'info',
-//                showConfirmButton: false,
-//                allowOutsideClick: false
-//            });
-//            setTimeout(() => ham_8_11_thuc_thi_nop_bai(), 2000); // Tự động gọi nộp bài
-//        }
-//    }, 1000);
-//}
 
 
 // =====================================================================
@@ -1279,7 +629,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
 // =====================================================================
 function ham_8_10_ve_giao_dien_lam_bai() {
     const vungLamViec = document.getElementById('dashboard-container');
-    vungLamViec.style.display = 'none'; // Ẩn dashboard gốc
+    vungLamViec.style.display = 'none';
 
     const phien = window.PhienLamBai;
     document.body.style.overflow = 'hidden';
@@ -1306,27 +656,19 @@ function ham_8_10_ve_giao_dien_lam_bai() {
         htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
 
         // Vẽ Tiêu đề bên cột điều hướng
-        let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
+        let tenNav = loaiCau === 'TN' ? 'TRẮC NGHIỆM' : (loaiCau === 'DS' ? 'ĐÚNG/SAI' : 'TRẢ LỜI NGẮN');
         htmlNavLeft += `<div style="margin-bottom: 15px;">
-                            <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍${tenNav}</h4>
+                            <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍 PHẦN ${tenNav}</h4>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
         danhSach.forEach(cau => {
-            // Ráp câu hỏi vào cột Phải
             htmlContentRight += ham_8_11_taoGiaoDienCauHoi(cau, sttChung, loaiCau);
 
-            // Ráp nút bấm vào cột Trái
             const maCau = cau.ma_cau_hoi || cau.maCau;
-            console.log(cau.maCau);
             htmlNavLeft += `
                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
-                     style="display: flex; flex-direction: column; align-items: center; 
-                     justify-content: center; width: 42px; height: 42px; background: #fff; 
-                     border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; 
-                     color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s;" 
-                     onmouseover="if(!this.classList.contains('da-lam')) 
-                     this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) 
-                     this.style.background='#fff'">
+                     style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s;" 
+                     onmouseover="if(!this.classList.contains('da-lam')) this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) this.style.background='#fff'">
                     <span style="line-height: 1;">${sttChung}</span>
                     <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
                 </div>`;
@@ -1346,32 +688,21 @@ function ham_8_10_ve_giao_dien_lam_bai() {
     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
 
     rootDiv.innerHTML = `
-        <div style="flex: 0 0 70px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
-            
+        <div style="flex: 0 0 250px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
             <div style="padding: 15px; border-bottom: 1px solid #eee;">
-                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px;
-                background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px;
-                font-weight: bold; cursor: pointer; transition: 0.2s;"
-                onmouseover="this.style.background='#dc3545';
-                this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa';
-                this.style.color='#dc3545'">🚪 Thoát</button>
+                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát (Chưa nộp)</button>
             </div>
-
             <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
-                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 15px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 26px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
                     ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
                 </div>
                 <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
-                    <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
+                    Tiến độ: <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
                 </div>
             </div>
-
-            <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">
-                ${htmlNavLeft}
-            </div>
-
+            <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
             <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-                <button id="btn-nop-bai" onclick="ham_8_11_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP BÀI</button>
+                <button id="btn-nop-bai" onclick="ham_8_11_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP BÀI THI</button>
             </div>
         </div>
 
@@ -1384,8 +715,35 @@ function ham_8_10_ve_giao_dien_lam_bai() {
 
     document.body.appendChild(rootDiv);
 
-    // Kích hoạt MathJax
-    if (window.MathJax) MathJax.typesetPromise();
+    // ==============================================================
+    // 🌟 KÍCH HOẠT CHÍNH XÁC KATEX / MATHJAX & TIKZ THEO CODE CŨ
+    // ==============================================================
+    const vungCuon = document.getElementById('khu-vuc-cuon-de');
+    if (window.renderMathInElement) {
+        window.renderMathInElement(vungCuon, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false,
+            macros: {
+                "\\heva": "\\left\\{\\begin{array}{l}#1\\end{array}\\right.",
+                "\\hoac": "\\left[\\begin{array}{l}#1\\end{array}\\right."
+            }
+        });
+    } else if (window.MathJax) {
+        MathJax.typesetPromise();
+    }
+
+    // Nạp lại Script TikzJax để vẽ hình học
+    let oldTikz = document.getElementById('tikz-script-reload');
+    if (oldTikz) oldTikz.remove();
+    let newTikz = document.createElement('script');
+    newTikz.id = 'tikz-script-reload';
+    newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
+    document.body.appendChild(newTikz);
+
+    // ==============================================================
 
     // Khởi động đồng hồ
     if (phien.id_timer) clearInterval(phien.id_timer);
@@ -1407,22 +765,20 @@ function ham_8_10_ve_giao_dien_lam_bai() {
         }
     }, 1000);
 }
-
 // =====================================================================
 // HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
 function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
-    const maCau = cau.ma_cau_hoi || cau.maCau;
+    // 🌟 Tách 2 mã: Logic dùng maCau, Hiển thị dùng ma_goc
+    const maCauLogic = cau.ma_cau_hoi || cau.maCau;
+    const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
+
     const thuMucAnh = window.PhienLamBai.base_url_anh;
 
-    // 🌟 BỘ LỌC KÉP: Dịch LaTeX trước -> Vá đường dẫn ảnh sau
+    // Bộ lọc Kép: Dịch LaTeX trước -> Vá đường dẫn ảnh sau
     const xuLyNoiDung = (noiDung) => {
         if (!noiDung) return "";
-
-        // 1. Chạy qua bộ dịch LaTeX của thầy để xử lý công thức, bảng, TikZ
-        let htmlDich = dichLaTeX(noiDung);
-
-        // 2. Quét qua nội dung đã dịch để vá đường dẫn ảnh tuyệt đối
+        let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
         return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
             if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
             const cleanFile = tenFile.split('/').pop();
@@ -1430,13 +786,15 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
         });
     };
 
-    // Áp dụng bộ lọc kép cho Câu dẫn
     let cauDan = xuLyNoiDung(cau.cauDan || cau.noiDungHtml || "");
 
     let htmlBlock = `
-        <div id="cau-${maCau}" data-loaicau="${loaiCau}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+        <div id="cau-${maCauLogic}" data-loaicau="${loaiCau}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
             <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                <span style="display: flex; align-items: baseline; gap: 8px;"><strong style="font-weight: 900; color: #000080;">Câu ${stt}:</strong><span style="font-size: 13px; color: #6c757d; font-weight: normal;">[Mã: ${maCau}]</span></span>
+                <span style="display: flex; align-items: baseline; gap: 8px;">
+                    <strong style="font-weight: 900; color: #000080;">(${loaiCau}) Câu ${stt}:</strong>
+                    <span style="font-size: 13px; color: #6c757d; font-weight: normal;">[Mã: ${maCauHienThi}]</span> 
+                </span>
             </p>
             <div style="font-size: 17px; line-height: 1.6; margin-bottom: 20px; margin-top: 15px; overflow-x: auto;">${cauDan}</div>
     `;
@@ -1448,7 +806,7 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
             const nhan = String.fromCharCode(65 + idx);
             htmlBlock += `
                 <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #f8f9fa; transition: 0.2s;" onmouseover="this.style.background='#e8f0fe'" onmouseout="if(!this.querySelector('input').checked) this.style.background='#f8f9fa'">
-                    <input type="radio" name="dapan_${maCau}" value="${pa.idGoc}" onchange="luuDapAn('${maCau}', '${pa.idGoc}', this)" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
+                    <input type="radio" name="dapan_${maCauLogic}" value="${pa.idGoc}" onchange="luuDapAn('${maCauLogic}', '${pa.idGoc}', this)" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
                     <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyNoiDung(pa.text)}</div>
                 </label>`;
         });
@@ -1464,10 +822,10 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
                     <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
                     <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da;">
                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #28a745;">
-                            <input type="radio" name="ds_${maCau}_${y.id}" value="T" onchange="luuDapAnDS('${maCau}', '${y.id}', 'T', this)" style="transform: scale(1.3);"> Đúng
+                            <input type="radio" name="ds_${maCauLogic}_${y.id}" value="T" onchange="luuDapAnDS('${maCauLogic}', '${y.id}', 'T', this)" style="transform: scale(1.3);"> Đúng
                         </label>
                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
-                            <input type="radio" name="ds_${maCau}_${y.id}" value="F" onchange="luuDapAnDS('${maCau}', '${y.id}', 'F', this)" style="transform: scale(1.3);"> Sai
+                            <input type="radio" name="ds_${maCauLogic}_${y.id}" value="F" onchange="luuDapAnDS('${maCauLogic}', '${y.id}', 'F', this)" style="transform: scale(1.3);"> Sai
                         </label>
                     </div>
                 </div>`;
@@ -1476,7 +834,7 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
     }
     else if (loaiCau === "TLN") {
         const inputStyle = "width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid #1a73e8; border-radius: 8px; color: #000080; outline: none; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-transform: uppercase;";
-        const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); luuDapAn('${maCau}', ans, this);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
+        const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); luuDapAn('${maCauLogic}', ans, this);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
 
         htmlBlock += `
             <div class="cau-tln-container" style="margin-top: 15px; padding: 25px; background: #e8f4f8; border-radius: 8px; border: 1px dashed #b8daff; text-align: center;">
@@ -1493,8 +851,6 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
 
     return htmlBlock + `</div>`;
 }
-
-
 // =====================================================================
 // HÀM BỔ TRỢ: XỬ LÝ LƯU ĐÁP ÁN & CẬP NHẬT GIAO DIỆN NAV
 // =====================================================================
