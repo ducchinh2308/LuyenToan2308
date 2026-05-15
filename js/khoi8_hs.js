@@ -621,9 +621,9 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     });
 }
 
-// ==============================================================
-// Hàm 8.10: Vẽ Giao Diện Phòng Thi (Code Mới)
-// ==============================================================
+// =====================================================================
+// HÀM 8.10: VẼ GIAO DIỆN PHÒNG THI (LAYOUT 3 CỘT CHUẨN LMS)
+// =====================================================================
 function ham_8_10_ve_giao_dien_lam_bai() {
     const vungLamViec = document.getElementById('dashboard-container');
     const phien = window.PhienLamBai;
@@ -631,48 +631,164 @@ function ham_8_10_ve_giao_dien_lam_bai() {
     // Mặc định mở câu đầu tiên
     phien.cau_hien_tai = phien.cau_hien_tai || 0;
 
-    // 1. DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 2 CỘT)
+    // 🌟 BƯỚC 1: KHÓA CHẶT THANH CUỘN CỦA TRANG GỐC (Chế độ Immersive Mode)
+    // Giúp học sinh không bị phân tâm bởi các thành phần khác của web
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    // 🌟 BƯỚC 2: DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 3 CỘT TUYỆT ĐẸP)
     vungLamViec.innerHTML = `
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; background: #f0f2f5; padding: 15px; border-radius: 8px;">
+        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; padding: 15px; gap: 15px; box-sizing: border-box; z-index: 99999;">
             
-            <div style="flex: 1 1 65%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
-                    <h3 style="margin: 0; color: #1a73e8;">${phien.ten_nhiem_vu}</h3>
-                    <div style="font-size: 20px; font-weight: bold; color: #dc3545; background: #fff3cd; padding: 5px 15px; border-radius: 5px; border: 1px solid #ffeeba;">
-                        ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
-                    </div>
+            <div style="flex: 0 0 260px; background: #fff; border-radius: 8px; padding: 15px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 15px; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">🔙 Trở về Bảng điều khiển</button>
+                
+                <div style="background: #0056b3; color: white; padding: 12px; border-radius: 6px; text-align: center; margin-bottom: 15px;">
+                    <h3 style="margin: 0; font-size: 14px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">ℹ️ THÔNG TIN NHIỆM VỤ</h3>
                 </div>
-                
-                <div id="khu-vuc-cau-hoi" style="min-height: 300px; font-size: 16px; line-height: 1.6;"></div>
-                
-                <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px;">
-                    <button id="btn-cau-truoc" onclick="chuyenCauHoi(-1)" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">⬅️ Câu trước</button>
-                    <button id="btn-cau-sau" onclick="chuyenCauHoi(1)" style="padding: 10px 20px; background: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Câu tiếp ➡️</button>
+                <div style="background: #f8f9fa; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 11px; color: #64748b; font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Tên Nhiệm vụ:</div>
+                    <div style="color: #c0392b; font-size: 15px; font-weight: 900; line-height: 1.4;">${phien.ten_nhiem_vu}</div>
+                    <div style="margin-top: 8px; font-family: monospace; font-size: 11px; color: #64748b; background: #e2e8f0; display: inline-block; padding: 2px 6px; border-radius: 4px;">Mã NV: ${phien.ma_nhiem_vu ? phien.ma_nhiem_vu.slice(-5) : "---"}</div>
+                </div>
+                <div style="border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+                    <div style="color: #64748b; font-size: 11px;">Thời lượng / Quy mô:</div>
+                    <div style="font-weight: bold; color: #d35400; font-size: 14px;">⏱️ ${Math.floor((phien.thoi_gian_con_lai || 0) / 60)} phút</div>
+                    <div style="font-weight: bold; color: #27ae60; font-size: 13px; margin-top: 4px;">📊 ${phien.tong_so_cau} câu hỏi</div>
                 </div>
             </div>
 
-            <div style="flex: 1 1 30%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start;">
-                <h4 style="margin-top: 0; text-align: center; color: #495057;">BẢNG ĐIỀU HƯỚNG</h4>
-                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; color: #666;">
-                    <span>Tổng số: <b>${phien.tong_so_cau}</b></span>
-                    <span>Đã làm: <b id="so-cau-da-lam" style="color: #28a745;">0</b></span>
+            <div style="flex: 1; display: flex; flex-direction: column; background: #fff; border-radius: 8px; padding: 25px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative;">
+                
+                <div id="khu-vuc-cau-hoi" style="flex: 1; font-size: 16px; line-height: 1.6;">
+                    <div style="text-align:center; padding:50px; color:#999;">⏳ Đang tải nội dung...</div>
                 </div>
                 
-                <div id="bang-nut-cau-hoi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 8px; margin-bottom: 25px;">
-                    </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <button id="btn-cau-truoc" onclick="if(typeof chuyenCauHoi === 'function') chuyenCauHoi(-1)" style="padding: 12px 25px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">⬅️ Câu trước</button>
+                    <button id="btn-cau-sau" onclick="if(typeof chuyenCauHoi === 'function') chuyenCauHoi(1)" style="padding: 12px 25px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#155db8'" onmouseout="this.style.background='#1a73e8'">Câu tiếp theo ➡️</button>
+                </div>
+            </div>
+
+            <div style="flex: 0 0 280px; background: #fff; border-radius: 8px; padding: 15px; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; font-size: 16px; text-align: center; color: #495057; border-bottom: 2px solid #ced4da; padding-bottom: 10px;">📌 MỤC LỤC CÂU HỎI</h3>
                 
-                <button onclick="ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3);">
-                    ✅ NỘP BÀI
+                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; font-size: 28px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+                    ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
+                </div>
+                
+                <div id="thong-ke-tien-do" style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 10px; margin-bottom: 15px; border-radius: 6px; font-size: 15px;">
+                    Đã làm: <span id="so-cau-da-lam" style="color: #28a745;">0</span> / ${phien.tong_so_cau}
+                </div>
+
+                <div id="bang-nut-cau-hoi" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; align-content: flex-start; flex: 1;">
+                    </div>
+
+                <button id="btn-nop-bai" onclick="if(typeof ham_8_11_xac_nhan_nop_bai === 'function') ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s; margin-top: auto;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                    📤 NỘP BÀI THI
                 </button>
             </div>
         </div>
     `;
 
-    // 2. KHỞI ĐỘNG CÁC THÀNH PHẦN
-    renderBangDieuHuong();
-    renderCauHoiHienTai();
-    batDauDemNguoc();
+    // 🌟 BƯỚC 3: KHỞI ĐỘNG CÁC THÀNH PHẦN (Gọi lại các hàm thầy đã định nghĩa)
+    if (typeof renderBangDieuHuong === 'function') renderBangDieuHuong();
+    if (typeof renderCauHoiHienTai === 'function') renderCauHoiHienTai();
+    if (typeof batDauDemNguoc === 'function') batDauDemNguoc();
 }
+
+// -----------------------------------------------------------------------------
+// HÀM BỔ TRỢ: THOÁT PHÒNG THI (TRẢ LẠI THANH CUỘN CHO TRÌNH DUYỆT)
+// (Thầy chép thêm hàm này để nút "Quay lại Bảng điều khiển" hoạt động chuẩn)
+// -----------------------------------------------------------------------------
+window.ham_8_thoat_phong_thi = async () => {
+    const phien = window.PhienLamBai;
+
+    // Kiểm tra nếu đã tick chọn đáp án thì cảnh báo
+    const daLam = phien.dap_an_hoc_sinh ? Object.keys(phien.dap_an_hoc_sinh).length : 0;
+    if (daLam > 0) {
+        if (!confirm("⚠️ BẠN ĐANG TRONG PHÒNG THI!\nNếu thoát ra bây giờ, hệ thống sẽ TỰ ĐỘNG NỘP BÀI và chốt điểm hiện tại. Bạn có chắc chắn?")) {
+            return;
+        }
+        // Gọi hàm nộp bài ép buộc nếu thầy có thiết kế (truyền tham số true để không hỏi lại)
+        if (typeof ham_8_11_xac_nhan_nop_bai === 'function') {
+            ham_8_11_xac_nhan_nop_bai(true);
+            return; // Đợi hàm nộp bài xử lý chuyển trang
+        }
+    }
+
+    // 1. Trả lại thanh cuộn gốc cho trang web
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+
+    // 2. Dọn dẹp đồng hồ
+    if (phien.id_timer) clearInterval(phien.id_timer);
+
+    // 3. Ẩn giao diện thi, hiện lại bảng điều khiển
+    // (Thầy thay đổi ID tùy theo cách đặt tên ngoài Dashboard của thầy)
+    document.getElementById('dashboard-container').innerHTML = ''; // Xóa sạch khung phòng thi
+
+    // Gọi hàm load lại danh sách nhiệm vụ của Khối 8
+    if (typeof ham_8_1_tai_nhiem_vu_cua_toi === 'function') {
+        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+    } else {
+        alert("Đã thoát phòng thi an toàn!");
+        location.reload(); // Fallback nếu không tìm thấy hàm
+    }
+};
+
+// ==============================================================
+// Hàm 8.10: Vẽ Giao Diện Phòng Thi (Code Mới)
+// ==============================================================
+//function ham_8_10_ve_giao_dien_lam_bai() {
+//    const vungLamViec = document.getElementById('dashboard-container');
+//    const phien = window.PhienLamBai;
+
+//    // Mặc định mở câu đầu tiên
+//    phien.cau_hien_tai = phien.cau_hien_tai || 0;
+
+//    // 1. DỰNG BỘ KHUNG CHÍNH (LAYOUT TÁCH 2 CỘT)
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; flex-wrap: wrap; gap: 20px; background: #f0f2f5; padding: 15px; border-radius: 8px;">
+            
+//            <div style="flex: 1 1 65%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+//                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; margin-bottom: 20px;">
+//                    <h3 style="margin: 0; color: #1a73e8;">${phien.ten_nhiem_vu}</h3>
+//                    <div style="font-size: 20px; font-weight: bold; color: #dc3545; background: #fff3cd; padding: 5px 15px; border-radius: 5px; border: 1px solid #ffeeba;">
+//                        ⏱️ <span id="dong-ho-dem-nguoc">--:--</span>
+//                    </div>
+//                </div>
+                
+//                <div id="khu-vuc-cau-hoi" style="min-height: 300px; font-size: 16px; line-height: 1.6;"></div>
+                
+//                <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px;">
+//                    <button id="btn-cau-truoc" onclick="chuyenCauHoi(-1)" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">⬅️ Câu trước</button>
+//                    <button id="btn-cau-sau" onclick="chuyenCauHoi(1)" style="padding: 10px 20px; background: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Câu tiếp ➡️</button>
+//                </div>
+//            </div>
+
+//            <div style="flex: 1 1 30%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: flex-start;">
+//                <h4 style="margin-top: 0; text-align: center; color: #495057;">BẢNG ĐIỀU HƯỚNG</h4>
+//                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; color: #666;">
+//                    <span>Tổng số: <b>${phien.tong_so_cau}</b></span>
+//                    <span>Đã làm: <b id="so-cau-da-lam" style="color: #28a745;">0</b></span>
+//                </div>
+                
+//                <div id="bang-nut-cau-hoi" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 8px; margin-bottom: 25px;">
+//                    </div>
+                
+//                <button onclick="ham_8_11_xac_nhan_nop_bai()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3);">
+//                    ✅ NỘP BÀI
+//                </button>
+//            </div>
+//        </div>
+//    `;
+
+//    // 2. KHỞI ĐỘNG CÁC THÀNH PHẦN
+//    renderBangDieuHuong();
+//    renderCauHoiHienTai();
+//    batDauDemNguoc();
+//}
 
 // ==============================================================
 // CÁC HÀM PHỤ TRỢ CHO PHÒNG THI
