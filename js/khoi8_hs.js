@@ -1343,7 +1343,12 @@ function ham_8_10_ve_giao_dien_lam_bai() {
         <div style="flex: 0 0 70px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
             
             <div style="padding: 15px; border-bottom: 1px solid #eee;">
-                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát (Chưa nộp)</button>
+                <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px;
+                background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px;
+                font-weight: bold; cursor: pointer; transition: 0.2s;"
+                onmouseover="this.style.background='#dc3545';
+                this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa';
+                this.style.color='#dc3545'">🚪 Thoát</button>
             </div>
 
             <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
