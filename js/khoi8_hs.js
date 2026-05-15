@@ -1360,7 +1360,7 @@ function ham_8_10_ve_giao_dien_lam_bai() {
             </div>
 
             <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-                <button id="btn-nop-bai" onclick="ham_8_11_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP BÀI THI</button>
+                <button id="btn-nop-bai" onclick="ham_8_11_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP BÀI</button>
             </div>
         </div>
 
