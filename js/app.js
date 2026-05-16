@@ -3642,6 +3642,9 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                 </button>
             </div>
         </div>
+
+
+
     `;
 }
 
@@ -3983,3 +3986,7 @@ window.ham_7_8_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu) 
     }
 };
 
+// BẪY LỖI SỐ 2: BẮT CÁC LỖI NGẦM TRONG HÀM TẢI DỮ LIỆU (ASYNC/AWAIT)
+window.onunhandledrejection = function (event) {
+    alert(`🚨 LỖI TẢI DỮ LIỆU NGẦM (PROMISE):\n\nChi tiết: ${event.reason}\n\nHãy chụp màn hình này lại!`);
+};
