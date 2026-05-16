@@ -6,7 +6,7 @@ console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; colo
 
 window.addEventListener('load', () => {
     let versionBadge = document.createElement('div');
-    versionBadge.innerHTML = KHOI8_VERSION;
+    versionBadge.innerHTML = KHOI10_VERSION;
     versionBadge.style.cssText = "position: fixed; bottom: 20px; right: 5px; font-size: 9px; color: #28a745; z-index: 9999; ";
     document.body.appendChild(versionBadge);
 });
