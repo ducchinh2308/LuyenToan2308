@@ -4041,7 +4041,6 @@ window.onunhandledrejection = function (event) {
 };
 
 
-
 // ==============================================================
 // Hàm 7.10: Ráp File Lời Giải (JSON) và đẩy lên Github (Supabase)
 // ==============================================================
@@ -4063,61 +4062,67 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
         const { data: dataHL, error: errHL } = await _supabase.from('hoc_lieu').select('danh_sach_cau_hoi').eq('ma_hoc_lieu', maHocLieu).single();
         if (errHL || !dataHL) throw new Error("Không tải được dữ liệu Học liệu!");
 
-        const dsCauHoi = dataHL.danh_sach_cau_hoi || [];
+        // 🌟 BẢO VỆ DỮ LIỆU: Đảm bảo dữ liệu chắc chắn là một Mảng các Object (JSON)
+        let dsCauHoi = dataHL.danh_sach_cau_hoi;
+        if (typeof dsCauHoi === 'string') {
+            try { dsCauHoi = JSON.parse(dsCauHoi); } catch (e) { dsCauHoi = []; }
+        }
+        if (!Array.isArray(dsCauHoi)) dsCauHoi = [];
+
         let danhSachLoiGiaiDaGhep = [];
 
-        // 🌟 ĐIỀN ĐƯỜNG DẪN KHO LỜI GIẢI LẺ CỦA THẦY VÀO ĐÂY
-        const BASE_URL_KHO_GIAI_LE = "https://ducchinh2308.github.io/LuyenToan2308/Kho_Loi_Giai_Le";
+        // 🌟 ĐƯỜNG DẪN KHO LỜI GIẢI GỐC CHUẨN XÁC CỦA THẦY
+        const BASE_URL_KHO_GIAI_LE = "https://ducchinh2308.github.io/LuyenToan2308/Ngan_Hang_Loi_Giai";
 
-        // 3. Vòng lặp tải từng file giải
+        // 3. Vòng lặp tải từng file giải dựa trên Object của thầy
         for (let item of dsCauHoi) {
-            // Đã SỬA LỖI: item là Object, lấy trực tiếp thuộc tính ma_cau_hoi
-            let maAoGiai = item.ma_cau_hoi || item.maCau || item.id || "";
+            // Lấy chính xác cặp Key từ cấu trúc: {"ma_cau_hoi": "q_...", "ma_loi_giai": "sol_..."}
+            let maCauGoc = item.ma_cau_hoi;
+            let maLoiGiai = item.ma_loi_giai;
 
-            // Dự phòng: Lỡ như có phần tử bị lưu nhầm thành chuỗi (String)
-            if (!maAoGiai && typeof item === 'string') {
-                maAoGiai = item.split('|')[0];
-            }
+            // Bỏ qua nếu dữ liệu bị rỗng hoặc lỗi
+            if (!maCauGoc || !maLoiGiai) continue;
 
-            if (!maAoGiai) continue;
+            // Đảm bảo tên file để fetch có đuôi .json
+            let tenFileGiai = maLoiGiai.endsWith('.json') ? maLoiGiai : maLoiGiai + '.json';
 
             try {
-                let res = await fetch(`${BASE_URL_KHO_GIAI_LE}/${maAoGiai}.json`);
+                let res = await fetch(`${BASE_URL_KHO_GIAI_LE}/${tenFileGiai}`);
                 if (res.ok) {
                     let dataCau = await res.json();
                     danhSachLoiGiaiDaGhep.push({
-                        maCau: maAoGiai,
+                        maCau: maCauGoc, // Lưu trữ lại mã q_xxxx để học sinh xem bài sẽ map đúng câu
                         loiGiaiHtml: dataCau.loiGiaiHtml || dataCau.loiGiai || ""
                     });
                 } else {
-                    danhSachLoiGiaiDaGhep.push({ maCau: maAoGiai, loiGiaiHtml: "Không tìm thấy file giải gốc trên hệ thống." });
+                    danhSachLoiGiaiDaGhep.push({ maCau: maCauGoc, loiGiaiHtml: "Không tìm thấy file giải gốc trên hệ thống." });
                 }
             } catch (e) {
-                danhSachLoiGiaiDaGhep.push({ maCau: maAoGiai, loiGiaiHtml: "Lỗi đường truyền khi tải lời giải." });
+                danhSachLoiGiaiDaGhep.push({ maCau: maCauGoc, loiGiaiHtml: "Lỗi đường truyền khi tải lời giải." });
             }
         }
 
-        // 4. Đóng gói thành chuỗi JSON duy nhất
+        // 4. Đóng gói thành chuỗi JSON tổng
         const fileContent = JSON.stringify({
             maHocLieu: maHocLieu,
             thoiGianGhep: new Date().toISOString(),
             danhSachLoiGiai: danhSachLoiGiaiDaGhep
         }, null, 2);
 
-        // Hàm mã hóa an toàn Unicode chống lỗi Tiếng Việt khi ném lên Github
+        // Hàm mã hóa Base64 an toàn Unicode chống lỗi Tiếng Việt khi đẩy lên Github
         const utf8ToBase64 = (str) => {
             return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
         };
         const encodedContent = utf8ToBase64(fileContent);
 
         // 5. Đẩy file JSON tổng lên Github qua API
-        // 🌟 THẦY ĐIỀN THÔNG TIN TOKEN VÀ REPO VÀO ĐÂY
-        const GITHUB_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxx"; // Điền Token của thầy vào đây
+        const GITHUB_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxx"; // ⚠️ NHỚ ĐIỀN TOKEN CỦA THẦY VÀO ĐÂY
         const GITHUB_REPO = "ducchinh2308/LuyenToan2308";
         const tenFileGithub = `Kho_De_Thi/${maHocLieu}/LoiGiai_${maHocLieu}.json`;
 
         const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
 
+        // Kiểm tra mã SHA để cho phép ghi đè (Nếu file đã tồn tại)
         let fileSha = null;
         try {
             let checkRes = await fetch(githubApiUrl, { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } });
@@ -4142,10 +4147,11 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
             body: JSON.stringify(bodyPayload)
         });
 
-        if (!putRes.ok) throw new Error("Github API từ chối lưu file. Vui lòng kiểm tra lại PAT Token!");
+        if (!putRes.ok) throw new Error("Github API từ chối lưu file. Vui lòng kiểm tra lại Token hoặc quyền truy cập Repo!");
 
         const putData = await putRes.json();
 
+        // Link raw trực tiếp của file giải
         const linkFileGiai = putData.content?.download_url || `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${tenFileGithub}`;
 
         // 6. Cập nhật Link và Trạng thái hoàn thành về Supabase
@@ -4158,22 +4164,26 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
 
         alert("✅ ĐÃ GOM VÀ TẠO FILE LỜI GIẢI THÀNH CÔNG!\n\nLink file giải đã được lưu an toàn vào cơ sở dữ liệu.");
 
-        // Reload lại giao diện Bảng quản lý
+        // 7. Cập nhật lại giao diện
+        // Reload lại Bảng quản lý bên ngoài
         if (typeof ham_7_1_ve_quan_ly_nhiem_vu === 'function') ham_7_1_ve_quan_ly_nhiem_vu();
 
-        // Cập nhật lại khung báo cáo nếu chưa đóng form
+        // Lấy lại ma_nhiem_vu để load lại Form Sửa nhiệm vụ cho hiển thị nút Xem File
         const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-        if (vungLamViec) {
-            // Thay vì xóa sạch, ta chỉ gọi hàm tắt/mở lại để nó render nút XEM FILE
-            ham_7_6_mo_form_nhiem_vu(idGocNhiemVu);
+        if (vungLamViec && typeof ham_7_6_mo_form_nhiem_vu === 'function') {
+            const { data: nvData } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu').eq('id', idGocNhiemVu).single();
+            if (nvData) ham_7_6_mo_form_nhiem_vu(nvData.ma_nhiem_vu);
         }
 
     } catch (error) {
         console.error("Lỗi ráp file giải:", error);
+        // Cập nhật trạng thái LỖI vào Supabase
         await _supabase.from('nhiem_vu').update({ trang_thai_loi_giai: CFG_NV.FILE_GIAI.LOI }).eq('id', idGocNhiemVu);
 
+        // Trả lại nút bấm trên giao diện
         if (divNut) divNut.innerHTML = `<button onclick="ham_7_10_ra_lenh_tao_file_giai('${idGocNhiemVu}', '${maHocLieu}')" style="padding:8px 15px; background:#dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">❌ LỖI! THỬ GOM LẠI</button>`;
         if (selectTT) selectTT.value = CFG_NV.FILE_GIAI.LOI;
+
         alert("❌ Lỗi khi ráp file: " + error.message);
     }
 };
