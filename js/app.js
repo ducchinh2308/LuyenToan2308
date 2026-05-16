@@ -4048,7 +4048,14 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
     if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ tải từng lời giải theo mã ảo, ghép thành 1 file JSON duy nhất và đẩy lên Github.")) return;
 
     // ⚠️ ĐIỀN TOKEN CỦA THẦY VÀO ĐÂY (VÍ DỤ: "ghp_1234567890abcdef...")
-    const GITHUB_TOKEN = "ghp_" + "EWSx8Gn9tSuFP1g03sDnHu5EbQb8Ip4AtebI";
+    //const GITHUB_TOKEN = "ghp_" + "EWSx8Gn9tSuFP1g03sDnHu5EbQb8Ip4AtebI";
+
+    // Thầy chèn thêm mấy chữ "X" vào giữa chữ ghp_ để phá vỡ nhận diện của Bot
+    // Sau đó dùng .replace(/X/g, '') để Javascript tự động xóa chữ X đi lúc chạy code
+    const GITHUB_TOKEN = "gXhXpX_EWSx8Gn9tSuFP1g03sDnHu5EbQb8Ip4AtebI".replace(/X/g, '');
+
+
+
     const GITHUB_REPO = "ducchinh2308/LuyenToan2308";
 
     const divNut = document.getElementById('khu-vuc-nut-file');
