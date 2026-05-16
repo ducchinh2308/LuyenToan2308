@@ -20,7 +20,9 @@ const GocHocSinhState = {
     uid: null,
     ma_lop: null,
     ten: null,
-    danhSachNhiemVu: []
+    danhSachNhiemVu: [],
+    tien_do_lam_bai: {} // 🌟 THÊM DÒNG NÀY ĐỂ TRỮ SỔ CHUYÊN CẦN
+
 };
 
 // ==============================================================
@@ -31,6 +33,19 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
     GocHocSinhState.uid = uidHocSinh;
     GocHocSinhState.danh_sach_ma_lop = dsMaLopHocSinh || [];
     GocHocSinhState.ten = tenHocSinh;
+
+    // 🌟 1.5. LẤY SỔ CHUYÊN CẦN TỪ DATABASE VỀ RAM (Chỉ chạy 1 lần lúc đăng nhập/F5)
+    try {
+        const { data: hsData } = await _supabase
+            .from('hoc_sinh')
+            .select('tien_do_lam_bai')
+            .eq('uid', uidHocSinh)
+            .single();
+
+        GocHocSinhState.tien_do_lam_bai = hsData?.tien_do_lam_bai || {};
+    } catch (e) {
+        GocHocSinhState.tien_do_lam_bai = {};
+    }
 
     const renderArea = document.getElementById('dashboard-container');
     if (!renderArea) return alert("Lỗi: Không tìm thấy khung hiển thị!");
@@ -1022,9 +1037,14 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
 
         alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của bạn: ${tongDiem.toFixed(2)} điểm.`);
 
+        //document.getElementById('dashboard-container').style.display = 'block';
+        //ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
         document.getElementById('dashboard-container').style.display = 'block';
-        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
 
+        // Chỉ cần gọi lại Tab Nhiệm vụ để nó vẽ lại giao diện (sử dụng RAM vừa được cộng thêm 1 lượt)
+        if (typeof ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
+            ham_8_2_tab_nhiem_vu_bat_buoc();
+        }
     } catch (err) {
         alert("Lỗi lưu điểm: " + err.message);
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
