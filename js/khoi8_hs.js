@@ -105,7 +105,7 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ZERO QUERY - SIÊU TỐI ƯU)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ZERO QUERY & FIX THỜI GIAN)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -135,9 +135,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             GocHocSinhState.danhSachNhiemVu = dsNV || [];
         } catch (error) { }
 
-        // ==========================================================
-        // 🌟 3. LẤY SỐ LƯỢT ĐÃ LÀM TỪ SỔ TAY (KHÔNG TRUY VẤN DATABASE NỮA)
-        // ==========================================================
+        // 3. LẤY SỐ LƯỢT ĐÃ LÀM TỪ SỔ TAY (ZERO QUERY)
         const demSoLuotLam = GocHocSinhState.tien_do_lam_bai || {};
 
         // 4. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
@@ -179,25 +177,32 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             else dsDangMo.push(nv);
         });
 
-        // HÀM PHỤ 1: Đếm ngược thời gian còn lại
-        const tinhThoiGian = (targetDate, isPast) => {
+        // ==========================================================
+        // 🌟 HÀM PHỤ 1: TÍNH THỜI GIAN THÔNG MINH (Tự biết Quá khứ / Tương lai)
+        // ==========================================================
+        const tinhKhoangCachThoiGian = (targetDate, isMo) => {
             if (!targetDate) return "";
-            const diff = isPast ? (now.getTime() - targetDate.getTime()) : (targetDate.getTime() - now.getTime());
-            if (diff <= 0) return isPast ? "Vừa xong" : "Đã hết hạn";
+            const diff = targetDate.getTime() - now.getTime(); // Dương = Tương lai, Âm = Quá khứ
+            const absDiff = Math.abs(diff);
 
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const d = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((absDiff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((absDiff / (1000 * 60)) % 60);
 
             let str = "";
             if (d > 0) str += `${d} ngày `;
             if (h > 0) str += `${h} giờ `;
             if (m > 0 && d === 0) str += `${m} phút`;
+            if (str === "") str = "vài giây";
 
-            return isPast ? `(Mở cách đây ${str})` : `(Còn ${str})`;
+            if (isMo) {
+                return diff > 0 ? `(Mở sau ${str})` : `(Đã mở ${str} trước)`;
+            } else {
+                return diff > 0 ? `(Còn ${str})` : `(Đã đóng ${str} trước)`;
+            }
         };
 
-        // HÀM PHỤ 2: Tính thời gian trôi qua
+        // HÀM PHỤ 2: Tính thời gian trôi qua cho Ngày tạo
         const thoiGianTroiQua = (dateStr) => {
             if (!dateStr) return "Không rõ";
             const date = new Date(dateStr);
@@ -232,17 +237,10 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
             const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
 
-            // ==================================================
-            // 🌟 LẤY SỐ LƯỢT ĐÃ LÀM TỪ BIẾN STATE
-            // ==================================================
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
             const gioiHanLuot = nv.so_luot_lam_bai || 0;
             const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
-
-
-
-
 
             let nutHanhDong = "", mauVien = "", mauNen = "";
             let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
@@ -260,7 +258,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                 nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
             } else if (loai === 'DA_DONG') {
                 mauVien = "#dc3545"; mauNen = "#fff5f6";
-                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả đang được nâng cấp')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 XEM KẾT QUẢ</button>`;
+                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả đang được cập nhật')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 XEM KẾT QUẢ</button>`;
             }
 
             return `
@@ -293,12 +291,12 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                     <div style="margin-bottom: 15px; font-size: 13px;">
                         <div style="margin-bottom: 5px;">
                             <span style="color: #28a745; font-weight: bold;">🟢 MỞ:</span> ${fTime(tMo)} 
-                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhThoiGian(tMo, true) : ""}</span>
+                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhKhoangCachThoiGian(tMo, true) : ""}</span>
                         </div>
                         <div>
                             <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG:</span> ${fTime(tDong)}
                             <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold; background: #fff3cd; padding: 2px 4px; border-radius: 3px;">
-                                ${tDong && now.getTime() < tDong.getTime() ? tinhThoiGian(tDong, false) : ""}
+                                ${tDong ? tinhKhoangCachThoiGian(tDong, false) : ""}
                             </span>
                         </div>
                     </div>
