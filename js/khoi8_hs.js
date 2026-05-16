@@ -90,14 +90,14 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP ĐẾM LƯỢT ĐÃ LÀM - ZERO QUERY)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ZERO QUERY - SIÊU TỐI ƯU)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tổng hợp bài tập từ các lớp...</h3></div>`;
 
     try {
-        // 1. TẠO CHUỖI TRUY VẤN
+        // 1. TẠO CHUỖI TRUY VẤN TÌM LỚP
         let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
         if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
 
@@ -121,7 +121,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         } catch (error) { }
 
         // ==========================================================
-        // 🌟 3. LẤY SỐ LƯỢT ĐÃ LÀM TỪ SỔ TAY (KHÔNG TRUY VẤN DATABASE)
+        // 🌟 3. LẤY SỐ LƯỢT ĐÃ LÀM TỪ SỔ TAY (KHÔNG TRUY VẤN DATABASE NỮA)
         // ==========================================================
         const demSoLuotLam = GocHocSinhState.tien_do_lam_bai || {};
 
@@ -149,7 +149,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             }
         }
 
-        // 5. PHÂN LOẠI NHIỆM VỤ
+        // 5. PHÂN LOẠI NHIỆM VỤ (CHƯA MỞ, ĐANG MỞ, ĐÃ ĐÓNG)
         const now = new Date();
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
 
@@ -164,7 +164,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             else dsDangMo.push(nv);
         });
 
-        // 🌟 HÀM PHỤ 1: Đếm ngược thời gian còn lại
+        // HÀM PHỤ 1: Đếm ngược thời gian còn lại
         const tinhThoiGian = (targetDate, isPast) => {
             if (!targetDate) return "";
             const diff = isPast ? (now.getTime() - targetDate.getTime()) : (targetDate.getTime() - now.getTime());
@@ -182,7 +182,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return isPast ? `(Mở cách đây ${str})` : `(Còn ${str})`;
         };
 
-        // 🌟 HÀM PHỤ 2: Tính thời gian trôi qua
+        // HÀM PHỤ 2: Tính thời gian trôi qua
         const thoiGianTroiQua = (dateStr) => {
             if (!dateStr) return "Không rõ";
             const date = new Date(dateStr);
@@ -206,10 +206,8 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
             const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
 
-            // Xử lý Cấu trúc đề
             const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
 
-            // Tra cứu Lớp học của nhiệm vụ này
             let tenLopHienThi = "Không xác định";
             try {
                 const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
@@ -220,10 +218,10 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
 
             // ==================================================
-            // 🌟 TÍNH TOÁN SỐ LƯỢT ĐÃ LÀM VÀ KHÓA NÚT NẾU HẾT
+            // 🌟 LẤY SỐ LƯỢT ĐÃ LÀM TỪ BIẾN STATE
             // ==================================================
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
-            const gioiHanLuot = nv.so_luot_lam_bai || 0; // 0 là vô hạn
+            const gioiHanLuot = nv.so_luot_lam_bai || 0;
             const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
@@ -232,11 +230,9 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
             if (loai === 'DANG_MO') {
                 if (daHetLuot) {
-                    // Nếu Đang mở nhưng Đã làm hết lượt -> Khóa nút lại
                     mauVien = "#dc3545"; mauNen = "#fff5f6";
                     nutHanhDong = `<button onclick="alert('Em đã sử dụng hết ${gioiHanLuot} lượt làm bài của nhiệm vụ này!')" style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">⛔ ĐÃ HẾT LƯỢT LÀM</button>`;
                 } else {
-                    // Còn lượt thì hiển thị nút màu xanh
                     mauVien = "#28a745"; mauNen = "#f4fdf6";
                     nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
                 }
@@ -250,7 +246,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
             return `
                 <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
-                    
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                         <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
                         <span style="font-size: 10px; padding: 4px 6px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 4px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
@@ -315,6 +310,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
 }
+
 // ==============================================================
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
