@@ -225,6 +225,10 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
+
+
+
+
             let nutHanhDong = "", mauVien = "", mauNen = "";
             let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
 
