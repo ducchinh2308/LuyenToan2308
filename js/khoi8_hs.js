@@ -563,23 +563,59 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
         console.log("urlFileGitHub:" + urlFileGitHub);
         console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
 
-        // 5. LƯU VÀO PHIÊN LÀM BÀI
+        // =========================================================
+        // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
+        // =========================================================
+        const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
+
+        // Hỏi Supabase xem HS đã làm bao nhiêu lần rồi
+        const { count, error: countErr } = await _supabase
+            .from('ket_qua_thi')
+            .select('*', { count: 'exact', head: true })
+            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+            .eq('ma_nhiem_vu', maNhiemVuThuc);
+
+        const lanThuHienTai = (count || 0) + 1; // Tính lần làm bài hiện tại
+
+        // Lập tức tạo 1 dòng "Đang làm" trên Database
+        const { data: recordNhao, error: errNhao } = await _supabase
+            .from('ket_qua_thi')
+            .insert([{
+                uid_hoc_sinh: GocHocSinhState.uid,
+                ma_nhiem_vu: maNhiemVuThuc,
+                lan_thu: lanThuHienTai,
+                tong_diem: 0,
+                chi_tiet_lam_bai: [],
+                thoi_gian_lam_bai: 0, // Mặc định 0 giây
+                trang_thai: "Đang làm", // Đánh dấu chưa nộp
+                thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
+            }])
+            .select('id')
+            .single();
+
+        if (errNhao) throw errNhao;
+
+        // Lưu toàn bộ vào RAM trình duyệt
         window.PhienLamBai = {
-            ma_nhiem_vu: nv.ma_nhiem_vu,
-            ten_nhiem_vu: nv.ten_nhiem_vu,
-            thoi_gian_con_lai: nv.thoi_gian_lam_bai * 60,
+            id_ket_qua_database: recordNhao.id, // 🌟 GIỮ ID NÀY LẠI ĐỂ LÁT NỮA UPDATE
+            ma_nhiem_vu: maNhiemVuThuc,
+            ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+            thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
             tong_so_cau: deThiDaTron.length,
             danh_sach_cau_hoi: deThiDaTron,
             dap_an_hoc_sinh: {},
             id_timer: null,
-            base_url_anh: baseUrlHinhAnh // 🌟 Lưu lại để Hàm 8.10 dùng gọi ảnh
+            base_url_anh: baseUrlHinhAnh
         };
 
-        console.log("📦 RÁP ĐỀ THÀNH CÔNG:", window.PhienLamBai);
+        console.log("📦 RÁP ĐỀ THÀNH CÔNG. ID DATABASE:", window.PhienLamBai.id_ket_qua_database);
 
+        // =========================================================
         // 6. MỞ GIAO DIỆN THI
+        // =========================================================
         ham_8_10_ve_giao_dien_lam_bai();
 
+    
     } catch (err) {
         console.error("LỖI NẠP ĐỀ:", err);
         alert("Lỗi nạp đề thi: " + err.message);
@@ -920,9 +956,9 @@ window.ham_8_thoat_phong_thi = async () => {
 };
 
 // =====================================================================
-// HÀM 8.11: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (BẢN FULL THÔNG TIN)
+// HÀM 8.12: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (UPDATE BẢN NHÁP)
 // =====================================================================
-async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
+async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
         if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án ở cột bên trái.")) return;
     }
@@ -930,10 +966,10 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
     const btnNop = document.getElementById('btn-nop-bai');
     if (btnNop) { btnNop.innerText = "⏳ ĐANG CHẤM ĐIỂM..."; btnNop.disabled = true; }
 
-    clearInterval(window.PhienLamBai.id_timer);
+    const phien = window.PhienLamBai;
+    clearInterval(phien.id_timer);
 
     let tongDiem = 0;
-    const phien = window.PhienLamBai;
     let chiTietBaiLam = [];
 
     // 1. DUYỆT QUA TỪNG CÂU ĐỂ CHẤM ĐIỂM
@@ -975,33 +1011,25 @@ async function ham_8_11_nop_bai_va_cham_diem(isForce = false) {
     });
 
     try {
-        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI
-        const tBatDau = phien.thoi_diem_bat_dau;// || Date.now();
+        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI (Tính bằng giây để hợp lệ với Supabase)
+        const tBatDau = phien.thoi_diem_bat_dau || Date.now();
         const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
-        const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-        // 3. HỎI SUPABASE XEM HS ĐÃ LÀM NHIỆM VỤ NÀY MẤY LẦN ĐỂ LẤY "LẦN THỨ"
-        const { count, error: countErr } = await _supabase
-            .from('ket_qua_thi')
-            .select('*', { count: 'exact', head: true })
-            .eq('uid_hoc_sinh', GocHocSinhState.uid)
-            .eq('ma_nhiem_vu', phien.ma_nhiem_vu);
-
-        if (countErr) throw countErr;
-        const lanThuHienTai = (count || 0) + 1; // Đã làm count lần -> Lần này là count + 1
-
-        // 4. ĐÓNG GÓI DỮ LIỆU ĐỂ BẮN LÊN BẢNG
-        const luotLam = {
-            uid_hoc_sinh: GocHocSinhState.uid,
-            ma_nhiem_vu: phien.ma_nhiem_vu,
-            lan_thu: lanThuHienTai,                           // 🌟 Đã có Lần thứ
+        // 3. ĐÓNG GÓI DỮ LIỆU ĐỂ CẬP NHẬT LẠI VÀO DATABASE
+        const luotLamMoi = {
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
-            thoi_gian_lam_bai: thoiGianLamBaiStr,             // 🌟 Đã có Thời gian thực tế
+            thoi_gian_lam_bai: soGiayThucTe, // 🌟 TRUYỀN SỐ GIÂY (INT) THAY VÌ CHUỖI
+            trang_thai: "Đã nộp",
             thoi_gian_nop: new Date().toISOString()
         };
 
-        const { error } = await _supabase.from('ket_qua_thi').insert([luotLam]);
+        // 🌟 DÙNG LỆNH UPDATE THAY VÌ INSERT
+        const { error } = await _supabase
+            .from('ket_qua_thi')
+            .update(luotLamMoi)
+            .eq('id', phien.id_ket_qua_database); // Khớp chuẩn ID lúc mới vào thi
+
         if (error) throw error;
 
         // Trả lại thanh cuộn gốc, xóa không gian thi
