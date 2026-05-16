@@ -4116,7 +4116,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
         const encodedContent = utf8ToBase64(fileContent);
 
         // 5. Đẩy file JSON tổng lên Github qua API
-        const GITHUB_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxx"; // ⚠️ NHỚ ĐIỀN TOKEN CỦA THẦY VÀO ĐÂY
+        const GITHUB_TOKEN = "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"; // ⚠️ NHỚ ĐIỀN TOKEN CỦA THẦY VÀO ĐÂY
         const GITHUB_REPO = "ducchinh2308/LuyenToan2308";
         const tenFileGithub = `Kho_De_Thi/${maHocLieu}/LoiGiai_${maHocLieu}.json`;
 
