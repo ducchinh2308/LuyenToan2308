@@ -1,5 +1,5 @@
 ﻿// Đặt dòng này ở DÒNG SỐ 1 của file app.js
-const APP_VERSION = "app.js cập nhật lúc 19h13 - Ngày 13/05";
+const APP_VERSION = "app.js cập nhật lúc 19h18 - Ngày 13/05";
 
 // In ra cửa sổ F12 (Console) với màu nền nổi bật để đập ngay vào mắt
 console.log(`%c🚀 ĐANG CHẠY KHỐI 1-7 BẢN: ${APP_VERSION}`, "background: #d35400; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
@@ -2070,7 +2070,7 @@ const CFG_NV = {
 };
 
 // Hàm 7.1: Vẽ bộ khung giao diện Quản lý Nhiệm Vụ
-function ham_7_1_ve_quan_ly_nhiem_vu() {
+function ham_7_1_ve_quan_ly_nhiem_vu1() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
     vungLamViec.innerHTML = `
@@ -2092,6 +2092,55 @@ function ham_7_1_ve_quan_ly_nhiem_vu() {
 
     ham_7_2_tai_danh_sach_nhiem_vu();
 }
+
+
+// ==============================================================
+// Hàm 7.1: MÁY QUÉT DÒ LỖI QUẢN LÝ NHIỆM VỤ (Dành riêng cho điện thoại)
+// ==============================================================
+window.ham_7_1_ve_quan_ly_nhiem_vu = async function () {
+    alert("📍 BƯỚC 1: Đã bấm vào tab Quản lý Nhiệm Vụ!");
+
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    if (!vungLamViec) {
+        alert("❌ LỖI: Không tìm thấy vùng làm việc (vung-lam-viec-chi-tiet) trên giao diện!");
+        return;
+    }
+
+    vungLamViec.innerHTML = `<h3 style="color:blue;">⏳ Đang tải dữ liệu...</h3>`;
+
+    try {
+        alert("📍 BƯỚC 2: Bắt đầu gửi lệnh lấy dữ liệu từ Supabase...");
+
+        const { data, error } = await _supabase.from('nhiem_vu').select('*').order('ngay_tao', { ascending: false });
+
+        if (error) throw error;
+
+        alert(`📍 BƯỚC 3: Rút dữ liệu thành công! Đã tìm thấy ${data ? data.length : 0} nhiệm vụ.`);
+
+        // Vẽ một cái bảng siêu thô sơ để loại trừ khả năng vỡ CSS
+        let html = `<table border="1" width="100%" style="margin-top:20px; background:white;">
+                        <tr><th>Tên Nhiệm Vụ</th></tr>`;
+
+        if (data && data.length > 0) {
+            data.forEach(nv => {
+                html += `<tr><td style="padding:10px;">${nv.ten_nhiem_vu || 'Không tên'}</td></tr>`;
+            });
+        } else {
+            html += `<tr><td style="padding:10px; color:red;">Danh sách trống không</td></tr>`;
+        }
+        html += `</table>`;
+
+        vungLamViec.innerHTML = html;
+
+        alert("📍 BƯỚC 4: Đã vẽ xong giao diện lên màn hình điện thoại!");
+
+    } catch (e) {
+        alert("🚨 BẮT ĐƯỢC LỖI RỒI THẦY ƠI:\n\n" + e.message);
+        vungLamViec.innerHTML = `<div style="color:red; font-weight:bold;">LỖI: ${e.message}</div>`;
+    }
+}
+
+
 
 // Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu (Bổ sung lấy tên lớp)
 async function ham_7_2_tai_danh_sach_nhiem_vu() {
