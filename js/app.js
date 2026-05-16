@@ -4052,8 +4052,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
 
     // Thầy chèn thêm mấy chữ "X" vào giữa chữ ghp_ để phá vỡ nhận diện của Bot
     // Sau đó dùng .replace(/X/g, '') để Javascript tự động xóa chữ X đi lúc chạy code
-    const GITHUB_TOKEN = "gXhXpX_EWSx8Gn9tSuFP1g03sDnHu5EbQb8Ip4AtebI".replace(/X/g, '');
-
+    
 
 
     const GITHUB_REPO = "ducchinh2308/LuyenToan2308";
