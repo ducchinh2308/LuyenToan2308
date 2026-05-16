@@ -1311,7 +1311,7 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
         });
     };
 
-    // 🌟 Ẩn hiển thị điểm từng câu nếu chưa cho xem đáp án để tăng tính bảo mật
+    // Ẩn hiển thị điểm từng câu nếu chưa cho xem đáp án để bảo mật
     let diemBadge = `<span style="background:#e9ecef; color:#495057; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">Đã ghi nhận</span>`;
     if (choPhepXemDapAn) {
         diemBadge = baiLamHS.diem > 0
@@ -1319,6 +1319,7 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
             : `<span style="background:#f8d7da; color:#721c24; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">0 đ</span>`;
     }
 
+    // Dùng pointer-events: none để đóng băng không cho click sửa bài
     let htmlBlock = `
         <div id="review-cau-${maCauLogic}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05); pointer-events: none;">
             <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
@@ -1344,12 +1345,10 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
             let bgLabel = "#f8f9fa", borderLabel = "#ddd", icon = "";
 
             if (choPhepXemDapAn) {
-                // Nếu được xem đáp án: Tô xanh đỏ tím vàng bình thường
                 if (isStudentPicked && isCorrect) { bgLabel = "#d4edda"; borderLabel = "#28a745"; icon = "✅"; }
                 else if (isStudentPicked && !isCorrect) { bgLabel = "#f8d7da"; borderLabel = "#dc3545"; icon = "❌"; }
                 else if (!isStudentPicked && isCorrect) { bgLabel = "#e8f0fe"; borderLabel = "#80bdff"; icon = "🎯 (Đáp án đúng)"; }
             } else {
-                // Nếu KHÔNG được xem đáp án: Chỉ làm nổi bật ô học sinh chọn (Màu xám/xanh nhạt), tuyệt đối giữ bí mật đáp án chuẩn
                 if (isStudentPicked) { bgLabel = "#e8f4f8"; borderLabel = "#b8daff"; icon = "🔷 Lựa chọn của em"; }
             }
 
@@ -1379,7 +1378,6 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
             let bgF = "transparent", borderF = "transparent", colorF = "#495057";
 
             if (choPhepXemDapAn) {
-                // Cho xem đáp án: Ráp logic chuẩn
                 colorT = "#28a745"; colorF = "#dc3545";
                 if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
                 else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
@@ -1387,9 +1385,8 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
 
                 if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
                 else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
-                else if (!hsF && correctVal === 'F') { bgF = "#e8f0fe"; borderF = "#80bdff"; colorF = "#0056b3"; }
+                else if (!hsF && correctVal === 'F') { bgF = "#e8f0fe"; borderT = "#80bdff"; colorF = "#0056b3"; }
             } else {
-                // Giữ bí mật: Chỉ hiện vòng tròn viền xanh lơ tại ô học sinh đã bấm chọn
                 if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
                 if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
             }
@@ -1414,7 +1411,6 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
         const hsAns = baiLamHS.luaChonHS || "";
         const isCorrect = (baiLamHS.ketQua === "Đúng");
 
-        // Mặc định ô màu xám xanh nếu chưa công bố
         let borderColor = "#1a73e8", bgInput = "#fff", labelStatus = "Lựa chọn bài làm của em:";
         if (choPhepXemDapAn) {
             borderColor = isCorrect ? "#28a745" : "#dc3545";
@@ -1436,17 +1432,14 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
             </div>`;
     }
 
-    // =========================================================================
-    // 🌟 4. BỔ SUNG KHU VỰC HIỂN THỊ LỜI GIẢI CHI TIẾT THEO YÊU CẦU CỦA THẦY CHÍNH
-    // =========================================================================
+    // 4. KHU VỰC HIỂN THỊ LỜI GIẢI CHI TIẾT
     if (choPhepXemLoiGiai && cau.loiGiaiHtml) {
         const idVungLoiGiai = `loigiai-${maCauLogic}`;
-        // Thêm nút bấm phản hồi để mở rộng/thu gọn lời giải
         htmlBlock += `
             <div style="margin-top: 20px; border-top: 1px dotted #ccc; padding-top: 15px; pointer-events: auto;">
                 <button onclick="let v=document.getElementById('${idVungLoiGiai}'); if(v.style.display==='none'){v.style.display='block'; this.innerText='📖 THU GỌN LỜI GIẢI';}else{v.style.display='none'; this.innerText='📖 XEM LỜI GIẢI CHI TIẾT';}" 
                         style="padding: 8px 16px; background: #fff; color: #6f42c1; border: 1.5px solid #6f42c1; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s;"
-                        onmouseover="this.style.background='#6f42c1'; this.style.color='#white'" onmouseout="this.style.background='#white'; this.style.color='#6f42c1'">
+                        onmouseover="this.style.background='#6f42c1'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#6f42c1'">
                     📖 XEM LỜI GIẢI CHI TIẾT
                 </button>
                 <div id="${idVungLoiGiai}" style="display: none; margin-top: 15px; padding: 20px; background: #faf8ff; border-left: 4px solid #6f42c1; border-radius: 4px; font-size: 16px; line-height: 1.6; overflow-x: auto; color: #2c3e50;">
@@ -1458,7 +1451,6 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
 
     return htmlBlock + `</div>`;
 }
-
 
 window.dongGiaoDienXemLai = function () {
     document.body.style.overflow = '';
