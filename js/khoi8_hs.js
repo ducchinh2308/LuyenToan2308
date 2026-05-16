@@ -1042,9 +1042,9 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         document.getElementById('dashboard-container').style.display = 'block';
 
         // Chỉ cần gọi lại Tab Nhiệm vụ để nó vẽ lại giao diện (sử dụng RAM vừa được cộng thêm 1 lượt)
-        if (typeof ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
+        //if (typeof ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
             ham_8_2_tab_nhiem_vu_bat_buoc();
-        }
+        //}
     } catch (err) {
         alert("Lỗi lưu điểm: " + err.message);
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
