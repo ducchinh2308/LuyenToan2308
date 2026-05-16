@@ -1163,7 +1163,7 @@ window.ham_8_13_xem_lai_ket_qua = async function (maNhiemVu, idKetQua) {
 };
 
 // ==============================================================
-// Hàm 8.14: Vẽ Giao diện Xem Lại (Kế thừa HTML gốc của thầy)
+// Hàm 8.14: Vẽ Giao diện Xem Lại (KIỂM TRA BẢO MẬT & ĐIỀU KIỆN CẤU HÌNH)
 // ==============================================================
 function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     document.body.style.overflow = 'hidden';
@@ -1174,6 +1174,34 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
         ketQua.chi_tiet_lam_bai.forEach(item => { chiTietHS[item.maCau] = item; });
     }
 
+    // 🌟 BẮT ĐẦU PHÂN TÍCH CẤU HÌNH BẢO MẬT TỪ DATABASE (cau_hinh_dap_an)
+    let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
+    try {
+        congBo = typeof nv.cau_hinh_dap_an === 'string' ? JSON.parse(nv.cau_hinh_dap_an) : (nv.cau_hinh_dap_an || congBo);
+    } catch (e) { }
+
+    const now = new Date();
+    const tDongDe = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+
+    // 🌟 Kiểm tra 1: Xem đã đến thời điểm được công bố chưa?
+    let hopLeThoiDiem = false;
+    const td = congBo.thoi_diem;
+
+    if (td === CFG_NV.THOI_DIEM.SAU_NOP) {
+        hopLeThoiDiem = true; // Học sinh nộp rồi là được xem ngay
+    } else if (td === CFG_NV.THOI_DIEM.SAU_HET_HAN) {
+        if (tDongDe && now > tDongDe) hopLeThoiDiem = true; // Đã qua hạn đóng đề
+    } else if (td && td.startsWith("HEN_GIO|")) {
+        const tHenGio = new Date(td.split("|")[1]);
+        if (now > tHenGio) hopLeThoiDiem = true; // Đã qua giờ hẹn
+    }
+
+    // 🌟 Kiểm tra 2: Quyết định quyền hạn hiển thị
+    // Quyền xem đáp án đúng sai (Tô xanh/đỏ)
+    const choPhepXemDapAn = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM || congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
+    // Quyền xem nút lời giải chi tiết
+    const choPhepXemLoiGiai = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
+
     let dsTN = [], dsDS = [], dsTLN = [];
     deThi.forEach(cau => {
         const loai = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
@@ -1183,6 +1211,15 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     });
 
     let htmlContentRight = `<div style="background:#d35400; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔍 XEM LẠI BÀI: ${nv.ten_nhiem_vu}</h2></div>`;
+
+    // Nếu bị giới hạn cấu hình, hiện thông báo nhỏ cho HS hiểu
+    if (!choPhepXemDapAn) {
+        htmlContentRight += `
+            <div style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; font-size: 14px;">
+                🔒 Hệ thống đang khóa đáp án và lời giải chi tiết theo quy định của Thầy/Cô. Em hiện tại chỉ được xem điểm số và lựa chọn của mình.
+            </div>`;
+    }
+
     let htmlNavLeft = ``;
 
     const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
@@ -1190,19 +1227,26 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
 
         htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
         let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
-        htmlNavLeft += `<div style="margin-bottom: 15px;"><h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍${tenNav}</h4><div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+        htmlNavLeft += `<div style="margin-bottom: 15px;"><h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍 PHẦN ${tenNav}</h4><div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
         let sttPhan = 1;
         danhSach.forEach(cau => {
             const maCauLogic = cau.ma_cau_hoi || cau.maCau;
             const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
 
-            htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh);
+            // Truyền biến cấu hình vào hàm con xử lý
+            htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
-            // Xử lý màu nút Navigator bên trái
+            // Định hình màu nút Navigator bên trái dựa trên cấu hình bảo mật
             let mauNut = "#e9ecef", vienNut = "#ced4da", mauChu = "#495057";
-            if (baiLamCuaHS.ketQua === "Đúng") { mauNut = "#d4edda"; vienNut = "#c3e6cb"; mauChu = "#155724"; }
-            else if (baiLamCuaHS.ketQua === "Sai" || (baiLamCuaHS.diem > 0 && baiLamCuaHS.diem < 1 && loaiCau === 'DS')) { mauNut = "#f8d7da"; vienNut = "#f5c6cb"; mauChu = "#721c24"; }
+            if (choPhepXemDapAn) {
+                if (baiLamCuaHS.ketQua === "Đúng") { mauNut = "#d4edda"; vienNut = "#c3e6cb"; mauChu = "#155724"; }
+                else if (baiLamCuaHS.ketQua === "Sai" || (baiLamCuaHS.diem > 0 && baiLamCuaHS.diem < 1 && loaiCau === 'DS')) { mauNut = "#f8d7da"; vienNut = "#f5c6cb"; mauChu = "#721c24"; }
+            } else {
+                if (baiLamHS.luaChonHS || (loaiCau === 'DS' && Object.keys(baiLamHS.luaChonHS || {}).length > 0)) {
+                    mauNut = "#e8f4f8"; vienNut = "#b8daff"; mauChu = "#0056b3"; // Đã làm nhưng chưa biết đúng/sai
+                }
+            }
 
             htmlNavLeft += `
                 <div onclick="document.getElementById('review-cau-${maCauLogic}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
@@ -1218,7 +1262,6 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
     sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
 
-    // Khung 2 cột (Giống 100% lúc thi, thay Timer bằng Điểm)
     const rootDiv = document.createElement('div');
     rootDiv.id = 'khong-gian-xem-lai-toan-man-hinh';
     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
@@ -1226,7 +1269,7 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     rootDiv.innerHTML = `
         <div style="flex: 0 0 70px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
             <div style="padding: 15px; background: #fffdf5; border-bottom: 1px solid #eee; text-align:center;">
-                <div style="font-size: 12px; color: #d35400; font-weight: bold; text-transform: uppercase;">Điểm bài làm</div>
+                <div style="font-size: 12px; color: #d35400; font-weight: bold; text-transform: uppercase;">Điểm số</div>
                 <div style="color: #c0392b; font-size: 32px; font-weight: 900; line-height: 1.2;">${ketQua.tong_diem}</div>
             </div>
             <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
@@ -1253,9 +1296,9 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
 }
 
 // ==============================================================
-// Hàm Bổ trợ: Vẽ từng câu hỏi (Nhúng logic Xanh/Đỏ)
+// Hàm Bổ trợ: Vẽ từng câu hỏi (Nhúng điều kiện hiện Đáp án & Lời giải)
 // ==============================================================
-function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
+function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
     const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
 
@@ -1268,10 +1311,14 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
         });
     };
 
-    let diemBadge = `<span style="background:#e9ecef; color:#495057; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">0 đ</span>`;
-    if (baiLamHS.diem > 0) diemBadge = `<span style="background:#d4edda; color:#155724; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">+${baiLamHS.diem} đ</span>`;
+    // 🌟 Ẩn hiển thị điểm từng câu nếu chưa cho xem đáp án để tăng tính bảo mật
+    let diemBadge = `<span style="background:#e9ecef; color:#495057; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">Đã ghi nhận</span>`;
+    if (choPhepXemDapAn) {
+        diemBadge = baiLamHS.diem > 0
+            ? `<span style="background:#d4edda; color:#155724; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">+${baiLamHS.diem} đ</span>`
+            : `<span style="background:#f8d7da; color:#721c24; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">0 đ</span>`;
+    }
 
-    // Dùng pointer-events: none để đóng băng không cho click
     let htmlBlock = `
         <div id="review-cau-${maCauLogic}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05); pointer-events: none;">
             <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
@@ -1284,6 +1331,7 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
             <div style="font-size: 17px; line-height: 1.6; margin-bottom: 20px; margin-top: 15px; overflow-x: auto;">${xuLyNoiDung(cau.cauDan || cau.noiDungHtml)}</div>
     `;
 
+    // 1. DẠNG TRẮC NGHIỆM MULTIPLE CHOICE (TN)
     if (loaiCau === "TN") {
         htmlBlock += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
         const mangPA = cau.dsTron || [{ idGoc: 'A', text: cau.paA }, { idGoc: 'B', text: cau.paB }, { idGoc: 'C', text: cau.paC }, { idGoc: 'D', text: cau.paD }];
@@ -1294,9 +1342,16 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
             const isCorrect = (pa.idGoc === cau.dap_an);
 
             let bgLabel = "#f8f9fa", borderLabel = "#ddd", icon = "";
-            if (isStudentPicked && isCorrect) { bgLabel = "#d4edda"; borderLabel = "#28a745"; icon = "✅"; }
-            else if (isStudentPicked && !isCorrect) { bgLabel = "#f8d7da"; borderLabel = "#dc3545"; icon = "❌"; }
-            else if (!isStudentPicked && isCorrect) { bgLabel = "#e8f0fe"; borderLabel = "#80bdff"; icon = "🎯 (Đáp án đúng)"; }
+
+            if (choPhepXemDapAn) {
+                // Nếu được xem đáp án: Tô xanh đỏ tím vàng bình thường
+                if (isStudentPicked && isCorrect) { bgLabel = "#d4edda"; borderLabel = "#28a745"; icon = "✅"; }
+                else if (isStudentPicked && !isCorrect) { bgLabel = "#f8d7da"; borderLabel = "#dc3545"; icon = "❌"; }
+                else if (!isStudentPicked && isCorrect) { bgLabel = "#e8f0fe"; borderLabel = "#80bdff"; icon = "🎯 (Đáp án đúng)"; }
+            } else {
+                // Nếu KHÔNG được xem đáp án: Chỉ làm nổi bật ô học sinh chọn (Màu xám/xanh nhạt), tuyệt đối giữ bí mật đáp án chuẩn
+                if (isStudentPicked) { bgLabel = "#e8f4f8"; borderLabel = "#b8daff"; icon = "🔷 Lựa chọn của em"; }
+            }
 
             htmlBlock += `
                 <label style="display: flex; align-items: flex-start; padding: 12px; border: 2px solid ${borderLabel}; border-radius: 6px; background: ${bgLabel};">
@@ -1306,6 +1361,7 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
         });
         htmlBlock += `</div>`;
     }
+    // 2. DẠNG ĐÚNG SAI (DS)
     else if (loaiCau === "DS") {
         htmlBlock += `<div class="cau-ds">`;
         const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
@@ -1319,15 +1375,24 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
 
             const hsT = (hsChon === 'T'), hsF = (hsChon === 'F');
 
-            let colorT = "#28a745", bgT = "transparent", borderT = "transparent";
-            if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
-            else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
-            else if (!hsT && correctVal === 'T') { bgT = "#e8f0fe"; borderT = "#80bdff"; colorT = "#0056b3"; }
+            let bgT = "transparent", borderT = "transparent", colorT = "#495057";
+            let bgF = "transparent", borderF = "transparent", colorF = "#495057";
 
-            let colorF = "#dc3545", bgF = "transparent", borderF = "transparent";
-            if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
-            else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
-            else if (!hsF && correctVal === 'F') { bgF = "#e8f0fe"; borderF = "#80bdff"; colorF = "#0056b3"; }
+            if (choPhepXemDapAn) {
+                // Cho xem đáp án: Ráp logic chuẩn
+                colorT = "#28a745"; colorF = "#dc3545";
+                if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
+                else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
+                else if (!hsT && correctVal === 'T') { bgT = "#e8f0fe"; borderT = "#80bdff"; colorT = "#0056b3"; }
+
+                if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
+                else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
+                else if (!hsF && correctVal === 'F') { bgF = "#e8f0fe"; borderF = "#80bdff"; colorF = "#0056b3"; }
+            } else {
+                // Giữ bí mật: Chỉ hiện vòng tròn viền xanh lơ tại ô học sinh đã bấm chọn
+                if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
+                if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
+            }
 
             htmlBlock += `
                 <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
@@ -1344,12 +1409,18 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
         });
         htmlBlock += `</div>`;
     }
+    // 3. DẠNG TRẢ LỜI NGẮN (TLN)
     else if (loaiCau === "TLN") {
         const hsAns = baiLamHS.luaChonHS || "";
         const isCorrect = (baiLamHS.ketQua === "Đúng");
 
-        const borderColor = isCorrect ? "#28a745" : "#dc3545";
-        const bgInput = isCorrect ? "#d4edda" : "#f8d7da";
+        // Mặc định ô màu xám xanh nếu chưa công bố
+        let borderColor = "#1a73e8", bgInput = "#fff", labelStatus = "Lựa chọn bài làm của em:";
+        if (choPhepXemDapAn) {
+            borderColor = isCorrect ? "#28a745" : "#dc3545";
+            bgInput = isCorrect ? "#d4edda" : "#f8d7da";
+            labelStatus = isCorrect ? "✅ CHÍNH XÁC" : "❌ CHƯA CHÍNH XÁC";
+        }
 
         let inputHtml = "";
         for (let i = 0; i < 4; i++) {
@@ -1359,13 +1430,35 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh) {
 
         htmlBlock += `
             <div style="margin-top: 15px; padding: 25px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; text-align: center;">
+                <div style="font-weight: bold; color: ${borderColor}; font-size: 15px; margin-bottom: 15px;">${labelStatus}</div>
                 <div style="display: flex; justify-content: center; gap: 12px; margin-bottom:15px;">${inputHtml}</div>
-                ${!isCorrect ? `<div style="font-size: 16px; color: #1a73e8; font-weight: bold; background: #e8f4f8; display: inline-block; padding: 5px 15px; border-radius: 20px;">🎯 Đáp án chuẩn: ${cau.dap_an}</div>` : ''}
+                ${(choPhepXemDapAn && !isCorrect) ? `<div style="font-size: 16px; color: #1a73e8; font-weight: bold; background: #e8f4f8; display: inline-block; padding: 5px 15px; border-radius: 20px;">🎯 Đáp án chuẩn: ${cau.dap_an}</div>` : ''}
+            </div>`;
+    }
+
+    // =========================================================================
+    // 🌟 4. BỔ SUNG KHU VỰC HIỂN THỊ LỜI GIẢI CHI TIẾT THEO YÊU CẦU CỦA THẦY CHÍNH
+    // =========================================================================
+    if (choPhepXemLoiGiai && cau.loiGiaiHtml) {
+        const idVungLoiGiai = `loigiai-${maCauLogic}`;
+        // Thêm nút bấm phản hồi để mở rộng/thu gọn lời giải
+        htmlBlock += `
+            <div style="margin-top: 20px; border-top: 1px dotted #ccc; padding-top: 15px; pointer-events: auto;">
+                <button onclick="let v=document.getElementById('${idVungLoiGiai}'); if(v.style.display==='none'){v.style.display='block'; this.innerText='📖 THU GỌN LỜI GIẢI';}else{v.style.display='none'; this.innerText='📖 XEM LỜI GIẢI CHI TIẾT';}" 
+                        style="padding: 8px 16px; background: #fff; color: #6f42c1; border: 1.5px solid #6f42c1; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s;"
+                        onmouseover="this.style.background='#6f42c1'; this.style.color='#white'" onmouseout="this.style.background='#white'; this.style.color='#6f42c1'">
+                    📖 XEM LỜI GIẢI CHI TIẾT
+                </button>
+                <div id="${idVungLoiGiai}" style="display: none; margin-top: 15px; padding: 20px; background: #faf8ff; border-left: 4px solid #6f42c1; border-radius: 4px; font-size: 16px; line-height: 1.6; overflow-x: auto; color: #2c3e50;">
+                    <div style="font-weight: bold; color: #6f42c1; margin-bottom: 8px; font-size:14px; text-transform:uppercase;">💡 Hướng dẫn giải chi tiết:</div>
+                    ${xuLyNoiDung(cau.loiGiaiHtml)}
+                </div>
             </div>`;
     }
 
     return htmlBlock + `</div>`;
 }
+
 
 window.dongGiaoDienXemLai = function () {
     document.body.style.overflow = '';
