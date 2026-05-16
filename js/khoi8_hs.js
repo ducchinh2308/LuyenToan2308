@@ -90,17 +90,13 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 }
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP ĐA LỚP & CHI TIẾT NHIỆM VỤ)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP ĐẾM LƯỢT ĐÃ LÀM - ZERO QUERY)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tổng hợp bài tập từ các lớp...</h3></div>`;
 
     try {
-        // ==========================================
-        // ĐOẠN CODE SIÊU DEBUG - SOI TẬN GỐC DỮ LIỆU
-        // ==========================================
-
         // 1. TẠO CHUỖI TRUY VẤN
         let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
         if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
@@ -111,38 +107,8 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return `danh_sach_lop.cs."${giaTriSafe}"`;
         }).join(',');
 
-        //console.log("🔍 [DEBUG 1] Danh sách lớp của HS:", dsLop);
-        //console.log("🔍 [DEBUG 2] Chuỗi .or() gửi lên DB:", orQuery);
-
+        // 2. GỌI LỆNH TRUY VẤN NHIỆM VỤ
         try {
-             //==========================================
-             //🌟 TEST 1: BỐC THỬ 2 BÀI BẤT KỲ ĐỂ SOI DỮ LIỆU GỐC
-             //==========================================
-            //console.log("🔍 [DEBUG 3] Đang soi dữ liệu gốc trong bảng nhiem_vu...");
-            const { data: testDB } = await _supabase
-                .from('nhiem_vu')
-                .select('ma_nhiem_vu, danh_sach_lop')
-                .limit(2);
-
-            if (testDB && testDB.length > 0) {
-                testDB.forEach((nv, index) => {
-                    //console.log(`\n--- BÀI TEST SỐ ${index + 1} (Mã: ${nv.ma_nhiem_vu}) ---`);
-                    //console.log(`Dữ liệu thực tế:`, nv.danh_sach_lop);
-                    //console.log(`Kiểu dữ liệu (typeof):`, typeof nv.danh_sach_lop);
-
-                    //if (typeof nv.danh_sach_lop === 'string') {
-                    //    console.error(`🚨 PHÁT HIỆN LỖI: DB đang hiểu đây là CHUỖI (String). Lệnh .cs (contains) sẽ TỪ CHỐI TÌM KIẾM dòng này!`);
-                    //} else if (Array.isArray(nv.danh_sach_lop)) {
-                    //    console.log(`✅ Cấu trúc chuẩn: Mảng JSON.`);
-                    //}
-                });
-                console.log("------------------------------------------\n");
-            }
-
-            // ==========================================
-            // 🌟 TEST 2: GỌI LỆNH TRUY VẤN NHƯ CŨ
-            // ==========================================
-            //console.log("🔍 [DEBUG 4] Bắt đầu gọi truy vấn .or()...");
             const { data: dsNV, error: errNV } = await _supabase
                 .from('nhiem_vu')
                 .select('*')
@@ -151,20 +117,19 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                 .order('ngay_tao', { ascending: false });
 
             if (errNV) throw errNV;
-
             GocHocSinhState.danhSachNhiemVu = dsNV || [];
-            //console.log(`📦 [DEBUG 5] Kết quả: Đã tìm thấy ${GocHocSinhState.danhSachNhiemVu.length} nhiệm vụ.`);
+        } catch (error) { }
 
-        } catch (error) {
-            //console.error("❌ LỖI TRUY VẤN:", error);
-        }
+        // ==========================================================
+        // 🌟 3. LẤY SỐ LƯỢT ĐÃ LÀM TỪ SỔ TAY (KHÔNG TRUY VẤN DATABASE)
+        // ==========================================================
+        const demSoLuotLam = GocHocSinhState.tien_do_lam_bai || {};
 
-        // 3. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
+        // 4. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
         let tuDienLop = {};
         let tuDienGv = {};
         let tapUidGv = new Set();
 
-        // 3.1. Lấy Tên lớp và UID Giáo viên tạo lớp
         const { data: dataLop } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop, uid_gv_tao').in('ma_lop', dsLop);
         if (dataLop) {
             dataLop.forEach(l => {
@@ -173,12 +138,10 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             });
         }
 
-        // 3.2. Gom thêm UID giáo viên tạo nhiệm vụ (nếu có)
         GocHocSinhState.danhSachNhiemVu.forEach(nv => {
             if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao);
         });
 
-        // 3.3. Truy vấn lấy Tên giáo viên
         if (tapUidGv.size > 0) {
             const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
             if (dataGv) {
@@ -186,7 +149,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             }
         }
 
-        // 4. PHÂN LOẠI NHIỆM VỤ
+        // 5. PHÂN LOẠI NHIỆM VỤ
         const now = new Date();
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
 
@@ -219,7 +182,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return isPast ? `(Mở cách đây ${str})` : `(Còn ${str})`;
         };
 
-        // 🌟 HÀM PHỤ 2: Tính thời gian trôi qua (Cách đây bao lâu)
+        // 🌟 HÀM PHỤ 2: Tính thời gian trôi qua
         const thoiGianTroiQua = (dateStr) => {
             if (!dateStr) return "Không rõ";
             const date = new Date(dateStr);
@@ -243,32 +206,46 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
             const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
 
-            // Xử lý Cấu trúc đề & Số lượt
+            // Xử lý Cấu trúc đề
             const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
-            const quyMoText = (nv.quy_mo_cau_hoi && nv.quy_mo_cau_hoi > 0) ? `Tổng: ${nv.quy_mo_cau_hoi} câu` : "";
 
             // Tra cứu Lớp học của nhiệm vụ này
             let tenLopHienThi = "Không xác định";
             try {
                 const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
-                // Tìm những mã lớp trùng với danh sách lớp của học sinh, rồi lấy tên
                 const cacLopKhop = mangLopCuaNV.filter(m => dsLop.includes(m)).map(m => tuDienLop[m] || m);
                 if (cacLopKhop.length > 0) tenLopHienThi = cacLopKhop.join(', ');
             } catch (e) { }
 
-            // Tra cứu Giáo viên
             const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
 
+            // ==================================================
+            // 🌟 TÍNH TOÁN SỐ LƯỢT ĐÃ LÀM VÀ KHÓA NÚT NẾU HẾT
+            // ==================================================
+            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+            const gioiHanLuot = nv.so_luot_lam_bai || 0; // 0 là vô hạn
+            const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
+            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+
             let nutHanhDong = "", mauVien = "", mauNen = "";
+            let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
+
             if (loai === 'DANG_MO') {
-                mauVien = "#28a745"; mauNen = "#f4fdf6";
-                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
+                if (daHetLuot) {
+                    // Nếu Đang mở nhưng Đã làm hết lượt -> Khóa nút lại
+                    mauVien = "#dc3545"; mauNen = "#fff5f6";
+                    nutHanhDong = `<button onclick="alert('Em đã sử dụng hết ${gioiHanLuot} lượt làm bài của nhiệm vụ này!')" style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">⛔ ĐÃ HẾT LƯỢT LÀM</button>`;
+                } else {
+                    // Còn lượt thì hiển thị nút màu xanh
+                    mauVien = "#28a745"; mauNen = "#f4fdf6";
+                    nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">🚀 VÀO LÀM BÀI</button>`;
+                }
             } else if (loai === 'CHUA_MO') {
                 mauVien = "#ffc107"; mauNen = "#fffbf0";
                 nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
             } else if (loai === 'DA_DONG') {
                 mauVien = "#dc3545"; mauNen = "#fff5f6";
-                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 XEM KẾT QUẢ / LỜI GIẢI</button>`;
+                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả đang được nâng cấp')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 XEM KẾT QUẢ</button>`;
             }
 
             return `
@@ -294,8 +271,8 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                         <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
                             📦 <b>${nv.cau_truc_de}</b> 
                         </span>
-                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
-                            🔄 Lượt: <b>0 / ${nv.so_luot_lam_bai == 0 ? "Vô hạn" : nv.so_luot_lam_bai}</b>
+                        <span style="font-size: 12px; padding: 4px 8px; border-radius: 4px; ${cssLuot}">
+                            🔄 Lượt: <b>${soLuotDaLam} / ${textLuotChoPhep}</b>
                         </span>
                     </div>
 
@@ -328,7 +305,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                     ${dsChuaMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Trống.</p>' : dsChuaMo.map(nv => renderCard(nv, 'CHUA_MO')).join('')}
                 </div>
                 <div style="background: #fff8f8; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb;">
-                    <h3 style="margin-top: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÃ ĐÓNG (${dsDaDong.length})</h3>
+                    <h3 style="margin: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÃ ĐÓNG (${dsDaDong.length})</h3>
                     ${dsDaDong.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Trống.</p>' : dsDaDong.map(nv => renderCard(nv, 'DA_DONG')).join('')}
                 </div>
             </div>
@@ -338,8 +315,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
 }
-
-
 // ==============================================================
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
@@ -803,7 +778,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         if (phien.thoi_gian_con_lai <= 0) {
             clearInterval(phien.id_timer);
             alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
-            ham_8_11_nop_bai_va_cham_diem(true);
+            ham_8_12_nop_bai_va_cham_diem(true);
         }
     }, 1000);
 }
@@ -956,7 +931,7 @@ window.ham_8_thoat_phong_thi = async () => {
 };
 
 // =====================================================================
-// HÀM 8.12: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (UPDATE BẢN NHÁP)
+// HÀM 8.12: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (UPDATE BẢN NHÁP & GHI SỔ)
 // =====================================================================
 async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
@@ -1011,29 +986,35 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     });
 
     try {
-        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI (Tính bằng giây để hợp lệ với Supabase)
+        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI 
         const tBatDau = phien.thoi_diem_bat_dau || Date.now();
         const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
         const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-        // 3. ĐÓNG GÓI DỮ LIỆU ĐỂ CẬP NHẬT LẠI VÀO DATABASE
-        const luotLamMoi = {
+        // 🌟 3. TÍCH HỢP "GHI SỔ CHUYÊN CẦN" ĐỂ TỐI ƯU ZERO QUERY
+        let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+        tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
+
+        // 4. CHẠY SONG SONG 2 LUỒNG UPDATE LÊN SUPABASE
+        const p1 = _supabase.from('ket_qua_thi').update({
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
-            
             thoi_gian_lam_bai: thoiGianLamBaiStr,
             thoi_gian_nop: new Date().toISOString()
-        };
+        }).eq('id', phien.id_ket_qua_database);
 
-        // 🌟 DÙNG LỆNH UPDATE THAY VÌ INSERT
-        const { error } = await _supabase
-            .from('ket_qua_thi')
-            .update(luotLamMoi)
-            .eq('id', phien.id_ket_qua_database); // Khớp chuẩn ID lúc mới vào thi
+        const p2 = _supabase.from('hoc_sinh').update({
+            tien_do_lam_bai: tienDoHienTai
+        }).eq('uid', GocHocSinhState.uid);
 
-        if (error) throw error;
+        const results = await Promise.all([p1, p2]);
+        if (results[0].error) throw results[0].error;
+        if (results[1].error) throw results[1].error;
 
-        // Trả lại thanh cuộn gốc, xóa không gian thi
+        // Cập nhật lại RAM để giao diện hiện số lượt ngay lập tức
+        GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
+
+        // 5. DỌN DẸP GIAO DIỆN
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
         const root = document.getElementById('khong-gian-thi-toan-man-hinh');
