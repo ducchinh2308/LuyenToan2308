@@ -3406,7 +3406,7 @@ async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
 
 
 // ==============================================================
-// Hàm 7.6: Mở form Xem / Sửa Nhiệm Vụ (CÓ BẢNG ĐIỀU KHIỂN GITHUB)
+// Hàm 7.6: Mở form Xem / Sửa Nhiệm Vụ (CÓ BẢNG ĐIỀU KHIỂN GOM FILE JSON)
 // ==============================================================
 async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     const data = BangNhiemVuState.duLieu.find(nv => nv.ma_nhiem_vu === maNhiemVu);
@@ -3476,7 +3476,7 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     }
 
     // =========================================================
-    // 🌟 KHỞI TẠO BẢNG ĐIỀU KHIỂN FILE GIẢI DỰA TRÊN DỮ LIỆU
+    // 🌟 KHỞI TẠO BẢNG ĐIỀU KHIỂN GOM FILE GIẢI (JSON)
     // =========================================================
     const ttFile = data.trang_thai_loi_giai || CFG_NV.FILE_GIAI.CHUA_LENH;
     const urlFile = data.url_file_giai || "";
@@ -3484,13 +3484,14 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     let btnFileHtml = "";
     if (ttFile === CFG_NV.FILE_GIAI.HOAN_THANH && urlFile) {
         btnFileHtml = `
-            <button onclick="window.open('${urlFile}', '_blank')" style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">👁️ XEM FILE GIẢI</button>
-            <button onclick="ham_7_8_ra_lenh_tao_file_giai('${data.id}', '${data.ma_hoc_lieu}')" style="padding:8px 15px; background:#f8f9fa; color:#6c757d; border:1px solid #ccc; border-radius:4px; font-weight:bold; cursor:pointer;">🔄 TẠO LẠI FILE MỚI</button>
+            <button onclick="window.open('${urlFile}', '_blank')" style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">👁️ XEM FILE GỘP (JSON)</button>
+            <button onclick="ham_7_8_ra_lenh_tao_file_giai('${data.id}', '${data.ma_hoc_lieu}')" style="padding:8px 15px; background:#f8f9fa; color:#6c757d; border:1px solid #ccc; border-radius:4px; font-weight:bold; cursor:pointer;">🔄 GOM LẠI FILE MỚI</button>
         `;
     } else if (ttFile === CFG_NV.FILE_GIAI.DANG_CHO || ttFile === CFG_NV.FILE_GIAI.DANG_XU_LY) {
-        btnFileHtml = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ HỆ THỐNG ĐANG TẠO (Xin chờ...)</button>`;
+        btnFileHtml = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ HỆ THỐNG ĐANG GOM DỮ LIỆU...</button>`;
     } else {
-        btnFileHtml = `<button onclick="ham_7_8_ra_lenh_tao_file_giai('${data.id}', '${data.ma_hoc_lieu}')" style="padding:8px 15px; background:#6f42c1; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">🚀 RA LỆNH TẠO FILE GIẢI</button>`;
+        // Nút ra lệnh lần đầu hoặc khi bị lỗi
+        btnFileHtml = `<button onclick="ham_7_8_ra_lenh_tao_file_giai('${data.id}', '${data.ma_hoc_lieu}')" style="padding:8px 15px; background:#6f42c1; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">🚀 RA LỆNH GOM FILE LỜI GIẢI</button>`;
     }
 
     vungLamViec.innerHTML = `
@@ -3615,20 +3616,20 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                 </div>
 
                 <div style="margin-top: 15px; border-top: 1px dashed #c3e6cb; padding-top: 15px;">
-                    <h4 style="margin: 0 0 10px 0; color: #6f42c1; font-size: 14px;">🛠️ XUẤT FILE LỜI GIẢI (PDF QUA GITHUB)</h4>
+                    <h4 style="margin: 0 0 10px 0; color: #6f42c1; font-size: 14px;">🛠️ TẠO FILE LỜI GIẢI (JSON GỘP)</h4>
                     <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                         <div>
                             <select id="edit_nv_trang_thai_file" disabled style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; background: #e9ecef; font-weight:bold; color:#495057;">
                                 <option value="${CFG_NV.FILE_GIAI.CHUA_LENH}" ${ttFile === CFG_NV.FILE_GIAI.CHUA_LENH ? 'selected' : ''}>⚪ Chưa có lệnh</option>
-                                <option value="${CFG_NV.FILE_GIAI.DANG_CHO}" ${ttFile === CFG_NV.FILE_GIAI.DANG_CHO ? 'selected' : ''}>⏳ Đang chờ ráp file</option>
-                                <option value="${CFG_NV.FILE_GIAI.DANG_XU_LY}" ${ttFile === CFG_NV.FILE_GIAI.DANG_XU_LY ? 'selected' : ''}>⚙️ Đang xử lý</option>
+                                <option value="${CFG_NV.FILE_GIAI.DANG_XU_LY}" ${ttFile === CFG_NV.FILE_GIAI.DANG_XU_LY ? 'selected' : ''}>⚙️ Đang xử lý (Gom data)</option>
                                 <option value="${CFG_NV.FILE_GIAI.HOAN_THANH}" ${ttFile === CFG_NV.FILE_GIAI.HOAN_THANH ? 'selected' : ''}>✅ Đã hoàn thành</option>
-                                <option value="${CFG_NV.FILE_GIAI.LOI}" ${ttFile === CFG_NV.FILE_GIAI.LOI ? 'selected' : ''}>❌ Lỗi đóng gói</option>
+                                <option value="${CFG_NV.FILE_GIAI.LOI}" ${ttFile === CFG_NV.FILE_GIAI.LOI ? 'selected' : ''}>❌ Lỗi gom file</option>
                             </select>
                         </div>
                         <div id="khu-vuc-nut-file" style="display:flex; gap:10px;">${btnFileHtml}</div>
                     </div>
-                    ${urlFile ? `<div style="margin-top:10px; font-size:11px; color:#1a73e8; word-break:break-all;">🔗 Link File: <a href="${urlFile}" target="_blank">${urlFile}</a></div>` : ''}
+                    ${urlFile ? `<div style="margin-top:10px; font-size:11px; color:#1a73e8; word-break:break-all;">🔗 Link File Gộp: <a href="${urlFile}" target="_blank">${urlFile}</a></div>` : ''}
+                    <p style="font-size: 11px; color: #666; margin-top: 5px; font-style: italic;">* Hệ thống sẽ tự động tải các file lời giải lẻ của từng câu và ghép thành 1 file duy nhất đẩy lên Github.</p>
                 </div>
             </div>
 
@@ -3643,8 +3644,6 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
         </div>
     `;
 }
-
-
 
 // ==============================================================
 // Hàm 7.7: Thu thập và Gửi Cập nhật Nhiệm vụ (FULL JSON & THỜI GIAN LÀM BÀI)
