@@ -587,7 +587,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
                 tong_diem: 0,
                 chi_tiet_lam_bai: [],
                 thoi_gian_lam_bai: 0, // Mặc định 0 giây
-                trang_thai: "Đang làm", // Đánh dấu chưa nộp
+                
                 thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
             }])
             .select('id')
@@ -1020,7 +1020,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
             thoi_gian_lam_bai: soGiayThucTe, // 🌟 TRUYỀN SỐ GIÂY (INT) THAY VÌ CHUỖI
-            trang_thai: "Đã nộp",
+            
             thoi_gian_nop: new Date().toISOString()
         };
 
