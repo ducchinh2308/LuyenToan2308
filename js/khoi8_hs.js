@@ -586,7 +586,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
                 lan_thu: lanThuHienTai,
                 tong_diem: 0,
                 chi_tiet_lam_bai: [],
-                thoi_gian_lam_bai: 0, // Mặc định 0 giây
+                thoi_gian_lam_bai: "0 phút 0 giây", // Mặc định 0 giây
                 
                 thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
             }])
@@ -1014,13 +1014,14 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI (Tính bằng giây để hợp lệ với Supabase)
         const tBatDau = phien.thoi_diem_bat_dau || Date.now();
         const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
+        const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
         // 3. ĐÓNG GÓI DỮ LIỆU ĐỂ CẬP NHẬT LẠI VÀO DATABASE
         const luotLamMoi = {
             tong_diem: Number(tongDiem.toFixed(2)),
             chi_tiet_lam_bai: chiTietBaiLam,
-            thoi_gian_lam_bai: soGiayThucTe, // 🌟 TRUYỀN SỐ GIÂY (INT) THAY VÌ CHUỖI
             
+            thoi_gian_lam_bai: thoiGianLamBaiStr,
             thoi_gian_nop: new Date().toISOString()
         };
 
