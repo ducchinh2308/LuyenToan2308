@@ -1,4 +1,19 @@
-﻿// ---------------------------------------------------------------------
+﻿// ==============================================================
+// KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
+// ==============================================================
+const KHOI10_VERSION = "Khối 10: Cập nhật lúc 20h32 - Ngày 16/05";
+console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+
+window.addEventListener('load', () => {
+    let versionBadge = document.createElement('div');
+    versionBadge.innerHTML = KHOI8_VERSION;
+    versionBadge.style.cssText = "position: fixed; bottom: 20px; right: 5px; font-size: 9px; color: #28a745; z-index: 9999; ";
+    document.body.appendChild(versionBadge);
+});
+
+
+
+// ---------------------------------------------------------------------
 // 2.5. BỘ DỊCH CÔNG THỨC LATEX VÀ XỬ LÝ HTML TỪ TOOL C# LÊN WEB
 // ---------------------------------------------------------------------
 // Đây là hàm cực kỳ quan trọng để xử lý lỗi hiển thị toán học, TikZ, Bảng biến thiên
