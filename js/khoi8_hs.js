@@ -1122,111 +1122,75 @@ window.ham_8_thoat_phong_thi = async () => {
 };
 
 // =====================================================================
-// HÀM 8.12: NỘP BÀI, CHẤM ĐIỂM VÀ LƯU SUPABASE (UPDATE BẢN NHÁP & GHI SỔ)
+// HÀM 8.12: NỘP BÀI VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT
 // =====================================================================
 async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
-        if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án ở cột bên trái.")) return;
+        if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
     }
 
     const btnNop = document.getElementById('btn-nop-bai');
-    if (btnNop) { btnNop.innerText = "⏳ ĐANG CHẤM ĐIỂM..."; btnNop.disabled = true; }
+    if (btnNop) { btnNop.innerText = "⏳ HỆ THỐNG ĐANG CHẤM..."; btnNop.disabled = true; }
 
     const phien = window.PhienLamBai;
     clearInterval(phien.id_timer);
 
-    let tongDiem = 0;
-    let chiTietBaiLam = [];
-
-    // 1. DUYỆT QUA TỪNG CÂU ĐỂ CHẤM ĐIỂM
+    // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
+    let payloadBaiLam = {};
     phien.danh_sach_cau_hoi.forEach(cau => {
-        const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi] || cau.dap_an_hoc_sinh; // Backup
-        let diemCauNay = 0;
-        let isDung = false;
-
+        const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
         const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
 
-        if (kieu === "TN") {
-            if (dapanHS && dapanHS === cau.dap_an) { diemCauNay = 0.25; isDung = true; }
-        } else if (kieu === "DS") {
-            const dsChuan = cau.dap_an || "";
-            let soYDung = 0;
-            if (dapanHS && typeof dapanHS === 'object') {
-                if (dapanHS['A'] && dapanHS['A'] === dsChuan[0]) soYDung++;
-                if (dapanHS['B'] && dapanHS['B'] === dsChuan[1]) soYDung++;
-                if (dapanHS['C'] && dapanHS['C'] === dsChuan[2]) soYDung++;
-                if (dapanHS['D'] && dapanHS['D'] === dsChuan[3]) soYDung++;
-            }
-            if (soYDung === 1) diemCauNay = 0.1;
-            else if (soYDung === 2) diemCauNay = 0.25;
-            else if (soYDung === 3) diemCauNay = 0.5;
-            else if (soYDung === 4) { diemCauNay = 1.0; isDung = true; }
-        } else if (kieu === "TLN") {
-            if (dapanHS && (dapanHS.trim().toUpperCase() === cau.dap_an.trim().toUpperCase() || dapanHS.replace(/,/g, '.') === cau.dap_an.replace(/,/g, '.'))) {
-                diemCauNay = 0.5; isDung = true;
-            }
+        if (kieu === 'DS' && typeof dapanHS === 'object') {
+            // Biến dạng object {A: 'T', B: 'F'} thành chuỗi "T_FF" để gửi đi
+            let strDS = "";
+            ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
+            payloadBaiLam[cau.ma_cau_hoi] = strDS;
+        } else {
+            payloadBaiLam[cau.ma_cau_hoi] = dapanHS || "";
         }
-
-        tongDiem += diemCauNay;
-        chiTietBaiLam.push({
-            maCau: cau.ma_cau_hoi,
-            luaChonHS: dapanHS || "",
-            diem: diemCauNay,
-            ketQua: isDung ? "Đúng" : (dapanHS ? "Sai" : "Bỏ trống")
-        });
     });
 
-    try {
-        // 2. TÍNH TOÁN THỜI GIAN THỰC TẾ LÀM BÀI 
-        const tBatDau = phien.thoi_diem_bat_dau || Date.now();
-        const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
-        const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+    // 2. TÍNH THỜI GIAN LÀM BÀI
+    const tBatDau = phien.thoi_diem_bat_dau || Date.now();
+    const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
+    const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-        // 🌟 3. TÍCH HỢP "GHI SỔ CHUYÊN CẦN" ĐỂ TỐI ƯU ZERO QUERY
+    try {
+        // ==============================================================
+        // 🚀 3. PHÓNG BÀI LÊN CHO SUPABASE TỰ CHẤM (Zero-Trust)
+        // ==============================================================
+        const { data: diemSoBiMat, error: errCham } = await _supabase.rpc('cham_diem_bai_thi', {
+            p_id_ket_qua: phien.id_ket_qua_database,
+            p_ma_nhiem_vu: phien.ma_nhiem_vu,
+            p_dap_an_hoc_sinh: payloadBaiLam,
+            p_thoi_gian_lam_bai: thoiGianLamBaiStr
+        });
+
+        if (errCham) throw errCham;
+
+        // 4. GHI SỔ CHUYÊN CẦN
         let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
         tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
-
-        // 4. CHẠY SONG SONG 2 LUỒNG UPDATE LÊN SUPABASE
-        const p1 = _supabase.from('ket_qua_thi').update({
-            tong_diem: Number(tongDiem.toFixed(2)),
-            chi_tiet_lam_bai: chiTietBaiLam,
-            thoi_gian_lam_bai: thoiGianLamBaiStr,
-            thoi_gian_nop: new Date().toISOString()
-        }).eq('id', phien.id_ket_qua_database);
-
-        const p2 = _supabase.from('hoc_sinh').update({
-            tien_do_lam_bai: tienDoHienTai
-        }).eq('uid', GocHocSinhState.uid);
-
-        const results = await Promise.all([p1, p2]);
-        if (results[0].error) throw results[0].error;
-        if (results[1].error) throw results[1].error;
-
-        // Cập nhật lại RAM để giao diện hiện số lượt ngay lập tức
+        await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTai }).eq('uid', GocHocSinhState.uid);
         GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
 
-        // 5. DỌN DẸP GIAO DIỆN
+        // 5. DỌN GIAO DIỆN PHÒNG THI
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
-        const root = document.getElementById('khong-gian-thi-toan-man-hinh');
-        if (root) root.remove();
+        document.getElementById('khong-gian-thi-toan-man-hinh')?.remove();
 
-        alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của bạn: ${tongDiem.toFixed(2)} điểm.`);
+        // 6. TRẢ KẾT QUẢ ĐIỂM
+        alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
 
         document.getElementById('dashboard-container').style.display = 'block';
         ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
-        //document.getElementById('dashboard-container').style.display = 'block';
 
-        //// Chỉ cần gọi lại Tab Nhiệm vụ để nó vẽ lại giao diện (sử dụng RAM vừa được cộng thêm 1 lượt)
-        ////if (typeof ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
-        //    ham_8_2_tab_nhiem_vu_bat_buoc();
-        ////}
     } catch (err) {
-        alert("Lỗi lưu điểm: " + err.message);
+        alert("❌ Máy chủ quá tải hoặc lỗi khi chấm: " + err.message);
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
     }
 }
-
 // ==============================================================
 // Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
 // ==============================================================
