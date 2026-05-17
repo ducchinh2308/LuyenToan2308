@@ -1228,7 +1228,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
 }
 
 // ==============================================================
-// Hàm 8.13: Tải dữ liệu để Xem lại bài chi tiết (Supabase)
+// Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
 // ==============================================================
 window.ham_8_13_xem_lai_ket_qua = async function (maNhiemVu, idKetQua) {
     const vungLamViec = document.getElementById('dashboard-container');
@@ -1239,21 +1239,44 @@ window.ham_8_13_xem_lai_ket_qua = async function (maNhiemVu, idKetQua) {
     loadingDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #f0f2f5; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center;";
     loadingDiv.innerHTML = `
         <div style="border: 4px solid #ccc; border-top: 4px solid #d35400; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-        <h3 style="margin-top:20px; color:#d35400;">🔍 Đang trích xuất bài làm chi tiết...</h3>
+        <h3 style="margin-top:20px; color:#d35400;">🔍 Đang trích xuất bài làm và đối chiếu bảo mật...</h3>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
     `;
     document.body.appendChild(loadingDiv);
 
     try {
+        // 1. TẢI DỮ LIỆU TỪ SUPABASE
         const { data: ketQua, error: errKQ } = await _supabase.from('ket_qua_thi').select('*').eq('id', idKetQua).single();
         if (errKQ || !ketQua) throw new Error("Không tìm thấy dữ liệu bài làm!");
 
         const { data: nv, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVu).single();
         if (errNV || !nv) throw new Error("Không tìm thấy thông tin nhiệm vụ!");
 
-        const { data: dataHocLieu, error: errHL } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
+        // Lấy Học liệu (Gồm: Bản đồ cấu trúc, Link Đề, Link Giải Bóng Ma)
+        const { data: dataHocLieu, error: errHL } = await _supabase.from('hoc_lieu').select('danh_sach_cau_hoi, url_github, url_file_giai').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
         if (errHL) throw errHL;
 
+        // ==============================================================
+        // 🔒 CHỐT CHẶN BẢO MẬT: KIỂM TRA QUYỀN TRUY CẬP TRƯỚC KHI TẢI DỮ LIỆU
+        // ==============================================================
+        let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
+        try { congBo = typeof nv.cau_hinh_dap_an === 'string' ? JSON.parse(nv.cau_hinh_dap_an) : (nv.cau_hinh_dap_an || congBo); } catch (e) { }
+
+        const now = new Date();
+        const tDongDe = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+        let hopLeThoiDiem = false;
+
+        const td = congBo.thoi_diem;
+        if (td === CFG_NV.THOI_DIEM.SAU_NOP) { hopLeThoiDiem = true; }
+        else if (td === CFG_NV.THOI_DIEM.SAU_HET_HAN) { if (tDongDe && now > tDongDe) hopLeThoiDiem = true; }
+        else if (td && td.startsWith("HEN_GIO|")) { if (now > new Date(td.split("|")[1])) hopLeThoiDiem = true; }
+
+        const choPhepXemDapAn = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM || congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
+        const choPhepXemLoiGiai = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
+
+        // ==============================================================
+        // 2. TẢI FILE ĐỀ THI TỪ GITHUB (Luôn được tải để hiện nội dung câu hỏi)
+        // ==============================================================
         let urlFileGitHub = dataHocLieu.url_github;
         if (!urlFileGitHub) {
             let maDeGoc = nv.ma_hoc_lieu;
@@ -1261,19 +1284,49 @@ window.ham_8_13_xem_lai_ket_qua = async function (maNhiemVu, idKetQua) {
             urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
 
-        const response = await fetch(urlFileGitHub);
-        if (!response.ok) throw new Error("Không tải được đề gốc từ Github!");
-        const dataGitHub = await response.json();
+        const resDe = await fetch(urlFileGitHub);
+        if (!resDe.ok) throw new Error("Không tải được đề gốc từ Github!");
+        const dataGitHub = await resDe.json();
 
+        // ==============================================================
+        // 3. TẢI FILE GIẢI BÓNG MA (CHỈ TẢI KHI ĐƯỢC PHÉP XEM LỜI GIẢI)
+        // ==============================================================
+        let dataGiaiGop = null;
+        if (choPhepXemLoiGiai && dataHocLieu.url_file_giai) {
+            try {
+                const resGiai = await fetch(dataHocLieu.url_file_giai);
+                if (resGiai.ok) dataGiaiGop = await resGiai.json();
+            } catch (e) { console.error("Không tải được file bóng ma", e); }
+        }
+
+        // ==============================================================
+        // 4. RÁP BẢN ĐỒ VÀ TẨY TRẮNG RAM NẾU KHÔNG CÓ QUYỀN
+        // ==============================================================
         const deThiHoanChinh = (dataHocLieu.danh_sach_cau_hoi || []).map(mapItem => {
-            const noiDung = (dataGitHub.danhSachCauHoi || []).find(c => c.maCau === mapItem.ma_cau_hoi) || {};
-            return { ...mapItem, ...noiDung };
+            const noiDung = (dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || []).find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+
+            // Tìm lời giải từ File bóng ma thông qua mã bảo mật sol_
+            let htmlLoiGiaiChiTiet = null;
+            if (choPhepXemLoiGiai && dataGiaiGop) {
+                const matchGiai = (dataGiaiGop.danhSachLoiGiai || []).find(g => g.maBaoMat === mapItem.ma_loi_giai);
+                if (matchGiai) htmlLoiGiaiChiTiet = matchGiai.loiGiaiHtml;
+            }
+
+            return {
+                ...mapItem,
+                ...noiDung,
+                // 🔒 TẨY TRẮNG: Học sinh F12 cũng chỉ thấy giá trị null nếu không được phép xem
+                dap_an: choPhepXemDapAn ? mapItem.dap_an : null,
+                loiGiaiHtml: htmlLoiGiaiChiTiet
+            };
         });
 
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
 
         document.getElementById('khong-gian-loading-xem-lai').remove();
-        ham_8_14_ve_giao_dien_xem_lai(ketQua, deThiHoanChinh, nv, baseUrlHinhAnh);
+
+        // Truyền thẳng quyền hạn đã chốt xuống Hàm vẽ giao diện
+        ham_8_14_ve_giao_dien_xem_lai(ketQua, deThiHoanChinh, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
     } catch (err) {
         document.getElementById('khong-gian-loading-xem-lai')?.remove();
@@ -1283,9 +1336,9 @@ window.ham_8_13_xem_lai_ket_qua = async function (maNhiemVu, idKetQua) {
 };
 
 // ==============================================================
-// Hàm 8.14: Vẽ Giao diện Xem Lại (KIỂM TRA BẢO MẬT & ĐIỀU KIỆN CẤU HÌNH)
+// Hàm 8.14: Vẽ Giao diện Xem Lại (Chỉ làm nhiệm vụ hiển thị đơn thuần)
 // ==============================================================
-function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
+function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
@@ -1293,34 +1346,6 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     if (ketQua.chi_tiet_lam_bai) {
         ketQua.chi_tiet_lam_bai.forEach(item => { chiTietHS[item.maCau] = item; });
     }
-
-    // 🌟 BẮT ĐẦU PHÂN TÍCH CẤU HÌNH BẢO MẬT TỪ DATABASE (cau_hinh_dap_an)
-    let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
-    try {
-        congBo = typeof nv.cau_hinh_dap_an === 'string' ? JSON.parse(nv.cau_hinh_dap_an) : (nv.cau_hinh_dap_an || congBo);
-    } catch (e) { }
-
-    const now = new Date();
-    const tDongDe = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
-
-    // 🌟 Kiểm tra 1: Xem đã đến thời điểm được công bố chưa?
-    let hopLeThoiDiem = false;
-    const td = congBo.thoi_diem;
-
-    if (td === CFG_NV.THOI_DIEM.SAU_NOP) {
-        hopLeThoiDiem = true; // Học sinh nộp rồi là được xem ngay
-    } else if (td === CFG_NV.THOI_DIEM.SAU_HET_HAN) {
-        if (tDongDe && now > tDongDe) hopLeThoiDiem = true; // Đã qua hạn đóng đề
-    } else if (td && td.startsWith("HEN_GIO|")) {
-        const tHenGio = new Date(td.split("|")[1]);
-        if (now > tHenGio) hopLeThoiDiem = true; // Đã qua giờ hẹn
-    }
-
-    // 🌟 Kiểm tra 2: Quyết định quyền hạn hiển thị
-    // Quyền xem đáp án đúng sai (Tô xanh/đỏ)
-    const choPhepXemDapAn = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM || congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
-    // Quyền xem nút lời giải chi tiết
-    const choPhepXemLoiGiai = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
 
     let dsTN = [], dsDS = [], dsTLN = [];
     deThi.forEach(cau => {
@@ -1332,7 +1357,6 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
 
     let htmlContentRight = `<div style="background:#d35400; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔍 XEM LẠI BÀI: ${nv.ten_nhiem_vu}</h2></div>`;
 
-    // Nếu bị giới hạn cấu hình, hiện thông báo nhỏ cho HS hiểu
     if (!choPhepXemDapAn) {
         htmlContentRight += `
             <div style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; font-size: 14px;">
@@ -1354,17 +1378,15 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
             const maCauLogic = cau.ma_cau_hoi || cau.maCau;
             const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
 
-            // Truyền biến cấu hình vào hàm con xử lý
             htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
-            // Định hình màu nút Navigator bên trái dựa trên cấu hình bảo mật
             let mauNut = "#e9ecef", vienNut = "#ced4da", mauChu = "#495057";
             if (choPhepXemDapAn) {
                 if (baiLamCuaHS.ketQua === "Đúng") { mauNut = "#d4edda"; vienNut = "#c3e6cb"; mauChu = "#155724"; }
                 else if (baiLamCuaHS.ketQua === "Sai" || (baiLamCuaHS.diem > 0 && baiLamCuaHS.diem < 1 && loaiCau === 'DS')) { mauNut = "#f8d7da"; vienNut = "#f5c6cb"; mauChu = "#721c24"; }
             } else {
-                if (baiLamHS.luaChonHS || (loaiCau === 'DS' && Object.keys(baiLamHS.luaChonHS || {}).length > 0)) {
-                    mauNut = "#e8f4f8"; vienNut = "#b8daff"; mauChu = "#0056b3"; // Đã làm nhưng chưa biết đúng/sai
+                if (baiLamCuaHS.luaChonHS || (loaiCau === 'DS' && Object.keys(baiLamCuaHS.luaChonHS || {}).length > 0)) {
+                    mauNut = "#e8f4f8"; vienNut = "#b8daff"; mauChu = "#0056b3";
                 }
             }
 
@@ -1414,7 +1436,6 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh) {
     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
     document.body.appendChild(newTikz);
 }
-
 // ==============================================================
 // Hàm Bổ trợ: Vẽ từng câu hỏi (Nhúng điều kiện hiện Đáp án & Lời giải)
 // ==============================================================
