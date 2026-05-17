@@ -3911,10 +3911,10 @@ window.onunhandledrejection = function (event) {
     alert(`🚨 LỖI TẢI DỮ LIỆU NGẦM (PROMISE):\n\nChi tiết: ${event.reason}\n\nHãy chụp màn hình này lại!`);
 };
 // ==============================================================
-// Hàm 7.10: Ráp File Lời Giải Bảo Mật Cao (Ghi vào HỌC LIỆU)
+// Hàm 7.10: Ráp File Lời Giải (Tách Thư Mục & Tẩy Trắng Mã Đề)
 // ==============================================================
 window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) {
-    if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ tạo tên file ngẫu nhiên chống hack và lưu vĩnh viễn vào kho Học Liệu.")) return;
+    if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ tạo file bảo mật (không chứa mã đề), đặt tên ngẫu nhiên và lưu vào thư mục riêng.")) return;
 
     // 1. KIỂM TRA CẤU HÌNH TẬP TRUNG
     if (typeof CFG_HE_THONG === 'undefined') {
@@ -3924,14 +3924,15 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
 
     const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
     const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+    // Đường dẫn lấy giải lẻ (Vẫn lấy ở kho cũ)
     const BASE_URL_KHO_GIAI_LE = CFG_HE_THONG.KHO_GIAI_LE_URL;
 
-    // Thay đổi giao diện nút bấm thành Đang xử lý
+    // Thay đổi giao diện nút bấm
     const divNut = document.getElementById('khu-vuc-nut-file');
-    if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ ĐANG GOM VÀ BĂM FILE...</button>`;
+    if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ ĐANG TẠO FILE BÓNG MA...</button>`;
 
     try {
-        // 2. LẤY CẤU TRÚC ĐÁP ÁN TỪ HỌC LIỆU
+        // 2. LẤY CẤU TRÚC ĐÁP ÁN TỪ BẢNG HỌC LIỆU
         const { data: dataHL, error: errHL } = await _supabase
             .from('hoc_lieu')
             .select('danh_sach_cau_hoi')
@@ -3970,9 +3971,11 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
             }
         }
 
-        // 4. ĐÓNG GÓI VÀ MÃ HÓA (Chống lỗi Tiếng Việt)
+        // ==============================================================
+        // 4. ĐÓNG GÓI JSON: TẨY TRẮNG HOÀN TOÀN MÃ HỌC LIỆU
+        // ==============================================================
         const fileContent = JSON.stringify({
-            maHocLieu: maHocLieu,
+            // ❌ ĐÃ BỎ maHocLieu ĐỂ ĐẢM BẢO KHÔNG CÓ MANH MỐI NÀO
             thoiGianGhep: new Date().toISOString(),
             danhSachLoiGiai: danhSachLoiGiaiDaGhep
         }, null, 2);
@@ -3981,14 +3984,17 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
         const encodedContent = utf8ToBase64(fileContent);
 
         // ==============================================================
-        // 🛡️ LỚP LÁ CHẮN: BĂM TÊN FILE NGẪU NHIÊN CHỐNG HACK
+        // 5. BĂM TÊN FILE NGẪU NHIÊN & CHỈ ĐỊNH THƯ MỤC MỚI
         // ==============================================================
-        const randomHash = Math.random().toString(36).substring(2, 10); // Tạo ra chuỗi ngẫu nhiên (VD: x7k9pm2q)
-        const tenFileGithub = `Ngan_Hang_Loi_Giai/LoiGiai_${maHocLieu}_${randomHash}.json`; // Tên file không thể đoán được
+        // Sinh chuỗi kết hợp thời gian và random để đảm bảo không bao giờ trùng lặp
+        const randomHash = Math.random().toString(36).substring(2, 9) + '_' + Date.now().toString(36);
+
+        // 🌟 LƯU VÀO THƯ MỤC RIÊNG: Ngan_Hang_Giai_Gop
+        const tenFileGithub = `Ngan_Hang_Giai_Gop/GiaiGop_${randomHash}.json`;
 
         const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
 
-        // 5. ĐẨY LÊN GITHUB
+        // 6. ĐẨY LÊN GITHUB
         const putRes = await fetch(githubApiUrl, {
             method: 'PUT',
             headers: {
@@ -3996,7 +4002,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: `Tạo file giải gộp bảo mật cho Học liệu: ${maHocLieu}`,
+                message: `Tạo file giải gộp bảo mật (Id: ${randomHash})`,
                 content: encodedContent
             })
         });
@@ -4010,7 +4016,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
         const linkFileGiai = putData.content?.download_url || `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${tenFileGithub}`;
 
         // ==============================================================
-        // 6. LƯU LINK BÍ MẬT VÀO ĐÚNG BẢNG HỌC LIỆU
+        // 7. LƯU LINK BÍ MẬT VÀO BẢNG HỌC LIỆU TRÊN SUPABASE
         // ==============================================================
         const { error: errUpdate } = await _supabase
             .from('hoc_lieu')
@@ -4019,15 +4025,15 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
 
         if (errUpdate) throw errUpdate;
 
-        alert("✅ TẠO FILE GIẢI THÀNH CÔNG!\n\nĐường dẫn bí mật đã được lưu an toàn vào Học Liệu.");
+        alert("✅ TẠO FILE BÓNG MA THÀNH CÔNG!\n\nFile giải đã được làm sạch mã đề, băm tên và đẩy vào thư mục riêng.");
 
         // Trả lại giao diện nút báo thành công
-        if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold;">ĐÃ CÓ FILE GIẢI</button>`;
+        if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold;">ĐÃ TẠO FILE BẢO MẬT</button>`;
 
     } catch (error) {
         console.error("Lỗi ráp file giải:", error);
         alert("❌ Lỗi: " + error.message);
-        // Trả lại nút bấm gốc để cho phép thử lại
+        // Trả lại nút bấm gốc để thử lại
         if (divNut) divNut.innerHTML = `<button onclick="ham_7_10_ra_lenh_tao_file_giai('${idThamChieu}', '${maHocLieu}')" style="padding:8px 15px; background:#dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">❌ LỖI! THỬ LẠI</button>`;
     }
 };
