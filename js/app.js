@@ -3695,6 +3695,8 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
 
 
     `;
+    // Thả dòng này vào cuối hàm mở form xem/sửa nhiệm vụ, truyền vào mã học liệu của nhiệm vụ đó
+    ham_7_9_ve_nut_loi_giai_dong(nv.ma_hoc_lieu);
 }
 
 // ==============================================================
@@ -3910,6 +3912,7 @@ async function ham_7_9_kich_hoat_tao_file_giai(maNhiemVu) {
 window.onunhandledrejection = function (event) {
     alert(`🚨 LỖI TẢI DỮ LIỆU NGẦM (PROMISE):\n\nChi tiết: ${event.reason}\n\nHãy chụp màn hình này lại!`);
 };
+
 // ==============================================================
 // Hàm 7.10: Ráp File Lời Giải Gộp (Tuyệt mật bằng mã sol_)
 // ==============================================================
@@ -4014,7 +4017,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
         const putData = await putRes.json();
         const linkFileGiai = putData.content?.download_url || `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${tenFileGithub}`;
 
-        // 7. LƯU ĐƯỜNG DẪN BÍ MẬT VÀO BẢNG HỌC LIỆU
+        // Lưu đường dẫn bí mật vào bảng học liệu
         const { error: errUpdate } = await _supabase
             .from('hoc_lieu')
             .update({ url_file_giai: linkFileGiai })
@@ -4022,13 +4025,76 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
 
         if (errUpdate) throw errUpdate;
 
-        alert("✅ TẠO FILE BÓNG MA THÀNH CÔNG!\n\nToàn bộ lời giải đã được khóa bằng mã bảo mật (sol_), băm tên và cất an toàn.");
+        alert("✅ TẠO FILE GIẢI THÀNH CÔNG!\n\nHệ thống dữ liệu đã được cập nhật.");
 
-        if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold;">ĐÃ TẠO FILE BẢO MẬT</button>`;
+        // 🌟 CHỐT CHẶN TỰ ĐỘNG CHẠY LẠI: Vẽ lại giao diện nút bấm theo trạng thái mới cứng
+        if (typeof ham_7_11_ve_nut_loi_giai_dong === 'function') {
+            await ham_7_11_ve_nut_loi_giai_dong(maHocLieu);
+        }
+
 
     } catch (error) {
         console.error("Lỗi ráp file giải:", error);
         alert("❌ Lỗi: " + error.message);
         if (divNut) divNut.innerHTML = `<button onclick="ham_7_10_ra_lenh_tao_file_giai('${idThamChieu}', '${maHocLieu}')" style="padding:8px 15px; background:#dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">❌ LỖI! THỬ LẠI</button>`;
+    }
+};
+
+// ==============================================================
+// Hàm 7.11: Quét trạng thái Học liệu và vẽ nút Lời giải động
+// ==============================================================
+window.ham_7_11_ve_nut_loi_giai_dong = async function (maHocLieu) {
+    const divNut = document.getElementById('khu-vuc-nut-file');
+    if (!divNut) return;
+
+    // Hiển thị trạng thái chờ trong lúc quét DB
+    divNut.innerHTML = `<span style="color: #666; font-size: 14px; font-style: italic;">⏳ Đang kiểm tra dữ liệu file giải...</span>`;
+
+    try {
+        // Kiểm tra xem Học liệu này đã được tạo file giải gộp chưa
+        const { data: hl, error } = await _supabase
+            .from('hoc_lieu')
+            .select('id, url_file_giai')
+            .eq('ma_hoc_lieu', maHocLieu)
+            .single();
+
+        if (error || !hl) {
+            divNut.innerHTML = `<span style="color:#dc3545; font-weight:bold;">⚠️ Không tìm thấy thông tin Học liệu!</span>`;
+            return;
+        }
+
+        const idHocLieu = hl.id;
+        const urlFileGiai = hl.url_file_giai;
+
+        // 🌟 BIỆN PHÁP ĐIỀU HƯỚNG GIAO DIỆN THEO ĐIỀU KIỆN ĐỀ XUẤT
+        if (!urlFileGiai) {
+            // NẾU CHƯA CÓ FILE GIẢI: Hiện duy nhất nút ra lệnh gom
+            divNut.innerHTML = `
+                <button onclick="ham_7_10_ra_lenh_tao_file_giai('${idHocLieu}', '${maHocLieu}')" 
+                        style="padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s;"
+                        onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+                    🚀 Ra lệnh gom file lời giải
+                </button>
+            `;
+        } else {
+            // NẾU ĐÃ CÓ FILE GIẢI: Hiện 2 nút xem và làm lại
+            divNut.innerHTML = `
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a href="${urlFileGiai}" target="_blank" 
+                       style="padding: 8px 16px; background: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block; transition: 0.2s;"
+                       onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                        👁️ Xem lời giải
+                    </a>
+                    <button onclick="ham_7_10_ra_lenh_tao_file_giai('${idHocLieu}', '${maHocLieu}')" 
+                            style="padding: 8px 16px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s;"
+                            onmouseover="this.style.background='#138496'" onmouseout="this.style.background='#17a2b8'">
+                        🔄 Thực hiện lại gom lời giải
+                    </button>
+                </div>
+            `;
+        }
+    } catch (err) {
+        console.error("Lỗi kiểm tra nút file giải:", err);
+        divNut.innerHTML = `<span style="color:#dc3545;">Lỗi tải cấu hình file giải.</span>`;
     }
 };
