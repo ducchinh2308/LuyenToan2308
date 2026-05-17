@@ -974,12 +974,38 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     }, 1000);
 }
 // =====================================================================
-// HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
+// 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
 function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
-    // 🌟 Tách 2 mã: Logic dùng maCau, Hiển thị dùng ma_goc
+    //// 🌟 Tách 2 mã: Logic dùng maCau, Hiển thị dùng ma_goc
+    //const maCauLogic = cau.ma_cau_hoi || cau.maCau;
+    //const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
+
+
+    // 🌟 Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
-    const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
+    const maCauHienThi = cau.ma_goc || cau.maGoc || cau.maCauGoc || cau.idGoc || maCauLogic;
+
+    // =================================================================
+    // 🐛 BẪY DEBUG: IN RA CONSOLE ĐỂ SOI DỮ LIỆU GỐC
+    // =================================================================
+    console.log("===== ĐANG VẼ CÂU THỨ " + stt + " =====");
+    console.log("1. Toàn bộ cục dữ liệu của câu này:", cau);
+    console.log("2. Các biến có thể chứa Mã Logic:", {
+        "cau.ma_cau_hoi (từ Supabase)": cau.ma_cau_hoi,
+        "cau.maCau (từ Github)": cau.maCau,
+        "CHỐT LẠI maCauLogic": maCauLogic
+    });
+    console.log("3. Các biến có thể chứa Mã Gốc:", {
+        "cau.ma_goc": cau.ma_goc,
+        "cau.maGoc": cau.maGoc,
+        "cau.maCauGoc": cau.maCauGoc,
+        "cau.idGoc": cau.idGoc,
+        "CHỐT LẠI maCauHienThi": maCauHienThi
+    });
+    console.log("======================================");
+
+
 
     const thuMucAnh = window.PhienLamBai.base_url_anh;
 
