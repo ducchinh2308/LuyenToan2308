@@ -3696,7 +3696,7 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
 
     `;
     // Thả dòng này vào cuối hàm mở form xem/sửa nhiệm vụ, truyền vào mã học liệu của nhiệm vụ đó
-    ham_7_9_ve_nut_loi_giai_dong(nv.ma_hoc_lieu);
+    ham_7_11_ve_nut_loi_giai_dong(nv.ma_hoc_lieu);
 }
 
 // ==============================================================
