@@ -1394,14 +1394,14 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
             const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: {}, ketQua: "Bỏ trống", diem: 0 };
 
 
-            // =================================================================
-            // 🐛 BẪY DEBUG 2: SOI DỮ LIỆU Ở MÀN HÌNH XEM LẠI CHI TIẾT
-            // =================================================================
-            console.log("🔍 [XEM LẠI] ĐANG XỬ LÝ CÂU THỨ " + sttPhan + " 🔍");
-            console.log("1. Dữ liệu CÂU HỎI (Đã gộp Supabase + Github):", cau);
-            console.log("2. Mã Logic chốt để đối chiếu:", maCauLogic);
-            console.log("3. Dữ liệu BÀI LÀM của Học sinh:", baiLamCuaHS);
-            console.log("==============================================");
+            //// =================================================================
+            //// 🐛 BẪY DEBUG 2: SOI DỮ LIỆU Ở MÀN HÌNH XEM LẠI CHI TIẾT
+            //// =================================================================
+            //console.log("🔍 [XEM LẠI] ĐANG XỬ LÝ CÂU THỨ " + sttPhan + " 🔍");
+            //console.log("1. Dữ liệu CÂU HỎI (Đã gộp Supabase + Github):", cau);
+            //console.log("2. Mã Logic chốt để đối chiếu:", maCauLogic);
+            //console.log("3. Dữ liệu BÀI LÀM của Học sinh:", baiLamCuaHS);
+            //console.log("==============================================");
 
 
 
