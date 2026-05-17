@@ -1796,20 +1796,22 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
-    // Cài đặt giao diện tùy theo chế độ
     const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
     const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
-    const disabledAttr = choPhepSua ? "" : "disabled"; // Khóa input/select
-    const hienThiCotXoa = choPhepSua ? "" : "display: none;"; // Ẩn cột thao tác xóa câu
+    const disabledAttr = choPhepSua ? "" : "disabled";
+    const hienThiCotXoa = choPhepSua ? "" : "display: none;";
 
     const dsCauHoi = data.danh_sach_cau_hoi || [];
     let htmlRows = '';
 
     dsCauHoi.forEach((item, index) => {
+        // Bỏ qua nếu dữ liệu bị rỗng
+        if (!item) return;
+
         let maGoc, maAoDe, maAoGiai, dapAn;
         let chuoiGocDeLuu = "";
 
-        // 🌟 BỘ CHUYỂN ĐỔI THÔNG MINH: Phân biệt Đề cũ (Chuỗi) và Đề mới (Object JSON)
+        // 🌟 BỘ CHUYỂN ĐỔI THÔNG MINH
         if (typeof item === 'string') {
             const parts = item.split('|');
             if (parts.length >= 4) {
@@ -1818,15 +1820,12 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
                 maGoc = "N/A";
                 [maAoDe, maAoGiai, dapAn] = parts;
             }
-            chuoiGocDeLuu = item; // Giữ nguyên chuỗi gốc
-        } else {
-            // Đọc dữ liệu từ Object mới của C#
+            chuoiGocDeLuu = item;
+        } else if (typeof item === 'object') {
             maGoc = item.ma_goc || "N/A";
             maAoDe = item.ma_cau_hoi || item.maCau || "";
             maAoGiai = item.ma_loi_giai || item.maBaoMat || "";
             dapAn = item.dap_an || item.dapAn || "";
-
-            // Ép Object thành chuỗi an toàn để nhét vào thuộc tính HTML, chống lỗi [object Object]
             chuoiGocDeLuu = JSON.stringify(item).replace(/"/g, '&quot;');
         }
 
@@ -1848,7 +1847,6 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
         `;
     });
 
-    // Xử lý nút bấm phía dưới (Nếu xem thì chỉ có nút Đóng)
     let htmlNutBam = '';
     if (choPhepSua) {
         htmlNutBam = `
@@ -1919,7 +1917,6 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
         </div>
     `;
 }
-
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
     const row = document.getElementById(`row_cau_${index}`);
