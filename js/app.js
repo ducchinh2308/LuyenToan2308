@@ -3925,7 +3925,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu)
 
     if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ ĐANG XỬ LÝ...</button>`;
     if (selectTT) selectTT.value = CFG_NV.FILE_GIAI.DANG_XU_LY;
-
+     
     try {
         // ==============================================================
         // 🎯 BẪY DEBUG SỐ 1: KIỂM TRA MÃ TOKEN NGAY LẬP TỨC
