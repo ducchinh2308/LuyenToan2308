@@ -1135,21 +1135,45 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     const phien = window.PhienLamBai;
     clearInterval(phien.id_timer);
 
+    //// 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
+    //let payloadBaiLam = {};
+    //phien.danh_sach_cau_hoi.forEach(cau => {
+    //    const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
+    //    const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+
+    //    if (kieu === 'DS' && typeof dapanHS === 'object') {
+    //        // Biến dạng object {A: 'T', B: 'F'} thành chuỗi "T_FF" để gửi đi
+    //        let strDS = "";
+    //        ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
+    //        payloadBaiLam[cau.ma_cau_hoi] = strDS;
+    //    } else {
+    //        payloadBaiLam[cau.ma_cau_hoi] = dapanHS || "";
+    //    }
+    //});
+
     // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     let payloadBaiLam = {};
+
+    console.log("🐛 [BẪY 1] Dữ liệu gốc học sinh click:", phien.dap_an_hoc_sinh);
+
     phien.danh_sach_cau_hoi.forEach(cau => {
-        const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
+        // 🌟 FIX LỖI: Gom chung 2 chuẩn tên biến để không bị undefined
+        const maCauChuan = cau.ma_cau_hoi || cau.maCau;
+
+        const dapanHS = phien.dap_an_hoc_sinh[maCauChuan];
         const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
 
         if (kieu === 'DS' && typeof dapanHS === 'object') {
-            // Biến dạng object {A: 'T', B: 'F'} thành chuỗi "T_FF" để gửi đi
             let strDS = "";
             ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
-            payloadBaiLam[cau.ma_cau_hoi] = strDS;
+            payloadBaiLam[maCauChuan] = strDS;
         } else {
-            payloadBaiLam[cau.ma_cau_hoi] = dapanHS || "";
+            payloadBaiLam[maCauChuan] = dapanHS || "";
         }
     });
+
+    console.log("🐛 [BẪY 2] Gói hàng đem đi nộp Server:", payloadBaiLam);
+
 
     // 2. TÍNH THỜI GIAN LÀM BÀI
     const tBatDau = phien.thoi_diem_bat_dau || Date.now();
