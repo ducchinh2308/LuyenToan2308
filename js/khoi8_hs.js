@@ -986,24 +986,24 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
     const maCauHienThi = cau.ma_goc || cau.maGoc || cau.maCauGoc || cau.idGoc || maCauLogic;
 
-    // =================================================================
-    // 🐛 BẪY DEBUG: IN RA CONSOLE ĐỂ SOI DỮ LIỆU GỐC
-    // =================================================================
-    console.log("===== ĐANG VẼ CÂU THỨ " + stt + " =====");
-    console.log("1. Toàn bộ cục dữ liệu của câu này:", cau);
-    console.log("2. Các biến có thể chứa Mã Logic:", {
-        "cau.ma_cau_hoi (từ Supabase)": cau.ma_cau_hoi,
-        "cau.maCau (từ Github)": cau.maCau,
-        "CHỐT LẠI maCauLogic": maCauLogic
-    });
-    console.log("3. Các biến có thể chứa Mã Gốc:", {
-        "cau.ma_goc": cau.ma_goc,
-        "cau.maGoc": cau.maGoc,
-        "cau.maCauGoc": cau.maCauGoc,
-        "cau.idGoc": cau.idGoc,
-        "CHỐT LẠI maCauHienThi": maCauHienThi
-    });
-    console.log("======================================");
+    //// =================================================================
+    //// 🐛 BẪY DEBUG: IN RA CONSOLE ĐỂ SOI DỮ LIỆU GỐC
+    //// =================================================================
+    //console.log("===== ĐANG VẼ CÂU THỨ " + stt + " =====");
+    //console.log("1. Toàn bộ cục dữ liệu của câu này:", cau);
+    //console.log("2. Các biến có thể chứa Mã Logic:", {
+    //    "cau.ma_cau_hoi (từ Supabase)": cau.ma_cau_hoi,
+    //    "cau.maCau (từ Github)": cau.maCau,
+    //    "CHỐT LẠI maCauLogic": maCauLogic
+    //});
+    //console.log("3. Các biến có thể chứa Mã Gốc:", {
+    //    "cau.ma_goc": cau.ma_goc,
+    //    "cau.maGoc": cau.maGoc,
+    //    "cau.maCauGoc": cau.maCauGoc,
+    //    "cau.idGoc": cau.idGoc,
+    //    "CHỐT LẠI maCauHienThi": maCauHienThi
+    //});
+    //console.log("======================================");
 
 
 
@@ -1180,7 +1180,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     let payloadBaiLam = {};
 
-    console.log("🐛 [BẪY 1] Dữ liệu gốc học sinh click:", phien.dap_an_hoc_sinh);
+    //console.log("🐛 [BẪY 1] Dữ liệu gốc học sinh click:", phien.dap_an_hoc_sinh);
 
     phien.danh_sach_cau_hoi.forEach(cau => {
         // 🌟 FIX LỖI: Gom chung 2 chuẩn tên biến để không bị undefined
@@ -1198,7 +1198,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         }
     });
 
-    console.log("🐛 [BẪY 2] Gói hàng đem đi nộp Server:", payloadBaiLam);
+    //console.log("🐛 [BẪY 2] Gói hàng đem đi nộp Server:", payloadBaiLam);
 
 
     // 2. TÍNH THỜI GIAN LÀM BÀI
