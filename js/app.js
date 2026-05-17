@@ -3911,14 +3911,13 @@ window.onunhandledrejection = function (event) {
     alert(`🚨 LỖI TẢI DỮ LIỆU NGẦM (PROMISE):\n\nChi tiết: ${event.reason}\n\nHãy chụp màn hình này lại!`);
 };
 // ==============================================================
-// Hàm 7.10: Ráp File Lời Giải Gộp (Tuyệt mật, File Bóng Ma)
+// Hàm 7.10: Ráp File Lời Giải Gộp (Tuyệt mật bằng mã sol_)
 // ==============================================================
 window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) {
-    if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ tải các file giải lẻ, ghép thành 1 file bảo mật (không chứa mã đề), đặt tên ngẫu nhiên và lưu vào thư mục Ngan_Hang_Giai_Gop.")) return;
+    if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ dùng mã giải (sol_) thay cho mã câu (q_), băm tên file ngẫu nhiên và cất vào Ngan_Hang_Giai_Gop.")) return;
 
-    // 1. KIỂM TRA CẤU HÌNH TẬP TRUNG
     if (typeof CFG_HE_THONG === 'undefined') {
-        alert("❌ Lỗi: Chưa tìm thấy file cấu hình CFG_HE_THONG. Vui lòng kiểm tra lại file config.js!");
+        alert("❌ Lỗi: Chưa tìm thấy file cấu hình CFG_HE_THONG.");
         return;
     }
 
@@ -3926,19 +3925,17 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
     const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
     const BASE_URL_KHO_GIAI_LE = CFG_HE_THONG.KHO_GIAI_LE_URL;
 
-    // Đổi giao diện nút bấm thành Đang xử lý
     const divNut = document.getElementById('khu-vuc-nut-file');
     if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ ĐANG TẠO FILE BÓNG MA...</button>`;
 
     try {
-        // 2. LẤY DANH SÁCH MÃ LỜI GIẢI TỪ BẢNG HỌC LIỆU
         const { data: dataHL, error: errHL } = await _supabase
             .from('hoc_lieu')
             .select('danh_sach_cau_hoi')
             .eq('ma_hoc_lieu', maHocLieu)
             .single();
 
-        if (errHL || !dataHL) throw new Error("Không tải được dữ liệu Học liệu từ Supabase!");
+        if (errHL || !dataHL) throw new Error("Không tải được dữ liệu Học liệu!");
 
         let dsCauHoi = dataHL.danh_sach_cau_hoi;
         if (typeof dsCauHoi === 'string') { try { dsCauHoi = JSON.parse(dsCauHoi); } catch (e) { dsCauHoi = []; } }
@@ -3949,8 +3946,8 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
         // 3. VÒNG LẶP TẢI VÀ RÚT RUỘT CÁC FILE LỜI GIẢI LẺ
         for (let item of dsCauHoi) {
             let maCauGoc = item.ma_cau_hoi || item.maCau || "";
-            let maLoiGiai = item.ma_loi_giai;
-            let dapAnDB = item.dap_an || ""; // Dự phòng lấy từ DB
+            let maLoiGiai = item.ma_loi_giai || item.maBaoMat;
+            let dapAnDB = item.dap_an || "";
 
             if (!maCauGoc || !maLoiGiai) continue;
 
@@ -3961,49 +3958,42 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
                 if (res.ok) {
                     let dataCau = await res.json();
                     danhSachLoiGiaiDaGhep.push({
-                        maCau: maCauGoc,
-                        // Tự động ưu tiên đọc dapAn và loiGiai từ file cấu trúc lẻ của thầy
+                        // 🌟 THAY ĐỔI CỐT LÕI: Chỉ dùng mã sol_, tuyệt đối không lưu mã q_
+                        maBaoMat: maLoiGiai,
                         dapAn: dataCau.dapAn || dataCau.dap_an || dapAnDB,
                         loiGiaiHtml: dataCau.loiGiai || dataCau.loiGiaiHtml || ""
                     });
                 } else {
                     danhSachLoiGiaiDaGhep.push({
-                        maCau: maCauGoc,
+                        maBaoMat: maLoiGiai,
                         dapAn: dapAnDB,
                         loiGiaiHtml: "Chưa có lời giải chi tiết cho câu này."
                     });
                 }
             } catch (e) {
                 danhSachLoiGiaiDaGhep.push({
-                    maCau: maCauGoc,
+                    maBaoMat: maLoiGiai,
                     dapAn: dapAnDB,
                     loiGiaiHtml: "Lỗi đường truyền khi tải giải."
                 });
             }
         }
 
-        // ==============================================================
-        // 4. ĐÓNG GÓI JSON: TẨY TRẮNG HOÀN TOÀN MÃ HỌC LIỆU
-        // ==============================================================
+        // 4. ĐÓNG GÓI JSON VÀ TẨY TRẮNG MÃ HỌC LIỆU
         const fileContent = JSON.stringify({
-            thoiGianGhep: new Date().toISOString(), // Tuyệt đối không lưu maHocLieu vào đây nữa
+            thoiGianGhep: new Date().toISOString(),
             danhSachLoiGiai: danhSachLoiGiaiDaGhep
         }, null, 2);
 
-        // Chống lỗi font chữ Unicode Tiếng Việt
         const utf8ToBase64 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
         const encodedContent = utf8ToBase64(fileContent);
 
-        // ==============================================================
-        // 5. BĂM TÊN FILE NGẪU NHIÊN & ĐƯA VÀO THƯ MỤC MỚI
-        // ==============================================================
-        // Sinh tên file không thể đoán (Ví dụ: GiaiGop_1px9k2_l9z.json)
+        // 5. BĂM TÊN FILE VÀ LƯU VÀO THƯ MỤC GỘP
         const randomHash = Math.random().toString(36).substring(2, 8) + '_' + Date.now().toString(36);
         const tenFileGithub = `Ngan_Hang_Giai_Gop/GiaiGop_${randomHash}.json`;
 
         const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
 
-        // 6. ĐẨY LÊN GITHUB
         const putRes = await fetch(githubApiUrl, {
             method: 'PUT',
             headers: {
@@ -4024,9 +4014,7 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
         const putData = await putRes.json();
         const linkFileGiai = putData.content?.download_url || `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${tenFileGithub}`;
 
-        // ==============================================================
         // 7. LƯU ĐƯỜNG DẪN BÍ MẬT VÀO BẢNG HỌC LIỆU
-        // ==============================================================
         const { error: errUpdate } = await _supabase
             .from('hoc_lieu')
             .update({ url_file_giai: linkFileGiai })
@@ -4034,15 +4022,13 @@ window.ham_7_10_ra_lenh_tao_file_giai = async function (idThamChieu, maHocLieu) 
 
         if (errUpdate) throw errUpdate;
 
-        alert("✅ TẠO FILE BÓNG MA THÀNH CÔNG!\n\nToàn bộ lời giải lẻ đã được gom lại, xóa sạch vết tích mã đề, băm tên ngẫu nhiên và cất an toàn.");
+        alert("✅ TẠO FILE BÓNG MA THÀNH CÔNG!\n\nToàn bộ lời giải đã được khóa bằng mã bảo mật (sol_), băm tên và cất an toàn.");
 
-        // Khóa nút lại sau khi thành công
         if (divNut) divNut.innerHTML = `<button disabled style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold;">ĐÃ TẠO FILE BẢO MẬT</button>`;
 
     } catch (error) {
         console.error("Lỗi ráp file giải:", error);
         alert("❌ Lỗi: " + error.message);
-        // Trả lại nút để thầy thao tác lại nếu có lỗi mạng
         if (divNut) divNut.innerHTML = `<button onclick="ham_7_10_ra_lenh_tao_file_giai('${idThamChieu}', '${maHocLieu}')" style="padding:8px 15px; background:#dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">❌ LỖI! THỬ LẠI</button>`;
     }
 };
