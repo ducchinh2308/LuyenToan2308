@@ -2,7 +2,7 @@
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
 const KHOI8_VERSION = "Khối 8: Cập nhật lúc 16h32 - Ngày 16/05";
-console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+//console.log(`%c🚀 ĐANG CHẠY: ${KHOI8_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 //window.addEventListener('load', () => {
 //    let versionBadge = document.createElement('div');
