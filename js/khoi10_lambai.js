@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI10_VERSION = "Khối 10: Cập nhật lúc 10h33 - Ngày 17/05";
+const KHOI10_VERSION = "Khối 10: Cập nhật lúc 10h36 - Ngày 17/05";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {

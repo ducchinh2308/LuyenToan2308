@@ -532,15 +532,152 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
     }
 }
 
+//// ==============================================================
+//// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ GitHub chuẩn xác 100%)
+//// ==============================================================
+//async function ham_8_8_khoi_tao_phong_thi(nv) {
+//    const vungLamViec = document.getElementById('dashboard-container');
+//    vungLamViec.innerHTML = `
+//        <div style="text-align: center; padding: 100px;">
+//            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+//            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang tải đề thi từ kho lưu trữ...</h3>
+//            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+//        </div>
+//    `;
+
+//    try {
+//        const maHocLieu = nv.ma_hoc_lieu;
+//        if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
+
+//        // 1. LẤY BẢN ĐỒ ĐÁP ÁN VÀ LINK TỪ SUPABASE
+//        const { data: dataHocLieu, error: errHL } = await _supabase
+//            .from('hoc_lieu')
+//            .select('*') // Lấy tất cả cột (bao gồm url_github nếu có)
+//            .eq('ma_hoc_lieu', maHocLieu)
+//            .single();
+
+//        if (errHL) throw errHL;
+
+//        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
+//        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Bản đồ đáp án trống!");
+
+//        // =========================================================
+//        // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
+//        // =========================================================
+//        let urlFileGitHub = dataHocLieu.url_github;
+
+//        // Nếu DB chưa có link (hoặc thầy chưa kịp thêm cột url_github), hệ thống tự ghép thông minh:
+//        if (!urlFileGitHub) {
+//            let maDeGoc = maHocLieu;
+//            // Tự động gọt bỏ tiền tố "HL_DE_" để lấy đúng mã gốc T12-TEST...
+//            if (maHocLieu.startsWith("HL_DE_")) {
+//                maDeGoc = maHocLieu.replace("HL_DE_", "");
+//            }
+
+//            const LINK_GITHUB_GOC =  "https://ducchinh2308.github.io/LuyenToan2308";
+//            // Ép đúng cấu trúc file trên Github của thầy
+//            urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+//        }
+
+//        console.log("🔍 Đang tải nội dung chuẩn từ:", urlFileGitHub);
+
+//        // =========================================================
+//        // 3. TẢI NỘI DUNG TỪ GITHUB
+//        // =========================================================
+//        const response = await fetch(urlFileGitHub);
+//        if (!response.ok) {
+//            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ xong chưa.\nLink: " + urlFileGitHub);
+//        }
+
+//        const dataGitHub = await response.json();
+//        const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
+
+//        // =========================================================
+//        // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
+//        // =========================================================
+//        const deThiHoanChinh = dsMapDapAn.map(mapItem => {
+//            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+//            return { ...mapItem, ...noiDung };
+//        });
+
+//        const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
+
+        
+        
+//        // Lấy đường dẫn thư mục chứa đề thi (bỏ tên file .json) và cộng thêm thư mục HinhAnh bên trong
+//        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+//        console.log("urlFileGitHub:" + urlFileGitHub);
+//        console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
+
+//        // =========================================================
+//        // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
+//        // =========================================================
+//        const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
+
+//        // Hỏi Supabase xem HS đã làm bao nhiêu lần rồi
+//        const { count, error: countErr } = await _supabase
+//            .from('ket_qua_thi')
+//            .select('*', { count: 'exact', head: true })
+//            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+//            .eq('ma_nhiem_vu', maNhiemVuThuc);
+
+//        const lanThuHienTai = (count || 0) + 1; // Tính lần làm bài hiện tại
+
+//        // Lập tức tạo 1 dòng "Đang làm" trên Database
+//        const { data: recordNhao, error: errNhao } = await _supabase
+//            .from('ket_qua_thi')
+//            .insert([{
+//                uid_hoc_sinh: GocHocSinhState.uid,
+//                ma_nhiem_vu: maNhiemVuThuc,
+//                lan_thu: lanThuHienTai,
+//                tong_diem: 0,
+//                chi_tiet_lam_bai: [],
+//                thoi_gian_lam_bai: "0 phút 0 giây", // Mặc định 0 giây
+                
+//                thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
+//            }])
+//            .select('id')
+//            .single();
+
+//        if (errNhao) throw errNhao;
+
+//        // Lưu toàn bộ vào RAM trình duyệt
+//        window.PhienLamBai = {
+//            id_ket_qua_database: recordNhao.id, // 🌟 GIỮ ID NÀY LẠI ĐỂ LÁT NỮA UPDATE
+//            ma_nhiem_vu: maNhiemVuThuc,
+//            ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+//            thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
+//            tong_so_cau: deThiDaTron.length,
+//            danh_sach_cau_hoi: deThiDaTron,
+//            dap_an_hoc_sinh: {},
+//            id_timer: null,
+//            base_url_anh: baseUrlHinhAnh
+//        };
+
+//        console.log("📦 RÁP ĐỀ THÀNH CÔNG. ID DATABASE:", window.PhienLamBai.id_ket_qua_database);
+
+//        // =========================================================
+//        // 6. MỞ GIAO DIỆN THI
+//        // =========================================================
+//        ham_8_10_ve_giao_dien_lam_bai();
+
+    
+//    } catch (err) {
+//        console.error("LỖI NẠP ĐỀ:", err);
+//        alert("Lỗi nạp đề thi: " + err.message);
+//        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+//    }
+//}
+
 // ==============================================================
-// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ GitHub chuẩn xác 100%)
+// Hàm 8.8: Khởi tạo Phòng thi (BẢO MẬT TUYỆT ĐỐI - KHÔNG ĐỤNG ĐẾN ĐÁP ÁN)
 // ==============================================================
 async function ham_8_8_khoi_tao_phong_thi(nv) {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 100px;">
             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang tải đề thi từ kho lưu trữ...</h3>
+            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang nạp đề thi bảo mật...</h3>
             <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
         </div>
     `;
@@ -549,81 +686,70 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
         const maHocLieu = nv.ma_hoc_lieu;
         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
 
-        // 1. LẤY BẢN ĐỒ ĐÁP ÁN VÀ LINK TỪ SUPABASE
+        // =========================================================
+        // 1. CHỈ LẤY DUY NHẤT LINK GITHUB (CẤM GỌI danh_sach_cau_hoi)
+        // =========================================================
         const { data: dataHocLieu, error: errHL } = await _supabase
             .from('hoc_lieu')
-            .select('*') // Lấy tất cả cột (bao gồm url_github nếu có)
+            .select('ma_hoc_lieu, url_github') // 🔒 KHOÁ CHẶT: Tuyệt đối không select cột chứa đáp án
             .eq('ma_hoc_lieu', maHocLieu)
             .single();
 
         if (errHL) throw errHL;
-
-        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
-        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Bản đồ đáp án trống!");
 
         // =========================================================
         // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
         // =========================================================
         let urlFileGitHub = dataHocLieu.url_github;
 
-        // Nếu DB chưa có link (hoặc thầy chưa kịp thêm cột url_github), hệ thống tự ghép thông minh:
         if (!urlFileGitHub) {
             let maDeGoc = maHocLieu;
-            // Tự động gọt bỏ tiền tố "HL_DE_" để lấy đúng mã gốc T12-TEST...
             if (maHocLieu.startsWith("HL_DE_")) {
                 maDeGoc = maHocLieu.replace("HL_DE_", "");
             }
-
-            const LINK_GITHUB_GOC =  "https://ducchinh2308.github.io/LuyenToan2308";
-            // Ép đúng cấu trúc file trên Github của thầy
+            const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308";
             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
 
-        console.log("🔍 Đang tải nội dung chuẩn từ:", urlFileGitHub);
+        console.log("🔍 Đang tải nội dung đề thô từ:", urlFileGitHub);
 
         // =========================================================
-        // 3. TẢI NỘI DUNG TỪ GITHUB
+        // 3. TẢI ĐỀ THI SẠCH (KHÔNG ĐÁP ÁN) TỪ GITHUB
         // =========================================================
         const response = await fetch(urlFileGitHub);
         if (!response.ok) {
-            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ xong chưa.\nLink: " + urlFileGitHub);
+            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ chưa.\nLink: " + urlFileGitHub);
         }
 
         const dataGitHub = await response.json();
-        const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
+        // Lấy danh sách câu hỏi trực tiếp từ file Github (Chỉ có nội dung, không có đáp án)
+        const dsNoiDungGH = dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || [];
+
+        if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
 
         // =========================================================
-        // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
+        // 4. TRỘN ĐỀ TRỰC TIẾP TỪ DỮ LIỆU GITHUB
         // =========================================================
-        const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
-            return { ...mapItem, ...noiDung };
-        });
+        // Không cần ráp với Database nữa, vì Database chứa mã bảo mật.
+        const deThiDaTron = ham_8_9_tron_de_thi(dsNoiDungGH);
 
-        const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
-
-        
-        
-        // Lấy đường dẫn thư mục chứa đề thi (bỏ tên file .json) và cộng thêm thư mục HinhAnh bên trong
+        // Lấy đường dẫn thư mục chứa đề thi để xử lý Hình Ảnh
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
-        console.log("urlFileGitHub:" + urlFileGitHub);
-        console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
 
         // =========================================================
         // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
         // =========================================================
         const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
 
-        // Hỏi Supabase xem HS đã làm bao nhiêu lần rồi
         const { count, error: countErr } = await _supabase
             .from('ket_qua_thi')
             .select('*', { count: 'exact', head: true })
             .eq('uid_hoc_sinh', GocHocSinhState.uid)
             .eq('ma_nhiem_vu', maNhiemVuThuc);
 
-        const lanThuHienTai = (count || 0) + 1; // Tính lần làm bài hiện tại
+        const lanThuHienTai = (count || 0) + 1;
 
-        // Lập tức tạo 1 dòng "Đang làm" trên Database
+        // Ghi nhận ngay 1 phiên làm bài trên Database
         const { data: recordNhao, error: errNhao } = await _supabase
             .from('ket_qua_thi')
             .insert([{
@@ -632,9 +758,8 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
                 lan_thu: lanThuHienTai,
                 tong_diem: 0,
                 chi_tiet_lam_bai: [],
-                thoi_gian_lam_bai: "0 phút 0 giây", // Mặc định 0 giây
-                
-                thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
+                thoi_gian_lam_bai: "0 phút 0 giây",
+                thoi_gian_nop: new Date().toISOString()
             }])
             .select('id')
             .single();
@@ -643,7 +768,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
         // Lưu toàn bộ vào RAM trình duyệt
         window.PhienLamBai = {
-            id_ket_qua_database: recordNhao.id, // 🌟 GIỮ ID NÀY LẠI ĐỂ LÁT NỮA UPDATE
+            id_ket_qua_database: recordNhao.id,
             ma_nhiem_vu: maNhiemVuThuc,
             ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
             thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
@@ -654,22 +779,17 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
             base_url_anh: baseUrlHinhAnh
         };
 
-        console.log("📦 RÁP ĐỀ THÀNH CÔNG. ID DATABASE:", window.PhienLamBai.id_ket_qua_database);
-
         // =========================================================
         // 6. MỞ GIAO DIỆN THI
         // =========================================================
         ham_8_10_ve_giao_dien_lam_bai();
 
-    
     } catch (err) {
         console.error("LỖI NẠP ĐỀ:", err);
         alert("Lỗi nạp đề thi: " + err.message);
         ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
     }
 }
-
-
 
 // ==============================================================
 // Hàm 8.9: Trộn thứ tự câu hỏi (Chống gian lận)
