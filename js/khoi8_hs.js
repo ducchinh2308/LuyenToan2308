@@ -510,7 +510,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
                     <p>⏱️ <b>Thời gian:</b> ${thoiGianHienThi}</p>
                     <p>🔄 <b>Lượt làm:</b> Lần thứ ${window.LanThuHienTai} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
                     <hr>
-                    <p style="color: #d32f2f; font-weight: bold; font-style: italic; margin:0;">⚠️ Lưu ý: Đồng hồ sẽ bắt đầu đếm ngược ngay khi em bấm nút BẮT ĐẦU.</p>
+                    <p style="color: #d32f2f; font-weight: bold; font-style: italic; margin:0;">⚠️ Lưu ý: Kết quả các lần trước sẽ xóa, đồng hồ sẽ bắt đầu đếm ngược ngay khi em bấm nút BẮT ĐẦU.</p>
                 </div>
             `,
             icon: 'question',
