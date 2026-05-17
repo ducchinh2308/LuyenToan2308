@@ -1376,8 +1376,8 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
         let sttPhan = 1;
         danhSach.forEach(cau => {
             const maCauLogic = cau.ma_cau_hoi || cau.maCau;
-            const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
-
+            //const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
+            const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: {}, ketQua: "Bỏ trống", diem: 0 };
             htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
             let mauNut = "#e9ecef", vienNut = "#ced4da", mauChu = "#495057";
@@ -1506,8 +1506,8 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
         htmlBlock += `<div class="cau-ds">`;
         const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
         const dapAnChuan = cau.dap_an || "";
-        const luaChonCuaHS = typeof baiLamHS.luaChonHS === 'object' ? baiLamHS.luaChonHS : {};
-
+        //const luaChonCuaHS = typeof baiLamHS.luaChonHS === 'object' ? baiLamHS.luaChonHS : {};
+        const luaChonCuaHS = (baiLamHS.luaChonHS && typeof baiLamHS.luaChonHS === 'object') ? baiLamHS.luaChonHS : {};
         mangY.forEach((y, idx) => {
             const nhanThuong = ['a', 'b', 'c', 'd'][idx];
             const hsChon = luaChonCuaHS[y.id];
