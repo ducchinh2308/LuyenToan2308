@@ -1790,7 +1790,7 @@ function ham_6_5_tinh_toan_cau_truc() {
 }
 
 // ==============================================================
-// Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA)
+// Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA) - TƯƠNG THÍCH NGƯỢC
 // ==============================================================
 function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
@@ -1806,18 +1806,32 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
     let htmlRows = '';
 
     dsCauHoi.forEach((item, index) => {
-        const parts = item.split('|');
         let maGoc, maAoDe, maAoGiai, dapAn;
+        let chuoiGocDeLuu = "";
 
-        if (parts.length >= 4) {
-            [maGoc, maAoDe, maAoGiai, dapAn] = parts;
+        // 🌟 BỘ CHUYỂN ĐỔI THÔNG MINH: Phân biệt Đề cũ (Chuỗi) và Đề mới (Object JSON)
+        if (typeof item === 'string') {
+            const parts = item.split('|');
+            if (parts.length >= 4) {
+                [maGoc, maAoDe, maAoGiai, dapAn] = parts;
+            } else {
+                maGoc = "N/A";
+                [maAoDe, maAoGiai, dapAn] = parts;
+            }
+            chuoiGocDeLuu = item; // Giữ nguyên chuỗi gốc
         } else {
-            maGoc = "N/A";
-            [maAoDe, maAoGiai, dapAn] = parts;
+            // Đọc dữ liệu từ Object mới của C#
+            maGoc = item.ma_goc || "N/A";
+            maAoDe = item.ma_cau_hoi || item.maCau || "";
+            maAoGiai = item.ma_loi_giai || item.maBaoMat || "";
+            dapAn = item.dap_an || item.dapAn || "";
+
+            // Ép Object thành chuỗi an toàn để nhét vào thuộc tính HTML, chống lỗi [object Object]
+            chuoiGocDeLuu = JSON.stringify(item).replace(/"/g, '&quot;');
         }
 
         htmlRows += `
-            <tr class="row-cau-hoi" data-original-string="${item}" style="border-bottom: 1px solid #eee;">
+            <tr class="row-cau-hoi" data-original-string="${chuoiGocDeLuu}" style="border-bottom: 1px solid #eee;">
                 <td class="stt-cau" style="padding: 8px; text-align: center; font-weight: bold; color: #666;">${index + 1}</td>
                 <td style="padding: 8px; font-weight: bold; color: #1a73e8;">${maGoc}</td>
                 <td style="padding: 8px; color: #e67e22; font-size: 11px; font-family: monospace;">${maAoDe}</td>
@@ -1905,9 +1919,6 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
         </div>
     `;
 }
-
-
-
 
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
