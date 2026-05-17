@@ -3916,7 +3916,7 @@ window.onunhandledrejection = function (event) {
 window.ham_7_10_ra_lenh_tao_file_giai = async function (idGocNhiemVu, maHocLieu) {
     if (!confirm("🚀 Bắt đầu quá trình gom file lời giải?\n\nHệ thống sẽ tải từng lời giải theo mã ảo, ghép thành 1 file JSON duy nhất và đẩy lên Github.")) return;
 
-    const GITHUB_TOKEN = "ghp_"+"EWSx8Gn9tSuFP1g03sDnHu5EbQb8Ip4AtebI";
+    const GITHUB_TOKEN = "ghp_" +"iHDOmx43jv6bg0UdfWUelFMz3MetUk2qJpGw";
 
     const GITHUB_REPO = "ducchinh2308/LuyenToan2308";
 
