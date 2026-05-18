@@ -390,14 +390,14 @@ window.ham_8_13_xem_lai_ket_qua = function (maNhiemVu, idKetQua) {
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
 // ==============================================================
-// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO"
+// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO" (Đã vá lỗi nạp RAM)
 // ==============================================================
 async function ham_8_3_tab_luyen_tap_tu_do() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang mở kho đề luyện tập...</h3></div>`;
 
     try {
-        // Lấy những bài có mã lớp đặc biệt dành cho tự luyện
+        // 1. Lấy những bài có mã lớp đặc biệt dành cho tự luyện
         const { data: dsTuDo, error } = await _supabase
             .from('nhiem_vu')
             .select('*')
@@ -417,11 +417,22 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             return;
         }
 
-        // Vẽ danh sách đề luyện tập (Thiết kế dạng danh sách lướt cho nhẹ nhàng)
+        // ==========================================================
+        // 🌟 CHỐT VÁ LỖI: BƠM DỮ LIỆU VÀO RAM CHO HÀM 8.7 ĐỌC ĐƯỢC
+        // ==========================================================
+        dsTuDo.forEach(nvTuDo => {
+            // Kiểm tra xem bài này đã có trong RAM chưa, nếu chưa thì nhét vào
+            const daTonTai = GocHocSinhState.danhSachNhiemVu.find(n => n.ma_nhiem_vu === nvTuDo.ma_nhiem_vu);
+            if (!daTonTai) {
+                GocHocSinhState.danhSachNhiemVu.push(nvTuDo);
+            }
+        });
+
+        // 2. Vẽ danh sách đề luyện tập (Giao diện list tối giản)
         let htmlList = `
             <div style="max-width: 800px; margin: 0 auto;">
-                <div style="background: #e3f2fd; padding: 10px 15px; border-radius: 8px; color: #0056b3; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #0056b3;">
-                    ✨ <b>Góc tự học:</b> Đây là các đề thi mở tự do, không giới hạn thời gian và số lượt làm. Các em có thể luyện tập bất cứ lúc nào để nâng cao kỹ năng!
+                <div style="background: #e3f2fd; padding: 12px 15px; border-radius: 8px; color: #0056b3; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #0056b3; line-height: 1.5;">
+                    ✨ <b>Góc tự học:</b> Đây là các đề thi mở tự do, không giới hạn số lượt làm bài. Các em có thể luyện tập đi luyện tập lại bất cứ lúc nào để nâng cao kỹ năng!
                 </div>
         `;
 
@@ -429,15 +440,22 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             htmlList += `
                 <div style="background: white; border: 1px solid #dee2e6; border-radius: 10px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
                     <div style="flex: 1; padding-right: 15px;">
-                        <h4 style="margin: 0 0 8px 0; color: #2c3e50; font-size: 15px;">${nv.ten_nhiem_vu}</h4>
+                        <h4 style="margin: 0 0 8px 0; color: #2c3e50; font-size: 16px;">${nv.ten_nhiem_vu}</h4>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            <span style="font-size: 11px; color: #666;">⏱️ ${nv.thoi_gian_lam_bai || 0} phút</span>
-                            <span style="font-size: 11px; color: #666;">📦 ${nv.cau_truc_de|| 0}</span>
-                            <span style="font-size: 11px; color: #17a2b8; font-weight: bold;">🌍 Tự do</span>
+                            <span style="font-size: 11px; color: #666; background:#f8f9fa; padding:3px 8px; border-radius:4px;">
+                                ⏱️ ${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}
+                            </span>
+                            <span style="font-size: 11px; color: #666; background:#f8f9fa; padding:3px 8px; border-radius:4px;" title="${nv.cau_truc_de}">
+                                📦 ${nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Đang cập nhật"}
+                            </span>
+                            <span style="font-size: 11px; color: #17a2b8; font-weight: bold; background:#e8f4f8; padding:3px 8px; border-radius:4px;">
+                                🌍 Luyện tập mở
+                            </span>
                         </div>
                     </div>
                     <button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" 
-                            style="padding: 10px 20px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">
+                            style="padding: 10px 20px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;"
+                            onmouseover="this.style.background='#138496'" onmouseout="this.style.background='#17a2b8'">
                         LUYỆN TẬP
                     </button>
                 </div>
@@ -451,7 +469,6 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi: ${error.message}</div>`;
     }
 }
-
 function ham_8_4_tab_ket_qua() {
     document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#6f42c1; text-align:center;">📊 Học bạ và Điểm số (Sắp ra mắt)</h3>`;
 }

@@ -1,4 +1,20 @@
 ﻿// ==============================================================
+// KHỐI 10: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
+// ==============================================================
+const KHOI10_VERSION = "Khối 10: Cập nhật lúc 7h41 - Ngày 18/05";
+console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+
+window.addEventListener('load', () => {
+    let versionBadge = document.createElement('div');
+    versionBadge.innerHTML = KHOI10_VERSION;
+    versionBadge.style.cssText = "position: fixed; bottom: 20px; right: 5px; font-size: 9px; color: #28a745; z-index: 9999; ";
+    document.body.appendChild(versionBadge);
+});
+
+
+
+
+// ==============================================================
 // FILE: config.js - QUẢN LÝ CẤU HÌNH TẬP TRUNG TOÀN HỆ THỐNG
 // ==============================================================
 window.CFG_HE_THONG = {

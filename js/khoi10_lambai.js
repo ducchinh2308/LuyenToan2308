@@ -1,16 +1,4 @@
-﻿// ==============================================================
-// KHỐI 0: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
-// ==============================================================
-const KHOI10_VERSION = "Khối 10: Cập nhật lúc 1h41 - Ngày 17/05";
-console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
-
-window.addEventListener('load', () => {
-    let versionBadge = document.createElement('div');
-    versionBadge.innerHTML = KHOI10_VERSION;
-    versionBadge.style.cssText = "position: fixed; bottom: 20px; right: 5px; font-size: 9px; color: #28a745; z-index: 9999; ";
-    document.body.appendChild(versionBadge);
-});
-
+﻿
 
 
 // ---------------------------------------------------------------------
@@ -116,3 +104,8 @@ function dichLaTeX(tex) {
 
     return tex;
 }
+
+
+
+
+
