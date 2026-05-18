@@ -787,7 +787,7 @@ async function ham_8_4_tab_ket_qua() {
     }
 }
 // =====================================================================
-// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN"
+// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (Đã fix lỗi Lớp & Thêm Xác nhận Mật khẩu)
 // =====================================================================
 async function ham_8_5_tab_ho_so() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -799,7 +799,6 @@ async function ham_8_5_tab_ho_so() {
     `;
 
     try {
-        // 1. Tải thông tin mới nhất từ database để đảm bảo chính xác
         const { data: hs, error } = await _supabase
             .from('hoc_sinh')
             .select('*')
@@ -808,9 +807,12 @@ async function ham_8_5_tab_ho_so() {
 
         if (error) throw error;
 
-        // 2. Phân tích danh sách lớp để in ra tên Lớp cho học sinh thấy
-        let mangLop = [];
-        try { mangLop = typeof hs.ma_lop === 'string' ? JSON.parse(hs.ma_lop) : (hs.ma_lop || []); } catch (e) { }
+        // 🌟 1. FIX LỖI DANH SÁCH LỚP: Sử dụng mảng chuẩn từ State đã được nạp lúc đăng nhập
+        let mangLop = GocHocSinhState.danh_sach_ma_lop || [];
+        if (mangLop.length === 0) {
+            // Dự phòng nếu State rỗng thì đọc từ Database
+            try { mangLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+        }
 
         let tenLopHienThi = "Chưa tham gia lớp nào";
         if (mangLop.length > 0) {
@@ -818,10 +820,9 @@ async function ham_8_5_tab_ho_so() {
             if (dsLop) tenLopHienThi = dsLop.map(l => l.ten_lop).join(', ');
         }
 
-        // Lấy mật khẩu hiện tại (ẩn hiển thị)
         const mkHienTai = hs.mat_khau || hs.matKhau || "";
 
-        // 3. VẼ GIAO DIỆN HỒ SƠ DẠNG CARD
+        // 🌟 2. VẼ GIAO DIỆN (Thêm ô nhập lại mật khẩu)
         vungLamViec.innerHTML = `
             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
                 <div style="background: linear-gradient(135deg, #6c757d, #343a40); padding: 35px 20px; text-align: center; color: white; position: relative;">
@@ -843,13 +844,17 @@ async function ham_8_5_tab_ho_so() {
                         <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box;">
                             ${tenLopHienThi}
                         </div>
-                        <div style="font-size: 11px; color: #888; margin-top: 6px; font-style: italic;">* Để ghi danh thêm lớp mới hoặc đổi lớp, vui lòng liên hệ Giáo viên bộ môn.</div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Mật khẩu:</label>
+                        <input type="password" id="hs_edit_mk" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
                     </div>
 
                     <div style="margin-bottom: 25px;">
-                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Đổi mật khẩu:</label>
-                        <input type="password" id="hs_edit_mk" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
-                        <div style="font-size: 11px; color: #dc3545; margin-top: 6px;">* Xóa mật khẩu cũ và gõ mật khẩu mới vào ô trên để thay đổi. Tuyệt đối không chia sẻ mật khẩu cho người khác.</div>
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔁 Xác nhận lại mật khẩu:</label>
+                        <input type="password" id="hs_edit_mk_2" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+                        <div style="font-size: 11px; color: #dc3545; margin-top: 6px;">* Gõ mật khẩu mới vào cả 2 ô trên để thay đổi. Tuyệt đối không chia sẻ mật khẩu cho người khác.</div>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid #e9ecef; margin: 25px 0;">
@@ -871,14 +876,27 @@ async function ham_8_5_tab_ho_so() {
 }
 
 // =====================================================================
-// Hàm 8.5.1: Xử lý Lưu cập nhật Hồ sơ lên Supabase
+// Hàm 8.5.1: Xử lý Lưu cập nhật Hồ sơ lên Supabase (Có so dò mật khẩu)
 // =====================================================================
 window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
     const tenMoi = document.getElementById('hs_edit_ten').value.trim();
-    const mkMoi = document.getElementById('hs_edit_mk').value.trim();
+    const mkMoi1 = document.getElementById('hs_edit_mk').value.trim();
+    const mkMoi2 = document.getElementById('hs_edit_mk_2').value.trim();
 
+    // Kiểm tra dữ liệu rỗng
     if (!tenMoi) return Swal.fire({ icon: 'warning', title: 'Thiếu thông tin', text: 'Tên hiển thị không được để trống!' });
-    if (!mkMoi) return Swal.fire({ icon: 'warning', title: 'Thiếu thông tin', text: 'Mật khẩu không được để trống!' });
+    if (!mkMoi1) return Swal.fire({ icon: 'warning', title: 'Thiếu thông tin', text: 'Mật khẩu không được để trống!' });
+
+    // 🌟 Kiểm tra so dò 2 lần nhập mật khẩu
+    if (mkMoi1 !== mkMoi2) {
+        document.getElementById('hs_edit_mk_2').style.borderColor = '#dc3545'; // Đổi viền sang đỏ
+        return Swal.fire({
+            icon: 'error',
+            title: 'Mật khẩu không khớp!',
+            text: 'Hai lần nhập mật khẩu của em đang khác nhau. Vui lòng gõ lại cho chính xác.',
+            confirmButtonColor: '#1a73e8'
+        });
+    }
 
     const textCu = btnLuu.innerHTML;
     btnLuu.innerHTML = "⏳ ĐANG LƯU...";
@@ -887,12 +905,12 @@ window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
     try {
         const { error } = await _supabase
             .from('hoc_sinh')
-            .update({ ten: tenMoi, mat_khau: mkMoi }) // Tùy thuộc vào cột trong DB của thầy là mat_khau hay matKhau
+            .update({ ten: tenMoi, mat_khau: mkMoi1 }) // Cập nhật cột mat_khau
             .eq('uid', GocHocSinhState.uid);
 
         if (error) throw error;
 
-        // Cập nhật lại RAM để thay đổi lập tức tên trên lời chào góc phải
+        // Cập nhật lại RAM
         GocHocSinhState.ten = tenMoi;
 
         Swal.fire({
@@ -902,17 +920,19 @@ window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
             timer: 1500,
             showConfirmButton: false
         }).then(() => {
-            // Ráp lại giao diện để load lại tên trên thanh Header
             ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
         });
 
     } catch (err) {
-        Swal.fire({ icon: 'error', title: 'Lỗi', text: err.message });
+        Swal.fire({ icon: 'error', title: 'Lỗi máy chủ', text: err.message });
     } finally {
         btnLuu.innerHTML = textCu;
         btnLuu.disabled = false;
     }
 };
+
+
+
 
 // =====================================================================
 // Hàm Bổ trợ Đăng xuất
