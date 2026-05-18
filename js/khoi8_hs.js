@@ -993,14 +993,13 @@ async function ham_8_5_tab_ho_so() {
 
         vungLamViec.innerHTML = `
             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
-                <div style="background: linear-gradient(135deg, #6c757d, #343a40); padding: 35px 20px; text-align: center; color: white; position: relative;">
-                    <div style="font-size: 65px; margin-bottom: 10px; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">🎓</div>
+               <div style="background: linear-gradient(135deg, #1a73e8, #00b4d8); padding: 35px 20px; text-align: center; color: white; position: relative;">
+                    <div style="font-size: 65px; margin-bottom: 10px; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.15);">🎓</div>
                     <h2 style="margin: 0; font-size: 24px; font-weight: 900;">${hs.ten || "Học sinh"}</h2>
-                    <div style="font-size: 14px; opacity: 0.9; margin-top: 5px; background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px;">
+                    <div style="font-size: 14px; opacity: 0.9; margin-top: 5px; background: rgba(255,255,255,0.25); display: inline-block; padding: 4px 12px; border-radius: 20px;">
                         ID Đăng nhập: <b>${hs.uid}</b>
                     </div>
                 </div>
-                
                 <div style="padding: 30px;">
                     <div style="margin-bottom: 20px;">
                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">👤 Tên hiển thị của em:</label>
@@ -1185,7 +1184,7 @@ window.ham_8_5_2_xin_vao_lop_moi = function () {
             Swal.fire({
                 icon: 'success',
                 title: 'Đã gửi đơn thành công!',
-                text: `Đơn đăng ký vào lớp "${result.value}" đã nằm trong hòm thư chờ Thầy Chính duyệt duyệt nha em!`,
+                text: `Đơn đăng ký vào lớp "${result.value}" đã nằm trong hòm thư chờ Thầy duyệt nha em!`,
                 confirmButtonColor: '#28a745'
             });
         }
