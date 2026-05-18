@@ -518,7 +518,7 @@ window.ham_8_13_xem_lai_ket_qua = function (maNhiemVu, idKetQua) {
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
 // =====================================================================
-// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO" (NÂNG CẤP ĐẦY ĐỦ NHƯ NHIỆM VỤ LỚP)
+// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO" (ĐÃ ĐỒNG BỘ BỘ ĐẾM TIẾN ĐỘ)
 // =====================================================================
 async function ham_8_3_tab_luyen_tap_tu_do() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -552,20 +552,33 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         });
 
         // ==========================================================
-        // 🌟 2. TRUY VẤN LỊCH SỬ LÀM BÀI ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (ĐỒNG BỘ 100%)
+        // 🌟 2. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (ĐÃ SỬA ĐỒNG BỘ)
         // ==========================================================
         let demSoLuotLam = {};
         let ketQuaGanNhat = {};
 
+        // Bước A: Bốc số lần làm bài cached trực tiếp từ table hoc_sinh
+        const { data: hsData } = await _supabase
+            .from('hoc_sinh')
+            .select('tien_do_lam_bai')
+            .eq('uid', GocHocSinhState.uid)
+            .single();
+
+        if (hsData && hsData.tien_do_lam_bai) {
+            demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string'
+                ? JSON.parse(hsData.tien_do_lam_bai)
+                : hsData.tien_do_lam_bai;
+        }
+
+        // Bước B: Quét lịch sử nộp bài để lấy ID và Điểm số của lần làm gần nhất
         const { data: dsKQ } = await _supabase
             .from('ket_qua_thi')
             .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop')
             .eq('uid_hoc_sinh', GocHocSinhState.uid)
-            .order('thoi_gian_nop', { ascending: true }); // Từ cũ đến mới để lấy cái sau cùng làm mới nhất
+            .order('thoi_gian_nop', { ascending: true }); // Từ cũ đến mới
 
         if (dsKQ) {
             dsKQ.forEach(kq => {
-                demSoLuotLam[kq.ma_nhiem_vu] = (demSoLuotLam[kq.ma_nhiem_vu] || 0) + 1;
                 ketQuaGanNhat[kq.ma_nhiem_vu] = {
                     id: kq.id,
                     diem: kq.tong_diem,
@@ -574,7 +587,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             });
         }
 
-        // 3. XÂY DỰNG TỪ ĐIỂN GIÁO VIÊN VÀ TÊN LỚP MẶC ĐỊNH
+        // 3. XÂY DỰNG TỪ ĐIỂN GIÁO VIÊN MẶC ĐỊNH
         let tuDienGv = {};
         let tapUidGv = new Set();
         dsTuDo.forEach(nv => { if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao); });
@@ -584,7 +597,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             if (dataGv) dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten);
         }
 
-        // 4. PHÂN LOẠI TRẠNG THÁI THỜI GIAN (CHƯA MỞ, ĐANG MỞ, ĐÃ ĐÓNG)
+        // 4. PHÂN LOẠI TRẠNG THÁI THỜI GIAN VÀ CHỐT CHẶN HẾT LƯỢT
         const now = new Date();
         let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
         const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
@@ -593,12 +606,24 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
 
-            if (tMo && now.getTime() < tMo.getTime()) dsChuaMo.push(nv);
-            else if (tDong && now.getTime() > tDong.getTime()) dsDaDong.push(nv);
-            else dsDangMo.push(nv);
+            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+            const gioiHanLuot = nv.so_luot_lam_bai || 0;
+
+            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+
+            if (tMo && now.getTime() < tMo.getTime()) {
+                dsChuaMo.push(nv);
+            }
+            // 🌟 ĐỒNG BỘ: Hết lượt hoặc Quá hạn tự động bay vào mảng ĐÃ ĐÓNG
+            else if (daQuaHan || daHetLuot) {
+                dsDaDong.push(nv);
+            } else {
+                dsDangMo.push(nv);
+            }
         });
 
-        // ⚙️ CÁC HÀM PHỤ TÍNH THỜI GIAN THÔNG MINH ĐỒNG BỘ TỪ TAB LỚP
+        // ⚙️ CÁC HÀM PHỤ TÍNH THỜI GIAN THÔNG MINH
         const tinhKhoangCachThoiGian = (targetDate, isMo) => {
             if (!targetDate) return "";
             const diff = targetDate.getTime() - now.getTime();
@@ -623,7 +648,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         };
 
         // ==========================================================
-        // 🌟 5. HÀM VẼ GIAO DIỆN THỂ (CARD) FULL TÍNH NĂNG XEM ĐIỂM & REVIEW
+        // 🌟 5. HÀM VẼ GIAO DIỆN THỂ (CARD) FULL TÍNH NĂNG
         // ==========================================================
         const renderCardTuLuyen = (nv, loai) => {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
@@ -637,9 +662,10 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
             const gioiHanLuot = nv.so_luot_lam_bai || 0;
             const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
-            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
-            // 🌟 KHU VỰC RÁP ĐIỂM SỐ VÀ NÚT CHI TIẾT XEM LẠI BÀI GIẢI
+            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+
             const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
             let htmlKetQua = "";
 
@@ -664,20 +690,34 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
             let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
 
             if (loai === 'DANG_MO') {
-                if (daHetLuot) {
-                    mauVien = "#dc3545"; mauNen = "#fff5f6";
-                    nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">⛔ ĐÃ HẾT LƯỢT LUYỆN TẬP</button>`;
-                } else {
-                    mauVien = "#17a2b8"; mauNen = "#f4fcfd";
-                    const textNut = soLuotDaLam > 0 ? '🔄 LUYỆN TẬP LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
-                    nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">${textNut}</button>`;
-                }
+                mauVien = "#17a2b8"; mauNen = "#f4fcfd";
+                const textNut = soLuotDaLam > 0 ? '🔄 LUYỆN TẬP LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
+                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">${textNut}</button>`;
             } else if (loai === 'CHUA_MO') {
                 mauVien = "#ffc107"; mauNen = "#fffbf0";
                 nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở đề</button>`;
             } else if (loai === 'DA_DONG') {
                 mauVien = "#dc3545"; mauNen = "#fff5f6";
-                nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; opacity:0.7;">🛑 ĐỀ ĐÃ KHÓA</button>`;
+                const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
+
+                let textNutXin = "🙋 XIN LƯỢT LÀM BÀI";
+                let maLoaiXin = "QUA_HAN";
+
+                if (daHetLuot && !daQuaHan) {
+                    textNutXin = "🙋 XIN THÊM LƯỢT LÀM BÀI";
+                    maLoaiXin = "HET_LUOT";
+                } else if (daQuaHan) {
+                    textNutXin = "🙋 XIN NỘP BÀI QUÁ HẠN";
+                    maLoaiXin = "QUA_HAN";
+                }
+
+                nutHanhDong = `
+                    <button onclick="ham_8_15_xin_luot_lam_bai('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', '${maLoaiXin}')" 
+                            style="width: 100%; padding: 12px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(253,126,20,0.3);"
+                            onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#fd7e14'">
+                        ${textNutXin}
+                    </button>
+                `;
             }
 
             return `
@@ -703,7 +743,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
                             📦 <b>Cấu trúc đề</b> 
                         </span>
                         <span style="font-size: 12px; padding: 4px 8px; border-radius: 4px; ${cssLuot}">
-                            🔄 Đã luyện tập: <b>${soLuotDaLam} / ${textLuotChoPhep} lượt</b>
+                            🔄 Đã luyện tập: <b>${soLuotDaLam} / ${textLuotChoPhep}</b>
                         </span>
                     </div>
 
@@ -728,7 +768,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         // 6. ĐỔ DỮ LIỆU RA KHUNG BA CỘT CHUYÊN NGHIỆP Y HỆT TAB NHIỆM VỤ LỚP
         vungLamViec.innerHTML = `
             <div style="background: #e0f7fa; padding: 12px 15px; border-radius: 8px; color: #006064; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #00bcd4; text-align: left; line-height: 1.5;">
-                🌍 <b>Không gian Tự học chuyên sâu:</b> Các đề thi tự luyện được cấu hình như một bài kiểm tra trên lớp nhưng không bắt buộc. Em có thể theo dõi điểm số thăng tiến và xem lại chi tiết từng câu sai để rút kinh nghiệm!
+                🌍 <b>Không gian Tự học chuyên sâu:</b> Các đề thi tự luyện được cấu hình đầy đủ tính năng. Em có thể theo dõi điểm số thăng tiến, gửi đơn xin cứu trợ khi hết lượt/quá hạn và xem lại bài giải bất cứ lúc nào!
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                 <div style="background: #f4fcfd; padding: 15px; border-radius: 8px; border: 1px solid #b2ebf2;">
@@ -740,7 +780,7 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
                     ${dsChuaMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsChuaMo.map(nv => renderCardTuLuyen(nv, 'CHUA_MO')).join('')}
                 </div>
                 <div style="background: #fff8f8; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb;">
-                    <h3 style="margin-top: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÃ KHÓA / ĐÓNG (${dsDaDong.length})</h3>
+                    <h3 style="margin-top: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÓNG / QUÁ HẠN / HẾT LƯỢT (${dsDaDong.length})</h3>
                     ${dsDaDong.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsDaDong.map(nv => renderCardTuLuyen(nv, 'DA_DONG')).join('')}
                 </div>
             </div>
@@ -751,6 +791,9 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi tải dữ liệu tự luyện: ${error.message}</div>`;
     }
 }
+
+
+
 // =====================================================================
 // Hàm 8.4: Tab HỌC BÀ VÀ ĐIỂM SỐ (Bảng điều khiển cá nhân)
 // =====================================================================
