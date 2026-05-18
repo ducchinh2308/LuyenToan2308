@@ -435,7 +435,10 @@ function ham_2_3_an_hien_mat_khau(inputId) {
 //}
 
 
-// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
+// =====================================================================
+// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
+// (BẢN KỶ LUẬT THÉP: BẮT BUỘC NHẬP MÃ LỚP HỢP LỆ)
+// =====================================================================
 async function ham_2_4_xu_ly_submit(btnElement) {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
@@ -511,21 +514,20 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     } else {
         // ====================================================
-        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH (ĐÃ NÂNG CẤP ĐỒNG BỘ LỚP)
+        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (BẮT BUỘC CÓ MÃ LỚP)
         // ====================================================
         console.log("App: Đang xử lý đăng ký tài khoản");
 
         const hoTen = document.getElementById('txtHoTen').value.trim();
         const passConfirm = document.getElementById('txtConfirmPassword').value;
-
         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
 
-        // 1. Kiểm tra tính hợp lệ
-        if (!hoTen || !tinh || !truong) {
-            errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+        // 🌟 1. KIỂM TRA TÍNH HỢP LỆ FORM (Bổ sung bắt buộc Mã lớp)
+        if (!hoTen || !tinh || !truong || !maLopVao) {
+            errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Trường, Tỉnh và ĐẶC BIỆT LÀ MÃ LỚP!";
             errorMsg.style.display = 'block';
             return;
         }
@@ -540,7 +542,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             return;
         }
 
-        document.getElementById('status').innerText = `Đang kết nối cơ sở dữ liệu...`;
+        document.getElementById('status').innerText = `Đang xác thực mã lớp...`;
         if (btnElement) btnElement.disabled = true;
 
         try {
@@ -556,32 +558,31 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             }
 
             // =========================================================
-            // 3. KIỂM TRA MÃ LỚP VÀ LẤY DANH SÁCH HỌC SINH HIỆN TẠI CỦA LỚP ĐÓ
+            // 🌟 3. XÁC THỰC MÃ LỚP CÓ TỒN TẠI KHÔNG (BẮT BUỘC)
             // =========================================================
-            let checkLop = null;
-            if (maLopVao !== '') {
-                const { data: dataLop, error: loiCheckLop } = await _supabase
-                    .from('lop_hoc')
-                    .select('ma_lop, danh_sach_hoc_sinh') // Bốc luôn mảng học sinh cũ ra
-                    .eq('ma_lop', maLopVao)
-                    .maybeSingle();
+            const { data: checkLop, error: loiCheckLop } = await _supabase
+                .from('lop_hoc')
+                .select('ma_lop, danh_sach_hoc_sinh')
+                .eq('ma_lop', maLopVao)
+                .maybeSingle();
 
-                if (loiCheckLop) throw loiCheckLop;
+            if (loiCheckLop) throw loiCheckLop;
 
-                if (!dataLop) {
-                    throw new Error(`Mã lớp "${maLopVao}" không tồn tại. Em vui lòng kiểm tra lại hoặc để trống nếu chưa có lớp!`);
-                }
-                checkLop = dataLop; // Lưu lại để tí nữa update
+            // NẾU NHẬP LỤI MÃ LỚP KHÔNG CÓ TRONG DATABASE -> CHẶN NGAY!
+            if (!checkLop) {
+                throw new Error(`Mã lớp "${maLopVao}" KHÔNG TỒN TẠI trên hệ thống. Em vui lòng xin lại giáo viên mã lớp chính xác để đăng ký!`);
             }
 
             // 4. Tạo sẵn 1 mã UID duy nhất cho học sinh này
             const taoUidHocSinh = crypto.randomUUID();
 
+            document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
+
             // 5. Thực hiện lưu học sinh vào Database
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
-                    uid: taoUidHocSinh, // Dùng mã UID vừa tạo
+                    uid: taoUidHocSinh,
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
@@ -590,39 +591,35 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     khoi_lop: khoi,
                     tinh: tinh,
                     truong: truong,
-                    danh_sach_ma_lop: maLopVao ? [maLopVao] : [],
+                    danh_sach_ma_lop: [maLopVao], // Chắc chắn có mảng 1 phần tử
                     ngay_tham_gia: new Date().toISOString()
                 }]);
 
             if (insertError) throw insertError;
 
             // =========================================================
-            // 🌟 6. CẬP NHẬT UID HỌC SINH VÀO BẢNG LỚP HỌC (ĐỒNG BỘ 2 CHIỀU)
+            // 6. CẬP NHẬT UID HỌC SINH VÀO BẢNG LỚP HỌC (ĐỒNG BỘ 2 CHIỀU)
             // =========================================================
-            if (maLopVao !== '' && checkLop) {
-                let dsHsHienTaiLop = [];
-                try {
-                    // Ép kiểu JSON an toàn
-                    dsHsHienTaiLop = typeof checkLop.danh_sach_hoc_sinh === 'string'
-                        ? JSON.parse(checkLop.danh_sach_hoc_sinh)
-                        : (checkLop.danh_sach_hoc_sinh || []);
-                } catch (e) { }
+            let dsHsHienTaiLop = [];
+            try {
+                dsHsHienTaiLop = typeof checkLop.danh_sach_hoc_sinh === 'string'
+                    ? JSON.parse(checkLop.danh_sach_hoc_sinh)
+                    : (checkLop.danh_sach_hoc_sinh || []);
+            } catch (e) { }
 
-                // Nếu UID chưa có trong lớp thì push vào và update lại lên Supabase
-                if (!dsHsHienTaiLop.includes(taoUidHocSinh)) {
-                    dsHsHienTaiLop.push(taoUidHocSinh);
+            if (!dsHsHienTaiLop.includes(taoUidHocSinh)) {
+                dsHsHienTaiLop.push(taoUidHocSinh);
 
-                    const { error: errUpdateLop } = await _supabase
-                        .from('lop_hoc')
-                        .update({ danh_sach_hoc_sinh: dsHsHienTaiLop })
-                        .eq('ma_lop', maLopVao);
+                const { error: errUpdateLop } = await _supabase
+                    .from('lop_hoc')
+                    .update({ danh_sach_hoc_sinh: dsHsHienTaiLop })
+                    .eq('ma_lop', maLopVao);
 
-                    if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
-                }
+                if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
             }
 
             // 7. Hoàn tất
-            alert(`Đăng ký thành công tài khoản cho: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
+            alert(`Đăng ký thành công! Em đã được tự động thêm vào lớp ${maLopVao}. Hệ thống sẽ chuyển về trang Đăng nhập.`);
 
             ham_2_1_chuyen_doi_che_do();
             document.getElementById('txtPassword').value = '';
@@ -637,8 +634,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         }
     }
 }
-
-
 
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
