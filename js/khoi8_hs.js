@@ -676,7 +676,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 }
 
 // =====================================================================
-// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (CHUẨN HÓA SCHEMA)
+// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (THÔNG BÁO THÂN THIỆN)
 // =====================================================================
 window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
     let tieuDePrompt = 'XIN THÊM LƯỢT LÀM BÀI';
@@ -702,37 +702,40 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
         inputValidator: (value) => {
             if (!value.trim()) return 'Em bắt buộc phải nhập lý do rõ ràng thì Thầy mới duyệt được nhé!';
         },
-        // 🌟 BẮN DỮ LIỆU LÊN SUPABASE VỚI ĐÚNG SCHEMA CỦA THẦY
         preConfirm: async (lyDoHS) => {
             try {
-                // Ép danh sách lớp thành chuỗi để lưu vào cột ma_lop (text)
                 const chuoiMaLop = (GocHocSinhState.danh_sach_ma_lop || []).join(', ');
 
                 const payload = {
-                    uid_hoc_sinh: GocHocSinhState.uid,            // Kiểu uuid
-                    ten_hoc_sinh: GocHocSinhState.ten,            // Kiểu text
-                    loai_yeu_cau: loaiXin,                        // Kiểu text
-                    ma_nhiem_vu: maNhiemVu,                       // Kiểu text
-                    ma_lop: chuoiMaLop,                           // Kiểu text
-                    ten_nhiem_vu: tenNhiemVu,                     // Kiểu text
-                    ly_do: lyDoHS,                                // Kiểu text
-                    trang_thai: 0                                 // Kiểu int4 (0: Đang chờ)
-
-                    // 💡 Lưu ý: 
-                    // - id, ngay_tao: Supabase tự động sinh (gen_random_uuid() và now())
-                    // - uid_gv_duyet, so_luot_duoc_them, thoi_gian_ket_thuc, phan_hoi_gv: Đã được setup NULL trong DB nên không cần gửi.
+                    uid_hoc_sinh: GocHocSinhState.uid,
+                    ten_hoc_sinh: GocHocSinhState.ten,
+                    loai_yeu_cau: loaiXin,
+                    ma_nhiem_vu: maNhiemVu,
+                    ma_lop: chuoiMaLop,
+                    ten_nhiem_vu: tenNhiemVu,
+                    ly_do: lyDoHS,
+                    trang_thai: 0
                 };
 
-                // Lệnh Insert gọi chính xác tên bảng 'yeu_cau_hoc_sinh'
-                const { data, error } = await _supabase.from('yeu_cau_hoc_sinh').insert([payload]);
+                // Dùng lệnh insert bình thường. Nếu trùng đơn, Supabase sẽ ném ra lỗi.
+                const { error } = await _supabase
+                    .from('yeu_cau_hoc_sinh')
+                    .insert([payload]);
 
                 if (error) throw error;
 
                 return true;
             } catch (error) {
                 console.error("LỖI GỬI ĐƠN:", error);
-                Swal.showValidationMessage(`Gửi thất bại: ${error.message}`);
-                return false;
+
+                // 🌟 BỘ PHIÊN DỊCH LỖI: Bắt mã lỗi 23505 (Trùng lặp Key)
+                if (error.code === '23505' || error.message.includes('duplicate key') || error.message.includes('chong_trung_don')) {
+                    Swal.showValidationMessage('⏳ Em đã gửi đơn cho bài tập này rồi! Đơn đang nằm trên bàn làm việc của Thầy. Em kiên nhẫn đợi Thầy duyệt nhé!');
+                } else {
+                    // Nếu là các lỗi khác (mất mạng, rớt kết nối...)
+                    Swal.showValidationMessage(`Lỗi hệ thống: ${error.message}`);
+                }
+                return false; // Trả về false để hộp thoại không bị đóng, cho học sinh đọc thông báo
             }
         },
         allowOutsideClick: () => !Swal.isLoading()
@@ -747,7 +750,6 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
         }
     });
 };
-
 // ==============================================================
 // Hàm 8.13: Chuyển hướng xem lại bài thi chi tiết (Chờ ráp code)
 // ==============================================================
