@@ -4528,10 +4528,10 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
 
 // =====================================================================
-// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI (ĐÃ SỬA LỖI TYPO)
+// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT (VÁ LỖI CỘT TEN_HOC_SINH)
 // =====================================================================
 window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
-    // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
+    // 1. Hiện popup loading để quét dữ liệu
     Swal.fire({
         title: '📊 Đang tổng hợp dữ liệu...',
         text: 'Hệ thống đang đồng bộ danh sách lớp và két sắt điểm số...',
@@ -4573,17 +4573,17 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         }
 
         // =====================================================================
-        // 🌟 BƯỚC C: ĐÃ VÁ LỖI BIẾN maNhivi -> GỘP CHUẨN MA NHIỆM VỤ
+        // 🌟 BƯỚC C: ĐÃ SỬA - LOẠI BỎ KHỎI SELECT CỘT ten_hoc_sinh KHÔNG TỒN TẠI
         // =====================================================================
         const { data: dsKQ, error: errKQ } = await _supabase
             .from('ket_qua_thi')
-            .select('id, uid_hoc_sinh, ten_hoc_sinh, tong_diem, thoi_gian_nop, mang_cau_tra_loi')
-            .eq('ma_nhiem_vu', maNhiemVu) // <--- Chỗ này đã được sửa chuẩn chỉ!
+            .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, mang_cau_tra_loi') // <-- Bỏ ten_hoc_sinh
+            .eq('ma_nhiem_vu', maNhiemVu)
             .order('thoi_gian_nop', { ascending: false });
 
         if (errKQ) throw errKQ;
 
-        // Lọc trùng: Một học sinh làm nhiều lần thì chỉ giữ lại kết quả mới nhất
+        // Lọc trùng: Giữ lại kết quả mới nhất của học sinh
         let tuDienKQCuoi = {};
         if (dsKQ) {
             dsKQ.forEach(kq => {
@@ -4593,7 +4593,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
             });
         }
 
-        // BƯỚC D: PHÂN LOẠI HỌC SINH (ĐÃ LÀM VÀ CHƯA LÀM)
+        // BƯỚC D: PHÂN LOẠI HỌC SINH VÀ MAPPING TÊN TỪ BẢNG HOC_SINH KHÔNG SỢ THIẾU
         let mangDaLam = [];
         let mangChưaLam = [];
         let tongDiemLop = 0;
@@ -4604,7 +4604,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
                 mangDaLam.push({
                     idKQ: baiLamCuoi.id,
                     uid: hs.uid,
-                    ten: hs.ten || baiLamCuoi.ten_hoc_sinh,
+                    ten: hs.ten || 'Học sinh ẩn danh', // Lấy thẳng từ thông tin học sinh hệ thống
                     sdt: hs.sdt || 'N/A',
                     diem: baiLamCuoi.tong_diem,
                     ngayNop: baiLamCuoi.thoi_gian_nop,
@@ -4645,7 +4645,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
 
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <button onclick="ham_7_15_sub_danh_sach_da_lam()" style="width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
-                            <span>🟢 Danh sách Học sinh ĐÃ NỘP BÀI</span>
+                            <span>🟢 Danh sách Học sinh ĐẠ NỘP BÀI</span>
                             <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgDaLam} em</b>
                         </button>
                         
@@ -4667,7 +4667,6 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
     }
 };
-
 // =====================================================================
 // HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐÃ LÀM BÀI (TẦNG 2)
 // =====================================================================
