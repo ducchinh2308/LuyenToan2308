@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c78b615a85",
+  "dapAn": "1536",
+  "loiGiai": "Tổng chi phí sản xuất $x$ sản phẩm là: $C(x) = x \\cdot G(x) = x \\left( \\displaystyle \\frac{30000}{x} + 200 \\right) = 30000 + 200x$.\\\\\r\n\t\tLợi nhuận $P(x)$ thu được khi bán $x$ sản phẩm là:\\\\\r\n\t\t$P(x) = F(x) - C(x) = -0{,}01x^2 + 100x - 30000$.\\\\\r\n\t\tĐể lợi nhuận lớn hơn $100$ triệu đồng thì $P(x) > 100000 \\Leftrightarrow -0{,}01x^2 + 100x - 130000 > 0 \\Leftrightarrow 1535{,}9 < x < 8464{,}1$.\\\\\r\n\t\tKết hợp với điều kiện $x \\in \\mathbb{N}^*$; $1 \\le x \\le 4500$.\\\\\r\n\t\tSuy ra $1536 \\le x \\le 4500$.\\\\\r\n\t\tVậy doanh nghiệp cần sản xuất ít nhất $1536$ sản phẩm để lợi nhuận thu được lớn hơn $100$ triệu đồng."
+}
