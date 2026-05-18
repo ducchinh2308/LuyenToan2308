@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b6e4ea233f",
-  "dapAn": "B",
-  "loiGiai": "Giá trị đại diện $x_i$ của một nhóm số liệu ghép nhóm $[a;b)$ được tính theo công thức lấy điểm trung vị trung bình cộng của hai đầu mút nhóm:\\\\\r\n\t\t$\\displaystyle x_i = \\frac{a+b}{2}$.\\\\\r\n\t\tÁp dụng trực tiếp vào nhóm $[90;100)$, ta thu được giá trị đại diện là:\\\\\r\n\t\t$\\displaystyle \\frac{90+100}{2} = 95$."
-}

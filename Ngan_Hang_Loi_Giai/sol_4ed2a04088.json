@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4ed2a04088",
-  "dapAn": "A",
-  "loiGiai": "Theo định nghĩa tích phân qua một nguyên hàm $F(x)$:\\\\\r\n\t\t$\\displaystyle \\int_{1}^{3}f(x)\\,\\mathrm{d}x = F(3) - F(1) = 3^{2} - 1^{2} = 9 - 1 = 8$."
-}

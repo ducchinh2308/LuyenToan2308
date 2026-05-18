@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b3ecd1bd48",
-  "dapAn": "B",
-  "loiGiai": "Theo tính chất tuyến tính của nguyên hàm, nguyên hàm của một tổng bằng tổng các nguyên hàm với $f(x), g(x)$ liên tục:\\\\\r\n\t\t$\\displaystyle \\int [f(x)+g(x)]\\,\\mathrm{d}x = \\int f(x)\\,\\mathrm{d}x + \\int g(x)\\,\\mathrm{d}x$."
-}

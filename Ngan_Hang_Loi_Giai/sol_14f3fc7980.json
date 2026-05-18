@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_14f3fc7980",
-  "dapAn": "B",
-  "loiGiai": "Áp dụng công thức số hạng tổng quát của một cấp số nhân bất kỳ:\\\\\r\n\t\t$\\displaystyle u_n = u_1 \\cdot q^{n-1}$.\\\\\r\n\t\tThay số tại vị trí số hạng cần tìm $n = 6$:\\\\\r\n\t\t$\\displaystyle u_6 = u_1 \\cdot q^5 = 5 \\cdot (-2)^5 = 5 \\cdot (-32) = -160$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ec83bfbd03",
-  "dapAn": "C",
-  "loiGiai": "*(Đính chính lỗi gõ đề: Điều chỉnh tập chỉ số của số hạng từ $\\mathbb{N}$ thành tập số nguyên dương $\\mathbb{N}^{*}$ để số hạng đầu tiên là $u_1$)*.\\\\\r\n\t\t- Xác định số hạng đầu tiên bằng cách thay số chỉ vị trí $n = 1$:\\\\\r\n\t\t$\\displaystyle u_1 = 2^1 = 2$.\\\\\r\n\t\t- Xác định số hạng thứ hai bằng cách thay số chỉ vị trí $n = 2$:\\\\\r\n\t\t$\\displaystyle u_2 = 2^2 = 4$.\\\\\r\n\t\t- Tìm công bội $q$ của cấp số nhân dựa trên thương số giữa hai số hạng liên tiếp:\\\\\r\n\t\t$\\displaystyle q = \\frac{u_2}{u_1} = \\frac{4}{2} = 2$.\\\\\r\n\t\tVậy cấp số nhân có số hạng đầu $u_1 = 2$ và công bội $q = 2$."
-}

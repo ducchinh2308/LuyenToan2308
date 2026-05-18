@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4a504b6a32",
-  "dapAn": "A",
-  "loiGiai": "Khoảng biến thiên của mẫu số liệu ghép nhóm được xác định bằng hiệu số giữa đầu mút phải của nhóm cuối cùng có chứa số liệu và đầu mút trái của nhóm đầu tiên có chứa số liệu.\\\\\r\n\t\t- Đối với lớp $12A$: Nhóm đầu tiên chứa số liệu là $[150;155)$ và nhóm cuối cùng chứa số liệu là $[175;180)$. Do đó, khoảng biến thiên tương ứng là:\\\\\r\n\t\t$\\displaystyle R_1 = 180 - 150 = 30\\,\\text{(cm)}$.\\\\\r\n\t\t- Đối với lớp $12B$: Nhóm đầu tiên thực tế có chứa học sinh là $[155;160)$ (do nhóm $[150;155)$ có tần số bằng $0$) và nhóm cuối cùng chứa số liệu là $[175;180)$. Do đó, khoảng biến thiên thực tế của mẫu là:\\\\\r\n\t\t$\\displaystyle R_2 = 180 - 155 = 25\\,\\text{(cm)}$."
-}

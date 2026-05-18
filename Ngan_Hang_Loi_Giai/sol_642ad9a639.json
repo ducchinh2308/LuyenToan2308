@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_642ad9a639",
-  "dapAn": "A",
-  "loiGiai": "Diện tích đáy hình vuông $ABCD$ là:\\\\\r\n\t\t$\\displaystyle S_{ABCD} = (2a)^2 = 4a^2$.\\\\\r\n\t\tVì đường cao khối chóp là $SA = 6a$, thể tích khối chóp được tính theo công thức phân thức tổng quát:\\\\\r\n\t\t$\\displaystyle V = \\frac{1}{3} \\cdot S_{ABCD} \\cdot SA = \\frac{1}{3} \\cdot 4a^2 \\cdot 6a = 8a^3$."
-}

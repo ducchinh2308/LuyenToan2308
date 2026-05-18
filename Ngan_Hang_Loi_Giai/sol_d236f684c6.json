@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d236f684c6",
-  "dapAn": "B",
-  "loiGiai": "Dựa vào đồ thị Hình 28, phần diện tích phẳng tô màu tím giới hạn từ đường biên dọc $x=1$ đến $x=2$.\\\\\r\n\t\tHàm số giới hạn phía trên là đường hyperbol $\\displaystyle y = \\frac{4}{x}$ và hàm số giới hạn phía dưới là đường thẳng $\\displaystyle y = -x+3$.\\\\\r\n\t\tCông thức tính diện tích hình phẳng là lấy hàm trên trừ đi hàm dưới:\\\\\r\n\t\t$\\displaystyle S = \\int_{1}^{2} \\left[ \\frac{4}{x} - (-x+3) \\right]\\,\\mathrm{d}x = \\int_{1}^{2} \\left( \\frac{4}{x} + x - 3 \\right)\\,\\mathrm{d}x$.\\\\"
-}

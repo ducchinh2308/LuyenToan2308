@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_bcf9b2fb78",
-  "dapAn": "D",
-  "loiGiai": "- Giá trị đại diện $x_i$ của các nhóm lần lượt là: $11{,}5; 13{,}5; 15{,}5; 17{,}5; 19{,}5$.\\\\\r\n\t\t- Tổng kích thước mẫu số liệu: $\\displaystyle n = 3 + 12 + 15 + 24 + 2 = 56$.\\\\\r\n\t\t- Số trung bình cộng của mẫu số liệu ghép nhóm:\\\\\r\n\t\t$\\displaystyle \\bar{x} = \\frac{3 \\cdot 11{,}5 + 12 \\cdot 13{,}5 + 15 \\cdot 15{,}5 + 24 \\cdot 17{,}5 + 2 \\cdot 19{,}5}{56} = \\frac{888}{56} \\approx 15{,}857$.\\\\\r\n\t\t- Phương sai của mẫu số liệu được xác định theo công thức:\\\\\r\n\t\t$\\displaystyle s^2 = \\frac{1}{56}\\left[3 \\cdot 11{,}5^2 + 12 \\cdot 13{,}5^2 + 15 \\cdot 15{,}5^2 + 24 \\cdot 17{,}5^2 + 2 \\cdot 19{,}5^2\\right] - \\bar{x}^2 \\approx 3{,}87$."
-}

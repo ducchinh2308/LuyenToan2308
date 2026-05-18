@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_04416463ec",
-  "dapAn": "B",
-  "loiGiai": "Do hàm số có dạng công thức piecewise ghép từng mảnh liên tục, ta tách tích phân dựa theo các cận miền tương ứng:\\\\\r\n\t\t$\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x = \\int_{0}^{1}3x^{2}\\,\\mathrm{d}x + \\int_{1}^{2}(4-x)\\,\\mathrm{d}x$.\\\\\r\n\t\tTa thực hiện tính toán từng tích phân lẻ:\\\\\r\n\t\t- Thành phần 1: $\\displaystyle \\int_{0}^{1}3x^{2}\\,\\mathrm{d}x = x^{3} \\Big|_{0}^{1} = 1 - 0 = 1$.\\\\\r\n\t\t- Thành phần 2: $\\displaystyle \\int_{1}^{2}(4-x)\\,\\mathrm{d}x = \\left(4x - \\frac{x^{2}}{2}\\right) \\Big|_{1}^{2} = \\left(4 \\cdot 2 - \\frac{2^{2}}{2}\\right) - \\left(4 \\cdot 1 - \\frac{1^{2}}{2}\\right) = (8 - 2) - \\left(4 - \\frac{1}{2}\\right) = 6 - \\frac{7}{2} = \\frac{5}{2}$.\\\\\r\n\t\tCộng hai kết quả lại ta thu được giá trị cuối cùng: $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x = 1 + \\frac{5}{2} = \\frac{7}{2}$."
-}

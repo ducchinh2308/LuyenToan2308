@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_90e4a30e01",
-  "dapAn": "D",
-  "loiGiai": "Đường thẳng đi qua gốc tọa độ $O(0;0;0)$ và điểm $M(1;-2;1)$ nhận vectơ liên hợp $\\vec{OM}$ làm một vectơ chỉ phương.\\\\\r\n\t\tTa có: $\\vec{OM} = (1-0; -2-0; 1-0) = (1;-2;1)$.\\\\\r\n\t\tDo đó một vectơ chỉ phương của đường thẳng là $\\vec{u}_4 = (1;-2;1)$."
-}

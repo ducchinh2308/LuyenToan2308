@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1c1aa65cd6",
-  "dapAn": "D",
-  "loiGiai": "Để hàm số đồng biến trên toàn bộ tập số thực $\\mathbb{R}$, điều kiện tiên quyết là đạo hàm $y' \\ge 0, \\forall x \\in \\mathbb{R}$ và tập xác định phải là $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tXét hàm số ở phương án D: $\\displaystyle y = \\frac{1}{3}x^{3} + x^{2} + 7x$.\\\\\r\n\t\tĐạo hàm: $\\displaystyle y' = x^2 + 2x + 7 = (x+1)^2 + 6 > 0, \\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tDo đó, hàm số này đồng biến trên khoảng $\\mathbb{R}$."
-}

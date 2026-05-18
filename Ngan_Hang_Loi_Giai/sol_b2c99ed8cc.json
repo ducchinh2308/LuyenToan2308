@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b2c99ed8cc",
-  "dapAn": "D",
-  "loiGiai": "Đường thẳng viết dưới dạng chính tắc $\\displaystyle \\frac{x-x_0}{a} = \\frac{y-y_0}{b} = \\frac{z-z_0}{c}$ luôn nhận bộ ba số nằm dưới mẫu số $\\displaystyle \\vec{u}=(a;b;c)$ làm vectơ chỉ phương.\\\\\r\n\t\tTừ phương trình đường thẳng $d$, ta đọc được ngay một vectơ chỉ phương là $\\displaystyle \\vec{u}_2=(1;-3;2)$."
-}

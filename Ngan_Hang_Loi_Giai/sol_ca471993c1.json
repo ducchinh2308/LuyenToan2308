@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ca471993c1",
-  "dapAn": "B",
-  "loiGiai": "Ta có: $\\displaystyle F(x) = \\int (4x^{3}-3x^{2}+2)\\,\\mathrm{d}x = x^{4}-x^{3}+2x+C$.\\\\\r\n\t\tTheo giả thiết: $\\displaystyle F(-1)=3 \\Leftrightarrow (-1)^{4}-(-1)^{3}+2(-1)+C = 3 \\Leftrightarrow 1+1-2+C = 3 \\Leftrightarrow C = 3$.\\\\\r\n\t\tVậy $\\displaystyle F(x) = x^{4}-x^{3}+2x+3$."
-}

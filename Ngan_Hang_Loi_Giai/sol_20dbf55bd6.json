@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_20dbf55bd6",
-  "dapAn": "A",
-  "loiGiai": "Nhận xét: Tần số ở mỗi nhóm tương ứng của mẫu số liệu ghép nhóm $M_2$ đều gấp đúng $2$ lần tần số của nhóm tương ứng ở mẫu số liệu $M_1$ (ví dụ: $6=2\\cdot 3$, $8=2\\cdot 4$, $16=2\\cdot 8$,...).\\\\\r\n\t\tDo đó, tỷ lệ cấu trúc tần suất phân bổ phần trăm và các giá trị đại diện nhóm của cả hai mẫu số liệu này là hoàn toàn trùng khớp như nhau.\\\\\r\n\t\tVì độ lệch chuẩn phương sai chỉ bị biến đổi khi thay đổi cơ cấu phân bố phân tán tần suất mẫu, nên độ lệch chuẩn của hai mẫu không đổi, tức là $s_1 = s_2$."
-}

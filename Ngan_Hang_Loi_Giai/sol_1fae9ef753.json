@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1fae9ef753",
-  "dapAn": "A",
-  "loiGiai": "Chuyển đổi giá trị số thực ở vế phải về giá trị góc lượng giác hàm sin tương ứng:\\\\\r\n\t\t$\\displaystyle -\\frac{\\sqrt{3}}{2} = \\sin\\left(-\\frac{\\pi}{3}\\right)$.\\\\\r\n\t\tÁp dụng công thức nghiệm tổng quát của phương trình lượng giác đối với hàm sin:\\\\\r\n\t\t- Trường hợp 1:\\\\\r\n\t\t$\\displaystyle x + \\frac{\\pi}{3} = -\\frac{\\pi}{3} + k2\\pi \\Leftrightarrow x = -\\frac{2\\pi}{3} + k2\\pi \\quad (k \\in \\mathbb{Z})$.\\\\\r\n\t\t- Trường hợp 2:\\\\\r\n\t\t$\\displaystyle x + \\frac{\\pi}{3} = \\pi - \\left(-\\frac{\\pi}{3}\\right) + k2\\pi \\Leftrightarrow x + \\frac{\\pi}{3} = \\frac{4\\pi}{3} + k2\\pi \\Leftrightarrow x = \\pi + k2\\pi \\quad (k \\in \\mathbb{Z})$.\\\\"
-}

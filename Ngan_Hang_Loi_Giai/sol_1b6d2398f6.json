@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1b6d2398f6",
-  "dapAn": "D",
-  "loiGiai": "Áp dụng công thức tính thể tích của khối tròn xoay sinh ra khi quay một hình phẳng quanh trục hoành:\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_{0}^{2} [f(x)]^{2}\\,\\mathrm{d}x = \\pi \\int_{0}^{2} (e^{x})^{2}\\,\\mathrm{d}x = \\pi \\int_{0}^{2} e^{2x}\\,\\mathrm{d}x$."
-}

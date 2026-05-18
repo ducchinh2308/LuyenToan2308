@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_13bebfa9ab",
-  "dapAn": "B",
-  "loiGiai": "Áp dụng công thức lập phương trình mặt phẳng đi qua điểm với vectơ pháp tuyến cho trước:\\\\\r\n\t\t$\\displaystyle 4(x-3) - 2(y-0) - 3(z-(-1)) = 0 \\Leftrightarrow 4(x-3) - 2y - 3(z+1) = 0$\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow 4x - 12 - 2y - 3z - 3 = 0 \\Leftrightarrow 4x - 2y - 3z - 15 = 0$."
-}

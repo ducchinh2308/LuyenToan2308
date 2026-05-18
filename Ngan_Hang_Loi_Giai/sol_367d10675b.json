@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_367d10675b",
-  "dapAn": "C",
-  "loiGiai": "Gọi $-32$ là số hạng thứ $n$ của cấp số cộng ($u_n = -32$).\\\\\r\n\t\tTa có phương trình số hạng tổng quát:\\\\\r\n\t\t$\\displaystyle u_n = u_1 + (n-1)d \\Rightarrow -32 = 28 + (n-1) \\cdot (-6)$.\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow -32 - 28 = -6(n-1) \\Leftrightarrow -60 = -6(n-1) \\Leftrightarrow n-1 = 10 \\Leftrightarrow n = 11$.\\\\\r\n\t\tVậy $-32$ là số hạng thứ $11$ của cấp số cộng."
-}

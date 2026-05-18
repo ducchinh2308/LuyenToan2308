@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d4cab24806",
-  "dapAn": "A",
-  "loiGiai": "Thực hiện phép chia đa thức tử số cho mẫu số để xác định đường tiệm cận xiên (TCX):\\\\\r\n\t\t$\\displaystyle y = \\frac{x^2-x+7}{x-5} = \\frac{x(x-5) + 4(x-5) + 27}{x-5} = x + 4 + \\frac{27}{x-5}$.\\\\\r\n\t\tVì $\\displaystyle \\lim_{x \\to \\pm\\infty} \\frac{27}{x-5} = 0$, nên đường thẳng $\\displaystyle y=x+4$ là tiệm cận xiên của đồ thị hàm số."
-}
