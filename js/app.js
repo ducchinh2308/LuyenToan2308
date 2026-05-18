@@ -4348,7 +4348,7 @@ window.ham_7_12_thay_doi_sap_xep = function (colKey) {
 }
 // =====================================================================
 // HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH 
-// (ĐÃ CẬP NHẬT CHUẨN CỘT tien_do_lam_bai CỦA BẢNG hoc_sinh)
+// (Vá lỗi schema cache thoi_gian_ket_thuc)
 // =====================================================================
 window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, loaiYeuCau, hanhDong) {
 
@@ -4385,9 +4385,7 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
         return;
     }
 
-    // =================================================================
-    // 🌟 2. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT (GIẢM 1 LƯỢT TRONG tien_do_lam_bai)
-    // =================================================================
+    // 2. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT 
     if (loaiYeuCau === 'HET_LUOT') {
         Swal.fire({
             title: 'Duyệt cấp thêm lượt?',
@@ -4401,10 +4399,8 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             showLoaderOnConfirm: true,
             preConfirm: async () => {
                 try {
-                    // 🌟 Gắn chính xác tên cột của thầy
                     const tenCotLuotLam = 'tien_do_lam_bai';
 
-                    // Bước A: Kéo dữ liệu tiến độ của học sinh này về
                     const { data: hsInfo, error: errHS } = await _supabase
                         .from('hoc_sinh')
                         .select(tenCotLuotLam)
@@ -4413,7 +4409,6 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
                     if (errHS) throw errHS;
 
-                    // Bước B: Ép kiểu dữ liệu về Object JSON
                     let jsonLuotLam = {};
                     try {
                         jsonLuotLam = typeof hsInfo[tenCotLuotLam] === 'string'
@@ -4421,12 +4416,10 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                             : (hsInfo[tenCotLuotLam] || {});
                     } catch (e) { }
 
-                    // Bước C: Tìm mã nhiệm vụ và giảm đi 1 (Nếu đang lớn hơn 0)
                     if (jsonLuotLam[maNhiemVu] && jsonLuotLam[maNhiemVu] > 0) {
                         jsonLuotLam[maNhiemVu] = jsonLuotLam[maNhiemVu] - 1;
                     }
 
-                    // Bước D: Cập nhật ngược lại chuỗi JSON mới vào DB
                     const { error: errUpdateHS } = await _supabase
                         .from('hoc_sinh')
                         .update({ [tenCotLuotLam]: jsonLuotLam })
@@ -4434,7 +4427,6 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
                     if (errUpdateHS) throw errUpdateHS;
 
-                    // Bước E: Cập nhật trạng thái đơn thành Đã duyệt
                     const { error: errUpdateDon } = await _supabase
                         .from('yeu_cau_hoc_sinh')
                         .update({
@@ -4480,20 +4472,23 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                     let offset = ngayMai.getTimezoneOffset() * 60000;
                     let thoiGianMoiISO = (new Date(ngayMai - offset)).toISOString().slice(0, 19);
 
+                    // A. Cập nhật dời hạn trong bảng Nhiệm Vụ (Chính xác)
                     const { error: errNhiemVu } = await _supabase
                         .from('nhiem_vu')
                         .update({ thoi_gian_dong: thoiGianMoiISO })
                         .eq('ma_nhiem_vu', maNhiemVu);
                     if (errNhiemVu) throw errNhiemVu;
 
+                    // B. Chốt trạng thái bảng Yêu Cầu thành Đã Duyệt 
+                    // (Đã xóa dòng thoi_gian_ket_thuc gây lỗi)
                     const { error: errUpdate } = await _supabase
                         .from('yeu_cau_hoc_sinh')
                         .update({
                             trang_thai: 1,
-                            uid_gv_duyet: window.GocGiaoVienState?.uid || null,
-                            thoi_gian_ket_thuc: thoiGianMoiISO
+                            uid_gv_duyet: window.GocGiaoVienState?.uid || null
                         })
                         .eq('id', idDon);
+
                     if (errUpdate) throw errUpdate;
                     return true;
                 } catch (e) {
