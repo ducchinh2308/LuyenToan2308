@@ -1,0 +1,47 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-LUONG-GIAC-4CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM LƯỢNG GIÁC 4 CÂU",
+  "thoiGian": 15,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_aea294a946",
+      "ma_goc": "2605-1101",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\displaystyle \\sin\\left(x+\\frac{\\pi}{3}\\right)=-\\frac{\\sqrt{3}}{2}$ là:",
+      "paA": "$\\left[\\begin{aligned} &x=-\\frac{2\\pi}{3}+k2\\pi \\\\ &x=\\pi+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$",
+      "paB": "$\\left[\\begin{aligned} &x=-\\frac{\\pi}{3}+k2\\pi \\\\ &x=\\frac{\\pi}{3}+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$",
+      "paC": "$ x=k2\\pi \\text{ và } x=\\pi+k2\\pi (k\\in\\mathbb{Z}) $",
+      "paD": "$\\left[\\begin{aligned} &x=-\\frac{\\pi}{2}+k2\\pi \\\\ &x=\\frac{5\\pi}{3}+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_412d9039b9",
+      "ma_goc": "2605-1102",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\displaystyle 2\\cos x = \\sqrt{3}$ có tập nghiệm là",
+      "paA": "$ \\left\\{\\pm\\frac{\\pi}{3}+k\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paB": "$ \\left\\{\\pm\\frac{\\pi}{3}+k2\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paC": "$ \\left\\{\\pm\\frac{\\pi}{6}+k2\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paD": "$ \\left\\{\\pm\\frac{\\pi}{6}+k\\pi, k\\in\\mathbb{Z}\\right\\} $"
+    },
+    {
+      "maCau": "q_6de29765a4",
+      "ma_goc": "2605-1103",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\displaystyle \\tan 2x + 1 = 0$ là",
+      "paA": "$ x=\\frac{\\pi}{8}+\\frac{k\\pi}{2} $",
+      "paB": "$ x=-\\frac{\\pi}{8}+\\frac{k\\pi}{2} $",
+      "paC": "$ x=-\\frac{\\pi}{8}+k2\\pi $",
+      "paD": "$ x=-\\frac{\\pi}{8}+k\\pi $"
+    },
+    {
+      "maCau": "q_b3844e789d",
+      "ma_goc": "2605-1104",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\displaystyle \\cos\\left(x+\\frac{\\pi}{4}\\right)=\\frac{\\sqrt{2}}{2}$ có nghiệm là",
+      "paA": "$\\left[\\begin{aligned} &x=k2\\pi \\\\ &x=-\\frac{\\pi}{2}+k\\pi \\end{aligned}\\right.$",
+      "paB": "$\\left[\\begin{aligned} &x=k\\pi \\\\ &x=-\\frac{\\pi}{2}+k\\pi \\end{aligned}\\right.$",
+      "paC": "$\\left[\\begin{aligned} &x=k\\pi \\\\ &x=-\\frac{\\pi}{2}+k2\\pi \\end{aligned}\\right.$",
+      "paD": "$\\left[\\begin{aligned} &x=k2\\pi \\\\ &x=-\\frac{\\pi}{2}+k2\\pi \\end{aligned}\\right.$"
+    }
+  ]
+}
