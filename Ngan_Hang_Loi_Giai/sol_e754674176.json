@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e754674176",
+  "dapAn": "D",
+  "loiGiai": "Biến đổi hằng số ở vế phải về lũy thừa cơ số $\\displaystyle \\frac{1}{2}$:\\\\\r\n\t\t$\\displaystyle 128 = 2^{7} = \\left(\\frac{1}{2}\\right)^{-7}$.\\\\\r\n\t\tBất phương trình tương đương với:\\\\\r\n\t\t$\\displaystyle \\left(\\frac{1}{2}\\right)^{x-1} \\ge \\left(\\frac{1}{2}\\right)^{-7} \\Leftrightarrow x-1 \\le -7$ (đổi chiều bất phương trình do cơ số $\\displaystyle 0 < \\frac{1}{2} < 1$).\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow x \\le -6$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=(-\\infty;-6]$."
+}

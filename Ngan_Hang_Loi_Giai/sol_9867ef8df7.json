@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9867ef8df7",
+  "dapAn": "A",
+  "loiGiai": "Theo công thức Newton-Leibniz:\\\\\r\n\t\t$\\displaystyle \\int_{2}^{5}f'(x)\\,\\mathrm{d}x = f(x) \\Big|_{2}^{5} = f(5) - f(2) = 2 - 3 = -1$."
+}

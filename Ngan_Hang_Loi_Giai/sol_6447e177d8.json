@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6447e177d8",
+  "dapAn": "C",
+  "loiGiai": "Cô lập thành phần hàm số lượng giác đơn biến ở vế trái bằng cách chia cả hai vế cho 2:\\\\\r\n\t\t$\\displaystyle \\cos x = \\frac{\\sqrt{3}}{2}$.\\\\\r\n\t\tĐưa phương trình về dạng lượng giác cơ bản thông qua góc đặc biệt:\\\\\r\n\t\t$\\displaystyle \\cos x = \\cos\\left(\\frac{\\pi}{6}\\right)$.\\\\\r\n\t\tÁp dụng công thức nghiệm đối xứng đặc trưng đối với phương trình hàm cosin:\\\\\r\n\t\t$\\displaystyle x = \\pm\\frac{\\pi}{6} + k2\\pi \\quad (k \\in \\mathbb{Z})$.\\\\\r\n\t\tBiểu diễn dưới định dạng tập hợp nghiệm"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_65491ba74e",
+  "dapAn": "C",
+  "loiGiai": "Tọa độ trọng tâm $G$ của tam giác $ABC$ được xác định theo công thức trung bình cộng tọa độ các đỉnh:\\\\\r\n\t\t$\\displaystyle x_G = \\frac{x_A+x_B+x_C}{3} = \\frac{1+2+0}{3} = 1$.\\\\\r\n\t\t$\\displaystyle y_G = \\frac{y_A+y_B+y_C}{3} = \\frac{3+0+9}{3} = 4$.\\\\\r\n\t\t$\\displaystyle z_G = \\frac{z_A+z_B+z_C}{3} = \\frac{5+1+0}{3} = 2$.\\\\\r\n\t\tVậy tọa độ trọng tâm tam giác là $G(1;4;2)$."
+}

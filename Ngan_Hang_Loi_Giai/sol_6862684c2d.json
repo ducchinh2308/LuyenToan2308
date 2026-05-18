@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6862684c2d",
+  "dapAn": "B",
+  "loiGiai": "Theo định nghĩa biểu diễn vectơ qua hệ vectơ đơn vị $\\vec{i}, \\vec{j}, \\vec{k}$:\\\\\r\n\t\t$\\vec{a} = x\\vec{i} + y\\vec{j} + z\\vec{k} \\Rightarrow \\vec{a} = (x;y;z)$.\\\\\r\n\t\tĐối chiếu với giả thiết $\\vec{a}=-1\\vec{i}+2\\vec{j}-3\\vec{k}$, ta thu được tọa độ $\\vec{a} = (-1;2;-3)$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_512c6b8ded",
+  "dapAn": "B",
+  "loiGiai": "Hàm số liên tục và xác định trên đoạn $[-1;3]$ do điểm gián đoạn $\\displaystyle x = -\\frac{7}{3} \\notin [-1;3]$.\\\\\r\n\t\tĐạo hàm của hàm số: $\\displaystyle y' = \\frac{-3}{(3x+7)^2} < 0, \\,\\forall x \\in [-1;3]$.\\\\\r\n\t\tDo đạo hàm luôn âm, hàm số nghịch biến đơn điệu giảm trên toàn đoạn $[-1;3]$.\\\\\r\n\t\t- Giá trị lớn nhất đạt được tại đầu mút cận trái: $\\displaystyle M = y(-1) = \\frac{1}{3(-1)+7} = \\frac{1}{4}$.\\\\\r\n\t\t- Giá trị nhỏ nhất đạt được tại đầu mút cận phải: $\\displaystyle m = y(3) = \\frac{1}{3(3)+7} = \\frac{1}{16}$.\\\\\r\n\t\tHiệu số giữa hai giá trị cực biên bằng:\\\\\r\n\t\t$\\displaystyle M - m = \\frac{1}{4} - \\frac{1}{16} = \\frac{4-1}{16} = \\frac{3}{16}$.\\\\"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_244b0e4d1b",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng trực tiếp công thức số hạng tổng quát của một cấp số cộng bất kỳ:\\\\\r\n\t\t$\\displaystyle u_n = u_1 + (n-1)d$.\\\\\r\n\t\tThay giá trị cần tìm tại vị trí số hạng thứ $n = 12$:\\\\\r\n\t\t$\\displaystyle u_{12} = u_1 + 11d = 2\\sqrt{5} + 11 \\cdot \\sqrt{5} = 13\\sqrt{5}$."
+}

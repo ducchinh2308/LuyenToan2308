@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1ef32d5ec5",
+  "dapAn": "D",
+  "loiGiai": "Quan sát hình dáng đồ thị trên hình vẽ hệ trục Oxy kèm miền diện tích gạch sọc:\\\\\r\n\t\t- Miền khoảng từ $x \\in [-1;1]$ đồ thị nằm phía trên trục hoành nên biểu thức mang dấu dương: $\\displaystyle f(x) \\ge 0$.\\\\\r\n\t\t- Miền khoảng từ $x \\in [1;2]$ đồ thị nằm phía bên dưới trục hoành nên biểu thức mang dấu âm: $\\displaystyle f(x) \\le 0$.\\\\\r\n\t\tDo đó công thức tích phân từng khoảng phá trị tuyệt đối là:\\\\\r\n\t\t$\\displaystyle S = \\int_{-1}^{1} f(x)\\,\\mathrm{d}x - \\int_{1}^{2} f(x)\\,\\mathrm{d}x$."
+}

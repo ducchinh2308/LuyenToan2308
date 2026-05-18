@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3c6aaa7b09",
+  "dapAn": "B",
+  "loiGiai": "- Tìm công bội $q$ của cấp số nhân dựa trên tỷ số giữa hai số hạng đầu tiên:\\\\\r\n\t\t$\\displaystyle q = \\frac{u_2}{u_1} = \\frac{-10}{5} = -2$.\\\\\r\n\t\t- Áp dụng công thức tính tổng của $n$ số hạng đầu tiên đối với cấp số nhân có công bội khác 1:\\\\\r\n\t\t$\\displaystyle S_n = \\frac{u_1(1-q^n)}{1-q}$.\\\\\r\n\t\tThay các giá trị số thực cho trường hợp tổng của 6 số hạng đầu ($n = 6$):\\\\\r\n\t\t$\\displaystyle S_6 = \\frac{5 \\cdot [1 - (-2)^6]}{1 - (-2)} = \\frac{5 \\cdot [1 - 64]}{3} = \\frac{5 \\cdot (-63)}{3} = 5 \\cdot (-21) = -105$.\\\\"
+}

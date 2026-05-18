@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1fe08bbd5c",
+  "dapAn": "B",
+  "loiGiai": "Theo định nghĩa tiệm cận ngang của đồ thị hàm số, nếu $\\displaystyle \\lim_{x\\rightarrow+\\infty}f(x)=y_0$ hoặc $\\displaystyle \\lim_{x\\rightarrow-\\infty}f(x)=y_0$ thì đường thẳng đường thẳng nằm ngang $y=y_0$ được gọi là tiệm cận ngang.\\\\\r\n\t\tỞ đây, cả hai giới hạn vô cực đều tiến về cùng một giá trị thực là $3$, tức là ta thu được phương trình tiệm cận duy nhất là $y=3$.\\\\\r\n\t\tDo đó đồ thị hàm số có đúng một tiệm cận ngang."
+}

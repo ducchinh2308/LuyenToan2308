@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e48104d2ff",
+  "dapAn": "B",
+  "loiGiai": "Biến đổi các hệ thức của cấp số cộng về số hạng đầu $u_1$ và công sai $d$:\\\\\r\n\t\t$\\displaystyle \\begin{cases} 9(u_1 + d) - (u_1 + 4d) = 4 \\\\ (u_1) + (u_1 + 2d) = (u_1 + 3d) - 6 \\end{cases} \\Leftrightarrow \\begin{cases} 8u_1 + 5d = 4 \\\\ u_1 - d = -6 \\end{cases} \\Leftrightarrow \\begin{cases} 8(d - 6) + 5d = 4 \\\\ u_1 = d - 6 \\end{cases} \\Leftrightarrow \\begin{cases} 13d = 52 \\\\ u_1 = d - 6 \\end{cases} \\Leftrightarrow \\begin{cases} d = 4 \\\\ u_1 = -2 \\end{cases}$.\\\\\r\n\t\tVậy số hạng đầu tiên của cấp số cộng bằng $u_1 = -2$ và công sai bằng $d = 4$. Đối chiếu danh sách phương án, ta chọn phương án B."
+}

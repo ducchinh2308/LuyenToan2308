@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1d73fa085b",
+  "dapAn": "A",
+  "loiGiai": "Hàm số lôgarit xác định khi và chỉ khi biểu thức dưới dấu lôgarit có giá trị dương.\\\\\r\n\t\tTa có điều kiện xác định: $\\displaystyle 2x-1>0 \\Leftrightarrow 2x>1 \\Leftrightarrow x>\\frac{1}{2}$.\\\\\r\n\t\tVậy tập xác định của hàm số đã cho là $\\displaystyle D=\\left(\\frac{1}{2};+\\infty\\right)$."
+}

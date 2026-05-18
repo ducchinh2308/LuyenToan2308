@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2353e3c1ef",
+  "dapAn": "C",
+  "loiGiai": "Theo định nghĩa hình học giải tích cơ bản, công thức diện tích hình phẳng giới hạn bởi hai đồ thị hàm số liên tục trên một đoạn thẳng luôn có dạng tích phân chứa dấu trị tuyệt đối của hiệu hai hàm số:\\\\\r\n\t\t$\\displaystyle S = \\int_{a}^{b} |f(x)-g(x)|\\,\\mathrm{d}x$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_635283dfb0",
+  "dapAn": "C",
+  "loiGiai": "Áp dụng công thức biểu diễn số hạng tổng quát của cấp số nhân theo số hạng đầu:\\\\\r\n\t\t$\\displaystyle u_7 = u_1 \\cdot q^6 \\Rightarrow -32 = \\frac{1}{2} \\cdot q^6 \\Leftrightarrow q^6 = -64$.\\\\\r\n\t\tNhận xét: Lũy thừa bậc chẵn của một số thực không thể nhận giá trị âm dưới trường số thực ($q^6 \\ge 0, \\forall q \\in \\mathbb{R}$). Do đó, nếu giữ nguyên dấu như đề gốc thì bài toán vô nghiệm.\\\\\r\n\t\tNếu hiệu chỉnh số hạng thứ bảy thành số dương $u_7 = 32$ để bài toán có nghĩa, ta được:\\\\\r\n\t\t$\\displaystyle q^6 = 64 = 2^6 \\Leftrightarrow q = \\pm 2$."
+}

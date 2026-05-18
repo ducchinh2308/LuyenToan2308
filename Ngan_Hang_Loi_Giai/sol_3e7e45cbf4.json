@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3e7e45cbf4",
+  "dapAn": "D",
+  "loiGiai": "Phương trình mặt cầu tiêu chuẩn có dạng $\\colon (x-a)^{2}+(y-b)^{2}+(z-c)^{2}=R^2$ với tâm $I(a;b;c)$ và bán kính $R$.\\\\\r\n\t\tDựa vào phương trình mặt cầu $(S)$, ta có: $a=3, b=-2, c=1$ và $R = \\sqrt{9} = 3$.\\\\\r\n\t\tVậy tâm mặt cầu là $I(3;-2;1)$ và bán kính $R=3$."
+}

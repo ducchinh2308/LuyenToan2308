@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_94b51e6608",
+  "dapAn": "B",
+  "loiGiai": "Ta có biến cố bộ phận của $B$ được cấu thành từ hai thành phần xung khắc độc lập: $\\displaystyle B = (A \\cap B) \\cup (\\overline{A} \\cap B)$.\\\\\r\n\t\tDo đó công thức tính tổng xác suất là: $\\displaystyle P(B) = P(AB) + P(\\overline{A}B)$.\\\\\r\n\t\tSuy ra thành phần còn lại: $\\displaystyle P(\\overline{A}B) = P(B) - P(AB) = 0{,}5 - 0{,}3 = 0{,}2 = \\frac{1}{5}$."
+}

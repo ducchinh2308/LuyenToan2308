@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e589228262",
+  "dapAn": "C",
+  "loiGiai": "Theo công thức định nghĩa ứng dụng tích phân để tính toán diện tích hình phẳng giới hạn bởi một hàm số và đường thẳng trục Ox ($y=0$):\\\\\r\n\t\t$\\displaystyle S = \\int_{0}^{\\pi} |\\cos x|\\,\\mathrm{d}x$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_00c0c9677b",
+  "dapAn": "B",
+  "loiGiai": "Xét phương trình đạo hàm bằng không: $\\displaystyle f'(x)=0 \\Leftrightarrow x^2(x-1)(x+2)^5 = 0 \\Leftrightarrow \\left[\\begin{aligned} &x=0 \\\\ &x=1 \\\\ &x=-2 \\end{aligned}\\right.$\\\\\r\n\t\tTa xét tính chất bội của các nghiệm thực:\\\\\r\n\t\t- Điểm $x=0$ là nghiệm bội chẵn (bậc 2), do đó đạo hàm $f'(x)$ hoàn toàn không đổi dấu khi đi qua điểm này.\\\\\r\n\t\t- Các điểm $x=1$ (bội lẻ bậc 1) và $x=-2$ (bội lẻ bậc 5) là các nghiệm bội lẻ, đạo hàm sẽ đổi dấu khi đi qua chúng.\\\\\r\n\t\tVì đạo hàm chỉ đổi dấu khi đi qua 2 điểm tới hạn là $x=1$ và $x=-2$, nên hàm số đã cho có đúng 2 điểm cực trị."
+}

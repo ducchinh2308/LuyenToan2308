@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_840f9164f4",
+  "dapAn": "A",
+  "loiGiai": "Vì biểu thức tam thức đại số $\\displaystyle x^{2}+1 > 0$ với mọi số thực thuộc đoạn $[-1;2]$, công thức diện tích phá trị tuyệt đối trực tiếp như sau:\\\\\r\n\t\t$\\displaystyle S = \\int_{-1}^{2}(x^{2}+1)\\,\\mathrm{d}x = \\left(\\frac{x^{3}}{3}+x\\right) \\Big|_{-1}^{2} = \\left(\\frac{2^{3}}{3}+2\\right) - \\left(\\frac{(-1)^{3}}{3}+(-1)\\right)$.\\\\\r\n\t\t$\\displaystyle S = \\left(\\frac{8}{3}+2\\right) - \\left(-\\frac{1}{3}-1\\right) = \\frac{14}{3} - \\left(-\\frac{4}{3}\\right) = \\frac{14}{3} + \\frac{4}{3} = \\frac{18}{3} = 6$."
+}

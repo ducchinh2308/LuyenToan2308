@@ -1,0 +1,1507 @@
+{
+  "maDe": "T12-ON-TN-TRAC-NGHIEM-NGA",
+  "tenDe": "ÔN TN TRẮC NGHIỆM NGA",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_dbf460ae01",
+      "ma_goc": "2605-1070",
+      "kieuCau": "TN",
+      "cauDan": "Cấp số cộng $(u_{n})$ có $u_{1}=1, u_{2}=3$. Số hạng $u_{5}$ của cấp số cộng là",
+      "paA": "$ 5 $",
+      "paB": "$ 7 $",
+      "paC": "$ 9 $",
+      "paD": "$ 11 $"
+    },
+    {
+      "maCau": "q_a485189b6b",
+      "ma_goc": "2605-1071",
+      "kieuCau": "TN",
+      "cauDan": "Trong các dãy số sau, dãy nào là cấp số cộng?",
+      "paA": "$ 1; 2; 4; 7; 11; \\dots $",
+      "paB": "$\\displaystyle \\frac{1}{3}; \\frac{2}{3}; 1; \\frac{4}{3}; \\frac{5}{3}; \\dots $",
+      "paC": "$ -5; -3; -1; 3; 5; \\dots $",
+      "paD": "$ 1; 2; 4; 8; 16; \\dots $"
+    },
+    {
+      "maCau": "q_d9138bd37c",
+      "ma_goc": "2605-1072",
+      "kieuCau": "TN",
+      "cauDan": "Cho một cấp số cộng $(u_{n})$ có $u_{1}=-5, u_{8}=30$. Công sai của cấp số cộng bằng",
+      "paA": "$ 3 $",
+      "paB": "$ 4 $",
+      "paC": "$ 5 $",
+      "paD": "$ 6 $"
+    },
+    {
+      "maCau": "q_5f86fc7756",
+      "ma_goc": "2605-1073",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=-2$ và công sai $d=3$. Số hạng tổng quát $u_{n}$ là",
+      "paA": "$ u_{n}=3n-5 $",
+      "paB": "$ u_{n}=3n-2 $",
+      "paC": "$ u_{n}=-2n+3 $",
+      "paD": "$ u_{n}=-3n+2 $"
+    },
+    {
+      "maCau": "q_53666446d6",
+      "ma_goc": "2605-1074",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=28$ và công sai $d=-6$. Hỏi $-32$ là số hạng thứ mấy của cấp số cộng?",
+      "paA": "$ 9 $",
+      "paB": "$ 10 $",
+      "paC": "$ 11 $",
+      "paD": "$ 12 $"
+    },
+    {
+      "maCau": "q_ea3b441383",
+      "ma_goc": "2605-1075",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng có $u_{2}=-24$ và $u_{7}=4$. Tổng 10 số hạng đầu tiên của CSC này là",
+      "paA": "$ S_{10}=-100 $",
+      "paB": "$ S_{10}=-40 $",
+      "paC": "$ S_{10}=200 $",
+      "paD": "$ S_{10}=-44 $"
+    },
+    {
+      "maCau": "q_eb13d406fa",
+      "ma_goc": "2605-1076",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=2\\sqrt{5}$ và công sai $d=\\sqrt{5}$. Số hạng thứ 12 bằng",
+      "paA": "$ 11\\sqrt{5} $",
+      "paB": "$ u_{n}=14\\sqrt{5} $",
+      "paC": "$ 12\\sqrt{5} $",
+      "paD": "$ 13\\sqrt{5} $"
+    },
+    {
+      "maCau": "q_b5ec346316",
+      "ma_goc": "2605-1077",
+      "kieuCau": "TN",
+      "cauDan": "Tìm tất cả các giá trị của $x$ sao cho các số $x+1$, $2x^{2}+3$, $5x+3$ theo thứ tự đó lập thành một cấp số cộng.",
+      "paA": "$\\left[\\begin{aligned} &x=\\frac{1}{2} \\\\ &x=-1 \\end{aligned}\\right.$",
+      "paB": "$ x=1 $",
+      "paC": "$ \\left[\\begin{aligned} &x=\\frac{1}{2} \\\\ &x=1 \\end{aligned}\\right. $",
+      "paD": "$ \\left[\\begin{aligned} &x=-\\frac{1}{2} \\\\ &x=-1 \\end{aligned}\\right. $"
+    },
+    {
+      "maCau": "q_7b6fccbc7a",
+      "ma_goc": "2605-1078",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng có $9u_{2}-u_{5}=4$ và $u_{1}+u_{3}=u_{4}-6$. Số hạng đầu của cấp số cộng là:",
+      "paA": "$ d=3 $",
+      "paB": "$ d=4 $",
+      "paC": "$ d=-2 $",
+      "paD": "$ d=2 $"
+    },
+    {
+      "maCau": "q_694940b115",
+      "ma_goc": "2605-1079",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ có số hạng đầu $u_{1}=5$ và công bội $q=-2$. Số hạng thứ sáu của $(u_{n})$ là:",
+      "paA": "$ u_{6}=-320 $",
+      "paB": "$ u_{6}=-160 $",
+      "paC": "$ u_{6}=320 $",
+      "paD": "$ u_{6}=160 $"
+    },
+    {
+      "maCau": "q_c65fac7f78",
+      "ma_goc": "2605-1080",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ biết $u_{n}=2^{n}$, $\\forall n\\in\\mathbb{N}^{*}$. Tìm số hạng đầu $u_1$ và công bội $q$ của cấp số nhân.",
+      "paA": "$ u_{1}=-\\frac{1}{2}; q=2 $",
+      "paB": "$ u_{1}=-2; q=2 $",
+      "paC": "$ u_{1}=2; q=2 $",
+      "paD": "$ u_{1}=1; q=2 $"
+    },
+    {
+      "maCau": "q_af475917a8",
+      "ma_goc": "2605-1081",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ với $u_1 = \\frac{1}{2}$, $u_{7}=-32$. Tìm công bội $q$?",
+      "paA": "$ q=\\pm1 $",
+      "paB": "$ q=\\pm\\frac{1}{2} $",
+      "paC": "$ q=\\pm2 $",
+      "paD": "$ q=\\pm4 $"
+    },
+    {
+      "maCau": "q_fc60b4807a",
+      "ma_goc": "2605-1082",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ với $u_{1}=4$, $q=-4$. Viết số hạng tổng quát $u_n$?",
+      "paA": "$ -4(-4)^{n} $",
+      "paB": "$ (-4)^{n} $",
+      "paC": "$ 4 \\cdot (-4)^{n-1} $",
+      "paD": "$ 4^{n} $"
+    },
+    {
+      "maCau": "q_385ce047ee",
+      "ma_goc": "2605-1083",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ có số hạng đầu $u_{1}=5$ và $u_{2}=-10$. Tính tổng $S_6$.",
+      "paA": "$ S_{6}=-\\frac{155}{3} $",
+      "paB": "$ S_{6}=-\\frac{315}{3} $",
+      "paC": "$ S_{6}=105 $",
+      "paD": "$ S_{6}=315 $"
+    },
+    {
+      "maCau": "q_63ca8ff3d7",
+      "ma_goc": "2605-1084",
+      "kieuCau": "TN",
+      "cauDan": "Xác định $x$ để 3 số $x-2$, $x+1$, $3-x$ theo thứ tự đó lập thành một cấp số nhân:",
+      "paA": "$ x \\in \\emptyset $",
+      "paB": "$ x=\\pm1 $",
+      "paC": "$ x=2 $",
+      "paD": "$ x=-3 $"
+    },
+    {
+      "maCau": "q_d74644e629",
+      "ma_goc": "2605-1085",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình chữ nhật và $SA \\perp (ABCD)$. Mặt phẳng nào sau đây vuông góc với mặt phẳng $(ABCD)$?",
+      "paA": "$(SAB)$",
+      "paB": "$(SBC)$",
+      "paC": "$(SCD)$",
+      "paD": "$(SBD)$"
+    },
+    {
+      "maCau": "q_1ca70feac0",
+      "ma_goc": "2605-1086",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình vuông và $SA \\perp (ABCD)$. Đường thẳng nào sau đây vuông góc với mặt phẳng $(SAB)$?",
+      "paA": "$AC$",
+      "paB": "$AB$",
+      "paC": "$BC$",
+      "paD": "$SD$"
+    },
+    {
+      "maCau": "q_66351b30da",
+      "ma_goc": "2605-1087",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABC$ có đáy $ABC$ vuông tại $B$ và $SA \\perp (ABC)$. Khẳng định nào đúng?",
+      "paA": "$BC \\perp (SAC)$",
+      "paB": "$BC \\perp (SAB)$",
+      "paC": "$AC \\perp (SAB)$",
+      "paD": "$AC \\perp (SAC)$"
+    },
+    {
+      "maCau": "q_08421d5c3a",
+      "ma_goc": "2605-1088",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD \\cdot A'B'C'D'$. Khẳng định nào đúng?",
+      "paA": "$AA' \\perp BB'$",
+      "paB": "$AA' \\perp BC'$",
+      "paC": "$AC \\perp AB$",
+      "paD": "$AC \\perp B'D'$"
+    },
+    {
+      "maCau": "q_2273869441",
+      "ma_goc": "2605-1089",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2a$. Biết $SA=6a$ và $SA$ vuông góc với mặt phẳng đáy. Tính thể tích khối chóp $S \\cdot ABCD$.",
+      "paA": "$8a^{3}$",
+      "paB": "$6\\sqrt{3}a^{3}$",
+      "paC": "$12\\sqrt{3}a^{3}$",
+      "paD": "$24a^{3}$"
+    },
+    {
+      "maCau": "q_6f7bf4277d",
+      "ma_goc": "2605-1090",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình chữ nhật, cạnh bên $SA$ vuông góc với đáy $(ABCD)$. Biết $AB=a$, $BC=2a$ và $SB=\\sqrt{3}a$. Tính thể tích khối chóp $S \\cdot ABCD$.",
+      "paA": "$\\displaystyle \\frac{4a^{3}}{3}$",
+      "paB": "$4a^{3}$",
+      "paC": "$2a^{3}$",
+      "paD": "$\\displaystyle \\frac{2\\sqrt{2}a^{3}}{3}$"
+    },
+    {
+      "maCau": "q_431fdfaa61",
+      "ma_goc": "2605-1091",
+      "kieuCau": "TN",
+      "cauDan": "Cho khối chóp $S \\cdot ABC$ có $SA \\perp (ABC)$, tam giác $ABC$ vuông tại $B$, $AB=a$, $BC=a\\sqrt{2}$. Tính thể tích khối chóp $S \\cdot ABC$, biết rằng $SA=2a$.",
+      "paA": "$\\displaystyle \\frac{a^{3}\\sqrt{6}}{4}$",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{15}}{6}$",
+      "paC": "$\\displaystyle \\frac{a^{3}\\sqrt{2}}{3}$",
+      "paD": "$\\displaystyle \\frac{a^{3}\\sqrt{6}}{6}$"
+    },
+    {
+      "maCau": "q_50dfef5740",
+      "ma_goc": "2605-1092",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABC$ có đáy là tam giác đều cạnh $a$, cạnh bên $SA$ vuông góc với đáy và thể tích của khối chóp đó bằng $\\displaystyle \\frac{a^{3}}{4}$. Tính cạnh bên $SA$.",
+      "paA": "$\\displaystyle \\frac{a\\sqrt{3}}{2}$",
+      "paB": "$\\displaystyle \\frac{a\\sqrt{3}}{3}$",
+      "paC": "$a\\sqrt{3}$",
+      "paD": "$2a\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_d5a15fe794",
+      "ma_goc": "2605-1093",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có diện tích đáy là $a^{2}$, $SA \\perp (ABC)$. Thể tích của khối chóp $S.ABC$ bằng $a^{3}$. Khi đó chiều cao $SA$ bằng",
+      "paA": "$ a $",
+      "paB": "$ 3a $",
+      "paC": "$ 2a $",
+      "paD": "$ 4a $"
+    },
+    {
+      "maCau": "q_11d4b68e8f",
+      "ma_goc": "2605-1094",
+      "kieuCau": "TN",
+      "cauDan": "Cho lăng trụ đứng $ABC.A'B'C'$ có đáy $ABC$ là tam giác vuông cân tại $A$, biết $AC=\\sqrt{2}a$, $A'A=\\sqrt{7}a$. Thể tích của khối lăng trụ $ABC.A'B'C'$ bằng",
+      "paA": "$ 2a^{3} $",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{2}}{3} $",
+      "paC": "$ 6a^{3} $",
+      "paD": "$ a^{3}\\sqrt{7} $"
+    },
+    {
+      "maCau": "q_3a56d513ad",
+      "ma_goc": "2605-1095",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích của khối lăng trụ tam giác đều có tất cả các cạnh đều bằng $2a$ là",
+      "paA": "$\\displaystyle \\frac{a^{3}\\sqrt{3}}{4} $",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{3}}{12} $",
+      "paC": "$ 2a^{3}\\sqrt{3} $",
+      "paD": "$ 4a^{3} $"
+    },
+    {
+      "maCau": "q_7f15269800",
+      "ma_goc": "2605-1096",
+      "kieuCau": "TN",
+      "cauDan": "Cho $(H)$ là khối lập phương có độ dài cạnh bằng $3\\,\\text{cm}$. Thể tích của $(H)$ bằng",
+      "paA": "$ 27\\,\\text{cm}^{3} $",
+      "paB": "$ 3\\,\\text{cm}^{3} $",
+      "paC": "$ 9\\,\\text{cm}^{3} $",
+      "paD": "$ 27\\,\\text{cm}^{2} $"
+    },
+    {
+      "maCau": "q_a49ef5e9f0",
+      "ma_goc": "2605-1097",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$ (xem hình dưới), tổng của $\\vec{DA}+\\vec{DC}+\\vec{DD'}$ là vectơ nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a49ef5e9f0_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{DB'} $",
+      "paB": "$\\vec{DB} $",
+      "paC": "$\\vec{BD} $",
+      "paD": "$\\vec{BD'} $"
+    },
+    {
+      "maCau": "q_11f3150c8f",
+      "ma_goc": "2605-1098",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Chọn mệnh đề đúng trong các mệnh đề sau.",
+      "paA": "$\\vec{AB}+\\vec{AC}+\\vec{AA'} = \\vec{AC'} $",
+      "paB": "$\\vec{AB}+\\vec{AD}+\\vec{AA'} = \\vec{AC'} $",
+      "paC": "$\\vec{AC}+\\vec{AD}+\\vec{AA'} = \\vec{AC'} $",
+      "paD": "$\\vec{AB}+\\vec{AD}+\\vec{AA'} = \\vec{AC} $"
+    },
+    {
+      "maCau": "q_396267dd54",
+      "ma_goc": "2605-1099",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.EFGH$ (tham khảo hình vẽ). Tính tổng ba véctơ $\\vec{AB}+\\vec{AD}+\\vec{AE}$ ta được\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_396267dd54_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AH} $",
+      "paB": "$\\vec{AG} $",
+      "paC": "$\\vec{AF} $",
+      "paD": "$\\vec{AC} $"
+    },
+    {
+      "maCau": "q_2601783187",
+      "ma_goc": "2605-1100",
+      "kieuCau": "TN",
+      "cauDan": "Tìm mệnh đề đúng?",
+      "paA": "$\\vec{AB} + \\vec{BB'} + \\vec{B'A'} = \\vec{AC'} $",
+      "paB": "$\\vec{AB} + \\vec{BC'} + \\vec{C'D'} = \\vec{AC'} $",
+      "paC": "$\\vec{AB} + \\vec{AC} + \\vec{AA'} = \\vec{AC'} $",
+      "paD": "$\\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'} $"
+    },
+    {
+      "maCau": "q_090e3ee722",
+      "ma_goc": "2605-1101",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\displaystyle \\sin\\left(x+\\frac{\\pi}{3}\\right)=-\\frac{\\sqrt{3}}{2}$ là:",
+      "paA": "$\\left[\\begin{aligned} &x=-\\frac{2\\pi}{3}+k2\\pi \\\\ &x=\\pi+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$",
+      "paB": "$\\left[\\begin{aligned} &x=-\\frac{\\pi}{3}+k2\\pi \\\\ &x=\\frac{\\pi}{3}+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$",
+      "paC": "$ x=k2\\pi \\text{ và } x=\\pi+k2\\pi (k\\in\\mathbb{Z}) $",
+      "paD": "$\\left[\\begin{aligned} &x=-\\frac{\\pi}{2}+k2\\pi \\\\ &x=\\frac{5\\pi}{3}+k2\\pi \\end{aligned}\\right. (k\\in\\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_3e543f8992",
+      "ma_goc": "2605-1102",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\displaystyle 2\\cos x = \\sqrt{3}$ có tập nghiệm là",
+      "paA": "$ \\left\\{\\pm\\frac{\\pi}{3}+k\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paB": "$ \\left\\{\\pm\\frac{\\pi}{3}+k2\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paC": "$ \\left\\{\\pm\\frac{\\pi}{6}+k2\\pi, k\\in\\mathbb{Z}\\right\\} $",
+      "paD": "$ \\left\\{\\pm\\frac{\\pi}{6}+k\\pi, k\\in\\mathbb{Z}\\right\\} $"
+    },
+    {
+      "maCau": "q_589003389f",
+      "ma_goc": "2605-1103",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\displaystyle \\tan 2x + 1 = 0$ là",
+      "paA": "$ x=\\frac{\\pi}{8}+\\frac{k\\pi}{2} $",
+      "paB": "$ x=-\\frac{\\pi}{8}+\\frac{k\\pi}{2} $",
+      "paC": "$ x=-\\frac{\\pi}{8}+k2\\pi $",
+      "paD": "$ x=-\\frac{\\pi}{8}+k\\pi $"
+    },
+    {
+      "maCau": "q_e546644047",
+      "ma_goc": "2605-1104",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\displaystyle \\cos\\left(x+\\frac{\\pi}{4}\\right)=\\frac{\\sqrt{2}}{2}$ có nghiệm là",
+      "paA": "$\\left[\\begin{aligned} &x=k2\\pi \\\\ &x=-\\frac{\\pi}{2}+k\\pi \\end{aligned}\\right.$",
+      "paB": "$\\left[\\begin{aligned} &x=k\\pi \\\\ &x=-\\frac{\\pi}{2}+k\\pi \\end{aligned}\\right.$",
+      "paC": "$\\left[\\begin{aligned} &x=k\\pi \\\\ &x=-\\frac{\\pi}{2}+k2\\pi \\end{aligned}\\right.$",
+      "paD": "$\\left[\\begin{aligned} &x=k2\\pi \\\\ &x=-\\frac{\\pi}{2}+k2\\pi \\end{aligned}\\right.$"
+    },
+    {
+      "maCau": "q_c244085c89",
+      "ma_goc": "2605-1105",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{2}(x-1)<3$ là:",
+      "paA": "$(1;9)$",
+      "paB": "$(-\\infty;9)$",
+      "paC": "$(9;+\\infty)$",
+      "paD": "$(1;7)$"
+    },
+    {
+      "maCau": "q_0277a2b157",
+      "ma_goc": "2605-1106",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $2^{x}=6$ là:",
+      "paA": "$\\displaystyle x=\\log_{6}2$",
+      "paB": "$x=3$",
+      "paC": "$x=4$",
+      "paD": "$\\displaystyle x=\\log_{2}6$"
+    },
+    {
+      "maCau": "q_db215f1178",
+      "ma_goc": "2605-1107",
+      "kieuCau": "TN",
+      "cauDan": "Tổng các nghiệm của phương trình $3^{x^{2}-2x}=81$ là:",
+      "paA": "$3$",
+      "paB": "$-15$",
+      "paC": "$-3$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_ec83b35b4d",
+      "ma_goc": "2605-1108",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_{2}(x-4)=\\log_{2}(x^{2}-5x+4)$ là",
+      "paA": "$x=2$",
+      "paB": "$x\\in\\emptyset$",
+      "paC": "$x=2, x=4$",
+      "paD": "$x=3$"
+    },
+    {
+      "maCau": "q_ce2edad0af",
+      "ma_goc": "2605-1109",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình: $2^{2x}<2^{x+6}$ là",
+      "paA": "$(0;6)$",
+      "paB": "$(6;+\\infty)$",
+      "paC": "$(-\\infty;6)$",
+      "paD": "$(0;64)$"
+    },
+    {
+      "maCau": "q_a3fa2e3afa",
+      "ma_goc": "2605-1110",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $3^{x+2}\\ge\\frac{1}{9}$ là",
+      "paA": "$(-\\infty;0)$",
+      "paB": "$(-\\infty;4]$",
+      "paC": "$[0;+\\infty)$",
+      "paD": "$[-4;+\\infty)$"
+    },
+    {
+      "maCau": "q_7b60ee98cc",
+      "ma_goc": "2605-1111",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\left(\\frac{1}{2}\\right)^{x-1}\\ge128$ là",
+      "paA": "$[-6;+\\infty)$",
+      "paB": "$[8;+\\infty)$",
+      "paC": "$(-\\infty;8]$",
+      "paD": "$(-\\infty;-6]$"
+    },
+    {
+      "maCau": "q_6130212d1d",
+      "ma_goc": "2605-1112",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{0,5}(x+1)>-3$ là:",
+      "paA": "$(1;9)$",
+      "paB": "$(-\\infty;7)$",
+      "paC": "$(9;+\\infty)$",
+      "paD": "$(-1;7)$"
+    },
+    {
+      "maCau": "q_e8074abab7",
+      "ma_goc": "2605-1113",
+      "kieuCau": "TN",
+      "cauDan": "Cho số thực dương $a$. Biểu thức $P=\\sqrt{a}\\cdot\\sqrt[3]{a^{2}}$ được viết dưới dạng lũy thừa với số mũ hữu tỷ là",
+      "paA": "$\\displaystyle P=a^{\\frac{5}{6}}$",
+      "paB": "$\\displaystyle P=a^{2}$",
+      "paC": "$\\displaystyle P=a^{\\frac{7}{6}}$",
+      "paD": "$\\displaystyle P=a^{\\frac{1}{2}}$"
+    },
+    {
+      "maCau": "q_03180401fb",
+      "ma_goc": "2605-1114",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $\\log_{2}(2x-1)$ là",
+      "paA": "$\\displaystyle D=\\left(\\frac{1}{2};+\\infty\\right)$",
+      "paB": "$\\displaystyle D=\\left(-\\infty;\\frac{1}{2}\\right)$",
+      "paC": "$\\displaystyle D=\\mathbb{R}\\setminus\\left\\{\\frac{1}{2}\\right\\}$",
+      "paD": "$\\displaystyle D=(-1;+\\infty)$"
+    },
+    {
+      "maCau": "q_a3da159284",
+      "ma_goc": "2605-1115",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, phương trình của đường thẳng đi qua điểm $M(1;-3;5)$ và có một vectơ chỉ phương $\\vec{u}=(2;-1;1)$ là:",
+      "paA": "$\\displaystyle \\frac{x-1}{2}=\\frac{y-3}{-1}=\\frac{z-5}{1}$",
+      "paB": "$\\displaystyle \\frac{x-1}{2}=\\frac{y-3}{-1}=\\frac{z+5}{1}$",
+      "paC": "$\\displaystyle \\frac{x-1}{2}=\\frac{y+3}{-1}=\\frac{z-5}{1}$",
+      "paD": "$\\displaystyle \\frac{x+1}{2}=\\frac{y-3}{-1}=\\frac{z-5}{1}$"
+    },
+    {
+      "maCau": "q_1ddc17237c",
+      "ma_goc": "2605-1116",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho mặt phẳng $(P)$ có phương trình $x-3y-z+8=0$. Vectơ nào sau đây là vectơ pháp tuyến của mặt phẳng $(P)$?",
+      "paA": "$\\displaystyle \\vec{n}_{1}=(1;-3;1)$",
+      "paB": "$\\displaystyle \\vec{n}_{2}=(1;-3;-1)$",
+      "paC": "$\\displaystyle \\vec{n}_{3}=(1;-3;8)$",
+      "paD": "$\\displaystyle \\vec{n}_{4}=(1;3;8)$"
+    },
+    {
+      "maCau": "q_5b9db2532e",
+      "ma_goc": "2605-1117",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(Oyz)$ có phương trình là",
+      "paA": "$z=0$",
+      "paB": "$x+y+z=0$",
+      "paC": "$x=0$",
+      "paD": "$y=0$"
+    },
+    {
+      "maCau": "q_5813457d5f",
+      "ma_goc": "2605-1118",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(5;-4;2)$ và $B(1;2;4)$. Mặt phẳng đi qua $A$ và vuông góc với đường thẳng $AB$ có phương trình là",
+      "paA": "$2x-3y-z-20=0$",
+      "paB": "$3x-y+3z-25=0$",
+      "paC": "$2x-3y-z+8=0$",
+      "paD": "$3x-y+3z-13=0$"
+    },
+    {
+      "maCau": "q_464482e400",
+      "ma_goc": "2605-1119",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(P)$ đi qua điểm $M(3;-1;4)$ đồng thời vuông góc với giá của vectơ $\\vec{a}=(1;-1;2)$ có phương trình là",
+      "paA": "$3x-y+4z-12=0$",
+      "paB": "$3x-y+4z+12=0$",
+      "paC": "$x-y+2z-12=0$",
+      "paD": "$x-y+2z+12=0$"
+    },
+    {
+      "maCau": "q_9d1ac07930",
+      "ma_goc": "2605-1120",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình của mặt phẳng đi qua điểm $A(3;0;-1)$ and có véctơ pháp tuyến $\\vec{n}=(4;-2;-3)$ là",
+      "paA": "$4x-2y+3z-9=0$",
+      "paB": "$4x-2y-3z-15=0$",
+      "paC": "$3x-z-15=0$",
+      "paD": "$4x-2y-3z+15=0$"
+    },
+    {
+      "maCau": "q_de3003a31e",
+      "ma_goc": "2605-1121",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(-2;0;0), B(0;3;0)$ và $C(0;0;4)$. Mặt phẳng $(ABC)$ có phương trình là",
+      "paA": "$\\displaystyle \\frac{x}{-2}+\\frac{y}{3}+\\frac{z}{4}=1$",
+      "paB": "$\\displaystyle \\frac{x}{2}+\\frac{y}{3}+\\frac{z}{4}=1$",
+      "paC": "$\\displaystyle \\frac{x}{2}+\\frac{y}{-3}+\\frac{z}{4}=1$",
+      "paD": "$\\displaystyle \\frac{x}{2}+\\frac{y}{3}+\\frac{z}{-4}=1$"
+    },
+    {
+      "maCau": "q_31d4b9391a",
+      "ma_goc": "2605-1122",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(P): x+y+z-3=0$ đi qua điểm nào dưới đây?",
+      "paA": "$M(-1;-1;-1)$",
+      "paB": "$N(1;1;1)$",
+      "paC": "$P(-3;0;0)$",
+      "paD": "$Q(0;0;-3)$"
+    },
+    {
+      "maCau": "q_72e623b10a",
+      "ma_goc": "2605-1123",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d: \\frac{x+2}{1}=\\frac{y-1}{-3}=\\frac{z-3}{2}$. Vectơ nào dưới đây là một vectơ chỉ phương của $d$?",
+      "paA": "$\\displaystyle \\vec{u}_{4}=(1;3;2)$",
+      "paB": "$\\displaystyle \\vec{u}_{3}=(-2;1;3)$",
+      "paC": "$\\displaystyle \\vec{u}_{1}=(-2;1;2)$",
+      "paD": "$\\displaystyle \\vec{u}_{2}=(1;-3;2)$"
+    },
+    {
+      "maCau": "q_e88299a282",
+      "ma_goc": "2605-1124",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, đường thẳng nào sau đây nhận $\\vec{u}=(2;1;1)$ là một vectơ chỉ phương?",
+      "paA": "$\\displaystyle \\frac{x-2}{1}=\\frac{y-1}{2}=\\frac{z-1}{3}$",
+      "paB": "$\\displaystyle \\frac{x}{2}=\\frac{y-1}{1}=\\frac{z-2}{-1}$",
+      "paC": "$\\displaystyle \\frac{x-1}{-2}=\\frac{y+1}{-1}=\\frac{z}{-1}$",
+      "paD": "$\\displaystyle \\frac{x+2}{2}=\\frac{y+1}{-1}=\\frac{z+1}{1}$"
+    },
+    {
+      "maCau": "q_06b926427f",
+      "ma_goc": "2605-1125",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho $\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là:",
+      "paA": "$(-3;2;-1)$",
+      "paB": "$(-1;2;-3)$",
+      "paC": "$(2;-1;-3)$",
+      "paD": "$(2;-3;-1)$"
+    },
+    {
+      "maCau": "q_f2b36b47d7",
+      "ma_goc": "2605-1126",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho ba điểm $A(1;3;5), B(2;0;1), C(0;9;0)$. Tìm trọng tâm $G$ của tam giác $ABC$.",
+      "paA": "$G(1;5;2)$",
+      "paB": "$G(1;0;5)$",
+      "paC": "$G(1;4;2)$",
+      "paD": "$G(3;12;6)$"
+    },
+    {
+      "maCau": "q_7b0ad85ec2",
+      "ma_goc": "2605-1127",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho $\\vec{a}=(1;-2;0), \\vec{b}=(-5;4;-1)$. Tọa độ của vectơ $\\vec{x}=2\\vec{a}-\\vec{b}$ bằng",
+      "paA": "$(-3;0;-1)$",
+      "paB": "$(7;-4;1)$",
+      "paC": "$(7;-8;1)$",
+      "paD": "$(7;-8;-1)$"
+    },
+    {
+      "maCau": "q_066f62dd1e",
+      "ma_goc": "2605-1128",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$ cho mặt cầu $(S) \\colon (x-3)^{2}+(y+2)^{2}+(z-1)^{2}=9$, tâm $I$ và bán kính $R$ của mặt cầu lần lượt là",
+      "paA": "$I(-3;2;-1), R=3$",
+      "paB": "$I(-3;2;-1), R=9$",
+      "paC": "$I(3;-2;1), R=81$",
+      "paD": "$I(3;-2;1), R=3$"
+    },
+    {
+      "maCau": "q_36b82b6f3e",
+      "ma_goc": "2605-1129",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt cầu $(S) \\colon x^{2}+y^{2}+z^{2}-2x+2y-4z+1=0$. Tâm và bán kính của mặt cầu $(S)$ là",
+      "paA": "$I(1;-1;2) \\text{ và } R=5$",
+      "paB": "$I(-1;1;-2) \\text{ và } R=5$",
+      "paC": "$I(1;-1;2) \\text{ và } R=\\sqrt{5}$",
+      "paD": "$I(-1;1;-2) \\text{ và } R=\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_44639058a6",
+      "ma_goc": "2605-1130",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, lập phương trình mặt cầu tâm $I(1;-2;3)$ và có bán kính $R=5$.",
+      "paA": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=25$",
+      "paB": "$(x+1)^{2}+(y-2)^{2}+(z+3)^{2}=25$",
+      "paC": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=5$",
+      "paD": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_4df02963d9",
+      "ma_goc": "2605-1131",
+      "kieuCau": "TN",
+      "cauDan": "Trong hệ tọa độ $Oxyz$, mặt cầu tâm $I(2;0;0)$ và đi qua điểm $M(1;2;-2)$ có phương trình là",
+      "paA": "$(x+2)^{2}+y^{2}+z^{2}=3$",
+      "paB": "$(x+2)^{2}+y^{2}+z^{2}=9$",
+      "paC": "$(x-2)^{2}+y^{2}+z^{2}=9$",
+      "paD": "$(x-2)^{2}+y^{2}+z^{2}=3$"
+    },
+    {
+      "maCau": "q_80a5d4ceba",
+      "ma_goc": "2605-1132",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d \\colon \\frac{x-2}{4}=\\frac{y-1}{-2}=\\frac{z+3}{1}$. Điểm nào dưới đây thuộc $d$?",
+      "paA": "$Q(4;-2;1)$",
+      "paB": "$N(4;2;1)$",
+      "paC": "$P(2;1;-3)$",
+      "paD": "$M(2;1;3)$"
+    },
+    {
+      "maCau": "q_10d4735367",
+      "ma_goc": "2605-1133",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, đường thẳng $d \\colon \\begin{cases}x=t \\\\ y=1-t \\\\ z=2+t\\end{cases}$ đi qua điểm nào sau đây?",
+      "paA": "$K(1;-1;1)$",
+      "paB": "$E(1;1;2)$",
+      "paC": "$H(1;2;0)$",
+      "paD": "$F(0;1;2)$"
+    },
+    {
+      "maCau": "q_7bcfc57cc7",
+      "ma_goc": "2605-1134",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $d$ có phương trình $\\frac{x-1}{3}=\\frac{y+2}{2}=\\frac{z-3}{-4}$. Điểm nào sau đây không thuộc đường thẳng $d$?",
+      "paA": "$P(7;2;1)$",
+      "paB": "$Q(-2;-4;7)$",
+      "paC": "$N(4;0;-1)$",
+      "paD": "$M(1;-2;3)$"
+    },
+    {
+      "maCau": "q_49b281a23e",
+      "ma_goc": "2605-1135",
+      "kieuCau": "TN",
+      "cauDan": "Giao điểm của mặt phẳng $(P) \\colon x+y-z-2=0$ và đường thẳng $d \\colon \\begin{cases}x=2+t \\\\ y=-t \\\\ z=3+3t\\end{cases}$ là",
+      "paA": "$(1;1;0)$",
+      "paB": "$(0;2;4)$",
+      "paC": "$(0;4;2)$",
+      "paD": "$(2;0;3)$"
+    },
+    {
+      "maCau": "q_4766a4aa29",
+      "ma_goc": "2605-1136",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(2;3;5)$. Tìm tọa độ điểm $A'$ là hình chiếu vuông góc của $A$ lên trục $Oy$.",
+      "paA": "$A'(2;0;0)$",
+      "paB": "$A'(0;3;0)$",
+      "paC": "$A'(0;3;5)$",
+      "paD": "$A'(2;0;5)$"
+    },
+    {
+      "maCau": "q_44f68f8700",
+      "ma_goc": "2605-1137",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng đi qua gốc tọa độ $O$ và điểm $M(1;-2;1)$?",
+      "paA": "$\\displaystyle \\vec{u}_{1}=(1;1;1)$",
+      "paB": "$\\displaystyle \\vec{u}_{2}=(1;2;1)$",
+      "paC": "$\\displaystyle \\vec{u}_{3}=(0;1;0)$",
+      "paD": "$\\displaystyle \\vec{u}_{4}=(1;-2;1)$"
+    },
+    {
+      "maCau": "q_6ec6fda897",
+      "ma_goc": "2605-1138",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ toạ độ $Oxyz$, cho hai điểm $A(1;1;0)$ và $B(0;1;2)$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $AB$?",
+      "paA": "$\\displaystyle \\vec{d}=(-1;1;2)$",
+      "paB": "$\\displaystyle \\vec{a}=(-1;0;-2)$",
+      "paC": "$\\displaystyle \\vec{b}=(-1;0;2)$",
+      "paD": "$\\displaystyle \\vec{c}=(1;2;2)$"
+    },
+    {
+      "maCau": "q_c3940b4f5d",
+      "ma_goc": "2605-1139",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai đường thẳng $d_1 \\colon \\begin{cases}x=-1-t \\\\ y=3+4t \\\\ z=3+3t\\end{cases}$ và $d_2 \\colon \\frac{x}{1}=\\frac{y+8}{-4}=\\frac{z+3}{-3}$. Tính góc hợp bởi đường thẳng $d_1$ và $d_2$.",
+      "paA": "$0^{\\circ}$",
+      "paB": "$90^{\\circ}$",
+      "paC": "$30^{\\circ}$",
+      "paD": "$60^{\\circ}$"
+    },
+    {
+      "maCau": "q_a8c10f6023",
+      "ma_goc": "2605-1140",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P)$ có phương trình: $3x+4y+2z+4=0$ và điểm $A(1;-2;3)$. Tính khoảng cách $d$ từ $A$ đến $(P)$.",
+      "paA": "$\\displaystyle d = \\frac{5}{9}$",
+      "paB": "$\\displaystyle d = \\frac{5}{29}$",
+      "paC": "$\\displaystyle d = \\frac{5}{\\sqrt{29}}$",
+      "paD": "$\\displaystyle d = \\frac{\\sqrt{5}}{3}$"
+    },
+    {
+      "maCau": "q_c8b822a467",
+      "ma_goc": "2605-1141",
+      "kieuCau": "TN",
+      "cauDan": "Nguyên hàm của hàm số $f(x)=e^{x}$ là",
+      "paA": "$\\displaystyle \\frac{e^{x+1}}{x+1}+C$",
+      "paB": "$\\displaystyle e^{x}+C$",
+      "paC": "$\\displaystyle \\frac{e^{x}}{x}+C$",
+      "paD": "$\\displaystyle x \\cdot e^{x-1}+C$"
+    },
+    {
+      "maCau": "q_7d069825f4",
+      "ma_goc": "2605-1142",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $F(x)=2x^{3}-2x+1$ là nguyên hàm của hàm số nào sau đây?",
+      "paA": "$\\displaystyle f(x)=6x^{2}-2$",
+      "paB": "$\\displaystyle f(x)=\\frac{1}{2}x^{4}-x^{2}+x+C$",
+      "paC": "$\\displaystyle f(x)=\\frac{1}{2}x^{4}-x^{2}+x$",
+      "paD": "$\\displaystyle f(x)=6x^{2}-2+C$"
+    },
+    {
+      "maCau": "q_6121504f25",
+      "ma_goc": "2605-1143",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\displaystyle \\int \\cos x\\,\\mathrm{d}x = -\\sin x+C$",
+      "paB": "$\\displaystyle \\int \\sin x\\,\\mathrm{d}x = \\cos x+C$",
+      "paC": "$\\displaystyle \\int \\frac{\\mathrm{d}x}{x} = \\ln x+C$",
+      "paD": "$\\displaystyle \\int \\frac{\\mathrm{d}x}{x^{2}} = -\\frac{1}{x}+C$"
+    },
+    {
+      "maCau": "q_9842444be2",
+      "ma_goc": "2605-1144",
+      "kieuCau": "TN",
+      "cauDan": "Cho $F(x)$ là một nguyên hàm của hàm số $f(x)=4x^{3}-3x^{2}+2$ biết $F(-1)=3$. Tìm $F(x)$?",
+      "paA": "$\\displaystyle F(x)=x^{4}-x^{3}-2x-3$",
+      "paB": "$\\displaystyle F(x)=x^{4}-x^{3}+2x+3$",
+      "paC": "$\\displaystyle F(x)=x^{4}-x^{3}-2x+3$",
+      "paD": "$\\displaystyle F(x)=x^{4}+x^{3}+2x+3$"
+    },
+    {
+      "maCau": "q_1c8d801296",
+      "ma_goc": "2605-1145",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây là một nguyên hàm của hàm số $y=2^{x} \\cdot 3^{x}$?",
+      "paA": "$\\displaystyle y = \\frac{6^{x}}{\\ln 6}$",
+      "paB": "$\\displaystyle y = 2^{x} \\cdot \\ln 2 \\cdot 3^{x} \\cdot \\ln 3$",
+      "paC": "$\\displaystyle y = \\frac{2^{x} \\cdot 3^{x}}{\\ln 2 \\cdot \\ln 3}$",
+      "paD": "$\\displaystyle y = \\frac{5^{x}}{\\ln 5}$"
+    },
+    {
+      "maCau": "q_f9951a7f32",
+      "ma_goc": "2605-1146",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ và $g(x)$ cùng liên tục trên $\\mathbb{R}$. Khẳng định nào đúng?",
+      "paA": "$\\displaystyle \\int kf(x)\\,\\mathrm{d}x = k \\int f(x)\\,\\mathrm{d}x, \\forall k \\in \\mathbb{R}$",
+      "paB": "$\\displaystyle \\int [f(x)+g(x)]\\,\\mathrm{d}x = \\int f(x)\\,\\mathrm{d}x + \\int g(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int \\left[\\frac{f(x)}{g(x)}\\right]\\,\\mathrm{d}x = \\frac{\\int f(x)\\,\\mathrm{d}x}{\\int g(x)\\,\\mathrm{d}x}$",
+      "paD": "$\\displaystyle \\int [f(x) \\cdot g(x)]\\,\\mathrm{d}x = \\left(\\int f(x)\\,\\mathrm{d}x\\right) \\cdot \\left(\\int g(x)\\,\\mathrm{d}x\\right)$"
+    },
+    {
+      "maCau": "q_df06f30b18",
+      "ma_goc": "2605-1147",
+      "kieuCau": "TN",
+      "cauDan": "Biết $\\displaystyle \\int_{1}^{3}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{1}^{3}g(x)\\,\\mathrm{d}x=-7$. Giá trị của $\\displaystyle \\int_{1}^{3}[3f(x)-g(x)]\\,\\mathrm{d}x$ bằng",
+      "paA": "$-22$",
+      "paB": "$-8$",
+      "paC": "$8$",
+      "paD": "$22$"
+    },
+    {
+      "maCau": "q_1f21a5bf11",
+      "ma_goc": "2605-1148",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ và $f(2)=3, f(5)=2$. Giá trị của $\\displaystyle \\int_{2}^{5}f'(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$-1$",
+      "paB": "$1$",
+      "paC": "$5$",
+      "paD": "$6$"
+    },
+    {
+      "maCau": "q_5a0b6fdebb",
+      "ma_goc": "2605-1149",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hàm số $y=f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ thỏa mãn $f(0)=-2023$ và $\\displaystyle \\int_{0}^{1}f'(x)\\,\\mathrm{d}x=2024$ thì",
+      "paA": "$f(1)=4047$",
+      "paB": "$f(1)=-1$",
+      "paC": "$f(1)=1$",
+      "paD": "$f(1)=-4047$"
+    },
+    {
+      "maCau": "q_0ba59a25bd",
+      "ma_goc": "2605-1150",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$. Nếu $\\displaystyle \\int_{-1}^{4}f(x)\\,\\mathrm{d}x=2$ thì $\\displaystyle \\int_{-1}^{4}[4-3f(x)]\\,\\mathrm{d}x$ bằng",
+      "paA": "$-2$",
+      "paB": "$14$",
+      "paC": "$5$",
+      "paD": "$-4$"
+    },
+    {
+      "maCau": "q_baeab73f14",
+      "ma_goc": "2605-1151",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\int_{1}^{2}[f(x)+3g(x)]\\,\\mathrm{d}x=9$ và $\\displaystyle \\int_{1}^{2}g(x)\\,\\mathrm{d}x=2$. Giá trị của $\\displaystyle \\int_{1}^{2}f(x)\\,\\mathrm{d}x$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_4ccc78110c",
+      "ma_goc": "2605-1152",
+      "kieuCau": "TN",
+      "cauDan": "Biết $F(x)=x^{2}$ là một nguyên hàm của hàm số $f(x)$ trên $\\mathbb{R}$. Giá trị của $\\displaystyle \\int_{1}^{3}f(x)\\,\\mathrm{d}x$ bằng:",
+      "paA": "$8$",
+      "paB": "$10$",
+      "paC": "$9$",
+      "paD": "$\\displaystyle \\frac{26}{3}$"
+    },
+    {
+      "maCau": "q_34e828bb11",
+      "ma_goc": "2605-1153",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{4}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{4}^{2}f(x)\\,\\mathrm{d}x=-1$ thì $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$ bằng.",
+      "paA": "$4$",
+      "paB": "$-6$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_b2ab808134",
+      "ma_goc": "2605-1154",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{3}[4f(x)+3x^{2}]\\,\\mathrm{d}x=7$ thì $\\displaystyle \\int_{0}^{3}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$2$",
+      "paB": "$-8$",
+      "paC": "$-5$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_d3337984a0",
+      "ma_goc": "2605-1155",
+      "kieuCau": "TN",
+      "cauDan": "Biết $F(x)$ là nguyên hàm của $f(x)$ trên $[1;2]$ thoả $F(1)=-2, F(2)=4$. Khi đó $\\displaystyle \\int_{1}^{2}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$2$",
+      "paB": "$6$",
+      "paC": "$-2$",
+      "paD": "$-6$"
+    },
+    {
+      "maCau": "q_36ca3e1fa2",
+      "ma_goc": "2605-1156",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{4}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{2}^{4}f(x)\\,\\mathrm{d}x=-1$ thì $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$-4$",
+      "paB": "$-6$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_6cfb541f8e",
+      "ma_goc": "2605-1157",
+      "kieuCau": "TN",
+      "cauDan": "Cho $F(x)$ là một nguyên hàm của hàm số $f(x)=2^{x}$ thỏa mãn $F(0)=0$. Tính $F(2)$?",
+      "paA": "$2^{x}$",
+      "paB": "$2$",
+      "paC": "$\\displaystyle \\frac{2}{\\ln 2}$",
+      "paD": "$\\displaystyle \\frac{3}{\\ln 2}$"
+    },
+    {
+      "maCau": "q_720dd0da91",
+      "ma_goc": "2605-1158",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)=\\begin{cases}3x^{2} & \\text{khi } 0 \\le x \\le 1 \\\\ 4-x & \\text{khi } 1 \\le x \\le 2\\end{cases}$. Tính tích phân $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$.",
+      "paA": "$1$",
+      "paB": "$\\displaystyle \\frac{7}{2}$",
+      "paC": "$\\displaystyle \\frac{3}{2}$",
+      "paD": "$\\displaystyle \\frac{5}{2}$"
+    },
+    {
+      "maCau": "q_5317150391",
+      "ma_goc": "2605-1159",
+      "kieuCau": "TN",
+      "cauDan": "Với $b$ là số thực. Giá trị tích phân $\\displaystyle \\int_{0}^{b}(3x^{2}-2025)\\,\\mathrm{d}x$ bằng",
+      "paA": "$b^{3}-2025b$",
+      "paB": "$b^{3}-2025$",
+      "paC": "$3b^{3}-2025b$",
+      "paD": "$3b^{2}-2025$"
+    },
+    {
+      "maCau": "q_6bac1f6c20",
+      "ma_goc": "2605-1160",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục, nhận giá trị dương trên đoạn $[a;b]$. Xét hình phẳng $(H)$ giới hạn bởi đồ thị hàm số $y=f(x)$, trục hoành và hai đường thẳng $x=a, x=b$. Khối tròn xoay được tạo thành khi quay hình phẳng $(H)$ quanh trục $Ox$ có thể tích là:",
+      "paA": "$\\displaystyle V = \\pi \\int_{a}^{b} |f(x)|\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\pi^{2} \\int_{a}^{b} f(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\int_{a}^{b} [f(x)]^{2}\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{a}^{b} [f(x)]^{2}\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_b129e887d0",
+      "ma_goc": "2605-1161",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích $S$ của hình phẳng giới hạn bởi đồ thị hàm số $y=x^{2}+1$, trục hoành và hai đường thẳng $x=-1, x=2$ là",
+      "paA": "$S=6$",
+      "paB": "$S=16$",
+      "paC": "$S=8$",
+      "paD": "$S=13$"
+    },
+    {
+      "maCau": "q_0262dcc6ba",
+      "ma_goc": "2605-1162",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi $x=0, x=\\pi$, đồ thị hàm số $y=\\cos x$ và trục $Ox$ là:",
+      "paA": "$\\displaystyle S = \\int_{0}^{\\pi} \\cos x\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle S = \\int_{0}^{\\pi} \\cos^{2}x\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle S = \\int_{0}^{\\pi} |\\cos x|\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle S = \\pi \\int_{0}^{\\pi} |\\cos x|\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_1e24d07cc6",
+      "ma_goc": "2605-1163",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$. Gọi $S$ là diện tích hình phẳng giới hạn bởi các đường (như hình vẽ bên). Mệnh đề nào đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1e24d07cc6_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle S = \\int_{-1}^{1} f(x)\\,\\mathrm{d}x + \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle S = -\\int_{-1}^{1} f(x)\\,\\mathrm{d}x - \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle S = -\\int_{-1}^{1} f(x)\\,\\mathrm{d}x + \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle S = \\int_{-1}^{1} f(x)\\,\\mathrm{d}x - \\int_{1}^{2} f(x)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_b24ad4d4ca",
+      "ma_goc": "2605-1164",
+      "kieuCau": "TN",
+      "cauDan": "Hình thang cong $ABCD$ ở Hình 28 có diện tích bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b24ad4d4ca_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}-x+3\\right)\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}+x-3\\right)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}-x-3\\right)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}+x+3\\right)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_0133ee3e0c",
+      "ma_goc": "2605-1165",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi các đường $y=x^{2}-2x-1, y=2x-4$. Diện tích hình phẳng giới hạn bởi hình $(H)$ bằng",
+      "paA": "$\\displaystyle \\frac{2}{3}$",
+      "paB": "$\\displaystyle \\frac{4}{3}$",
+      "paC": "$\\displaystyle \\frac{8}{3}$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_79446a22b4",
+      "ma_goc": "2605-1166",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng bên bằng phân số tối giản $\\displaystyle \\frac{a}{b} \\left(a, b \\in \\mathbb{Z}^{+}\\right)$. Tìm $a-b$\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_79446a22b4_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$-1$",
+      "paC": "$4$",
+      "paD": "$-4$"
+    },
+    {
+      "maCau": "q_a635fe30f0",
+      "ma_goc": "2605-1167",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai hàm số $f(x)$ và $g(x)$ liên tục trên $[a;b]$. Diện tích hình phẳng giới hạn bởi đồ thị của các hàm số $y=f(x)$, $y=g(x)$ và các đường thẳng $x=a$, $x=b$ bằng",
+      "paA": "$\\displaystyle \\int_{a}^{b} [f(x)+g(x)]\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle \\int_{a}^{b} |f(x)+g(x)|\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int_{a}^{b} |f(x)-g(x)|\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle \\int_{a}^{b} [f(x)-g(x)]\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_a866408ff1",
+      "ma_goc": "2605-1168",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $V$ là thể tích khối tròn xoay được tạo thành khi cho hình phẳng giới hạn bởi các đường $y=e^{x}$, $y=0$, $x=0$, $x=2$ quay quanh $Ox$. Phát biểu nào sau đây là đúng?",
+      "paA": "$\\displaystyle V = \\int_{0}^{2} e^{x}\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\pi \\int_{0}^{2} e^{x}\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\int_{0}^{2} e^{2x}\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{0}^{2} e^{2x}\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_50e7becbed",
+      "ma_goc": "2605-1169",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích khối tròn xoay được tạo thành khi quay hình phẳng giới hạn bởi đồ thị hàm số $y=x^{2}-2x$ và trục hoành quanh trục hoành bằng",
+      "paA": "$\\displaystyle \\frac{4}{3}$",
+      "paB": "$\\displaystyle \\frac{4\\pi}{3}$",
+      "paC": "$\\displaystyle \\frac{16}{15}$",
+      "paD": "$\\displaystyle \\frac{16\\pi}{15}$"
+    },
+    {
+      "maCau": "q_9a11cdb136",
+      "ma_goc": "2605-1170",
+      "kieuCau": "TN",
+      "cauDan": "Cho một vật thể giới hạn bởi hai mặt phẳng vuông góc với trục $Ox$ tại các điểm có hoành độ $x=-1$, $x=1$. Một mặt phẳng vuông góc với trục $Ox$ tại $x \\,(-1 \\le x \\le 1)$ cắt vật thể đó theo một mặt cắt là hình vuông có cạnh bằng $\\sqrt{1-x^{4}}$. Thể tích của vật thể đó bằng",
+      "paA": "$\\displaystyle \\frac{4}{5}$",
+      "paB": "$\\displaystyle \\frac{4\\pi}{5}$",
+      "paC": "$\\displaystyle \\frac{8}{5}$",
+      "paD": "$\\displaystyle \\frac{8\\pi}{5}$"
+    },
+    {
+      "maCau": "q_dba147ce4b",
+      "ma_goc": "2605-1171",
+      "kieuCau": "TN",
+      "cauDan": "Viết công thức tính thể tích $V$ của phần vật thể giới hạn bởi hai mặt phẳng vuông góc với trục $Ox$ tại các điểm $x=a$, $x=b \\,(a<b)$, có thiết diện bị cắt bởi mặt phẳng vuông góc với trục $Ox$ tại điểm có hoành độ $x \\,(a \\le x \\le b)$ là $S(x)$.",
+      "paA": "$\\displaystyle V = \\pi^{2} \\int_{a}^{b} |S(x)|\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\int_{a}^{b} S(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\pi \\int_{a}^{b} S(x)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{a}^{b} S^{2}(x)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_ad0bb60b8e",
+      "ma_goc": "2605-1172",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động với phương trình vận tốc là $v(t)=5+2t\\,\\mathrm{(m/s)}$. Hỏi quãng đường vật di chuyển được từ thời điểm $t=3\\,\\mathrm{(s)}$ đến thời điểm $t=5\\,\\mathrm{(s)}$?",
+      "paA": "$36\\,\\text{m}$",
+      "paB": "$26\\,\\text{m}$",
+      "paC": "$40\\,\\text{m}$",
+      "paD": "$10\\,\\text{m}$"
+    },
+    {
+      "maCau": "q_ffdc516ecb",
+      "ma_goc": "2605-1173",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động với vận tốc $v(t)=2\\sin t\\,\\mathrm{(m/s)}$. Quãng đường vật di chuyển trong khoảng thời gian $\\pi$ giây đầu tiên là",
+      "paA": "$6$",
+      "paB": "$8$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_b88341970b",
+      "ma_goc": "2605-1174",
+      "kieuCau": "TN",
+      "cauDan": "Hai mẫu số liệu ghép nhóm $M_1$, $M_2$ có bảng tần số ghép nhóm như sau:\r\n\t\\par\\textbf{Mẫu số liệu $M_1$:}\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b88341970b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\\textbf{Mẫu số liệu $M_2$:}\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b88341970b_cd_tab_2.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $s_1$, $s_2$ lần lượt là độ lệch chuẩn của mẫu số liệu ghép nhóm $M_1$, $M_2$. Phát biểu nào sau đây là đúng?",
+      "paA": "$s_{1} = s_{2}$",
+      "paB": "$s_{1} = 2s_{2}$",
+      "paC": "$2s_{1} = s_{2}$",
+      "paD": "$4s_{1} = s_{2}$"
+    },
+    {
+      "maCau": "q_3b7e49df9a",
+      "ma_goc": "2605-1175",
+      "kieuCau": "TN",
+      "cauDan": "Một công ty xây dựng khảo sát khách hàng xem họ có nhu cầu mua nhà ở mức giá nào. Kết quả khảo sát được ghi lại ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3b7e49df9a_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên $R$ của mẫu số liệu ghép nhóm trên là",
+      "paA": "$R = 4$",
+      "paB": "$R = 20$",
+      "paC": "$R = 9$",
+      "paD": "$R = 108$"
+    },
+    {
+      "maCau": "q_885d75f850",
+      "ma_goc": "2605-1176",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Linh thống kê chiều cao (đơn vị: cm) của các bạn học sinh nữ lớp $12A$ và lớp $12B$ ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_885d75f850_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $R_1; R_2$ lần lượt là khoảng biến thiên của mẫu số liệu ghép nhóm về chiều cao của các bạn học sinh nữ lớp $12A$ và $12B$. Tìm $R_1; R_2$.",
+      "paA": "$R_1 = 30\\,\\text{(cm)}; R_2 = 25\\,\\text{(cm)}$",
+      "paB": "$R_1 = 30\\,\\text{(cm)}; R_2 = 30\\,\\text{(cm)}$",
+      "paC": "$R_1 = 25\\,\\text{(cm)}; R_2 = 25\\,\\text{(cm)}$",
+      "paD": "$R_1 = 12\\,\\text{(cm)}; R_2 = 9\\,\\text{(cm)}$"
+    },
+    {
+      "maCau": "q_2ad7b9a4ea",
+      "ma_goc": "2605-1177",
+      "kieuCau": "TN",
+      "cauDan": "Tìm hiểu thời gian chạy cự li $1000\\text{m}$ (đơn vị: giây) của các bạn học sinh trong một lớp thu được kết quả sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2ad7b9a4ea_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm $[131;133)$ có tần số là",
+      "paA": "$3$",
+      "paB": "$15$",
+      "paC": "$10$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_7f33b711b9",
+      "ma_goc": "2605-1178",
+      "kieuCau": "TN",
+      "cauDan": "Cho mẫu số liệu ghép nhóm về khối lượng (đơn vị: gram) của $30$ củ khoai tây như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7f33b711b9_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị đại diện của nhóm $[90;100)$ là",
+      "paA": "$85$",
+      "paB": "$95$",
+      "paC": "$90$",
+      "paD": "$100$"
+    },
+    {
+      "maCau": "q_dd4327d578",
+      "ma_goc": "2605-1179",
+      "kieuCau": "TN",
+      "cauDan": "Một cửa hàng trang sức khảo sát một số khách hàng xem họ dự định mua trang sức với mức giá nào (đơn vị: triệu đồng). Kết quả khảo sát được ghi lại ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_dd4327d578_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm).",
+      "paA": "$9{,}98$",
+      "paB": "$15$",
+      "paC": "$4{,}43$",
+      "paD": "$14{,}41$"
+    },
+    {
+      "maCau": "q_c8e8f117ff",
+      "ma_goc": "2605-1180",
+      "kieuCau": "TN",
+      "cauDan": "Cho mẫu số liệu ghép nhóm với bộ ba tứ phân vị lần lượt là $Q_1 = 11{,}5; Q_2 = 14{,}5; Q_3 = 21{,}3$. Khi đó khoảng tứ phân vị của mẫu số liệu trên là",
+      "paA": "$\\Delta Q = 3{,}0$",
+      "paB": "$\\Delta Q = 6{,}8$",
+      "paC": "$\\Delta Q = 9{,}8$",
+      "paD": "$\\Delta Q = 32{,}8$"
+    },
+    {
+      "maCau": "q_2c5bc35aac",
+      "ma_goc": "2605-1181",
+      "kieuCau": "TN",
+      "cauDan": "\\begin{center}\r\n\t\t<img src='HinhAnh/q_2c5bc35aac_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nào sau đây là giá trị ngoại lệ của mẫu số liệu trên",
+      "paA": "$38$",
+      "paB": "$9$",
+      "paC": "$15$",
+      "paD": "$10$"
+    },
+    {
+      "maCau": "q_038344b525",
+      "ma_goc": "2605-1182",
+      "kieuCau": "TN",
+      "cauDan": "Thời gian truy cập Internet mỗi buổi tối (đơn vị: phút) của một số học sinh được thống kê ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_038344b525_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu trên là:",
+      "paA": "$\\displaystyle s^{2}\\approx4{,}87$",
+      "paB": "$\\displaystyle s^{2}\\approx2{,}87$",
+      "paC": "$\\displaystyle s^{2}\\approx1{,}87$",
+      "paD": "$\\displaystyle s^{2}\\approx3{,}87$"
+    },
+    {
+      "maCau": "q_1a4dd9f855",
+      "ma_goc": "2605-1183",
+      "kieuCau": "TN",
+      "cauDan": "Bảng dưới đây thống kê cự li sau 50 lần ném tạ của một vận động viên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1a4dd9f855_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố trung bình của mẫu số liệu ghép nhóm là",
+      "paA": "$19{,}82$",
+      "paB": "$20{,}32$",
+      "paC": "$20{,}25$",
+      "paD": "$20{,}07$"
+    },
+    {
+      "maCau": "q_50f675c905",
+      "ma_goc": "2605-1184",
+      "kieuCau": "TN",
+      "cauDan": "Thành tích môn nhảy cao của các vận động viên tại một giải điền kinh dành cho học sinh trung học phổ thông như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_50f675c905_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính độ lệch chuẩn của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm).",
+      "paA": "$1{,}65$",
+      "paB": "$1{,}66$",
+      "paC": "$1{,}67$",
+      "paD": "$1{,}68$"
+    },
+    {
+      "maCau": "q_feda12311b",
+      "ma_goc": "2605-1185",
+      "kieuCau": "TN",
+      "cauDan": "Trong thực hành đo hiệu điện thế của mạch điện, An và Bình đã dùng hai vôn kế khác nhau để đo, mỗi bạn tiến hành đo 10 lần và cho kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_feda12311b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn của các mẫu số liệu ghép nhóm cho kết quả đo của An và Bình (làm tròn đến hàng phần nghìn) lần lượt là",
+      "paA": "$0{,}039 \\text{ và } 0{,}045$",
+      "paB": "$0{,}029 \\text{ và } 0{,}035$",
+      "paC": "$0{,}025 \\text{ và } 0{,}034$",
+      "paD": "$0{,}035 \\text{ và } 0{,}042$"
+    },
+    {
+      "maCau": "q_42dde3b3d2",
+      "ma_goc": "2605-1186",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có độ lệch chuẩn bằng $3$ thì có phương sai bằng",
+      "paA": "$\\displaystyle s^{2} = \\sqrt{3}$",
+      "paB": "$\\displaystyle s^{2} = 3$",
+      "paC": "$\\displaystyle s^{2} = 9$",
+      "paD": "$\\displaystyle s^{2} = 6$"
+    },
+    {
+      "maCau": "q_2a8a84f7d2",
+      "ma_goc": "2605-1187",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có phương sai bằng $25$ thì có độ lệch chuẩn bằng",
+      "paA": "$4$",
+      "paB": "$5$",
+      "paC": "$256$",
+      "paD": "$50$"
+    },
+    {
+      "maCau": "q_38f85979da",
+      "ma_goc": "2605-1188",
+      "kieuCau": "TN",
+      "cauDan": "Gieo con xúc xắc 1 lần. Gọi $A$ là biến cố xuất hiện mặt 2 chấm. $B$ là biến cố xuất hiện mặt chẵn. Xác suất $P(A|B)$ là",
+      "paA": "$\\displaystyle \\frac{1}{2}$",
+      "paB": "$\\displaystyle \\frac{1}{3}$",
+      "paC": "$\\displaystyle \\frac{2}{3}$",
+      "paD": "$\\displaystyle \\frac{1}{6}$"
+    },
+    {
+      "maCau": "q_b5dcc13883",
+      "ma_goc": "2605-1189",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ có $P(A)=0{,}3; P(B)=0{,}6; P(A \\cap B)=0{,}2$. Xác suất $P(A|B)$ là",
+      "paA": "$\\displaystyle \\frac{1}{2}$",
+      "paB": "$\\displaystyle \\frac{1}{3}$",
+      "paC": "$\\displaystyle \\frac{2}{3}$",
+      "paD": "$\\displaystyle \\frac{1}{6}$"
+    },
+    {
+      "maCau": "q_ec7826c53f",
+      "ma_goc": "2605-1190",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hai biến cố $A, B$ thỏa mãn $P(A)=0{,}4; P(B|A)=0{,}5$ thì $P(A \\cap B)$ bằng:",
+      "paA": "$\\displaystyle \\frac{6}{25}$",
+      "paB": "$\\displaystyle \\frac{2}{3}$",
+      "paC": "$\\displaystyle \\frac{1}{5}$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_377440d3ff",
+      "ma_goc": "2605-1191",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hai biến cố $A, B$ thỏa mãn $P(B)=0{,}5; P(AB)=0{,}3$ thì $P(\\overline{A}B)$ bằng:",
+      "paA": "$\\displaystyle \\frac{4}{5}$",
+      "paB": "$\\displaystyle \\frac{1}{5}$",
+      "paC": "$\\displaystyle \\frac{3}{5}$",
+      "paD": "$\\displaystyle \\frac{2}{5}$"
+    },
+    {
+      "maCau": "q_e65f93589d",
+      "ma_goc": "2605-1192",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ với $P(B)>0$ thì xác suất của biến cố $A$ với điều kiện biến cố $B$ đã xảy ra là",
+      "paA": "$\\displaystyle P(A|B)=\\frac{P(A)}{P(B)}$",
+      "paB": "$\\displaystyle P(A|B)=P(A) \\cdot P(B)$",
+      "paC": "$\\displaystyle P(A|B)=\\frac{P(A\\cap B)}{P(B)}$",
+      "paD": "$\\displaystyle P(A|B)=\\frac{P(A\\cup B)}{P(B)}$"
+    },
+    {
+      "maCau": "q_f309f0209f",
+      "ma_goc": "2605-1193",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ bất kì với $P(A)>0, P(B)>0$. Chọn khẳng định đúng trong các khẳng định sau là",
+      "paA": "$\\displaystyle P(A\\cup B)=P(A|B) \\cdot P(B)$",
+      "paB": "$\\displaystyle P(A\\cap B)=P(A|B) \\cdot P(A)$",
+      "paC": "$\\displaystyle P(A|B) \\cdot P(A)=P(B|A) \\cdot P(B)$",
+      "paD": "$\\displaystyle P(A|B) \\cdot P(B)=P(B|A) \\cdot P(A)$"
+    },
+    {
+      "maCau": "q_55cf80fd45",
+      "ma_goc": "2605-1194",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố độc lập $A$ và $B$ với $0<P(A)<1, 0<P(B)<1$. Chọn khẳng định \\textbf{đúng} trong các khẳng định sau",
+      "paA": "$\\displaystyle P(A)=P(\\overline{B}|A)$",
+      "paB": "$\\displaystyle P(A)=P(B|A) \\cdot P(A\\cap B)$",
+      "paC": "$\\displaystyle P(A)=P(A|\\overline{B})$",
+      "paD": "$\\displaystyle P(A)=P(A|B) \\cdot P(B)$"
+    },
+    {
+      "maCau": "q_47439e0a1e",
+      "ma_goc": "2605-1195",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_47439e0a1e_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(-\\infty;-1)$",
+      "paB": "$(-\\infty;1)$",
+      "paC": "$(-1;1)$",
+      "paD": "$(1;+\\infty)$"
+    },
+    {
+      "maCau": "q_1066923f16",
+      "ma_goc": "2605-1196",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
+      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
+    },
+    {
+      "maCau": "q_da4602274f",
+      "ma_goc": "2605-1197",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây đồng biến trên khoảng $\\mathbb{R}$?",
+      "paA": "$y = 2 - x^{2}$",
+      "paB": "$\\displaystyle y = \\frac{2x-5}{x-1}$",
+      "paC": "$y = x^{4} - 2x^{2} + 2$",
+      "paD": "$\\displaystyle y = \\frac{1}{3}x^{3} + x^{2} + 7x$"
+    },
+    {
+      "maCau": "q_a939905e32",
+      "ma_goc": "2605-1198",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{3x-9}{1-x}$. Khẳng định nào sau đây đúng?",
+      "paA": "Hàm số đồng biến trên $\\mathbb{R} \\setminus \\{1\\}$.",
+      "paB": "Hàm số nghịch biến trên mỗi khoảng $(-\\infty;1)$ và $(1;+\\infty)$.",
+      "paC": "Hàm số đồng biến trên khoảng $(1;+\\infty)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-3;5)$."
+    },
+    {
+      "maCau": "q_95ce35896e",
+      "ma_goc": "2605-1199",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ. Khẳng định nào sai?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_95ce35896e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số đồng biến trên $(3;+\\infty)$.",
+      "paB": "Hàm số đồng biến trên $(-\\infty;1)$.",
+      "paC": "Hàm số nghịch biến trên $(-2;2)$.",
+      "paD": "Hàm số nghịch biến trên $(1;3)$."
+    },
+    {
+      "maCau": "q_b686b0ac5d",
+      "ma_goc": "2605-1200",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b686b0ac5d_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khẳng định đúng",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(-1;0) \\cup (1;+\\infty)$.",
+      "paC": "Hàm số đồng biến trên khoảng $(-1;0)$ và $(1;+\\infty)$.",
+      "paD": "Hàm số đồng biến trên khoảng $(-1;1)$."
+    },
+    {
+      "maCau": "q_1d465aa2ee",
+      "ma_goc": "2605-1201",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1d465aa2ee_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào sau đây sai?",
+      "paA": "Hàm số có ba điểm cực trị.",
+      "paB": "Hàm số có hai điểm cực tiểu.",
+      "paC": "Hàm số đạt cực đại tại điểm $x=0$.",
+      "paD": "Hàm số đạt cực đại tại điểm $x=3$."
+    },
+    {
+      "maCau": "q_45561bd002",
+      "ma_goc": "2605-1202",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có $f'(x)=x^{2}(x-1)(x+2)^{5}$. Số điểm cực trị của hàm số đã cho là",
+      "paA": "$1$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_97a396af53",
+      "ma_goc": "2605-1203",
+      "kieuCau": "TN",
+      "cauDan": "Điểm cực tiểu của đồ thị hàm số $y=x^{3}-3x+5$ là",
+      "paA": "$Q(3;1)$",
+      "paB": "$M(1;3)$",
+      "paC": "$P(7;-1)$",
+      "paD": "$N(-1;7)$"
+    },
+    {
+      "maCau": "q_4e2002c99a",
+      "ma_goc": "2605-1204",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=-x^{3}+3x-1$ là",
+      "paA": "$y_{\\text{CT}}=1$",
+      "paB": "$y_{\\text{CT}}=-3$",
+      "paC": "$y_{\\text{CT}}=-1$",
+      "paD": "$y_{\\text{CT}}=3$"
+    },
+    {
+      "maCau": "q_6663d4da73",
+      "ma_goc": "2605-1205",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=-x^{3}+3x^{2}+\\frac{1}{2}x$ đạt cực trị tại hai điểm $x_1, x_2$. Khi đó tổng $\\displaystyle S=x_{1}^{2}+x_{2}^{2}$ là:",
+      "paA": "$\\displaystyle \\frac{11}{3}$",
+      "paB": "$\\displaystyle \\frac{13}{3}$",
+      "paC": "$\\displaystyle \\frac{1}{2}$",
+      "paD": "$\\displaystyle \\frac{7}{3}$"
+    },
+    {
+      "maCau": "q_c0e074efa9",
+      "ma_goc": "2605-1206",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $\\displaystyle y=\\frac{1}{3x+7}$ trên đoạn $[-1;3]$. Giá trị của $M-m$ bằng",
+      "paA": "$\\displaystyle \\frac{8}{33}$",
+      "paB": "$\\displaystyle \\frac{3}{16}$",
+      "paC": "$\\displaystyle \\frac{3}{32}$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_d5928a0213",
+      "ma_goc": "2605-1207",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y=x^{3}-3x^{2}+25$ trên đoạn $[-1;1]$ là",
+      "paA": "$25$",
+      "paB": "$22$",
+      "paC": "$20$",
+      "paD": "$23$"
+    },
+    {
+      "maCau": "q_06f0862b25",
+      "ma_goc": "2605-1208",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có $\\displaystyle \\lim_{x\\rightarrow+\\infty}f(x)=3, \\lim_{x\\rightarrow-\\infty}f(x)=3$. Khẳng định nào sau đây đúng?",
+      "paA": "Đồ thị hàm số có hai tiệm cận ngang là các đường thẳng $x=-3; x=3$.",
+      "paB": "Đồ thị hàm số có đúng một tiệm cận ngang.",
+      "paC": "Đồ thị hàm số có hai tiệm cận ngang là các đường thẳng $y=-3; y=3$.",
+      "paD": "Đồ thị hàm số không có tiệm cận ngang."
+    },
+    {
+      "maCau": "q_484c699ce8",
+      "ma_goc": "2605-1209",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ xác định, liên tục trên $\\mathbb{R}\\setminus\\{-1\\}$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_484c699ce8_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào sau đây là sai?",
+      "paA": "Đồ thị hàm số không có tiệm cận đứng.",
+      "paB": "Đồ thị hàm số không có tiệm cận ngang.",
+      "paC": "Đồ thị hàm số có tiệm cận đứng là $x=-1$.",
+      "paD": "Đồ thị hàm số có 1 đường tiệm cận."
+    },
+    {
+      "maCau": "q_dff5895a65",
+      "ma_goc": "2605-1210",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị hàm số $y=\\frac{2x-3}{x-1}$ có các đường tiệm cận đứng và tiệm cận ngang lần lượt là",
+      "paA": "$x=2 \\text{ và } y=1$",
+      "paB": "$x=-1 \\text{ và } y=-3$",
+      "paC": "$x=-1 \\text{ và } y=3$",
+      "paD": "$x=1 \\text{ và } y=2$"
+    },
+    {
+      "maCau": "q_2bbbb46378",
+      "ma_goc": "2605-1211",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{ax+b}{cx+d}$ ($c \\neq 0, ad-bc \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2bbbb46378_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTiệm cận ngang của đồ thị hàm số là:",
+      "paA": "$x=-1$",
+      "paB": "$y=\\frac{1}{2}$",
+      "paC": "$y=-1$",
+      "paD": "$x=\\frac{1}{2}$"
+    },
+    {
+      "maCau": "q_cd2c0d9548",
+      "ma_goc": "2605-1212",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{2x^{2}-3x+2}{x-5}$. Tìm TCĐ của đồ thị hàm số?",
+      "paA": "$x=2$",
+      "paB": "$x=5$",
+      "paC": "$y=2$",
+      "paD": "$y=5$"
+    },
+    {
+      "maCau": "q_40301aa4ad",
+      "ma_goc": "2605-1213",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{x^{2}-x+7}{x-5}$. Tìm TCX của đồ thị hàm số?",
+      "paA": "$y=x+4$",
+      "paB": "$y=x-5$",
+      "paC": "$y=x+5$",
+      "paD": "$y=x-4$"
+    },
+    {
+      "maCau": "q_278e85729e",
+      "ma_goc": "2605-1214",
+      "kieuCau": "TN",
+      "cauDan": "Bảng biến thiên như hình vẽ là của hàm số nào trong bốn hàm số cho dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_278e85729e_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y=x^{3}+3x^{2}-1$",
+      "paB": "$y=x^{3}-3x+2$",
+      "paC": "$y=x^{3}-3x^{2}+2$",
+      "paD": "$y=-x^{3}+3x^{2}-1$"
+    },
+    {
+      "maCau": "q_e3f2feb864",
+      "ma_goc": "2605-1215",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e3f2feb864_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố nghiệm thực của phương trình $\\displaystyle 3f(x)-5=0$ là",
+      "paA": "$0$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_c97a3430e0",
+      "ma_goc": "2605-1216",
+      "kieuCau": "TN",
+      "cauDan": "Đường thẳng $y = -2x + 2$ cắt đồ thị hàm số $y = x^{3} + x + 2$ tại điểm có hoành độ là",
+      "paA": "$0$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_e1363d43cb",
+      "ma_goc": "2605-1217",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{2x - 1}{x + 2}$ có đồ thị $(C)$. Tọa độ giao điểm $I$ của hai đường tiệm cận là",
+      "paA": "$I(2;-2)$",
+      "paB": "$I(-2;2)$",
+      "paC": "$I(-2;-2)$",
+      "paD": "$I(2;2)$"
+    },
+    {
+      "maCau": "q_64bff7a583",
+      "ma_goc": "2605-1218",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $M$, $N$ là giao điểm của đường thẳng $(d) \\colon y = x - 1$ và đường cong $(C) \\colon y = \\frac{2x - 1}{x + 5}$. Khi đó $x_M + x_N$ bằng",
+      "paA": "$-2$",
+      "paB": "$2$",
+      "paC": "$-1$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_833e93b212",
+      "ma_goc": "2605-1219",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như đường cong hình bên. Phương trình $f(x) = 1$ có bao nhiêu nghiệm?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_833e93b212_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$2$",
+      "paB": "$4$",
+      "paC": "$1$",
+      "paD": "$3$"
+    }
+  ]
+}

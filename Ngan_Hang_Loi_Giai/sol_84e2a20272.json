@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_84e2a20272",
+  "dapAn": "B",
+  "loiGiai": "Ta xét các mối quan hệ vuông góc giữa đường thẳng và mặt phẳng:\\\\\r\n\t\t- Vì tam giác $ABC$ vuông tại $B$ nên $\\displaystyle BC \\perp AB$.\\\\\r\n\t\t- Vì $\\displaystyle SA \\perp (ABC)$ nên $\\displaystyle SA \\perp BC \\Leftrightarrow BC \\perp SA$.\\\\\r\n\t\tDo $\\displaystyle BC$ vuông góc với hai đường thẳng cắt nhau $AB$ và $SA$ thuộc mặt phẳng $(SAB)$, ta kết luận $\\displaystyle BC \\perp (SAB)$."
+}

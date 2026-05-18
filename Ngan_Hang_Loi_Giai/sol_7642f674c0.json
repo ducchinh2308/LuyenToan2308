@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7642f674c0",
+  "dapAn": "C",
+  "loiGiai": "Đường thẳng đi qua hai điểm $A$ và $B$ nhận vectơ liên hợp $\\vec{AB}$ làm một vectơ chỉ phương.\\\\\r\n\t\tTa tính tọa độ của vectơ chỉ phương: $\\vec{AB} = (0-1; 1-1; 2-0) = (-1;0;2)$.\\\\\r\n\t\tVậy chọn đáp án C ứng với vectơ $\\vec{b} = (-1;0;2)$."
+}

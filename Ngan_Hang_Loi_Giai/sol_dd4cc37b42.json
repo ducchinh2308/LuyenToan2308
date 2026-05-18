@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dd4cc37b42",
+  "dapAn": "C",
+  "loiGiai": "Phương trình chính tắc của đường thẳng đi qua điểm $\\displaystyle M(x_0;y_0;z_0)$ và nhận vectơ $\\displaystyle \\vec{u}=(a;b;c)$ làm vtcp có dạng:\\\\\r\n\t\t$\\displaystyle \\frac{x-x_0}{a} = \\frac{y-y_0}{b} = \\frac{z-z_0}{c}$.\\\\\r\n\t\tThay trực tiếp điểm $M(1;-3;5)$ và $\\displaystyle \\vec{u}=(2;-1;1)$ vào, ta được:\\\\\r\n\t\t$\\displaystyle \\frac{x-1}{2}=\\frac{y-(-3)}{-1}=\\frac{z-5}{1} \\Leftrightarrow \\frac{x-1}{2}=\\frac{y+3}{-1}=\\frac{z-5}{1}$."
+}

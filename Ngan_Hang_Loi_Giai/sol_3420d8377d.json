@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3420d8377d",
+  "dapAn": "D",
+  "loiGiai": "- Diện tích đáy hình chữ nhật $ABCD$ bằng:\\\\\r\n\t\t$\\displaystyle S_{ABCD} = AB \\cdot BC = a \\cdot 2a = 2a^2$.\\\\\r\n\t\t- Xác định chiều cao $SA$ dựa vào tam giác vuông $SAB$ tại $A$ (do $SA \\perp (ABCD) \\Rightarrow SA \\perp AB$):\\\\\r\n\t\t$\\displaystyle SA = \\sqrt{SB^2 - AB^2} = \\sqrt{(\\sqrt{3}a)^2 - a^2} = \\sqrt{3a^2 - a^2} = a\\sqrt{2}$.\\\\\r\n\t\t- Thể tích khối chóp cần tính là:\\\\\r\n\t\t$\\displaystyle V = \\frac{1}{3} \\cdot S_{ABCD} \\cdot SA = \\frac{1}{3} \\cdot 2a^2 \\cdot a\\sqrt{2} = \\frac{2\\sqrt{2}a^3}{3}$."
+}

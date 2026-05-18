@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_db6dfc69ca",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào hình dáng đồ thị, khoảng đồng biến ứng với nhánh đồ thị đi lên từ trái sang phải.\\\\\r\n\t\tQuan sát đồ thị hàm số, ta thấy nét vẽ đi lên trong khoảng hoành độ chạy từ $x = -1$ đến $x = 1$.\\\\\r\n\t\tDo đó, hàm số đã cho đồng biến trên khoảng $(-1;1)$."
+}

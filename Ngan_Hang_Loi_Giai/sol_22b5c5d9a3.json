@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_22b5c5d9a3",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào bảng biến thiên, ta phân tích các dữ kiện sau:\\\\\r\n\t\t- Nhánh cuối cùng đi lên tới $+\\infty$ khi $x \\to +\\infty$, suy ra hệ số $\\displaystyle a > 0 \\Rightarrow$ Loại phương án D.\\\\\r\n\t\t- Hàm số đạt cực trị tại các điểm $\\displaystyle x=0$ và $\\displaystyle x=2$, do đó đạo hàm $\\displaystyle y'=0$ có hai nghiệm là 0 và 2.\\\\\r\n\t\t- Xét hàm số ở phương án C: $\\displaystyle y = x^3 - 3x^2 + 2 \\Rightarrow y' = 3x^2 - 6x = 3x(x-2)$. Đạo hàm bằng 0 có nghiệm $\\displaystyle x=0 \\Rightarrow y=2$ (cực đại) và $\\displaystyle x=2 \\Rightarrow y=-2$ (cực tiểu), hoàn toàn phù hợp với bảng biến thiên."
+}
