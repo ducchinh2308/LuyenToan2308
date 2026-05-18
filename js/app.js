@@ -4110,18 +4110,24 @@ window.ham_7_11_ve_nut_loi_giai_dong = async function (maHocLieu) {
 
 
 // =====================================================================
-// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN
+// KHỞI TẠO TRẠNG THÁI SẮP XẾP TOÀN CỤC (Nếu chưa có)
+// =====================================================================
+if (!window.DuyetDonSortState) {
+    window.DuyetDonSortState = { key: 'trang_thai', asc: true }; // Mặc định xếp theo trạng thái chờ duyệt lên đầu
+}
+
+// =====================================================================
+// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN (BẢN BỌC THÉP CHI TIẾT + SORT)
 // =====================================================================
 window.ham_7_12_tab_duyet_don = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#ffc107;">⏳ Đang mở hòm thư...</h3></div>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#ffc107;">⏳ Đang mở hòm thư và trích xuất cấu trúc nhiệm vụ...</h3></div>`;
 
     try {
+        // 1. Tải toàn bộ đơn yêu cầu từ Database
         const { data: dsDon, error } = await _supabase
             .from('yeu_cau_hoc_sinh')
-            .select('*')
-            .order('trang_thai', { ascending: true })
-            .order('ngay_tao', { ascending: false });
+            .select('*');
 
         if (error) throw error;
 
@@ -4136,6 +4142,64 @@ window.ham_7_12_tab_duyet_don = async function () {
             return;
         }
 
+        // =====================================================================
+        // 🌟 NÂNG CẤP 1: TRUY VẤN SONG SONG LẤY CHI TIẾT NHIỆM VỤ GỐC
+        // =====================================================================
+        const mangMaNV = [...new Set(dsDon.map(d => d.ma_nhiem_vu).filter(Boolean))];
+        let tuDienNhiemVuGoc = {};
+
+        if (mangMaNV.length > 0) {
+            const { data: dsNVGoc } = await _supabase
+                .from('nhiem_vu')
+                .select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai, cau_truc_de')
+                .in('ma_nhiem_vu', mangMaNV);
+
+            if (dsNVGoc) {
+                dsNVGoc.forEach(nv => {
+                    tuDienNhiemVuGoc[nv.ma_nhiem_vu] = nv;
+                });
+            }
+        }
+
+        // =====================================================================
+        // 🌟 NÂNG CẤP 2: THỰC THI LOGIC SẮP XẾP DỮ LIỆU TRÊN MẢNG (CLIENT-SIDE SORT)
+        // =====================================================================
+        dsDon.sort((a, b) => {
+            let valA, valB;
+            const sortKey = window.DuyetDonSortState.key;
+
+            if (sortKey === 'hoc_sinh') {
+                valA = (a.ten_hoc_sinh || '').toLowerCase();
+                valB = (b.ten_hoc_sinh || '').toLowerCase();
+            } else if (sortKey === 'nhiem_vu') {
+                valA = (a.ten_nhiem_vu || '').toLowerCase();
+                valB = (b.ten_nhiem_vu || '').toLowerCase();
+            } else if (sortKey === 'ly_do') {
+                valA = (a.ly_do || '').toLowerCase();
+                valB = (b.ly_do || '').toLowerCase();
+            } else if (sortKey === 'trang_thai') {
+                valA = Number(a.trang_thai) || 0;
+                valB = Number(b.trang_thai) || 0;
+            } else if (sortKey === 'ngay_tao') {
+                valA = new Date(a.ngay_tao || 0).getTime();
+                valB = new Date(b.ngay_tao || 0).getTime();
+            } else {
+                valA = a[sortKey];
+                valB = b[sortKey];
+            }
+
+            if (valA < valB) return window.DuyetDonSortState.asc ? -1 : 1;
+            if (valA > valB) return window.DuyetDonSortState.asc ? 1 : -1;
+            return 0;
+        });
+
+        // 3. Hàm tạo mũi tên hiển thị trên thanh tiêu đề cột
+        const veMuiTenSort = (colKey) => {
+            if (window.DuyetDonSortState.key !== colKey) return ' <span style="color:#ccc; font-size:10px;">⇅</span>';
+            return window.DuyetDonSortState.asc ? ' <span style="color:#28a745;">🔼</span>' : ' <span style="color:#dc3545;">🔽</span>';
+        };
+
+        // 4. Duyệt mảng vẽ các hàng dữ liệu HTML
         let htmlRows = '';
         const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
 
@@ -4151,7 +4215,6 @@ window.ham_7_12_tab_duyet_don = async function () {
 
             if (don.trang_thai === 0) {
                 trangThaiBadge = `<span style="color: #fd7e14; font-weight: bold; font-size: 13px;">⏳ Chờ duyệt</span>`;
-                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.13
                 hanhDongHtml = `
                     <div style="display: flex; gap: 5px; justify-content: center;">
                         <button onclick="ham_7_13_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${don.ma_nhiem_vu}', '${don.loai_yeu_cau}', 'DUYET')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">✅ DUYỆT</button>
@@ -4166,20 +4229,49 @@ window.ham_7_12_tab_duyet_don = async function () {
                 hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
             }
 
+            // 🌟 TRÍCH XUẤT THÔNG TIN CHI TIẾT TỪ TỪ ĐIỂN NHIỆM VỤ GỐC ĐỂ SHOW BẢNG
+            const nvGoc = tuDienNhiemVuGoc[don.ma_nhiem_vu] || {};
+            const thoiGianLamTxt = nvGoc.thoi_gian_lam_bai > 0 ? `${nvGoc.thoi_gian_lam_bai} phút` : 'Tự do';
+            const gioHanLuotTxt = nvGoc.so_luot_lam_bai > 0 ? `${nvGoc.so_luot_lam_bai} lượt` : 'Vô hạn';
+            const cauTrucTxt = nvGoc.cau_truc_de || 'Chưa cấu hình';
+
+            const renderTimeFormat = (dStr) => dStr ? new Date(dStr).toLocaleString('vi-VN', opts) : "Không giới hạn";
+            const hanMoTxt = renderTimeFormat(nvGoc.thoi_gian_mo);
+            const hanDongTxt = renderTimeFormat(nvGoc.thoi_gian_dong);
+
             htmlRows += `
                 <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
                     <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
                     <td style="padding: 15px 10px;">
                         <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
                         <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
+                        <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
                     </td>
+                    
                     <td style="padding: 15px 10px;">
-                        <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
-                        <div style="margin-top: 5px;">${loaiBadge} <span style="font-size: 11px; color: #999; margin-left: 5px;">(${ngayGui})</span></div>
+                        <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 11px; background: #fdfefe; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; color: #4a5568; line-height: 1.4; max-width: 320px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+                            <div>⏱️ Thời gian: <b style="color:#2b6cb0;">${thoiGianLamTxt}</b></div>
+                            <div>🔄 Giới hạn: <b style="color:#2b6cb0;">${gioHanLuotTxt}</b></div>
+                            <div style="grid-column: span 2; border-bottom: 1px dashed #e2e8f0; padding-bottom: 3px; margin-bottom: 2px;">
+                                📦 Cấu trúc: <span style="color:#2e7d32; font-weight:bold;">${cauTrucTxt}</span>
+                            </div>
+                            <div style="grid-column: span 2; font-size: 10px; color: #718096;">
+                                <div style="display:flex; justify-content:space-between;"><span>🟢 Ngày mở:</span> <b>${hanMoTxt}</b></div>
+                                <div style="display:flex; justify-content:space-between; margin-top:1px;"><span>🔴 Ngày đóng:</span> <b style="color:#c62828;">${hanDongTxt}</b></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
+                            ${loaiBadge} 
+                            <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi: ${ngayGui}</span>
+                        </div>
                     </td>
+                    
                     <td style="padding: 15px 10px;">
-                        <div style="background: #f1f3f4; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #333; font-style: italic; border-left: 3px solid #6c757d;">
-                            "${don.ly_do || 'Không có lý do'}"
+                        <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
+                            "${don.ly_do || 'Không có lý do giải trình.'}"
                         </div>
                     </td>
                     <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
@@ -4188,22 +4280,38 @@ window.ham_7_12_tab_duyet_don = async function () {
             `;
         });
 
+        // Giao diện khung chính kèm các cột tiêu đề có khả năng CLICK ĐỂ SORT
         vungLamViec.innerHTML = `
             <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
                 <div style="background: linear-gradient(135deg, #ffc107, #ff9800); padding: 20px; color: #000; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 900;">📭 HÒM THƯ XÉT DUYỆT YÊU CẦU</h3>
-                    <span style="background: rgba(0,0,0,0.1); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">Tổng: ${dsDon.length} đơn</span>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">📭 HÒM THƯ XÈT DUYỆT YÊU CẦU CỦA HỌC SINH</h3>
+                    <span style="background: rgba(0,0,0,0.08); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">Tổng số đơn: ${dsDon.length}</span>
                 </div>
+                
+                <div style="background: #fff9e6; padding: 10px 15px; font-size: 12px; color: #b7791f; border-bottom: 1px solid #fbd38d; font-weight: bold;">
+                    💡 Mẹo quản lý: Thầy có thể click chuột trực tiếp vào tiêu đề các cột <span style="background:white; padding:2px 4px; border-radius:3px;">Học Sinh</span>, <span style="background:white; padding:2px 4px; border-radius:3px;">Nhiệm Vụ</span>, <span style="background:white; padding:2px 4px; border-radius:3px;">Lý Do</span>, <span style="background:white; padding:2px 4px; border-radius:3px;">Trạng Thái</span> để đảo chiều sắp xếp danh sách tăng/giảm.
+                </div>
+
                 <div style="overflow-x: auto; padding: 10px;">
-                    <table style="width: 100%; border-collapse: collapse; min-width: 900px; text-align: left;">
-                        <thead style="background: #fdfdfe; border-bottom: 2px solid #dee2e6;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 950px; text-align: left;">
+                        <thead style="background: #f7fafc; border-bottom: 2px solid #e2e8f0; user-select: none;">
                             <tr>
-                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 40px;">STT</th>
-                                <th style="padding: 12px 10px; color: #495057; width: 180px;">Học Sinh</th>
-                                <th style="padding: 12px 10px; color: #495057; width: 250px;">Nhiệm Vụ Yêu Cầu</th>
-                                <th style="padding: 12px 10px; color: #495057;">Lý Do Gửi Thầy</th>
-                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 100px;">Trạng Thái</th>
-                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 160px;">Thao Tác</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #4a5568; width: 40px; font-weight: bold;">STT</th>
+                                
+                                <th onclick="ham_7_12_thay_doi_sap_xep('hoc_sinh')" style="padding: 12px 10px; color: #4a5568; width: 190px; cursor: pointer; font-weight: bold;" onmouseover="this.style.background='#edf2f7'" onmouseout="this.style.background='transparent'">
+                                    Học Sinh ${veMuiTenSort('hoc_sinh')}
+                                </th>
+                                <th onclick="ham_7_12_thay_doi_sap_xep('nhiem_vu')" style="padding: 12px 10px; color: #4a5568; width: 340px; cursor: pointer; font-weight: bold;" onmouseover="this.style.background='#edf2f7'" onmouseout="this.style.background='transparent'">
+                                    Nhiệm Vụ Yêu Cầu ${veMuiTenSort('nhiem_vu')}
+                                </th>
+                                <th onclick="ham_7_12_thay_doi_sap_xep('ly_do')" style="padding: 12px 10px; color: #4a5568; cursor: pointer; font-weight: bold;" onmouseover="this.style.background='#edf2f7'" onmouseout="this.style.background='transparent'">
+                                    Lý Do Gửi Thầy ${veMuiTenSort('ly_do')}
+                                </th>
+                                <th onclick="ham_7_12_thay_doi_sap_xep('trang_thai')" style="padding: 12px 10px; text-align: center; color: #4a5568; width: 110px; cursor: pointer; font-weight: bold;" onmouseover="this.style.background='#edf2f7'" onmouseout="this.style.background='transparent'">
+                                    Trạng Thái ${veMuiTenSort('trang_thai')}
+                                </th>
+                                
+                                <th style="padding: 12px 10px; text-align: center; color: #4a5568; width: 150px; font-weight: bold;">Thao Tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -4219,6 +4327,21 @@ window.ham_7_12_tab_duyet_don = async function () {
     }
 }
 
+// =====================================================================
+// HÀM BỔ TRỢ: ĐẢO CHIỀU HOẶC THAY ĐỔI CỘT SẮP XẾP KHI GIÁO VIÊN CLICK HEADER
+// =====================================================================
+window.ham_7_12_thay_doi_sap_xep = function (colKey) {
+    if (window.DuyetDonSortState.key === colKey) {
+        // Nếu click lại đúng cột cũ -> Đảo chiều ngược lại (Asc <=> Desc)
+        window.DuyetDonSortState.asc = !window.DuyetDonSortState.asc;
+    } else {
+        // Nếu click cột mới -> Gán khóa cột mới và đặt mặc định là Tăng dần (True)
+        window.DuyetDonSortState.key = colKey;
+        window.DuyetDonSortState.asc = true;
+    }
+    // Tái kích hoạt gọi lại Hàm 7.12 để sort mảng và re-render giao diện bảng
+    ham_7_12_tab_duyet_don();
+}
 // =====================================================================
 // HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH (KẾT NỐI SUPABASE)
 // =====================================================================
