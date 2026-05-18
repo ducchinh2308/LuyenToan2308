@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_137d42d189",
+  "dapAn": "B",
+  "loiGiai": "Quãng đường $s$ vật di chuyển được trong khoảng thời gian từ $t=3$ đến $t=5$ được tính bằng tích phân của hàm số vận tốc chuyển động:\\\\\r\n\t\t$\\displaystyle s = \\int_{3}^{5} v(t)\\,\\mathrm{d}t = \\int_{3}^{5} (5+2t)\\,\\mathrm{d}t = \\left(5t + t^{2}\\right) \\Big|_{3}^{5}$.\\\\\r\n\t\t$\\displaystyle s = \\left(5 \\cdot 5 + 5^{2}\\right) - \\left(5 \\cdot 3 + 3^{2}\\right) = (25 + 25) - (15 + 9) = 50 - 24 = 26\\,\\text{m}$."
+}

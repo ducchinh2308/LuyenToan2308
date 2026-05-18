@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6510434b90",
+  "dapAn": "D",
+  "loiGiai": "Theo công thức nguyên hàm của hàm số lũy thừa với $\\displaystyle x \\neq 0$:\\\\\r\n\t\t$\\displaystyle \\int \\frac{1}{x^{2}}\\,\\mathrm{d}x = \\int x^{-2}\\,\\mathrm{d}x = \\frac{x^{-1}}{-1}+C = -\\frac{1}{x}+C$."
+}

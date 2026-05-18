@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5ae3bc1708",
+  "dapAn": "C",
+  "loiGiai": "Khoảng thời gian $\\pi$ giây đầu tiên tương ứng từ thời điểm $t=0$ đến thời điểm $t=\\pi$.\\\\\r\n\t\tQuãng đường dịch chuyển sinh ra bởi tích phân vận tốc chuyển động là:\\\\\r\n\t\t$\\displaystyle s = \\int_{0}^{\\pi} 2\\sin t\\,\\mathrm{d}t = \\left(-2\\cos t\\right) \\Big|_{0}^{\\pi} = -2\\cos\\pi - \\left(-2\\cos 0\\right) = -2(-1) + 2(1) = 2 + 2 = 4\\,\\text{m}$."
+}

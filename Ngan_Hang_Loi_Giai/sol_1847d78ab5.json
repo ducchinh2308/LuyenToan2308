@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1847d78ab5",
+  "dapAn": "C",
+  "loiGiai": "Ta có: $\\displaystyle \\int_{0}^{1}f'(x)\\,\\mathrm{d}x = f(1) - f(0) \\Rightarrow 2024 = f(1) - (-2023)$.\\\\\r\n\t\t$\\displaystyle \\Rightarrow f(1) = 2024 - 2023 = 1$."
+}

@@ -1,0 +1,337 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-TICHPHAN-33CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM TÍCH PHÂN 33 CÂU",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_357df4c880",
+      "ma_goc": "2605-1141",
+      "kieuCau": "TN",
+      "cauDan": "Nguyên hàm của hàm số $f(x)=e^{x}$ là",
+      "paA": "$\\displaystyle \\frac{e^{x+1}}{x+1}+C$",
+      "paB": "$\\displaystyle e^{x}+C$",
+      "paC": "$\\displaystyle \\frac{e^{x}}{x}+C$",
+      "paD": "$\\displaystyle x \\cdot e^{x-1}+C$"
+    },
+    {
+      "maCau": "q_547d3bfa36",
+      "ma_goc": "2605-1142",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $F(x)=2x^{3}-2x+1$ là nguyên hàm của hàm số nào sau đây?",
+      "paA": "$\\displaystyle f(x)=6x^{2}-2$",
+      "paB": "$\\displaystyle f(x)=\\frac{1}{2}x^{4}-x^{2}+x+C$",
+      "paC": "$\\displaystyle f(x)=\\frac{1}{2}x^{4}-x^{2}+x$",
+      "paD": "$\\displaystyle f(x)=6x^{2}-2+C$"
+    },
+    {
+      "maCau": "q_030c3848f6",
+      "ma_goc": "2605-1143",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\displaystyle \\int \\cos x\\,\\mathrm{d}x = -\\sin x+C$",
+      "paB": "$\\displaystyle \\int \\sin x\\,\\mathrm{d}x = \\cos x+C$",
+      "paC": "$\\displaystyle \\int \\frac{\\mathrm{d}x}{x} = \\ln x+C$",
+      "paD": "$\\displaystyle \\int \\frac{\\mathrm{d}x}{x^{2}} = -\\frac{1}{x}+C$"
+    },
+    {
+      "maCau": "q_a73ab39077",
+      "ma_goc": "2605-1144",
+      "kieuCau": "TN",
+      "cauDan": "Cho $F(x)$ là một nguyên hàm của hàm số $f(x)=4x^{3}-3x^{2}+2$ biết $F(-1)=3$. Tìm $F(x)$?",
+      "paA": "$\\displaystyle F(x)=x^{4}-x^{3}-2x-3$",
+      "paB": "$\\displaystyle F(x)=x^{4}-x^{3}+2x+3$",
+      "paC": "$\\displaystyle F(x)=x^{4}-x^{3}-2x+3$",
+      "paD": "$\\displaystyle F(x)=x^{4}+x^{3}+2x+3$"
+    },
+    {
+      "maCau": "q_84092b5ad0",
+      "ma_goc": "2605-1145",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây là một nguyên hàm của hàm số $y=2^{x} \\cdot 3^{x}$?",
+      "paA": "$\\displaystyle y = \\frac{6^{x}}{\\ln 6}$",
+      "paB": "$\\displaystyle y = 2^{x} \\cdot \\ln 2 \\cdot 3^{x} \\cdot \\ln 3$",
+      "paC": "$\\displaystyle y = \\frac{2^{x} \\cdot 3^{x}}{\\ln 2 \\cdot \\ln 3}$",
+      "paD": "$\\displaystyle y = \\frac{5^{x}}{\\ln 5}$"
+    },
+    {
+      "maCau": "q_b734f80e57",
+      "ma_goc": "2605-1146",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ và $g(x)$ cùng liên tục trên $\\mathbb{R}$. Khẳng định nào đúng?",
+      "paA": "$\\displaystyle \\int kf(x)\\,\\mathrm{d}x = k \\int f(x)\\,\\mathrm{d}x, \\forall k \\in \\mathbb{R}$",
+      "paB": "$\\displaystyle \\int [f(x)+g(x)]\\,\\mathrm{d}x = \\int f(x)\\,\\mathrm{d}x + \\int g(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int \\left[\\frac{f(x)}{g(x)}\\right]\\,\\mathrm{d}x = \\frac{\\int f(x)\\,\\mathrm{d}x}{\\int g(x)\\,\\mathrm{d}x}$",
+      "paD": "$\\displaystyle \\int [f(x) \\cdot g(x)]\\,\\mathrm{d}x = \\left(\\int f(x)\\,\\mathrm{d}x\\right) \\cdot \\left(\\int g(x)\\,\\mathrm{d}x\\right)$"
+    },
+    {
+      "maCau": "q_0069eace17",
+      "ma_goc": "2605-1147",
+      "kieuCau": "TN",
+      "cauDan": "Biết $\\displaystyle \\int_{1}^{3}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{1}^{3}g(x)\\,\\mathrm{d}x=-7$. Giá trị của $\\displaystyle \\int_{1}^{3}[3f(x)-g(x)]\\,\\mathrm{d}x$ bằng",
+      "paA": "$-22$",
+      "paB": "$-8$",
+      "paC": "$8$",
+      "paD": "$22$"
+    },
+    {
+      "maCau": "q_38fd843bf5",
+      "ma_goc": "2605-1148",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ và $f(2)=3, f(5)=2$. Giá trị của $\\displaystyle \\int_{2}^{5}f'(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$-1$",
+      "paB": "$1$",
+      "paC": "$5$",
+      "paD": "$6$"
+    },
+    {
+      "maCau": "q_f7def1d7d7",
+      "ma_goc": "2605-1149",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hàm số $y=f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ thỏa mãn $f(0)=-2023$ và $\\displaystyle \\int_{0}^{1}f'(x)\\,\\mathrm{d}x=2024$ thì",
+      "paA": "$f(1)=4047$",
+      "paB": "$f(1)=-1$",
+      "paC": "$f(1)=1$",
+      "paD": "$f(1)=-4047$"
+    },
+    {
+      "maCau": "q_c106995d9d",
+      "ma_goc": "2605-1150",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$. Nếu $\\displaystyle \\int_{-1}^{4}f(x)\\,\\mathrm{d}x=2$ thì $\\displaystyle \\int_{-1}^{4}[4-3f(x)]\\,\\mathrm{d}x$ bằng",
+      "paA": "$-2$",
+      "paB": "$14$",
+      "paC": "$5$",
+      "paD": "$-4$"
+    },
+    {
+      "maCau": "q_5f117b0a77",
+      "ma_goc": "2605-1151",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\int_{1}^{2}[f(x)+3g(x)]\\,\\mathrm{d}x=9$ và $\\displaystyle \\int_{1}^{2}g(x)\\,\\mathrm{d}x=2$. Giá trị của $\\displaystyle \\int_{1}^{2}f(x)\\,\\mathrm{d}x$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_db42c97032",
+      "ma_goc": "2605-1152",
+      "kieuCau": "TN",
+      "cauDan": "Biết $F(x)=x^{2}$ là một nguyên hàm của hàm số $f(x)$ trên $\\mathbb{R}$. Giá trị của $\\displaystyle \\int_{1}^{3}f(x)\\,\\mathrm{d}x$ bằng:",
+      "paA": "$8$",
+      "paB": "$10$",
+      "paC": "$9$",
+      "paD": "$\\displaystyle \\frac{26}{3}$"
+    },
+    {
+      "maCau": "q_205e44e5af",
+      "ma_goc": "2605-1153",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{4}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{4}^{2}f(x)\\,\\mathrm{d}x=-1$ thì $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$ bằng.",
+      "paA": "$4$",
+      "paB": "$-6$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_ea6bcf69c9",
+      "ma_goc": "2605-1154",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{3}[4f(x)+3x^{2}]\\,\\mathrm{d}x=7$ thì $\\displaystyle \\int_{0}^{3}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$2$",
+      "paB": "$-8$",
+      "paC": "$-5$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_98b92bd709",
+      "ma_goc": "2605-1155",
+      "kieuCau": "TN",
+      "cauDan": "Biết $F(x)$ là nguyên hàm của $f(x)$ trên $[1;2]$ thoả $F(1)=-2, F(2)=4$. Khi đó $\\displaystyle \\int_{1}^{2}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$2$",
+      "paB": "$6$",
+      "paC": "$-2$",
+      "paD": "$-6$"
+    },
+    {
+      "maCau": "q_f01a4b297d",
+      "ma_goc": "2605-1156",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_{0}^{4}f(x)\\,\\mathrm{d}x=5$ và $\\displaystyle \\int_{2}^{4}f(x)\\,\\mathrm{d}x=-1$ thì $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$ bằng",
+      "paA": "$-4$",
+      "paB": "$-6$",
+      "paC": "$6$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_90b506a011",
+      "ma_goc": "2605-1157",
+      "kieuCau": "TN",
+      "cauDan": "Cho $F(x)$ là một nguyên hàm của hàm số $f(x)=2^{x}$ thỏa mãn $F(0)=0$. Tính $F(2)$?",
+      "paA": "$2^{x}$",
+      "paB": "$2$",
+      "paC": "$\\displaystyle \\frac{2}{\\ln 2}$",
+      "paD": "$\\displaystyle \\frac{3}{\\ln 2}$"
+    },
+    {
+      "maCau": "q_5539fa8125",
+      "ma_goc": "2605-1158",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)=\\begin{cases}3x^{2} & \\text{khi } 0 \\le x \\le 1 \\\\ 4-x & \\text{khi } 1 \\le x \\le 2\\end{cases}$. Tính tích phân $\\displaystyle \\int_{0}^{2}f(x)\\,\\mathrm{d}x$.",
+      "paA": "$1$",
+      "paB": "$\\displaystyle \\frac{7}{2}$",
+      "paC": "$\\displaystyle \\frac{3}{2}$",
+      "paD": "$\\displaystyle \\frac{5}{2}$"
+    },
+    {
+      "maCau": "q_a916354dcd",
+      "ma_goc": "2605-1159",
+      "kieuCau": "TN",
+      "cauDan": "Với $b$ là số thực. Giá trị tích phân $\\displaystyle \\int_{0}^{b}(3x^{2}-2025)\\,\\mathrm{d}x$ bằng",
+      "paA": "$b^{3}-2025b$",
+      "paB": "$b^{3}-2025$",
+      "paC": "$3b^{3}-2025b$",
+      "paD": "$3b^{2}-2025$"
+    },
+    {
+      "maCau": "q_57d6d8d02e",
+      "ma_goc": "2605-1160",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục, nhận giá trị dương trên đoạn $[a;b]$. Xét hình phẳng $(H)$ giới hạn bởi đồ thị hàm số $y=f(x)$, trục hoành và hai đường thẳng $x=a, x=b$. Khối tròn xoay được tạo thành khi quay hình phẳng $(H)$ quanh trục $Ox$ có thể tích là:",
+      "paA": "$\\displaystyle V = \\pi \\int_{a}^{b} |f(x)|\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\pi^{2} \\int_{a}^{b} f(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\int_{a}^{b} [f(x)]^{2}\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{a}^{b} [f(x)]^{2}\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_7d926dc082",
+      "ma_goc": "2605-1161",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích $S$ của hình phẳng giới hạn bởi đồ thị hàm số $y=x^{2}+1$, trục hoành và hai đường thẳng $x=-1, x=2$ là",
+      "paA": "$S=6$",
+      "paB": "$S=16$",
+      "paC": "$S=8$",
+      "paD": "$S=13$"
+    },
+    {
+      "maCau": "q_1f6d36e2be",
+      "ma_goc": "2605-1162",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi $x=0, x=\\pi$, đồ thị hàm số $y=\\cos x$ và trục $Ox$ là:",
+      "paA": "$\\displaystyle S = \\int_{0}^{\\pi} \\cos x\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle S = \\int_{0}^{\\pi} \\cos^{2}x\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle S = \\int_{0}^{\\pi} |\\cos x|\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle S = \\pi \\int_{0}^{\\pi} |\\cos x|\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_bc18394571",
+      "ma_goc": "2605-1163",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$. Gọi $S$ là diện tích hình phẳng giới hạn bởi các đường (như hình vẽ bên). Mệnh đề nào đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bc18394571_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle S = \\int_{-1}^{1} f(x)\\,\\mathrm{d}x + \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle S = -\\int_{-1}^{1} f(x)\\,\\mathrm{d}x - \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle S = -\\int_{-1}^{1} f(x)\\,\\mathrm{d}x + \\int_{1}^{2} f(x)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle S = \\int_{-1}^{1} f(x)\\,\\mathrm{d}x - \\int_{1}^{2} f(x)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_c59ad22962",
+      "ma_goc": "2605-1164",
+      "kieuCau": "TN",
+      "cauDan": "Hình thang cong $ABCD$ ở Hình 28 có diện tích bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c59ad22962_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}-x+3\\right)\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}+x-3\\right)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}-x-3\\right)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle \\int_{1}^{2}\\left(\\frac{4}{x}+x+3\\right)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_fdebb752ef",
+      "ma_goc": "2605-1165",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi các đường $y=x^{2}-2x-1, y=2x-4$. Diện tích hình phẳng giới hạn bởi hình $(H)$ bằng",
+      "paA": "$\\displaystyle \\frac{2}{3}$",
+      "paB": "$\\displaystyle \\frac{4}{3}$",
+      "paC": "$\\displaystyle \\frac{8}{3}$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_9a598575a6",
+      "ma_goc": "2605-1166",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng bên bằng phân số tối giản $\\displaystyle \\frac{a}{b} \\left(a, b \\in \\mathbb{Z}^{+}\\right)$. Tìm $a-b$\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9a598575a6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$-1$",
+      "paC": "$4$",
+      "paD": "$-4$"
+    },
+    {
+      "maCau": "q_aa8ddf9d7d",
+      "ma_goc": "2605-1167",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai hàm số $f(x)$ và $g(x)$ liên tục trên $[a;b]$. Diện tích hình phẳng giới hạn bởi đồ thị của các hàm số $y=f(x)$, $y=g(x)$ và các đường thẳng $x=a$, $x=b$ bằng",
+      "paA": "$\\displaystyle \\int_{a}^{b} [f(x)+g(x)]\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle \\int_{a}^{b} |f(x)+g(x)|\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int_{a}^{b} |f(x)-g(x)|\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle \\int_{a}^{b} [f(x)-g(x)]\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_531c3c71be",
+      "ma_goc": "2605-1168",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $V$ là thể tích khối tròn xoay được tạo thành khi cho hình phẳng giới hạn bởi các đường $y=e^{x}$, $y=0$, $x=0$, $x=2$ quay quanh $Ox$. Phát biểu nào sau đây là đúng?",
+      "paA": "$\\displaystyle V = \\int_{0}^{2} e^{x}\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\pi \\int_{0}^{2} e^{x}\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\int_{0}^{2} e^{2x}\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{0}^{2} e^{2x}\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_bfc4acf19b",
+      "ma_goc": "2605-1169",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích khối tròn xoay được tạo thành khi quay hình phẳng giới hạn bởi đồ thị hàm số $y=x^{2}-2x$ và trục hoành quanh trục hoành bằng",
+      "paA": "$\\displaystyle \\frac{4}{3}$",
+      "paB": "$\\displaystyle \\frac{4\\pi}{3}$",
+      "paC": "$\\displaystyle \\frac{16}{15}$",
+      "paD": "$\\displaystyle \\frac{16\\pi}{15}$"
+    },
+    {
+      "maCau": "q_ecb7672276",
+      "ma_goc": "2605-1170",
+      "kieuCau": "TN",
+      "cauDan": "Cho một vật thể giới hạn bởi hai mặt phẳng vuông góc với trục $Ox$ tại các điểm có hoành độ $x=-1$, $x=1$. Một mặt phẳng vuông góc với trục $Ox$ tại $x \\,(-1 \\le x \\le 1)$ cắt vật thể đó theo một mặt cắt là hình vuông có cạnh bằng $\\sqrt{1-x^{4}}$. Thể tích của vật thể đó bằng",
+      "paA": "$\\displaystyle \\frac{4}{5}$",
+      "paB": "$\\displaystyle \\frac{4\\pi}{5}$",
+      "paC": "$\\displaystyle \\frac{8}{5}$",
+      "paD": "$\\displaystyle \\frac{8\\pi}{5}$"
+    },
+    {
+      "maCau": "q_c6a9b10ba1",
+      "ma_goc": "2605-1171",
+      "kieuCau": "TN",
+      "cauDan": "Viết công thức tính thể tích $V$ của phần vật thể giới hạn bởi hai mặt phẳng vuông góc với trục $Ox$ tại các điểm $x=a$, $x=b \\,(a<b)$, có thiết diện bị cắt bởi mặt phẳng vuông góc với trục $Ox$ tại điểm có hoành độ $x \\,(a \\le x \\le b)$ là $S(x)$.",
+      "paA": "$\\displaystyle V = \\pi^{2} \\int_{a}^{b} |S(x)|\\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle V = \\int_{a}^{b} S(x)\\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle V = \\pi \\int_{a}^{b} S(x)\\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle V = \\pi \\int_{a}^{b} S^{2}(x)\\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_cb3a023dc9",
+      "ma_goc": "2605-1172",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động với phương trình vận tốc là $v(t)=5+2t\\,\\mathrm{(m/s)}$. Hỏi quãng đường vật di chuyển được từ thời điểm $t=3\\,\\mathrm{(s)}$ đến thời điểm $t=5\\,\\mathrm{(s)}$?",
+      "paA": "$36\\,\\text{m}$",
+      "paB": "$26\\,\\text{m}$",
+      "paC": "$40\\,\\text{m}$",
+      "paD": "$10\\,\\text{m}$"
+    },
+    {
+      "maCau": "q_adbee95554",
+      "ma_goc": "2605-1173",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động với vận tốc $v(t)=2\\sin t\\,\\mathrm{(m/s)}$. Quãng đường vật di chuyển trong khoảng thời gian $\\pi$ giây đầu tiên là",
+      "paA": "$6$",
+      "paB": "$8$",
+      "paC": "$4$",
+      "paD": "$2$"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cd28129ee2",
+  "dapAn": "D",
+  "loiGiai": "Xét phương trình hoành độ giao điểm của đồ thị với trục hoành ($y=0$):\\\\\r\n\t\t$\\displaystyle x^{2}-2x = 0 \\Leftrightarrow \\begin{cases}x=0 \\\\ x=2\\end{cases}$.\\\\\r\n\t\tThể tích khối tròn xoay thu được khi quay quanh trục hoành được tính bằng công thức:\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_{0}^{2} (x^{2}-2x)^{2}\\,\\mathrm{d}x = \\pi \\int_{0}^{2} (x^{4}-4x^{3}+4x^{2})\\,\\mathrm{d}x$.\\\\\r\n\t\t$\\displaystyle V = \\pi \\left( \\frac{x^{5}}{5} - x^{4} + \\frac{4x^{3}}{3} \\right) \\Big|_{0}^{2} = \\pi \\left[ \\left( \\frac{2^{5}}{5} - 2^{4} + \\frac{4 \\cdot 2^{3}}{3} \\right) - 0 \\right]$.\\\\\r\n\t\t$\\displaystyle V = \\pi \\left( \\frac{32}{5} - 16 + \\frac{32}{3} \\right) = \\pi \\left( \\frac{96 - 240 + 160}{15} \\right) = \\frac{16\\pi}{15}$."
+}

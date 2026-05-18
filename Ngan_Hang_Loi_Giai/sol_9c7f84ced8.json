@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9c7f84ced8",
+  "dapAn": "D",
+  "loiGiai": "Theo định nghĩa công thức chuẩn xác định thể tích của vật thể khối tròn xoay xoay quanh trục hành $Ox$ giới hạn từ biên cận $a$ đến $b$:\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_{a}^{b} [f(x)]^{2}\\,\\mathrm{d}x$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_795045d047",
+  "dapAn": "B",
+  "loiGiai": "Tách tích phân thành hai thành phần:\\\\\r\n\t\t$\\displaystyle \\int_{-1}^{4}[4-3f(x)]\\,\\mathrm{d}x = \\int_{-1}^{4}4\\,\\mathrm{d}x - 3\\int_{-1}^{4}f(x)\\,\\mathrm{d}x = 4x \\Big|_{-1}^{4} - 3 \\cdot 2$.\\\\\r\n\t\t$\\displaystyle = [4 \\cdot 4 - 4 \\cdot (-1)] - 6 = (16 + 4) - 6 = 20 - 6 = 14$."
+}
