@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cd4840a83b",
+  "dapAn": "A",
+  "loiGiai": "Xét phương trình hoành độ giao điểm của đường thẳng và đồ thị hàm số:\r\n\t\t$\\displaystyle x^{3} + x + 2 = -2x + 2 \\Leftrightarrow x^{3} + 3x = 0 \\Leftrightarrow x(x^{2} + 3) = 0$.\\\\\r\n\t\tVì $\\displaystyle x^{2} + 3 > 0, \\,\\forall x \\in \\mathbb{R}$ nên phương trình có nghiệm duy nhất $\\displaystyle x = 0$.\\\\\r\n\t\tVậy hoành độ giao điểm của hai đồ thị là $\\displaystyle x = 0$."
+}

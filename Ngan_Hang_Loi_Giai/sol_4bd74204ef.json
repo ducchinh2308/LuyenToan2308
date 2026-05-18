@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4bd74204ef",
+  "dapAn": "B",
+  "loiGiai": "Đạo hàm của hàm số đã cho là: $\\displaystyle y' = -3x^2 + 6x + \\frac{1}{2}$.\\\\\r\n\t\tVì hai điểm cực trị $x_1, x_2$ chính là hai nghiệm thực phân biệt của phương trình bậc hai $\\displaystyle y' = 0$, ta áp dụng định lý Vi-ét cho phương trình $\\displaystyle -3x^2 + 6x + \\frac{1}{2} = 0$:\\\\\r\n\t\t$\\displaystyle x_1 + x_2 = -\\frac{6}{-3} = 2$ và $\\displaystyle x_1 \\cdot x_2 = \\frac{\\frac{1}{2}}{-3} = -\\frac{1}{6}$.\\\\\r\n\t\tBiến đổi và tính toán giá trị biểu thức tổng bình phương:\\\\\r\n\t\t$\\displaystyle S = x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2 = 2^2 - 2 \\cdot \\left(-\\frac{1}{6}\\right) = 4 + \\frac{1}{3} = \\frac{13}{3}$.\\\\"
+}

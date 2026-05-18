@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7e40f393d7",
+  "dapAn": "D",
+  "loiGiai": "Dựa vào bảng biến thiên, tại điểm $x=0$ đạo hàm đổi dấu từ dương sang âm nên hàm số đạt cực đại tại điểm $x=0$, giá trị cực đại tương ứng của hàm số bằng $3$.\\\\\r\n\t\tDo đó, khẳng định ``Hàm số đạt cực đại tại điểm $x=3$'' là khẳng định sai (vì $x=3$ là giá trị cực đại chứ không phải điểm cực đại của hàm số)."
+}

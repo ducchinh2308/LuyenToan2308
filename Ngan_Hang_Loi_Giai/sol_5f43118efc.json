@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5f43118efc",
+  "dapAn": "A",
+  "loiGiai": "Số nghiệm thực của phương trình $\\displaystyle f(x) = 1$ tương ứng bằng số giao điểm giữa đồ thị hàm số $\\displaystyle y = f(x)$ và đường thẳng nằm ngang $\\displaystyle y = 1$.\\\\\r\n\t\tDựa vào hình vẽ đồ thị, giá trị cực đại cục bộ của hàm số bằng $3$ và giá trị cực tiểu cục bộ của đồ thị đạt mức thấp hơn trục hoành (nhỏ hơn $0$).\\\\\r\n\t\tDo vị trí đường thẳng $\\displaystyle y = 1$ nằm cắt ngang qua khoảng giữa của hai giá trị cực trị này, nó sẽ cắt đồ thị hàm số tại đúng $2$ điểm phân biệt.\\\\\r\n\t\tVậy phương trình đã cho có đúng $2$ nghiệm thực."
+}

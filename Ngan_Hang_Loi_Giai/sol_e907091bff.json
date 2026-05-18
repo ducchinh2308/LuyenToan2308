@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e907091bff",
+  "dapAn": "B",
+  "loiGiai": "Dựa vào bảng biến thiên, ta thấy đạo hàm $y' > 0$ trên các khoảng $(-1;0)$ và $(1;+\\infty)$.\\\\\r\n\t\tDo đó, hàm số đã cho đồng biến trên từng khoảng $(-1;0)$ và $(1;+\\infty)$.\\\\\r\n\t\tBiểu diễn dưới dạng tập hợp hợp các khoảng đồng biến, khẳng định đúng là hàm số đồng biến trên khoảng $(-1;0) \\cup (1;+\\infty)$."
+}

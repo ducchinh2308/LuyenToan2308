@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_203134af35",
+  "dapAn": "D",
+  "loiGiai": "Ta có các giới hạn vô cực của hàm số phân thức bậc nhất:\\\\\r\n\t\t- Tiệm cận đứng: $\\displaystyle \\lim_{x \\to 1^{+}} \\frac{2x-3}{x-1} = -\\infty \\Rightarrow x=1$.\\\\\r\n\t\t- Tiệm cận ngang: $\\displaystyle \\lim_{x \\to \\pm\\infty} \\frac{2x-3}{x-1} = 2 \\Rightarrow y=2$.\\\\\r\n\t\tVậy đồ thị hàm số có tiệm cận đứng $x=1$ và tiệm cận ngang $y=2$."
+}

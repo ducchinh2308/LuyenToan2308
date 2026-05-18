@@ -1,0 +1,257 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-HAM-SO-25CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM HÀM SỐ 25 CÂU",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_32d2b2af9b",
+      "ma_goc": "2605-1195",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_32d2b2af9b_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(-\\infty;-1)$",
+      "paB": "$(-\\infty;1)$",
+      "paC": "$(-1;1)$",
+      "paD": "$(1;+\\infty)$"
+    },
+    {
+      "maCau": "q_5a72cc9aa5",
+      "ma_goc": "2605-1196",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
+      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
+    },
+    {
+      "maCau": "q_35f77055d3",
+      "ma_goc": "2605-1197",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây đồng biến trên khoảng $\\mathbb{R}$?",
+      "paA": "$y = 2 - x^{2}$",
+      "paB": "$\\displaystyle y = \\frac{2x-5}{x-1}$",
+      "paC": "$y = x^{4} - 2x^{2} + 2$",
+      "paD": "$\\displaystyle y = \\frac{1}{3}x^{3} + x^{2} + 7x$"
+    },
+    {
+      "maCau": "q_b01664aabf",
+      "ma_goc": "2605-1198",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{3x-9}{1-x}$. Khẳng định nào sau đây đúng?",
+      "paA": "Hàm số đồng biến trên $\\mathbb{R} \\setminus \\{1\\}$.",
+      "paB": "Hàm số nghịch biến trên mỗi khoảng $(-\\infty;1)$ và $(1;+\\infty)$.",
+      "paC": "Hàm số đồng biến trên khoảng $(1;+\\infty)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-3;5)$."
+    },
+    {
+      "maCau": "q_e77188da9a",
+      "ma_goc": "2605-1199",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ. Khẳng định nào sai?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e77188da9a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số đồng biến trên $(3;+\\infty)$.",
+      "paB": "Hàm số đồng biến trên $(-\\infty;1)$.",
+      "paC": "Hàm số nghịch biến trên $(-2;2)$.",
+      "paD": "Hàm số nghịch biến trên $(1;3)$."
+    },
+    {
+      "maCau": "q_8270eae3f7",
+      "ma_goc": "2605-1200",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8270eae3f7_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khẳng định đúng",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(-1;0) \\cup (1;+\\infty)$.",
+      "paC": "Hàm số đồng biến trên khoảng $(-1;0)$ và $(1;+\\infty)$.",
+      "paD": "Hàm số đồng biến trên khoảng $(-1;1)$."
+    },
+    {
+      "maCau": "q_9bdc2dc536",
+      "ma_goc": "2605-1201",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9bdc2dc536_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào sau đây sai?",
+      "paA": "Hàm số có ba điểm cực trị.",
+      "paB": "Hàm số có hai điểm cực tiểu.",
+      "paC": "Hàm số đạt cực đại tại điểm $x=0$.",
+      "paD": "Hàm số đạt cực đại tại điểm $x=3$."
+    },
+    {
+      "maCau": "q_83aa5b7fd4",
+      "ma_goc": "2605-1202",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có $f'(x)=x^{2}(x-1)(x+2)^{5}$. Số điểm cực trị của hàm số đã cho là",
+      "paA": "$1$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_97642a2e46",
+      "ma_goc": "2605-1203",
+      "kieuCau": "TN",
+      "cauDan": "Điểm cực tiểu của đồ thị hàm số $y=x^{3}-3x+5$ là",
+      "paA": "$Q(3;1)$",
+      "paB": "$M(1;3)$",
+      "paC": "$P(7;-1)$",
+      "paD": "$N(-1;7)$"
+    },
+    {
+      "maCau": "q_715a1a0ac9",
+      "ma_goc": "2605-1204",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=-x^{3}+3x-1$ là",
+      "paA": "$y_{\\text{CT}}=1$",
+      "paB": "$y_{\\text{CT}}=-3$",
+      "paC": "$y_{\\text{CT}}=-1$",
+      "paD": "$y_{\\text{CT}}=3$"
+    },
+    {
+      "maCau": "q_70a48afd40",
+      "ma_goc": "2605-1205",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=-x^{3}+3x^{2}+\\frac{1}{2}x$ đạt cực trị tại hai điểm $x_1, x_2$. Khi đó tổng $\\displaystyle S=x_{1}^{2}+x_{2}^{2}$ là:",
+      "paA": "$\\displaystyle \\frac{11}{3}$",
+      "paB": "$\\displaystyle \\frac{13}{3}$",
+      "paC": "$\\displaystyle \\frac{1}{2}$",
+      "paD": "$\\displaystyle \\frac{7}{3}$"
+    },
+    {
+      "maCau": "q_fe95853d30",
+      "ma_goc": "2605-1206",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $\\displaystyle y=\\frac{1}{3x+7}$ trên đoạn $[-1;3]$. Giá trị của $M-m$ bằng",
+      "paA": "$\\displaystyle \\frac{8}{33}$",
+      "paB": "$\\displaystyle \\frac{3}{16}$",
+      "paC": "$\\displaystyle \\frac{3}{32}$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_85be7d24f6",
+      "ma_goc": "2605-1207",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y=x^{3}-3x^{2}+25$ trên đoạn $[-1;1]$ là",
+      "paA": "$25$",
+      "paB": "$22$",
+      "paC": "$20$",
+      "paD": "$23$"
+    },
+    {
+      "maCau": "q_fe1a3bedd5",
+      "ma_goc": "2605-1208",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có $\\displaystyle \\lim_{x\\rightarrow+\\infty}f(x)=3, \\lim_{x\\rightarrow-\\infty}f(x)=3$. Khẳng định nào sau đây đúng?",
+      "paA": "Đồ thị hàm số có hai tiệm cận ngang là các đường thẳng $x=-3; x=3$.",
+      "paB": "Đồ thị hàm số có đúng một tiệm cận ngang.",
+      "paC": "Đồ thị hàm số có hai tiệm cận ngang là các đường thẳng $y=-3; y=3$.",
+      "paD": "Đồ thị hàm số không có tiệm cận ngang."
+    },
+    {
+      "maCau": "q_9926e6f66a",
+      "ma_goc": "2605-1209",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ xác định, liên tục trên $\\mathbb{R}\\setminus\\{-1\\}$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9926e6f66a_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào sau đây là sai?",
+      "paA": "Đồ thị hàm số không có tiệm cận đứng.",
+      "paB": "Đồ thị hàm số không có tiệm cận ngang.",
+      "paC": "Đồ thị hàm số có tiệm cận đứng là $x=-1$.",
+      "paD": "Đồ thị hàm số có 1 đường tiệm cận."
+    },
+    {
+      "maCau": "q_b90365e99a",
+      "ma_goc": "2605-1210",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị hàm số $y=\\frac{2x-3}{x-1}$ có các đường tiệm cận đứng và tiệm cận ngang lần lượt là",
+      "paA": "$x=2 \\text{ và } y=1$",
+      "paB": "$x=-1 \\text{ và } y=-3$",
+      "paC": "$x=-1 \\text{ và } y=3$",
+      "paD": "$x=1 \\text{ và } y=2$"
+    },
+    {
+      "maCau": "q_183a8e3049",
+      "ma_goc": "2605-1211",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{ax+b}{cx+d}$ ($c \\neq 0, ad-bc \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_183a8e3049_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTiệm cận ngang của đồ thị hàm số là:",
+      "paA": "$x=-1$",
+      "paB": "$y=\\frac{1}{2}$",
+      "paC": "$y=-1$",
+      "paD": "$x=\\frac{1}{2}$"
+    },
+    {
+      "maCau": "q_992fe4d4f9",
+      "ma_goc": "2605-1212",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{2x^{2}-3x+2}{x-5}$. Tìm TCĐ của đồ thị hàm số?",
+      "paA": "$x=2$",
+      "paB": "$x=5$",
+      "paC": "$y=2$",
+      "paD": "$y=5$"
+    },
+    {
+      "maCau": "q_6c5cbcf0eb",
+      "ma_goc": "2605-1213",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\frac{x^{2}-x+7}{x-5}$. Tìm TCX của đồ thị hàm số?",
+      "paA": "$y=x+4$",
+      "paB": "$y=x-5$",
+      "paC": "$y=x+5$",
+      "paD": "$y=x-4$"
+    },
+    {
+      "maCau": "q_c7f60d182f",
+      "ma_goc": "2605-1214",
+      "kieuCau": "TN",
+      "cauDan": "Bảng biến thiên như hình vẽ là của hàm số nào trong bốn hàm số cho dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c7f60d182f_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y=x^{3}+3x^{2}-1$",
+      "paB": "$y=x^{3}-3x+2$",
+      "paC": "$y=x^{3}-3x^{2}+2$",
+      "paD": "$y=-x^{3}+3x^{2}-1$"
+    },
+    {
+      "maCau": "q_f08e1dbe30",
+      "ma_goc": "2605-1215",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f08e1dbe30_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố nghiệm thực của phương trình $\\displaystyle 3f(x)-5=0$ là",
+      "paA": "$0$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_4570e0ccd4",
+      "ma_goc": "2605-1216",
+      "kieuCau": "TN",
+      "cauDan": "Đường thẳng $y = -2x + 2$ cắt đồ thị hàm số $y = x^{3} + x + 2$ tại điểm có hoành độ là",
+      "paA": "$0$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_00d1d4d418",
+      "ma_goc": "2605-1217",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{2x - 1}{x + 2}$ có đồ thị $(C)$. Tọa độ giao điểm $I$ của hai đường tiệm cận là",
+      "paA": "$I(2;-2)$",
+      "paB": "$I(-2;2)$",
+      "paC": "$I(-2;-2)$",
+      "paD": "$I(2;2)$"
+    },
+    {
+      "maCau": "q_dbe4f11bfb",
+      "ma_goc": "2605-1218",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $M$, $N$ là giao điểm của đường thẳng $(d) \\colon y = x - 1$ và đường cong $(C) \\colon y = \\frac{2x - 1}{x + 5}$. Khi đó $x_M + x_N$ bằng",
+      "paA": "$-2$",
+      "paB": "$2$",
+      "paC": "$-1$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_73c4cbe43b",
+      "ma_goc": "2605-1219",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như đường cong hình bên. Phương trình $f(x) = 1$ có bao nhiêu nghiệm?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_73c4cbe43b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$2$",
+      "paB": "$4$",
+      "paC": "$1$",
+      "paD": "$3$"
+    }
+  ]
+}
