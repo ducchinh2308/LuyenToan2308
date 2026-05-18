@@ -1,0 +1,167 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-HINH-KG-16CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM HÌNH KHÔNG GIAN 16 CÂU",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_1da4e7b53b",
+      "ma_goc": "2605-1085",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình chữ nhật và $SA \\perp (ABCD)$. Mặt phẳng nào sau đây vuông góc với mặt phẳng $(ABCD)$?",
+      "paA": "$(SAB)$",
+      "paB": "$(SBC)$",
+      "paC": "$(SCD)$",
+      "paD": "$(SBD)$"
+    },
+    {
+      "maCau": "q_8d90b8450b",
+      "ma_goc": "2605-1086",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình vuông và $SA \\perp (ABCD)$. Đường thẳng nào sau đây vuông góc với mặt phẳng $(SAB)$?",
+      "paA": "$AC$",
+      "paB": "$AB$",
+      "paC": "$BC$",
+      "paD": "$SD$"
+    },
+    {
+      "maCau": "q_7d85de8952",
+      "ma_goc": "2605-1087",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABC$ có đáy $ABC$ vuông tại $B$ và $SA \\perp (ABC)$. Khẳng định nào đúng?",
+      "paA": "$BC \\perp (SAC)$",
+      "paB": "$BC \\perp (SAB)$",
+      "paC": "$AC \\perp (SAB)$",
+      "paD": "$AC \\perp (SAC)$"
+    },
+    {
+      "maCau": "q_07943abcf4",
+      "ma_goc": "2605-1088",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD \\cdot A'B'C'D'$. Khẳng định nào đúng?",
+      "paA": "$AA' \\perp BB'$",
+      "paB": "$AA' \\perp BC'$",
+      "paC": "$AC \\perp AB$",
+      "paD": "$AC \\perp B'D'$"
+    },
+    {
+      "maCau": "q_8cbc9c4e1c",
+      "ma_goc": "2605-1089",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2a$. Biết $SA=6a$ và $SA$ vuông góc với mặt phẳng đáy. Tính thể tích khối chóp $S \\cdot ABCD$.",
+      "paA": "$8a^{3}$",
+      "paB": "$6\\sqrt{3}a^{3}$",
+      "paC": "$12\\sqrt{3}a^{3}$",
+      "paD": "$24a^{3}$"
+    },
+    {
+      "maCau": "q_e5c36f05d1",
+      "ma_goc": "2605-1090",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABCD$ có đáy $ABCD$ là hình chữ nhật, cạnh bên $SA$ vuông góc với đáy $(ABCD)$. Biết $AB=a$, $BC=2a$ và $SB=\\sqrt{3}a$. Tính thể tích khối chóp $S \\cdot ABCD$.",
+      "paA": "$\\displaystyle \\frac{4a^{3}}{3}$",
+      "paB": "$4a^{3}$",
+      "paC": "$2a^{3}$",
+      "paD": "$\\displaystyle \\frac{2\\sqrt{2}a^{3}}{3}$"
+    },
+    {
+      "maCau": "q_6beb7748b5",
+      "ma_goc": "2605-1091",
+      "kieuCau": "TN",
+      "cauDan": "Cho khối chóp $S \\cdot ABC$ có $SA \\perp (ABC)$, tam giác $ABC$ vuông tại $B$, $AB=a$, $BC=a\\sqrt{2}$. Tính thể tích khối chóp $S \\cdot ABC$, biết rằng $SA=2a$.",
+      "paA": "$\\displaystyle \\frac{a^{3}\\sqrt{6}}{4}$",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{15}}{6}$",
+      "paC": "$\\displaystyle \\frac{a^{3}\\sqrt{2}}{3}$",
+      "paD": "$\\displaystyle \\frac{a^{3}\\sqrt{6}}{6}$"
+    },
+    {
+      "maCau": "q_0990398edd",
+      "ma_goc": "2605-1092",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S \\cdot ABC$ có đáy là tam giác đều cạnh $a$, cạnh bên $SA$ vuông góc với đáy và thể tích của khối chóp đó bằng $\\displaystyle \\frac{a^{3}}{4}$. Tính cạnh bên $SA$.",
+      "paA": "$\\displaystyle \\frac{a\\sqrt{3}}{2}$",
+      "paB": "$\\displaystyle \\frac{a\\sqrt{3}}{3}$",
+      "paC": "$a\\sqrt{3}$",
+      "paD": "$2a\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_afb28ebe2f",
+      "ma_goc": "2605-1093",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có diện tích đáy là $a^{2}$, $SA \\perp (ABC)$. Thể tích của khối chóp $S.ABC$ bằng $a^{3}$. Khi đó chiều cao $SA$ bằng",
+      "paA": "$ a $",
+      "paB": "$ 3a $",
+      "paC": "$ 2a $",
+      "paD": "$ 4a $"
+    },
+    {
+      "maCau": "q_5a8d9f519d",
+      "ma_goc": "2605-1094",
+      "kieuCau": "TN",
+      "cauDan": "Cho lăng trụ đứng $ABC.A'B'C'$ có đáy $ABC$ là tam giác vuông cân tại $A$, biết $AC=\\sqrt{2}a$, $A'A=\\sqrt{7}a$. Thể tích của khối lăng trụ $ABC.A'B'C'$ bằng",
+      "paA": "$ 2a^{3} $",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{2}}{3} $",
+      "paC": "$ 6a^{3} $",
+      "paD": "$ a^{3}\\sqrt{7} $"
+    },
+    {
+      "maCau": "q_6e562f0b4b",
+      "ma_goc": "2605-1095",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích của khối lăng trụ tam giác đều có tất cả các cạnh đều bằng $2a$ là",
+      "paA": "$\\displaystyle \\frac{a^{3}\\sqrt{3}}{4} $",
+      "paB": "$\\displaystyle \\frac{a^{3}\\sqrt{3}}{12} $",
+      "paC": "$ 2a^{3}\\sqrt{3} $",
+      "paD": "$ 4a^{3} $"
+    },
+    {
+      "maCau": "q_045908eb12",
+      "ma_goc": "2605-1096",
+      "kieuCau": "TN",
+      "cauDan": "Cho $(H)$ là khối lập phương có độ dài cạnh bằng $3\\,\\text{cm}$. Thể tích của $(H)$ bằng",
+      "paA": "$ 27\\,\\text{cm}^{3} $",
+      "paB": "$ 3\\,\\text{cm}^{3} $",
+      "paC": "$ 9\\,\\text{cm}^{3} $",
+      "paD": "$ 27\\,\\text{cm}^{2} $"
+    },
+    {
+      "maCau": "q_c19f1d69e5",
+      "ma_goc": "2605-1097",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$ (xem hình dưới), tổng của $\\vec{DA}+\\vec{DC}+\\vec{DD'}$ là vectơ nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c19f1d69e5_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{DB'} $",
+      "paB": "$\\vec{DB} $",
+      "paC": "$\\vec{BD} $",
+      "paD": "$\\vec{BD'} $"
+    },
+    {
+      "maCau": "q_523006854b",
+      "ma_goc": "2605-1098",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Chọn mệnh đề đúng trong các mệnh đề sau.",
+      "paA": "$\\vec{AB}+\\vec{AC}+\\vec{AA'} = \\vec{AC'} $",
+      "paB": "$\\vec{AB}+\\vec{AD}+\\vec{AA'} = \\vec{AC'} $",
+      "paC": "$\\vec{AC}+\\vec{AD}+\\vec{AA'} = \\vec{AC'} $",
+      "paD": "$\\vec{AB}+\\vec{AD}+\\vec{AA'} = \\vec{AC} $"
+    },
+    {
+      "maCau": "q_65d16d0a10",
+      "ma_goc": "2605-1099",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.EFGH$ (tham khảo hình vẽ). Tính tổng ba véctơ $\\vec{AB}+\\vec{AD}+\\vec{AE}$ ta được\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_65d16d0a10_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AH} $",
+      "paB": "$\\vec{AG} $",
+      "paC": "$\\vec{AF} $",
+      "paD": "$\\vec{AC} $"
+    },
+    {
+      "maCau": "q_26a2ae8c56",
+      "ma_goc": "2605-1100",
+      "kieuCau": "TN",
+      "cauDan": "Tìm mệnh đề đúng?",
+      "paA": "$\\vec{AB} + \\vec{BB'} + \\vec{B'A'} = \\vec{AC'} $",
+      "paB": "$\\vec{AB} + \\vec{BC'} + \\vec{C'D'} = \\vec{AC'} $",
+      "paC": "$\\vec{AB} + \\vec{AC} + \\vec{AA'} = \\vec{AC'} $",
+      "paD": "$\\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'} $"
+    }
+  ]
+}

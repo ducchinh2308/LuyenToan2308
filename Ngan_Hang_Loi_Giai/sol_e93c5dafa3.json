@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e93c5dafa3",
+  "dapAn": "C",
+  "loiGiai": "Ta chứng minh đường thẳng $BC$ vuông góc với mặt phẳng $(SAB)$ như sau:\\\\\r\n\t\t- Vì $ABCD$ là hình vuông nên $\\displaystyle BC \\perp AB$.\\\\\r\n\t\t- Vì $\\displaystyle SA \\perp (ABCD)$ nên $\\displaystyle SA \\perp BC \\Leftrightarrow BC \\perp SA$.\\\\\r\n\t\tDo đường thẳng $BC$ vuông góc với hai đường thẳng cắt nhau $AB$ và $SA$ cùng nằm trong mặt phẳng $(SAB)$, ta kết luận $\\displaystyle BC \\perp (SAB)$."
+}

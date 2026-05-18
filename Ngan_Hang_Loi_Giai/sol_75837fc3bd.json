@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_75837fc3bd",
+  "dapAn": "D",
+  "loiGiai": "Theo quy tắc hình hộp, đối với hình hộp $ABCD.A'B'C'D'$, ta luôn có:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$.\\\\\r\n\t\tPhép cộng vectơ có tính chất giao hoán nên $\\displaystyle \\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'}$ là mệnh đề đúng."
+}
