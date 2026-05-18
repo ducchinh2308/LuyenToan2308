@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_0dd0e8620d",
+  "dapAn": "C",
+  "loiGiai": "$\\displaystyle \\sqrt{a} = a^{\\frac{1}{2}}$ và $\\displaystyle \\sqrt[3]{a^{2}} = a^{\\frac{2}{3}}$.\\\\\r\n\t\tThực hiện phép nhân hai lũy thừa cùng cơ số:\\\\\r\n\t\t$\\displaystyle P = a^{\\frac{1}{2}} \\cdot a^{\\frac{2}{3}} = a^{\\frac{1}{2}+\\frac{2}{3}} = a^{\\frac{3}{6}+\\frac{4}{6}} = a^{\\frac{7}{6}}$."
+}

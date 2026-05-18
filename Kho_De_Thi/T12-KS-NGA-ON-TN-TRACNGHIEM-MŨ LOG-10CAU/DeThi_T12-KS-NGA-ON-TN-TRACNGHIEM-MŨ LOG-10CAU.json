@@ -1,0 +1,107 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-MŨ LOG-10CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM MŨ LOG 10 CÂU",
+  "thoiGian": 25,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_da3ed9d76c",
+      "ma_goc": "2605-1105",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{2}(x-1)<3$ là:",
+      "paA": "$(1;9)$",
+      "paB": "$(-\\infty;9)$",
+      "paC": "$(9;+\\infty)$",
+      "paD": "$(1;7)$"
+    },
+    {
+      "maCau": "q_3fd8125ca5",
+      "ma_goc": "2605-1106",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $2^{x}=6$ là:",
+      "paA": "$\\displaystyle x=\\log_{6}2$",
+      "paB": "$x=3$",
+      "paC": "$x=4$",
+      "paD": "$\\displaystyle x=\\log_{2}6$"
+    },
+    {
+      "maCau": "q_2c79d7929b",
+      "ma_goc": "2605-1107",
+      "kieuCau": "TN",
+      "cauDan": "Tổng các nghiệm của phương trình $3^{x^{2}-2x}=81$ là:",
+      "paA": "$3$",
+      "paB": "$-15$",
+      "paC": "$-3$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_265a2c6aa4",
+      "ma_goc": "2605-1108",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_{2}(x-4)=\\log_{2}(x^{2}-5x+4)$ là",
+      "paA": "$x=2$",
+      "paB": "$x\\in\\emptyset$",
+      "paC": "$x=2, x=4$",
+      "paD": "$x=3$"
+    },
+    {
+      "maCau": "q_506c992bdd",
+      "ma_goc": "2605-1109",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình: $2^{2x}<2^{x+6}$ là",
+      "paA": "$(0;6)$",
+      "paB": "$(6;+\\infty)$",
+      "paC": "$(-\\infty;6)$",
+      "paD": "$(0;64)$"
+    },
+    {
+      "maCau": "q_dbf1a5cde0",
+      "ma_goc": "2605-1110",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $3^{x+2}\\ge\\frac{1}{9}$ là",
+      "paA": "$(-\\infty;0)$",
+      "paB": "$(-\\infty;4]$",
+      "paC": "$[0;+\\infty)$",
+      "paD": "$[-4;+\\infty)$"
+    },
+    {
+      "maCau": "q_7c0769f4cc",
+      "ma_goc": "2605-1111",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\left(\\frac{1}{2}\\right)^{x-1}\\ge128$ là",
+      "paA": "$[-6;+\\infty)$",
+      "paB": "$[8;+\\infty)$",
+      "paC": "$(-\\infty;8]$",
+      "paD": "$(-\\infty;-6]$"
+    },
+    {
+      "maCau": "q_c2b5a33770",
+      "ma_goc": "2605-1112",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{0,5}(x+1)>-3$ là:",
+      "paA": "$(1;9)$",
+      "paB": "$(-\\infty;7)$",
+      "paC": "$(9;+\\infty)$",
+      "paD": "$(-1;7)$"
+    },
+    {
+      "maCau": "q_409ecd172a",
+      "ma_goc": "2605-1113",
+      "kieuCau": "TN",
+      "cauDan": "Cho số thực dương $a$. Biểu thức $P=\\sqrt{a}\\cdot\\sqrt[3]{a^{2}}$ được viết dưới dạng lũy thừa với số mũ hữu tỷ là",
+      "paA": "$\\displaystyle P=a^{\\frac{5}{6}}$",
+      "paB": "$\\displaystyle P=a^{2}$",
+      "paC": "$\\displaystyle P=a^{\\frac{7}{6}}$",
+      "paD": "$\\displaystyle P=a^{\\frac{1}{2}}$"
+    },
+    {
+      "maCau": "q_9d7cdaec60",
+      "ma_goc": "2605-1114",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $\\log_{2}(2x-1)$ là",
+      "paA": "$\\displaystyle D=\\left(\\frac{1}{2};+\\infty\\right)$",
+      "paB": "$\\displaystyle D=\\left(-\\infty;\\frac{1}{2}\\right)$",
+      "paC": "$\\displaystyle D=\\mathbb{R}\\setminus\\left\\{\\frac{1}{2}\\right\\}$",
+      "paD": "$\\displaystyle D=(-1;+\\infty)$"
+    }
+  ]
+}

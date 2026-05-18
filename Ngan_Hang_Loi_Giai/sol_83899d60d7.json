@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_83899d60d7",
+  "dapAn": "D",
+  "loiGiai": "Biến đổi phân số ở vế phải về lũy thừa cơ số $3$:\\\\\r\n\t\t$\\displaystyle \\frac{1}{9} = \\frac{1}{3^{2}} = 3^{-2}$.\\\\\r\n\t\tBất phương trình đã cho tương đương với:\\\\\r\n\t\t$\\displaystyle 3^{x+2} \\ge 3^{-2} \\Leftrightarrow x+2 \\ge -2$ (do cơ số $\\displaystyle 3>1$).\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow x \\ge -4$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=[-4;+\\infty)$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b9b1fbddea",
+  "dapAn": "B",
+  "loiGiai": "Điều kiện xác định của phương trình:\\\\\r\n\t\t$\\displaystyle \\begin{cases} x-4>0 \\\\ x^{2}-5x+4>0 \\end{cases} \\Leftrightarrow \\begin{cases} x>4 \\\\ \\left[\\begin{aligned} &x<1 \\\\ &x>4 \\end{aligned}\\right. \\end{cases} \\Leftrightarrow x>4$.\\\\\r\n\t\tKhi đó, phương trình đã cho tương đương với:\\\\\r\n\t\t$\\displaystyle x-4 = x^{2}-5x+4 \\Leftrightarrow x^{2}-6x+8=0 \\Leftrightarrow \\left[\\begin{aligned} &x=2 \\\\ &x=4 \\end{aligned}\\right.$\\\\\r\n\t\tĐối chiếu với điều kiện xác định $\\displaystyle x>4$, cả hai nghiệm $\\displaystyle x=2$ và $\\displaystyle x=4$ đều không thỏa mãn.\\\\\r\n\t\tVậy phương trình vô nghiệm, tập nghiệm $\\displaystyle S=\\emptyset$."
+}

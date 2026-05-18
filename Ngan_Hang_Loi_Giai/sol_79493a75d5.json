@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_79493a75d5",
+  "dapAn": "C",
+  "loiGiai": "Vì cơ số của lũy thừa $\\displaystyle a=2>1$, khi lấy mũ hai vế bất phương trình giữ nguyên chiều biến thiên:\\\\\r\n\t\t$\\displaystyle 2^{2x} < 2^{x+6} \\Leftrightarrow 2x < x+6 \\Leftrightarrow x < 6$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=(-\\infty;6)$."
+}
