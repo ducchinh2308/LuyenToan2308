@@ -507,7 +507,7 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="padding: 15px 25px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(23,162,184,0.3);">
                     🚀 Quản Lý Nhiệm Vụ
                 </button>
-                <button style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3);">
+                <button onclick="ham_7_12_tab_duyet_don()" style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                     📩 Duyệt Yêu Cầu Học Sinh
                 </button>
                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
@@ -4104,5 +4104,271 @@ window.ham_7_11_ve_nut_loi_giai_dong = async function (maHocLieu) {
     } catch (err) {
         console.error("Lỗi kiểm tra nút file giải:", err);
         divNut.innerHTML = `<span style="color:#dc3545;">Lỗi tải cấu hình file giải.</span>`;
+    }
+};
+
+
+
+// =====================================================================
+// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN
+// =====================================================================
+window.ham_7_12_tab_duyet_don = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#ffc107;">⏳ Đang mở hòm thư...</h3></div>`;
+
+    try {
+        const { data: dsDon, error } = await _supabase
+            .from('yeu_cau_hoc_sinh')
+            .select('*')
+            .order('trang_thai', { ascending: true })
+            .order('ngay_tao', { ascending: false });
+
+        if (error) throw error;
+
+        if (!dsDon || dsDon.length === 0) {
+            vungLamViec.innerHTML = `
+                <div style="text-align: center; padding: 50px; background: #fff; border-radius: 10px; border: 1px dashed #ccc;">
+                    <p style="font-size: 60px; margin:0;">📭</p>
+                    <h3 style="color: #6c757d;">Hòm thư trống</h3>
+                    <p style="color: #888;">Hiện tại chưa có học sinh nào gửi yêu cầu xin mở khóa bài tập.</p>
+                </div>
+            `;
+            return;
+        }
+
+        let htmlRows = '';
+        const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+        dsDon.forEach((don, index) => {
+            const ngayGui = don.ngay_tao ? new Date(don.ngay_tao).toLocaleString('vi-VN', opts) : '';
+
+            let loaiBadge = don.loai_yeu_cau === 'QUA_HAN'
+                ? `<span style="background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #ffeeba;">⏰ XIN NỘP MUỘN</span>`
+                : `<span style="background: #cce5ff; color: #004085; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #b8daff;">🔄 XIN THÊM LƯỢT</span>`;
+
+            let hanhDongHtml = '';
+            let trangThaiBadge = '';
+
+            if (don.trang_thai === 0) {
+                trangThaiBadge = `<span style="color: #fd7e14; font-weight: bold; font-size: 13px;">⏳ Chờ duyệt</span>`;
+                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.13
+                hanhDongHtml = `
+                    <div style="display: flex; gap: 5px; justify-content: center;">
+                        <button onclick="ham_7_13_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${don.ma_nhiem_vu}', '${don.loai_yeu_cau}', 'DUYET')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">✅ DUYỆT</button>
+                        <button onclick="ham_7_13_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${don.ma_nhiem_vu}', '${don.loai_yeu_cau}', 'TU_CHOI')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">❌ TỪ CHỐI</button>
+                    </div>
+                `;
+            } else if (don.trang_thai === 1) {
+                trangThaiBadge = `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`;
+                hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
+            } else {
+                trangThaiBadge = `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
+                hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
+            }
+
+            htmlRows += `
+                <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
+                    <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+                    <td style="padding: 15px 10px;">
+                        <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
+                    </td>
+                    <td style="padding: 15px 10px;">
+                        <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
+                        <div style="margin-top: 5px;">${loaiBadge} <span style="font-size: 11px; color: #999; margin-left: 5px;">(${ngayGui})</span></div>
+                    </td>
+                    <td style="padding: 15px 10px;">
+                        <div style="background: #f1f3f4; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #333; font-style: italic; border-left: 3px solid #6c757d;">
+                            "${don.ly_do || 'Không có lý do'}"
+                        </div>
+                    </td>
+                    <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
+                    <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
+                </tr>
+            `;
+        });
+
+        vungLamViec.innerHTML = `
+            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #ffc107, #ff9800); padding: 20px; color: #000; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 900;">📭 HÒM THƯ XÉT DUYỆT YÊU CẦU</h3>
+                    <span style="background: rgba(0,0,0,0.1); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">Tổng: ${dsDon.length} đơn</span>
+                </div>
+                <div style="overflow-x: auto; padding: 10px;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 900px; text-align: left;">
+                        <thead style="background: #fdfdfe; border-bottom: 2px solid #dee2e6;">
+                            <tr>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 40px;">STT</th>
+                                <th style="padding: 12px 10px; color: #495057; width: 180px;">Học Sinh</th>
+                                <th style="padding: 12px 10px; color: #495057; width: 250px;">Nhiệm Vụ Yêu Cầu</th>
+                                <th style="padding: 12px 10px; color: #495057;">Lý Do Gửi Thầy</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 100px;">Trạng Thái</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 160px;">Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${htmlRows}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất hòm thư: ${error.message}</div>`;
+    }
+}
+
+// =====================================================================
+// HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH (KẾT NỐI SUPABASE)
+// =====================================================================
+window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, loaiYeuCau, hanhDong) {
+    // 1. TRƯỜNG HỢP TỪ CHỐI ĐƠN
+    if (hanhDong === 'TU_CHOI') {
+        Swal.fire({
+            title: 'Từ chối đơn yêu cầu?',
+            text: "Học sinh này sẽ không được mở khóa hoặc cấp thêm lượt làm bài.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '❌ Xác nhận Từ Chối',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            showLoaderOnConfirm: true,
+            preConfirm: async () => {
+                try {
+                    const { error } = await _supabase
+                        .from('yeu_cau_hoc_sinh')
+                        .update({
+                            trang_thai: -1,
+                            uid_gv_duyet: window.GocGiaoVienState?.uid || null
+                        })
+                        .eq('id', idDon);
+
+                    if (error) throw error;
+                    return true;
+                } catch (e) {
+                    Swal.showValidationMessage(`Lỗi hệ thống: ${e.message}`);
+                    return false;
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({ icon: 'success', title: 'Đã từ chối đơn thành công!', timer: 1200, showConfirmButton: false });
+                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12 để load lại bảng
+                if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
+            }
+        });
+        return;
+    }
+
+    // 2. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT 
+    if (loaiYeuCau === 'HET_LUOT') {
+        Swal.fire({
+            title: 'Duyệt cấp thêm lượt?',
+            text: "Hệ thống sẽ xóa kết quả làm bài cũ nhất của học sinh này để hoàn lại 1 lượt làm bài mới. Xác nhận duyệt?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '✅ Duyệt & Cấp lượt',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#6c757d',
+            showLoaderOnConfirm: true,
+            preConfirm: async () => {
+                try {
+                    const { data: kqCu, error: errTim } = await _supabase
+                        .from('ket_qua_thi')
+                        .select('id')
+                        .eq('uid_hoc_sinh', uidHocSinh)
+                        .eq('ma_nhiem_vu', maNhiemVu)
+                        .order('thoi_gian_nop', { ascending: true })
+                        .limit(1);
+
+                    if (errTim) throw errTim;
+
+                    if (kqCu && kqCu.length > 0) {
+                        const { error: errXoa } = await _supabase
+                            .from('ket_qua_thi')
+                            .delete()
+                            .eq('id', kqCu[0].id);
+
+                        if (errXoa) throw errXoa;
+                    }
+
+                    const { error: errUpdate } = await _supabase
+                        .from('yeu_cau_hoc_sinh')
+                        .update({
+                            trang_thai: 1,
+                            uid_gv_duyet: window.GocGiaoVienState?.uid || null
+                        })
+                        .eq('id', idDon);
+
+                    if (errUpdate) throw errUpdate;
+                    return true;
+                } catch (e) {
+                    Swal.showValidationMessage(`Lỗi xử lý cấp lượt: ${e.message}`);
+                    return false;
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({ icon: 'success', title: 'Đã cấp thêm 1 lượt làm bài!', timer: 1200, showConfirmButton: false });
+                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12
+                if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
+            }
+        });
+    }
+
+    // 3. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN 
+    else if (loaiYeuCau === 'QUA_HAN') {
+        Swal.fire({
+            title: 'Duyệt dời hạn chót?',
+            html: "Hệ thống sẽ tự động dời thời gian đóng bài tập này sang <b>23:59 ngày mai</b> để học sinh có thể làm bù. Xác nhận gia hạn?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: '✅ Duyệt & Gia hạn',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#6c757d',
+            showLoaderOnConfirm: true,
+            preConfirm: async () => {
+                try {
+                    let ngayMai = new Date();
+                    ngayMai.setDate(ngayMai.getDate() + 1);
+                    ngayMai.setHours(23, 59, 59, 999);
+
+                    let offset = ngayMai.getTimezoneOffset() * 60000;
+                    let thoiGianMoiISO = (new Date(ngayMai - offset)).toISOString().slice(0, 19);
+
+                    const { error: errNhiemVu } = await _supabase
+                        .from('nhiem_vu')
+                        .update({ thoi_gian_dong: thoiGianMoiISO })
+                        .eq('ma_nhiem_vu', maNhiemVu);
+
+                    if (errNhiemVu) throw errNhiemVu;
+
+                    const { error: errUpdate } = await _supabase
+                        .from('yeu_cau_hoc_sinh')
+                        .update({
+                            trang_thai: 1,
+                            uid_gv_duyet: window.GocGiaoVienState?.uid || null,
+                            thoi_gian_ket_thuc: thoiGianMoiISO
+                        })
+                        .eq('id', idDon);
+
+                    if (errUpdate) throw errUpdate;
+                    return true;
+                } catch (e) {
+                    Swal.showValidationMessage(`Lỗi gia hạn đề: ${e.message}`);
+                    return false;
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({ icon: 'success', title: 'Đã dời hạn đóng sang ngày mai!', timer: 1500, showConfirmButton: false });
+                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12
+                if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
+            }
+        });
     }
 };
