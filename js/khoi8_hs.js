@@ -93,7 +93,11 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
                 <button onclick="ham_8_3_tab_luyen_tap_tu_do()" style="flex: 1; min-width: 140px; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">🌍 TỰ LUYỆN</button>
                 <button onclick="ham_8_4_tab_ket_qua()" style="flex: 1; min-width: 140px; padding: 12px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.3);">📊 KẾT QUẢ</button>
                 <button onclick="ham_8_5_tab_ho_so()" style="flex: 1; min-width: 140px; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(108,117,125,0.3);">👤 HỒ SƠ</button>
-                <button onclick="ham_8_6_tab_dau_truong_live()" style="flex: 1; min-width: 140px; padding: 12px; background: #dc3545; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(220,53,69,0.3);">⚔️ LIVE QUIZ</button>
+                <button onclick="ham_8_6_tab_live_quiz()" style="padding: 12px 20px; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 10px rgba(231,76,60,0.3); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                        ⚔️ VÀO PHÒNG LIVE QUIZ
+                </button>
+
+
             </div>
             
             <div id="vung-lam-viec-hoc-sinh" style="padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 300px;"></div>
@@ -1222,9 +1226,7 @@ window.ham_8_dang_xuat = function () {
     });
 };
 
-function ham_8_6_tab_dau_truong_live() {
-    document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#dc3545; text-align:center;">⚔️ Phòng Đấu Trường (Sắp ra mắt)</h3>`;
-}
+
 
 // =====================================================================
 // Hàm 8.7: Cửa An Ninh - Kiểm tra lượt làm và Xác nhận vào thi (ĐỒNG BỘ TIẾN ĐỘ)
@@ -1308,142 +1310,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
         Swal.fire({ icon: 'error', title: 'Lỗi kiểm tra an ninh', text: err.message });
     }
 }
-//// ==============================================================
-//// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ GitHub chuẩn xác 100%)
-//// ==============================================================
-//async function ham_8_8_khoi_tao_phong_thi(nv) {
-//    const vungLamViec = document.getElementById('dashboard-container');
-//    vungLamViec.innerHTML = `
-//        <div style="text-align: center; padding: 100px;">
-//            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-//            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang tải đề thi từ kho lưu trữ...</h3>
-//            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-//        </div>
-//    `;
 
-//    try {
-//        const maHocLieu = nv.ma_hoc_lieu;
-//        if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
-
-//        // 1. LẤY BẢN ĐỒ ĐÁP ÁN VÀ LINK TỪ SUPABASE
-//        const { data: dataHocLieu, error: errHL } = await _supabase
-//            .from('hoc_lieu')
-//            .select('*') // Lấy tất cả cột (bao gồm url_github nếu có)
-//            .eq('ma_hoc_lieu', maHocLieu)
-//            .single();
-
-//        if (errHL) throw errHL;
-
-//        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
-//        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Bản đồ đáp án trống!");
-
-//        // =========================================================
-//        // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
-//        // =========================================================
-//        let urlFileGitHub = dataHocLieu.url_github;
-
-//        // Nếu DB chưa có link (hoặc thầy chưa kịp thêm cột url_github), hệ thống tự ghép thông minh:
-//        if (!urlFileGitHub) {
-//            let maDeGoc = maHocLieu;
-//            // Tự động gọt bỏ tiền tố "HL_DE_" để lấy đúng mã gốc T12-TEST...
-//            if (maHocLieu.startsWith("HL_DE_")) {
-//                maDeGoc = maHocLieu.replace("HL_DE_", "");
-//            }
-
-//            const LINK_GITHUB_GOC =  "https://ducchinh2308.github.io/LuyenToan2308";
-//            // Ép đúng cấu trúc file trên Github của thầy
-//            urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
-//        }
-
-//        console.log("🔍 Đang tải nội dung chuẩn từ:", urlFileGitHub);
-
-//        // =========================================================
-//        // 3. TẢI NỘI DUNG TỪ GITHUB
-//        // =========================================================
-//        const response = await fetch(urlFileGitHub);
-//        if (!response.ok) {
-//            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ xong chưa.\nLink: " + urlFileGitHub);
-//        }
-
-//        const dataGitHub = await response.json();
-//        const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
-
-//        // =========================================================
-//        // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
-//        // =========================================================
-//        const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-//            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
-//            return { ...mapItem, ...noiDung };
-//        });
-
-//        const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
-
-        
-        
-//        // Lấy đường dẫn thư mục chứa đề thi (bỏ tên file .json) và cộng thêm thư mục HinhAnh bên trong
-//        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
-//        console.log("urlFileGitHub:" + urlFileGitHub);
-//        console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
-
-//        // =========================================================
-//        // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
-//        // =========================================================
-//        const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
-
-//        // Hỏi Supabase xem HS đã làm bao nhiêu lần rồi
-//        const { count, error: countErr } = await _supabase
-//            .from('ket_qua_thi')
-//            .select('*', { count: 'exact', head: true })
-//            .eq('uid_hoc_sinh', GocHocSinhState.uid)
-//            .eq('ma_nhiem_vu', maNhiemVuThuc);
-
-//        const lanThuHienTai = (count || 0) + 1; // Tính lần làm bài hiện tại
-
-//        // Lập tức tạo 1 dòng "Đang làm" trên Database
-//        const { data: recordNhao, error: errNhao } = await _supabase
-//            .from('ket_qua_thi')
-//            .insert([{
-//                uid_hoc_sinh: GocHocSinhState.uid,
-//                ma_nhiem_vu: maNhiemVuThuc,
-//                lan_thu: lanThuHienTai,
-//                tong_diem: 0,
-//                chi_tiet_lam_bai: [],
-//                thoi_gian_lam_bai: "0 phút 0 giây", // Mặc định 0 giây
-                
-//                thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
-//            }])
-//            .select('id')
-//            .single();
-
-//        if (errNhao) throw errNhao;
-
-//        // Lưu toàn bộ vào RAM trình duyệt
-//        window.PhienLamBai = {
-//            id_ket_qua_database: recordNhao.id, // 🌟 GIỮ ID NÀY LẠI ĐỂ LÁT NỮA UPDATE
-//            ma_nhiem_vu: maNhiemVuThuc,
-//            ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
-//            thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
-//            tong_so_cau: deThiDaTron.length,
-//            danh_sach_cau_hoi: deThiDaTron,
-//            dap_an_hoc_sinh: {},
-//            id_timer: null,
-//            base_url_anh: baseUrlHinhAnh
-//        };
-
-//        console.log("📦 RÁP ĐỀ THÀNH CÔNG. ID DATABASE:", window.PhienLamBai.id_ket_qua_database);
-
-//        // =========================================================
-//        // 6. MỞ GIAO DIỆN THI
-//        // =========================================================
-//        ham_8_10_ve_giao_dien_lam_bai();
-
-    
-//    } catch (err) {
-//        console.error("LỖI NẠP ĐỀ:", err);
-//        alert("Lỗi nạp đề thi: " + err.message);
-//        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
-//    }
-//}
 
 // ==============================================================
 // Hàm 8.8: Khởi tạo Phòng thi (BẢO MẬT TUYỆT ĐỐI - KHÔNG ĐỤNG ĐẾN ĐÁP ÁN)
@@ -2640,3 +2507,147 @@ window.dongGiaoDienXemLai = function () {
     document.getElementById('khong-gian-xem-lai-toan-man-hinh')?.remove();
     document.getElementById('dashboard-container').style.display = 'block';
 };
+
+// =====================================================================
+// KHỞI TẠO BIẾN SÓNG REALTIME CHO HỌC SINH
+// =====================================================================
+window.HocSinhLiveChannel = null;
+window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
+
+// =====================================================================
+// Hàm 8.6: Giao diện nhập mã PIN vào phòng đấu Live
+// =====================================================================
+window.ham_8_6_tab_live_quiz = function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+
+    // Ngắt kênh cũ nếu học sinh thoát ra vào lại
+    if (window.HocSinhLiveChannel) {
+        _supabase.removeChannel(window.HocSinhLiveChannel);
+        window.HocSinhLiveChannel = null;
+    }
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
+                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
+                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
+                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
+            </div>
+            
+            <div style="padding: 30px;">
+                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+                
+                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+                    🚀 VÀO PHÒNG
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// =====================================================================
+// Hàm 8.6.1: Xử lý xác thực mã PIN và ghi danh vào phòng
+// =====================================================================
+window.ham_8_6_1_vao_phong = async function () {
+    const maPin = document.getElementById('txtPinLive').value.trim();
+    if (!maPin) return Swal.fire('Thiếu thông tin', 'Em phải nhập mã PIN phòng thi!', 'warning');
+
+    Swal.fire({ title: 'Đang kết nối...', didOpen: () => { Swal.showLoading(); } });
+
+    try {
+        // 1. Kiểm tra phòng thi có tồn tại và đang mở không
+        const { data: phong, error: errPhong } = await _supabase
+            .from('phong_live_quiz')
+            .select('*')
+            .eq('ma_phong', maPin)
+            .single();
+
+        if (errPhong || !phong) throw new Error("Mã PIN không đúng hoặc phòng không tồn tại!");
+        if (phong.trang_thai === 2) throw new Error("Phòng thi này đã kết thúc!");
+
+        window.ThongTinLiveHocSinh = { maPhong: maPin, maNhiemVu: phong.ma_nhiem_vu };
+
+        // 2. Ghi danh học sinh vào bảng tien_do_live_quiz (UPSERT)
+        // Nếu em này rớt mạng vào lại thì update, nếu mới tinh thì insert
+        const payloadTienDo = {
+            ma_phong: maPin,
+            uid_hoc_sinh: GocHocSinhState.uid,
+            ten_hoc_sinh: GocHocSinhState.ten
+            // Các trường số câu, điểm số sẽ lấy mặc định là 0 ở DB
+        };
+
+        const { error: errUpsert } = await _supabase
+            .from('tien_do_live_quiz')
+            .upsert(payloadTienDo, { onConflict: 'ma_phong,uid_hoc_sinh' }); // Tính năng ghi đè an toàn
+
+        if (errUpsert) throw errUpsert;
+
+        Swal.close();
+
+        // 3. Phân luồng: Nếu thầy đang mở phòng chờ -> Vào phòng chờ. Nếu thầy đã bấm Bắt đầu -> Vào thẳng bài thi
+        if (phong.trang_thai === 0) {
+            ham_8_6_2_phong_cho_live();
+        } else if (phong.trang_thai === 1) {
+            ham_8_6_3_bat_dau_lam_bai_live();
+        }
+
+    } catch (e) {
+        Swal.fire('Lỗi kết nối', e.message, 'error');
+    }
+}
+
+// =====================================================================
+// Hàm 8.6.2: Giao diện Phòng chờ & Lắng nghe hiệu lệnh xuất phát từ Thầy
+// =====================================================================
+window.ham_8_6_2_phong_cho_live = function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+    const maPin = window.ThongTinLiveHocSinh.maPhong;
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 500px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; text-align: center;">
+            <div style="background: #28a745; padding: 30px; color: white;">
+                <div style="font-size: 50px; margin-bottom: 10px;">✅</div>
+                <h2 style="margin: 0; font-size: 22px; font-weight: 900;">ĐÃ VÀO PHÒNG THÀNH CÔNG</h2>
+                <div style="font-size: 16px; font-weight: bold; background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; margin-top: 10px;">
+                    Mã PIN: ${maPin}
+                </div>
+            </div>
+            
+            <div style="padding: 40px 20px;">
+                <div style="border: 4px solid #f3f3f3; border-top: 4px solid #e74c3c; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                <h3 style="color: #333; margin-top: 25px;">Hãy nhìn lên màn hình của Thầy...</h3>
+                <p style="color: #666; font-size: 15px;">Bài thi sẽ tự động bắt đầu ngay khi Thầy nhấn nút xuất phát. Chuẩn bị tinh thần đua top nhé!</p>
+            </div>
+        </div>
+    `;
+
+    // 🌟 KÍCH HOẠT SÓNG REALTIME: Lắng nghe bảng phong_live_quiz xem thầy đã đổi trạng thái chưa
+    if (window.HocSinhLiveChannel) { _supabase.removeChannel(window.HocSinhLiveChannel); }
+
+    window.HocSinhLiveChannel = _supabase.channel('hocsinh_nghe_phong_' + maPin)
+        .on('postgres_changes', {
+            event: 'UPDATE',
+            table: 'phong_live_quiz',
+            filter: `ma_phong=eq.${maPin}`
+        }, payload => {
+            const { new: duLieuMoi } = payload;
+
+            // Nếu thầy bấm nút BẮT ĐẦU (trang_thai = 1) -> Tự động chuyển qua làm bài
+            if (duLieuMoi.trang_thai === 1) {
+                Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', text: 'Chuẩn bị...', icon: 'success', timer: 1500, showConfirmButton: false }).then(() => {
+                    ham_8_6_3_bat_dau_lam_bai_live();
+                });
+            }
+            // Nếu thầy bấm KẾT THÚC (trang_thai = 2) lúc học sinh đang ở phòng chờ
+            else if (duLieuMoi.trang_thai === 2) {
+                Swal.fire('Kết thúc', 'Trận đấu đã kết thúc hoặc bị Thầy hủy bỏ.', 'info');
+                ham_8_6_tab_live_quiz(); // Quay lại trang nhập mã
+            }
+        })
+        .subscribe();
+}
+
+// Hàm giữ chỗ: Giao diện thi đấu (Sẽ code ở bước cuối)
+window.ham_8_6_3_bat_dau_lam_bai_live = function () {
+    alert("Kịch bản 3: Tải đề thi và hiển thị giao diện làm bài (Sẽ xây dựng tiếp theo)");
+}
