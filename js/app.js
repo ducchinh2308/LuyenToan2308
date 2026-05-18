@@ -4528,7 +4528,7 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
 
 // =====================================================================
-// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI
+// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI (ĐÃ SỬA LỖI TYPO)
 // =====================================================================
 window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
     // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
@@ -4559,11 +4559,10 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         if (mangMaLop.length > 0) {
             const { data: dataHS, error: errHS } = await _supabase
                 .from('hoc_sinh')
-                .select('uid, ten, sdt, danh_sach_ma_lop'); // Bốc học sinh để so khớp lớp công bằng
+                .select('uid, ten, sdt, danh_sach_ma_lop');
 
             if (errHS) throw errHS;
 
-            // Lọc những em học sinh thực sự nằm trong danh sách mã lớp của nhiệm vụ
             dsHocSinhLop = (dataHS || []).filter(hs => {
                 let lopCuaEm = [];
                 try {
@@ -4573,12 +4572,13 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
             });
         }
 
-        // BƯỚC C: Tải kết quả thi LẦN CUỐI CÙNG của các học sinh này trong nhiệm vụ này
-        // Tận dụng logic sắp xếp để lấy bài nộp mới nhất của từng em học sinh
+        // =====================================================================
+        // 🌟 BƯỚC C: ĐÃ VÁ LỖI BIẾN maNhivi -> GỘP CHUẨN MA NHIỆM VỤ
+        // =====================================================================
         const { data: dsKQ, error: errKQ } = await _supabase
             .from('ket_qua_thi')
             .select('id, uid_hoc_sinh, ten_hoc_sinh, tong_diem, thoi_gian_nop, mang_cau_tra_loi')
-            .eq('ma_nhiem_vu', maNhivi || maNhiemVu)
+            .eq('ma_nhiem_vu', maNhiemVu) // <--- Chỗ này đã được sửa chuẩn chỉ!
             .order('thoi_gian_nop', { ascending: false });
 
         if (errKQ) throw errKQ;
@@ -4608,7 +4608,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
                     sdt: hs.sdt || 'N/A',
                     diem: baiLamCuoi.tong_diem,
                     ngayNop: baiLamCuoi.thoi_gian_nop,
-                    chiTietCau: baiLamCuoi.mang_cau_tra_loi // Mảng lưu đáp án đúng/sai của câu hỏi
+                    chiTietCau: baiLamCuoi.mang_cau_tra_loi
                 });
                 tongDiemLop += Number(baiLamCuoi.tong_diem) || 0;
             } else {
@@ -4620,21 +4620,18 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
             }
         });
 
-        // Tính toán các chỉ số thống kê tổng quan
         const tongSoHS = dsHocSinhLop.length;
         const soLgDaLam = mangDaLam.length;
         const soLgChuaLam = mangChưaLam.length;
         const diemTrungBinh = soLgDaLam > 0 ? (tongDiemLop / soLgDaLam).toFixed(2) : "0.00";
 
-        // Ghi dữ liệu vào bộ nhớ tạm window để các popup con bốc ra xài không cần nạp lại API
-        window.DataThongKeHienTai = { mangDaLam, mangChưaLam, tenNhiemVu };
+        window.DataThongKeHienTai = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
 
         // BƯỚC E: HIỂN THỊ POPUP TỔNG QUAN (TẦNG 1)
         Swal.fire({
             title: `📊 THỐNG KÊ: ${tenNhiemVu}`,
             html: `
                 <div style="text-align: left; background: #fff; border-radius: 8px; font-size: 14px; color: #2c3e50; line-height: 1.6;">
-                    
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
                         <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; border-left: 4px solid #1e88e5; text-align: center;">
                             <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Sĩ số giao bài</span>
@@ -4648,7 +4645,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
 
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <button onclick="ham_7_15_sub_danh_sach_da_lam()" style="width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
-                            <span>🟢 Danh sách Học sinh ĐỒ NỘP BÀI</span>
+                            <span>🟢 Danh sách Học sinh ĐÃ NỘP BÀI</span>
                             <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgDaLam} em</b>
                         </button>
                         
