@@ -4343,9 +4343,11 @@ window.ham_7_12_thay_doi_sap_xep = function (colKey) {
     ham_7_12_tab_duyet_don();
 }
 // =====================================================================
-// HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH (KẾT NỐI SUPABASE)
+// HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH 
+// (ĐÃ CẬP NHẬT CHUẨN CỘT tien_do_lam_bai CỦA BẢNG hoc_sinh)
 // =====================================================================
 window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, loaiYeuCau, hanhDong) {
+
     // 1. TRƯỜNG HỢP TỪ CHỐI ĐƠN
     if (hanhDong === 'TU_CHOI') {
         Swal.fire({
@@ -4360,14 +4362,9 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             showLoaderOnConfirm: true,
             preConfirm: async () => {
                 try {
-                    const { error } = await _supabase
-                        .from('yeu_cau_hoc_sinh')
-                        .update({
-                            trang_thai: -1,
-                            uid_gv_duyet: window.GocGiaoVienState?.uid || null
-                        })
+                    const { error } = await _supabase.from('yeu_cau_hoc_sinh')
+                        .update({ trang_thai: -1, uid_gv_duyet: window.GocGiaoVienState?.uid || null })
                         .eq('id', idDon);
-
                     if (error) throw error;
                     return true;
                 } catch (e) {
@@ -4377,19 +4374,20 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã từ chối đơn thành công!', timer: 1200, showConfirmButton: false });
-                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12 để load lại bảng
+                Swal.fire({ icon: 'success', title: 'Đã từ chối đơn!', timer: 1200, showConfirmButton: false });
                 if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
             }
         });
         return;
     }
 
-    // 2. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT 
+    // =================================================================
+    // 🌟 2. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT (GIẢM 1 LƯỢT TRONG tien_do_lam_bai)
+    // =================================================================
     if (loaiYeuCau === 'HET_LUOT') {
         Swal.fire({
             title: 'Duyệt cấp thêm lượt?',
-            text: "Hệ thống sẽ xóa kết quả làm bài cũ nhất của học sinh này để hoàn lại 1 lượt làm bài mới. Xác nhận duyệt?",
+            text: "Hệ thống sẽ trừ đi 1 lượt đã làm trong hồ sơ của học sinh này (điểm và lịch sử cũ vẫn được giữ nguyên). Xác nhận cấp lượt?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: '✅ Duyệt & Cấp lượt',
@@ -4399,26 +4397,41 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             showLoaderOnConfirm: true,
             preConfirm: async () => {
                 try {
-                    const { data: kqCu, error: errTim } = await _supabase
-                        .from('ket_qua_thi')
-                        .select('id')
-                        .eq('uid_hoc_sinh', uidHocSinh)
-                        .eq('ma_nhiem_vu', maNhiemVu)
-                        .order('thoi_gian_nop', { ascending: true })
-                        .limit(1);
+                    // 🌟 Gắn chính xác tên cột của thầy
+                    const tenCotLuotLam = 'tien_do_lam_bai';
 
-                    if (errTim) throw errTim;
+                    // Bước A: Kéo dữ liệu tiến độ của học sinh này về
+                    const { data: hsInfo, error: errHS } = await _supabase
+                        .from('hoc_sinh')
+                        .select(tenCotLuotLam)
+                        .eq('uid', uidHocSinh)
+                        .single();
 
-                    if (kqCu && kqCu.length > 0) {
-                        const { error: errXoa } = await _supabase
-                            .from('ket_qua_thi')
-                            .delete()
-                            .eq('id', kqCu[0].id);
+                    if (errHS) throw errHS;
 
-                        if (errXoa) throw errXoa;
+                    // Bước B: Ép kiểu dữ liệu về Object JSON
+                    let jsonLuotLam = {};
+                    try {
+                        jsonLuotLam = typeof hsInfo[tenCotLuotLam] === 'string'
+                            ? JSON.parse(hsInfo[tenCotLuotLam])
+                            : (hsInfo[tenCotLuotLam] || {});
+                    } catch (e) { }
+
+                    // Bước C: Tìm mã nhiệm vụ và giảm đi 1 (Nếu đang lớn hơn 0)
+                    if (jsonLuotLam[maNhiemVu] && jsonLuotLam[maNhiemVu] > 0) {
+                        jsonLuotLam[maNhiemVu] = jsonLuotLam[maNhiemVu] - 1;
                     }
 
-                    const { error: errUpdate } = await _supabase
+                    // Bước D: Cập nhật ngược lại chuỗi JSON mới vào DB
+                    const { error: errUpdateHS } = await _supabase
+                        .from('hoc_sinh')
+                        .update({ [tenCotLuotLam]: jsonLuotLam })
+                        .eq('uid', uidHocSinh);
+
+                    if (errUpdateHS) throw errUpdateHS;
+
+                    // Bước E: Cập nhật trạng thái đơn thành Đã duyệt
+                    const { error: errUpdateDon } = await _supabase
                         .from('yeu_cau_hoc_sinh')
                         .update({
                             trang_thai: 1,
@@ -4426,8 +4439,9 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                         })
                         .eq('id', idDon);
 
-                    if (errUpdate) throw errUpdate;
+                    if (errUpdateDon) throw errUpdateDon;
                     return true;
+
                 } catch (e) {
                     Swal.showValidationMessage(`Lỗi xử lý cấp lượt: ${e.message}`);
                     return false;
@@ -4435,18 +4449,17 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã cấp thêm 1 lượt làm bài!', timer: 1200, showConfirmButton: false });
-                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12
+                Swal.fire({ icon: 'success', title: 'Đã cấp thêm 1 lượt!', timer: 1200, showConfirmButton: false });
                 if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
             }
         });
     }
 
-    // 3. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN 
+    // 3. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN (Dời hạn chót của Nhiệm vụ)
     else if (loaiYeuCau === 'QUA_HAN') {
         Swal.fire({
             title: 'Duyệt dời hạn chót?',
-            html: "Hệ thống sẽ tự động dời thời gian đóng bài tập này sang <b>23:59 ngày mai</b> để học sinh có thể làm bù. Xác nhận gia hạn?",
+            html: "Hệ thống sẽ dời thời gian đóng đề sang <b>23:59 ngày mai</b>. Xác nhận gia hạn?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: '✅ Duyệt & Gia hạn',
@@ -4467,7 +4480,6 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                         .from('nhiem_vu')
                         .update({ thoi_gian_dong: thoiGianMoiISO })
                         .eq('ma_nhiem_vu', maNhiemVu);
-
                     if (errNhiemVu) throw errNhiemVu;
 
                     const { error: errUpdate } = await _supabase
@@ -4478,7 +4490,6 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                             thoi_gian_ket_thuc: thoiGianMoiISO
                         })
                         .eq('id', idDon);
-
                     if (errUpdate) throw errUpdate;
                     return true;
                 } catch (e) {
@@ -4488,8 +4499,7 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã dời hạn đóng sang ngày mai!', timer: 1500, showConfirmButton: false });
-                // 🌟 ĐÃ SỬA: Gọi đúng hàm 7.12
+                Swal.fire({ icon: 'success', title: 'Đã gia hạn thành công!', timer: 1500, showConfirmButton: false });
                 if (typeof ham_7_12_tab_duyet_don === 'function') ham_7_12_tab_duyet_don();
             }
         });
