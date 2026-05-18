@@ -1140,210 +1140,85 @@ function ham_8_6_tab_dau_truong_live() {
     document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#dc3545; text-align:center;">⚔️ Phòng Đấu Trường (Sắp ra mắt)</h3>`;
 }
 
-// ==============================================================
-// Hàm 8.7: Cửa An Ninh - Kiểm tra lượt làm và Xác nhận vào thi
-// ==============================================================
-async function ham_8_7_cua_an_ninh(maNhiemVu) {
-    // 1. Tìm thông tin nhiệm vụ trong danh sách đã tải về ở GocHocSinhState
-    const nv = GocHocSinhState.danhSachNhiemVu.find(item => item.ma_nhiem_vu === maNhiemVu);
-    if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu bài tập!");
+// =====================================================================
+// Hàm 8.7: Cửa ngõ An ninh kiểm tra điều kiện vào phòng thi (ĐÃ ĐỒNG BỘ)
+// =====================================================================
+window.ham_8_7_cua_an_ninh = async function (maNhiemVu) {
+    // Hiện hiệu ứng chờ để tránh học sinh spam click liên tục
+    Swal.fire({
+        title: '⏳ Đang xác thực phòng thi...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
 
     try {
-        // 2. Kiểm tra số lượt đã làm thực tế từ Database (DÙNG BẢNG ket_qua_thi CỦA THẦY)
-        const { data: cacLuotDaLam, error } = await _supabase
-            .from('ket_qua_thi') // <--- Đã sửa thành ket_qua_thi
-            .select('id')
+        // 1. Lấy thông tin giới hạn lượt làm bài và thời hạn của Nhiệm vụ từ Database
+        const { data: nv, error: errNV } = await _supabase
+            .from('nhiem_vu')
+            .select('so_luot_lam_bai, thoi_gian_dong, ten_nhiem_vu')
             .eq('ma_nhiem_vu', maNhiemVu)
-            .eq('uid_hoc_sinh', GocHocSinhState.uid);
+            .single();
 
-        if (error) throw error;
+        if (errNV || !nv) throw new Error('Không tìm thấy thông tin nhiệm vụ thi này!');
 
-        // Đếm số lượt đã nộp bài
-        const soLuotHienTai = cacLuotDaLam ? cacLuotDaLam.length : 0;
-        const gioiHanLuot = nv.so_luot_lam_bai || 0; // 0 là vô hạn
-
-        // Chặn lại nếu đã làm hết số lượt cho phép
-        if (gioiHanLuot > 0 && soLuotHienTai >= gioiHanLuot) {
-            return Swal.fire({
-                icon: 'error',
-                title: 'Hết lượt làm bài!',
-                text: `Bài tập này giới hạn ${gioiHanLuot} lượt làm. Em đã hoàn thành đủ số lượt.`,
-                confirmButtonColor: '#d33'
-            });
+        // Kiểm tra chốt chặn Quá hạn chót trước
+        const now = new Date();
+        if (nv.thoi_gian_dong && now.getTime() > new Date(nv.thoi_gian_dong).getTime()) {
+            Swal.fire({ icon: 'error', title: 'Phòng thi đã khóa!', text: 'Bài tập này đã quá hạn chót nộp bài hệ thống quy định.' });
+            return;
         }
 
-        // 🌟 LƯU LẠI LẦN THI ĐỂ DÙNG LÚC NỘP BÀI (Hàm 8.11)
-        window.LanThuHienTai = soLuotHienTai + 1;
+        // =====================================================================
+        // 🌟 SỬA ĐỔI CỐT LÕI: Đọc số lượt đã làm từ bộ đếm tiến độ của bảng hoc_sinh
+        // =====================================================================
+        const { data: hsData, error: errHS } = await _supabase
+            .from('hoc_sinh')
+            .select('tien_do_lam_bai')
+            .eq('uid', GocHocSinhState.uid)
+            .single();
 
-        // 3. Hiện bảng thông tin xác nhận tâm lý cho học sinh
-        const thoiGianHienThi = nv.thoi_gian_lam_bai > 0 ? `${nv.thoi_gian_lam_bai} phút` : "Tự do";
+        if (errHS) throw errHS;
 
-        Swal.fire({
-            title: 'XÁC NHẬN VÀO LÀM BÀI',
-            html: `
-                <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; font-size: 14px;">
-                    <p>📝 <b>Nhiệm vụ:</b> <span style="color:#1a73e8; font-weight: bold;">${nv.ten_nhiem_vu}</span></p>
-                    <p>⏱️ <b>Thời gian:</b> ${thoiGianHienThi}</p>
-                    <p>🔄 <b>Lượt làm:</b> Lần thứ ${window.LanThuHienTai} (Tối đa: ${gioiHanLuot == 0 ? "Vô hạn" : gioiHanLuot})</p>
-                    <hr>
-                    <p style="color: #d32f2f; font-weight: bold; font-style: italic; margin:0;">⚠️ Lưu ý: Kết quả các lần trước sẽ xóa, đồng hồ sẽ bắt đầu đếm ngược ngay khi em bấm nút BẮT ĐẦU.</p>
-                </div>
-            `,
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#28a745',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: '🚀 BẮT ĐẦU LÀM BÀI',
-            cancelButtonText: 'Để sau'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Chuyển sang Hàm 8.8: Khởi tạo phòng thi và bốc đề
-                ham_8_8_khoi_tao_phong_thi(nv);
-                
-            }
-        });
+        let demSoLuotLam = {};
+        if (hsData && hsData.tien_do_lam_bai) {
+            demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string'
+                ? JSON.parse(hsData.tien_do_lam_bai)
+                : hsData.tien_do_lam_bai;
+        }
 
-    } catch (err) {
-        alert("Lỗi kiểm tra an ninh: " + err.message);
+        const soLuotDaLam = demSoLuotLam[maNhiemVu] || 0;
+        const gioiHanLuot = nv.so_luot_lam_bai || 0;
+
+        // 2. So sánh số lượt theo bộ đếm mới chuẩn hóa với giáo viên
+        if (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Hết lượt làm bài!',
+                text: `Nhiệm vụ này quy định tối đa ${gioiHanLuot} lượt làm bài. Em đã dùng hết ${soLuotDaLam} lượt.`
+            });
+            return;
+        }
+
+        // =====================================================================
+        // 3. VƯỢT QUA CỬA AN NINH -> Cho phép vào phòng thi làm bài
+        // =====================================================================
+        Swal.close(); // Đóng popup loading
+
+        // Thầy kiểm tra xem hàm kích hoạt làm bài cũ của thầy tên là gì nhé 
+        // Ví dụ dưới đây gọi hàm mở đề ham_8_8_bat_dau_lam_bai(maNhiemVu)
+        if (typeof ham_8_8_bat_dau_lam_bai === 'function') {
+            ham_8_8_bat_dau_lam_bai(maNhiemVu);
+        } else {
+            console.log("🚪 Đã mở cửa phòng thi cho nhiệm vụ: ", maNhiemVu);
+            // Nếu thầy dùng cơ chế chuyển trang hoặc gọi hàm khác thì chèn vào đây nhé
+        }
+
+    } catch (error) {
+        console.error("LỖI AN NINH PHÒNG THI:", error);
+        Swal.fire({ icon: 'error', title: 'Lỗi kiểm tra rào chắn', text: error.message });
     }
-}
+};
 
-//// ==============================================================
-//// Hàm 8.8: Khởi tạo Phòng thi (Nạp đề từ GitHub chuẩn xác 100%)
-//// ==============================================================
-//async function ham_8_8_khoi_tao_phong_thi(nv) {
-//    const vungLamViec = document.getElementById('dashboard-container');
-//    vungLamViec.innerHTML = `
-//        <div style="text-align: center; padding: 100px;">
-//            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-//            <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang tải đề thi từ kho lưu trữ...</h3>
-//            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-//        </div>
-//    `;
-
-//    try {
-//        const maHocLieu = nv.ma_hoc_lieu;
-//        if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
-
-//        // 1. LẤY BẢN ĐỒ ĐÁP ÁN VÀ LINK TỪ SUPABASE
-//        const { data: dataHocLieu, error: errHL } = await _supabase
-//            .from('hoc_lieu')
-//            .select('*') // Lấy tất cả cột (bao gồm url_github nếu có)
-//            .eq('ma_hoc_lieu', maHocLieu)
-//            .single();
-
-//        if (errHL) throw errHL;
-
-//        const dsMapDapAn = dataHocLieu?.danh_sach_cau_hoi || [];
-//        if (dsMapDapAn.length === 0) throw new Error("Supabase báo Bản đồ đáp án trống!");
-
-//        // =========================================================
-//        // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
-//        // =========================================================
-//        let urlFileGitHub = dataHocLieu.url_github;
-
-//        // Nếu DB chưa có link (hoặc thầy chưa kịp thêm cột url_github), hệ thống tự ghép thông minh:
-//        if (!urlFileGitHub) {
-//            let maDeGoc = maHocLieu;
-//            // Tự động gọt bỏ tiền tố "HL_DE_" để lấy đúng mã gốc T12-TEST...
-//            if (maHocLieu.startsWith("HL_DE_")) {
-//                maDeGoc = maHocLieu.replace("HL_DE_", "");
-//            }
-
-//            const LINK_GITHUB_GOC =  "https://ducchinh2308.github.io/LuyenToan2308";
-//            // Ép đúng cấu trúc file trên Github của thầy
-//            urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
-//        }
-
-//        console.log("🔍 Đang tải nội dung chuẩn từ:", urlFileGitHub);
-
-//        // =========================================================
-//        // 3. TẢI NỘI DUNG TỪ GITHUB
-//        // =========================================================
-//        const response = await fetch(urlFileGitHub);
-//        if (!response.ok) {
-//            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ xong chưa.\nLink: " + urlFileGitHub);
-//        }
-
-//        const dataGitHub = await response.json();
-//        const dsNoiDungGH = dataGitHub.danhSachCauHoi || [];
-
-//        // =========================================================
-//        // 4. RÁP ĐỀ VÀ TRỘN ĐỀ
-//        // =========================================================
-//        const deThiHoanChinh = dsMapDapAn.map(mapItem => {
-//            const noiDung = dsNoiDungGH.find(c => c.maCau === mapItem.ma_cau_hoi) || {};
-//            return { ...mapItem, ...noiDung };
-//        });
-
-//        const deThiDaTron = ham_8_9_tron_de_thi(deThiHoanChinh);
-
-        
-        
-//        // Lấy đường dẫn thư mục chứa đề thi (bỏ tên file .json) và cộng thêm thư mục HinhAnh bên trong
-//        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
-//        console.log("urlFileGitHub:" + urlFileGitHub);
-//        console.log("baseUrlHinhAnh:" + baseUrlHinhAnh);
-
-//        // =========================================================
-//        // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
-//        // =========================================================
-//        const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
-
-//        // Hỏi Supabase xem HS đã làm bao nhiêu lần rồi
-//        const { count, error: countErr } = await _supabase
-//            .from('ket_qua_thi')
-//            .select('*', { count: 'exact', head: true })
-//            .eq('uid_hoc_sinh', GocHocSinhState.uid)
-//            .eq('ma_nhiem_vu', maNhiemVuThuc);
-
-//        const lanThuHienTai = (count || 0) + 1; // Tính lần làm bài hiện tại
-
-//        // Lập tức tạo 1 dòng "Đang làm" trên Database
-//        const { data: recordNhao, error: errNhao } = await _supabase
-//            .from('ket_qua_thi')
-//            .insert([{
-//                uid_hoc_sinh: GocHocSinhState.uid,
-//                ma_nhiem_vu: maNhiemVuThuc,
-//                lan_thu: lanThuHienTai,
-//                tong_diem: 0,
-//                chi_tiet_lam_bai: [],
-//                thoi_gian_lam_bai: "0 phút 0 giây", // Mặc định 0 giây
-                
-//                thoi_gian_nop: new Date().toISOString() // Giờ bắt đầu
-//            }])
-//            .select('id')
-//            .single();
-
-//        if (errNhao) throw errNhao;
-
-//        // Lưu toàn bộ vào RAM trình duyệt
-//        window.PhienLamBai = {
-//            id_ket_qua_database: recordNhao.id, // 🌟 GIỮ ID NÀY LẠI ĐỂ LÁT NỮA UPDATE
-//            ma_nhiem_vu: maNhiemVuThuc,
-//            ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
-//            thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
-//            tong_so_cau: deThiDaTron.length,
-//            danh_sach_cau_hoi: deThiDaTron,
-//            dap_an_hoc_sinh: {},
-//            id_timer: null,
-//            base_url_anh: baseUrlHinhAnh
-//        };
-
-//        console.log("📦 RÁP ĐỀ THÀNH CÔNG. ID DATABASE:", window.PhienLamBai.id_ket_qua_database);
-
-//        // =========================================================
-//        // 6. MỞ GIAO DIỆN THI
-//        // =========================================================
-//        ham_8_10_ve_giao_dien_lam_bai();
-
-    
-//    } catch (err) {
-//        console.error("LỖI NẠP ĐỀ:", err);
-//        alert("Lỗi nạp đề thi: " + err.message);
-//        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
-//    }
-//}
 
 // ==============================================================
 // Hàm 8.8: Khởi tạo Phòng thi (BẢO MẬT TUYỆT ĐỐI - KHÔNG ĐỤNG ĐẾN ĐÁP ÁN)
