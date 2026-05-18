@@ -234,6 +234,208 @@ function ham_2_3_an_hien_mat_khau(inputId) {
 }
 
 // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
+//async function ham_2_4_xu_ly_submit(btnElement) {
+//    const sdt = document.getElementById('txtPhone').value.trim();
+//    const pass = document.getElementById('txtPassword').value;
+//    const errorMsg = document.getElementById('login-error');
+
+//    errorMsg.style.display = 'none';
+
+//    if (!sdt || !pass) {
+//        errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+//        errorMsg.style.display = 'block';
+//        return;
+//    }
+
+//    if (AppState.isLoginMode) {
+//        // ====================================================
+//        // LUỒNG 1: ĐĂNG NHẬP
+//        // ====================================================
+//        document.getElementById('status').innerText = `Đang xác thực...`;
+//        try {
+//            const { data: userFound, error } = await _supabase
+//                .from('hoc_sinh')
+//                .select('*')
+//                .eq('sdt', sdt)
+//                .eq('mat_khau', pass)
+//                .maybeSingle();
+
+//            if (error) throw error;
+//            if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+//            if (userFound.trang_thai === 0) throw new Error("Tài khoản đang bị khóa!");
+
+//            AppState.user = userFound;
+//            AppState.role = userFound.vai_tro;
+
+//            // ================================================================
+//            // BƯỚC MỚI: TẠO CHUỖI ĐỊNH DANH ĐỂ HIỂN THỊ TRÊN TIÊU ĐỀ
+//            // ================================================================
+//            let tenVaiTro = '';
+//            if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//            else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//            else tenVaiTro = 'Học sinh';
+
+//            // Viết hoa toàn bộ Tên (Ví dụ: HUỲNH ĐỨC CHÍNH)
+//            let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+
+//            // Ghép chuỗi theo đúng format: Vai trò: TÊN (SĐT)
+//            let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//            // Nạp chuỗi vào thẻ status (Thay thế chữ Đang xác thực...)
+//            let lblStatus = document.getElementById('status');
+//            if (lblStatus) {
+//                lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//                lblStatus.style.color = '#1a73e8'; // Đổi sang màu xanh dương cho nổi bật
+//                lblStatus.style.fontWeight = 'bold'; // In đậm lên cho đẹp
+//            }
+//            // ================================================================
+
+
+//            // Cập nhật thời gian đăng nhập cuối vào Database
+//            await _supabase
+//                .from('hoc_sinh')
+//                .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+//                .eq('uid', userFound.uid);
+
+//            if (AppState.role === 'admin' || AppState.role === 'giaovien') {
+//                ham_3_1_ve_dashboard_admin();
+//            } else {
+
+//                // ====================================================
+//                // KÍCH HOẠT GIAO DIỆN HỌC SINH (GỌI KHỐI 8)
+//                // ====================================================
+//                // 1. Ẩn form đăng nhập, hiện nút đăng xuất
+//                document.getElementById('khung-dang-nhap').style.display = 'none';
+//                document.getElementById('btnLogout').style.display = 'inline-block';
+//                document.getElementById('dashboard-container').style.display = 'block';
+
+//                // 2. 🌟 LẤY TOÀN BỘ DANH SÁCH LỚP CỦA HỌC SINH
+//                let dsMaLopHocSinh = [];
+//                if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+//                    dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
+//                }
+
+//                // 3. Gọi hàm tải nhiệm vụ, truyền CẢ MẢNG sang
+//                ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+
+//            }
+//        } catch (error) {
+//            errorMsg.innerText = error.message;
+//            errorMsg.style.display = 'block';
+//            document.getElementById('status').innerText = `Lỗi đăng nhập`;
+//        }
+
+//    } else {
+//        // ====================================================
+//        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH
+//        // ====================================================
+//        console.log("App: Đang xử lý đăng ký tài khoản");
+
+//        // Đọc thông tin từ Form
+//        const hoTen = document.getElementById('txtHoTen').value.trim();
+//        const passConfirm = document.getElementById('txtConfirmPassword').value;
+
+//        const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
+//        const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
+//        const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
+//        const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+//        console.log(maLopVao);
+
+
+
+//        // 1. Kiểm tra tính hợp lệ
+//        if (!hoTen || !tinh || !truong) {
+//            errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+//            errorMsg.style.display = 'block';
+//            return;
+//        }
+//        if (pass !== passConfirm) {
+//            errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+//            errorMsg.style.display = 'block';
+//            return;
+//        }
+//        if (sdt.length < 9) {
+//            errorMsg.innerText = "Số điện thoại không hợp lệ!";
+//            errorMsg.style.display = 'block';
+//            return;
+//        }
+
+//        document.getElementById('status').innerText = `Đang kết nối cơ sở dữ liệu...`;
+//        if (btnElement) btnElement.disabled = true;
+
+//        try {
+//            // 2. Kiểm tra trùng số điện thoại
+//            const { data: checkSdt, error: checkError } = await _supabase
+//                .from('hoc_sinh')
+//                .select('sdt')
+//                .eq('sdt', sdt)
+//                .maybeSingle();
+
+//            if (checkSdt) {
+//                throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
+//            }
+
+
+//            // =========================================================
+//            // BƯỚC MỚI: KIỂM TRA MÃ LỚP CÓ TỒN TẠI KHÔNG (NẾU CÓ NHẬP)
+//            // =========================================================
+//            if (maLopVao !== '') {
+//                const { data: checkLop, error: loiCheckLop } = await _supabase
+//                    .from('lop_hoc')
+//                    .select('ma_lop')
+//                    .eq('ma_lop', maLopVao)
+//                    .maybeSingle(); // maybeSingle() sẽ trả về null nếu không tìm thấy
+
+//                if (loiCheckLop) throw loiCheckLop;
+
+//                // Nếu checkLop là null -> Mã lớp không có thật trong Database
+//                if (!checkLop) {
+//                    throw new Error(`Mã lớp "${maLopVao}" không tồn tại. Học sinh vui lòng kiểm tra lại hoặc để trống nếu chưa có lớp!`);
+//                }
+//            }
+//            // =========================================================
+
+
+
+
+//            // 3. Thực hiện lưu vào Database (Khớp 100% với cấu trúc bảng)
+//            const { error: insertError } = await _supabase
+//                .from('hoc_sinh')
+//                .insert([{
+//                    uid: crypto.randomUUID(),
+//                    sdt: sdt,
+//                    mat_khau: pass,
+//                    ten: hoTen,
+//                    vai_tro: 'hocsinh',
+//                    trang_thai: 1,
+//                    khoi_lop: khoi,
+//                    tinh: tinh,
+//                    truong: truong,
+//                    danh_sach_ma_lop: maLopVao ? [maLopVao] : [], // Sử dụng đúng tên cột mới
+//                    ngay_tham_gia: new Date().toISOString()
+//                }]);
+
+//            if (insertError) throw insertError;
+
+//            // 4. Hoàn tất
+//            alert(`Đăng ký thành công tài khoản cho: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
+
+//            ham_2_1_chuyen_doi_che_do();
+//            document.getElementById('txtPassword').value = '';
+//            document.getElementById('status').innerText = `Vui lòng đăng nhập để vào thi`;
+
+//        } catch (error) {
+//            errorMsg.innerText = error.message;
+//            errorMsg.style.display = 'block';
+//            document.getElementById('status').innerText = `Đăng ký thất bại`;
+//        } finally {
+//            if (btnElement) btnElement.disabled = false;
+//        }
+//    }
+//}
+
+
+// Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính
 async function ham_2_4_xu_ly_submit(btnElement) {
     const sdt = document.getElementById('txtPhone').value.trim();
     const pass = document.getElementById('txtPassword').value;
@@ -249,7 +451,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     if (AppState.isLoginMode) {
         // ====================================================
-        // LUỒNG 1: ĐĂNG NHẬP
+        // LUỒNG 1: ĐĂNG NHẬP (Giữ nguyên)
         // ====================================================
         document.getElementById('status').innerText = `Đang xác thực...`;
         try {
@@ -267,31 +469,21 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             AppState.user = userFound;
             AppState.role = userFound.vai_tro;
 
-            // ================================================================
-            // BƯỚC MỚI: TẠO CHUỖI ĐỊNH DANH ĐỂ HIỂN THỊ TRÊN TIÊU ĐỀ
-            // ================================================================
             let tenVaiTro = '';
             if (AppState.role === 'admin') tenVaiTro = 'Admin';
             else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
             else tenVaiTro = 'Học sinh';
 
-            // Viết hoa toàn bộ Tên (Ví dụ: HUỲNH ĐỨC CHÍNH)
             let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
-
-            // Ghép chuỗi theo đúng format: Vai trò: TÊN (SĐT)
             let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
 
-            // Nạp chuỗi vào thẻ status (Thay thế chữ Đang xác thực...)
             let lblStatus = document.getElementById('status');
             if (lblStatus) {
                 lblStatus.innerText = `👤 ${chuoiHienThi}`;
-                lblStatus.style.color = '#1a73e8'; // Đổi sang màu xanh dương cho nổi bật
-                lblStatus.style.fontWeight = 'bold'; // In đậm lên cho đẹp
+                lblStatus.style.color = '#1a73e8';
+                lblStatus.style.fontWeight = 'bold';
             }
-            // ================================================================
 
-
-            // Cập nhật thời gian đăng nhập cuối vào Database
             await _supabase
                 .from('hoc_sinh')
                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
@@ -300,24 +492,16 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
                 ham_3_1_ve_dashboard_admin();
             } else {
-
-                // ====================================================
-                // KÍCH HOẠT GIAO DIỆN HỌC SINH (GỌI KHỐI 8)
-                // ====================================================
-                // 1. Ẩn form đăng nhập, hiện nút đăng xuất
                 document.getElementById('khung-dang-nhap').style.display = 'none';
                 document.getElementById('btnLogout').style.display = 'inline-block';
                 document.getElementById('dashboard-container').style.display = 'block';
 
-                // 2. 🌟 LẤY TOÀN BỘ DANH SÁCH LỚP CỦA HỌC SINH
                 let dsMaLopHocSinh = [];
                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
                 }
 
-                // 3. Gọi hàm tải nhiệm vụ, truyền CẢ MẢNG sang
                 ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
-
             }
         } catch (error) {
             errorMsg.innerText = error.message;
@@ -327,11 +511,10 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     } else {
         // ====================================================
-        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH
+        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN HỌC SINH (ĐÃ NÂNG CẤP ĐỒNG BỘ LỚP)
         // ====================================================
         console.log("App: Đang xử lý đăng ký tài khoản");
 
-        // Đọc thông tin từ Form
         const hoTen = document.getElementById('txtHoTen').value.trim();
         const passConfirm = document.getElementById('txtConfirmPassword').value;
 
@@ -339,9 +522,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
-        console.log(maLopVao);
-
-
 
         // 1. Kiểm tra tính hợp lệ
         if (!hoTen || !tinh || !truong) {
@@ -375,34 +555,33 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
             }
 
-
             // =========================================================
-            // BƯỚC MỚI: KIỂM TRA MÃ LỚP CÓ TỒN TẠI KHÔNG (NẾU CÓ NHẬP)
+            // 3. KIỂM TRA MÃ LỚP VÀ LẤY DANH SÁCH HỌC SINH HIỆN TẠI CỦA LỚP ĐÓ
             // =========================================================
+            let checkLop = null;
             if (maLopVao !== '') {
-                const { data: checkLop, error: loiCheckLop } = await _supabase
+                const { data: dataLop, error: loiCheckLop } = await _supabase
                     .from('lop_hoc')
-                    .select('ma_lop')
+                    .select('ma_lop, danh_sach_hoc_sinh') // Bốc luôn mảng học sinh cũ ra
                     .eq('ma_lop', maLopVao)
-                    .maybeSingle(); // maybeSingle() sẽ trả về null nếu không tìm thấy
+                    .maybeSingle();
 
                 if (loiCheckLop) throw loiCheckLop;
 
-                // Nếu checkLop là null -> Mã lớp không có thật trong Database
-                if (!checkLop) {
-                    throw new Error(`Mã lớp "${maLopVao}" không tồn tại. Học sinh vui lòng kiểm tra lại hoặc để trống nếu chưa có lớp!`);
+                if (!dataLop) {
+                    throw new Error(`Mã lớp "${maLopVao}" không tồn tại. Em vui lòng kiểm tra lại hoặc để trống nếu chưa có lớp!`);
                 }
+                checkLop = dataLop; // Lưu lại để tí nữa update
             }
-            // =========================================================
 
+            // 4. Tạo sẵn 1 mã UID duy nhất cho học sinh này
+            const taoUidHocSinh = crypto.randomUUID();
 
-
-
-            // 3. Thực hiện lưu vào Database (Khớp 100% với cấu trúc bảng)
+            // 5. Thực hiện lưu học sinh vào Database
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
-                    uid: crypto.randomUUID(),
+                    uid: taoUidHocSinh, // Dùng mã UID vừa tạo
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
@@ -411,13 +590,38 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     khoi_lop: khoi,
                     tinh: tinh,
                     truong: truong,
-                    danh_sach_ma_lop: maLopVao ? [maLopVao] : [], // Sử dụng đúng tên cột mới
+                    danh_sach_ma_lop: maLopVao ? [maLopVao] : [],
                     ngay_tham_gia: new Date().toISOString()
                 }]);
 
             if (insertError) throw insertError;
 
-            // 4. Hoàn tất
+            // =========================================================
+            // 🌟 6. CẬP NHẬT UID HỌC SINH VÀO BẢNG LỚP HỌC (ĐỒNG BỘ 2 CHIỀU)
+            // =========================================================
+            if (maLopVao !== '' && checkLop) {
+                let dsHsHienTaiLop = [];
+                try {
+                    // Ép kiểu JSON an toàn
+                    dsHsHienTaiLop = typeof checkLop.danh_sach_hoc_sinh === 'string'
+                        ? JSON.parse(checkLop.danh_sach_hoc_sinh)
+                        : (checkLop.danh_sach_hoc_sinh || []);
+                } catch (e) { }
+
+                // Nếu UID chưa có trong lớp thì push vào và update lại lên Supabase
+                if (!dsHsHienTaiLop.includes(taoUidHocSinh)) {
+                    dsHsHienTaiLop.push(taoUidHocSinh);
+
+                    const { error: errUpdateLop } = await _supabase
+                        .from('lop_hoc')
+                        .update({ danh_sach_hoc_sinh: dsHsHienTaiLop })
+                        .eq('ma_lop', maLopVao);
+
+                    if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+                }
+            }
+
+            // 7. Hoàn tất
             alert(`Đăng ký thành công tài khoản cho: ${hoTen}. Hệ thống sẽ chuyển về trang Đăng nhập!`);
 
             ham_2_1_chuyen_doi_che_do();
@@ -433,6 +637,9 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         }
     }
 }
+
+
+
 // Hàm 2.5: Xử lý Đăng xuất (Cập nhật để ẩn Dashboard)
 function ham_2_5_xu_ly_dang_xuat() {
     //console.log("Đang vào hàm ham_2_5");
