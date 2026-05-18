@@ -4113,11 +4113,11 @@ window.ham_7_11_ve_nut_loi_giai_dong = async function (maHocLieu) {
 // KHỞI TẠO TRẠNG THÁI SẮP XẾP TOÀN CỤC (Nếu chưa có)
 // =====================================================================
 if (!window.DuyetDonSortState) {
-    window.DuyetDonSortState = { key: 'trang_thai', asc: true }; // Mặc định xếp theo trạng thái chờ duyệt lên đầu
+    window.DuyetDonSortState = { key: 'trang_thai', asc: true };
 }
 
 // =====================================================================
-// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN (BẢN BỌC THÉP CHI TIẾT + SORT)
+// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN (HIỂN THỊ SỐ ĐƠN CẦN DUYỆT)
 // =====================================================================
 window.ham_7_12_tab_duyet_don = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -4142,9 +4142,15 @@ window.ham_7_12_tab_duyet_don = async function () {
             return;
         }
 
-        // =====================================================================
-        // 🌟 NÂNG CẤP 1: TRUY VẤN SONG SONG LẤY CHI TIẾT NHIỆM VỤ GỐC
-        // =====================================================================
+        // 🌟 ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT (Trạng thái = 0)
+        const soDonChuaDuyet = dsDon.filter(d => d.trang_thai === 0).length;
+
+        // 🌟 TẠO GIAO DIỆN HUY HIỆU (ĐỎ BÁO ĐỘNG NẾU CÓ ĐƠN, XÁM NẾU HẾT ĐƠN)
+        const cssBadge = soDonChuaDuyet > 0
+            ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
+            : "background: rgba(0,0,0,0.1); color: #333;";
+
+        // 2. TRUY VẤN SONG SONG LẤY CHI TIẾT NHIỆM VỤ GỐC
         const mangMaNV = [...new Set(dsDon.map(d => d.ma_nhiem_vu).filter(Boolean))];
         let tuDienNhiemVuGoc = {};
 
@@ -4161,9 +4167,7 @@ window.ham_7_12_tab_duyet_don = async function () {
             }
         }
 
-        // =====================================================================
-        // 🌟 NÂNG CẤP 2: THỰC THI LOGIC SẮP XẾP DỮ LIỆU TRÊN MẢNG (CLIENT-SIDE SORT)
-        // =====================================================================
+        // 3. THỰC THI LOGIC SẮP XẾP DỮ LIỆU
         dsDon.sort((a, b) => {
             let valA, valB;
             const sortKey = window.DuyetDonSortState.key;
@@ -4193,13 +4197,12 @@ window.ham_7_12_tab_duyet_don = async function () {
             return 0;
         });
 
-        // 3. Hàm tạo mũi tên hiển thị trên thanh tiêu đề cột
         const veMuiTenSort = (colKey) => {
             if (window.DuyetDonSortState.key !== colKey) return ' <span style="color:#ccc; font-size:10px;">⇅</span>';
             return window.DuyetDonSortState.asc ? ' <span style="color:#28a745;">🔼</span>' : ' <span style="color:#dc3545;">🔽</span>';
         };
 
-        // 4. Duyệt mảng vẽ các hàng dữ liệu HTML
+        // 4. DUYỆT MẢNG VẼ HÀNG DỮ LIỆU HTML
         let htmlRows = '';
         const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
 
@@ -4229,7 +4232,6 @@ window.ham_7_12_tab_duyet_don = async function () {
                 hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
             }
 
-            // 🌟 TRÍCH XUẤT THÔNG TIN CHI TIẾT TỪ TỪ ĐIỂN NHIỆM VỤ GỐC ĐỂ SHOW BẢNG
             const nvGoc = tuDienNhiemVuGoc[don.ma_nhiem_vu] || {};
             const thoiGianLamTxt = nvGoc.thoi_gian_lam_bai > 0 ? `${nvGoc.thoi_gian_lam_bai} phút` : 'Tự do';
             const gioHanLuotTxt = nvGoc.so_luot_lam_bai > 0 ? `${nvGoc.so_luot_lam_bai} lượt` : 'Vô hạn';
@@ -4247,7 +4249,6 @@ window.ham_7_12_tab_duyet_don = async function () {
                         <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
                         <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
                     </td>
-                    
                     <td style="padding: 15px 10px;">
                         <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
                         
@@ -4265,7 +4266,7 @@ window.ham_7_12_tab_duyet_don = async function () {
 
                         <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
                             ${loaiBadge} 
-                            <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi: ${ngayGui}</span>
+                            <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi lúc: ${ngayGui}</span>
                         </div>
                     </td>
                     
@@ -4280,12 +4281,15 @@ window.ham_7_12_tab_duyet_don = async function () {
             `;
         });
 
-        // Giao diện khung chính kèm các cột tiêu đề có khả năng CLICK ĐỂ SORT
+        // 5. RENDER MAIN GIAO DIỆN
         vungLamViec.innerHTML = `
             <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
                 <div style="background: linear-gradient(135deg, #ffc107, #ff9800); padding: 20px; color: #000; display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">📭 HÒM THƯ XÉT DUYỆT YÊU CẦU CỦA HỌC SINH</h3>
-                    <span style="background: rgba(0,0,0,0.08); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">Tổng số đơn: ${dsDon.length}</span>
+                    
+                    <span style="${cssBadge} padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: bold; transition: 0.3s;">
+                        🔔 Cần duyệt: ${soDonChuaDuyet} đơn
+                    </span>
                 </div>
                 
                 <div style="background: #fff9e6; padding: 10px 15px; font-size: 12px; color: #b7791f; border-bottom: 1px solid #fbd38d; font-weight: bold;">
