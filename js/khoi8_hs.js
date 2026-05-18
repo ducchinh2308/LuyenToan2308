@@ -676,7 +676,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 }
 
 // =====================================================================
-// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu bài tập đã đóng
+// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (CHUẨN HÓA SCHEMA)
 // =====================================================================
 window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
     let tieuDePrompt = 'XIN THÊM LƯỢT LÀM BÀI';
@@ -698,18 +698,50 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
         cancelButtonText: 'Hủy',
         confirmButtonColor: '#fd7e14',
         cancelButtonColor: '#6c757d',
+        showLoaderOnConfirm: true,
         inputValidator: (value) => {
-            if (!value.trim()) {
-                return 'Em bắt buộc phải nhập lý do rõ ràng thì Thầy mới duyệt được nhé!';
+            if (!value.trim()) return 'Em bắt buộc phải nhập lý do rõ ràng thì Thầy mới duyệt được nhé!';
+        },
+        // 🌟 BẮN DỮ LIỆU LÊN SUPABASE VỚI ĐÚNG SCHEMA CỦA THẦY
+        preConfirm: async (lyDoHS) => {
+            try {
+                // Ép danh sách lớp thành chuỗi để lưu vào cột ma_lop (text)
+                const chuoiMaLop = (GocHocSinhState.danh_sach_ma_lop || []).join(', ');
+
+                const payload = {
+                    uid_hoc_sinh: GocHocSinhState.uid,            // Kiểu uuid
+                    ten_hoc_sinh: GocHocSinhState.ten,            // Kiểu text
+                    loai_yeu_cau: loaiXin,                        // Kiểu text
+                    ma_nhiem_vu: maNhiemVu,                       // Kiểu text
+                    ma_lop: chuoiMaLop,                           // Kiểu text
+                    ten_nhiem_vu: tenNhiemVu,                     // Kiểu text
+                    ly_do: lyDoHS,                                // Kiểu text
+                    trang_thai: 0                                 // Kiểu int4 (0: Đang chờ)
+
+                    // 💡 Lưu ý: 
+                    // - id, ngay_tao: Supabase tự động sinh (gen_random_uuid() và now())
+                    // - uid_gv_duyet, so_luot_duoc_them, thoi_gian_ket_thuc, phan_hoi_gv: Đã được setup NULL trong DB nên không cần gửi.
+                };
+
+                // Lệnh Insert gọi chính xác tên bảng 'yeu_cau_hoc_sinh'
+                const { data, error } = await _supabase.from('yeu_cau_hoc_sinh').insert([payload]);
+
+                if (error) throw error;
+
+                return true;
+            } catch (error) {
+                console.error("LỖI GỬI ĐƠN:", error);
+                Swal.showValidationMessage(`Gửi thất bại: ${error.message}`);
+                return false;
             }
-        }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
         if (result.isConfirmed) {
-            console.log(`[ĐƠN XIN LƯỢT] Học sinh ${GocHocSinhState.uid} xin [${loaiXin}] nhiệm vụ ${maNhiemVu}. Lý do: ${result.value}`);
             Swal.fire({
                 icon: 'success',
                 title: 'Đã gửi đơn thành công!',
-                text: 'Yêu cầu của em đã được chuyển tới Thầy. Hãy đợi Thầy duyệt nha!',
+                text: 'Yêu cầu của em đã được ném vào Hòm thư của Giáo viên. Hãy đợi Thầy duyệt nha!',
                 confirmButtonColor: '#28a745'
             });
         }
