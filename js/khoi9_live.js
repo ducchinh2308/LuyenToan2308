@@ -190,7 +190,217 @@ window.ham_9_2_tao_phong_live = async function () {
     }
 }
 
-// Hàm giữ chỗ để tí nữa viết Giao diện trong phòng (Sẽ viết ở Nhịp 2)
-window.ham_9_3_vao_dieu_khien_phong = function (maPhong) {
-    alert(`Chuẩn bị xây dựng Bảng điều khiển Realtime cho phòng: ${maPhong}`);
+// =====================================================================
+// KHỞI TẠO BIẾN TOÀN CỤC ĐỂ QUẢN LÝ SÓNG REALTIME
+// =====================================================================
+window.LiveQuizChannel = null;
+window.DanhSachLive = [];
+window.ThongTinPhongLive = { tongSoCau: 0, maPhong: '' };
+
+// =====================================================================
+// Hàm 9.3: Vào phòng điều khiển (Hiển thị Mã PIN & Bảng Xếp Hạng Realtime)
+// =====================================================================
+window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang kết nối tín hiệu phòng ${maPhong}...</h3></div>`;
+
+    try {
+        // 1. Bốc thông tin phòng và Nhiệm vụ (Để tính tổng số câu hỏi)
+        const { data: phong, error: errPhong } = await _supabase
+            .from('phong_live_quiz')
+            .select('*')
+            .eq('ma_phong', maPhong)
+            .single();
+
+        if (errPhong) throw errPhong;
+
+        const { data: nv } = await _supabase
+            .from('nhiem_vu')
+            .select('ten_nhiem_vu, cau_truc_de')
+            .eq('ma_nhiem_vu', phong.ma_nhiem_vu)
+            .single();
+
+        let tongSoCau = 0;
+        try {
+            // Lấy tổng số câu từ cấu trúc đề (VD: "TN: 10, TLN: 5")
+            // Hoặc có thể mặc định là 50 nếu cấu trúc rỗng
+            const matchCau = (nv.cau_truc_de || '').match(/\d+/g);
+            if (matchCau) tongSoCau = matchCau.reduce((a, b) => Number(a) + Number(b), 0);
+            if (tongSoCau === 0) tongSoCau = 20; // Mặc định an toàn
+        } catch (e) { tongSoCau = 20; }
+
+        window.ThongTinPhongLive = { tongSoCau: tongSoCau, maPhong: maPhong };
+
+        // 2. Bốc tiến độ hiện tại của tất cả học sinh trong phòng
+        const { data: dsTienDo, error: errTienDo } = await _supabase
+            .from('tien_do_live_quiz')
+            .select('*')
+            .eq('ma_phong', maPhong);
+
+        if (errTienDo) throw errTienDo;
+        window.DanhSachLive = dsTienDo || [];
+
+        // 3. VẼ KHUNG GIAO DIỆN CHÍNH
+        let nutTrangThaiHtml = '';
+        if (phong.trang_thai === 0) {
+            nutTrangThaiHtml = `<button onclick="ham_9_3_2_doi_trang_thai('${maPhong}', 1)" style="padding: 12px 24px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🚀 BẮT ĐẦU THI ĐẤU</button>`;
+        } else if (phong.trang_thai === 1) {
+            nutTrangThaiHtml = `<button onclick="ham_9_3_2_doi_trang_thai('${maPhong}', 2)" style="padding: 12px 24px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(231,76,60,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🛑 KẾT THÚC TRẬN ĐẤU</button>`;
+        } else {
+            nutTrangThaiHtml = `<span style="padding: 12px 24px; background: #6c757d; color: white; border-radius: 8px; font-weight: 900; font-size: 16px;">🏁 ĐÃ KẾT THÚC</span>`;
+        }
+
+        vungLamViec.innerHTML = `
+            <div style="background: #1e1e2f; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #2a2a3c;">
+                    <div>
+                        <div style="color: #a0a0b2; font-size: 14px; font-weight: bold; text-transform: uppercase;">MÃ PHÒNG (PIN)</div>
+                        <div style="font-size: 48px; font-weight: 900; color: #f1c40f; letter-spacing: 5px; line-height: 1;">${maPhong}</div>
+                        <div style="color: #3498db; font-size: 13px; margin-top: 5px; font-weight: bold;">Đề: ${nv.ten_nhiem_vu} (${tongSoCau} câu)</div>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        ${nutTrangThaiHtml}
+                        <button onclick="ham_9_3_3_thoat_phong()" style="padding: 12px 20px; background: transparent; color: #a0a0b2; border: 2px solid #a0a0b2; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.color='white'; this.style.borderColor='white'" onmouseout="this.style.color='#a0a0b2'; this.style.borderColor='#a0a0b2'">
+                            Thoát ra ngoài
+                        </button>
+                    </div>
+                </div>
+
+                <div style="padding: 20px 30px; min-height: 400px; background: #252538;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: #a0a0b2; font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 0 15px;">
+                        <div style="width: 50px;">Rank</div>
+                        <div style="flex: 1;">Chiến binh</div>
+                        <div style="width: 40%; text-align: center;">Tiến độ làm bài</div>
+                        <div style="width: 80px; text-align: right;">Điểm số</div>
+                    </div>
+                    
+                    <div id="vung-ve-leaderboard" style="display: flex; flex-direction: column; gap: 10px;">
+                        </div>
+                </div>
+            </div>
+        `;
+
+        // Lần vẽ đầu tiên
+        ham_9_3_1_ve_leaderboard();
+
+        // =====================================================================
+        // 🌟 4. KÍCH HOẠT SÓNG REALTIME: BẮT SỰ KIỆN TỪ DATABASE
+        // =====================================================================
+        if (window.LiveQuizChannel) { _supabase.removeChannel(window.LiveQuizChannel); } // Xóa kênh cũ nếu còn vướng
+
+        window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong)
+            .on('postgres_changes', {
+                event: '*',
+                table: 'tien_do_live_quiz',
+                filter: `ma_phong=eq.${maPhong}`
+            }, payload => {
+                const { eventType, new: dataMoi } = payload;
+
+                if (eventType === 'INSERT') {
+                    window.DanhSachLive.push(dataMoi);
+                } else if (eventType === 'UPDATE') {
+                    const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === dataMoi.uid_hoc_sinh);
+                    if (idx > -1) {
+                        window.DanhSachLive[idx] = dataMoi; // Cập nhật đè dữ liệu mới
+                    }
+                }
+
+                // Sau khi RAM thay đổi, lập tức ra lệnh vẽ lại bảng
+                ham_9_3_1_ve_leaderboard();
+            })
+            .subscribe();
+
+    } catch (e) {
+        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất phòng: ${e.message}</div>`;
+    }
+}
+
+// =====================================================================
+// Hàm 9.3.1: Vẽ/Cập nhật Khối Leaderboard (Chạy liên tục mỗi khi có tín hiệu)
+// =====================================================================
+window.ham_9_3_1_ve_leaderboard = function () {
+    const vungVe = document.getElementById('vung-ve-leaderboard');
+    if (!vungVe) return;
+
+    if (window.DanhSachLive.length === 0) {
+        vungVe.innerHTML = `<div style="text-align:center; color:#a0a0b2; padding: 40px; font-style:italic;">Đang đợi học sinh nhập mã PIN tham gia...</div>`;
+        return;
+    }
+
+    // THUẬT TOÁN XẾP HẠNG: 1. Điểm số (giảm dần) -> 2. Số câu đúng (giảm dần) -> 3. Tgian nộp (tăng dần)
+    window.DanhSachLive.sort((a, b) => {
+        if (b.diem_so !== a.diem_so) return b.diem_so - a.diem_so;
+        if (b.so_cau_dung !== a.so_cau_dung) return b.so_cau_dung - a.so_cau_dung;
+        return new Date(a.thoi_gian_cap_nhat) - new Date(b.thoi_gian_cap_nhat);
+    });
+
+    let htmlDong = '';
+    const tongCau = window.ThongTinPhongLive.tongSoCau;
+
+    window.DanhSachLive.forEach((hs, index) => {
+        const phanTram = tongCau > 0 ? (hs.so_cau_da_lam / tongCau) * 100 : 0;
+
+        let rankIcon = `<div style="width: 30px; height: 30px; background: #343a40; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">${index + 1}</div>`;
+        if (index === 0) rankIcon = `<div style="font-size: 24px;">🥇</div>`;
+        if (index === 1) rankIcon = `<div style="font-size: 24px;">🥈</div>`;
+        if (index === 2) rankIcon = `<div style="font-size: 24px;">🥉</div>`;
+
+        // Tự đổi màu thanh khi xong bài
+        const mauThanh = phanTram >= 100 ? '#2ecc71' : '#3498db';
+
+        htmlDong += `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #2f2f45; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                <div style="width: 50px; display: flex; justify-content: center;">${rankIcon}</div>
+                
+                <div style="flex: 1; font-weight: bold; font-size: 16px; color: #fff;">
+                    ${hs.ten_hoc_sinh}
+                    <div style="font-size: 11px; color: #a0a0b2; font-weight: normal;">Đúng: ${hs.so_cau_dung} câu</div>
+                </div>
+                
+                <div style="width: 40%; display: flex; align-items: center; gap: 10px;">
+                    <div style="flex: 1; background: #1e1e2f; height: 12px; border-radius: 6px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);">
+                        <div style="width: ${phanTram}%; height: 100%; background: ${mauThanh}; border-radius: 6px; transition: width 0.5s ease-out;"></div>
+                    </div>
+                    <div style="font-size: 12px; font-weight: bold; color: #a0a0b2; width: 40px; text-align: right;">${hs.so_cau_da_lam}/${tongCau}</div>
+                </div>
+                
+                <div style="width: 80px; text-align: right; font-size: 20px; font-weight: 900; color: #f1c40f;">
+                    ${Number(hs.diem_so).toFixed(1)}
+                </div>
+            </div>
+        `;
+    });
+
+    vungVe.innerHTML = htmlDong;
+}
+
+// =====================================================================
+// Hàm 9.3.2: Đổi trạng thái phòng (Bắt đầu / Kết thúc)
+// =====================================================================
+window.ham_9_3_2_doi_trang_thai = async function (maPhong, trangThaiMoi) {
+    try {
+        const { error } = await _supabase
+            .from('phong_live_quiz')
+            .update({ trang_thai: trangThaiMoi })
+            .eq('ma_phong', maPhong);
+
+        if (error) throw error;
+
+        // Cập nhật lại giao diện phòng
+        ham_9_3_vao_dieu_khien_phong(maPhong);
+    } catch (e) {
+        Swal.fire('Lỗi', e.message, 'error');
+    }
+}
+
+// =====================================================================
+// Hàm 9.3.3: Nút Thoát Phòng (Gỡ bỏ kết nối Realtime cho nhẹ máy)
+// =====================================================================
+window.ham_9_3_3_thoat_phong = function () {
+    if (window.LiveQuizChannel) {
+        _supabase.removeChannel(window.LiveQuizChannel);
+        window.LiveQuizChannel = null;
+    }
+    ham_9_1_tab_live_quiz();
 }
