@@ -1,0 +1,43 @@
+{
+  "maDe": "T12-BGD25-101-6TLN",
+  "tenDe": "BGD25-101-6 CÂU TLN",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_debf278031",
+      "ma_goc": "2605-800",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn Nam tham gia cuộc thi giải một mật thư. Theo quy tắc của cuộc thi, người chơi cần chọn ra sáu số từ tập hợp $S = \\{11; 12; 13; 14; 15; 16; 17; 18; 19\\}$ và xếp mỗi số vào đúng một vị trí trong sáu vị trí $A, B, C, M, N, P$ như hình bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_debf278031_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tMật thư sẽ được giải nếu các bộ ba số xuất hiện ở những bộ ba vị trí $(A, M, B)$; $(B, N, C)$; $(C, P, A)$ tạo thành các cấp số cộng theo thứ tự đó. Bạn Nam chọn ngẫu nhiên sáu số trong tập $S$ và xếp ngẫu nhiên vào các vị trí yêu cầu. Gọi xác suất để bạn Nam giải được mật thư ở lần chọn và xếp đó là $a$. Giá trị của $\\displaystyle \\frac{1}{a}$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_74b3a05122",
+      "ma_goc": "2605-801",
+      "kieuCau": "TLN",
+      "cauDan": "Nếu một doanh nghiệp sản xuất $x$ sản phẩm trong một tháng ($x \\in \\mathbb{N}^*$; $1 \\le x \\le 4500$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = -0{,}01x^2 + 300x$ (nghìn đồng), trong khi chi phí sản xuất bình quân cho mỗi sản phẩm là $G(x) = \\displaystyle \\frac{30000}{x} + 200$ (nghìn đồng). Giả sử số sản phẩm sản xuất ra luôn được bán hết. Trong một tháng, doanh nghiệp đó cần sản xuất ít nhất bao nhiêu sản phẩm để lợi nhuận thu được lớn hơn $100$ triệu đồng?"
+    },
+    {
+      "maCau": "q_fd8a5dcf1b",
+      "ma_goc": "2605-802",
+      "kieuCau": "TLN",
+      "cauDan": "Để gây quỹ từ thiện, câu lạc bộ thiện nguyện của một trường THPT tổ chức hoạt động bán hàng với hai mặt hàng là nước chanh và khoai chiên. Câu lạc bộ thiết kế hai thực đơn. Thực đơn 1 có giá $30$ nghìn đồng, bao gồm hai cốc nước chanh và một túi khoai chiên. Thực đơn 2 có giá $50$ nghìn đồng, bao gồm ba cốc nước chanh và hai túi khoai chiên. Biết rằng câu lạc bộ chỉ làm được không quá $165$ cốc nước chanh và $100$ túi khoai chiên. Số tiền lớn nhất mà câu lạc bộ có thể nhận được sau khi bán hết hàng bằng bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_455d5d5c0b",
+      "ma_goc": "2605-803",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi với $\\widehat{ABC} = 60^\\circ$ và $AB = 2$. Biết rằng hình chiếu vuông góc của $S$ trên mặt phẳng $(ABCD)$ là trọng tâm $H$ của tam giác $ABC$ và $SH = \\sqrt{3}$. Khoảng cách giữa hai đường thẳng $AC$ và $SD$ bằng bao nhiêu \\textit{(không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)}?"
+    },
+    {
+      "maCau": "q_e8fd19b6db",
+      "ma_goc": "2605-804",
+      "kieuCau": "TLN",
+      "cauDan": "Có bốn ngăn (trong một giá để sách) được đánh số thứ tự $1, 2, 3, 4$ và bảy quyển sách khác nhau. Bạn An xếp hết bảy quyển sách nói trên vào bốn ngăn đó sao cho mỗi ngăn có ít nhất một quyển sách và các quyển sách được xếp thẳng đứng thành một hàng ngang với gáy sách quay ra ngoài ở mỗi ngăn. Khi đã xếp xong bảy quyển sách, hai cách xếp của bạn An được gọi là giống nhau nếu chúng thoả mãn đồng thời hai điều kiện sau đây:\\\\\r\n\t$+$ Với từng ngăn, số lượng quyển sách ở ngăn đó là như nhau trong cả hai cách xếp;\\\\\r\n\t$+$ Với từng ngăn, thứ tự từ trái sang phải của các quyển sách được xếp là như nhau trong cả hai cách xếp.\\\\\r\n\tGọi $T$ là số cách xếp đôi một khác nhau của bạn An. Giá trị của $\\displaystyle \\frac{T}{100}$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_bf5b4eeec3",
+      "ma_goc": "2605-805",
+      "kieuCau": "TLN",
+      "cauDan": "Để đặt được một vật trang trí trên mặt bàn, người ta thiết kế một chân đế như sau: lấy một khối gỗ có dạng khối chóp cụt tứ giác đều với độ dài hai cạnh đáy lần lượt bằng $7{,}4 \\text{ cm}$ và $10{,}4 \\text{ cm}$, bề dày của khối gỗ bằng $1{,}5 \\text{ cm}$. Sau đó khoét bỏ đi một phần của khối gỗ sao cho phần đó có dạng vật thể $H$, ở đó $H$ nhận được bằng cách cắt khối cầu bán kính $5{,}8 \\text{ cm}$ bởi một mặt phẳng cắt mà mặt cắt là hình tròn bán kính $3{,}5 \\text{ cm}$ (xem hình dưới).\r\n\\begin{center}\r\n\t<img src='HinhAnh/q_bf5b4eeec3_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\\end{center}\r\n\tThể tích của khối chân đế bằng bao nhiêu centimet khối \\textit{(không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần mười)}?"
+    }
+  ]
+}
