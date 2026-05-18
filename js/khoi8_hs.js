@@ -623,10 +623,169 @@ async function ham_8_3_tab_luyen_tap_tu_do() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi tải dữ liệu tự luyện: ${error.message}</div>`;
     }
 }
-function ham_8_4_tab_ket_qua() {
-    document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#6f42c1; text-align:center;">📊 Học bạ và Điểm số (Sắp ra mắt)</h3>`;
-}
+// =====================================================================
+// Hàm 8.4: Tab HỌC BÀ VÀ ĐIỂM SỐ (Bảng điều khiển cá nhân)
+// =====================================================================
+async function ham_8_4_tab_ket_qua() {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+    vungLamViec.innerHTML = `
+        <div style="text-align: center; padding: 60px;">
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #6f42c1; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            <h3 style="color:#6f42c1; margin-top:20px;">📊 Đang trích xuất sổ học bạ...</h3>
+        </div>
+    `;
 
+    try {
+        // 1. TẢI TOÀN BỘ LỊCH SỬ LÀM BÀI CỦA HỌC SINH NÀY TỪ SUPABASE
+        const { data: dsKQ, error: errKQ } = await _supabase
+            .from('ket_qua_thi')
+            .select('*')
+            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+            .order('thoi_gian_nop', { ascending: false }); // Sắp xếp Mới nhất lên đầu
+
+        if (errKQ) throw errKQ;
+
+        // Xử lý khi chưa có dữ liệu
+        if (!dsKQ || dsKQ.length === 0) {
+            vungLamViec.innerHTML = `
+                <div style="text-align: center; padding: 50px; background: #fff; border-radius: 10px; border: 1px dashed #ccc;">
+                    <p style="font-size: 60px; margin:0;">📈</p>
+                    <h3 style="color: #6c757d;">Học bạ trống</h3>
+                    <p style="color: #888;">Em chưa có kết quả làm bài nào. Hãy vào mục Nhiệm vụ hoặc Tự luyện để bắt đầu chinh phục điểm số nhé!</p>
+                </div>
+            `;
+            return;
+        }
+
+        // 2. TẠO TỪ ĐIỂN MAP TÊN NHIỆM VỤ (Vì bảng ket_qua_thi chỉ lưu mã nhiệm vụ)
+        // Gom các mã nhiệm vụ duy nhất để lấy tên 1 lần cho nhẹ Server
+        const danhSachMaNhiemVu = [...new Set(dsKQ.map(kq => kq.ma_nhiem_vu))];
+        let tuDienNhiemVu = {};
+
+        if (danhSachMaNhiemVu.length > 0) {
+            const { data: dsNV } = await _supabase
+                .from('nhiem_vu')
+                .select('ma_nhiem_vu, ten_nhiem_vu, loai_nhiem_vu')
+                .in('ma_nhiem_vu', danhSachMaNhiemVu);
+
+            if (dsNV) {
+                dsNV.forEach(nv => {
+                    tuDienNhiemVu[nv.ma_nhiem_vu] = {
+                        ten: nv.ten_nhiem_vu,
+                        loai: nv.loai_nhiem_vu || "Luyện tập"
+                    };
+                });
+            }
+        }
+
+        // 3. TÍNH TOÁN CÁC CHỈ SỐ THỐNG KÊ (DASHBOARD)
+        let tongSoLuot = dsKQ.length;
+        let tongDiem = 0;
+        let diemCaoNhat = 0;
+
+        dsKQ.forEach(kq => {
+            let d = Number(kq.tong_diem) || 0;
+            tongDiem += d;
+            if (d > diemCaoNhat) diemCaoNhat = d;
+        });
+
+        let diemTrungBinh = tongSoLuot > 0 ? (tongDiem / tongSoLuot).toFixed(2) : 0;
+
+        // 4. VẼ GIAO DIỆN BẢNG ĐIỀU KHIỂN
+        let htmlDashBoard = `
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                <div style="background: linear-gradient(135deg, #6f42c1, #8e44ad); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(111,66,193,0.2); text-align: center;">
+                    <div style="font-size: 14px; text-transform: uppercase; font-weight: bold; opacity: 0.9;">Tổng Lượt Nộp Bài</div>
+                    <div style="font-size: 36px; font-weight: 900; margin-top: 5px;">${tongSoLuot}</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #17a2b8, #00b894); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(23,162,184,0.2); text-align: center;">
+                    <div style="font-size: 14px; text-transform: uppercase; font-weight: bold; opacity: 0.9;">Điểm Cao Nhất</div>
+                    <div style="font-size: 36px; font-weight: 900; margin-top: 5px;">${diemCaoNhat}</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #fd7e14, #e67e22); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(253,126,20,0.2); text-align: center;">
+                    <div style="font-size: 14px; text-transform: uppercase; font-weight: bold; opacity: 0.9;">Điểm Trung Bình</div>
+                    <div style="font-size: 36px; font-weight: 900; margin-top: 5px;">${diemTrungBinh}</div>
+                </div>
+            </div>
+        `;
+
+        // 5. VẼ BẢNG LỊCH SỬ LÀM BÀI CHI TIẾT
+        const optsTime = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+
+        let htmlTableRows = '';
+        dsKQ.forEach((kq, index) => {
+            const thongTinNV = tuDienNhiemVu[kq.ma_nhiem_vu] || { ten: "Bài tập đã xóa khỏi hệ thống", loai: "N/A" };
+            const ngayNop = kq.thoi_gian_nop ? new Date(kq.thoi_gian_nop).toLocaleString('vi-VN', optsTime) : "Không rõ";
+
+            // Định dạng màu điểm: >= 8 (Xanh lá), >= 5 (Vàng/Cam), < 5 (Đỏ)
+            let colorDiem = "#28a745";
+            if (kq.tong_diem < 5) colorDiem = "#dc3545";
+            else if (kq.tong_diem < 8) colorDiem = "#d35400";
+
+            htmlTableRows += `
+                <tr style="border-bottom: 1px solid #f0f0f0; transition: background 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">
+                    <td style="padding: 12px 10px; text-align: center; color: #666; font-weight:bold;">${index + 1}</td>
+                    <td style="padding: 12px 10px;">
+                        <div style="font-weight: bold; color: #2c3e50; font-size: 15px;">${thongTinNV.ten}</div>
+                        <div style="font-size: 11px; color: #888; margin-top: 4px;">
+                            <span style="background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${thongTinNV.loai}</span> 
+                            • Lần thứ: ${kq.lan_thu || 1}
+                        </div>
+                    </td>
+                    <td style="padding: 12px 10px; text-align: center;">
+                        <span style="font-size: 12px; color: #6c757d;">⏱️ ${kq.thoi_gian_lam_bai || "---"}</span>
+                    </td>
+                    <td style="padding: 12px 10px; text-align: center;">
+                        <span style="font-size: 12px; color: #6c757d;">🕒 ${ngayNop}</span>
+                    </td>
+                    <td style="padding: 12px 10px; text-align: center;">
+                        <span style="font-size: 18px; font-weight: 900; color: ${colorDiem}; background: ${colorDiem}15; padding: 4px 10px; border-radius: 6px; border: 1px solid ${colorDiem}40;">
+                            ${Number(kq.tong_diem).toFixed(2)}
+                        </span>
+                    </td>
+                    <td style="padding: 12px 10px; text-align: center;">
+                        <button onclick="ham_8_13_xem_lai_ket_qua('${kq.ma_nhiem_vu}', '${kq.id}')" 
+                                style="padding: 6px 12px; background: #fff; color: #6f42c1; border: 1px solid #6f42c1; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;"
+                                onmouseover="this.style.background='#6f42c1'; this.style.color='#fff'" onmouseout="this.style.background='#fff'; this.style.color='#6f42c1'">
+                            👁️ CHI TIẾT
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        let htmlTable = `
+            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); overflow: hidden;">
+                <div style="background: #f8f9fa; padding: 15px; border-bottom: 1px solid #e0e0e0; font-weight: bold; color: #333; font-size: 15px;">
+                    📝 LỊCH SỬ CHINH CHIẾN
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 700px;">
+                        <thead style="background: #fdfdfe; border-bottom: 2px solid #dee2e6;">
+                            <tr>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 50px;">STT</th>
+                                <th style="padding: 12px 10px; color: #495057;">Tên Nhiệm Vụ</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 120px;">Thời Gian Trôi</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 150px;">Ngày Nộp</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 100px;">Điểm Số</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 100px;">Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${htmlTableRows}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+
+        vungLamViec.innerHTML = `<div style="max-width: 1000px; margin: 0 auto;">${htmlDashBoard} ${htmlTable}</div>`;
+
+    } catch (error) {
+        console.error("Lỗi tab kết quả:", error);
+        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất học bạ: ${error.message}</div>`;
+    }
+}
 function ham_8_5_tab_ho_so() {
     document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#6c757d; text-align:center;">👤 Cập nhật Thông tin (Sắp ra mắt)</h3>`;
 }
