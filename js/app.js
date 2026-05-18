@@ -4110,14 +4110,14 @@ window.ham_7_11_ve_nut_loi_giai_dong = async function (maHocLieu) {
 
 
 // =====================================================================
-// KHỞI TẠO TRẠNG THÁI SẮP XẾP TOÀN CỤC (Nếu chưa có)
+// KHỞI TẠO TRẠNG THÁI SẮP XẾP TOÀN CỤC (MẶC ĐỊNH ƯU TIÊN TRẠNG THÁI)
 // =====================================================================
 if (!window.DuyetDonSortState) {
     window.DuyetDonSortState = { key: 'trang_thai', asc: true };
 }
 
 // =====================================================================
-// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN (HIỂN THỊ SỐ ĐƠN CẦN DUYỆT)
+// Hàm 7.12: Tab HÒM THƯ DUYỆT ĐƠN CỦA GIÁO VIÊN (TỐI ƯU MẶC ĐỊNH CHỜ DUYỆT LÊN ĐẦU)
 // =====================================================================
 window.ham_7_12_tab_duyet_don = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -4142,10 +4142,9 @@ window.ham_7_12_tab_duyet_don = async function () {
             return;
         }
 
-        // 🌟 ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT (Trạng thái = 0)
+        // ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT (Trạng thái = 0)
         const soDonChuaDuyet = dsDon.filter(d => d.trang_thai === 0).length;
 
-        // 🌟 TẠO GIAO DIỆN HUY HIỆU (ĐỎ BÁO ĐỘNG NẾU CÓ ĐƠN, XÁM NẾU HẾT ĐƠN)
         const cssBadge = soDonChuaDuyet > 0
             ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
             : "background: rgba(0,0,0,0.1); color: #333;";
@@ -4167,11 +4166,30 @@ window.ham_7_12_tab_duyet_don = async function () {
             }
         }
 
-        // 3. THỰC THI LOGIC SẮP XẾP DỮ LIỆU
+        // =====================================================================
+        // 🌟 3. LOGIC SẮP XẾP ĐA TẦNG (CẢI TIẾN TRẠNG THÁI MẶC ĐỊNH)
+        // =====================================================================
         dsDon.sort((a, b) => {
-            let valA, valB;
             const sortKey = window.DuyetDonSortState.key;
 
+            // NẾU ĐANG XẾP THEO TRẠNG THÁI (MẶC ĐỊNH LÚC MỞ TAB)
+            if (sortKey === 'trang_thai') {
+                const trangThaiA = Number(a.trang_thai) || 0;
+                const trangThaiB = Number(b.trang_thai) || 0;
+
+                if (trangThaiA !== trangThaiB) {
+                    // Trạng thái 0 lên đầu (tăng dần: 0 -> 1 -> -1)
+                    return window.DuyetDonSortState.asc ? (trangThaiA - trangThaiB) : (trangThaiB - trangThaiA);
+                } else {
+                    // 🌟 Nếu cùng trạng thái -> Đơn nào MỚI HƠN (ngay_tao lớn hơn) sẽ nhảy lên trước
+                    const thoiGianA = new Date(a.ngay_tao || 0).getTime();
+                    const thoiGianB = new Date(b.ngay_tao || 0).getTime();
+                    return thoiGianB - thoiGianA;
+                }
+            }
+
+            // CÁC TRƯỜNG HỢP XẾP THEO CỘT KHÁC KHI CLICK HEADER
+            let valA, valB;
             if (sortKey === 'hoc_sinh') {
                 valA = (a.ten_hoc_sinh || '').toLowerCase();
                 valB = (b.ten_hoc_sinh || '').toLowerCase();
@@ -4181,9 +4199,6 @@ window.ham_7_12_tab_duyet_don = async function () {
             } else if (sortKey === 'ly_do') {
                 valA = (a.ly_do || '').toLowerCase();
                 valB = (b.ly_do || '').toLowerCase();
-            } else if (sortKey === 'trang_thai') {
-                valA = Number(a.trang_thai) || 0;
-                valB = Number(b.trang_thai) || 0;
             } else if (sortKey === 'ngay_tao') {
                 valA = new Date(a.ngay_tao || 0).getTime();
                 valB = new Date(b.ngay_tao || 0).getTime();
@@ -4336,16 +4351,15 @@ window.ham_7_12_tab_duyet_don = async function () {
 // =====================================================================
 window.ham_7_12_thay_doi_sap_xep = function (colKey) {
     if (window.DuyetDonSortState.key === colKey) {
-        // Nếu click lại đúng cột cũ -> Đảo chiều ngược lại (Asc <=> Desc)
         window.DuyetDonSortState.asc = !window.DuyetDonSortState.asc;
     } else {
-        // Nếu click cột mới -> Gán khóa cột mới và đặt mặc định là Tăng dần (True)
         window.DuyetDonSortState.key = colKey;
         window.DuyetDonSortState.asc = true;
     }
-    // Tái kích hoạt gọi lại Hàm 7.12 để sort mảng và re-render giao diện bảng
     ham_7_12_tab_duyet_don();
 }
+
+
 // =====================================================================
 // HÀM 7.13: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH 
 // (Vá lỗi schema cache thoi_gian_ket_thuc)
