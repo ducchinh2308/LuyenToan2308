@@ -4284,7 +4284,7 @@ window.ham_7_12_tab_duyet_don = async function () {
         vungLamViec.innerHTML = `
             <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
                 <div style="background: linear-gradient(135deg, #ffc107, #ff9800); padding: 20px; color: #000; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">📭 HÒM THƯ XÈT DUYỆT YÊU CẦU CỦA HỌC SINH</h3>
+                    <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">📭 HÒM THƯ XÉT DUYỆT YÊU CẦU CỦA HỌC SINH</h3>
                     <span style="background: rgba(0,0,0,0.08); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">Tổng số đơn: ${dsDon.length}</span>
                 </div>
                 
