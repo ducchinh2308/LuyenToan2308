@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_235ceb4932",
+  "dapAn": "D",
+  "loiGiai": "Hệ số tự do đứng độc lập không chứa tham số $t$ trong hệ phương trình tham số tương ứng với điểm đường thẳng đi qua khi chọn $t=0$.\\\\\r\n\t\tCho $t=0 \\Rightarrow x=0, y=1, z=2$. Vậy đường thẳng đi qua điểm $F(0;1;2)$."
+}

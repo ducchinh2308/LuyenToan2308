@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c45001a09f",
+  "dapAn": "C",
+  "loiGiai": "Vectơ chỉ phương của đường thẳng ở phương án C là $\\vec{u}' = (-2;-1;-1)$.\\\\\r\n\t\tTa nhận thấy $\\vec{u}' = -1 \\cdot (2;1;1) = -1 \\cdot \\vec{u}$, do đó $\\vec{u}'$ cùng phương với vectơ $\\vec{u}$.\\\\\r\n\t\tVậy đường thẳng ở phương án C nhận $\\vec{u}=(2;1;1)$ làm một vectơ chỉ phương."
+}

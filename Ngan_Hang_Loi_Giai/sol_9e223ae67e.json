@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9e223ae67e",
+  "dapAn": "C",
+  "loiGiai": "Mặt cầu đi qua điểm $M$ nên bán kính $R$ chính bằng độ dài đoạn thẳng nối từ tâm $I$ tới điểm $M$:\\\\\r\n\t\t$\\displaystyle R = IM = \\sqrt{(1-2)^2+(2-0)^2+(-2-0)^2} = \\sqrt{(-1)^2+2^2+(-2)^2} = \\sqrt{1+4+4} = \\sqrt{9} = 3$.\\\\\r\n\t\tPhương trình mặt cầu tâm $I(2;0;0)$ và bán kính $R=3$ là:\\\\\r\n\t\t$\\displaystyle (x-2)^2 + (y-0)^2 + (z-0)^2 = 3^2 \\Leftrightarrow (x-2)^{2}+y^{2}+z^{2}=9$."
+}

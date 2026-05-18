@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7b71b54787",
+  "dapAn": "C",
+  "loiGiai": "Phương trình khai triển của mặt cầu có dạng $\\colon x^2+y^2+z^2-2ax-2by-2cz+d=0$.\\\\\r\n\t\tTa xác định tọa độ tâm $I$ bằng cách lấy hệ số của $x, y, z$ chia cho $-2$:\\\\\r\n\t\t$\\displaystyle a = \\frac{-2}{-2} = 1; \\quad b = \\frac{2}{-2} = -1; \\quad c = \\frac{-4}{-2} = 2 \\Rightarrow I(1;-1;2)$.\\\\\r\n\t\tBán kính $R$ của mặt cầu được tính bằng công thức:\\\\\r\n\t\t$\\displaystyle R = \\sqrt{a^2+b^2+c^2-d} = \\sqrt{1^2+(-1)^2+2^2-1} = \\sqrt{1+1+4-1} = \\sqrt{5}$.\\\\"
+}

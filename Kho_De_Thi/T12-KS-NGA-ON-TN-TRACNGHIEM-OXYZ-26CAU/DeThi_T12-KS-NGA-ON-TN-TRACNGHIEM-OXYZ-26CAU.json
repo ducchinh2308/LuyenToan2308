@@ -1,0 +1,267 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-OXYZ-26CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM OXYZ 26 CÂU",
+  "thoiGian": 50,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_4c049aa827",
+      "ma_goc": "2605-1115",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, phương trình của đường thẳng đi qua điểm $M(1;-3;5)$ và có một vectơ chỉ phương $\\vec{u}=(2;-1;1)$ là:",
+      "paA": "$\\displaystyle \\frac{x-1}{2}=\\frac{y-3}{-1}=\\frac{z-5}{1}$",
+      "paB": "$\\displaystyle \\frac{x-1}{2}=\\frac{y-3}{-1}=\\frac{z+5}{1}$",
+      "paC": "$\\displaystyle \\frac{x-1}{2}=\\frac{y+3}{-1}=\\frac{z-5}{1}$",
+      "paD": "$\\displaystyle \\frac{x+1}{2}=\\frac{y-3}{-1}=\\frac{z-5}{1}$"
+    },
+    {
+      "maCau": "q_c93bddc272",
+      "ma_goc": "2605-1116",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho mặt phẳng $(P)$ có phương trình $x-3y-z+8=0$. Vectơ nào sau đây là vectơ pháp tuyến của mặt phẳng $(P)$?",
+      "paA": "$\\displaystyle \\vec{n}_{1}=(1;-3;1)$",
+      "paB": "$\\displaystyle \\vec{n}_{2}=(1;-3;-1)$",
+      "paC": "$\\displaystyle \\vec{n}_{3}=(1;-3;8)$",
+      "paD": "$\\displaystyle \\vec{n}_{4}=(1;3;8)$"
+    },
+    {
+      "maCau": "q_a81b80ec0d",
+      "ma_goc": "2605-1117",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(Oyz)$ có phương trình là",
+      "paA": "$z=0$",
+      "paB": "$x+y+z=0$",
+      "paC": "$x=0$",
+      "paD": "$y=0$"
+    },
+    {
+      "maCau": "q_edaa58eaf0",
+      "ma_goc": "2605-1118",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(5;-4;2)$ và $B(1;2;4)$. Mặt phẳng đi qua $A$ và vuông góc với đường thẳng $AB$ có phương trình là",
+      "paA": "$2x-3y-z-20=0$",
+      "paB": "$3x-y+3z-25=0$",
+      "paC": "$2x-3y-z+8=0$",
+      "paD": "$3x-y+3z-13=0$"
+    },
+    {
+      "maCau": "q_75a0384d0f",
+      "ma_goc": "2605-1119",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(P)$ đi qua điểm $M(3;-1;4)$ đồng thời vuông góc với giá của vectơ $\\vec{a}=(1;-1;2)$ có phương trình là",
+      "paA": "$3x-y+4z-12=0$",
+      "paB": "$3x-y+4z+12=0$",
+      "paC": "$x-y+2z-12=0$",
+      "paD": "$x-y+2z+12=0$"
+    },
+    {
+      "maCau": "q_32897bd05b",
+      "ma_goc": "2605-1120",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình của mặt phẳng đi qua điểm $A(3;0;-1)$ and có véctơ pháp tuyến $\\vec{n}=(4;-2;-3)$ là",
+      "paA": "$4x-2y+3z-9=0$",
+      "paB": "$4x-2y-3z-15=0$",
+      "paC": "$3x-z-15=0$",
+      "paD": "$4x-2y-3z+15=0$"
+    },
+    {
+      "maCau": "q_b13fb3ee5c",
+      "ma_goc": "2605-1121",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(-2;0;0), B(0;3;0)$ và $C(0;0;4)$. Mặt phẳng $(ABC)$ có phương trình là",
+      "paA": "$\\displaystyle \\frac{x}{-2}+\\frac{y}{3}+\\frac{z}{4}=1$",
+      "paB": "$\\displaystyle \\frac{x}{2}+\\frac{y}{3}+\\frac{z}{4}=1$",
+      "paC": "$\\displaystyle \\frac{x}{2}+\\frac{y}{-3}+\\frac{z}{4}=1$",
+      "paD": "$\\displaystyle \\frac{x}{2}+\\frac{y}{3}+\\frac{z}{-4}=1$"
+    },
+    {
+      "maCau": "q_0f752a793d",
+      "ma_goc": "2605-1122",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt phẳng $(P): x+y+z-3=0$ đi qua điểm nào dưới đây?",
+      "paA": "$M(-1;-1;-1)$",
+      "paB": "$N(1;1;1)$",
+      "paC": "$P(-3;0;0)$",
+      "paD": "$Q(0;0;-3)$"
+    },
+    {
+      "maCau": "q_edb8691fe5",
+      "ma_goc": "2605-1123",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d: \\frac{x+2}{1}=\\frac{y-1}{-3}=\\frac{z-3}{2}$. Vectơ nào dưới đây là một vectơ chỉ phương của $d$?",
+      "paA": "$\\displaystyle \\vec{u}_{4}=(1;3;2)$",
+      "paB": "$\\displaystyle \\vec{u}_{3}=(-2;1;3)$",
+      "paC": "$\\displaystyle \\vec{u}_{1}=(-2;1;2)$",
+      "paD": "$\\displaystyle \\vec{u}_{2}=(1;-3;2)$"
+    },
+    {
+      "maCau": "q_2d81896689",
+      "ma_goc": "2605-1124",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, đường thẳng nào sau đây nhận $\\vec{u}=(2;1;1)$ là một vectơ chỉ phương?",
+      "paA": "$\\displaystyle \\frac{x-2}{1}=\\frac{y-1}{2}=\\frac{z-1}{3}$",
+      "paB": "$\\displaystyle \\frac{x}{2}=\\frac{y-1}{1}=\\frac{z-2}{-1}$",
+      "paC": "$\\displaystyle \\frac{x-1}{-2}=\\frac{y+1}{-1}=\\frac{z}{-1}$",
+      "paD": "$\\displaystyle \\frac{x+2}{2}=\\frac{y+1}{-1}=\\frac{z+1}{1}$"
+    },
+    {
+      "maCau": "q_e510f79bfb",
+      "ma_goc": "2605-1125",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho $\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là:",
+      "paA": "$(-3;2;-1)$",
+      "paB": "$(-1;2;-3)$",
+      "paC": "$(2;-1;-3)$",
+      "paD": "$(2;-3;-1)$"
+    },
+    {
+      "maCau": "q_5a4f3cc054",
+      "ma_goc": "2605-1126",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho ba điểm $A(1;3;5), B(2;0;1), C(0;9;0)$. Tìm trọng tâm $G$ của tam giác $ABC$.",
+      "paA": "$G(1;5;2)$",
+      "paB": "$G(1;0;5)$",
+      "paC": "$G(1;4;2)$",
+      "paD": "$G(3;12;6)$"
+    },
+    {
+      "maCau": "q_35b8b9c104",
+      "ma_goc": "2605-1127",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho $\\vec{a}=(1;-2;0), \\vec{b}=(-5;4;-1)$. Tọa độ của vectơ $\\vec{x}=2\\vec{a}-\\vec{b}$ bằng",
+      "paA": "$(-3;0;-1)$",
+      "paB": "$(7;-4;1)$",
+      "paC": "$(7;-8;1)$",
+      "paD": "$(7;-8;-1)$"
+    },
+    {
+      "maCau": "q_73e79f1030",
+      "ma_goc": "2605-1128",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$ cho mặt cầu $(S) \\colon (x-3)^{2}+(y+2)^{2}+(z-1)^{2}=9$, tâm $I$ và bán kính $R$ của mặt cầu lần lượt là",
+      "paA": "$I(-3;2;-1), R=3$",
+      "paB": "$I(-3;2;-1), R=9$",
+      "paC": "$I(3;-2;1), R=81$",
+      "paD": "$I(3;-2;1), R=3$"
+    },
+    {
+      "maCau": "q_9452aa172e",
+      "ma_goc": "2605-1129",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt cầu $(S) \\colon x^{2}+y^{2}+z^{2}-2x+2y-4z+1=0$. Tâm và bán kính của mặt cầu $(S)$ là",
+      "paA": "$I(1;-1;2) \\text{ và } R=5$",
+      "paB": "$I(-1;1;-2) \\text{ và } R=5$",
+      "paC": "$I(1;-1;2) \\text{ và } R=\\sqrt{5}$",
+      "paD": "$I(-1;1;-2) \\text{ và } R=\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_a74ee68d1b",
+      "ma_goc": "2605-1130",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, lập phương trình mặt cầu tâm $I(1;-2;3)$ và có bán kính $R=5$.",
+      "paA": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=25$",
+      "paB": "$(x+1)^{2}+(y-2)^{2}+(z+3)^{2}=25$",
+      "paC": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=5$",
+      "paD": "$(x-1)^{2}+(y+2)^{2}+(z-3)^{2}=\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_c31438f3ba",
+      "ma_goc": "2605-1131",
+      "kieuCau": "TN",
+      "cauDan": "Trong hệ tọa độ $Oxyz$, mặt cầu tâm $I(2;0;0)$ và đi qua điểm $M(1;2;-2)$ có phương trình là",
+      "paA": "$(x+2)^{2}+y^{2}+z^{2}=3$",
+      "paB": "$(x+2)^{2}+y^{2}+z^{2}=9$",
+      "paC": "$(x-2)^{2}+y^{2}+z^{2}=9$",
+      "paD": "$(x-2)^{2}+y^{2}+z^{2}=3$"
+    },
+    {
+      "maCau": "q_851e3a48f6",
+      "ma_goc": "2605-1132",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d \\colon \\frac{x-2}{4}=\\frac{y-1}{-2}=\\frac{z+3}{1}$. Điểm nào dưới đây thuộc $d$?",
+      "paA": "$Q(4;-2;1)$",
+      "paB": "$N(4;2;1)$",
+      "paC": "$P(2;1;-3)$",
+      "paD": "$M(2;1;3)$"
+    },
+    {
+      "maCau": "q_5cfc2043b8",
+      "ma_goc": "2605-1133",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, đường thẳng $d \\colon \\begin{cases}x=t \\\\ y=1-t \\\\ z=2+t\\end{cases}$ đi qua điểm nào sau đây?",
+      "paA": "$K(1;-1;1)$",
+      "paB": "$E(1;1;2)$",
+      "paC": "$H(1;2;0)$",
+      "paD": "$F(0;1;2)$"
+    },
+    {
+      "maCau": "q_2a312c7b6d",
+      "ma_goc": "2605-1134",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $d$ có phương trình $\\frac{x-1}{3}=\\frac{y+2}{2}=\\frac{z-3}{-4}$. Điểm nào sau đây không thuộc đường thẳng $d$?",
+      "paA": "$P(7;2;1)$",
+      "paB": "$Q(-2;-4;7)$",
+      "paC": "$N(4;0;-1)$",
+      "paD": "$M(1;-2;3)$"
+    },
+    {
+      "maCau": "q_326bc2f983",
+      "ma_goc": "2605-1135",
+      "kieuCau": "TN",
+      "cauDan": "Giao điểm của mặt phẳng $(P) \\colon x+y-z-2=0$ và đường thẳng $d \\colon \\begin{cases}x=2+t \\\\ y=-t \\\\ z=3+3t\\end{cases}$ là",
+      "paA": "$(1;1;0)$",
+      "paB": "$(0;2;4)$",
+      "paC": "$(0;4;2)$",
+      "paD": "$(2;0;3)$"
+    },
+    {
+      "maCau": "q_e55d4f791d",
+      "ma_goc": "2605-1136",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(2;3;5)$. Tìm tọa độ điểm $A'$ là hình chiếu vuông góc của $A$ lên trục $Oy$.",
+      "paA": "$A'(2;0;0)$",
+      "paB": "$A'(0;3;0)$",
+      "paC": "$A'(0;3;5)$",
+      "paD": "$A'(2;0;5)$"
+    },
+    {
+      "maCau": "q_4c63c77cf6",
+      "ma_goc": "2605-1137",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng đi qua gốc tọa độ $O$ và điểm $M(1;-2;1)$?",
+      "paA": "$\\displaystyle \\vec{u}_{1}=(1;1;1)$",
+      "paB": "$\\displaystyle \\vec{u}_{2}=(1;2;1)$",
+      "paC": "$\\displaystyle \\vec{u}_{3}=(0;1;0)$",
+      "paD": "$\\displaystyle \\vec{u}_{4}=(1;-2;1)$"
+    },
+    {
+      "maCau": "q_f1465b27ec",
+      "ma_goc": "2605-1138",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ toạ độ $Oxyz$, cho hai điểm $A(1;1;0)$ và $B(0;1;2)$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $AB$?",
+      "paA": "$\\displaystyle \\vec{d}=(-1;1;2)$",
+      "paB": "$\\displaystyle \\vec{a}=(-1;0;-2)$",
+      "paC": "$\\displaystyle \\vec{b}=(-1;0;2)$",
+      "paD": "$\\displaystyle \\vec{c}=(1;2;2)$"
+    },
+    {
+      "maCau": "q_9dafa2bd93",
+      "ma_goc": "2605-1139",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai đường thẳng $d_1 \\colon \\begin{cases}x=-1-t \\\\ y=3+4t \\\\ z=3+3t\\end{cases}$ và $d_2 \\colon \\frac{x}{1}=\\frac{y+8}{-4}=\\frac{z+3}{-3}$. Tính góc hợp bởi đường thẳng $d_1$ và $d_2$.",
+      "paA": "$0^{\\circ}$",
+      "paB": "$90^{\\circ}$",
+      "paC": "$30^{\\circ}$",
+      "paD": "$60^{\\circ}$"
+    },
+    {
+      "maCau": "q_5e0dc8eba6",
+      "ma_goc": "2605-1140",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P)$ có phương trình: $3x+4y+2z+4=0$ và điểm $A(1;-2;3)$. Tính khoảng cách $d$ từ $A$ đến $(P)$.",
+      "paA": "$\\displaystyle d = \\frac{5}{9}$",
+      "paB": "$\\displaystyle d = \\frac{5}{29}$",
+      "paC": "$\\displaystyle d = \\frac{5}{\\sqrt{29}}$",
+      "paD": "$\\displaystyle d = \\frac{\\sqrt{5}}{3}$"
+    }
+  ]
+}

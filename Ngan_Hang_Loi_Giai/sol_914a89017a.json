@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_914a89017a",
+  "dapAn": "A",
+  "loiGiai": "- Đường thẳng $d_1$ có một vectơ chỉ phương là $\\vec{u}_1 = (-1;4;3)$.\\\\\r\n\t\t- Đường thẳng $d_2$ có một vectơ chỉ phương là $\\vec{u}_2 = (1;-4;-3)$.\\\\\r\n\t\tTa nhận thấy giữa hai vectơ chỉ phương có mối liên hệ tỉ lệ đối xứng: $\\vec{u}_1 = -1 \\cdot \\vec{u}_2$.\\\\\r\n\t\tChứng tỏ hai vectơ chỉ phương ngược hướng, suy ra đường thẳng $d_1$ song song hoặc trùng với đường thẳng $d_2$.\\\\\r\n\t\tVậy góc hợp bởi hai đường thẳng bằng $0^{\\circ}$."
+}

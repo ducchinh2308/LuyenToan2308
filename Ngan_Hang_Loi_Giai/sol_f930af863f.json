@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f930af863f",
+  "dapAn": "C",
+  "loiGiai": "Mặt phẳng vuông góc với giá của vectơ $\\displaystyle \\vec{a}$ nên nhận chính vectơ $\\displaystyle \\vec{a}=(1;-1;2)$ làm vectơ pháp tuyến $\\displaystyle \\vec{n}$.\\\\\r\n\t\tPhương trình tổng quát mặt phẳng $(P)$ đi qua gốc điểm $M(3;-1;4)$ là:\\\\\r\n\t\t$\\displaystyle 1(x-3) - 1(y-(-1)) + 2(z-4) = 0 \\Leftrightarrow 1(x-3) - 1(y+1) + 2(z-4) = 0$\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow x - 3 - y - 1 + 2z - 8 = 0 \\Leftrightarrow x - y + 2z - 12 = 0$."
+}
