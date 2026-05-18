@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1dfbbde99a",
+  "dapAn": "2650",
+  "loiGiai": "Gọi $x, y \\in \\mathbb{Z}$ và $x, y \\ge 0$ lần lượt là số thực đơn 1 và thực đơn 2 câu lạc bộ bán được.\\\\\r\n\t\tSố tiền thu được là $F(x; y) = 30x + 50y$ (nghìn đồng).\\\\\r\n\t\tTheo bài ra ta có $x, y$ thoả mãn hệ bất phương trình: $\\left\\{ \\begin{array}{l} x, y \\in \\mathbb{Z} \\text{ và } x, y \\ge 0 \\\\ 2x + 3y \\le 165 \\\\ x + 2y \\le 100 \\end{array} \\right. \\quad (I)$.\\\\\r\n\t\tHệ $(I)$ có miền nghiệm là miền tứ giác $OABC$ như hình vẽ.\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_1dfbbde99a_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVới các điểm cực biên là $O(0;0), A(82{,}5;0), B(30;35), C(0;50)$.\\\\\r\n\t\tTa có: $F(0;0) = 0$, $F(82{,}5;0) = 2475$, $F(30;35) = 2650$, $F(0;50) = 2500$.\\\\\r\n\t\tSố tiền lớn nhất mà câu lạc bộ có thể nhận được sau khi bán hết hàng là $2650$ nghìn đồng."
+}

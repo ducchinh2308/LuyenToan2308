@@ -1935,6 +1935,10 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
     }
 }
+
+
+
+
 // ==============================================================
 // Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
 // ==============================================================

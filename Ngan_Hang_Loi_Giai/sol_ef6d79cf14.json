@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ef6d79cf14",
+  "dapAn": "TFFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x) = 3x^2 - 12$.\\\\\r\n\t\t\tTa có: $f'(x) = 3x^2 - 12$.\r\n\t\t\t\\itemch Phương trình $f'(x) = 0$ có tập nghiệm là $S = \\{2\\}$.\\\\\r\n\t\t\tTa có: $f'(x) = 3x^2 - 12$.\\\\\r\n\t\t\t$f'(x) = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 2 \\\\ x = -2 \\end{array}\\right.$\\\\\r\n\t\t\tSuy ra phương trình $f'(x) = 0$ có tập nghiệm là $S = \\{-2; 2\\}$.\r\n\t\t\t\\itemch $f(2) = 24$.\\\\\r\n\t\t\tTa có: $f(2) = -24 \\neq 24$.\r\n\t\t\t\\itemch Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[-3;3]$ bằng $24$.\\\\\r\n\t\t\tTa có: $f'(x) = 3x^2 - 12$.\\\\\r\n\t\t\t$f'(x) = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 2 \\in [-3;3] \\\\ x = -2 \\in [-3;3] \\end{array}\\right.$\\\\\r\n\t\t\tMà $f(-3) = 1$; $f(-2) = 8$; $f(2) = -24$; $f(3) = -17$.\\\\\r\n\t\t\tSuy ra giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[-3;3]$ bằng $8$.\r\n\t\t\\end{itemchoice}"
+}
