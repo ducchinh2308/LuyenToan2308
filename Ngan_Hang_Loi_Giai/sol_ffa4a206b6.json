@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ffa4a206b6",
+  "dapAn": "C",
+  "loiGiai": "Áp dụng công thức số hạng tổng quát của cấp số cộng: $\\displaystyle u_n = u_1 + (n-1)d$.\\\\\r\n\t\tThay số liệu đề bài vào cho số hạng thứ 8:\\\\\r\n\t\t$\\displaystyle u_8 = u_1 + 7d \\Rightarrow 30 = -5 + 7d \\Leftrightarrow 7d = 35 \\Leftrightarrow d = 5$.\\\\\r\n\t\tVậy công sai $d = 5$."
+}

@@ -1,0 +1,157 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-CAP-SO-15CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM CẤP SỐ 15 CÂU",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_a9b63ce325",
+      "ma_goc": "2605-1070",
+      "kieuCau": "TN",
+      "cauDan": "Cấp số cộng $(u_{n})$ có $u_{1}=1, u_{2}=3$. Số hạng $u_{5}$ của cấp số cộng là",
+      "paA": "$ 5 $",
+      "paB": "$ 7 $",
+      "paC": "$ 9 $",
+      "paD": "$ 11 $"
+    },
+    {
+      "maCau": "q_c9de62de39",
+      "ma_goc": "2605-1071",
+      "kieuCau": "TN",
+      "cauDan": "Trong các dãy số sau, dãy nào là cấp số cộng?",
+      "paA": "$ 1; 2; 4; 7; 11; \\dots $",
+      "paB": "$\\displaystyle \\frac{1}{3}; \\frac{2}{3}; 1; \\frac{4}{3}; \\frac{5}{3}; \\dots $",
+      "paC": "$ -5; -3; -1; 3; 5; \\dots $",
+      "paD": "$ 1; 2; 4; 8; 16; \\dots $"
+    },
+    {
+      "maCau": "q_00aaf49612",
+      "ma_goc": "2605-1072",
+      "kieuCau": "TN",
+      "cauDan": "Cho một cấp số cộng $(u_{n})$ có $u_{1}=-5, u_{8}=30$. Công sai của cấp số cộng bằng",
+      "paA": "$ 3 $",
+      "paB": "$ 4 $",
+      "paC": "$ 5 $",
+      "paD": "$ 6 $"
+    },
+    {
+      "maCau": "q_fa44da74dd",
+      "ma_goc": "2605-1073",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=-2$ và công sai $d=3$. Số hạng tổng quát $u_{n}$ là",
+      "paA": "$ u_{n}=3n-5 $",
+      "paB": "$ u_{n}=3n-2 $",
+      "paC": "$ u_{n}=-2n+3 $",
+      "paD": "$ u_{n}=-3n+2 $"
+    },
+    {
+      "maCau": "q_9f70eda8ef",
+      "ma_goc": "2605-1074",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=28$ và công sai $d=-6$. Hỏi $-32$ là số hạng thứ mấy của cấp số cộng?",
+      "paA": "$ 9 $",
+      "paB": "$ 10 $",
+      "paC": "$ 11 $",
+      "paD": "$ 12 $"
+    },
+    {
+      "maCau": "q_89fa7e4b41",
+      "ma_goc": "2605-1075",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng có $u_{2}=-24$ và $u_{7}=4$. Tổng 10 số hạng đầu tiên của CSC này là",
+      "paA": "$ S_{10}=-100 $",
+      "paB": "$ S_{10}=-40 $",
+      "paC": "$ S_{10}=200 $",
+      "paD": "$ S_{10}=-44 $"
+    },
+    {
+      "maCau": "q_212cd2a1a0",
+      "ma_goc": "2605-1076",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_{n})$ có $u_{1}=2\\sqrt{5}$ và công sai $d=\\sqrt{5}$. Số hạng thứ 12 bằng",
+      "paA": "$ 11\\sqrt{5} $",
+      "paB": "$ u_{n}=14\\sqrt{5} $",
+      "paC": "$ 12\\sqrt{5} $",
+      "paD": "$ 13\\sqrt{5} $"
+    },
+    {
+      "maCau": "q_0b15c80b1d",
+      "ma_goc": "2605-1077",
+      "kieuCau": "TN",
+      "cauDan": "Tìm tất cả các giá trị của $x$ sao cho các số $x+1$, $2x^{2}+3$, $5x+3$ theo thứ tự đó lập thành một cấp số cộng.",
+      "paA": "$\\left[\\begin{aligned} &x=\\frac{1}{2} \\\\ &x=-1 \\end{aligned}\\right.$",
+      "paB": "$ x=1 $",
+      "paC": "$ \\left[\\begin{aligned} &x=\\frac{1}{2} \\\\ &x=1 \\end{aligned}\\right. $",
+      "paD": "$ \\left[\\begin{aligned} &x=-\\frac{1}{2} \\\\ &x=-1 \\end{aligned}\\right. $"
+    },
+    {
+      "maCau": "q_232ea26cd2",
+      "ma_goc": "2605-1078",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng có $9u_{2}-u_{5}=4$ và $u_{1}+u_{3}=u_{4}-6$. Số hạng đầu của cấp số cộng là:",
+      "paA": "$ d=3 $",
+      "paB": "$ d=4 $",
+      "paC": "$ d=-2 $",
+      "paD": "$ d=2 $"
+    },
+    {
+      "maCau": "q_6ef39af5c3",
+      "ma_goc": "2605-1079",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ có số hạng đầu $u_{1}=5$ và công bội $q=-2$. Số hạng thứ sáu của $(u_{n})$ là:",
+      "paA": "$ u_{6}=-320 $",
+      "paB": "$ u_{6}=-160 $",
+      "paC": "$ u_{6}=320 $",
+      "paD": "$ u_{6}=160 $"
+    },
+    {
+      "maCau": "q_d7d299fe46",
+      "ma_goc": "2605-1080",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ biết $u_{n}=2^{n}$, $\\forall n\\in\\mathbb{N}^{*}$. Tìm số hạng đầu $u_1$ và công bội $q$ của cấp số nhân.",
+      "paA": "$ u_{1}=-\\frac{1}{2}; q=2 $",
+      "paB": "$ u_{1}=-2; q=2 $",
+      "paC": "$ u_{1}=2; q=2 $",
+      "paD": "$ u_{1}=1; q=2 $"
+    },
+    {
+      "maCau": "q_3ca8750b63",
+      "ma_goc": "2605-1081",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ với $u_1 = \\frac{1}{2}$, $u_{7}=-32$. Tìm công bội $q$?",
+      "paA": "$ q=\\pm1 $",
+      "paB": "$ q=\\pm\\frac{1}{2} $",
+      "paC": "$ q=\\pm2 $",
+      "paD": "$ q=\\pm4 $"
+    },
+    {
+      "maCau": "q_fd3809fecb",
+      "ma_goc": "2605-1082",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ với $u_{1}=4$, $q=-4$. Viết số hạng tổng quát $u_n$?",
+      "paA": "$ -4(-4)^{n} $",
+      "paB": "$ (-4)^{n} $",
+      "paC": "$ 4 \\cdot (-4)^{n-1} $",
+      "paD": "$ 4^{n} $"
+    },
+    {
+      "maCau": "q_1d6453551d",
+      "ma_goc": "2605-1083",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_{n})$ có số hạng đầu $u_{1}=5$ và $u_{2}=-10$. Tính tổng $S_6$.",
+      "paA": "$ S_{6}=-\\frac{155}{3} $",
+      "paB": "$ S_{6}=-\\frac{315}{3} $",
+      "paC": "$ S_{6}=105 $",
+      "paD": "$ S_{6}=315 $"
+    },
+    {
+      "maCau": "q_0df7642df8",
+      "ma_goc": "2605-1084",
+      "kieuCau": "TN",
+      "cauDan": "Xác định $x$ để 3 số $x-2$, $x+1$, $3-x$ theo thứ tự đó lập thành một cấp số nhân:",
+      "paA": "$ x \\in \\emptyset $",
+      "paB": "$ x=\\pm1 $",
+      "paC": "$ x=2 $",
+      "paD": "$ x=-3 $"
+    }
+  ]
+}

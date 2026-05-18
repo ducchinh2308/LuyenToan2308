@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fded304685",
+  "dapAn": "B",
+  "loiGiai": "Ba số $a, b, c$ theo thứ tự đã cho lập thành một cấp số nhân khi và chỉ khi tuân theo đẳng thức tính chất cực biên:\\\\\r\n\t\t$\\displaystyle a \\cdot c = b^2$.\\\\\r\n\t\tÁp dụng hệ thức này đối với ba số hạng chứa biến số $x$, ta có phương trình:\\\\\r\n\t\t$\\displaystyle (x - 2)(3 - x) = (x + 1)^2 \\Leftrightarrow 3x - x^2 - 6 + 2x = x^2 + 2x + 1 \\Leftrightarrow -x^2 + 5x - 6 = x^2 + 2x + 1$.\\\\\r\n\t\tChuyển toàn bộ các hạng tử về một vế để thu được phương trình bậc hai thu gọn:\\\\\r\n\t\t$\\displaystyle 2x^2 - 3x + 7 = 0$.\\\\\r\n\t\tXét biệt thức delta của phương trình: $\\displaystyle \\Delta = (-3)^2 - 4 \\cdot 2 \\cdot 7 = 9 - 56 = -47 < 0$.\\\\\r\n\t\tVì biệt thức $\\displaystyle \\Delta < 0$, phương trình bậc hai vô nghiệm trên tập số thực.\\\\\r\n\t\tDo đó không tồn tại giá trị của $x$ thỏa mãn yêu cầu đề bài, chọn đáp án A ($x \\in \\emptyset$)."
+}

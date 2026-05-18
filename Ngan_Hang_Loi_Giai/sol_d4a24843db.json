@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d4a24843db",
+  "dapAn": "C",
+  "loiGiai": "Ba số $a, b, c$ theo thứ tự lập thành một cấp số cộng khi và chỉ khi thỏa mãn đẳng thức đặc trưng:\\\\\r\n\t\t$\\displaystyle a + c = 2b$.\\\\\r\n\t\tÁp dụng điều kiện này với ba biểu thức đã cho, ta thu được phương trình bậc hai theo ẩn số $x$:\\\\\r\n\t\t$\\displaystyle (x + 1) + (5x + 3) = 2(2x^2 + 3) \\Leftrightarrow 6x + 4 = 4x^2 + 6 \\Leftrightarrow 4x^2 - 6x + 2 = 0 \\Leftrightarrow 2x^2 - 3x + 1 = 0$.\\\\\r\n\t\tNhận xét phương trình bậc hai có tổng hệ số dạng $a + b + c = 2 - 3 + 1 = 0$, phương trình có hai nghiệm phân biệt:\\\\\r\n\t\t$\\displaystyle x = 1 \\quad \\text{hoặc} \\quad x = \\frac{1}{2}$.\\\\"
+}

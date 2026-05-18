@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b24e84a160",
+  "dapAn": "A",
+  "loiGiai": "Công thức số hạng tổng quát của cấp số cộng: $\\displaystyle u_n = u_1 + (n-1)d$.\\\\\r\n\t\tThay giá trị $\\displaystyle u_1 = -2$ và $\\displaystyle d = 3$ vào biểu thức:\\\\\r\n\t\t$\\displaystyle u_n = -2 + (n-1) \\cdot 3 = -2 + 3n - 3 = 3n - 5$.\\\\\r\n\t\tDo đó, số hạng tổng quát là $\\displaystyle u_n = 3n - 5$."
+}

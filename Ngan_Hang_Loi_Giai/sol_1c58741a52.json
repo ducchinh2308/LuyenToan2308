@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1c58741a52",
+  "dapAn": "C",
+  "loiGiai": "Công thức xác định số hạng tổng quát của cấp số nhân theo tham số đầu là:\\\\\r\n\t\t$\\displaystyle u_n = u_1 \\cdot q^{n-1}$.\\\\\r\n\t\tThay hai giá trị cụ thể $\\displaystyle u_1 = 4$ và $\\displaystyle q = -4$ vào cấu trúc biểu thức, ta thu được:\\\\\r\n\t\t$\\displaystyle u_n = 4 \\cdot (-4)^{n-1}$.\\\\"
+}
