@@ -4528,10 +4528,10 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
 
 // =====================================================================
-// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT (VÁ LỖI CỘT TEN_HOC_SINH)
+// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI
 // =====================================================================
 window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
-    // 1. Hiện popup loading để quét dữ liệu
+    // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
     Swal.fire({
         title: '📊 Đang tổng hợp dữ liệu...',
         text: 'Hệ thống đang đồng bộ danh sách lớp và két sắt điểm số...',
@@ -4558,32 +4558,45 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         let dsHocSinhLop = [];
         if (mangMaLop.length > 0) {
             const { data: dataHS, error: errHS } = await _supabase
-                .from('hoc_sinh')
+                .from('hoc_sing') // Ghi chú: Thầy kiểm tra lại nếu tên bảng của thầy là 'hoc_sinh' nhé
                 .select('uid, ten, sdt, danh_sach_ma_lop');
 
-            if (errHS) throw errHS;
-
-            dsHocSinhLop = (dataHS || []).filter(hs => {
-                let lopCuaEm = [];
-                try {
-                    lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
-                } catch (e) { }
-                return lopCuaEm.some(m => mangMaLop.includes(m));
-            });
+            if (!errHS && dataHS) {
+                dsHocSinhLop = dataHS.filter(hs => {
+                    let lopCuaEm = [];
+                    try {
+                        lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
+                    } catch (e) { }
+                    return lopCuaEm.some(m => mangMaLop.includes(m));
+                });
+            } else if (errHS) {
+                // Dự phòng nếu tên bảng là 'hoc_sinh' (có h)
+                const { data: dataHS2, error: errHS2 } = await _supabase
+                    .from('hoc_sinh')
+                    .select('uid, ten, sdt, danh_sach_ma_lop');
+                if (errHS2) throw errHS2;
+                dsHocSinhLop = (dataHS2 || []).filter(hs => {
+                    let lopCuaEm = [];
+                    try {
+                        lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
+                    } catch (e) { }
+                    return lopCuaEm.some(m => mangMaLop.includes(m));
+                });
+            }
         }
 
         // =====================================================================
-        // 🌟 BƯỚC C: ĐÃ SỬA - LOẠI BỎ KHỎI SELECT CỘT ten_hoc_sinh KHÔNG TỒN TẠI
+        // 🌟 BƯỚC C: TRUY VẤN CHUẨN CỘT chi_tiet_lam_bai THEO ĐÚNG ẢNH SUPABASE
         // =====================================================================
         const { data: dsKQ, error: errKQ } = await _supabase
             .from('ket_qua_thi')
-            .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, mang_cau_tra_loi') // <-- Bỏ ten_hoc_sinh
+            .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, chi_tiet_lam_bai') // <-- Đã đổi thành chi_tiet_lam_bai
             .eq('ma_nhiem_vu', maNhiemVu)
             .order('thoi_gian_nop', { ascending: false });
 
         if (errKQ) throw errKQ;
 
-        // Lọc trùng: Giữ lại kết quả mới nhất của học sinh
+        // Lọc trùng: Một học sinh làm nhiều lần thì chỉ giữ lại kết quả mới nhất
         let tuDienKQCuoi = {};
         if (dsKQ) {
             dsKQ.forEach(kq => {
@@ -4593,7 +4606,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
             });
         }
 
-        // BƯỚC D: PHÂN LOẠI HỌC SINH VÀ MAPPING TÊN TỪ BẢNG HOC_SINH KHÔNG SỢ THIẾU
+        // BƯỚC D: PHÂN LOẠI HỌC SINH (ĐÃ LÀM VÀ CHƯA LÀM)
         let mangDaLam = [];
         let mangChưaLam = [];
         let tongDiemLop = 0;
@@ -4604,11 +4617,11 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
                 mangDaLam.push({
                     idKQ: baiLamCuoi.id,
                     uid: hs.uid,
-                    ten: hs.ten || 'Học sinh ẩn danh', // Lấy thẳng từ thông tin học sinh hệ thống
+                    ten: hs.ten || 'Học sinh',
                     sdt: hs.sdt || 'N/A',
                     diem: baiLamCuoi.tong_diem,
                     ngayNop: baiLamCuoi.thoi_gian_nop,
-                    chiTietCau: baiLamCuoi.mang_cau_tra_loi
+                    chiTietCau: baiLamCuoi.chi_tiet_lam_bai // Mảng lưu đáp án từ Supabase
                 });
                 tongDiemLop += Number(baiLamCuoi.tong_diem) || 0;
             } else {
@@ -4625,6 +4638,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         const soLgChuaLam = mangChưaLam.length;
         const diemTrungBinh = soLgDaLam > 0 ? (tongDiemLop / soLgDaLam).toFixed(2) : "0.00";
 
+        // Ghi dữ liệu vào bộ nhớ RAM tạm thời
         window.DataThongKeHienTai = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
 
         // BƯỚC E: HIỂN THỊ POPUP TỔNG QUAN (TẦNG 1)
@@ -4645,7 +4659,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
 
                     <div style="display: flex; flex-direction: column; gap: 10px;">
                         <button onclick="ham_7_15_sub_danh_sach_da_lam()" style="width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
-                            <span>🟢 Danh sách Học sinh ĐẠ NỘP BÀI</span>
+                            <span>🟢 Danh sách Học sinh ĐV NỘP BÀI</span>
                             <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgDaLam} em</b>
                         </button>
                         
@@ -4667,11 +4681,12 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
     }
 };
+
 // =====================================================================
-// HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐÃ LÀM BÀI (TẦNG 2)
+// HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐV LÀM BÀI (TẦNG 2)
 // =====================================================================
 window.ham_7_15_sub_danh_sach_da_lam = function () {
-    const { mangDaLam, tenNhiemVu } = window.DataThongKeHienTai;
+    const { mangDaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
     const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
 
     let htmlBaoCaoTable = '';
@@ -4679,7 +4694,7 @@ window.ham_7_15_sub_danh_sach_da_lam = function () {
         htmlBaoCaoTable = `<tr><td colspan="4" style="text-align:center; color:#999; padding: 20px;">Chưa có học sinh nào nộp bài.</td></tr>`;
     } else {
         mangDaLam.forEach((hs, index) => {
-            const gioNop = new Date(hs.ngayNop).toLocaleString('vi-VN', opts);
+            const gioNop = hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN', opts) : 'N/A';
             htmlBaoCaoTable += `
                 <tr style="border-bottom: 1px solid #e2e8f0;">
                     <td style="padding: 10px 6px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
@@ -4702,7 +4717,7 @@ window.ham_7_15_sub_danh_sach_da_lam = function () {
     }
 
     Swal.fire({
-        title: `🟢 DANH SÁCH ĐÃ NỘP BÀI`,
+        title: `🟢 DANH SÁCH ĐV NỘP BÀI`,
         html: `
             <div style="max-height: 400px; overflow-y: auto; background: white; text-align: left;">
                 <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
@@ -4727,8 +4742,7 @@ window.ham_7_15_sub_danh_sach_da_lam = function () {
         cancelButtonColor: '#718096',
         width: '500px'
     }).then((result) => {
-        // Nếu chọn quay lại -> Gọi ngược hàm mẹ để hiển thị lại Tầng 1
-        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(null, tenNhiemVu);
+        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(maNhiemVu, tenNhiemVu);
     });
 };
 
@@ -4736,11 +4750,11 @@ window.ham_7_15_sub_danh_sach_da_lam = function () {
 // HÀM SUB 2: HIỂN THỊ DANH SÁCH HỌC SINH CHƯA NỘP BÀI (TẦNG 2)
 // =====================================================================
 window.ham_7_15_sub_danh_sach_chua_lam = function () {
-    const { mangChưaLam, tenNhiemVu } = window.DataThongKeHienTai;
+    const { mangChưaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
 
     let htmlChuaLamTable = '';
     if (mangChưaLam.length === 0) {
-        htmlChuaLamTable = `<tr><td colspan="3" style="text-align:center; color:#2d3748; padding: 20px; font-weight:bold; background:#f0fff4;">🎉 Lớp học tuyệt vời! 100% học sinh đã hoàn thành bài!</td></tr>`;
+        htmlChuaLamTable = `<tr><td colspan="3" style="text-align:center; color:#2d3748; padding: 20px; font-weight:bold; background:#f0fff4;">🎉 100% học sinh đã hoàn thành bài!</td></tr>`;
     } else {
         mangChưaLam.forEach((hs, index) => {
             htmlChuaLamTable += `
@@ -4778,16 +4792,16 @@ window.ham_7_15_sub_danh_sach_chua_lam = function () {
         cancelButtonColor: '#718096',
         width: '450px'
     }).then((result) => {
-        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(null, tenNhiemVu);
+        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(maNhiemVu, tenNhiemVu);
     });
 };
 
 // =====================================================================
-// HÀM SUB 3: SOI MA TRẬN ĐÚNG/SAI CỦA TỪNG HỌC SINH CỤ THỂ (TẦNG 3)
+// 🌟 HÀM SUB 3: SOI CHI TIẾT BÀI LÀM ĐÃ ĐƯỢC MAP THEO KHỐI DỮ LIỆU THỰC TẾ (TẦNG 3)
 // =====================================================================
-window.ham_7_15_sub_soi_bai_lam = function (indexHọcSinhMảng) {
+window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
     const { mangDaLam } = window.DataThongKeHienTai;
-    const hs = mangDaLam[indexHọcSinhMảng];
+    const hs = mangDaLam[indexHocSinh];
 
     let mangCauTraLoi = [];
     try {
@@ -4798,36 +4812,40 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHọcSinhMảng) {
     let soCauDung = 0;
 
     if (mangCauTraLoi.length === 0) {
-        htmlMaTranGrid = `<p style="grid-column: span 5; text-align:center; color:#718096; padding:15px;">Hệ thống không tìm thấy log lịch sử tích đáp án của lượt thi này.</p>`;
+        htmlMaTranGrid = `<p style="grid-column: span 5; text-align:center; color:#718096; padding:15px;">Hệ thống không tìm thấy lịch sử tích đáp án.</p>`;
     } else {
         mangCauTraLoi.forEach((cau, idx) => {
-            // Kiểm tra trạng thái đáp án: True/1 là Đúng, False/0 là Sai
-            const laCauDung = (cau.is_dung === true || cau.is_dung === 1 || cau.kq === true);
+            // 🌟 Đọc đúng trường "ketQua" có dấu của thầy ("Đúng", "Sai", "Bỏ trống")
+            const trangThai = (cau.ketQua || "").trim();
 
-            let bgHộp = "#fff5f5";
-            let borderHộp = "#feb2b2";
-            let chuHộp = "#c53030";
+            let bgHop = "#fff5f5";
+            let borderHop = "#feb2b2";
+            let chuHop = "#c53030";
             let iconKq = "❌";
 
-            if (laCauDung) {
+            if (trangThai === "Đúng") {
                 soCauDung++;
-                bgHộp = "#f0fff4";
-                borderHộp = "#9ae6b4";
-                chuHộp = "#22543d";
+                bgHop = "#f0fff4";
+                borderHop = "#9ae6b4";
+                chuHop = "#22543d";
                 iconKq = "🟢";
+            } else if (trangThai === "Bỏ trống") {
+                bgHop = "#f7fafc";
+                borderHop = "#cbd5e0";
+                chuHop = "#4a5568";
+                iconKq = "⚪";
             }
 
             htmlMaTranGrid += `
-                <div style="background: ${bgHộp}; border: 1px solid ${borderHộp}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHộp}; font-family: sans-serif;">
+                <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif;">
                     <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
                     <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
-                    <div style="font-size: 10px; color: #4a5568; font-weight:bold;">ĐA: <span style="background:white; padding:1px 3px; border-radius:2px; border:1px solid #cbd5e0;">${cau.da_chon || '-'}</span></div>
+                    <div style="font-size: 10px; color: #4a5568; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${cau.luaChonHS || '-'}</span></div>
                 </div>
             `;
         });
     }
 
-    // Tính tỷ lệ phần trăm chính xác
     const tongSoCau = mangCauTraLoi.length;
     const tyLeDung = tongSoCau > 0 ? ((soCauDung / tongSoCau) * 100).toFixed(0) : 0;
 
@@ -4835,13 +4853,12 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHọcSinhMảng) {
         title: `👀 BÀI LÀM: ${hs.ten.toUpperCase()}`,
         html: `
             <div style="text-align: left; background: white;">
-                
                 <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; font-weight:bold;">
                     <span>🎯 Đúng: ${soCauDung} / ${tongSoCau} câu</span>
                     <span>📈 Tỷ lệ chính xác: ${tyLeDung}%</span>
                 </div>
 
-                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🧩 Ma trận kết quả chi tiết từng câu:</div>
+                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Chi tiết từng câu hỏi:</div>
                 
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 280px; overflow-y: auto; padding: 4px;">
                     ${htmlMaTranGrid}
@@ -4853,9 +4870,6 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHọcSinhMảng) {
         confirmButtonColor: '#4a5568',
         width: '450px'
     }).then((result) => {
-        // Bấm quay lại thì dắt Giáo viên quay về màn hình Tầng 2 danh sách đã làm
         if (result.isConfirmed) ham_7_15_sub_danh_sach_da_lam();
     });
 };
-
-
