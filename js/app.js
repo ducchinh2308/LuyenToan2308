@@ -2324,6 +2324,12 @@ function ham_7_10_ve_bang_nhiem_vu() {
                 <td style="padding: 10px; text-align: center; white-space: nowrap;">
                     <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #ffc107; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">Sửa</button>
                     <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 4px 8px; background: #dc3545; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; margin-left:5px;">Xóa</button>
+                    <button onclick="ham_7_15_thong_ke_nhiem_vu('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" 
+                            style="padding: 6px 12px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">
+                        📊 Thống kê
+                    </button>
+
+
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
                 <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
@@ -4518,3 +4524,342 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
         });
     }
 };
+
+
+
+// =====================================================================
+// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI
+// =====================================================================
+window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
+    // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
+    Swal.fire({
+        title: '📊 Đang tổng hợp dữ liệu...',
+        text: 'Hệ thống đang đồng bộ danh sách lớp và két sắt điểm số...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    try {
+        // BƯỚC A: Lấy thông tin lớp học được giao của Nhiệm vụ này
+        const { data: nv, error: errNV } = await _supabase
+            .from('nhiem_vu')
+            .select('danh_sach_lop')
+            .eq('ma_nhiem_vu', maNhiemVu)
+            .single();
+
+        if (errNV || !nv) throw new Error("Không tìm thấy thông tin cấu trúc nhiệm vụ.");
+
+        let mangMaLop = [];
+        try {
+            mangMaLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+        } catch (e) { mangMaLop = []; }
+
+        // BƯỚC B: Tải toàn bộ danh sách học sinh thuộc các lớp được giao bài tập này
+        let dsHocSinhLop = [];
+        if (mangMaLop.length > 0) {
+            const { data: dataHS, error: errHS } = await _supabase
+                .from('hoc_sinh')
+                .select('uid, ten, sdt, danh_sach_ma_lop'); // Bốc học sinh để so khớp lớp công bằng
+
+            if (errHS) throw errHS;
+
+            // Lọc những em học sinh thực sự nằm trong danh sách mã lớp của nhiệm vụ
+            dsHocSinhLop = (dataHS || []).filter(hs => {
+                let lopCuaEm = [];
+                try {
+                    lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
+                } catch (e) { }
+                return lopCuaEm.some(m => mangMaLop.includes(m));
+            });
+        }
+
+        // BƯỚC C: Tải kết quả thi LẦN CUỐI CÙNG của các học sinh này trong nhiệm vụ này
+        // Tận dụng logic sắp xếp để lấy bài nộp mới nhất của từng em học sinh
+        const { data: dsKQ, error: errKQ } = await _supabase
+            .from('ket_qua_thi')
+            .select('id, uid_hoc_sinh, ten_hoc_sinh, tong_diem, thoi_gian_nop, mang_cau_tra_loi')
+            .eq('ma_nhiem_vu', maNhivi || maNhiemVu)
+            .order('thoi_gian_nop', { ascending: false });
+
+        if (errKQ) throw errKQ;
+
+        // Lọc trùng: Một học sinh làm nhiều lần thì chỉ giữ lại kết quả mới nhất
+        let tuDienKQCuoi = {};
+        if (dsKQ) {
+            dsKQ.forEach(kq => {
+                if (!tuDienKQCuoi[kq.uid_hoc_sinh]) {
+                    tuDienKQCuoi[kq.uid_hoc_sinh] = kq;
+                }
+            });
+        }
+
+        // BƯỚC D: PHÂN LOẠI HỌC SINH (ĐÃ LÀM VÀ CHƯA LÀM)
+        let mangDaLam = [];
+        let mangChưaLam = [];
+        let tongDiemLop = 0;
+
+        dsHocSinhLop.forEach(hs => {
+            const baiLamCuoi = tuDienKQCuoi[hs.uid];
+            if (baiLamCuoi) {
+                mangDaLam.push({
+                    idKQ: baiLamCuoi.id,
+                    uid: hs.uid,
+                    ten: hs.ten || baiLamCuoi.ten_hoc_sinh,
+                    sdt: hs.sdt || 'N/A',
+                    diem: baiLamCuoi.tong_diem,
+                    ngayNop: baiLamCuoi.thoi_gian_nop,
+                    chiTietCau: baiLamCuoi.mang_cau_tra_loi // Mảng lưu đáp án đúng/sai của câu hỏi
+                });
+                tongDiemLop += Number(baiLamCuoi.tong_diem) || 0;
+            } else {
+                mangChưaLam.push({
+                    uid: hs.uid,
+                    ten: hs.ten,
+                    sdt: hs.sdt || 'N/A'
+                });
+            }
+        });
+
+        // Tính toán các chỉ số thống kê tổng quan
+        const tongSoHS = dsHocSinhLop.length;
+        const soLgDaLam = mangDaLam.length;
+        const soLgChuaLam = mangChưaLam.length;
+        const diemTrungBinh = soLgDaLam > 0 ? (tongDiemLop / soLgDaLam).toFixed(2) : "0.00";
+
+        // Ghi dữ liệu vào bộ nhớ tạm window để các popup con bốc ra xài không cần nạp lại API
+        window.DataThongKeHienTai = { mangDaLam, mangChưaLam, tenNhiemVu };
+
+        // BƯỚC E: HIỂN THỊ POPUP TỔNG QUAN (TẦNG 1)
+        Swal.fire({
+            title: `📊 THỐNG KÊ: ${tenNhiemVu}`,
+            html: `
+                <div style="text-align: left; background: #fff; border-radius: 8px; font-size: 14px; color: #2c3e50; line-height: 1.6;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                        <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; border-left: 4px solid #1e88e5; text-align: center;">
+                            <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Sĩ số giao bài</span>
+                            <div style="font-size: 24px; font-weight: 900; color: #1565c0;">${tongSoHS} <span style="font-size: 12px; font-weight: normal; color: #666;">em</span></div>
+                        </div>
+                        <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; border-left: 4px solid #43a047; text-align: center;">
+                            <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Điểm trung bình</span>
+                            <div style="font-size: 24px; font-weight: 900; color: #2e7d32;">${diemTrungBinh} <span style="font-size: 12px; font-weight: normal; color: #666;">đ</span></div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="ham_7_15_sub_danh_sach_da_lam()" style="width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
+                            <span>🟢 Danh sách Học sinh ĐỒ NỘP BÀI</span>
+                            <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgDaLam} em</b>
+                        </button>
+                        
+                        <button onclick="ham_7_15_sub_danh_sach_chua_lam()" style="width: 100%; padding: 14px; background: #dc3545; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(220,53,69,0.2);">
+                            <span>🔴 Danh sách Học sinh CHƯA LÀM BÀI</span>
+                            <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgChuaLam} em</b>
+                        </button>
+                    </div>
+                </div>
+            `,
+            showConfirmButton: true,
+            confirmButtonText: 'Đóng thống kê',
+            confirmButtonColor: '#6c757d',
+            width: '450px'
+        });
+
+    } catch (err) {
+        console.error("LỖI THỐNG KÊ:", err);
+        Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
+    }
+};
+
+// =====================================================================
+// HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐÃ LÀM BÀI (TẦNG 2)
+// =====================================================================
+window.ham_7_15_sub_danh_sach_da_lam = function () {
+    const { mangDaLam, tenNhiemVu } = window.DataThongKeHienTai;
+    const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+    let htmlBaoCaoTable = '';
+    if (mangDaLam.length === 0) {
+        htmlBaoCaoTable = `<tr><td colspan="4" style="text-align:center; color:#999; padding: 20px;">Chưa có học sinh nào nộp bài.</td></tr>`;
+    } else {
+        mangDaLam.forEach((hs, index) => {
+            const gioNop = new Date(hs.ngayNop).toLocaleString('vi-VN', opts);
+            htmlBaoCaoTable += `
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 10px 6px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
+                    <td style="padding: 10px 6px; text-align: left;">
+                        <b style="color:#2b6cb0; font-size:14px;">${hs.ten}</b>
+                        <div style="font-size:11px; color:#718096; margin-top:2px;">SĐT: ${hs.sdt}</div>
+                    </td>
+                    <td style="padding: 10px 6px; text-align: center;">
+                        <span style="font-size: 16px; font-weight: 900; color: #e53e3e;">${hs.diem}</span>
+                        <div style="font-size:10px; color:#a0aec0; margin-top:2px;">${gioNop}</div>
+                    </td>
+                    <td style="padding: 10px 6px; text-align: center;">
+                        <button onclick="ham_7_15_sub_soi_bai_lam(${index})" style="padding: 6px 10px; background: #3182ce; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; transition: 0.2s;">
+                            👁️ SOI BÀI
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    Swal.fire({
+        title: `🟢 DANH SÁCH ĐÃ NỘP BÀI`,
+        html: `
+            <div style="max-height: 400px; overflow-y: auto; background: white; text-align: left;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                    <thead style="background: #f7fafc; position: sticky; top: 0; border-bottom: 2px solid #cbd5e0;">
+                        <tr>
+                            <th style="padding: 8px 6px; text-align: center; color: #4a5568; width: 35px;">STT</th>
+                            <th style="padding: 8px 6px; color: #4a5568; text-align: left;">Học sinh</th>
+                            <th style="padding: 8px 6px; text-align: center; color: #4a5568; width: 100px;">Điểm Số</th>
+                            <th style="padding: 8px 6px; text-align: center; color: #4a5568; width: 75px;">Bài làm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${htmlBaoCaoTable}
+                    </tbody>
+                </table>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '⬅️ Quay lại tổng quan',
+        cancelButtonText: 'Đóng hẳn',
+        confirmButtonColor: '#3182ce',
+        cancelButtonColor: '#718096',
+        width: '500px'
+    }).then((result) => {
+        // Nếu chọn quay lại -> Gọi ngược hàm mẹ để hiển thị lại Tầng 1
+        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(null, tenNhiemVu);
+    });
+};
+
+// =====================================================================
+// HÀM SUB 2: HIỂN THỊ DANH SÁCH HỌC SINH CHƯA NỘP BÀI (TẦNG 2)
+// =====================================================================
+window.ham_7_15_sub_danh_sach_chua_lam = function () {
+    const { mangChưaLam, tenNhiemVu } = window.DataThongKeHienTai;
+
+    let htmlChuaLamTable = '';
+    if (mangChưaLam.length === 0) {
+        htmlChuaLamTable = `<tr><td colspan="3" style="text-align:center; color:#2d3748; padding: 20px; font-weight:bold; background:#f0fff4;">🎉 Lớp học tuyệt vời! 100% học sinh đã hoàn thành bài!</td></tr>`;
+    } else {
+        mangChưaLam.forEach((hs, index) => {
+            htmlChuaLamTable += `
+                <tr style="border-bottom: 1px solid #edf2f7;">
+                    <td style="padding: 10px 8px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
+                    <td style="padding: 10px 8px; font-weight: bold; color: #4a5568;">${hs.ten}</td>
+                    <td style="padding: 10px 8px; text-align: center; color: #e53e3e; font-weight: bold;">${hs.sdt}</td>
+                </tr>
+            `;
+        });
+    }
+
+    Swal.fire({
+        title: `🔴 DANH SÁCH CHƯA NỘP BÀI`,
+        html: `
+            <div style="max-height: 400px; overflow-y: auto; background: white;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+                    <thead style="background: #fff5f5; position: sticky; top: 0; border-bottom: 2px solid #fed7d7;">
+                        <tr>
+                            <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 40px;">STT</th>
+                            <th style="padding: 8px 8px; color: #9b2c2c;">Tên học sinh</th>
+                            <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 130px;">Số điện thoại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${htmlChuaLamTable}
+                    </tbody>
+                </table>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '⬅️ Quay lại tổng quan',
+        cancelButtonText: 'Đóng hẳn',
+        confirmButtonColor: '#e53e3e',
+        cancelButtonColor: '#718096',
+        width: '450px'
+    }).then((result) => {
+        if (result.isConfirmed) ham_7_15_thong_ke_nhiem_vu(null, tenNhiemVu);
+    });
+};
+
+// =====================================================================
+// HÀM SUB 3: SOI MA TRẬN ĐÚNG/SAI CỦA TỪNG HỌC SINH CỤ THỂ (TẦNG 3)
+// =====================================================================
+window.ham_7_15_sub_soi_bai_lam = function (indexHọcSinhMảng) {
+    const { mangDaLam } = window.DataThongKeHienTai;
+    const hs = mangDaLam[indexHọcSinhMảng];
+
+    let mangCauTraLoi = [];
+    try {
+        mangCauTraLoi = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
+    } catch (e) { }
+
+    let htmlMaTranGrid = '';
+    let soCauDung = 0;
+
+    if (mangCauTraLoi.length === 0) {
+        htmlMaTranGrid = `<p style="grid-column: span 5; text-align:center; color:#718096; padding:15px;">Hệ thống không tìm thấy log lịch sử tích đáp án của lượt thi này.</p>`;
+    } else {
+        mangCauTraLoi.forEach((cau, idx) => {
+            // Kiểm tra trạng thái đáp án: True/1 là Đúng, False/0 là Sai
+            const laCauDung = (cau.is_dung === true || cau.is_dung === 1 || cau.kq === true);
+
+            let bgHộp = "#fff5f5";
+            let borderHộp = "#feb2b2";
+            let chuHộp = "#c53030";
+            let iconKq = "❌";
+
+            if (laCauDung) {
+                soCauDung++;
+                bgHộp = "#f0fff4";
+                borderHộp = "#9ae6b4";
+                chuHộp = "#22543d";
+                iconKq = "🟢";
+            }
+
+            htmlMaTranGrid += `
+                <div style="background: ${bgHộp}; border: 1px solid ${borderHộp}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHộp}; font-family: sans-serif;">
+                    <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
+                    <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+                    <div style="font-size: 10px; color: #4a5568; font-weight:bold;">ĐA: <span style="background:white; padding:1px 3px; border-radius:2px; border:1px solid #cbd5e0;">${cau.da_chon || '-'}</span></div>
+                </div>
+            `;
+        });
+    }
+
+    // Tính tỷ lệ phần trăm chính xác
+    const tongSoCau = mangCauTraLoi.length;
+    const tyLeDung = tongSoCau > 0 ? ((soCauDung / tongSoCau) * 100).toFixed(0) : 0;
+
+    Swal.fire({
+        title: `👀 BÀI LÀM: ${hs.ten.toUpperCase()}`,
+        html: `
+            <div style="text-align: left; background: white;">
+                
+                <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; font-weight:bold;">
+                    <span>🎯 Đúng: ${soCauDung} / ${tongSoCau} câu</span>
+                    <span>📈 Tỷ lệ chính xác: ${tyLeDung}%</span>
+                </div>
+
+                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">🧩 Ma trận kết quả chi tiết từng câu:</div>
+                
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 280px; overflow-y: auto; padding: 4px;">
+                    ${htmlMaTranGrid}
+                </div>
+            </div>
+        `,
+        showCancelButton: false,
+        confirmButtonText: '⬅️ Quay lại danh sách lớp',
+        confirmButtonColor: '#4a5568',
+        width: '450px'
+    }).then((result) => {
+        // Bấm quay lại thì dắt Giáo viên quay về màn hình Tầng 2 danh sách đã làm
+        if (result.isConfirmed) ham_7_15_sub_danh_sach_da_lam();
+    });
+};
+
+
