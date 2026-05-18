@@ -786,9 +786,164 @@ async function ham_8_4_tab_ket_qua() {
         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất học bạ: ${error.message}</div>`;
     }
 }
-function ham_8_5_tab_ho_so() {
-    document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#6c757d; text-align:center;">👤 Cập nhật Thông tin (Sắp ra mắt)</h3>`;
+// =====================================================================
+// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN"
+// =====================================================================
+async function ham_8_5_tab_ho_so() {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+    vungLamViec.innerHTML = `
+        <div style="text-align: center; padding: 60px;">
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #6c757d; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+            <h3 style="color:#6c757d; margin-top:20px;">⏳ Đang tải thông tin cá nhân...</h3>
+        </div>
+    `;
+
+    try {
+        // 1. Tải thông tin mới nhất từ database để đảm bảo chính xác
+        const { data: hs, error } = await _supabase
+            .from('hoc_sinh')
+            .select('*')
+            .eq('uid', GocHocSinhState.uid)
+            .single();
+
+        if (error) throw error;
+
+        // 2. Phân tích danh sách lớp để in ra tên Lớp cho học sinh thấy
+        let mangLop = [];
+        try { mangLop = typeof hs.ma_lop === 'string' ? JSON.parse(hs.ma_lop) : (hs.ma_lop || []); } catch (e) { }
+
+        let tenLopHienThi = "Chưa tham gia lớp nào";
+        if (mangLop.length > 0) {
+            const { data: dsLop } = await _supabase.from('lop_hoc').select('ten_lop').in('ma_lop', mangLop);
+            if (dsLop) tenLopHienThi = dsLop.map(l => l.ten_lop).join(', ');
+        }
+
+        // Lấy mật khẩu hiện tại (ẩn hiển thị)
+        const mkHienTai = hs.mat_khau || hs.matKhau || "";
+
+        // 3. VẼ GIAO DIỆN HỒ SƠ DẠNG CARD
+        vungLamViec.innerHTML = `
+            <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
+                <div style="background: linear-gradient(135deg, #6c757d, #343a40); padding: 35px 20px; text-align: center; color: white; position: relative;">
+                    <div style="font-size: 65px; margin-bottom: 10px; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">🎓</div>
+                    <h2 style="margin: 0; font-size: 24px; font-weight: 900;">${hs.ten || "Học sinh"}</h2>
+                    <div style="font-size: 14px; opacity: 0.9; margin-top: 5px; background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px;">
+                        ID Đăng nhập: <b>${hs.uid}</b>
+                    </div>
+                </div>
+                
+                <div style="padding: 30px;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">👤 Tên hiển thị của em:</label>
+                        <input type="text" id="hs_edit_ten" value="${hs.ten || ''}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🏫 Lớp học đang tham gia:</label>
+                        <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box;">
+                            ${tenLopHienThi}
+                        </div>
+                        <div style="font-size: 11px; color: #888; margin-top: 6px; font-style: italic;">* Để ghi danh thêm lớp mới hoặc đổi lớp, vui lòng liên hệ Giáo viên bộ môn.</div>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Đổi mật khẩu:</label>
+                        <input type="password" id="hs_edit_mk" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+                        <div style="font-size: 11px; color: #dc3545; margin-top: 6px;">* Xóa mật khẩu cũ và gõ mật khẩu mới vào ô trên để thay đổi. Tuyệt đối không chia sẻ mật khẩu cho người khác.</div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #e9ecef; margin: 25px 0;">
+
+                    <div style="display: flex; gap: 15px;">
+                        <button onclick="ham_8_5_1_luu_ho_so(this)" style="flex: 2; padding: 14px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(40,167,69,0.2);" onmouseover="this.style.background='#218838'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#28a745'; this.style.transform='translateY(0)'">
+                            💾 CẬP NHẬT HỒ SƠ
+                        </button>
+                        <button onclick="ham_8_dang_xuat()" style="flex: 1; padding: 14px; background: #fff; color: #dc3545; border: 2px solid #dc3545; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='white'" onmouseout="this.style.background='#fff'; this.style.color='#dc3545'">
+                            🚪 THOÁT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight: bold;">❌ Lỗi tải hồ sơ: ${error.message}</div>`;
+    }
 }
+
+// =====================================================================
+// Hàm 8.5.1: Xử lý Lưu cập nhật Hồ sơ lên Supabase
+// =====================================================================
+window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
+    const tenMoi = document.getElementById('hs_edit_ten').value.trim();
+    const mkMoi = document.getElementById('hs_edit_mk').value.trim();
+
+    if (!tenMoi) return Swal.fire({ icon: 'warning', title: 'Thiếu thông tin', text: 'Tên hiển thị không được để trống!' });
+    if (!mkMoi) return Swal.fire({ icon: 'warning', title: 'Thiếu thông tin', text: 'Mật khẩu không được để trống!' });
+
+    const textCu = btnLuu.innerHTML;
+    btnLuu.innerHTML = "⏳ ĐANG LƯU...";
+    btnLuu.disabled = true;
+
+    try {
+        const { error } = await _supabase
+            .from('hoc_sinh')
+            .update({ ten: tenMoi, mat_khau: mkMoi }) // Tùy thuộc vào cột trong DB của thầy là mat_khau hay matKhau
+            .eq('uid', GocHocSinhState.uid);
+
+        if (error) throw error;
+
+        // Cập nhật lại RAM để thay đổi lập tức tên trên lời chào góc phải
+        GocHocSinhState.ten = tenMoi;
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công!',
+            text: 'Hồ sơ của em đã được cập nhật.',
+            timer: 1500,
+            showConfirmButton: false
+        }).then(() => {
+            // Ráp lại giao diện để load lại tên trên thanh Header
+            ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+        });
+
+    } catch (err) {
+        Swal.fire({ icon: 'error', title: 'Lỗi', text: err.message });
+    } finally {
+        btnLuu.innerHTML = textCu;
+        btnLuu.disabled = false;
+    }
+};
+
+// =====================================================================
+// Hàm Bổ trợ Đăng xuất
+// =====================================================================
+window.ham_8_dang_xuat = function () {
+    Swal.fire({
+        title: 'Đăng xuất?',
+        text: "Em có chắc chắn muốn thoát khỏi phiên làm việc hiện tại?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '🚪 Thoát ngay',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Xóa rỗng toàn bộ dữ liệu đang lưu tạm trên RAM
+            GocHocSinhState.uid = null;
+            GocHocSinhState.ma_lop = null;
+            GocHocSinhState.ten = null;
+            GocHocSinhState.danhSachNhiemVu = [];
+
+            // Xóa session trên trình duyệt (Nếu thầy có set LocalStorage lúc đăng nhập)
+            localStorage.removeItem('dang_nhap_tai_khoan');
+            localStorage.removeItem('dang_nhap_mat_khau');
+
+            // Tải lại cứng trang web để ép văng ra màn hình đăng nhập
+            window.location.reload();
+        }
+    });
+};
 
 function ham_8_6_tab_dau_truong_live() {
     document.getElementById('vung-lam-viec-hoc-sinh').innerHTML = `<h3 style="color:#dc3545; text-align:center;">⚔️ Phòng Đấu Trường (Sắp ra mắt)</h3>`;
