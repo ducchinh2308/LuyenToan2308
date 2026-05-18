@@ -958,7 +958,7 @@ async function ham_8_4_tab_ket_qua() {
     }
 }
 // =====================================================================
-// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (Đã fix lỗi Lớp & Thêm Xác nhận Mật khẩu)
+// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (ĐÃ CẬP NHẬT NÚT XIN VÀO LỚP)
 // =====================================================================
 async function ham_8_5_tab_ho_so() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -978,10 +978,8 @@ async function ham_8_5_tab_ho_so() {
 
         if (error) throw error;
 
-        // 🌟 1. FIX LỖI DANH SÁCH LỚP: Sử dụng mảng chuẩn từ State đã được nạp lúc đăng nhập
         let mangLop = GocHocSinhState.danh_sach_ma_lop || [];
         if (mangLop.length === 0) {
-            // Dự phòng nếu State rỗng thì đọc từ Database
             try { mangLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
         }
 
@@ -993,7 +991,6 @@ async function ham_8_5_tab_ho_so() {
 
         const mkHienTai = hs.mat_khau || hs.matKhau || "";
 
-        // 🌟 2. VẼ GIAO DIỆN (Thêm ô nhập lại mật khẩu)
         vungLamViec.innerHTML = `
             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
                 <div style="background: linear-gradient(135deg, #6c757d, #343a40); padding: 35px 20px; text-align: center; color: white; position: relative;">
@@ -1012,9 +1009,12 @@ async function ham_8_5_tab_ho_so() {
 
                     <div style="margin-bottom: 20px;">
                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🏫 Lớp học đang tham gia:</label>
-                        <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box;">
+                        <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box; line-height: 1.4;">
                             ${tenLopHienThi}
                         </div>
+                        <button onclick="ham_8_5_2_xin_vao_lop_moi()" style="margin-top: 8px; padding: 6px 12px; background: white; color: #1a73e8; border: 1px solid #1a73e8; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a73e8'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#1a73e8'">
+                            ➕ Xin gia nhập lớp mới
+                        </button>
                     </div>
 
                     <div style="margin-bottom: 15px;">
@@ -1103,7 +1103,94 @@ window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
 };
 
 
+// =====================================================================
+// Hàm 8.5.2: Học sinh gửi mã xin tham gia lớp học mới
+// =====================================================================
+window.ham_8_5_2_xin_vao_lop_moi = function () {
+    Swal.fire({
+        title: '🏫 XIN GIA NHẬP LỚP MỚI',
+        text: 'Em hãy nhập đúng Mã Lớp do Thầy cung cấp:',
+        input: 'text',
+        inputPlaceholder: 'Ví dụ: MAT12, TOA11...',
+        showCancelButton: true,
+        confirmButtonText: '🚀 GỬI YÊU CẦU',
+        cancelButtonText: 'Hủy',
+        confirmButtonColor: '#1a73e8',
+        cancelButtonColor: '#6c757d',
+        showLoaderOnConfirm: true,
+        inputValidator: (value) => {
+            if (!value.trim()) return 'Em bắt buộc phải điền mã lớp!';
+        },
+        preConfirm: async (maLopInput) => {
+            const maLopCheck = maLopInput.trim().toUpperCase();
 
+            try {
+                // Chốt 1: Check xem em này đã nằm sẵn trong lớp này chưa
+                let cacLopCuaEm = GocHocSinhState.danh_sach_ma_lop || [];
+                if (cacLopCuaEm.includes(maLopCheck)) {
+                    Swal.showValidationMessage(`✨ Em đã là thành viên của lớp "${maLopCheck}" rồi, không cần xin lại nha!`);
+                    return false;
+                }
+
+                // Chốt 2: Check xem có đơn xin vào lớp này đang ở trạng thái Chờ Duyệt (trang_thai = 0) hay không
+                const { data: donTrung } = await _supabase
+                    .from('yeu_cau_hoc_sinh')
+                    .select('id')
+                    .eq('uid_hoc_sinh', GocHocSinhState.uid)
+                    .eq('ma_lop', maLopCheck)
+                    .eq('loai_yeu_cau', 'XIN_VAO_LOP')
+                    .eq('trang_thai', 0);
+
+                if (donTrung && donTrung.length > 0) {
+                    Swal.showValidationMessage(`⏳ Đơn xin vào lớp "${maLopCheck}" cũ của em đang chờ Thầy phê duyệt, em đừng gửi liên tục nhé!`);
+                    return false;
+                }
+
+                // Chốt 3: So dò xem mã lớp này có thực sự tồn tại trong CSDL không
+                const { data: infoLop, error: errLop } = await _supabase
+                    .from('lop_hoc')
+                    .select('ma_lop, ten_lop')
+                    .eq('ma_lop', maLopCheck)
+                    .maybeSingle();
+
+                if (errLop) throw errLop;
+                if (!infoLop) {
+                    Swal.showValidationMessage(`❌ Mã lớp "${maLopCheck}" không tồn tại trên hệ thống. Em hãy kiểm tra kỹ lại từng ký tự nhé!`);
+                    return false;
+                }
+
+                // BƯỚC BẮN DỮ LIỆU VÀO BẢNG YÊU CẦU CỦA THẦY
+                const payload = {
+                    uid_hoc_sinh: GocHocSinhState.uid,
+                    ten_hoc_sinh: GocHocSinhState.ten,
+                    loai_yeu_cau: 'XIN_VAO_LOP',
+                    ma_lop: maLopCheck, // Ghi nhận mã lớp cần xin vào
+                    ten_nhiem_vu: `Lớp học: ${infoLop.ten_lop}`, // Tận dụng trường này để hiện tên lớp siêu đẹp mắt ở Hòm thư GV
+                    ly_do: `Học sinh chủ động gửi đơn xin gia nhập lớp bằng mã phòng.`,
+                    trang_thai: 0
+                };
+
+                const { error: errInsert } = await _supabase.from('yeu_cau_hoc_sinh').insert([payload]);
+                if (errInsert) throw errInsert;
+
+                return maLopCheck;
+
+            } catch (e) {
+                Swal.showValidationMessage(`Lỗi hệ thống: ${e.message}`);
+                return false;
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Đã gửi đơn thành công!',
+                text: `Đơn đăng ký vào lớp "${result.value}" đã nằm trong hòm thư chờ Thầy Chính duyệt duyệt nha em!`,
+                confirmButtonColor: '#28a745'
+            });
+        }
+    });
+};
 
 // =====================================================================
 // Hàm Bổ trợ Đăng xuất
