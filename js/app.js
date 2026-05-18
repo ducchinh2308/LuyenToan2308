@@ -437,7 +437,7 @@ function ham_2_3_an_hien_mat_khau(inputId) {
 
 // =====================================================================
 // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
-// (BẢN KỶ LUẬT THÉP: BẮT BUỘC NHẬP MÃ LỚP HỢP LỆ)
+// (BẢN TÍCH HỢP HOÀN CHỈNH: PHÂN LUỒNG HỌC SINH / GIÁO VIÊN)
 // =====================================================================
 async function ham_2_4_xu_ly_submit(btnElement) {
     const sdt = document.getElementById('txtPhone').value.trim();
@@ -514,7 +514,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
     } else {
         // ====================================================
-        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (BẮT BUỘC CÓ MÃ LỚP)
+        // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (ĐÃ PHÂN LUỒNG)
         // ====================================================
         console.log("App: Đang xử lý đăng ký tài khoản");
 
@@ -525,12 +525,23 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
 
-        // 🌟 1. KIỂM TRA TÍNH HỢP LỆ FORM (Bổ sung bắt buộc Mã lớp)
-        if (!hoTen || !tinh || !truong || !maLopVao) {
-            errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Trường, Tỉnh và ĐẶC BIỆT LÀ MÃ LỚP!";
+        // Đọc vai trò từ AppState (do Hàm 2.2 đã set), mặc định là 'hocsinh'
+        const vaiTroDangKy = AppState.role || 'hocsinh';
+
+        // 🌟 1. KIỂM TRA TÍNH HỢP LỆ FORM CHUNG
+        if (!hoTen || !tinh || !truong) {
+            errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
             errorMsg.style.display = 'block';
             return;
         }
+
+        // 🌟 NẾU LÀ HỌC SINH THÌ BẮT BUỘC PHẢI NHẬP MÃ LỚP
+        if (vaiTroDangKy === 'hocsinh' && !maLopVao) {
+            errorMsg.innerText = "Học sinh đăng ký bắt buộc phải nhập MÃ LỚP do giáo viên cung cấp!";
+            errorMsg.style.display = 'block';
+            return;
+        }
+
         if (pass !== passConfirm) {
             errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
             errorMsg.style.display = 'block';
@@ -542,7 +553,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             return;
         }
 
-        document.getElementById('status').innerText = `Đang xác thực mã lớp...`;
+        document.getElementById('status').innerText = `Đang kết nối hệ thống...`;
         if (btnElement) btnElement.disabled = true;
 
         try {
@@ -557,28 +568,32 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang Đăng nhập.");
             }
 
-            // =========================================================
-            // 🌟 3. XÁC THỰC MÃ LỚP CÓ TỒN TẠI KHÔNG (BẮT BUỘC)
-            // =========================================================
-            const { data: checkLop, error: loiCheckLop } = await _supabase
-                .from('lop_hoc')
-                .select('ma_lop, danh_sach_hoc_sinh')
-                .eq('ma_lop', maLopVao)
-                .maybeSingle();
+            let checkLop = null;
 
-            if (loiCheckLop) throw loiCheckLop;
+            // =========================================================
+            // 🌟 3. CHỈ XÁC THỰC MÃ LỚP TRÊN DATABASE NẾU LÀ HỌC SINH
+            // =========================================================
+            if (vaiTroDangKy === 'hocsinh') {
+                document.getElementById('status').innerText = `Đang xác thực mã lớp...`;
+                const { data: dataLop, error: loiCheckLop } = await _supabase
+                    .from('lop_hoc')
+                    .select('ma_lop, danh_sach_hoc_sinh')
+                    .eq('ma_lop', maLopVao)
+                    .maybeSingle();
 
-            // NẾU NHẬP LỤI MÃ LỚP KHÔNG CÓ TRONG DATABASE -> CHẶN NGAY!
-            if (!checkLop) {
-                throw new Error(`Mã lớp "${maLopVao}" KHÔNG TỒN TẠI trên hệ thống. Em vui lòng xin lại giáo viên mã lớp chính xác để đăng ký!`);
+                if (loiCheckLop) throw loiCheckLop;
+
+                if (!dataLop) {
+                    throw new Error(`Mã lớp "${maLopVao}" KHÔNG TỒN TẠI trên hệ thống. Em vui lòng kiểm tra lại!`);
+                }
+                checkLop = dataLop;
             }
 
-            // 4. Tạo sẵn 1 mã UID duy nhất cho học sinh này
+            // 4. Tạo sẵn 1 mã UID duy nhất
             const taoUidHocSinh = crypto.randomUUID();
-
             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
 
-            // 5. Thực hiện lưu học sinh vào Database
+            // 5. Thực hiện lưu thông tin vào Database với vai trò tương ứng
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
@@ -586,44 +601,50 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     sdt: sdt,
                     mat_khau: pass,
                     ten: hoTen,
-                    vai_tro: 'hocsinh',
+                    vai_tro: vaiTroDangKy, // Lưu đúng vai trò (hocsinh hoặc giaovien)
                     trang_thai: 1,
                     khoi_lop: khoi,
                     tinh: tinh,
                     truong: truong,
-                    danh_sach_ma_lop: [maLopVao], // Chắc chắn có mảng 1 phần tử
+                    danh_sach_ma_lop: (vaiTroDangKy === 'hocsinh') ? [maLopVao] : [], // GV thì mảng rỗng
                     ngay_tham_gia: new Date().toISOString()
                 }]);
 
             if (insertError) throw insertError;
 
             // =========================================================
-            // 6. CẬP NHẬT UID HỌC SINH VÀO BẢNG LỚP HỌC (ĐỒNG BỘ 2 CHIỀU)
+            // 6. CẬP NHẬT UID VÀO BẢNG LỚP HỌC (CHỈ DÀNH CHO HỌC SINH)
             // =========================================================
-            let dsHsHienTaiLop = [];
-            try {
-                dsHsHienTaiLop = typeof checkLop.danh_sach_hoc_sinh === 'string'
-                    ? JSON.parse(checkLop.danh_sach_hoc_sinh)
-                    : (checkLop.danh_sach_hoc_sinh || []);
-            } catch (e) { }
+            if (vaiTroDangKy === 'hocsinh' && checkLop) {
+                let dsHsHienTaiLop = [];
+                try {
+                    dsHsHienTaiLop = typeof checkLop.danh_sach_hoc_sinh === 'string'
+                        ? JSON.parse(checkLop.danh_sach_hoc_sinh)
+                        : (checkLop.danh_sach_hoc_sinh || []);
+                } catch (e) { }
 
-            if (!dsHsHienTaiLop.includes(taoUidHocSinh)) {
-                dsHsHienTaiLop.push(taoUidHocSinh);
+                if (!dsHsHienTaiLop.includes(taoUidHocSinh)) {
+                    dsHsHienTaiLop.push(taoUidHocSinh);
 
-                const { error: errUpdateLop } = await _supabase
-                    .from('lop_hoc')
-                    .update({ danh_sach_hoc_sinh: dsHsHienTaiLop })
-                    .eq('ma_lop', maLopVao);
+                    const { error: errUpdateLop } = await _supabase
+                        .from('lop_hoc')
+                        .update({ danh_sach_hoc_sinh: dsHsHienTaiLop })
+                        .eq('ma_lop', maLopVao);
 
-                if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+                    if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+                }
             }
 
-            // 7. Hoàn tất
-            alert(`Đăng ký thành công! Em đã được tự động thêm vào lớp ${maLopVao}. Hệ thống sẽ chuyển về trang Đăng nhập.`);
+            // 7. Hoàn tất thông báo theo vai trò
+            if (vaiTroDangKy === 'hocsinh') {
+                alert(`Đăng ký thành công! Em đã được tự động thêm vào lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
+            } else {
+                alert(`Đăng ký thành công tài khoản GIÁO VIÊN cho thầy/cô: ${hoTen}.`);
+            }
 
             ham_2_1_chuyen_doi_che_do();
             document.getElementById('txtPassword').value = '';
-            document.getElementById('status').innerText = `Vui lòng đăng nhập để vào thi`;
+            document.getElementById('status').innerText = `Vui lòng đăng nhập để tiếp tục`;
 
         } catch (error) {
             errorMsg.innerText = error.message;
@@ -753,7 +774,7 @@ let _dsHocSinhGoc = [];
 
 // Hàm 4.0: Sinh mã lớp ngẫu nhiên 5 ký tự
 function ham_4_0_sinh_ma_lop() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let result = '';
     for (let i = 0; i < 5; i++) {
         result += chars.charAt(Math.floor(Math.random() * chars.length));
