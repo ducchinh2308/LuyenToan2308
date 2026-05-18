@@ -676,7 +676,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 }
 
 // =====================================================================
-// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (THÔNG BÁO THÂN THIỆN)
+// Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (XỬ LÝ ĐA LUỒNG)
 // =====================================================================
 window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
     let tieuDePrompt = 'XIN THÊM LƯỢT LÀM BÀI';
@@ -689,7 +689,7 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
 
     Swal.fire({
         title: tieuDePrompt,
-        text: `Nhiệm vụ "${tenNhiemVu}" đã khóa. Em hãy nhập lý do gửi Thầy để xin xét duyệt mở khóa:`,
+        text: `Nhiệm vụ "${tenNhiemVu}" đã khóa. Em hãy nhập lý do gửi Thầy để xin xét duyệt:`,
         input: 'textarea',
         inputPlaceholder: placeholderPrompt,
         inputAttributes: { 'aria-label': 'Nhập lý do của em' },
@@ -704,6 +704,28 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
         },
         preConfirm: async (lyDoHS) => {
             try {
+                // =========================================================
+                // 🌟 BƯỚC A: KIỂM TRA ĐƠN ĐANG CHỜ DUYỆT
+                // =========================================================
+                const { data: donDangCho, error: errCheck } = await _supabase
+                    .from('yeu_cau_hoc_sinh')
+                    .select('id')
+                    .eq('uid_hoc_sinh', GocHocSinhState.uid)
+                    .eq('ma_nhiem_vu', maNhiemVu)
+                    .eq('loai_yeu_cau', loaiXin)
+                    .eq('trang_thai', 0); // Chỉ quét các đơn đang chờ (Trạng thái = 0)
+
+                if (errCheck) throw errCheck;
+
+                // Nếu có đơn đang chờ -> Dừng lại và báo lỗi ngay trên popup
+                if (donDangCho && donDangCho.length > 0) {
+                    Swal.showValidationMessage('⏳ Em đã gửi đơn này rồi! Đơn đang nằm trên bàn làm việc của Thầy, em kiên nhẫn đợi Thầy duyệt nhé!');
+                    return false;
+                }
+
+                // =========================================================
+                // 🌟 BƯỚC B: TẠO ĐƠN MỚI (LƯU LẠI LỊCH SỬ)
+                // =========================================================
                 const chuoiMaLop = (GocHocSinhState.danh_sach_ma_lop || []).join(', ');
 
                 const payload = {
@@ -717,25 +739,14 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
                     trang_thai: 0
                 };
 
-                // Dùng lệnh insert bình thường. Nếu trùng đơn, Supabase sẽ ném ra lỗi.
-                const { error } = await _supabase
-                    .from('yeu_cau_hoc_sinh')
-                    .insert([payload]);
-
-                if (error) throw error;
+                const { error: errInsert } = await _supabase.from('yeu_cau_hoc_sinh').insert([payload]);
+                if (errInsert) throw errInsert;
 
                 return true;
             } catch (error) {
                 console.error("LỖI GỬI ĐƠN:", error);
-
-                // 🌟 BỘ PHIÊN DỊCH LỖI: Bắt mã lỗi 23505 (Trùng lặp Key)
-                if (error.code === '23505' || error.message.includes('duplicate key') || error.message.includes('chong_trung_don')) {
-                    Swal.showValidationMessage('⏳ Em đã gửi đơn cho bài tập này rồi! Đơn đang nằm trên bàn làm việc của Thầy. Em kiên nhẫn đợi Thầy duyệt nhé!');
-                } else {
-                    // Nếu là các lỗi khác (mất mạng, rớt kết nối...)
-                    Swal.showValidationMessage(`Lỗi hệ thống: ${error.message}`);
-                }
-                return false; // Trả về false để hộp thoại không bị đóng, cho học sinh đọc thông báo
+                Swal.showValidationMessage(`Lỗi hệ thống: ${error.message}`);
+                return false;
             }
         },
         allowOutsideClick: () => !Swal.isLoading()
@@ -750,7 +761,9 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
         }
     });
 };
-// ==============================================================
+
+
+
 // Hàm 8.13: Chuyển hướng xem lại bài thi chi tiết (Chờ ráp code)
 // ==============================================================
 window.ham_8_13_xem_lai_ket_qua = function (maNhiemVu, idKetQua) {
