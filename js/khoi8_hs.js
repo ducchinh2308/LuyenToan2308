@@ -104,280 +104,11 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
     ham_8_2_tab_nhiem_vu_bat_buoc();
 }
 
-//// ==============================================================
-//// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP HIỆN ĐIỂM SỐ GẦN NHẤT)
-//// ==============================================================
-//async function ham_8_2_tab_nhiem_vu_bat_buoc() {
-//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">⏳ Đang tổng hợp bài tập từ các lớp...</h3></div>`;
-
-//    try {
-//        // 1. TẠO CHUỖI TRUY VẤN TÌM LỚP
-//        let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
-//        if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
-
-//        const orQuery = dsLop.map(ma => {
-//            const giaTriJson = JSON.stringify([ma]);
-//            const giaTriSafe = giaTriJson.replace(/"/g, '\\"');
-//            return `danh_sach_lop.cs."${giaTriSafe}"`;
-//        }).join(',');
-
-//        // 2. GỌI LỆNH TRUY VẤN NHIỆM VỤ
-//        try {
-//            const { data: dsNV, error: errNV } = await _supabase
-//                .from('nhiem_vu')
-//                .select('*')
-//                .eq('trang_thai', 1)
-//                .or(orQuery)
-//                .order('ngay_tao', { ascending: false });
-
-//            if (errNV) throw errNV;
-//            GocHocSinhState.danhSachNhiemVu = dsNV || [];
-//        } catch (error) { }
-
-//        // ==========================================================
-//        // 🌟 3. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (SIÊU NHẸ)
-//        // ==========================================================
-//        let demSoLuotLam = {};
-//        let ketQuaGanNhat = {};
-
-//        try {
-//            const { data: dsKQ } = await _supabase
-//                .from('ket_qua_thi')
-//                .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop')
-//                .eq('uid_hoc_sinh', GocHocSinhState.uid)
-//                .order('thoi_gian_nop', { ascending: true }); // Cũ đến mới
-
-//            if (dsKQ) {
-//                dsKQ.forEach(kq => {
-//                    demSoLuotLam[kq.ma_nhiem_vu] = (demSoLuotLam[kq.ma_nhiem_vu] || 0) + 1;
-//                    // Do xếp từ cũ đến mới, kết quả bị ghi đè sau cùng sẽ là MỚI NHẤT
-//                    ketQuaGanNhat[kq.ma_nhiem_vu] = {
-//                        id: kq.id,
-//                        diem: kq.tong_diem,
-//                        thoi_gian_nop: kq.thoi_gian_nop
-//                    };
-//                });
-//            }
-//        } catch (e) { console.error("Lỗi lấy điểm:", e); }
-
-//        // 4. XÂY DỰNG TỪ ĐIỂN TRA CỨU TÊN LỚP & GIÁO VIÊN
-//        let tuDienLop = {};
-//        let tuDienGv = {};
-//        let tapUidGv = new Set();
-
-//        const { data: dataLop } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop, uid_gv_tao').in('ma_lop', dsLop);
-//        if (dataLop) {
-//            dataLop.forEach(l => {
-//                tuDienLop[l.ma_lop] = l.ten_lop;
-//                if (l.uid_gv_tao) tapUidGv.add(l.uid_gv_tao);
-//            });
-//        }
-
-//        GocHocSinhState.danhSachNhiemVu.forEach(nv => {
-//            if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao);
-//        });
-
-//        if (tapUidGv.size > 0) {
-//            const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
-//            if (dataGv) {
-//                dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten);
-//            }
-//        }
-
-//        // 5. PHÂN LOẠI NHIỆM VỤ (CHƯA MỞ, ĐANG MỞ, ĐÃ ĐÓNG)
-//        const now = new Date();
-//        let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
-
-//        const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
-
-//        GocHocSinhState.danhSachNhiemVu.forEach(nv => {
-//            const tMo = anToanThoiGian(nv.thoi_gian_mo);
-//            const tDong = anToanThoiGian(nv.thoi_gian_dong);
-
-//            if (tMo && now.getTime() < tMo.getTime()) dsChuaMo.push(nv);
-//            else if (tDong && now.getTime() > tDong.getTime()) dsDaDong.push(nv);
-//            else dsDangMo.push(nv);
-//        });
-
-//        // 🌟 HÀM PHỤ 1: TÍNH THỜI GIAN THÔNG MINH
-//        const tinhKhoangCachThoiGian = (targetDate, isMo) => {
-//            if (!targetDate) return "";
-//            const diff = targetDate.getTime() - now.getTime();
-//            const absDiff = Math.abs(diff);
-
-//            const d = Math.floor(absDiff / (1000 * 60 * 60 * 24));
-//            const h = Math.floor((absDiff / (1000 * 60 * 60)) % 24);
-//            const m = Math.floor((absDiff / (1000 * 60)) % 60);
-
-//            let str = "";
-//            if (d > 0) str += `${d} ngày `;
-//            if (h > 0) str += `${h} giờ `;
-//            if (m > 0 && d === 0) str += `${m} phút`;
-//            if (str === "") str = "vài giây";
-
-//            if (isMo) {
-//                return diff > 0 ? `(Mở sau ${str})` : `(Đã mở ${str} trước)`;
-//            } else {
-//                return diff > 0 ? `(Còn ${str})` : `(Đã đóng ${str} trước)`;
-//            }
-//        };
-
-//        const thoiGianTroiQua = (dateStr) => {
-//            if (!dateStr) return "Không rõ";
-//            const date = new Date(dateStr);
-//            const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-
-//            let interval = seconds / 86400;
-//            if (interval > 1) return Math.floor(interval) + " ngày trước";
-//            interval = seconds / 3600;
-//            if (interval > 1) return Math.floor(interval) + " giờ trước";
-//            interval = seconds / 60;
-//            if (interval > 1) return Math.floor(interval) + " phút trước";
-//            return "Vừa xong";
-//        };
-
-//        // 🌟 HÀM PHỤ 3: VẼ GIAO DIỆN THẺ (CARD)
-//        const renderCard = (nv, loai) => {
-//            const tMo = anToanThoiGian(nv.thoi_gian_mo);
-//            const tDong = anToanThoiGian(nv.thoi_gian_dong);
-//            const tTao = nv.ngay_tao;
-
-//            const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
-//            const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
-
-//            const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
-
-//            let tenLopHienThi = "Không xác định";
-//            try {
-//                const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
-//                const cacLopKhop = mangLopCuaNV.filter(m => dsLop.includes(m)).map(m => tuDienLop[m] || m);
-//                if (cacLopKhop.length > 0) tenLopHienThi = cacLopKhop.join(', ');
-//            } catch (e) { }
-
-//            const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
-
-//            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
-//            const gioiHanLuot = nv.so_luot_lam_bai || 0;
-//            const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
-//            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
-
-//            // =========================================================
-//            // 🌟 TẠO GIAO DIỆN ĐIỂM SỐ NẾU ĐÃ TỪNG LÀM
-//            // =========================================================
-//            const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
-//            let htmlKetQua = "";
-
-//            if (soLuotDaLam > 0 && kqLatest) {
-//                htmlKetQua = `
-//                    <div style="background: #fffdf5; border: 1px dashed #f39c12; border-radius: 8px; padding: 12px; margin-bottom: 15px;">
-//                        <div style="display: flex; justify-content: space-between; align-items: center;">
-//                            <div>
-//                                <div style="font-size: 11px; color: #d35400; font-weight: bold; text-transform: uppercase;">⭐ Điểm lần gần nhất:</div>
-//                                <div style="color: #c0392b; font-size: 24px; font-weight: 900; line-height: 1.2;">${kqLatest.diem} <span style="font-size: 13px; font-weight: bold; color: #666;">điểm</span></div>
-//                                <div style="font-size: 10px; color: #7f8c8d; margin-top: 2px;">Nộp lúc: ${fTime(new Date(kqLatest.thoi_gian_nop))}</div>
-//                            </div>
-//                            <button onclick="ham_8_13_xem_lai_ket_qua('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 8px 15px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#d35400'; this.style.color='#fff'" onmouseout="this.style.background='white'; this.style.color='#d35400'">
-//                                👁️ CHI TIẾT
-//                            </button>
-//                        </div>
-//                    </div>
-//                `;
-//            }
-
-//            let nutHanhDong = "", mauVien = "", mauNen = "";
-//            let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
-
-//            if (loai === 'DANG_MO') {
-//                if (daHetLuot) {
-//                    mauVien = "#dc3545"; mauNen = "#fff5f6";
-//                    nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">⛔ ĐÃ HẾT LƯỢT LÀM</button>`;
-//                } else {
-//                    mauVien = "#28a745"; mauNen = "#f4fdf6";
-//                    // Đổi tên nút nếu đã từng làm
-//                    const textNut = soLuotDaLam > 0 ? '🔄 LÀM LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
-//                    nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">${textNut}</button>`;
-//                }
-//            } else if (loai === 'CHUA_MO') {
-//                mauVien = "#ffc107"; mauNen = "#fffbf0";
-//                nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở</button>`;
-//            } else if (loai === 'DA_DONG') {
-//                mauVien = "#dc3545"; mauNen = "#fff5f6";
-//                // Khi đã đóng thì có thể vẫn xem lại bài gần nhất hoặc xem kết quả chung
-//                nutHanhDong = `<button onclick="alert('Tính năng xem kết quả chung toàn lớp đang được cập nhật')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📊 KẾT QUẢ CHUNG</button>`;
-//            }
-
-//            return `
-//                <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); position: relative; overflow: hidden;">
-//                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
-//                        <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
-//                        <span style="font-size: 10px; padding: 4px 6px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 4px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
-//                            ${nv.loai_nhiem_vu}
-//                        </span>
-//                    </div>
-
-//                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 12px; color: #555; border: 1px dashed #ddd;">
-//                        <div style="margin-bottom: 4px;">🎯 <b>Môn/Lớp:</b> <span style="color: #1a73e8; font-weight:bold;">${tenLopHienThi}</span></div>
-//                        <div style="margin-bottom: 4px;">👤 <b>Giao bởi:</b> <span>${tenGV}</span></div>
-//                        <div>🕒 <b>Ngày tạo:</b> ${fTime(new Date(tTao))} <span style="color:#d35400; font-style: italic;">(${thoiGianTroiQua(tTao)})</span></div>
-//                    </div>
-
-//                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
-//                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
-//                            ⏱️ <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
-//                        </span>
-//                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
-//                            📦 <b>${nv.cau_truc_de}</b>
-//                        </span>
-//                        <span style="font-size: 12px; padding: 4px 8px; border-radius: 4px; ${cssLuot}">
-//                            🔄 Lượt: <b>${soLuotDaLam} / ${textLuotChoPhep}</b>
-//                        </span>
-//                    </div>
-
-//                    <div style="margin-bottom: 15px; font-size: 13px;">
-//                        <div style="margin-bottom: 5px;">
-//                            <span style="color: #28a745; font-weight: bold;">🟢 MỞ:</span> ${fTime(tMo)}
-//                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhKhoangCachThoiGian(tMo, true) : ""}</span>
-//                        </div>
-//                        <div>
-//                            <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG:</span> ${fTime(tDong)}
-//                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold; background: #fff3cd; padding: 2px 4px; border-radius: 3px;">
-//                                ${tDong ? tinhKhoangCachThoiGian(tDong, false) : ""}
-//                            </span>
-//                        </div>
-//                    </div>
-
-//                    ${htmlKetQua} ${nutHanhDong}
-//                </div>
-//            `;
-//        };
-
-//        vungLamViec.innerHTML = `
-//            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-//                <div style="background: #f8fff9; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
-//                    <h3 style="margin-top: 0; color: #28a745; text-align: center; font-size: 15px;">▶️ ĐANG MỞ (${dsDangMo.length})</h3>
-//                    ${dsDangMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Chưa có bài tập.</p>' : dsDangMo.map(nv => renderCard(nv, 'DANG_MO')).join('')}
-//                </div>
-//                <div style="background: #fffdf8; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
-//                    <h3 style="margin-top: 0; color: #d35400; text-align: center; font-size: 15px;">⏳ SẮP MỞ (${dsChuaMo.length})</h3>
-//                    ${dsChuaMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Trống.</p>' : dsChuaMo.map(nv => renderCard(nv, 'CHUA_MO')).join('')}
-//                </div>
-//                <div style="background: #fff8f8; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb;">
-//                    <h3 style="margin: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÃ ĐÓNG (${dsDaDong.length})</h3>
-//                    ${dsDaDong.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px;">Trống.</p>' : dsDaDong.map(nv => renderCard(nv, 'DA_DONG')).join('')}
-//                </div>
-//            </div>
-//        `;
-
-//    } catch (error) {
-//        vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
-//    }
-//}
 
 
 
 // ==============================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (NÂNG CẤP HIỆN ĐIỂM SỐ GẦN NHẤT & CHỐT QUÁ HẠN)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ĐÃ ĐỒNG BỘ BỘ ĐẾM TIẾN ĐỘ)
 // ==============================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -408,12 +139,26 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         } catch (error) { }
 
         // ==========================================================
-        // 🌟 3. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (SIÊU NHẸ)
+        // 🌟 3. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (ĐÃ SỬA ĐỒNG BỘ)
         // ==========================================================
         let demSoLuotLam = {};
         let ketQuaGanNhat = {};
 
         try {
+            // Bước A: Đọc số lần làm bài thực tế từ bộ đếm cached trong table hoc_sinh
+            const { data: hsData } = await _supabase
+                .from('hoc_sinh')
+                .select('tien_do_lam_bai')
+                .eq('uid', GocHocSinhState.uid)
+                .single();
+
+            if (hsData && hsData.tien_do_lam_bai) {
+                demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string'
+                    ? JSON.parse(hsData.tien_do_lam_bai)
+                    : hsData.tien_do_lam_bai;
+            }
+
+            // Bước B: Vẫn quét bảng kết quả thi để bốc điểm số lần gần nhất ra màn hình
             const { data: dsKQ } = await _supabase
                 .from('ket_qua_thi')
                 .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop')
@@ -422,7 +167,8 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
             if (dsKQ) {
                 dsKQ.forEach(kq => {
-                    demSoLuotLam[kq.ma_nhiem_vu] = (demSoLuotLam[kq.ma_nhiem_vu] || 0) + 1;
+                    // 🌟 KHÔNG tăng bộ đếm demSoLuotLam ở đây nữa để tránh lệch pha dữ liệu với GV
+
                     // Do xếp từ cũ đến mới, kết quả bị ghi đè sau cùng sẽ là MỚI NHẤT
                     ketQuaGanNhat[kq.ma_nhiem_vu] = {
                         id: kq.id,
@@ -476,7 +222,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             if (tMo && now.getTime() < tMo.getTime()) {
                 dsChuaMo.push(nv);
             }
-            // 🌟 SỬA ĐỔI: Gộp cả Hết lượt làm bài sang cột Đã đóng
             else if (daQuaHan || daHetLuot) {
                 dsDaDong.push(nv);
             } else {
@@ -547,9 +292,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
 
-            // =========================================================
-            // 🌟 TẠO GIAO DIỆN ĐIỂM SỐ NẾU ĐÃ TỪNG LÀM 
-            // =========================================================
             const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
             let htmlKetQua = "";
 
@@ -574,10 +316,9 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
 
             if (loai === 'DANG_MO') {
-                // Đã chuyển Hết lượt sang cột Đã đóng, nên Đang mở chỉ còn 1 nút duy nhất
                 mauVien = "#28a745"; mauNen = "#f4fdf6";
                 const textNut = soLuotDaLam > 0 ? '🔄 LÀM LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
-                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(40,167,69,0.3);">${textNut}</button>`;
+                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(40,167,69,0.3);">${textNut}</button>`;
             }
             else if (loai === 'CHUA_MO') {
                 mauVien = "#ffc107"; mauNen = "#fffbf0";
@@ -587,7 +328,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                 mauVien = "#dc3545"; mauNen = "#fff5f6";
                 const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
 
-                // 🌟 SỬA ĐỔI: Bẻ nhánh text nút bấm tùy theo lý do khóa bài
                 let textNutXin = "🙋 XIN LƯỢT LÀM BÀI";
                 let maLoaiXin = "QUA_HAN";
 
@@ -674,7 +414,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
 }
-
 // =====================================================================
 // Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (XỬ LÝ ĐA LUỒNG)
 // =====================================================================
