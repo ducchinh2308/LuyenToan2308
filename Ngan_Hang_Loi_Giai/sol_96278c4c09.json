@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_96278c4c09",
+  "dapAn": "D",
+  "loiGiai": "Số trung bình của mẫu số liệu ghép nhóm được tính bằng công thức tích tổng tần số với giá trị đại diện chia cho tổng kích thước mẫu ($n=50$):\\\\\r\n\t\t$\\displaystyle \\bar{x} = \\frac{12 \\cdot 19{,}25 + 15 \\cdot 19{,}75 + 8 \\cdot 20{,}25 + 9 \\cdot 20{,}75 + 6 \\cdot 21{,}25}{50}$.\\\\\r\n\t\t$\\displaystyle \\bar{x} = \\frac{231 + 296{,}25 + 162 + 186{,}75 + 127{,}5}{50} = \\frac{1003{,}5}{50} = 20{,}07$."
+}

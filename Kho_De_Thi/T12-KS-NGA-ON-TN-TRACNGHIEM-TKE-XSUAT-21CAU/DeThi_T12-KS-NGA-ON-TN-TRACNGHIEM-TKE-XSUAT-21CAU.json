@@ -1,0 +1,217 @@
+{
+  "maDe": "T12-KS-NGA-ON-TN-TRACNGHIEM-TKE-XSUAT-21CAU",
+  "tenDe": "NGA-ÔN TN TRẮC NGHIỆM TKE-XSUAT-21 CÂU",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_934b4a981b",
+      "ma_goc": "2605-1174",
+      "kieuCau": "TN",
+      "cauDan": "Hai mẫu số liệu ghép nhóm $M_1$, $M_2$ có bảng tần số ghép nhóm như sau:\r\n\t\\par\\textbf{Mẫu số liệu $M_1$:}\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_934b4a981b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\\textbf{Mẫu số liệu $M_2$:}\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_934b4a981b_cd_tab_2.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $s_1$, $s_2$ lần lượt là độ lệch chuẩn của mẫu số liệu ghép nhóm $M_1$, $M_2$. Phát biểu nào sau đây là đúng?",
+      "paA": "$s_{1} = s_{2}$",
+      "paB": "$s_{1} = 2s_{2}$",
+      "paC": "$2s_{1} = s_{2}$",
+      "paD": "$4s_{1} = s_{2}$"
+    },
+    {
+      "maCau": "q_dd9e35a571",
+      "ma_goc": "2605-1175",
+      "kieuCau": "TN",
+      "cauDan": "Một công ty xây dựng khảo sát khách hàng xem họ có nhu cầu mua nhà ở mức giá nào. Kết quả khảo sát được ghi lại ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_dd9e35a571_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên $R$ của mẫu số liệu ghép nhóm trên là",
+      "paA": "$R = 4$",
+      "paB": "$R = 20$",
+      "paC": "$R = 9$",
+      "paD": "$R = 108$"
+    },
+    {
+      "maCau": "q_a1d6cecb3c",
+      "ma_goc": "2605-1176",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Linh thống kê chiều cao (đơn vị: cm) của các bạn học sinh nữ lớp $12A$ và lớp $12B$ ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a1d6cecb3c_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $R_1; R_2$ lần lượt là khoảng biến thiên của mẫu số liệu ghép nhóm về chiều cao của các bạn học sinh nữ lớp $12A$ và $12B$. Tìm $R_1; R_2$.",
+      "paA": "$R_1 = 30\\,\\text{(cm)}; R_2 = 25\\,\\text{(cm)}$",
+      "paB": "$R_1 = 30\\,\\text{(cm)}; R_2 = 30\\,\\text{(cm)}$",
+      "paC": "$R_1 = 25\\,\\text{(cm)}; R_2 = 25\\,\\text{(cm)}$",
+      "paD": "$R_1 = 12\\,\\text{(cm)}; R_2 = 9\\,\\text{(cm)}$"
+    },
+    {
+      "maCau": "q_f7eb0f57c8",
+      "ma_goc": "2605-1177",
+      "kieuCau": "TN",
+      "cauDan": "Tìm hiểu thời gian chạy cự li $1000\\text{m}$ (đơn vị: giây) của các bạn học sinh trong một lớp thu được kết quả sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f7eb0f57c8_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm $[131;133)$ có tần số là",
+      "paA": "$3$",
+      "paB": "$15$",
+      "paC": "$10$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_73ca25f403",
+      "ma_goc": "2605-1178",
+      "kieuCau": "TN",
+      "cauDan": "Cho mẫu số liệu ghép nhóm về khối lượng (đơn vị: gram) của $30$ củ khoai tây như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_73ca25f403_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị đại diện của nhóm $[90;100)$ là",
+      "paA": "$85$",
+      "paB": "$95$",
+      "paC": "$90$",
+      "paD": "$100$"
+    },
+    {
+      "maCau": "q_273cd6f078",
+      "ma_goc": "2605-1179",
+      "kieuCau": "TN",
+      "cauDan": "Một cửa hàng trang sức khảo sát một số khách hàng xem họ dự định mua trang sức với mức giá nào (đơn vị: triệu đồng). Kết quả khảo sát được ghi lại ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_273cd6f078_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm).",
+      "paA": "$9{,}98$",
+      "paB": "$15$",
+      "paC": "$4{,}43$",
+      "paD": "$14{,}41$"
+    },
+    {
+      "maCau": "q_24601ecc91",
+      "ma_goc": "2605-1180",
+      "kieuCau": "TN",
+      "cauDan": "Cho mẫu số liệu ghép nhóm với bộ ba tứ phân vị lần lượt là $Q_1 = 11{,}5; Q_2 = 14{,}5; Q_3 = 21{,}3$. Khi đó khoảng tứ phân vị của mẫu số liệu trên là",
+      "paA": "$\\Delta Q = 3{,}0$",
+      "paB": "$\\Delta Q = 6{,}8$",
+      "paC": "$\\Delta Q = 9{,}8$",
+      "paD": "$\\Delta Q = 32{,}8$"
+    },
+    {
+      "maCau": "q_fe49e14c4c",
+      "ma_goc": "2605-1181",
+      "kieuCau": "TN",
+      "cauDan": "\\begin{center}\r\n\t\t<img src='HinhAnh/q_fe49e14c4c_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nào sau đây là giá trị ngoại lệ của mẫu số liệu trên",
+      "paA": "$38$",
+      "paB": "$9$",
+      "paC": "$15$",
+      "paD": "$10$"
+    },
+    {
+      "maCau": "q_dad5f5660e",
+      "ma_goc": "2605-1182",
+      "kieuCau": "TN",
+      "cauDan": "Thời gian truy cập Internet mỗi buổi tối (đơn vị: phút) của một số học sinh được thống kê ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_dad5f5660e_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu trên là:",
+      "paA": "$\\displaystyle s^{2}\\approx4{,}87$",
+      "paB": "$\\displaystyle s^{2}\\approx2{,}87$",
+      "paC": "$\\displaystyle s^{2}\\approx1{,}87$",
+      "paD": "$\\displaystyle s^{2}\\approx3{,}87$"
+    },
+    {
+      "maCau": "q_17bfba4eb8",
+      "ma_goc": "2605-1183",
+      "kieuCau": "TN",
+      "cauDan": "Bảng dưới đây thống kê cự li sau 50 lần ném tạ của một vận động viên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_17bfba4eb8_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố trung bình của mẫu số liệu ghép nhóm là",
+      "paA": "$19{,}82$",
+      "paB": "$20{,}32$",
+      "paC": "$20{,}25$",
+      "paD": "$20{,}07$"
+    },
+    {
+      "maCau": "q_8f3ddbf684",
+      "ma_goc": "2605-1184",
+      "kieuCau": "TN",
+      "cauDan": "Thành tích môn nhảy cao của các vận động viên tại một giải điền kinh dành cho học sinh trung học phổ thông như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8f3ddbf684_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính độ lệch chuẩn của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm).",
+      "paA": "$1{,}65$",
+      "paB": "$1{,}66$",
+      "paC": "$1{,}67$",
+      "paD": "$1{,}68$"
+    },
+    {
+      "maCau": "q_d15a057dde",
+      "ma_goc": "2605-1185",
+      "kieuCau": "TN",
+      "cauDan": "Trong thực hành đo hiệu điện thế của mạch điện, An và Bình đã dùng hai vôn kế khác nhau để đo, mỗi bạn tiến hành đo 10 lần và cho kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d15a057dde_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn của các mẫu số liệu ghép nhóm cho kết quả đo của An và Bình (làm tròn đến hàng phần nghìn) lần lượt là",
+      "paA": "$0{,}039 \\text{ và } 0{,}045$",
+      "paB": "$0{,}029 \\text{ và } 0{,}035$",
+      "paC": "$0{,}025 \\text{ và } 0{,}034$",
+      "paD": "$0{,}035 \\text{ và } 0{,}042$"
+    },
+    {
+      "maCau": "q_6088ef6bde",
+      "ma_goc": "2605-1186",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có độ lệch chuẩn bằng $3$ thì có phương sai bằng",
+      "paA": "$\\displaystyle s^{2} = \\sqrt{3}$",
+      "paB": "$\\displaystyle s^{2} = 3$",
+      "paC": "$\\displaystyle s^{2} = 9$",
+      "paD": "$\\displaystyle s^{2} = 6$"
+    },
+    {
+      "maCau": "q_f2e79f64c5",
+      "ma_goc": "2605-1187",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có phương sai bằng $25$ thì có độ lệch chuẩn bằng",
+      "paA": "$4$",
+      "paB": "$5$",
+      "paC": "$256$",
+      "paD": "$50$"
+    },
+    {
+      "maCau": "q_da567c88df",
+      "ma_goc": "2605-1188",
+      "kieuCau": "TN",
+      "cauDan": "Gieo con xúc xắc 1 lần. Gọi $A$ là biến cố xuất hiện mặt 2 chấm. $B$ là biến cố xuất hiện mặt chẵn. Xác suất $P(A|B)$ là",
+      "paA": "$\\displaystyle \\frac{1}{2}$",
+      "paB": "$\\displaystyle \\frac{1}{3}$",
+      "paC": "$\\displaystyle \\frac{2}{3}$",
+      "paD": "$\\displaystyle \\frac{1}{6}$"
+    },
+    {
+      "maCau": "q_96364b3ae4",
+      "ma_goc": "2605-1189",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ có $P(A)=0{,}3; P(B)=0{,}6; P(A \\cap B)=0{,}2$. Xác suất $P(A|B)$ là",
+      "paA": "$\\displaystyle \\frac{1}{2}$",
+      "paB": "$\\displaystyle \\frac{1}{3}$",
+      "paC": "$\\displaystyle \\frac{2}{3}$",
+      "paD": "$\\displaystyle \\frac{1}{6}$"
+    },
+    {
+      "maCau": "q_8b6c1b7a55",
+      "ma_goc": "2605-1190",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hai biến cố $A, B$ thỏa mãn $P(A)=0{,}4; P(B|A)=0{,}5$ thì $P(A \\cap B)$ bằng:",
+      "paA": "$\\displaystyle \\frac{6}{25}$",
+      "paB": "$\\displaystyle \\frac{2}{3}$",
+      "paC": "$\\displaystyle \\frac{1}{5}$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_72f9afadc7",
+      "ma_goc": "2605-1191",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hai biến cố $A, B$ thỏa mãn $P(B)=0{,}5; P(AB)=0{,}3$ thì $P(\\overline{A}B)$ bằng:",
+      "paA": "$\\displaystyle \\frac{4}{5}$",
+      "paB": "$\\displaystyle \\frac{1}{5}$",
+      "paC": "$\\displaystyle \\frac{3}{5}$",
+      "paD": "$\\displaystyle \\frac{2}{5}$"
+    },
+    {
+      "maCau": "q_7745596813",
+      "ma_goc": "2605-1192",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ với $P(B)>0$ thì xác suất của biến cố $A$ với điều kiện biến cố $B$ đã xảy ra là",
+      "paA": "$\\displaystyle P(A|B)=\\frac{P(A)}{P(B)}$",
+      "paB": "$\\displaystyle P(A|B)=P(A) \\cdot P(B)$",
+      "paC": "$\\displaystyle P(A|B)=\\frac{P(A\\cap B)}{P(B)}$",
+      "paD": "$\\displaystyle P(A|B)=\\frac{P(A\\cup B)}{P(B)}$"
+    },
+    {
+      "maCau": "q_7a1518c0e4",
+      "ma_goc": "2605-1193",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ bất kì với $P(A)>0, P(B)>0$. Chọn khẳng định đúng trong các khẳng định sau là",
+      "paA": "$\\displaystyle P(A\\cup B)=P(A|B) \\cdot P(B)$",
+      "paB": "$\\displaystyle P(A\\cap B)=P(A|B) \\cdot P(A)$",
+      "paC": "$\\displaystyle P(A|B) \\cdot P(A)=P(B|A) \\cdot P(B)$",
+      "paD": "$\\displaystyle P(A|B) \\cdot P(B)=P(B|A) \\cdot P(A)$"
+    },
+    {
+      "maCau": "q_05c56ed006",
+      "ma_goc": "2605-1194",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố độc lập $A$ và $B$ với $0<P(A)<1, 0<P(B)<1$. Chọn khẳng định \\textbf{đúng} trong các khẳng định sau",
+      "paA": "$\\displaystyle P(A)=P(\\overline{B}|A)$",
+      "paB": "$\\displaystyle P(A)=P(B|A) \\cdot P(A\\cap B)$",
+      "paC": "$\\displaystyle P(A)=P(A|\\overline{B})$",
+      "paD": "$\\displaystyle P(A)=P(A|B) \\cdot P(B)$"
+    }
+  ]
+}

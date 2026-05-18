@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_123a8acb7b",
+  "dapAn": "D",
+  "loiGiai": "Từ công thức nhân xác suất đối với hai biến cố bất kì, ta luôn có:\\\\\r\n\t\t$\\displaystyle P(A\\cap B) = P(A|B) \\cdot P(B)$ và $\\displaystyle P(A\\cap B) = P(B|A) \\cdot P(A)$.\\\\\r\n\t\tĐồng nhất hai vế ta suy ra đẳng thức hệ thức đối xứng đúng là:\\\\\r\n\t\t$\\displaystyle P(A|B) \\cdot P(B)=P(B|A) \\cdot P(A)$."
+}

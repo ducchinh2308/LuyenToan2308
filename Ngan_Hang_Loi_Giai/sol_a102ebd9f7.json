@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a102ebd9f7",
+  "dapAn": "B",
+  "loiGiai": "Không gian mẫu khi gieo xúc xắc 6 mặt gồm các phần tử: $\\displaystyle \\Omega = \\{1; 2; 3; 4; 5; 6\\}$.\\\\\r\n\t\tBiến cố $B$ xuất hiện mặt chẵn nên: $\\displaystyle B = \\{2; 4; 6\\} \\Rightarrow n(B) = 3$.\\\\\r\n\t\tBiến cố giao $\\displaystyle A \\cap B$ biểu thị mặt xuất hiện vừa là số 2 chấm vừa là số chẵn: $\\displaystyle A \\cap B = \\{2\\} \\Rightarrow n(A \\cap B) = 1$.\\\\\r\n\t\tXác suất có điều kiện cần tìm được tính theo định nghĩa:\\\\\r\n\t\t$\\displaystyle P(A|B) = \\frac{n(A \\cap B)}{n(B)} = \\frac{1}{3}$."
+}

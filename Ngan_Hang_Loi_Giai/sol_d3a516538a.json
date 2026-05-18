@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d3a516538a",
+  "dapAn": "C",
+  "loiGiai": "Vì hai biến cố $A$ và $B$ độc lập với nhau, nên việc biến cố $B$ xảy ra hay không xảy ra (biến cố đối $\\overline{B}$) hoàn toàn không ảnh hưởng đến xác suất xuất hiện của biến cố $A$.\\\\\r\n\t\tTheo tính chất của biến cố độc lập, ta có: $\\displaystyle P(A|B) = P(A|\\overline{B}) = P(A)$.\\\\\r\n\t\tDo đó, khẳng định đúng hiển nhiên là phương án C."
+}

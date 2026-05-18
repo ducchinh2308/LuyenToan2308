@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9237870f7d",
+  "dapAn": "A",
+  "loiGiai": "Một giá trị $x$ được xem là một giá trị ngoại lệ (giá trị bất thường) của mẫu số liệu nếu nó nằm ngoài khoảng từ $\\displaystyle Q_1 - 1{,}5\\Delta Q$ đến $\\displaystyle Q_3 + 1{,}5\\Delta Q$.\\\\\r\n\t\tDựa vào các phương án trắc nghiệm đã cho, ta nhận thấy toàn bộ các nhóm dữ liệu gốc của mẫu chỉ phân bố tập trung từ $6$ điểm đến tối đa là $25$ điểm. Giá trị $38$ vượt trội hoàn toàn so với khoảng giới hạn tối đa của nhóm cuối cùng ($25$).\\\\\r\n\t\tDo đó, $38$ chắc chắn là giá trị ngoại lệ của mẫu số liệu đã cho."
+}
