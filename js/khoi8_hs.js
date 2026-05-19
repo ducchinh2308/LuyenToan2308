@@ -2592,10 +2592,10 @@ window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
 //                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
 //                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
 //            </div>
-            
+
 //            <div style="padding: 30px;">
 //                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
-                
+
 //                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
 //                    🚀 VÀO PHÒNG
 //                </button>
@@ -2603,6 +2603,39 @@ window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
 //        </div>
 //    `;
 //}
+
+
+// =====================================================================
+// Hàm 8.6: Giao diện nhập mã PIN vào phòng đấu Live
+// =====================================================================
+window.ham_8_6_tab_live_quiz = function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+    if (!vungLamViec) return console.error("Lỗi: Không tìm thấy thẻ vung-lam-viec-hoc-sinh!");
+
+    if (window.HocSinhLiveChannel) {
+        _supabase.removeChannel(window.HocSinhLiveChannel);
+        window.HocSinhLiveChannel = null;
+    }
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
+                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
+                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
+                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
+            </div>
+            <div style="padding: 30px;">
+                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+                    🚀 VÀO PHÒNG
+                </button>
+            </div>
+        </div>
+    `;
+};
+
+
+
 
 // =====================================================================
 // Hàm 8.6.1: Xử lý xác thực mã PIN và ghi danh vào phòng
