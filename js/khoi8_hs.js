@@ -1409,6 +1409,23 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
         if (errNhao) throw errNhao;
 
+        //// Lưu toàn bộ vào RAM trình duyệt
+        //window.PhienLamBai = {
+        //    id_ket_qua_database: recordNhao.id,
+        //    ma_nhiem_vu: maNhiemVuThuc,
+        //    ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+        //    thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
+        //    tong_so_cau: deThiDaTron.length,
+        //    danh_sach_cau_hoi: deThiDaTron,
+        //    dap_an_hoc_sinh: {},
+        //    id_timer: null,
+        //    base_url_anh: baseUrlHinhAnh
+        //};
+
+        //// =========================================================
+        //// 6. MỞ GIAO DIỆN THI
+        //// =========================================================
+        //ham_8_10_ve_giao_dien_lam_bai();
         // Lưu toàn bộ vào RAM trình duyệt
         window.PhienLamBai = {
             id_ket_qua_database: recordNhao.id,
@@ -1422,10 +1439,16 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
             base_url_anh: baseUrlHinhAnh
         };
 
+        // 🌟 [CẤY CHIP 1] CẤP THẺ VIP NẾU LÀ TRẬN LIVE QUIZ
+        window.PhienLamBai.isLiveQuiz = window.DangKhoiTaoLiveQuiz === true;
+        window.PhienLamBai.maPhongLive = window.DangKhoiTaoLiveQuiz ? window.ThongTinLiveHocSinh.maPhong : null;
+        window.DangKhoiTaoLiveQuiz = false; // Reset lại trạng thái
+
         // =========================================================
         // 6. MỞ GIAO DIỆN THI
         // =========================================================
         ham_8_10_ve_giao_dien_lam_bai();
+
 
     } catch (err) {
         console.error("LỖI NẠP ĐỀ:", err);
@@ -1490,8 +1513,18 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         else if (loai === "TLN") dsTLN.push(cau);
     });
 
-    let htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
-    let htmlNavLeft = ``;
+    //let htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+
+        // 🌟 [CẤY CHIP 2] ĐỔI MÀU GIAO DIỆN NẾU LÀ LIVE QUIZ
+        let htmlContentRight = '';
+        if (phien.isLiveQuiz) {
+            htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐANG THI ĐẤU LIVE: ${phien.ten_nhiem_vu}</h2><div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Điểm số của em đang được truyền hình trực tiếp lên màn hình Thầy giáo!</div></div>`;
+        } else {
+            htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+        }
+
+
+        let htmlNavLeft = ``;
 
     // 2. HÀM SINH GIAO DIỆN CHO TỪNG NHÓM
     const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
@@ -1751,6 +1784,11 @@ window.luuDapAn = function (maCauHoi, luaChon, element) {
     }
 
     capNhatMauNutLuoi(maCauHoi, luaChon);
+
+    // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
+    if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+
+
 };
 
 window.luuDapAnDS = function (maCauHoi, y, giaTri, element) {
@@ -1763,6 +1801,10 @@ window.luuDapAnDS = function (maCauHoi, y, giaTri, element) {
         chuoiDS += val ? (val === 'T' ? 'Đ' : 'S') : '_';
     });
     capNhatMauNutLuoi(maCauHoi, chuoiDS);
+
+    // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
+    if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+
 };
 
 function capNhatMauNutLuoi(maCauHoi, textHienThi) {
@@ -1808,6 +1850,14 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
 
     const phien = window.PhienLamBai;
     clearInterval(phien.id_timer);
+
+
+    // 🌟 [CẤY CHIP 4] NGẮT SÓNG REALTIME ĐỂ NHẸ MÁY NẾU NỘP XONG
+    if (phien.isLiveQuiz && window.HocSinhLiveChannel) {
+        _supabase.removeChannel(window.HocSinhLiveChannel);
+        window.HocSinhLiveChannel = null;
+    }
+
 
     //// 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     //let payloadBaiLam = {};
@@ -1879,7 +1929,15 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         document.getElementById('khong-gian-thi-toan-man-hinh')?.remove();
 
         // 6. TRẢ KẾT QUẢ ĐIỂM
-        alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+        //alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+
+        // 6. TRẢ KẾT QUẢ ĐIỂM
+        if (phien.isLiveQuiz) {
+            alert(`🏆 ĐÃ NỘP BÀI THÀNH CÔNG!\nĐiểm số chính thức của em là: ${diemSoBiMat} điểm.\nHãy nhìn lên màn hình của Thầy để xem Top 1 thuộc về ai nhé!`);
+        } else {
+            alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+        }
+
 
         document.getElementById('dashboard-container').style.display = 'block';
         ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
@@ -2518,33 +2576,33 @@ window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
 // =====================================================================
 // Hàm 8.6: Giao diện nhập mã PIN vào phòng đấu Live
 // =====================================================================
-window.ham_8_6_tab_live_quiz = function () {
-    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+//window.ham_8_6_tab_live_quiz = function () {
+//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
 
-    // Ngắt kênh cũ nếu học sinh thoát ra vào lại
-    if (window.HocSinhLiveChannel) {
-        _supabase.removeChannel(window.HocSinhLiveChannel);
-        window.HocSinhLiveChannel = null;
-    }
+//    // Ngắt kênh cũ nếu học sinh thoát ra vào lại
+//    if (window.HocSinhLiveChannel) {
+//        _supabase.removeChannel(window.HocSinhLiveChannel);
+//        window.HocSinhLiveChannel = null;
+//    }
 
-    vungLamViec.innerHTML = `
-        <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
-            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
-                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
-                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
-                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
-            </div>
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+//            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
+//                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
+//                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
+//                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
+//            </div>
             
-            <div style="padding: 30px;">
-                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
+//            <div style="padding: 30px;">
+//                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
                 
-                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
-                    🚀 VÀO PHÒNG
-                </button>
-            </div>
-        </div>
-    `;
-}
+//                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+//                    🚀 VÀO PHÒNG
+//                </button>
+//            </div>
+//        </div>
+//    `;
+//}
 
 // =====================================================================
 // Hàm 8.6.1: Xử lý xác thực mã PIN và ghi danh vào phòng
@@ -2647,6 +2705,103 @@ window.ham_8_6_2_phong_cho_live = function () {
         })
         .subscribe();
 }
+
+
+
+// =====================================================================
+// Hàm 8.6.3: CẦU NỐI - Kích hoạt nạp đề thi Live thông qua hệ thống cũ
+// =====================================================================
+window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
+    try {
+        Swal.fire({ title: '⏳ Đang nạp đề thi Live...', didOpen: () => { Swal.showLoading(); } });
+
+        const maNV = window.ThongTinLiveHocSinh.maNhiemVu;
+        const { data: nv, error } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNV).single();
+        if (error) throw error;
+
+        // 🌟 Gắn cờ báo hiệu cho Hàm 8.8 biết đây là trận đấu Live Quiz
+        window.DangKhoiTaoLiveQuiz = true;
+
+        // Mượn nguyên hàm 8.8 cũ của thầy để bốc file Github, trộn đề và mở giao diện
+        await ham_8_8_khoi_tao_phong_thi(nv);
+
+    } catch (e) {
+        Swal.fire('Lỗi', e.message, 'error');
+    }
+}
+
+// =====================================================================
+// Hàm 8.6.4: ĐỘNG CƠ REALTIME - Tính điểm siêu tốc và bắn lên Supabase
+// =====================================================================
+window.ham_8_6_4_ban_song_realtime = function () {
+    const phien = window.PhienLamBai;
+    if (!phien || !phien.isLiveQuiz) return; // Nếu làm bài bình thường thì tự động im lặng
+
+    let soCauDaLam = 0, soCauDung = 0, tongTrongSo = 0, tongDiemLive = 0;
+
+    // Tính tổng trọng số
+    phien.danh_sach_cau_hoi.forEach(cau => {
+        const kieu = (cau.kieuCau || "TN").toUpperCase();
+        if (kieu === 'TN') tongTrongSo += 1;
+        else if (kieu === 'TLN') tongTrongSo += 2;
+        else if (kieu === 'DS') tongTrongSo += 4;
+    });
+    if (tongTrongSo === 0) tongTrongSo = 1;
+
+    const diemMaxTN = 10.0 / tongTrongSo;
+    const diemMaxTLN = 20.0 / tongTrongSo;
+    const diemMaxDS = 40.0 / tongTrongSo;
+
+    // Chấm điểm tức thời
+    phien.danh_sach_cau_hoi.forEach(cau => {
+        const maCau = cau.ma_cau_hoi || cau.maCau;
+        const dapanDung = (cau.dap_an || cau.dapAn || "").toUpperCase();
+        const kieuCau = (cau.kieuCau || "TN").toUpperCase();
+        const dapanHs = phien.dap_an_hoc_sinh[maCau];
+
+        if (dapanHs !== undefined && dapanHs !== null && dapanHs !== "") {
+            if (kieuCau === 'TN') {
+                soCauDaLam++;
+                if (dapanHs === dapanDung) { tongDiemLive += diemMaxTN; soCauDung++; }
+            }
+            else if (kieuCau === 'TLN') {
+                soCauDaLam++;
+                if (dapanHs === dapanDung || dapanHs.replace(',', '.') === dapanDung.replace(',', '.')) {
+                    tongDiemLive += diemMaxTLN; soCauDung++;
+                }
+            }
+            else if (kieuCau === 'DS') {
+                let yDung = 0, daLamY = 0;
+                ['A', 'B', 'C', 'D'].forEach((k, idx) => {
+                    if (dapanHs[k]) {
+                        daLamY++;
+                        if (dapanDung[idx] && dapanHs[k] === dapanDung[idx]) yDung++;
+                    }
+                });
+                if (daLamY > 0) soCauDaLam++;
+
+                if (yDung === 1) tongDiemLive += diemMaxDS * 0.10;
+                else if (yDung === 2) tongDiemLive += diemMaxDS * 0.25;
+                else if (yDung === 3) tongDiemLive += diemMaxDS * 0.50;
+                else if (yDung === 4) { tongDiemLive += diemMaxDS * 1.00; soCauDung++; }
+            }
+        }
+    });
+
+    // 🚀 BẮN ĐIỂM SỐ LÊN MÀN HÌNH MÁY CHIẾU CỦA GIÁO VIÊN
+    _supabase.from('tien_do_live_quiz').update({
+        so_cau_da_lam: soCauDaLam,
+        so_cau_dung: soCauDung,
+        diem_so: Number(tongDiemLive.toFixed(2))
+    })
+        .eq('ma_phong', phien.maPhongLive)
+        .eq('uid_hoc_sinh', GocHocSinhState.uid)
+        .then(() => { });
+};
+
+
+
+
 
 // =====================================================================
 // KHỞI TẠO BỘ NHỚ RAM ĐỂ CHẤM ĐIỂM LIVE SIÊU TỐC
