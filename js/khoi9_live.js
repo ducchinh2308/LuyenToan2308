@@ -104,10 +104,10 @@ window.ham_9_1_tab_live_quiz = async function () {
 // Hàm 9.2: Xử lý Tạo phòng thi Live (Chọn đề & Sinh mã PIN)
 // =====================================================================
 window.ham_9_2_tao_phong_live = async function () {
-    Swal.fire({
+    window.Swal.fire({
         title: '⏳ Đang tải dữ liệu...',
         allowOutsideClick: false,
-        didOpen: () => { Swal.showLoading(); }
+        didOpen: () => { window.Swal.showLoading(); }
     });
 
     try {
