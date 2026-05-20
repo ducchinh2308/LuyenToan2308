@@ -5361,7 +5361,7 @@ window.ham_7_15_sub_danh_sach_da_lam = function (loaiSort = null) {
                        style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
             </div>
 
-            <div style="max-height: 350px; overflow-y: auto; background: white; text-align: left;">
+            <div style="height: 350px; overflow-y: auto; background: white; text-align: left;">
                 <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
                     <thead style="background: #f7fafc; position: sticky; top: 0; border-bottom: 2px solid #cbd5e0; z-index: 2;">
                         <tr>
