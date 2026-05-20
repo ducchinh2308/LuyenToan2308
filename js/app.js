@@ -2551,7 +2551,12 @@ function ham_7_10_ve_bang_nhiem_vu() {
                             style="padding: 6px 12px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">
                         📊 Thống kê
                     </button>
-
+                    // 🌟 THÊM NÚT CHẤM LẠI VÀO ĐÂY
+                    <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" 
+                            style="padding: 6px 12px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;"
+                            title="Chấm lại toàn bộ điểm cho nhiệm vụ này">
+                        🔄 Chấm lại
+                    </button>
 
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #6f42c1;">${nv.ma_nhiem_vu}</td>
@@ -5149,6 +5154,32 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
     }
 };
 
+
+// hàm gv chấm lại cả lớp
+async function ham_gv_cham_lai_ca_lop(maNhiemVu) {
+    const { isConfirmed } = await Swal.fire({
+        title: 'Chấm lại cả lớp?',
+        text: 'Hành động này sẽ cập nhật điểm mới cho toàn bộ học sinh dựa trên đáp án hiện tại!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Chấm lại ngay'
+    });
+
+    if (isConfirmed) {
+        Swal.fire({ title: 'Đang chấm lại...', didOpen: () => Swal.showLoading() });
+
+        const { error } = await _supabase.rpc('cham_lai_ca_lop', { p_ma_nhiem_vu: maNhiemVu });
+
+        if (error) {
+            Swal.fire('Lỗi', error.message, 'error');
+        } else {
+            Swal.fire('Thành công!', 'Toàn bộ điểm số đã được cập nhật!', 'success')
+                .then(() => location.reload()); // Tải lại trang để cập nhật điểm mới
+        }
+    }
+}
+
+
 // =====================================================================
 // HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐV LÀM BÀI (TẦNG 2)
 // =====================================================================
@@ -5340,3 +5371,5 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
         if (result.isConfirmed) ham_7_15_sub_danh_sach_da_lam();
     });
 };
+
+
