@@ -187,23 +187,45 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
 
 
 // =====================================================================
-// 4. Hàm Nộp từng câu lên Server để chấm điểm (BẢN FIX LỖI & DEBUG)
+// 4. Hàm Nộp từng câu lên Server để chấm điểm (BẢN TÍNH ĐIỂM ĐỘNG THEO TRỌNG SỐ)
 // =====================================================================
 window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     const phien = window.PhienLamBai;
 
-    // 1. TRÍCH XUẤT ĐÁP ÁN CHUẨN (Có thể bị rỗng do cơ chế bảo mật)
+    // 1. TRÍCH XUẤT DỮ LIỆU CÂU HỎI
     const cauHoiGoc = phien.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi === maCau || c.maCau === maCau));
     if (!cauHoiGoc) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu gốc của câu hỏi này!', 'error');
 
     const dapAnChuan = (cauHoiGoc.dap_an || cauHoiGoc.dapAn || cauHoiGoc.dap_an_dung || "").trim();
 
-    // 2. TÍNH ĐIỂM TỐI ĐA LINH HOẠT HƠN
-    let diemToiDa = 0.25;
-    if (kieuCau === 'DS') diemToiDa = 1.0;
-    else if (kieuCau === 'TLN') diemToiDa = 0.5;
+    // =================================================================
+    // 🌟 BƯỚC 2: TÍNH TOÁN ĐIỂM TỐI ĐA ĐỘNG DỰA TRÊN TRỌNG SỐ ĐỀ THỰC TẾ
+    // =================================================================
+    let soCauTN = 0, soCauDS = 0, soCauTLN = 0;
 
-    // 3. ĐÓNG GÓI ĐÁP ÁN HỌC SINH (VÀ VÁ LỖI KEY ĐÚNG/SAI)
+    // Quét một vòng toàn bộ đề thi để đếm số lượng mỗi loại câu
+    phien.danh_sach_cau_hoi.forEach(c => {
+        let loai = (c.kieuCau || c.loaiCau || "TN").toUpperCase();
+        if (loai === 'TN') soCauTN++;
+        else if (loai === 'DS') soCauDS++;
+        else if (loai === 'TLN') soCauTLN++;
+    });
+
+    // Áp dụng công thức trọng số (TN: 1, TLN: 2, DS: 4) chuẩn Toán 2025
+    let tongTrongSo = (soCauTN * 1.0) + (soCauTLN * 2.0) + (soCauDS * 4.0);
+    if (tongTrongSo === 0) tongTrongSo = 1; // Đề phòng lỗi chia cho 0
+
+    // Tính điểm tối đa cho câu hỏi hiện tại đang nộp
+    let diemToiDa = 0;
+    if (kieuCau === 'TN') {
+        diemToiDa = (10.0 * 1.0) / tongTrongSo;
+    } else if (kieuCau === 'DS') {
+        diemToiDa = (10.0 * 4.0) / tongTrongSo;
+    } else if (kieuCau === 'TLN') {
+        diemToiDa = (10.0 * 2.0) / tongTrongSo;
+    }
+
+    // 3. ĐÓNG GÓI ĐÁP ÁN HỌC SINH (VÁ LỖI KEY ĐÚNG/SAI)
     const dapanHS = phien.dap_an_hoc_sinh[maCau];
     if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
         return Swal.fire('Nhắc nhở', 'Em chưa chọn đủ đáp án cho câu hỏi này!', 'warning');
@@ -211,7 +233,6 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
     let chuoiDapAnGoi = "";
     if (kieuCau === 'DS') {
-        // 🌟 SỬA LỖI Ở ĐÂY: Quét cả key chữ thường lẫn chữ hoa để không bị trượt dữ liệu
         chuoiDapAnGoi = ['a', 'b', 'c', 'd'].map(k => {
             return dapanHS[k] || dapanHS[k.toUpperCase()] || "_";
         }).join('');
@@ -219,10 +240,8 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
         chuoiDapAnGoi = String(dapanHS).trim().toUpperCase();
     }
 
-    // 🐛 BẪY DEBUG CHO THẦY CHÍNH: Bấm F12 mở Console để xem thông số này
-    console.log(`🚀 [NỘP CÂU ${maCau}] Kiểu: ${kieuCau}`);
-    console.log(`👉 Lựa chọn của HS: "${chuoiDapAnGoi}"`);
-    console.log(`👉 Đáp án trên RAM (có thể rỗng): "${dapAnChuan}"`);
+    console.log(`🚀 [NỘP CÂU ${maCau}] Kiểu: ${kieuCau} | Điểm tối đa: ${diemToiDa}`);
+    console.log(`👉 Lựa chọn: "${chuoiDapAnGoi}" | Đáp án tham khảo: "${dapAnChuan}"`);
 
     // KHÓA GIAO DIỆN CHỜ XỬ LÝ
     const btn = document.getElementById(`btn-live-${maCau}`);
@@ -231,7 +250,7 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        // GỌI RPC SERVER
+        // GỌI RPC SERVER VÀ TRUYỀN ĐIỂM TỐI ĐA VỪA TÍNH ĐƯỢC
         const { data: diemMoiNhat, error } = await _supabase.rpc('cham_diem_mot_cau', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
@@ -239,12 +258,10 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
             p_dap_an_chon: chuoiDapAnGoi,
             p_dap_an_dung: dapAnChuan,
             p_kieu_cau: kieuCau,
-            p_diem_toi_da: diemToiDa
+            p_diem_toi_da: diemToiDa // Đẩy điểm tỉ lệ chuẩn xuống SQL
         });
 
         if (error) throw error;
-
-        console.log(`✅ Điểm trả về từ Server: ${diemMoiNhat}`);
 
         // CẬP NHẬT ĐIỂM LÊN HUD TRÊN GIAO DIỆN
         const hudDiem = document.getElementById('diem-hien-tai-hs');
@@ -263,8 +280,6 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
         console.error("LỖI CHẤM ĐIỂM:", e);
     }
 };
-
-
 // 5. Hàm Phục hồi khi Rớt mạng
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
     try {
