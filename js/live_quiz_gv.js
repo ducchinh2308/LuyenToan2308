@@ -350,25 +350,85 @@ window.ham_gv_kich_hoat_dong_ho_chu = function (thoiGianBatDauStr) {
 };
 
 // =====================================================================
-// HÀM XEM ĐỀ TRỰC TIẾP TRÊN GIAO DIỆN GIÁO VIÊN
+// HÀM XEM ĐỀ TRỰC TIẾP TRÊN GIAO DIỆN GIÁO VIÊN (ĐÃ FIX LỖI LINK & LATEX)
 // =====================================================================
 window.ham_gv_xem_de_thi_truc_tiep = async function () {
     try {
+        // Bật loading để thầy khỏi sốt ruột nếu mạng chậm
+        Swal.fire({ title: '⏳ Đang tải nội dung đề...', didOpen: () => Swal.showLoading() });
+
         const maNV = window.ThongTinPhongLive.maNhiemVu || window.ThongTinLiveGiaoVien.maNhiemVu;
         const { data: nv } = await _supabase.from('nhiem_vu').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNV).single();
         const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
 
-        let url = hl.url_github.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
-        const res = await fetch(url);
+        // 1. THUẬT TOÁN VÁ LINK GITHUB (Chống lỗi null)
+        let urlFileGitHub = hl.url_github;
+        if (!urlFileGitHub) {
+            let maDeGoc = nv.ma_hoc_lieu;
+            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+        } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
+            urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+        }
+
+        const res = await fetch(urlFileGitHub);
+        if (!res.ok) throw new Error("Không tìm thấy file đề trên Github!");
         const data = await res.json();
-        const dsCauHoi = data.danhSachCauHoi || data.danh_sach_cau_hoi;
+        const dsCauHoi = data.danhSachCauHoi || data.danh_sach_cau_hoi || [];
 
-        let html = `<div style="text-align:left; max-height: 500px; overflow-y:auto;">`;
-        dsCauHoi.forEach((c, i) => html += `<div style="padding:10px; border-bottom:1px solid #ddd;"><b>Câu ${i + 1}:</b> ${c.noi_dung || c.noiDungHtml || 'Nội dung...'} <br><small style="color:green;">Đáp án: ${c.dap_an || '---'}</small></div>`);
-        Swal.fire({ title: 'Nội dung đề thi', html: html + '</div>', width: 700 });
-    } catch (e) { Swal.fire('Lỗi', 'Không load được đề: ' + e.message, 'error'); }
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+
+        // 2. VẼ GIAO DIỆN
+        let html = `<div id="swal-xem-de-gv" style="text-align:left; max-height: 60vh; overflow-y:auto; padding: 10px;">`;
+
+        dsCauHoi.forEach((c, i) => {
+            // Quét đa dạng các biến chứa nội dung câu hỏi
+            const noiDung = c.cauDan || c.noiDungHtml || c.noiDung || c.noi_dung || c.cauHoi || c.cau_hoi || c.text || '<span style="color:red">Lỗi rỗng nội dung</span>';
+
+            // Vá lỗi đường dẫn hình ảnh bị thiếu
+            let noiDungFixAnh = noiDung.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
+                if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
+                return `src="${baseUrlHinhAnh}/${tenFile.split('/').pop()}"`;
+            });
+
+            // Làm đẹp phần hiển thị đáp án Đúng/Sai
+            let dapAnHienThi = c.dap_an || c.dapAn || 'Chưa cập nhật';
+            if (dapAnHienThi.length === 4 && (dapAnHienThi.includes('T') || dapAnHienThi.includes('F'))) {
+                dapAnHienThi = dapAnHienThi.split('').map(k => k === 'T' ? 'Đúng' : 'Sai').join(' | ');
+            }
+
+            html += `
+            <div style="margin-bottom:20px; border-bottom:1px dashed #ccc; padding-bottom:15px;">
+                <div style="font-weight:900; color:#1a73e8; margin-bottom: 8px; font-size: 16px;">Câu ${i + 1}:</div>
+                <div style="font-size: 16px; margin-bottom: 12px; overflow-x: auto; line-height: 1.5;">${noiDungFixAnh}</div>
+                <div style="background: #fff3cd; padding: 6px 12px; border-radius: 6px; display: inline-block; font-size: 14px; font-weight: bold; color: #856404; border: 1px solid #ffe69c;">
+                    🎯 Đáp án: ${dapAnHienThi}
+                </div>
+            </div>`;
+        });
+        html += `</div>`;
+
+        // 3. HIỂN THỊ VÀ DỊCH LATEX
+        Swal.fire({
+            title: '📖 NỘI DUNG ĐỀ THI',
+            html: html,
+            width: '850px',
+            confirmButtonText: 'Đóng',
+            didOpen: () => {
+                // Ép trình duyệt dịch công thức Toán học sau khi mở bảng
+                const vungRender = document.getElementById('swal-xem-de-gv');
+                if (window.renderMathInElement) {
+                    window.renderMathInElement(vungRender, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }], throwOnError: false, macros: { "\\heva": "\\left\\{\\begin{array}{l}#1\\end{array}\\right.", "\\hoac": "\\left[\\begin{array}{l}#1\\end{array}\\right." } });
+                } else if (window.MathJax) {
+                    MathJax.typesetPromise([vungRender]);
+                }
+            }
+        });
+
+    } catch (e) {
+        Swal.fire('Lỗi', 'Không load được đề: ' + e.message, 'error');
+    }
 };
-
 window.ham_9_3_3_thoat_phong = function () {
     if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
     if (window.GvTimerId) clearInterval(window.GvTimerId);
