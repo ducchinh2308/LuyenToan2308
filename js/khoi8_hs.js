@@ -1674,34 +1674,10 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
 // 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
 function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
-    //// 🌟 Tách 2 mã: Logic dùng maCau, Hiển thị dùng ma_goc
-    //const maCauLogic = cau.ma_cau_hoi || cau.maCau;
-    //const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
-
-
+    
     // 🌟 Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
     const maCauHienThi = cau.ma_goc || cau.maGoc || cau.maCauGoc || cau.idGoc || maCauLogic;
-
-    //// =================================================================
-    //// 🐛 BẪY DEBUG: IN RA CONSOLE ĐỂ SOI DỮ LIỆU GỐC
-    //// =================================================================
-    //console.log("===== ĐANG VẼ CÂU THỨ " + stt + " =====");
-    //console.log("1. Toàn bộ cục dữ liệu của câu này:", cau);
-    //console.log("2. Các biến có thể chứa Mã Logic:", {
-    //    "cau.ma_cau_hoi (từ Supabase)": cau.ma_cau_hoi,
-    //    "cau.maCau (từ Github)": cau.maCau,
-    //    "CHỐT LẠI maCauLogic": maCauLogic
-    //});
-    //console.log("3. Các biến có thể chứa Mã Gốc:", {
-    //    "cau.ma_goc": cau.ma_goc,
-    //    "cau.maGoc": cau.maGoc,
-    //    "cau.maCauGoc": cau.maCauGoc,
-    //    "cau.idGoc": cau.idGoc,
-    //    "CHỐT LẠI maCauHienThi": maCauHienThi
-    //});
-    //console.log("======================================");
-
 
 
     const thuMucAnh = window.PhienLamBai.base_url_anh;
@@ -1779,6 +1755,28 @@ function ham_8_11_taoGiaoDienCauHoi(cau, stt, loaiCau) {
                 <div style="font-size: 13px; color: #6c757d; margin-top: 15px;">(Mỗi ô điền 1 ký tự, bao gồm cả dấu trừ "-" hoặc dấu phẩy ",")</div>
             </div>`;
     }
+
+
+    // 🌟 KIỂM TRA: Nếu đang ở chế độ Live Quiz -> Cấy thêm nút NỘP TỪNG CÂU
+    if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) {
+        // Xử lý chuỗi đáp án đúng để truyền vào hàm chấm điểm
+        let dapAnDungTruyen = (cau.dap_an || cau.dapAn || '');
+        // Thay thế dấu nháy đơn để tránh lỗi cú pháp JS khi render HTML
+        dapAnDungTruyen = dapAnDungTruyen.replace(/'/g, "\\'");
+
+        htmlBlock += `
+            <div style="margin-top: 18px; border-top: 1px dashed #e0e0e0; padding-top: 12px; text-align: right;">
+                <button id="btn-live-${maCauLogic}" 
+                        onclick="window.ham_8_6_4_nop_tung_cau('${maCauLogic}', '${loaiCau}', '${dapAnDungTruyen}')" 
+                        style="padding: 10px 22px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: 900; font-size: 14px; cursor: pointer; box-shadow: 0 3px 6px rgba(231,76,60,0.2); transition: 0.2s;"
+                        onmouseover="if(!this.disabled) this.style.background='#c0392b'" 
+                        onmouseout="if(!this.disabled) this.style.background='#e74c3c'">
+                    🚀 GỬI & KHÓA CÂU NÀY
+                </button>
+            </div>
+        `;
+    }
+
 
     return htmlBlock + `</div>`;
 }
