@@ -1705,6 +1705,32 @@ const BangHocLieuState = {
     tangDan: false // Mới nhất xếp trên
 };
 
+//// Hàm 6.1: Vẽ bộ khung giao diện Quản lý Học Liệu
+//function ham_6_1_ve_quan_ly_hoc_lieu() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+//            <h3 style="margin: 0; color: #28a745;">📚 Quản lý Kho Học Liệu & Đề Thi</h3>
+//            <div style="display: flex; gap: 10px;">
+//                <button onclick="ham_6_2_tai_danh_sach_hoc_lieu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                    🔄 Làm mới dữ liệu
+//                </button>
+//                <button onclick="ham_6_3_hien_form_them_hoc_lieu()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
+//                    + Tạo Học Liệu / Đề Thi
+//                </button>
+//            </div>
+//        </div>
+//        <div id="danh-sach-hl-render">
+//            <p style="text-align: center; color: #666;">Đang tải dữ liệu học liệu từ máy chủ...</p>
+//        </div>
+//    `;
+
+//    ham_6_2_tai_danh_sach_hoc_lieu();
+//}
+
+
+
 // Hàm 6.1: Vẽ bộ khung giao diện Quản lý Học Liệu
 function ham_6_1_ve_quan_ly_hoc_lieu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -1712,11 +1738,20 @@ function ham_6_1_ve_quan_ly_hoc_lieu() {
     vungLamViec.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h3 style="margin: 0; color: #28a745;">📚 Quản lý Kho Học Liệu & Đề Thi</h3>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="ham_6_2_tai_danh_sach_hoc_lieu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                    🔄 Làm mới dữ liệu
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+                    <input type="text" id="input-tim-kiem-qlhl" 
+                           placeholder="Tìm tên học liệu, mã đề..." 
+                           oninput="ham_6_11_tim_kiem_live_hoc_lieu(this.value)"
+                           style="padding: 10px 10px 10px 35px; border: 1px solid #ccc; border-radius: 6px; width: 280px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
+
+                <button onclick="ham_6_2_tai_danh_sach_hoc_lieu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                    🔄 Làm mới
                 </button>
-                <button onclick="ham_6_3_hien_form_them_hoc_lieu()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
+                <button onclick="ham_6_3_hien_form_them_hoc_lieu()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.2); white-space: nowrap;">
                     + Tạo Học Liệu / Đề Thi
                 </button>
             </div>
@@ -1728,6 +1763,7 @@ function ham_6_1_ve_quan_ly_hoc_lieu() {
 
     ham_6_2_tai_danh_sach_hoc_lieu();
 }
+
 
 // Hàm 6.2: Tải dữ liệu từ bảng hoc_lieu và lấy thêm tên Giáo viên tạo
 async function ham_6_2_tai_danh_sach_hoc_lieu() {
@@ -1872,6 +1908,29 @@ function ham_6_11_thay_doi_sort(cotMoi) {
     }
     ham_6_10_ve_bang_hoc_lieu();
 }
+
+// =====================================================================
+// Hàm 6.11: Tìm kiếm trực tiếp (Live Search) học liệu trên bảng
+// =====================================================================
+window.ham_6_11_tim_kiem_live_hoc_lieu = function (tuKhoa) {
+    const filter = tuKhoa.toLowerCase().trim();
+
+    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng học liệu
+    const rows = document.querySelectorAll('#danh-sach-hl-render tbody tr');
+
+    rows.forEach(row => {
+        // Đọc toàn bộ nội dung chữ (Tên đề, Mã đề, Trạng thái...) đang hiển thị
+        const textContent = row.innerText.toLowerCase();
+
+        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+        if (textContent.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+};
+
 
 
 // Hàm 6.0: Sinh mã học liệu ngẫu nhiên theo loại (Tiền tố + 7 ký tự)
