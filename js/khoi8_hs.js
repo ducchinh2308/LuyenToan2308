@@ -2549,57 +2549,50 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
     // 2. DẠNG ĐÚNG SAI (DS)
     else if (loaiCau === "DS") {
         htmlBlock += `<div class="cau-ds">`;
-        const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
-        const dapAnChuan = cau.dap_an || "";
-
-        // VÁ LỖI 1: Ép kiểu về Object an toàn
-        let luaChonCuaHS = {};
-        if (typeof baiLamHS.luaChonHS === 'string') {
-            try { luaChonCuaHS = JSON.parse(baiLamHS.luaChonHS); } catch (e) { luaChonCuaHS = {}; }
-        } else {
-            luaChonCuaHS = baiLamHS.luaChonHS || {};
-        }
+        const mangY = [{ id: 'a', text: cau.paA }, { id: 'b', text: cau.paB }, { id: 'c', text: cau.paC }, { id: 'd', text: cau.paD }];
+        const dapAnChuan = cau.dap_an || ""; // Ví dụ: "TTFT"
+        const chuoiBaiLam = baiLamHS.luaChonHS || ""; // Ví dụ: "TFTT" (Lấy từ dữ liệu thầy gửi)
 
         mangY.forEach((y, idx) => {
             const nhanThuong = ['a', 'b', 'c', 'd'][idx];
-            const hsChon = luaChonCuaHS[y.id]; // Lấy 'T' hoặc 'F'
-            const correctVal = dapAnChuan[idx]; // 'T' hoặc 'F'
+            // Lấy ký tự tại vị trí idx: 'T' hoặc 'F'
+            const hsChon = chuoiBaiLam[idx] || "";
+            const correctVal = dapAnChuan[idx] || "";
 
-            const hsT = (hsChon === 'T'), hsF = (hsChon === 'F');
+            const hsT = (hsChon === 'T');
+            const hsF = (hsChon === 'F');
 
-            let bgT = "transparent", borderT = "transparent", colorT = "#495057";
-            let bgF = "transparent", borderF = "transparent", colorF = "#495057";
+            let bgT = "transparent", borderT = "#ccc", colorT = "#495057";
+            let bgF = "transparent", borderF = "#ccc", colorF = "#495057";
 
             if (choPhepXemDapAn) {
-                colorT = "#28a745"; colorF = "#dc3545";
-                if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
+                // Nếu học sinh chọn đúng
+                if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; colorT = "#28a745"; }
                 else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
 
                 if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
-                else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
+                else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; colorF = "#dc3545"; }
             } else {
+                // Chỉ hiển thị lựa chọn của HS
                 if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
                 if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
             }
 
-            // VÁ LỖI 2: Thêm thuộc tính name="group_${maCauLogic}_${y.id}" để nhóm radio chuẩn
             htmlBlock += `
             <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
                 <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
                 <div style="display: flex; gap: 10px; flex-shrink: 0;">
                     <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderT}; background: ${bgT}; font-weight: bold; color: ${colorT}; display:flex; align-items:center; gap:5px;">
-                        <input type="radio" name="group_${maCauLogic}_${y.id}" value="T" ${hsT ? 'checked' : ''} disabled style="transform: scale(1.2);"> Đúng
+                        <input type="radio" ${hsT ? 'checked' : ''} disabled style="transform: scale(1.2);"> Đúng
                     </span>
                     <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderF}; background: ${bgF}; font-weight: bold; color: ${colorF}; display:flex; align-items:center; gap:5px;">
-                        <input type="radio" name="group_${maCauLogic}_${y.id}" value="F" ${hsF ? 'checked' : ''} disabled style="transform: scale(1.2);"> Sai
+                        <input type="radio" ${hsF ? 'checked' : ''} disabled style="transform: scale(1.2);"> Sai
                     </span>
                 </div>
             </div>`;
         });
         htmlBlock += `</div>`;
     }
-
-
     // 3. DẠNG TRẢ LỜI NGẮN (TLN)
     else if (loaiCau === "TLN") {
         const hsAns = baiLamHS.luaChonHS || "";
