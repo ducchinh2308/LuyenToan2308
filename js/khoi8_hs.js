@@ -2163,7 +2163,8 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
             //console.log("3. Dữ liệu BÀI LÀM của Học sinh:", baiLamCuaHS);
             //console.log("==============================================");
 
-
+            // 🌟 THÊM DÒNG NÀY ĐỂ DEBUG
+            console.log("DEBUG-CÂU-HỎI:", cau);
 
             htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
