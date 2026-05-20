@@ -1800,7 +1800,7 @@ window.luuDapAn = function (maCauHoi, luaChon, element) {
     capNhatMauNutLuoi(maCauHoi, luaChon);
 
     // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
-    if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+    //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
 
 
 };
@@ -1817,7 +1817,7 @@ window.luuDapAnDS = function (maCauHoi, y, giaTri, element) {
     capNhatMauNutLuoi(maCauHoi, chuoiDS);
 
     // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
-    if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+    //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
 
 };
 
