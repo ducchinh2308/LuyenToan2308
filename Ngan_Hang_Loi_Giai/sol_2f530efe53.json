@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2f530efe53",
+  "dapAn": "TFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x)=3x^2-27$. Mệnh đề đúng.\r\n\t\t\t\\itemch Phương trình $f'(x)=0 \\Leftrightarrow 3x^2-27=0 \\Leftrightarrow \\left[\\begin{aligned}& x=3 \\\\ & x=-3\\end{aligned}\\right.$.\\\\\r\n\t\t\tSuy ra tập nghiệm là $S=\\{-3;3\\}$. Mệnh đề sai.\r\n\t\t\t\\itemch $f(3)=3^3-27 \\cdot 3+81=27$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $f(-4)=125$; $f(4)=37$; $f(-3)=135$; $f(3)=27$.\\\\\r\n\t\t\tVậy giá trị nhỏ nhất của hàm số trên đoạn $[-4;4]$ bằng $27$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}
