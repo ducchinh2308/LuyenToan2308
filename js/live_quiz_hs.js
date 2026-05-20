@@ -250,7 +250,7 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        // GỌI RPC SERVER VÀ NHẬN VỀ OBJECT CHỨA CẢ 2 THÔNG TIN
+        // GỌI RPC SERVER
         const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
@@ -263,19 +263,34 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
         if (error) throw error;
 
-        // 1. XỬ LÝ ĐIỂM CỦA RIÊNG CÂU NÀY (Để báo cho Học sinh vui/buồn)
+        // 1. XỬ LÝ ĐIỂM VÀ ĐỔI MÀU NÚT BẤM TÙY THEO LOẠI CÂU
         const diemCauNay = Number(ketQuaTraVe.diem_cau_nay);
+        const soYDung = Number(ketQuaTraVe.so_y_dung || 0);
+
         if (btn) {
-            if (diemCauNay > 0) {
-                btn.innerText = `✅ ĐÚNG (+${diemCauNay.toFixed(2)})`;
-                btn.style.background = "#27ae60"; // Màu xanh lá cờ
-            } else {
-                btn.innerText = `❌ SAI (0 ĐIỂM)`;
-                btn.style.background = "#c0392b"; // Màu đỏ
+            // 🌟 NẾU LÀ CÂU ĐÚNG/SAI: Báo chi tiết số ý
+            if (kieuCau === 'DS') {
+                if (diemCauNay > 0) {
+                    btn.innerText = `✅ ĐÚNG ${soYDung}/4 Ý (+${diemCauNay.toFixed(2)})`;
+                    btn.style.background = "#27ae60"; // Màu xanh lá
+                } else {
+                    btn.innerText = `❌ ĐÚNG ${soYDung}/4 Ý (0 ĐIỂM)`;
+                    btn.style.background = "#c0392b"; // Màu đỏ
+                }
+            }
+            // 🌟 NẾU LÀ CÂU TN HOẶC TLN: Chỉ báo Đúng/Sai thông thường
+            else {
+                if (diemCauNay > 0) {
+                    btn.innerText = `✅ ĐÚNG (+${diemCauNay.toFixed(2)})`;
+                    btn.style.background = "#27ae60";
+                } else {
+                    btn.innerText = `❌ SAI (0 ĐIỂM)`;
+                    btn.style.background = "#c0392b";
+                }
             }
         }
 
-        // 2. CẬP NHẬT TỔNG ĐIỂM LÊN BẢNG HUD LỚN (Góc phải màn hình)
+        // 2. CẬP NHẬT TỔNG ĐIỂM LÊN HUD
         const tongDiemCapNhat = Number(ketQuaTraVe.tong_diem);
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) {
@@ -283,7 +298,6 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
             hudDiem.style.color = "#f1c40f";
             setTimeout(() => { hudDiem.style.color = "white"; }, 500);
         }
-
     } catch (e) {
         if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
         if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
