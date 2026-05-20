@@ -1952,7 +1952,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
     const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-    console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
+    //console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
 
     try {
         // ==============================================================
