@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f23db5c2b6",
+  "dapAn": "D",
+  "loiGiai": "Ta có $\\displaystyle I = \\int_2^5 \\frac{2x-3}{x}\\,\\mathrm{d}x = \\int_2^5 \\left(2 - \\frac{3}{x}\\right)\\,\\mathrm{d}x = \\big(2x - 3\\ln|x|\\big)\\Big|_2^5 = (2 \\cdot 5 - 3\\ln 5) - (2 \\cdot 2 - 3\\ln 2) = 6 - 3\\ln\\frac{5}{2}$.\\\\\r\n\t\tVậy $a = 6$, $b = -3$ nên $S = a + b = 6 - 3 = 3$."
+}
