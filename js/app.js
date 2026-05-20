@@ -588,21 +588,47 @@ function ham_4_0_sinh_ma_lop() {
     return result;
 }
 
+//// Hàm 4.1: Vẽ giao diện chính
+//function ham_4_1_ve_quan_ly_lop() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+//            <h3 style="margin: 0; color: #0056b3;">Danh sách Lớp học & Nhóm ôn luyện</h3>
+//            <button onclick="ham_4_2_hien_form_them_lop()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                + Khởi Tạo Lớp Mới
+//            </button>
+//        </div>
+//        <div id="danh-sach-lop-render"><p style="text-align: center;">Đang tải dữ liệu...</p></div>
+//    `;
+//    ham_4_4_tai_danh_sach_lop();
+//}
+
+
 // Hàm 4.1: Vẽ giao diện chính
 function ham_4_1_ve_quan_ly_lop() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h3 style="margin: 0; color: #0056b3;">Danh sách Lớp học & Nhóm ôn luyện</h3>
-            <button onclick="ham_4_2_hien_form_them_lop()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                + Khởi Tạo Lớp Mới
-            </button>
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+                    <input type="text" id="input-tim-kiem-qllop" 
+                           placeholder="Tìm Tên lớp, Mã lớp..." 
+                           oninput="ham_4_11_tim_kiem_live_lop(this.value)"
+                           style="padding: 10px 10px 10px 35px; border: 1px solid #ccc; border-radius: 6px; width: 250px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
+
+                <button onclick="ham_4_2_hien_form_them_lop()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                    + Khởi Tạo Lớp Mới
+                </button>
+            </div>
         </div>
         <div id="danh-sach-lop-render"><p style="text-align: center;">Đang tải dữ liệu...</p></div>
     `;
     ham_4_4_tai_danh_sach_lop();
 }
-
 // ------------------------------------------------------------------------------
 // PHẦN A: TẠO LỚP & CHỌN HỌC SINH
 // ------------------------------------------------------------------------------
@@ -841,6 +867,29 @@ async function ham_4_4_tai_danh_sach_lop() {
         }
     }
 }
+
+// =====================================================================
+// Hàm 4.11: Tìm kiếm trực tiếp (Live Search) lớp học trên bảng
+// =====================================================================
+function ham_4_11_tim_kiem_live_lop(tuKhoa) {
+    const filter = tuKhoa.toLowerCase().trim();
+
+    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng lớp học
+    const rows = document.querySelectorAll('#danh-sach-lop-render tbody tr');
+
+    rows.forEach(row => {
+        // Đọc toàn bộ nội dung chữ (Tên lớp, Mã lớp, Giáo viên...) đang hiển thị trên dòng đó
+        const textContent = row.innerText.toLowerCase();
+
+        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+        if (textContent.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
 
 // Hàm 4.10: Vẽ bảng (Cho phép Sort tất cả các cột)
 function ham_4_10_ve_bang_du_lieu() {
