@@ -5048,7 +5048,7 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
         let dsHocSinhLop = [];
         if (mangMaLop.length > 0) {
             const { data: dataHS, error: errHS } = await _supabase
-                .from('hoc_sing') // Ghi chú: Thầy kiểm tra lại nếu tên bảng của thầy là 'hoc_sinh' nhé
+                .from('hoc_sinh') // Ghi chú: Thầy kiểm tra lại nếu tên bảng của thầy là 'hoc_sinh' nhé
                 .select('uid, ten, sdt, danh_sach_ma_lop');
 
             if (!errHS && dataHS) {
