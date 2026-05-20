@@ -36,7 +36,7 @@ const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308/";
 
 // Hàm 1.1: Bơm toàn bộ CSS vào trang
 function ham_1_1_nhung_css() {
-    console.log("Đang vào hàm ham_1_1_nhung_css");
+    //console.log("Đang vào hàm ham_1_1_nhung_css");
     const cssContent = `
         body { font-family: 'Roboto', sans-serif; padding: 10px 20px; line-height: 1.5; background-color: #f0f2f5; color: #2c3e50; margin: 0;}
         .header-section { text-align: center; margin-bottom: 10px; }
@@ -69,7 +69,7 @@ function ham_1_1_nhung_css() {
 
 // Hàm 1.2: Dựng bộ khung HTML lõi vào thẻ <div id="app">
 function ham_1_2_dung_khung_html() {
-    console.log("Đang vào hàm 1_2");
+    //console.log("Đang vào hàm 1_2");
     const htmlContent = `
         <div class="header-section">
             <h1>ÔN LUYỆN TOÁN</h1>
