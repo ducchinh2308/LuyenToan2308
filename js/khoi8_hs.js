@@ -1922,21 +1922,6 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     }
 
 
-    //// 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
-    //let payloadBaiLam = {};
-    //phien.danh_sach_cau_hoi.forEach(cau => {
-    //    const dapanHS = phien.dap_an_hoc_sinh[cau.ma_cau_hoi];
-    //    const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
-
-    //    if (kieu === 'DS' && typeof dapanHS === 'object') {
-    //        // Biến dạng object {A: 'T', B: 'F'} thành chuỗi "T_FF" để gửi đi
-    //        let strDS = "";
-    //        ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
-    //        payloadBaiLam[cau.ma_cau_hoi] = strDS;
-    //    } else {
-    //        payloadBaiLam[cau.ma_cau_hoi] = dapanHS || "";
-    //    }
-    //});
 
     // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     let payloadBaiLam = {};
@@ -1966,6 +1951,8 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     const tBatDau = phien.thoi_diem_bat_dau || Date.now();
     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
     const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+
+    console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
 
     try {
         // ==============================================================
