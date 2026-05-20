@@ -1012,12 +1012,12 @@ async function ham_8_5_tab_ho_so() {
                     </div>
 
                     <div style="margin-bottom: 15px;">
-                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Mật khẩu:</label>
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Mật khẩu mới:</label>
                         <input type="password" id="hs_edit_mk" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
                     </div>
 
                     <div style="margin-bottom: 25px;">
-                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔁 Xác nhận lại mật khẩu:</label>
+                        <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔁 Xác nhận lại mật khẩu mới:</label>
                         <input type="password" id="hs_edit_mk_2" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
                         <div style="font-size: 11px; color: #dc3545; margin-top: 6px;">* Gõ mật khẩu mới vào cả 2 ô trên để thay đổi. Tuyệt đối không chia sẻ mật khẩu cho người khác.</div>
                     </div>
