@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4730275016",
+  "dapAn": "2352",
+  "loiGiai": "Trước hết xếp 8 quyển sách thành một hàng ngang, có $8!$ cách.\\\\\r\n\t\tKhi xếp 8 quyển sách thành một hàng ngang thì có 7 vị trí trống ở giữa 2 quyển sách kề nhau.\\\\\r\n\t\tGiả sử dùng 3 vách ngăn chia 8 quyển thành 4 nhóm sách, mỗi nhóm có ít nhất 1 quyển, theo thứ tự đó ta để vào 4 ngăn sách.\\\\\r\n\t\tKhi đó ta chọn 3 trong 7 vị trí trống đó để đặt 3 vách ngăn, có $\\mathrm{C}_7^3$ cách.\\\\\r\n\t\tSuy ra có $T = 8! \\cdot \\mathrm{C}_7^3 = 1411200$ cách sắp xếp khác nhau của bạn An. \\\\\r\n\t\tVậy $\\displaystyle \\frac{T}{600} = \\frac{1411200}{600} = 2352$."
+}

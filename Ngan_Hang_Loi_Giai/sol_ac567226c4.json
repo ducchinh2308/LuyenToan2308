@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ac567226c4",
+  "dapAn": "1092",
+  "loiGiai": "Lợi nhuận khi bán hết $x$ sản phẩm với ($x \\in \\mathbb{N}^*; 1 \\le x \\le 4500$) là:\\\\\r\n\t\t$L(x) = F(x) - x \\cdot G(x) = -0{,}01x^2 + 400x - 30000 - 270x$\\\\\r\n\t\t$\\Rightarrow L(x) = -0{,}01x^2 + 130x - 30000$ (nghìn đồng).\\\\\r\n\t\tĐể lợi nhuận thu được lớn hơn $100$ triệu đồng $= 100000$ nghìn đồng\\\\\r\n\t\t$\\Rightarrow L(x) > 100000 \\Leftrightarrow -0{,}01x^2 + 130x - 30000 > 100000$.\\\\\r\n\t\t$\\Leftrightarrow -0{,}01x^2 + 130x - 130000 > 0 \\Leftrightarrow 1091{,}67\\dots < x < 11908{,}32\\dots$\\\\\r\n\t\tGiao với điều kiện $\\left(x \\in \\mathbb{N}^*; 1 \\le x \\le 4500\\right) \\Rightarrow 1091{,}67\\dots < x \\le 4500$\\\\\r\n\t\t$\\Rightarrow x_{\\min} = 1092$ (sản phẩm).\\\\\r\n\t\tVậy doanh nghiệp cần sản xuất ít nhất $1092$ sản phẩm."
+}
