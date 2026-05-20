@@ -5566,12 +5566,12 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
 };
 
 // =====================================================================
-// 🌟 HÀM CẦU NỐI: TẢI ĐỀ GỐC, ĐỒNG BỘ NỘI DUNG VÀ MỞ FULL-SCREEN REVIEW
+// 🌟 HÀM CẦU NỐI: TẢI ĐỀ GỐC (Bản Clone hoàn chỉnh từ form Học Sinh)
 // =====================================================================
 window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCauScroll) {
     Swal.fire({
-        title: 'Đang tải nội dung đề...',
-        text: 'Hệ thống đang đồng bộ văn bản câu hỏi và lời giải chi tiết',
+        title: 'Đang tải dữ liệu bài làm...',
+        html: 'Hệ thống đang đồng bộ câu hỏi và đáp án từ kho lưu trữ...',
         didOpen: () => Swal.showLoading()
     });
 
@@ -5579,55 +5579,67 @@ window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCa
         const { maNhiemVu, mangDaLam } = window.DataThongKeHienTai;
         const hs = mangDaLam[indexHocSinh];
 
-        // 1. Kéo nhiệm vụ để lấy thông tin mã học liệu
+        // 1. Kéo nhiệm vụ và mã học liệu
         const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVu).single();
         if (errNV) throw errNV;
 
-        // 2. Kéo cấu trúc danh sách câu hỏi từ bảng hoc_lieu
-        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('danh_sach_cau_hoi').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
         if (errHL) throw errHL;
 
-        let deThiGoc = hlData.danh_sach_cau_hoi;
-        if (typeof deThiGoc === 'string') deThiGoc = JSON.parse(deThiGoc);
-
-        // =========================================================================
-        // 🌟 BƯỚC 3: TIẾN HÀNH "ĐẮP THỊT" NỘI DUNG (HÒA TRỘN SUPABASE + GITHUB)
-        // =========================================================================
-        let deThiDayDuNoiDung = [];
-
-        // 👉 CÁCH A: Nếu thầy lưu trữ toàn bộ nội dung chữ (noiDungHtml, loiGiaiHtml) trong file JSON trên GitHub
-        try {
-            // Thầy cấu hình chính xác đường dẫn đến kho chứa file đề JSON của thầy ở đây
-            const duongDanFileDe = `https://raw.githubusercontent.com/.../.../${nvData.ma_hoc_lieu}.json`;
-
-            const res = await fetch(duongDanFileDe);
-            const nganHangNoiDung = await res.json(); // Mảng chứa dữ liệu thô bao gồm cả văn bản và công thức
-
-            // Thực hiện map trộn dữ liệu theo mã câu hỏi
-            deThiDayDuNoiDung = deThiGoc.map(cauGoc => {
-                const textChiTiet = nganHangNoiDung.find(c => (c.ma_cau_hoi || c.id) === cauGoc.ma_cau_hoi);
-                return {
-                    ...cauGoc,
-                    ...textChiTiet // Bơm toàn bộ noiDungHtml và loiGiaiHtml vào khung xương ID
-                };
-            });
-        } catch (errFetch) {
-            // 👉 CÁCH B: Dự phòng nếu thầy lưu nội dung chữ trực tiếp ở một bảng khác trên Supabase (Ví dụ: bảng 'cau_hoi')
-            const dsMaCau = deThiGoc.map(c => c.ma_cau_hoi).filter(Boolean);
-            const { data: dsCauHoiTuDB, error: errCH } = await _supabase.from('cau_hoi').select('*').in('ma_cau_hoi', dsMaCau);
-
-            if (!errCH && dsCauHoiTuDB) {
-                deThiDayDuNoiDung = deThiGoc.map(cauGoc => {
-                    const cauTrungKhop = dsCauHoiTuDB.find(c => c.ma_cau_hoi === cauGoc.ma_cau_hoi);
-                    return { ...cauGoc, ...cauTrungKhop };
-                });
-            } else {
-                // Nếu cả hai nguồn đều thất bại, giữ nguyên khung xương để tránh chết ứng dụng
-                deThiDayDuNoiDung = deThiGoc;
-            }
+        // ==============================================================
+        // 2. TẢI FILE ĐỀ THI TỪ GITHUB (Sao chép logic 1:1 từ Học Sinh)
+        // ==============================================================
+        let urlFileGitHub = hlData.url_github;
+        if (!urlFileGitHub) {
+            let maDeGoc = nvData.ma_hoc_lieu;
+            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
 
-        // 4. Giải mã chi tiết lịch sử chọn đáp án của học sinh
+        const resDe = await fetch(urlFileGitHub);
+        if (!resDe.ok) throw new Error("Không tải được đề gốc từ Github!");
+        const dataGitHub = await resDe.json();
+
+        // ==============================================================
+        // 3. TẢI FILE GIẢI BÓNG MA (Luôn tải đối với Quyền Giáo Viên)
+        // ==============================================================
+        let dataGiaiGop = null;
+        if (hlData.url_file_giai) {
+            try {
+                const resGiai = await fetch(hlData.url_file_giai);
+                if (resGiai.ok) dataGiaiGop = await resGiai.json();
+            } catch (e) { console.error("Không tải được file bóng ma", e); }
+        }
+
+        // ==============================================================
+        // 4. RÁP BẢN ĐỒ VÀ BƠM NỘI DUNG VÀO KHUNG XƯƠNG SUPABASE
+        // ==============================================================
+        let dsKhungXuong = hlData.danh_sach_cau_hoi;
+        if (typeof dsKhungXuong === 'string') dsKhungXuong = JSON.parse(dsKhungXuong);
+
+        const deThiHoanChinh = (dsKhungXuong || []).map(mapItem => {
+            const noiDung = (dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || []).find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+
+            let htmlLoiGiaiChiTiet = null;
+            if (dataGiaiGop) {
+                const matchGiai = (dataGiaiGop.danhSachLoiGiai || []).find(g => g.maBaoMat === mapItem.ma_loi_giai);
+                if (matchGiai) htmlLoiGiaiChiTiet = matchGiai.loiGiaiHtml;
+            }
+
+            return {
+                ...mapItem,
+                ...noiDung,
+                // Quyền Giáo viên: Không cần tẩy trắng dap_an
+                dap_an: mapItem.dap_an,
+                loiGiaiHtml: htmlLoiGiaiChiTiet
+            };
+        });
+
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+
+        // ==============================================================
+        // 5. MÔ PHỎNG DỮ LIỆU BÀI LÀM VÀ MỞ FULL-SCREEN
+        // ==============================================================
         let chiTiet = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
 
         let ketQuaMock = {
@@ -5635,25 +5647,25 @@ window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCa
             chi_tiet_lam_bai: chiTiet
         };
 
-        // Đóng hộp thoại thông báo tải dữ liệu
         Swal.close();
 
-        // 5. Đẩy mảng đề đã trộn đầy đủ nội dung vào hàm hiển thị giao diện
-        ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThiDayDuNoiDung, nvData, '', true, true);
+        // Ép cờ choPhepXemDapAn = true và choPhepXemLoiGiai = true đối với GV
+        ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
 
-        // 6. Tính năng di chuyển màn hình tự động đến câu hỏi được chọn
+        // ==============================================================
+        // 6. TÍNH NĂNG AUTO-SCROLL THÔNG MINH
+        // ==============================================================
         if (maCauScroll) {
             setTimeout(() => {
                 const theCauHoi = document.getElementById('review-cau-' + maCauScroll);
                 if (theCauHoi) {
                     theCauHoi.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
                     theCauHoi.style.transition = "all 0.5s ease-in-out";
                     theCauHoi.style.boxShadow = "0 0 15px 3px rgba(220, 53, 69, 0.6)";
                     theCauHoi.style.transform = "scale(1.02)";
 
                     setTimeout(() => {
-                        theCauHoi.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
+                        theCauHoi.style.boxShadow = "0 4px 8px rgba(0,0,0,0.05)";
                         theCauHoi.style.transform = "scale(1)";
                     }, 2500);
                 }
@@ -5661,6 +5673,6 @@ window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCa
         }
 
     } catch (error) {
-        Swal.fire('Lỗi', 'Không thể đồng bộ nội dung đề thi: ' + error.message, 'error');
+        Swal.fire('Lỗi', 'Không thể mở bài thi: ' + error.message, 'error');
     }
 };
