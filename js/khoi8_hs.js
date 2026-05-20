@@ -1996,7 +1996,7 @@ window.ham_8_thoat_phong_thi = async () => {
 //    }
 //}
 // =====================================================================
-// HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT
+// HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT (BẢN SỬA LỖI ĐƠ)
 // =====================================================================
 async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
@@ -2017,7 +2017,6 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
 
     // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     let payloadBaiLam = {};
-
     phien.danh_sach_cau_hoi.forEach(cau => {
         const maCauChuan = cau.ma_cau_hoi || cau.maCau;
         const dapanHS = phien.dap_an_hoc_sinh[maCauChuan];
@@ -2039,11 +2038,9 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
     const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-    console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
-
     try {
         // ==============================================================
-        // 🚀 3. PHÓNG BÀI LÊN CHO SUPABASE TỰ CHẤM (Zero-Trust)
+        // 🚀 3. GỌI RPC SERVER CHẤM ĐIỂM
         // ==============================================================
         const { data: diemSoBiMat, error: errCham } = await _supabase.rpc('cham_diem_bai_thi', {
             p_id_ket_qua: phien.id_ket_qua_database,
@@ -2057,43 +2054,45 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         const diemTongKet = Number(diemSoBiMat || 0);
 
         // ==============================================================
-        // 🌟 4. RẼ NHÁNH TÙY THEO CHẾ ĐỘ THI
+        // 🌟 BƯỚC SỬA LỖI: GIẢI PHÓNG UI KHỎI BỊ ĐƠ (CHẠY CHUNG CHO CẢ 2 CHẾ ĐỘ)
+        // ==============================================================
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
+        if (khongGianThi) khongGianThi.remove();
+
+        // ==============================================================
+        // 4. RẼ NHÁNH XỬ LÝ SAU KHI GIẢI PHÓNG MÀN HÌNH TỰ ĐỘNG
         // ==============================================================
         if (phien.isLiveQuiz) {
-            // XỬ LÝ CHO CHẾ ĐỘ ĐẤU TRƯỜNG LIVE
+            // CẬP NHẬT TRẠNG THÁI ĐÃ NỘP LÊN SERVER
             if (window.ThongTinLiveHocSinh && window.ThongTinLiveHocSinh.maPhong) {
-                // Đồng bộ chốt hạ lên database, khóa cửa phòng đấu
                 await _supabase.from('tien_do_live_quiz')
                     .update({ da_nop: true, diem_so: diemTongKet })
                     .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
                     .eq('uid_hoc_sinh', GocHocSinhState.uid);
             }
 
+            // CHUYỂN HƯỚNG NGAY VỀ MÀN HÌNH CHỜ KẾT QUẢ
+            if (window.ham_8_6_6_man_hinh_ket_qua_cho) {
+                window.ham_8_6_6_man_hinh_ket_qua_cho(diemTongKet);
+            }
+
+            // Hiện thông báo chúc mừng nổi lên trên nền màn hình chờ
             Swal.fire({
                 title: isForce ? '⏳ HẾT GIỜ LÀM BÀI!' : '📤 NỘP BÀI THÀNH CÔNG!',
-                html: `Thành tích của em: <b>${diemTongKet.toFixed(2)} điểm</b>`,
-                icon: 'info',
-                confirmButtonText: 'Vào phòng chờ vinh danh'
-            }).then(() => {
-                // Đẩy thẳng ra màn hình kết quả chờ công khai
-                if (window.ham_8_6_6_man_hinh_ket_qua_cho) {
-                    window.ham_8_6_6_man_hinh_ket_qua_cho(diemTongKet);
-                }
+                html: `Thành tích đấu trường của em: <b>${diemTongKet.toFixed(2)} điểm</b>`,
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: true
             });
 
         } else {
-            // XỬ LÝ CHO BÀI TẬP VỀ NHÀ THÔNG THƯỜNG
-            // Ghi sổ chuyên cần
+            // CHẾ ĐỘ BÀI TẬP VỀ NHÀ THÔNG THƯỜNG
             let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
             tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
             await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTai }).eq('uid', GocHocSinhState.uid);
             GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
-
-            // Dọn giao diện
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-            const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
-            if (khongGianThi) khongGianThi.remove();
 
             alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemTongKet} điểm.`);
 
@@ -2106,7 +2105,6 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
     }
 }
-
 
 // ==============================================================
 // Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
