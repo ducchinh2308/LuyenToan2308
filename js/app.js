@@ -2551,7 +2551,6 @@ function ham_7_10_ve_bang_nhiem_vu() {
                             style="padding: 6px 12px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">
                         📊 Thống kê
                     </button>
-                    // 🌟 THÊM NÚT CHẤM LẠI VÀO ĐÂY
                     <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" 
                             style="padding: 6px 12px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;"
                             title="Chấm lại toàn bộ điểm cho nhiệm vụ này">
