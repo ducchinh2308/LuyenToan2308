@@ -65,28 +65,63 @@ window.ham_8_6_1_vao_phong = async function () {
     } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
 };
 
-// 2. Phòng chờ (Lắng nghe GV bấm Bắt đầu)
+// =====================================================================
+// HÀM 8.6.2: GIAO DIỆN PHÒNG CHỜ (ĐÃ FIX LỖI ĐỨNG GIAO DIỆN)
+// =====================================================================
 window.ham_8_6_2_phong_cho_live = function () {
-    // ... (Giữ nguyên giao diện phòng chờ cũ)
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     const maPin = window.ThongTinLiveHocSinh.maPhong;
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 500px; margin: 40px auto; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 40px; text-align: center;">
+            <div style="font-size: 60px; margin-bottom: 20px;">⏳</div>
+            <h2 style="color: #2c3e50; margin-bottom: 10px;">ĐANG ĐỢI CHỦ PHÒNG...</h2>
+            <p style="color: #7f8c8d; margin-bottom: 30px;">Mã phòng: <b style="color: #e74c3c;">${maPin}</b></p>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px dashed #ddd;">
+                <p style="margin: 0; font-weight: bold; color: #555;">Thầy đang chuẩn bị trận đấu. Em hãy giữ nguyên màn hình này, hệ thống sẽ tự động bắt đầu ngay khi Thầy nhấn nút!</p>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div style="width: 50px; height: 5px; background: #e74c3c; margin: 0 auto; border-radius: 5px; animation: pulse 1.5s infinite;"></div>
+            </div>
+        </div>
+        <style>
+            @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+        </style>
+    `;
+
+    // Lắng nghe tín hiệu bắt đầu từ Thầy
     if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
 
     window.HocSinhLiveChannel = _supabase.channel('hocsinh_nghe_phong_' + maPin)
-        .on('postgres_changes', { event: 'UPDATE', table: 'phong_live_quiz', filter: `ma_phong=eq.${maPin}` }, payload => {
+        .on('postgres_changes', {
+            event: 'UPDATE',
+            table: 'phong_live_quiz',
+            filter: `ma_phong=eq.${maPin}`
+        }, payload => {
+            // Khi trạng thái đổi từ 0 (chờ) sang 1 (bắt đầu)
             if (payload.new.trang_thai === 1) {
-                // Cập nhật lại Master Time khi GV vừa bấm
+                // Đồng bộ thời gian bắt đầu từ Server
                 const tStart = new Date(payload.new.thoi_gian_bat_dau);
-                window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + payload.new.thoi_gian_lam_bai * 60000);
+                window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + (payload.new.thoi_gian_lam_bai || 45) * 60000);
 
-                Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', timer: 1500, showConfirmButton: false }).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '🚀 TRẬN ĐẤU BẮT ĐẦU!',
+                    text: 'Chúc em làm bài tốt!',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
                     ham_8_6_3_bat_dau_lam_bai_live();
                 });
             } else if (payload.new.trang_thai === 2) {
-                Swal.fire('Kết thúc', 'Đấu trường đã bị Thầy hủy bỏ.', 'info');
+                Swal.fire('Kết thúc', 'Đấu trường đã kết thúc.', 'info').then(() => {
+                    ham_8_6_tab_live_quiz(); // Trở về màn nhập mã
+                });
             }
         }).subscribe();
 };
-
 // 3. Khởi tạo bài thi & Đồng bộ thời gian
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
