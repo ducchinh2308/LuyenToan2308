@@ -5479,7 +5479,7 @@ window.ham_7_15_sub_danh_sach_chua_lam = function () {
 };
 
 // =====================================================================
-// 🌟 HÀM SUB 3: SOI CHI TIẾT BÀI LÀM ĐÃ ĐƯỢC MAP THEO KHỐI DỮ LIỆU THỰC TẾ (TẦNG 3)
+// 🌟 HÀM SUB 3: SOI CHI TIẾT BÀI LÀM ĐÃ ĐƯỢC MAP THEO KHỐI DỮ LIỆU THỰC TẾ
 // =====================================================================
 window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
     const { mangDaLam } = window.DataThongKeHienTai;
@@ -5497,7 +5497,6 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
         htmlMaTranGrid = `<p style="grid-column: span 5; text-align:center; color:#718096; padding:15px;">Hệ thống không tìm thấy lịch sử tích đáp án.</p>`;
     } else {
         mangCauTraLoi.forEach((cau, idx) => {
-            // 🌟 Đọc đúng trường "ketQua" có dấu của thầy ("Đúng", "Sai", "Bỏ trống")
             const trangThai = (cau.ketQua || "").trim();
 
             let bgHop = "#fff5f5";
@@ -5518,8 +5517,13 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
                 iconKq = "⚪";
             }
 
+            // 🌟 ĐÃ SỬA: Biến mỗi ô thành một nút bấm
             htmlMaTranGrid += `
-                <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif;">
+                <div onclick="ham_gv_mo_giao_dien_xem_lai_chi_tiet(${indexHocSinh}, '${cau.maCau}')" 
+                     title="Bấm để xem chi tiết câu này"
+                     style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; cursor: pointer; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" 
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)';">
                     <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
                     <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
                     <div style="font-size: 10px; color: #4a5568; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${cau.luaChonHS || '-'}</span></div>
@@ -5535,12 +5539,17 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
         title: `👀 BÀI LÀM: ${hs.ten.toUpperCase()}`,
         html: `
             <div style="text-align: left; background: white;">
-                <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; font-weight:bold;">
-                    <span>🎯 Đúng: ${soCauDung} / ${tongSoCau} câu</span>
-                    <span>📈 Tỷ lệ chính xác: ${tyLeDung}%</span>
+                <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; align-items: center; font-weight:bold;">
+                    <div>
+                        <div style="margin-bottom: 4px;">🎯 Đúng: ${soCauDung} / ${tongSoCau} câu</div>
+                        <div>📈 Tỷ lệ chính xác: ${tyLeDung}%</div>
+                    </div>
+                    <button onclick="ham_gv_mo_giao_dien_xem_lai_chi_tiet(${indexHocSinh}, null)" style="padding: 8px 12px; background: #2b6cb0; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        MỞ FULL ĐỀ
+                    </button>
                 </div>
 
-                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Chi tiết từng câu hỏi:</div>
+                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Chi tiết từng câu hỏi (Bấm vào ô để xem):</div>
                 
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 280px; overflow-y: auto; padding: 4px;">
                     ${htmlMaTranGrid}
@@ -5556,4 +5565,62 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
     });
 };
 
+// =====================================================================
+// 🌟 HÀM CẦU NỐI: TẢI ĐỀ GỐC VÀ MỞ FULL-SCREEN REVIEW
+// =====================================================================
+window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCauScroll) {
+    Swal.fire({ title: 'Đang tải đề gốc...', text: 'Vui lòng đợi trong giây lát', didOpen: () => Swal.showLoading() });
 
+    try {
+        const { maNhiemVu, mangDaLam } = window.DataThongKeHienTai;
+        const hs = mangDaLam[indexHocSinh];
+
+        // 1. Kéo nhiệm vụ và đề thi (nếu chưa có trong bộ nhớ)
+        const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVu).single();
+        if (errNV) throw errNV;
+
+        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('danh_sach_cau_hoi').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+        if (errHL) throw errHL;
+
+        let deThi = hlData.danh_sach_cau_hoi;
+        if (typeof deThi === 'string') deThi = JSON.parse(deThi);
+
+        let chiTiet = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
+
+        // 2. Format dữ liệu đóng vai Học Sinh để truyền vào hàm 8.14
+        let ketQuaMock = {
+            tong_diem: hs.diem,
+            chi_tiet_lam_bai: chiTiet
+        };
+
+        // 3. Đóng Swal loading
+        Swal.close();
+
+        // 4. Gọi hàm hiển thị Full-Screen (truyền true, true để hiển thị cả đáp án và lời giải)
+        ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThi, nvData, '', true, true);
+
+        // 5. Tính năng tự động cuộn (Auto-Scroll) đến đúng câu hỏi thầy vừa bấm
+        if (maCauScroll) {
+            setTimeout(() => {
+                const theCauHoi = document.getElementById('review-cau-' + maCauScroll);
+                if (theCauHoi) {
+                    // Cuộn trơn tru đến phần tử đó
+                    theCauHoi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Hiệu ứng "Nháy đèn" (Highlight) đỏ rực để thầy dễ nhận diện
+                    theCauHoi.style.transition = "all 0.5s ease-in-out";
+                    theCauHoi.style.boxShadow = "0 0 15px 3px rgba(220, 53, 69, 0.6)";
+                    theCauHoi.style.transform = "scale(1.02)";
+
+                    setTimeout(() => {
+                        theCauHoi.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
+                        theCauHoi.style.transform = "scale(1)";
+                    }, 2500);
+                }
+            }, 600); // Đợi 600ms cho DOM và MathJax render xong
+        }
+
+    } catch (error) {
+        Swal.fire('Lỗi', 'Không thể tải đề thi: ' + error.message, 'error');
+    }
+};
