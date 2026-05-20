@@ -1,18 +1,17 @@
 ﻿// =====================================================================
-// KHU VỰC ĐẤU TRƯỜNG LIVE QUIZ (NỘP TỪNG CÂU, PHỤC HỒI STATE)
+// KHU VỰC KHỞI TẠO BIẾN TOÀN CỤC
 // =====================================================================
 window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
 window.DangKhoiTaoLiveQuiz = false;
+window.IntervalKiemTraPhong = null;
+window.HocSinhLiveChannel = null;
 
-
-
-
-
-
+// =====================================================================
 // 1. Hàm vẽ giao diện nhập mã PIN
+// =====================================================================
 window.ham_8_6_tab_live_quiz = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    if (!vungLamViec) return console.error("Lỗi: Không tìm thấy vùng render!");
+    if (!vungLamViec) return;
 
     if (window.HocSinhLiveChannel) { _supabase.removeChannel(window.HocSinhLiveChannel); window.HocSinhLiveChannel = null; }
 
@@ -31,12 +30,8 @@ window.ham_8_6_tab_live_quiz = function () {
 };
 
 // =====================================================================
-// KHU VỰC ĐẤU TRƯỜNG LIVE QUIZ (NỘP TỪNG CÂU, PHỤC HỒI STATE)
+// 2. Hàm Vào phòng & Đồng bộ Master Time
 // =====================================================================
-window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
-window.DangKhoiTaoLiveQuiz = false;
-
-// 1. Vào phòng (Đồng bộ Master Time của GV)
 window.ham_8_6_1_vao_phong = async function () {
     const maPin = document.getElementById('txtPinLive').value.trim();
     if (!maPin) return Swal.fire('Nhắc', 'Nhập mã PIN!', 'warning');
@@ -47,81 +42,78 @@ window.ham_8_6_1_vao_phong = async function () {
         if (!phong) throw new Error("Mã PIN không đúng!");
         if (phong.trang_thai === 2) throw new Error("Đấu trường đã đóng!");
 
-        // Tính thời điểm đóng phòng thực tế dựa vào lúc GV bấm Bắt đầu (nếu đã bắt đầu)
-        let thoiGianDong = null;
-        if (phong.thoi_gian_bat_dau && phong.thoi_gian_lam_bai) {
-            const tStart = new Date(phong.thoi_gian_bat_dau);
-            thoiGianDong = new Date(tStart.getTime() + phong.thoi_gian_lam_bai * 60000);
-        }
-
-        window.ThongTinLiveHocSinh = { maPhong: maPin, maNhiemVu: phong.ma_nhiem_vu, thoiGianDong: thoiGianDong };
+        window.ThongTinLiveHocSinh.maPhong = maPin;
+        window.ThongTinLiveHocSinh.maNhiemVu = phong.ma_nhiem_vu;
 
         await _supabase.from('tien_do_live_quiz').upsert({ ma_phong: maPin, uid_hoc_sinh: GocHocSinhState.uid, ten_hoc_sinh: GocHocSinhState.ten }, { onConflict: 'ma_phong,uid_hoc_sinh' });
 
         Swal.close();
         if (phong.trang_thai === 0) ham_8_6_2_phong_cho_live();
-        else if (phong.trang_thai === 1) ham_8_6_3_bat_dau_lam_bai_live();
-
+        else if (phong.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(phong);
     } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
 };
 
 // =====================================================================
-// HÀM 8.6.2: GIAO DIỆN PHÒNG CHỜ (ĐÃ FIX LỖI ĐỨNG GIAO DIỆN)
+// 3. Hàm Phòng chờ & Kiểm tra thủ công
 // =====================================================================
 window.ham_8_6_2_phong_cho_live = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    const maPin = window.ThongTinLiveHocSinh.maPhong;
-
     vungLamViec.innerHTML = `
-        <div style="max-width: 500px; margin: 40px auto; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 40px; text-align: center;">
-            <div style="font-size: 60px; margin-bottom: 20px;">⏳</div>
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">ĐANG ĐỢI CHỦ PHÒNG...</h2>
-            <p style="color: #7f8c8d; margin-bottom: 30px;">Mã phòng: <b style="color: #e74c3c;">${maPin}</b></p>
-            
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border: 2px dashed #ddd;">
-                <p style="margin: 0; font-weight: bold; color: #555;">Thầy đang chuẩn bị trận đấu. Em hãy giữ nguyên màn hình này, hệ thống sẽ tự động bắt đầu ngay khi Thầy nhấn nút!</p>
-            </div>
-
-            <div style="margin-top: 30px;">
-                <div style="width: 50px; height: 5px; background: #e74c3c; margin: 0 auto; border-radius: 5px; animation: pulse 1.5s infinite;"></div>
-            </div>
+        <div style="max-width: 500px; margin: 40px auto; background: white; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div style="font-size: 50px; margin-bottom: 20px;">⏳</div>
+            <h2>ĐANG ĐỢI CHỦ PHÒNG...</h2>
+            <p>Mã PIN: <b>${window.ThongTinLiveHocSinh.maPhong}</b></p>
+            <div style="margin: 20px auto; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <button onclick="ham_8_6_kiem_tra_phong_ngay_lap_tuc()" style="padding: 12px 25px; background: #f39c12; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">🔄 CẬP NHẬT TÍN HIỆU NGAY</button>
         </div>
-        <style>
-            @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
-        </style>
+        <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
     `;
 
-    // Lắng nghe tín hiệu bắt đầu từ Thầy
+    // Realtime
+    if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
+    window.HocSinhLiveChannel = _supabase.channel('kenh_' + window.ThongTinLiveHocSinh.maPhong)
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'phong_live_quiz', filter: `ma_phong=eq.${window.ThongTinLiveHocSinh.maPhong}` }, payload => {
+            if (payload.new.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(payload.new);
+        }).subscribe();
+
+    // Tự quét
+    if (window.IntervalKiemTraPhong) clearInterval(window.IntervalKiemTraPhong);
+    window.IntervalKiemTraPhong = setInterval(async () => {
+        const { data: p } = await _supabase.from('phong_live_quiz').select('trang_thai, thoi_gian_bat_dau, thoi_gian_lam_bai').eq('ma_phong', window.ThongTinLiveHocSinh.maPhong).single();
+        if (p && p.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(p);
+    }, 3000);
+};
+
+window.ham_8_6_kiem_tra_phong_ngay_lap_tuc = async function () {
+    const { data: p } = await _supabase.from('phong_live_quiz').select('trang_thai, thoi_gian_bat_dau, thoi_gian_lam_bai').eq('ma_phong', window.ThongTinLiveHocSinh.maPhong).single();
+    if (p && p.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(p);
+    else Swal.fire('Thông báo', 'Thầy chưa bắt đầu thi!', 'info');
+};
+
+// =====================================================================
+// 4. Hàm Bắt đầu thi (dùng chung)
+// =====================================================================
+window.ham_8_6_bat_dau_thi_ngay = function (phong) {
+    if (window.IntervalKiemTraPhong) clearInterval(window.IntervalKiemTraPhong);
     if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
 
-    window.HocSinhLiveChannel = _supabase.channel('hocsinh_nghe_phong_' + maPin)
-        .on('postgres_changes', {
-            event: 'UPDATE',
-            table: 'phong_live_quiz',
-            filter: `ma_phong=eq.${maPin}`
-        }, payload => {
-            // Khi trạng thái đổi từ 0 (chờ) sang 1 (bắt đầu)
-            if (payload.new.trang_thai === 1) {
-                // Đồng bộ thời gian bắt đầu từ Server
-                const tStart = new Date(payload.new.thoi_gian_bat_dau);
-                window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + (payload.new.thoi_gian_lam_bai || 45) * 60000);
+    const tStart = new Date(phong.thoi_gian_bat_dau);
+    window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + (phong.thoi_gian_lam_bai || 45) * 60000);
 
-                Swal.fire({
-                    icon: 'success',
-                    title: '🚀 TRẬN ĐẤU BẮT ĐẦU!',
-                    text: 'Chúc em làm bài tốt!',
-                    timer: 2000,
-                    showConfirmButton: false
-                }).then(() => {
-                    ham_8_6_3_bat_dau_lam_bai_live();
-                });
-            } else if (payload.new.trang_thai === 2) {
-                Swal.fire('Kết thúc', 'Đấu trường đã kết thúc.', 'info').then(() => {
-                    ham_8_6_tab_live_quiz(); // Trở về màn nhập mã
-                });
-            }
-        }).subscribe();
+    Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', timer: 1500, showConfirmButton: false }).then(() => {
+        ham_8_6_3_bat_dau_lam_bai_live();
+    });
 };
+
+
+
+
+
+
+
+
+
+
 // 3. Khởi tạo bài thi & Đồng bộ thời gian
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
