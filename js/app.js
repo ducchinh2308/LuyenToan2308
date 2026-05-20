@@ -5566,48 +5566,88 @@ window.ham_7_15_sub_soi_bai_lam = function (indexHocSinh) {
 };
 
 // =====================================================================
-// 🌟 HÀM CẦU NỐI: TẢI ĐỀ GỐC VÀ MỞ FULL-SCREEN REVIEW
+// 🌟 HÀM CẦU NỐI: TẢI ĐỀ GỐC, ĐỒNG BỘ NỘI DUNG VÀ MỞ FULL-SCREEN REVIEW
 // =====================================================================
 window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCauScroll) {
-    Swal.fire({ title: 'Đang tải đề gốc...', text: 'Vui lòng đợi trong giây lát', didOpen: () => Swal.showLoading() });
+    Swal.fire({
+        title: 'Đang tải nội dung đề...',
+        text: 'Hệ thống đang đồng bộ văn bản câu hỏi và lời giải chi tiết',
+        didOpen: () => Swal.showLoading()
+    });
 
     try {
         const { maNhiemVu, mangDaLam } = window.DataThongKeHienTai;
         const hs = mangDaLam[indexHocSinh];
 
-        // 1. Kéo nhiệm vụ và đề thi (nếu chưa có trong bộ nhớ)
+        // 1. Kéo nhiệm vụ để lấy thông tin mã học liệu
         const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVu).single();
         if (errNV) throw errNV;
 
+        // 2. Kéo cấu trúc danh sách câu hỏi từ bảng hoc_lieu
         const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('danh_sach_cau_hoi').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
         if (errHL) throw errHL;
 
-        let deThi = hlData.danh_sach_cau_hoi;
-        if (typeof deThi === 'string') deThi = JSON.parse(deThi);
+        let deThiGoc = hlData.danh_sach_cau_hoi;
+        if (typeof deThiGoc === 'string') deThiGoc = JSON.parse(deThiGoc);
 
+        // =========================================================================
+        // 🌟 BƯỚC 3: TIẾN HÀNH "ĐẮP THỊT" NỘI DUNG (HÒA TRỘN SUPABASE + GITHUB)
+        // =========================================================================
+        let deThiDayDuNoiDung = [];
+
+        // 👉 CÁCH A: Nếu thầy lưu trữ toàn bộ nội dung chữ (noiDungHtml, loiGiaiHtml) trong file JSON trên GitHub
+        try {
+            // Thầy cấu hình chính xác đường dẫn đến kho chứa file đề JSON của thầy ở đây
+            const duongDanFileDe = `https://raw.githubusercontent.com/.../.../${nvData.ma_hoc_lieu}.json`;
+
+            const res = await fetch(duongDanFileDe);
+            const nganHangNoiDung = await res.json(); // Mảng chứa dữ liệu thô bao gồm cả văn bản và công thức
+
+            // Thực hiện map trộn dữ liệu theo mã câu hỏi
+            deThiDayDuNoiDung = deThiGoc.map(cauGoc => {
+                const textChiTiet = nganHangNoiDung.find(c => (c.ma_cau_hoi || c.id) === cauGoc.ma_cau_hoi);
+                return {
+                    ...cauGoc,
+                    ...textChiTiet // Bơm toàn bộ noiDungHtml và loiGiaiHtml vào khung xương ID
+                };
+            });
+        } catch (errFetch) {
+            // 👉 CÁCH B: Dự phòng nếu thầy lưu nội dung chữ trực tiếp ở một bảng khác trên Supabase (Ví dụ: bảng 'cau_hoi')
+            const dsMaCau = deThiGoc.map(c => c.ma_cau_hoi).filter(Boolean);
+            const { data: dsCauHoiTuDB, error: errCH } = await _supabase.from('cau_hoi').select('*').in('ma_cau_hoi', dsMaCau);
+
+            if (!errCH && dsCauHoiTuDB) {
+                deThiDayDuNoiDung = deThiGoc.map(cauGoc => {
+                    const cauTrungKhop = dsCauHoiTuDB.find(c => c.ma_cau_hoi === cauGoc.ma_cau_hoi);
+                    return { ...cauGoc, ...cauTrungKhop };
+                });
+            } else {
+                // Nếu cả hai nguồn đều thất bại, giữ nguyên khung xương để tránh chết ứng dụng
+                deThiDayDuNoiDung = deThiGoc;
+            }
+        }
+
+        // 4. Giải mã chi tiết lịch sử chọn đáp án của học sinh
         let chiTiet = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
 
-        // 2. Format dữ liệu đóng vai Học Sinh để truyền vào hàm 8.14
         let ketQuaMock = {
             tong_diem: hs.diem,
             chi_tiet_lam_bai: chiTiet
         };
 
-        // 3. Đóng Swal loading
+        // Đóng hộp thoại thông báo tải dữ liệu
         Swal.close();
 
-        // 4. Gọi hàm hiển thị Full-Screen (truyền true, true để hiển thị cả đáp án và lời giải)
-        ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThi, nvData, '', true, true);
+        // 5. Đẩy mảng đề đã trộn đầy đủ nội dung vào hàm hiển thị giao diện
+        ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThiDayDuNoiDung, nvData, '', true, true);
 
-        // 5. Tính năng tự động cuộn (Auto-Scroll) đến đúng câu hỏi thầy vừa bấm
+        // 6. Tính năng di chuyển màn hình tự động đến câu hỏi được chọn
         if (maCauScroll) {
             setTimeout(() => {
                 const theCauHoi = document.getElementById('review-cau-' + maCauScroll);
                 if (theCauHoi) {
-                    // Cuộn trơn tru đến phần tử đó
                     theCauHoi.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // Hiệu ứng "Nháy đèn" (Highlight) đỏ rực để thầy dễ nhận diện
                     theCauHoi.style.transition = "all 0.5s ease-in-out";
                     theCauHoi.style.boxShadow = "0 0 15px 3px rgba(220, 53, 69, 0.6)";
                     theCauHoi.style.transform = "scale(1.02)";
@@ -5617,10 +5657,10 @@ window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCa
                         theCauHoi.style.transform = "scale(1)";
                     }, 2500);
                 }
-            }, 600); // Đợi 600ms cho DOM và MathJax render xong
+            }, 600);
         }
 
     } catch (error) {
-        Swal.fire('Lỗi', 'Không thể tải đề thi: ' + error.message, 'error');
+        Swal.fire('Lỗi', 'Không thể đồng bộ nội dung đề thi: ' + error.message, 'error');
     }
 };
