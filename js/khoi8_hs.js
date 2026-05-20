@@ -2427,6 +2427,14 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
     // 🌟 KHU VỰC CẢI TIẾN: Điều hướng ảnh thông minh
     const thuMucAnhGiai = "https://ducchinh2308.github.io/LuyenToan2308/Ngan_Hang_Loi_Giai/HinhAnh_Chung";
 
+    // Nếu vẫn không tìm thấy ID thì dừng lại để tránh lỗi tiếp theo
+    if (!maCauLogic) {
+        console.error("LỖI: Không tìm thấy ID cho câu hỏi:", cau);
+        return `<div style="color:red">Lỗi tải câu hỏi (Thiếu ID)</div>`;
+    }
+
+
+
     const xuLyNoiDung = (noiDung, isLoiGiai = false) => {
         if (!noiDung) return "";
         let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
