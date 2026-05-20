@@ -1,0 +1,55 @@
+{
+  "thoiGianGhep": "2026-05-20T10:40:12.540Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_0ece38f8e8",
+      "dapAn": "A",
+      "loiGiaiHtml": "Điều kiện xác định của biểu thức logarit: $\\displaystyle x-1>0 \\Leftrightarrow x>1$.\\\\\r\n\t\tVì cơ số $\\displaystyle a=2>1$, bất phương trình giữ nguyên chiều khi biến đổi:\\\\\r\n\t\t$\\displaystyle \\log_{2}(x-1)<3 \\Leftrightarrow x-1<2^{3} \\Leftrightarrow x-1<8 \\Leftrightarrow x<9$.\\\\\r\n\t\tKết hợp với điều kiện xác định $\\displaystyle x>1$, ta được tập nghiệm của bất phương trình là $\\displaystyle S=(1;9)$."
+    },
+    {
+      "maBaoMat": "sol_b237819f90",
+      "dapAn": "D",
+      "loiGiaiHtml": "Theo định nghĩa cơ bản về lôgarit, nghiệm duy nhất của phương trình mũ dạng $\\displaystyle a^{x}=b$ (với $\\displaystyle a, b > 0, a \\neq 1$) là $\\displaystyle x=\\log_{a}b$.\\\\\r\n\t\tÁp dụng vào phương trình $\\displaystyle 2^{x}=6$, ta thu được nghiệm $\\displaystyle x=\\log_{2}6$."
+    },
+    {
+      "maBaoMat": "sol_e2d1878242",
+      "dapAn": "D",
+      "loiGiaiHtml": "Đưa phương trình về dạng cùng cơ số $3$:\\\\\r\n\t\t$\\displaystyle 3^{x^{2}-2x} = 81 \\Leftrightarrow 3^{x^{2}-2x} = 3^{4} \\Leftrightarrow x^{2}-2x=4 \\Leftrightarrow x^{2}-2x-4=0$.\\\\\r\n\t\tVì phương trình bậc hai trên có $\\displaystyle ac = 1 \\cdot (-4) = -4 < 0$ nên luôn có hai nghiệm phân biệt $\\displaystyle x_{1}, x_{2}$.\\\\\r\n\t\tÁp dụng định lý Vi-ét, tổng các nghiệm của phương trình là:\\\\\r\n\t\t$\\displaystyle x_{1}+x_{2} = -\\frac{-2}{1} = 2$."
+    },
+    {
+      "maBaoMat": "sol_b9b1fbddea",
+      "dapAn": "B",
+      "loiGiaiHtml": "Điều kiện xác định của phương trình:\\\\\r\n\t\t$\\displaystyle \\begin{cases} x-4>0 \\\\ x^{2}-5x+4>0 \\end{cases} \\Leftrightarrow \\begin{cases} x>4 \\\\ \\left[\\begin{aligned} &x<1 \\\\ &x>4 \\end{aligned}\\right. \\end{cases} \\Leftrightarrow x>4$.\\\\\r\n\t\tKhi đó, phương trình đã cho tương đương với:\\\\\r\n\t\t$\\displaystyle x-4 = x^{2}-5x+4 \\Leftrightarrow x^{2}-6x+8=0 \\Leftrightarrow \\left[\\begin{aligned} &x=2 \\\\ &x=4 \\end{aligned}\\right.$\\\\\r\n\t\tĐối chiếu với điều kiện xác định $\\displaystyle x>4$, cả hai nghiệm $\\displaystyle x=2$ và $\\displaystyle x=4$ đều không thỏa mãn.\\\\\r\n\t\tVậy phương trình vô nghiệm, tập nghiệm $\\displaystyle S=\\emptyset$."
+    },
+    {
+      "maBaoMat": "sol_79493a75d5",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vì cơ số của lũy thừa $\\displaystyle a=2>1$, khi lấy mũ hai vế bất phương trình giữ nguyên chiều biến thiên:\\\\\r\n\t\t$\\displaystyle 2^{2x} < 2^{x+6} \\Leftrightarrow 2x < x+6 \\Leftrightarrow x < 6$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=(-\\infty;6)$."
+    },
+    {
+      "maBaoMat": "sol_83899d60d7",
+      "dapAn": "D",
+      "loiGiaiHtml": "Biến đổi phân số ở vế phải về lũy thừa cơ số $3$:\\\\\r\n\t\t$\\displaystyle \\frac{1}{9} = \\frac{1}{3^{2}} = 3^{-2}$.\\\\\r\n\t\tBất phương trình đã cho tương đương với:\\\\\r\n\t\t$\\displaystyle 3^{x+2} \\ge 3^{-2} \\Leftrightarrow x+2 \\ge -2$ (do cơ số $\\displaystyle 3>1$).\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow x \\ge -4$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=[-4;+\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_50a08658fc",
+      "dapAn": "D",
+      "loiGiaiHtml": "Biến đổi hằng số ở vế phải về lũy thừa cơ số $\\displaystyle \\frac{1}{2}$:\\\\\r\n\t\t$\\displaystyle 128 = 2^{7} = \\left(\\frac{1}{2}\\right)^{-7}$.\\\\\r\n\t\tBất phương trình tương đương với:\\\\\r\n\t\t$\\displaystyle \\left(\\frac{1}{2}\\right)^{x-1} \\ge \\left(\\frac{1}{2}\\right)^{-7} \\Leftrightarrow x-1 \\le -7$ (đổi chiều bất phương trình do cơ số $\\displaystyle 0 < \\frac{1}{2} < 1$).\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow x \\le -6$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $\\displaystyle S=(-\\infty;-6]$."
+    },
+    {
+      "maBaoMat": "sol_f0c7426d78",
+      "dapAn": "D",
+      "loiGiaiHtml": "Điều kiện xác định của bất phương trình: $\\displaystyle x+1>0 \\Leftrightarrow x>-1$.\\\\\r\n\t\tVì cơ số $\\displaystyle a=0,5<1$, khi phá logarit bất phương trình phải đổi chiều ngược lại:\\\\\r\n\t\t$\\displaystyle \\log_{0,5}(x+1)>-3 \\Leftrightarrow x+1 < (0,5)^{-3} \\Leftrightarrow x+1 < \\left(\\frac{1}{2}\\right)^{-3} \\Leftrightarrow x+1 < 2^{3} \\Leftrightarrow x+1 < 8 \\Leftrightarrow x < 7$.\\\\\r\n\t\tKết hợp với điều kiện xác định $\\displaystyle x>-1$, ta được tập nghiệm chính xác là $\\displaystyle S=(-1;7)$."
+    },
+    {
+      "maBaoMat": "sol_0dd0e8620d",
+      "dapAn": "C",
+      "loiGiaiHtml": "$\\displaystyle \\sqrt{a} = a^{\\frac{1}{2}}$ và $\\displaystyle \\sqrt[3]{a^{2}} = a^{\\frac{2}{3}}$.\\\\\r\n\t\tThực hiện phép nhân hai lũy thừa cùng cơ số:\\\\\r\n\t\t$\\displaystyle P = a^{\\frac{1}{2}} \\cdot a^{\\frac{2}{3}} = a^{\\frac{1}{2}+\\frac{2}{3}} = a^{\\frac{3}{6}+\\frac{4}{6}} = a^{\\frac{7}{6}}$."
+    },
+    {
+      "maBaoMat": "sol_b9ad3ee40e",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hàm số lôgarit xác định khi và chỉ khi biểu thức dưới dấu lôgarit có giá trị dương.\\\\\r\n\t\tTa có điều kiện xác định: $\\displaystyle 2x-1>0 \\Leftrightarrow 2x>1 \\Leftrightarrow x>\\frac{1}{2}$.\\\\\r\n\t\tVậy tập xác định của hàm số đã cho là $\\displaystyle D=\\left(\\frac{1}{2};+\\infty\\right)$."
+    }
+  ]
+}
