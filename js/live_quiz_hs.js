@@ -250,28 +250,39 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        // GỌI RPC SERVER VÀ TRUYỀN ĐIỂM TỐI ĐA VỪA TÍNH ĐƯỢC
-        const { data: diemMoiNhat, error } = await _supabase.rpc('cham_diem_mot_cau', {
+        // GỌI RPC SERVER VÀ NHẬN VỀ OBJECT CHỨA CẢ 2 THÔNG TIN
+        const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
             p_ma_cau: maCau,
             p_dap_an_chon: chuoiDapAnGoi,
             p_dap_an_dung: dapAnChuan,
             p_kieu_cau: kieuCau,
-            p_diem_toi_da: diemToiDa // Đẩy điểm tỉ lệ chuẩn xuống SQL
+            p_diem_toi_da: diemToiDa
         });
 
         if (error) throw error;
 
-        // CẬP NHẬT ĐIỂM LÊN HUD TRÊN GIAO DIỆN
+        // 1. XỬ LÝ ĐIỂM CỦA RIÊNG CÂU NÀY (Để báo cho Học sinh vui/buồn)
+        const diemCauNay = Number(ketQuaTraVe.diem_cau_nay);
+        if (btn) {
+            if (diemCauNay > 0) {
+                btn.innerText = `✅ ĐÚNG (+${diemCauNay.toFixed(2)})`;
+                btn.style.background = "#27ae60"; // Màu xanh lá cờ
+            } else {
+                btn.innerText = `❌ SAI (0 ĐIỂM)`;
+                btn.style.background = "#c0392b"; // Màu đỏ
+            }
+        }
+
+        // 2. CẬP NHẬT TỔNG ĐIỂM LÊN BẢNG HUD LỚN (Góc phải màn hình)
+        const tongDiemCapNhat = Number(ketQuaTraVe.tong_diem);
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) {
-            hudDiem.innerText = Number(diemMoiNhat).toFixed(2);
+            hudDiem.innerText = tongDiemCapNhat.toFixed(2);
             hudDiem.style.color = "#f1c40f";
             setTimeout(() => { hudDiem.style.color = "white"; }, 500);
         }
-
-        if (btn) { btn.innerText = "✅ ĐÃ GỬI"; btn.style.background = "#95a5a6"; }
 
     } catch (e) {
         if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
