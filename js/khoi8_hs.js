@@ -1952,7 +1952,7 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
     const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
 
-    //console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
+    console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
 
     try {
         // ==============================================================
@@ -2229,197 +2229,7 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
     document.body.appendChild(newTikz);
 }
-// ==============================================================
-// Hàm Bổ trợ: Vẽ từng câu hỏi (Nhúng điều kiện hiện Đáp án & Lời giải)
-// ==============================================================
 
-//function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
-//    const maCauLogic = cau.ma_cau_hoi || cau.maCau;
-//    const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
-
-//    const xuLyNoiDung = (noiDung) => {
-//        if (!noiDung) return "";
-//        let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
-//        return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
-//            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
-//            return `src="${thuMucAnh}/${tenFile.split('/').pop()}"`;
-//        });
-//    };
-
-//    // Ẩn hiển thị điểm từng câu nếu chưa cho xem đáp án để bảo mật
-//    let diemBadge = `<span style="background:#e9ecef; color:#495057; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">Đã ghi nhận</span>`;
-//    if (choPhepXemDapAn) {
-//        diemBadge = baiLamHS.diem > 0
-//            ? `<span style="background:#d4edda; color:#155724; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">+${baiLamHS.diem} đ</span>`
-//            : `<span style="background:#f8d7da; color:#721c24; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold;">0 đ</span>`;
-//    }
-
-//    // Dùng pointer-events: none để đóng băng các input lựa chọn cũ của học sinh
-//    let htmlBlock = `
-//        <div id="review-cau-${maCauLogic}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05); pointer-events: none;">
-//            <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-//                <span style="display: flex; align-items: baseline; gap: 8px;">
-//                    <strong style="font-weight: 900; color: #000080;">(${loaiCau}) Câu ${stt}:</strong>
-//                    <span style="font-size: 13px; color: #6c757d; font-weight: normal;">[Mã: ${maCauHienThi}]</span>
-//                </span>
-//                ${diemBadge}
-//            </p>
-//            <div style="font-size: 17px; line-height: 1.6; margin-bottom: 20px; margin-top: 15px; overflow-x: auto;">${xuLyNoiDung(cau.cauDan || cau.noiDungHtml)}</div>
-//    `;
-
-//    // 1. DẠNG TRẮC NGHIỆM MULTIPLE CHOICE (TN)
-//    if (loaiCau === "TN") {
-//        htmlBlock += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
-//        const mangPA = cau.dsTron || [{ idGoc: 'A', text: cau.paA }, { idGoc: 'B', text: cau.paB }, { idGoc: 'C', text: cau.paC }, { idGoc: 'D', text: cau.paD }];
-
-//        mangPA.forEach((pa, idx) => {
-//            const nhan = String.fromCharCode(65 + idx);
-//            const isStudentPicked = (pa.idGoc === baiLamHS.luaChonHS);
-//            const isCorrect = (pa.idGoc === cau.dap_an);
-
-//            let bgLabel = "#f8f9fa", borderLabel = "#ddd", icon = "";
-
-//            if (choPhepXemDapAn) {
-//                if (isStudentPicked && isCorrect) { bgLabel = "#d4edda"; borderLabel = "#28a745"; icon = "✅ Chốt"; }
-//                else if (isStudentPicked && !isCorrect) { bgLabel = "#f8d7da"; borderLabel = "#dc3545"; icon = "❌ Em chọn"; }
-//            } else {
-//                if (isStudentPicked) { bgLabel = "#e8f4f8"; borderLabel = "#b8daff"; icon = "🔷 Lựa chọn của em"; }
-//            }
-
-//            htmlBlock += `
-//                <label style="display: flex; align-items: flex-start; padding: 12px; border: 2px solid ${borderLabel}; border-radius: 6px; background: ${bgLabel};">
-//                    <input type="radio" ${isStudentPicked ? 'checked' : ''} style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-//                    <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyNoiDung(pa.text)} <span style="font-weight:bold; font-size:14px; float:right;">${icon}</span></div>
-//                </label>`;
-//        });
-//        htmlBlock += `</div>`;
-//    }
-//    // 2. DẠNG ĐÚNG SAI (DS)
-//    else if (loaiCau === "DS") {
-//        htmlBlock += `<div class="cau-ds">`;
-//        const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
-//        const dapAnChuan = cau.dap_an || "";
-//        //const luaChonCuaHS = typeof baiLamHS.luaChonHS === 'object' ? baiLamHS.luaChonHS : {};
-//        const luaChonCuaHS = (baiLamHS.luaChonHS && typeof baiLamHS.luaChonHS === 'object') ? baiLamHS.luaChonHS : {};
-//        mangY.forEach((y, idx) => {
-//            const nhanThuong = ['a', 'b', 'c', 'd'][idx];
-//            const hsChon = luaChonCuaHS[y.id];
-//            const correctVal = dapAnChuan[idx];
-
-//            const hsT = (hsChon === 'T'), hsF = (hsChon === 'F');
-
-//            let bgT = "transparent", borderT = "transparent", colorT = "#495057";
-//            let bgF = "transparent", borderF = "transparent", colorF = "#495057";
-
-//            if (choPhepXemDapAn) {
-//                colorT = "#28a745"; colorF = "#dc3545";
-//                if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
-//                else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
-
-//                if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
-//                else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
-//            } else {
-//                if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
-//                if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
-//            }
-
-//            htmlBlock += `
-//                <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-//                    <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
-//                    <div style="display: flex; gap: 10px; flex-shrink: 0;">
-//                        <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderT}; background: ${bgT}; font-weight: bold; color: ${colorT}; display:flex; align-items:center; gap:5px;">
-//                            <input type="radio" ${hsT ? 'checked' : ''} style="transform: scale(1.2);"> Đúng
-//                        </span>
-//                        <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderF}; background: ${bgF}; font-weight: bold; color: ${colorF}; display:flex; align-items:center; gap:5px;">
-//                            <input type="radio" ${hsF ? 'checked' : ''} style="transform: scale(1.2);"> Sai
-//                        </span>
-//                    </div>
-//                </div>`;
-//        });
-//        htmlBlock += `</div>`;
-//    }
-//    // 3. DẠNG TRẢ LỜI NGẮN (TLN)
-//    else if (loaiCau === "TLN") {
-//        const hsAns = baiLamHS.luaChonHS || "";
-//        const isCorrect = (baiLamHS.ketQua === "Đúng");
-
-//        let borderColor = "#1a73e8", bgInput = "#fff", labelStatus = "Lựa chọn bài làm của em:";
-//        if (choPhepXemDapAn) {
-//            borderColor = isCorrect ? "#28a745" : "#dc3545";
-//            bgInput = isCorrect ? "#d4edda" : "#f8d7da";
-//            labelStatus = isCorrect ? "✅ CHÍNH XÁC" : "❌ CHƯA CHÍNH XÁC";
-//        }
-
-//        let inputHtml = "";
-//        for (let i = 0; i < 4; i++) {
-//            let char = hsAns[i] || "";
-//            inputHtml += `<input type="text" value="${char}" readonly style="width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid ${borderColor}; border-radius: 8px; color: ${borderColor}; outline: none; background: ${bgInput}; text-transform: uppercase;">`;
-//        }
-
-//        htmlBlock += `
-//            <div style="margin-top: 15px; padding: 25px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; text-align: center;">
-//                <div style="font-weight: bold; color: ${borderColor}; font-size: 15px; margin-bottom: 15px;">${labelStatus}</div>
-//                <div style="display: flex; justify-content: center; gap: 12px;">${inputHtml}</div>
-//            </div>`;
-//    }
-
-//    // =========================================================================
-//    // 🌟 KHU VỰC CẢI TIẾN: 2 NÚT ĐÁP ÁN & XEM LỜI GIẢI CHI TIẾT
-//    // =========================================================================
-//    const idVungLoiGiai = `loigiai-${maCauLogic}`;
-
-//    // Xử lý text hiển thị cho nút Đáp án dựa theo loại câu
-//    let textDapAnChuan = "";
-//    if (loaiCau === "TN") textDapAnChuan = `Đáp án đúng: ${cau.dap_an || "A"}`;
-//    else if (loaiCau === "DS") {
-//        let chuoiGợiY = [];
-//        (cau.dap_an || "TTTT").split("").forEach((k, i) => {
-//            chuoiGợiY.push(`${['a', 'b', 'c', 'd'][i]}: ${k === 'T' ? 'Đ' : 'S'}`);
-//        });
-//        textDapAnChuan = `Đáp án đúng: ${chuoiGợiY.join(" | ")}`;
-//    } else if (loaiCau === "TLN") {
-//        textDapAnChuan = `Đáp án đúng: ${cau.dap_an}`;
-//    }
-
-//    // Cấu hình trạng thái cho nút Lời giải chi tiết
-//    let cssNutLoiGiai = "padding: 8px 16px; background: #fff; color: #6f42c1; border: 1.5px solid #6f42c1; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.2s;";
-//    let attrNutLoiGiai = `onclick="let v=document.getElementById('${idVungLoiGiai}'); if(v.style.display==='none'){v.style.display='block'; this.innerText='📖 THU GỌN LỜI GIẢI';}else{v.style.display='none'; this.innerText='📖 XEM LỜI GIẢI CHI TIẾT';}"`;
-
-//    if (!choPhepXemLoiGiai) {
-//        // Nếu chưa cho xem lời giải: Làm mờ, khóa click
-//        cssNutLoiGiai = "padding: 8px 16px; background: #e9ecef; color: #6c757d; border: 1.5px solid #ccc; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: not-allowed; opacity: 0.5;";
-//        attrNutLoiGiai = `onclick="alert('🔒 Chức năng xem Lời giải chi tiết của câu hỏi này đang khóa!')"`;
-//    }
-
-//    // Khởi tạo vùng hiển thị 2 nút (Mở lại pointer-events để bấm được nút)
-//    htmlBlock += `
-//        <div style="margin-top: 20px; border-top: 1px dotted #ccc; padding-top: 15px; display: flex; gap: 12px; flex-wrap: wrap; pointer-events: auto;">
-
-//            ${choPhepXemDapAn ? `
-//                <button style="padding: 8px 16px; background: #e8f4f8; color: #1a73e8; border: 1.5px solid #1a73e8; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: default;">
-//                    🎯 ${textDapAnChuan}
-//                </button>
-//            ` : `
-//                <button onclick="alert('🔒 Đáp án chuẩn đang được bảo mật!')" style="padding: 8px 16px; background: #f8d7da; color: #721c24; border: 1.5px solid #f5c6cb; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: not-allowed; opacity: 0.6;">
-//                    🔒 ĐÁP ÁN ĐANG KHÓA
-//                </button>
-//            `}
-
-//            <button ${attrNutLoiGiai} style="${cssNutLoiGiai}"
-//                    onmouseover="if(${choPhepXemLoiGiai}){this.style.background='#6f42c1'; this.style.color='white';}"
-//                    onmouseout="if(${choPhepXemLoiGiai}){this.style.background='white'; this.style.color='#6f42c1';}">
-//                📖 XEM LỜI GIẢI CHI TIẾT
-//            </button>
-//        </div>
-
-//        <div id="${idVungLoiGiai}" style="display: none; margin-top: 15px; padding: 20px; background: #faf8ff; border-left: 4px solid #6f42c1; border-radius: 4px; font-size: 16px; line-height: 1.6; overflow-x: auto; color: #2c3e50; pointer-events: auto;">
-//            <div style="font-weight: bold; color: #6f42c1; margin-bottom: 8px; font-size:14px; text-transform:uppercase;">💡 Hướng dẫn giải chi tiết:</div>
-//            ${xuLyNoiDung(cau.loiGiaiHtml || "<p style='color:#999; font-style:italic;'>Hệ thống chưa cập nhật lời giải văn bản cho câu hỏi này.</p>")}
-//        </div>
-//    `;
-
-//    return htmlBlock + `</div>`;
-//}
 
 // ==============================================================
 // Hàm Bổ trợ: Vẽ từng câu hỏi (Sửa lỗi 404 tách biệt 2 kho Ảnh)
@@ -2502,50 +2312,7 @@ function taoGiaoDienCauHoiDaCham(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhep
         });
         htmlBlock += `</div>`;
     }
-    //// 2. DẠNG ĐÚNG SAI (DS)
-    //else if (loaiCau === "DS") {
-    //    htmlBlock += `<div class="cau-ds">`;
-    //    const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
-    //    const dapAnChuan = cau.dap_an || "";
-    //    const luaChonCuaHS = (baiLamHS.luaChonHS && typeof baiLamHS.luaChonHS === 'object') ? baiLamHS.luaChonHS : {};
-
-    //    mangY.forEach((y, idx) => {
-    //        const nhanThuong = ['a', 'b', 'c', 'd'][idx];
-    //        const hsChon = luaChonCuaHS[y.id];
-    //        const correctVal = dapAnChuan[idx];
-
-    //        const hsT = (hsChon === 'T'), hsF = (hsChon === 'F');
-
-    //        let bgT = "transparent", borderT = "transparent", colorT = "#495057";
-    //        let bgF = "transparent", borderF = "transparent", colorF = "#495057";
-
-    //        if (choPhepXemDapAn) {
-    //            colorT = "#28a745"; colorF = "#dc3545";
-    //            if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; }
-    //            else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
-
-    //            if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
-    //            else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; }
-    //        } else {
-    //            if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
-    //            if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
-    //        }
-
-    //        htmlBlock += `
-    //            <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-    //                <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
-    //                <div style="display: flex; gap: 10px; flex-shrink: 0;">
-    //                    <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderT}; background: ${bgT}; font-weight: bold; color: ${colorT}; display:flex; align-items:center; gap:5px;">
-    //                        <input type="radio" ${hsT ? 'checked' : ''} style="transform: scale(1.2);"> Đúng
-    //                    </span>
-    //                    <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderF}; background: ${bgF}; font-weight: bold; color: ${colorF}; display:flex; align-items:center; gap:5px;">
-    //                        <input type="radio" ${hsF ? 'checked' : ''} style="transform: scale(1.2);"> Sai
-    //                    </span>
-    //                </div>
-    //            </div>`;
-    //    });
-    //    htmlBlock += `</div>`;
-        //}
+    
 
     // 2. DẠNG ĐÚNG SAI (DS)
     else if (loaiCau === "DS") {
@@ -2686,35 +2453,6 @@ window.HocSinhLiveChannel = null;
 window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
 
 
-
-//// =====================================================================
-//// Hàm 8.6: Giao diện nhập mã PIN vào phòng đấu Live
-//// =====================================================================
-//window.ham_8_6_tab_live_quiz = function () {
-//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-//    if (!vungLamViec) return console.error("Lỗi: Không tìm thấy thẻ vung-lam-viec-hoc-sinh!");
-
-//    if (window.HocSinhLiveChannel) {
-//        _supabase.removeChannel(window.HocSinhLiveChannel);
-//        window.HocSinhLiveChannel = null;
-//    }
-
-//    vungLamViec.innerHTML = `
-//        <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
-//            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
-//                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
-//                <h2 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
-//                <p style="color: #a0a0b2; font-size: 14px; margin-top: 5px;">Nhìn lên màn hình của Thầy để lấy mã PIN</p>
-//            </div>
-//            <div style="padding: 30px;">
-//                <input type="text" id="txtPinLive" placeholder="NHẬP MÃ PIN (VD: 62895)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 5px; border: 2px solid #ddd; border-radius: 12px; box-sizing: border-box; transition: 0.3s; margin-bottom: 20px;" onfocus="this.style.borderColor='#e74c3c'; this.style.boxShadow='0 0 10px rgba(231,76,60,0.2)'" onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6">
-//                <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(231,76,60,0.4);" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
-//                    🚀 VÀO PHÒNG
-//                </button>
-//            </div>
-//        </div>
-//    `;
-//};
 
 
 window.ham_8_6_tab_live_quiz = function () {
