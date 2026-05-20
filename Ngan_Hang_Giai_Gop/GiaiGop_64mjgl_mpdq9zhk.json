@@ -1,0 +1,25 @@
+{
+  "thoiGianGhep": "2026-05-20T07:16:04.711Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_2f530efe53",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x)=3x^2-27$. Mệnh đề đúng.\r\n\t\t\t\\itemch Phương trình $f'(x)=0 \\Leftrightarrow 3x^2-27=0 \\Leftrightarrow \\left[\\begin{aligned}& x=3 \\\\ & x=-3\\end{aligned}\\right.$.\\\\\r\n\t\t\tSuy ra tập nghiệm là $S=\\{-3;3\\}$. Mệnh đề sai.\r\n\t\t\t\\itemch $f(3)=3^3-27 \\cdot 3+81=27$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $f(-4)=125$; $f(4)=37$; $f(-3)=135$; $f(3)=27$.\\\\\r\n\t\t\tVậy giá trị nhỏ nhất của hàm số trên đoạn $[-4;4]$ bằng $27$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_99f9975895",
+      "dapAn": "TFFF",
+      "loiGiaiHtml": "Gọi $A$ là biến cố \"Tin nhắn được chọn bị đánh dấu\". Suy ra $\\overline{A}$ là biến cố \"Tin nhắn được chọn không bị đánh dấu\".\\\\\r\n\t\tVà $B$ là biến cố \"Tin nhắn được chọn là tin nhắn quảng cáo\". Suy ra $\\overline{B}$ là biến cố \"Tin nhắn được chọn không phải là tin nhắn quảng cáo\".\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $P(A)=0{,}2 \\Rightarrow P(\\overline{A})=1-P(A)=0{,}8$. Mệnh đề đúng.\r\n\t\t\t\\itemch Xác suất tin nhắn là quảng cáo, biết rằng nó không bị đánh dấu là $10\\%$, suy ra $P(B \\mid \\overline{A})=10\\%=0{,}1$.\\\\\r\n\t\t\tXác suất để tin nhắn đó không phải là quảng cáo, biết rằng nó không bị đánh dấu là $P(\\overline{B} \\mid \\overline{A})=1-P(B \\mid \\overline{A})=1-0{,}1=0{,}9$. Mệnh đề sai.\r\n\t\t\t\\itemch Xác suất để tin nhắn đó không phải là quảng cáo là $P(\\overline{B})=P(\\overline{B} \\mid A) \\cdot P(A)+P(\\overline{B} \\mid \\overline{A}) \\cdot P(\\overline{A})=0{,}1 \\cdot 0{,}2+0{,}9 \\cdot 0{,}8=0{,}74$. Mệnh đề sai.\r\n\t\t\t\\itemch Xác suất để tin nhắn đó không bị đánh dấu, biết rằng nó không phải là quảng cáo là $\\displaystyle P(\\overline{A} \\mid \\overline{B})=\\frac{P(\\overline{B} \\mid \\overline{A}) \\cdot P(\\overline{A})}{P(\\overline{B})}=\\frac{0{,}9 \\cdot 0{,}8}{0{,}74} \\approx 0{,}97297>0{,}95$. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_6796f79896",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Vì $y(t)>0$ và $y'(t)=k \\cdot y(t) \\Leftrightarrow \\displaystyle \\frac{y'(t)}{y(t)}=k \\Rightarrow \\ln y(t)=kt+C \\Leftrightarrow y(t)=e^{kt+C}$ (1).\\\\\r\n\t\t\tTa có $y(t)=e^{g(t)}$ ($t \\ge 0$), kết hợp với (1) suy ra $g(t)=kt+C$ ($t \\ge 0$) với $C$ là một hằng số xác định. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $y(t)=e^{g(t)}$ ($t \\ge 0$) suy ra $\\begin{cases} y(6)=e^{g(6)}=2 \\Leftrightarrow g(6)=\\ln 2 \\\\ y(12)=e^{g(12)}=1 \\Leftrightarrow g(12)=0 \\end{cases}$.\\\\\r\n\t\t\tTa lại có $g(t)=kt+C$ ($t \\ge 0$) suy ra $\\begin{cases} g(6)=6k+C=\\ln 2 \\\\ g(12)=12k+C=0 \\end{cases} \\Rightarrow -6k=\\ln 2 \\Leftrightarrow \\displaystyle k=-\\frac{\\ln 2}{6}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Thay $\\displaystyle k=-\\frac{\\ln 2}{6}$ vào phương trình $12k+C=0$, ta được $\\displaystyle 12\\left(-\\frac{\\ln 2}{6}\\right)+C=0 \\Rightarrow C=2\\ln 2$. Mệnh đề sai.\r\n\t\t\t\\itemch Nồng độ thuốc tồn dư trong nước tại thời điểm $t=20$ (ngày) kể từ lúc sử dụng thuốc là $\\displaystyle y(20)=e^{g(20)}=e^{-\\frac{\\ln 2}{6} \\cdot 20+2\\ln 2} \\approx 0{,}3968<0{,}4$ mg/lít. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_b235b9ac12",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{u} \\cdot \\vec{i}=\\left|\\vec{i}\\right| \\cdot \\left|\\vec{u}\\right| \\cos 60^\\circ \\Leftrightarrow a=\\cos 60^\\circ$. Mệnh đề đúng.\r\n\t\t\t\\itemch $\\vec{u} \\cdot \\vec{j}=\\left|\\vec{j}\\right| \\cdot \\left|\\vec{u}\\right| \\cos 60^\\circ \\Leftrightarrow \\displaystyle b=\\frac{1}{2}$.\\\\\r\n\t\t\t$\\vec{u} \\cdot \\vec{k}=\\left|\\vec{k}\\right| \\cdot \\left|\\vec{u}\\right| \\cos 45^\\circ \\Leftrightarrow \\displaystyle c=\\frac{\\sqrt{2}}{2}$.\\\\\r\n\t\t\tSuy ra $\\displaystyle \\vec{u}=\\left(\\frac{1}{2}; \\frac{1}{2}; \\frac{\\sqrt{2}}{2}\\right)$, do đó đường thẳng $AB$ có phương trình là $\\displaystyle \\frac{x-6}{1}=\\frac{y-6}{1}=\\frac{z}{\\sqrt{2}}$. Mệnh đề sai.\r\n\t\t\t\\itemch Quãng đường đi được của vật sau thời gian $2$ giây kể từ thời điểm ban đầu là $\\displaystyle \\int\\limits_0^2 v(t) \\,\\mathrm{d}t=\\left.\\left(\\frac{\\beta t^2}{2}+300t\\right)\\right|_0^2=2\\beta+600$ (mét).\\\\\r\n\t\t\tTheo bài ra ta có $2\\beta+600=608 \\Leftrightarrow \\beta=4$. Mệnh đề sai.\r\n\t\t\t\\itemch Giả sử sau $5$ giây kể từ thời điểm ban đầu, vật đến điểm $B(x_B; y_B; z_B)$.\\\\\r\n\t\t\tQuãng đường vật đi được sau 5 giây là $\\displaystyle AB=\\int\\limits_0^5 v(t) \\,\\mathrm{d}t=\\left.\\left(2t^2+300t\\right)\\right|_0^5=1550$ (mét).\\\\\r\n\t\t\tKhi đó $\\displaystyle \\vec{AB}=1550 \\cdot \\vec{u} \\Rightarrow x_B=x_A+\\frac{1550}{2}=6+775=781$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    }
+  ]
+}
