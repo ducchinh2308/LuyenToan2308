@@ -250,36 +250,41 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
             nutTrangThaiHtml = `<span style="padding: 12px 24px; background: #6c757d; color: white; border-radius: 8px; font-weight: 900; font-size: 16px;">🏁 ĐÃ KẾT THÚC</span>`;
         }
 
+        // =====================================================================
+        // 1. GIAO DIỆN BẢNG ĐIỀU KHIỂN (Thầy thay đoạn header cũ bằng đoạn này)
+        // =====================================================================
+        // (Tìm trong ham_9_3_vao_dieu_khien_phong đoạn vẽ vungLamViec.innerHTML)
         vungLamViec.innerHTML = `
-            <div style="background: #1e1e2f; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                
+            <div style="background: #1e1e2f; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); color: white; font-family: sans-serif;">
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #2a2a3c;">
-                    <div>
-                        <div style="color: #a0a0b2; font-size: 14px; font-weight: bold; text-transform: uppercase;">MÃ PHÒNG (PIN)</div>
-                        <div style="font-size: 48px; font-weight: 900; color: #f1c40f; letter-spacing: 5px; line-height: 1;">${maPhong}</div>
-                        <div style="color: #3498db; font-size: 13px; margin-top: 5px; font-weight: bold;">Đề: ${nv.ten_nhiem_vu} (${tongSoCau} câu)</div>
+                    <div style="display: flex; gap: 30px; align-items: center;">
+                        <div>
+                            <div style="font-size: 12px; color: #a0a0b2; text-transform: uppercase;">Mã PIN</div>
+                            <div style="font-size: 40px; font-weight: 900; color: #f1c40f; letter-spacing: 2px;">${maPhong}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 12px; color: #a0a0b2; text-transform: uppercase;">Thời gian còn lại</div>
+                            <div id="dong-ho-giao-vien" style="font-size: 40px; font-weight: 900; color: #ffeb3b; font-family: monospace;">--:--</div>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 15px; align-items: center;">
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="ham_gv_xem_de_thi_truc_tiep()" style="padding: 12px 20px; background: #2980b9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📖 XEM ĐỀ THI</button>
                         ${nutTrangThaiHtml}
-                        <button onclick="ham_9_3_3_thoat_phong()" style="padding: 12px 20px; background: transparent; color: #a0a0b2; border: 2px solid #a0a0b2; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.color='white'; this.style.borderColor='white'" onmouseout="this.style.color='#a0a0b2'; this.style.borderColor='#a0a0b2'">
-                            Thoát ra ngoài
-                        </button>
                     </div>
                 </div>
-
-                <div style="padding: 20px 30px; min-height: 400px; background: #252538;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: #a0a0b2; font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 0 15px;">
-                        <div style="width: 50px;">Rank</div>
-                        <div style="flex: 1;">Chiến binh</div>
-                        <div style="width: 40%; text-align: center;">Tiến độ làm bài</div>
-                        <div style="width: 80px; text-align: right;">Điểm số</div>
-                    </div>
-                    
-                    <div id="vung-ve-leaderboard" style="display: flex; flex-direction: column; gap: 10px;">
-                        </div>
+                <div style="padding: 20px 30px; background: #252538;">
+                    <div id="vung-ve-leaderboard"></div>
                 </div>
             </div>
         `;
+
+        // 2. KÍCH HOẠT ĐỒNG HỒ KHI BẮT ĐẦU (Chèn thêm lệnh này vào ham_9_3_2_doi_trang_thai)
+        // Khi thầy bấm Bắt đầu thi (trangThaiMoi === 1):
+        if (trangThaiMoi === 1) {
+            // Lưu thời gian bắt đầu vào DB để đồng bộ
+            await _supabase.from('phong_live_quiz').update({ thoi_gian_bat_dau: new Date().toISOString() }).eq('ma_phong', maPhong);
+            window.ham_gv_kich_hoat_dong_ho_chu(phong);
+        }
 
         // Lần vẽ đầu tiên
         ham_9_3_1_ve_leaderboard();
@@ -404,3 +409,52 @@ window.ham_9_3_3_thoat_phong = function () {
     }
     ham_9_1_tab_live_quiz();
 }
+
+
+
+window.GvTimerId = null;
+
+// Hàm kích hoạt đồng hồ đếm ngược từ Server
+window.ham_gv_kich_hoat_dong_ho_chu = function (phong) {
+    if (window.GvTimerId) clearInterval(window.GvTimerId);
+
+    const tStart = new Date(phong.thoi_gian_bat_dau).getTime();
+    const tEnd = tStart + (phong.thoi_gian_lam_bai * 60000);
+
+    window.GvTimerId = setInterval(async () => {
+        const giayConLai = Math.floor((tEnd - Date.now()) / 1000);
+        const el = document.getElementById('dong-ho-giao-vien');
+        if (el) {
+            if (giayConLai >= 0) {
+                el.innerText = `${String(Math.floor(giayConLai / 60)).padStart(2, '0')}:${String(giayConLai % 60).padStart(2, '0')}`;
+                if (giayConLai <= 60) el.style.color = '#ff3333';
+            } else {
+                clearInterval(window.GvTimerId);
+                window.ham_gv_chuyen_trang_thai_phong(phong.ma_phong, 2);
+            }
+        }
+    }, 1000);
+};
+
+// Hàm xem đề trực tiếp
+window.ham_gv_xem_de_thi_truc_tiep = async function () {
+    const maNV = window.ThongTinPhongLive.maNhiemVu || window.ThongTinLiveGiaoVien.maNhiemVu;
+    const { data: nv } = await _supabase.from('nhiem_vu').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNV).single();
+    const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
+
+    let url = hl.url_github.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+    const res = await fetch(url);
+    const data = await res.json();
+    const dsCauHoi = data.danhSachCauHoi || data.danh_sach_cau_hoi;
+
+    let html = `<div style="text-align:left; max-height: 500px; overflow-y:auto;">`;
+    dsCauHoi.forEach((c, i) => html += `<div style="padding:10px; border-bottom:1px solid #ddd;"><b>Câu ${i + 1}:</b> ${c.noi_dung || 'Nội dung...'} <br><small style="color:green;">Đáp án: ${c.dap_an || '---'}</small></div>`);
+    Swal.fire({ title: 'Nội dung đề thi', html: html + '</div>', width: 700 });
+};
+
+// Hàm kết thúc trận đấu (Thầy gọi hàm này trong nút 🛑 KẾT THÚC)
+window.ham_gv_ket_thuc_tran_dau_som = function () {
+    Swal.fire({ title: 'Kết thúc sớm?', icon: 'warning', showCancelButton: true, confirmButtonText: '🛑 DỪNG TRẬN ĐẤU' }).then((r) => {
+        if (r.isConfirmed) window.ham_gv_chuyen_trang_thai_phong(window.ThongTinPhongLive.maPhong, 2);
+    });
+};
