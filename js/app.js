@@ -2425,6 +2425,30 @@ const CFG_NV = {
     }
 };
 
+//// Hàm 7.1: Vẽ bộ khung giao diện Quản lý Nhiệm Vụ
+//function ham_7_1_ve_quan_ly_nhiem_vu() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+//            <h3 style="margin: 0; color: #6f42c1;">🎯 Quản lý Nhiệm Vụ (Giao Bài)</h3>
+//            <div style="display: flex; gap: 10px;">
+//                <button onclick="ham_7_2_tai_danh_sach_nhiem_vu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                    🔄 Làm mới
+//                </button>
+//                <button onclick="ham_7_3_hien_form_them_nhiem_vu()" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.2);">
+//                    + Tạo Nhiệm Vụ Mới
+//                </button>
+//            </div>
+//        </div>
+//        <div id="danh-sach-nv-render">
+//            <p style="text-align: center; color: #666;">Đang tải danh sách nhiệm vụ...</p>
+//        </div>
+//    `;
+
+//    ham_7_2_tai_danh_sach_nhiem_vu();
+//}
+
 // Hàm 7.1: Vẽ bộ khung giao diện Quản lý Nhiệm Vụ
 function ham_7_1_ve_quan_ly_nhiem_vu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -2432,11 +2456,20 @@ function ham_7_1_ve_quan_ly_nhiem_vu() {
     vungLamViec.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h3 style="margin: 0; color: #6f42c1;">🎯 Quản lý Nhiệm Vụ (Giao Bài)</h3>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="ham_7_2_tai_danh_sach_nhiem_vu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+                    <input type="text" id="input-tim-kiem-qlnv" 
+                           placeholder="Tìm tên nhiệm vụ, mã lớp, trạng thái..." 
+                           oninput="ham_7_16_tim_kiem_live_nhiem_vu(this.value)"
+                           style="padding: 10px 10px 10px 35px; border: 1px solid #ccc; border-radius: 6px; width: 280px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
+
+                <button onclick="ham_7_2_tai_danh_sach_nhiem_vu()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap;">
                     🔄 Làm mới
                 </button>
-                <button onclick="ham_7_3_hien_form_them_nhiem_vu()" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.2);">
+                <button onclick="ham_7_3_hien_form_them_nhiem_vu()" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.2); white-space: nowrap;">
                     + Tạo Nhiệm Vụ Mới
                 </button>
             </div>
@@ -2702,7 +2735,28 @@ function ham_7_10_ve_bang_nhiem_vu() {
     renderArea.innerHTML = htmlTable;
 }
 
+// =====================================================================
+// Hàm 7.16: Tìm kiếm trực tiếp (Live Search) nhiệm vụ trên bảng
+// =====================================================================
+window.ham_7_16_tim_kiem_live_nhiem_vu = function (tuKhoa) {
+    const filter = tuKhoa.toLowerCase().trim();
 
+    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng nhiệm vụ
+    // (Đảm bảo bảng hiển thị của thầy được vẽ ra bên trong div #danh-sach-nv-render)
+    const rows = document.querySelectorAll('#danh-sach-nv-render tbody tr');
+
+    rows.forEach(row => {
+        // Đọc toàn bộ nội dung chữ (Tên nhiệm vụ, Mã lớp, Thời gian...) đang hiển thị
+        const textContent = row.innerText.toLowerCase();
+
+        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+        if (textContent.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+};
 
 // Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới + Bổ sung TÍNH CHẤT)
 async function ham_7_3_hien_form_them_nhiem_vu() {
