@@ -2175,6 +2175,8 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 }
 
 
+
+//LƯU CẬP NHẬT HỌC LIỆU
 async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
     const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
@@ -2185,14 +2187,31 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
     let banDoMoi = [];
 
     rows.forEach(row => {
+        // 1. Lấy lại toàn bộ chuỗi JSON gốc (đã được nhúng ẩn vào thẻ tr lúc mở form)
         const originalString = row.getAttribute('data-original-string');
+
+        // 2. Lấy đáp án mới mà thầy vừa gõ vào ô input
         const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
 
-        let parts = originalString.split('|');
-        // Luôn đè đáp án mới vào khúc cuối cùng
-        parts[parts.length - 1] = dapAnMoi;
+        try {
+            // 3. Phục hồi chuỗi thành Object nguyên bản: 
+            // VD: {"dap_an": "C", "ma_goc": "2605-756", "ma_cau_hoi": "q_b7bf894d89", "ma_loi_giai": "sol_f4465c311b"}
+            let objCauHoi = JSON.parse(originalString);
 
-        banDoMoi.push(parts.join('|'));
+            // 4. CHỈ thay đổi đúng thuộc tính dap_an, các thuộc tính ma_goc, ma_cau_hoi... GIỮ NGUYÊN
+            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+            else objCauHoi.dap_an = dapAnMoi; // Đề phòng trường hợp mất key
+
+            // 5. Đưa Object đã cập nhật đáp án vào mảng mới
+            banDoMoi.push(objCauHoi);
+
+        } catch (e) {
+            // Nếu lỗi (đề kiểu cũ), dùng split
+            let parts = originalString.split('|');
+            parts[parts.length - 1] = dapAnMoi;
+            banDoMoi.push(parts.join('|'));
+        }
     });
 
     if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
