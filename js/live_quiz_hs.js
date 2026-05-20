@@ -136,39 +136,104 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
 };
 
-window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau, dapAnDungChuoi) {
+//window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau, dapAnDungChuoi) {
+//    const phien = window.PhienLamBai;
+//    const dapanHS = phien.dap_an_hoc_sinh[maCau];
+
+//    if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
+//        return Swal.fire('Nhắc nhở', 'Em chưa chọn đáp án cho câu hỏi này!', 'warning');
+//    }
+
+//    // Đóng gói chuỗi
+//    let chuoiDapAnGoi = (kieuCau === 'DS') ? ['A', 'B', 'C', 'D'].map(k => dapanHS[k] || "_").join('') : String(dapanHS).trim();
+
+//    // KHÓA GIAO DIỆN NGAY LẬP TỨC
+//    const btn = document.getElementById(`btn-live-${maCau}`);
+//    if (btn) { btn.disabled = true; btn.innerText = "⏳ ĐANG LƯU..."; btn.style.background = "#7f8c8d"; }
+//    const khoiCau = document.getElementById(`cau-${maCau}`);
+//    if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
+
+//    try {
+//        // GỌI RPC SERVER
+//        const { data: diemMoiNhat, error } = await _supabase.rpc('cham_diem_mot_cau', {
+//            p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
+//            p_uid: GocHocSinhState.uid,
+//            p_ma_cau: maCau,
+//            p_dap_an_chon: chuoiDapAnGoi,
+//            p_diem_cau: 1 // Thầy sửa logic điểm ở đây nếu cần
+//        });
+//        if (error) throw error;
+
+//        // CẬP NHẬT ĐIỂM LÊN HUD (KÈM HIỆU ỨNG NHẢY SỐ)
+//        const hudDiem = document.getElementById('diem-hien-tai-hs');
+//        if (hudDiem) {
+//            hudDiem.innerText = Number(diemMoiNhat).toFixed(2);
+//            hudDiem.style.color = "#f1c40f"; // Đổi màu vàng khi điểm tăng
+//            setTimeout(() => { hudDiem.style.color = "white"; }, 500);
+//        }
+
+//        // Chốt nút ĐÃ KHÓA
+//        if (btn) { btn.innerText = "✅ ĐÃ GỬI"; btn.style.background = "#95a5a6"; }
+
+//    } catch (e) {
+//        if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
+//        if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
+//        Swal.fire('Lỗi', 'Không kết nối được server!', 'error');
+//    }
+//};
+
+
+
+// =====================================================================
+// 4. Hàm Nộp từng câu lên Server để chấm điểm
+// =====================================================================
+window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     const phien = window.PhienLamBai;
+
+    // 🌟 TRÍCH XUẤT ĐÁP ÁN CHUẨN VÀ ĐIỂM TỐI ĐA TỪ BỘ NHỚ
+    const cauHoiGoc = phien.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi === maCau || c.maCau === maCau));
+    if (!cauHoiGoc) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu gốc của câu hỏi này!', 'error');
+
+    // Tìm đáp án chuẩn (Quét nhiều chuẩn key khác nhau)
+    const dapAnChuan = (cauHoiGoc.dap_an || cauHoiGoc.dapAn || cauHoiGoc.dap_an_dung || "").trim();
+
+    // Tính điểm tối đa của câu (dựa trên barem thầy đã set)
+    let diemToiDa = 0.25; // Default cho TN
+    if (kieuCau === 'DS') diemToiDa = 1.0;
+    else if (kieuCau === 'TLN') diemToiDa = 0.5;
+
+    // 🌟 ĐÓNG GÓI ĐÁP ÁN HỌC SINH
     const dapanHS = phien.dap_an_hoc_sinh[maCau];
-
     if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
-        return Swal.fire('Nhắc nhở', 'Em chưa chọn đáp án cho câu hỏi này!', 'warning');
+        return Swal.fire('Nhắc nhở', 'Em chưa chọn đủ đáp án cho câu hỏi này!', 'warning');
     }
-
-    // Đóng gói chuỗi
     let chuoiDapAnGoi = (kieuCau === 'DS') ? ['A', 'B', 'C', 'D'].map(k => dapanHS[k] || "_").join('') : String(dapanHS).trim();
 
-    // KHÓA GIAO DIỆN NGAY LẬP TỨC
+    // KHÓA GIAO DIỆN CHỜ XỬ LÝ
     const btn = document.getElementById(`btn-live-${maCau}`);
     if (btn) { btn.disabled = true; btn.innerText = "⏳ ĐANG LƯU..."; btn.style.background = "#7f8c8d"; }
     const khoiCau = document.getElementById(`cau-${maCau}`);
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        // GỌI RPC SERVER
+        // GỌI RPC SERVER VÀ TRUYỀN ĐẦY ĐỦ THÔNG SỐ
         const { data: diemMoiNhat, error } = await _supabase.rpc('cham_diem_mot_cau', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
             p_ma_cau: maCau,
             p_dap_an_chon: chuoiDapAnGoi,
-            p_diem_cau: 1 // Thầy sửa logic điểm ở đây nếu cần
+            p_dap_an_dung: dapAnChuan, // 🌟 Tham số mới: Đáp án chuẩn để so sánh
+            p_kieu_cau: kieuCau,
+            p_diem_toi_da: diemToiDa
         });
+
         if (error) throw error;
 
-        // CẬP NHẬT ĐIỂM LÊN HUD (KÈM HIỆU ỨNG NHẢY SỐ)
+        // CẬP NHẬT ĐIỂM LÊN HUD TRÊN GIAO DIỆN
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) {
             hudDiem.innerText = Number(diemMoiNhat).toFixed(2);
-            hudDiem.style.color = "#f1c40f"; // Đổi màu vàng khi điểm tăng
+            hudDiem.style.color = "#f1c40f";
             setTimeout(() => { hudDiem.style.color = "white"; }, 500);
         }
 
@@ -178,9 +243,12 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau, dapAnDungChuoi) 
     } catch (e) {
         if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
         if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
-        Swal.fire('Lỗi', 'Không kết nối được server!', 'error');
+        Swal.fire('Lỗi', 'Không kết nối được server! Vui lòng thử lại.', 'error');
     }
 };
+
+
+
 
 // 5. Hàm Phục hồi khi Rớt mạng
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
