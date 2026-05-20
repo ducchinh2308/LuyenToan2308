@@ -2148,6 +2148,11 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
         htmlNavLeft += `<div style="margin-bottom: 15px;"><h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍 PHẦN ${tenNav}</h4><div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
         let sttPhan = 1;
+
+        // Tìm đoạn code duyệt danh sách
+        console.log("DEBUG-LIST:", danh_sach); // Thay danh_sach_cau_hoi_goc bằng tên biến thực tế thầy dùng
+
+
         danhSach.forEach(cau => {
             const maCauLogic = cau.ma_cau_hoi || cau.maCau;
             //const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
