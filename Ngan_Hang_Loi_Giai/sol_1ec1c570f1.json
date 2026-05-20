@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1ec1c570f1",
+  "dapAn": "18",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_1ec1c570f1_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựng $AH \\perp CD, H \\in CD$.\\\\\r\n\t\t$[S,CD,B] = \\widehat{SHA} = 60^\\circ$.\\\\\r\n\t\t$\\widehat{ABC}=60^\\circ \\Rightarrow \\Delta ABC; \\Delta ACD$ là những tam giác đều.\\\\\r\n\t\t$\\displaystyle AH = \\frac{SA}{\\tan 60^\\circ} = 3$.\\\\\r\n\t\t$\\displaystyle \\Delta AHD \\Rightarrow AD = \\frac{AH}{\\sin 60^\\circ} = 2\\sqrt{3}$.\\\\\r\n\t\t$\\displaystyle V_{S.ABCD} = \\frac{1}{3}.S_{ABCD}.SA = \\frac{1}{3}.\\left(2\\sqrt{3}\\right)^2.\\sin 60^\\circ.3\\sqrt{3} = 18$."
+}

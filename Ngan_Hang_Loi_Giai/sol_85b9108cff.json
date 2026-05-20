@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_85b9108cff",
+  "dapAn": "12,3",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_85b9108cff_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tLắp hệ trục tọa độ $Oxy$ như hình vẽ ($O \\equiv A$).\\\\\r\n\t\tGọi $M, N$ lần lượt là trung điểm của $AB, AD$.\\\\\r\n\t\tĐường tròn tâm $M(1;0)$, bán kính $1\\text{ cm}$ có phương trình là:\\\\\r\n\t\t$\\displaystyle (x-1)^2+y^2=1 \\Rightarrow y = \\sqrt{1-(x-1)^2} = \\sqrt{-x^2+2x}$.\\\\\r\n\t\tĐường tròn tâm $N(0;1)$, bán kính $1\\text{ cm}$ có phương trình là: $x^2+(y-1)^2=1 \\Rightarrow y = 1+\\sqrt{1-x^2}$.\\\\\r\n\t\tThể tích khối tròn xoay được tạo thành khi quay hình $(H)$ quanh trục hoành là:\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_0^1 \\left(1+\\sqrt{1-x^2}\\right)^2\\,\\mathrm{d}x + \\pi \\int_1^2 \\left(-x^2+2x\\right)\\,\\mathrm{d}x \\approx 12{,}3$\\,($\\text{cm}^3$)."
+}

@@ -1,0 +1,43 @@
+{
+  "maDe": "26237-6TLN",
+  "tenDe": "ĐỀ 26237-6TLN",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_8670fa9c18",
+      "ma_goc": "2605-998",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$ với đơn vị trên mỗi trục là mét, một cabin cáp treo xuất phát từ điểm $A(-2;1;5)$ và chuyển động đều theo đường cáp cùng hướng với $\\vec{u}(0;-2;6)$ với tốc độ là $4$ (m/s). Giả sử sau $5$ giây kể từ lúc xuất phát, cabin đến điểm $M(a;b;c)$. Tính giá trị của tổng $a+3b+c$."
+    },
+    {
+      "maCau": "q_44439ea6a2",
+      "ma_goc": "2605-999",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty $X$ cần thuê xe để chở ít nhất $140$ người và $9$ tấn hàng. Nơi cho thuê xe có $2$ loại xe $A$ và $B$. Trong đó xe loại $A$ có $10$ chiếc, xe loại $B$ có $9$ chiếc. Mỗi chiếc xe loại $A$ được cho thuê với giá $4$ triệu đồng, loại $B$ giá $3$ triệu đồng. Biết rằng xe $A$ chỉ chở được tối đa $20$ người và $0{,}6$ tấn hàng. Xe $B$ chỉ chở được tối đa $10$ người và $1{,}5$ tấn hàng. Tìm chi phí thuê xe thấp nhất của công ty $X$ (tính theo đơn vị triệu đồng)."
+    },
+    {
+      "maCau": "q_6d38941334",
+      "ma_goc": "2605-1000",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi $\\widehat{ABC}=60^\\circ$, $SA=3\\sqrt{3}$ và $SA$ vuông góc với đáy. Số đo góc nhị diện $[S,CD,B]=60^\\circ$. Tính thể tích của hình chóp $S.ABCD$."
+    },
+    {
+      "maCau": "q_8b2f0a45b7",
+      "ma_goc": "2605-1001",
+      "kieuCau": "TLN",
+      "cauDan": "Cho thập giác đều (đa giác có $10$ đỉnh) $A_1A_2...A_{10}$. Người ta gắn ngẫu nhiên vào $10$ đỉnh $A_1; A_2; ... ; A_{10}$ mỗi đỉnh một số tự nhiên thuộc tập số $S = \\{9; 10; ...; 18\\}$. Chọn ngẫu nhiên một tam giác có $3$ đỉnh được lấy từ $10$ đỉnh của thập giác. Gọi $P$ là xác suất để thu được một tam giác vuông có $3$ số ghi trên $3$ đỉnh của tam giác lập thành một cấp số cộng. Biết $\\displaystyle P = \\frac{m}{n}$ với $m, n \\in \\mathbb{Z}$, $\\displaystyle \\frac{m}{n}$ là phân số tối giản. Tính $m+n$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8b2f0a45b7_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_90f7b8ce65",
+      "ma_goc": "2605-1002",
+      "kieuCau": "TLN",
+      "cauDan": "Một công viên giải trí đang thực hiện khảo sát để điều chỉnh mức giá vé vào cổng nhằm tối ưu hóa lợi nhuận. Qua số liệu thống kê từ bộ phận kinh doanh, người quản lý xác định được rằng: nếu giá vé vào cửa là $90$ nghìn đồng/người thì sẽ có $1000$ người đến công viên. Nhưng nếu tăng giá vé thêm $5$ nghìn đồng/người thì số khách đến công viên sẽ giảm $100$ người, còn nếu giảm giá vé đi $5$ nghìn đồng/người thì số khách đến công viên sẽ tăng thêm $100$ người. Biết rằng, trung bình mỗi khách tới công viên còn đem lại $10$ nghìn đồng cho công viên trong các dịch vụ đi kèm. Như vậy nhà quản lý công viên này nên xác định giá vé vào cổng là bao nhiêu nghìn đồng để doanh thu của công viên là lớn nhất?"
+    },
+    {
+      "maCau": "q_0e52ff97cc",
+      "ma_goc": "2605-1003",
+      "kieuCau": "TLN",
+      "cauDan": "Một vật trang trí có dạng một khối tròn xoay được tạo thành khi quay miền $(R)$ (phần được tô màu trong hình vẽ dưới) quanh trục $AB$. Miền $(R)$ được giới hạn bởi các cạnh $AB, AD$ của hình vuông $ABCD$ và các cung phần tư của các đường tròn bán kính bằng $1\\text{ cm}$ với tâm lần lượt là trung điểm của các cạnh $AD, AB$. Tính thể tích của vật trang trí đó theo đơn vị $\\text{cm}^3$ (làm tròn kết quả đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0e52ff97cc_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}
