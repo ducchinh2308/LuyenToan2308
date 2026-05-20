@@ -1518,7 +1518,23 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         // 🌟 [CẤY CHIP 2] ĐỔI MÀU GIAO DIỆN NẾU LÀ LIVE QUIZ
         let htmlContentRight = '';
         if (phien.isLiveQuiz) {
-            htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐANG THI ĐẤU LIVE: ${phien.ten_nhiem_vu}</h2><div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Điểm số của em đang được truyền hình trực tiếp lên màn hình Thầy giáo!</div></div>`;
+            //htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐANG THI ĐẤU LIVE: ${phien.ten_nhiem_vu}</h2><div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Điểm số của em đang được truyền hình trực tiếp lên màn hình Thầy giáo!</div></div>`;
+            // Thêm cục hiển thị điểm số khổng lồ (id="diem-hien-tai-hs")
+            htmlContentRight = `
+            <div style="display: flex; justify-content: space-between; align-items: center; background:#e74c3c; color:white; padding:15px 25px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 10px; z-index: 100;">
+                <div>
+                    <h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2>
+                    <div style="font-size: 13px; margin-top: 4px; opacity: 0.9;">Điểm của em được cập nhật sau mỗi câu gửi đi!</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 12px; font-weight: bold; text-transform: uppercase; opacity: 0.9;">ĐIỂM HIỆN TẠI</div>
+                    <div style="font-size: 32px; font-weight: 900; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                        <span id="diem-hien-tai-hs">0.00</span>
+                    </div>
+                </div>
+            </div>`;
+
+
         } else {
             htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
         }

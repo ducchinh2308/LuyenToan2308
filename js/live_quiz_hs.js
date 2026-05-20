@@ -1,8 +1,13 @@
 ﻿// =====================================================================
-// MODULE LIVE QUIZ HỌC SINH (Độc lập hoàn toàn)
+// KHU VỰC ĐẤU TRƯỜNG LIVE QUIZ (NỘP TỪNG CÂU, PHỤC HỒI STATE)
 // =====================================================================
-window.HocSinhLiveChannel = null;
-window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
+window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
+window.DangKhoiTaoLiveQuiz = false;
+
+
+
+
+
 
 // 1. Hàm vẽ giao diện nhập mã PIN
 window.ham_8_6_tab_live_quiz = function () {
@@ -25,60 +30,199 @@ window.ham_8_6_tab_live_quiz = function () {
     `;
 };
 
-// 2. Hàm xử lý vào phòng
+// =====================================================================
+// KHU VỰC ĐẤU TRƯỜNG LIVE QUIZ (NỘP TỪNG CÂU, PHỤC HỒI STATE)
+// =====================================================================
+window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
+window.DangKhoiTaoLiveQuiz = false;
+
+// 1. Vào phòng (Đồng bộ Master Time của GV)
 window.ham_8_6_1_vao_phong = async function () {
     const maPin = document.getElementById('txtPinLive').value.trim();
-    if (!maPin) return Swal.fire('Thiếu thông tin', 'Vui lòng nhập mã PIN!', 'warning');
-    Swal.fire({ title: 'Đang kết nối...', didOpen: () => { Swal.showLoading(); } });
+    if (!maPin) return Swal.fire('Nhắc', 'Nhập mã PIN!', 'warning');
+    Swal.fire({ title: 'Đang kết nối...', didOpen: () => Swal.showLoading() });
 
     try {
-        const { data: phong, error: errPhong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPin).maybeSingle();
-        if (errPhong || !phong) throw new Error("Mã PIN không đúng!");
-        if (phong.trang_thai === 2) throw new Error("Phòng thi đã kết thúc!");
+        const { data: phong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPin).maybeSingle();
+        if (!phong) throw new Error("Mã PIN không đúng!");
+        if (phong.trang_thai === 2) throw new Error("Đấu trường đã đóng!");
 
-        window.ThongTinLiveHocSinh = { maPhong: maPin, maNhiemVu: phong.ma_nhiem_vu };
-        const { error: errUpsert } = await _supabase.from('tien_do_live_quiz').upsert({ ma_phong: maPin, uid_hoc_sinh: GocHocSinhState.uid, ten_hoc_sinh: GocHocSinhState.ten }, { onConflict: 'ma_phong,uid_hoc_sinh' });
-        if (errUpsert) throw errUpsert;
+        // Tính thời điểm đóng phòng thực tế dựa vào lúc GV bấm Bắt đầu (nếu đã bắt đầu)
+        let thoiGianDong = null;
+        if (phong.thoi_gian_bat_dau && phong.thoi_gian_lam_bai) {
+            const tStart = new Date(phong.thoi_gian_bat_dau);
+            thoiGianDong = new Date(tStart.getTime() + phong.thoi_gian_lam_bai * 60000);
+        }
+
+        window.ThongTinLiveHocSinh = { maPhong: maPin, maNhiemVu: phong.ma_nhiem_vu, thoiGianDong: thoiGianDong };
+
+        await _supabase.from('tien_do_live_quiz').upsert({ ma_phong: maPin, uid_hoc_sinh: GocHocSinhState.uid, ten_hoc_sinh: GocHocSinhState.ten }, { onConflict: 'ma_phong,uid_hoc_sinh' });
 
         Swal.close();
         if (phong.trang_thai === 0) ham_8_6_2_phong_cho_live();
         else if (phong.trang_thai === 1) ham_8_6_3_bat_dau_lam_bai_live();
+
     } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
 };
 
-// 3. Phòng chờ Realtime
+// 2. Phòng chờ (Lắng nghe GV bấm Bắt đầu)
 window.ham_8_6_2_phong_cho_live = function () {
-    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h2>✅ ĐÃ VÀO PHÒNG</h2><div class="spinner"></div><h3>Đợi hiệu lệnh bắt đầu...</h3></div>`;
-
+    // ... (Giữ nguyên giao diện phòng chờ cũ)
+    const maPin = window.ThongTinLiveHocSinh.maPhong;
     if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
-    window.HocSinhLiveChannel = _supabase.channel('hocsinh_nghe_phong_' + window.ThongTinLiveHocSinh.maPhong)
-        .on('postgres_changes', { event: 'UPDATE', table: 'phong_live_quiz', filter: `ma_phong=eq.${window.ThongTinLiveHocSinh.maPhong}` }, payload => {
-            if (payload.new.trang_thai === 1) ham_8_6_3_bat_dau_lam_bai_live();
-            else if (payload.new.trang_thai === 2) { Swal.fire('Kết thúc', 'Đấu trường đã đóng.', 'info'); ham_8_6_tab_live_quiz(); }
+
+    window.HocSinhLiveChannel = _supabase.channel('hocsinh_nghe_phong_' + maPin)
+        .on('postgres_changes', { event: 'UPDATE', table: 'phong_live_quiz', filter: `ma_phong=eq.${maPin}` }, payload => {
+            if (payload.new.trang_thai === 1) {
+                // Cập nhật lại Master Time khi GV vừa bấm
+                const tStart = new Date(payload.new.thoi_gian_bat_dau);
+                window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + payload.new.thoi_gian_lam_bai * 60000);
+
+                Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', timer: 1500, showConfirmButton: false }).then(() => {
+                    ham_8_6_3_bat_dau_lam_bai_live();
+                });
+            } else if (payload.new.trang_thai === 2) {
+                Swal.fire('Kết thúc', 'Đấu trường đã bị Thầy hủy bỏ.', 'info');
+            }
         }).subscribe();
 };
 
-// 4. Hàm nạp đề riêng cho Live Quiz
+// 3. Khởi tạo bài thi & Đồng bộ thời gian
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
-        Swal.fire({ title: '⏳ Đang nạp đề...', didOpen: () => { Swal.showLoading(); } });
-        const { data: nv, error } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
-        if (error) throw error;
+        Swal.fire({ title: '⏳ Đang nạp đề thi Live...', didOpen: () => Swal.showLoading() });
+        const { data: nv } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
 
-        window.DangKhoiTaoLiveQuiz = true; // Gắn cờ để hàm nạp đề nhận diện
-        await ham_8_8_khoi_tao_phong_thi(nv);
-    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
+        window.DangKhoiTaoLiveQuiz = true;
+
+        // Ghi đè thời gian đếm ngược bằng Master Time
+        if (window.ThongTinLiveHocSinh.thoiGianDong) {
+            const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
+            nv.thoi_gian_lam_bai = giayConLai > 0 ? (giayConLai / 60) : 0;
+        }
+
+        await ham_8_8_khoi_tao_phong_thi(nv); // Gọi hàm gốc
+
+        // Sau khi vẽ đề xong, MỞ CƠ CHẾ PHỤC HỒI
+        await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+
+    } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
 };
 
-// 5. Hàm bắn sóng điểm số (Được gọi từ hàm luuDapAn gốc)
-window.ham_8_6_4_ban_song_realtime = function () {
+// 4. Xử lý logic NỘP TỪNG CÂU & CẬP NHẬT ĐIỂM
+window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau, dapAnDungChuoi) {
     const phien = window.PhienLamBai;
-    if (!phien || !phien.isLiveQuiz) return;
+    const dapanHS = phien.dap_an_hoc_sinh[maCau];
 
-    let soCauDaLam = 0, soCauDung = 0, tongDiemLive = 0, tongTrongSo = 0;
-    // ... (Thầy giữ lại logic chấm điểm như cũ) ...
-    // ... (Logic bắn update Supabase y hệt cũ) ...
-    _supabase.from('tien_do_live_quiz').update({ so_cau_da_lam: soCauDaLam, so_cau_dung: soCauDung, diem_so: Number(tongDiemLive.toFixed(2)) })
-        .eq('ma_phong', phien.maPhongLive).eq('uid_hoc_sinh', GocHocSinhState.uid).then(() => { });
+    if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
+        return Swal.fire('Nhắc nhở', 'Em chưa chọn đáp án cho câu hỏi này!', 'warning');
+    }
+
+    // Đóng gói chuỗi
+    let chuoiDapAnGoi = "";
+    if (kieuCau === 'DS') ['A', 'B', 'C', 'D'].forEach(k => chuoiDapAnGoi += dapanHS[k] || "_");
+    else chuoiDapAnGoi = String(dapanHS).trim();
+
+    // TÍNH ĐIỂM CỤC BỘ
+    let diemCauNay = 0;
+    const tongTrongSo = phien.danh_sach_cau_hoi.reduce((acc, c) => acc + ((c.kieuCau || 'TN') === 'TN' ? 1 : ((c.kieuCau || 'TN') === 'TLN' ? 2 : 4)), 0) || 1;
+    const chuoiDapAnDung = String(dapAnDungChuoi).toUpperCase();
+    const chuoiHs = chuoiDapAnGoi.toUpperCase();
+
+    if (kieuCau === 'TN' && chuoiHs === chuoiDapAnDung) diemCauNay = 10.0 / tongTrongSo;
+    else if (kieuCau === 'TLN' && (chuoiHs === chuoiDapAnDung || chuoiHs.replace(',', '.') === chuoiDapAnDung.replace(',', '.'))) diemCauNay = 20.0 / tongTrongSo;
+    else if (kieuCau === 'DS') {
+        let yDung = 0;
+        for (let i = 0; i < 4; i++) { if (chuoiHs[i] !== '_' && chuoiHs[i] === chuoiDapAnDung[i]) yDung++; }
+        const diemMaxDS = 40.0 / tongTrongSo;
+        if (yDung === 1) diemCauNay = diemMaxDS * 0.1;
+        else if (yDung === 2) diemCauNay = diemMaxDS * 0.25;
+        else if (yDung === 3) diemCauNay = diemMaxDS * 0.5;
+        else if (yDung === 4) diemCauNay = diemMaxDS * 1.0;
+    }
+
+    // KHÓA GIAO DIỆN (UI Lockdown)
+    const btn = document.getElementById(`btn-live-${maCau}`);
+    if (btn) { btn.disabled = true; btn.innerText = "⏳ ĐANG LƯU..."; btn.style.background = "#7f8c8d"; }
+
+    // Khóa input
+    const khoiCau = document.getElementById(`cau-${maCau}`);
+    if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
+
+    try {
+        // GỌI RPC SERVER
+        const { data: diemMoiNhat, error } = await _supabase.rpc('cham_diem_mot_cau', {
+            p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
+            p_uid: GocHocSinhState.uid,
+            p_ma_cau: maCau,
+            p_dap_an_chon: chuoiDapAnGoi,
+            p_diem_cau: Number(diemCauNay.toFixed(2))
+        });
+        if (error) throw error;
+
+        // CẬP NHẬT ĐIỂM LÊN MÀN HÌNH HỌC SINH
+        const hudDiem = document.getElementById('diem-hien-tai-hs');
+        if (hudDiem) hudDiem.innerText = Number(diemMoiNhat).toFixed(2);
+
+        // Chốt nút ĐÃ KHÓA
+        if (btn) { btn.innerText = "✅ ĐÃ KHÓA"; btn.style.background = "#95a5a6"; }
+
+    } catch (e) {
+        if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
+        if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
+        Swal.fire('Lỗi kết nối', 'Mạng chập chờn, em hãy bấm gửi lại nhé!', 'error');
+    }
+};
+
+// 5. Hàm Phục hồi khi Rớt mạng
+window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
+    try {
+        const { data: dsDaNop } = await _supabase.from('live_quiz_chi_tiet').select('ma_cau, dap_an_chon, diem_cau')
+            .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong).eq('uid_hoc_sinh', GocHocSinhState.uid);
+
+        if (!dsDaNop || dsDaNop.length === 0) { Swal.close(); return; }
+
+        let tongDiemPhucHoi = 0;
+
+        dsDaNop.forEach(item => {
+            tongDiemPhucHoi += Number(item.diem_cau);
+            const maCau = item.ma_cau;
+            const chuoiAns = item.dap_an_chon || "";
+            const khoiCau = document.getElementById(`cau-${maCau}`);
+            if (!khoiCau) return;
+
+            const kieuCau = (khoiCau.getAttribute('data-loaicau') || 'TN').toUpperCase();
+
+            // 5.1 Đổ lại đáp án lên UI
+            if (kieuCau === 'TN') {
+                const rad = khoiCau.querySelector(`input[value="${chuoiAns}"]`);
+                if (rad) { rad.checked = true; rad.closest('label').style.background = '#e8f0fe'; }
+            } else if (kieuCau === 'DS') {
+                ['A', 'B', 'C', 'D'].forEach((k, idx) => {
+                    if (chuoiAns[idx] && chuoiAns[idx] !== '_') {
+                        const radDS = khoiCau.querySelector(`input[name="ds_${maCau}_${k}"][value="${chuoiAns[idx]}"]`);
+                        if (radDS) radDS.checked = true;
+                    }
+                });
+            } else if (kieuCau === 'TLN') {
+                const inputs = khoiCau.querySelectorAll('input[type="text"]');
+                for (let i = 0; i < 4; i++) { if (inputs[i] && chuoiAns[i]) inputs[i].value = chuoiAns[i]; }
+            }
+
+            // 5.2 Khóa UI và nút bấm
+            khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
+            const btnLive = document.getElementById(`btn-live-${maCau}`);
+            if (btnLive) { btnLive.disabled = true; btnLive.innerText = "✅ ĐÃ KHÓA (KHÔI PHỤC)"; btnLive.style.background = "#95a5a6"; }
+
+            // 5.3 Phục hồi màu nút điều hướng bên trái
+            const nutNav = document.getElementById(`btn-nav-${maCau}`);
+            if (nutNav) { nutNav.classList.add('da-lam'); nutNav.style.background = '#d4edda'; }
+        });
+
+        // Cập nhật lại Bảng điểm HUD
+        const hudDiem = document.getElementById('diem-hien-tai-hs');
+        if (hudDiem) hudDiem.innerText = Number(tongDiemPhucHoi).toFixed(2);
+
+        Swal.close();
+    } catch (e) { console.error(e); Swal.close(); }
 };
