@@ -1898,8 +1898,105 @@ window.ham_8_thoat_phong_thi = async () => {
     document.getElementById('dashboard-container').style.display = 'block';
 };
 
+//// =====================================================================
+//// HÀM 8.12: NỘP BÀI VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT
+//// =====================================================================
+//async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
+//    if (!isForce) {
+//        if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
+//    }
+
+//    const btnNop = document.getElementById('btn-nop-bai');
+//    if (btnNop) { btnNop.innerText = "⏳ HỆ THỐNG ĐANG CHẤM..."; btnNop.disabled = true; }
+
+//    const phien = window.PhienLamBai;
+//    clearInterval(phien.id_timer);
+
+
+//    // 🌟 [CẤY CHIP 4] NGẮT SÓNG REALTIME ĐỂ NHẸ MÁY NẾU NỘP XONG
+//    if (phien.isLiveQuiz && window.HocSinhLiveChannel) {
+//        _supabase.removeChannel(window.HocSinhLiveChannel);
+//        window.HocSinhLiveChannel = null;
+//    }
+
+
+
+//    // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
+//    let payloadBaiLam = {};
+
+//    //console.log("🐛 [BẪY 1] Dữ liệu gốc học sinh click:", phien.dap_an_hoc_sinh);
+
+//    phien.danh_sach_cau_hoi.forEach(cau => {
+//        // 🌟 FIX LỖI: Gom chung 2 chuẩn tên biến để không bị undefined
+//        const maCauChuan = cau.ma_cau_hoi || cau.maCau;
+
+//        const dapanHS = phien.dap_an_hoc_sinh[maCauChuan];
+//        const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+
+//        if (kieu === 'DS' && typeof dapanHS === 'object') {
+//            let strDS = "";
+//            ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
+//            payloadBaiLam[maCauChuan] = strDS;
+//        } else {
+//            payloadBaiLam[maCauChuan] = dapanHS || "";
+//        }
+//    });
+
+//    //console.log("🐛 [BẪY 2] Gói hàng đem đi nộp Server:", payloadBaiLam);
+
+
+//    // 2. TÍNH THỜI GIAN LÀM BÀI
+//    const tBatDau = phien.thoi_diem_bat_dau || Date.now();
+//    const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
+//    const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+
+//    console.log("DEBUG: Dữ liệu bài làm gửi lên Supabase:", JSON.stringify(payloadBaiLam, null, 2));
+
+//    try {
+//        // ==============================================================
+//        // 🚀 3. PHÓNG BÀI LÊN CHO SUPABASE TỰ CHẤM (Zero-Trust)
+//        // ==============================================================
+//        const { data: diemSoBiMat, error: errCham } = await _supabase.rpc('cham_diem_bai_thi', {
+//            p_id_ket_qua: phien.id_ket_qua_database,
+//            p_ma_nhiem_vu: phien.ma_nhiem_vu,
+//            p_dap_an_hoc_sinh: payloadBaiLam,
+//            p_thoi_gian_lam_bai: thoiGianLamBaiStr
+//        });
+
+//        if (errCham) throw errCham;
+
+//        // 4. GHI SỔ CHUYÊN CẦN
+//        let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+//        tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
+//        await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTai }).eq('uid', GocHocSinhState.uid);
+//        GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
+
+//        // 5. DỌN GIAO DIỆN PHÒNG THI
+//        document.body.style.overflow = '';
+//        document.documentElement.style.overflow = '';
+//        document.getElementById('khong-gian-thi-toan-man-hinh')?.remove();
+
+//        // 6. TRẢ KẾT QUẢ ĐIỂM
+//        //alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+
+//        // 6. TRẢ KẾT QUẢ ĐIỂM
+//        if (phien.isLiveQuiz) {
+//            alert(`🏆 ĐÃ NỘP BÀI THÀNH CÔNG!\nĐiểm số chính thức của em là: ${diemSoBiMat} điểm.\nHãy nhìn lên màn hình của Thầy để xem Top 1 thuộc về ai nhé!`);
+//        } else {
+//            alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+//        }
+
+
+//        document.getElementById('dashboard-container').style.display = 'block';
+//        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+
+//    } catch (err) {
+//        alert("❌ Máy chủ quá tải hoặc lỗi khi chấm: " + err.message);
+//        if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
+//    }
+//}
 // =====================================================================
-// HÀM 8.12: NỘP BÀI VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT
+// HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT
 // =====================================================================
 async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (!isForce) {
@@ -1910,40 +2007,32 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
     if (btnNop) { btnNop.innerText = "⏳ HỆ THỐNG ĐANG CHẤM..."; btnNop.disabled = true; }
 
     const phien = window.PhienLamBai;
-    clearInterval(phien.id_timer);
+    if (phien.id_timer) clearInterval(phien.id_timer);
 
-
-    // 🌟 [CẤY CHIP 4] NGẮT SÓNG REALTIME ĐỂ NHẸ MÁY NẾU NỘP XONG
+    // Ngắt sóng Realtime nếu nộp xong
     if (phien.isLiveQuiz && window.HocSinhLiveChannel) {
         _supabase.removeChannel(window.HocSinhLiveChannel);
         window.HocSinhLiveChannel = null;
     }
 
-
-
     // 1. ĐÓNG GÓI BÀI LÀM CỦA HỌC SINH
     let payloadBaiLam = {};
 
-    //console.log("🐛 [BẪY 1] Dữ liệu gốc học sinh click:", phien.dap_an_hoc_sinh);
-
     phien.danh_sach_cau_hoi.forEach(cau => {
-        // 🌟 FIX LỖI: Gom chung 2 chuẩn tên biến để không bị undefined
         const maCauChuan = cau.ma_cau_hoi || cau.maCau;
-
         const dapanHS = phien.dap_an_hoc_sinh[maCauChuan];
         const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
 
         if (kieu === 'DS' && typeof dapanHS === 'object') {
             let strDS = "";
-            ['A', 'B', 'C', 'D'].forEach(k => strDS += dapanHS[k] || "_");
+            ['A', 'B', 'C', 'D'].forEach(k => {
+                strDS += dapanHS[k] || dapanHS[k.toUpperCase()] || "_";
+            });
             payloadBaiLam[maCauChuan] = strDS;
         } else {
             payloadBaiLam[maCauChuan] = dapanHS || "";
         }
     });
-
-    //console.log("🐛 [BẪY 2] Gói hàng đem đi nộp Server:", payloadBaiLam);
-
 
     // 2. TÍNH THỜI GIAN LÀM BÀI
     const tBatDau = phien.thoi_diem_bat_dau || Date.now();
@@ -1965,38 +2054,58 @@ async function ham_8_12_nop_bai_va_cham_diem(isForce = false) {
 
         if (errCham) throw errCham;
 
-        // 4. GHI SỔ CHUYÊN CẦN
-        let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
-        tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
-        await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTai }).eq('uid', GocHocSinhState.uid);
-        GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
+        const diemTongKet = Number(diemSoBiMat || 0);
 
-        // 5. DỌN GIAO DIỆN PHÒNG THI
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        document.getElementById('khong-gian-thi-toan-man-hinh')?.remove();
-
-        // 6. TRẢ KẾT QUẢ ĐIỂM
-        //alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
-
-        // 6. TRẢ KẾT QUẢ ĐIỂM
+        // ==============================================================
+        // 🌟 4. RẼ NHÁNH TÙY THEO CHẾ ĐỘ THI
+        // ==============================================================
         if (phien.isLiveQuiz) {
-            alert(`🏆 ĐÃ NỘP BÀI THÀNH CÔNG!\nĐiểm số chính thức của em là: ${diemSoBiMat} điểm.\nHãy nhìn lên màn hình của Thầy để xem Top 1 thuộc về ai nhé!`);
+            // XỬ LÝ CHO CHẾ ĐỘ ĐẤU TRƯỜNG LIVE
+            if (window.ThongTinLiveHocSinh && window.ThongTinLiveHocSinh.maPhong) {
+                // Đồng bộ chốt hạ lên database, khóa cửa phòng đấu
+                await _supabase.from('tien_do_live_quiz')
+                    .update({ da_nop: true, diem_so: diemTongKet })
+                    .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+                    .eq('uid_hoc_sinh', GocHocSinhState.uid);
+            }
+
+            Swal.fire({
+                title: isForce ? '⏳ HẾT GIỜ LÀM BÀI!' : '📤 NỘP BÀI THÀNH CÔNG!',
+                html: `Thành tích của em: <b>${diemTongKet.toFixed(2)} điểm</b>`,
+                icon: 'info',
+                confirmButtonText: 'Vào phòng chờ vinh danh'
+            }).then(() => {
+                // Đẩy thẳng ra màn hình kết quả chờ công khai
+                if (window.ham_8_6_6_man_hinh_ket_qua_cho) {
+                    window.ham_8_6_6_man_hinh_ket_qua_cho(diemTongKet);
+                }
+            });
+
         } else {
-            alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemSoBiMat} điểm.`);
+            // XỬ LÝ CHO BÀI TẬP VỀ NHÀ THÔNG THƯỜNG
+            // Ghi sổ chuyên cần
+            let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+            tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
+            await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTai }).eq('uid', GocHocSinhState.uid);
+            GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
+
+            // Dọn giao diện
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
+            if (khongGianThi) khongGianThi.remove();
+
+            alert(`🏆 NỘP BÀI THÀNH CÔNG!\nĐiểm số của em là: ${diemTongKet} điểm.`);
+
+            document.getElementById('dashboard-container').style.display = 'block';
+            ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
         }
-
-
-        document.getElementById('dashboard-container').style.display = 'block';
-        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
 
     } catch (err) {
         alert("❌ Máy chủ quá tải hoặc lỗi khi chấm: " + err.message);
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
     }
 }
-
-
 
 
 // ==============================================================
