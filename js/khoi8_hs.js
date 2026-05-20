@@ -1694,8 +1694,15 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     if (phien.id_timer) clearInterval(phien.id_timer);
     phien.id_timer = setInterval(() => {
         phien.thoi_gian_con_lai--;
-        const mm = String(Math.floor(phien.thoi_gian_con_lai / 60)).padStart(2, '0');
-        const ss = String(phien.thoi_gian_con_lai % 60).padStart(2, '0');
+
+        // 🌟 SỬA Ở ĐÂY: Dùng Math.floor để ép tròn số giây trước khi chia
+        const tongGiayThucTe = Math.floor(phien.thoi_gian_con_lai);
+
+        const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
+        const ss = String(tongGiayThucTe % 60).padStart(2, '0');
+
+        //const mm = String(Math.floor(phien.thoi_gian_con_lai / 60)).padStart(2, '0');
+        //const ss = String(phien.thoi_gian_con_lai % 60).padStart(2, '0');
         document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
 
         if (phien.thoi_gian_con_lai <= 300) {
