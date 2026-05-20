@@ -125,7 +125,9 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
         // Ghi đè thời gian đếm ngược bằng Master Time
         if (window.ThongTinLiveHocSinh.thoiGianDong) {
             const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
-            nv.thoi_gian_lam_bai = giayConLai > 0 ? (giayConLai / 60) : 0;
+
+            // 🌟 Sửa tại đây: Giữ lại 2 chữ số thập phân (Ví dụ: 45.33)
+            nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
         }
 
         await ham_8_8_khoi_tao_phong_thi(nv); // Gọi hàm gốc

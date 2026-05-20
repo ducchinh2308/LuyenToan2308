@@ -1345,7 +1345,7 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
 
-        console.log("🔍 Đang tải nội dung đề thô từ:", urlFileGitHub);
+        //console.log("🔍 Đang tải nội dung đề thô từ:", urlFileGitHub);
 
         // =========================================================
         // 3. TẢI ĐỀ THI SẠCH (KHÔNG ĐÁP ÁN) TỪ GITHUB
