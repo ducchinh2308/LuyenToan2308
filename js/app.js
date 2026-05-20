@@ -5172,8 +5172,10 @@ async function ham_gv_cham_lai_ca_lop(maNhiemVu) {
         if (error) {
             Swal.fire('Lỗi', error.message, 'error');
         } else {
-            Swal.fire('Thành công!', 'Toàn bộ điểm số đã được cập nhật!', 'success')
-                .then(() => location.reload()); // Tải lại trang để cập nhật điểm mới
+            // SỬA Ở ĐÂY: KHÔNG DÙNG location.reload()
+            Swal.fire('Thành công!', 'Điểm số đã được cập nhật!', 'success');
+
+            
         }
     }
 }
