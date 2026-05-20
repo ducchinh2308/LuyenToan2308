@@ -507,16 +507,7 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
 
 
 
-// Hàm 8.13: Chuyển hướng xem lại bài thi chi tiết (Chờ ráp code)
-// ==============================================================
-window.ham_8_13_xem_lai_ket_qua = function (maNhiemVu, idKetQua) {
-    Swal.fire({
-        title: 'Đang mở bài thi...',
-        text: 'Tính năng xem lại Lời giải chi tiết và Soi lỗi sai sẽ sớm được mở!',
-        icon: 'info',
-        confirmButtonColor: '#1a73e8'
-    });
-};
+
 
 // ==============================================================
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)

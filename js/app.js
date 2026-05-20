@@ -1226,6 +1226,28 @@ const BangHocSinhState = {
     tangDan: false // false = Mới nhất xếp trên
 };
 
+//// Hàm 5.1: Vẽ bộ khung giao diện Quản lý học sinh
+//function ham_5_1_ve_quan_ly_hoc_sinh() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+//            <h3 style="margin: 0; color: #6f42c1;">Danh sách Học sinh trên hệ thống</h3>
+//            <div style="display: flex; gap: 10px;">
+//                <button onclick="ham_5_2_tai_danh_sach_hoc_sinh()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                    🔄 Làm mới dữ liệu
+//                </button>
+//            </div>
+//        </div>
+//        <div id="danh-sach-hs-render">
+//            <p style="text-align: center; color: #666;">Đang tải dữ liệu học sinh từ máy chủ...</p>
+//        </div>
+//    `;
+
+//    // Gọi hàm tải dữ liệu
+//    ham_5_2_tai_danh_sach_hoc_sinh();
+//}
+
 // Hàm 5.1: Vẽ bộ khung giao diện Quản lý học sinh
 function ham_5_1_ve_quan_ly_hoc_sinh() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -1233,12 +1255,22 @@ function ham_5_1_ve_quan_ly_hoc_sinh() {
     vungLamViec.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h3 style="margin: 0; color: #6f42c1;">Danh sách Học sinh trên hệ thống</h3>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="ham_5_2_tai_danh_sach_hoc_sinh()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
-                    🔄 Làm mới dữ liệu
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+                    <input type="text" id="input-tim-kiem-qlhs" 
+                           placeholder="Tìm Tên hoặc Số điện thoại..." 
+                           oninput="ham_5_3_tim_kiem_live_hoc_sinh(this.value)"
+                           style="padding: 10px 10px 10px 35px; border: 1px solid #ccc; border-radius: 6px; width: 280px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
+
+                <button onclick="ham_5_2_tai_danh_sach_hoc_sinh()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+                    🔄 Làm mới
                 </button>
             </div>
         </div>
+        
         <div id="danh-sach-hs-render">
             <p style="text-align: center; color: #666;">Đang tải dữ liệu học sinh từ máy chủ...</p>
         </div>
@@ -1247,6 +1279,7 @@ function ham_5_1_ve_quan_ly_hoc_sinh() {
     // Gọi hàm tải dữ liệu
     ham_5_2_tai_danh_sach_hoc_sinh();
 }
+
 
 // Hàm 5.2: Tải dữ liệu từ Supabase và nạp vào Biến State
 async function ham_5_2_tai_danh_sach_hoc_sinh() {
@@ -1266,6 +1299,30 @@ async function ham_5_2_tai_danh_sach_hoc_sinh() {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
+
+
+// =====================================================================
+// Hàm 5.3: Tìm kiếm trực tiếp (Live Search) học sinh trên bảng
+// =====================================================================
+function ham_5_3_tim_kiem_live_hoc_sinh(tuKhoa) {
+    const filter = tuKhoa.toLowerCase().trim();
+
+    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng học sinh
+    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
+
+    rows.forEach(row => {
+        // Đọc toàn bộ nội dung chữ (Tên, SĐT, UID...) đang hiển thị trên dòng đó
+        const textContent = row.innerText.toLowerCase();
+
+        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+        if (textContent.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
 
 // Hàm 5.10: Vẽ Bảng học sinh (Đầy đủ tất cả các cột theo yêu cầu)
 //function ham_5_10_ve_bang_hoc_sinh() {
