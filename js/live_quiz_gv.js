@@ -101,27 +101,16 @@ window.ham_9_1_tab_live_quiz = async function () {
 // Hàm 9.2: Xử lý Tạo phòng thi Live (Chọn đề & Sinh mã PIN)
 // =====================================================================
 window.ham_9_2_tao_phong_live = async function () {
-    window.Swal.fire({
-        title: '⏳ Đang tải dữ liệu...',
-        allowOutsideClick: false,
-        didOpen: () => { window.Swal.showLoading(); }
-    });
+    window.Swal.fire({ title: '⏳ Đang tải dữ liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
 
     try {
-        const { data: dsNV, error } = await _supabase
-            .from('nhiem_vu')
-            .select('ma_nhiem_vu, ten_nhiem_vu')
-            .order('ngay_tao', { ascending: false });
+        const { data: dsNV, error } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu, ten_nhiem_vu').order('ngay_tao', { ascending: false });
 
         if (error) throw error;
-        if (!dsNV || dsNV.length === 0) {
-            return Swal.fire('Thông báo', 'Thầy chưa có Nhiệm vụ (Đề thi) nào. Hãy tạo nhiệm vụ trước khi mở phòng Live nhé!', 'warning');
-        }
+        if (!dsNV || dsNV.length === 0) return Swal.fire('Thông báo', 'Thầy chưa có Nhiệm vụ (Đề thi) nào. Hãy tạo nhiệm vụ trước nhé!', 'warning');
 
         let optionsHtml = '<option value="">-- Chọn đề thi / Nhiệm vụ --</option>';
-        dsNV.forEach(nv => {
-            optionsHtml += `<option value="${nv.ma_nhiem_vu}">[${nv.ma_nhiem_vu}] - ${nv.ten_nhiem_vu}</option>`;
-        });
+        dsNV.forEach(nv => { optionsHtml += `<option value="${nv.ma_nhiem_vu}">[${nv.ma_nhiem_vu}] - ${nv.ten_nhiem_vu}</option>`; });
 
         Swal.fire({
             title: '🚀 KHỞI TẠO PHÒNG LIVE',
@@ -133,16 +122,10 @@ window.ham_9_2_tao_phong_live = async function () {
                     </select>
                 </div>
             `,
-            showCancelButton: true,
-            confirmButtonText: 'Tạo Mã PIN Phòng',
-            cancelButtonText: 'Hủy',
-            confirmButtonColor: '#e74c3c',
+            showCancelButton: true, confirmButtonText: 'Tạo Mã PIN Phòng', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
             preConfirm: () => {
                 const maNV = document.getElementById('swal-select-nhiem-vu').value;
-                if (!maNV) {
-                    Swal.showValidationMessage('Vui lòng chọn 1 đề thi để bắt đầu!');
-                    return false;
-                }
+                if (!maNV) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
                 return maNV;
             }
         }).then(async (result) => {
@@ -152,34 +135,20 @@ window.ham_9_2_tao_phong_live = async function () {
 
                 Swal.fire({ title: 'Đang khởi tạo phòng...', didOpen: () => { Swal.showLoading(); } });
 
-                const { error: errInsert } = await _supabase
-                    .from('phong_live_quiz')
-                    .insert([{
-                        ma_phong: maPinLive,
-                        ma_nhiem_vu: maNhiemVuChon,
-                        uid_gv_tao: AppState.user?.uid || '',
-                        trang_thai: 0
-                    }]);
+                const { error: errInsert } = await _supabase.from('phong_live_quiz').insert([{ ma_phong: maPinLive, ma_nhiem_vu: maNhiemVuChon, uid_gv_tao: AppState.user?.uid || '', trang_thai: 0 }]);
 
-                if (errInsert) {
-                    Swal.fire('Lỗi tạo phòng', errInsert.message, 'error');
-                } else {
+                if (errInsert) { Swal.fire('Lỗi tạo phòng', errInsert.message, 'error'); }
+                else {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Tạo phòng thành công!',
+                        icon: 'success', title: 'Tạo phòng thành công!',
                         html: `Mã PIN của phòng là: <b style="font-size: 24px; color: #e74c3c; letter-spacing: 2px;">${maPinLive}</b>`,
-                        confirmButtonText: 'Vào Phòng Điều Khiển',
-                        confirmButtonColor: '#28a745'
-                    }).then(() => {
-                        ham_9_1_tab_live_quiz();
-                    });
+                        confirmButtonText: 'Vào Phòng Điều Khiển', confirmButtonColor: '#28a745'
+                    }).then(() => { ham_9_1_tab_live_quiz(); });
                 }
             }
         });
 
-    } catch (e) {
-        Swal.fire('Lỗi', e.message, 'error');
-    }
+    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
 }
 
 // =====================================================================
@@ -187,7 +156,7 @@ window.ham_9_2_tao_phong_live = async function () {
 // =====================================================================
 window.LiveQuizChannel = null;
 window.DanhSachLive = [];
-window.ThongTinPhongLive = { tongSoCau: 0, maPhong: '', maNhiemVu: '' };
+window.ThongTinPhongLive = { tongSoCau: 0, maPhong: '', maNhiemVu: '', thoiGianLamBai: 45 };
 
 // =====================================================================
 // HÀM 9.3: VÀO PHÒNG ĐIỀU KHIỂN (GIAO DIỆN TỔNG HỢP)
@@ -200,7 +169,8 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         const { data: phong, error: errPhong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPhong).single();
         if (errPhong) throw errPhong;
 
-        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
+        // 🌟 VÁ LỖI NGẦM: Lấy thêm thoi_gian_lam_bai từ bảng nhiem_vu để cấp cho đồng hồ
+        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
 
         let tongSoCau = 0;
         try {
@@ -209,7 +179,14 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
             if (tongSoCau === 0) tongSoCau = 20;
         } catch (e) { tongSoCau = 20; }
 
-        window.ThongTinPhongLive = { tongSoCau: tongSoCau, maPhong: maPhong, maNhiemVu: phong.ma_nhiem_vu };
+        // Lưu thời gian làm bài vào biến toàn cục để Đồng hồ sử dụng
+        window.ThongTinPhongLive = {
+            tongSoCau: tongSoCau,
+            maPhong: maPhong,
+            maNhiemVu: phong.ma_nhiem_vu,
+            thoiGianLamBai: nv.thoi_gian_lam_bai || 45
+        };
+        window.ThongTinLiveGiaoVien = { maNhiemVu: phong.ma_nhiem_vu, maPhong: maPhong };
 
         const { data: dsTienDo } = await _supabase.from('tien_do_live_quiz').select('*').eq('ma_phong', maPhong);
         window.DanhSachLive = dsTienDo || [];
@@ -246,7 +223,10 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
             </div>
         `;
 
-        if (phong.trang_thai === 1) window.ham_gv_kich_hoat_dong_ho_chu(phong);
+        // Nếu phòng đang chạy, truyền thời gian bắt đầu vào đồng hồ
+        if (phong.trang_thai === 1 && phong.thoi_gian_bat_dau) {
+            window.ham_gv_kich_hoat_dong_ho_chu(phong.thoi_gian_bat_dau);
+        }
         ham_9_3_1_ve_leaderboard();
 
         if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
@@ -323,45 +303,58 @@ window.ham_9_3_1_ve_leaderboard = function () {
 }
 
 // =====================================================================
-// HÀM ĐỔI TRẠNG THÁI & ĐIỀU KHIỂN
+// HÀM ĐỔI TRẠNG THÁI & ĐIỀU KHIỂN (ĐÃ VÁ LỖI 400 BẰNG SQL)
 // =====================================================================
 window.ham_9_3_2_doi_trang_thai = async function (maPhong, trangThaiMoi) {
     try {
         const updateObj = { trang_thai: trangThaiMoi };
-        if (trangThaiMoi === 1) updateObj.thoi_gian_bat_dau = new Date().toISOString();
 
-        await _supabase.from('phong_live_quiz').update(updateObj).eq('ma_phong', maPhong);
+        // Khi bắt đầu (1), gán thời gian bắt đầu bằng thời điểm hiện tại của Server
+        if (trangThaiMoi === 1) {
+            updateObj.thoi_gian_bat_dau = new Date().toISOString();
+        }
+
+        const { error } = await _supabase.from('phong_live_quiz').update(updateObj).eq('ma_phong', maPhong);
+        if (error) throw error;
+
+        // Load lại giao diện phòng
         window.ham_9_3_vao_dieu_khien_phong(maPhong);
     } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
 };
 
 // =====================================================================
-// CÁC HÀM TIỆN ÍCH (ĐỒNG HỒ & XEM ĐỀ)
+// CÁC HÀM TIỆN ÍCH (ĐỒNG HỒ ĐẾM NGƯỢC CHUẨN XÁC)
 // =====================================================================
-window.ham_gv_kich_hoat_dong_ho_chu = function (phong) {
+window.ham_gv_kich_hoat_dong_ho_chu = function (thoiGianBatDauStr) {
     if (window.GvTimerId) clearInterval(window.GvTimerId);
 
-    const tStart = new Date(phong.thoi_gian_bat_dau).getTime();
-    const tEnd = tStart + (phong.thoi_gian_lam_bai * 60000);
+    // Tính toán mốc kết thúc từ thời điểm bắt đầu + thời gian làm bài của nhiệm vụ
+    const tStart = new Date(thoiGianBatDauStr).getTime();
+    const tEnd = tStart + (window.ThongTinPhongLive.thoiGianLamBai * 60000);
 
     window.GvTimerId = setInterval(() => {
         const giayConLai = Math.floor((tEnd - Date.now()) / 1000);
         const el = document.getElementById('dong-ho-giao-vien');
+
         if (el) {
             if (giayConLai >= 0) {
                 el.innerText = `${String(Math.floor(giayConLai / 60)).padStart(2, '0')}:${String(giayConLai % 60).padStart(2, '0')}`;
-                if (giayConLai <= 60) el.style.color = '#ff3333';
+                if (giayConLai <= 60) el.style.color = '#ff3333'; // Đỏ lên khi còn dưới 1 phút
             } else {
                 clearInterval(window.GvTimerId);
-                window.ham_9_3_2_doi_trang_thai(phong.ma_phong, 2);
+                // Hết giờ -> Tự động chuyển phòng về trạng thái 2 (Kết thúc)
+                window.ham_9_3_2_doi_trang_thai(window.ThongTinPhongLive.maPhong, 2);
             }
         }
     }, 1000);
 };
 
+// =====================================================================
+// HÀM XEM ĐỀ TRỰC TIẾP TRÊN GIAO DIỆN GIÁO VIÊN
+// =====================================================================
 window.ham_gv_xem_de_thi_truc_tiep = async function () {
     try {
-        const maNV = window.ThongTinPhongLive.maNhiemVu;
+        const maNV = window.ThongTinPhongLive.maNhiemVu || window.ThongTinLiveGiaoVien.maNhiemVu;
         const { data: nv } = await _supabase.from('nhiem_vu').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNV).single();
         const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
 
@@ -371,12 +364,13 @@ window.ham_gv_xem_de_thi_truc_tiep = async function () {
         const dsCauHoi = data.danhSachCauHoi || data.danh_sach_cau_hoi;
 
         let html = `<div style="text-align:left; max-height: 500px; overflow-y:auto;">`;
-        dsCauHoi.forEach((c, i) => html += `<div style="padding:10px; border-bottom:1px solid #ddd;"><b>Câu ${i + 1}:</b> ${c.noi_dung || 'Nội dung...'} <br><small style="color:green;">Đáp án: ${c.dap_an || '---'}</small></div>`);
+        dsCauHoi.forEach((c, i) => html += `<div style="padding:10px; border-bottom:1px solid #ddd;"><b>Câu ${i + 1}:</b> ${c.noi_dung || c.noiDungHtml || 'Nội dung...'} <br><small style="color:green;">Đáp án: ${c.dap_an || '---'}</small></div>`);
         Swal.fire({ title: 'Nội dung đề thi', html: html + '</div>', width: 700 });
     } catch (e) { Swal.fire('Lỗi', 'Không load được đề: ' + e.message, 'error'); }
 };
 
 window.ham_9_3_3_thoat_phong = function () {
     if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
+    if (window.GvTimerId) clearInterval(window.GvTimerId);
     window.ham_9_1_tab_live_quiz();
 };
