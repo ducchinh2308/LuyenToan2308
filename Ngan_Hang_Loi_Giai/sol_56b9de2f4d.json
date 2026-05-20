@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_56b9de2f4d",
+  "dapAn": "D",
+  "loiGiai": "Vì $\\displaystyle \\lim_{x \\to \\pm\\infty} \\frac{-x}{x+2} = \\lim_{x \\to \\pm\\infty} \\frac{-1}{1+\\frac{2}{x}} = -1$ nên tiệm cận ngang của đồ thị hàm số $\\displaystyle y = \\frac{-x}{x+2}$ là đường thẳng $y = -1$."
+}

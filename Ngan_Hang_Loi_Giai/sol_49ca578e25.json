@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_49ca578e25",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\displaystyle J = \\int_0^3 \\big[4f(x) - 3\\big]\\,\\mathrm{d}x = 4\\int_0^3 f(x)\\,\\mathrm{d}x - \\int_0^3 3\\,\\mathrm{d}x = 4 \\cdot 3 - 3x\\Big|_0^3 = 12 - 9 = 3$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c6f31199f7",
+  "dapAn": "D",
+  "loiGiai": "Tổng số học sinh $n = 44$. Vị trí thứ $11$ thuộc nhóm $[30;60)$. Áp dụng công thức tứ phân vị thứ nhất $Q_1$:\\\\\r\n\t\t$\\displaystyle Q_1 = 30 + \\frac{\\frac{44}{4} - 8}{7} \\cdot 30 = 30 + \\frac{11 - 8}{7} \\cdot 30 \\approx 42{,}9$."
+}

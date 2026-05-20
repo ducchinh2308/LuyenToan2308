@@ -4,7 +4,7 @@
   "thoiGian": 20,
   "danhSachCauHoi": [
     {
-      "maCau": "q_e5c5c202b2",
+      "maCau": "q_935eeef039",
       "ma_goc": "2605-982",
       "kieuCau": "TN",
       "cauDan": "Cho $\\displaystyle \\int_0^3 f(x)\\,\\mathrm{d}x = 3$. Khi đó $\\displaystyle J = \\int_0^3 \\big[4f(x) - 3\\big]\\,\\mathrm{d}x$ bằng",
@@ -14,7 +14,7 @@
       "paD": "$9$"
     },
     {
-      "maCau": "q_8d9da17ad1",
+      "maCau": "q_d57a0fc271",
       "ma_goc": "2605-983",
       "kieuCau": "TN",
       "cauDan": "Biết $\\displaystyle I = \\int_2^5 \\frac{2x-3}{x}\\,\\mathrm{d}x = a + b\\ln\\frac{5}{2}$ với $a, b \\in \\mathbb{Z}$. Giá trị của $S = a + b$ là",
@@ -24,7 +24,7 @@
       "paD": "$S = 3$"
     },
     {
-      "maCau": "q_91c4d60637",
+      "maCau": "q_00fa397c62",
       "ma_goc": "2605-984",
       "kieuCau": "TN",
       "cauDan": "Một vật dụng bằng gỗ có dạng là một lăng trụ tứ giác đều có cạnh đáy bằng $30\\text{ cm}$, chiều cao bằng $45\\text{ cm}$. Thể tích vật dụng đó là",
@@ -34,7 +34,7 @@
       "paD": "$4050\\text{ cm}^3$"
     },
     {
-      "maCau": "q_2164454b06",
+      "maCau": "q_127ad4cece",
       "ma_goc": "2605-985",
       "kieuCau": "TN",
       "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, mặt phẳng $(Oxz)$ có một véctơ pháp tuyến là",
@@ -44,7 +44,7 @@
       "paD": "$\\vec{n}_4(0;0;1)$"
     },
     {
-      "maCau": "q_fb2b1c6fdb",
+      "maCau": "q_bd547be940",
       "ma_goc": "2605-986",
       "kieuCau": "TN",
       "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành. Đường thẳng $AB$ song song với mặt phẳng nào trong các mặt phẳng sau?",
@@ -54,7 +54,7 @@
       "paD": "$(SAC)$"
     },
     {
-      "maCau": "q_5a9b71275f",
+      "maCau": "q_e9c7b3f8af",
       "ma_goc": "2605-987",
       "kieuCau": "TN",
       "cauDan": "Với $a$, $b$ là các số thực dương tùy ý, $\\alpha$ là số thực tùy ý. Kết quả nào sau đây là sai?",
@@ -64,7 +64,7 @@
       "paD": "$\\displaystyle \\log_a b = \\frac{1}{\\log_b a}$"
     },
     {
-      "maCau": "q_764ddc24ea",
+      "maCau": "q_31f12dd5b9",
       "ma_goc": "2605-988",
       "kieuCau": "TN",
       "cauDan": "Trong các hàm số sau, hàm số nào là hàm số chẵn trên tập xác định của nó?",
@@ -74,7 +74,7 @@
       "paD": "$y = \\cot x$"
     },
     {
-      "maCau": "q_67d8f46d7b",
+      "maCau": "q_99e0e48473",
       "ma_goc": "2605-989",
       "kieuCau": "TN",
       "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\Delta$ có phương trình $\\begin{cases} x = 1+t \\\\ y = 0 \\\\ z = 1+2t \\end{cases}$. Véctơ nào sau đây là một véctơ chỉ phương của đường thẳng $\\Delta$?",
@@ -84,7 +84,7 @@
       "paD": "$(1;-1;2)$"
     },
     {
-      "maCau": "q_d3a4dd7ab5",
+      "maCau": "q_6c8bab2e52",
       "ma_goc": "2605-990",
       "kieuCau": "TN",
       "cauDan": "Tiệm cận ngang của đồ thị hàm số $\\displaystyle y = \\frac{-x}{x+2}$ là đường thẳng",
@@ -94,17 +94,17 @@
       "paD": "$y = -1$"
     },
     {
-      "maCau": "q_34e746261f",
+      "maCau": "q_e3886dc077",
       "ma_goc": "2605-991",
       "kieuCau": "TN",
-      "cauDan": "Phỏng vấn thời gian tự học ở nhà mỗi ngày đối với học sinh một lớp thu được bảng số liệu sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_34e746261f_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tVới bảng số liệu thống kê này thì $11$ học sinh có thời gian tự học ở nhà ít nhất sẽ không quá bao nhiêu phút trong ngày (làm tròn tới hàng phần mười)?",
+      "cauDan": "Phỏng vấn thời gian tự học ở nhà mỗi ngày đối với học sinh một lớp thu được bảng số liệu sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e3886dc077_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tVới bảng số liệu thống kê này thì $11$ học sinh có thời gian tự học ở nhà ít nhất sẽ không quá bao nhiêu phút trong ngày (làm tròn tới hàng phần mười)?",
       "paA": "$29{,}9$ phút",
       "paB": "$44{,}8$ phút",
       "paC": "$44{,}7$ phút",
       "paD": "$42{,}9$ phút"
     },
     {
-      "maCau": "q_c88ebd9792",
+      "maCau": "q_7adf2d95f7",
       "ma_goc": "2605-992",
       "kieuCau": "TN",
       "cauDan": "Cho hình lập phương $ABCD.EFGH$. Góc giữa cặp véctơ $\\overrightarrow{AF}$ và $\\overrightarrow{EG}$ bằng",
@@ -114,7 +114,7 @@
       "paD": "$90^\\circ$"
     },
     {
-      "maCau": "q_4c4735f7d3",
+      "maCau": "q_a72a4b23c6",
       "ma_goc": "2605-993",
       "kieuCau": "TN",
       "cauDan": "Cho cấp số nhân $(u_n)$ có số hạng đầu $u_1 = 64$, công bội $\\displaystyle q = \\frac{1}{4}$. Giá trị của $u_4$ là",
@@ -122,82 +122,6 @@
       "paB": "$u_4 = 256$",
       "paC": "$u_4 = 4$",
       "paD": "$u_4 = 1$"
-    },
-    {
-      "maCau": "q_a2290e30ce",
-      "ma_goc": "2605-994",
-      "kieuCau": "DS",
-      "cauDan": "Để chuẩn bị cho buổi đồng diễn chào mừng đại hội thể dục thể thao cấp xã, trường THPT X phát động học sinh tự làm các lá cờ nhỏ cầm tay và giao cho học sinh hai khối $11$, $12$ của nhà trường thực hiện. Các lá cờ có cán bị cong hoặc phần lá bị rách được coi là \\textbf{bị lỗi}, các lá cờ còn lại được coi là \\textbf{lá cờ tốt}. Tỉ lệ sản phẩm là lá cờ bị lỗi của khối $11$ và khối $12$ lần lượt là $3\\%$ và $2\\%$. Trong một lô sản phẩm gồm các lá cờ để lẫn lộn $110$ lá cờ của khối $11$ và $90$ lá cờ của khối $12$. Lấy ngẫu nhiên một lá cờ từ lô cờ đó.",
-      "paA": "Xác suất để lá cờ được lấy ra là lá cờ bị lỗi bằng $0{,}0245$",
-      "paB": "Giả sử lá cờ được lấy ra là lá cờ tốt. Xác suất lá cờ đó do khối $11$ làm ra cao hơn xác suất lá cờ đó do khối $12$ làm ra",
-      "paC": "Xác suất lá cờ được lấy ra do khối $11$ sản xuất bằng $0{,}55$",
-      "paD": "Xác suất lá cờ được lấy ra là lá cờ tốt biết rằng lá cờ đó thuộc khối $11$ là $0{,}5335$"
-    },
-    {
-      "maCau": "q_d10629ccf7",
-      "ma_goc": "2605-995",
-      "kieuCau": "DS",
-      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho các điểm $A(3;-1;4)$, $B(-2;3;3)$. Các điểm $M, N$ thay đổi sao cho $M$ luôn thuộc mặt phẳng $(Oxy)$, $\\overrightarrow{MN}(-2;-2;1)$.",
-      "paA": "Điểm đối xứng với $A$ qua mặt phẳng $(Oxy)$ có tọa độ là $(-3;1;4)$",
-      "paB": "Giá trị nhỏ nhất của $AM+MN+NB$ là $12$",
-      "paC": "$C$ là điểm thuộc mặt phẳng $(Oxy)$ thỏa mãn $A, B, C$ thẳng hàng. Khi đó $\\overrightarrow{CA}=\\displaystyle \\frac{4}{3}\\overrightarrow{CB}$",
-      "paD": "$D(a;b;c)$ là điểm thỏa mãn $\\overrightarrow{BD}=\\overrightarrow{MN}$. Khi đó $a+b+c=1$"
-    },
-    {
-      "maCau": "q_5a2a1c61f9",
-      "ma_goc": "2605-996",
-      "kieuCau": "DS",
-      "cauDan": "Chủ một trung tâm thương mại muốn cho thuê một số gian hàng như nhau. Người đó muốn tăng giá cho thuê của mỗi gian hàng thêm $x$ (triệu đồng) $(x \\ge 0)$. Tốc độ thay đổi doanh thu từ các gian hàng đó được biểu diễn bởi hàm số $T'(x)=-20x+300$, trong đó $T'(x)$ tính bằng triệu đồng. Biết rằng nếu người đó tăng giá cho thuê mỗi gian hàng thêm $10$ triệu đồng thì doanh thu là $12$ tỷ đồng.",
-      "paA": "Doanh thu cao nhất của tất cả các gian hàng mà người đó có thể thu về là $12$ tỷ $250$ triệu đồng",
-      "paB": "Để doanh thu cao nhất của tất cả các gian hàng thì mỗi gian hàng sẽ tăng giá cho thuê thêm $15$ triệu đồng",
-      "paC": "Doanh thu của tất cả các gian hàng khi người đó tăng giá thêm $12$ triệu đồng là $12$ tỷ $250$ triệu đồng",
-      "paD": "Doanh thu của tất cả các gian hàng được biểu diễn bởi hàm số $T(x)=-10x^2+300x+10000$"
-    },
-    {
-      "maCau": "q_002d5c6762",
-      "ma_goc": "2605-997",
-      "kieuCau": "DS",
-      "cauDan": "Cho hàm số $y=x^3-3x^2+1$, có đồ thị $(C)$.",
-      "paA": "Tập xác định của hàm số là $D=\\mathbb{R}$ và $y'=3x^2-6x$",
-      "paB": "Đường thẳng $d \\colon y=(m-1)x+m+2$ song song với đường thẳng đi qua hai điểm cực trị của đồ thị $(C)$ khi $m=-1$",
-      "paC": "Hàm số có hai điểm cực trị",
-      "paD": "Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số có phương trình là $\\Delta \\colon y=-2x+1$"
-    },
-    {
-      "maCau": "q_ae6641beec",
-      "ma_goc": "2605-998",
-      "kieuCau": "TLN",
-      "cauDan": "Trong không gian $Oxyz$ với đơn vị trên mỗi trục là mét, một cabin cáp treo xuất phát từ điểm $A(-2;1;5)$ và chuyển động đều theo đường cáp cùng hướng với $\\vec{u}(0;-2;6)$ với tốc độ là $4$ (m/s). Giả sử sau $5$ giây kể từ lúc xuất phát, cabin đến điểm $M(a;b;c)$. Tính giá trị của tổng $a+3b+c$."
-    },
-    {
-      "maCau": "q_ed0cbb71cb",
-      "ma_goc": "2605-999",
-      "kieuCau": "TLN",
-      "cauDan": "Một công ty $X$ cần thuê xe để chở ít nhất $140$ người và $9$ tấn hàng. Nơi cho thuê xe có $2$ loại xe $A$ và $B$. Trong đó xe loại $A$ có $10$ chiếc, xe loại $B$ có $9$ chiếc. Mỗi chiếc xe loại $A$ được cho thuê với giá $4$ triệu đồng, loại $B$ giá $3$ triệu đồng. Biết rằng xe $A$ chỉ chở được tối đa $20$ người và $0{,}6$ tấn hàng. Xe $B$ chỉ chở được tối đa $10$ người và $1{,}5$ tấn hàng. Tìm chi phí thuê xe thấp nhất của công ty $X$ (tính theo đơn vị triệu đồng)."
-    },
-    {
-      "maCau": "q_96a0abbbf4",
-      "ma_goc": "2605-1000",
-      "kieuCau": "TLN",
-      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi $\\widehat{ABC}=60^\\circ$, $SA=3\\sqrt{3}$ và $SA$ vuông góc với đáy. Số đo góc nhị diện $[S,CD,B]=60^\\circ$. Tính thể tích của hình chóp $S.ABCD$."
-    },
-    {
-      "maCau": "q_01a1e9cfc9",
-      "ma_goc": "2605-1001",
-      "kieuCau": "TLN",
-      "cauDan": "Cho thập giác đều (đa giác có $10$ đỉnh) $A_1A_2...A_{10}$. Người ta gắn ngẫu nhiên vào $10$ đỉnh $A_1; A_2; ... ; A_{10}$ mỗi đỉnh một số tự nhiên thuộc tập số $S = \\{9; 10; ...; 18\\}$. Chọn ngẫu nhiên một tam giác có $3$ đỉnh được lấy từ $10$ đỉnh của thập giác. Gọi $P$ là xác suất để thu được một tam giác vuông có $3$ số ghi trên $3$ đỉnh của tam giác lập thành một cấp số cộng. Biết $\\displaystyle P = \\frac{m}{n}$ với $m, n \\in \\mathbb{Z}$, $\\displaystyle \\frac{m}{n}$ là phân số tối giản. Tính $m+n$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_01a1e9cfc9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
-    },
-    {
-      "maCau": "q_a13b7eb990",
-      "ma_goc": "2605-1002",
-      "kieuCau": "TLN",
-      "cauDan": "Một công viên giải trí đang thực hiện khảo sát để điều chỉnh mức giá vé vào cổng nhằm tối ưu hóa lợi nhuận. Qua số liệu thống kê từ bộ phận kinh doanh, người quản lý xác định được rằng: nếu giá vé vào cửa là $90$ nghìn đồng/người thì sẽ có $1000$ người đến công viên. Nhưng nếu tăng giá vé thêm $5$ nghìn đồng/người thì số khách đến công viên sẽ giảm $100$ người, còn nếu giảm giá vé đi $5$ nghìn đồng/người thì số khách đến công viên sẽ tăng thêm $100$ người. Biết rằng, trung bình mỗi khách tới công viên còn đem lại $10$ nghìn đồng cho công viên trong các dịch vụ đi kèm. Như vậy nhà quản lý công viên này nên xác định giá vé vào cổng là bao nhiêu nghìn đồng để doanh thu của công viên là lớn nhất?"
-    },
-    {
-      "maCau": "q_ea7bc6079e",
-      "ma_goc": "2605-1003",
-      "kieuCau": "TLN",
-      "cauDan": "Một vật trang trí có dạng một khối tròn xoay được tạo thành khi quay miền $(R)$ (phần được tô màu trong hình vẽ dưới) quanh trục $AB$. Miền $(R)$ được giới hạn bởi các cạnh $AB, AD$ của hình vuông $ABCD$ và các cung phần tư của các đường tròn bán kính bằng $1\\text{ cm}$ với tâm lần lượt là trung điểm của các cạnh $AD, AB$. Tính thể tích của vật trang trí đó theo đơn vị $\\text{cm}^3$ (làm tròn kết quả đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ea7bc6079e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
     }
   ]
 }

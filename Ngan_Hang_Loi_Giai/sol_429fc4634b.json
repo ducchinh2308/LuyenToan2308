@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_429fc4634b",
+  "dapAn": "C",
+  "loiGiai": "Xét hàm số $y = f(x) = \\cos x$.\\\\\r\n\t\tTập xác định $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tVới mọi $x \\in \\mathbb{R} \\Rightarrow -x \\in \\mathbb{R}$ và $f(-x) = \\cos(-x) = \\cos x = f(x)$.\\\\\r\n\t\tVậy $y = \\cos x$ là hàm số chẵn."
+}
