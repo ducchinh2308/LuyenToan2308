@@ -1,0 +1,47 @@
+{
+  "maDe": "26237-4DS",
+  "tenDe": "ĐỀ 26237-4ĐS",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_42cd1d236d",
+      "ma_goc": "2605-994",
+      "kieuCau": "DS",
+      "cauDan": "Để chuẩn bị cho buổi đồng diễn chào mừng đại hội thể dục thể thao cấp xã, trường THPT X phát động học sinh tự làm các lá cờ nhỏ cầm tay và giao cho học sinh hai khối $11$, $12$ của nhà trường thực hiện. Các lá cờ có cán bị cong hoặc phần lá bị rách được coi là \\textbf{bị lỗi}, các lá cờ còn lại được coi là \\textbf{lá cờ tốt}. Tỉ lệ sản phẩm là lá cờ bị lỗi của khối $11$ và khối $12$ lần lượt là $3\\%$ và $2\\%$. Trong một lô sản phẩm gồm các lá cờ để lẫn lộn $110$ lá cờ của khối $11$ và $90$ lá cờ của khối $12$. Lấy ngẫu nhiên một lá cờ từ lô cờ đó.",
+      "paA": "Xác suất để lá cờ được lấy ra là lá cờ bị lỗi bằng $0{,}0245$",
+      "paB": "Giả sử lá cờ được lấy ra là lá cờ tốt. Xác suất lá cờ đó do khối $11$ làm ra cao hơn xác suất lá cờ đó do khối $12$ làm ra",
+      "paC": "Xác suất lá cờ được lấy ra do khối $11$ sản xuất bằng $0{,}55$",
+      "paD": "Xác suất lá cờ được lấy ra là lá cờ tốt biết rằng lá cờ đó thuộc khối $11$ là $0{,}5335$"
+    },
+    {
+      "maCau": "q_a795fbc087",
+      "ma_goc": "2605-995",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho các điểm $A(3;-1;4)$, $B(-2;3;3)$. Các điểm $M, N$ thay đổi sao cho $M$ luôn thuộc mặt phẳng $(Oxy)$, $\\overrightarrow{MN}(-2;-2;1)$.",
+      "paA": "Điểm đối xứng với $A$ qua mặt phẳng $(Oxy)$ có tọa độ là $(-3;1;4)$",
+      "paB": "Giá trị nhỏ nhất của $AM+MN+NB$ là $12$",
+      "paC": "$C$ là điểm thuộc mặt phẳng $(Oxy)$ thỏa mãn $A, B, C$ thẳng hàng. Khi đó $\\overrightarrow{CA}=\\displaystyle \\frac{4}{3}\\overrightarrow{CB}$",
+      "paD": "$D(a;b;c)$ là điểm thỏa mãn $\\overrightarrow{BD}=\\overrightarrow{MN}$. Khi đó $a+b+c=1$"
+    },
+    {
+      "maCau": "q_a64be05d12",
+      "ma_goc": "2605-996",
+      "kieuCau": "DS",
+      "cauDan": "Chủ một trung tâm thương mại muốn cho thuê một số gian hàng như nhau. Người đó muốn tăng giá cho thuê của mỗi gian hàng thêm $x$ (triệu đồng) $(x \\ge 0)$. Tốc độ thay đổi doanh thu từ các gian hàng đó được biểu diễn bởi hàm số $T'(x)=-20x+300$, trong đó $T'(x)$ tính bằng triệu đồng. Biết rằng nếu người đó tăng giá cho thuê mỗi gian hàng thêm $10$ triệu đồng thì doanh thu là $12$ tỷ đồng.",
+      "paA": "Doanh thu cao nhất của tất cả các gian hàng mà người đó có thể thu về là $12$ tỷ $250$ triệu đồng",
+      "paB": "Để doanh thu cao nhất của tất cả các gian hàng thì mỗi gian hàng sẽ tăng giá cho thuê thêm $15$ triệu đồng",
+      "paC": "Doanh thu của tất cả các gian hàng khi người đó tăng giá thêm $12$ triệu đồng là $12$ tỷ $250$ triệu đồng",
+      "paD": "Doanh thu của tất cả các gian hàng được biểu diễn bởi hàm số $T(x)=-10x^2+300x+10000$"
+    },
+    {
+      "maCau": "q_37f14b71fb",
+      "ma_goc": "2605-997",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=x^3-3x^2+1$, có đồ thị $(C)$.",
+      "paA": "Tập xác định của hàm số là $D=\\mathbb{R}$ và $y'=3x^2-6x$",
+      "paB": "Đường thẳng $d \\colon y=(m-1)x+m+2$ song song với đường thẳng đi qua hai điểm cực trị của đồ thị $(C)$ khi $m=-1$",
+      "paC": "Hàm số có hai điểm cực trị",
+      "paD": "Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số có phương trình là $\\Delta \\colon y=-2x+1$"
+    }
+  ]
+}
