@@ -1582,43 +1582,91 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
     sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
 
-    // 3. RÁP VÀO BỘ KHUNG 2 CỘT FULL MÀN HÌNH
-    const rootDiv = document.createElement('div');
-    rootDiv.id = 'khong-gian-thi-toan-man-hinh';
-    rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
+    //// 3. RÁP VÀO BỘ KHUNG 2 CỘT FULL MÀN HÌNH
+    //const rootDiv = document.createElement('div');
+    //rootDiv.id = 'khong-gian-thi-toan-man-hinh';
+    //rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
 
-        //<div style="padding: 15px; border-bottom: 1px solid #eee;">
-        //    <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát</button>
-        //</div>
+    //    //<div style="padding: 15px; border-bottom: 1px solid #eee;">
+    //    //    <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát</button>
+    //    //</div>
 
-    rootDiv.innerHTML = `
-        <div style="flex: 0 0 50px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+    //rootDiv.innerHTML = `
+    //    <div style="flex: 0 0 50px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
 
 
 
-            <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
-                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-                    <span id="dong-ho-dem-nguoc">--:--</span>
-                </div>
-                <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
-                    <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
-                </div>
+    //        <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
+    //            <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+    //                <span id="dong-ho-dem-nguoc">--:--</span>
+    //            </div>
+    //            <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
+    //                <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
+    //            </div>
+    //        </div>
+    //        <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
+    //            <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP</button>
+    //        </div>
+    //        <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
+
+    //    </div>
+
+    //    <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
+    //        <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
+    //            ${htmlContentRight}
+    //        </div>
+    //    </div>
+    //`;
+
+    //document.body.appendChild(rootDiv);
+
+        // =====================================================================
+        // KHUNG GIAO DIỆN 2 CỘT FULL MÀN HÌNH (BẢN TỐI ƯU CHO LIVE QUIZ)
+        // =====================================================================
+        const isLive = window.PhienLamBai && window.PhienLamBai.isLiveQuiz;
+
+        // 1. Logic ẩn nút Nộp tổng nếu đang ở chế độ Live
+        const htmlBtnNop = isLive ? '' : `
+    <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
+        <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">📤 NỘP</button>
+    </div>`;
+
+        // 2. Logic hiện HUD Điểm nếu đang ở chế độ Live
+        const htmlHudDiem = isLive ? `
+    <div style="background: #e74c3c; color: white; padding: 12px; margin-top: 10px; border-radius: 6px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.8;">Điểm của em</div>
+        <div id="diem-hien-tai-hs" style="font-size: 24px; font-weight: 900;">0.00</div>
+    </div>` : '';
+
+        const rootDiv = document.createElement('div');
+        rootDiv.id = 'khong-gian-thi-toan-man-hinh';
+        rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
+
+        rootDiv.innerHTML = `
+    <div style="flex: 0 0 250px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+        <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
+            <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                <span id="dong-ho-dem-nguoc">--:--</span>
             </div>
-            <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-                <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP</button>
+            <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
+                <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
             </div>
-            <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
-            
+            ${htmlHudDiem}
         </div>
+        
+        <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
+        
+        ${htmlBtnNop}
+    </div>
 
-        <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
-            <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
-                ${htmlContentRight}
-            </div>
+    <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
+        <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
+            ${htmlContentRight}
         </div>
-    `;
+    </div>
+`;
 
-    document.body.appendChild(rootDiv);
+        document.body.appendChild(rootDiv);
 
     // ==============================================================
     // 🌟 KÍCH HOẠT CHÍNH XÁC KATEX / MATHJAX & TIKZ THEO CODE CŨ
