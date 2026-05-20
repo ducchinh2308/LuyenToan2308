@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4ae4891a6d",
+  "dapAn": "B",
+  "loiGiai": "Cỡ mẫu $n=10+11+8+6+4+1=40$.\\\\\r\n\t\tVị trí tứ phân vị thứ $3$ của mẫu số liệu gốc là $\\displaystyle \\frac{3 \\cdot 40}{4}=30$.\\\\\r\n\t\tTứ phân vị thứ 3 của mẫu số liệu gốc là trung bình cộng của $x_{30}$ và $x_{31}$.\\\\\r\n\t\tDo $x_{30}, x_{31} \\in [90;120)$ nên nhóm chứa tứ phân vị thứ 3 là $[90;120)$.\\\\\r\n\t\tTa có $\\displaystyle Q_3=90+\\frac{\\frac{3 \\cdot 40}{4}-(10+11+8)}{6} \\cdot (120-90)=95$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_eb49827bb5",
+  "dapAn": "C",
+  "loiGiai": "Phương trình mặt phẳng đi qua gốc tọa độ $O(0;0;0)$ và nhận $\\vec{n}=(-1;0;3)$ làm vectơ pháp tuyến là: $-1(x-0)+0(y-0)+3(z-0)=0 \\Leftrightarrow -x+3z=0$."
+}
