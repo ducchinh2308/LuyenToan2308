@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_851c0e583a",
+  "dapAn": "1201",
+  "loiGiai": "Giả sử thùng rác có dạng hình chóp cụt đều $ABCD.A'B'C'D'$, trong đó $ABCD$ là hình vuông tâm $O$, cạnh $120\\text{ cm}$; $A'B'C'D'$ là hình vuông tâm $O'$, cạnh $100\\text{ cm}$. Khi đó $S_1 = S_{ABCD} = 14400\\text{ cm}^2$, $S_2 = S_{A'B'C'D'} = 10000\\text{ cm}^2$. Kẻ $D'H \\perp BD$ ($H \\in BD$).\\\\\r\n\t\tKhi đó $OHD'O'$ là hình chữ nhật. Ta có $B'D' = 100\\sqrt{2}$. Suy ra $\\displaystyle O'D' = \\frac{1}{2}B'D' = 50\\sqrt{2}$.\\\\\r\n\t\tTa có $\\displaystyle BD = 120\\sqrt{2} \\Rightarrow OD = \\frac{1}{2}BD = 60\\sqrt{2} \\Rightarrow HD = OD - OH = 60\\sqrt{2} - 50\\sqrt{2} = 10\\sqrt{2}$.\\\\\r\n\t\tXét tam giác $D'DH$ vuông tại $H$, $\\displaystyle D'H = \\sqrt{D'D^2 - HD^2} = \\sqrt{100^2 - (10\\sqrt{2})^2} = 70\\sqrt{2}$. Suy ra $O'O = D'H = 70\\sqrt{2}$.\\\\\r\n\t\tVậy thể tích thùng đựng rác là $\\displaystyle V = \\frac{1}{3}O'O\\left(S_1+S_2+\\sqrt{S_1S_2}\\right) = \\frac{1}{3} \\cdot 70\\sqrt{2} \\cdot \\left(14400+10000+\\sqrt{14400 \\cdot 10000}\\right) \\approx 1201139\\text{ cm}^3$.\\\\\r\n\t\tĐổi đơn vị ta được $V \\approx 1201\\text{ dm}^3$."
+}

@@ -1,0 +1,43 @@
+{
+  "maDe": "26227-6TLN-NEW",
+  "tenDe": "ĐỀ 26227-6TLN-NEW",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_3f195fa8b8",
+      "ma_goc": "2605-684",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hai hàm số $\\displaystyle y=f(x)=ax^3+bx^2+cx-1$ và $\\displaystyle y=g(x)=dx^2+ex+\\frac{1}{2}$ ($a,b,c,d,e \\in \\mathbb{R}$). Biết rằng đồ thị của hàm số $y=f(x)$ và $y=g(x)$ cắt nhau tại ba điểm có hoành độ lần lượt là $-3; -1; 2$. \r\n\t\\begin{center}\r\n\t<img src='HinhAnh/q_3f195fa8b8_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHình phẳng giới hạn bởi hai đồ thị đã cho có diện tích bằng bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần mười)?"
+    },
+    {
+      "maCau": "q_1f53e57f8e",
+      "ma_goc": "2605-685",
+      "kieuCau": "TLN",
+      "cauDan": "Một thùng đựng rác có dạng hình chóp cụt đều. Đáy và miệng thùng là các hình vuông tương ứng có độ dài cạnh bằng $100\\text{ cm}$ và $120\\text{ cm}$, cạnh bên của thùng dài $100\\text{ cm}$. Thể tích của thùng đựng rác đã cho bằng bao nhiêu đề-xi-mét khối (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1f53e57f8e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_269ca9ce11",
+      "ma_goc": "2605-686",
+      "kieuCau": "TLN",
+      "cauDan": "Để tiết kiệm năng lượng, một công ty điện lực đề xuất bán điện sinh hoạt cho người dân theo hình thức lũy tiến (bậc thang) như sau: Mỗi bậc gồm 40 số; bậc 1 từ số thứ 1 đến số thứ 40, bậc 2 từ số thứ 41 đến số thứ 80, bậc 3 từ số thứ 81 đến số thứ 120,... Bậc 1 có giá là $1900$ đồng/1 số, giá của mỗi số ở bậc thứ $n+1$ tăng so với giá của mỗi số ở bậc thứ $n$ là $5\\%$. Gia đình ông $A$ sử dụng hết $606$ số trong tháng 3 thì ông $A$ phải nộp bao nhiêu nghìn đồng (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)?"
+    },
+    {
+      "maCau": "q_ab183ccb6c",
+      "ma_goc": "2605-687",
+      "kieuCau": "TLN",
+      "cauDan": "Người ta muốn lát kín một bảng ô vuông kích thước $2 \\times 13$ (2 hàng 13 cột) bằng các tấm bìa kích thước $1 \\times 2$ và $1 \\times 3$ sao cho các tấm bìa không được chồng lên nhau hay phủ ra ngoài bảng. Có bao nhiêu cách lát nếu ta được phép xoay các tấm bìa nhưng cạnh dài của tất cả các tấm bìa đều phải song song với nhau (số lượng mỗi loại tấm bìa không hạn chế)?"
+    },
+    {
+      "maCau": "q_15c4fcbd6b",
+      "ma_goc": "2605-688",
+      "kieuCau": "TLN",
+      "cauDan": "Một bảng hình vuông kích thước $12 \\times 12$ gồm $144$ hình vuông đơn vị, mỗi hình vuông đơn vị có diện tích bằng $1$ (hình vẽ).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_15c4fcbd6b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tChọn ngẫu nhiên một hình chữ nhật tạo thành từ các hình vuông đơn vị của bảng. Xác suất để hình chữ nhật chọn được có diện tích là một số chẵn bằng $\\displaystyle \\frac{a}{b}$ với $\\displaystyle \\frac{a}{b}$ là phân số tối giản. Khi đó giá trị của $R=a-b$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_ef200f1f0a",
+      "ma_goc": "2605-689",
+      "kieuCau": "TLN",
+      "cauDan": "Từ một tấm bìa lục giác đều cạnh bằng 30, bạn Bình muốn làm một hình chóp lục giác đều bằng cách cắt bỏ phần tô đậm và dán các mép lại với nhau (các mối ghép nối có kích thước không đáng kể, tham khảo hình vẽ).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ef200f1f0a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\qquad\r\n\t\t<img src='HinhAnh/q_ef200f1f0a_cd_tikz_2.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐể thể tích khối chóp lục giác đều tạo thành lớn nhất thì phần diện tích bạn Bình cắt đi là bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)?"
+    }
+  ]
+}
