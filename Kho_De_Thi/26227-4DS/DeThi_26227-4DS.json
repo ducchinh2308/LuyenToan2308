@@ -1,0 +1,47 @@
+{
+  "maDe": "26227-4DS",
+  "tenDe": "ĐỀ 26227-4ĐS",
+  "thoiGian": 40,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_db780b9b3a",
+      "ma_goc": "2605-680",
+      "kieuCau": "DS",
+      "cauDan": "Mô hình toán học sau đây được sử dụng trong quan sát các vật trong không gian. Trong không gian cho hệ tọa độ $Oxyz$ có $\\vec{i}, \\vec{j}, \\vec{k}$ tương ứng là các vectơ đơn vị trên các trục $Ox, Oy, Oz$ và độ dài của mỗi vectơ đơn vị đo bằng $1$ đề-xi-mét (dm). Mặt ngoài của một quả bóng được mô hình hóa bởi phương trình mặt cầu $(S)$ có phương trình $(x-2)^2 + (y+1)^2 + (z+1)^2 = 3$ và tiếp xúc với mặt phẳng sàn nhà. Một tấm gỗ mỏng (coi như một mặt phẳng) tiếp xúc với bề mặt quả bóng, phần giao của tấm gỗ và sàn nhà là đường thẳng $d$ có phương trình: $\\displaystyle \\frac{x+2}{2} = \\frac{y+1}{-3} = \\frac{z}{1}$.\r\n\tGọi $A, B$ tương ứng là tiếp điểm của tấm gỗ, sàn nhà với quả bóng và $I$ là tâm của mặt cầu $(S)$.",
+      "paA": "Mặt cầu $(S)$ có bán kính $R=3$ và tâm $I(2;-1;-1)$",
+      "paB": "Hình chiếu của điểm $I$ lên đường thẳng $d$ có tọa độ $(a;b;c)$. Khi đó: $a+b+c>0$",
+      "paC": "Một con kiến bò trên bề mặt quả bóng từ vị trí $A$ đến vị trí $B$ thì quãng đường ngắn nhất lớn hơn $30\\,\\text{cm}$",
+      "paD": "Nếu $K$ là một điểm thuộc đường thẳng $d$ thì $K(-2+2t; -1-3t; -t)$ với $t \\in \\mathbb{R}$"
+    },
+    {
+      "maCau": "q_9de3062c3a",
+      "ma_goc": "2605-681",
+      "kieuCau": "DS",
+      "cauDan": "Trước khi tung ra một dòng điện thoại mới, một công ty tiến hành phỏng vấn ngẫu nhiên $250$ khách hàng về sản phẩm này. Kết quả thống kê như sau: có $120$ người trả lời \"sẽ mua\"; có $130$ người trả lời \"không mua\". Kinh nghiệm cho thấy tỉ lệ khách hàng thực sự sẽ mua sản phẩm đối với những người trả lời \"sẽ mua\" và \"không mua\" tương ứng là $80\\%$ và $20\\%$.\r\n\tGọi $A$ là biến cố \"Người được phỏng vấn thực sự sẽ mua sản phẩm\".\r\n\tGọi $B$ là biến cố \"Người được phỏng vấn trả lời sẽ mua sản phẩm\".",
+      "paA": "$P(\\overline{B})=0{,}48$",
+      "paB": "Trong số những người được phỏng vấn thực sự sẽ mua sản phẩm, có $70\\%$ người đã trả lời \"sẽ mua\" khi được phỏng vấn (kết quả tính theo phần trăm được làm tròn đến hàng đơn vị)",
+      "paC": "$P(A)=0{,}38$",
+      "paD": "$P(A|B)=0{,}8$"
+    },
+    {
+      "maCau": "q_ae3d2f4bba",
+      "ma_goc": "2605-682",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)=\\frac{x^2-3x+6}{x-1}$.",
+      "paA": "Đồ thị hàm số $y=f(x)$ có hai điểm cực trị nằm khác phía so với trục hoành",
+      "paB": "Tâm đối xứng của đồ thị hàm số $y=f(x)$ là điểm $I(-1;1)$",
+      "paC": "Tập xác định của hàm số $y=f(x)$ là $\\mathbb{R} \\setminus \\{1\\}$",
+      "paD": "Gọi $M$ là giao điểm của đồ thị hàm số $y=f(x)$ với trục tung. Phương trình tiếp tuyến của đồ thị hàm số $y=f(x)$ tại điểm $M$ là $y=-3x-6$"
+    },
+    {
+      "maCau": "q_383336b455",
+      "ma_goc": "2605-683",
+      "kieuCau": "DS",
+      "cauDan": "Một thùng trộn tại một nhà máy sản xuất kem hiện chứa $2000$ lít nước, trong đó có $5\\,\\text{kg}$ đường đã được trộn. Một vòi nước sẽ được mở với tốc độ $50\\,\\text{lít/phút}$ vào thùng, cùng lúc đường được đổ vào thùng với tốc độ $1\\,\\text{kg/phút}$.",
+      "paA": "Khối lượng đường trong thùng trộn sau $t$ phút là $1000t+5000$ (gam)",
+      "paB": "Xem $y=f(t)$ là một hàm số xác định trên $[0; +\\infty)$, có thể khẳng định nồng độ đường trong thùng luôn tăng khi sản xuất trong thời gian dài liên tục",
+      "paC": "Nồng độ đường trong thùng sau $t$ phút (tính bằng tỉ số giữa khối lượng đường và thể tích nước, đơn vị gam/lít) là $\\displaystyle f(t)=\\frac{1000t+5000}{50t+2000}$",
+      "paD": "Để sản xuất sản phẩm đạt yêu cầu, tiêu chuẩn là nồng độ đường không vượt quá $20\\,\\text{gam/lít}$. Với tiêu chuẩn này, nhà máy không thể sản xuất liên tục trong thời gian dài"
+    }
+  ]
+}

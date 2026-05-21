@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2a05711672",
+  "dapAn": "FFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\displaystyle P(B) = \\frac{120}{250} = 0{,}48 \\Rightarrow P(\\overline{B}) = 1 - 0{,}48 = 0{,}52$.\\\\\r\n\t\t\t\\itemch Ta có sơ đồ hình cây:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_2a05711672_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\t$\\displaystyle P(B|A) = \\frac{P(BA)}{P(A)} = \\frac{0{,}48 \\cdot 0{,}8}{0{,}48 \\cdot 0{,}8 + 0{,}52 \\cdot 0{,}2} \\approx 0{,}79 \\neq 0{,}7$.\\\\\r\n\t\t\t\\itemch Ta có $P(A) = 0{,}48 \\cdot 0{,}8 + 0{,}52 \\cdot 0{,}2 = 0{,}488 \\neq 0{,}38$.\\\\\r\n\t\t\t\\itemch Ta có $P(A|B) = 0{,}8$.\\\\\r\n\t\t\\end{itemchoice}"
+}
