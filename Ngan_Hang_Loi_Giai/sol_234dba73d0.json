@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_234dba73d0",
+  "dapAn": "2,31",
+  "loiGiai": "Tại vị trí có hoành độ $x(-1\\leq x \\leq 1)$ thì tam giác thiết diện có cạnh là $2\\sqrt{1-x^2}$.\\\\\r\n\t\tDo đó tam giác thiết diện có diện tích $S(x)=\\left(2\\sqrt{1-x^2}\\right)^2\\dfrac{\\sqrt{3}}{4}=\\sqrt{3}\\left(1-x^2\\right)$.\\\\\r\n\t\tVậy thể tích $V$ của vật thể là $\\displaystyle\\int\\limits_{-1}^1\\sqrt{3}\\left(1-x^2\\right) \\mathrm{\\,d} x=\\dfrac{4\\sqrt{3}}{3}\\approx2{,}31$."
+}

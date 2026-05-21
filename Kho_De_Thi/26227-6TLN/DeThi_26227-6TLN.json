@@ -1,0 +1,43 @@
+{
+  "maDe": "26227-6TLN",
+  "tenDe": "ĐỀ 26227-6TLN",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_d45d4fa5ea",
+      "ma_goc": "2603-851",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình lăng trụ đứng $ABC.A'B'C'$ có đáy $ABC$ là tam giác đều cạnh $\\sqrt{2}$. Cạnh $BA'=\\sqrt{6}$. Khoảng cách giữa hai đường thẳng $A'B$ và $B'C$ (làm tròn đến hàng phần trăm).\r\n\t\\par"
+    },
+    {
+      "maCau": "q_3157f3ae69",
+      "ma_goc": "2603-852",
+      "kieuCau": "TLN",
+      "cauDan": "Một cốc hình trụ có đường kính đáy bằng $7$ cm, chiều cao $15$ cm. Trong cốc chứa một lượng nước bằng $\\dfrac{2}{3}$ thể tích cốc. Một con quạ muốn uống được nước trong cốc thì mặt nước phải cách miệng cốc không quá $3$ cm. Con quạ thông minh đã mổ những viên sỏi hình cầu có bán kính $0{,}9$ cm thả vào cốc để mực nước dâng lên. Hỏi để uống được nước, con quạ cần thả ít nhất bao nhiêu viên sỏi?\r\n\t\\par"
+    },
+    {
+      "maCau": "q_de0170238a",
+      "ma_goc": "2603-853",
+      "kieuCau": "TLN",
+      "cauDan": "\\immini{\r\n\t\tCho vật thể đáy là hình tròn có bán kính bằng $1$ (tham khảo hình vẽ). Khi cắt vật thể bằng mặt phẳng vuông góc với trục $Ox$ tại điểm có hoành độ $x\\,(-1\\leq x\\leq 1)$ thì được thiết diện là một tam giác đều. Thể tích $V$ của vật thể đó là bao nhiêu? (làm tròn đến hàng phần trăm)\r\n\t\t\\par"
+    },
+    {
+      "maCau": "q_14e4cf186f",
+      "ma_goc": "2603-854",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp dự định sản xuất không quá 400 sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm $(1\\leq x\\leq 400)$ thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x)=x^{3}-1\\,999x^{2}+1\\,001\\,000x+250\\,000$ (đồng). Trong đó chi phí vận hành máy móc cho mỗi sản phẩm là $G(x)=\\dfrac{100\\,000x}{\\dfrac{3}{2}x+1}$ (đồng). Tổng chi phí mua nguyên vật liệu là $H(x)=2x^{3}+100\\,000x-50\\,000$ (đồng) nhưng do doanh nghiệp đó mua nguyên vật liệu với số lượng lớn nên được giảm $1\\%$ cho 200 sản phẩm đầu tiên doanh nghiệp sản xuất và giảm $2\\%$ cho sản phẩm tiếp theo. Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?\r\n\t\\par"
+    },
+    {
+      "maCau": "q_5ddf71fb9b",
+      "ma_goc": "2603-855",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)\\colon x^{2}+y^{2}+z^{2}-2x-2z-38=0$ và hai mặt phẳng $(\\alpha)\\colon x+2y-4=0$; $(\\beta)\\colon 3y+z-5=0$. Xét $(P)$ là mặt phẳng thay đổi, song song với giao tuyến của hai mặt phẳng $(\\alpha)$, $(\\beta)$ và tiếp xúc với mặt cầu $(S)$. Khoảng cách lớn nhất từ điểm $A(5;-5;6)$ đến mặt phẳng $(P)$ bằng bao nhiêu. (làm tròn đến hàng phần muời)\r\n\t\\par"
+    },
+    {
+      "maCau": "q_ed9cba47d9",
+      "ma_goc": "2603-856",
+      "kieuCau": "TLN",
+      "cauDan": "Có hai hộp bi, hộp I có $5$ bi trắng và $7$ bi đỏ, hộp II có $10$ bi trắng và $15$ bi đỏ. Lấy ngẫu nhiên hai viên bi từ hộp I chuyển sang hộp II. Sau đó, từ hộp II lấy ngẫu nhiên $1$ viên bi thì được bi trắng. Xác suất để $2$ bi chuyển từ hộp I sang hộp II không cùng màu là $\\dfrac{a}{b}$ (là phân số tối giản). Tính $a+b$.\r\n\t\\par"
+    }
+  ]
+}

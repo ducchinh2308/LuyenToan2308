@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_aab8a12a7a",
+  "dapAn": "20",
+  "loiGiai": "Gọi $A$ là biến cố \\lq\\lq lấy $2$ bi từ hộp I sang hộp II không cùng màu\\rq\\rq.\\\\\r\n\t\tGọi $B$ là biến cố \\lq\\lq lấy bi từ hộp II là bi trắng\\rq\\rq.\\\\\r\n\t\tKhi đó $AB$ là biến cố \\lq\\lq lấy $2$ bi khác màu từ hộp I sau đó lấy $1$ bi trắng từ hộp II\\rq\\rq.\\\\\r\n\t\tTa có\\\\\r\n\t\t$P(B)=\\dfrac{\\mathrm{C}_5^2}{\\mathrm{C}_{12}^2}\\cdot \\dfrac{12}{27}+\\dfrac{\\mathrm{C}_7^2}{\\mathrm{C}_{12}^2}\\cdot \\dfrac{10}{27}+\\dfrac{5\\cdot 7}{\\mathrm{C}_{12}^2}\\cdot \\dfrac{11}{27}=\\dfrac{65}{162}$ \\\\\r\n\t\t$P(AB)=\\dfrac{5\\cdot 6\\cdot 11}{\\mathrm{C}_{12}^2\\cdot 27}=\\dfrac{35}{162}$. \\\\\r\n\t\tDo đó $P(A\\mid B)=\\dfrac{P(AB)}{P(B)}=\\dfrac{7}{13}$.\\\\\r\n\t\tSuy ra $a=7$, $b=13$.\\\\\r\n\t\tVậy $a+b=20$."
+}
