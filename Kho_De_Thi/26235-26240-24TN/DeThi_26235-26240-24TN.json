@@ -1,0 +1,247 @@
+{
+  "maDe": "26235-26240-24TN",
+  "tenDe": "ĐỀ 26235-26240-24TN",
+  "thoiGian": 25,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_ec7299c5b2",
+      "ma_goc": "2605-966",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho vec tơ $\\vec{u} = 2\\vec{i} + 3\\vec{j} - 4\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "paA": "$(-2;-3;4)$",
+      "paB": "$(2;-3;4)$",
+      "paC": "$(2;3;-4)$",
+      "paD": "$(2;3;4)$"
+    },
+    {
+      "maCau": "q_089bc7c391",
+      "ma_goc": "2605-965",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm trên $\\mathbb{R}$ và hàm số $y=f'(x)$ có đồ thị như hình sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_089bc7c391_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y=f(x)$ đồng biến trên khoảng nào trong các khoảng sau",
+      "paA": "$(0;1)$",
+      "paB": "$(0;2)$",
+      "paC": "$(-\\infty;0)$",
+      "paD": "$(1;2)$"
+    },
+    {
+      "maCau": "q_e61298155b",
+      "ma_goc": "2605-1004",
+      "kieuCau": "TN",
+      "cauDan": "Tính thể tích vật thể tròn xoay khi quay hình phẳng giới hạn bởi các đường cong $y=\\sqrt{e^x-x}$, $y=0$, $x=1$, $x=2$ xung quanh trục $Ox$ là",
+      "paA": "$\\pi\\left(e^2-e-\\displaystyle\\frac{5}{2}\\right)$",
+      "paB": "$\\pi\\left(e^2-e-\\displaystyle\\frac{3}{2}\\right)$",
+      "paC": "$e^2-e-\\displaystyle\\frac{5}{2}$",
+      "paD": "$e^2-e-\\displaystyle\\frac{3}{2}$"
+    },
+    {
+      "maCau": "q_ec1aa000fd",
+      "ma_goc": "2605-960",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = 1$ là",
+      "paA": "$\\displaystyle S=\\left\\{\\frac{\\pi}{2}+k\\pi \\mid k\\in \\mathbb{Z}\\right\\}$",
+      "paB": "$\\displaystyle S=\\{k2\\pi \\mid k\\in \\mathbb{Z}\\}$",
+      "paC": "$\\displaystyle S=\\left\\{\\frac{\\pi}{2}+k2\\pi \\mid k\\in \\mathbb{Z}\\right\\}$",
+      "paD": "$\\displaystyle S=\\{k\\pi \\mid k\\in \\mathbb{Z}\\}$"
+    },
+    {
+      "maCau": "q_4b67fc4c87",
+      "ma_goc": "2605-1005",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ với $u_1=6$ và $u_2=-18$. Công bội $q$ của cấp số nhân là",
+      "paA": "$q=6$",
+      "paB": "$q=-3$",
+      "paC": "$q=-\\displaystyle\\frac{1}{3}$",
+      "paD": "$q=-18$"
+    },
+    {
+      "maCau": "q_0629851a95",
+      "ma_goc": "2605-970",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $d \\colon \\displaystyle\\frac{x-3}{4} = \\displaystyle\\frac{y+2}{-5} = \\displaystyle\\frac{z-1}{2}$. Véc tơ nào sau đây là véc tơ chỉ phương của đường thẳng $(d)$.",
+      "paA": "$\\vec{v}_1 = (3;-2;1)$",
+      "paB": "$\\vec{v}_3 = (4;5;2)$",
+      "paC": "$\\vec{v}_4 = (3;2;1)$",
+      "paD": "$\\vec{v}_2 = (4;-5;2)$"
+    },
+    {
+      "maCau": "q_fd4317a543",
+      "ma_goc": "2605-1008",
+      "kieuCau": "TN",
+      "cauDan": "Cho khối chóp có diện tích đáy $B=2a^2$ và chiều cao $h=9a$. Thể tích của khối chóp đã cho bằng",
+      "paA": "$3a^3$",
+      "paB": "$6a^3$",
+      "paC": "$18a^3$",
+      "paD": "$9a^3$"
+    },
+    {
+      "maCau": "q_e4a300146a",
+      "ma_goc": "2605-1006",
+      "kieuCau": "TN",
+      "cauDan": "Với mọi số thực dương $a$, $\\log_3(27a) - \\log_3 a$ bằng",
+      "paA": "$9$",
+      "paB": "$3-2\\log_3 a$",
+      "paC": "$3$",
+      "paD": "$\\log_3(26a)$"
+    },
+    {
+      "maCau": "q_b22df15be1",
+      "ma_goc": "2605-1007",
+      "kieuCau": "TN",
+      "cauDan": "Cho mẫu số liệu ghép nhóm cho bởi bảng sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b22df15be1_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu ghép nhóm này là",
+      "paA": "$40$",
+      "paB": "$50$",
+      "paC": "$70$",
+      "paD": "$60$"
+    },
+    {
+      "maCau": "q_38b2fa7a5c",
+      "ma_goc": "2605-961",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(1;-2;3)$ và $B(3;1;1)$. Đường thẳng $AB$ có phương trình là",
+      "paA": "$\\displaystyle\\frac{x-4}{1} = \\displaystyle\\frac{y+1}{-2} = \\displaystyle\\frac{z-4}{3}$",
+      "paB": "$\\displaystyle\\frac{x-1}{4} = \\displaystyle\\frac{y+2}{-1} = \\displaystyle\\frac{z-3}{4}$",
+      "paC": "$\\displaystyle\\frac{x-2}{2} = \\displaystyle\\frac{y-3}{-2} = \\displaystyle\\frac{z+2}{3}$",
+      "paD": "$\\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{3} = \\displaystyle\\frac{z-3}{-2}$"
+    },
+    {
+      "maCau": "q_8d0a50a822",
+      "ma_goc": "2605-962",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $2a$. Khoảng cách từ điểm $C$ đến mặt phẳng $(A'BD)$ bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8d0a50a822_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle\\frac{4a\\sqrt{3}}{3}$",
+      "paB": "$\\displaystyle\\frac{a\\sqrt{3}}{3}$",
+      "paC": "$\\displaystyle\\frac{2a\\sqrt{3}}{3}$",
+      "paD": "$a\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_e14acbebee",
+      "ma_goc": "2605-964",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = 2 \\cdot 3^x$ là",
+      "paA": "$\\displaystyle\\frac{3^x}{\\ln 3} + C$",
+      "paB": "$2 \\cdot 3^x \\ln 3 + C$",
+      "paC": "$\\displaystyle\\frac{2 \\cdot 3^{x+1}}{x+1} + C$",
+      "paD": "$\\displaystyle\\frac{2 \\cdot 3^x}{\\ln 3} + C$"
+    },
+    {
+      "maCau": "q_3a2ffe8145",
+      "ma_goc": "2605-963",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_1=5$ và công sai $d=4$. Giá trị của $u_6$ bằng",
+      "paA": "$29$",
+      "paB": "$24$",
+      "paC": "$25$",
+      "paD": "$20$"
+    },
+    {
+      "maCau": "q_ddcfe9de70",
+      "ma_goc": "2605-1014",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(1;1;-2)$ và $B(3;-1;2)$. Tọa độ của vectơ $\\vec{BA}$ là",
+      "paA": "$(2;-2;4)$",
+      "paB": "$(2;0;0)$",
+      "paC": "$(-2;2;-4)$",
+      "paD": "$(1;-1;2)$"
+    },
+    {
+      "maCau": "q_81c626d95f",
+      "ma_goc": "2605-1015",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi $M, P$ là trung điểm của $AB$ và $CD$. Đặt $\\vec{BA}=\\vec{b}, \\vec{AC}=\\vec{c}, \\vec{AD}=\\vec{d}$. Khẳng định nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_81c626d95f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{MP}=\\displaystyle\\frac{1}{2}(\\vec{c}+\\vec{d}-\\vec{b})$",
+      "paB": "$\\vec{MP}=\\displaystyle\\frac{1}{2}(\\vec{c}+\\vec{d}+\\vec{b})$",
+      "paC": "$\\vec{MP}=\\displaystyle\\frac{1}{2}(-\\vec{d}+\\vec{b}+\\vec{c})$",
+      "paD": "$\\vec{MP}=\\displaystyle\\frac{1}{2}(\\vec{d}+\\vec{b}-\\vec{c})$"
+    },
+    {
+      "maCau": "q_5b329a9839",
+      "ma_goc": "2605-1012",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d\\colon \\displaystyle\\frac{x+1}{2} = \\displaystyle\\frac{-y}{2} = \\displaystyle\\frac{z+2}{-6}$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $d$?",
+      "paA": "$\\vec{u_2} = (1;-1;3)$",
+      "paB": "$\\vec{u_3} = (-1;1;3)$",
+      "paC": "$\\vec{u_4} = (-1;0;-2)$",
+      "paD": "$\\vec{u_1} = (2;2;-6)$"
+    },
+    {
+      "maCau": "q_7c0a3bea88",
+      "ma_goc": "2605-1013",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y=\\displaystyle\\frac{2x-5}{x+1}$ là đường thẳng có phương trình",
+      "paA": "$y=-1$",
+      "paB": "$x=-1$",
+      "paC": "$y=2$",
+      "paD": "$x=2$"
+    },
+    {
+      "maCau": "q_b462a8a43d",
+      "ma_goc": "2605-1010",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b462a8a43d_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-1;1)$",
+      "paB": "$(-2;2)$",
+      "paC": "$(1;+\\infty)$",
+      "paD": "$(-2;1)$"
+    },
+    {
+      "maCau": "q_0db9d9f584",
+      "ma_goc": "2605-1011",
+      "kieuCau": "TN",
+      "cauDan": "Nguyên hàm của hàm số $f(x)=2026^x$ là",
+      "paA": "$\\displaystyle\\frac{2026^{x-1}}{\\ln 2026}+C$",
+      "paB": "$2026^x+C$",
+      "paC": "$x \\cdot 2026^{x-1}+C$",
+      "paD": "$\\displaystyle\\frac{2026^x}{\\ln 2026}+C$"
+    },
+    {
+      "maCau": "q_40aebbe583",
+      "ma_goc": "2605-969",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi đồ thị $y = 3x - x^2$ và trục hoành. Thể tích vật thể tròn xoay sinh ra khi cho $(H)$ quay quanh trục hoành bằng",
+      "paA": "$\\displaystyle\\frac{81}{10}$",
+      "paB": "$\\displaystyle\\frac{81\\pi}{10}$",
+      "paC": "$\\displaystyle\\frac{27\\pi}{10}$",
+      "paD": "$\\displaystyle\\frac{81\\pi}{5}$"
+    },
+    {
+      "maCau": "q_8c3c951193",
+      "ma_goc": "2605-968",
+      "kieuCau": "TN",
+      "cauDan": "Một người chia thời lượng (đơn vị: giây) thực hiện các cuộc gọi điện thoại của mình trong một tuần thành sáu nhóm và lập bảng tần số ghép nhóm như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8c3c951193_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTứ phân vị thứ nhất $Q_1$ (đơn vị: giây) của mẫu số liệu ghép nhóm trên bằng",
+      "paA": "$36$",
+      "paB": "$40$",
+      "paC": "$\\displaystyle\\frac{400}{11}$",
+      "paD": "$\\displaystyle\\frac{420}{11}$"
+    },
+    {
+      "maCau": "q_6406ca7f8d",
+      "ma_goc": "2605-1009",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(0;-2;1)$ và bán kính $R=5$. Phương trình của $(S)$ là",
+      "paA": "$x^2+(y+2)^2+(z-1)^2=5$",
+      "paB": "$x^2+(y-2)^2+(z+1)^2=25$",
+      "paC": "$x^2+(y-2)^2+(z+1)^2=5$",
+      "paD": "$x^2+(y+2)^2+(z-1)^2=25$"
+    },
+    {
+      "maCau": "q_afd1bfc14d",
+      "ma_goc": "2605-971",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành (xem hình bên dưới). Phát biểu nào sau đây đúng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_afd1bfc14d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AB} + \\vec{AD} = \\vec{CA}$",
+      "paB": "$\\vec{SA} - \\vec{SB} = \\vec{AB}$",
+      "paC": "$\\vec{SA} + \\vec{SB} = \\vec{SC} + \\vec{SD}$",
+      "paD": "$\\vec{SA} + \\vec{SC} = \\vec{SB} + \\vec{SD}$"
+    },
+    {
+      "maCau": "q_f8ff9e5fee",
+      "ma_goc": "2605-967",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_3(2x-3)=2$ là",
+      "paA": "$\\displaystyle x=\\frac{5}{2}$",
+      "paB": "$x=5$",
+      "paC": "$\\displaystyle x=\\frac{7}{2}$",
+      "paD": "$x=6$"
+    }
+  ]
+}

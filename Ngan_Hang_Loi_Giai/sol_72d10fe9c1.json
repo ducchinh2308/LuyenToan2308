@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_72d10fe9c1",
+  "dapAn": "B",
+  "loiGiai": "Phương trình hoành độ giao điểm của $(H)$ và trục hoành: $3x - x^2 = 0 \\Leftrightarrow \\left[\\begin{aligned} & x = 0 \\\\ & x = 3 \\end{aligned}\\right.$.\\\\\r\n\t\tThể tích vật thể tròn xoay cần tìm là: $V = \\pi \\displaystyle \\int_0^3 (3x - x^2)^2\\,\\mathrm{d}x = \\displaystyle\\frac{81\\pi}{10}$.\\\\"
+}

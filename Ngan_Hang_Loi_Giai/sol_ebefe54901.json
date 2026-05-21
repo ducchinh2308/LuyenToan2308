@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ebefe54901",
+  "dapAn": "B",
+  "loiGiai": "Thể tích vật thể cần tìm là:\\\\\r\n\t\t$V = \\pi \\displaystyle\\int_1^2 \\left(\\sqrt{e^x-x}\\right)^2 \\mathrm{\\,d}x = \\pi \\displaystyle\\int_1^2 (e^x-x) \\mathrm{\\,d}x = \\pi \\left(e^x - \\displaystyle\\frac{x^2}{2}\\right) \\bigg|_1^2 = \\pi \\left(e^2 - e - \\displaystyle\\frac{3}{2}\\right)$."
+}
