@@ -263,21 +263,22 @@ window.ham_6_19_xu_ly_du_lieu_truoc_khi_push = function (text) {
     text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
 
     // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac (Chuyển đổi sang format Web)
-    const tuKhoas = [/\\heva/g, /\\hoac/g];
+    const tuKhoas = ["\\heva", "\\hoac"];
     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
 
     for (let k = 0; k < tuKhoas.length; k++) {
-        let keyword = tuKhoas[k].source.replace(/\\/g, ""); // Lấy chuỗi heva hoặc hoac
+        let keyword = tuKhoas[k];
         let startIdx;
 
-        while ((startIdx = text.indexOf("\\" + keyword)) !== -1) {
-            let contentStart = startIdx + keyword.length + 1;
+        while ((startIdx = text.indexOf(keyword)) !== -1) {
+            let contentStart = startIdx + keyword.length;
             let contentEnd = -1;
             let ruot = "";
             let coNgoacNhon = false;
 
             let firstCharIdx = contentStart;
+            // Bỏ qua các khoảng trắng
             while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
 
             if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
@@ -303,21 +304,53 @@ window.ham_6_19_xu_ly_du_lieu_truoc_khi_push = function (text) {
             }
 
             if (contentEnd !== -1) {
-                text = text.substring(0, startIdx) + mos[k] + ruot + dongs[k] + text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+                let phanDau = text.substring(0, startIdx);
+                let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+                text = phanDau + mos[k] + ruot + dongs[k] + phanDuoi;
             } else {
-                break;
+                break; // Thoát vòng lặp nếu không tìm thấy điểm kết thúc để tránh treo trình duyệt
             }
         }
     }
 
+    // =====================================================================
     // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC (CHỐNG LỖI XUỐNG DÒNG)
+    // =====================================================================
     let hiddenMath = [];
 
-    // Lưu tạm các khối toán học lớn
+    // Bảo vệ các môi trường toán học / bảng biểu / hình vẽ (begin...end)
     text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
         hiddenMath.push(match);
         return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
     });
 
-    // Lưu tạm khối $$...$$ và \[...\]
-    text = text.replace
+    // Bảo vệ khối $$ ... $$ (Toán độc lập)
+    text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
+        hiddenMath.push(match);
+        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+
+    // Bảo vệ khối \[ ... \] (Toán độc lập)
+    text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
+        hiddenMath.push(match);
+        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+
+    // Bảo vệ khối $ ... $ (Toán trong dòng)
+    text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
+        hiddenMath.push(match);
+        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+
+    // Xử lý thay thế khoảng trắng/xuống dòng dư thừa ở phần văn bản thường
+    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
+    text = text.replace(/\\\$/g, "$\\$$");
+    text = text.replace(/\\\\\\\\/g, "\\\\"); // Thu gọn 2 lệnh xuống dòng liên tiếp
+
+    // Khôi phục lại lõi toán học nguyên bản (Chạy ngược mảng để đảm bảo độ chính xác)
+    for (let i = hiddenMath.length - 1; i >= 0; i--) {
+        text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
+    }
+
+    return text.trim();
+};
