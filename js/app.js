@@ -2307,11 +2307,11 @@ window.ham_6_15_tai_file_mau = function () {
     // 1. Soạn sẵn nội dung chuẩn của file mẫu
     const noiDungMau = `% ==============================================
 % FILE MẪU UPLOAD HỌC LIỆU (ĐỀ THI / CÂU HỎI)
-% Dành cho hệ thống quản lý học liệu ID6
+% Dành cho hệ thống quản lý học liệu
 % ==============================================
 % LƯU Ý: 
 % - Mỗi câu hỏi phải nằm gọn trong cấu trúc \\begin{ex} ... \\end{ex}
-% - Mã ID6 phải nằm trong dấu ngoặc vuông ngay dòng đầu tiên.
+% - Mã câu phải nằm trong dấu ngoặc vuông ngay dòng đầu tiên. (có thể không có)
 % - Hệ thống sẽ tự bóc tách lời giải \\loigiai{...}
 % ==============================================
 
@@ -2337,9 +2337,9 @@ Nội dung câu hỏi trắc nghiệm (Chọn 1 đáp án đúng) nằm ở đâ
 Nội dung câu hỏi Đúng/Sai nằm ở đây.
 \\choiceTF
 {\\True Ý A đúng}
-{\\False Ý B sai}
+{Ý B sai}
 {\\True Ý C đúng}
-{\\False Ý D sai}
+{Ý D sai}
 \\loigiai{
         \\begin{itemchoice}
 			\\itemch Đây là lời giải cho ý 1.\\
@@ -2355,7 +2355,7 @@ Nội dung câu hỏi Đúng/Sai nằm ở đây.
 % ----------------------------------------------
 \\begin{ex}%[1D1V2-3]
 Nội dung câu hỏi trả lời ngắn nằm ở đây.
-\\shortans{Đáp án ngắn gọn}
+\\shortans[oly]{Đáp án ngắn gọn}
 \\loigiai{
 Đây là lời giải chi tiết cho câu trả lời ngắn.
 }
@@ -2371,7 +2371,7 @@ Nội dung câu hỏi trả lời ngắn nằm ở đây.
     // 4. Tạo thẻ <a> ẩn, gán link ảo và ép click để tải xuống
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Mau_Upload_De_Thi_ID6.tex"; // Tên file khi lưu về máy
+    a.download = "Mau_Upload_De_Thi.tex"; // Tên file khi lưu về máy
     document.body.appendChild(a);
     a.click();
 
