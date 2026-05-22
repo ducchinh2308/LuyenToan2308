@@ -2582,13 +2582,14 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 }
 
 // ==============================================================
-// Hàm 6.13: Đọc file .tex/.txt, bóc tách ID6 và Kiểm tra cấu trúc
+// Hàm 6.13: Kiểm tra file upload (Đã bổ sung chốt chặn Hình Ảnh vật lý)
 // ==============================================================
 window.ham_6_13_kiem_tra_file_upload = function () {
     const fileInput = document.getElementById('upload_file_input');
     const file = fileInput.files[0];
     const btnLuu = document.getElementById('btnLuuHocLieu');
     const khuVucLoi = document.getElementById('khu_vuc_bao_loi_file');
+    const btnCheck = document.getElementById('btn_check_file');
 
     if (!file) {
         khuVucLoi.innerHTML = "❌ Vui lòng chọn file trước khi kiểm tra!";
@@ -2596,7 +2597,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         return;
     }
 
-    const btnCheck = document.getElementById('btn_check_file');
     btnCheck.innerText = "⏳ Đang quét dữ liệu...";
     btnCheck.disabled = true;
 
@@ -2604,32 +2604,48 @@ window.ham_6_13_kiem_tra_file_upload = function () {
     reader.onload = function (e) {
         const content = e.target.result;
 
-        // 1. Dùng Regex để bóc tách các khối \begin{ex} ... \end{ex}
+        // 🌟 1. CHỐT CHẶN: KIỂM TRA HÌNH ẢNH VẬT LÝ (\includegraphics)
+        // Dùng Regex để tìm lệnh chèn ảnh (kể cả khi có khoảng trắng)
+        if (/\\includegraphics/i.test(content)) {
+            khuVucLoi.innerHTML = `❌ <b>PHÁT HIỆN LỖI TƯƠNG THÍCH:</b> File của thầy chứa lệnh <code>\\includegraphics</code>.<br>
+            <i>Hệ thống Web hiện tại yêu cầu 100% Text và Code TikZ thuần. Thầy vui lòng xóa các lệnh chèn ảnh vật lý, lưu file và Upload lại nhé!</i>`;
+            khuVucLoi.style.background = "#f8d7da";
+            khuVucLoi.style.borderLeft = "4px solid #dc3545";
+            khuVucLoi.style.color = "#721c24";
+            khuVucLoi.style.display = 'block';
+
+            // Khóa cứng nút Lưu
+            btnLuu.disabled = true;
+            btnLuu.style.background = "#ccc";
+            btnLuu.style.cursor = "not-allowed";
+            btnLuu.innerText = "⚠️ HÃY SỬA FILE VÀ UPLOAD LẠI";
+
+            btnCheck.innerText = "🔍 Kiểm tra File";
+            btnCheck.disabled = false;
+            return; // Dừng thuật toán ngay lập tức, không bóc tách câu hỏi nữa
+        }
+
+        // 🌟 2. TIẾP TỤC BÓC TÁCH ID6 VÀ PHÂN LOẠI CÂU HỎI NHƯ BÌNH THƯỜNG
         const regexCauHoi = /\\begin\{ex\}([\s\S]*?)\\end\{ex\}/g;
         let match;
         let count = 0;
         let dsTN = [], dsDS = [], dsTLN = [];
         let loiCacCau = [];
 
-        // Khởi tạo/Reset biến RAM để chứa nội dung file chuẩn bị up Github
         window.DuLieuFileDeUpload = [];
 
         while ((match = regexCauHoi.exec(content)) !== null) {
             count++;
-            // Phục hồi lại tags \begin{ex} và \end{ex} vì regex đã cắt mất
             let rawCau = "\\begin{ex}" + match[1] + "\\end{ex}";
-
-            // Lấy dòng đầu tiên để quét tìm ID6
             let phanDau = match[1].split('\n')[0];
             let idMatch = phanDau.match(/\[(.*?)\]/);
             let id6 = idMatch ? idMatch[1].trim() : "";
 
             if (!id6) {
-                loiCacCau.push(`⚠️ Câu thứ ${count} bị thiếu mã ID6 trong ngoặc vuông (VD: %[1D1B2-1]).`);
-                id6 = `NO_ID_${count}`; // Gán tạm để không gãy logic
+                loiCacCau.push(`⚠️ Câu thứ ${count} bị thiếu mã ID6 trong ngoặc vuông.`);
+                id6 = `NO_ID_${count}`;
             }
 
-            // Nhận diện loại câu dựa vào command đặc trưng
             let loaiCau = "TN";
             if (rawCau.includes('\\choiceTF')) {
                 loaiCau = "DS";
@@ -2641,7 +2657,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
                 dsTN.push(id6);
             }
 
-            // Gói gém cất vào RAM chờ Hàm 6.4 đẩy lên Github
             window.DuLieuFileDeUpload.push({
                 id6: id6,
                 loai: loaiCau,
@@ -2649,7 +2664,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             });
         }
 
-        // 2. Báo cáo kết quả lên UI
         btnCheck.innerText = "🔍 Kiểm tra File";
         btnCheck.disabled = false;
 
@@ -2663,33 +2677,29 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         }
 
         if (loiCacCau.length > 0) {
-            khuVucLoi.innerHTML = `⚠️ <b>Phát hiện một số điểm bất thường (${count} câu):</b><br>` + loiCacCau.join("<br>") + "<br><br><i>Hệ thống vẫn cho phép lưu, nhưng thầy nên sửa lại file để chuẩn form ID6 nhé!</i>";
+            khuVucLoi.innerHTML = `⚠️ <b>Phát hiện bất thường (${count} câu):</b><br>` + loiCacCau.join("<br>") + "<br><br><i>Hệ thống vẫn cho phép lưu, nhưng thầy nên sửa file cho chuẩn ID6 nhé!</i>";
             khuVucLoi.style.background = "#fff3cd";
             khuVucLoi.style.borderLeft = "4px solid #ffc107";
             khuVucLoi.style.color = "#856404";
             khuVucLoi.style.display = 'block';
         } else {
-            khuVucLoi.innerHTML = `✅ <b>File chuẩn cấu trúc!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi và phân loại tự động.`;
+            khuVucLoi.innerHTML = `✅ <b>File chuẩn cấu trúc!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi. File đảm bảo không chứa ảnh vật lý.`;
             khuVucLoi.style.background = "#d4edda";
             khuVucLoi.style.borderLeft = "4px solid #28a745";
             khuVucLoi.style.color = "#155724";
             khuVucLoi.style.display = 'block';
         }
 
-        // 3. AUTO-FILL: Đổ danh sách ID6 vào 3 ô Textarea của Cách 2
-        document.getElementById('txtID_TN').value = dsTN.join('\n');
-        document.getElementById('txtID_DS').value = dsDS.join('\n');
-        document.getElementById('txtID_TLN').value = dsTLN.join('\n');
+        let cauTrucStr = [];
+        if (dsTN.length > 0) cauTrucStr.push(`TN:${dsTN.length}`);
+        if (dsDS.length > 0) cauTrucStr.push(`DS:${dsDS.length}`);
+        if (dsTLN.length > 0) cauTrucStr.push(`TLN:${dsTLN.length}`);
 
-        // Kích hoạt hàm tính toán tổng số câu của hệ thống cũ
-        if (typeof ham_6_5_tinh_toan_cau_truc === 'function') {
-            ham_6_5_tinh_toan_cau_truc();
-        }
+        document.getElementById('txtCauTruc').value = cauTrucStr.length > 0 ? cauTrucStr.join(" | ") : "Chưa rõ cấu trúc";
 
-        // 4. MỞ KHÓA NÚT LƯU
         btnLuu.disabled = false;
         btnLuu.style.background = "#28a745";
-        btnLuu.style.cursor = "pointer"; // <--- SỬA LỖI UX TẠI ĐÂY
+        btnLuu.style.cursor = "pointer";
         btnLuu.innerText = "💾 LƯU HỌC LIỆU VÀ ĐẨY LÊN GITHUB";
     };
 
@@ -2698,12 +2708,11 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         khuVucLoi.style.display = 'block';
         btnCheck.innerText = "🔍 Kiểm tra File";
         btnCheck.disabled = false;
-        btnCheck.style.cursor = "pointer"; // Trả lại con trỏ nếu lỗi
+        btnCheck.style.cursor = "pointer";
     };
 
     reader.readAsText(file);
 };
-
 
 
 //LƯU CẬP NHẬT HỌC LIỆU
@@ -3447,316 +3456,6 @@ function ham_7_3_d_cap_nhat_ma_nv() {
     // Ghép lại và hiển thị ra ô Input
     inputMa.value = `NV_${prefix}_${randomStr}`;
 }
-
-//// ==============================================================
-//// Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
-//// (Bổ sung logic phân biệt Bắt buộc / Tự do)
-//// ==============================================================
-//async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
-//    const maNVTrenForm = document.getElementById('add_nv_ma').value;
-//    const tenNV = document.getElementById('add_nv_ten').value.trim();
-//    const loaiNV = document.getElementById('add_nv_loai').value;
-//    const maHL = document.getElementById('add_nv_maHL').value;
-
-//    // 🌟 CHÈN CONSOLE.LOG VÀO ĐÂY ĐỂ BẮT QUẢ TANG:
-//    console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
-
-//    const trangThai = document.getElementById('add_nv_trangthai').value;
-
-
-
-//    // Đọc tính chất bài tập từ Radio button
-//    const tinhChat = document.querySelector('input[name="add_nv_tinhchat"]:checked').value;
-
-//    let tgLamBai = parseInt(document.getElementById('add_nv_thoigian').value) || 0;
-//    let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
-//    let mo = document.getElementById('add_nv_mo').value;
-//    let dong = document.getElementById('add_nv_dong').value;
-//    let dsLopChon = [];
-
-//    // 1. KIỂM TRA ĐẦU VÀO VÀ ĐIỀU CHỈNH THEO TÍNH CHẤT
-//    if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
-//    if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
-
-//    if (tinhChat === "TU_DO") {
-//        // Tự động ép cấu hình "thả ga" cho bài Luyện tập tự do
-//        dsLopChon = ["#LUYEN_TAP_TU_DO#"];
-//        soLuot = 0;   // Vô hạn
-//        dong = null;  // Không hạn chót
-//    } else {
-//        // Nếu là bài bắt buộc, bắt buộc phải chọn Lớp
-//        const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
-//        dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
-//        if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
-
-//        // Kiểm tra logic thời gian đối với bài Bắt buộc
-//        if (mo && dong && new Date(mo) >= new Date(dong)) {
-//            return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
-//        }
-//    }
-
-//    // 2. Lấy thông tin học liệu chung
-//    let quyMo = 0;
-//    let cauTruc = '';
-//    if (maHL !== "KHONG_DUNG") {
-//        const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
-//        if (hlData) {
-//            quyMo = hlData.quy_mo_cau_hoi || 0;
-//            cauTruc = (hlData.metadata && hlData.metadata.cau_truc) ? hlData.metadata.cau_truc : '';
-//        }
-//    }
-
-//    // 3. THU THẬP JSON: Cấu hình Đảo đề
-//    const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
-//    let configDaoDe = { cau: false, abcd: false, ds: false };
-//    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
-//        configDaoDe = { cau: true, abcd: true, ds: false };
-//    } else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) {
-//        configDaoDe = { cau: true, abcd: true, ds: true };
-//    }
-
-//    // 4. THU THẬP JSON: Cấu hình Công bố
-//    const thoiDiem = document.getElementById('add_nv_thoigiano').value;
-//    const mucDo = document.getElementById('add_nv_mucdo').value;
-//    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
-
-//    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
-//        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
-//        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
-//        configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
-//    }
-
-//    btnNode.disabled = true;
-//    btnNode.innerText = "⏳ ĐANG KHỞI TẠO CÁC NHIỆM VỤ...";
-
-//    try {
-//        // Chuẩn bị Tiền tố và Bộ ký tự để sinh mã mới nếu giao nhiều lớp
-//        const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-//        const prefix = "NV_" + (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") + "_";
-
-//        // 🌟 BƯỚC QUAN TRỌNG: TẠO MẢNG DỮ LIỆU TÁCH RIÊNG THEO TỪNG LỚP
-//        const insertPayloads = dsLopChon.map((maLop) => {
-//            let maNV_ChinhThuc = "";
-
-//            if (dsLopChon.length === 1) {
-//                maNV_ChinhThuc = maNVTrenForm;
-//            } else {
-//                let randomStr = '';
-//                for (let i = 0; i < 6; i++) {
-//                    randomStr += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
-//                }
-//                maNV_ChinhThuc = prefix + randomStr;
-//            }
-
-//            return {
-//                ma_nhiem_vu: maNV_ChinhThuc,
-//                ten_nhiem_vu: tenNV,
-//                loai_nhiem_vu: loaiNV,
-//                ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
-//                khoi_lop: document.getElementById('add_nv_khoi').value,
-//                loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
-//                quy_mo_cau_hoi: quyMo,
-//                cau_truc_de: cauTruc,
-//                danh_sach_lop: [maLop],
-//                //danh_sach_lop: JSON.stringify([maLop]), // LƯU Ý: Phải parse thành chuỗi JSON để không lỗi định dạng DB
-//                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
-//                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-//                thoi_gian_lam_bai: tgLamBai,
-//                so_luot_lam_bai: soLuot,
-//                cau_hinh_dap_an: configCongBo,
-//                dao_cau_hoi: configDaoDe,
-//                trang_thai_loi_giai: CFG_NV.FILE_GIAI.CHUA_LENH,
-//                trang_thai: trangThai,
-//                uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
-//                ngay_tao: new Date().toISOString()
-//            };
-//        });
-
-//        // Bắn 1 lúc toàn bộ mảng lên Supabase (Bulk Insert)
-//        const { error } = await _supabase.from('nhiem_vu').insert(insertPayloads);
-
-//        if (error) throw error;
-
-//        if (dsLopChon.length === 1) {
-//            if (tinhChat === "TU_DO") {
-//                alert(`✅ Đã mở phòng LUYỆN TẬP TỰ DO thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-//            } else {
-//                alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-//            }
-//        } else {
-//            alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
-//        }
-
-//        ham_7_1_ve_quan_ly_nhiem_vu();
-
-//    } catch (error) {
-//        alert("Lỗi máy chủ khi tạo nhiệm vụ: " + error.message);
-//        btnNode.disabled = false;
-//        btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
-//    }
-//}
-
-//// ==============================================================
-//// Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
-//// (Bổ sung logic phân biệt Bắt buộc / Tự do và Tự động gom file Lời giải)
-//// ==============================================================
-//async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
-//    const maNVTrenForm = document.getElementById('add_nv_ma').value;
-//    const tenNV = document.getElementById('add_nv_ten').value.trim();
-//    const loaiNV = document.getElementById('add_nv_loai').value;
-//    const maHL = document.getElementById('add_nv_maHL').value;
-
-//    //console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
-
-//    const trangThai = document.getElementById('add_nv_trangthai').value;
-
-//    // Đọc tính chất bài tập từ Radio button
-//    const tinhChatElement = document.querySelector('input[name="add_nv_tinhchat"]:checked');
-//    const tinhChat = tinhChatElement ? tinhChatElement.value : "BAT_BUOC"; // Fallback an toàn
-
-//    let tgLamBai = parseInt(document.getElementById('add_nv_thoigian').value) || 0;
-//    let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
-//    let mo = document.getElementById('add_nv_mo').value;
-//    let dong = document.getElementById('add_nv_dong').value;
-//    let dsLopChon = [];
-
-//    // 1. KIỂM TRA ĐẦU VÀO VÀ ĐIỀU CHỈNH THEO TÍNH CHẤT
-//    if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
-//    if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
-
-//    if (tinhChat === "TU_DO") {
-//        dsLopChon = ["#LUYEN_TAP_TU_DO#"];
-//        soLuot = 0;
-//        dong = null;
-//    } else {
-//        const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
-//        dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
-//        if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
-
-//        if (mo && dong && new Date(mo) >= new Date(dong)) {
-//            return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
-//        }
-//    }
-
-//    // 2. Lấy thông tin học liệu chung
-//    let quyMo = 0;
-//    let cauTruc = '';
-//    if (maHL !== "KHONG_DUNG") {
-//        const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
-//        if (hlData) {
-//            quyMo = hlData.quy_mo_cau_hoi || 0;
-//            cauTruc = (hlData.metadata && hlData.metadata.cau_truc) ? hlData.metadata.cau_truc : '';
-//        }
-//    }
-
-//    // 3. THU THẬP JSON: Cấu hình Đảo đề
-//    const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
-//    let configDaoDe = { cau: false, abcd: false, ds: false };
-//    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
-//        configDaoDe = { cau: true, abcd: true, ds: false };
-//    } else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) {
-//        configDaoDe = { cau: true, abcd: true, ds: true };
-//    }
-
-//    // 4. THU THẬP JSON: Cấu hình Công bố
-//    const thoiDiem = document.getElementById('add_nv_thoigiano').value;
-//    const mucDo = document.getElementById('add_nv_mucdo').value;
-//    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
-
-//    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
-//        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
-//        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
-//        configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
-//    }
-
-//    // =========================================================================
-//    // 🌟 KIỂM TRA LỆNH TỰ ĐỘNG GOM FILE
-//    // =========================================================================
-//    const chkTuyenLenhGom = document.getElementById('add_nv_tu_dong_gom_file');
-//    const isYeuCauGomFile = chkTuyenLenhGom && chkTuyenLenhGom.checked;
-
-//    btnNode.disabled = true;
-//    btnNode.innerText = "⏳ ĐANG KHỞI TẠO CÁC NHIỆM VỤ...";
-
-//    try {
-//        const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-//        const prefix = "NV_" + (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") + "_";
-
-//        const insertPayloads = dsLopChon.map((maLop) => {
-//            let maNV_ChinhThuc = "";
-//            if (dsLopChon.length === 1) {
-//                maNV_ChinhThuc = maNVTrenForm;
-//            } else {
-//                let randomStr = '';
-//                for (let i = 0; i < 6; i++) {
-//                    randomStr += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
-//                }
-//                maNV_ChinhThuc = prefix + randomStr;
-//            }
-
-//            return {
-//                ma_nhiem_vu: maNV_ChinhThuc,
-//                ten_nhiem_vu: tenNV,
-//                loai_nhiem_vu: loaiNV,
-//                ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
-//                khoi_lop: document.getElementById('add_nv_khoi').value,
-//                loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
-//                quy_mo_cau_hoi: quyMo,
-//                cau_truc_de: cauTruc,
-//                danh_sach_lop: [maLop],
-//                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
-//                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
-//                thoi_gian_lam_bai: tgLamBai,
-//                so_luot_lam_bai: soLuot,
-//                cau_hinh_dap_an: configCongBo,
-//                dao_cau_hoi: configDaoDe,
-//                trang_thai_loi_giai: isYeuCauGomFile ? CFG_NV.FILE_GIAI.DANG_XU_LY : CFG_NV.FILE_GIAI.CHUA_LENH, // 🌟 Thay đổi trạng thái gốc
-//                trang_thai: trangThai,
-//                uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
-//                ngay_tao: new Date().toISOString()
-//            };
-//        });
-
-//        // Bắn lên Supabase và LẤY LẠI DANH SÁCH BẢN GHI VỪA TẠO (.select())
-//        const { data: insertedRecords, error } = await _supabase.from('nhiem_vu').insert(insertPayloads).select();
-
-//        if (error) throw error;
-
-//        // =========================================================================
-//        // 🌟 NẾU CÓ CHỌN "GOM FILE TỰ ĐỘNG" VÀ BÀI CÓ HỌC LIỆU
-//        // =========================================================================
-//        if (isYeuCauGomFile && maHL !== "KHONG_DUNG" && insertedRecords && insertedRecords.length > 0) {
-
-//            // CHỈ LẤY ID CỦA NHIỆM VỤ ĐẦU TIÊN để ra lệnh gom (tránh gọi nhiều lần)
-//            const idDaiDienDeGom = insertedRecords[0].id;
-
-//            //console.log(`🚀 Bắt đầu gọi lệnh C# ngầm để gom file cho Học Liệu ${maHL} thông qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
-
-//            // Gọi hàm ra lệnh, truyền tham số thứ 3 là TRUE (isBackground) để chạy ngầm
-//            if (typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
-//                ham_7_10_ra_lenh_tao_file_giai(idDaiDienDeGom, maHL, true);
-//            }
-//        }
-
-//        // Báo cáo thành công
-//        if (dsLopChon.length === 1) {
-//            if (tinhChat === "TU_DO") {
-//                alert(`✅ Đã mở phòng LUYỆN TẬP TỰ DO thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-//            } else {
-//                alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-//            }
-//        } else {
-//            alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
-//        }
-
-//        ham_7_1_ve_quan_ly_nhiem_vu();
-
-//    } catch (error) {
-//        alert("Lỗi máy chủ khi tạo nhiệm vụ: " + error.message);
-//        btnNode.disabled = false;
-//        btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
-//    }
-//}
 
 
 
