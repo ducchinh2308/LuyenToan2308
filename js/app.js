@@ -2102,7 +2102,7 @@ function ham_6_3_hien_form_them_hoc_lieu() {
             <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #17a2b8; border-radius: 8px; background: #e8f4fd;">
                 <h4 style="margin: 0 0 10px 0; color: #0056b3;">📤 CÁCH 1: UPLOAD ĐỀ TỪ FILE (.TEX / .TXT)</h4>
                 <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-                    <button onclick="window.open('${LINK_FILE_MAU}', '_blank')" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">
+                    <button onclick="ham_6_15_tai_file_mau()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">
                         📄 Tải File Mẫu
                     </button>
                     
@@ -2299,6 +2299,88 @@ function ham_6_5_tinh_toan_cau_truc() {
     txtCauTruc.value = mangCauTruc.join(' - ');
 }
 
+
+// ==============================================================
+// Hàm 6.15: Tự động sinh và tải File Mẫu cấu trúc LaTeX (ex_test)
+// ==============================================================
+window.ham_6_15_tai_file_mau = function () {
+    // 1. Soạn sẵn nội dung chuẩn của file mẫu
+    const noiDungMau = `% ==============================================
+% FILE MẪU UPLOAD HỌC LIỆU (ĐỀ THI / CÂU HỎI)
+% Dành cho hệ thống quản lý học liệu ID6
+% ==============================================
+% LƯU Ý: 
+% - Mỗi câu hỏi phải nằm gọn trong cấu trúc \\begin{ex} ... \\end{ex}
+% - Mã ID6 phải nằm trong dấu ngoặc vuông ngay dòng đầu tiên.
+% - Hệ thống sẽ tự bóc tách lời giải \\loigiai{...}
+% ==============================================
+
+% ----------------------------------------------
+% 1. MẪU CÂU TRẮC NGHIỆM (1 ĐÁP ÁN ĐÚNG)
+% ----------------------------------------------
+\\begin{ex}%[1D1N2-1]
+Nội dung câu hỏi trắc nghiệm (Chọn 1 đáp án đúng) nằm ở đây.
+\\choice
+{Đáp án A sai}
+{\\True Đáp án B đúng}
+{Đáp án C sai}
+{Đáp án D sai}
+\\loigiai{
+Đây là lời giải chi tiết của câu trắc nghiệm.
+}
+\\end{ex}
+
+% ----------------------------------------------
+% 2. MẪU CÂU ĐÚNG / SAI (Gói \\choiceTF)
+% ----------------------------------------------
+\\begin{ex}%[1D1H2-2]
+Nội dung câu hỏi Đúng/Sai nằm ở đây.
+\\choiceTF
+{\\True Ý A đúng}
+{\\False Ý B sai}
+{\\True Ý C đúng}
+{\\False Ý D sai}
+\\loigiai{
+        \\begin{itemchoice}
+			\\itemch Đây là lời giải cho ý 1.\\
+            \\itemch Đây là lời giải cho ý 2.\\
+            \\itemch Đây là lời giải cho ý 3.\\
+            \\itemch Đây là lời giải cho ý 4.\\
+		\\end{itemchoice}
+}
+\\end{ex}
+
+% ----------------------------------------------
+% 3. MẪU CÂU TRẢ LỜI NGẮN (Gói \\shortans)
+% ----------------------------------------------
+\\begin{ex}%[1D1V2-3]
+Nội dung câu hỏi trả lời ngắn nằm ở đây.
+\\shortans{Đáp án ngắn gọn}
+\\loigiai{
+Đây là lời giải chi tiết cho câu trả lời ngắn.
+}
+\\end{ex}
+`;
+
+    // 2. Chuyển đổi nội dung thành Blob (Gói dữ liệu nhị phân)
+    const blob = new Blob([noiDungMau], { type: "text/plain;charset=utf-8" });
+
+    // 3. Tạo một đường link ảo trong RAM trình duyệt
+    const url = URL.createObjectURL(blob);
+
+    // 4. Tạo thẻ <a> ẩn, gán link ảo và ép click để tải xuống
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Mau_Upload_De_Thi_ID6.tex"; // Tên file khi lưu về máy
+    document.body.appendChild(a);
+    a.click();
+
+    // 5. Dọn dẹp RAM ngay sau khi tải xong
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+};
+
+
 // ==============================================================
 // Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA) - TƯƠNG THÍCH NGƯỢC
 // ==============================================================
@@ -2460,6 +2542,127 @@ function ham_6_xoa_cau_truc_tiep(btn) {
     // 3. Cập nhật lại nhãn "Tổng: X câu" trên tiêu đề
     document.getElementById('lblSoCauHienTai').innerText = `Tổng: ${rows.length} câu`;
 }
+
+// ==============================================================
+// Hàm 6.13: Đọc file .tex/.txt, bóc tách ID6 và Kiểm tra cấu trúc
+// ==============================================================
+window.ham_6_13_kiem_tra_file_upload = function () {
+    const fileInput = document.getElementById('upload_file_input');
+    const file = fileInput.files[0];
+    const btnLuu = document.getElementById('btnLuuHocLieu');
+    const khuVucLoi = document.getElementById('khu_vuc_bao_loi_file');
+
+    if (!file) {
+        khuVucLoi.innerHTML = "❌ Vui lòng chọn file trước khi kiểm tra!";
+        khuVucLoi.style.display = 'block';
+        return;
+    }
+
+    const btnCheck = document.getElementById('btn_check_file');
+    btnCheck.innerText = "⏳ Đang quét dữ liệu...";
+    btnCheck.disabled = true;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const content = e.target.result;
+
+        // 1. Dùng Regex để bóc tách các khối \begin{ex} ... \end{ex}
+        const regexCauHoi = /\\begin\{ex\}([\s\S]*?)\\end\{ex\}/g;
+        let match;
+        let count = 0;
+        let dsTN = [], dsDS = [], dsTLN = [];
+        let loiCacCau = [];
+
+        // Khởi tạo/Reset biến RAM để chứa nội dung file chuẩn bị up Github
+        window.DuLieuFileDeUpload = [];
+
+        while ((match = regexCauHoi.exec(content)) !== null) {
+            count++;
+            // Phục hồi lại tags \begin{ex} và \end{ex} vì regex đã cắt mất
+            let rawCau = "\\begin{ex}" + match[1] + "\\end{ex}";
+
+            // Lấy dòng đầu tiên để quét tìm ID6
+            let phanDau = match[1].split('\n')[0];
+            let idMatch = phanDau.match(/\[(.*?)\]/);
+            let id6 = idMatch ? idMatch[1].trim() : "";
+
+            if (!id6) {
+                loiCacCau.push(`⚠️ Câu thứ ${count} bị thiếu mã ID6 trong ngoặc vuông (VD: %[1D1B2-1]).`);
+                id6 = `NO_ID_${count}`; // Gán tạm để không gãy logic
+            }
+
+            // Nhận diện loại câu dựa vào command đặc trưng
+            let loaiCau = "TN";
+            if (rawCau.includes('\\choiceTF')) {
+                loaiCau = "DS";
+                dsDS.push(id6);
+            } else if (rawCau.includes('\\shortans')) {
+                loaiCau = "TLN";
+                dsTLN.push(id6);
+            } else {
+                dsTN.push(id6);
+            }
+
+            // Gói gém cất vào RAM chờ Hàm 6.4 đẩy lên Github
+            window.DuLieuFileDeUpload.push({
+                id6: id6,
+                loai: loaiCau,
+                noi_dung: rawCau
+            });
+        }
+
+        // 2. Báo cáo kết quả lên UI
+        btnCheck.innerText = "🔍 Kiểm tra File";
+        btnCheck.disabled = false;
+
+        if (count === 0) {
+            khuVucLoi.innerHTML = "❌ Không tìm thấy câu hỏi nào! Thầy hãy kiểm tra xem file có chứa cấu trúc <b>\\begin{ex} ... \\end{ex}</b> không nhé.";
+            khuVucLoi.style.background = "#fff3cd";
+            khuVucLoi.style.borderLeft = "4px solid #dc3545";
+            khuVucLoi.style.color = "#856404";
+            khuVucLoi.style.display = 'block';
+            return;
+        }
+
+        if (loiCacCau.length > 0) {
+            khuVucLoi.innerHTML = `⚠️ <b>Phát hiện một số điểm bất thường (${count} câu):</b><br>` + loiCacCau.join("<br>") + "<br><br><i>Hệ thống vẫn cho phép lưu, nhưng thầy nên sửa lại file để chuẩn form ID6 nhé!</i>";
+            khuVucLoi.style.background = "#fff3cd";
+            khuVucLoi.style.borderLeft = "4px solid #ffc107";
+            khuVucLoi.style.color = "#856404";
+            khuVucLoi.style.display = 'block';
+        } else {
+            khuVucLoi.innerHTML = `✅ <b>File chuẩn cấu trúc!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi và phân loại tự động.`;
+            khuVucLoi.style.background = "#d4edda";
+            khuVucLoi.style.borderLeft = "4px solid #28a745";
+            khuVucLoi.style.color = "#155724";
+            khuVucLoi.style.display = 'block';
+        }
+
+        // 3. AUTO-FILL: Đổ danh sách ID6 vào 3 ô Textarea của Cách 2
+        document.getElementById('txtID_TN').value = dsTN.join('\n');
+        document.getElementById('txtID_DS').value = dsDS.join('\n');
+        document.getElementById('txtID_TLN').value = dsTLN.join('\n');
+
+        // Kích hoạt hàm tính toán tổng số câu của hệ thống cũ
+        if (typeof ham_6_5_tinh_toan_cau_truc === 'function') {
+            ham_6_5_tinh_toan_cau_truc();
+        }
+
+        // 4. MỞ KHÓA NÚT LƯU
+        btnLuu.disabled = false;
+        btnLuu.style.background = "#28a745";
+        btnLuu.innerText = "💾 LƯU HỌC LIỆU VÀ ĐẨY LÊN GITHUB";
+    };
+
+    reader.onerror = function () {
+        khuVucLoi.innerHTML = "❌ Lỗi trình duyệt không thể đọc được file này!";
+        khuVucLoi.style.display = 'block';
+        btnCheck.innerText = "🔍 Kiểm tra File";
+        btnCheck.disabled = false;
+    };
+
+    reader.readAsText(file);
+};
 
 
 
