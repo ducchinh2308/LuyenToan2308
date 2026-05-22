@@ -1,0 +1,40 @@
+{
+    "ma_de": "HL_DE_ADVOZWK",
+    "ten_de": "test-học liệu upload",
+    "ngay_tao_file": "2026-05-22T22:35:17.774Z",
+    "nguon_phat_hanh": "Web_Upload_System",
+    "danh_sach_cau_hoi": [
+        {
+            "ma_cau_hoi": "q_bf7bed7fe8",
+            "ma_goc": "3821-273",
+            "ma_loi_giai": "sol_136bff9d1d",
+            "id6": "2H5N1-2",
+            "kieu_cau": "TN",
+            "cau_dan": "Biết $\\displaystyle \\int_1^3 \\frac{x+2}{x} dx = a + b \\ln c$, với $a, b, c \\in \\mathbb{Z}, c < 9$. Tính tổng $S = a+b+c$.",
+            "paA": "$S = 7$",
+            "paB": "$S = 5$",
+            "paC": "$S = 8$",
+            "paD": "$S = 6$"
+        },
+        {
+            "ma_cau_hoi": "q_5883538b0d",
+            "ma_goc": "9738-335",
+            "ma_loi_giai": "sol_fa42ba597c",
+            "id6": "0H9H1-2",
+            "kieu_cau": "DS",
+            "cau_dan": "Trong mặt phẳng tọa độ $Oxy$, cho các vectơ $\\vec{a}=(3;-1)$, $\\vec{b}=(2;2)$ và $\\vec{c}=(0;-2)$. Xét tính đúng, sai của các mệnh đề sau:",
+            "paA": "$2\\vec{a}-\\vec{b}-3\\vec{c}=(4;2)$",
+            "paB": "Vectơ $\\vec{e}=(-3;1)$ cùng phương, ngược hướng với vectơ $\\vec{a}$",
+            "paC": "Vectơ $\\vec{f}=(1;1)$ cùng phương, cùng hướng với vectơ $\\vec{b}$",
+            "paD": "$\\vec{a}=\\vec{b}-\\dfrac{3}{2}\\vec{c}$"
+        },
+        {
+            "ma_cau_hoi": "q_23965b2ec2",
+            "ma_goc": "3012-972",
+            "ma_loi_giai": "sol_680cf52b9f",
+            "id6": "2H5N1-2",
+            "kieu_cau": "TLN",
+            "cau_dan": "Cho $F(x)$ là một nguyên hàm của hàm số $f(x) = 2^x + x + 1$. Biết $F(0) = 1$. Tính $|F(-1)|$ (kết quả làm tròn đến hàng phần trăm)."
+        }
+    ]
+}
