@@ -1949,26 +1949,27 @@ function ham_6_3_hien_form_them_hoc_lieu() {
                 TẠO HỌC LIỆU / ĐỀ THI MỚI
             </h3>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div>
-                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">Mã định danh (Tự động):</label>
-                    <input type="text" id="txtMaHocLieu" value="${maHLBanDau}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border: 1px solid #ddd; border-radius: 6px; font-weight: bold; color: #d35400; cursor: not-allowed;">
+                    <label style="font-weight: bold; font-size: 13px; color: #d35400;">Mã định danh:</label>
+                    <input type="text" id="txtMaHocLieu" value="${maHLBanDau}" readonly style="width: 100%; padding: 8px; background: #f1f3f4; border: 1px solid #ddd; border-radius: 6px; font-weight: bold; color: #d35400; cursor: not-allowed;">
                 </div>
-
                 <div>
-                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Phân loại học liệu:</label>
-                    <select id="selLoaiKiemTra" onchange="ham_6_3_b_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                    <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">Phân loại:</label>
+                    <select id="selPhanLoaiHL" onchange="ham_6_3_b_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 8px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
                         <option value="DE">Đề thi thử / Chính thức</option>
                         <option value="KT">Bài kiểm tra định kỳ</option>
                         <option value="TL">Tài liệu / Bài tập tự luyện</option>
-                        <option value="BG">Bài giảng (Slide/PDF)</option>
-                        <option value="VD">Video bài giảng</option>
+                        <option value="BG">Bài giảng</option>
                     </select>
                 </div>
-
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Khối lớp:</label>
-                    <select id="selKhoiLopHL" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                    <label style="font-weight: bold; font-size: 13px;">Loại KT (VD: GK1):</label>
+                    <input type="text" id="txtLoaiKiemTra" placeholder="VD: GK1, KS..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
+                </div>
+                <div>
+                    <label style="font-weight: bold; font-size: 13px;">Khối lớp:</label>
+                    <select id="selKhoiLopHL" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
                         <option value="12">Khối 12</option>
                         <option value="11">Khối 11</option>
                         <option value="10">Khối 10</option>
@@ -1976,27 +1977,25 @@ function ham_6_3_hien_form_them_hoc_lieu() {
                     </select>
                 </div>
 
-                <div style="grid-column: span 3;">
-                    <label style="font-weight: bold; font-size: 14px;">Tên Học liệu / Đề thi (*):</label>
-                    <input type="text" id="txtTenHocLieu" placeholder="Nhập tên mô tả cho học liệu hoặc đề thi..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
+                <div style="grid-column: span 4;">
+                    <label style="font-weight: bold; font-size: 13px;">Tên Học liệu / Đề thi (*):</label>
+                    <input type="text" id="txtTenHocLieu" placeholder="Nhập tên mô tả cho học liệu hoặc đề thi..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
                 </div>
 
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Thời gian làm bài (Phút):</label>
-                    <input type="number" id="numThoiGian" value="0" min="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
+                    <label style="font-weight: bold; font-size: 13px;">Thời gian (Phút):</label>
+                    <input type="number" id="numThoiGian" value="0" min="0" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
                 </div>
-
                 <div>
-                    <label style="font-weight: bold; font-size: 14px;">Trạng thái lưu trữ:</label>
-                    <select id="selTrangThaiHL" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                    <label style="font-weight: bold; font-size: 13px;">Trạng thái:</label>
+                    <select id="selTrangThaiHL" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="noi_bo" selected>Nội bộ (Đóng)</option>
                         <option value="cong_khai">Công khai (Mở)</option>
-                        <option value="noi_bo">Nội bộ (Đóng)</option>
                     </select>
                 </div>
-
-                <div>
-                    <label style="font-weight: bold; font-size: 14px; color: #6f42c1;">Cấu trúc (Tự động):</label>
-                    <input type="text" id="txtCauTruc" readonly placeholder="Hệ thống tự nhận diện..." style="width: 100%; padding: 10px; background: #f8fbff; border: 1px dotted #6f42c1; border-radius: 6px; font-weight: bold; color: #6f42c1;">
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: bold; font-size: 13px; color: #6f42c1;">Cấu trúc (Tự động):</label>
+                    <input type="text" id="txtCauTruc" readonly placeholder="Hệ thống tự nhận diện..." style="width: 100%; padding: 8px; background: #f8fbff; border: 1px dotted #6f42c1; border-radius: 6px; font-weight: bold; color: #6f42c1;">
                 </div>
             </div>
 

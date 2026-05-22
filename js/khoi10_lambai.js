@@ -109,3 +109,137 @@ function dichLaTeX(tex) {
 
 
 
+// =========================================================================
+// HỆ THỐNG BĂM LATEX (Dịch từ C# của Thầy Chính sang JS)
+// =========================================================================
+
+// 1. Hàm tìm và bóc tách 4 khối ngoặc nhọn {...} an toàn tuyệt đối
+window.ham_6_16_lay_4_khoi_ngoac_nhon = function (tex, macroName) {
+    const regex = new RegExp('\\\\' + macroName + '\\b');
+    const match = tex.match(regex);
+    if (!match) return null;
+
+    let pos = match.index + match[0].length;
+    let blocks = ["", "", "", ""];
+
+    for (let i = 0; i < 4; i++) {
+        while (pos < tex.length && /\s/.test(tex[pos])) pos++;
+        if (pos >= tex.length || tex[pos] !== '{') return null;
+
+        let start = pos;
+        let depth = 0;
+        for (; pos < tex.length; pos++) {
+            if (tex[pos] === '{') depth++;
+            else if (tex[pos] === '}') {
+                depth--;
+                if (depth === 0) {
+                    blocks[i] = tex.substring(start + 1, pos);
+                    pos++;
+                    break;
+                }
+            }
+        }
+        if (depth > 0) return null; // Lỗi thiếu ngoặc đóng
+    }
+    return blocks;
+};
+
+// 2. Hàm chiết xuất Câu Dẫn, Phương Án và Lời Giải
+window.ham_6_17_phan_tich_cau_hoi_tex = function (texContent) {
+    let ketQua = { cauDan: "", paA: "", paB: "", paC: "", paD: "", loiGiai: "" };
+    if (!texContent || texContent.trim() === "") return ketQua;
+
+    // A. Tách Lời Giải
+    let idxLoiGiai = texContent.indexOf('\\loigiai');
+    let idxEndEx = texContent.indexOf('\\end{ex}');
+    if (idxLoiGiai !== -1) {
+        let startLoiGiai = texContent.indexOf('{', idxLoiGiai) + 1;
+        let endLoiGiai = (idxEndEx !== -1) ? texContent.lastIndexOf('}', idxEndEx) : texContent.lastIndexOf('}');
+
+        if (endLoiGiai > startLoiGiai) {
+            ketQua.loiGiai = texContent.substring(startLoiGiai, endLoiGiai).trim();
+        }
+        texContent = texContent.substring(0, idxLoiGiai);
+    }
+
+    // B. Dọn rác lớp vỏ
+    texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
+    texContent = texContent.replace(/^\s*%.*?(?:\r?\n)/gm, "");
+    texContent = texContent.replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
+    texContent = texContent.replace(/\\noindent\{\\footnotesize.*?\}/g, "");
+
+    // C. Tách Phương án & Câu dẫn
+    let blocksTN = ham_6_16_lay_4_khoi_ngoac_nhon(texContent, "choice");
+    let blocksDS = ham_6_16_lay_4_khoi_ngoac_nhon(texContent, "choiceTF");
+
+    if (blocksTN && blocksTN.length === 4) {
+        ketQua.paA = blocksTN[0].replace(/\\True/g, "").trim();
+        ketQua.paB = blocksTN[1].replace(/\\True/g, "").trim();
+        ketQua.paC = blocksTN[2].replace(/\\True/g, "").trim();
+        ketQua.paD = blocksTN[3].replace(/\\True/g, "").trim();
+        let idxChoice = texContent.indexOf('\\choice');
+        if (idxChoice !== -1) ketQua.cauDan = texContent.substring(0, idxChoice).trim();
+    }
+    else if (blocksDS && blocksDS.length === 4) {
+        ketQua.paA = blocksDS[0].replace(/\\True/g, "").replace(/\\False/g, "").trim();
+        ketQua.paB = blocksDS[1].replace(/\\True/g, "").replace(/\\False/g, "").trim();
+        ketQua.paC = blocksDS[2].replace(/\\True/g, "").replace(/\\False/g, "").trim();
+        ketQua.paD = blocksDS[3].replace(/\\True/g, "").replace(/\\False/g, "").trim();
+        let idxCTF = texContent.indexOf('\\choiceTF');
+        if (idxCTF !== -1) ketQua.cauDan = texContent.substring(0, idxCTF).trim();
+    }
+    else {
+        let idxSA = texContent.indexOf('\\shortans');
+        if (idxSA !== -1) {
+            ketQua.cauDan = texContent.substring(0, idxSA).trim();
+        } else {
+            ketQua.cauDan = texContent.trim();
+        }
+    }
+
+    return ketQua;
+};
+
+// 3. Hệ thống quét Đáp Án chuyên biệt
+window.ham_6_18_trich_xuat_dap_an = function (texContent, kieuCau) {
+    if (!texContent || texContent.trim() === "") return "";
+    kieuCau = (kieuCau || "").trim().toUpperCase();
+
+    if (kieuCau.includes("TN")) {
+        let blocks = ham_6_16_lay_4_khoi_ngoac_nhon(texContent, "choice");
+        if (!blocks) return "";
+        for (let i = 0; i < 4; i++) {
+            if (blocks[i].includes("\\True")) return String.fromCharCode(65 + i); // 65 là mã ASCII của 'A'
+        }
+    }
+    else if (kieuCau.includes("DS")) {
+        let blocks = ham_6_16_lay_4_khoi_ngoac_nhon(texContent, "choiceTF");
+        if (!blocks) return "";
+        let ans = "";
+        for (let i = 0; i < 4; i++) {
+            ans += blocks[i].includes("\\True") ? "T" : "F";
+        }
+        return ans;
+    }
+    else if (kieuCau.includes("TLN") || kieuCau.includes("NGAN")) {
+        const match = texContent.match(/\\shortans(?:\[[^\]]*\])?\s*\{/);
+        if (!match) return "";
+
+        let pos = match.index + match[0].length - 1;
+        let depth = 0, start = pos;
+
+        for (; pos < texContent.length; pos++) {
+            if (texContent[pos] === '{') depth++;
+            else if (texContent[pos] === '}') {
+                depth--;
+                if (depth === 0) {
+                    let inner = texContent.substring(start + 1, pos);
+                    inner = inner.replace(/\{,\}/g, ",");
+                    inner = inner.replace(/[^0-9\-\.,]/g, ""); // Quét rác siêu mạnh
+                    return inner;
+                }
+            }
+        }
+    }
+    return "";
+};
