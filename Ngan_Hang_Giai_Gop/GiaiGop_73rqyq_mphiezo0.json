@@ -1,0 +1,20 @@
+{
+  "thoiGianGhep": "2026-05-22T22:47:05.999Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_b41165af69",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\displaystyle \\int_1^3 \\frac{x+2}{x} dx = \\int_1^3 \\left( 1 + \\frac{2}{x} \\right) dx = (x + 2\\ln|x|) \\Big|_1^3 = 3 + 2\\ln 3 - 1 = 2 + 2\\ln 3$.\\\\\r\n\t\tNên $a=2, b=2, c=3 \\Rightarrow S = a+b+c = 7$."
+    },
+    {
+      "maBaoMat": "sol_636f548be9",
+      "dapAn": "TTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $2\\vec{a} = (6;-2)$ và $3\\vec{c} = (0;-6)$. Khi đó $2\\vec{a} - \\vec{b} - 3\\vec{c} = (6 - 2 - 0; -2 - 2 - (-6)) = (4; 2)$.\r\n\t\t\t\\itemch Ta có $\\vec{e} = (-3;1) = -1 \\cdot (3;-1) = -1\\vec{a}$. Vì hệ số $k = -1 < 0$ nên $\\vec{e}$ cùng phương và ngược hướng với $\\vec{a}$.\r\n\t\t\t\\itemch Ta có $\\vec{f} = (1;1) = \\dfrac{1}{2}(2;2) = \\dfrac{1}{2}\\vec{b}$. Vì hệ số $k = \\dfrac{1}{2} > 0$ nên $\\vec{f}$ cùng phương và cùng hướng với $\\vec{b}$.\r\n\t\t\t\\itemch Ta có $\\vec{b} - \\dfrac{3}{2}\\vec{c} = (2; 2) - \\left(0; -3\\right) = (2; 5)$. Kết quả này khác với tọa độ của $\\vec{a} = (3;-1)$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_687e234d21",
+      "dapAn": "0,22",
+      "loiGiaiHtml": "Theo giả thiết $\\displaystyle F(x) = \\int f(x)\\,dx = \\int (2^x + x + 1)\\,dx = \\frac{2^x}{\\ln 2} + \\frac{x^2}{2} + x + C$.\\\\\r\n\t\tMặt khác $\\displaystyle F(0) = 1 \\Rightarrow \\frac{2^0}{\\ln 2} + C = 1 \\Rightarrow C = 1 - \\frac{1}{\\ln 2}$.\\\\\r\n\t\tKhi đó $\\displaystyle |F(-1)| = \\left| \\frac{2^{-1}}{\\ln 2} + \\frac{1}{2} - 1 + 1 - \\frac{1}{\\ln 2} \\right| = \\left| \\frac{1}{2} - \\frac{1}{2\\ln 2} \\right| \\approx 0,22$."
+    }
+  ]
+}
