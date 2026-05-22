@@ -2119,7 +2119,7 @@ function ham_6_3_hien_form_them_hoc_lieu() {
 
             <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #e67e22; border-radius: 8px; background: #fffaf0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">✍️ CÁCH 2: NHẬP THỦ CÔNG (Dán mã ID6 vào từng ô tương ứng):</label>
+                    <label style="font-weight: bold; font-size: 14px; color: #d35400;">✍️ CÁCH 2: NHẬP THỦ CÔNG (Dán mã ID6 vào từng ô tương ứng) (ĐANG PHÁT TRIỂN):</label>
                     <span id="lblTongCauHoi" style="background: #d35400; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Tổng: 0 câu</span>
                 </div>
                 
