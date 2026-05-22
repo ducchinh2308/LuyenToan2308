@@ -3690,7 +3690,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
 
                 // Gắn trạng thái & Link file vừa quyết định ở trên vào Data
                 trang_thai_loi_giai: finalTrangThaiLoiGiai,
-                url_file_giai: finalUrlFileGiai,
+                //url_file_giai: finalUrlFileGiai,
 
                 trang_thai: trangThai,
                 uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
