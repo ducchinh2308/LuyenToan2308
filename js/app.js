@@ -2268,9 +2268,11 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         // ==============================================================
         // 🌟 CHỐT CHẶN GIAO DỊCH CHỐNG RÁC: ĐẨY FILE ĐỀ LÊN GITHUB TRƯỚC
         // ==============================================================
+        let urlDeGithub = null; // <--- KHAI BÁO BIẾN HỨNG LINK
+
         if (dangChonCach1) {
             btn.innerText = "⏳ ĐANG CHUẨN HÓA VÀ ĐẨY FILE ĐỀ LÊN GITHUB...";
-            await window.ham_6_4_b_day_file_de_len_github(maHL, tenHL, danhSachKhoBau);
+            urlDeGithub = await window.ham_6_4_b_day_file_de_len_github(maHL, tenHL, danhSachKhoBau);
         }
 
         btn.innerText = "⏳ ĐANG ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE...";
@@ -2296,6 +2298,7 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             quy_mo_cau_hoi: quyMo,
             metadata: metadataObj,
             danh_sach_cau_hoi: danhSachKhoBau,
+            url_github: urlDeGithub, // <--- BƠM LINK VÀO CỘT TRÊN SUPABASE
             uid_gv_tao: uidGiaoVien,
             ngay_tao: new Date().toISOString()
         };
@@ -2415,9 +2418,7 @@ window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau)
 
         return linkFileDe; // Trả về link Github Pages cho hàm 6.4 lưu vào Supabase
 
-
-
-
+        
     } catch (err) {
         console.error("Lỗi đẩy file đề Github:", err);
         throw err;
