@@ -2320,8 +2320,114 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 };
 
 
+//// ==============================================================
+//// Hàm 6.4.b: Đẩy DUY NHẤT file đề thi lên Github (Chống rác file giải lẻ)
+//// ==============================================================
+//window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau) {
+//    if (typeof CFG_HE_THONG === 'undefined') {
+//        throw new Error("Lỗi: Không tìm thấy cấu hình CFG_HE_THONG chứa Token Github.");
+//    }
+
+//    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+//    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+//    const BRANCH = "main";
+
+//    // 1. ĐỌC DỮ LIỆU TỪ RAM VÀ TIẾN HÀNH "SÀNG LỌC NỘI DUNG CHỮ"
+//    const dsFileRAM = window.DuLieuFileDeUpload || [];
+//    let dsCauHoiTinhKhiet = [];
+
+//    dsFileRAM.forEach((cau, index) => {
+//        let khoBau = dsKhoBau[index];
+//        if (!khoBau) return;
+
+//        // Tiến hành băm nhỏ văn bản TeX của câu hỏi để lấy Câu dẫn và Phương án
+//        let phanTich = window.ham_6_17_phan_tich_cau_hoi_tex(cau.noi_dung);
+
+//        // Chạy qua bộ lọc dọn rác toán học chuẩn C# cho từng thành phần
+//        let cauDanXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
+//        let paAXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
+//        let paBXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
+//        let paCXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
+//        let paDXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+
+//        // Đóng gói cấu trúc câu hỏi hiển thị cho Web
+//        let objCauHoi = {
+//            ma_cau_hoi: khoBau.ma_cau_hoi,
+//            ma_goc: khoBau.ma_goc,
+//            ma_loi_giai: khoBau.ma_loi_giai, // Lưu vết để sau này map với file giải gộp hoặc giải lẻ
+//            id6: cau.id6,
+//            kieu_cau: cau.loai,
+//            cau_dan: cauDanXửLý
+//        };
+
+//        // Nếu là Trắc nghiệm hoặc Đúng/Sai thì giữ 4 phương án, Trả lời ngắn thì gọt bỏ
+//        if (cau.loai === "TN" || cau.loai === "DS") {
+//            objCauHoi.paA = paAXửLý;
+//            objCauHoi.paB = paBXửLý;
+//            objCauHoi.paC = paCXửLý;
+//            objCauHoi.paD = paDXửLý;
+//        }
+
+//        dsCauHoiTinhKhiet.push(objCauHoi);
+//    });
+
+//    // 2. ĐÓNG GÓI THÀNH CẤU TRÚC ĐỀ THI HOÀN CHỈNH
+//    let objDeThi = {
+//        ma_de: maHL,
+//        ten_de: tenHL,
+//        ngay_tao_file: new Date().toISOString(),
+//        nguon_phat_hanh: "Web_Upload_System",
+//        danh_sach_cau_hoi: dsCauHoiTinhKhiet
+//    };
+
+//    const fileContent = JSON.stringify(objDeThi, null, 4);
+
+//    // 3. ĐẨY LÊN GITHUB BẰNG PHƯƠNG THỨC PUT FILE ĐƠN GIẢN (Y hệt hàm 7.10 của thầy)
+//    const utf8ToBase64 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
+//    const encodedContent = utf8ToBase64(fileContent);
+
+//    const tenFileGithub = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+//    const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
+
+//    try {
+//        const response = await fetch(githubApiUrl, {
+//            method: 'PUT',
+//            headers: {
+//                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+//                'Content-Type': 'application/json'
+//            },
+//            body: JSON.stringify({
+//                message: `Web System: Khởi tạo file cấu trúc cấu hỏi cho đề ${maHL}`,
+//                content: encodedContent
+//            })
+//        });
+
+//        if (!response.ok) {
+//            let errorText = await response.text();
+//            throw new Error(`Github từ chối tiếp nhận file đề: ${errorText}`);
+//        }
+
+//        // 🌟 TỰ ĐỘNG TÍNH TOÁN URL GITHUB PAGES Y HỆT C#
+//        // GITHUB_REPO có dạng "ducchinh2308/LuyenToan2308"
+//        const repoParts = GITHUB_REPO.split('/');
+//        const owner = repoParts[0]; // ducchinh2308
+//        const repoName = repoParts[1]; // LuyenToan2308
+
+//        // Tạo link dạng: https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/MaHL/DeThi_MaHL.json
+//        const linkFileDe = `https://${owner}.github.io/${repoName}/${tenFileGithub}`;
+
+//        return linkFileDe; // Trả về link Github Pages cho hàm 6.4 lưu vào Supabase
+
+
+//    } catch (err) {
+//        console.error("Lỗi đẩy file đề Github:", err);
+//        throw err;
+//    }
+//};
+
+
 // ==============================================================
-// Hàm 6.4.b: Đẩy DUY NHẤT file đề thi lên Github (Chống rác file giải lẻ)
+// Hàm 6.4.b: Đẩy TOÀN BỘ Đề + Giải bằng Tree Commit (Chống rác tuyệt đối)
 // ==============================================================
 window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau) {
     if (typeof CFG_HE_THONG === 'undefined') {
@@ -2330,48 +2436,60 @@ window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau)
 
     const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
     const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
-    const BRANCH = "main";
+    const BRANCH = "main"; // Nhánh mặc định của thầy
 
-    // 1. ĐỌC DỮ LIỆU TỪ RAM VÀ TIẾN HÀNH "SÀNG LỌC NỘI DUNG CHỮ"
+    // =====================================================================
+    // 1. CHUẨN BỊ "KIỆN HÀNG" TRONG RAM (Không tạo rác)
+    // =====================================================================
     const dsFileRAM = window.DuLieuFileDeUpload || [];
     let dsCauHoiTinhKhiet = [];
+    let filesToCommit = []; // Mảng chứa toàn bộ file sẽ đẩy lên 1 lần
 
     dsFileRAM.forEach((cau, index) => {
         let khoBau = dsKhoBau[index];
         if (!khoBau) return;
 
-        // Tiến hành băm nhỏ văn bản TeX của câu hỏi để lấy Câu dẫn và Phương án
+        // Băm file TeX
         let phanTich = window.ham_6_17_phan_tich_cau_hoi_tex(cau.noi_dung);
 
-        // Chạy qua bộ lọc dọn rác toán học chuẩn C# cho từng thành phần
-        let cauDanXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
-        let paAXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
-        let paBXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
-        let paCXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
-        let paDXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+        // Lọc dọn rác toán học (Dùng hàm 6.19)
+        let cauDanXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
+        let paAXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
+        let paBXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
+        let paCXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
+        let paDXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+        let loiGiaiXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.loiGiai);
 
-        // Đóng gói cấu trúc câu hỏi hiển thị cho Web
+        // A. Đóng gói cho File Đề
         let objCauHoi = {
             ma_cau_hoi: khoBau.ma_cau_hoi,
             ma_goc: khoBau.ma_goc,
-            ma_loi_giai: khoBau.ma_loi_giai, // Lưu vết để sau này map với file giải gộp hoặc giải lẻ
+            ma_loi_giai: khoBau.ma_loi_giai,
             id6: cau.id6,
             kieu_cau: cau.loai,
-            cau_dan: cauDanXửLý
+            cau_dan: cauDanXuly
         };
-
-        // Nếu là Trắc nghiệm hoặc Đúng/Sai thì giữ 4 phương án, Trả lời ngắn thì gọt bỏ
         if (cau.loai === "TN" || cau.loai === "DS") {
-            objCauHoi.paA = paAXửLý;
-            objCauHoi.paB = paBXửLý;
-            objCauHoi.paC = paCXửLý;
-            objCauHoi.paD = paDXửLý;
+            objCauHoi.paA = paAXuly; objCauHoi.paB = paBXuly;
+            objCauHoi.paC = paCXuly; objCauHoi.paD = paDXuly;
         }
-
         dsCauHoiTinhKhiet.push(objCauHoi);
+
+        // B. Đóng gói cho File Lời Giải Băm Nhỏ (Thêm vào kiện hàng)
+        let objLoiGiai = {
+            maBaoMat: khoBau.ma_loi_giai,
+            dapAn: khoBau.dap_an,
+            loiGiai: loiGiaiXuly
+        };
+        filesToCommit.push({
+            path: `Ngan_Hang_Loi_Giai/${khoBau.ma_loi_giai}.json`,
+            mode: "100644",
+            type: "blob",
+            content: JSON.stringify(objLoiGiai, null, 4)
+        });
     });
 
-    // 2. ĐÓNG GÓI THÀNH CẤU TRÚC ĐỀ THI HOÀN CHỈNH
+    // C. Đóng gói File Đề (Thêm vào kiện hàng)
     let objDeThi = {
         ma_de: maHL,
         ten_de: tenHL,
@@ -2379,49 +2497,78 @@ window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau)
         nguon_phat_hanh: "Web_Upload_System",
         danh_sach_cau_hoi: dsCauHoiTinhKhiet
     };
+    const tenFileDeGithub = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+    filesToCommit.push({
+        path: tenFileDeGithub,
+        mode: "100644",
+        type: "blob",
+        content: JSON.stringify(objDeThi, null, 4)
+    });
 
-    const fileContent = JSON.stringify(objDeThi, null, 4);
-
-    // 3. ĐẨY LÊN GITHUB BẰNG PHƯƠNG THỨC PUT FILE ĐƠN GIẢN (Y hệt hàm 7.10 của thầy)
-    const utf8ToBase64 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
-    const encodedContent = utf8ToBase64(fileContent);
-
-    const tenFileGithub = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
-    const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
+    // =====================================================================
+    // 2. GỌI API TREE COMMIT (Bắn 1 phát lên hết)
+    // =====================================================================
+    const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+    const headers = {
+        "Authorization": `token ${GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+    };
 
     try {
-        const response = await fetch(githubApiUrl, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                'Content-Type': 'application/json'
-            },
+        // B1: Lấy mã SHA của nhánh main hiện tại (Chốt sổ vị trí)
+        let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+        if (!res.ok) throw new Error("Không truy cập được nhánh Github.");
+        let data = await res.json();
+        let baseCommitSha = data.object.sha;
+
+        // B2: Lấy mã SHA của Cây dữ liệu hiện tại
+        res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+        data = await res.json();
+        let baseTreeSha = data.tree.sha;
+
+        // B3: Tạo Cây mới (Trộn kiện hàng của ta vào Cây cũ)
+        res = await fetch(`${baseURL}/git/trees`, {
+            method: "POST", headers,
+            body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+        });
+        if (!res.ok) throw new Error("Không tạo được cấu trúc file trên Github.");
+        data = await res.json();
+        let newTreeSha = data.sha;
+
+        // B4: Ghi danh lịch sử Commit
+        res = await fetch(`${baseURL}/git/commits`, {
+            method: "POST", headers,
             body: JSON.stringify({
-                message: `Web System: Khởi tạo file cấu trúc cấu hỏi cho đề ${maHL}`,
-                content: encodedContent
+                message: `Web System: Tạo đề ${maHL} và băm ${filesToCommit.length - 1} lời giải`,
+                tree: newTreeSha,
+                parents: [baseCommitSha]
             })
         });
+        if (!res.ok) throw new Error("Ghi nhận lịch sử lên Github thất bại.");
+        data = await res.json();
+        let newCommitSha = data.sha;
 
-        if (!response.ok) {
-            let errorText = await response.text();
-            throw new Error(`Github từ chối tiếp nhận file đề: ${errorText}`);
-        }
+        // B5: Chốt hạ (Push) lên nhánh main
+        res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+            method: "PATCH", headers,
+            body: JSON.stringify({ sha: newCommitSha })
+        });
+        if (!res.ok) throw new Error("Đẩy dữ liệu chốt sổ thất bại.");
 
-        // 🌟 TỰ ĐỘNG TÍNH TOÁN URL GITHUB PAGES Y HỆT C#
-        // GITHUB_REPO có dạng "ducchinh2308/LuyenToan2308"
+        // =====================================================================
+        // 3. TẠO URL GITHUB PAGES TRẢ VỀ CHO SUPABASE
+        // =====================================================================
         const repoParts = GITHUB_REPO.split('/');
-        const owner = repoParts[0]; // ducchinh2308
-        const repoName = repoParts[1]; // LuyenToan2308
+        const owner = repoParts[0];
+        const repoName = repoParts[1];
+        const linkFileDe = `https://${owner}.github.io/${repoName}/${tenFileDeGithub}`;
 
-        // Tạo link dạng: https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/MaHL/DeThi_MaHL.json
-        const linkFileDe = `https://${owner}.github.io/${repoName}/${tenFileGithub}`;
+        return linkFileDe;
 
-        return linkFileDe; // Trả về link Github Pages cho hàm 6.4 lưu vào Supabase
-
-        
     } catch (err) {
-        console.error("Lỗi đẩy file đề Github:", err);
-        throw err;
+        console.error("Lỗi Tree Commit Github:", err);
+        throw err; // Ném lỗi ra, hàm 6.4 sẽ chặn lại, không ghi vào Supabase
     }
 };
 
