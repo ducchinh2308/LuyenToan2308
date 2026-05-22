@@ -2683,7 +2683,7 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 }
 
 // ==============================================================
-// Hàm 6.13: Kiểm tra file upload (Đã bổ sung chốt chặn Hình Ảnh vật lý)
+// Hàm 6.13: Kiểm tra file upload (Đã gỡ bỏ kiểm tra ID6)
 // ==============================================================
 window.ham_6_13_kiem_tra_file_upload = function () {
     const fileInput = document.getElementById('upload_file_input');
@@ -2706,7 +2706,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         const content = e.target.result;
 
         // 🌟 1. CHỐT CHẶN: KIỂM TRA HÌNH ẢNH VẬT LÝ (\includegraphics)
-        // Dùng Regex để tìm lệnh chèn ảnh (kể cả khi có khoảng trắng)
         if (/\\includegraphics/i.test(content)) {
             khuVucLoi.innerHTML = `❌ <b>PHÁT HIỆN LỖI TƯƠNG THÍCH:</b> File của thầy chứa lệnh <code>\\includegraphics</code>.<br>
             <i>Hệ thống Web hiện tại yêu cầu 100% Text và Code TikZ thuần. Thầy vui lòng xóa các lệnh chèn ảnh vật lý, lưu file và Upload lại nhé!</i>`;
@@ -2715,7 +2714,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             khuVucLoi.style.color = "#721c24";
             khuVucLoi.style.display = 'block';
 
-            // Khóa cứng nút Lưu
             btnLuu.disabled = true;
             btnLuu.style.background = "#ccc";
             btnLuu.style.cursor = "not-allowed";
@@ -2723,39 +2721,35 @@ window.ham_6_13_kiem_tra_file_upload = function () {
 
             btnCheck.innerText = "🔍 Kiểm tra File";
             btnCheck.disabled = false;
-            return; // Dừng thuật toán ngay lập tức, không bóc tách câu hỏi nữa
+            return;
         }
 
-        // 🌟 2. TIẾP TỤC BÓC TÁCH ID6 VÀ PHÂN LOẠI CÂU HỎI NHƯ BÌNH THƯỜNG
+        // 🌟 2. BÓC TÁCH VÀ PHÂN LOẠI CÂU HỎI (BỎ CẢNH BÁO ID6)
         const regexCauHoi = /\\begin\{ex\}([\s\S]*?)\\end\{ex\}/g;
         let match;
         let count = 0;
         let dsTN = [], dsDS = [], dsTLN = [];
-        let loiCacCau = [];
 
         window.DuLieuFileDeUpload = [];
 
         while ((match = regexCauHoi.exec(content)) !== null) {
             count++;
             let rawCau = "\\begin{ex}" + match[1] + "\\end{ex}";
+
+            // Âm thầm lấy ID6 nếu có, không có thì để rỗng
             let phanDau = match[1].split('\n')[0];
             let idMatch = phanDau.match(/\[(.*?)\]/);
             let id6 = idMatch ? idMatch[1].trim() : "";
 
-            if (!id6) {
-                loiCacCau.push(`⚠️ Câu thứ ${count} bị thiếu mã ID6 trong ngoặc vuông.`);
-                id6 = `NO_ID_${count}`;
-            }
-
             let loaiCau = "TN";
             if (rawCau.includes('\\choiceTF')) {
                 loaiCau = "DS";
-                dsDS.push(id6);
+                dsDS.push(count);
             } else if (rawCau.includes('\\shortans')) {
                 loaiCau = "TLN";
-                dsTLN.push(id6);
+                dsTLN.push(count);
             } else {
-                dsTN.push(id6);
+                dsTN.push(count);
             }
 
             window.DuLieuFileDeUpload.push({
@@ -2777,19 +2771,12 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             return;
         }
 
-        if (loiCacCau.length > 0) {
-            khuVucLoi.innerHTML = `⚠️ <b>Phát hiện bất thường (${count} câu):</b><br>` + loiCacCau.join("<br>") + "<br><br><i>Hệ thống vẫn cho phép lưu, nhưng thầy nên sửa file cho chuẩn ID6 nhé!</i>";
-            khuVucLoi.style.background = "#fff3cd";
-            khuVucLoi.style.borderLeft = "4px solid #ffc107";
-            khuVucLoi.style.color = "#856404";
-            khuVucLoi.style.display = 'block';
-        } else {
-            khuVucLoi.innerHTML = `✅ <b>File chuẩn cấu trúc!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi. File đảm bảo không chứa ảnh vật lý.`;
-            khuVucLoi.style.background = "#d4edda";
-            khuVucLoi.style.borderLeft = "4px solid #28a745";
-            khuVucLoi.style.color = "#155724";
-            khuVucLoi.style.display = 'block';
-        }
+        // Bỏ qua mảng báo lỗi, chốt hiển thị thành công luôn
+        khuVucLoi.innerHTML = `✅ <b>File hợp lệ!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi. File đảm bảo không chứa ảnh vật lý.`;
+        khuVucLoi.style.background = "#d4edda";
+        khuVucLoi.style.borderLeft = "4px solid #28a745";
+        khuVucLoi.style.color = "#155724";
+        khuVucLoi.style.display = 'block';
 
         let cauTrucStr = [];
         if (dsTN.length > 0) cauTrucStr.push(`TN:${dsTN.length}`);
@@ -2814,7 +2801,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
 
     reader.readAsText(file);
 };
-
 
 //LƯU CẬP NHẬT HỌC LIỆU
 async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
