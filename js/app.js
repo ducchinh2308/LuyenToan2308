@@ -2683,7 +2683,7 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 }
 
 // ==============================================================
-// Hàm 6.13: Kiểm tra file upload (Đã gỡ bỏ kiểm tra ID6)
+// Hàm 6.13: Kiểm tra file upload (Đã fix lỗi chặn nhầm dòng comment %)
 // ==============================================================
 window.ham_6_13_kiem_tra_file_upload = function () {
     const fileInput = document.getElementById('upload_file_input');
@@ -2705,10 +2705,16 @@ window.ham_6_13_kiem_tra_file_upload = function () {
     reader.onload = function (e) {
         const content = e.target.result;
 
-        // 🌟 1. CHỐT CHẶN: KIỂM TRA HÌNH ẢNH VẬT LÝ (\includegraphics)
-        if (/\\includegraphics/i.test(content)) {
-            khuVucLoi.innerHTML = `❌ <b>PHÁT HIỆN LỖI TƯƠNG THÍCH:</b> File của thầy chứa lệnh <code>\\includegraphics</code>.<br>
-            <i>Hệ thống Web hiện tại yêu cầu 100% Text và Code TikZ thuần. Thầy vui lòng xóa các lệnh chèn ảnh vật lý, lưu file và Upload lại nhé!</i>`;
+        // 🌟 1. CHỐT CHẶN: KIỂM TRA HÌNH ẢNH VẬT LÝ (BỎ QUA DÒNG COMMENT)
+        // Regex giải thích: 
+        // ^             : Bắt đầu mỗi dòng (nhờ cờ m)
+        // (?:[^%\r\n]|\\%)* : Đi qua các ký tự không phải dấu % (hoặc là ký tự \% hợp lệ của LaTeX)
+        // \\includegraphics   : Đụng phải lệnh chèn ảnh
+        const coHinhAnhVatLy = /^(?:[^%\r\n]|\\%)*\\includegraphics/im.test(content);
+
+        if (coHinhAnhVatLy) {
+            khuVucLoi.innerHTML = `❌ <b>PHÁT HIỆN LỖI TƯƠNG THÍCH:</b> File của thầy chứa lệnh <code>\\includegraphics</code> đang hoạt động.<br>
+            <i>Hệ thống Web hiện tại yêu cầu 100% Text và Code TikZ thuần. Thầy vui lòng xóa (hoặc thêm dấu % để comment) các lệnh chèn ảnh vật lý, sau đó lưu file và Upload lại nhé!</i>`;
             khuVucLoi.style.background = "#f8d7da";
             khuVucLoi.style.borderLeft = "4px solid #dc3545";
             khuVucLoi.style.color = "#721c24";
@@ -2724,7 +2730,7 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             return;
         }
 
-        // 🌟 2. BÓC TÁCH VÀ PHÂN LOẠI CÂU HỎI (BỎ CẢNH BÁO ID6)
+        // 🌟 2. BÓC TÁCH VÀ PHÂN LOẠI CÂU HỎI
         const regexCauHoi = /\\begin\{ex\}([\s\S]*?)\\end\{ex\}/g;
         let match;
         let count = 0;
@@ -2736,7 +2742,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             count++;
             let rawCau = "\\begin{ex}" + match[1] + "\\end{ex}";
 
-            // Âm thầm lấy ID6 nếu có, không có thì để rỗng
             let phanDau = match[1].split('\n')[0];
             let idMatch = phanDau.match(/\[(.*?)\]/);
             let id6 = idMatch ? idMatch[1].trim() : "";
@@ -2771,8 +2776,7 @@ window.ham_6_13_kiem_tra_file_upload = function () {
             return;
         }
 
-        // Bỏ qua mảng báo lỗi, chốt hiển thị thành công luôn
-        khuVucLoi.innerHTML = `✅ <b>File hợp lệ!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi. File đảm bảo không chứa ảnh vật lý.`;
+        khuVucLoi.innerHTML = `✅ <b>File hợp lệ!</b> Đã bóc tách thành công <b>${count}</b> câu hỏi. File đảm bảo an toàn, không chứa ảnh vật lý.`;
         khuVucLoi.style.background = "#d4edda";
         khuVucLoi.style.borderLeft = "4px solid #28a745";
         khuVucLoi.style.color = "#155724";
@@ -2801,7 +2805,6 @@ window.ham_6_13_kiem_tra_file_upload = function () {
 
     reader.readAsText(file);
 };
-
 //LƯU CẬP NHẬT HỌC LIỆU
 async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
