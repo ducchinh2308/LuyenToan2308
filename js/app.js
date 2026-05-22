@@ -2939,7 +2939,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                         <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px;">
                             <input type="checkbox" id="add_nv_tu_dong_gom_file" style="transform: scale(1.3); margin-right: 10px;">
                             <span style="font-size: 14px; font-weight: bold; color: #333;">
-                                🚀 Tự động ra lệnh gom File Lời giải ngay sau khi tạo Nhiệm vụ
+                                🚀 Tự động ra lệnh gom File Lời giải ngay sau khi tạo Nhiệm vụ (nếu đã có file giải thì sử dụng lại)
                             </span>
                         </label>
                         <p style="font-size: 11px; color: #666; margin-top: 5px; font-style: italic; margin-left: 28px;">
@@ -3231,23 +3231,182 @@ function ham_7_3_d_cap_nhat_ma_nv() {
 //    }
 //}
 
+//// ==============================================================
+//// Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
+//// (Bổ sung logic phân biệt Bắt buộc / Tự do và Tự động gom file Lời giải)
+//// ==============================================================
+//async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
+//    const maNVTrenForm = document.getElementById('add_nv_ma').value;
+//    const tenNV = document.getElementById('add_nv_ten').value.trim();
+//    const loaiNV = document.getElementById('add_nv_loai').value;
+//    const maHL = document.getElementById('add_nv_maHL').value;
+
+//    //console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
+
+//    const trangThai = document.getElementById('add_nv_trangthai').value;
+
+//    // Đọc tính chất bài tập từ Radio button
+//    const tinhChatElement = document.querySelector('input[name="add_nv_tinhchat"]:checked');
+//    const tinhChat = tinhChatElement ? tinhChatElement.value : "BAT_BUOC"; // Fallback an toàn
+
+//    let tgLamBai = parseInt(document.getElementById('add_nv_thoigian').value) || 0;
+//    let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
+//    let mo = document.getElementById('add_nv_mo').value;
+//    let dong = document.getElementById('add_nv_dong').value;
+//    let dsLopChon = [];
+
+//    // 1. KIỂM TRA ĐẦU VÀO VÀ ĐIỀU CHỈNH THEO TÍNH CHẤT
+//    if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
+//    if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
+
+//    if (tinhChat === "TU_DO") {
+//        dsLopChon = ["#LUYEN_TAP_TU_DO#"];
+//        soLuot = 0;
+//        dong = null;
+//    } else {
+//        const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
+//        dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
+//        if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
+
+//        if (mo && dong && new Date(mo) >= new Date(dong)) {
+//            return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
+//        }
+//    }
+
+//    // 2. Lấy thông tin học liệu chung
+//    let quyMo = 0;
+//    let cauTruc = '';
+//    if (maHL !== "KHONG_DUNG") {
+//        const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
+//        if (hlData) {
+//            quyMo = hlData.quy_mo_cau_hoi || 0;
+//            cauTruc = (hlData.metadata && hlData.metadata.cau_truc) ? hlData.metadata.cau_truc : '';
+//        }
+//    }
+
+//    // 3. THU THẬP JSON: Cấu hình Đảo đề
+//    const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
+//    let configDaoDe = { cau: false, abcd: false, ds: false };
+//    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
+//        configDaoDe = { cau: true, abcd: true, ds: false };
+//    } else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) {
+//        configDaoDe = { cau: true, abcd: true, ds: true };
+//    }
+
+//    // 4. THU THẬP JSON: Cấu hình Công bố
+//    const thoiDiem = document.getElementById('add_nv_thoigiano').value;
+//    const mucDo = document.getElementById('add_nv_mucdo').value;
+//    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
+
+//    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
+//        const gioCongBo = document.getElementById('add_nv_giocongbo').value;
+//        if (!gioCongBo) return alert("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
+//        configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
+//    }
+
+//    // =========================================================================
+//    // 🌟 KIỂM TRA LỆNH TỰ ĐỘNG GOM FILE
+//    // =========================================================================
+//    const chkTuyenLenhGom = document.getElementById('add_nv_tu_dong_gom_file');
+//    const isYeuCauGomFile = chkTuyenLenhGom && chkTuyenLenhGom.checked;
+
+//    btnNode.disabled = true;
+//    btnNode.innerText = "⏳ ĐANG KHỞI TẠO CÁC NHIỆM VỤ...";
+
+//    try {
+//        const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+//        const prefix = "NV_" + (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") + "_";
+
+//        const insertPayloads = dsLopChon.map((maLop) => {
+//            let maNV_ChinhThuc = "";
+//            if (dsLopChon.length === 1) {
+//                maNV_ChinhThuc = maNVTrenForm;
+//            } else {
+//                let randomStr = '';
+//                for (let i = 0; i < 6; i++) {
+//                    randomStr += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
+//                }
+//                maNV_ChinhThuc = prefix + randomStr;
+//            }
+
+//            return {
+//                ma_nhiem_vu: maNV_ChinhThuc,
+//                ten_nhiem_vu: tenNV,
+//                loai_nhiem_vu: loaiNV,
+//                ma_hoc_lieu: maHL === "KHONG_DUNG" ? null : maHL,
+//                khoi_lop: document.getElementById('add_nv_khoi').value,
+//                loai_kiem_tra: document.getElementById('add_nv_loaiKT').value,
+//                quy_mo_cau_hoi: quyMo,
+//                cau_truc_de: cauTruc,
+//                danh_sach_lop: [maLop],
+//                thoi_gian_mo: mo ? new Date(mo).toISOString() : null,
+//                thoi_gian_dong: dong ? new Date(dong).toISOString() : null,
+//                thoi_gian_lam_bai: tgLamBai,
+//                so_luot_lam_bai: soLuot,
+//                cau_hinh_dap_an: configCongBo,
+//                dao_cau_hoi: configDaoDe,
+//                trang_thai_loi_giai: isYeuCauGomFile ? CFG_NV.FILE_GIAI.DANG_XU_LY : CFG_NV.FILE_GIAI.CHUA_LENH, // 🌟 Thay đổi trạng thái gốc
+//                trang_thai: trangThai,
+//                uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
+//                ngay_tao: new Date().toISOString()
+//            };
+//        });
+
+//        // Bắn lên Supabase và LẤY LẠI DANH SÁCH BẢN GHI VỪA TẠO (.select())
+//        const { data: insertedRecords, error } = await _supabase.from('nhiem_vu').insert(insertPayloads).select();
+
+//        if (error) throw error;
+
+//        // =========================================================================
+//        // 🌟 NẾU CÓ CHỌN "GOM FILE TỰ ĐỘNG" VÀ BÀI CÓ HỌC LIỆU
+//        // =========================================================================
+//        if (isYeuCauGomFile && maHL !== "KHONG_DUNG" && insertedRecords && insertedRecords.length > 0) {
+
+//            // CHỈ LẤY ID CỦA NHIỆM VỤ ĐẦU TIÊN để ra lệnh gom (tránh gọi nhiều lần)
+//            const idDaiDienDeGom = insertedRecords[0].id;
+
+//            //console.log(`🚀 Bắt đầu gọi lệnh C# ngầm để gom file cho Học Liệu ${maHL} thông qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
+
+//            // Gọi hàm ra lệnh, truyền tham số thứ 3 là TRUE (isBackground) để chạy ngầm
+//            if (typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+//                ham_7_10_ra_lenh_tao_file_giai(idDaiDienDeGom, maHL, true);
+//            }
+//        }
+
+//        // Báo cáo thành công
+//        if (dsLopChon.length === 1) {
+//            if (tinhChat === "TU_DO") {
+//                alert(`✅ Đã mở phòng LUYỆN TẬP TỰ DO thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+//            } else {
+//                alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
+//            }
+//        } else {
+//            alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
+//        }
+
+//        ham_7_1_ve_quan_ly_nhiem_vu();
+
+//    } catch (error) {
+//        alert("Lỗi máy chủ khi tạo nhiệm vụ: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
+//    }
+//}
+
+
+
 // ==============================================================
-// Hàm 7.4: Thu thập dữ liệu và TÁCH RIÊNG NHIỆM VỤ THEO LỚP
-// (Bổ sung logic phân biệt Bắt buộc / Tự do và Tự động gom file Lời giải)
+// Hàm 7.4: Thu thập dữ liệu, Kiểm tra File Giải và Tách Nhiệm Vụ
 // ==============================================================
 async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     const maNVTrenForm = document.getElementById('add_nv_ma').value;
     const tenNV = document.getElementById('add_nv_ten').value.trim();
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
-
-    //console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
-
     const trangThai = document.getElementById('add_nv_trangthai').value;
 
-    // Đọc tính chất bài tập từ Radio button
     const tinhChatElement = document.querySelector('input[name="add_nv_tinhchat"]:checked');
-    const tinhChat = tinhChatElement ? tinhChatElement.value : "BAT_BUOC"; // Fallback an toàn
+    const tinhChat = tinhChatElement ? tinhChatElement.value : "BAT_BUOC";
 
     let tgLamBai = parseInt(document.getElementById('add_nv_thoigian').value) || 0;
     let soLuot = parseInt(document.getElementById('add_nv_soluot').value) || 0;
@@ -3255,7 +3414,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     let dong = document.getElementById('add_nv_dong').value;
     let dsLopChon = [];
 
-    // 1. KIỂM TRA ĐẦU VÀO VÀ ĐIỀU CHỈNH THEO TÍNH CHẤT
+    // 1. KIỂM TRA ĐẦU VÀO CƠ BẢN
     if (!tenNV) return alert("❌ Thầy vui lòng nhập Tên nhiệm vụ!");
     if (!maHL) return alert("❌ Thầy chưa chọn Học liệu (Đề thi) kìa!");
 
@@ -3267,15 +3426,13 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         const classCheckboxes = document.querySelectorAll('.chk-lop:checked');
         dsLopChon = Array.from(classCheckboxes).map(chk => chk.value);
         if (dsLopChon.length === 0) return alert("❌ Thầy phải tick chọn ít nhất 1 Lớp để giao bài chứ!");
-
         if (mo && dong && new Date(mo) >= new Date(dong)) {
             return alert("❌ Lỗi thời gian: Kết thúc phải SAU bắt đầu!");
         }
     }
 
     // 2. Lấy thông tin học liệu chung
-    let quyMo = 0;
-    let cauTruc = '';
+    let quyMo = 0, cauTruc = '';
     if (maHL !== "KHONG_DUNG") {
         const hlData = window.tempDsHocLieu.find(hl => hl.ma_hoc_lieu === maHL);
         if (hlData) {
@@ -3284,16 +3441,10 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         }
     }
 
-    // 3. THU THẬP JSON: Cấu hình Đảo đề
+    // 3. THU THẬP CẤU HÌNH ĐẢO VÀ CÔNG BỐ
     const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
-    let configDaoDe = { cau: false, abcd: false, ds: false };
-    if (cheDoDao === CFG_NV.DAO_DE.CO_BAN) {
-        configDaoDe = { cau: true, abcd: true, ds: false };
-    } else if (cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN) {
-        configDaoDe = { cau: true, abcd: true, ds: true };
-    }
+    let configDaoDe = { cau: cheDoDao !== CFG_NV.DAO_DE.KHONG, abcd: cheDoDao !== CFG_NV.DAO_DE.KHONG, ds: cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN };
 
-    // 4. THU THẬP JSON: Cấu hình Công bố
     const thoiDiem = document.getElementById('add_nv_thoigiano').value;
     const mucDo = document.getElementById('add_nv_mucdo').value;
     let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
@@ -3304,30 +3455,54 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
     }
 
-    // =========================================================================
-    // 🌟 KIỂM TRA LỆNH TỰ ĐỘNG GOM FILE
-    // =========================================================================
-    const chkTuyenLenhGom = document.getElementById('add_nv_tu_dong_gom_file');
-    const isYeuCauGomFile = chkTuyenLenhGom && chkTuyenLenhGom.checked;
-
     btnNode.disabled = true;
-    btnNode.innerText = "⏳ ĐANG KHỞI TẠO CÁC NHIỆM VỤ...";
+    btnNode.innerText = "⏳ ĐANG XỬ LÝ DỮ LIỆU...";
 
     try {
+        // =========================================================================
+        // 🌟 4. LOGIC DÒ TÌM & TÁI SỬ DỤNG FILE LỜI GIẢI
+        // =========================================================================
+        const chkTuyenLenhGom = document.getElementById('add_nv_tu_dong_gom_file');
+        const isYeuCauGomFile = chkTuyenLenhGom && chkTuyenLenhGom.checked;
+
+        let finalTrangThaiLoiGiai = CFG_NV.FILE_GIAI.CHUA_LENH;
+        let finalUrlFileGiai = null;
+        let canGoiBotCSharp = false;
+
+        // Nếu thầy có tick chọn Tự động gom (và có dùng học liệu)
+        if (isYeuCauGomFile && maHL !== "KHONG_DUNG") {
+            // Dò thử xem có NV nào dùng Học liệu này mà đã có link giải chưa
+            const { data: nvCu } = await _supabase
+                .from('nhiem_vu')
+                .select('url_file_giai')
+                .eq('ma_hoc_lieu', maHL)
+                .eq('trang_thai_loi_giai', CFG_NV.FILE_GIAI.HOAN_THANH)
+                .not('url_file_giai', 'is', null)
+                .limit(1)
+                .maybeSingle();
+
+            if (nvCu && nvCu.url_file_giai) {
+                // TÌNH HUỐNG 1: ĐÃ CÓ FILE -> TÁI SỬ DỤNG
+                console.log("♻️ Tái sử dụng file giải đã có:", nvCu.url_file_giai);
+                finalTrangThaiLoiGiai = CFG_NV.FILE_GIAI.HOAN_THANH;
+                finalUrlFileGiai = nvCu.url_file_giai;
+                canGoiBotCSharp = false;
+            } else {
+                // TÌNH HUỐNG 2: CHƯA CÓ FILE -> RA LỆNH C# TẠO MỚI
+                console.log("🚀 Chưa có file giải, chuẩn bị gọi C#.");
+                finalTrangThaiLoiGiai = CFG_NV.FILE_GIAI.DANG_XU_LY;
+                canGoiBotCSharp = true;
+            }
+        }
+
+        // =========================================================================
+        // 5. TẠO PAYLOAD VÀ LƯU VÀO DATABASE
+        // =========================================================================
         const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         const prefix = "NV_" + (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") + "_";
 
         const insertPayloads = dsLopChon.map((maLop) => {
-            let maNV_ChinhThuc = "";
-            if (dsLopChon.length === 1) {
-                maNV_ChinhThuc = maNVTrenForm;
-            } else {
-                let randomStr = '';
-                for (let i = 0; i < 6; i++) {
-                    randomStr += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
-                }
-                maNV_ChinhThuc = prefix + randomStr;
-            }
+            let maNV_ChinhThuc = (dsLopChon.length === 1) ? maNVTrenForm : prefix + Array(6).fill(0).map(() => tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length))).join('');
 
             return {
                 ma_nhiem_vu: maNV_ChinhThuc,
@@ -3345,44 +3520,37 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
                 so_luot_lam_bai: soLuot,
                 cau_hinh_dap_an: configCongBo,
                 dao_cau_hoi: configDaoDe,
-                trang_thai_loi_giai: isYeuCauGomFile ? CFG_NV.FILE_GIAI.DANG_XU_LY : CFG_NV.FILE_GIAI.CHUA_LENH, // 🌟 Thay đổi trạng thái gốc
+
+                // Gắn trạng thái & Link file vừa quyết định ở trên vào Data
+                trang_thai_loi_giai: finalTrangThaiLoiGiai,
+                url_file_giai: finalUrlFileGiai,
+
                 trang_thai: trangThai,
                 uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null,
                 ngay_tao: new Date().toISOString()
             };
         });
 
-        // Bắn lên Supabase và LẤY LẠI DANH SÁCH BẢN GHI VỪA TẠO (.select())
+        // Đẩy lên Database
         const { data: insertedRecords, error } = await _supabase.from('nhiem_vu').insert(insertPayloads).select();
-
         if (error) throw error;
 
         // =========================================================================
-        // 🌟 NẾU CÓ CHỌN "GOM FILE TỰ ĐỘNG" VÀ BÀI CÓ HỌC LIỆU
+        // 6. GỌI BOT C# (NẾU RƠI VÀO TÌNH HUỐNG CHƯA CÓ FILE)
         // =========================================================================
-        if (isYeuCauGomFile && maHL !== "KHONG_DUNG" && insertedRecords && insertedRecords.length > 0) {
-
-            // CHỈ LẤY ID CỦA NHIỆM VỤ ĐẦU TIÊN để ra lệnh gom (tránh gọi nhiều lần)
+        if (canGoiBotCSharp && insertedRecords && insertedRecords.length > 0) {
             const idDaiDienDeGom = insertedRecords[0].id;
-
-            //console.log(`🚀 Bắt đầu gọi lệnh C# ngầm để gom file cho Học Liệu ${maHL} thông qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
-
-            // Gọi hàm ra lệnh, truyền tham số thứ 3 là TRUE (isBackground) để chạy ngầm
+            console.log(`📡 Đang đánh thức C# Bot qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
             if (typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
                 ham_7_10_ra_lenh_tao_file_giai(idDaiDienDeGom, maHL, true);
             }
         }
 
         // Báo cáo thành công
-        if (dsLopChon.length === 1) {
-            if (tinhChat === "TU_DO") {
-                alert(`✅ Đã mở phòng LUYỆN TẬP TỰ DO thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-            } else {
-                alert(`✅ Đã giao bài thành công!\nMã nhiệm vụ: ${maNVTrenForm}`);
-            }
-        } else {
-            alert(`✅ Đã tách và giao bài thành công ${dsLopChon.length} nhiệm vụ riêng biệt cho từng lớp!`);
-        }
+        const kieuGiao = (dsLopChon.length === 1 && tinhChat === "TU_DO") ? "phòng LUYỆN TẬP TỰ DO" : "giao bài";
+        const thongBaoFile = finalUrlFileGiai ? "\n♻️ Đã tự động kế thừa File Giải cũ." : (canGoiBotCSharp ? "\n🚀 Đang tạo File Giải gộp dưới nền..." : "");
+
+        alert(`✅ Đã ${kieuGiao} thành công cho ${dsLopChon.length} lớp!${thongBaoFile}`);
 
         ham_7_1_ve_quan_ly_nhiem_vu();
 
@@ -3392,6 +3560,8 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
         btnNode.innerText = "💾 XÁC NHẬN GIAO BÀI";
     }
 }
+
+
 
 // ==============================================================
 // Hàm 7.8: Xóa Nhiệm Vụ (Có cảnh báo an toàn)
