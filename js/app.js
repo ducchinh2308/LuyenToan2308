@@ -2404,7 +2404,20 @@ window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau)
             throw new Error(`Github từ chối tiếp nhận file đề: ${errorText}`);
         }
 
-        return true;
+        // 🌟 TỰ ĐỘNG TÍNH TOÁN URL GITHUB PAGES Y HỆT C#
+        // GITHUB_REPO có dạng "ducchinh2308/LuyenToan2308"
+        const repoParts = GITHUB_REPO.split('/');
+        const owner = repoParts[0]; // ducchinh2308
+        const repoName = repoParts[1]; // LuyenToan2308
+
+        // Tạo link dạng: https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/MaHL/DeThi_MaHL.json
+        const linkFileDe = `https://${owner}.github.io/${repoName}/${tenFileGithub}`;
+
+        return linkFileDe; // Trả về link Github Pages cho hàm 6.4 lưu vào Supabase
+
+
+
+
     } catch (err) {
         console.error("Lỗi đẩy file đề Github:", err);
         throw err;
