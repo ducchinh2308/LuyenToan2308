@@ -2201,12 +2201,11 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN CHUẨN C#
     const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+    // Sinh mã gốc ngẫu nhiên hoàn toàn dạng XXXX-XXX (VD: 8294-512)
     const taoMaGoc = () => {
-        const now = new Date();
-        const yy = now.getFullYear().toString().slice(-2);
-        const mm = (now.getMonth() + 1).toString().padStart(2, '0');
-        const rnn = Math.floor(100 + Math.random() * 900);
-        return `${yy}${mm}-${rnn}`;
+        const xxxx = Math.floor(1000 + Math.random() * 9000); // Sinh 4 số ngẫu nhiên (1000 - 9999)
+        const xxx = Math.floor(100 + Math.random() * 900);    // Sinh 3 số ngẫu nhiên (100 - 999)
+        return `${xxxx}-${xxx}`;
     };
     const taoMaCauHoi = () => "q_" + randomHex(10);
     const taoMaLoiGiai = () => "sol_" + randomHex(10);
