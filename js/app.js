@@ -2184,9 +2184,8 @@ function ham_6_5_tinh_toan_cau_truc() {
 }
 
 
-
 // ==============================================================
-// Hàm 6.4: Lưu Dữ Liệu (Sinh mã ngẫu nhiên chuẩn C# JSON)
+// Hàm 6.4: Lưu Dữ Liệu Học Liệu (Cập nhật chuẩn cột metadata và JSON Danh sách câu hỏi)
 // ==============================================================
 window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
@@ -2200,14 +2199,24 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     if (!tenHL) return Swal.fire('Lỗi', 'Vui lòng nhập tên học liệu!', 'error');
 
-    // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN GIỐNG C# BÊN TRONG TRÌNH DUYỆT
+    // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN CHUẨN C#
     const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-    const taoMaGoc = () => `${Math.floor(1000 + Math.random() * 9000)}-${Math.floor(100 + Math.random() * 900)}`;
+    // Sinh mã gốc dạng xxxx-xxx (VD: 2605-1070)
+    const taoMaGoc = () => {
+        const now = new Date();
+        const yy = now.getFullYear().toString().slice(-2);
+        const mm = (now.getMonth() + 1).toString().padStart(2, '0');
+        const rnn = Math.floor(100 + Math.random() * 900); // 3 số ngẫu nhiên
+        return `${yy}${mm}-${rnn}`;
+    };
     const taoMaCauHoi = () => "q_" + randomHex(10);
     const taoMaLoiGiai = () => "sol_" + randomHex(10);
 
-    let danhSachKhoBau = []; // Đóng gói mảng JSON chuẩn
+    let danhSachKhoBau = [];
     let quyMo = 0;
+
+    // Biến đếm cho metadata
+    let so_tn = 0, so_ds = 0, so_tln = 0;
 
     const dangChonCach1 = document.querySelector('input[name="radCachNhap"]:checked').value === "1";
 
@@ -2218,6 +2227,12 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
         dsFile.forEach(cau => {
             let dapAn = window.ham_6_18_trich_xuat_dap_an(cau.noi_dung, cau.loai);
+
+            // Đếm số lượng theo loại
+            if (cau.loai === "TN") so_tn++;
+            else if (cau.loai === "DS") so_ds++;
+            else if (cau.loai === "TLN" || cau.loai === "NGAN") so_tln++;
+
             danhSachKhoBau.push({
                 dap_an: dapAn,
                 ma_goc: taoMaGoc(),
@@ -2231,9 +2246,14 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         const parseTay = (text, kieu) => {
             if (!text || !text.trim()) return;
             let lines = text.split(/[\n,]/).map(x => x.trim()).filter(x => x);
+
+            if (kieu === "TN") so_tn += lines.length;
+            else if (kieu === "DS") so_ds += lines.length;
+            else if (kieu === "TLN") so_tln += lines.length;
+
             lines.forEach(line => {
                 danhSachKhoBau.push({
-                    dap_an: "", // Nhập tay thì chưa có nội dung gốc để trích xuất đáp án
+                    dap_an: "",
                     ma_goc: taoMaGoc(),
                     ma_cau_hoi: taoMaCauHoi(),
                     ma_loi_giai: taoMaLoiGiai()
@@ -2249,13 +2269,23 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     }
 
     btn.disabled = true;
+    btn.style.cursor = "wait";
     btn.innerText = "⏳ ĐANG LƯU DỮ LIỆU...";
 
     try {
         // ==============================================================
-        // [TẠM THỜI BỎ QUA KHU VỰC GỌI API ĐẨY FILE JSON LÊN GITHUB]
-        // Sẽ bổ sung sau khi xác nhận cơ chế kết nối Token với Github
+        // [KHU VỰC GỌI API ĐẨY FILE JSON LÊN GITHUB SẼ NẰM Ở ĐÂY SAU]
         // ==============================================================
+
+        // 🌟 TẠO CHUỖI METADATA CHUẨN JSON
+        const metadataObj = {
+            so_ds: so_ds,
+            so_tn: so_tn,
+            so_tln: so_tln,
+            cau_truc: cauTruc || `${so_tn}TN | ${so_ds}DS | ${so_tln}TLN`,
+            nguon_tao: dangChonCach1 ? "Web_Upload_File" : "Web_Nhap_Tay",
+            phan_loai_goc: phanLoai
+        };
 
         // ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE SUPABASE
         const payload = {
@@ -2266,9 +2296,10 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             khoi_lop: khoiLop,
             thoi_gian_lam_bai: thoiGian,
             trang_thai: trangThai,
-            cau_truc_de: cauTruc,
+            
             quy_mo_cau_hoi: quyMo,
-            danh_sach_cau_hoi: danhSachKhoBau,
+            metadata: metadataObj, // <--- Bổ sung cột metadata
+            danh_sach_cau_hoi: danhSachKhoBau, // <--- Đã chuẩn cấu trúc JSON
             ngay_tao: new Date().toISOString()
         };
 
@@ -2276,15 +2307,17 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         if (error) throw error;
 
         Swal.fire('Thành công', 'Lưu Học liệu mới vào hệ thống thành công!', 'success');
+
+        btn.style.cursor = "pointer";
         ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (err) {
         Swal.fire('Lỗi', 'Không thể lưu: ' + err.message, 'error');
         btn.disabled = false;
+        btn.style.cursor = "pointer";
         btn.innerText = "💾 LƯU HỌC LIỆU / ĐỀ THI";
     }
 };
-
 
 // Hàm 6.5: Lấy ID từ 3 ô, đếm và tự động tạo chuỗi cấu trúc
 function ham_6_5_tinh_toan_cau_truc() {
