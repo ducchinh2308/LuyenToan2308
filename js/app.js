@@ -3241,7 +3241,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
     const loaiNV = document.getElementById('add_nv_loai').value;
     const maHL = document.getElementById('add_nv_maHL').value;
 
-    console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
+    //console.log("🕵️ MÃ HỌC LIỆU TRÊN FORM LÀ:", maHL);
 
     const trangThai = document.getElementById('add_nv_trangthai').value;
 
@@ -3365,7 +3365,7 @@ async function ham_7_4_luu_nhiem_vu_moi(btnNode) {
             // CHỈ LẤY ID CỦA NHIỆM VỤ ĐẦU TIÊN để ra lệnh gom (tránh gọi nhiều lần)
             const idDaiDienDeGom = insertedRecords[0].id;
 
-            console.log(`🚀 Bắt đầu gọi lệnh C# ngầm để gom file cho Học Liệu ${maHL} thông qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
+            //console.log(`🚀 Bắt đầu gọi lệnh C# ngầm để gom file cho Học Liệu ${maHL} thông qua Nhiệm vụ ID: ${idDaiDienDeGom}`);
 
             // Gọi hàm ra lệnh, truyền tham số thứ 3 là TRUE (isBackground) để chạy ngầm
             if (typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
