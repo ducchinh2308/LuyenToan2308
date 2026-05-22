@@ -2185,7 +2185,7 @@ function ham_6_5_tinh_toan_cau_truc() {
 
 
 // ==============================================================
-// Hàm 6.4: Lưu Dữ Liệu Học Liệu (Fix lỗi Schema Supabase)
+// Hàm 6.4: Quản lý Luồng Lưu dữ liệu kết hợp đẩy File đề Github
 // ==============================================================
 window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
@@ -2199,12 +2199,11 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     if (!tenHL) return Swal.fire('Lỗi', 'Vui lòng nhập tên học liệu!', 'error');
 
-    // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN CHUẨN C#
+    // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN 
     const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-    // Sinh mã gốc ngẫu nhiên hoàn toàn dạng XXXX-XXX (VD: 8294-512)
     const taoMaGoc = () => {
-        const xxxx = Math.floor(1000 + Math.random() * 9000); // Sinh 4 số ngẫu nhiên (1000 - 9999)
-        const xxx = Math.floor(100 + Math.random() * 900);    // Sinh 3 số ngẫu nhiên (100 - 999)
+        const xxxx = Math.floor(1000 + Math.random() * 9000);
+        const xxx = Math.floor(100 + Math.random() * 900);
         return `${xxxx}-${xxx}`;
     };
     const taoMaCauHoi = () => "q_" + randomHex(10);
@@ -2212,12 +2211,11 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     let danhSachKhoBau = [];
     let quyMo = 0;
-
     let so_tn = 0, so_ds = 0, so_tln = 0;
+
     const dangChonCach1 = document.querySelector('input[name="radCachNhap"]:checked').value === "1";
 
     if (dangChonCach1) {
-        // CÁCH 1: XỬ LÝ TỪ FILE UPLOAD (RAM)
         let dsFile = window.DuLieuFileDeUpload || [];
         if (dsFile.length === 0) return Swal.fire('Lỗi', 'Chưa có dữ liệu từ file upload!', 'error');
 
@@ -2237,7 +2235,6 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         });
         quyMo = dsFile.length;
     } else {
-        // CÁCH 2: XỬ LÝ TỪ NHẬP TAY ID6
         const parseTay = (text, kieu) => {
             if (!text || !text.trim()) return;
             let lines = text.split(/[\n,]/).map(x => x.trim()).filter(x => x);
@@ -2265,10 +2262,19 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     btn.disabled = true;
     btn.style.cursor = "wait";
-    btn.innerText = "⏳ ĐANG LƯU DỮ LIỆU...";
+    btn.innerText = "⏳ ĐANG LƯU DỮ LIỆU ĐỀ THI...";
 
     try {
-        // 🌟 TẠO CHUỖI METADATA CHUẨN JSON
+        // ==============================================================
+        // 🌟 CHỐT CHẶN GIAO DỊCH CHỐNG RÁC: ĐẨY FILE ĐỀ LÊN GITHUB TRƯỚC
+        // ==============================================================
+        if (dangChonCach1) {
+            btn.innerText = "⏳ ĐANG CHUẨN HÓA VÀ ĐẨY FILE ĐỀ LÊN GITHUB...";
+            await window.ham_6_4_b_day_file_de_len_github(maHL, tenHL, danhSachKhoBau);
+        }
+
+        btn.innerText = "⏳ ĐANG ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE...";
+
         const metadataObj = {
             so_ds: so_ds,
             so_tn: so_tn,
@@ -2278,10 +2284,8 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             phan_loai_goc: phanLoai
         };
 
-        // Lấy UID Giáo viên đang đăng nhập (Nếu có AppState)
         const uidGiaoVien = (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null;
 
-        // 🌟 ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE SUPABASE (Đã xóa các cột rác)
         const payload = {
             ma_hoc_lieu: maHL,
             ten_hoc_lieu: tenHL,
@@ -2292,25 +2296,122 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             quy_mo_cau_hoi: quyMo,
             metadata: metadataObj,
             danh_sach_cau_hoi: danhSachKhoBau,
-            uid_gv_tao: uidGiaoVien, // Gắn thêm UID theo schema ảnh của thầy
+            uid_gv_tao: uidGiaoVien,
             ngay_tao: new Date().toISOString()
         };
 
         const { error } = await _supabase.from('hoc_lieu').insert([payload]);
         if (error) throw error;
 
-        Swal.fire('Thành công', 'Lưu Học liệu mới vào hệ thống thành công!', 'success');
+        Swal.fire('Thành công', 'Đã lưu cấu trúc đề và đồng bộ GitHub hoàn tất!', 'success');
 
         btn.style.cursor = "pointer";
         ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (err) {
-        Swal.fire('Lỗi', 'Không thể lưu: ' + err.message, 'error');
+        Swal.fire('Lỗi', 'Giao dịch thất bại (Hệ thống sạch, không sinh rác): ' + err.message, 'error');
         btn.disabled = false;
         btn.style.cursor = "pointer";
-        btn.innerText = "💾 LƯU HỌC LIỆU / ĐỀ THI";
+        btn.innerText = "💾 LƯU HỌC LIỆU VÀ ĐẨY LÊN GITHUB";
     }
 };
+
+
+// ==============================================================
+// Hàm 6.4.b: Đẩy DUY NHẤT file đề thi lên Github (Chống rác file giải lẻ)
+// ==============================================================
+window.ham_6_4_b_day_file_de_len_github = async function (maHL, tenHL, dsKhoBau) {
+    if (typeof CFG_HE_THONG === 'undefined') {
+        throw new Error("Lỗi: Không tìm thấy cấu hình CFG_HE_THONG chứa Token Github.");
+    }
+
+    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+    const BRANCH = "main";
+
+    // 1. ĐỌC DỮ LIỆU TỪ RAM VÀ TIẾN HÀNH "SÀNG LỌC NỘI DUNG CHỮ"
+    const dsFileRAM = window.DuLieuFileDeUpload || [];
+    let dsCauHoiTinhKhiet = [];
+
+    dsFileRAM.forEach((cau, index) => {
+        let khoBau = dsKhoBau[index];
+        if (!khoBau) return;
+
+        // Tiến hành băm nhỏ văn bản TeX của câu hỏi để lấy Câu dẫn và Phương án
+        let phanTich = window.ham_6_17_phan_tich_cau_hoi_tex(cau.noi_dung);
+
+        // Chạy qua bộ lọc dọn rác toán học chuẩn C# cho từng thành phần
+        let cauDanXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
+        let paAXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
+        let paBXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
+        let paCXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
+        let paDXửLý = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+
+        // Đóng gói cấu trúc câu hỏi hiển thị cho Web
+        let objCauHoi = {
+            ma_cau_hoi: khoBau.ma_cau_hoi,
+            ma_goc: khoBau.ma_goc,
+            ma_loi_giai: khoBau.ma_loi_giai, // Lưu vết để sau này map với file giải gộp hoặc giải lẻ
+            id6: cau.id6,
+            kieu_cau: cau.loai,
+            cau_dan: cauDanXửLý
+        };
+
+        // Nếu là Trắc nghiệm hoặc Đúng/Sai thì giữ 4 phương án, Trả lời ngắn thì gọt bỏ
+        if (cau.loai === "TN" || cau.loai === "DS") {
+            objCauHoi.paA = paAXửLý;
+            objCauHoi.paB = paBXửLý;
+            objCauHoi.paC = paCXửLý;
+            objCauHoi.paD = paDXửLý;
+        }
+
+        dsCauHoiTinhKhiet.push(objCauHoi);
+    });
+
+    // 2. ĐÓNG GÓI THÀNH CẤU TRÚC ĐỀ THI HOÀN CHỈNH
+    let objDeThi = {
+        ma_de: maHL,
+        ten_de: tenHL,
+        ngay_tao_file: new Date().toISOString(),
+        nguon_phat_hanh: "Web_Upload_System",
+        danh_sach_cau_hoi: dsCauHoiTinhKhiet
+    };
+
+    const fileContent = JSON.stringify(objDeThi, null, 4);
+
+    // 3. ĐẨY LÊN GITHUB BẰNG PHƯƠNG THỨC PUT FILE ĐƠN GIẢN (Y hệt hàm 7.10 của thầy)
+    const utf8ToBase64 = (str) => btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
+    const encodedContent = utf8ToBase64(fileContent);
+
+    const tenFileGithub = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+    const githubApiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${tenFileGithub}`;
+
+    try {
+        const response = await fetch(githubApiUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: `Web System: Khởi tạo file cấu trúc cấu hỏi cho đề ${maHL}`,
+                content: encodedContent
+            })
+        });
+
+        if (!response.ok) {
+            let errorText = await response.text();
+            throw new Error(`Github từ chối tiếp nhận file đề: ${errorText}`);
+        }
+
+        return true;
+    } catch (err) {
+        console.error("Lỗi đẩy file đề Github:", err);
+        throw err;
+    }
+};
+
+
 // Hàm 6.5: Lấy ID từ 3 ô, đếm và tự động tạo chuỗi cấu trúc
 function ham_6_5_tinh_toan_cau_truc() {
     const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
