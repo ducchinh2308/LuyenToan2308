@@ -2007,7 +2007,7 @@ function ham_6_3_hien_form_them_hoc_lieu() {
                 </label>
                 <label style="font-weight: bold; font-size: 15px; cursor: pointer; color: #d35400;">
                     <input type="radio" name="radCachNhap" value="2" onchange="ham_6_3_c_chuyen_doi_cach_nhap(2)" style="transform: scale(1.3); margin-right: 8px;">
-                    ✍️ CÁCH 2: NHẬP MÃ THỦ CÔNG (ID6)
+                    ✍️ CÁCH 2: NHẬP MÃ CÂU THỦ CÔNG (câu đã có)
                 </label>
             </div>
 
