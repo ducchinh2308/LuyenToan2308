@@ -2091,21 +2091,18 @@ function ham_6_3_hien_form_them_hoc_lieu() {
 
 
 
-
-
-
-// Hàm 6.3.b: Cập nhật mã định danh tức thì khi đổi Combobox Phân loại
-function ham_6_3_b_cap_nhat_ma_theo_loai() {
-    const loaiChon = document.getElementById('selLoaiKiemTra').value;
+window.ham_6_3_b_cap_nhat_ma_theo_loai = function () {
+    // Dùng ID mới của thẻ Phân Loại
+    const loaiChon = document.getElementById('selPhanLoaiHL').value;
     const maMoi = ham_6_0_sinh_ma_hoc_lieu(loaiChon);
     const txtMa = document.getElementById('txtMaHocLieu');
+
     txtMa.value = maMoi;
 
-    // Hiệu ứng đổi màu nhẹ để báo hiệu mã đã thay đổi
+    // Giữ lại hiệu ứng đổi màu xịn xò của thầy
     txtMa.style.background = '#fff3cd';
     setTimeout(() => { txtMa.style.background = '#f1f3f4'; }, 300);
-}
-
+};
 
 // ==============================================================
 // Hàm 6.3.c: Xử lý hiệu ứng khi chuyển đổi Cách 1 (File) và Cách 2 (Tay)
@@ -2189,62 +2186,105 @@ function ham_6_5_tinh_toan_cau_truc() {
 
 
 
-// Hàm 6.4: Lưu dữ liệu (Đã sửa lỗi không đọc Trạng thái)
-async function ham_6_4_luu_hoc_lieu_moi(btn) {
+// ==============================================================
+// Hàm 6.4: Lưu Dữ Liệu (Sinh mã ngẫu nhiên chuẩn C# JSON)
+// ==============================================================
+window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
     const tenHL = document.getElementById('txtTenHocLieu').value.trim();
+    const phanLoai = document.getElementById('selPhanLoaiHL').value;
+    const loaiKiemTra = document.getElementById('txtLoaiKiemTra').value.trim();
     const khoiLop = document.getElementById('selKhoiLopHL').value;
-    const loaiKT = document.getElementById('selLoaiKiemTra').value;
     const thoiGian = parseInt(document.getElementById('numThoiGian').value) || 0;
-    const cauTruc = document.getElementById('txtCauTruc').value.trim();
-
-    // ĐÃ SỬA: Đọc trạng thái từ ComboBox thầy chọn
     const trangThai = document.getElementById('selTrangThaiHL').value;
+    const cauTruc = document.getElementById('txtCauTruc').value;
 
-    const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
-    const arrTN = bocTach(document.getElementById('txtID_TN').value);
-    const arrDS = bocTach(document.getElementById('txtID_DS').value);
-    const arrTLN = bocTach(document.getElementById('txtID_TLN').value);
+    if (!tenHL) return Swal.fire('Lỗi', 'Vui lòng nhập tên học liệu!', 'error');
 
-    const mangGopChung = [...arrTN, ...arrDS, ...arrTLN];
+    // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN GIỐNG C# BÊN TRONG TRÌNH DUYỆT
+    const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+    const taoMaGoc = () => `${Math.floor(1000 + Math.random() * 9000)}-${Math.floor(100 + Math.random() * 900)}`;
+    const taoMaCauHoi = () => "q_" + randomHex(10);
+    const taoMaLoiGiai = () => "sol_" + randomHex(10);
 
-    if (!tenHL) return alert("Thầy vui lòng nhập Tên Học Liệu!");
+    let danhSachKhoBau = []; // Đóng gói mảng JSON chuẩn
+    let quyMo = 0;
+
+    const dangChonCach1 = document.querySelector('input[name="radCachNhap"]:checked').value === "1";
+
+    if (dangChonCach1) {
+        // CÁCH 1: XỬ LÝ TỪ FILE UPLOAD (RAM)
+        let dsFile = window.DuLieuFileDeUpload || [];
+        if (dsFile.length === 0) return Swal.fire('Lỗi', 'Chưa có dữ liệu từ file upload!', 'error');
+
+        dsFile.forEach(cau => {
+            let dapAn = window.ham_6_18_trich_xuat_dap_an(cau.noi_dung, cau.loai);
+            danhSachKhoBau.push({
+                dap_an: dapAn,
+                ma_goc: taoMaGoc(),
+                ma_cau_hoi: taoMaCauHoi(),
+                ma_loi_giai: taoMaLoiGiai()
+            });
+        });
+        quyMo = dsFile.length;
+    } else {
+        // CÁCH 2: XỬ LÝ TỪ NHẬP TAY ID6
+        const parseTay = (text, kieu) => {
+            if (!text || !text.trim()) return;
+            let lines = text.split(/[\n,]/).map(x => x.trim()).filter(x => x);
+            lines.forEach(line => {
+                danhSachKhoBau.push({
+                    dap_an: "", // Nhập tay thì chưa có nội dung gốc để trích xuất đáp án
+                    ma_goc: taoMaGoc(),
+                    ma_cau_hoi: taoMaCauHoi(),
+                    ma_loi_giai: taoMaLoiGiai()
+                });
+            });
+        }
+        parseTay(document.getElementById('txtID_TN').value, "TN");
+        parseTay(document.getElementById('txtID_DS').value, "DS");
+        parseTay(document.getElementById('txtID_TLN').value, "TLN");
+
+        quyMo = danhSachKhoBau.length;
+        if (quyMo === 0) return Swal.fire('Lỗi', 'Vui lòng nhập ít nhất 1 mã ID6!', 'error');
+    }
 
     btn.disabled = true;
-    btn.innerText = "ĐANG LƯU...";
+    btn.innerText = "⏳ ĐANG LƯU DỮ LIỆU...";
 
     try {
-        const { error } = await _supabase.from('hoc_lieu').insert([{
+        // ==============================================================
+        // [TẠM THỜI BỎ QUA KHU VỰC GỌI API ĐẨY FILE JSON LÊN GITHUB]
+        // Sẽ bổ sung sau khi xác nhận cơ chế kết nối Token với Github
+        // ==============================================================
+
+        // ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE SUPABASE
+        const payload = {
             ma_hoc_lieu: maHL,
             ten_hoc_lieu: tenHL,
+            phan_loai: phanLoai,
+            loai_kiem_tra: loaiKiemTra,
             khoi_lop: khoiLop,
-            loai_kiem_tra: loaiKT,
             thoi_gian_lam_bai: thoiGian,
-            quy_mo_cau_hoi: mangGopChung.length,
-            danh_sach_cau_hoi: mangGopChung,
-            trang_thai: trangThai, // LẤY ĐÚNG GIÁ TRỊ THẦY CHỌN
-            uid_gv_tao: AppState.user.uid,
-            metadata: {
-                cau_truc: cauTruc,
-                so_tn: arrTN.length,
-                so_ds: arrDS.length,
-                so_tln: arrTLN.length
-            },
+            trang_thai: trangThai,
+            cau_truc: cauTruc,
+            quy_mo_cau_hoi: quyMo,
+            danh_sach_cau_hoi: danhSachKhoBau,
             ngay_tao: new Date().toISOString()
-        }]);
+        };
 
+        const { error } = await _supabase.from('hoc_lieu').insert([payload]);
         if (error) throw error;
 
-        alert(`Đã tạo thành công!`);
+        Swal.fire('Thành công', 'Lưu Học liệu mới vào hệ thống thành công!', 'success');
         ham_6_1_ve_quan_ly_hoc_lieu();
 
-    } catch (error) {
-        alert("Lỗi: " + error.message);
+    } catch (err) {
+        Swal.fire('Lỗi', 'Không thể lưu: ' + err.message, 'error');
         btn.disabled = false;
-        btn.innerText = "LƯU DỮ LIỆU";
+        btn.innerText = "💾 LƯU HỌC LIỆU / ĐỀ THI";
     }
-}
-
+};
 
 
 // Hàm 6.5: Lấy ID từ 3 ô, đếm và tự động tạo chuỗi cấu trúc
