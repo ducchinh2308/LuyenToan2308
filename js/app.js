@@ -2185,7 +2185,7 @@ function ham_6_5_tinh_toan_cau_truc() {
 
 
 // ==============================================================
-// Hàm 6.4: Lưu Dữ Liệu Học Liệu (Cập nhật chuẩn cột metadata và JSON Danh sách câu hỏi)
+// Hàm 6.4: Lưu Dữ Liệu Học Liệu (Fix lỗi Schema Supabase)
 // ==============================================================
 window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
@@ -2201,12 +2201,11 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
 
     // 🌟 BỘ MÁY SINH MÃ NGẪU NHIÊN CHUẨN C#
     const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-    // Sinh mã gốc dạng xxxx-xxx (VD: 2605-1070)
     const taoMaGoc = () => {
         const now = new Date();
         const yy = now.getFullYear().toString().slice(-2);
         const mm = (now.getMonth() + 1).toString().padStart(2, '0');
-        const rnn = Math.floor(100 + Math.random() * 900); // 3 số ngẫu nhiên
+        const rnn = Math.floor(100 + Math.random() * 900);
         return `${yy}${mm}-${rnn}`;
     };
     const taoMaCauHoi = () => "q_" + randomHex(10);
@@ -2215,9 +2214,7 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     let danhSachKhoBau = [];
     let quyMo = 0;
 
-    // Biến đếm cho metadata
     let so_tn = 0, so_ds = 0, so_tln = 0;
-
     const dangChonCach1 = document.querySelector('input[name="radCachNhap"]:checked').value === "1";
 
     if (dangChonCach1) {
@@ -2228,7 +2225,6 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         dsFile.forEach(cau => {
             let dapAn = window.ham_6_18_trich_xuat_dap_an(cau.noi_dung, cau.loai);
 
-            // Đếm số lượng theo loại
             if (cau.loai === "TN") so_tn++;
             else if (cau.loai === "DS") so_ds++;
             else if (cau.loai === "TLN" || cau.loai === "NGAN") so_tln++;
@@ -2273,10 +2269,6 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
     btn.innerText = "⏳ ĐANG LƯU DỮ LIỆU...";
 
     try {
-        // ==============================================================
-        // [KHU VỰC GỌI API ĐẨY FILE JSON LÊN GITHUB SẼ NẰM Ở ĐÂY SAU]
-        // ==============================================================
-
         // 🌟 TẠO CHUỖI METADATA CHUẨN JSON
         const metadataObj = {
             so_ds: so_ds,
@@ -2287,19 +2279,21 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             phan_loai_goc: phanLoai
         };
 
-        // ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE SUPABASE
+        // Lấy UID Giáo viên đang đăng nhập (Nếu có AppState)
+        const uidGiaoVien = (typeof AppState !== 'undefined' && AppState.user && AppState.user.uid) ? AppState.user.uid : null;
+
+        // 🌟 ĐÓNG GÓI BẢN ĐỒ VÀO DATABASE SUPABASE (Đã xóa các cột rác)
         const payload = {
             ma_hoc_lieu: maHL,
             ten_hoc_lieu: tenHL,
-            phan_loai: phanLoai,
             loai_kiem_tra: loaiKiemTra,
             khoi_lop: khoiLop,
             thoi_gian_lam_bai: thoiGian,
             trang_thai: trangThai,
-            
             quy_mo_cau_hoi: quyMo,
-            metadata: metadataObj, // <--- Bổ sung cột metadata
-            danh_sach_cau_hoi: danhSachKhoBau, // <--- Đã chuẩn cấu trúc JSON
+            metadata: metadataObj,
+            danh_sach_cau_hoi: danhSachKhoBau,
+            uid_gv_tao: uidGiaoVien, // Gắn thêm UID theo schema ảnh của thầy
             ngay_tao: new Date().toISOString()
         };
 
@@ -2318,7 +2312,6 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
         btn.innerText = "💾 LƯU HỌC LIỆU / ĐỀ THI";
     }
 };
-
 // Hàm 6.5: Lấy ID từ 3 ô, đếm và tự động tạo chuỗi cấu trúc
 function ham_6_5_tinh_toan_cau_truc() {
     const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
