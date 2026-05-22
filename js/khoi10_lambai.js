@@ -243,3 +243,81 @@ window.ham_6_18_trich_xuat_dap_an = function (texContent, kieuCau) {
     }
     return "";
 };
+
+
+
+// =====================================================================
+// Hàm 6.19: Dọn rác và Chuẩn hóa cấu trúc TeX (Dịch từ C# sang JS)
+// =====================================================================
+window.ham_6_19_xu_ly_du_lieu_truoc_khi_push = function (text) {
+    if (!text || typeof text !== 'string' || text.trim() === "") return text;
+
+    // 🌟 0. DỌN RÁC CƠ BẢN
+    text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
+    text = text.replace(/\\noindent\s*/g, "");
+    text = text.replace(/\\centering\s*/g, "");
+    text = text.replace(/\\hfill\s*/g, "");
+
+    // 🌟 1. CHUẨN HÓA VECTOR VÀ TRỊ TUYỆT ĐỐI
+    text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
+    text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+
+    // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac (Chuyển đổi sang format Web)
+    const tuKhoas = [/\\heva/g, /\\hoac/g];
+    const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
+    const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
+
+    for (let k = 0; k < tuKhoas.length; k++) {
+        let keyword = tuKhoas[k].source.replace(/\\/g, ""); // Lấy chuỗi heva hoặc hoac
+        let startIdx;
+
+        while ((startIdx = text.indexOf("\\" + keyword)) !== -1) {
+            let contentStart = startIdx + keyword.length + 1;
+            let contentEnd = -1;
+            let ruot = "";
+            let coNgoacNhon = false;
+
+            let firstCharIdx = contentStart;
+            while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
+
+            if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
+                coNgoacNhon = true;
+                let count = 0;
+                for (let i = firstCharIdx; i < text.length; i++) {
+                    if (text[i] === '{') count++;
+                    else if (text[i] === '}') {
+                        count--;
+                        if (count === 0) { contentEnd = i; break; }
+                    }
+                }
+                if (contentEnd !== -1) ruot = text.substring(firstCharIdx + 1, contentEnd);
+            } else {
+                for (let i = firstCharIdx; i < text.length; i++) {
+                    let check = text.substring(i);
+                    if (check.startsWith("\\Rightarrow") || check.startsWith("\\\\") || text[i] === '}') {
+                        contentEnd = i;
+                        break;
+                    }
+                }
+                if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
+            }
+
+            if (contentEnd !== -1) {
+                text = text.substring(0, startIdx) + mos[k] + ruot + dongs[k] + text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+            } else {
+                break;
+            }
+        }
+    }
+
+    // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC (CHỐNG LỖI XUỐNG DÒNG)
+    let hiddenMath = [];
+
+    // Lưu tạm các khối toán học lớn
+    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
+        hiddenMath.push(match);
+        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+
+    // Lưu tạm khối $$...$$ và \[...\]
+    text = text.replace
