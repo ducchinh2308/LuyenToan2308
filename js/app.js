@@ -2266,7 +2266,7 @@ window.ham_6_4_luu_hoc_lieu_moi = async function (btn) {
             khoi_lop: khoiLop,
             thoi_gian_lam_bai: thoiGian,
             trang_thai: trangThai,
-            cau_truc: cauTruc,
+            cau_truc_de: cauTruc,
             quy_mo_cau_hoi: quyMo,
             danh_sach_cau_hoi: danhSachKhoBau,
             ngay_tao: new Date().toISOString()
@@ -2664,6 +2664,7 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         // 4. MỞ KHÓA NÚT LƯU
         btnLuu.disabled = false;
         btnLuu.style.background = "#28a745";
+        btnLuu.style.cursor = "pointer"; // <--- SỬA LỖI UX TẠI ĐÂY
         btnLuu.innerText = "💾 LƯU HỌC LIỆU VÀ ĐẨY LÊN GITHUB";
     };
 
@@ -2672,6 +2673,7 @@ window.ham_6_13_kiem_tra_file_upload = function () {
         khuVucLoi.style.display = 'block';
         btnCheck.innerText = "🔍 Kiểm tra File";
         btnCheck.disabled = false;
+        btnCheck.style.cursor = "pointer"; // Trả lại con trỏ nếu lỗi
     };
 
     reader.readAsText(file);
