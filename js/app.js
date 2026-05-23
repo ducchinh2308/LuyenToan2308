@@ -1852,7 +1852,7 @@ function ham_6_10_ve_bang_hoc_lieu() {
                 
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
                     <button onclick="event.stopPropagation(); ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}', true)" style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
-                    <button onclick="event.stopPropagation(); ham_6_8_xoa_hoc_lieu('${hl.ma_hoc_lieu}', '${hl.ten_hoc_lieu}')" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+                    <button onclick="event.stopPropagation(); window.ham_6_20_xoa_sach_github_va_supabase('${hl.ma_hoc_lieu}', this)" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
                 </td>
                 
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu}</td>
@@ -2933,28 +2933,201 @@ async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
 // ==============================================================
 // Hàm 6.8: Xóa vĩnh viễn Học Liệu khỏi cơ sở dữ liệu
 // ==============================================================
-async function ham_6_8_xoa_hoc_lieu(maHocLieu, tenHocLieu) {
-    // 1. Cảnh báo bảo mật 2 lớp
-    const xacNhan = confirm(`⚠️ NGUY HIỂM:\nThầy có chắc chắn muốn XÓA VĨNH VIỄN học liệu:\n[ ${maHocLieu} ] - ${tenHocLieu}\n\nHành động này không thể hoàn tác!`);
-    if (!xacNhan) return;
+
+
+//<td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
+//    <button onclick="event.stopPropagation(); ham_6_6_mo_form_sua_hoc_lieu('${hl.ma_hoc_lieu}', true)" style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+//    <button onclick="event.stopPropagation(); ham_6_8_xoa_hoc_lieu('${hl.ma_hoc_lieu}', '${hl.ten_hoc_lieu}')" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+
+
+
+//</td>
+
+
+//async function ham_6_8_xoa_hoc_lieu(maHocLieu, tenHocLieu) {
+//    // 1. Cảnh báo bảo mật 2 lớp
+//    const xacNhan = confirm(`⚠️ NGUY HIỂM:\nThầy có chắc chắn muốn XÓA VĨNH VIỄN học liệu:\n[ ${maHocLieu} ] - ${tenHocLieu}\n\nHành động này không thể hoàn tác!`);
+//    if (!xacNhan) return;
+
+//    try {
+//        // 2. Bắn API Delete lên Supabase
+//        const { error } = await _supabase
+//            .from('hoc_lieu')
+//            .delete()
+//            .eq('ma_hoc_lieu', maHocLieu);
+
+//        if (error) throw error;
+
+//        // 3. Thông báo và tải lại bảng
+//        alert('🗑️ Đã xóa học liệu thành công!');
+//        ham_6_2_tai_danh_sach_hoc_lieu(); // Fetch lại dữ liệu mới nhất
+
+//    } catch (error) {
+//        alert('Lỗi khi xóa học liệu: ' + error.message);
+//    }
+//}
+
+
+// =====================================================================
+// Hàm 6.20: Dọn sạch dấu vết Đề, Giải, Ảnh trên GitHub trước khi xóa DB
+// =====================================================================
+window.ham_6_20_xoa_sach_github_va_supabase = async function (maHL, btnNode) {
+    if (!confirm(`🚀 Thầy chắc chắn muốn XOÁ HOÀN TOÀN học liệu [${maHL}]?\n\nHệ thống sẽ dọn sạch file đề, thư mục ảnh đề, các file giải băm nhỏ và file giải gộp trên GitHub trước khi hủy bản ghi Supabase.`)) return;
+
+    if (typeof CFG_HE_THONG === 'undefined') {
+        return alert("❌ Lỗi: Không tìm thấy cấu hình CFG_HE_THONG.");
+    }
+
+    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+    const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+    const headers = {
+        "Authorization": `Bearer ${GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+    };
+
+    const textGoc = btnNode.innerText;
+    btnNode.disabled = true;
+    btnNode.style.cursor = "wait";
 
     try {
-        // 2. Bắn API Delete lên Supabase
-        const { error } = await _supabase
+        // -----------------------------------------------------------------
+        // BƯỚC 1: TRUY VẤN RAM TỪ SUPABASE ĐỂ LẤY BẢN ĐỒ KHO BÁU
+        // -----------------------------------------------------------------
+        btnNode.innerText = "⏳ Đang đọc cấu trúc học liệu từ DB...";
+        const { data: hocLieu, error: errFetch } = await _supabase
+            .from('hoc_lieu')
+            .select('danh_sach_cau_hoi, url_file_giai')
+            .eq('ma_hoc_lieu', maHL)
+            .maybeSingle();
+
+        if (errFetch || !hocLieu) throw new Error("Không tìm thấy thông tin học liệu này trong Database.");
+
+        let dsCauHoi = hocLieu.danh_sach_cau_hoi || [];
+        if (typeof dsCauHoi === 'string') { try { dsCauHoi = JSON.parse(dsCauHoi); } catch (e) { dsCauHoi = []; } }
+
+        // -----------------------------------------------------------------
+        // BƯỚC 2: QUÉT THƯ MỤC ĐỀ VÀ ẢNH ĐỀ (Kho_De_Thi/MaHL)
+        // -----------------------------------------------------------------
+        btnNode.innerText = "⏳ Đang quét danh sách file đề và ảnh đề...";
+        let danhSachFileXoa = []; // Chứa các object { path, sha }
+
+        // Quét tầng thư mục gốc của Đề thi
+        let resFolder = await fetch(`${baseURL}/contents/Kho_De_Thi/${maHL}`, { headers });
+        if (resFolder.status === 200) {
+            let files = await resFolder.json();
+            for (let f of files) {
+                if (f.type === "file") {
+                    danhSachFileXoa.push({ path: f.path, sha: f.sha });
+                } else if (f.type === "dir" && f.name === "HinhAnh") {
+                    // Nếu có thư mục HinhAnh riêng của đề, tiến hành quét sâu vào bên trong
+                    let resImg = await fetch(`${baseURL}/contents/Kho_De_Thi/${maHL}/HinhAnh`, { headers });
+                    if (resImg.status === 200) {
+                        let imgs = await resImg.json();
+                        imgs.forEach(img => {
+                            if (img.type === "file") danhSachFileXoa.push({ path: img.path, sha: img.sha });
+                        });
+                    }
+                }
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // BƯỚC 3: TRÍCH XUẤT ĐƯỜNG DẪN FILE GIẢI GỘP (NẾU CÓ)
+        // -----------------------------------------------------------------
+        if (hocLieu.url_file_giai) {
+            btnNode.innerText = "⏳ Đang định vị file giải gộp...";
+            // Trích xuất path từ link GitHub Pages
+            const urlParts = hocLieu.url_file_giai.split('.io/');
+            if (urlParts.length > 1) {
+                let pathGiaiGop = urlParts[1].substring(urlParts[1].indexOf('/') + 1); // Bỏ tên repo
+                let resShaGop = await fetch(`${baseURL}/contents/${pathGiaiGop}`, { headers });
+                if (resShaGop.status === 200) {
+                    let dataGop = await resShaGop.json();
+                    danhSachFileXoa.push({ path: pathGiaiGop, sha: dataGop.sha });
+                }
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // BƯỚC 4: THU THẬP MÃ FILE GIẢI LẺ (Ngan_Hang_Loi_Giai/sol_xxx.json)
+        // -----------------------------------------------------------------
+        btnNode.innerText = "⏳ Đang quét tìm mã giải lẻ từng câu...";
+        let danhSachLoiGiaiLe = [];
+        if (Array.isArray(dsCauHoi)) {
+            dsCauHoi.forEach(item => {
+                let maLoiGiai = item.ma_loi_giai || item.maBaoMat;
+                if (maLoiGiai) {
+                    let filename = maLoiGiai.endsWith('.json') ? maLoiGiai : `${maLoiGiai}.json`;
+                    danhSachLoiGiaiLe.push(`Ngan_Hang_Loi_Giai/${filename}`);
+                }
+            });
+        }
+
+        // Lấy mã SHA của các file giải lẻ bằng cách gọi song song giới hạn
+        if (danhSachLoiGiaiLe.length > 0) {
+            const batchSize = 5; // Chạy 5 luồng cùng lúc để không bị nghẽn mạng
+            for (let i = 0; i < danhSachLoiGiaiLe.length; i += batchSize) {
+                btnNode.innerText = `⏳ Đang tìm mã bảo mật giải lẻ (${i}/${danhSachLoiGiaiLe.length})...`;
+                const batch = danhSachLoiGiaiLe.slice(i, i + batchSize);
+
+                await Promise.all(batch.map(async (pathFile) => {
+                    let resSha = await fetch(`${baseURL}/contents/${pathFile}`, { headers });
+                    if (resSha.status === 200) {
+                        let dataSha = await resSha.json();
+                        danhSachFileXoa.push({ path: pathFile, sha: dataSha.sha });
+                    }
+                }));
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // BƯỚC 5: TIẾN HÀNH BẮP CÒ XÓA SẠCH FILE TRÊN GITHUB (Bản giao dịch hàng loạt)
+        // -----------------------------------------------------------------
+        if (danhSachFileXoa.length > 0) {
+            const batchSizeXoa = 5;
+            for (let i = 0; i < danhSachFileXoa.length; i += batchSizeXoa) {
+                btnNode.innerText = `🔥 Đang xóa tệp tin trên GitHub (${i}/${danhSachFileXoa.length})...`;
+                const batchXoa = danhSachFileXoa.slice(i, i + batchSizeXoa);
+
+                await Promise.all(batchXoa.map(async (fileObj) => {
+                    await fetch(`${baseURL}/contents/${fileObj.path}`, {
+                        method: 'DELETE',
+                        headers: headers,
+                        body: JSON.stringify({
+                            message: `Web System: Hủy học liệu ${maHL} - Xóa tệp ${fileObj.path}`,
+                            sha: fileObj.sha
+                        })
+                    });
+                }));
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // BƯỚC 6: TRIỆT TIÊU BẢN GHI TRONG DATABASE SUPABASE (Chốt sổ)
+        // -----------------------------------------------------------------
+        btnNode.innerText = "⏳ Đang khóa két xóa trên Database...";
+        const { error: errDeleteDB } = await _supabase
             .from('hoc_lieu')
             .delete()
-            .eq('ma_hoc_lieu', maHocLieu);
+            .eq('ma_hoc_lieu', maHL);
 
-        if (error) throw error;
+        if (errDeleteDB) throw errDeleteDB;
 
-        // 3. Thông báo và tải lại bảng
-        alert('🗑️ Đã xóa học liệu thành công!');
-        ham_6_2_tai_danh_sach_hoc_lieu(); // Fetch lại dữ liệu mới nhất
+        Swal.fire('Thành công', `Đã xóa sạch học liệu [${maHL}] trên cả GitHub và Supabase! Thư mục lưu trữ đã sạch hoàn toàn.`, 'success');
+
+        // Vẽ lại giao diện quản lý học liệu sau khi dọn rác hoàn tất
+        if (typeof ham_6_1_ve_quan_ly_hoc_lieu === 'function') ham_6_1_ve_quan_ly_hoc_lieu();
 
     } catch (error) {
-        alert('Lỗi khi xóa học liệu: ' + error.message);
+        console.error("Lỗi khi chạy chu trình xóa:", error);
+        Swal.fire('Lỗi hệ thống', 'Quá trình dọn rác thất bại: ' + error.message, 'error');
+        btnNode.disabled = false;
+        btnNode.style.cursor = "pointer";
+        btnNode.innerText = textGoc;
     }
-}
+};
 
 
 
