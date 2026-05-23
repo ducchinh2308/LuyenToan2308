@@ -1,5 +1,0 @@
-{
-    "maBaoMat": "sol_62c2c074c4",
-    "dapAn": "A",
-    "loiGiai": "Ta có: $\\displaystyle \\int_1^3 \\frac{x+2}{x} dx = \\int_1^3 \\left( 1 + \\frac{2}{x} \\right) dx = (x + 2\\ln|x|) \\Big|_1^3 = 3 + 2\\ln 3 - 1 = 2 + 2\\ln 3$.\\\\\r\n\t\tNên $a=2, b=2, c=3 \\Rightarrow S = a+b+c = 7$."
-}
