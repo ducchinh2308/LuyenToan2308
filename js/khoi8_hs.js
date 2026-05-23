@@ -2255,7 +2255,7 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
         let sttPhan = 1;
 
         // Tìm đoạn code duyệt danh sách
-        console.log("DEBUG-LIST:", danhSach); // Thay danh_sach_cau_hoi_goc bằng tên biến thực tế thầy dùng
+        //console.log("DEBUG-LIST:", danhSach); // Thay danh_sach_cau_hoi_goc bằng tên biến thực tế thầy dùng
 
 
         danhSach.forEach(cau => {
@@ -2274,7 +2274,7 @@ function ham_8_14_ve_giao_dien_xem_lai(ketQua, deThi, nv, baseUrlHinhAnh, choPhe
             //console.log("==============================================");
 
             // 🌟 THÊM DÒNG NÀY ĐỂ DEBUG
-            console.log("DEBUG-CÂU-HỎI:", cau);
+            //console.log("DEBUG-CÂU-HỎI:", cau);
 
             htmlContentRight += taoGiaoDienCauHoiDaCham(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
