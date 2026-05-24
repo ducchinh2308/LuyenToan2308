@@ -1,0 +1,203 @@
+{
+  "maDe": "26247-SO AN GIANG",
+  "tenDe": "ĐỀ 26247-SỞ AN GIANG",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_29cd4e2b11",
+      "ma_goc": "2605-1374",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(3x-1)=3$ là",
+      "paA": "$x=\\displaystyle \\frac{10}{3}$",
+      "paB": "$x=3$",
+      "paC": "$x=2$",
+      "paD": "$x=4$"
+    },
+    {
+      "maCau": "q_25756a050f",
+      "ma_goc": "2605-1375",
+      "kieuCau": "TN",
+      "cauDan": "Một người thống kê thời lượng (đơn vị: giây) thực hiện các cuộc gọi điện thoại của trong một tuần và lập bảng tần số ghép nhóm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_25756a050f_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTrung vị $M_e$ (đơn vị: giây) của mẫu số liệu ghép nhóm trên bằng",
+      "paA": "$80$",
+      "paB": "$\\displaystyle \\frac{260}{3}$",
+      "paC": "$86,5$",
+      "paD": "$84$"
+    },
+    {
+      "maCau": "q_cb64123265",
+      "ma_goc": "2605-1376",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_1=3$ và công sai $d=-2$. Giá trị của $u_7$ bằng",
+      "paA": "$15$",
+      "paB": "$-14$",
+      "paC": "$-11$",
+      "paD": "$-9$"
+    },
+    {
+      "maCau": "q_102a144531",
+      "ma_goc": "2605-1377",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\cos x = 0$ là",
+      "paA": "$S=\\left\\{\\displaystyle \\frac{\\pi}{2}+k2\\pi \\big| k \\in \\mathbb{Z}\\right\\}$",
+      "paB": "$S=\\left\\{\\displaystyle \\frac{\\pi}{2}+k\\pi \\big| k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$S=\\left\\{k2\\pi \\big| k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$S=\\left\\{k\\pi \\big| k \\in \\mathbb{Z}\\right\\}$"
+    },
+    {
+      "maCau": "q_7be8d446de",
+      "ma_goc": "2605-1378",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho véctơ $\\vec{u} = -3\\vec{i} + 5\\vec{j} + 2\\vec{k}$. Tọa độ của véctơ $\\vec{u}$ là",
+      "paA": "$(-3;5;2)$",
+      "paB": "$(3;5;2)$",
+      "paC": "$(5;-3;2)$",
+      "paD": "$(-3;5;-2)$"
+    },
+    {
+      "maCau": "q_86cde840ce",
+      "ma_goc": "2605-1379",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)$ liên tục trên $\\mathbb{R}$. Biết rằng $f'(x)=(x^2+1)(x-2)$ với mọi $x \\in \\mathbb{R}$. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(2;+\\infty)$",
+      "paB": "$(0;2)$",
+      "paC": "$(-\\infty;-1)$",
+      "paD": "$(-1;2)$"
+    },
+    {
+      "maCau": "q_fe5d101313",
+      "ma_goc": "2605-1380",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $M(2;1;-1)$ và $N(4;-1;0)$. Một véctơ chỉ phương của đường thẳng $MN$ là",
+      "paA": "$\\vec{u}=(-2;2;1)$",
+      "paB": "$\\vec{u}=(6;0;-1)$",
+      "paC": "$\\vec{u}=(2;-2;1)$",
+      "paD": "$\\vec{u}=(2;2;1)$"
+    },
+    {
+      "maCau": "q_b2e9141e1b",
+      "ma_goc": "2605-1381",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x)=5 \\cdot 2^x$ là",
+      "paA": "$\\displaystyle \\frac{5 \\cdot 2^x}{\\ln 2} + C$",
+      "paB": "$5 \\cdot 2^x \\ln 2 + C$",
+      "paC": "$\\displaystyle \\frac{5 \\cdot 2^{x+1}}{x+1} + C$",
+      "paD": "$\\displaystyle \\frac{2^x}{\\ln 2} + C$"
+    },
+    {
+      "maCau": "q_49239fc5f8",
+      "ma_goc": "2605-1382",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành (xem hình dưới). Gọi $O$ là giao điểm của hai đường chéo. Khẳng định nào sau đây là đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_49239fc5f8_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{SA}+\\vec{SB} = \\vec{SC}+\\vec{SD}$",
+      "paB": "$\\vec{SA}+\\vec{SC} = \\vec{SB}+\\vec{SD}$",
+      "paC": "$\\vec{AB}+\\vec{BC} = \\vec{DB}$",
+      "paD": "$\\vec{SA}+\\vec{SB}+\\vec{SC}+\\vec{SD} = \\vec{0}$"
+    },
+    {
+      "maCau": "q_4a85e42606",
+      "ma_goc": "2605-1383",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $(d) \\colon \\displaystyle \\frac{x-1}{2} = \\displaystyle \\frac{y+3}{-4} = \\displaystyle \\frac{z-5}{3}$. Véctơ nào sau đây là một véctơ chỉ phương của đường thẳng $(d)$?",
+      "paA": "$\\vec{u}_3=(2;-4;3)$",
+      "paB": "$\\vec{u}_4=(-2;-4;-3)$",
+      "paC": "$\\vec{u}_2=(2;4;3)$",
+      "paD": "$\\vec{u}_1=(1;-3;5)$"
+    },
+    {
+      "maCau": "q_b213715e17",
+      "ma_goc": "2605-1384",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Khoảng cách từ điểm $A$ đến mặt phẳng $(BDD'B')$ bằng:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b213715e17_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$a\\sqrt{2}$",
+      "paB": "$\\displaystyle \\frac{a\\sqrt{3}}{2}$",
+      "paC": "$a$",
+      "paD": "$\\displaystyle \\frac{a\\sqrt{2}}{2}$"
+    },
+    {
+      "maCau": "q_d9dffe6ad3",
+      "ma_goc": "2605-1385",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích vật thể tròn xoay sinh ra khi quay hình phẳng giới hạn bởi đồ thị $y=x^2$, trục hoành và hai đường thẳng $x=0$, $x=2$ quanh trục hoành là",
+      "paA": "$\\displaystyle \\frac{32}{5}$",
+      "paB": "$\\displaystyle \\frac{32\\pi}{5}$",
+      "paC": "$\\displaystyle \\frac{8\\pi}{3}$",
+      "paD": "$\\displaystyle \\frac{16\\pi}{5}$"
+    },
+    {
+      "maCau": "q_d68fb84963",
+      "ma_goc": "2605-1386",
+      "kieuCau": "DS",
+      "cauDan": "Một quần thể vi khuẩn ban đầu có $1000$ con. Sau $2$ giờ, số lượng vi khuẩn tăng lên thành $4000$ con. Gọi $P(t)$ là số lượng vi khuẩn tại thời điểm $t$ (giờ). Biết rằng tốc độ tăng trưởng của quần thể tỉ lệ thuận với số lượng vi khuẩn hiện có, tức là $P'(t)=k \\cdot P(t)$, với $k$ là hằng số khác $0$ và $P(t)>0$ với $t \\ge 0$.",
+      "paA": "Công thức tính số lượng vi khuẩn tại thời điểm $t$ là $P(t)=4000e^{kt}$ với $t \\ge 0$",
+      "paB": "Hằng số tốc độ tăng trưởng của quần thể vi khuẩn là $k=\\ln 2$",
+      "paC": "Sau $5$ giờ kể từ thời điểm ban đầu, số lượng vi khuẩn là $32000$ con",
+      "paD": "Để số lượng vi khuẩn đạt $64000$ con, cần đúng $8$ giờ kể từ thời điểm ban đầu"
+    },
+    {
+      "maCau": "q_2f00213a6c",
+      "ma_goc": "2605-1387",
+      "kieuCau": "DS",
+      "cauDan": "Một công ty điện tử có hai phân xưởng $I$ và $II$ cùng sản xuất một loại linh kiện. Biết rằng: phân xưởng $I$ sản xuất $75\\%$ tổng số lượng linh kiện của công ty, phân xưởng $II$ sản xuất $25\\%$ còn lại. Tỉ lệ linh kiện bị lỗi của phân xưởng $I$ và phân xưởng $II$ lần lượt là $4\\%$ và $2\\%$. Chọn ngẫu nhiên một linh kiện trong kho của công ty để kiểm tra.",
+      "paA": "Xác suất để linh kiện được chọn bị lỗi và do phân xưởng $I$ sản xuất là $0,03$",
+      "paB": "Nếu linh kiện được chọn do phân xưởng $I$ sản xuất thì xác suất để linh kiện đó không bị lỗi là $0,94$",
+      "paC": "Xác suất để linh kiện được chọn bị lỗi là $0,035$",
+      "paD": "Nếu linh kiện được chọn bị lỗi thì xác suất để linh kiện đó do phân xưởng $I$ sản xuất là $\\displaystyle \\frac{4}{7}$"
+    },
+    {
+      "maCau": "q_a6d26f0041",
+      "ma_goc": "2605-1388",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^3 - 12x + 5$.",
+      "paA": "Phương trình $f'(x)=0$ có tập nghiệm là $S=\\{2\\}$",
+      "paB": "Hàm số đã cho có đạo hàm là $f'(x)=3x^2-12$",
+      "paC": "$f(2)=11$",
+      "paD": "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[-3;3]$ bằng $14$"
+    },
+    {
+      "maCau": "q_c07c77f375",
+      "ma_goc": "2605-1389",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có phương trình $(x-1)^2+(y-2)^2+(z-5)^2=25$ và đường thẳng $d$ đi qua hai điểm $A(7;8;5)$, $B(8;7;5)$. Giả sử mặt cầu $(S)$ được tịnh tiến đi lên (theo hướng dương của trục $Oz$) với phương vuông góc với mặt phẳng $Oxy$. Đánh giá các phát biểu sau:",
+      "paA": "Bán kính của mặt cầu $(S)$ bằng $25$",
+      "paB": "Khoảng cách từ tâm mặt cầu $(S)$ ở vị trí ban đầu đến đường thẳng $d$ bằng $6\\sqrt{2}$",
+      "paC": "Véctơ $\\vec{u}=(1;-1;0)$ là một véctơ chỉ phương của đường thẳng $d$",
+      "paD": "Có một thời điểm trong quá trình tịnh tiến, mặt cầu $(S)$ tiếp xúc với đường thẳng $d$"
+    },
+    {
+      "maCau": "q_afb259cd34",
+      "ma_goc": "2605-1390",
+      "kieuCau": "TLN",
+      "cauDan": "Đầu năm 2025, ông $A$ thành lập một doanh nghiệp. Tổng số tiền ông $A$ dùng để trả chi phí vận hành trong năm 2025 là $2$ tỷ đồng. Biết rằng cứ sau mỗi năm thì tổng số tiền dùng để trả chi phí vận hành trong năm đó tăng thêm $10\\%$ so với năm trước. Hỏi năm nào là năm đầu tiên mà tổng số tiền ông A dùng để trả chi phí vận hành trong cả năm lớn hơn $4$ tỷ đồng?"
+    },
+    {
+      "maCau": "q_3c1d22eb2e",
+      "ma_goc": "2605-1391",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, đơn vị trên mỗi trục tọa độ là mét, một thiết bị phát tia laser được đặt tại điểm $A(5\\sqrt{3};8;15)$. Thiết bị này chiếu một tia sáng về phía bức tường phẳng trùng với mặt phẳng tọa độ $(Oyz)$. Biết rằng tia sáng phát ra luôn thay đổi nhưng luôn tạo với trục $Ox$ một góc $60^\\circ$. Gọi $M$ là vị trí vệt sáng laser chiếu lên bức tường. Khoảng cách lớn nhất từ vệt sáng $M$ đến gốc tọa độ $O$ bằng bao nhiêu mét?"
+    },
+    {
+      "maCau": "q_cddfb66a1f",
+      "ma_goc": "2605-1392",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhóm phát triển phần mềm độc lập cung cấp một ứng dụng Trí tuệ nhân tạo hỗ trợ quản lí công việc và học tập cá nhân. Mỗi người dùng đăng ký bản quyền sử dụng sẽ phải trả mức phí cố định là $2$ triệu đồng/năm. Tổng chi phí duy trì hệ thống lưu trữ đám mây và cập nhật phần mềm trong một năm phụ thuộc và số lượng người dùng $x$ ($x \\in \\mathbb{N}$) đang sử dụng và được mô hình hóa bởi hàm số $C(x) = 10\\ln(x) + 50$ (triệu đồng). Để nhóm phát triển đạt mức lợi nhuận tối thiểu là $200$ triệu đồng trong một năm, họ cần thu hút ít nhất bao nhiêu người dùng đăng ký phần mềm đó."
+    },
+    {
+      "maCau": "q_8d79ea1408",
+      "ma_goc": "2605-1393",
+      "kieuCau": "TLN",
+      "cauDan": "Cho khối chóp cụt tứ giác đều $ABCD.A'B'C'D'$ như hình vẽ. Biết tổng diện tích của hai mặt đáy bằng $54$ và độ dài đường chéo $AC' = 9$. Tìm thể tích lớn nhất của khối chóp cụt đã cho.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8d79ea1408_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_1c5ca70590",
+      "ma_goc": "2605-1394",
+      "kieuCau": "TLN",
+      "cauDan": "Trong mặt phẳng tọa độ $Oxy$, xét tập hợp $S$ gồm các điểm có tọa độ $(x;y)$ với $x, y$ là các số nguyên dương không vượt quá $15$. Chọn ngẫu nhiên $2$ điểm phân biệt $A, B$ từ tập $S$. Gọi $C$ là trung điểm của đoạn thẳng $AB$. Gọi $p$ là xác suất để điểm $C$ có tọa độ đều là các số nguyên. Tính giá trị của $225p$."
+    },
+    {
+      "maCau": "q_591d97cead",
+      "ma_goc": "2605-1395",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $f(x) = \\displaystyle \\frac{1}{4}x^3 + x$. Đường thẳng $d$ đi qua gốc tọa độ $O$ và điểm $P(2; f(2))$ cắt đường thẳng $\\Delta \\colon y = -x + 3$ tại điểm $Q$. Gọi $R$ là giao điểm của đường thẳng $\\Delta$ với trục hoành. Gọi $A$ là diện tích hình phẳng giới hạn bởi đường cong $y = f(x)$, đường thẳng $\\Delta$ và đoạn thẳng $PQ$; $B$ là diện tích hình phẳng giới hạn bởi đường cong $y = f(x)$, đường thẳng $\\Delta$ và đoạn thẳng $OR$. Giá trị của $B - A$ là:\r\n\\begin{center}\r\n\t<img src='HinhAnh/q_591d97cead_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\\end{center}"
+    }
+  ]
+}

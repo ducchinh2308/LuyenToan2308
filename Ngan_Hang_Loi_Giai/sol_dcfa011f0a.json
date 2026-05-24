@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dcfa011f0a",
+  "dapAn": "151",
+  "loiGiai": "Ta có hàm lợi nhuận là $L(x) = 2x - (10\\ln x + 50)$.\\\\\r\n\t\tĐể lợi nhuận tối thiểu là $200$ triệu đồng ta cần có\\\\\r\n\t\t$L(x) \\ge 200 \\Leftrightarrow 2x - (10\\ln x + 50) \\ge 200 \\Leftrightarrow 2x - 10\\ln(x) \\ge 250 \\Leftrightarrow 2x - 10\\ln x - 250 \\ge 0$.\\\\\r\n\t\tĐặt $f(x) = 2x - 10\\ln(x) - 250$.\\\\\r\n\t\tTa có $f'(x) = 2 - \\displaystyle \\frac{10}{x}$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow x = 5$.\\\\\r\n\t\tTa có $f'(x) \\ge 0, \\forall x \\ge 5$ nên hàm số đồng biến trên khoảng $[5;+\\infty)$.\\\\\r\n\t\tMà $f(150,055) \\approx 0$ nên ta có $f(x) \\ge 0$ khi $x \\ge 151$.\\\\\r\n\t\tĐể thỏa mãn yêu cầu bài toán thì cần $151$ người."
+}
