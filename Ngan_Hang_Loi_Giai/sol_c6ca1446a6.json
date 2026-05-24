@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c6ca1446a6",
+  "dapAn": "D",
+  "loiGiai": "Xét hàm số $f(x)=-2x^3+3x^2+1$ trên đoạn $[-1;1]$ có:\\\\\r\n\t\t$f'(x)=-6x^2+6x$, $f'(x) = 0 \\Leftrightarrow -6x^2+6x=0 \\Leftrightarrow \\left[\\begin{aligned} &x=1 \\text{ (loại)} \\\\ &x=0 \\text{ (tm)} \\end{aligned}\\right.$.\\\\\r\n\t\tTính các giá trị tại biên và điểm dừng: $f(-1)=6$, $f(0)=1$, $f(1)=2$.\\\\\r\n\t\tVậy giá trị nhỏ nhất của hàm số $f(x)=-2x^3+3x^2+1$ trên đoạn $[-1;1]$ bằng $1$."
+}

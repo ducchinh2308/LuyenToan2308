@@ -1,0 +1,127 @@
+{
+  "maDe": "26242-12TN",
+  "tenDe": "ĐỀ 26242-12TN",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_80578cafed",
+      "ma_goc": "2605-1308",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(1;2;3)$ và $B(-2;1;5)$. Phương trình mặt cầu tâm $A$ bán kính $AB$ là",
+      "paA": "$(x-1)^2+(y-2)^2+(z-3)^2=14$",
+      "paB": "$(x+1)^2+(y+2)^2+(z+3)^2=14$",
+      "paC": "$(x+1)^2+(y+2)^2+(z+3)^2=28$",
+      "paD": "$(x-1)^2+(y-2)^2+(z-3)^2=28$"
+    },
+    {
+      "maCau": "q_275a65f906",
+      "ma_goc": "2605-1309",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây là đúng?",
+      "paA": "$\\displaystyle\\int (x-3)\\mathrm{d}x = x^2 - 3x + C$",
+      "paB": "$\\displaystyle\\int (x-3)\\mathrm{d}x = 2x^2 - 3x + C$",
+      "paC": "$\\displaystyle\\int (x-3)\\mathrm{d}x = \\dfrac{1}{2}x^2 + 3x + C$",
+      "paD": "$\\displaystyle\\int (x-3)\\mathrm{d}x = \\dfrac{1}{2}x^2 - 3x + C$"
+    },
+    {
+      "maCau": "q_b26f5d373f",
+      "ma_goc": "2605-1310",
+      "kieuCau": "TN",
+      "cauDan": "Hình phẳng giới hạn bởi đồ thị hàm số $y=-x^2+2x$ và trục $Ox$ có diện tích bằng",
+      "paA": "$\\dfrac{2}{3}$",
+      "paB": "$\\dfrac{20}{3}$",
+      "paC": "$\\dfrac{8}{3}$",
+      "paD": "$\\dfrac{4}{3}$"
+    },
+    {
+      "maCau": "q_54d19bc4cb",
+      "ma_goc": "2605-1311",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_54d19bc4cb_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực tiểu của hàm số đã cho là",
+      "paA": "$x=1$",
+      "paB": "$x=4$",
+      "paC": "$x=2$",
+      "paD": "$x=0$"
+    },
+    {
+      "maCau": "q_04b9f72bfb",
+      "ma_goc": "2605-1312",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_2(3x) \\ge 3$ là",
+      "paA": "$\\left(0; \\dfrac{8}{3}\\right]$",
+      "paB": "$[2; +\\infty)$",
+      "paC": "$\\left(-\\infty; \\dfrac{8}{3}\\right]$",
+      "paD": "$\\left[\\dfrac{8}{3}; +\\infty\\right)$"
+    },
+    {
+      "maCau": "q_5af7b898f9",
+      "ma_goc": "2605-1313",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $f(x)=-2x^3+3x^2+1$ trên đoạn $[-1;1]$ bằng",
+      "paA": "$0$",
+      "paB": "$-1$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_73991b74c1",
+      "ma_goc": "2605-1314",
+      "kieuCau": "TN",
+      "cauDan": "Cho lăng trụ đều $ABC.A'B'C'$ có tất cả các cạnh bằng $4\\text{ cm}$. Tính thể tích khối lăng trụ đã cho.",
+      "paA": "$8\\sqrt{3}\\text{ cm}^3$",
+      "paB": "$32\\sqrt{3}\\text{ cm}^3$",
+      "paC": "$24\\sqrt{3}\\text{ cm}^3$",
+      "paD": "$16\\sqrt{3}\\text{ cm}^3$"
+    },
+    {
+      "maCau": "q_a4533c15bf",
+      "ma_goc": "2605-1315",
+      "kieuCau": "TN",
+      "cauDan": "Bảng số liệu sau đây biểu diễn mẫu số liệu ghép nhóm về cân nặng của một loại cá trước khi thả xuống hồ (đơn vị: $\\text{kg}$)\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a4533c15bf_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm) là",
+      "paA": "$0{,}11$",
+      "paB": "$0{,}14$",
+      "paC": "$0{,}13$",
+      "paD": "$0{,}12$"
+    },
+    {
+      "maCau": "q_9f2d87576e",
+      "ma_goc": "2605-1316",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông và $SA \\perp (ABCD)$. Đường thẳng nào sau đây là hình chiếu của $SC$ trên mặt phẳng $(SAB)$?",
+      "paA": "$AB$",
+      "paB": "$SB$",
+      "paC": "$SA$",
+      "paD": "$BC$"
+    },
+    {
+      "maCau": "q_e72e058505",
+      "ma_goc": "2605-1317",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A, B$ thoả mãn $P(A)=0{,}6$; $P(B)=0{,}3$; $P(B|A)=0{,}2$. Khi đó, $P(A|B)$ bằng",
+      "paA": "$0{,}25$",
+      "paB": "$0{,}45$",
+      "paC": "$0{,}4$",
+      "paD": "$0{,}5$"
+    },
+    {
+      "maCau": "q_5e4a44293e",
+      "ma_goc": "2605-1318",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_2=2, u_3=6$. Công sai của cấp số cộng đã cho bằng",
+      "paA": "$-4$",
+      "paB": "$4$",
+      "paC": "$3$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_2d8f2dd75a",
+      "ma_goc": "2605-1319",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d\\colon \\dfrac{x+1}{-2} = \\dfrac{y-2}{1} = \\dfrac{z+3}{-2}$. Vectơ nào dưới đây là một vectơ chỉ phương của $d$?",
+      "paA": "$\\vec{u}_1=(-1;2;-3)$",
+      "paB": "$\\vec{u}_2=(-2;-1;2)$",
+      "paC": "$\\vec{u}_3=(2;-1;2)$",
+      "paD": "$\\vec{u}_4=(1;-2;3)$"
+    }
+  ]
+}
