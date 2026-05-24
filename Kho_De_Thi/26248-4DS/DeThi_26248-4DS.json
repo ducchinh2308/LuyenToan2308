@@ -1,0 +1,47 @@
+{
+  "maDe": "26248-4DS",
+  "tenDe": "ĐỀ 26248-4DS",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_c175cf98c1",
+      "ma_goc": "2605-1410",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^3 - 3x + 1$.",
+      "paA": "Đạo hàm của hàm số đã cho là $f'(x) = 3x^2 - 2$",
+      "paB": "Phương trình $f'(x) = 0$ có tập nghiệm là $S = \\{-1; 1\\}$",
+      "paC": "Ta có $f(1) = -1$, $f(-1) = 3$",
+      "paD": "Gọi $f_{\\text{CĐ}}, f_{\\text{CT}}$ lần lượt là giá trị cực đại và giá trị cực tiểu của hàm số đã cho. Khi đó $f_{\\text{CĐ}} - f_{\\text{CT}} = 3$"
+    },
+    {
+      "maCau": "q_0449f4cc90",
+      "ma_goc": "2605-1411",
+      "kieuCau": "DS",
+      "cauDan": "Một nghiên cứu về khả năng ghi nhớ kiến thức của người học sau khi kết thúc khóa học chỉ ra rằng càng về lâu thì khả năng ghi nhớ kiến thức càng giảm. Nếu xem $f(t)$ là phần trăm kiến thức người học còn nhớ sau $t$ tháng thì $f'(t)$ thể hiện là tốc độ thay đổi kiến thức của người học. Nghiên cứu cho thấy $f'(t) < 0$, điều này thể hiện càng về lâu thì khả năng ghi nhớ kiến thức càng giảm. Độ lớn của $f'(t)$ chính là tốc độ giảm sút kiến thức của người học. Hai bạn Thành và Công cùng tham gia một khóa học. Sau khi kết thúc khóa học, phần trăm kiến thức bạn Thành còn nhớ sau $t$ tháng được mô hình hóa bởi hàm số: $f(t) = 94 - 12\\ln(3t + 1)$ với $0 \\le t \\le 24$.",
+      "paA": "Tại thời điểm khoá học vừa kết thúc, bạn Thành nhớ được $94\\%$ kiến thức",
+      "paB": "Tốc độ thay đổi kiến thức của bạn Thành ở thời điểm sau $t$ tháng kết thúc khóa học là $f'(t) = -\\displaystyle \\frac{12}{3t + 1}$",
+      "paC": "Tại thời điểm sau $3$ tháng khóa học kết thúc, tốc độ giảm sút kiến thức của bạn Thành là $1{,}2\\%/\\text{tháng}$",
+      "paD": "Biết rằng tại mọi thời điểm, tốc độ thay đổi kiến thức của bạn Thành luôn gấp $3$ lần tốc độ thay đổi kiến thức của bạn Công. Tại thời điểm kết thúc khóa học, bạn Công nhớ được $96\\%$ kiến thức. Sau $3$ tháng, lượng kiến thức bạn Công còn nhớ được hơn $85\\%$"
+    },
+    {
+      "maCau": "q_1f43b22e6b",
+      "ma_goc": "2605-1408",
+      "kieuCau": "DS",
+      "cauDan": "Trong một nhà máy thông minh, hệ tọa độ $Oxyz$ được thiết lập để điều hành các thiết bị tự động, đơn vị trên mỗi trục tọa độ là mét. Mặt sàn nhà máy nằm trên mặt phẳng $(Oxy)$. Một bộ định tuyến phát sóng Wi-Fi được treo tại vị trí $A(-3; 4; 9)$, một cảm biến đo chấn động được gắn ngầm dưới nền nhà máy tại vị trí $B(6; 16; -4)$. Gọi $H$ là hình chiếu vuông góc của $A$ trên mặt sàn. Một robot tự hành $M$ di chuyển trên mặt sàn và luôn giữ khoảng cách đến bộ định tuyến $A$ bằng $15m$. Biết rằng robot $M$ có nhiệm vụ đồng bộ dữ liệu với cảm biến $B$ và quá trình này đạt độ ổn định cao nhất khi khoảng cách giữa robot và cảm biến là nhỏ nhất.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1f43b22e6b_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Điểm $H$ có tọa độ là $(-3; 4; 0)$",
+      "paB": "Khoảng cách từ cảm biến $B$ đến mặt sàn nhà máy là $5m$",
+      "paC": "Trong quá trình di chuyển, khoảng cách từ robot $M$ đến điểm $H$ luôn không đổi và bằng $12m$",
+      "paD": "Khi quá trình đồng bộ dữ liệu đạt độ ổn định cao nhất, khoảng cách giữa robot $M$ và cảm biến $B$ là $6m$"
+    },
+    {
+      "maCau": "q_cef8a73fa1",
+      "ma_goc": "2605-1409",
+      "kieuCau": "DS",
+      "cauDan": "Một cửa hàng có $200$ hạt giống hoa hướng dương và $300$ hạt giống hoa cúc. Tỉ lệ nảy mầm của hạt giống hoa cúc là $90\\%$, của hạt giống hoa hướng dương là $80\\%$. Một chuyên gia nông nghiệp chọn ngẫu nhiên một hạt giống. Chuyên gia sử dụng máy quét tia X để dự đoán khả năng nảy mầm của hạt giống. Nếu hạt giống có khả năng nảy mầm, máy quét báo “Đạt” với xác suất $90\\%$. Nếu hạt giống không có khả năng nảy mầm, máy quét báo “Đạt” với xác suất $10\\%$.",
+      "paA": "Xác suất chuyên gia chọn được hạt giống hoa cúc là $0{,}6$",
+      "paB": "Biết rằng chuyên gia đã chọn được hạt giống hoa cúc, xác suất để hạt giống đó không nảy mầm là $0{,}1$",
+      "paC": "Xác suất chuyên gia chọn được hạt nảy mầm là $0{,}84$",
+      "paD": "Một hạt giống sau khi quét kiểm tra, máy đã báo “Đạt”. Xác suất để hạt giống đó thực sự không nảy mầm nhỏ hơn $0{,}02$"
+    }
+  ]
+}
