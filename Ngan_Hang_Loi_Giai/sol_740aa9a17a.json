@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_740aa9a17a",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\begin{cases} u_2 = 4 \\\\ u_6 = 8 \\end{cases} \\Leftrightarrow \\begin{cases} u_1 + d = 4 \\\\ u_1 + 5d = 8 \\end{cases} \\Leftrightarrow \\begin{cases} u_1 = 3 \\\\ d = 1 \\end{cases}$.\\\r\n\t\tVậy $u_{100} = u_1 + 99d = 3 + 99 \\cdot 1 = 102$."
+}

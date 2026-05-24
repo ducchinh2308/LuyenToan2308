@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5d95b32c93",
+  "dapAn": "B",
+  "loiGiai": "Ta có: $y = \\displaystyle \\frac{2x^2+7x-5}{4x-2} = \\displaystyle \\frac{1}{2}x+2 - \\displaystyle \\frac{1}{4x-2}$.\\\r\n\t\tTa có $\\displaystyle \\lim_{x \\to -\\infty} \\left[ y - \\left( \\displaystyle \\frac{1}{2}x + 2 \\right) \\right] = \\displaystyle \\lim_{x \\to -\\infty} \\left( -\\displaystyle \\frac{1}{4x-2} \\right) = 0$ và $\\displaystyle \\lim_{x \\to +\\infty} \\left[ y - \\left( \\displaystyle \\frac{1}{2}x + 2 \\right) \\right] = \\displaystyle \\lim_{x \\to +\\infty} \\left( -\\displaystyle \\frac{1}{4x-2} \\right) = 0$.\\\r\n\t\tDo đó, đường thẳng $y = \\displaystyle \\frac{1}{2}x+2$ là đường tiệm cận xiên của đồ thị hàm số."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_de97df4ae5",
+  "dapAn": "67",
+  "loiGiai": "Lợi nhuận mà doanh nghiệp thu được là\\\\\r\n\t\t$L(x) = R(x) - xG(x) = x^3 - 396x^2 + 80000\\ln x + 38800x + 500 - x\\left(x + 400 + \\displaystyle \\frac{2500}{x}\\right)$\\\\\r\n\t\t$= x^3 - 397x^2 + 80000\\ln x + 38400x - 2000$.\\\\\r\n\t\t$L'(x) = 3x^2 - 794x + \\displaystyle \\frac{80000}{x} + 38400 = \\displaystyle \\frac{3x^3 - 794x^2 + 38400x + 80000}{x}$.\\\\\r\n\t\t$L'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} & x = -2 (L) \\\\ & x = \\displaystyle \\frac{200}{3} (N) \\\\ & x = 200 (L) \\end{aligned} \\right.$\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_de97df4ae5_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDo số sản phẩm cần tìm là số nguyên, nên ta xét\\\\\r\n\t\t$L(66) \\approx 1425736$\\\\\r\n\t\t$L(67) \\approx 1425805$.\\\\\r\n\t\tVậy doanh nghiệp thu được lợi nhuận lớn nhất khi sản xuất $67$ sản phẩm."
+}
