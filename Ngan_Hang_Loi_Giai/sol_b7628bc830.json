@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b7628bc830",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng công thức nguyên hàm cơ bản, ta có:\\\\\r\n\t\t$\\displaystyle\\int (x-3)\\mathrm{d}x = \\int x \\mathrm{d}x - \\int 3 \\mathrm{d}x = \\dfrac{x^2}{2} - 3x + C$."
+}

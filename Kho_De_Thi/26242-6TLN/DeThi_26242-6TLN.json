@@ -1,0 +1,203 @@
+{
+  "maDe": "26242-6TLN",
+  "tenDe": "ĐỀ 26242-6TLN",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_9dbac13209",
+      "ma_goc": "2605-1308",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(1;2;3)$ và $B(-2;1;5)$. Phương trình mặt cầu tâm $A$ bán kính $AB$ là",
+      "paA": "$(x-1)^2+(y-2)^2+(z-3)^2=14$",
+      "paB": "$(x+1)^2+(y+2)^2+(z+3)^2=14$",
+      "paC": "$(x+1)^2+(y+2)^2+(z+3)^2=28$",
+      "paD": "$(x-1)^2+(y-2)^2+(z-3)^2=28$"
+    },
+    {
+      "maCau": "q_7c4d97350b",
+      "ma_goc": "2605-1309",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây là đúng?",
+      "paA": "$\\displaystyle\\int (x-3)\\mathrm{d}x = x^2 - 3x + C$",
+      "paB": "$\\displaystyle\\int (x-3)\\mathrm{d}x = 2x^2 - 3x + C$",
+      "paC": "$\\displaystyle\\int (x-3)\\mathrm{d}x = \\dfrac{1}{2}x^2 + 3x + C$",
+      "paD": "$\\displaystyle\\int (x-3)\\mathrm{d}x = \\dfrac{1}{2}x^2 - 3x + C$"
+    },
+    {
+      "maCau": "q_627a12a09c",
+      "ma_goc": "2605-1310",
+      "kieuCau": "TN",
+      "cauDan": "Hình phẳng giới hạn bởi đồ thị hàm số $y=-x^2+2x$ và trục $Ox$ có diện tích bằng",
+      "paA": "$\\dfrac{2}{3}$",
+      "paB": "$\\dfrac{20}{3}$",
+      "paC": "$\\dfrac{8}{3}$",
+      "paD": "$\\dfrac{4}{3}$"
+    },
+    {
+      "maCau": "q_684905fce9",
+      "ma_goc": "2605-1311",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_684905fce9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực tiểu của hàm số đã cho là",
+      "paA": "$x=1$",
+      "paB": "$x=4$",
+      "paC": "$x=2$",
+      "paD": "$x=0$"
+    },
+    {
+      "maCau": "q_be38a09fa4",
+      "ma_goc": "2605-1312",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_2(3x) \\ge 3$ là",
+      "paA": "$\\left(0; \\dfrac{8}{3}\\right]$",
+      "paB": "$[2; +\\infty)$",
+      "paC": "$\\left(-\\infty; \\dfrac{8}{3}\\right]$",
+      "paD": "$\\left[\\dfrac{8}{3}; +\\infty\\right)$"
+    },
+    {
+      "maCau": "q_6738dd4d6d",
+      "ma_goc": "2605-1313",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $f(x)=-2x^3+3x^2+1$ trên đoạn $[-1;1]$ bằng",
+      "paA": "$0$",
+      "paB": "$-1$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_f0abd3e5a5",
+      "ma_goc": "2605-1314",
+      "kieuCau": "TN",
+      "cauDan": "Cho lăng trụ đều $ABC.A'B'C'$ có tất cả các cạnh bằng $4\\text{ cm}$. Tính thể tích khối lăng trụ đã cho.",
+      "paA": "$8\\sqrt{3}\\text{ cm}^3$",
+      "paB": "$32\\sqrt{3}\\text{ cm}^3$",
+      "paC": "$24\\sqrt{3}\\text{ cm}^3$",
+      "paD": "$16\\sqrt{3}\\text{ cm}^3$"
+    },
+    {
+      "maCau": "q_4421270289",
+      "ma_goc": "2605-1315",
+      "kieuCau": "TN",
+      "cauDan": "Bảng số liệu sau đây biểu diễn mẫu số liệu ghép nhóm về cân nặng của một loại cá trước khi thả xuống hồ (đơn vị: $\\text{kg}$)\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4421270289_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn đến hàng phần trăm) là",
+      "paA": "$0{,}11$",
+      "paB": "$0{,}14$",
+      "paC": "$0{,}13$",
+      "paD": "$0{,}12$"
+    },
+    {
+      "maCau": "q_57f104c118",
+      "ma_goc": "2605-1316",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông và $SA \\perp (ABCD)$. Đường thẳng nào sau đây là hình chiếu của $SC$ trên mặt phẳng $(SAB)$?",
+      "paA": "$AB$",
+      "paB": "$SB$",
+      "paC": "$SA$",
+      "paD": "$BC$"
+    },
+    {
+      "maCau": "q_b676f6ed8a",
+      "ma_goc": "2605-1317",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A, B$ thoả mãn $P(A)=0{,}6$; $P(B)=0{,}3$; $P(B|A)=0{,}2$. Khi đó, $P(A|B)$ bằng",
+      "paA": "$0{,}25$",
+      "paB": "$0{,}45$",
+      "paC": "$0{,}4$",
+      "paD": "$0{,}5$"
+    },
+    {
+      "maCau": "q_47a2b7f4ff",
+      "ma_goc": "2605-1318",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_2=2, u_3=6$. Công sai của cấp số cộng đã cho bằng",
+      "paA": "$-4$",
+      "paB": "$4$",
+      "paC": "$3$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_af954120a5",
+      "ma_goc": "2605-1319",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $d\\colon \\dfrac{x+1}{-2} = \\dfrac{y-2}{1} = \\dfrac{z+3}{-2}$. Vectơ nào dưới đây là một vectơ chỉ phương của $d$?",
+      "paA": "$\\vec{u}_1=(-1;2;-3)$",
+      "paB": "$\\vec{u}_2=(-2;-1;2)$",
+      "paC": "$\\vec{u}_3=(2;-1;2)$",
+      "paD": "$\\vec{u}_4=(1;-2;3)$"
+    },
+    {
+      "maCau": "q_ee00d01eac",
+      "ma_goc": "2605-1320",
+      "kieuCau": "DS",
+      "cauDan": "Một người điều khiển ô tô đang ở đường dẫn muốn nhập làn vào đường cao tốc. Khi ô tô cách điểm nhập làn $210\\text{ m}$, tốc độ của ô tô là $36\\text{ km/h}$. Ba giây sau đó, ô tô bắt đầu tăng tốc với tốc độ $v(t) = at + b$ ($a, b \\in \\mathbb{R}, a > 0$), trong đó $t$ là thời gian tính bằng giây kể từ khi bắt đầu tăng tốc. Biết rằng ô tô nhập làn cao tốc sau $12$ giây và duy trì sự tăng tốc trong $24$ giây kể từ khi bắt đầu tăng tốc.",
+      "paA": "Sau $24$ giây kể từ khi tăng tốc, tốc độ của ô tô không vượt quá tốc độ tối đa cho phép là $100\\text{ km/h}$",
+      "paB": "Giá trị của $b$ là $10$",
+      "paC": "Quãng đường ô tô đi được từ khi bắt đầu tăng tốc đến khi nhập làn là $180\\text{ m}$",
+      "paD": "Quãng đường $S(t)$ (đơn vị: mét) mà ô tô đi được trong thời gian $t$ giây ($0 \\le t \\le 24$) kể từ khi tăng tốc được tính theo công thức: $S(t) = \\displaystyle\\int_0^{24} v(t)\\mathrm{d}t$"
+    },
+    {
+      "maCau": "q_88077eab42",
+      "ma_goc": "2605-1321",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(2;1;-1)$, $B(3;0;1)$, $C(2;-1;3)$ và mặt cầu $(S)\\colon x^2+y^2+z^2-4x+2y-4z+5=0$.",
+      "paA": "Điểm $M(x;y;z)$ di động trên mặt cầu $(S)$. Giá trị lớn nhất của biểu thức $P = MA^2 + 2MB^2 - MC^2$ bằng $26 + 8\\sqrt{14}$",
+      "paB": "Phương trình mặt phẳng $(ABC)$ là $x+y+z-2=0$",
+      "paC": "Độ dài đoạn $AB$ bằng $\\sqrt{6}$",
+      "paD": "Mặt phẳng $(ABC)$ tiếp xúc với mặt cầu $(S)$"
+    },
+    {
+      "maCau": "q_66192b9120",
+      "ma_goc": "2605-1322",
+      "kieuCau": "DS",
+      "cauDan": "Có hai phác đồ điều trị $A$ và $B$ cho một loại bệnh. Phác đồ $A$ có xác suất chữa khỏi bệnh là $55\\%$ và xác suất gây tác dụng phụ nghiêm trọng là $8\\%$. Phác đồ $B$ có xác suất chữa khỏi bệnh là $75\\%$ và xác suất gây tác dụng phụ nghiêm trọng là $12\\%$. Một bệnh nhân được điều trị ngẫu nhiên bằng một trong hai phác đồ (xác suất chọn mỗi phác đồ là $50\\%$).",
+      "paA": "Xác suất để bệnh nhân bị tác dụng phụ nghiêm trọng là $0{,}10$",
+      "paB": "Biết rằng trong mỗi phác đồ điều trị thì biến cố \"bệnh nhân được chữa khỏi bệnh\" và biến cố \"bệnh nhân không bị tác dụng phụ nghiêm trọng\" là độc lập với nhau. Xác suất bệnh nhân khỏi bệnh và không bị tác dụng phụ nghiêm trọng là $0{,}615$",
+      "paC": "Xác suất bệnh nhân điều trị bằng phác đồ $A$ và được chữa khỏi bệnh là $0{,}55$",
+      "paD": "Biết rằng bệnh nhân gặp tác dụng phụ nghiêm trọng, xác suất bệnh nhân đã được điều trị bằng phác đồ $B$ lớn hơn $0{,}60$"
+    },
+    {
+      "maCau": "q_037dc91804",
+      "ma_goc": "2605-1323",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\dfrac{x^2 + 3x + 3}{x + 2}$ có đồ thị $(C)$.",
+      "paA": "Gọi $I$ là giao điểm hai đường tiệm cận của đồ thị $(C)$. Điểm $M$ thay đổi trên $(C)$, giá trị nhỏ nhất của khoảng cách $IM$ bằng $2\\sqrt{2}-2$",
+      "paB": "Hàm số nghịch biến trên khoảng $(-3;-1)$",
+      "paC": "Tiệm cận xiên của đồ thị $(C)$ là đường thẳng có phương trình $y = x+1$",
+      "paD": "Khoảng cách hai điểm cực trị của đồ thị $(C)$ bằng $5\\sqrt{2}$"
+    },
+    {
+      "maCau": "q_8331181980",
+      "ma_goc": "2605-1324",
+      "kieuCau": "TLN",
+      "cauDan": "Gọi $A$ và $B$ là hai điểm phân biệt trên đồ thị của hàm số $y=\\log_3(5x-3)$ sao cho $A$ là trung điểm của đoạn $OB$. Độ dài đoạn thẳng $AB$ có dạng $\\dfrac{\\sqrt{a}}{b}$. Tính giá trị $ab$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8331181980_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_abd32695c3",
+      "ma_goc": "2605-1325",
+      "kieuCau": "TLN",
+      "cauDan": "Một trường học có tỉ lệ học sinh nam và học sinh nữ là $5:3$. Trong đó, tỉ lệ số học sinh nam thuận tay trái là $11\\%$, tỉ lệ số học sinh nữ thuận tay trái là $9\\%$. Xác suất để chọn ngẫu nhiên $5$ học sinh ở trường trong đó có đúng $1$ học sinh nam và $1$ học sinh nữ thuận tay trái là bao nhiêu $\\%$ (làm tròn đến hàng phần trăm)?"
+    },
+    {
+      "maCau": "q_5162b11ad6",
+      "ma_goc": "2605-1326",
+      "kieuCau": "TLN",
+      "cauDan": "Một xưởng sản xuất robot hút bụi thông minh đang trong giai đoạn tăng tốc. Số lượng robot sản xuất mỗi tháng là $x$ (chiếc), với $x \\in \\mathbb{N}^*$ và $10 \\le x \\le 500$. Mỗi robot được bán với giá cố định là $12$ triệu đồng, tổng chi phí sản xuất mỗi tháng là $C(x) = 150 \\cdot \\mathrm{e}^{0{,}005x} + 450$ (triệu đồng). Để xưởng đạt lợi nhuận tối thiểu là $1{,}5$ tỷ đồng mỗi tháng, xưởng cần sản xuất và tiêu thụ ít nhất bao nhiêu robot một tháng?"
+    },
+    {
+      "maCau": "q_cd899e17d7",
+      "ma_goc": "2605-1327",
+      "kieuCau": "TLN",
+      "cauDan": "Một quỹ đầu tư có nguồn vốn tối đa $30$ tỉ đồng, dự kiến phân bổ vào hai danh mục: Cổ phiếu niêm yết (Kênh A) và Trái phiếu doanh nghiệp (Kênh B). Các điều kiện đầu tư được quy định như sau: Lợi nhuận kỳ vọng của Kênh A là $15\\%$ một năm, Kênh B là $10\\%$ một năm. Lợi nhuận từ cả hai kênh đều chịu mức thuế thu nhập là $10\\%$. Để giảm thiểu rủi ro, số tiền đầu tư vào Kênh A không được vượt quá $2$ lần số tiền đầu tư vào Kênh B. Số tiền đầu tư vào Kênh B không được ít hơn $5$ tỉ đồng. Mỗi tỉ đồng đầu tư vào Kênh A chi phí quản lý là $45$ triệu đồng; mỗi tỉ đồng đầu tư vào Kênh B chi phí quản lý là $20$ triệu đồng. Tổng chi phí quản lý không được vượt quá $1{,}05$ tỉ đồng. Giả sử lợi nhuận thực tế thu về là lợi nhuận kỳ vọng sau khi đã trừ thuế và trừ chi phí quản lý. Để lợi nhuận thu về đạt giá trị lớn nhất thì quỹ đầu tư nên phân bổ bao nhiêu vốn vào Kênh A (đơn vị: tỉ đồng)?"
+    },
+    {
+      "maCau": "q_e39268f9ca",
+      "ma_goc": "2605-1328",
+      "kieuCau": "TLN",
+      "cauDan": "Cho khối lăng trụ tam giác đều $ABC.A'B'C'$. Biết số đo góc nhị diện $[A';BC;A]$ bằng $30^\\circ$ và tam giác $A'BC$ có diện tích bằng $32$. Khoảng cách giữa hai đường thẳng $AB$ và $A'C'$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_c0c44d54fc",
+      "ma_goc": "2605-1329",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $C(0;6;1)$ và đường thẳng $\\Delta$ song song với trục $Oz$. Một điểm $M$ di động trên $\\Delta$ sao cho $0 \\le z_M \\le 10$. Biết rằng tổng khoảng cách từ hai điểm $A(3;0;0)$ và $B(-3;0;0)$ đến $\\Delta$ bằng $2\\sqrt{34}$. Khi khoảng cách $MC$ ngắn nhất, điểm $M$ trùng với $M_0(x_0;y_0;z_0)$. Tính $S = x_0 + 20y_0 + 11z_0$."
+    }
+  ]
+}

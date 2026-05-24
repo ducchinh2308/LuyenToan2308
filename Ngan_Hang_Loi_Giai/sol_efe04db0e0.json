@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_efe04db0e0",
+  "dapAn": "C",
+  "loiGiai": "Cỡ mẫu $n = 14 + 40 + 13 + 10 + 3 = 80$.\\\\\r\n\t\tVị trí của tứ phân vị thứ nhất $Q_1$ là $\\dfrac{n}{4} = 20$, thuộc nhóm $2\\colon [1{,}3; 1{,}4)$.\\\\\r\n\t\tSuy ra $Q_1 = 1{,}3 + \\dfrac{20 - 14}{40} \\cdot (1{,}4 - 1{,}3) = 1{,}315$.\\\\\r\n\t\tVị trí của tứ phân vị thứ ba $Q_3$ là $\\dfrac{3n}{4} = 60$, thuộc nhóm $3\\colon [1{,}4; 1{,}5)$.\\\\\r\n\t\tSuy ra $Q_3 = 1{,}4 + \\dfrac{60 - (14 + 40)}{13} \\cdot (1{,}5 - 1{,}4) \\approx 1{,}446$.\\\\\r\n\t\tVậy khoảng tứ phân vị $\\Delta Q = Q_3 - Q_1 \\approx 1{,}446 - 1{,}315 = 0{,}131 \\approx 0{,}13$."
+}

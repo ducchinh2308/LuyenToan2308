@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_911b76d6c5",
+  "dapAn": "D",
+  "loiGiai": "Điều kiện xác định: $3x > 0 \\Leftrightarrow x > 0$.\\\\\r\n\t\tBất phương trình đã cho tương đương với: $\\log_2(3x) \\ge 3 \\Leftrightarrow 3x \\ge 2^3 \\Leftrightarrow 3x \\ge 8 \\Leftrightarrow x \\ge \\dfrac{8}{3}$.\\\\\r\n\t\tKết hợp điều kiện, tập nghiệm của bất phương trình là $T = \\left[\\dfrac{8}{3}; +\\infty\\right)$."
+}
