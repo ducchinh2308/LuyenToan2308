@@ -1,0 +1,127 @@
+{
+  "maDe": "26248-12TN",
+  "tenDe": "ĐỀ 26248-12TN",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_3161ee9dcd",
+      "ma_goc": "2605-1396",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi các đường $y=x+2$, $y=0$, $x=0$, $x=2$. Gọi $V$ là thể tích của khối tròn xoay được tạo thành khi quay $(H)$ xung quanh trục $Ox$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$V = \\displaystyle \\int_0^2 (x+2) \\mathrm{\\,d}x$",
+      "paB": "$V = \\displaystyle \\int_0^2 (x+2)^2 \\mathrm{\\,d}x$",
+      "paC": "$V = \\pi \\displaystyle \\int_0^2 (x+2)^2 \\mathrm{\\,d}x$",
+      "paD": "$V = \\pi \\displaystyle \\int_0^2 (x+2) \\mathrm{\\,d}x$"
+    },
+    {
+      "maCau": "q_278c4b4d9b",
+      "ma_goc": "2605-1397",
+      "kieuCau": "TN",
+      "cauDan": "Nếu $\\displaystyle \\int_0^2 f(x) \\mathrm{\\,d}x = 2$ thì $\\displaystyle \\int_2^0 3f(x) \\mathrm{\\,d}x$ bằng",
+      "paA": "$-6$",
+      "paB": "$6$",
+      "paC": "$-12$",
+      "paD": "$12$"
+    },
+    {
+      "maCau": "q_b9d71f6ca0",
+      "ma_goc": "2605-1398",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt cầu $(S)$ có phương trình $(x-1)^2 + (y+2)^2 + (z-1)^2 = 16$. Tìm tọa độ tâm $I$ và bán kính $R$ của mặt cầu $(S)$.",
+      "paA": "$I(1; -2; 1)$, $R = 4$",
+      "paB": "$I(-1; 2; -1)$, $R = 16$",
+      "paC": "$I(-1; 2; -1)$, $R = 4$",
+      "paD": "$I(1; -2; 1)$, $R = 16$"
+    },
+    {
+      "maCau": "q_d995dcc2f2",
+      "ma_goc": "2605-1399",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\tan x = 1$ là",
+      "paA": "$S = \\left\\{ -\\displaystyle \\frac{\\pi}{4} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$S = \\left\\{ \\displaystyle \\frac{\\pi}{4} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paC": "$S = \\left\\{ \\displaystyle \\frac{\\pi}{4} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paD": "$S = \\left\\{ -\\displaystyle \\frac{\\pi}{4} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_7c7ce5ccf1",
+      "ma_goc": "2605-1400",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[-4; 6]$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7c7ce5ccf1_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[-4; 6]$ bằng",
+      "paA": "$-4$",
+      "paB": "$-48$",
+      "paC": "$-146$",
+      "paD": "$114$"
+    },
+    {
+      "maCau": "q_f2f5784eb2",
+      "ma_goc": "2605-1401",
+      "kieuCau": "TN",
+      "cauDan": "Đạo hàm cấp hai của hàm số $y = x^3$ là",
+      "paA": "$y'' = 6$",
+      "paB": "$y'' = 6x$",
+      "paC": "$y'' = 3x$",
+      "paD": "$y'' = 3x^2$"
+    },
+    {
+      "maCau": "q_271a1d0b7d",
+      "ma_goc": "2605-1402",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{ax+b}{cx+d}$ ($ac \\neq 0, ad - bc \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_271a1d0b7d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương trình tiệm cận đứng và tiệm cận ngang của đồ thị lần lượt là",
+      "paA": "$x = -1$, $y = -2$",
+      "paB": "$x = -1$, $y = 2$",
+      "paC": "$x = 2$, $y = -1$",
+      "paD": "$x = 1$, $y = 2$"
+    },
+    {
+      "maCau": "q_bfbaf9d9e6",
+      "ma_goc": "2605-1403",
+      "kieuCau": "TN",
+      "cauDan": "Hai mẫu số liệu ghép nhóm $M_1$, $M_2$ có bảng tần số ghép nhóm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bfbaf9d9e6_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\\\\\\begin{center}\r\n\t\t<img src='HinhAnh/q_bfbaf9d9e6_cd_tab_2.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $\\Delta_{Q_1}, \\Delta_{Q_2}$ lần lượt là khoảng tứ phân vị của mẫu số liệu ghép nhóm $M_1, M_2$. Phát biểu nào sau đây đúng?",
+      "paA": "$\\Delta_{Q_1} = \\Delta_{Q_2}$",
+      "paB": "$\\Delta_{Q_1} = 2\\Delta_{Q_2}$",
+      "paC": "$4\\Delta_{Q_1} = \\Delta_{Q_2}$",
+      "paD": "$2\\Delta_{Q_1} = \\Delta_{Q_2}$"
+    },
+    {
+      "maCau": "q_524bbc972a",
+      "ma_goc": "2605-1404",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$. Khẳng định nào dưới đây là đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_524bbc972a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AD} = \\vec{BC}$",
+      "paB": "$\\vec{AD} = \\vec{A'C}$",
+      "paC": "$\\vec{AD} = \\vec{CB}$",
+      "paD": "$\\vec{AD} = \\vec{A'B'}$"
+    },
+    {
+      "maCau": "q_8a06f4baa2",
+      "ma_goc": "2605-1405",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật và $SA \\perp (ABCD)$. Đường thẳng nào sau đây vuông góc với mặt phẳng $(SAD)$?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8a06f4baa2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$BC$",
+      "paB": "$SB$",
+      "paC": "$SC$",
+      "paD": "$CD$"
+    },
+    {
+      "maCau": "q_1a14d465e2",
+      "ma_goc": "2605-1406",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P)$ có phương trình $3(x-2) + 2(y-2) - 4(z+3) = 0$. Điểm nào sau đây thuộc mặt phẳng $(P)$?",
+      "paA": "$Q(-2; -3; 4)$",
+      "paB": "$N(-2; -2; 3)$",
+      "paC": "$M(2; 2; -3)$",
+      "paD": "$P(3; 2; -4)$"
+    },
+    {
+      "maCau": "q_a114442d37",
+      "ma_goc": "2605-1407",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ với $u_1 = 1$ và công sai $d = -2$. Giá trị của $u_3$ bằng:",
+      "paA": "$4$",
+      "paB": "$-5$",
+      "paC": "$-8$",
+      "paD": "$-3$"
+    }
+  ]
+}
