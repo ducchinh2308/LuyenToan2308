@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_da78d62e89",
+  "dapAn": "111",
+  "loiGiai": "Đường thẳng $\\Delta$ song song với trục $Oz$ nên mọi điểm trên $\\Delta$ đều có hình chiếu xuống mặt phẳng $Oxy$ là $H(x;y)$.\\\\\r\n\t\tTa có: $AH + BH = 2\\sqrt{34}$ nên $H$ thuộc elip với $\\left\\{\\begin{aligned} &2a = 2\\sqrt{34} \\Rightarrow a = \\sqrt{34} \\\\ &2c = 6 \\Rightarrow b = \\sqrt{a^2 - c^2} = 5 \\end{aligned}\\right.$ có phương trình là $\\dfrac{x^2}{34} + \\dfrac{y^2}{25} = 1$.\\\\\r\n\t\tGọi $C'(0;6;0)$ là hình chiếu của $C$ trên trục $Oy$.\\\\\r\n\t\t$MC$ ngắn nhất khi $MC \\perp \\Delta \\Rightarrow CM = C'I$ với $I = Oy \\cap \\text{elip} \\Rightarrow I(0;5;0)$.\\\\\r\n\t\tMà $C'I = C'O - OI = 6 - 5 = 1 = CM$.\\\\\r\n\t\tMặt khác $I(0;5;0)$ là hình chiếu của $M$ lên mặt phẳng $(Oxy)$ nên $M(0;5;1)$.\\\\\r\n\t\tVậy $S = x_0 + 20y_0 + 11z_0 = 0 + 20 \\cdot 5 + 11 \\cdot 1 = 111$."
+}
