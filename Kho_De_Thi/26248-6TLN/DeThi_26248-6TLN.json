@@ -1,0 +1,43 @@
+{
+  "maDe": "26248-6TLN",
+  "tenDe": "ĐỀ 26248-6TLN",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_bb57aa6ca4",
+      "ma_goc": "2605-1412",
+      "kieuCau": "TLN",
+      "cauDan": "Trong hóa học động học, đối với một phản ứng hóa học nối tiếp, nồng độ của chất trung gian sinh ra sẽ tăng lên đến một đỉnh điểm rồi giảm dần do bị chuyển hóa thành chất khác. Dựa trên dữ liệu thực nghiệm, sự thay đổi nồng độ của một chất trung gian trong bình phản ứng được mô phỏng bởi hàm số: $C(t) = -2t^3 + 3t^2 + 12t$. Trong đó, $C(t)$ là nồng độ chất trung gian (đơn vị: mmol/L) và $t$ là thời gian (đơn vị: phút) tính từ thời điểm bắt đầu phản ứng. Biết rằng mô hình toán học này chỉ áp dụng trong $3$ phút đầu tiên của phản ứng ($0 \\le t \\le 3$). Để thu hoạch được lượng chất trung gian nhiều nhất, hệ thống tự động cần trích xuất dung dịch ngay tại thời điểm nồng độ của nó đạt mức tối đa. Hỏi sau bao nhiêu phút kể từ khi bắt đầu phản ứng, nồng độ chất trung gian đạt giá trị lớn nhất?"
+    },
+    {
+      "maCau": "q_39e39a4f34",
+      "ma_goc": "2605-1413",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty khai thác tuyến tàu cao tốc chở khách du lịch từ đất liền ra đảo với khoảng cách $60$ km. Giả sử tàu di chuyển với vận tốc $v$ không đổi trên suốt tuyến đường. Chi phí vận hành cho mỗi giờ hoạt động của tàu bao gồm:\\\\\r\n\t• Chi phí nhiên liệu: $100v^3$ (đồng), với $v$ (km/h) là vận tốc của tàu ($v > 0$).\\\\\r\n\t• Chi phí cố định (lương thủy thủ đoàn, khấu hao, bến bãi,): $4000000$ đồng.\\\\\r\n\tĐể đảm bảo chất lượng dịch vụ, thời gian di chuyển mỗi chuyến không được vượt quá $1$ giờ $30$ phút. Đồng thời, vì lý do an toàn hàng hải, tàu không được chạy quá $55$ km/h. Tàu có sức chứa tối đa $150$ hành khách và giả sử rằng số lượng khách trên mỗi chuyến đi luôn đạt mức tối đa. Ban giám đốc thiết lập mục tiêu lợi nhuận thu được từ mỗi chuyến đi bằng $25\\%$ tổng chi phí vận hành của chuyến đó. Để đạt được mức lợi nhuận này trong điều kiện tàu được vận hành với tổng chi phí thấp nhất, giá vé mỗi hành khách phải trả là bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_579e3431f7",
+      "ma_goc": "2605-1414",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một mô hình kinh tế, hàm cung $y = S(x)$ là giá của một sản phẩm khi nhà sản xuất sẵn sàng bán ra $x$ sản phẩm, hàm cầu $y = D(x)$ là giá của một sản phẩm khi người tiêu dùng có nhu cầu mua $x$ sản phẩm. Điểm cắt nhau $(x_0; y_0)$ của đồ thị hàm cầu và hàm cung được gọi là điểm cân bằng thị trường. Các nhà kinh tế gọi thặng dư tiêu dùng là diện tích của hình giới hạn bởi đồ thị hàm cầu, đường ngang $y = y_0$ và trục tung. Tương tự, thặng dư sản xuất là diện tích của hình giới hạn bởi đồ thị của hàm cung, đường ngang $y = y_0$ và trục tung (Hình vẽ).\r\n\tXét thị trường tấm pin năng lượng mặt trời thế hệ mới được mô hình hóa theo mô hình kinh tế này.\\\\\r\n\tHàm cầu là $p = D(x) = 4 - 0{,}2x$ (triệu đồng/tấm). Hàm cung là $p = S(x) = 0{,}4 + 0{,}1x + \\displaystyle \\frac{1}{m}x^2$ (triệu đồng/tấm). Trong đó $x$ là sản lượng (đơn vị: nghìn sản phẩm), $p$ là giá bán (đơn vị: triệu đồng/sản phẩm) và $m$ là chỉ số hiệu quả công nghệ ($m > 0$). Biết rằng tại trạng thái cân bằng thị trường, thặng dư sản xuất đạt được là $4{,}2$ tỷ đồng. Tại thời điểm này, thặng dư tiêu dùng là bao nhiêu tỷ đồng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_579e3431f7_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_2cd1ccda61",
+      "ma_goc": "2605-1415",
+      "kieuCau": "TLN",
+      "cauDan": "Một máy chủ cần xử lý tuần tự $15$ tệp dữ liệu khác nhau, bao gồm: $3$ tệp văn bản, $5$ tệp âm thanh và $7$ tệp video. Việc xử lý liên tục các tệp dữ liệu cùng loại sẽ làm giảm hiệu suất của hệ thống. Do đó, hệ thống phải sắp xếp thứ tự xử lý sao cho không có bất kỳ hai tệp dữ liệu cùng loại nào (văn bản, âm thanh, video) được xếp liền kề nhau. Gọi $S$ là số cách sắp xếp thỏa mãn yêu cầu trên. Hãy tính tổng các chữ số của $S$."
+    },
+    {
+      "maCau": "q_8b6efa40f2",
+      "ma_goc": "2605-1416",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, mỗi đơn vị trên các trục tọa độ ứng với một mét. Mặt phẳng $(Oxy)$ biểu diễn mặt sàn của gara, trục $Oz$ hướng thẳng đứng lên trên. Một bức tường thẳng đứng trong gara được mô hình hóa bởi mặt phẳng $(E) \\colon 6x + 8y = 55$. Chiếc xe đang lùi chậm vào vị trí đỗ theo hướng $\\vec{v} = (3; 4; 0)$. Ba cảm biến lùi được gắn cố định trên cản sau của ô tô. Tại thời điểm bắt đầu xét, tọa độ của ba cảm biến lần lượt là $A(4{,}57; 0{,}51; 0{,}5)$, $B(3{,}37; 1{,}41; 0{,}5)$, $C(4; 1; 0{,}5)$. Hệ thống phát ra tín hiệu cảnh báo “Bíp” tại thời điểm đầu tiên có ít nhất một cảm biến cách bức tường $(E)$ không quá $0{,}3(\\text{m})$. Gọi $R(a; b; c)$ là tọa độ của cảm biến đầu tiên đạt ngưỡng cảnh báo. Tính $a - b + c$."
+    },
+    {
+      "maCau": "q_59fedb2940",
+      "ma_goc": "2605-1417",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có đáy $ABCD$ là hình chữ nhật, $AB = 4AD = 4a$ và $AA' = a$. Gọi $\\alpha$ là số đo của góc nhị diện $[A'; BD; C]$. Tính $\\alpha$ theo đơn vị độ, làm tròn kết quả đến hàng đơn vị.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_59fedb2940_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fae3ed9e90",
+  "dapAn": "36",
+  "loiGiai": "Xếp $7$ tệp video vào $7$ vị trí có $7!$ cách.\\\\\r\n\t\tỨng mỗi cách xếp $7$ tệp video sẽ có $8$ khoảng trống gồm $6$ vị trí ở giữa và hai vị trí hai đầu để xếp các tệp còn lại.\\\\\r\n\t\t\\textbf{TH1:} Xếp $5$ tệp âm thanh vào $6$ vị trí trống ở giữa có $A_6^5$ cách.\\\\\r\n\t\tỨng với mỗi cách xếp, chọn $1$ trong $3$ tệp văn bản xếp vào vị trí trống ở giữa còn lại có $3$ cách.\\\\\r\n\t\t$2$ tệp văn bản còn lại có $12$ vị trí để xếp có $A_{12}^2$ cách.\\\\\r\n\t\tTheo quy tắc nhân có: $A_6^5 \\cdot 3 \\cdot A_{12}^2$ cách.\\\\\r\n\t\t\\textbf{TH2:} Xếp $3$ trong $5$ tệp âm thanh và $3$ tệp văn bản vào $6$ vị trí trống ở giữa và $2$ tệp âm thanh còn lại xếp vào hai đầu, có $C_5^3 \\cdot 6! \\cdot 2!$ cách.\\\\\r\n\t\tVậy tất cả có: $S = 7! \\cdot \\left( A_6^5 \\cdot 3 \\cdot A_{12}^2 + C_5^3 \\cdot 6! \\cdot 2! \\right) = 1509580800$ (cách).\\\\\r\n\t\tTổng các chữ số của $S$ là $1 + 5 + 0 + 9 + 5 + 8 + 0 + 8 + 0 + 0 = 36$."
+}
