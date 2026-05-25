@@ -697,7 +697,7 @@ async function ham_4_8_tai_danh_sach_hoc_sinh_de_chon() {
     try {
         const { data: dsHocSinh, error } = await _supabase
             .from('hoc_sinh')
-            .select('uid, ten, sdt, khoi_lop')
+            .select('uid, ten, sdt, khoi_lop,kim_cuong')
             .eq('vai_tro', 'hocsinh')
             .eq('trang_thai', 1)
             .order('ten', { ascending: true });
@@ -710,11 +710,18 @@ async function ham_4_8_tai_danh_sach_hoc_sinh_de_chon() {
 
         let htmlCheckbox = '';
         dsHocSinh.forEach(hs => {
-            const thongTin = `${hs.ten} - Khối ${hs.khoi_lop || '?'} (${hs.sdt})`;
+            const soKC = hs.kim_cuong || 0; // Lấy dữ liệu
+            const badgeKC = `<span style="background: #e0f7fa; color: #00838f; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 900; border: 1px solid #b2ebf2;">💎 ${soKC}</span>`;
+            const thongTin = `<b>${hs.ten}</b> - Khối ${hs.khoi_lop || '?'} (${hs.sdt})`;
+
+            // Thêm badgeKC vào thẻ label với justify-content: space-between để ép nó sang lề phải
             htmlCheckbox += `
-                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border: 1px solid #eee; border-radius: 4px; cursor: pointer;">
-                    <input type="checkbox" class="chk-hs-vao-lop" value="${hs.uid}"> 
-                    <span style="font-size: 14px;">${thongTin}</span>
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: white; border: 1px solid #eee; border-radius: 4px; cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" class="chk-hs-vao-lop" value="${hs.uid}"> 
+                        <span style="font-size: 14px;">${thongTin}</span>
+                    </div>
+                    ${badgeKC}
                 </label>
             `;
         });
