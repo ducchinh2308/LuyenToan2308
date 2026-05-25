@@ -159,24 +159,199 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
 
 
 
+//// =====================================================================
+//// 4. Hàm Nộp từng câu lên Server để chấm điểm (BẢN CHUẨN - ĐẦY ĐỦ TÍNH NĂNG)
+//// =====================================================================
+//window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
+//    const phien = window.PhienLamBai;
+
+//    // 1. TRÍCH XUẤT DỮ LIỆU CÂU HỎI
+//    const cauHoiGoc = phien.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi === maCau || c.maCau === maCau));
+//    if (!cauHoiGoc) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu gốc của câu hỏi này!', 'error');
+
+//    const dapAnChuan = (cauHoiGoc.dap_an || cauHoiGoc.dapAn || cauHoiGoc.dap_an_dung || "").trim();
+
+//    // =================================================================
+//    // 🌟 BƯỚC 2: TÍNH TOÁN ĐIỂM TỐI ĐA ĐỘNG DỰA TRÊN TRỌNG SỐ ĐỀ THỰC TẾ
+//    // =================================================================
+//    let soCauTN = 0, soCauDS = 0, soCauTLN = 0;
+
+//    // Quét một vòng toàn bộ đề thi để đếm số lượng mỗi loại câu
+//    phien.danh_sach_cau_hoi.forEach(c => {
+//        let loai = (c.kieuCau || c.loaiCau || "TN").toUpperCase();
+//        if (loai === 'TN') soCauTN++;
+//        else if (loai === 'DS') soCauDS++;
+//        else if (loai === 'TLN') soCauTLN++;
+//    });
+
+//    // Áp dụng công thức trọng số (TN: 1, TLN: 2, DS: 4) chuẩn Toán 2025
+//    let tongTrongSo = (soCauTN * 1.0) + (soCauTLN * 2.0) + (soCauDS * 4.0);
+//    if (tongTrongSo === 0) tongTrongSo = 1; // Đề phòng lỗi chia cho 0
+
+//    // Tính điểm tối đa cho câu hỏi hiện tại đang nộp
+//    let diemToiDa = 0;
+//    if (kieuCau === 'TN') {
+//        diemToiDa = (10.0 * 1.0) / tongTrongSo;
+//    } else if (kieuCau === 'DS') {
+//        diemToiDa = (10.0 * 4.0) / tongTrongSo;
+//    } else if (kieuCau === 'TLN') {
+//        diemToiDa = (10.0 * 2.0) / tongTrongSo;
+//    }
+
+//    // 3. ĐÓNG GÓI ĐÁP ÁN HỌC SINH (VÁ LỖI KEY ĐÚNG/SAI)
+//    const dapanHS = phien.dap_an_hoc_sinh[maCau];
+//    if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
+//        return Swal.fire('Nhắc nhở', 'Em chưa chọn đủ đáp án cho câu hỏi này!', 'warning');
+//    }
+
+//    let chuoiDapAnGoi = "";
+//    if (kieuCau === 'DS') {
+//        chuoiDapAnGoi = ['a', 'b', 'c', 'd'].map(k => {
+//            return dapanHS[k] || dapanHS[k.toUpperCase()] || "_";
+//        }).join('');
+//    } else {
+//        chuoiDapAnGoi = String(dapanHS).trim().toUpperCase();
+//    }
+
+//    console.log(`🚀 [NỘP CÂU ${maCau}] Kiểu: ${kieuCau} | Điểm tối đa: ${diemToiDa}`);
+//    console.log(`👉 Lựa chọn: "${chuoiDapAnGoi}" | Đáp án tham khảo: "${dapAnChuan}"`);
+
+//    // KHÓA GIAO DIỆN CHỜ XỬ LÝ
+//    const btn = document.getElementById(`btn-live-${maCau}`);
+//    if (btn) { btn.disabled = true; btn.innerText = "⏳ ĐANG LƯU..."; btn.style.background = "#7f8c8d"; }
+//    const khoiCau = document.getElementById(`cau-${maCau}`);
+//    if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
+
+//    try {
+//        // GỌI RPC SERVER
+//        const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau', {
+//            p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
+//            p_uid: GocHocSinhState.uid,
+//            p_ma_cau: maCau,
+//            p_dap_an_chon: chuoiDapAnGoi,
+//            p_dap_an_dung: dapAnChuan,
+//            p_kieu_cau: kieuCau,
+//            p_diem_toi_da: diemToiDa
+//        });
+
+//        if (error) throw error;
+
+//        // 1. XỬ LÝ ĐIỂM VÀ ĐỔI MÀU NÚT BẤM TÙY THEO LOẠI CÂU
+//        const diemCauNay = Number(ketQuaTraVe.diem_cau_nay);
+//        const soYDung = Number(ketQuaTraVe.so_y_dung || 0);
+
+//        if (btn) {
+//            // NẾU LÀ CÂU ĐÚNG/SAI: Báo chi tiết số ý
+//            if (kieuCau === 'DS') {
+//                if (diemCauNay > 0) {
+//                    btn.innerText = `✅ ĐÚNG ${soYDung}/4 Ý (+${diemCauNay.toFixed(2)})`;
+//                    btn.style.background = "#27ae60"; // Màu xanh lá
+//                } else {
+//                    btn.innerText = `❌ ĐÚNG ${soYDung}/4 Ý (0 ĐIỂM)`;
+//                    btn.style.background = "#c0392b"; // Màu đỏ
+//                }
+//            }
+//            // NẾU LÀ CÂU TN HOẶC TLN: Chỉ báo Đúng/Sai thông thường
+//            else {
+//                if (diemCauNay > 0) {
+//                    btn.innerText = `✅ ĐÚNG (+${diemCauNay.toFixed(2)})`;
+//                    btn.style.background = "#27ae60";
+//                } else {
+//                    btn.innerText = `❌ SAI (0 ĐIỂM)`;
+//                    btn.style.background = "#c0392b";
+//                }
+//            }
+//        }
+
+//        // 2. CẬP NHẬT TỔNG ĐIỂM LÊN HUD
+//        const tongDiemCapNhat = Number(ketQuaTraVe.tong_diem);
+//        const hudDiem = document.getElementById('diem-hien-tai-hs');
+//        if (hudDiem) {
+//            hudDiem.innerText = tongDiemCapNhat.toFixed(2);
+//            hudDiem.style.color = "#f1c40f";
+//            setTimeout(() => { hudDiem.style.color = "white"; }, 500);
+//        }
+
+//        // =========================================================================
+//        // 🌟 BƯỚC 4: TỰ ĐỘNG CHỐT HẠ NẾU LÀM ĐỦ 100% SỐ CÂU
+//        // =========================================================================
+//        if (!phien.danh_sach_cau_da_nop) {
+//            phien.danh_sach_cau_da_nop = new Set();
+//        }
+//        phien.danh_sach_cau_da_nop.add(maCau);
+
+//        // Kiểm tra xem đã nộp đủ số lượng câu chưa
+//        if (phien.danh_sach_cau_da_nop.size === phien.tong_so_cau) {
+
+//            // Bật cờ khóa phòng trên Server
+//            if (window.ThongTinLiveHocSinh.maPhong) {
+//                await _supabase.from('tien_do_live_quiz')
+//                    .update({ da_nop: true })
+//                    .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+//                    .eq('uid_hoc_sinh', GocHocSinhState.uid);
+//            }
+
+//            // Xóa bộ đếm giờ (dừng đồng hồ)
+//            if (phien.id_timer) clearInterval(phien.id_timer);
+
+//            // Báo thành công, giữ nguyên màn hình để học sinh xem lại
+//            Swal.fire({
+//                title: '🎉 Hoàn thành bài làm!',
+//                html: `Em đã trả lời đủ <b>${phien.tong_so_cau}/${phien.tong_so_cau}</b> câu hỏi.<br>🎯 Tổng điểm tích lũy: <b>${tongDiemCapNhat.toFixed(2)} điểm</b>.<br>Màn hình đã đóng chỉnh sửa, em có thể cuộn để xem lại bài làm của mình.`,
+//                icon: 'success'
+//            });
+//        }
+
+//    } catch (e) {
+//        if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
+//        if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
+//        Swal.fire('Lỗi', 'Không kết nối được server! Vui lòng thử lại.', 'error');
+//        console.error("LỖI CHẤM ĐIỂM:", e);
+//    }
+//};
+
+
 // =====================================================================
-// 4. Hàm Nộp từng câu lên Server để chấm điểm (BẢN CHUẨN - ĐẦY ĐỦ TÍNH NĂNG)
+// Hàm chạy ngầm: Bắn tín hiệu cập nhật thanh tiến độ Live Quiz
+// =====================================================================
+window.ham_8_x_ban_tien_do_live_tung_cau = async function (tongDiemHienTai, soCauDungMoiThem) {
+    if (!window.PhienLamBai || !window.PhienLamBai.isLiveQuiz || !window.ThongTinLiveHocSinh) return;
+
+    try {
+        const phien = window.PhienLamBai;
+        // Đếm số lượng câu đã nộp thành công
+        const soCauDaLam = phien.danh_sach_cau_da_nop ? phien.danh_sach_cau_da_nop.size : 0;
+
+        // Tích lũy số câu đúng (nếu điểm > 0 thì cộng vào)
+        phien.tong_so_cau_dung = (phien.tong_so_cau_dung || 0) + soCauDungMoiThem;
+
+        await _supabase.from('tien_do_live_quiz')
+            .update({
+                diem_so: tongDiemHienTai, // Bắn điểm thật lên cho GV xem
+                so_cau_da_lam: soCauDaLam,
+                so_cau_dung: phien.tong_so_cau_dung, // Bắn tổng số câu đúng
+                thoi_gian_cap_nhat: new Date().toISOString()
+            })
+            .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+            .eq('uid_hoc_sinh', GocHocSinhState.uid);
+
+    } catch (err) {
+        console.warn("Bỏ qua đồng bộ tiến độ do mạng lag.");
+    }
+};
+
+// =====================================================================
+// 4. Hàm Nộp từng câu lên Server để chấm điểm (BẢN CHUẨN - KÈM BẮN TIẾN ĐỘ)
 // =====================================================================
 window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     const phien = window.PhienLamBai;
 
-    // 1. TRÍCH XUẤT DỮ LIỆU CÂU HỎI
     const cauHoiGoc = phien.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi === maCau || c.maCau === maCau));
     if (!cauHoiGoc) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu gốc của câu hỏi này!', 'error');
 
     const dapAnChuan = (cauHoiGoc.dap_an || cauHoiGoc.dapAn || cauHoiGoc.dap_an_dung || "").trim();
 
-    // =================================================================
-    // 🌟 BƯỚC 2: TÍNH TOÁN ĐIỂM TỐI ĐA ĐỘNG DỰA TRÊN TRỌNG SỐ ĐỀ THỰC TẾ
-    // =================================================================
     let soCauTN = 0, soCauDS = 0, soCauTLN = 0;
-
-    // Quét một vòng toàn bộ đề thi để đếm số lượng mỗi loại câu
     phien.danh_sach_cau_hoi.forEach(c => {
         let loai = (c.kieuCau || c.loaiCau || "TN").toUpperCase();
         if (loai === 'TN') soCauTN++;
@@ -184,21 +359,14 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
         else if (loai === 'TLN') soCauTLN++;
     });
 
-    // Áp dụng công thức trọng số (TN: 1, TLN: 2, DS: 4) chuẩn Toán 2025
     let tongTrongSo = (soCauTN * 1.0) + (soCauTLN * 2.0) + (soCauDS * 4.0);
-    if (tongTrongSo === 0) tongTrongSo = 1; // Đề phòng lỗi chia cho 0
+    if (tongTrongSo === 0) tongTrongSo = 1;
 
-    // Tính điểm tối đa cho câu hỏi hiện tại đang nộp
     let diemToiDa = 0;
-    if (kieuCau === 'TN') {
-        diemToiDa = (10.0 * 1.0) / tongTrongSo;
-    } else if (kieuCau === 'DS') {
-        diemToiDa = (10.0 * 4.0) / tongTrongSo;
-    } else if (kieuCau === 'TLN') {
-        diemToiDa = (10.0 * 2.0) / tongTrongSo;
-    }
+    if (kieuCau === 'TN') diemToiDa = (10.0 * 1.0) / tongTrongSo;
+    else if (kieuCau === 'DS') diemToiDa = (10.0 * 4.0) / tongTrongSo;
+    else if (kieuCau === 'TLN') diemToiDa = (10.0 * 2.0) / tongTrongSo;
 
-    // 3. ĐÓNG GÓI ĐÁP ÁN HỌC SINH (VÁ LỖI KEY ĐÚNG/SAI)
     const dapanHS = phien.dap_an_hoc_sinh[maCau];
     if (!dapanHS || (kieuCau === 'DS' && Object.keys(dapanHS).length === 0)) {
         return Swal.fire('Nhắc nhở', 'Em chưa chọn đủ đáp án cho câu hỏi này!', 'warning');
@@ -206,24 +374,17 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
     let chuoiDapAnGoi = "";
     if (kieuCau === 'DS') {
-        chuoiDapAnGoi = ['a', 'b', 'c', 'd'].map(k => {
-            return dapanHS[k] || dapanHS[k.toUpperCase()] || "_";
-        }).join('');
+        chuoiDapAnGoi = ['a', 'b', 'c', 'd'].map(k => dapanHS[k] || dapanHS[k.toUpperCase()] || "_").join('');
     } else {
         chuoiDapAnGoi = String(dapanHS).trim().toUpperCase();
     }
 
-    console.log(`🚀 [NỘP CÂU ${maCau}] Kiểu: ${kieuCau} | Điểm tối đa: ${diemToiDa}`);
-    console.log(`👉 Lựa chọn: "${chuoiDapAnGoi}" | Đáp án tham khảo: "${dapAnChuan}"`);
-
-    // KHÓA GIAO DIỆN CHỜ XỬ LÝ
     const btn = document.getElementById(`btn-live-${maCau}`);
     if (btn) { btn.disabled = true; btn.innerText = "⏳ ĐANG LƯU..."; btn.style.background = "#7f8c8d"; }
     const khoiCau = document.getElementById(`cau-${maCau}`);
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        // GỌI RPC SERVER
         const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
@@ -236,26 +397,29 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
         if (error) throw error;
 
-        // 1. XỬ LÝ ĐIỂM VÀ ĐỔI MÀU NÚT BẤM TÙY THEO LOẠI CÂU
+        // Quản lý số lượng câu đã nộp thành công
+        if (!phien.danh_sach_cau_da_nop) phien.danh_sach_cau_da_nop = new Set();
+        phien.danh_sach_cau_da_nop.add(maCau);
+
         const diemCauNay = Number(ketQuaTraVe.diem_cau_nay);
         const soYDung = Number(ketQuaTraVe.so_y_dung || 0);
+        let laCauDungHoanToan = 0; // Cờ hiệu để cộng vào tổng câu đúng
 
         if (btn) {
-            // NẾU LÀ CÂU ĐÚNG/SAI: Báo chi tiết số ý
             if (kieuCau === 'DS') {
                 if (diemCauNay > 0) {
                     btn.innerText = `✅ ĐÚNG ${soYDung}/4 Ý (+${diemCauNay.toFixed(2)})`;
-                    btn.style.background = "#27ae60"; // Màu xanh lá
+                    btn.style.background = "#27ae60";
+                    if (soYDung === 4) laCauDungHoanToan = 1;
                 } else {
                     btn.innerText = `❌ ĐÚNG ${soYDung}/4 Ý (0 ĐIỂM)`;
-                    btn.style.background = "#c0392b"; // Màu đỏ
+                    btn.style.background = "#c0392b";
                 }
-            }
-            // NẾU LÀ CÂU TN HOẶC TLN: Chỉ báo Đúng/Sai thông thường
-            else {
+            } else {
                 if (diemCauNay > 0) {
                     btn.innerText = `✅ ĐÚNG (+${diemCauNay.toFixed(2)})`;
                     btn.style.background = "#27ae60";
+                    laCauDungHoanToan = 1;
                 } else {
                     btn.innerText = `❌ SAI (0 ĐIỂM)`;
                     btn.style.background = "#c0392b";
@@ -263,7 +427,6 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
             }
         }
 
-        // 2. CẬP NHẬT TỔNG ĐIỂM LÊN HUD
         const tongDiemCapNhat = Number(ketQuaTraVe.tong_diem);
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) {
@@ -272,29 +435,19 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
             setTimeout(() => { hudDiem.style.color = "white"; }, 500);
         }
 
-        // =========================================================================
-        // 🌟 BƯỚC 4: TỰ ĐỘNG CHỐT HẠ NẾU LÀM ĐỦ 100% SỐ CÂU
-        // =========================================================================
-        if (!phien.danh_sach_cau_da_nop) {
-            phien.danh_sach_cau_da_nop = new Set();
-        }
-        phien.danh_sach_cau_da_nop.add(maCau);
+        // 🌟 BẮN TIẾN ĐỘ NGẦM LÊN SERVER
+        window.ham_8_x_ban_tien_do_live_tung_cau(tongDiemCapNhat, laCauDungHoanToan);
 
-        // Kiểm tra xem đã nộp đủ số lượng câu chưa
+        // Chốt hạ khi đủ số câu
         if (phien.danh_sach_cau_da_nop.size === phien.tong_so_cau) {
-
-            // Bật cờ khóa phòng trên Server
             if (window.ThongTinLiveHocSinh.maPhong) {
                 await _supabase.from('tien_do_live_quiz')
                     .update({ da_nop: true })
                     .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
                     .eq('uid_hoc_sinh', GocHocSinhState.uid);
             }
-
-            // Xóa bộ đếm giờ (dừng đồng hồ)
             if (phien.id_timer) clearInterval(phien.id_timer);
 
-            // Báo thành công, giữ nguyên màn hình để học sinh xem lại
             Swal.fire({
                 title: '🎉 Hoàn thành bài làm!',
                 html: `Em đã trả lời đủ <b>${phien.tong_so_cau}/${phien.tong_so_cau}</b> câu hỏi.<br>🎯 Tổng điểm tích lũy: <b>${tongDiemCapNhat.toFixed(2)} điểm</b>.<br>Màn hình đã đóng chỉnh sửa, em có thể cuộn để xem lại bài làm của mình.`,
@@ -306,9 +459,9 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
         if (btn) { btn.disabled = false; btn.innerText = "🚀 THỬ LẠI"; btn.style.background = "#e74c3c"; }
         if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = false);
         Swal.fire('Lỗi', 'Không kết nối được server! Vui lòng thử lại.', 'error');
-        console.error("LỖI CHẤM ĐIỂM:", e);
     }
 };
+
 
 
 
