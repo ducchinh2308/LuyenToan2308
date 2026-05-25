@@ -1077,6 +1077,9 @@ async function ham_8_5_tab_ho_so() {
         }
 
         const mkHienTai = hs.mat_khau || hs.matKhau || "";
+        // 🌟 LẤY SỐ KIM CƯƠNG TỪ RAM ĐỂ HIỂN THỊ
+        const soKimCuong = GocHocSinhState.kim_cuong || 0;
+
 
         vungLamViec.innerHTML = `
             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
@@ -1087,6 +1090,16 @@ async function ham_8_5_tab_ho_so() {
                         ID Đăng nhập: <b>${hs.uid}</b>
                     </div>
                 </div>
+
+                <div style="background: rgba(255,255,255,0.9); border-radius: 12px; padding: 10px 15px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 2px solid #ffc107;">
+                        <span style="font-size: 24px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));">💎</span>
+                        <div style="text-align: left; color: #333;">
+                            <div style="font-size: 11px; font-weight: bold; color: #666; text-transform: uppercase;">Tài sản hiện có</div>
+                            <div style="font-size: 20px; font-weight: 900; color: #00838f; line-height: 1;">${soKimCuong} Kim Cương</div>
+                        </div>
+                    </div>
+
+
                 <div style="padding: 30px;">
                     <div style="margin-bottom: 20px;">
                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">👤 Tên hiển thị của em:</label>

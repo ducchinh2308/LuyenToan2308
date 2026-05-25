@@ -1485,6 +1485,12 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
     dsHocSinh.sort((a, b) => {
         let valA = a[cot] === null ? '' : a[cot];
         let valB = b[cot] === null ? '' : b[cot];
+
+        // Xử lý sort riêng cho cột kim_cuong và diem_tich_luy
+        if (cot === 'kim_cuong' || cot === 'diem_tich_luy') {
+            return (Number(valA || 0) - Number(valB || 0)) * heSo;
+        }
+
         if (valA < valB) return -1 * heSo;
         if (valA > valB) return 1 * heSo;
         return 0;
@@ -1500,6 +1506,7 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">STT</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Thao tác</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Trạng thái</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; color: #00838f;" onclick="ham_5_11_thay_doi_sort('kim_cuong')">💎 Kim Cương ${cot === 'kim_cuong' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('sdt')">SĐT ${cot === 'sdt' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Mật khẩu</th>
@@ -1525,6 +1532,9 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
         const mauTrangThai = hs.trang_thai == 1 ? '#28a745' : '#6c757d';
         const chuTrangThai = hs.trang_thai == 1 ? 'Mở' : 'Khóa';
         const tenAnToan = hs.ten ? hs.ten.replace(/'/g, "\\'") : 'Học sinh';
+        const soKC = hs.kim_cuong || 0;
+
+
 
         htmlTable += `
             <tr style="border-bottom: 1px solid #eee; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="this.style.background='transparent'">
@@ -1546,6 +1556,7 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                 </td>
 
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
+                <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: 900; color: #00acc1;">${soKC}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hs.ten}</td>
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${hs.sdt}</td>
                 <td style="padding: 10px; border: 1px solid #eee; color: #666;">${hs.mat_khau}</td>
