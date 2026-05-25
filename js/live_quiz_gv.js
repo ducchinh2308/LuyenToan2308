@@ -36,13 +36,21 @@ window.ham_9_1_tab_live_quiz = async function () {
 
                 if (phong.trang_thai === 0) {
                     badgeTrangThai = `<span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #c8e6c9;">ĐANG CHỜ HỌC SINH</span>`;
-                    htmlThaoTac = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">VÀO ĐIỀU KHIỂN</button>`;
+                    htmlThaoTac = `
+                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">VÀO ĐIỀU KHIỂN</button>
+                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+                    `;
                 } else if (phong.trang_thai === 1) {
                     badgeTrangThai = `<span style="background:#ffebee; color:#c62828; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #ffcdd2;">🔥 ĐANG THI ĐẤU</span>`;
-                    htmlThaoTac = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM TRỰC TIẾP</button>`;
+                    htmlThaoTac = `
+                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM TRỰC TIẾP</button>
+                    `;
                 } else {
                     badgeTrangThai = `<span style="background:#f1f3f4; color:#5f6368; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #dadce0;">ĐÃ KẾT THÚC</span>`;
-                    htmlThaoTac = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM LẠI KẾT QUẢ</button>`;
+                    htmlThaoTac = `
+                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM LẠI KẾT QUẢ</button>
+                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+                    `;
                 }
 
                 htmlRows += `
@@ -433,4 +441,49 @@ window.ham_9_3_3_thoat_phong = function () {
     if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
     if (window.GvTimerId) clearInterval(window.GvTimerId);
     window.ham_9_1_tab_live_quiz();
+};
+
+// =====================================================================
+// Hàm 9.4: Xóa phòng Live Quiz và dọn dẹp dữ liệu liên quan
+// =====================================================================
+window.ham_9_4_xoa_phong_live = async function (maPhong) {
+    Swal.fire({
+        title: 'CẢNH BÁO!',
+        html: `Thầy có chắc chắn muốn xóa phòng thi đấu <b>${maPhong}</b> không?<br><br><i>Lưu ý: Hành động này sẽ xóa toàn bộ lịch sử điểm số của học sinh trong phòng này và không thể khôi phục!</i>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Đồng ý, Xóa ngay!',
+        cancelButtonText: 'Hủy'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                Swal.fire({ title: '⏳ Đang xóa dữ liệu phòng...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+
+                // Bước 1: Xóa lịch sử làm bài của học sinh (tiến độ)
+                const { error: errTienDo } = await _supabase
+                    .from('tien_do_live_quiz')
+                    .delete()
+                    .eq('ma_phong', maPhong);
+                if (errTienDo) throw errTienDo;
+
+                // Bước 2: Xóa thông tin phòng
+                const { error: errPhong } = await _supabase
+                    .from('phong_live_quiz')
+                    .delete()
+                    .eq('ma_phong', maPhong);
+                if (errPhong) throw errPhong;
+
+                Swal.fire('Thành công!', 'Đã xóa phòng thi đấu thành công.', 'success');
+
+                // Tải lại bảng danh sách
+                ham_9_1_tab_live_quiz();
+
+            } catch (error) {
+                console.error("Lỗi xóa phòng:", error);
+                Swal.fire('Lỗi', 'Không thể xóa phòng: ' + error.message, 'error');
+            }
+        }
+    });
 };
