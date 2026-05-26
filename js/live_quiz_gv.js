@@ -237,17 +237,21 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         }
         ham_9_3_1_ve_leaderboard();
 
-        // 🌟 BẢN VÁ LỖI REALTIME: Thêm schema public và Merge Object
+        // =====================================================================
+        // 🌟 BẢN VÁ LỖI KHÓA KHÔI PHỤC SÓNG REALTIME (ĐÃ CHUẨN HÓA THEO UUID KEY)
+        // =====================================================================
         if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
+
         window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong)
             .on('postgres_changes', {
                 event: '*',
-                schema: 'public', // <--- BẮT BUỘC PHẢI CÓ
+                schema: 'public',
                 table: 'tien_do_live_quiz',
-                filter: `ma_phong=eq.${maPhong}`
+                filter: `ma_phong=eq.${maPhong}`,
+                config: { broadcast: { self: true } } // 🌟 VỊ TRÍ 1: Ép cấu hình tự phát sóng nội bộ chéo thiết bị
             }, payload => {
 
-                console.log("📡 Bắt được sóng Realtime:", payload); // Log ra để thầy kiểm tra
+                console.log("📡 [SÓNG LIVE] Phát hiện biến động từ Server:", payload);
 
                 if (payload.eventType === 'INSERT') {
                     window.DanhSachLive.push(payload.new);
@@ -255,7 +259,6 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
                 else if (payload.eventType === 'UPDATE') {
                     const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === payload.new.uid_hoc_sinh);
                     if (idx > -1) {
-                        // 🌟 Dùng Spread Operator để trộn dữ liệu mới vào dữ liệu cũ, không làm mất Tên Học Sinh
                         window.DanhSachLive[idx] = { ...window.DanhSachLive[idx], ...payload.new };
                     } else {
                         window.DanhSachLive.push(payload.new);
@@ -263,14 +266,21 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
                 }
 
                 // GỌI VẼ LẠI BẢNG LẬP TỨC
-                ham_9_3_1_ve_leaderboard();
+                if (typeof ham_9_3_1_ve_leaderboard === 'function') {
+                    ham_9_3_1_ve_leaderboard();
+                }
 
-            }).subscribe((status) => {
-                console.log("🚦 Trạng thái kết nối Realtime:", status);
+            }).subscribe((status, err) => { // 🌟 VỊ TRÍ 2: Bổ sung 'err' để hứng mọi lỗi ngầm từ Supabase
+                console.log("🚦 [HỆ THỐNG] Trạng thái kết nối Realtime:", status);
+
+                if (err) {
+                    console.error("❌ [LỖI SÓNG TRUYỀN]:", err);
+                }
+
                 if (status === 'SUBSCRIBED') {
-                    console.log("✅ Đã kết nối thành công! Đang vểnh tai nghe...");
-                } else {
-                    console.error("❌ Lỗi kết nối Kênh:", status);
+                    console.log("✅ Đã kết nối thành công! Kênh đang mở van vểnh tai nghe phòng " + maPhong);
+                } else if (status === 'CHANNEL_ERROR') {
+                    console.error("❌ Lỗi kết nối: Supabase từ chối phát sóng. Thầy hãy kiểm tra lại trạng thái gạt công tắc Realtime trong bảng điều khiển Supabase nhé!");
                 }
             });
 
