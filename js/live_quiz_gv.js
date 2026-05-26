@@ -265,7 +265,14 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
                 // GỌI VẼ LẠI BẢNG LẬP TỨC
                 ham_9_3_1_ve_leaderboard();
 
-            }).subscribe();
+            }).subscribe((status) => {
+                console.log("🚦 Trạng thái kết nối Realtime:", status);
+                if (status === 'SUBSCRIBED') {
+                    console.log("✅ Đã kết nối thành công! Đang vểnh tai nghe...");
+                } else {
+                    console.error("❌ Lỗi kết nối Kênh:", status);
+                }
+            });
 
     } catch (e) {
         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px;">❌ Lỗi: ${e.message}</div>`;
