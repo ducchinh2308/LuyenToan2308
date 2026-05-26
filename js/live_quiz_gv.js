@@ -271,14 +271,14 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
                 }
 
             }).subscribe((status, err) => { // 🌟 VỊ TRÍ 2: Bổ sung 'err' để hứng mọi lỗi ngầm từ Supabase
-                console.log("🚦 [HỆ THỐNG] Trạng thái kết nối Realtime:", status);
+                //console.log("🚦 [HỆ THỐNG] Trạng thái kết nối Realtime:", status);
 
                 if (err) {
-                    console.error("❌ [LỖI SÓNG TRUYỀN]:", err);
+                    //console.error("❌ [LỖI SÓNG TRUYỀN]:", err);
                 }
 
                 if (status === 'SUBSCRIBED') {
-                    console.log("✅ Đã kết nối thành công! Kênh đang mở van vểnh tai nghe phòng " + maPhong);
+                    //console.log("✅ Đã kết nối thành công! Kênh đang mở van vểnh tai nghe phòng " + maPhong);
                 } else if (status === 'CHANNEL_ERROR') {
                     console.error("❌ Lỗi kết nối: Supabase từ chối phát sóng. Thầy hãy kiểm tra lại trạng thái gạt công tắc Realtime trong bảng điều khiển Supabase nhé!");
                 }
