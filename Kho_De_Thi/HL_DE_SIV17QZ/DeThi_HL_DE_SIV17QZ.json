@@ -1,0 +1,203 @@
+{
+    "maDe": "HL_DE_SIV17QZ",
+    "tenDe": "HL-TOÁN LỚP 1",
+    "thoiGian": 60,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_9a4f4a3318",
+            "ma_goc": "4482-560",
+            "kieuCau": "TN",
+            "cauDan": "Số liền sau của số $8$ là số nào?",
+            "paA": "$7$",
+            "paB": "$9$",
+            "paC": "$6$",
+            "paD": "$10$"
+        },
+        {
+            "maCau": "q_ee184f19f7",
+            "ma_goc": "4297-394",
+            "kieuCau": "TN",
+            "cauDan": "Kết quả của phép tính $5 + 3$ bằng bao nhiêu?",
+            "paA": "$7$",
+            "paB": "$6$",
+            "paC": "$8$",
+            "paD": "$9$"
+        },
+        {
+            "maCau": "q_e87e0623e2",
+            "ma_goc": "6765-672",
+            "kieuCau": "TN",
+            "cauDan": "Phép tính nào dưới đây có kết quả bằng $4$?",
+            "paA": "$6 - 3$",
+            "paB": "$9 - 5$",
+            "paC": "$2 + 3$",
+            "paD": "$8 - 2$"
+        },
+        {
+            "maCau": "q_761640bd0d",
+            "ma_goc": "1042-855",
+            "kieuCau": "TN",
+            "cauDan": "Số gồm $3$ chục và $5$ đơn vị được viết là:",
+            "paA": "$53$",
+            "paB": "$305$",
+            "paC": "$35$",
+            "paD": "$8$"
+        },
+        {
+            "maCau": "q_091658e5d8",
+            "ma_goc": "4541-121",
+            "kieuCau": "TN",
+            "cauDan": "Số lớn nhất trong các số $45, 39, 54, 49$ là số nào?",
+            "paA": "$45$",
+            "paB": "$49$",
+            "paC": "$39$",
+            "paD": "$54$"
+        },
+        {
+            "maCau": "q_879698a964",
+            "ma_goc": "2318-838",
+            "kieuCau": "TN",
+            "cauDan": "Kết quả của phép tính $14 + 3$ là:",
+            "paA": "$16$",
+            "paB": "$17$",
+            "paC": "$18$",
+            "paD": "$43$"
+        },
+        {
+            "maCau": "q_7e4e9bf400",
+            "ma_goc": "3678-615",
+            "kieuCau": "TN",
+            "cauDan": "Phép tính $68 - 25$ có kết quả là bao nhiêu?",
+            "paA": "$40$",
+            "paB": "$33$",
+            "paC": "$43$",
+            "paD": "$45$"
+        },
+        {
+            "maCau": "q_f59d0e8a2a",
+            "ma_goc": "4350-499",
+            "kieuCau": "TN",
+            "cauDan": "Hình nào sau đây có hình dạng là khối lập phương?",
+            "paA": "Quả bóng đá",
+            "paB": "Hộp sữa giấy dài",
+            "paC": "Con xúc xắc (xí ngầu)",
+            "paD": "Cái lon nước ngọt"
+        },
+        {
+            "maCau": "q_b66d33c3e7",
+            "ma_goc": "2209-833",
+            "kieuCau": "TN",
+            "cauDan": "Mẹ mua về $15$ quả trứng, chị ăn hết $4$ quả trứng. Hỏi mẹ còn lại bao nhiêu quả trứng?",
+            "paA": "$19$ quả",
+            "paB": "$11$ quả",
+            "paC": "$12$ quả",
+            "paD": "$10$ quả"
+        },
+        {
+            "maCau": "q_b2c8f39b71",
+            "ma_goc": "6174-805",
+            "kieuCau": "TN",
+            "cauDan": "Một tuần lễ có bao nhiêu ngày?",
+            "paA": "$5$ ngày",
+            "paB": "$6$ ngày",
+            "paC": "$7$ ngày",
+            "paD": "$8$ ngày"
+        },
+        {
+            "maCau": "q_f14fda51db",
+            "ma_goc": "9143-673",
+            "kieuCau": "TN",
+            "cauDan": "Đồng hồ chỉ đường kim ngắn vào số $9$, kim dài vào số $12$. Lúc đó là mấy giờ?",
+            "paA": "$12$ giờ",
+            "paB": "$9$ giờ",
+            "paC": "$3$ giờ",
+            "paD": "$6$ giờ"
+        },
+        {
+            "maCau": "q_9d08780686",
+            "ma_goc": "9582-766",
+            "kieuCau": "TN",
+            "cauDan": "Điền số thích hợp vào dấu hỏi chấm: $10, 20, 30, ?, 50$.",
+            "paA": "$35$",
+            "paB": "$40$",
+            "paC": "$60$",
+            "paD": "$45$"
+        },
+        {
+            "maCau": "q_eae7d7c85b",
+            "ma_goc": "4999-582",
+            "kieuCau": "DS",
+            "cauDan": "Cho hình vẽ gồm $3$ hình tròn và $4$ hình tam giác. Các phát biểu sau đây đúng hay sai?",
+            "paA": "a) Tổng số hình tròn và hình tam giác là $7$ hình.",
+            "paB": "b) Số hình tròn nhiều hơn số hình tam giác.",
+            "paC": "c) Số hình tam giác nhiều hơn số hình tròn là $1$ hình.",
+            "paD": "d) Nếu bớt đi $2$ hình tam giác thì còn lại $5$ hình tam giác."
+        },
+        {
+            "maCau": "q_b8b3561a4b",
+            "ma_goc": "9715-531",
+            "kieuCau": "DS",
+            "cauDan": "Xét các phép tính trong phạm vi 100. Các khẳng định sau đúng hay sai?",
+            "paA": "a) Phép tính $32 + 45$ có kết quả là $77$.",
+            "paB": "b) Phép tính $99 - 9$ có kết quả là $90$ chục.",
+            "paC": "c) Kết quả của phép tính $50 + 20$ nhỏ hơn kết quả của phép tính $80 - 20$.",
+            "paD": "d) Số thích hợp điền vào ô trống để $40 + \\square = 45$ là số $5$."
+        },
+        {
+            "maCau": "q_03fb6911ef",
+            "ma_goc": "4049-597",
+            "kieuCau": "DS",
+            "cauDan": "Nhà Lan có $12$ con gà, nhà Mai có $15$ con gà. Các câu sau đúng hay sai?",
+            "paA": "a) Nhà Lan có nhiều gà hơn nhà Mai.",
+            "paB": "b) Cả hai nhà có tất cả $27$ con gà.",
+            "paC": "c) Nhà Mai có nhiều hơn nhà Lan $3$ con gà.",
+            "paD": "d) Nếu nhà Mai bán đi $5$ con gà thì số gà hai nhà bằng nhau."
+        },
+        {
+            "maCau": "q_97171a91e8",
+            "ma_goc": "3327-988",
+            "kieuCau": "DS",
+            "cauDan": "Về số và hình học lớp 1, nhận định nào sau đây đúng hay sai?",
+            "paA": "a) Số nhỏ nhất có hai chữ số là số $10$.",
+            "paB": "b) Số lớn nhất có một chữ số là số $10$.",
+            "paC": "c) Cái hộp diêm có hình dạng là khối lập phương.",
+            "paD": "d) Số $85$ đọc là tám mươi lăm."
+        },
+        {
+            "maCau": "q_0b549ddee9",
+            "ma_goc": "4025-237",
+            "kieuCau": "TLN",
+            "cauDan": "Tính tổng: $4 + 2 + 3$."
+        },
+        {
+            "maCau": "q_1317aa06a5",
+            "ma_goc": "4709-739",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số thích hợp điền vào ô trống để phép tính đúng: $17 - \\square = 10$."
+        },
+        {
+            "maCau": "q_d5213c014a",
+            "ma_goc": "2738-688",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số có hai chữ số, biết chữ số hàng chục là số lớn nhất có một chữ số, còn chữ số hàng đơn vị là số $0$."
+        },
+        {
+            "maCau": "q_a17e936456",
+            "ma_goc": "9711-902",
+            "kieuCau": "TLN",
+            "cauDan": "Lớp 1A có $20$ học sinh nam và $15$ học sinh nữ. Hỏi lớp 1A có tất cả bao nhiêu học sinh?"
+        },
+        {
+            "maCau": "q_a7b1e24482",
+            "ma_goc": "9068-901",
+            "kieuCau": "TLN",
+            "cauDan": "Lan đi ngủ lúc $9$ giờ tối, chị Hồng đi ngủ muộn hơn Lan $1$ giờ. Hỏi chị Hồng đi ngủ lúc mấy giờ tối?"
+        },
+        {
+            "maCau": "q_8500c4826e",
+            "ma_goc": "3794-429",
+            "kieuCau": "TLN",
+            "cauDan": "Điền số thích hợp vào dấu hỏi chấm để hoàn thành dãy số: $95, 96, 97, 98, ?$."
+        }
+    ]
+}

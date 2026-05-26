@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_753bbcef82",
+    "dapAn": "FTTF",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Lan có 12, Mai có 15. $12 < 15$ nên Lan ít gà hơn Mai (Sai).\\\r\n\t\t\t\\itemch Tổng số gà: $12 + 15 = 27$ con (Đúng).\\\r\n\t\t\t\\itemch Nhà Mai nhiều hơn nhà Lan: $15 - 12 = 3$ con (Đúng).\\\r\n\t\t\t\\itemch Mai bán đi 5 con thì còn $15 - 5 = 10$ con. Lan có 12 con. $10 \\neq 12$ nên không bằng nhau (Sai).\\\r\n\t\t\\end{itemchoice}"
+}

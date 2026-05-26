@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_5017f24a8e",
+    "dapAn": "TFFT",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch $32 + 45 = 77$ (Đúng).\\\r\n\t\t\t\\itemch $99 - 9 = 90$ đơn vị (tức là $9$ chục), phát biểu viết là $90$ chục (tức là 900) là Sai.\\\r\n\t\t\t\\itemch $50 + 20 = 70$; $80 - 20 = 60$. Vì $70 > 60$ nên phát biểu nhỏ hơn là Sai.\\\r\n\t\t\t\\itemch $45 - 40 = 5$, nên số điền vào ô trống là số 5 (Đúng).\\\r\n\t\t\\end{itemchoice}"
+}

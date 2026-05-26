@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_b69abd940d",
+    "dapAn": "TFTF",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng số hình: $3 + 4 = 7$ hình (Đúng).\\\r\n\t\t\t\\itemch Số hình tròn (3) ít hơn số hình tam giác (4) nên phát biểu nhiều hơn là Sai.\\\r\n\t\t\t\\itemch Số hình tam giác nhiều hơn số hình tròn: $4 - 3 = 1$ hình (Đúng).\\\r\n\t\t\t\\itemch Có 4 hình tam giác, bớt 2 hình thì còn $4 - 2 = 2$ hình, phát biểu còn 5 hình là Sai.\\\r\n\t\t\\end{itemchoice}"
+}
