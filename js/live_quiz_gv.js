@@ -251,7 +251,7 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
                 config: { broadcast: { self: true } } // 🌟 VỊ TRÍ 1: Ép cấu hình tự phát sóng nội bộ chéo thiết bị
             }, payload => {
 
-                console.log("📡 [SÓNG LIVE] Phát hiện biến động từ Server:", payload);
+                //console.log("📡 [SÓNG LIVE] Phát hiện biến động từ Server:", payload);
 
                 if (payload.eventType === 'INSERT') {
                     window.DanhSachLive.push(payload.new);
