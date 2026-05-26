@@ -237,15 +237,35 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         }
         ham_9_3_1_ve_leaderboard();
 
+        // 🌟 BẢN VÁ LỖI REALTIME: Thêm schema public và Merge Object
         if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
-        window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong).on('postgres_changes', { event: '*', table: 'tien_do_live_quiz', filter: `ma_phong=eq.${maPhong}` }, payload => {
-            if (payload.eventType === 'INSERT') window.DanhSachLive.push(payload.new);
-            else if (payload.eventType === 'UPDATE') {
-                const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === payload.new.uid_hoc_sinh);
-                if (idx > -1) window.DanhSachLive[idx] = payload.new;
-            }
-            ham_9_3_1_ve_leaderboard();
-        }).subscribe();
+        window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong)
+            .on('postgres_changes', {
+                event: '*',
+                schema: 'public', // <--- BẮT BUỘC PHẢI CÓ
+                table: 'tien_do_live_quiz',
+                filter: `ma_phong=eq.${maPhong}`
+            }, payload => {
+
+                console.log("📡 Bắt được sóng Realtime:", payload); // Log ra để thầy kiểm tra
+
+                if (payload.eventType === 'INSERT') {
+                    window.DanhSachLive.push(payload.new);
+                }
+                else if (payload.eventType === 'UPDATE') {
+                    const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === payload.new.uid_hoc_sinh);
+                    if (idx > -1) {
+                        // 🌟 Dùng Spread Operator để trộn dữ liệu mới vào dữ liệu cũ, không làm mất Tên Học Sinh
+                        window.DanhSachLive[idx] = { ...window.DanhSachLive[idx], ...payload.new };
+                    } else {
+                        window.DanhSachLive.push(payload.new);
+                    }
+                }
+
+                // GỌI VẼ LẠI BẢNG LẬP TỨC
+                ham_9_3_1_ve_leaderboard();
+
+            }).subscribe();
 
     } catch (e) {
         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px;">❌ Lỗi: ${e.message}</div>`;
