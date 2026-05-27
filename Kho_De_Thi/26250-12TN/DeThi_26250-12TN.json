@@ -1,0 +1,127 @@
+{
+  "maDe": "26250-12TN",
+  "tenDe": "ĐỀ 26250-12TN",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_37a5de4cc2",
+      "ma_goc": "2605-1440",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm thi của các thí sinh tham gia kỳ thi HSG cấp trường môn toán như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_37a5de4cc2_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTrung vị của mẫu số liệu trên",
+      "paA": "$6,6$",
+      "paB": "$6,4$",
+      "paC": "$6,3$",
+      "paD": "$6,5$"
+    },
+    {
+      "maCau": "q_57c771bbc5",
+      "ma_goc": "2605-1441",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Đường thẳng $AB$ song song với mặt phẳng nào sau đây?",
+      "paA": "$(CC'A'A)$",
+      "paB": "$(AA'D'D)$",
+      "paC": "$(A'B'C'D')$",
+      "paD": "$(BB'C'C)$"
+    },
+    {
+      "maCau": "q_b1a67713f2",
+      "ma_goc": "2605-1442",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi điểm $G$ là trọng tâm tam giác $BCD$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} - \\vec{AD})$",
+      "paB": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paC": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paD": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC})$"
+    },
+    {
+      "maCau": "q_bc540f437c",
+      "ma_goc": "2605-1443",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y = \\displaystyle\\frac{2x+1}{3x-1}$ là đường thẳng có phương trình",
+      "paA": "$y = -\\displaystyle\\frac{1}{3}$",
+      "paB": "$y = \\displaystyle\\frac{2}{3}$",
+      "paC": "$y = -\\displaystyle\\frac{2}{3}$",
+      "paD": "$y = \\displaystyle\\frac{1}{3}$"
+    },
+    {
+      "maCau": "q_ba44f492ac",
+      "ma_goc": "2605-1444",
+      "kieuCau": "TN",
+      "cauDan": "Trong mặt phẳng $Oxy$, diện tích $S$ của hình phẳng giới hạn bởi đồ thị của hàm số $y = x - 3$, trục hoành và hai đường thẳng $x = 1$, $x = 4$ được xác định bằng công thức",
+      "paA": "$S = \\displaystyle\\left| \\int\\limits_1^4 (x - 3) \\,\\mathrm{d}x \\right|$",
+      "paB": "$S = \\displaystyle\\int\\limits_1^4 |x - 3| \\,\\mathrm{d}x$",
+      "paC": "$S = \\pi \\displaystyle\\int\\limits_1^4 |x - 3| \\,\\mathrm{d}x$",
+      "paD": "$S = \\pi \\displaystyle\\int\\limits_1^4 (x - 3)^2 \\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_e245103e61",
+      "ma_goc": "2605-1445",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích của khối chóp cụt đều có diện tích đáy lớn bằng $9$, diện tích đáy nhỏ bằng $4$ và chiều cao bằng $3$ là",
+      "paA": "$19$",
+      "paB": "$\\displaystyle\\frac{57}{2}$",
+      "paC": "$\\displaystyle\\frac{19}{3}$",
+      "paD": "$57$"
+    },
+    {
+      "maCau": "q_7354343753",
+      "ma_goc": "2605-1446",
+      "kieuCau": "TN",
+      "cauDan": "Trong hệ trục tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ có tọa độ là",
+      "paA": "$(2;-2;0)$",
+      "paB": "$(2;0;1)$",
+      "paC": "$(0;-2;1)$",
+      "paD": "$(0;0;1)$"
+    },
+    {
+      "maCau": "q_c12a1043a0",
+      "ma_goc": "2605-1447",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = e^x + x$ là",
+      "paA": "$\\displaystyle\\frac{1}{x+1}e^x + \\displaystyle\\frac{1}{2}x^2 + C$",
+      "paB": "$e^x + 1 + C$",
+      "paC": "$e^x + x^2 + C$",
+      "paD": "$e^x + \\displaystyle\\frac{1}{2}x^2 + C$"
+    },
+    {
+      "maCau": "q_f1a6150419",
+      "ma_goc": "2605-1448",
+      "kieuCau": "TN",
+      "cauDan": "Cho dãy số $u_n = \\displaystyle\\frac{1}{n+1}, \\forall n \\in \\mathbb{N}^*$. Giá trị của $u_3$ bằng",
+      "paA": "$\\displaystyle\\frac{1}{4}$",
+      "paB": "$\\displaystyle\\frac{1}{3}$",
+      "paC": "$\\displaystyle\\frac{1}{2}$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_7af9061735",
+      "ma_goc": "2605-1449",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = 0$ là",
+      "paA": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$S = \\{ k2\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paC": "$S = \\{ k\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paD": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{2} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_2767e848d8",
+      "ma_goc": "2605-1450",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log(x-2) > 0$ là",
+      "paA": "$(-\\infty; 3)$",
+      "paB": "$(2; 3)$",
+      "paC": "$(3; +\\infty)$",
+      "paD": "$(12; +\\infty)$"
+    },
+    {
+      "maCau": "q_e3143dbdc2",
+      "ma_goc": "2605-1451",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(3;0;0)$, $B(0;1;0)$, $C(0;0;-2)$. Mặt phẳng $(ABC)$ có phương trình là:",
+      "paA": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{-1} + \\displaystyle\\frac{z}{2} = 1$",
+      "paB": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{-2} = 1$",
+      "paC": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{2} = 1$",
+      "paD": "$\\displaystyle\\frac{x}{-3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{2} = 1$"
+    }
+  ]
+}

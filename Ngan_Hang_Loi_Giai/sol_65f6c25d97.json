@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_65f6c25d97",
+  "dapAn": "C",
+  "loiGiai": "Ta có $\\log(x-2) > 0 \\Leftrightarrow x - 2 > 10^0 \\Leftrightarrow x - 2 > 1 \\Leftrightarrow x > 3$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình $\\log(x-2) > 0$ là $(3; +\\infty)$."
+}
