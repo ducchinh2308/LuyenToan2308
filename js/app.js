@@ -4882,7 +4882,7 @@ function ham_7_10_ve_bang_nhiem_vu() {
                             <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #ffc107; color: #333; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✏️ Sửa</button>
                             <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">❌ Xóa</button>
                             <button onclick="ham_7_15_thong_ke_nhiem_vu('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">📊 K.Quả</button>
-                            <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" title="Chấm lại toàn bộ điểm cho nhiệm vụ này" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🔄 Chấm</button>
+                            <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" title="Chấm lại toàn bộ điểm cho nhiệm vụ này" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🔄 Chấm lại</button>
                         </div>
                     </td>
 
