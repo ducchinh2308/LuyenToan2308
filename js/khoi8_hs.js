@@ -1818,279 +1818,352 @@ window.ham_8_15_xin_luot_lam_bai = function (maNhiemVu, tenNhiemVu, loaiXin) {
 // CÁC HÀM XỬ LÝ CHUYỂN TAB CÒN LẠI (Sẽ code tiếp)
 // ==============================================================
 // =====================================================================
-// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO" (ĐÃ ĐỒNG BỘ BỘ ĐẾM TIẾN ĐỘ)
-// =====================================================================
-async function ham_8_3_tab_luyen_tap_tu_do() {
+//// Hàm 8.3: Xử lý Tab "PHÒNG LUYỆN TẬP TỰ DO" (ĐÃ ĐỒNG BỘ BỘ ĐẾM TIẾN ĐỘ)
+//// =====================================================================
+//async function ham_8_3_tab_luyen_tap_tu_do() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang đồng bộ kho đề và lịch sử luyện tập...</h3></div>`;
+
+//    try {
+//        // 1. TRUY VẤN CÁC NHIỆM VỤ TỰ LUYỆN TỪ DATABASE
+//        const { data: dsTuDo, error: errTuDo } = await _supabase
+//            .from('nhiem_vu')
+//            .select('*')
+//            .eq('trang_thai', 1)
+//            .contains('danh_sach_lop', `["#LUYEN_TAP_TU_DO#"]`)
+//            .order('ngay_tao', { ascending: false });
+
+//        if (errTuDo) throw errTuDo;
+
+//        if (!dsTuDo || dsTuDo.length === 0) {
+//            vungLamViec.innerHTML = `
+//                <div style="text-align: center; padding: 50px; color: #666;">
+//                    <p style="font-size: 50px;">🍃</p>
+//                    <p>Kho luyện tập hiện đang trống. Thầy sẽ sớm bổ sung các đề thi hay cho các em!</p>
+//                </div>
+//            `;
+//            return;
+//        }
+
+//        // 🌟 ĐỒNG BỘ RAM ĐỂ HÀM AN NINH 8.7 KHÔNG BỊ BÁO LỖI UNDEFINED
+//        dsTuDo.forEach(nvTuDo => {
+//            const daTonTai = GocHocSinhState.danhSachNhiemVu.find(n => n.ma_nhiem_vu === nvTuDo.ma_nhiem_vu);
+//            if (!daTonTai) GocHocSinhState.danhSachNhiemVu.push(nvTuDo);
+//        });
+
+//        // ==========================================================
+//        // 🌟 2. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (ĐÃ SỬA ĐỒNG BỘ)
+//        // ==========================================================
+//        let demSoLuotLam = {};
+//        let ketQuaGanNhat = {};
+
+//        // Bước A: Bốc số lần làm bài cached trực tiếp từ table hoc_sinh
+//        const { data: hsData } = await _supabase
+//            .from('hoc_sinh')
+//            .select('tien_do_lam_bai')
+//            .eq('uid', GocHocSinhState.uid)
+//            .single();
+
+//        if (hsData && hsData.tien_do_lam_bai) {
+//            demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string'
+//                ? JSON.parse(hsData.tien_do_lam_bai)
+//                : hsData.tien_do_lam_bai;
+//        }
+
+//        // Bước B: Quét lịch sử nộp bài để lấy ID và Điểm số của lần làm gần nhất
+//        const { data: dsKQ } = await _supabase
+//            .from('ket_qua_thi')
+//            .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+//            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+//            .order('thoi_gian_nop', { ascending: true }); // Từ cũ đến mới
+
+//        if (dsKQ) {
+//            dsKQ.forEach(kq => {
+//                ketQuaGanNhat[kq.ma_nhiem_vu] = {
+//                    id: kq.id,
+//                    diem: kq.tong_diem,
+//                    thoi_gian_nop: kq.thoi_gian_nop
+//                };
+//            });
+//        }
+
+//        // 3. XÂY DỰNG TỪ ĐIỂN GIÁO VIÊN MẶC ĐỊNH
+//        let tuDienGv = {};
+//        let tapUidGv = new Set();
+//        dsTuDo.forEach(nv => { if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao); });
+
+//        if (tapUidGv.size > 0) {
+//            const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
+//            if (dataGv) dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten);
+//        }
+
+//        // 4. PHÂN LOẠI TRẠNG THÁI THỜI GIAN VÀ CHỐT CHẶN HẾT LƯỢT
+//        const now = new Date();
+//        let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
+//        const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
+
+//        dsTuDo.forEach(nv => {
+//            const tMo = anToanThoiGian(nv.thoi_gian_mo);
+//            const tDong = anToanThoiGian(nv.thoi_gian_dong);
+
+//            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+//            const gioiHanLuot = nv.so_luot_lam_bai || 0;
+
+//            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+//            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+
+//            if (tMo && now.getTime() < tMo.getTime()) {
+//                dsChuaMo.push(nv);
+//            }
+//            // 🌟 ĐỒNG BỘ: Hết lượt hoặc Quá hạn tự động bay vào mảng ĐÃ ĐÓNG
+//            else if (daQuaHan || daHetLuot) {
+//                dsDaDong.push(nv);
+//            } else {
+//                dsDangMo.push(nv);
+//            }
+//        });
+
+//        // ⚙️ CÁC HÀM PHỤ TÍNH THỜI GIAN THÔNG MINH
+//        const tinhKhoangCachThoiGian = (targetDate, isMo) => {
+//            if (!targetDate) return "";
+//            const diff = targetDate.getTime() - now.getTime();
+//            const absDiff = Math.abs(diff);
+//            const d = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+//            const h = Math.floor((absDiff / (1000 * 60 * 60)) % 24);
+//            const m = Math.floor((absDiff / (1000 * 60)) % 60);
+//            let str = d > 0 ? `${d} ngày ` : "";
+//            str += h > 0 ? `${h} giờ ` : "";
+//            if (m > 0 && d === 0) str += `${m} phút`;
+//            if (str === "") str = "vài giây";
+//            return isMo ? (diff > 0 ? `(Mở sau ${str})` : `(Đã mở ${str} trước)`) : (diff > 0 ? `(Còn ${str})` : `(Đã đóng ${str} trước)`);
+//        };
+
+//        const thoiGianTroiQua = (dateStr) => {
+//            if (!dateStr) return "Không rõ";
+//            const seconds = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 1000);
+//            let interval = seconds / 86400; if (interval > 1) return Math.floor(interval) + " ngày trước";
+//            interval = seconds / 3600; if (interval > 1) return Math.floor(interval) + " giờ trước";
+//            interval = seconds / 60; if (interval > 1) return Math.floor(interval) + " phút trước";
+//            return "Vừa xong";
+//        };
+
+//        // ==========================================================
+//        // 🌟 5. HÀM VẼ GIAO DIỆN THỂ (CARD) FULL TÍNH NĂNG
+//        // ==========================================================
+//        const renderCardTuLuyen = (nv, loai) => {
+//            const tMo = anToanThoiGian(nv.thoi_gian_mo);
+//            const tDong = anToanThoiGian(nv.thoi_gian_dong);
+//            const tTao = nv.ngay_tao;
+//            const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+//            const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
+//            const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
+
+//            const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
+//            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+//            const gioiHanLuot = nv.so_luot_lam_bai || 0;
+//            const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
+
+//            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+//            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+
+//            const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
+//            let htmlKetQua = "";
+
+//            if (soLuotDaLam > 0 && kqLatest) {
+//                htmlKetQua = `
+//                    <div style="background: #fffdf5; border: 1px dashed #17a2b8; border-radius: 8px; padding: 12px; margin-bottom: 15px;">
+//                        <div style="display: flex; justify-content: space-between; align-items: center;">
+//                            <div>
+//                                <div style="font-size: 11px; color: #008b8b; font-weight: bold; text-transform: uppercase;">⭐ Điểm luyện tập gần nhất:</div>
+//                                <div style="color: #17a2b8; font-size: 24px; font-weight: 900; line-height: 1.2;">${kqLatest.diem} <span style="font-size: 13px; font-weight: bold; color: #666;">điểm</span></div>
+//                                <div style="font-size: 10px; color: #7f8c8d; margin-top: 2px;">Nộp lúc: ${fTime(new Date(kqLatest.thoi_gian_nop))}</div>
+//                            </div>
+//                            <button onclick="ham_8_13_xem_lai_ket_qua('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 8px 15px; background: white; color: #17a2b8; border: 1px solid #17a2b8; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#17a2b8'; this.style.color='#fff'" onmouseout="this.style.background='white'; this.style.color='#17a2b8'">
+//                                👁️ CHI TIẾT
+//                            </button>
+//                        </div>
+//                    </div>
+//                `;
+//            }
+
+//            let nutHanhDong = "", mauVien = "", mauNen = "";
+//            let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
+
+//            if (loai === 'DANG_MO') {
+//                mauVien = "#17a2b8"; mauNen = "#f4fcfd";
+//                const textNut = soLuotDaLam > 0 ? '🔄 LUYỆN TẬP LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
+//                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">${textNut}</button>`;
+//            } else if (loai === 'CHUA_MO') {
+//                mauVien = "#ffc107"; mauNen = "#fffbf0";
+//                nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở đề</button>`;
+//            } else if (loai === 'DA_DONG') {
+//                mauVien = "#dc3545"; mauNen = "#fff5f6";
+//                const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
+
+//                let textNutXin = "🙋 XIN LƯỢT LÀM BÀI";
+//                let maLoaiXin = "QUA_HAN";
+
+//                if (daHetLuot && !daQuaHan) {
+//                    textNutXin = "🙋 XIN THÊM LƯỢT LÀM BÀI";
+//                    maLoaiXin = "HET_LUOT";
+//                } else if (daQuaHan) {
+//                    textNutXin = "🙋 XIN NỘP BÀI QUÁ HẠN";
+//                    maLoaiXin = "QUA_HAN";
+//                }
+
+//                nutHanhDong = `
+//                    <button onclick="ham_8_15_xin_luot_lam_bai('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', '${maLoaiXin}')"
+//                            style="width: 100%; padding: 12px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(253,126,20,0.3);"
+//                            onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#fd7e14'">
+//                        ${textNutXin}
+//                    </button>
+//                `;
+//            }
+
+//            return `
+//                <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); text-align: left;">
+//                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+//                        <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
+//                        <span style="font-size: 10px; padding: 4px 6px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 4px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
+//                            ${nv.loai_nhiem_vu || "Tự luyện"}
+//                        </span>
+//                    </div>
+
+//                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 12px; color: #555; border: 1px dashed #ddd;">
+//                        <div style="margin-bottom: 4px;">🎯 <b>Không gian:</b> <span style="color: #17a2b8; font-weight:bold;">🌍 Luyện tập tự do</span></div>
+//                        <div style="margin-bottom: 4px;">👤 <b>Người biên soạn:</b> <span>${tenGV}</span></div>
+//                        <div>🕒 <b>Ngày đưa lên:</b> ${fTime(new Date(tTao))} <span style="color:#d35400; font-style: italic;">(${thoiGianTroiQua(tTao)})</span></div>
+//                    </div>
+
+//                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+//                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
+//                            ⏱️ <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
+//                        </span>
+//                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
+//                            📦 <b>Cấu trúc đề</b>
+//                        </span>
+//                        <span style="font-size: 12px; padding: 4px 8px; border-radius: 4px; ${cssLuot}">
+//                            🔄 Đã luyện tập: <b>${soLuotDaLam} / ${textLuotChoPhep}</b>
+//                        </span>
+//                    </div>
+
+//                    <div style="margin-bottom: 15px; font-size: 13px;">
+//                        <div style="margin-bottom: 5px;">
+//                            <span style="color: #28a745; font-weight: bold;">🟢 MỞ ĐỀ:</span> ${fTime(tMo)}
+//                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhKhoangCachThoiGian(tMo, true) : ""}</span>
+//                        </div>
+//                        <div>
+//                            <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG ĐỀ:</span> ${fTime(tDong)}
+//                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold; background: #fff3cd; padding: 2px 4px; border-radius: 3px;">
+//                                ${tDong ? tinhKhoangCachThoiGian(tDong, false) : ""}
+//                            </span>
+//                        </div>
+//                    </div>
+
+//                    ${htmlKetQua} ${nutHanhDong}
+//                </div>
+//            `;
+//        };
+
+//        // 6. ĐỔ DỮ LIỆU RA KHUNG BA CỘT CHUYÊN NGHIỆP Y HỆT TAB NHIỆM VỤ LỚP
+//        vungLamViec.innerHTML = `
+//            <div style="background: #e0f7fa; padding: 12px 15px; border-radius: 8px; color: #006064; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #00bcd4; text-align: left; line-height: 1.5;">
+//                🌍 <b>Không gian Tự học chuyên sâu:</b> Các đề thi tự luyện được cấu hình đầy đủ tính năng. Em có thể theo dõi điểm số thăng tiến, gửi đơn xin cứu trợ khi hết lượt/quá hạn và xem lại bài giải bất cứ lúc nào!
+//            </div>
+//            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+//                <div style="background: #f4fcfd; padding: 15px; border-radius: 8px; border: 1px solid #b2ebf2;">
+//                    <h3 style="margin-top: 0; color: #17a2b8; text-align: center; font-size: 15px;">▶️ ĐANG MỞ TỰ LUYỆN (${dsDangMo.length})</h3>
+//                    ${dsDangMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Không có đề mở.</p>' : dsDangMo.map(nv => renderCardTuLuyen(nv, 'DANG_MO')).join('')}
+//                </div>
+//                <div style="background: #fffdf8; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
+//                    <h3 style="margin-top: 0; color: #d35400; text-align: center; font-size: 15px;">⏳ HẸN GIỜ MỞ (${dsChuaMo.length})</h3>
+//                    ${dsChuaMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsChuaMo.map(nv => renderCardTuLuyen(nv, 'CHUA_MO')).join('')}
+//                </div>
+//                <div style="background: #fff8f8; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb;">
+//                    <h3 style="margin-top: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÓNG / QUÁ HẠN / HẾT LƯỢT (${dsDaDong.length})</h3>
+//                    ${dsDaDong.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsDaDong.map(nv => renderCardTuLuyen(nv, 'DA_DONG')).join('')}
+//                </div>
+//            </div>
+//        `;
+
+//    } catch (error) {
+//        console.error("Lỗi đồng bộ tab tự luyện:", error);
+//        vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi tải dữ liệu tự luyện: ${error.message}</div>`;
+//    }
+//}
+
+
+
+// [Nhãn thời gian: 13:21 - Ngày 28/05/2026] - Hàm 8.3: Tab Luyện tập tự do (ĐÃ CHẶN NHIỆM VỤ ẢO CỦA PHÒNG LIVE)
+window.ham_8_3_tab_luyen_tap_tu_do = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang đồng bộ kho đề và lịch sử luyện tập...</h3></div>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang tải danh sách bài tự luyện...</h3></div>`;
 
     try {
-        // 1. TRUY VẤN CÁC NHIỆM VỤ TỰ LUYỆN TỪ DATABASE
-        const { data: dsTuDo, error: errTuDo } = await _supabase
+        // 1. Kéo toàn bộ nhiệm vụ mang nhãn TỰ DO từ server
+        const { data: dsNV, error: errNV } = await _supabase
             .from('nhiem_vu')
             .select('*')
             .eq('trang_thai', 1)
-            .contains('danh_sach_lop', `["#LUYEN_TAP_TU_DO#"]`)
+            .contains('danh_sach_lop', '["#LUYEN_TAP_TU_DO#"]')
             .order('ngay_tao', { ascending: false });
 
-        if (errTuDo) throw errTuDo;
+        if (errNV) throw errNV;
 
-        if (!dsTuDo || dsTuDo.length === 0) {
-            vungLamViec.innerHTML = `
-                <div style="text-align: center; padding: 50px; color: #666;">
-                    <p style="font-size: 50px;">🍃</p>
-                    <p>Kho luyện tập hiện đang trống. Thầy sẽ sớm bổ sung các đề thi hay cho các em!</p>
-                </div>
-            `;
+        // 🌟 2. MÀNG LỌC BẢO MẬT: CHẶN CÁC NHIỆM VỤ CỦA ĐẤU TRƯỜNG LIVE LỌT VÀO ĐÂY
+        // Chỉ giữ lại những nhiệm vụ mà mã KHÔNG bắt đầu bằng chữ "LIVE_"
+        const dsTuLuyenThucSu = (dsNV || []).filter(nv => !nv.ma_nhiem_vu.startsWith('LIVE_'));
+
+        if (dsTuLuyenThucSu.length === 0) {
+            vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #666; font-style: italic;">🍃 Hiện tại chưa có bài tập tự luyện nào đang mở.</div>`;
             return;
         }
 
-        // 🌟 ĐỒNG BỘ RAM ĐỂ HÀM AN NINH 8.7 KHÔNG BỊ BÁO LỖI UNDEFINED
-        dsTuDo.forEach(nvTuDo => {
-            const daTonTai = GocHocSinhState.danhSachNhiemVu.find(n => n.ma_nhiem_vu === nvTuDo.ma_nhiem_vu);
-            if (!daTonTai) GocHocSinhState.danhSachNhiemVu.push(nvTuDo);
-        });
-
-        // ==========================================================
-        // 🌟 2. TRUY VẤN KẾT QUẢ ĐỂ LẤY ĐIỂM VÀ SỐ LƯỢT (ĐÃ SỬA ĐỒNG BỘ)
-        // ==========================================================
+        // 3. Kéo kết quả điểm số để xem tiến độ (Giống hệt logic hàm 8.2)
         let demSoLuotLam = {};
-        let ketQuaGanNhat = {};
-
-        // Bước A: Bốc số lần làm bài cached trực tiếp từ table hoc_sinh
-        const { data: hsData } = await _supabase
-            .from('hoc_sinh')
-            .select('tien_do_lam_bai')
-            .eq('uid', GocHocSinhState.uid)
-            .single();
-
+        const { data: hsData } = await _supabase.from('hoc_sinh').select('tien_do_lam_bai').eq('uid', GocHocSinhState.uid).single();
         if (hsData && hsData.tien_do_lam_bai) {
-            demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string'
-                ? JSON.parse(hsData.tien_do_lam_bai)
-                : hsData.tien_do_lam_bai;
+            demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string' ? JSON.parse(hsData.tien_do_lam_bai) : hsData.tien_do_lam_bai;
         }
 
-        // Bước B: Quét lịch sử nộp bài để lấy ID và Điểm số của lần làm gần nhất
-        const { data: dsKQ } = await _supabase
-            .from('ket_qua_thi')
-            .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop')
-            .eq('uid_hoc_sinh', GocHocSinhState.uid)
-            .order('thoi_gian_nop', { ascending: true }); // Từ cũ đến mới
+        // 4. Render giao diện các Card Tự luyện
+        let htmlCards = `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; padding-top: 10px;">`;
 
-        if (dsKQ) {
-            dsKQ.forEach(kq => {
-                ketQuaGanNhat[kq.ma_nhiem_vu] = {
-                    id: kq.id,
-                    diem: kq.tong_diem,
-                    thoi_gian_nop: kq.thoi_gian_nop
-                };
-            });
-        }
-
-        // 3. XÂY DỰNG TỪ ĐIỂN GIÁO VIÊN MẶC ĐỊNH
-        let tuDienGv = {};
-        let tapUidGv = new Set();
-        dsTuDo.forEach(nv => { if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao); });
-
-        if (tapUidGv.size > 0) {
-            const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
-            if (dataGv) dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten);
-        }
-
-        // 4. PHÂN LOẠI TRẠNG THÁI THỜI GIAN VÀ CHỐT CHẶN HẾT LƯỢT
-        const now = new Date();
-        let dsChuaMo = [], dsDangMo = [], dsDaDong = [];
-        const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
-
-        dsTuDo.forEach(nv => {
-            const tMo = anToanThoiGian(nv.thoi_gian_mo);
-            const tDong = anToanThoiGian(nv.thoi_gian_dong);
-
+        dsTuLuyenThucSu.forEach(nv => {
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
-            const gioiHanLuot = nv.so_luot_lam_bai || 0;
+            const textLuot = nv.so_luot_lam_bai > 0 ? `${soLuotDaLam}/${nv.so_luot_lam_bai}` : `${soLuotDaLam}/Vô hạn`;
 
-            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
-            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+            let btnAction = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LUYỆN TẬP</button>`;
 
-            if (tMo && now.getTime() < tMo.getTime()) {
-                dsChuaMo.push(nv);
+            if (nv.so_luot_lam_bai > 0 && soLuotDaLam >= nv.so_luot_lam_bai) {
+                btnAction = `<button disabled style="width: 100%; padding: 10px; background: #e9ecef; color: #dc3545; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed;">🛑 ĐÃ HẾT LƯỢT</button>`;
+            } else if (soLuotDaLam > 0) {
+                btnAction = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LUYỆN TẬP LẠI</button>`;
             }
-            // 🌟 ĐỒNG BỘ: Hết lượt hoặc Quá hạn tự động bay vào mảng ĐÃ ĐÓNG
-            else if (daQuaHan || daHetLuot) {
-                dsDaDong.push(nv);
-            } else {
-                dsDangMo.push(nv);
-            }
-        });
 
-        // ⚙️ CÁC HÀM PHỤ TÍNH THỜI GIAN THÔNG MINH
-        const tinhKhoangCachThoiGian = (targetDate, isMo) => {
-            if (!targetDate) return "";
-            const diff = targetDate.getTime() - now.getTime();
-            const absDiff = Math.abs(diff);
-            const d = Math.floor(absDiff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((absDiff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((absDiff / (1000 * 60)) % 60);
-            let str = d > 0 ? `${d} ngày ` : "";
-            str += h > 0 ? `${h} giờ ` : "";
-            if (m > 0 && d === 0) str += `${m} phút`;
-            if (str === "") str = "vài giây";
-            return isMo ? (diff > 0 ? `(Mở sau ${str})` : `(Đã mở ${str} trước)`) : (diff > 0 ? `(Còn ${str})` : `(Đã đóng ${str} trước)`);
-        };
-
-        const thoiGianTroiQua = (dateStr) => {
-            if (!dateStr) return "Không rõ";
-            const seconds = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 1000);
-            let interval = seconds / 86400; if (interval > 1) return Math.floor(interval) + " ngày trước";
-            interval = seconds / 3600; if (interval > 1) return Math.floor(interval) + " giờ trước";
-            interval = seconds / 60; if (interval > 1) return Math.floor(interval) + " phút trước";
-            return "Vừa xong";
-        };
-
-        // ==========================================================
-        // 🌟 5. HÀM VẼ GIAO DIỆN THỂ (CARD) FULL TÍNH NĂNG
-        // ==========================================================
-        const renderCardTuLuyen = (nv, loai) => {
-            const tMo = anToanThoiGian(nv.thoi_gian_mo);
-            const tDong = anToanThoiGian(nv.thoi_gian_dong);
-            const tTao = nv.ngay_tao;
-            const opts = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
-            const fTime = (d) => d ? d.toLocaleString('vi-VN', opts) : "Không quy định";
-            const cauTrucText = nv.cau_truc_de ? (nv.cau_truc_de.length > 30 ? nv.cau_truc_de.substring(0, 30) + '...' : nv.cau_truc_de) : "Chưa có thông tin";
-
-            const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
-            const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
-            const gioiHanLuot = nv.so_luot_lam_bai || 0;
-            const textLuotChoPhep = gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot;
-
-            const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
-            const daQuaHan = (tDong && now.getTime() > tDong.getTime());
-
-            const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
-            let htmlKetQua = "";
-
-            if (soLuotDaLam > 0 && kqLatest) {
-                htmlKetQua = `
-                    <div style="background: #fffdf5; border: 1px dashed #17a2b8; border-radius: 8px; padding: 12px; margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <div style="font-size: 11px; color: #008b8b; font-weight: bold; text-transform: uppercase;">⭐ Điểm luyện tập gần nhất:</div>
-                                <div style="color: #17a2b8; font-size: 24px; font-weight: 900; line-height: 1.2;">${kqLatest.diem} <span style="font-size: 13px; font-weight: bold; color: #666;">điểm</span></div>
-                                <div style="font-size: 10px; color: #7f8c8d; margin-top: 2px;">Nộp lúc: ${fTime(new Date(kqLatest.thoi_gian_nop))}</div>
-                            </div>
-                            <button onclick="ham_8_13_xem_lai_ket_qua('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 8px 15px; background: white; color: #17a2b8; border: 1px solid #17a2b8; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#17a2b8'; this.style.color='#fff'" onmouseout="this.style.background='white'; this.style.color='#17a2b8'">
-                                👁️ CHI TIẾT
-                            </button>
+            htmlCards += `
+                <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid #17a2b8; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 11px; font-weight: bold; color: #17a2b8; margin-bottom: 6px;">🌍 KHU TỰ LUYỆN</div>
+                        <h4 style="margin: 0 0 10px 0; color: #2c3e50; font-size: 15px; line-height: 1.4;">${nv.ten_nhiem_vu}</h4>
+                        <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 15px;">
+                            <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">⏱️ ${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' ph' : 'Tự do'}</span>
+                            <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">🔄 Lượt: ${textLuot}</span>
                         </div>
                     </div>
-                `;
-            }
-
-            let nutHanhDong = "", mauVien = "", mauNen = "";
-            let cssLuot = daHetLuot ? "color: #dc3545; font-weight: bold; background: #fff5f5; border: 1px solid #f5c6cb;" : "background: #e9ecef; color: #495057;";
-
-            if (loai === 'DANG_MO') {
-                mauVien = "#17a2b8"; mauNen = "#f4fcfd";
-                const textNut = soLuotDaLam > 0 ? '🔄 LUYỆN TẬP LẠI LẦN NỮA' : '🚀 VÀO LÀM BÀI';
-                nutHanhDong = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 12px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(23,162,184,0.3);">${textNut}</button>`;
-            } else if (loai === 'CHUA_MO') {
-                mauVien = "#ffc107"; mauNen = "#fffbf0";
-                nutHanhDong = `<button disabled style="width: 100%; padding: 12px; background: #e9ecef; color: #6c757d; border: none; border-radius: 6px; font-weight: bold;">⏳ Đợi đến giờ mở đề</button>`;
-            } else if (loai === 'DA_DONG') {
-                mauVien = "#dc3545"; mauNen = "#fff5f6";
-                const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
-
-                let textNutXin = "🙋 XIN LƯỢT LÀM BÀI";
-                let maLoaiXin = "QUA_HAN";
-
-                if (daHetLuot && !daQuaHan) {
-                    textNutXin = "🙋 XIN THÊM LƯỢT LÀM BÀI";
-                    maLoaiXin = "HET_LUOT";
-                } else if (daQuaHan) {
-                    textNutXin = "🙋 XIN NỘP BÀI QUÁ HẠN";
-                    maLoaiXin = "QUA_HAN";
-                }
-
-                nutHanhDong = `
-                    <button onclick="ham_8_15_xin_luot_lam_bai('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', '${maLoaiXin}')" 
-                            style="width: 100%; padding: 12px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(253,126,20,0.3);"
-                            onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#fd7e14'">
-                        ${textNutXin}
-                    </button>
-                `;
-            }
-
-            return `
-                <div style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); text-align: left;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
-                        <h4 style="margin: 0; color: #2c3e50; font-size: 16px; line-height: 1.4; padding-right: 10px;">${nv.ten_nhiem_vu}</h4>
-                        <span style="font-size: 10px; padding: 4px 6px; background: ${mauNen}; border: 1px solid ${mauVien}40; border-radius: 4px; color: ${mauVien}; white-space: nowrap; font-weight: bold;">
-                            ${nv.loai_nhiem_vu || "Tự luyện"}
-                        </span>
-                    </div>
-
-                    <div style="background: #f8f9fa; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 12px; color: #555; border: 1px dashed #ddd;">
-                        <div style="margin-bottom: 4px;">🎯 <b>Không gian:</b> <span style="color: #17a2b8; font-weight:bold;">🌍 Luyện tập tự do</span></div>
-                        <div style="margin-bottom: 4px;">👤 <b>Người biên soạn:</b> <span>${tenGV}</span></div>
-                        <div>🕒 <b>Ngày đưa lên:</b> ${fTime(new Date(tTao))} <span style="color:#d35400; font-style: italic;">(${thoiGianTroiQua(tTao)})</span></div>
-                    </div>
-
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
-                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;">
-                            ⏱️ <b>${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' phút' : 'Tự do'}</b>
-                        </span>
-                        <span style="font-size: 12px; background: #e9ecef; color: #495057; padding: 4px 8px; border-radius: 4px;" title="${cauTrucText}">
-                            📦 <b>Cấu trúc đề</b> 
-                        </span>
-                        <span style="font-size: 12px; padding: 4px 8px; border-radius: 4px; ${cssLuot}">
-                            🔄 Đã luyện tập: <b>${soLuotDaLam} / ${textLuotChoPhep}</b>
-                        </span>
-                    </div>
-
-                    <div style="margin-bottom: 15px; font-size: 13px;">
-                        <div style="margin-bottom: 5px;">
-                            <span style="color: #28a745; font-weight: bold;">🟢 MỞ ĐỀ:</span> ${fTime(tMo)} 
-                            <span style="color: #6c757d; font-size: 11px; margin-left: 5px; font-style: italic;">${tMo ? tinhKhoangCachThoiGian(tMo, true) : ""}</span>
-                        </div>
-                        <div>
-                            <span style="color: #dc3545; font-weight: bold;">🔴 ĐÓNG ĐỀ:</span> ${fTime(tDong)}
-                            <span style="color: #d35400; font-size: 12px; margin-left: 5px; font-weight: bold; background: #fff3cd; padding: 2px 4px; border-radius: 3px;">
-                                ${tDong ? tinhKhoangCachThoiGian(tDong, false) : ""}
-                            </span>
-                        </div>
-                    </div>
-
-                    ${htmlKetQua} ${nutHanhDong}
+                    <div>${btnAction}</div>
                 </div>
             `;
-        };
+        });
 
-        // 6. ĐỔ DỮ LIỆU RA KHUNG BA CỘT CHUYÊN NGHIỆP Y HỆT TAB NHIỆM VỤ LỚP
-        vungLamViec.innerHTML = `
-            <div style="background: #e0f7fa; padding: 12px 15px; border-radius: 8px; color: #006064; font-size: 14px; margin-bottom: 20px; border-left: 5px solid #00bcd4; text-align: left; line-height: 1.5;">
-                🌍 <b>Không gian Tự học chuyên sâu:</b> Các đề thi tự luyện được cấu hình đầy đủ tính năng. Em có thể theo dõi điểm số thăng tiến, gửi đơn xin cứu trợ khi hết lượt/quá hạn và xem lại bài giải bất cứ lúc nào!
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                <div style="background: #f4fcfd; padding: 15px; border-radius: 8px; border: 1px solid #b2ebf2;">
-                    <h3 style="margin-top: 0; color: #17a2b8; text-align: center; font-size: 15px;">▶️ ĐANG MỞ TỰ LUYỆN (${dsDangMo.length})</h3>
-                    ${dsDangMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Không có đề mở.</p>' : dsDangMo.map(nv => renderCardTuLuyen(nv, 'DANG_MO')).join('')}
-                </div>
-                <div style="background: #fffdf8; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
-                    <h3 style="margin-top: 0; color: #d35400; text-align: center; font-size: 15px;">⏳ HẸN GIỜ MỞ (${dsChuaMo.length})</h3>
-                    ${dsChuaMo.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsChuaMo.map(nv => renderCardTuLuyen(nv, 'CHUA_MO')).join('')}
-                </div>
-                <div style="background: #fff8f8; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb;">
-                    <h3 style="margin-top: 0; color: #dc3545; text-align: center; font-size: 15px;">🛑 ĐÓNG / QUÁ HẠN / HẾT LƯỢT (${dsDaDong.length})</h3>
-                    ${dsDaDong.length === 0 ? '<p style="text-align:center; color:#999; font-size:13px; padding:20px;">Trống.</p>' : dsDaDong.map(nv => renderCardTuLuyen(nv, 'DA_DONG')).join('')}
-                </div>
-            </div>
-        `;
+        htmlCards += `</div>`;
+        vungLamViec.innerHTML = htmlCards;
 
     } catch (error) {
-        console.error("Lỗi đồng bộ tab tự luyện:", error);
-        vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi tải dữ liệu tự luyện: ${error.message}</div>`;
+        vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`;
     }
-}
+};
+
 
 
 
