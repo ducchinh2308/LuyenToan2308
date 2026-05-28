@@ -5337,8 +5337,215 @@ window.ham_7_10_ve_bang_nhiem_vu = function () {
 //}
 
 
-// [Nhãn thời gian: 16:11 - Ngày 28/05/2026] - Bản cập nhật Hàm 7.10: Gom 4 nút Thao tác thành 2 dòng (CSS Grid 2x2) giúp tiết kiệm chiều ngang
-function ham_7_10_ve_bang_nhiem_vu() {
+//// [Nhãn thời gian: 16:11 - Ngày 28/05/2026] - Bản cập nhật Hàm 7.10: Gom 4 nút Thao tác thành 2 dòng (CSS Grid 2x2) giúp tiết kiệm chiều ngang
+//function ham_7_10_ve_bang_nhiem_vu() {
+//    const renderArea = document.getElementById('danh-sach-nv-render');
+//    let dsNV = [...BangNhiemVuState.duLieu];
+
+//    if (dsNV.length === 0) {
+//        renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Chưa có nhiệm vụ nào.</h4></div>`;
+//        return;
+//    }
+
+//    // 1. LẤY TRẠNG THÁI BỘ LỌC TỪ GIAO DIỆN RAM
+//    const nutLopActive = document.querySelector('.btn-loc-lop.active');
+//    const maLopDangChon = nutLopActive ? nutLopActive.getAttribute('onclick').match(/'([^']+)'/)[1] : 'TAT_CA';
+
+//    const oTimKiem = document.getElementById('input-tim-kiem-qlnv');
+//    const tuKhoa = oTimKiem ? oTimKiem.value.toLowerCase().trim() : '';
+
+//    // 2. HÀM PHỤ ĐÚC THẺ <th> CÓ SORT
+//    const taoThSort = (cotDB, tenHienThi, width = '') => {
+//        let icon = "<span style='color:#ccc; font-size:10px; margin-left:5px;'>↕️</span>";
+//        let bgStyle = "";
+
+//        if (BangNhiemVuState.cotDangSort === cotDB) {
+//            icon = BangNhiemVuState.tangDan
+//                ? "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔼</span>"
+//                : "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔽</span>";
+//            bgStyle = "background-color: #e6f2ff;";
+//        }
+
+//        return `<th onclick="ham_7_11_sort_nhiem_vu('${cotDB}')"
+//                    style="padding: 12px 10px; border: 1px solid #eee; width: ${width}; cursor: pointer; user-select: none; transition: 0.2s; ${bgStyle}"
+//                    onmouseover="this.style.backgroundColor='#e2e6ea'"
+//                    onmouseout="this.style.backgroundColor='${bgStyle ? '#e6f2ff' : 'transparent'}'">
+//                    ${tenHienThi} ${icon}
+//                </th>`;
+//    };
+
+//    let htmlTable = `
+//        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
+//            <table style="width: 100%; min-width: 1400px; border-collapse: collapse; background: white; font-size: 13px;">
+//                <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+//                    <tr>
+//                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
+//                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 160px; text-align: center;">Thao tác</th>
+
+//                        ${taoThSort('ma_nhiem_vu', 'Mã NV')}
+//                        ${taoThSort('ten_nhiem_vu', 'Tên Nhiệm Vụ')}
+//                        ${taoThSort('loai_nhiem_vu', 'Loại NV', '110px')}
+//                        ${taoThSort('danh_sach_lop', 'Giao Cho')}
+//                        ${taoThSort('so_luot_lam_bai', 'Số Lượt', '80px')}
+//                        ${taoThSort('thoi_gian_mo', 'Mở Lúc')}
+//                        ${taoThSort('thoi_gian_dong', 'Đóng Lúc')}
+//                        ${taoThSort('dao_cau_hoi', 'Đảo Đề', '130px')}
+//                        ${taoThSort('trang_thai', 'Tình Trạng')}
+//                    </tr>
+//                </thead>
+//                <tbody>
+//    `;
+
+//    const now = new Date();
+
+//    const tinhKhoangThoiGian = (targetDate, isPast) => {
+//        if (!targetDate) return "";
+//        const diff = isPast ? (now - targetDate) : (targetDate - now);
+//        if (diff <= 0) return isPast ? "vừa xong" : "hết hạn";
+
+//        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+//        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+//        const m = Math.floor((diff / (1000 * 60)) % 60);
+
+//        let result = [];
+//        if (d > 0) result.push(`${d}n`);
+//        if (h > 0) result.push(`${h}g`);
+//        if (m > 0 && d === 0) result.push(`${m}p`);
+
+//        return isPast ? `(đã mở ${result.join(' ')})` : `(còn ${result.join(' ')})`;
+//    };
+
+//    let sttChayHienTai = 1;
+
+//    dsNV.forEach((nv) => {
+//        const tenNvLower = (nv.ten_nhiem_vu || '').toLowerCase();
+//        const loaiNvLower = (nv.loai_nhiem_vu || '').toLowerCase();
+//        const maNvLower = (nv.ma_nhiem_vu || '').toLowerCase();
+
+//        let arrLop = [];
+//        try { arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
+
+//        const isLuyenTapTuDo = (nv.tinh_chat_bai_tap === 'TU_DO' || arrLop.includes("#LUYEN_TAP_TU_DO#"));
+//        const isLiveTask = maNvLower.startsWith('live_'); // Cờ nhận diện Đấu trường Live
+
+//        // THUẬT TOÁN MÀNG LỌC CÁCH LY CHUYÊN BIỆT
+//        let hopLeLop = false;
+
+//        if (maLopDangChon === 'TAT_CA') {
+//            hopLeLop = !isLiveTask; // CHỈ HIỆN KHI KHÔNG PHẢI LÀ NHIỆM VỤ LIVE
+//        } else if (maLopDangChon === 'LIVE') {
+//            hopLeLop = isLiveTask; // Bấm nút "Các phòng LIVE" thì chỉ hiện đúng Live Quiz
+//        } else {
+//            // Lọc theo Lớp Học bình thường
+//            if (arrLop.includes(maLopDangChon) || (isLuyenTapTuDo && !isLiveTask)) {
+//                hopLeLop = true;
+//            }
+//        }
+
+//        const hopLeTimKiem = (tuKhoa === '' || tenNvLower.includes(tuKhoa) || loaiNvLower.includes(tuKhoa) || maNvLower.includes(tuKhoa) || JSON.stringify(arrLop).toLowerCase().includes(tuKhoa));
+
+//        // CHỈ DỰNG DÒNG VÀ TĂNG STT NẾU VƯỢT QUA 2 BỘ LỌC
+//        if (hopLeLop && hopLeTimKiem) {
+//            const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
+//            const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+
+//            // XỬ LÝ BADGE CHO CỘT LOẠI NHIỆM VỤ
+//            let loaiHienThi = "❓ Khác";
+//            let badgeColor = "#6c757d";
+
+//            if (isLiveTask) {
+//                loaiHienThi = "🔥 Live Quiz";
+//                badgeColor = "#e74c3c";
+//            } else if (nv.loai_nhiem_vu === "Làm đề (Online)") {
+//                loaiHienThi = "📝 Làm đề";
+//                badgeColor = "#17a2b8";
+//            } else if (nv.loai_nhiem_vu === "Tự luận (Nộp ảnh)") {
+//                loaiHienThi = "📷 Tự luận";
+//                badgeColor = "#6f42c1";
+//            } else if (nv.loai_nhiem_vu === "Xem bài giảng") {
+//                loaiHienThi = "📺 Video";
+//                badgeColor = "#e83e8c";
+//            } else if (nv.loai_nhiem_vu === "Khảo sát") {
+//                loaiHienThi = "📊 Khảo sát";
+//                badgeColor = "#fd7e14";
+//            } else if (nv.loai_nhiem_vu) {
+//                loaiHienThi = nv.loai_nhiem_vu;
+//            }
+
+//            const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
+
+//            // Xử lý Giao Cho (Hiện Tên lớp hoặc Nhãn Tự Do)
+//            let hienThiLop = arrLop.map(ma => {
+//                if (ma === "#LUYEN_TAP_TU_DO#") {
+//                    if (isLiveTask) return `<div style="margin-top: 5px;"><span style="background:#e74c3c; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🔴 ĐẤU TRƯỜNG</span></div>`;
+//                    return `<div style="margin-top: 5px;"><span style="background:#17a2b8; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🌍 LUYỆN TẬP TỰ DO</span></div>`;
+//                }
+//                const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
+//                const tenLop = lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn";
+//                return `<div style="margin-bottom:2px;"><b>${tenLop}</b> <small style="color:#666;">(${ma})</small></div>`;
+//            }).join('');
+
+//            // Xử lý Số lượt
+//            const soLuot = (nv.so_luot_lam_bai == 0 || !nv.so_luot_lam_bai) ? "♾️ Vô hạn" : `${nv.so_luot_lam_bai} lượt`;
+
+//            // Xử lý Đảo đề
+//            let txtDaoDe = "<span style='color:#999; font-size: 12px;'>❌ Không đảo</span>";
+//            if (nv.dao_cau_hoi) {
+//                try {
+//                    const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
+//                    if (d.cau && d.abcd && d.ds) {
+//                        txtDaoDe = "<div style='color:#d35400; font-weight:bold; font-size:11px; line-height:1.5;' title='Đảo toàn diện'>🌪️ Đảo Câu + ABCD<br>+ Ý Đúng/Sai</div>";
+//                    }
+//                    else if (d.cau && d.abcd) {
+//                        txtDaoDe = "<div style='color:#28a745; font-weight:bold; font-size:11px;' title='Đảo cơ bản'>🔀 Đảo Câu + ABCD</div>";
+//                    }
+//                } catch (e) { }
+//            }
+
+//            const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
+
+//            // 🌟 VẼ HTML TỪNG DÒNG (Đã gom 4 nút thành 2 dòng bằng CSS Grid)
+//            htmlTable += `
+//                <tr style="border-bottom: 1px solid #eee; transition: 0.2s; ${isLiveTask ? 'background: #fdf2f2;' : ''}" onmouseover="this.style.background='${isLiveTask ? '#fadbd8' : '#f4f8ff'}'" onmouseout="this.style.background='${isLiveTask ? '#fdf2f2' : 'white'}'">
+//                    <td style="padding: 10px; text-align: center; font-weight: bold; color: #666;">${sttChayHienTai++}</td>
+
+//                    <td style="padding: 10px; text-align: center;">
+//                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 150px; margin: 0 auto;">
+//                            <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #ffc107; color: #333; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✏️ Sửa</button>
+//                            <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">❌ Xóa</button>
+//                            <button onclick="ham_7_15_thong_ke_nhiem_vu('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">📊 K.Quả</button>
+//                            <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" title="Chấm lại toàn bộ điểm cho nhiệm vụ này" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🔄 Chấm lại</button>
+//                        </div>
+//                    </td>
+
+//                    <td style="padding: 10px; font-weight: bold; color: ${isLiveTask ? '#e74c3c' : '#6f42c1'};">${nv.ma_nhiem_vu}</td>
+//                    <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
+//                    <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td>
+//                    <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
+//                    <td style="padding: 10px; text-align: center; font-weight: bold;">${soLuot}</td>
+//                    <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
+//                    <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
+//                    <td style="padding: 10px; text-align: center;">${txtDaoDe}</td>
+//                    <td style="padding: 10px; text-align: center;">
+//                        ${nv.trang_thai == 0 ? '<span style="color:#999; font-weight:bold;">⏸️ ĐÃ KHÓA (Thủ công)</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545; font-weight:bold;">🛑 ĐÃ ĐÓNG (Hết hạn)</span>' : '<span style="color:#28a745; font-weight:bold;">▶️ ĐANG MỞ</span>')}
+//                    </td>
+//                </tr>
+//            `;
+//        }
+//    });
+
+//    htmlTable += `</tbody></table></div>`;
+
+//    if (sttChayHienTai === 1) {
+//        renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Không tìm thấy nhiệm vụ nào phù hợp với bộ lọc.</h4></div>`;
+//    } else {
+//        renderArea.innerHTML = htmlTable;
+//    }
+//}
+
+
+// [Nhãn thời gian: 19:35 - Ngày 28/05/2026] - Bản cập nhật Hàm 7.10: Hiển thị tự động cột Đã làm / Chưa làm
+window.ham_7_10_ve_bang_nhiem_vu = async function () {
     const renderArea = document.getElementById('danh-sach-nv-render');
     let dsNV = [...BangNhiemVuState.duLieu];
 
@@ -5347,49 +5554,114 @@ function ham_7_10_ve_bang_nhiem_vu() {
         return;
     }
 
-    // 1. LẤY TRẠNG THÁI BỘ LỌC TỪ GIAO DIỆN RAM
+    // Bật hiệu ứng Loading nhẹ vì hệ thống cần vài mili-giây để tính toán chéo dữ liệu
+    renderArea.innerHTML = `<div style="text-align: center; padding: 50px; color: #1a73e8;"><h3 style="margin:0;">⏳ Đang tính toán dữ liệu tiến độ lớp học...</h3></div>`;
+
     const nutLopActive = document.querySelector('.btn-loc-lop.active');
     const maLopDangChon = nutLopActive ? nutLopActive.getAttribute('onclick').match(/'([^']+)'/)[1] : 'TAT_CA';
-
     const oTimKiem = document.getElementById('input-tim-kiem-qlnv');
     const tuKhoa = oTimKiem ? oTimKiem.value.toLowerCase().trim() : '';
 
-    // 2. HÀM PHỤ ĐÚC THẺ <th> CÓ SORT
+    // 🌟 1. LỌC DANH SÁCH TRƯỚC KHI FETCH (Tối ưu tốc độ)
+    let dsHienThi = [];
+    dsNV.forEach(nv => {
+        const tenNvLower = (nv.ten_nhiem_vu || '').toLowerCase();
+        const loaiNvLower = (nv.loai_nhiem_vu || '').toLowerCase();
+        const maNvLower = (nv.ma_nhiem_vu || '').toLowerCase();
+
+        let arrLop = [];
+        let chuoiLopGoc = "";
+        try {
+            chuoiLopGoc = typeof nv.danh_sach_lop === 'string' ? nv.danh_sach_lop : JSON.stringify(nv.danh_sach_lop || []);
+            arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+        } catch (e) { }
+
+        const isLuyenTapTuDo = (nv.tinh_chat_bai_tap === 'TU_DO' || chuoiLopGoc.includes("LUYEN_TAP_TU_DO"));
+        const isLiveTask = maNvLower.startsWith('live_');
+
+        let hopLeLop = false;
+        if (maLopDangChon === 'TAT_CA') { hopLeLop = !isLiveTask && !isLuyenTapTuDo; }
+        else if (maLopDangChon === 'TU_DO') { hopLeLop = isLuyenTapTuDo && !isLiveTask; }
+        else if (maLopDangChon === 'LIVE') { hopLeLop = isLiveTask; }
+        else { if (arrLop.includes(maLopDangChon)) hopLeLop = true; }
+
+        const hopLeTimKiem = (tuKhoa === '' || tenNvLower.includes(tuKhoa) || loaiNvLower.includes(tuKhoa) || maNvLower.includes(tuKhoa) || chuoiLopGoc.toLowerCase().includes(tuKhoa));
+
+        if (hopLeLop && hopLeTimKiem) {
+            nv._arrLop = arrLop;
+            nv._isLuyenTapTuDo = isLuyenTapTuDo;
+            nv._isLiveTask = isLiveTask;
+            dsHienThi.push(nv);
+        }
+    });
+
+    if (dsHienThi.length === 0) {
+        renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Không tìm thấy nhiệm vụ nào phù hợp với bộ lọc.</h4></div>`;
+        return;
+    }
+
+    // 🌟 2. FETCH VÀ ĐẾM SỐ LƯỢNG HỌC SINH (Siêu tốc độ)
+    let tuDienKQ = {};
+    const mangMaNVHienThi = dsHienThi.map(nv => nv.ma_nhiem_vu);
+
+    try {
+        if (mangMaNVHienThi.length > 0) {
+            // Lấy danh sách điểm số nộp bài chính thức
+            const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('ma_nhiem_vu, uid_hoc_sinh').in('ma_nhiem_vu', mangMaNVHienThi);
+            if (dsKQ) {
+                dsKQ.forEach(kq => {
+                    if (!tuDienKQ[kq.ma_nhiem_vu]) tuDienKQ[kq.ma_nhiem_vu] = new Set();
+                    tuDienKQ[kq.ma_nhiem_vu].add(kq.uid_hoc_sinh); // Set() giúp tự động lọc trùng
+                });
+            }
+        }
+
+        // Tải danh sách toàn bộ học sinh để đếm "Chưa làm"
+        const { data: dsHS } = await _supabase.from('hoc_sinh').select('uid, danh_sach_ma_lop');
+        window._tempDsHsThongKe = dsHS || [];
+
+        // Nếu là tab Đấu trường Live, vớt thêm những em đang thi trên sóng
+        const mangLive = dsHienThi.filter(nv => nv._isLiveTask).map(nv => nv.ma_nhiem_vu.replace('LIVE_', '').replace('live_', ''));
+        if (mangLive.length > 0) {
+            const { data: dsLive } = await _supabase.from('tien_do_live_quiz').select('ma_phong, uid_hoc_sinh').in('ma_phong', mangLive);
+            if (dsLive) {
+                dsLive.forEach(td => {
+                    const maNVAo = 'LIVE_' + td.ma_phong;
+                    if (!tuDienKQ[maNVAo]) tuDienKQ[maNVAo] = new Set();
+                    tuDienKQ[maNVAo].add(td.uid_hoc_sinh);
+                });
+            }
+        }
+    } catch (e) { console.warn("Lỗi tính toán thống kê:", e); }
+
+    // 🌟 3. VẼ GIAO DIỆN BẢNG
     const taoThSort = (cotDB, tenHienThi, width = '') => {
         let icon = "<span style='color:#ccc; font-size:10px; margin-left:5px;'>↕️</span>";
         let bgStyle = "";
-
         if (BangNhiemVuState.cotDangSort === cotDB) {
-            icon = BangNhiemVuState.tangDan
-                ? "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔼</span>"
-                : "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔽</span>";
+            icon = BangNhiemVuState.tangDan ? "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔼</span>" : "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔽</span>";
             bgStyle = "background-color: #e6f2ff;";
         }
-
-        return `<th onclick="ham_7_11_sort_nhiem_vu('${cotDB}')"
-                    style="padding: 12px 10px; border: 1px solid #eee; width: ${width}; cursor: pointer; user-select: none; transition: 0.2s; ${bgStyle}"
-                    onmouseover="this.style.backgroundColor='#e2e6ea'"
-                    onmouseout="this.style.backgroundColor='${bgStyle ? '#e6f2ff' : 'transparent'}'">
-                    ${tenHienThi} ${icon}
-                </th>`;
+        return `<th onclick="ham_7_11_sort_nhiem_vu('${cotDB}')" style="padding: 12px 10px; border: 1px solid #eee; width: ${width}; cursor: pointer; user-select: none; transition: 0.2s; ${bgStyle}" onmouseover="this.style.backgroundColor='#e2e6ea'" onmouseout="this.style.backgroundColor='${bgStyle ? '#e6f2ff' : 'transparent'}'">${tenHienThi} ${icon}</th>`;
     };
 
     let htmlTable = `
         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
-            <table style="width: 100%; min-width: 1400px; border-collapse: collapse; background: white; font-size: 13px;">
+            <table style="width: 100%; min-width: 1500px; border-collapse: collapse; background: white; font-size: 13px;">
                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <tr>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 160px; text-align: center;">Thao tác</th>
-
                         ${taoThSort('ma_nhiem_vu', 'Mã NV')}
                         ${taoThSort('ten_nhiem_vu', 'Tên Nhiệm Vụ')}
                         ${taoThSort('loai_nhiem_vu', 'Loại NV', '110px')}
                         ${taoThSort('danh_sach_lop', 'Giao Cho')}
-                        ${taoThSort('so_luot_lam_bai', 'Số Lượt', '80px')}
+                        
+                        <th style="padding: 12px 10px; border: 1px solid #eee; width: 110px; text-align: center;">Tiến Độ HS</th>
+                        
                         ${taoThSort('thoi_gian_mo', 'Mở Lúc')}
                         ${taoThSort('thoi_gian_dong', 'Đóng Lúc')}
-                        ${taoThSort('dao_cau_hoi', 'Đảo Đề', '130px')}
+                        ${taoThSort('dao_cau_hoi', 'Đảo Đề', '120px')}
                         ${taoThSort('trang_thai', 'Tình Trạng')}
                     </tr>
                 </thead>
@@ -5397,151 +5669,119 @@ function ham_7_10_ve_bang_nhiem_vu() {
     `;
 
     const now = new Date();
-
     const tinhKhoangThoiGian = (targetDate, isPast) => {
         if (!targetDate) return "";
         const diff = isPast ? (now - targetDate) : (targetDate - now);
         if (diff <= 0) return isPast ? "vừa xong" : "hết hạn";
-
         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const m = Math.floor((diff / (1000 * 60)) % 60);
-
         let result = [];
         if (d > 0) result.push(`${d}n`);
         if (h > 0) result.push(`${h}g`);
         if (m > 0 && d === 0) result.push(`${m}p`);
-
         return isPast ? `(đã mở ${result.join(' ')})` : `(còn ${result.join(' ')})`;
     };
 
     let sttChayHienTai = 1;
 
-    dsNV.forEach((nv) => {
-        const tenNvLower = (nv.ten_nhiem_vu || '').toLowerCase();
-        const loaiNvLower = (nv.loai_nhiem_vu || '').toLowerCase();
-        const maNvLower = (nv.ma_nhiem_vu || '').toLowerCase();
+    dsHienThi.forEach((nv) => {
+        const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
+        const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
-        let arrLop = [];
-        try { arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
+        let loaiHienThi = "❓ Khác"; let badgeColor = "#6c757d";
+        if (nv._isLiveTask) { loaiHienThi = "🔥 Live Quiz"; badgeColor = "#e74c3c"; }
+        else if (nv.loai_nhiem_vu === "Làm đề (Online)") { loaiHienThi = "📝 Làm đề"; badgeColor = "#17a2b8"; }
+        else if (nv.loai_nhiem_vu === "Tự luận (Nộp ảnh)") { loaiHienThi = "📷 Tự luận"; badgeColor = "#6f42c1"; }
+        else if (nv.loai_nhiem_vu === "Xem bài giảng") { loaiHienThi = "📺 Video"; badgeColor = "#e83e8c"; }
+        else if (nv.loai_nhiem_vu === "Khảo sát") { loaiHienThi = "📊 Khảo sát"; badgeColor = "#fd7e14"; }
+        else if (nv.loai_nhiem_vu) { loaiHienThi = nv.loai_nhiem_vu; }
 
-        const isLuyenTapTuDo = (nv.tinh_chat_bai_tap === 'TU_DO' || arrLop.includes("#LUYEN_TAP_TU_DO#"));
-        const isLiveTask = maNvLower.startsWith('live_'); // Cờ nhận diện Đấu trường Live
+        const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
 
-        // THUẬT TOÁN MÀNG LỌC CÁCH LY CHUYÊN BIỆT
-        let hopLeLop = false;
+        let hienThiLop = nv._arrLop.map(ma => {
+            if (ma === "#LUYEN_TAP_TU_DO#") {
+                if (nv._isLiveTask) return `<div style="margin-top: 5px;"><span style="background:#e74c3c; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px;">🔴 ĐẤU TRƯỜNG</span></div>`;
+                return `<div style="margin-top: 5px;"><span style="background:#17a2b8; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px;">🌍 TỰ DO</span></div>`;
+            }
+            const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
+            return `<div style="margin-bottom:2px;"><b>${lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn"}</b> <small style="color:#666;">(${ma})</small></div>`;
+        }).join('');
 
-        if (maLopDangChon === 'TAT_CA') {
-            hopLeLop = !isLiveTask; // CHỈ HIỆN KHI KHÔNG PHẢI LÀ NHIỆM VỤ LIVE
-        } else if (maLopDangChon === 'LIVE') {
-            hopLeLop = isLiveTask; // Bấm nút "Các phòng LIVE" thì chỉ hiện đúng Live Quiz
+        // 🌟 TÍNH TOÁN HIỂN THỊ TIẾN ĐỘ (ĐÃ LÀM / CHƯA LÀM)
+        let soDaLam = tuDienKQ[nv.ma_nhiem_vu] ? tuDienKQ[nv.ma_nhiem_vu].size : 0;
+        let tongGiao = 0;
+
+        if (!nv._isLiveTask && !nv._isLuyenTapTuDo && window._tempDsHsThongKe) {
+            let setHS = new Set();
+            window._tempDsHsThongKe.forEach(hs => {
+                let lopCuaEm = [];
+                try { lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+                if (lopCuaEm.some(m => nv._arrLop.includes(m))) setHS.add(hs.uid);
+            });
+            tongGiao = setHS.size;
+        }
+
+        let htmlTienDo = '';
+        if (nv._isLiveTask || nv._isLuyenTapTuDo) {
+            htmlTienDo = `
+                <div style="font-size: 12px; background: #f8f9fa; padding: 6px; border-radius: 6px; border: 1px solid #e9ecef; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);">
+                    <div style="color:#28a745; font-weight:bold; margin-bottom: 3px;">✅ Đã làm: ${soDaLam}</div>
+                    <div style="color:#6c757d; font-style:italic;">⏳ Chưa làm: -</div>
+                </div>`;
         } else {
-            // Lọc theo Lớp Học bình thường
-            if (arrLop.includes(maLopDangChon) || (isLuyenTapTuDo && !isLiveTask)) {
-                hopLeLop = true;
-            }
+            let soChuaLam = Math.max(0, tongGiao - soDaLam);
+            htmlTienDo = `
+                <div style="font-size: 12px; background: #f8f9fa; padding: 6px; border-radius: 6px; border: 1px solid #e9ecef; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);">
+                    <div style="color:#28a745; font-weight:900; margin-bottom: 3px;">✅ Đã làm: ${soDaLam}</div>
+                    <div style="color:#dc3545; font-weight:bold;">⏳ Chưa làm: ${soChuaLam}</div>
+                </div>`;
         }
 
-        const hopLeTimKiem = (tuKhoa === '' || tenNvLower.includes(tuKhoa) || loaiNvLower.includes(tuKhoa) || maNvLower.includes(tuKhoa) || JSON.stringify(arrLop).toLowerCase().includes(tuKhoa));
-
-        // CHỈ DỰNG DÒNG VÀ TĂNG STT NẾU VƯỢT QUA 2 BỘ LỌC
-        if (hopLeLop && hopLeTimKiem) {
-            const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
-            const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
-
-            // XỬ LÝ BADGE CHO CỘT LOẠI NHIỆM VỤ
-            let loaiHienThi = "❓ Khác";
-            let badgeColor = "#6c757d";
-
-            if (isLiveTask) {
-                loaiHienThi = "🔥 Live Quiz";
-                badgeColor = "#e74c3c";
-            } else if (nv.loai_nhiem_vu === "Làm đề (Online)") {
-                loaiHienThi = "📝 Làm đề";
-                badgeColor = "#17a2b8";
-            } else if (nv.loai_nhiem_vu === "Tự luận (Nộp ảnh)") {
-                loaiHienThi = "📷 Tự luận";
-                badgeColor = "#6f42c1";
-            } else if (nv.loai_nhiem_vu === "Xem bài giảng") {
-                loaiHienThi = "📺 Video";
-                badgeColor = "#e83e8c";
-            } else if (nv.loai_nhiem_vu === "Khảo sát") {
-                loaiHienThi = "📊 Khảo sát";
-                badgeColor = "#fd7e14";
-            } else if (nv.loai_nhiem_vu) {
-                loaiHienThi = nv.loai_nhiem_vu;
-            }
-
-            const htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
-
-            // Xử lý Giao Cho (Hiện Tên lớp hoặc Nhãn Tự Do)
-            let hienThiLop = arrLop.map(ma => {
-                if (ma === "#LUYEN_TAP_TU_DO#") {
-                    if (isLiveTask) return `<div style="margin-top: 5px;"><span style="background:#e74c3c; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🔴 ĐẤU TRƯỜNG</span></div>`;
-                    return `<div style="margin-top: 5px;"><span style="background:#17a2b8; color:white; padding:4px 10px; border-radius:12px; font-weight:bold; font-size:11px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🌍 LUYỆN TẬP TỰ DO</span></div>`;
-                }
-                const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
-                const tenLop = lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn";
-                return `<div style="margin-bottom:2px;"><b>${tenLop}</b> <small style="color:#666;">(${ma})</small></div>`;
-            }).join('');
-
-            // Xử lý Số lượt
-            const soLuot = (nv.so_luot_lam_bai == 0 || !nv.so_luot_lam_bai) ? "♾️ Vô hạn" : `${nv.so_luot_lam_bai} lượt`;
-
-            // Xử lý Đảo đề
-            let txtDaoDe = "<span style='color:#999; font-size: 12px;'>❌ Không đảo</span>";
-            if (nv.dao_cau_hoi) {
-                try {
-                    const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
-                    if (d.cau && d.abcd && d.ds) {
-                        txtDaoDe = "<div style='color:#d35400; font-weight:bold; font-size:11px; line-height:1.5;' title='Đảo toàn diện'>🌪️ Đảo Câu + ABCD<br>+ Ý Đúng/Sai</div>";
-                    }
-                    else if (d.cau && d.abcd) {
-                        txtDaoDe = "<div style='color:#28a745; font-weight:bold; font-size:11px;' title='Đảo cơ bản'>🔀 Đảo Câu + ABCD</div>";
-                    }
-                } catch (e) { }
-            }
-
-            const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
-
-            // 🌟 VẼ HTML TỪNG DÒNG (Đã gom 4 nút thành 2 dòng bằng CSS Grid)
-            htmlTable += `
-                <tr style="border-bottom: 1px solid #eee; transition: 0.2s; ${isLiveTask ? 'background: #fdf2f2;' : ''}" onmouseover="this.style.background='${isLiveTask ? '#fadbd8' : '#f4f8ff'}'" onmouseout="this.style.background='${isLiveTask ? '#fdf2f2' : 'white'}'">
-                    <td style="padding: 10px; text-align: center; font-weight: bold; color: #666;">${sttChayHienTai++}</td>
-                    
-                    <td style="padding: 10px; text-align: center;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 150px; margin: 0 auto;">
-                            <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #ffc107; color: #333; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✏️ Sửa</button>
-                            <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">❌ Xóa</button>
-                            <button onclick="ham_7_15_thong_ke_nhiem_vu('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">📊 K.Quả</button>
-                            <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" title="Chấm lại toàn bộ điểm cho nhiệm vụ này" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🔄 Chấm lại</button>
-                        </div>
-                    </td>
-
-                    <td style="padding: 10px; font-weight: bold; color: ${isLiveTask ? '#e74c3c' : '#6f42c1'};">${nv.ma_nhiem_vu}</td>
-                    <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
-                    <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td>
-                    <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
-                    <td style="padding: 10px; text-align: center; font-weight: bold;">${soLuot}</td>
-                    <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
-                    <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
-                    <td style="padding: 10px; text-align: center;">${txtDaoDe}</td>
-                    <td style="padding: 10px; text-align: center;">
-                        ${nv.trang_thai == 0 ? '<span style="color:#999; font-weight:bold;">⏸️ ĐÃ KHÓA (Thủ công)</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545; font-weight:bold;">🛑 ĐÃ ĐÓNG (Hết hạn)</span>' : '<span style="color:#28a745; font-weight:bold;">▶️ ĐANG MỞ</span>')}
-                    </td>
-                </tr>
-            `;
+        let txtDaoDe = "<span style='color:#999; font-size: 12px;'>❌ Không đảo</span>";
+        if (nv.dao_cau_hoi) {
+            try {
+                const d = typeof nv.dao_cau_hoi === 'string' ? JSON.parse(nv.dao_cau_hoi) : nv.dao_cau_hoi;
+                if (d.cau && d.abcd && d.ds) txtDaoDe = "<div style='color:#d35400; font-weight:bold; font-size:11px; line-height:1.5;'>🌪️ Đảo Câu+ABCD<br>+Ý Đúng/Sai</div>";
+                else if (d.cau && d.abcd) txtDaoDe = "<div style='color:#28a745; font-weight:bold; font-size:11px;'>🔀 Đảo Câu+ABCD</div>";
+            } catch (e) { }
         }
+
+        const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
+
+        htmlTable += `
+            <tr style="border-bottom: 1px solid #eee; transition: 0.2s; ${nv._isLiveTask ? 'background: #fdf2f2;' : (nv._isLuyenTapTuDo ? 'background: #f0fbfd;' : '')}" onmouseover="this.style.background='${nv._isLiveTask ? '#fadbd8' : (nv._isLuyenTapTuDo ? '#e0f7fa' : '#f4f8ff')}'" onmouseout="this.style.background='${nv._isLiveTask ? '#fdf2f2' : (nv._isLuyenTapTuDo ? '#f0fbfd' : 'white')}'">
+                <td style="padding: 10px; text-align: center; font-weight: bold; color: #666;">${sttChayHienTai++}</td>
+                
+                <td style="padding: 10px; text-align: center;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 150px; margin: 0 auto;">
+                        <button onclick="ham_7_6_mo_form_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #ffc107; color: #333; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✏️ Sửa</button>
+                        <button onclick="ham_7_8_xoa_nhiem_vu('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">❌ Xóa</button>
+                        <button onclick="ham_7_15_thong_ke_nhiem_vu('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">📊 K.Quả</button>
+                        <button onclick="ham_gv_cham_lai_ca_lop('${nv.ma_nhiem_vu}')" title="Chấm lại toàn bộ điểm cho nhiệm vụ này" style="padding: 6px; background: #e67e22; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🔄 Chấm</button>
+                    </div>
+                </td>
+
+                <td style="padding: 10px; font-weight: bold; color: ${nv._isLiveTask ? '#e74c3c' : (nv._isLuyenTapTuDo ? '#17a2b8' : '#6f42c1')};">${nv.ma_nhiem_vu}</td>
+                <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
+                <td style="padding: 10px; text-align: center;">${htmlLoaiNV}</td>
+                <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
+                
+                <td style="padding: 10px; text-align: center;">${htmlTienDo}</td>
+                
+                <td style="padding: 10px; text-align: center;">${fTime(timeMo)}<br><small style="color:#28a745;">${nv.trang_thai != 0 && timeMo && now > timeMo ? tinhKhoangThoiGian(timeMo, true) : ""}</small></td>
+                <td style="padding: 10px; text-align: center;">${fTime(timeDong)}<br><small style="color:#d35400;">${nv.trang_thai != 0 && timeDong && timeDong > now ? tinhKhoangThoiGian(timeDong, false) : ""}</small></td>
+                <td style="padding: 10px; text-align: center;">${txtDaoDe}</td>
+                <td style="padding: 10px; text-align: center;">
+                    ${nv.trang_thai == 0 ? '<span style="color:#999; font-weight:bold;">⏸️ ĐÃ KHÓA</span>' : (timeDong && now > timeDong ? '<span style="color:#dc3545; font-weight:bold;">🛑 ĐÃ ĐÓNG</span>' : '<span style="color:#28a745; font-weight:bold;">▶️ ĐANG MỞ</span>')}
+                </td>
+            </tr>
+        `;
     });
 
     htmlTable += `</tbody></table></div>`;
-
-    if (sttChayHienTai === 1) {
-        renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Không tìm thấy nhiệm vụ nào phù hợp với bộ lọc.</h4></div>`;
-    } else {
-        renderArea.innerHTML = htmlTable;
-    }
-}
+    renderArea.innerHTML = htmlTable;
+};
 
 
 //// =====================================================================
