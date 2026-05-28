@@ -815,7 +815,7 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 
 
 // =====================================================================
-// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (PHÂN CHIA 4 TAB CHIẾN LƯỢC CHUẨN UX)
+// Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (BẢN SỬA LỖI ĐỒNG BỘ TAB 4)
 // =====================================================================
 async function ham_8_2_tab_nhiem_vu_bat_buoc() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -899,7 +899,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             }
         }
 
-        // 🌟 5. THUẬT TOÁN PHÂN CHIA CHUẨN ĐÉT 4 NHÓM THEO ĐỀ XUẤT CỦA THẦY
+        // PHÂN CHIA CHUẨN ĐÉT 4 NHÓM THEO ĐỀ XUẤT CỦA THẦY
         const now = new Date();
         let dsCanLam = [], dsLamLai = [], dsChuaLamKhoa = [], dsDaLamKhoa = [];
 
@@ -914,18 +914,16 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
             if (daQuaHan || daHetLuot) {
-                // NHÓM BỊ KHÓA / QUÁ HẠN
                 if (soLuotDaLam > 0) {
-                    dsDaLamKhoa.push(nv);   // Loại 4: Đã làm (Đã khóa / Quá hạn)
+                    dsDaLamKhoa.push(nv);   // Nhóm 4: Đã làm (Đã khóa / Quá hạn)
                 } else {
-                    dsChuaLamKhoa.push(nv);  // Loại 3: Chưa làm (Đã khóa / Quá hạn)
+                    dsChuaLamKhoa.push(nv);  // Nhóm 3: Chưa làm (Đã khóa / Quá hạn)
                 }
             } else {
-                // NHÓM ĐANG MỞ
                 if (soLuotDaLam > 0) {
-                    dsLamLai.push(nv);      // Loại 2: Đã làm (Có thể làm lại)
+                    dsLamLai.push(nv);      // Nhóm 2: Đã làm (Có thể làm lại)
                 } else {
-                    dsCanLam.push(nv);      // Loại 1: Cần làm (Chưa làm lượt nào)
+                    dsCanLam.push(nv);      // Nhóm 1: Cần làm (Chưa làm lượt nào)
                 }
             }
         });
@@ -958,7 +956,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             return "Vừa xong";
         };
 
-        // HÀM VẼ THẺ CARD NHIỆM VỤ THEO TỪNG TRẠNG THÁI
         const renderCard = (nv, dinhDangTab) => {
             const tMo = anToanThoiGian(nv.thoi_gian_mo);
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
@@ -1003,7 +1000,6 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
                 `;
             }
 
-            // GIAO DIỆN NÚT ĐIỀU HƯỚNG BẤM PHÙ HỢP TỪNG TAB
             let nutHanhDong = "";
             if (dinhDangTab === 'CHUA_LAM_KHOA') {
                 const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
@@ -1048,7 +1044,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             `;
         };
 
-        // 6. RÁP GIAO DIỆN PHÂN TÁCH BIỆT LẬP 4 TAB NỘI BỘ
+        // RÁP GIAO DIỆN PHÂN TÁCH BIỆT LẬP 4 TAB NỘI BỘ
         vungLamViec.innerHTML = `
             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
                 <button id="btn-tab-can-lam" onclick="ham_8_x_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">
@@ -1068,7 +1064,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
         `;
 
-        // LƯU TRỮ HTML ĐỂ KHÔNG PHẢI TẢI LẠI ĐƯỜNG TRUYỀN DATABASE KHI CHUYỂN TAB
+        // CACHED HTML ĐỂ CHUYỂN TAB TỨC THÌ
         window.CachedCardsCanLamHtml = dsCanLam.length === 0
             ? '<div style="text-align:center; color:#7f8c8d; padding: 40px; font-style:italic; background:white; border-radius:8px; border:1px dashed #ccc;">🥳 Tuyệt vời! Em đã hoàn thành sạch sẽ toàn bộ bài tập!</div>'
             : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsCanLam.map(nv => renderCard(nv, 'CAN_LAM')).join('')}</div>`;
@@ -1082,10 +1078,10 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
             : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsChuaLamKhoa.map(nv => renderCard(nv, 'CHUA_LAM_KHOA')).join('')}</div>`;
 
         window.CachedCardsDaLamKhoaHtml = dsDaLamKhoa.length === 0
-            ? '<div style="text-align:center; color:#7f8c8d; padding: 40px; font-style:italic; background:white; border-radius:8px;">Trống.</div>'
+            ? '<div style="text-align:center; color:#7f8c8d; padding: 40px; font-style:italic; background:white; border-radius:8px; border:1px dashed #ccc;">Trống.</div>'
             : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsDaLamKhoa.map(nv => renderCard(nv, 'DA_LAM_KHOA')).join('')}</div>`;
 
-        // Kích hoạt mặc định Tab Cần làm lúc vừa mở trang
+        // Mặc định chạy tab đầu tiên
         window.ham_8_x_switch_sub_tab('CAN_LAM');
 
     } catch (error) {
@@ -1094,7 +1090,7 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 }
 
 // =====================================================================
-// Hàm bổ trợ: Chuyển đổi trạng thái Tab nội bộ (Đồng bộ 4 màu thương hiệu)
+// Hàm bổ trợ chuyển đổi Tab mượt mà trên RAM (ĐÃ SỬA KHỚP CHUỖI 'DA_LAM_KHOA')
 // =====================================================================
 window.ham_8_x_switch_sub_tab = function (loaiTab) {
     const btnCanLam = document.getElementById('btn-tab-can-lam');
@@ -1105,32 +1101,31 @@ window.ham_8_x_switch_sub_tab = function (loaiTab) {
 
     if (!vungChua || !btnCanLam || !btnLamLai || !btnChuaKhoa || !btnDaKhoa) return;
 
-    // Reset nền và chữ về trạng thái thụ động
+    // Reset styles
     [btnCanLam, btnLamLai, btnChuaKhoa, btnDaKhoa].forEach(btn => {
         btn.style.background = 'transparent';
         btn.style.color = '#495057';
     });
 
-    // Kích hoạt màu đại diện riêng biệt cho từng Tab chiến thuật
+    // Kích hoạt màu và nội dung tương ứng theo mã Tab chuẩn
     if (loaiTab === 'CAN_LAM') {
-        btnCanLam.style.background = '#28a745'; // Xanh lá
+        btnCanLam.style.background = '#28a745';
         btnCanLam.style.color = 'white';
         vungChua.innerHTML = window.CachedCardsCanLamHtml;
     } else if (loaiTab === 'LAM_LAI') {
-        btnLamLai.style.background = '#00b4d8'; // Xanh ngọc
+        btnLamLai.style.background = '#00b4d8';
         btnLamLai.style.color = 'white';
         vungChua.innerHTML = window.CachedCardsLamLaiHtml;
     } else if (loaiTab === 'CHUA_LAM_KHOA') {
-        btnChuaKhoa.style.background = '#7f8c8d'; // Xám tro nhắc nhở
+        btnChuaKhoa.style.background = '#7f8c8d';
         btnChuaKhoa.style.color = 'white';
         vungChua.innerHTML = window.CachedCardsChuaLamKhoaHtml;
-    } else if (loaiTab === 'DA_LAM_KHOA') {
-        btnDaKhoa.style.background = '#e74c3c'; // Đỏ vinh danh/khóa tích lũy
+    } else if (loaiTab === 'DA_LAM_KHOA') { // 🌟 ĐÃ SỬA: Đồng bộ chuỗi khớp 100% với sự kiện gọi
+        btnDaKhoa.style.background = '#e74c3c';
         btnDaKhoa.style.color = 'white';
-        vungChua.innerHTML = window.CachedCardsDaKhoaHtml;
+        vungChua.innerHTML = window.CachedCardsDaLamKhoaHtml;
     }
 };
-
 
 
 
