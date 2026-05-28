@@ -1331,12 +1331,131 @@ window.ham_9_3_3_thoat_phong = function () {
 //};
 
 
-// [Nhãn thời gian: 18:00 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh (KẾ THỪA LOGIC BÓC TÁCH MA TRẬN TỪ HÀM 9.5)
+//// [Nhãn thời gian: 18:00 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh (KẾ THỪA LOGIC BÓC TÁCH MA TRẬN TỪ HÀM 9.5)
+//window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
+//    const hsLive = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
+//    if (!hsLive) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
+
+//    // Bật Loading vì chúng ta sẽ chọc thẳng vào DB để lấy bản full chi tiết
+//    Swal.fire({ title: '⏳ Đang đồng bộ ma trận bài làm...', didOpen: () => Swal.showLoading() });
+
+//    let mangCauTraLoi = [];
+//    let diemSo = hsLive.diem_so || 0;
+//    let soCauDung = hsLive.so_cau_dung || 0;
+//    let soCauDaLam = hsLive.so_cau_da_lam || 0;
+
+//    try {
+//        // 🌟 ƯU TIÊN 1: Truy xuất kho ket_qua_thi (Kế thừa sức mạnh của Hàm 9.5)
+//        const maNV = window.ThongTinPhongLive.maNhiemVu;
+//        const { data: dsKQ } = await _supabase
+//            .from('ket_qua_thi')
+//            .select('*')
+//            .eq('ma_nhiem_vu', maNV)
+//            .eq('uid_hoc_sinh', uidHocSinh)
+//            .order('thoi_gian_nop', { ascending: false });
+
+//        if (dsKQ && dsKQ.length > 0) {
+//            const kq = dsKQ[0];
+//            let rawData = kq.chi_tiet_lam_bai || kq.chi_tiet || kq.ket_qua_chi_tiet || '[]';
+//            mangCauTraLoi = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
+
+//            // Cập nhật lại số liệu cho chuẩn xác 100% với bản lưu DB
+//            diemSo = kq.tong_diem || diemSo;
+//            soCauDung = kq.so_cau_dung || soCauDung;
+//        } else {
+//            // 🌟 ƯU TIÊN 2: Nếu chưa có trong ket_qua_thi, thử lục lọi trong Sóng Live
+//            let rawLive = hsLive.chi_tiet_lam_bai || hsLive.chi_tiet || hsLive.danh_sach_chon || '[]';
+//            mangCauTraLoi = typeof rawLive === 'string' ? JSON.parse(rawLive) : rawLive;
+//        }
+//    } catch (e) {
+//        console.warn("Lỗi trích xuất ma trận:", e);
+//    }
+
+//    const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
+
+//    let htmlMaTranGrid = '';
+
+//    // Nếu mảng vẫn rỗng -> Học sinh thực sự chưa chọn câu nào
+//    if (!mangCauTraLoi || mangCauTraLoi.length === 0) {
+//        htmlMaTranGrid = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic; text-align:center; font-weight:bold;">Học sinh chưa tích đáp án hoặc chưa nộp dữ liệu!</div>`;
+//    } else {
+//        // 🌟 TÁI HIỆN MA TRẬN XANH ĐỎ Y HỆT HÀM 9.5
+
+//        // Kiểm tra xem mảng là mảng String ["A","B"] hay mảng Object [{luaChonHS:"A"}]
+//        if (typeof mangCauTraLoi[0] === 'string') {
+//            // Xử lý mảng String thô
+//            mangCauTraLoi.forEach((chon, idx) => {
+//                let bgHop = chon === '-' ? '#f7fafc' : '#ebf8ff';
+//                let borderHop = chon === '-' ? '#cbd5e0' : '#90cdf4';
+//                let chuHop = chon === '-' ? '#4a5568' : '#2b6cb0';
+//                let iconKq = chon === '-' ? '⚪' : '🔵'; // Chưa biết đúng sai
+
+//                htmlMaTranGrid += `
+//                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+//                        <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
+//                        <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+//                        <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${chon}</span></div>
+//                    </div>
+//                `;
+//            });
+//        } else {
+//            // Xử lý mảng Object chi tiết (Chuẩn của hàm 9.5)
+//            mangCauTraLoi.forEach((cau, idx) => {
+//                const trangThai = (cau.ketQua || "").trim();
+//                let bgHop = "#fff5f5"; let borderHop = "#feb2b2"; let chuHop = "#c53030"; let iconKq = "❌";
+
+//                if (trangThai === "Đúng" || cau.is_correct === true || cau.dung_sai === true) {
+//                    bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢";
+//                }
+//                else if (trangThai === "Bỏ trống" || cau.luaChonHS === "-" || !cau.luaChonHS) {
+//                    bgHop = "#f7fafc"; borderHop = "#cbd5e0"; chuHop = "#4a5568"; iconKq = "⚪";
+//                }
+
+//                let luaChon = cau.luaChonHS || cau.chon || cau.dapAnChon || '-';
+
+//                htmlMaTranGrid += `
+//                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+//                        <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
+//                        <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+//                        <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${luaChon}</span></div>
+//                    </div>
+//                `;
+//            });
+//        }
+//    }
+
+//    // Hiển thị Popup (Giao diện sáng sủa đồng nhất với Thống kê)
+//    Swal.fire({
+//        title: `👁️ BÀI LÀM: ${hsLive.ten_hoc_sinh.toUpperCase()}`,
+//        html: `
+//            <div style="text-align: left; background: white;">
+//                <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; align-items: center; font-weight:bold;">
+//                    <div>
+//                        <div style="margin-bottom: 4px;">⏳ Đã làm: <b style="color:#9b59b6;">${soCauDaLam}/${tongCau}</b></div>
+//                        <div>🎯 Đúng: <b style="color:#2ecc71;">${soCauDung} câu</b></div>
+//                    </div>
+//                    <div style="font-size: 22px; color:#e74c3c; font-weight:900; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+//                        ${Number(diemSo).toFixed(2)} đ
+//                    </div>
+//                </div>
+//                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Ma trận đáp án đã chọn:</div>
+//                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 300px; overflow-y: auto; padding: 4px;">
+//                    ${htmlMaTranGrid}
+//                </div>
+//            </div>
+//        `,
+//        showConfirmButton: true,
+//        confirmButtonText: 'Đóng lại',
+//        confirmButtonColor: '#6c757d',
+//        width: '450px'
+//    });
+//};
+
+// [Nhãn thời gian: 18:05 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh (BỔ SUNG NÚT MỞ FULL ĐỀ VÀ AUTO-SCROLL)
 window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
     const hsLive = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
     if (!hsLive) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
 
-    // Bật Loading vì chúng ta sẽ chọc thẳng vào DB để lấy bản full chi tiết
     Swal.fire({ title: '⏳ Đang đồng bộ ma trận bài làm...', didOpen: () => Swal.showLoading() });
 
     let mangCauTraLoi = [];
@@ -1345,53 +1464,37 @@ window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
     let soCauDaLam = hsLive.so_cau_da_lam || 0;
 
     try {
-        // 🌟 ƯU TIÊN 1: Truy xuất kho ket_qua_thi (Kế thừa sức mạnh của Hàm 9.5)
         const maNV = window.ThongTinPhongLive.maNhiemVu;
-        const { data: dsKQ } = await _supabase
-            .from('ket_qua_thi')
-            .select('*')
-            .eq('ma_nhiem_vu', maNV)
-            .eq('uid_hoc_sinh', uidHocSinh)
-            .order('thoi_gian_nop', { ascending: false });
+        const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
 
         if (dsKQ && dsKQ.length > 0) {
             const kq = dsKQ[0];
             let rawData = kq.chi_tiet_lam_bai || kq.chi_tiet || kq.ket_qua_chi_tiet || '[]';
             mangCauTraLoi = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
-
-            // Cập nhật lại số liệu cho chuẩn xác 100% với bản lưu DB
             diemSo = kq.tong_diem || diemSo;
             soCauDung = kq.so_cau_dung || soCauDung;
         } else {
-            // 🌟 ƯU TIÊN 2: Nếu chưa có trong ket_qua_thi, thử lục lọi trong Sóng Live
             let rawLive = hsLive.chi_tiet_lam_bai || hsLive.chi_tiet || hsLive.danh_sach_chon || '[]';
             mangCauTraLoi = typeof rawLive === 'string' ? JSON.parse(rawLive) : rawLive;
         }
-    } catch (e) {
-        console.warn("Lỗi trích xuất ma trận:", e);
-    }
+    } catch (e) { console.warn("Lỗi trích xuất ma trận:", e); }
 
     const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
-
     let htmlMaTranGrid = '';
 
-    // Nếu mảng vẫn rỗng -> Học sinh thực sự chưa chọn câu nào
     if (!mangCauTraLoi || mangCauTraLoi.length === 0) {
         htmlMaTranGrid = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic; text-align:center; font-weight:bold;">Học sinh chưa tích đáp án hoặc chưa nộp dữ liệu!</div>`;
     } else {
-        // 🌟 TÁI HIỆN MA TRẬN XANH ĐỎ Y HỆT HÀM 9.5
-
-        // Kiểm tra xem mảng là mảng String ["A","B"] hay mảng Object [{luaChonHS:"A"}]
         if (typeof mangCauTraLoi[0] === 'string') {
-            // Xử lý mảng String thô
             mangCauTraLoi.forEach((chon, idx) => {
                 let bgHop = chon === '-' ? '#f7fafc' : '#ebf8ff';
                 let borderHop = chon === '-' ? '#cbd5e0' : '#90cdf4';
                 let chuHop = chon === '-' ? '#4a5568' : '#2b6cb0';
-                let iconKq = chon === '-' ? '⚪' : '🔵'; // Chưa biết đúng sai
+                let iconKq = chon === '-' ? '⚪' : '🔵';
 
+                // 🌟 Gắn sự kiện click mở full đề nhưng không cuộn (do mảng string không có mã câu)
                 htmlMaTranGrid += `
-                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <div onclick="ham_9_3_5_mo_full_de_live('${uidHocSinh}', null)" style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
                         <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
                         <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${chon}</span></div>
@@ -1399,22 +1502,21 @@ window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
                 `;
             });
         } else {
-            // Xử lý mảng Object chi tiết (Chuẩn của hàm 9.5)
             mangCauTraLoi.forEach((cau, idx) => {
                 const trangThai = (cau.ketQua || "").trim();
                 let bgHop = "#fff5f5"; let borderHop = "#feb2b2"; let chuHop = "#c53030"; let iconKq = "❌";
 
                 if (trangThai === "Đúng" || cau.is_correct === true || cau.dung_sai === true) {
                     bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢";
-                }
-                else if (trangThai === "Bỏ trống" || cau.luaChonHS === "-" || !cau.luaChonHS) {
+                } else if (trangThai === "Bỏ trống" || cau.luaChonHS === "-" || !cau.luaChonHS) {
                     bgHop = "#f7fafc"; borderHop = "#cbd5e0"; chuHop = "#4a5568"; iconKq = "⚪";
                 }
 
                 let luaChon = cau.luaChonHS || cau.chon || cau.dapAnChon || '-';
 
+                // 🌟 Gắn sự kiện click mở full đề VÀ cuộn tự động đến câu tương ứng
                 htmlMaTranGrid += `
-                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <div onclick="ham_9_3_5_mo_full_de_live('${uidHocSinh}', '${cau.maCau || cau.ma_cau_hoi || ''}')" style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Bấm để xem chi tiết câu này trên Đề gốc">
                         <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
                         <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
                         <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${luaChon}</span></div>
@@ -1424,7 +1526,6 @@ window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
         }
     }
 
-    // Hiển thị Popup (Giao diện sáng sủa đồng nhất với Thống kê)
     Swal.fire({
         title: `👁️ BÀI LÀM: ${hsLive.ten_hoc_sinh.toUpperCase()}`,
         html: `
@@ -1434,22 +1535,139 @@ window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
                         <div style="margin-bottom: 4px;">⏳ Đã làm: <b style="color:#9b59b6;">${soCauDaLam}/${tongCau}</b></div>
                         <div>🎯 Đúng: <b style="color:#2ecc71;">${soCauDung} câu</b></div>
                     </div>
-                    <div style="font-size: 22px; color:#e74c3c; font-weight:900; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
-                        ${Number(diemSo).toFixed(2)} đ
+                    
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 24px; color:#e74c3c; font-weight:900; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                            ${Number(diemSo).toFixed(2)} đ
+                        </div>
+                        <button onclick="ham_9_3_5_mo_full_de_live('${uidHocSinh}', null)" style="padding: 8px 12px; background: #2b6cb0; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#2c5282'" onmouseout="this.style.background='#2b6cb0'">
+                            MỞ FULL ĐỀ
+                        </button>
                     </div>
                 </div>
-                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Ma trận đáp án đã chọn:</div>
+                
+                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Ma trận đáp án (Bấm ô để xem câu):</div>
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 300px; overflow-y: auto; padding: 4px;">
                     ${htmlMaTranGrid}
                 </div>
             </div>
         `,
-        showConfirmButton: true,
-        confirmButtonText: 'Đóng lại',
-        confirmButtonColor: '#6c757d',
-        width: '450px'
+        showConfirmButton: false, // Tắt nút OK mặc định để gọn gàng
+        showCancelButton: true,
+        cancelButtonText: '⬅️ Đóng lại',
+        cancelButtonColor: '#6c757d',
+        width: '480px'
     });
 };
+
+// [Nhãn thời gian: 18:05 - Ngày 28/05/2026] - Hàm 9.3.5: Cầu nối mở Full Đề trực tiếp từ môi trường Sóng Live Realtime
+window.ham_9_3_5_mo_full_de_live = async function (uidHocSinh, maCauScroll) {
+    Swal.fire({ title: 'Đang trích xuất bản vẽ...', html: 'Hệ thống đang đồng bộ đề gốc từ Github và ráp nối đáp án học sinh...', didOpen: () => Swal.showLoading() });
+
+    try {
+        const maNV = window.ThongTinPhongLive.maNhiemVu;
+        const hsLive = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
+        if (!hsLive) throw new Error("Mất kết nối với học sinh này.");
+
+        // 1. Tải khung nhiệm vụ và mã học liệu
+        const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNV).single();
+        if (errNV) throw errNV;
+
+        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+        if (errHL) throw errHL;
+
+        // 2. Tải File Đề gốc từ Github
+        let urlFileGitHub = hlData.url_github;
+        if (!urlFileGitHub) {
+            let maDeGoc = nvData.ma_hoc_lieu;
+            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+        } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
+            urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+        }
+
+        const resDe = await fetch(urlFileGitHub);
+        if (!resDe.ok) throw new Error("Không tải được đề gốc từ Github!");
+        const dataGitHub = await resDe.json();
+
+        // 3. Tải bóng ma Lời giải chi tiết (Luôn ưu tiên vì là quyền Giáo viên)
+        let dataGiaiGop = null;
+        if (hlData.url_file_giai) {
+            try {
+                let urlGiai = hlData.url_file_giai;
+                if (urlGiai.includes('github.com') && urlGiai.includes('/blob/')) urlGiai = urlGiai.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                const resGiai = await fetch(urlGiai);
+                if (resGiai.ok) dataGiaiGop = await resGiai.json();
+            } catch (e) { console.warn("Lỗi tải bóng ma", e); }
+        }
+
+        // 4. Ráp khung xương và nội dung
+        let dsKhungXuong = hlData.danh_sach_cau_hoi;
+        if (typeof dsKhungXuong === 'string') dsKhungXuong = JSON.parse(dsKhungXuong);
+
+        const deThiHoanChinh = (dsKhungXuong || []).map(mapItem => {
+            const noiDung = (dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || []).find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+            let htmlLoiGiaiChiTiet = null;
+            if (dataGiaiGop) {
+                const matchGiai = (dataGiaiGop.danhSachLoiGiai || []).find(g => g.maBaoMat === mapItem.ma_loi_giai);
+                if (matchGiai) htmlLoiGiaiChiTiet = matchGiai.loiGiaiHtml;
+            }
+            return { ...mapItem, ...noiDung, dap_an: mapItem.dap_an, loiGiaiHtml: htmlLoiGiaiChiTiet };
+        });
+
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+
+        // 5. Cố gắng lấy kết quả chi tiết chuẩn từ DB để Mock
+        let chiTietMock = [];
+        let diemMock = hsLive.diem_so || 0;
+
+        const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
+        if (dsKQ && dsKQ.length > 0) {
+            const kq = dsKQ[0];
+            let rawData = kq.chi_tiet_lam_bai || kq.chi_tiet || kq.ket_qua_chi_tiet || '[]';
+            chiTietMock = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
+            diemMock = kq.tong_diem || diemMock;
+        } else {
+            let rawLive = hsLive.chi_tiet_lam_bai || hsLive.chi_tiet || hsLive.danh_sach_chon || '[]';
+            chiTietMock = typeof rawLive === 'string' ? JSON.parse(rawLive) : rawLive;
+        }
+
+        let ketQuaMockObj = { tong_diem: diemMock, chi_tiet_lam_bai: chiTietMock };
+
+        Swal.close();
+
+        // 🌟 GỌI LÕI RENDER GIAO DIỆN XEM LẠI (Tương đương bên Thống Kê)
+        if (typeof ham_8_14_ve_giao_dien_xem_lai === 'function') {
+            // Cho phép xem đáp án = true, Cho phép xem lời giải = true
+            ham_8_14_ve_giao_dien_xem_lai(ketQuaMockObj, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
+        } else {
+            return Swal.fire('Lỗi Module', 'Trình duyệt chưa tải kịp file giao diện xem lại. Vui lòng thử lại!', 'error');
+        }
+
+        // 6. AUTO SCROLL Thông minh đến thẳng vị trí câu hỏi vừa click
+        if (maCauScroll) {
+            setTimeout(() => {
+                const theCauHoi = document.getElementById('review-cau-' + maCauScroll);
+                if (theCauHoi) {
+                    theCauHoi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    theCauHoi.style.transition = "all 0.5s ease-in-out";
+                    theCauHoi.style.boxShadow = "0 0 15px 3px rgba(43, 108, 176, 0.6)"; // Sáng đèn viền xanh dương
+                    theCauHoi.style.transform = "scale(1.02)";
+
+                    setTimeout(() => {
+                        theCauHoi.style.boxShadow = "0 4px 8px rgba(0,0,0,0.05)";
+                        theCauHoi.style.transform = "scale(1)";
+                    }, 2500);
+                }
+            }, 600); // Đợi giao diện render xong
+        }
+
+    } catch (error) {
+        Swal.fire('Lỗi', 'Không thể mở bài thi: ' + error.message, 'error');
+    }
+};
+
+
 
 
 
