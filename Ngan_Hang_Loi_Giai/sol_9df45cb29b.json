@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_9df45cb29b",
+    "dapAn": "98",
+    "loiGiai": "Số có hai chữ số lớn nhất là 99, nhưng 99 có hai chữ số giống nhau. Để số lớn nhất mà có hai chữ số khác nhau, ta giữ nguyên chữ số hàng chục lớn nhất là 9 và giảm chữ số hàng đơn vị xuống số liền trước là 8. Số cần tìm là 98."
+}
