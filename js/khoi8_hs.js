@@ -1419,8 +1419,46 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 }
 
 
+//// =====================================================================
+//// Hàm bổ trợ: Chuyển đổi trạng thái Tab nội bộ (Đồng bộ khóa lọc an toàn)
+//// =====================================================================
+//window.ham_8_x_switch_sub_tab = function (loaiTab) {
+//    const btnCanLam = document.getElementById('btn-tab-can-lam');
+//    const btnLamLai = document.getElementById('btn-tab-lam-lai');
+//    const btnChuaKhoa = document.getElementById('btn-tab-chua-lam-khoa');
+//    const btnDaKhoa = document.getElementById('btn-tab-da-lam-khoa');
+//    const vungChua = document.getElementById('vung-chua-cards-nhiem-vu');
+
+//    if (!vungChua || !btnCanLam || !btnLamLai || !btnChuaKhoa || !btnDaKhoa) return;
+
+//    [btnCanLam, btnLamLai, btnChuaKhoa, btnDaKhoa].forEach(btn => {
+//        btn.style.background = 'transparent';
+//        btn.style.color = '#495057';
+//    });
+
+//    if (loaiTab === 'CAN_LAM') {
+//        btnCanLam.style.background = '#28a745'; btnCanLam.style.color = 'white';
+//        vungChua.innerHTML = window.CachedCardsCanLamHtml;
+//    } else if (loaiTab === 'LAM_LAI') {
+//        btnLamLai.style.background = '#00b4d8'; btnLamLai.style.color = 'white';
+//        vungChua.innerHTML = window.CachedCardsLamLaiHtml;
+//    } else if (loaiTab === 'CHUA_LAM_KHOA') {
+//        btnChuaKhoa.style.background = '#7f8c8d'; btnChuaKhoa.style.color = 'white';
+//        vungChua.innerHTML = window.CachedCardsChuaLamKhoaHtml;
+//    } else if (loaiTab === 'DA_LAM_KHOA') {
+//        btnDaKhoa.style.background = '#e74c3c'; btnDaKhoa.style.color = 'white';
+//        vungChua.innerHTML = window.CachedCardsDaLamKhoaHtml;
+//    }
+
+//    // 🌟 KHÓA BẢO MẬT: Sau khi vẽ lại HTML của Tab, ép chạy lại bộ lọc lớp hiện hành ngay lập tức
+//    const nutActive = document.querySelector('.btn-loc-lop-cua-hs.active');
+//    if (nutActive && window.MaLopDangLocHienTai) {
+//        window.ham_8_x_loc_card_theo_lop(window.MaLopDangLocHienTai, nutActive, true);
+//    }
+//};
+
 // =====================================================================
-// Hàm bổ trợ: Chuyển đổi trạng thái Tab nội bộ (Đồng bộ khóa lọc an toàn)
+// Hàm bổ trợ: Chuyển đổi trạng thái Tab nội bộ (Giữ bộ số đếm động)
 // =====================================================================
 window.ham_8_x_switch_sub_tab = function (loaiTab) {
     const btnCanLam = document.getElementById('btn-tab-can-lam');
@@ -1431,11 +1469,13 @@ window.ham_8_x_switch_sub_tab = function (loaiTab) {
 
     if (!vungChua || !btnCanLam || !btnLamLai || !btnChuaKhoa || !btnDaKhoa) return;
 
+    // Reset styles màu tab thụ động
     [btnCanLam, btnLamLai, btnChuaKhoa, btnDaKhoa].forEach(btn => {
         btn.style.background = 'transparent';
         btn.style.color = '#495057';
     });
 
+    // Điền HTML tương ứng từ Cache vào vùng hiển thị
     if (loaiTab === 'CAN_LAM') {
         btnCanLam.style.background = '#28a745'; btnCanLam.style.color = 'white';
         vungChua.innerHTML = window.CachedCardsCanLamHtml;
@@ -1450,10 +1490,11 @@ window.ham_8_x_switch_sub_tab = function (loaiTab) {
         vungChua.innerHTML = window.CachedCardsDaLamKhoaHtml;
     }
 
-    // 🌟 KHÓA BẢO MẬT: Sau khi vẽ lại HTML của Tab, ép chạy lại bộ lọc lớp hiện hành ngay lập tức
+    // 🌟 Ép chạy lại bộ lọc lớp để ẩn Card thừa VÀ giữ vững số đếm động trên các nhãn nút
     const nutActive = document.querySelector('.btn-loc-lop-cua-hs.active');
-    if (nutActive && window.MaLopDangLocHienTai) {
-        window.ham_8_x_loc_card_theo_lop(window.MaLopDangLocHienTai, nutActive, true);
+    const lopHienTai = window.MaLopDangLocHienTai || 'TAT_CA';
+    if (nutActive) {
+        window.ham_8_x_loc_card_theo_lop(lopHienTai, nutActive, true);
     }
 };
 
@@ -1496,7 +1537,64 @@ window.ham_8_x_loc_card_theo_lop = function (maLopChon, nutBam, isGoiNoiBo = fal
             }
         }
     });
+    // 2. 🌟 TÍNH NĂNG NÂNG CẤP: ĐẾM ĐỘNG SỐ LƯỢNG THEO LỚP CHO TOÀN BỘ 4 NHÃN TAB
+    window.ham_8_x_cap_nhat_so_luong_nhan_tab(maLopChon);
+
 };
+
+
+
+// =====================================================================
+// Hàm phụ mới: Tính toán và cập nhật con số hiển thị trên 4 nhãn Tab
+// =====================================================================
+window.ham_8_x_cap_nhat_so_luong_nhan_tab = function (maLopChon) {
+    // Tạo một trình giả lập kiểm tra điều kiện lớp nhanh
+    const checkHopLeLop = (htmlCardStr) => {
+        if (maLopChon === 'TAT_CA') return true;
+        // Tìm chuỗi chứa mã lớp trong thuộc tính data-mangs-lop của HTML cache
+        return htmlCardStr.includes(`"${maLopChon}"`);
+    };
+
+    // Tạo parser tạm thời để đếm số lượng phần tử card thỏa mãn từ bộ nhớ đệm (Cache)
+    const demCardThoalMan = (htmlGoc) => {
+        if (!htmlGoc || htmlGoc.includes("text-align:center")) return 0;
+
+        // Tạo một Div ảo trên RAM để ép HTML vào đếm cho chính xác
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlGoc;
+        const cacCards = tempDiv.querySelectorAll('.card-nhiem-vu-hs');
+
+        let bieuDem = 0;
+        cacCards.forEach(c => {
+            try {
+                const mangLop = JSON.parse(c.getAttribute('data-mangs-lop') || "[]");
+                if (maLopChon === 'TAT_CA' || mangLop.includes(maLopChon)) {
+                    bieuDem++;
+                }
+            } catch (e) { }
+        });
+        return bieuDem;
+    };
+
+    // Đếm số lượng thực tế theo bộ lọc lớp hiện tại
+    const countCanLam = demCardThoalMan(window.CachedCardsCanLamHtml);
+    const countLamLai = demCardThoalMan(window.CachedCardsLamLaiHtml);
+    const countChuaKhoa = demCardThoalMan(window.CachedCardsChuaLamKhoaHtml);
+    const countDaKhoa = demCardThoalMan(window.CachedCardsDaLamKhoaHtml);
+
+    // Ghi đè con số mới lên giao diện nhãn text của 4 nút Tab
+    const btnCanLam = document.getElementById('btn-tab-can-lam');
+    const btnLamLai = document.getElementById('btn-tab-lam-lai');
+    const btnChuaKhoa = document.getElementById('btn-tab-chua-lam-khoa');
+    const btnDaKhoa = document.getElementById('btn-tab-da-lam-khoa');
+
+    if (btnCanLam) btnCanLam.innerText = `🎯 CẦN LÀM (${countCanLam})`;
+    if (btnLamLai) btnLamLai.innerText = `🔄 ĐÃ LÀM (CÒN LƯỢT) (${countLamLai})`;
+    if (btnChuaKhoa) btnChuaKhoa.innerText = `⬛ CHƯA LÀM (ĐÃ KHÓA) (${countChuaKhoa})`;
+    if (btnDaKhoa) btnDaKhoa.innerText = `🟥 ĐÃ LÀM (ĐÃ KHÓA) (${countDaKhoa})`;
+};
+
+
 
 //// =====================================================================
 //// Hàm bổ trợ chuyển đổi Tab mượt mà trên RAM (ĐÃ SỬA KHỚP CHUỖI 'DA_LAM_KHOA')
