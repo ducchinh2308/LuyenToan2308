@@ -6922,52 +6922,168 @@ window.ham_7_13_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
 
 
 
-// [Nhãn thời gian: 13:55 - Ngày 28/05/2026] - Nâng cấp Hàm 7.15: Thống kê Điểm (Tự động gộp dữ liệu từ Sóng Live Quiz)
+//// [Nhãn thời gian: 13:55 - Ngày 28/05/2026] - Nâng cấp Hàm 7.15: Thống kê Điểm (Tự động gộp dữ liệu từ Sóng Live Quiz)
+//window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+//    // Lưu lại giao diện hiện tại (Quản lý NV hoặc Đấu trường) để lát nữa bấm Quay lại không bị mất
+//    window.HTML_TruocKhiThongKe = vungLamViec.innerHTML;
+
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 50px;"><h3 style="color:#1a73e8;">⏳ Đang tổng hợp dữ liệu bài làm...</h3></div>`;
+
+//    try {
+//        // 1. Tạo từ điển đối chiếu Tên học sinh chuẩn xác từ UID
+//        let tuDienHS = {};
+//        const { data: dataHS } = await _supabase.from('hoc_sinh').select('uid, ten');
+//        if (dataHS) {
+//            dataHS.forEach(hs => tuDienHS[hs.uid] = hs.ten);
+//        }
+
+//        // 2. Kéo dữ liệu nộp bài chính thức từ bảng Hệ thống lõi
+//        const { data: dsKQ, error: errKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNhiemVu);
+//        let dsTongHop = dsKQ || [];
+
+//        // 🌟 3. THUẬT TOÁN BÙ ĐẮP DỮ LIỆU TỪ SÓNG LIVE (Nếu là Đấu trường)
+//        if (maNhiemVu.startsWith('LIVE_')) {
+//            const maPhongLive = maNhiemVu.replace('LIVE_', '');
+//            const { data: dsLive } = await _supabase.from('tien_do_live_quiz').select('*').eq('ma_phong', maPhongLive);
+
+//            if (dsLive) {
+//                dsLive.forEach(liveItem => {
+//                    // Kiểm tra xem học sinh này đã có trong danh sách nộp bài chính thức chưa
+//                    const daNopChinhThuc = dsTongHop.find(kq => kq.uid_hoc_sinh === liveItem.uid_hoc_sinh);
+
+//                    if (!daNopChinhThuc) {
+//                        // Nếu chưa nộp, lấy ngay điểm từ sóng Live để chốt sổ!
+//                        dsTongHop.push({
+//                            uid_hoc_sinh: liveItem.uid_hoc_sinh,
+//                            tong_diem: liveItem.diem_so || 0,
+//                            so_cau_dung: liveItem.so_cau_dung || 0,
+//                            thoi_gian_nop: liveItem.thoi_gian_cap_nhat || new Date().toISOString(),
+//                            is_live_sync: true // Đánh dấu cờ để hiện Badge phân biệt
+//                        });
+//                    }
+//                });
+//            }
+//        }
+
+//        // Kiểm tra dữ liệu rỗng sau khi đã quét cả 2 nguồn
+//        if (dsTongHop.length === 0) {
+//            vungLamViec.innerHTML = `
+//                <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+//                    <button onclick="document.getElementById('vung-lam-viec-chi-tiet').innerHTML = window.HTML_TruocKhiThongKe" style="padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 20px; font-weight: bold;">⬅️ QUAY LẠI</button>
+//                    <h3 style="text-align: center; color: #666; padding: 30px;">📭 Chưa có học sinh nào nộp bài hoặc tham gia thi đấu.</h3>
+//                </div>
+//            `;
+//            return;
+//        }
+
+//        // 4. Sắp xếp bảng điểm từ cao xuống thấp (Điểm số -> Số câu đúng)
+//        dsTongHop.sort((a, b) => {
+//            if (b.tong_diem !== a.tong_diem) return b.tong_diem - a.tong_diem;
+//            return b.so_cau_dung - a.so_cau_dung;
+//        });
+
+//        // 5. Vẽ giao diện Bảng điểm chi tiết
+//        let htmlRows = '';
+//        dsTongHop.forEach((kq, index) => {
+//            const tenHienThi = tuDienHS[kq.uid_hoc_sinh] || kq.ten_hoc_sinh || 'Học sinh ẩn';
+
+//            // Badge nhận diện nguồn điểm
+//            const badgeNguon = kq.is_live_sync
+//                ? `<span style="font-size:10px; background:#ffc107; color:#333; padding:3px 6px; border-radius:12px; margin-left:8px; font-weight:bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">⚡ Chốt từ Live</span>`
+//                : `<span style="font-size:10px; background:#28a745; color:white; padding:3px 6px; border-radius:12px; margin-left:8px; font-weight:bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✅ Đã nộp bài</span>`;
+
+//            // Nút xem chi tiết (Nếu lấy từ Live thì không có chi tiết ABCD)
+//            const nutChiTiet = kq.is_live_sync
+//                ? `<span style="font-size: 11px; color: #999; font-style: italic;">Không có lịch sử chọn</span>`
+//                : `<button onclick="Swal.fire('Tính năng', 'Xem chi tiết câu trả lời (Đang hoàn thiện)', 'info')" style="padding: 4px 10px; background: #17a2b8; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">👁️ Xem bài</button>`;
+
+//            htmlRows += `
+//                <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+//                    <td style="padding: 15px 12px; text-align: center; font-weight: bold; color: #666;">${index + 1}</td>
+//                    <td style="padding: 15px 12px; font-weight: bold; color: #1a73e8; font-size: 15px;">${tenHienThi} ${badgeNguon}</td>
+//                    <td style="padding: 15px 12px; text-align: center; color: #28a745; font-weight: bold; font-size: 15px;">${kq.so_cau_dung || 0}</td>
+//                    <td style="padding: 15px 12px; text-align: center; color: #e74c3c; font-weight: 900; font-size: 20px; font-family: monospace;">${Number(kq.tong_diem).toFixed(2)}</td>
+//                    <td style="padding: 15px 12px; text-align: center; font-size: 12px; color: #555;">${new Date(kq.thoi_gian_nop).toLocaleString('vi-VN')}</td>
+//                    <td style="padding: 15px 12px; text-align: center;">${nutChiTiet}</td>
+//                </tr>
+//            `;
+//        });
+
+//        vungLamViec.innerHTML = `
+//            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 25px;">
+//                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 15px; margin-bottom: 20px;">
+//                    <div>
+//                        <h3 style="margin: 0; color: #e74c3c; font-weight: 900; font-size: 20px;">📊 KẾT QUẢ: ${tenNhiemVu}</h3>
+//                        <div style="font-size: 12px; color: #666; margin-top: 5px;">Mã NV: ${maNhiemVu}</div>
+//                    </div>
+//                    <button onclick="document.getElementById('vung-lam-viec-chi-tiet').innerHTML = window.HTML_TruocKhiThongKe" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">
+//                        ⬅️ QUAY LẠI
+//                    </button>
+//                </div>
+
+//                <div style="overflow-x: auto;">
+//                    <table style="width: 100%; border-collapse: collapse; min-width: 850px; text-align: left;">
+//                        <thead style="background: #f1f3f4;">
+//                            <tr>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; text-align: center; width: 60px; color: #495057;">STT</th>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; color: #495057;">Họ và Tên Học sinh</th>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; text-align: center; width: 120px; color: #495057;">Số câu đúng</th>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; text-align: center; width: 120px; color: #495057;">Điểm số</th>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; text-align: center; width: 180px; color: #495057;">Thời gian chốt sổ</th>
+//                                <th style="padding: 15px 12px; border-bottom: 2px solid #dee2e6; text-align: center; width: 120px; color: #495057;">Thao tác</th>
+//                            </tr>
+//                        </thead>
+//                        <tbody>
+//                            ${htmlRows}
+//                        </tbody>
+//                    </table>
+//                </div>
+//            </div>
+//        `;
+//    } catch (e) {
+//        vungLamViec.innerHTML = `<div style="color: #dc3545; padding: 30px; text-align:center; font-weight:bold; font-size: 16px;">❌ Lỗi truy xuất thống kê: ${e.message}</div>`;
+//    }
+//};
+
+
+// [Nhãn thời gian: 14:02 - Ngày 28/05/2026] - Hàm 7.15: Thống kê Điểm (Vá lỗi bóc tách Số câu đúng từ JSON và gắn sự kiện Xem chi tiết)
 window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-
-    // Lưu lại giao diện hiện tại (Quản lý NV hoặc Đấu trường) để lát nữa bấm Quay lại không bị mất
-    window.HTML_TruocKhiThongKe = vungLamViec.innerHTML;
-
+    window.HTML_TruocKhiThongKe = vungLamViec.innerHTML; // Lưu cache giao diện để quay lại
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 50px;"><h3 style="color:#1a73e8;">⏳ Đang tổng hợp dữ liệu bài làm...</h3></div>`;
 
     try {
-        // 1. Tạo từ điển đối chiếu Tên học sinh chuẩn xác từ UID
         let tuDienHS = {};
         const { data: dataHS } = await _supabase.from('hoc_sinh').select('uid, ten');
         if (dataHS) {
             dataHS.forEach(hs => tuDienHS[hs.uid] = hs.ten);
         }
 
-        // 2. Kéo dữ liệu nộp bài chính thức từ bảng Hệ thống lõi
         const { data: dsKQ, error: errKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNhiemVu);
         let dsTongHop = dsKQ || [];
 
-        // 🌟 3. THUẬT TOÁN BÙ ĐẮP DỮ LIỆU TỪ SÓNG LIVE (Nếu là Đấu trường)
         if (maNhiemVu.startsWith('LIVE_')) {
             const maPhongLive = maNhiemVu.replace('LIVE_', '');
             const { data: dsLive } = await _supabase.from('tien_do_live_quiz').select('*').eq('ma_phong', maPhongLive);
 
             if (dsLive) {
                 dsLive.forEach(liveItem => {
-                    // Kiểm tra xem học sinh này đã có trong danh sách nộp bài chính thức chưa
                     const daNopChinhThuc = dsTongHop.find(kq => kq.uid_hoc_sinh === liveItem.uid_hoc_sinh);
-
                     if (!daNopChinhThuc) {
-                        // Nếu chưa nộp, lấy ngay điểm từ sóng Live để chốt sổ!
                         dsTongHop.push({
                             uid_hoc_sinh: liveItem.uid_hoc_sinh,
                             tong_diem: liveItem.diem_so || 0,
                             so_cau_dung: liveItem.so_cau_dung || 0,
                             thoi_gian_nop: liveItem.thoi_gian_cap_nhat || new Date().toISOString(),
-                            is_live_sync: true // Đánh dấu cờ để hiện Badge phân biệt
+                            is_live_sync: true // Cờ nhận diện điểm vớt từ Live
                         });
                     }
                 });
             }
         }
 
-        // Kiểm tra dữ liệu rỗng sau khi đã quét cả 2 nguồn
         if (dsTongHop.length === 0) {
             vungLamViec.innerHTML = `
                 <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
@@ -6978,32 +7094,38 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
             return;
         }
 
-        // 4. Sắp xếp bảng điểm từ cao xuống thấp (Điểm số -> Số câu đúng)
+        // Sắp xếp điểm giảm dần
         dsTongHop.sort((a, b) => {
             if (b.tong_diem !== a.tong_diem) return b.tong_diem - a.tong_diem;
-            return b.so_cau_dung - a.so_cau_dung;
+            return (b.so_cau_dung || 0) - (a.so_cau_dung || 0);
         });
 
-        // 5. Vẽ giao diện Bảng điểm chi tiết
         let htmlRows = '';
         dsTongHop.forEach((kq, index) => {
             const tenHienThi = tuDienHS[kq.uid_hoc_sinh] || kq.ten_hoc_sinh || 'Học sinh ẩn';
 
-            // Badge nhận diện nguồn điểm
+            // 🌟 THUẬT TOÁN BÓC TÁCH "SỐ CÂU ĐÚNG" TỪ JSON NẾU CỘT GỐC BỊ NULL
+            let soCauDungChuan = kq.so_cau_dung;
+            if (soCauDungChuan == null && !kq.is_live_sync) {
+                try {
+                    const chuoiJSON = kq.chi_tiet || kq.chi_tiet_bai_lam || kq.ket_qua_chi_tiet || '{}';
+                    const chiTietObj = typeof chuoiJSON === 'string' ? JSON.parse(chuoiJSON) : chuoiJSON;
+                    soCauDungChuan = chiTietObj.so_cau_dung || chiTietObj.soCauDung || 0;
+                } catch (e) { soCauDungChuan = 0; }
+            }
+
             const badgeNguon = kq.is_live_sync
                 ? `<span style="font-size:10px; background:#ffc107; color:#333; padding:3px 6px; border-radius:12px; margin-left:8px; font-weight:bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">⚡ Chốt từ Live</span>`
                 : `<span style="font-size:10px; background:#28a745; color:white; padding:3px 6px; border-radius:12px; margin-left:8px; font-weight:bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✅ Đã nộp bài</span>`;
 
-            // Nút xem chi tiết (Nếu lấy từ Live thì không có chi tiết ABCD)
-            const nutChiTiet = kq.is_live_sync
-                ? `<span style="font-size: 11px; color: #999; font-style: italic;">Không có lịch sử chọn</span>`
-                : `<button onclick="Swal.fire('Tính năng', 'Xem chi tiết câu trả lời (Đang hoàn thiện)', 'info')" style="padding: 4px 10px; background: #17a2b8; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">👁️ Xem bài</button>`;
+            // 🌟 KÍCH HOẠT HÀM XEM CHI TIẾT 7.17
+            const nutChiTiet = `<button onclick="ham_7_17_xem_chi_tiet_bai_lam('${maNhiemVu}', '${kq.uid_hoc_sinh}', ${kq.is_live_sync ? 'true' : 'false'}, '${tenHienThi.replace(/'/g, "\\'")}')" style="padding: 6px 12px; background: #17a2b8; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#138496'" onmouseout="this.style.background='#17a2b8'">👁️ Xem bài</button>`;
 
             htmlRows += `
                 <tr style="border-bottom: 1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
                     <td style="padding: 15px 12px; text-align: center; font-weight: bold; color: #666;">${index + 1}</td>
                     <td style="padding: 15px 12px; font-weight: bold; color: #1a73e8; font-size: 15px;">${tenHienThi} ${badgeNguon}</td>
-                    <td style="padding: 15px 12px; text-align: center; color: #28a745; font-weight: bold; font-size: 15px;">${kq.so_cau_dung || 0}</td>
+                    <td style="padding: 15px 12px; text-align: center; color: #28a745; font-weight: bold; font-size: 15px;">${soCauDungChuan || 0}</td>
                     <td style="padding: 15px 12px; text-align: center; color: #e74c3c; font-weight: 900; font-size: 20px; font-family: monospace;">${Number(kq.tong_diem).toFixed(2)}</td>
                     <td style="padding: 15px 12px; text-align: center; font-size: 12px; color: #555;">${new Date(kq.thoi_gian_nop).toLocaleString('vi-VN')}</td>
                     <td style="padding: 15px 12px; text-align: center;">${nutChiTiet}</td>
@@ -7047,6 +7169,124 @@ window.ham_7_15_thong_ke_nhiem_vu = async function (maNhiemVu, tenNhiemVu) {
     }
 };
 
+// [Nhãn thời gian: 14:02 - Ngày 28/05/2026] - Hàm 7.17: Xem chi tiết câu trả lời của Học sinh (Đối chiếu Github)
+window.ham_7_17_xem_chi_tiet_bai_lam = async function (maNhiemVu, uidHocSinh, isLiveSync, tenHocSinh) {
+    if (isLiveSync === true) {
+        return Swal.fire({
+            title: 'Chỉ có điểm tổng kết',
+            html: `Học sinh <b>${tenHocSinh}</b> chưa bấm nộp bài chính thức. Điểm số được hệ thống vớt tự động từ Sóng Live nên không có lịch sử chi tiết (ABCD) từng câu!`,
+            icon: 'info'
+        });
+    }
+
+    Swal.fire({ title: '⏳ Đang trích xuất bài làm...', didOpen: () => Swal.showLoading() });
+
+    try {
+        // 1. Lấy dữ liệu bài làm của học sinh
+        const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNhiemVu).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
+        if (!dsKQ || dsKQ.length === 0) throw new Error("Không tìm thấy dữ liệu bài làm chi tiết trong hệ thống.");
+
+        const kq = dsKQ[0];
+        let chiTiet = {};
+        try {
+            const chuoiJSON = kq.chi_tiet || kq.chi_tiet_bai_lam || kq.ket_qua_chi_tiet || '{}';
+            chiTiet = typeof chuoiJSON === 'string' ? JSON.parse(chuoiJSON) : chuoiJSON;
+        } catch (e) { console.warn("Lỗi parse JSON chi tiết bài làm"); }
+
+        let mangDapAnChon = chiTiet.mang_dap_an_chon || chiTiet.dapAnChon || chiTiet.danh_sach_chon || [];
+
+        // 2. Lấy Học liệu gốc (Đề thi) từ Github để đối chiếu
+        let dsCauHoiGoc = [];
+        try {
+            const { data: nv } = await _supabase.from('nhiem_vu').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNhiemVu).single();
+            const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
+
+            let urlGit = hl.url_github;
+            if (urlGit) {
+                if (urlGit.includes('github.com') && urlGit.includes('/blob/')) urlGit = urlGit.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                const res = await fetch(urlGit);
+                if (res.ok) {
+                    const dataHL = await res.json();
+                    dsCauHoiGoc = dataHL.danhSachCauHoi || dataHL.danh_sach_cau_hoi || [];
+                }
+            }
+        } catch (e) { console.warn("Không tải được đề gốc để đối chiếu."); }
+
+        // 3. Vẽ bảng HTML đối chiếu
+        let htmlTable = `
+            <div style="text-align:left; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                <div style="font-size: 18px; font-weight: 900; color: #1a73e8; margin-bottom: 5px;">👤 ${tenHocSinh}</div>
+                <div style="font-size: 14px; color: #666;">
+                    Điểm số đạt được: <b style="color:#e74c3c; font-size:18px;">${Number(kq.tong_diem).toFixed(2)}</b> | 
+                    Đúng: <b style="color:#28a745;">${kq.so_cau_dung || chiTiet.so_cau_dung || '?'} câu</b>
+                </div>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+                <thead style="position: sticky; top: 0; background: white; z-index: 1;">
+                    <tr style="background: #f1f3f4; border-bottom: 2px solid #dee2e6;">
+                        <th style="padding: 10px; border: 1px solid #ccc; text-align: center;">Câu</th>
+                        <th style="padding: 10px; border: 1px solid #ccc; text-align: center;">HS Chọn</th>
+                        <th style="padding: 10px; border: 1px solid #ccc; text-align: center;">Đáp án gốc</th>
+                        <th style="padding: 10px; border: 1px solid #ccc; text-align: center;">Kết quả</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        const soLuongCanVe = Math.max(mangDapAnChon.length || 0, dsCauHoiGoc.length || 0, chiTiet.tong_so_cau || 0);
+
+        if (soLuongCanVe === 0) {
+            htmlTable += `<tr><td colspan="4" style="padding: 30px; text-align:center; color:#666;">Không có dữ liệu lịch sử chọn chi tiết (Có thể học sinh làm bài trên giấy hoặc chỉ gửi điểm tổng).</td></tr>`;
+        } else {
+            for (let i = 0; i < soLuongCanVe; i++) {
+                let hsChon = mangDapAnChon[i] || '-';
+                let dapAnGoc = dsCauHoiGoc[i] ? (dsCauHoiGoc[i].dap_an || dsCauHoiGoc[i].dapAn || '?') : '?';
+
+                // Thuật toán đối chiếu khắt khe
+                let isDung = false;
+                if (hsChon !== '-' && dapAnGoc !== '?') {
+                    if (hsChon === dapAnGoc) isDung = true;
+                }
+
+                // Trường hợp chi tiết lưu kiểu mảng Object nâng cao
+                if (chiTiet.danh_sach_chi_tiet && chiTiet.danh_sach_chi_tiet[i]) {
+                    const ct = chiTiet.danh_sach_chi_tiet[i];
+                    hsChon = ct.chon || ct.hs_chon || hsChon;
+                    dapAnGoc = ct.dap_an || ct.dap_an_goc || dapAnGoc;
+                    isDung = ct.dung_sai === true || ct.is_correct === true || hsChon === dapAnGoc;
+                }
+
+                let bgChon = hsChon === '-' ? '#f8f9fa' : (isDung ? '#d4edda' : '#f8d7da');
+                let textChon = hsChon === '-' ? '<span style="color:#999; font-style:italic;">Bỏ trống</span>' : `<b>${hsChon}</b>`;
+                let iconKetQua = isDung ? '✅' : '❌';
+                if (hsChon === '-') iconKetQua = '➖';
+
+                htmlTable += `
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ccc; text-align: center; font-weight: bold; color: #555;">${i + 1}</td>
+                        <td style="padding: 8px; border: 1px solid #ccc; text-align: center; background: ${bgChon}; font-size: 15px;">${textChon}</td>
+                        <td style="padding: 8px; border: 1px solid #ccc; text-align: center; font-weight: bold; color: #1a73e8; font-size: 15px;">${dapAnGoc}</td>
+                        <td style="padding: 8px; border: 1px solid #ccc; text-align: center;">${iconKetQua}</td>
+                    </tr>
+                `;
+            }
+        }
+
+        htmlTable += `</tbody></table>`;
+
+        Swal.fire({
+            title: '',
+            html: `<div style="max-height: 450px; overflow-y: auto;">${htmlTable}</div>`,
+            width: '600px',
+            showConfirmButton: true,
+            confirmButtonText: 'Đóng lại',
+            confirmButtonColor: '#6c757d'
+        });
+
+    } catch (e) {
+        Swal.fire('Lỗi', e.message, 'error');
+    }
+};
 
 // hàm gv chấm lại cả lớp
 async function ham_gv_cham_lai_ca_lop(maNhiemVu) {
