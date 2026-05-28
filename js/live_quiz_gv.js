@@ -2,9 +2,111 @@
 // KHỐI 9: TỔ CHỨC THI ĐẤU TRỰC TIẾP (LIVE QUIZ)
 // =====================================================================
 
-// =====================================================================
-// Hàm 9.1: Vẽ Tab Quản lý danh sách các phòng Live Quiz
-// =====================================================================
+//// =====================================================================
+//// Hàm 9.1: Vẽ Tab Quản lý danh sách các phòng Live Quiz
+//// =====================================================================
+//window.ham_9_1_tab_live_quiz = async function () {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang tải dữ liệu Đấu trường Live...</h3></div>`;
+
+//    try {
+//        const { data: dsPhong, error } = await _supabase
+//            .from('phong_live_quiz')
+//            .select('*')
+//            .order('ngay_tao', { ascending: false });
+
+//        if (error) throw error;
+
+//        let tuDienNV = {};
+//        const { data: dsNV } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu, ten_nhiem_vu');
+//        if (dsNV) {
+//            dsNV.forEach(nv => tuDienNV[nv.ma_nhiem_vu] = nv.ten_nhiem_vu);
+//        }
+
+//        let htmlRows = '';
+//        if (!dsPhong || dsPhong.length === 0) {
+//            htmlRows = `<tr><td colspan="6" style="text-align:center; padding: 30px; color:#6c757d;">Chưa có phòng thi Live nào được tạo. Hãy bấm "Tạo Phòng Mới" để bắt đầu!</td></tr>`;
+//        } else {
+//            dsPhong.forEach((phong, index) => {
+//                const tenNhiemVu = tuDienNV[phong.ma_nhiem_vu] || 'Nhiệm vụ ẩn/đã xóa';
+//                const thoiGianTao = new Date(phong.ngay_tao).toLocaleString('vi-VN');
+
+//                let badgeTrangThai = '';
+//                let htmlThaoTac = '';
+
+//                if (phong.trang_thai === 0) {
+//                    badgeTrangThai = `<span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #c8e6c9;">ĐANG CHỜ HỌC SINH</span>`;
+//                    htmlThaoTac = `
+//                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">VÀO ĐIỀU KHIỂN</button>
+//                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+//                    `;
+//                } else if (phong.trang_thai === 1) {
+//                    badgeTrangThai = `<span style="background:#ffebee; color:#c62828; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #ffcdd2;">🔥 ĐANG THI ĐẤU</span>`;
+//                    htmlThaoTac = `
+//                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM TRỰC TIẾP</button>
+//                    `;
+//                } else {
+//                    badgeTrangThai = `<span style="background:#f1f3f4; color:#5f6368; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #dadce0;">ĐÃ KẾT THÚC</span>`;
+//                    htmlThaoTac = `
+//                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM LẠI KẾT QUẢ</button>
+//                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+//                    `;
+//                }
+
+//                htmlRows += `
+//                    <tr style="border-bottom: 1px solid #eee; background: #fff;">
+//                        <td style="padding: 12px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+//                        <td style="padding: 12px 10px; text-align: center;">
+//                            <b style="font-size: 20px; color: #e74c3c; font-family: monospace; letter-spacing: 2px;">${phong.ma_phong}</b>
+//                        </td>
+//                        <td style="padding: 12px 10px;">
+//                            <div style="font-weight: bold; color: #1a73e8; font-size: 14px;">${tenNhiemVu}</div>
+//                            <div style="font-size: 11px; color: #888;">Mã NV: ${phong.ma_nhiem_vu}</div>
+//                        </td>
+//                        <td style="padding: 12px 10px; font-size: 12px; color: #555;">${thoiGianTao}</td>
+//                        <td style="padding: 12px 10px; text-align: center;">${badgeTrangThai}</td>
+//                        <td style="padding: 12px 10px; text-align: center;">${htmlThaoTac}</td>
+//                    </tr>
+//                `;
+//            });
+//        }
+
+//        vungLamViec.innerHTML = `
+//            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+//                <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center;">
+//                    <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">🔴 TRUNG TÂM ĐIỀU KHIỂN LIVE QUIZ</h3>
+//                    <button onclick="ham_9_2_tao_phong_live()" style="background: white; color: #c0392b; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">
+//                        🚀 TẠO PHÒNG MỚI
+//                    </button>
+//                </div>
+
+//                <div style="overflow-x: auto; padding: 10px;">
+//                    <table style="width: 100%; border-collapse: collapse; min-width: 800px; text-align: left;">
+//                        <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+//                            <tr>
+//                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 50px;">STT</th>
+//                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 120px;">Mã PIN</th>
+//                                <th style="padding: 12px 10px; color: #495057;">Sử dụng Đề thi / Nhiệm vụ</th>
+//                                <th style="padding: 12px 10px; color: #495057; width: 150px;">Thời gian tạo</th>
+//                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 160px;">Trạng Thái</th>
+//                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 150px;">Thao Tác</th>
+//                            </tr>
+//                        </thead>
+//                        <tbody>
+//                            ${htmlRows}
+//                        </tbody>
+//                    </table>
+//                </div>
+//            </div>
+//        `;
+
+//    } catch (error) {
+//        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất danh sách phòng: ${error.message}</div>`;
+//    }
+//}
+
+
+// [Nhãn thời gian: 13:04 - Ngày 28/05/2026] - Cập nhật giao diện: Gắn nút Thống kê chi tiết bài làm cho Đấu trường
 window.ham_9_1_tab_live_quiz = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang tải dữ liệu Đấu trường Live...</h3></div>`;
@@ -28,28 +130,34 @@ window.ham_9_1_tab_live_quiz = async function () {
             htmlRows = `<tr><td colspan="6" style="text-align:center; padding: 30px; color:#6c757d;">Chưa có phòng thi Live nào được tạo. Hãy bấm "Tạo Phòng Mới" để bắt đầu!</td></tr>`;
         } else {
             dsPhong.forEach((phong, index) => {
-                const tenNhiemVu = tuDienNV[phong.ma_nhiem_vu] || 'Nhiệm vụ ẩn/đã xóa';
+                const tenNhiemVu = tuDienNV[phong.ma_nhiem_vu] || 'Nhiệm vụ ảo đã bị xóa';
                 const thoiGianTao = new Date(phong.ngay_tao).toLocaleString('vi-VN');
 
                 let badgeTrangThai = '';
                 let htmlThaoTac = '';
 
+                // Bổ sung Nút Thống Kê Điểm Số Chi Tiết (Sử dụng chéo hàm của hệ thống Nhiệm vụ)
+                const btnThongKe = `<button onclick="ham_7_15_thong_ke_nhiem_vu('${phong.ma_nhiem_vu}', '${tenNhiemVu.replace(/'/g, "\\'")}')" style="padding: 6px 12px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-right: 5px;" title="Xem chi tiết bài làm từng học sinh">📊 KẾT QUẢ BÀI LÀM</button>`;
+
                 if (phong.trang_thai === 0) {
                     badgeTrangThai = `<span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #c8e6c9;">ĐANG CHỜ HỌC SINH</span>`;
                     htmlThaoTac = `
+                        ${btnThongKe}
                         <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">VÀO ĐIỀU KHIỂN</button>
-                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}', '${phong.ma_nhiem_vu}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
                     `;
                 } else if (phong.trang_thai === 1) {
                     badgeTrangThai = `<span style="background:#ffebee; color:#c62828; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #ffcdd2;">🔥 ĐANG THI ĐẤU</span>`;
                     htmlThaoTac = `
+                        ${btnThongKe}
                         <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM TRỰC TIẾP</button>
                     `;
                 } else {
                     badgeTrangThai = `<span style="background:#f1f3f4; color:#5f6368; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #dadce0;">ĐÃ KẾT THÚC</span>`;
                     htmlThaoTac = `
-                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">XEM LẠI KẾT QUẢ</button>
-                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
+                        ${btnThongKe}
+                        <button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px;">BẢNG XẾP HẠNG</button>
+                        <button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}', '${phong.ma_nhiem_vu}')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; margin-left: 5px;">XÓA PHÒNG</button>
                     `;
                 }
 
@@ -61,11 +169,11 @@ window.ham_9_1_tab_live_quiz = async function () {
                         </td>
                         <td style="padding: 12px 10px;">
                             <div style="font-weight: bold; color: #1a73e8; font-size: 14px;">${tenNhiemVu}</div>
-                            <div style="font-size: 11px; color: #888;">Mã NV: ${phong.ma_nhiem_vu}</div>
+                            <div style="font-size: 11px; color: #888;">Mã NV Ảo: ${phong.ma_nhiem_vu}</div>
                         </td>
                         <td style="padding: 12px 10px; font-size: 12px; color: #555;">${thoiGianTao}</td>
                         <td style="padding: 12px 10px; text-align: center;">${badgeTrangThai}</td>
-                        <td style="padding: 12px 10px; text-align: center;">${htmlThaoTac}</td>
+                        <td style="padding: 12px 10px; text-align: center; white-space: nowrap;">${htmlThaoTac}</td>
                     </tr>
                 `;
             });
@@ -81,15 +189,15 @@ window.ham_9_1_tab_live_quiz = async function () {
                 </div>
                 
                 <div style="overflow-x: auto; padding: 10px;">
-                    <table style="width: 100%; border-collapse: collapse; min-width: 800px; text-align: left;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 900px; text-align: left;">
                         <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                             <tr>
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 50px;">STT</th>
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 120px;">Mã PIN</th>
-                                <th style="padding: 12px 10px; color: #495057;">Sử dụng Đề thi / Nhiệm vụ</th>
+                                <th style="padding: 12px 10px; color: #495057;">Sử dụng Đề thi / Học liệu</th>
                                 <th style="padding: 12px 10px; color: #495057; width: 150px;">Thời gian tạo</th>
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 160px;">Trạng Thái</th>
-                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 150px;">Thao Tác</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057;">Thao Tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,54 +213,143 @@ window.ham_9_1_tab_live_quiz = async function () {
     }
 }
 
-// =====================================================================
-// Hàm 9.2: Xử lý Tạo phòng thi Live (Chọn đề & Sinh mã PIN)
-// =====================================================================
+//// =====================================================================
+//// Hàm 9.2: Xử lý Tạo phòng thi Live (Chọn đề & Sinh mã PIN)
+//// =====================================================================
+//window.ham_9_2_tao_phong_live = async function () {
+//    window.Swal.fire({ title: '⏳ Đang tải dữ liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
+
+//    try {
+//        const { data: dsNV, error } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu, ten_nhiem_vu').order('ngay_tao', { ascending: false });
+
+//        if (error) throw error;
+//        if (!dsNV || dsNV.length === 0) return Swal.fire('Thông báo', 'Thầy chưa có Nhiệm vụ (Đề thi) nào. Hãy tạo nhiệm vụ trước nhé!', 'warning');
+
+//        let optionsHtml = '<option value="">-- Chọn đề thi / Nhiệm vụ --</option>';
+//        dsNV.forEach(nv => { optionsHtml += `<option value="${nv.ma_nhiem_vu}">[${nv.ma_nhiem_vu}] - ${nv.ten_nhiem_vu}</option>`; });
+
+//        Swal.fire({
+//            title: '🚀 KHỞI TẠO PHÒNG LIVE',
+//            html: `
+//                <div style="text-align: left; margin-top: 10px;">
+//                    <label style="font-weight: bold; font-size: 14px; color: #333;">Chọn đề thi sử dụng cho trận đấu này:</label>
+//                    <select id="swal-select-nhiem-vu" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+//                        ${optionsHtml}
+//                    </select>
+//                </div>
+//            `,
+//            showCancelButton: true, confirmButtonText: 'Tạo Mã PIN Phòng', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
+//            preConfirm: () => {
+//                const maNV = document.getElementById('swal-select-nhiem-vu').value;
+//                if (!maNV) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
+//                return maNV;
+//            }
+//        }).then(async (result) => {
+//            if (result.isConfirmed) {
+//                const maNhiemVuChon = result.value;
+//                const maPinLive = Math.floor(100000 + Math.random() * 900000).toString();
+
+//                Swal.fire({ title: 'Đang khởi tạo phòng...', didOpen: () => { Swal.showLoading(); } });
+
+//                const { error: errInsert } = await _supabase.from('phong_live_quiz').insert([{ ma_phong: maPinLive, ma_nhiem_vu: maNhiemVuChon, uid_gv_tao: AppState.user?.uid || '', trang_thai: 0 }]);
+
+//                if (errInsert) { Swal.fire('Lỗi tạo phòng', errInsert.message, 'error'); }
+//                else {
+//                    Swal.fire({
+//                        icon: 'success', title: 'Tạo phòng thành công!',
+//                        html: `Mã PIN của phòng là: <b style="font-size: 24px; color: #e74c3c; letter-spacing: 2px;">${maPinLive}</b>`,
+//                        confirmButtonText: 'Vào Phòng Điều Khiển', confirmButtonColor: '#28a745'
+//                    }).then(() => { ham_9_1_tab_live_quiz(); });
+//                }
+//            }
+//        });
+
+//    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
+//}
+
+
+
+// [Nhãn thời gian: 13:04 - Ngày 28/05/2026] - Khởi tạo Phòng Live trực tiếp từ Học Liệu, tự động sinh Nhiệm vụ ngầm
 window.ham_9_2_tao_phong_live = async function () {
-    window.Swal.fire({ title: '⏳ Đang tải dữ liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
+    window.Swal.fire({ title: '⏳ Đang tải kho học liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
 
     try {
-        const { data: dsNV, error } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu, ten_nhiem_vu').order('ngay_tao', { ascending: false });
+        // Tải danh sách Học Liệu (Đề thi Gốc)
+        const { data: dsHL, error } = await _supabase.from('hoc_lieu').select('ma_hoc_lieu, ten_hoc_lieu').order('ngay_tao', { ascending: false });
 
         if (error) throw error;
-        if (!dsNV || dsNV.length === 0) return Swal.fire('Thông báo', 'Thầy chưa có Nhiệm vụ (Đề thi) nào. Hãy tạo nhiệm vụ trước nhé!', 'warning');
+        if (!dsHL || dsHL.length === 0) return Swal.fire('Thông báo', 'Kho học liệu trống. Thầy hãy tải lên File JSON đề thi trước nhé!', 'warning');
 
-        let optionsHtml = '<option value="">-- Chọn đề thi / Nhiệm vụ --</option>';
-        dsNV.forEach(nv => { optionsHtml += `<option value="${nv.ma_nhiem_vu}">[${nv.ma_nhiem_vu}] - ${nv.ten_nhiem_vu}</option>`; });
+        let optionsHtml = '<option value="">-- Chọn File Đề thi (Học liệu) --</option>';
+        dsHL.forEach(hl => { optionsHtml += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`; });
 
         Swal.fire({
-            title: '🚀 KHỞI TẠO PHÒNG LIVE',
+            title: '🚀 KHỞI TẠO PHÒNG LIVE TỪ HỌC LIỆU',
             html: `
                 <div style="text-align: left; margin-top: 10px;">
-                    <label style="font-weight: bold; font-size: 14px; color: #333;">Chọn đề thi sử dụng cho trận đấu này:</label>
-                    <select id="swal-select-nhiem-vu" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                    <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">1. Chọn Đề thi sử dụng cho trận đấu:</label>
+                    <select id="swal-select-hoc-lieu" style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #1a73e8; border-radius: 6px; font-size: 14px; font-weight: bold;">
                         ${optionsHtml}
                     </select>
+
+                    <label style="font-weight: bold; font-size: 13px; color: #d35400;">2. Cài đặt thời gian làm bài (Phút):</label>
+                    <input type="number" id="swal-input-thoi-gian" value="45" min="1" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #d35400; border-radius: 6px; font-size: 14px; font-weight: bold;">
                 </div>
             `,
-            showCancelButton: true, confirmButtonText: 'Tạo Mã PIN Phòng', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
+            showCancelButton: true, confirmButtonText: 'Tạo Phòng Đấu Cấp Tốc', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
             preConfirm: () => {
-                const maNV = document.getElementById('swal-select-nhiem-vu').value;
-                if (!maNV) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
-                return maNV;
+                const maHL = document.getElementById('swal-select-hoc-lieu').value;
+                const thoiGian = document.getElementById('swal-input-thoi-gian').value;
+                if (!maHL) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
+                if (!thoiGian || thoiGian <= 0) { Swal.showValidationMessage('Thời gian phải lớn hơn 0!'); return false; }
+
+                const tenHL = document.getElementById('swal-select-hoc-lieu').options[document.getElementById('swal-select-hoc-lieu').selectedIndex].text;
+                return { maHL, thoiGian, tenHL };
             }
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const maNhiemVuChon = result.value;
+                const { maHL, thoiGian, tenHL } = result.value;
+
+                // Sinh Mã PIN và Mã Nhiệm Vụ Ảo
                 const maPinLive = Math.floor(100000 + Math.random() * 900000).toString();
+                const maNhiemVuAo = "LIVE_" + maPinLive;
+                const tenNhiemVuAo = "🔥 Đấu trường PIN: " + maPinLive; // Sẽ hiện trên Thống kê điểm
 
-                Swal.fire({ title: 'Đang khởi tạo phòng...', didOpen: () => { Swal.showLoading(); } });
+                Swal.fire({ title: 'Đang thiết lập Đấu trường và Nhiệm vụ...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
 
-                const { error: errInsert } = await _supabase.from('phong_live_quiz').insert([{ ma_phong: maPinLive, ma_nhiem_vu: maNhiemVuChon, uid_gv_tao: AppState.user?.uid || '', trang_thai: 0 }]);
+                // BƯỚC 1: TẠO NHIỆM VỤ ẢO NGẦM (Để hệ thống nhận diện điểm và xem lại bài)
+                const { error: errNV } = await _supabase.from('nhiem_vu').insert([{
+                    ma_nhiem_vu: maNhiemVuAo,
+                    ten_nhiem_vu: tenNhiemVuAo,
+                    loai_nhiem_vu: "Làm đề (Online)", // Trỏ về lõi chấm điểm trắc nghiệm tiêu chuẩn
+                    ma_hoc_lieu: maHL,
+                    uid_gv_tao: AppState.user?.uid || '',
+                    trang_thai: 1, // Mở
+                    tinh_chat_bai_tap: "TU_DO", // Tính chất luyện tập
+                    danh_sach_lop: JSON.stringify(["#LUYEN_TAP_TU_DO#"]), // Không giới hạn lớp
+                    so_luot_lam_bai: 1, // Thi đấu chỉ cho 1 lượt
+                    thoi_gian_lam_bai: parseInt(thoiGian),
+                    dao_cau_hoi: JSON.stringify({ cau: true, abcd: true, ds: false }), // Mặc định đảo đề cơ bản
+                    cau_truc_de: tenHL.substring(0, 50) // Ghi chú tên gốc của học liệu
+                }]);
 
-                if (errInsert) { Swal.fire('Lỗi tạo phòng', errInsert.message, 'error'); }
-                else {
-                    Swal.fire({
-                        icon: 'success', title: 'Tạo phòng thành công!',
-                        html: `Mã PIN của phòng là: <b style="font-size: 24px; color: #e74c3c; letter-spacing: 2px;">${maPinLive}</b>`,
-                        confirmButtonText: 'Vào Phòng Điều Khiển', confirmButtonColor: '#28a745'
-                    }).then(() => { ham_9_1_tab_live_quiz(); });
-                }
+                if (errNV) return Swal.fire('Lỗi tạo nhiệm vụ ngầm', errNV.message, 'error');
+
+                // BƯỚC 2: TẠO PHÒNG LIVE
+                const { error: errPhong } = await _supabase.from('phong_live_quiz').insert([{
+                    ma_phong: maPinLive,
+                    ma_nhiem_vu: maNhiemVuAo, // Nối khóa ngoại sang nhiệm vụ ảo vừa tạo
+                    uid_gv_tao: AppState.user?.uid || '',
+                    trang_thai: 0
+                }]);
+
+                if (errPhong) return Swal.fire('Lỗi tạo phòng', errPhong.message, 'error');
+
+                Swal.fire({
+                    icon: 'success', title: 'Tạo phòng thành công!',
+                    html: `Hệ thống đã đúc Đề thi thành Nhiệm Vụ Ảo.<br><br>Mã PIN của phòng là: <b style="font-size: 32px; color: #e74c3c; letter-spacing: 2px;">${maPinLive}</b>`,
+                    confirmButtonText: 'Vào Điều Khiển', confirmButtonColor: '#28a745'
+                }).then(() => { ham_9_1_tab_live_quiz(); });
             }
         });
 
@@ -548,46 +745,89 @@ window.ham_9_3_3_thoat_phong = function () {
     window.ham_9_1_tab_live_quiz();
 };
 
-// =====================================================================
-// Hàm 9.4: Xóa phòng Live Quiz và dọn dẹp dữ liệu liên quan
-// =====================================================================
-window.ham_9_4_xoa_phong_live = async function (maPhong) {
+//// =====================================================================
+//// Hàm 9.4: Xóa phòng Live Quiz và dọn dẹp dữ liệu liên quan
+//// =====================================================================
+//window.ham_9_4_xoa_phong_live = async function (maPhong) {
+//    Swal.fire({
+//        title: 'CẢNH BÁO!',
+//        html: `Thầy có chắc chắn muốn xóa phòng thi đấu <b>${maPhong}</b> không?<br><br><i>Lưu ý: Hành động này sẽ xóa toàn bộ lịch sử điểm số của học sinh trong phòng này và không thể khôi phục!</i>`,
+//        icon: 'warning',
+//        showCancelButton: true,
+//        confirmButtonColor: '#d33',
+//        cancelButtonColor: '#3085d6',
+//        confirmButtonText: 'Đồng ý, Xóa ngay!',
+//        cancelButtonText: 'Hủy'
+//    }).then(async (result) => {
+//        if (result.isConfirmed) {
+//            try {
+//                Swal.fire({ title: '⏳ Đang xóa dữ liệu phòng...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+
+//                // Bước 1: Xóa lịch sử làm bài của học sinh (tiến độ)
+//                const { error: errTienDo } = await _supabase
+//                    .from('tien_do_live_quiz')
+//                    .delete()
+//                    .eq('ma_phong', maPhong);
+//                if (errTienDo) throw errTienDo;
+
+//                // Bước 2: Xóa thông tin phòng
+//                const { error: errPhong } = await _supabase
+//                    .from('phong_live_quiz')
+//                    .delete()
+//                    .eq('ma_phong', maPhong);
+//                if (errPhong) throw errPhong;
+
+//                Swal.fire('Thành công!', 'Đã xóa phòng thi đấu thành công.', 'success');
+
+//                // Tải lại bảng danh sách
+//                ham_9_1_tab_live_quiz();
+
+//            } catch (error) {
+//                console.error("Lỗi xóa phòng:", error);
+//                Swal.fire('Lỗi', 'Không thể xóa phòng: ' + error.message, 'error');
+//            }
+//        }
+//    });
+//};
+
+
+
+// [Nhãn thời gian: 13:04 - Ngày 28/05/2026] - Xóa phòng Live Quiz và dọn dẹp Nhiệm vụ ảo, Kết quả thi liên đới
+window.ham_9_4_xoa_phong_live = async function (maPhong, maNhiemVuAo) {
     Swal.fire({
-        title: 'CẢNH BÁO!',
-        html: `Thầy có chắc chắn muốn xóa phòng thi đấu <b>${maPhong}</b> không?<br><br><i>Lưu ý: Hành động này sẽ xóa toàn bộ lịch sử điểm số của học sinh trong phòng này và không thể khôi phục!</i>`,
+        title: 'CẢNH BÁO XÓA PHÒNG!',
+        html: `Thầy có chắc chắn muốn xóa phòng thi đấu <b>${maPhong}</b> không?<br><br><i>Hành động này sẽ xóa toàn bộ tiến độ, <b>kết quả bài làm</b> và <b>Nhiệm vụ ảo</b> của phòng này. Không thể khôi phục!</i>`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Đồng ý, Xóa ngay!',
+        confirmButtonText: 'Đồng ý, Xóa sạch!',
         cancelButtonText: 'Hủy'
     }).then(async (result) => {
         if (result.isConfirmed) {
             try {
-                Swal.fire({ title: '⏳ Đang xóa dữ liệu phòng...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+                Swal.fire({ title: '⏳ Đang xóa dữ liệu phòng và nhiệm vụ...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
 
-                // Bước 1: Xóa lịch sử làm bài của học sinh (tiến độ)
-                const { error: errTienDo } = await _supabase
-                    .from('tien_do_live_quiz')
-                    .delete()
-                    .eq('ma_phong', maPhong);
-                if (errTienDo) throw errTienDo;
+                // 1. Xóa tiến độ Sóng Live
+                await _supabase.from('tien_do_live_quiz').delete().eq('ma_phong', maPhong);
 
-                // Bước 2: Xóa thông tin phòng
-                const { error: errPhong } = await _supabase
-                    .from('phong_live_quiz')
-                    .delete()
-                    .eq('ma_phong', maPhong);
-                if (errPhong) throw errPhong;
+                // 2. Xóa bảng xếp hạng / Cấu hình phòng Live
+                await _supabase.from('phong_live_quiz').delete().eq('ma_phong', maPhong);
 
-                Swal.fire('Thành công!', 'Đã xóa phòng thi đấu thành công.', 'success');
+                if (maNhiemVuAo) {
+                    // 3. Xóa Dữ liệu bài làm (Chi tiết và điểm) trong bảng Hệ thống gốc
+                    await _supabase.from('ket_qua_thi').delete().eq('ma_nhiem_vu', maNhiemVuAo);
 
-                // Tải lại bảng danh sách
+                    // 4. Tiêu hủy Nhiệm vụ Ảo
+                    await _supabase.from('nhiem_vu').delete().eq('ma_nhiem_vu', maNhiemVuAo);
+                }
+
+                Swal.fire('Thành công!', 'Đã dọn dẹp sạch sẽ Phòng Đấu Trường và mọi kết quả liên quan.', 'success');
                 ham_9_1_tab_live_quiz();
 
             } catch (error) {
                 console.error("Lỗi xóa phòng:", error);
-                Swal.fire('Lỗi', 'Không thể xóa phòng: ' + error.message, 'error');
+                Swal.fire('Lỗi', 'Không thể xóa hoàn toàn: ' + error.message, 'error');
             }
         }
     });
