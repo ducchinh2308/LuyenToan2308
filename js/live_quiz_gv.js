@@ -1113,8 +1113,8 @@ window.ham_9_3_1_ve_leaderboard = function () {
                     </div>
 
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="font-size: 10px; color: #9b59b6; width: 45px; font-weight: 900; letter-spacing: 1px;">TIẾN ĐỘ</div>
-                        <div style="flex: 1; background: #1e1e2f; height: 6px; border-radius: 3px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);">
+                        <div style="font-size: 10px; color: #9b59b6; width: 45px; font-weight: 900; letter-spacing: 1px;">T.ĐỘ</div>
+                        <div style="flex: 1; background: #1e1e2f; height: 3px; border-radius: 3px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);">
                             <div style="width: ${phanTramTienDo}%; height: 100%; background: ${mauThanhTienDo}; border-radius: 3px; transition: width 0.4s ease-out;"></div>
                         </div>
                     </div>
