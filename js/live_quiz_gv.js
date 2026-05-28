@@ -1269,3 +1269,339 @@ window.ham_9_4_xoa_phong_live = async function (maPhong, maNhiemVuAo) {
         }
     });
 };
+
+
+// =====================================================================
+// KHỐI 9.5: HỆ THỐNG THỐNG KÊ VÀ SOI BÀI CHUYÊN BIỆT CHO LIVE QUIZ
+// =====================================================================
+
+window.ham_9_5_thong_ke_live_quiz = async function (maPhong, maNhiemVuAo, tenNhiemVu) {
+    Swal.fire({
+        title: '📊 Đang tổng hợp dữ liệu Đấu trường...',
+        text: 'Hệ thống đang đồng bộ kết quả chính thức và tín hiệu Live...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    try {
+        // 1. Kéo danh sách học sinh để lấy Tên và SĐT
+        const { data: dataHS } = await _supabase.from('hoc_sinh').select('uid, ten, sdt');
+        const tuDienHS = {};
+        if (dataHS) {
+            dataHS.forEach(hs => tuDienHS[hs.uid] = hs);
+        }
+
+        // 2. Kéo dữ liệu nộp bài chính thức
+        const { data: dsKQ, error: errKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNhiemVuAo).order('thoi_gian_nop', { ascending: false });
+        if (errKQ) throw errKQ;
+
+        let tuDienKQCuoi = {};
+        if (dsKQ) {
+            dsKQ.forEach(kq => { if (!tuDienKQCuoi[kq.uid_hoc_sinh]) tuDienKQCuoi[kq.uid_hoc_sinh] = kq; });
+        }
+
+        // 3. Kéo dữ liệu Sóng Live để vớt những em chưa kịp nộp
+        const { data: dsLive } = await _supabase.from('tien_do_live_quiz').select('*').eq('ma_phong', maPhong);
+        if (dsLive) {
+            dsLive.forEach(liveItem => {
+                if (!tuDienKQCuoi[liveItem.uid_hoc_sinh]) {
+                    tuDienKQCuoi[liveItem.uid_hoc_sinh] = {
+                        id: 'LIVE_AUTO',
+                        uid_hoc_sinh: liveItem.uid_hoc_sinh,
+                        tong_diem: liveItem.diem_so || 0,
+                        thoi_gian_nop: liveItem.thoi_gian_cap_nhat || new Date().toISOString(),
+                        chi_tiet_lam_bai: [], // Không có chi tiết nếu chỉ vớt từ Live
+                        so_cau_dung: liveItem.so_cau_dung || 0,
+                        is_live_sync: true
+                    };
+                }
+            });
+        }
+
+        // 4. Tổng hợp mảng hiển thị
+        let mangDaThamGia = [];
+        let tongDiemPhong = 0;
+
+        Object.values(tuDienKQCuoi).forEach(kq => {
+            const hsInfor = tuDienHS[kq.uid_hoc_sinh] || { ten: kq.ten_hoc_sinh || 'Học sinh ẩn', sdt: 'N/A' };
+
+            // Xử lý móc số câu đúng an toàn
+            let soCauDungChuan = kq.so_cau_dung;
+            if (soCauDungChuan == null && !kq.is_live_sync) {
+                try {
+                    const chuoiJSON = kq.chi_tiet || kq.chi_tiet_lam_bai || '{}';
+                    const chiTietObj = typeof chuoiJSON === 'string' ? JSON.parse(chuoiJSON) : chuoiJSON;
+                    soCauDungChuan = chiTietObj.so_cau_dung || chiTietObj.soCauDung || 0;
+                } catch (e) { soCauDungChuan = 0; }
+            }
+
+            mangDaThamGia.push({
+                idKQ: kq.id,
+                uid: kq.uid_hoc_sinh,
+                ten: hsInfor.ten,
+                sdt: hsInfor.sdt,
+                diem: kq.tong_diem,
+                ngayNop: kq.thoi_gian_nop,
+                chiTietCau: kq.chi_tiet_lam_bai || kq.chi_tiet, // Tương thích cả 2 chuẩn lưu trữ
+                soCauDung: soCauDungChuan || 0,
+                is_live_sync: kq.is_live_sync || false
+            });
+            tongDiemPhong += Number(kq.tong_diem) || 0;
+        });
+
+        const tongSoThamGia = mangDaThamGia.length;
+        const diemTrungBinh = tongSoThamGia > 0 ? (tongDiemPhong / tongSoThamGia).toFixed(2) : "0.00";
+
+        // Lưu vào RAM chuyên biệt của Live
+        window.DataThongKeLiveHienTai = { mangDaThamGia, maNhiemVuAo, maPhong, tenNhiemVu };
+
+        // 5. Hiển thị Popup Layer 1
+        Swal.fire({
+            title: `🏆 TỔNG KẾT ĐẤU TRƯỜNG`,
+            html: `
+                <div style="text-align: left; background: #fff; border-radius: 8px; font-size: 14px; color: #2c3e50; line-height: 1.6;">
+                    <div style="text-align:center; font-weight:bold; color:#e74c3c; font-size: 18px; margin-bottom: 15px;">PIN: ${maPhong}</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                        <div style="background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #ffc107; text-align: center;">
+                            <span style="font-size: 11px; color: #856404; font-weight: bold; text-transform: uppercase;">Số lượng tham chiến</span>
+                            <div style="font-size: 24px; font-weight: 900; color: #d39e00;">${tongSoThamGia} <span style="font-size: 12px; font-weight: normal;">em</span></div>
+                        </div>
+                        <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; border-left: 4px solid #43a047; text-align: center;">
+                            <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Điểm trung bình</span>
+                            <div style="font-size: 24px; font-weight: 900; color: #2e7d32;">${diemTrungBinh} <span style="font-size: 12px; font-weight: normal;">đ</span></div>
+                        </div>
+                    </div>
+                    <button onclick="ham_9_5_sub_danh_sach_tham_gia()" style="width: 100%; padding: 14px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(231,76,60,0.3); transition: 0.2s;" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+                        <span>🔥 BẢNG XẾP HẠNG CHI TIẾT</span>
+                        <b style="background: rgba(255,255,255,0.3); padding: 2px 10px; border-radius: 12px;">Mở xem</b>
+                    </button>
+                </div>
+            `,
+            showConfirmButton: true, confirmButtonText: 'Đóng lại', confirmButtonColor: '#6c757d', width: '400px'
+        });
+
+    } catch (err) {
+        Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
+    }
+};
+
+// Layer 2: Bảng Xếp Hạng Đấu Trường Live
+window.ham_9_5_sub_danh_sach_tham_gia = function (loaiSort = null) {
+    const { mangDaThamGia } = window.DataThongKeLiveHienTai;
+    const opts = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+    if (!window.DataThongKeLiveHienTai.sortState) window.DataThongKeLiveHienTai.sortState = { cot: 'diem', tangDan: false, tuKhoa: '' };
+    if (loaiSort) {
+        if (window.DataThongKeLiveHienTai.sortState.cot === loaiSort) window.DataThongKeLiveHienTai.sortState.tangDan = !window.DataThongKeLiveHienTai.sortState.tangDan;
+        else { window.DataThongKeLiveHienTai.sortState.cot = loaiSort; window.DataThongKeLiveHienTai.sortState.tangDan = (loaiSort === 'ten') ? true : false; }
+    }
+    const sortState = window.DataThongKeLiveHienTai.sortState;
+
+    let mangHienThi = [...mangDaThamGia];
+    mangHienThi.sort((a, b) => {
+        if (sortState.cot === 'ten') {
+            const tenA = (a.ten || "").trim().split(" ").pop();
+            const tenB = (b.ten || "").trim().split(" ").pop();
+            return sortState.tangDan ? tenA.localeCompare(tenB, 'vi') : tenB.localeCompare(tenA, 'vi');
+        } else if (sortState.cot === 'diem') {
+            const diemA = parseFloat(a.diem) || 0;
+            const diemB = parseFloat(b.diem) || 0;
+            if (diemA === diemB) return (b.soCauDung || 0) - (a.soCauDung || 0);
+            return sortState.tangDan ? (diemA - diemB) : (diemB - diemA);
+        }
+        return 0;
+    });
+
+    const iconTen = sortState.cot === 'ten' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
+    const iconDiem = sortState.cot === 'diem' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
+
+    let htmlBaoCaoTable = '';
+    if (mangHienThi.length === 0) {
+        htmlBaoCaoTable = `<tr><td colspan="5" style="text-align:center; color:#999; padding: 20px;">Đấu trường chưa ghi nhận kết quả nào.</td></tr>`;
+    } else {
+        mangHienThi.forEach((hs, index) => {
+            const gioNop = hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN', opts) : 'N/A';
+            const indexGoc = mangDaThamGia.indexOf(hs);
+            const hienThiDong = (hs.ten || "").toLowerCase().includes((sortState.tuKhoa || "").toLowerCase()) ? "" : "display: none;";
+
+            const nutSoiBai = hs.is_live_sync
+                ? `<span style="font-size:10px; color:#d35400; font-weight:bold; background:#fff3cd; padding:4px 6px; border-radius:4px;">Chốt tự động</span>`
+                : `<button onclick="ham_9_5_sub_soi_bai_lam(${indexGoc})" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; transition: 0.2s;">👁️ SOI BÀI</button>`;
+
+            htmlBaoCaoTable += `
+                <tr class="dong-hoc-sinh-live" data-ten="${(hs.ten || "").toLowerCase()}" style="border-bottom: 1px solid #e2e8f0; transition: background 0.2s; ${hienThiDong}" onmouseover="this.style.background='#fdf2f2'" onmouseout="this.style.background='transparent'">
+                    <td style="padding: 10px 6px; text-align: center; font-weight: 900; color: #c0392b;">${index + 1}</td>
+                    <td style="padding: 10px 6px; text-align: left;">
+                        <b style="color:#2c3e50; font-size:14px;">${hs.ten}</b>
+                        <div style="font-size:11px; color:#7f8c8d; margin-top:2px;">Nộp: ${gioNop}</div>
+                    </td>
+                    <td style="padding: 10px 6px; text-align: center; color: #27ae60; font-weight: bold;">${hs.soCauDung}</td>
+                    <td style="padding: 10px 6px; text-align: center; font-size: 16px; font-weight: 900; color: #e74c3c;">${Number(hs.diem).toFixed(2)}</td>
+                    <td style="padding: 10px 6px; text-align: center;">${nutSoiBai}</td>
+                </tr>
+            `;
+        });
+    }
+
+    Swal.fire({
+        title: `🔥 BẢNG XẾP HẠNG ĐẤU TRƯỜNG`,
+        html: `
+            <div style="padding: 10px; background: #fdf2f2; border-bottom: 1px solid #f5b7b1; border-radius: 6px 6px 0 0;">
+                <input type="text" id="input-tim-kiem-live" placeholder="🔍 Tìm kiếm đấu thủ..." 
+                       value="${sortState.tuKhoa}" oninput="ham_9_5_sub_tim_kiem_live(this.value)"
+                       style="width: 100%; padding: 10px 15px; border: 1px solid #f1948a; border-radius: 6px; font-size: 14px; outline: none;">
+            </div>
+            <div style="height: 350px; overflow-y: auto; background: white; text-align: left;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                    <thead style="background: #fadbd8; position: sticky; top: 0; border-bottom: 2px solid #e74c3c; z-index: 2;">
+                        <tr>
+                            <th style="padding: 10px 6px; text-align: center; color: #922b21; width: 35px;">TOP</th>
+                            <th onclick="ham_9_5_sub_danh_sach_tham_gia('ten')" style="padding: 10px 6px; color: #922b21; text-align: left; cursor: pointer; user-select: none;">Đấu thủ ${iconTen}</th>
+                            <th style="padding: 10px 6px; text-align: center; color: #922b21; width: 60px;">Đúng</th>
+                            <th onclick="ham_9_5_sub_danh_sach_tham_gia('diem')" style="padding: 10px 6px; text-align: center; color: #922b21; width: 90px; cursor: pointer; user-select: none;">Điểm ${iconDiem}</th>
+                            <th style="padding: 10px 6px; text-align: center; color: #922b21; width: 80px;">Bài làm</th>
+                        </tr>
+                    </thead>
+                    <tbody>${htmlBaoCaoTable}</tbody>
+                </table>
+            </div>
+        `,
+        showCancelButton: true, confirmButtonText: '⬅️ Quay lại', cancelButtonText: 'Đóng hẳn', confirmButtonColor: '#e74c3c', cancelButtonColor: '#7f8c8d', width: '550px',
+        didOpen: () => {
+            if (sortState.tuKhoa) { const inp = document.getElementById('input-tim-kiem-live'); inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length); }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) ham_9_5_thong_ke_live_quiz(window.DataThongKeLiveHienTai.maPhong, window.DataThongKeLiveHienTai.maNhiemVuAo, window.DataThongKeLiveHienTai.tenNhiemVu);
+    });
+};
+
+window.ham_9_5_sub_tim_kiem_live = function (tuKhoa) {
+    window.DataThongKeLiveHienTai.sortState.tuKhoa = tuKhoa;
+    const keyLower = tuKhoa.toLowerCase();
+    document.querySelectorAll('.dong-hoc-sinh-live').forEach(dong => {
+        dong.style.display = dong.getAttribute('data-ten').includes(keyLower) ? '' : 'none';
+    });
+};
+
+// Layer 3: Ma trận soi bài Live Quiz
+window.ham_9_5_sub_soi_bai_lam = function (indexHocSinh) {
+    const { mangDaThamGia } = window.DataThongKeLiveHienTai;
+    const hs = mangDaThamGia[indexHocSinh];
+
+    let mangCauTraLoi = [];
+    try { mangCauTraLoi = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []); } catch (e) { }
+
+    let htmlMaTranGrid = '';
+    if (mangCauTraLoi.length === 0) {
+        htmlMaTranGrid = `<p style="grid-column: span 5; text-align:center; color:#e74c3c; padding:15px; font-weight:bold;">Không có lịch sử đáp án chi tiết.</p>`;
+    } else {
+        mangCauTraLoi.forEach((cau, idx) => {
+            const trangThai = (cau.ketQua || "").trim();
+            let bgHop = "#fff5f5"; let borderHop = "#feb2b2"; let chuHop = "#c53030"; let iconKq = "❌";
+
+            if (trangThai === "Đúng") { bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢"; }
+            else if (trangThai === "Bỏ trống") { bgHop = "#f7fafc"; borderHop = "#cbd5e0"; chuHop = "#4a5568"; iconKq = "⚪"; }
+
+            htmlMaTranGrid += `
+                <div onclick="ham_9_5_mo_giao_dien_xem_lai_chi_tiet(${indexHocSinh}, '${cau.maCau}')" 
+                     title="Bấm xem chi tiết"
+                     style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <div style="font-size: 11px; font-weight: bold; color:#7f8c8d;">Câu ${idx + 1}</div>
+                    <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+                    <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${cau.luaChonHS || '-'}</span></div>
+                </div>
+            `;
+        });
+    }
+
+    Swal.fire({
+        title: `👀 BÀI LÀM: ${hs.ten.toUpperCase()}`,
+        html: `
+            <div style="text-align: left; background: white;">
+                <div style="background: #fdf2f2; border: 1px solid #f5b7b1; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #c0392b; margin-bottom: 15px; display:flex; justify-content:space-between; align-items: center; font-weight:bold;">
+                    <div>🎯 Đúng: ${hs.soCauDung} / ${mangCauTraLoi.length} câu<br>🌟 Tổng điểm: ${Number(hs.diem).toFixed(2)}</div>
+                    <button onclick="ham_9_5_mo_giao_dien_xem_lai_chi_tiet(${indexHocSinh}, null)" style="padding: 8px 12px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px;">MỞ FULL ĐỀ</button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 280px; overflow-y: auto; padding: 4px;">
+                    ${htmlMaTranGrid}
+                </div>
+            </div>
+        `,
+        showCancelButton: false, confirmButtonText: '⬅️ Quay lại bảng xếp hạng', confirmButtonColor: '#e74c3c', width: '450px'
+    }).then((result) => {
+        if (result.isConfirmed) ham_9_5_sub_danh_sach_tham_gia();
+    });
+};
+
+// Layer 4: Xem Full Đề của Live Quiz
+window.ham_9_5_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCauScroll) {
+    Swal.fire({ title: 'Đang tải đề gốc...', didOpen: () => Swal.showLoading() });
+
+    try {
+        const { maNhiemVuAo, mangDaThamGia } = window.DataThongKeLiveHienTai;
+        const hs = mangDaThamGia[indexHocSinh];
+
+        const { data: nvData } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVuAo).single();
+        const { data: hlData } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+
+        let urlFileGitHub = hlData.url_github;
+        if (!urlFileGitHub) {
+            let maDeGoc = nvData.ma_hoc_lieu;
+            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+        } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
+            urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+        }
+
+        const resDe = await fetch(urlFileGitHub);
+        const dataGitHub = await resDe.json();
+
+        let dataGiaiGop = null;
+        if (hlData.url_file_giai) {
+            try {
+                let urlGiai = hlData.url_file_giai;
+                if (urlGiai.includes('github.com') && urlGiai.includes('/blob/')) urlGiai = urlGiai.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                const resGiai = await fetch(urlGiai);
+                if (resGiai.ok) dataGiaiGop = await resGiai.json();
+            } catch (e) { }
+        }
+
+        let dsKhungXuong = hlData.danh_sach_cau_hoi;
+        if (typeof dsKhungXuong === 'string') dsKhungXuong = JSON.parse(dsKhungXuong);
+
+        const deThiHoanChinh = (dsKhungXuong || []).map(mapItem => {
+            const noiDung = (dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || []).find(c => c.maCau === mapItem.ma_cau_hoi) || {};
+            let htmlLoiGiaiChiTiet = null;
+            if (dataGiaiGop) {
+                const matchGiai = (dataGiaiGop.danhSachLoiGiai || []).find(g => g.maBaoMat === mapItem.ma_loi_giai);
+                if (matchGiai) htmlLoiGiaiChiTiet = matchGiai.loiGiaiHtml;
+            }
+            return { ...mapItem, ...noiDung, dap_an: mapItem.dap_an, loiGiaiHtml: htmlLoiGiaiChiTiet };
+        });
+
+        const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+        let chiTiet = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
+        let ketQuaMock = { tong_diem: hs.diem, chi_tiet_lam_bai: chiTiet };
+
+        Swal.close();
+        if (typeof ham_8_14_ve_giao_dien_xem_lai === 'function') {
+            ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
+        } else {
+            return Swal.fire('Tính năng đang xây dựng', 'Vui lòng quay lại sau!', 'info');
+        }
+
+        if (maCauScroll) {
+            setTimeout(() => {
+                const theCauHoi = document.getElementById('review-cau-' + maCauScroll);
+                if (theCauHoi) {
+                    theCauHoi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    theCauHoi.style.transition = "all 0.5s";
+                    theCauHoi.style.boxShadow = "0 0 15px 3px rgba(231, 76, 60, 0.6)";
+                    setTimeout(() => { theCauHoi.style.boxShadow = "none"; }, 2500);
+                }
+            }, 600);
+        }
+    } catch (error) {
+        Swal.fire('Lỗi', 'Không thể mở bài thi: ' + error.message, 'error');
+    }
+};
