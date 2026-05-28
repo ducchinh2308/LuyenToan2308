@@ -1305,11 +1305,46 @@ const BangHocSinhState = {
 //}
 
 // Hàm 5.1: Vẽ bộ khung giao diện Quản lý học sinh
+//function ham_5_1_ve_quan_ly_hoc_sinh() {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+
+//    vungLamViec.innerHTML = `
+//        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+//            <h3 style="margin: 0; color: #6f42c1;">Danh sách Học sinh trên hệ thống</h3>
+
+//            <div style="display: flex; gap: 15px; align-items: center;">
+//                <div style="position: relative;">
+//                    <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+//                    <input type="text" id="input-tim-kiem-qlhs"
+//                           placeholder="Tìm Tên hoặc Số điện thoại..."
+//                           oninput="ham_5_3_tim_kiem_live_hoc_sinh(this.value)"
+//                           style="padding: 10px 10px 10px 35px; border: 1px solid #ccc; border-radius: 6px; width: 280px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                </div>
+
+//                <button onclick="ham_5_2_tai_danh_sach_hoc_sinh()" style="padding: 10px 15px; background: #f1f3f4; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap;">
+//                    🔄 Làm mới
+//                </button>
+//            </div>
+//        </div>
+
+//        <div id="danh-sach-hs-render">
+//            <p style="text-align: center; color: #666;">Đang tải dữ liệu học sinh từ máy chủ...</p>
+//        </div>
+//    `;
+
+//    // Gọi hàm tải dữ liệu
+//    ham_5_2_tai_danh_sach_hoc_sinh();
+//}
+
+
+// =====================================================================
+// Hàm 5.1: Vẽ bộ khung giao diện Quản lý học sinh (BỔ SUNG BỘ LỌC LỚP 🏫)
+// =====================================================================
 function ham_5_1_ve_quan_ly_hoc_sinh() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
 
     vungLamViec.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h3 style="margin: 0; color: #6f42c1;">Danh sách Học sinh trên hệ thống</h3>
             
             <div style="display: flex; gap: 15px; align-items: center;">
@@ -1327,6 +1362,12 @@ function ham_5_1_ve_quan_ly_hoc_sinh() {
             </div>
         </div>
         
+        <div id="khung-nut-loc-lop-qlhs" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; padding: 10px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+            <span style="font-weight: bold; color: #495057; display: flex; align-items: center; margin-right: 5px; font-size: 13px;">🏫 Lọc theo lớp:</span>
+            <button class="btn-loc-lop-hs active" onclick="ham_5_x_loc_hoc_sinh_theo_lop('TAT_CA', this)" style="padding: 6px 14px; background: #6f42c1; color: white; border: 1px solid #6f42c1; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;">👥 Tất cả học sinh</button>
+            <span id="cac-nut-lop-hs-dong" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
+        </div>
+        
         <div id="danh-sach-hs-render">
             <p style="text-align: center; color: #666;">Đang tải dữ liệu học sinh từ máy chủ...</p>
         </div>
@@ -1337,7 +1378,30 @@ function ham_5_1_ve_quan_ly_hoc_sinh() {
 }
 
 
-// Hàm 5.2: Tải dữ liệu từ Supabase và nạp vào Biến State
+
+
+//// Hàm 5.2: Tải dữ liệu từ Supabase và nạp vào Biến State
+//async function ham_5_2_tai_danh_sach_hoc_sinh() {
+//    const renderArea = document.getElementById('danh-sach-hs-render');
+//    try {
+//        const { data: dsHocSinh, error } = await _supabase
+//            .from('hoc_sinh')
+//            .select('*')
+//            .eq('vai_tro', 'hocsinh');
+
+//        if (error) throw error;
+
+//        BangHocSinhState.duLieu = dsHocSinh || [];
+//        ham_5_10_ve_bang_hoc_sinh(); // Gọi hàm vẽ bảng
+
+//    } catch (error) {
+//        renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+//    }
+//}
+
+// =====================================================================
+// Hàm 5.2: Tải dữ liệu từ Supabase (Bổ sung tự động sinh nút chọn lớp)
+// =====================================================================
 async function ham_5_2_tai_danh_sach_hoc_sinh() {
     const renderArea = document.getElementById('danh-sach-hs-render');
     try {
@@ -1349,12 +1413,74 @@ async function ham_5_2_tai_danh_sach_hoc_sinh() {
         if (error) throw error;
 
         BangHocSinhState.duLieu = dsHocSinh || [];
-        ham_5_10_ve_bang_hoc_sinh(); // Gọi hàm vẽ bảng
+
+        // 🌟 VỊ TRÍ CẤY GHÉP: Tải từ điển lớp (nếu chưa có) và vẽ nút bấm lớp ngầm
+        if (!window.tempDsLop) {
+            const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
+            window.tempDsLop = dsLop || [];
+        }
+
+        const khungNutLopHS = document.getElementById('cac-nut-lop-hs-dong');
+        if (khungNutLopHS && window.tempDsLop) {
+            let htmlNutLop = '';
+            window.tempDsLop.forEach(l => {
+                const maLop = l.ma_lop || l.ma || l.id;
+                const tenLop = l.ten_lop || l.ten || l.name || maLop;
+                htmlNutLop += `
+                    <button class="btn-loc-lop-hs" onclick="ham_5_x_loc_hoc_sinh_theo_lop('${maLop}', this)" style="padding: 6px 14px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                        ${tenLop}
+                    </button>
+                `;
+            });
+            khungNutLopHS.innerHTML = htmlNutLop;
+        }
+
+        // Sau đó gọi hàm vẽ bảng của thầy như bình thường
+        ham_5_10_ve_bang_hoc_sinh();
 
     } catch (error) {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
+
+
+// =====================================================================
+// Hàm mới: Thực hiện lọc nhanh danh sách học sinh theo lớp chọn trên RAM
+// =====================================================================
+window.ham_5_x_loc_hoc_sinh_theo_lop = function (maLopChon, nutBam) {
+    // 1. Reset màu tất cả các nút lọc học sinh về màu trắng ban đầu
+    document.querySelectorAll('.btn-loc-lop-hs').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'white';
+        btn.style.color = '#495057';
+        btn.style.borderColor = '#ced4da';
+    });
+
+    // 2. Kích hoạt đổi màu nổi bật cho nút lớp vừa click
+    nutBam.classList.add('active');
+    nutBam.style.background = '#6f42c1';
+    nutBam.style.color = 'white';
+    nutBam.style.borderColor = '#6f42c1';
+
+    // 3. Quét qua cột "Mã lớp tham gia" của bảng học sinh để ẩn/hiện dòng tr
+    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
+
+    rows.forEach(row => {
+        if (maLopChon === 'TAT_CA') {
+            row.style.display = ""; // Hiện tất cả không lọc
+        } else {
+            const textDong = row.innerText || row.textContent;
+
+            // Do trong bảng cột lớp hiển thị dạng chuỗi mã lớp (ví dụ: LOP_1A, LOP_1B)
+            // Thuật toán quét chuỗi sẽ nhận diện xem dòng tr đó có chứa mã lớp đang chọn không
+            if (textDong.includes(maLopChon)) {
+                row.style.display = ""; // Đúng lớp thì hiện
+            } else {
+                row.style.display = "none"; // Khác lớp thì ẩn ngầm
+            }
+        }
+    });
+};
 
 
 // =====================================================================
