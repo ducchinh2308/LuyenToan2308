@@ -452,9 +452,133 @@ window.LiveQuizChannel = null;
 window.DanhSachLive = [];
 window.ThongTinPhongLive = { tongSoCau: 0, maPhong: '', maNhiemVu: '', thoiGianLamBai: 45 };
 
-// =====================================================================
-// HÀM 9.3: VÀO PHÒNG ĐIỀU KHIỂN (GIAO DIỆN TỔNG HỢP)
-// =====================================================================
+//// =====================================================================
+//// HÀM 9.3: VÀO PHÒNG ĐIỀU KHIỂN (GIAO DIỆN TỔNG HỢP)
+//// =====================================================================
+//window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang kết nối tín hiệu phòng ${maPhong}...</h3></div>`;
+
+//    try {
+//        const { data: phong, error: errPhong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPhong).single();
+//        if (errPhong) throw errPhong;
+
+//        // 🌟 VÁ LỖI NGẦM: Lấy thêm thoi_gian_lam_bai từ bảng nhiem_vu để cấp cho đồng hồ
+//        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
+
+//        let tongSoCau = 0;
+//        try {
+//            const matchCau = (nv.cau_truc_de || '').match(/\d+/g);
+//            if (matchCau) tongSoCau = matchCau.reduce((a, b) => Number(a) + Number(b), 0);
+//            if (tongSoCau === 0) tongSoCau = 20;
+//        } catch (e) { tongSoCau = 20; }
+
+//        // Lưu thời gian làm bài vào biến toàn cục để Đồng hồ sử dụng
+//        window.ThongTinPhongLive = {
+//            tongSoCau: tongSoCau,
+//            maPhong: maPhong,
+//            maNhiemVu: phong.ma_nhiem_vu,
+//            thoiGianLamBai: nv.thoi_gian_lam_bai || 45
+//        };
+//        window.ThongTinLiveGiaoVien = { maNhiemVu: phong.ma_nhiem_vu, maPhong: maPhong };
+
+//        const { data: dsTienDo } = await _supabase.from('tien_do_live_quiz').select('*').eq('ma_phong', maPhong);
+//        window.DanhSachLive = dsTienDo || [];
+
+//        let nutTrangThaiHtml = '';
+//        if (phong.trang_thai === 0) {
+//            nutTrangThaiHtml = `<button onclick="ham_9_3_2_doi_trang_thai('${maPhong}', 1)" style="padding: 12px 24px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: 900; cursor: pointer;">🚀 BẮT ĐẦU THI ĐẤU</button>`;
+//        } else if (phong.trang_thai === 1) {
+//            nutTrangThaiHtml = `<button onclick="ham_9_3_2_doi_trang_thai('${maPhong}', 2)" style="padding: 12px 24px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: 900; cursor: pointer;">🛑 KẾT THÚC TRẬN ĐẤU</button>`;
+//        } else {
+//            nutTrangThaiHtml = `<span style="padding: 12px 24px; background: #6c757d; color: white; border-radius: 8px; font-weight: 900;">🏁 ĐÃ KẾT THÚC</span>`;
+//        }
+
+//        vungLamViec.innerHTML = `
+//            <div style="background: #1e1e2f; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); color: white; font-family: sans-serif;">
+//                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #2a2a3c;">
+//                    <div style="display: flex; gap: 30px; align-items: center;">
+//                        <div>
+//                            <div style="font-size: 12px; color: #a0a0b2; text-transform: uppercase;">Mã PIN</div>
+//                            <div style="font-size: 40px; font-weight: 900; color: #f1c40f; letter-spacing: 2px;">${maPhong}</div>
+//                        </div>
+//                        <div style="text-align: center;">
+//                            <div style="font-size: 12px; color: #a0a0b2; text-transform: uppercase;">Thời gian còn lại</div>
+//                            <div id="dong-ho-giao-vien" style="font-size: 40px; font-weight: 900; color: #ffeb3b; font-family: monospace;">--:--</div>
+//                        </div>
+//                    </div>
+//                    <div style="display: flex; gap: 10px;">
+//                        <button onclick="ham_gv_xem_de_thi_truc_tiep()" style="padding: 12px 20px; background: #2980b9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📖 XEM ĐỀ THI</button>
+//                        ${nutTrangThaiHtml}
+//                        <button onclick="ham_9_3_3_thoat_phong()" style="padding: 12px 20px; background: transparent; color: #a0a0b2; border: 2px solid #a0a0b2; border-radius: 8px; cursor: pointer;">Thoát</button>
+//                    </div>
+//                </div>
+//                <div style="padding: 20px 30px; background: #252538;"><div id="vung-ve-leaderboard"></div></div>
+//            </div>
+//        `;
+
+//        // Nếu phòng đang chạy, truyền thời gian bắt đầu vào đồng hồ
+//        if (phong.trang_thai === 1 && phong.thoi_gian_bat_dau) {
+//            window.ham_gv_kich_hoat_dong_ho_chu(phong.thoi_gian_bat_dau);
+//        }
+//        ham_9_3_1_ve_leaderboard();
+
+//        // =====================================================================
+//        // 🌟 BẢN VÁ LỖI KHÓA KHÔI PHỤC SÓNG REALTIME (ĐÃ CHUẨN HÓA THEO UUID KEY)
+//        // =====================================================================
+//        if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
+
+//        window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong)
+//            .on('postgres_changes', {
+//                event: '*',
+//                schema: 'public',
+//                table: 'tien_do_live_quiz',
+//                filter: `ma_phong=eq.${maPhong}`,
+//                config: { broadcast: { self: true } } // 🌟 VỊ TRÍ 1: Ép cấu hình tự phát sóng nội bộ chéo thiết bị
+//            }, payload => {
+
+//                //console.log("📡 [SÓNG LIVE] Phát hiện biến động từ Server:", payload);
+
+//                if (payload.eventType === 'INSERT') {
+//                    window.DanhSachLive.push(payload.new);
+//                }
+//                else if (payload.eventType === 'UPDATE') {
+//                    const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === payload.new.uid_hoc_sinh);
+//                    if (idx > -1) {
+//                        window.DanhSachLive[idx] = { ...window.DanhSachLive[idx], ...payload.new };
+//                    } else {
+//                        window.DanhSachLive.push(payload.new);
+//                    }
+//                }
+
+//                // GỌI VẼ LẠI BẢNG LẬP TỨC
+//                if (typeof ham_9_3_1_ve_leaderboard === 'function') {
+//                    ham_9_3_1_ve_leaderboard();
+//                }
+
+//            }).subscribe((status, err) => { // 🌟 VỊ TRÍ 2: Bổ sung 'err' để hứng mọi lỗi ngầm từ Supabase
+//                //console.log("🚦 [HỆ THỐNG] Trạng thái kết nối Realtime:", status);
+
+//                if (err) {
+//                    //console.error("❌ [LỖI SÓNG TRUYỀN]:", err);
+//                }
+
+//                if (status === 'SUBSCRIBED') {
+//                    //console.log("✅ Đã kết nối thành công! Kênh đang mở van vểnh tai nghe phòng " + maPhong);
+//                } else if (status === 'CHANNEL_ERROR') {
+//                    console.error("❌ Lỗi kết nối: Supabase từ chối phát sóng. Thầy hãy kiểm tra lại trạng thái gạt công tắc Realtime trong bảng điều khiển Supabase nhé!");
+//                }
+//            });
+
+//    } catch (e) {
+//        vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px;">❌ Lỗi: ${e.message}</div>`;
+//    }
+//};
+
+
+
+
+// [Nhãn thời gian: 13:35 - Ngày 28/05/2026] - Hàm 9.3: Vào phòng điều khiển (VÁ LỖI HIỂN THỊ SAI TỔNG SỐ CÂU TRÊN TIMELINE)
 window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang kết nối tín hiệu phòng ${maPhong}...</h3></div>`;
@@ -463,17 +587,37 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         const { data: phong, error: errPhong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPhong).single();
         if (errPhong) throw errPhong;
 
-        // 🌟 VÁ LỖI NGẦM: Lấy thêm thoi_gian_lam_bai từ bảng nhiem_vu để cấp cho đồng hồ
-        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
+        // 1. LẤY THÔNG TIN NHIỆM VỤ ĐỂ TRUY VẾT HỌC LIỆU GỐC
+        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai, ma_hoc_lieu').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
 
-        let tongSoCau = 0;
+        // 🌟 2. THUẬT TOÁN ĐẾM SỐ CÂU CHUẨN XÁC 100% (TRỰC TIẾP TỪ FILE ĐỀ)
+        let tongSoCau = 20; // Mặc định nếu file lỗi
         try {
-            const matchCau = (nv.cau_truc_de || '').match(/\d+/g);
-            if (matchCau) tongSoCau = matchCau.reduce((a, b) => Number(a) + Number(b), 0);
-            if (tongSoCau === 0) tongSoCau = 20;
-        } catch (e) { tongSoCau = 20; }
+            const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
 
-        // Lưu thời gian làm bài vào biến toàn cục để Đồng hồ sử dụng
+            let urlFileGitHub = hl.url_github;
+            if (!urlFileGitHub) {
+                let maDeGoc = nv.ma_hoc_lieu;
+                if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+                urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+            } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
+                urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+            }
+
+            // Fetch nhanh File JSON về RAM để đếm chính xác số phần tử câu hỏi
+            const res = await fetch(urlFileGitHub);
+            if (res.ok) {
+                const dataHL = await res.json();
+                const dsCauHoi = dataHL.danhSachCauHoi || dataHL.danh_sach_cau_hoi || [];
+                if (dsCauHoi.length > 0) {
+                    tongSoCau = dsCauHoi.length; // 🎯 Lấy đúng số lượng thực tế (VD: 50 câu)
+                }
+            }
+        } catch (e) {
+            console.warn("Dùng phương án đếm dự phòng do đường truyền...");
+        }
+
+        // 3. LƯU SỐ CÂU CHUẨN VÀO BỘ NHỚ ĐỂ THANH TIẾN ĐỘ SỬ DỤNG
         window.ThongTinPhongLive = {
             tongSoCau: tongSoCau,
             maPhong: maPhong,
@@ -523,51 +667,27 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         }
         ham_9_3_1_ve_leaderboard();
 
-        // =====================================================================
-        // 🌟 BẢN VÁ LỖI KHÓA KHÔI PHỤC SÓNG REALTIME (ĐÃ CHUẨN HÓA THEO UUID KEY)
-        // =====================================================================
+        // 🌟 KHỞI TẠO SÓNG REALTIME
         if (window.LiveQuizChannel) _supabase.removeChannel(window.LiveQuizChannel);
 
         window.LiveQuizChannel = _supabase.channel('kenh_phong_' + maPhong)
             .on('postgres_changes', {
-                event: '*',
-                schema: 'public',
-                table: 'tien_do_live_quiz',
-                filter: `ma_phong=eq.${maPhong}`,
-                config: { broadcast: { self: true } } // 🌟 VỊ TRÍ 1: Ép cấu hình tự phát sóng nội bộ chéo thiết bị
+                event: '*', schema: 'public', table: 'tien_do_live_quiz', filter: `ma_phong=eq.${maPhong}`,
+                config: { broadcast: { self: true } }
             }, payload => {
-
-                //console.log("📡 [SÓNG LIVE] Phát hiện biến động từ Server:", payload);
-
                 if (payload.eventType === 'INSERT') {
                     window.DanhSachLive.push(payload.new);
-                }
-                else if (payload.eventType === 'UPDATE') {
+                } else if (payload.eventType === 'UPDATE') {
                     const idx = window.DanhSachLive.findIndex(item => item.uid_hoc_sinh === payload.new.uid_hoc_sinh);
-                    if (idx > -1) {
-                        window.DanhSachLive[idx] = { ...window.DanhSachLive[idx], ...payload.new };
-                    } else {
-                        window.DanhSachLive.push(payload.new);
-                    }
+                    if (idx > -1) window.DanhSachLive[idx] = { ...window.DanhSachLive[idx], ...payload.new };
+                    else window.DanhSachLive.push(payload.new);
                 }
 
-                // GỌI VẼ LẠI BẢNG LẬP TỨC
-                if (typeof ham_9_3_1_ve_leaderboard === 'function') {
-                    ham_9_3_1_ve_leaderboard();
-                }
+                // Gọi vẽ lại bảng ngay lập tức khi có biến động
+                if (typeof ham_9_3_1_ve_leaderboard === 'function') ham_9_3_1_ve_leaderboard();
 
-            }).subscribe((status, err) => { // 🌟 VỊ TRÍ 2: Bổ sung 'err' để hứng mọi lỗi ngầm từ Supabase
-                //console.log("🚦 [HỆ THỐNG] Trạng thái kết nối Realtime:", status);
-
-                if (err) {
-                    //console.error("❌ [LỖI SÓNG TRUYỀN]:", err);
-                }
-
-                if (status === 'SUBSCRIBED') {
-                    //console.log("✅ Đã kết nối thành công! Kênh đang mở van vểnh tai nghe phòng " + maPhong);
-                } else if (status === 'CHANNEL_ERROR') {
-                    console.error("❌ Lỗi kết nối: Supabase từ chối phát sóng. Thầy hãy kiểm tra lại trạng thái gạt công tắc Realtime trong bảng điều khiển Supabase nhé!");
-                }
+            }).subscribe((status, err) => {
+                if (status === 'CHANNEL_ERROR') console.error("Lỗi kết nối Sóng Realtime. Thầy kiểm tra lại cấu hình nhé!");
             });
 
     } catch (e) {
