@@ -3742,11 +3742,49 @@ async function ham_7_2_tai_danh_sach_nhiem_vu() {
     }
 }
 
-// =====================================================================
-// Hàm mới: Thực hiện lọc nhanh danh sách nhiệm vụ theo lớp chọn
-// =====================================================================
+//// =====================================================================
+//// Hàm mới: Thực hiện lọc nhanh danh sách nhiệm vụ theo lớp chọn
+//// =====================================================================
+//window.ham_7_x_loc_nhiem_vu_theo_lop = function (maLopChon, nutBam) {
+//    // 1. Reset màu tất cả các nút về màu trắng
+//    document.querySelectorAll('.btn-loc-lop').forEach(btn => {
+//        btn.classList.remove('active');
+//        btn.style.background = 'white';
+//        btn.style.color = '#495057';
+//        btn.style.borderColor = '#ced4da';
+//    });
+
+//    // 2. Tô màu nổi bật cho nút vừa được click chọn
+//    nutBam.classList.add('active');
+//    nutBam.style.background = '#6f42c1';
+//    nutBam.style.color = 'white';
+//    nutBam.style.borderColor = '#6f42c1';
+
+//    // 3. Quét bảng để ẩn/hiện dòng
+//    // Thầy lưu ý: Thuật toán này dựa vào việc trong chuỗi textContent của dòng <tr>
+//    // chắc chắn có chứa mã lớp hoặc tên lớp (như cách hiển thị thông thường).
+//    const rows = document.querySelectorAll('#danh-sach-nv-render tbody tr');
+
+//    rows.forEach(row => {
+//        if (maLopChon === 'TAT_CA') {
+//            row.style.display = ""; // Hiện tất cả
+//        } else {
+//            const textDong = row.innerText || row.textContent;
+
+//            // Nếu dòng chứa mã lớp đã chọn hoặc chứa chữ "Luyện tập tự do" (Mở cho tất cả)
+//            if (textDong.includes(maLopChon) || textDong.includes("Luyện tập tự do") || textDong.includes("Mở cho tất cả")) {
+//                row.style.display = "";
+//            } else {
+//                row.style.display = "none";
+//            }
+//        }
+//    });
+//};
+
+
+// [Nhãn thời gian: 12:48 - Ngày 28/05/2026] - Đồng bộ Nút Lọc lớp NV với Hàm vẽ bảng để STT chạy từ 1
 window.ham_7_x_loc_nhiem_vu_theo_lop = function (maLopChon, nutBam) {
-    // 1. Reset màu tất cả các nút về màu trắng
+    // 1. Reset màu các nút lọc nhiệm vụ
     document.querySelectorAll('.btn-loc-lop').forEach(btn => {
         btn.classList.remove('active');
         btn.style.background = 'white';
@@ -3754,31 +3792,18 @@ window.ham_7_x_loc_nhiem_vu_theo_lop = function (maLopChon, nutBam) {
         btn.style.borderColor = '#ced4da';
     });
 
-    // 2. Tô màu nổi bật cho nút vừa được click chọn
-    nutBam.classList.add('active');
-    nutBam.style.background = '#6f42c1';
-    nutBam.style.color = 'white';
-    nutBam.style.borderColor = '#6f42c1';
+    // 2. Highlight nút vừa click
+    if (nutBam) {
+        nutBam.classList.add('active');
+        nutBam.style.background = '#6f42c1';
+        nutBam.style.color = 'white';
+        nutBam.style.borderColor = '#6f42c1';
+    }
 
-    // 3. Quét bảng để ẩn/hiện dòng
-    // Thầy lưu ý: Thuật toán này dựa vào việc trong chuỗi textContent của dòng <tr> 
-    // chắc chắn có chứa mã lớp hoặc tên lớp (như cách hiển thị thông thường).
-    const rows = document.querySelectorAll('#danh-sach-nv-render tbody tr');
-
-    rows.forEach(row => {
-        if (maLopChon === 'TAT_CA') {
-            row.style.display = ""; // Hiện tất cả
-        } else {
-            const textDong = row.innerText || row.textContent;
-
-            // Nếu dòng chứa mã lớp đã chọn hoặc chứa chữ "Luyện tập tự do" (Mở cho tất cả)
-            if (textDong.includes(maLopChon) || textDong.includes("Luyện tập tự do") || textDong.includes("Mở cho tất cả")) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        }
-    });
+    // 3. Gọi hàm vẽ bảng để tái tạo lại cấu trúc và STT
+    if (typeof window.ham_7_10_ve_bang_nhiem_vu === 'function') {
+        window.ham_7_10_ve_bang_nhiem_vu();
+    }
 };
 
 
@@ -4252,28 +4277,39 @@ function ham_7_10_ve_bang_nhiem_vu() {
 
 
 
-// =====================================================================
-// Hàm 7.16: Tìm kiếm trực tiếp (Live Search) nhiệm vụ trên bảng
-// =====================================================================
+//// =====================================================================
+//// Hàm 7.16: Tìm kiếm trực tiếp (Live Search) nhiệm vụ trên bảng
+//// =====================================================================
+//window.ham_7_16_tim_kiem_live_nhiem_vu = function (tuKhoa) {
+//    const filter = tuKhoa.toLowerCase().trim();
+
+//    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng nhiệm vụ
+//    // (Đảm bảo bảng hiển thị của thầy được vẽ ra bên trong div #danh-sach-nv-render)
+//    const rows = document.querySelectorAll('#danh-sach-nv-render tbody tr');
+
+//    rows.forEach(row => {
+//        // Đọc toàn bộ nội dung chữ (Tên nhiệm vụ, Mã lớp, Thời gian...) đang hiển thị
+//        const textContent = row.innerText.toLowerCase();
+
+//        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+//        if (textContent.includes(filter)) {
+//            row.style.display = "";
+//        } else {
+//            row.style.display = "none";
+//        }
+//    });
+//};
+
+
+// [Nhãn thời gian: 12:48 - Ngày 28/05/2026] - Đồng bộ Tìm kiếm trực tiếp NV với Hàm vẽ bảng để STT chạy từ 1
 window.ham_7_16_tim_kiem_live_nhiem_vu = function (tuKhoa) {
-    const filter = tuKhoa.toLowerCase().trim();
-
-    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng nhiệm vụ
-    // (Đảm bảo bảng hiển thị của thầy được vẽ ra bên trong div #danh-sach-nv-render)
-    const rows = document.querySelectorAll('#danh-sach-nv-render tbody tr');
-
-    rows.forEach(row => {
-        // Đọc toàn bộ nội dung chữ (Tên nhiệm vụ, Mã lớp, Thời gian...) đang hiển thị
-        const textContent = row.innerText.toLowerCase();
-
-        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
-        if (textContent.includes(filter)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-    });
+    if (typeof window.ham_7_10_ve_bang_nhiem_vu === 'function') {
+        window.ham_7_10_ve_bang_nhiem_vu();
+    }
 };
+
+
+
 
 // Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới + Bổ sung TÍNH CHẤT)
 async function ham_7_3_hien_form_them_nhiem_vu() {
