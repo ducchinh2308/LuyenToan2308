@@ -1271,62 +1271,183 @@ window.ham_9_3_3_thoat_phong = function () {
 };
 
 
-// [Nhãn thời gian: 17:35 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh ngay trên Đấu trường Live
-window.ham_9_3_4_soi_bai_live = function (uidHocSinh) {
-    const hs = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
-    if (!hs) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
+//// [Nhãn thời gian: 17:35 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh ngay trên Đấu trường Live
+//window.ham_9_3_4_soi_bai_live = function (uidHocSinh) {
+//    const hs = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
+//    if (!hs) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
 
-    // Móc dữ liệu mảng các đáp án ABCD mà học sinh đã chọn từ gói tin Live
-    let mangChon = [];
+//    // Móc dữ liệu mảng các đáp án ABCD mà học sinh đã chọn từ gói tin Live
+//    let mangChon = [];
+//    try {
+//        if (hs.danh_sach_chon) {
+//            mangChon = typeof hs.danh_sach_chon === 'string' ? JSON.parse(hs.danh_sach_chon) : hs.danh_sach_chon;
+//        } else if (hs.chi_tiet) {
+//            const ct = typeof hs.chi_tiet === 'string' ? JSON.parse(hs.chi_tiet) : hs.chi_tiet;
+//            mangChon = ct.mang_dap_an_chon || ct.danh_sach_chon || [];
+//        }
+//    } catch (e) { console.warn("Không parse được mảng chọn"); }
+
+//    const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
+
+//    let gridHtml = '';
+//    if (mangChon.length === 0) {
+//        gridHtml = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic;">Học sinh chưa tích đáp án nào hoặc gói dữ liệu sóng chưa đồng bộ chi tiết ABCD!</div>`;
+//    } else {
+//        for (let i = 0; i < tongCau; i++) {
+//            let chon = mangChon[i] || '-';
+//            let bgHienThi = chon === '-' ? '#2a2a3c' : '#2980b9'; // Xanh nếu đã chọn, xám nếu chưa chọn
+//            let colorHienThi = chon === '-' ? '#7f8c8d' : '#ffffff';
+
+//            gridHtml += `
+//                <div style="padding: 8px 5px; background: ${bgHienThi}; border: 1px solid #444; border-radius: 6px; text-align: center; color: ${colorHienThi}; box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);">
+//                    <div style="font-size: 10px; color: rgba(255,255,255,0.6); margin-bottom: 3px;">Câu ${i + 1}</div>
+//                    <div style="font-size: 16px; font-weight: 900;">${chon}</div>
+//                </div>
+//            `;
+//        }
+//    }
+
+//    // Hiển thị Popup Dark Mode chuẩn phong cách Live
+//    Swal.fire({
+//        title: `👁️ TIẾN ĐỘ LÀM BÀI`,
+//        html: `
+//            <div style="text-align: left;">
+//                <div style="font-size: 18px; font-weight: bold; color: #f1c40f; margin-bottom: 10px;">👤 ${hs.ten_hoc_sinh}</div>
+//                <div style="background: #252538; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; display: flex; justify-content: space-between;">
+//                    <span>⏳ Đã làm: <b style="color:#9b59b6;">${hs.so_cau_da_lam || 0}/${tongCau}</b></span>
+//                    <span>🎯 Đúng hiện tại: <b style="color:#2ecc71;">${hs.so_cau_dung || 0}</b></span>
+//                </div>
+//                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 350px; overflow-y: auto; padding-right: 5px;">
+//                    ${gridHtml}
+//                </div>
+//            </div>
+//        `,
+//        background: '#1e1e2f',
+//        color: '#ffffff',
+//        showConfirmButton: true,
+//        confirmButtonText: 'Đóng lại',
+//        confirmButtonColor: '#e74c3c'
+//    });
+//};
+
+
+// [Nhãn thời gian: 18:00 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh (KẾ THỪA LOGIC BÓC TÁCH MA TRẬN TỪ HÀM 9.5)
+window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
+    const hsLive = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
+    if (!hsLive) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
+
+    // Bật Loading vì chúng ta sẽ chọc thẳng vào DB để lấy bản full chi tiết
+    Swal.fire({ title: '⏳ Đang đồng bộ ma trận bài làm...', didOpen: () => Swal.showLoading() });
+
+    let mangCauTraLoi = [];
+    let diemSo = hsLive.diem_so || 0;
+    let soCauDung = hsLive.so_cau_dung || 0;
+    let soCauDaLam = hsLive.so_cau_da_lam || 0;
+
     try {
-        if (hs.danh_sach_chon) {
-            mangChon = typeof hs.danh_sach_chon === 'string' ? JSON.parse(hs.danh_sach_chon) : hs.danh_sach_chon;
-        } else if (hs.chi_tiet) {
-            const ct = typeof hs.chi_tiet === 'string' ? JSON.parse(hs.chi_tiet) : hs.chi_tiet;
-            mangChon = ct.mang_dap_an_chon || ct.danh_sach_chon || [];
+        // 🌟 ƯU TIÊN 1: Truy xuất kho ket_qua_thi (Kế thừa sức mạnh của Hàm 9.5)
+        const maNV = window.ThongTinPhongLive.maNhiemVu;
+        const { data: dsKQ } = await _supabase
+            .from('ket_qua_thi')
+            .select('*')
+            .eq('ma_nhiem_vu', maNV)
+            .eq('uid_hoc_sinh', uidHocSinh)
+            .order('thoi_gian_nop', { ascending: false });
+
+        if (dsKQ && dsKQ.length > 0) {
+            const kq = dsKQ[0];
+            let rawData = kq.chi_tiet_lam_bai || kq.chi_tiet || kq.ket_qua_chi_tiet || '[]';
+            mangCauTraLoi = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
+
+            // Cập nhật lại số liệu cho chuẩn xác 100% với bản lưu DB
+            diemSo = kq.tong_diem || diemSo;
+            soCauDung = kq.so_cau_dung || soCauDung;
+        } else {
+            // 🌟 ƯU TIÊN 2: Nếu chưa có trong ket_qua_thi, thử lục lọi trong Sóng Live
+            let rawLive = hsLive.chi_tiet_lam_bai || hsLive.chi_tiet || hsLive.danh_sach_chon || '[]';
+            mangCauTraLoi = typeof rawLive === 'string' ? JSON.parse(rawLive) : rawLive;
         }
-    } catch (e) { console.warn("Không parse được mảng chọn"); }
+    } catch (e) {
+        console.warn("Lỗi trích xuất ma trận:", e);
+    }
 
     const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
 
-    let gridHtml = '';
-    if (mangChon.length === 0) {
-        gridHtml = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic;">Học sinh chưa tích đáp án nào hoặc gói dữ liệu sóng chưa đồng bộ chi tiết ABCD!</div>`;
-    } else {
-        for (let i = 0; i < tongCau; i++) {
-            let chon = mangChon[i] || '-';
-            let bgHienThi = chon === '-' ? '#2a2a3c' : '#2980b9'; // Xanh nếu đã chọn, xám nếu chưa chọn
-            let colorHienThi = chon === '-' ? '#7f8c8d' : '#ffffff';
+    let htmlMaTranGrid = '';
 
-            gridHtml += `
-                <div style="padding: 8px 5px; background: ${bgHienThi}; border: 1px solid #444; border-radius: 6px; text-align: center; color: ${colorHienThi}; box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);">
-                    <div style="font-size: 10px; color: rgba(255,255,255,0.6); margin-bottom: 3px;">Câu ${i + 1}</div>
-                    <div style="font-size: 16px; font-weight: 900;">${chon}</div>
-                </div>
-            `;
+    // Nếu mảng vẫn rỗng -> Học sinh thực sự chưa chọn câu nào
+    if (!mangCauTraLoi || mangCauTraLoi.length === 0) {
+        htmlMaTranGrid = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic; text-align:center; font-weight:bold;">Học sinh chưa tích đáp án hoặc chưa nộp dữ liệu!</div>`;
+    } else {
+        // 🌟 TÁI HIỆN MA TRẬN XANH ĐỎ Y HỆT HÀM 9.5
+
+        // Kiểm tra xem mảng là mảng String ["A","B"] hay mảng Object [{luaChonHS:"A"}]
+        if (typeof mangCauTraLoi[0] === 'string') {
+            // Xử lý mảng String thô
+            mangCauTraLoi.forEach((chon, idx) => {
+                let bgHop = chon === '-' ? '#f7fafc' : '#ebf8ff';
+                let borderHop = chon === '-' ? '#cbd5e0' : '#90cdf4';
+                let chuHop = chon === '-' ? '#4a5568' : '#2b6cb0';
+                let iconKq = chon === '-' ? '⚪' : '🔵'; // Chưa biết đúng sai
+
+                htmlMaTranGrid += `
+                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
+                        <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+                        <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${chon}</span></div>
+                    </div>
+                `;
+            });
+        } else {
+            // Xử lý mảng Object chi tiết (Chuẩn của hàm 9.5)
+            mangCauTraLoi.forEach((cau, idx) => {
+                const trangThai = (cau.ketQua || "").trim();
+                let bgHop = "#fff5f5"; let borderHop = "#feb2b2"; let chuHop = "#c53030"; let iconKq = "❌";
+
+                if (trangThai === "Đúng" || cau.is_correct === true || cau.dung_sai === true) {
+                    bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢";
+                }
+                else if (trangThai === "Bỏ trống" || cau.luaChonHS === "-" || !cau.luaChonHS) {
+                    bgHop = "#f7fafc"; borderHop = "#cbd5e0"; chuHop = "#4a5568"; iconKq = "⚪";
+                }
+
+                let luaChon = cau.luaChonHS || cau.chon || cau.dapAnChon || '-';
+
+                htmlMaTranGrid += `
+                    <div style="background: ${bgHop}; border: 1px solid ${borderHop}; border-radius: 6px; padding: 10px 5px; text-align: center; color: ${chuHop}; font-family: sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                        <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color:#718096;">Câu ${idx + 1}</div>
+                        <div style="font-size: 16px; font-weight: 900; margin: 4px 0;">${iconKq}</div>
+                        <div style="font-size: 10px; font-weight:bold;">ĐA: <span style="background:white; padding:1px 4px; border-radius:2px; border:1px solid #cbd5e0;">${luaChon}</span></div>
+                    </div>
+                `;
+            });
         }
     }
 
-    // Hiển thị Popup Dark Mode chuẩn phong cách Live
+    // Hiển thị Popup (Giao diện sáng sủa đồng nhất với Thống kê)
     Swal.fire({
-        title: `👁️ TIẾN ĐỘ LÀM BÀI`,
+        title: `👁️ BÀI LÀM: ${hsLive.ten_hoc_sinh.toUpperCase()}`,
         html: `
-            <div style="text-align: left;">
-                <div style="font-size: 18px; font-weight: bold; color: #f1c40f; margin-bottom: 10px;">👤 ${hs.ten_hoc_sinh}</div>
-                <div style="background: #252538; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; display: flex; justify-content: space-between;">
-                    <span>⏳ Đã làm: <b style="color:#9b59b6;">${hs.so_cau_da_lam || 0}/${tongCau}</b></span>
-                    <span>🎯 Đúng hiện tại: <b style="color:#2ecc71;">${hs.so_cau_dung || 0}</b></span>
+            <div style="text-align: left; background: white;">
+                <div style="background: #ebf8ff; border: 1px solid #bee3f8; padding: 10px 15px; border-radius: 8px; font-size: 13px; color: #2b6cb0; margin-bottom: 15px; display:flex; justify-content:space-between; align-items: center; font-weight:bold;">
+                    <div>
+                        <div style="margin-bottom: 4px;">⏳ Đã làm: <b style="color:#9b59b6;">${soCauDaLam}/${tongCau}</b></div>
+                        <div>🎯 Đúng: <b style="color:#2ecc71;">${soCauDung} câu</b></div>
+                    </div>
+                    <div style="font-size: 22px; color:#e74c3c; font-weight:900; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                        ${Number(diemSo).toFixed(2)} đ
+                    </div>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 350px; overflow-y: auto; padding-right: 5px;">
-                    ${gridHtml}
+                <div style="font-size: 12px; color: #4a5568; font-weight: bold; margin-bottom: 8px; text-transform: uppercase;">🧩 Ma trận đáp án đã chọn:</div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 300px; overflow-y: auto; padding: 4px;">
+                    ${htmlMaTranGrid}
                 </div>
             </div>
         `,
-        background: '#1e1e2f',
-        color: '#ffffff',
         showConfirmButton: true,
         confirmButtonText: 'Đóng lại',
-        confirmButtonColor: '#e74c3c'
+        confirmButtonColor: '#6c757d',
+        width: '450px'
     });
 };
 
