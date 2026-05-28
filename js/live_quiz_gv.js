@@ -982,9 +982,76 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
 //}
 
 
-// =====================================================================
-// Hàm 9.3.1: Vẽ/Cập nhật Khối Leaderboard (BẢN ĐẤU TRƯỜNG ĐUA ĐIỂM SÔI ĐỘNG)
-// =====================================================================
+//// =====================================================================
+//// Hàm 9.3.1: Vẽ/Cập nhật Khối Leaderboard (BẢN ĐẤU TRƯỜNG ĐUA ĐIỂM SÔI ĐỘNG)
+//// =====================================================================
+//window.ham_9_3_1_ve_leaderboard = function () {
+//    const vungVe = document.getElementById('vung-ve-leaderboard');
+//    if (!vungVe) return;
+
+//    if (window.DanhSachLive.length === 0) {
+//        vungVe.innerHTML = `<div style="text-align:center; color:#a0a0b2; padding: 40px; font-style:italic;">Đang đợi học sinh nhập mã PIN tham gia...</div>`;
+//        return;
+//    }
+
+//    // THUẬT TOÁN XẾP HẠNG GIỮ NGUYÊN: 1. Điểm số (giảm dần) -> 2. Số câu đúng (giảm dần) -> 3. Tgian nộp (tăng dần)
+//    window.DanhSachLive.sort((a, b) => {
+//        if (b.diem_so !== a.diem_so) return b.diem_so - a.diem_so;
+//        if (b.so_cau_dung !== a.so_cau_dung) return b.so_cau_dung - a.so_cau_dung;
+//        return new Date(a.thoi_gian_cap_nhat) - new Date(b.thoi_gian_cap_nhat);
+//    });
+
+//    let htmlDong = '';
+//    const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
+
+//    window.DanhSachLive.forEach((hs, index) => {
+//        // 🌟 1. THAY ĐỔI CỐT LÕI: Tính % độ dài thanh Timeline dựa trên ĐIỂM SỐ (Tối đa 10 điểm = 100%)
+//        const diemSoHienTai = Number(hs.diem_so || 0);
+//        let phanTramTimeline = (diemSoHienTai / 10.0) * 100;
+//        if (phanTramTimeline > 100) phanTramTimeline = 100; // Khống chế trần 100%
+
+//        // 🌟 2. THIẾT KẾ ICON THỨ HẠNG
+//        let rankIcon = `<div style="width: 30px; height: 30px; background: #343a40; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">${index + 1}</div>`;
+//        if (index === 0) rankIcon = `<div style="font-size: 24px;" title="Vua Chiến Trường">🥇</div>`;
+//        if (index === 1) rankIcon = `<div style="font-size: 24px;">🥈</div>`;
+//        if (index === 2) rankIcon = `<div style="font-size: 24px;">🥉</div>`;
+
+//        // 🌟 3. ĐỔI MÀU THANH TIMELINE KHI ĐẠT ĐIỂM TUYỆT ĐỐI (Hiệu ứng tâm lý)
+//        const mauThanhTimeline = diemSoHienTai >= 10 ? 'linear-gradient(90deg, #f1c40f, #e67e22)' : '#3498db';
+
+//        // Lấy số câu đã làm và số câu đúng
+//        const soCauDaLam = hs.so_cau_da_lam || 0;
+//        const soCauDung = hs.so_cau_dung || 0;
+
+//        htmlDong += `
+//            <div style="display: flex; justify-content: space-between; align-items: center; background: #2f2f45; padding: 12px 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); margin-bottom: 10px; transition: all 0.3s ease;">
+//                <div style="width: 50px; display: flex; justify-content: center;">${rankIcon}</div>
+
+//                <div style="flex: 1; font-weight: bold; font-size: 16px; color: #fff; padding-right: 15px;">
+//                    <span style="color: #ffffff;">${hs.ten_hoc_sinh}</span>
+//                    <div style="font-size: 12px; color: #a0a0b2; font-weight: normal; margin-top: 4px;">
+//                        📊 Tiến độ: <b style="color: #3498db;">${soCauDaLam}/${tongCau}</b> | 🎯 Đúng: <b style="color: #2ecc71;">${soCauDung} câu</b>
+//                    </div>
+//                </div>
+
+//                <div style="width: 45%; display: flex; align-items: center; gap: 12px;">
+//                    <div style="flex: 1; background: #1e1e2f; height: 14px; border-radius: 7px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4); position: relative;">
+//                        <div style="width: ${phanTramTimeline}%; height: 100%; background: ${mauThanhTimeline}; border-radius: 7px; transition: width 0.4s ease-out;"></div>
+//                    </div>
+//                </div>
+
+//                <div style="width: 90px; text-align: right; font-size: 24px; font-weight: 900; color: #f1c40f; font-family: monospace; text-shadow: 0 0 8px rgba(241,196,15,0.3);">
+//                    ${diemSoHienTai.toFixed(2)}
+//                </div>
+//            </div>
+//        `;
+//    });
+
+//    vungVe.innerHTML = `<div style="display: flex; flex-direction: column; gap: 5px;">${htmlDong}</div>`;
+//};
+
+
+// [Nhãn thời gian: 17:35 - Ngày 28/05/2026] - Hàm 9.3.1: Vẽ Leaderboard Live (Nâng cấp 2 thanh Tiến độ & Điểm, Thêm nút Soi)
 window.ham_9_3_1_ve_leaderboard = function () {
     const vungVe = document.getElementById('vung-ve-leaderboard');
     if (!vungVe) return;
@@ -994,7 +1061,7 @@ window.ham_9_3_1_ve_leaderboard = function () {
         return;
     }
 
-    // THUẬT TOÁN XẾP HẠNG GIỮ NGUYÊN: 1. Điểm số (giảm dần) -> 2. Số câu đúng (giảm dần) -> 3. Tgian nộp (tăng dần)
+    // THUẬT TOÁN XẾP HẠNG: 1. Điểm số (giảm dần) -> 2. Số câu đúng (giảm dần) -> 3. Tgian nộp (tăng dần)
     window.DanhSachLive.sort((a, b) => {
         if (b.diem_so !== a.diem_so) return b.diem_so - a.diem_so;
         if (b.so_cau_dung !== a.so_cau_dung) return b.so_cau_dung - a.so_cau_dung;
@@ -1005,50 +1072,71 @@ window.ham_9_3_1_ve_leaderboard = function () {
     const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
 
     window.DanhSachLive.forEach((hs, index) => {
-        // 🌟 1. THAY ĐỔI CỐT LÕI: Tính % độ dài thanh Timeline dựa trên ĐIỂM SỐ (Tối đa 10 điểm = 100%)
+        // --- TÍNH TOÁN THANH SỐ 1: ĐIỂM SỐ ---
         const diemSoHienTai = Number(hs.diem_so || 0);
-        let phanTramTimeline = (diemSoHienTai / 10.0) * 100;
-        if (phanTramTimeline > 100) phanTramTimeline = 100; // Khống chế trần 100%
+        let phanTramDiem = (diemSoHienTai / 10.0) * 100;
+        if (phanTramDiem > 100) phanTramDiem = 100;
+        const mauThanhDiem = diemSoHienTai >= 10 ? 'linear-gradient(90deg, #f1c40f, #e67e22)' : '#3498db';
 
-        // 🌟 2. THIẾT KẾ ICON THỨ HẠNG
-        let rankIcon = `<div style="width: 30px; height: 30px; background: #343a40; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">${index + 1}</div>`;
-        if (index === 0) rankIcon = `<div style="font-size: 24px;" title="Vua Chiến Trường">🥇</div>`;
-        if (index === 1) rankIcon = `<div style="font-size: 24px;">🥈</div>`;
-        if (index === 2) rankIcon = `<div style="font-size: 24px;">🥉</div>`;
-
-        // 🌟 3. ĐỔI MÀU THANH TIMELINE KHI ĐẠT ĐIỂM TUYỆT ĐỐI (Hiệu ứng tâm lý)
-        const mauThanhTimeline = diemSoHienTai >= 10 ? 'linear-gradient(90deg, #f1c40f, #e67e22)' : '#3498db';
-
-        // Lấy số câu đã làm và số câu đúng
+        // --- TÍNH TOÁN THANH SỐ 2: TIẾN ĐỘ CÂU HỎI ---
         const soCauDaLam = hs.so_cau_da_lam || 0;
         const soCauDung = hs.so_cau_dung || 0;
+        let phanTramTienDo = (soCauDaLam / tongCau) * 100;
+        if (phanTramTienDo > 100) phanTramTienDo = 100;
+        // Đổi màu xanh lá nếu đã làm xong toàn bộ
+        const mauThanhTienDo = soCauDaLam >= tongCau ? '#2ecc71' : '#9b59b6';
+
+        // --- THIẾT KẾ ICON THỨ HẠNG ---
+        let rankIcon = `<div style="width: 32px; height: 32px; background: #474761; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">${index + 1}</div>`;
+        if (index === 0) rankIcon = `<div style="font-size: 28px;" title="Top 1">🥇</div>`;
+        if (index === 1) rankIcon = `<div style="font-size: 26px;" title="Top 2">🥈</div>`;
+        if (index === 2) rankIcon = `<div style="font-size: 24px;" title="Top 3">🥉</div>`;
 
         htmlDong += `
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #2f2f45; padding: 12px 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); margin-bottom: 10px; transition: all 0.3s ease;">
-                <div style="width: 50px; display: flex; justify-content: center;">${rankIcon}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #2f2f45; padding: 12px 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); margin-bottom: 12px; transition: all 0.3s ease;">
                 
-                <div style="flex: 1; font-weight: bold; font-size: 16px; color: #fff; padding-right: 15px;">
-                    <span style="color: #ffffff;">${hs.ten_hoc_sinh}</span>
-                    <div style="font-size: 12px; color: #a0a0b2; font-weight: normal; margin-top: 4px;">
-                        📊 Tiến độ: <b style="color: #3498db;">${soCauDaLam}/${tongCau}</b> | 🎯 Đúng: <b style="color: #2ecc71;">${soCauDung} câu</b>
+                <div style="width: 45px; display: flex; justify-content: center;">${rankIcon}</div>
+                <div style="width: 160px; font-weight: bold; font-size: 15px; color: #fff; padding-right: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    ${hs.ten_hoc_sinh}
+                    <div style="font-size: 11px; color: #a0a0b2; font-weight: normal; margin-top: 5px;">
+                        🎯 Đúng: <b style="color: #2ecc71;">${soCauDung}</b> | Xong: <b style="color: #9b59b6;">${soCauDaLam}/${tongCau}</b>
                     </div>
                 </div>
                 
-                <div style="width: 45%; display: flex; align-items: center; gap: 12px;">
-                    <div style="flex: 1; background: #1e1e2f; height: 14px; border-radius: 7px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4); position: relative;">
-                        <div style="width: ${phanTramTimeline}%; height: 100%; background: ${mauThanhTimeline}; border-radius: 7px; transition: width 0.4s ease-out;"></div>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px; padding-right: 20px;">
+                    
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="font-size: 10px; color: #f1c40f; width: 45px; font-weight: 900; letter-spacing: 1px;">ĐIỂM</div>
+                        <div style="flex: 1; background: #1e1e2f; height: 12px; border-radius: 6px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);">
+                            <div style="width: ${phanTramDiem}%; height: 100%; background: ${mauThanhDiem}; border-radius: 6px; transition: width 0.4s ease-out;"></div>
+                        </div>
                     </div>
+
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="font-size: 10px; color: #9b59b6; width: 45px; font-weight: 900; letter-spacing: 1px;">TIẾN ĐỘ</div>
+                        <div style="flex: 1; background: #1e1e2f; height: 6px; border-radius: 3px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);">
+                            <div style="width: ${phanTramTienDo}%; height: 100%; background: ${mauThanhTienDo}; border-radius: 3px; transition: width 0.4s ease-out;"></div>
+                        </div>
+                    </div>
+
                 </div>
                 
-                <div style="width: 90px; text-align: right; font-size: 24px; font-weight: 900; color: #f1c40f; font-family: monospace; text-shadow: 0 0 8px rgba(241,196,15,0.3);">
-                    ${diemSoHienTai.toFixed(2)}
+                <div style="display: flex; align-items: center; gap: 15px; width: 140px; justify-content: flex-end;">
+                    <div style="text-align: right; font-size: 24px; font-weight: 900; color: #f1c40f; font-family: monospace; text-shadow: 0 0 8px rgba(241,196,15,0.3);">
+                        ${diemSoHienTai.toFixed(2)}
+                    </div>
+                    <button onclick="ham_9_3_4_soi_bai_live('${hs.uid_hoc_sinh}')" style="padding: 8px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'" title="Soi các đáp án em này đã chọn">
+                        👁️ Soi
+                    </button>
                 </div>
             </div>
         `;
     });
 
-    vungVe.innerHTML = `<div style="display: flex; flex-direction: column; gap: 5px;">${htmlDong}</div>`;
+    vungVe.innerHTML = `<div style="display: flex; flex-direction: column;">${htmlDong}</div>`;
 };
+
+
 // =====================================================================
 // HÀM ĐỔI TRẠNG THÁI & ĐIỀU KHIỂN (ĐÃ VÁ LỖI 400 BẰNG SQL)
 // =====================================================================
@@ -1182,6 +1270,68 @@ window.ham_9_3_3_thoat_phong = function () {
     window.ham_9_1_tab_live_quiz();
 };
 
+
+// [Nhãn thời gian: 17:35 - Ngày 28/05/2026] - Hàm 9.3.4: Popup Soi bài nhanh ngay trên Đấu trường Live
+window.ham_9_3_4_soi_bai_live = function (uidHocSinh) {
+    const hs = window.DanhSachLive.find(h => h.uid_hoc_sinh === uidHocSinh);
+    if (!hs) return Swal.fire('Lỗi', 'Không tìm thấy dữ liệu học sinh này trên sóng.', 'error');
+
+    // Móc dữ liệu mảng các đáp án ABCD mà học sinh đã chọn từ gói tin Live
+    let mangChon = [];
+    try {
+        if (hs.danh_sach_chon) {
+            mangChon = typeof hs.danh_sach_chon === 'string' ? JSON.parse(hs.danh_sach_chon) : hs.danh_sach_chon;
+        } else if (hs.chi_tiet) {
+            const ct = typeof hs.chi_tiet === 'string' ? JSON.parse(hs.chi_tiet) : hs.chi_tiet;
+            mangChon = ct.mang_dap_an_chon || ct.danh_sach_chon || [];
+        }
+    } catch (e) { console.warn("Không parse được mảng chọn"); }
+
+    const tongCau = window.ThongTinPhongLive.tongSoCau || 20;
+
+    let gridHtml = '';
+    if (mangChon.length === 0) {
+        gridHtml = `<div style="grid-column: span 5; padding: 20px; color: #e74c3c; font-style: italic;">Học sinh chưa tích đáp án nào hoặc gói dữ liệu sóng chưa đồng bộ chi tiết ABCD!</div>`;
+    } else {
+        for (let i = 0; i < tongCau; i++) {
+            let chon = mangChon[i] || '-';
+            let bgHienThi = chon === '-' ? '#2a2a3c' : '#2980b9'; // Xanh nếu đã chọn, xám nếu chưa chọn
+            let colorHienThi = chon === '-' ? '#7f8c8d' : '#ffffff';
+
+            gridHtml += `
+                <div style="padding: 8px 5px; background: ${bgHienThi}; border: 1px solid #444; border-radius: 6px; text-align: center; color: ${colorHienThi}; box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);">
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.6); margin-bottom: 3px;">Câu ${i + 1}</div>
+                    <div style="font-size: 16px; font-weight: 900;">${chon}</div>
+                </div>
+            `;
+        }
+    }
+
+    // Hiển thị Popup Dark Mode chuẩn phong cách Live
+    Swal.fire({
+        title: `👁️ TIẾN ĐỘ LÀM BÀI`,
+        html: `
+            <div style="text-align: left;">
+                <div style="font-size: 18px; font-weight: bold; color: #f1c40f; margin-bottom: 10px;">👤 ${hs.ten_hoc_sinh}</div>
+                <div style="background: #252538; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; display: flex; justify-content: space-between;">
+                    <span>⏳ Đã làm: <b style="color:#9b59b6;">${hs.so_cau_da_lam || 0}/${tongCau}</b></span>
+                    <span>🎯 Đúng hiện tại: <b style="color:#2ecc71;">${hs.so_cau_dung || 0}</b></span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 350px; overflow-y: auto; padding-right: 5px;">
+                    ${gridHtml}
+                </div>
+            </div>
+        `,
+        background: '#1e1e2f',
+        color: '#ffffff',
+        showConfirmButton: true,
+        confirmButtonText: 'Đóng lại',
+        confirmButtonColor: '#e74c3c'
+    });
+};
+
+
+
 //// =====================================================================
 //// Hàm 9.4: Xóa phòng Live Quiz và dọn dẹp dữ liệu liên quan
 //// =====================================================================
@@ -1271,7 +1421,7 @@ window.ham_9_4_xoa_phong_live = async function (maPhong, maNhiemVuAo) {
 };
 
 
-                    // =====================================================================
+// =====================================================================
 // KHỐI 9.5: HỆ THỐNG THỐNG KÊ VÀ SOI BÀI CHUYÊN BIỆT CHO LIVE QUIZ
 // =====================================================================
 
