@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-05-28T13:53:37.842Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_016b846c72",
+      "dapAn": "B",
+      "loiGiaiHtml": "Số \"bảy mươi tư\" gồm 7 chục và 4 đơn vị, được viết ngắn gọn là $74$."
+    },
+    {
+      "maBaoMat": "sol_8b7afcf1d3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Số tròn chục là số có chữ số tận cùng hàng đơn vị bằng 0 (ở mức hai chữ số từ 10 đến 90). Do đó $60$ là số tròn chục."
+    },
+    {
+      "maBaoMat": "sol_7b4600ef11",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thực hiện từ trái sang phải: $10 - 6 = 4$, sau đó lấy $4 + 4 = 8$."
+    },
+    {
+      "maBaoMat": "sol_22fe18fffe",
+      "dapAn": "B",
+      "loiGiaiHtml": "So sánh hàng chục: Số 78 có hàng chục là 7. Các số còn lại có hàng chục là 8 hoặc 9. Vì $7 < 8 < 9$ nên $78$ là số nhỏ nhất."
+    },
+    {
+      "maBaoMat": "sol_960b740a3c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta tính hai vế: Vế trái $45 - 5 = 40$. Vế phải $30 + 10 = 40$. Vì $40 = 40$ nên điền dấu $=$."
+    },
+    {
+      "maBaoMat": "sol_6deddd4965",
+      "dapAn": "B",
+      "loiGiaiHtml": "Quy tắc đặt tính thẳng cột là các chữ số cùng một hàng phải thẳng cột với nhau: hàng chục thẳng hàng chục, hàng đơn vị thẳng hàng đơn vị."
+    },
+    {
+      "maBaoMat": "sol_3a9241e64b",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta cộng các số: $54 + 23 = 77$ và giữ nguyên đơn vị đo độ dài là $\\text{cm}$ ở phía sau: $77\\text{ cm}$."
+    },
+    {
+      "maBaoMat": "sol_b4eefaa3e4",
+      "dapAn": "B",
+      "loiGiaiHtml": "Một tuần theo thứ tự: Thứ Hai rồi đến Thứ Ba, rồi đến Thứ Tư. Hôm nay là Thứ Ba thì ngày mai phải là Thứ Tư."
+    },
+    {
+      "maBaoMat": "sol_9cb2c72504",
+      "dapAn": "B",
+      "loiGiaiHtml": "Một chiếc bút chì thông thường của học sinh tiểu học có độ dài vừa vặn khoảng $15\\text{ cm}$. Các kích thước $2\\text{ cm}$ (quá ngắn) hoặc $80\\text{ cm}, 100\\text{ cm}$ (quá dài)."
+    },
+    {
+      "maBaoMat": "sol_3f8c325c58",
+      "dapAn": "",
+      "loiGiaiHtml": "Cái lon sữa có hai đáy tròn phẳng và thân bo tròn bao quanh nên có hình dạng là khối trụ."
+    },
+    {
+      "maBaoMat": "sol_f1fa01af42",
+      "dapAn": "B",
+      "loiGiaiHtml": "Số nhãn vở An có tất cả là phép tính cộng thêm: $20 + 10 = 30$ nhãn vở."
+    },
+    {
+      "maBaoMat": "sol_5092532b94",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dãy số $90, 80, 70, 60$ có các số giảm dần từ trái sang phải, tức là được xếp từ lớn đến bé."
+    },
+    {
+      "maBaoMat": "sol_28d54bc41d",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số 5 là số có 1 chữ số, các số còn lại có 2 chữ số nên số 5 nhỏ nhất (Đúng).\\\r\n\t\t\t\\itemch Số 52 phải gồm có 5 chục và 2 đơn vị. Phát biểu nói ngược là Sai.\\\r\n\t\t\t\\itemch So sánh: $5 < 25 < 50 < 52 \\Rightarrow$ Thứ tự sắp xếp từ bé đến lớn này là Đúng.\\\r\n\t\t\t\\itemch Số lớn nhất là 52, số nhỏ nhất là 5. Tổng bằng: $52 + 5 = 57$, phát biểu ra 55 là Sai.\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4f1fcbd617",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Sách học sinh tiểu học dài khoảng hơn một gang tay rưỡi đến hai gang tay trẻ em (Đúng).\\\r\n\t\t\t\\itemch Số 20 gồm 2 chục, vậy thước kẻ dài 2 chục $\\text{cm}$ (Đúng).\\\r\n\t\t\t\\itemch Cái tẩy chì của học sinh rất nhỏ, chỉ dài khoảng $3\\text{ cm}$ đến $4\\text{ cm}$. Dài $15\\text{ cm}$ là gần bằng cái thước kẻ (Sai).\\\r\n\t\t\t\\itemch Theo chương trình học lớp 1 mới, học sinh đã biết $10\\text{ cm} = 1\\text{ dm}$ (Đúng).\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_bf70493c34",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Kẹo xanh là 35, kẹo đỏ là 21. Vì $35 > 21$ nên kẹo xanh nhiều hơn kẹo đỏ (Sai).\\\r\n\t\t\t\\itemch Tổng số kẹo: $35 + 21 = 56$ cái (Đúng).\\\r\n\t\t\t\\itemch Số kẹo xanh nhiều hơn đỏ là: $35 - 21 = 14$ cái (Đúng).\\\r\n\t\t\t\\itemch Ăn bớt 1 cái kẹo xanh thì còn $35 - 1 = 34$ cái. Số 34 có tận cùng là 4 nên không phải số tròn chục (Sai).\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_d9f3d9c2dd",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Thứ Ba liền sau Thứ Hai nên ngày 6 là Thứ Ba (Đúng).\\\r\n\t\t\t\\itemch Học sinh tiểu học chỉ đi học từ Thứ Hai đến Thứ Sáu (5 ngày), Thứ Bảy và Chủ Nhật được nghỉ (Sai).\\\r\n\t\t\t\\itemch Kim dài chỉ phút quay hết 1 vòng mất 1 tiếng, kim ngắn chỉ giờ quay hết 1 vòng mất 12 tiếng nên kim dài chạy nhanh hơn (Đúng).\\\r\n\t\t\t\\itemch Cả hai kim chập nhau ở số 12 là biểu thị mốc 12 giờ đúng (Đúng).\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_dcb10587ec",
+      "dapAn": "53",
+      "loiGiaiHtml": "Thực hiện trừ không nhớ theo hàng: Hàng đơn vị $6 - 3 = 3$, hàng chục $9 - 4 = 5$. Kết quả là $53$."
+    },
+    {
+      "maBaoMat": "sol_6beed4b70e",
+      "dapAn": "30",
+      "loiGiaiHtml": "Số cần điền là: $80 - 50 = 30$."
+    },
+    {
+      "maBaoMat": "sol_896b1558de",
+      "dapAn": "7",
+      "loiGiaiHtml": "Số $76$ đứng ở vị trí hàng chục là số 7, hàng đơn vị là số 6. Nên nó gồm 7 chục."
+    },
+    {
+      "maBaoMat": "sol_60e9f9b615",
+      "dapAn": "57",
+      "loiGiaiHtml": "Tổng số con vịt nhà bà là phép tính cộng: $45 + 12 = 57$ con vịt."
+    },
+    {
+      "maBaoMat": "sol_ad0620e35e",
+      "dapAn": "23",
+      "loiGiaiHtml": "Độ dài sợi dây còn lại là kết quả của phép tính trừ: $38 - 15 = 23\\text{ cm}$."
+    },
+    {
+      "maBaoMat": "sol_9df45cb29b",
+      "dapAn": "98",
+      "loiGiaiHtml": "Số có hai chữ số lớn nhất là 99, nhưng 99 có hai chữ số giống nhau. Để số lớn nhất mà có hai chữ số khác nhau, ta giữ nguyên chữ số hàng chục lớn nhất là 9 và giảm chữ số hàng đơn vị xuống số liền trước là 8. Số cần tìm là 98."
+    }
+  ]
+}
