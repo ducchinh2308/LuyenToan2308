@@ -262,7 +262,7 @@ window.ham_9_1_tab_live_quiz = async function () {
                     btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem thi đấu trực tiếp">👀 Live</button>`;
                 } else {
                     badgeTrangThai = `<span style="background:#f1f3f4; color:#5f6368; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #dadce0; white-space:nowrap;">ĐÃ KẾT THÚC</span>`;
-                    btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem bảng xếp hạng">🏆 X.Hạng</button>`;
+                    btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem bảng xếp hạng">🏆 Xem</button>`;
                 }
 
                 // GHÉP LƯỚI GRID 2 DÒNG x 2 CỘT
@@ -1271,7 +1271,7 @@ window.ham_9_4_xoa_phong_live = async function (maPhong, maNhiemVuAo) {
 };
 
 
-// =====================================================================
+                    // =====================================================================
 // KHỐI 9.5: HỆ THỐNG THỐNG KÊ VÀ SOI BÀI CHUYÊN BIỆT CHO LIVE QUIZ
 // =====================================================================
 
@@ -1324,7 +1324,7 @@ window.ham_9_5_thong_ke_live_quiz = async function (maPhong, maNhiemVuAo, tenNhi
 
         Object.values(tuDienKQCuoi).forEach(kq => {
             const hsInfor = tuDienHS[kq.uid_hoc_sinh] || { ten: kq.ten_hoc_sinh || 'Học sinh ẩn', sdt: 'N/A' };
-
+            
             // Xử lý móc số câu đúng an toàn
             let soCauDungChuan = kq.so_cau_dung;
             if (soCauDungChuan == null && !kq.is_live_sync) {
@@ -1332,7 +1332,7 @@ window.ham_9_5_thong_ke_live_quiz = async function (maPhong, maNhiemVuAo, tenNhi
                     const chuoiJSON = kq.chi_tiet || kq.chi_tiet_lam_bai || '{}';
                     const chiTietObj = typeof chuoiJSON === 'string' ? JSON.parse(chuoiJSON) : chuoiJSON;
                     soCauDungChuan = chiTietObj.so_cau_dung || chiTietObj.soCauDung || 0;
-                } catch (e) { soCauDungChuan = 0; }
+                } catch(e) { soCauDungChuan = 0; }
             }
 
             mangDaThamGia.push({
@@ -1424,7 +1424,7 @@ window.ham_9_5_sub_danh_sach_tham_gia = function (loaiSort = null) {
             const indexGoc = mangDaThamGia.indexOf(hs);
             const hienThiDong = (hs.ten || "").toLowerCase().includes((sortState.tuKhoa || "").toLowerCase()) ? "" : "display: none;";
 
-            const nutSoiBai = hs.is_live_sync
+            const nutSoiBai = hs.is_live_sync 
                 ? `<span style="font-size:10px; color:#d35400; font-weight:bold; background:#fff3cd; padding:4px 6px; border-radius:4px;">Chốt tự động</span>`
                 : `<button onclick="ham_9_5_sub_soi_bai_lam(${indexGoc})" style="padding: 6px 12px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; transition: 0.2s;">👁️ SOI BÀI</button>`;
 
@@ -1498,8 +1498,8 @@ window.ham_9_5_sub_soi_bai_lam = function (indexHocSinh) {
         mangCauTraLoi.forEach((cau, idx) => {
             const trangThai = (cau.ketQua || "").trim();
             let bgHop = "#fff5f5"; let borderHop = "#feb2b2"; let chuHop = "#c53030"; let iconKq = "❌";
-
-            if (trangThai === "Đúng") { bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢"; }
+            
+            if (trangThai === "Đúng") { bgHop = "#f0fff4"; borderHop = "#9ae6b4"; chuHop = "#22543d"; iconKq = "🟢"; } 
             else if (trangThai === "Bỏ trống") { bgHop = "#f7fafc"; borderHop = "#cbd5e0"; chuHop = "#4a5568"; iconKq = "⚪"; }
 
             htmlMaTranGrid += `
@@ -1582,7 +1582,7 @@ window.ham_9_5_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maC
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
         let chiTiet = typeof hs.chiTietCau === 'string' ? JSON.parse(hs.chiTietCau) : (hs.chiTietCau || []);
         let ketQuaMock = { tong_diem: hs.diem, chi_tiet_lam_bai: chiTiet };
-
+        
         Swal.close();
         if (typeof ham_8_14_ve_giao_dien_xem_lai === 'function') {
             ham_8_14_ve_giao_dien_xem_lai(ketQuaMock, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
