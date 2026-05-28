@@ -443,7 +443,7 @@ window.ham_9_1_tab_live_quiz = async function () {
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 120px;">Mã PIN</th>
                                 <th style="padding: 12px 10px; color: #495057;">Sử dụng Đề thi / Học liệu</th>
                                 <th style="padding: 12px 10px; color: #495057; width: 100px;">Thời gian tạo</th>
-                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 50px;">Số HS</th>
+                                <th style="padding: 12px 10px; text-align: center; color: #495057; width: 60px;">Số HS</th>
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 150px;">Trạng Thái</th>
                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 180px;">Thao Tác</th>
                             </tr>
