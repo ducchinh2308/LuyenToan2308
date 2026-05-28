@@ -1444,11 +1444,47 @@ async function ham_5_2_tai_danh_sach_hoc_sinh() {
 }
 
 
-// =====================================================================
-// Hàm mới: Thực hiện lọc nhanh danh sách học sinh theo lớp chọn trên RAM
-// =====================================================================
+//// =====================================================================
+//// Hàm mới: Thực hiện lọc nhanh danh sách học sinh theo lớp chọn trên RAM
+//// =====================================================================
+//window.ham_5_x_loc_hoc_sinh_theo_lop = function (maLopChon, nutBam) {
+//    // 1. Reset màu tất cả các nút lọc học sinh về màu trắng ban đầu
+//    document.querySelectorAll('.btn-loc-lop-hs').forEach(btn => {
+//        btn.classList.remove('active');
+//        btn.style.background = 'white';
+//        btn.style.color = '#495057';
+//        btn.style.borderColor = '#ced4da';
+//    });
+
+//    // 2. Kích hoạt đổi màu nổi bật cho nút lớp vừa click
+//    nutBam.classList.add('active');
+//    nutBam.style.background = '#6f42c1';
+//    nutBam.style.color = 'white';
+//    nutBam.style.borderColor = '#6f42c1';
+
+//    // 3. Quét qua cột "Mã lớp tham gia" của bảng học sinh để ẩn/hiện dòng tr
+//    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
+
+//    rows.forEach(row => {
+//        if (maLopChon === 'TAT_CA') {
+//            row.style.display = ""; // Hiện tất cả không lọc
+//        } else {
+//            const textDong = row.innerText || row.textContent;
+
+//            // Do trong bảng cột lớp hiển thị dạng chuỗi mã lớp (ví dụ: LOP_1A, LOP_1B)
+//            // Thuật toán quét chuỗi sẽ nhận diện xem dòng tr đó có chứa mã lớp đang chọn không
+//            if (textDong.includes(maLopChon)) {
+//                row.style.display = ""; // Đúng lớp thì hiện
+//            } else {
+//                row.style.display = "none"; // Khác lớp thì ẩn ngầm
+//            }
+//        }
+//    });
+//};
+
+// [Nhãn thời gian: 12:48 - Ngày 28/05/2026] - Đồng bộ Nút Lọc lớp HS với Hàm vẽ bảng để STT chạy từ 1
 window.ham_5_x_loc_hoc_sinh_theo_lop = function (maLopChon, nutBam) {
-    // 1. Reset màu tất cả các nút lọc học sinh về màu trắng ban đầu
+    // 1. Reset màu các nút lọc học sinh
     document.querySelectorAll('.btn-loc-lop-hs').forEach(btn => {
         btn.classList.remove('active');
         btn.style.background = 'white';
@@ -1456,54 +1492,53 @@ window.ham_5_x_loc_hoc_sinh_theo_lop = function (maLopChon, nutBam) {
         btn.style.borderColor = '#ced4da';
     });
 
-    // 2. Kích hoạt đổi màu nổi bật cho nút lớp vừa click
-    nutBam.classList.add('active');
-    nutBam.style.background = '#6f42c1';
-    nutBam.style.color = 'white';
-    nutBam.style.borderColor = '#6f42c1';
+    // 2. Highlight nút vừa click
+    if (nutBam) {
+        nutBam.classList.add('active');
+        nutBam.style.background = '#6f42c1';
+        nutBam.style.color = 'white';
+        nutBam.style.borderColor = '#6f42c1';
+    }
 
-    // 3. Quét qua cột "Mã lớp tham gia" của bảng học sinh để ẩn/hiện dòng tr
-    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
-
-    rows.forEach(row => {
-        if (maLopChon === 'TAT_CA') {
-            row.style.display = ""; // Hiện tất cả không lọc
-        } else {
-            const textDong = row.innerText || row.textContent;
-
-            // Do trong bảng cột lớp hiển thị dạng chuỗi mã lớp (ví dụ: LOP_1A, LOP_1B)
-            // Thuật toán quét chuỗi sẽ nhận diện xem dòng tr đó có chứa mã lớp đang chọn không
-            if (textDong.includes(maLopChon)) {
-                row.style.display = ""; // Đúng lớp thì hiện
-            } else {
-                row.style.display = "none"; // Khác lớp thì ẩn ngầm
-            }
-        }
-    });
+    // 3. Gọi hàm vẽ bảng tái tạo lại cấu trúc và STT
+    if (typeof window.ham_5_10_ve_bang_hoc_sinh === 'function') {
+        window.ham_5_10_ve_bang_hoc_sinh();
+    }
 };
 
 
-// =====================================================================
-// Hàm 5.3: Tìm kiếm trực tiếp (Live Search) học sinh trên bảng
-// =====================================================================
-function ham_5_3_tim_kiem_live_hoc_sinh(tuKhoa) {
-    const filter = tuKhoa.toLowerCase().trim();
 
-    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng học sinh
-    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
+//// =====================================================================
+//// Hàm 5.3: Tìm kiếm trực tiếp (Live Search) học sinh trên bảng
+//// =====================================================================
+//function ham_5_3_tim_kiem_live_hoc_sinh(tuKhoa) {
+//    const filter = tuKhoa.toLowerCase().trim();
 
-    rows.forEach(row => {
-        // Đọc toàn bộ nội dung chữ (Tên, SĐT, UID...) đang hiển thị trên dòng đó
-        const textContent = row.innerText.toLowerCase();
+//    // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng học sinh
+//    const rows = document.querySelectorAll('#danh-sach-hs-render tbody tr');
 
-        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
-        if (textContent.includes(filter)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-    });
-}
+//    rows.forEach(row => {
+//        // Đọc toàn bộ nội dung chữ (Tên, SĐT, UID...) đang hiển thị trên dòng đó
+//        const textContent = row.innerText.toLowerCase();
+
+//        // Nếu nội dung dòng chứa từ khóa -> Hiện, ngược lại -> Ẩn
+//        if (textContent.includes(filter)) {
+//            row.style.display = "";
+//        } else {
+//            row.style.display = "none";
+//        }
+//    });
+//}
+
+// [Nhãn thời gian: 12:48 - Ngày 28/05/2026] - Đồng bộ Tìm kiếm trực tiếp HS với Hàm vẽ bảng để STT chạy từ 1
+window.ham_5_3_tim_kiem_live_hoc_sinh = function (tuKhoa) {
+    // Không cần dùng JS can thiệp CSS nữa. Hàm 5.10 đã tự động đọc ô Input và dựng lại STT.
+    if (typeof window.ham_5_10_ve_bang_hoc_sinh === 'function') {
+        window.ham_5_10_ve_bang_hoc_sinh();
+    }
+};
+
+
 
 
 // Hàm 5.10: Vẽ Bảng học sinh (Đầy đủ tất cả các cột theo yêu cầu)
