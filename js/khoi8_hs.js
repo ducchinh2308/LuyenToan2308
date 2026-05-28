@@ -1046,7 +1046,15 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
         // RÁP GIAO DIỆN PHÂN TÁCH BIỆT LẬP 4 TAB NỘI BỘ
         vungLamViec.innerHTML = `
+            <div id="thanh-loc-lop-goc-hoc-sinh" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: #fff; border-radius: 8px; border: 1px dashed #ced4da; align-items: center;">
+                    <span style="font-weight: bold; color: #495057; font-size: 13px;">🏫 Lớp đang xem:</span>
+                    <button class="btn-loc-lop-cua-hs active" onclick="ham_8_x_loc_card_theo_lop('TAT_CA', this)" style="padding: 5px 12px; background: #6f42c1; color: white; border: 1px solid #6f42c1; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
+                    <span id="cac-nut-lop-hs-loc" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
+            </div>
             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
+
+                
+
                 <button id="btn-tab-can-lam" onclick="ham_8_x_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">
                     🎯 CẦN LÀM (${dsCanLam.length})
                 </button>
@@ -1063,6 +1071,24 @@ async function ham_8_2_tab_nhiem_vu_bat_buoc() {
 
             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
         `;
+
+
+        // 🌟 VỊ TRÍ CẤY GHÉP GIỮA HÀM: TỰ ĐỘNG VẼ NÚT LỚP MÀ HỌC SINH ĐÓ CÓ THAM GIA
+        const khungNutLopCuaHs = document.getElementById('cac-nut-lop-hs-loc');
+        if (khungNutLopCuaHs && dataLop) {
+            let htmlNutLop = '';
+            dataLop.forEach(l => {
+                htmlNutLop += `
+                    <button class="btn-loc-lop-cua-hs" onclick="ham_8_x_loc_card_theo_lop('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+                        🏫 ${l.ten_lop}
+                    </button>
+                `;
+            });
+            khungNutLopCuaHs.innerHTML = htmlNutLop;
+        }
+
+        // Lưu biến trạng thái lớp đang chọn toàn cục để bổ trợ bộ chuyển đổi Tab
+        window.MaLopDangLocHienTai = 'TAT_CA';
 
         // CACHED HTML ĐỂ CHUYỂN TAB TỨC THÌ
         window.CachedCardsCanLamHtml = dsCanLam.length === 0
@@ -1125,10 +1151,54 @@ window.ham_8_x_switch_sub_tab = function (loaiTab) {
         btnDaKhoa.style.color = 'white';
         vungChua.innerHTML = window.CachedCardsDaLamKhoaHtml;
     }
+
+
+
+    // 🌟 DÒNG CHÈN THÊM: Ép chạy lại bộ lọc lớp ngay sau khi đổi Tab nội bộ
+    const nutActive = document.querySelector('.btn-loc-lop-cua-hs.active');
+    if (nutActive && window.MaLopDangLocHienTai) {
+        window.ham_8_x_loc_card_theo_lop(window.MaLopDangLocHienTai, nutActive);
+    }
 };
 
 
+// =====================================================================
+// Hàm mới: Học sinh bấm chọn nút lớp -> Ẩn/Hiện Card tương ứng trực tiếp
+// =====================================================================
+window.ham_8_x_loc_card_theo_lop = function (maLopChon, nutBam) {
+    // 1. Đồng bộ lưu lại mã lớp đang lọc vào bộ nhớ RAM toàn cục
+    window.MaLopDangLocHienTai = maLopChon;
 
+    // 2. Đổi màu nút bấm Highlight cho trực quan
+    document.querySelectorAll('.btn-loc-lop-cua-hs').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'white';
+        btn.style.color = '#495057';
+        btn.style.borderColor = '#ced4da';
+    });
+    nutBam.classList.add('active');
+    nutBam.style.background = '#6f42c1';
+    nutBam.style.color = 'white';
+    nutBam.style.borderColor = '#6f42c1';
+
+    // 3. Quét qua toàn bộ các Card đang hiển thị trong vùng làm việc để ẩn/hiện
+    const cards = document.querySelectorAll('#vung-chua-cards-nhiem-vu .card-nhiem-vu');
+
+    cards.forEach(card => {
+        if (maLopChon === 'TAT_CA') {
+            card.style.display = ""; // Hiện tất cả bài tập
+        } else {
+            // Đọc nội dung text bên trong card để nhận diện chuỗi Mã lớp hoặc Tên lớp gán ngầm
+            const textCard = card.innerText || card.textContent;
+
+            if (textCard.includes(maLopChon)) {
+                card.style.display = ""; // Đúng bài tập của lớp này thì hiện
+            } else {
+                card.style.display = "none"; // Khác lớp thì ẩn đi
+            }
+        }
+    });
+};
 //// =====================================================================
 //// Hàm bổ trợ mới: Chuyển đổi qua lại giữa 2 Sub-Tab trên giao diện RAM
 //// =====================================================================
