@@ -559,19 +559,97 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
 //    `;
 //};
 
+//// =====================================================================
+//// [Nhãn thời gian: 08:56 - Ngày 29/05/2026] - Hàm 8.6.6: Màn hình báo kết quả đã thi - Chờ các học sinh khác
+//// =====================================================================
+//window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
+//    // Gỡ bỏ không gian thi full màn hình nếu đang mở hiển thị
+//    const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
+//    if (khongGianThi) khongGianThi.remove();
+
+//    // Mở lại thanh cuộn cho trang chính
+//    document.body.style.overflow = 'auto';
+//    document.documentElement.style.overflow = 'auto';
+
+//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
+//    if (!vungLamViec) return;
+
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 550px; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+//            <div style="background: #27ae60; padding: 40px 20px; text-align: center; color: white;">
+//                <div style="font-size: 60px; margin-bottom: 10px; animation: pulse 2s infinite;">🏆</div>
+//                <h2 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 1px;">HOÀN THÀNH THI ĐẤU</h2>
+//                <p style="margin: 5px 0 0 0; opacity: 0.85; font-size: 14px;">Mã phòng đấu: ${window.ThongTinLiveHocSinh.maPhong || '---'}</p>
+//            </div>
+//            <div style="padding: 40px 30px; text-align: center;">
+//                <div style="font-size: 14px; color: #7f8c8d; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Điểm số chính thức của em</div>
+//                <div style="font-size: 64px; font-weight: 900; color: #2c3e50; margin: 10px 0; font-family: monospace;">${Number(diemSo).toFixed(2)}</div>
+
+//                <div style="background: #f8f9fa; border-left: 4px solid #2980b9; padding: 15px; border-radius: 8px; text-align: left; margin-top: 30px;">
+//                    <p style="margin: 0; color: #2c3e50; font-weight: bold; font-size: 15px;">⏳ Đang đợi các bạn khác nộp bài...</p>
+//                    <p style="margin: 5px 0 0 0; color: #7f8c8d; font-size: 13px;">Bảng xếp hạng tổng sắp toàn lớp sẽ được Thầy giáo công bố trên màn hình máy chiếu sau khi kết thúc phòng đấu.</p>
+//                </div>
+
+//                <button onclick="ham_8_6_7_thoat_ve_trang_chu()" style="margin-top: 30px; width: 100%; padding: 14px; background: #34495e; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+//                    🏠 TRỞ VỀ MÀN HÌNH CHÍNH
+//                </button>
+//            </div>
+//        </div>
+//    `;
+//};
+//// =====================================================================
+//// [Nhãn thời gian: 09:48 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp Live Quiz và Trở về màn hình Nhiệm vụ
+//// =====================================================================
+//window.ham_8_6_7_thoat_ve_trang_chu = function () {
+//    // 1. Dọn dẹp rác bộ nhớ của phiên Đấu trường
+//    window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
+//    window.DangKhoiTaoLiveQuiz = false;
+
+//    if (window.HocSinhLiveChannel) {
+//        _supabase.removeChannel(window.HocSinhLiveChannel);
+//        window.HocSinhLiveChannel = null;
+//    }
+
+//    if (window.IntervalKiemTraPhong) {
+//        clearInterval(window.IntervalKiemTraPhong);
+//        window.IntervalKiemTraPhong = null;
+//    }
+
+//    // 2. Bật lại vùng hiển thị chính (Đã bị ẩn đi lúc vào thi full màn hình)
+//    const dashboard = document.getElementById('dashboard-container');
+//    if (dashboard) dashboard.style.display = 'block';
+
+//    // 3. GỌI TRỰC TIẾP HÀM VẼ TAB NHIỆM VỤ CHÍNH XÁC CỦA THẦY
+//    if (typeof window.ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
+//        window.ham_8_2_tab_nhiem_vu_bat_buoc();
+//    } else {
+//        // Đề phòng lỗi (rất hiếm khi xảy ra), hướng dẫn học sinh tự bấm nút
+//        Swal.fire({
+//            title: 'Đã lưu điểm!',
+//            text: 'Em hãy bấm vào nút "🚀 NHIỆM VỤ LỚP" ở trên cùng để tiếp tục nhé.',
+//            icon: 'success'
+//        });
+//    }
+//};
+
+
 // =====================================================================
-// [Nhãn thời gian: 08:56 - Ngày 29/05/2026] - Hàm 8.6.6: Màn hình báo kết quả đã thi - Chờ các học sinh khác
+// [Nhãn thời gian: 10:05 - Ngày 29/05/2026] - Hàm 8.6.6: Màn hình báo kết quả đã thi
 // =====================================================================
 window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
-    // Gỡ bỏ không gian thi full màn hình nếu đang mở hiển thị
+    // 1. Gỡ bỏ không gian thi full màn hình
     const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
     if (khongGianThi) khongGianThi.remove();
 
-    // Mở lại thanh cuộn cho trang chính
+    // 2. Mở lại thanh cuộn
     document.body.style.overflow = 'auto';
     document.documentElement.style.overflow = 'auto';
 
-    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
+    // 3. BẬT LẠI KHUNG GIAO DIỆN CHÍNH (Rất quan trọng để không bị lỗi Null)
+    const dashboard = document.getElementById('dashboard-container');
+    if (dashboard) dashboard.style.display = 'block';
+
+    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || dashboard;
     if (!vungLamViec) return;
 
     vungLamViec.innerHTML = `
@@ -597,8 +675,9 @@ window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
         </div>
     `;
 };
+
 // =====================================================================
-// [Nhãn thời gian: 09:48 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp Live Quiz và Trở về màn hình Nhiệm vụ
+// [Nhãn thời gian: 10:05 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp Live Quiz và Reset lại Khung Giao Diện
 // =====================================================================
 window.ham_8_6_7_thoat_ve_trang_chu = function () {
     // 1. Dọn dẹp rác bộ nhớ của phiên Đấu trường
@@ -615,22 +694,22 @@ window.ham_8_6_7_thoat_ve_trang_chu = function () {
         window.IntervalKiemTraPhong = null;
     }
 
-    // 2. Bật lại vùng hiển thị chính (Đã bị ẩn đi lúc vào thi full màn hình)
-    const dashboard = document.getElementById('dashboard-container');
-    if (dashboard) dashboard.style.display = 'block';
-
-    // 3. GỌI TRỰC TIẾP HÀM VẼ TAB NHIỆM VỤ CHÍNH XÁC CỦA THẦY
-    if (typeof window.ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
-        window.ham_8_2_tab_nhiem_vu_bat_buoc();
+    // 2. GỌI LẠI HÀM "DỰNG BỘ KHUNG GIAO DIỆN (Hàm 8.1)" CỦA THẦY
+    // Việc này đảm bảo thẻ "vung-lam-viec-hoc-sinh" được sinh ra lại mới tinh 100%, khắc phục dứt điểm lỗi Null.
+    if (typeof window.ham_8_1_tai_nhiem_vu_cua_toi === 'function') {
+        window.ham_8_1_tai_nhiem_vu_cua_toi(
+            GocHocSinhState.uid,
+            GocHocSinhState.danh_sach_ma_lop,
+            GocHocSinhState.ten
+        );
     } else {
-        // Đề phòng lỗi (rất hiếm khi xảy ra), hướng dẫn học sinh tự bấm nút
-        Swal.fire({
-            title: 'Đã lưu điểm!',
-            text: 'Em hãy bấm vào nút "🚀 NHIỆM VỤ LỚP" ở trên cùng để tiếp tục nhé.',
-            icon: 'success'
-        });
+        // Đường cùng dự phòng
+        location.reload();
     }
 };
+
+
+
 
 // =====================================================================
 // [Nhãn thời gian: 09:19 - Ngày 29/05/2026] - Hàm 8.6.8: Chốt nộp bài Đấu trường Live (Độc lập hoàn toàn, không reload)
