@@ -17,16 +17,17 @@ window.ham_8_6_tab_live_quiz = function () {
 
     vungLamViec.innerHTML = `
         <div style="max-width: 450px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
-            <div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
-                <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
-                <h2 style="margin: 0; font-size: 24px; font-weight: 900;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
-            </div>
+            
             <div style="padding: 30px;">
                 <input type="text" id="txtPinLive" placeholder="MÃ PIN (6 SỐ)" style="width: 100%; padding: 18px; text-align: center; font-size: 24px; font-weight: 900; border: 2px solid #ddd; border-radius: 12px; margin-bottom: 20px;" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 <button onclick="ham_8_6_1_vao_phong()" style="width: 100%; padding: 16px; background: #e74c3c; color: white; border: none; border-radius: 12px; font-weight: 900; font-size: 18px; cursor: pointer;">🚀 VÀO PHÒNG</button>
             </div>
         </div>
     `;
+    //<div style="background: #1e1e2f; padding: 40px 20px; text-align: center; color: white;">
+    //    <div style="font-size: 50px; margin-bottom: 10px;">🎮</div>
+    //    <h2 style="margin: 0; font-size: 24px; font-weight: 900;">ĐẤU TRƯỜNG TRỰC TIẾP</h2>
+    //</div>
 };
 
 
