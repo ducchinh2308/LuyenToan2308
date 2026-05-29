@@ -1,0 +1,203 @@
+{
+  "maDe": "26251-12-4-6-CAU",
+  "tenDe": "ĐỀ THI THỬ 26251-FULL",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_1e7e4b6eac",
+      "ma_goc": "2605-1462",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = e^x$ là",
+      "paA": "$\\displaystyle \\frac{e^{x+1}}{x+1} + C$",
+      "paB": "$e^x + C$",
+      "paC": "$\\displaystyle \\frac{1}{x} + C$",
+      "paD": "$\\displaystyle \\frac{1}{e^x} + C$"
+    },
+    {
+      "maCau": "q_d8e8fc4033",
+      "ma_goc": "2605-1463",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê thời gian hoàn thành một bài tập (đơn vị: phút) của một số học sinh thu được kết quả sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d8e8fc4033_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tThời gian trung bình (phút) để hoàn thành bài tập của các em học sinh là",
+      "paA": "$10,4$",
+      "paB": "$12,5$",
+      "paC": "$11,3$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_0f86f2b4e3",
+      "ma_goc": "2605-1464",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P): 4x - y - 2z + 5 = 0$. Vectơ nào sau đây là một vectơ pháp tuyến của mặt phẳng $(P)$?",
+      "paA": "$\\vec{n}_4 = (-4; -1; 2)$",
+      "paB": "$\\vec{n}_3 = (4; 1; -2)$",
+      "paC": "$\\vec{n}_2 = (4; -1; -2)$",
+      "paD": "$\\vec{n}_1 = (4; -2; -1)$"
+    },
+    {
+      "maCau": "q_5d3c6b8e09",
+      "ma_goc": "2605-1465",
+      "kieuCau": "TN",
+      "cauDan": "Số cách chọn $5$ học sinh từ $35$ học sinh của lớp $11A$ để tham gia hoạt động tiếp sức mùa thi là:",
+      "paA": "$A_{35}^5$",
+      "paB": "$5!$",
+      "paC": "$C_{35}^5$",
+      "paD": "$5^{35}$"
+    },
+    {
+      "maCau": "q_cd81b4f8f6",
+      "ma_goc": "2605-1466",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $2^{x+4} = 4$ là",
+      "paA": "$x = -2$",
+      "paB": "$x = -1$",
+      "paC": "$x = 2$",
+      "paD": "$x = 1$"
+    },
+    {
+      "maCau": "q_4ab75c4afa",
+      "ma_goc": "2605-1467",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$. Gọi $S$ là diện tích hình phẳng giới hạn bởi các đường $y = f(x), y = 0, x = -1$ và $x = 5$ (hình minh họa). Mệnh đề nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4ab75c4afa_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle S = -\\int_{-1}^1 f(x)\\text{d}x - \\int_1^5 f(x)\\text{d}x$",
+      "paB": "$\\displaystyle S = \\int_{-1}^1 f(x)\\text{d}x - \\int_1^5 f(x)\\text{d}x$",
+      "paC": "$\\displaystyle S = \\int_{-1}^1 f(x)\\text{d}x + \\int_1^5 f(x)\\text{d}x$",
+      "paD": "$\\displaystyle S = -\\int_{-1}^1 f(x)\\text{d}x + \\int_1^5 f(x)\\text{d}x$"
+    },
+    {
+      "maCau": "q_bf508907a1",
+      "ma_goc": "2605-1468",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bf508907a1_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(0; 1)$",
+      "paB": "$(0; +\\infty)$",
+      "paC": "$(-\\infty; 1)$",
+      "paD": "$(-\\infty; 0)$"
+    },
+    {
+      "maCau": "q_b3ef25afb1",
+      "ma_goc": "2605-1469",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$, cạnh bên $SA$ vuông góc với mặt đáy. Biết $SA = AB$. Góc giữa đường thẳng $SB$ và mặt phẳng đáy bằng",
+      "paA": "$60^\\circ$",
+      "paB": "$90^\\circ$",
+      "paC": "$30^\\circ$",
+      "paD": "$45^\\circ$"
+    },
+    {
+      "maCau": "q_47cadbb63e",
+      "ma_goc": "2605-1470",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1 = 2$ và $u_2 = 6$. Công bội $q$ của cấp số nhân là",
+      "paA": "$q = 3$",
+      "paB": "$q = 4$",
+      "paC": "$q = 12$",
+      "paD": "$q = 2$"
+    },
+    {
+      "maCau": "q_47ec8abd38",
+      "ma_goc": "2605-1471",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt cầu $(S): (x-1)^2 + (y+2)^2 + (z+1)^2 = 9$. Tâm $I$ của mặt cầu $(S)$ có tọa độ là",
+      "paA": "$I(1; -2; -1)$",
+      "paB": "$I(-1; 2; 1)$",
+      "paC": "$I(1; 2; -1)$",
+      "paD": "$I(1; -2; 1)$"
+    },
+    {
+      "maCau": "q_1336f9fe54",
+      "ma_goc": "2605-1472",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai vectơ $\\vec{u}$ và $\\vec{v}$ thỏa mãn $\\left|\\vec{u}\\right| = 5$, $\\left|\\vec{v}\\right| = 8$ và $(\\vec{u}, \\vec{v}) = 120^\\circ$. Phát biểu nào sau đây là đúng?",
+      "paA": "$\\vec{u} \\cdot \\vec{v} = 40$",
+      "paB": "$\\vec{u} \\cdot \\vec{v} = -20$",
+      "paC": "$\\vec{u} \\cdot \\vec{v} = 20$",
+      "paD": "$\\vec{u} \\cdot \\vec{v} = -20\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_27f1266fcc",
+      "ma_goc": "2605-1473",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác đều cạnh $a$. Biết $SA \\perp (ABC)$ và $SA = a\\sqrt{3}$. Thể tích khối chóp $S.ABC$ bằng",
+      "paA": "$\\displaystyle \\frac{a^3}{4}$",
+      "paB": "$\\displaystyle \\frac{3a^3}{4}$",
+      "paC": "$\\displaystyle \\frac{a^3}{2}$",
+      "paD": "$\\displaystyle \\frac{a^3}{4}$"
+    },
+    {
+      "maCau": "q_0059f1647a",
+      "ma_goc": "2605-1474",
+      "kieuCau": "DS",
+      "cauDan": "Hệ thống kiểm soát nội dung của một trang mạng xã hội tự động đánh dấu các bài vi phạm Luật an ninh mạng. Thống kê cho thấy có $25\\%$ số bài đăng bị đánh dấu. Trong số các bài đăng bị đánh dấu, có $12\\%$ bài đăng đánh dấu nhầm (bài đăng không vi phạm Luật an ninh mạng nhưng bị đánh dấu). Trong số các bài đăng không bị đánh dấu, vẫn có $6\\%$ bài đăng vi phạm Luật an ninh mạng. Chọn ngẫu nhiên một bài đăng trên trang mạng xã hội này.",
+      "paA": "Xác suất chọn được bài đăng không bị hệ thống đánh dấu bằng $0,75$",
+      "paB": "Xác suất chọn được bài đăng vi phạm, biết rằng nó không bị đánh dấu bằng $0,12$",
+      "paC": "Xác suất chọn được bài đăng vi phạm bằng $0,265$",
+      "paD": "Xác suất chọn được bài đăng bị đánh dấu, biết rằng nó là bài đăng vi phạm xấp xỉ bằng $0,83$"
+    },
+    {
+      "maCau": "q_4c2eb9f7b3",
+      "ma_goc": "2605-1475",
+      "kieuCau": "DS",
+      "cauDan": "Hình vẽ bên mô tả hiệu suất làm việc của hai công nhân tại một nhà máy trong thời gian $6$ giờ. Công nhân $A$ đang sản xuất với hiệu suất $Q_1'(t) = -2t^2 + 4t + 58$ sản phẩm mỗi giờ, trong khi công nhân $B$ đang sản xuất với hiệu suất $Q_2'(t) = 53 + at$ sản phẩm mỗi giờ $a \\in \\mathbb{R}$. Biết rằng hàm số $Q_1(t)$ và $Q_2(t)$ mô phỏng số lượng sản phẩm làm được của công nhân $A$ và công nhân $B$ sau $t$ giờ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4c2eb9f7b3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hiệu suất làm việc cực đại của công nhân $A$ là $60$ sản phẩm mỗi giờ",
+      "paB": "Giá trị $a = -3$",
+      "paC": "Sau $6$ giờ làm việc, công nhân $B$ hoàn thành được $228$ sản phẩm",
+      "paD": "Sau $6$ giờ làm việc, số sản phẩm hoàn thành của công nhân $A$ nhiều hơn số sản phẩm hoàn thành của công nhân $B$"
+    },
+    {
+      "maCau": "q_0abce365cd",
+      "ma_goc": "2605-1476",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle y = f(x) = \\frac{x^2 - 2x - 4}{x + 1}$.",
+      "paA": "Hàm số đã cho có đạo hàm trên tập xác định là $\\displaystyle f'(x) = \\frac{x^2 + 2x + 2}{(x+1)^2}$",
+      "paB": "Hàm số đã cho đồng biến trên $\\mathbb{R} \\setminus \\{-1\\}$",
+      "paC": "Đường tiệm cận xiên của đồ thị hàm số có phương trình là $y = x - 3$",
+      "paD": "Tâm đối xứng của đồ thị hàm số là $I(1; -2)$"
+    },
+    {
+      "maCau": "q_c37e137457",
+      "ma_goc": "2605-1477",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, một trạm thu phát sóng điện thoại di động được đặt ở vị trí $I(-3; 5; 2)$ được thiết kế với bán kính phủ sóng là $4\\text{km}$, mỗi đơn vị trên trục ứng với $1\\text{km}$.",
+      "paA": "Phương trình mặt cầu $(S)$ mô tả ranh giới bên ngoài của vùng phủ trong không gian là $(x+3)^2 + (y-5)^2 + (z-2)^2 = 16$",
+      "paB": "Khoảng cách xa nhất giữa hai điểm thuộc vùng phủ sóng là $8\\text{km}$",
+      "paC": "Người dùng điện thoại ở vị trí $A$ có tọa độ $(-3; 4; 1)$ không thể sử dụng dịch vụ của trạm thu phát sóng đó",
+      "paD": "Trong điều kiện giao thông thuận lợi, khoảng cách ngắn nhất để một người ở vị trí $B$ có tọa độ là $(2; 6; 2)$ di chuyển tới vùng phủ sóng là $5,1\\text{km}$ (kết quả làm tròn đến hàng phần mười)"
+    },
+    {
+      "maCau": "q_718f3e4c70",
+      "ma_goc": "2605-1478",
+      "kieuCau": "TLN",
+      "cauDan": "Một bãi đậu xe ô tô kinh doanh dịch vụ giữ xe ô tô ban đêm có diện tích $200m^2$ (không tính phần diện tích lối đi cho xe ra vào). Biết rằng mỗi chiếc xe ô tô loại 7 chỗ ngồi cần diện tích $10m^2$ và mỗi chiếc xe ô tô loại 16 chỗ ngồi cần diện tích $20m^2$. Chi phí gửi xe mỗi đêm đối với mỗi xe ô tô 7 chỗ ngồi là $150$ nghìn đồng và loại xe 16 chỗ ngồi là $200$ nghìn đồng. Bãi đỗ xe không thể chứa $20$ xe mỗi đêm. Sau mỗi đêm, doanh thu lớn nhất từ việc kinh doanh dịch vụ trên là bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_e3f50eaee2",
+      "ma_goc": "2605-1479",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty thiết kế một bảng quảng cáo có dạng hình chữ nhật $ABCD$ có kích thước $AB=10m; AD=6m$. Nội dung quảng cáo được mô tả trong phần tô đậm với hai đường cong trong hình là một phần của đồ thị hàm số (C) có dạng $\\displaystyle y = \\frac{ax+b}{cx+d}$ (hình minh họa). Khoảng cách từ điểm $A$ đến đường tiệm cận đứng và đường tiệm cận ngang của đồ thị hàm số (C) bằng $3m$. Đồ thị hàm số (C) cắt cạnh $AB$ tại điểm $E$ thỏa mãn $\\displaystyle \\frac{AE}{AB} = \\frac{2}{5}$. Diện tích phần nội dung quảng cáo là bao nhiêu mét vuông? (Kết quả làm tròn đến hàng phần mười)\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e3f50eaee2_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_98af0f5d51",
+      "ma_goc": "2605-1480",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, xét đường thẳng $(\\Delta)$ đi qua điểm $M(3; 1; 1)$, nằm trong mặt phẳng $(\\alpha): x + y - z - 3 = 0$. Khi $(\\Delta)$ tạo với đường thẳng $(d): \\begin{cases} x = 1 \\\\ y = 4 + 3t \\\\ z = -3 - 2t \\end{cases}$ một góc nhỏ nhất thì đường thẳng $(\\Delta)$ có một vectơ chỉ phương là $\\vec{u}_\\Delta = (5; b; c)$. Giá trị của $b+c$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_ada229b5b8",
+      "ma_goc": "2605-1481",
+      "kieuCau": "TLN",
+      "cauDan": "Gọi $X$ là tập hợp gồm các số tự nhiên có 7 chữ số đôi một khác nhau. Lấy ngẫu nhiên một số từ tập $X$. Xác suất để lấy được một số chẵn chứa các chữ số $2, 3, 4$ sao cho chữ số $2$ đứng trước chữ số $3$ và chữ số $3$ đứng trước chữ số $4$ là $\\displaystyle \\frac{a}{b}$ (trong đó $a, b$ là hai số nguyên dương, $\\displaystyle \\frac{a}{b}$ là phân số tối giản). Giá trị $a+b$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_1c7026590f",
+      "ma_goc": "2605-1482",
+      "kieuCau": "TLN",
+      "cauDan": "Một xưởng gia công đồ mỹ nghệ dự định sản xuất không quá $150$ sản phẩm trong mỗi tháng. Chi phí sản xuất $x$ sản phẩm ($x \\in \\mathbb{N}; 1 \\le x \\le 150$) được cho bởi hàm số $C(x) = 5000 + 800x - 3,6x^2 + 0,004x^3$ (nghìn đồng). Giá bán mỗi sản phẩm là một hàm số phụ thuộc vào số lượng $x$ sản phẩm và được cho bởi công thức $p(x) = 2000 - 9x$ (nghìn đồng). Biết rằng sản phẩm sản xuất ra được tiêu thụ hết. Lợi nhuận lớn nhất mỗi tháng mà xưởng thu được là bao nhiêu triệu đồng?"
+    },
+    {
+      "maCau": "q_7bc0a99510",
+      "ma_goc": "2605-1483",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông tâm $O$. Biết $SO \\perp (ABCD)$, $SO = \\sqrt{3}$ và đường tròn ngoại tiếp $ABCD$ có bán kính bằng $1$. Gọi $M$ là trung điểm của cạnh $SB$. Khoảng cách từ $M$ đến mặt phẳng $(SCD)$ là $\\displaystyle \\sqrt{\\frac{m}{n}}$ (trong đó $m, n$ là hai số nguyên dương và $\\displaystyle \\frac{m}{n}$ là phân số tối giản). Giá trị $m-n$ bằng bao nhiêu?"
+    }
+  ]
+}

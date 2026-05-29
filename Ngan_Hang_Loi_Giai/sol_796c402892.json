@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_796c402892",
+  "dapAn": "-4",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_796c402892_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựng hệ trục $Oxyz$ như hình vẽ. \\\\\r\n\t\tTa có $S(0; 0; \\sqrt{3})$. \\\\\r\n\t\tVì đường tròn ngoại tiếp $ABCD$ có bán kính bằng $1$ nên ta có $D(1; 0; 0), C(0; 1; 0), B(-1; 0; 0)$. \\\\\r\n\t\t$M$ là trung điểm $SB \\Rightarrow M\\left(-\\displaystyle\\frac{1}{2}; 0; \\frac{\\sqrt{3}}{2}\\right)$. \\\\\r\n\t\tPhương trình mặt phẳng $(SCD): \\displaystyle \\frac{x}{1} + \\frac{y}{1} + \\frac{z}{\\sqrt{3}} = 1$ hay $\\sqrt{3}x + \\sqrt{3}y + z - \\sqrt{3} = 0$. \\\\\r\n\t\tKhoảng cách từ $M$ đến mặt phẳng $(SCD)$ là: $\\displaystyle d = \\frac{\\left| \\sqrt{3} \\cdot \\left(-\\frac{1}{2}\\right) + \\sqrt{3} \\cdot 0 + \\frac{\\sqrt{3}}{2} - \\sqrt{3} \\right|}{\\sqrt{3 + 3 + 1}} = \\sqrt{\\frac{3}{7}}$. \\\\\r\n\t\t$\\Rightarrow m = 3, n = 7$. \\\\\r\n\t\tSuy ra $m - n = -4$. \\\\"
+}
