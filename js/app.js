@@ -3677,6 +3677,146 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 //};
 
 
+//// ==============================================================
+//// [Nhãn thời gian: 10:45 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File (Quét thông minh 15s)
+//// ==============================================================
+//window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
+//    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+//    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+//    const trangThaiMoi = document.getElementById('sua_trangThai').value;
+
+//    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
+//    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+//    let banDoMoi = [];
+
+//    rows.forEach(row => {
+//        const originalString = row.getAttribute('data-original-string');
+//        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
+
+//        try {
+//            let objCauHoi = JSON.parse(originalString);
+//            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+//            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+//            else objCauHoi.dap_an = dapAnMoi;
+
+//            banDoMoi.push(objCauHoi);
+//        } catch (e) {
+//            let parts = originalString.split('|');
+//            parts[parts.length - 1] = dapAnMoi;
+//            banDoMoi.push(parts.join('|'));
+//        }
+//    });
+
+//    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
+
+//    btnNode.disabled = true;
+//    btnNode.innerText = "ĐANG ĐÓNG GÓI VÀ LƯU...";
+
+//    try {
+//        const { error } = await _supabase
+//            .from('hoc_lieu')
+//            .update({
+//                ten_hoc_lieu: tenMoi,
+//                thoi_gian_lam_bai: thoiGianMoi,
+//                trang_thai: trangThaiMoi,
+//                danh_sach_cau_hoi: banDoMoi,
+//                quy_mo_cau_hoi: banDoMoi.length
+//            })
+//            .eq('ma_hoc_lieu', maHocLieu);
+
+//        if (error) throw error;
+
+//        // =====================================================================
+//        // 🌟 KIỂM TRA LỆNH GỌI BOT C# (THUẬT TOÁN RADAR QUÉT 15S/LẦN)
+//        // =====================================================================
+//        let thongBaoGopFile = "";
+//        const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+
+//        if (chkGopFile && chkGopFile.checked) {
+//            console.log(`📡 Đang đánh thức C# Bot để gộp lại file giải cho Học liệu: ${maHocLieu}`);
+
+//            // Tìm 1 nhiệm vụ bất kỳ đang xài Học liệu này để làm mồi nhử cho C#
+//            const { data: nvMoiNhu } = await _supabase.from('nhiem_vu').select('id').eq('ma_hoc_lieu', maHocLieu).limit(1).maybeSingle();
+
+//            let idDaiDienDeGom = null;
+//            let laNhiemVuAo = false;
+
+//            if (nvMoiNhu) {
+//                idDaiDienDeGom = nvMoiNhu.id;
+//            } else {
+//                // NẾU CHƯA CÓ NHIỆM VỤ NÀO, TẠO MỘT "NHIỆM VỤ MỒI" ẨN
+//                const maNVAo = "GHOST_" + Math.floor(Date.now() / 1000);
+//                const { data: nvAo, error: errAo } = await _supabase.from('nhiem_vu').insert([{
+//                    ma_nhiem_vu: maNVAo,
+//                    ten_nhiem_vu: "👻 Nhiệm vụ mồi tạo file giải (Sẽ tự động xóa)",
+//                    loai_nhiem_vu: "Làm đề (Online)",
+//                    ma_hoc_lieu: maHocLieu,
+//                    trang_thai: 0, // Khóa 100%, không hiện lên màn hình
+//                    danh_sach_lop: JSON.stringify([]),
+//                    uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : null,
+//                    cau_truc_de: banDoMoi.length + " câu"
+//                }]).select('id').single();
+
+//                if (!errAo && nvAo) {
+//                    idDaiDienDeGom = nvAo.id;
+//                    laNhiemVuAo = true;
+//                    console.log("👻 Đã tạo thành công Nhiệm vụ mồi ID:", idDaiDienDeGom);
+//                }
+//            }
+
+//            // Gọi hàm phát lệnh cho C#
+//            if (idDaiDienDeGom && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+//                ham_7_10_ra_lenh_tao_file_giai(idDaiDienDeGom, maHocLieu, true);
+//                thongBaoGopFile = "\n🚀 Đã gửi lệnh C# tạo lại File Lời giải gộp!";
+
+//                // 💣 RADAR THÔNG MINH: KIỂM TRA MỖI 15S, TỐI ĐA 5 PHÚT (20 LẦN)
+//                if (laNhiemVuAo) {
+//                    let soLanKiemTra = 0;
+//                    const maxLanKiemTra = 20; // 20 lần x 15s = 300s = 5 phút
+
+//                    const intervalKiemTra = setInterval(async () => {
+//                        soLanKiemTra++;
+//                        try {
+//                            // Truy vấn Database xem Bot C# đã nhả link URL File giải vào nhiệm vụ này chưa
+//                            const { data: checkNV } = await _supabase
+//                                .from('nhiem_vu')
+//                                .select('url_file_giai')
+//                                .eq('id', idDaiDienDeGom)
+//                                .single();
+
+//                            const daCoFile = checkNV && checkNV.url_file_giai; // Trả về true nếu url khác rỗng/null
+
+//                            if (daCoFile || soLanKiemTra >= maxLanKiemTra) {
+//                                // Nếu đã có file HOẶC đã lố thời gian 5 phút -> Chốt hạ XÓA
+//                                await _supabase.from('nhiem_vu').delete().eq('id', idDaiDienDeGom);
+//                                console.log(`🧹 Đã dọn dẹp sạch sẽ Nhiệm vụ mồi ID: ${idDaiDienDeGom} ở lần quét thứ ${soLanKiemTra} (${soLanKiemTra * 15}s).`);
+//                                clearInterval(intervalKiemTra); // Tắt hệ thống Radar
+//                            } else {
+//                                console.log(`⏳ Lần quét ${soLanKiemTra}/${maxLanKiemTra}: Bot C# vẫn đang xử lý, 15s sau quét tiếp...`);
+//                            }
+//                        } catch (e) {
+//                            console.error("Lỗi khi quét nhiệm vụ mồi:", e);
+//                            if (soLanKiemTra >= maxLanKiemTra) clearInterval(intervalKiemTra);
+//                        }
+//                    }, 15000); // 15000ms = 15 giây
+//                }
+//            } else {
+//                thongBaoGopFile = "\n⚠️ Đã lưu học liệu, nhưng có lỗi cục bộ khi gọi Bot C#.";
+//            }
+//        }
+
+//        alert(`✅ Đã cập nhật học liệu thành công!${thongBaoGopFile}`);
+//        ham_6_1_ve_quan_ly_hoc_lieu();
+
+//    } catch (error) {
+//        alert("Lỗi: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+//    }
+//};
+
+
+
 // ==============================================================
 // [Nhãn thời gian: 10:45 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File (Quét thông minh 15s)
 // ==============================================================
@@ -3940,73 +4080,76 @@ window.ham_6_13_kiem_tra_file_upload = function () {
 
     reader.readAsText(file);
 };
-//LƯU CẬP NHẬT HỌC LIỆU
-async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
-    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
-    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
-    const trangThaiMoi = document.getElementById('sua_trangThai').value;
 
-    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
-    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
-    let banDoMoi = [];
 
-    rows.forEach(row => {
-        // 1. Lấy lại toàn bộ chuỗi JSON gốc (đã được nhúng ẩn vào thẻ tr lúc mở form)
-        const originalString = row.getAttribute('data-original-string');
 
-        // 2. Lấy đáp án mới mà thầy vừa gõ vào ô input
-        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
+////LƯU CẬP NHẬT HỌC LIỆU
+//async function ham_6_7_luu_cap_nhat_hoc_lieu(maHocLieu, btnNode) {
+//    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+//    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+//    const trangThaiMoi = document.getElementById('sua_trangThai').value;
 
-        try {
-            // 3. Phục hồi chuỗi thành Object nguyên bản: 
-            // VD: {"dap_an": "C", "ma_goc": "2605-756", "ma_cau_hoi": "q_b7bf894d89", "ma_loi_giai": "sol_f4465c311b"}
-            let objCauHoi = JSON.parse(originalString);
+//    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
+//    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+//    let banDoMoi = [];
 
-            // 4. CHỈ thay đổi đúng thuộc tính dap_an, các thuộc tính ma_goc, ma_cau_hoi... GIỮ NGUYÊN
-            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
-            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
-            else objCauHoi.dap_an = dapAnMoi; // Đề phòng trường hợp mất key
+//    rows.forEach(row => {
+//        // 1. Lấy lại toàn bộ chuỗi JSON gốc (đã được nhúng ẩn vào thẻ tr lúc mở form)
+//        const originalString = row.getAttribute('data-original-string');
 
-            // 5. Đưa Object đã cập nhật đáp án vào mảng mới
-            banDoMoi.push(objCauHoi);
+//        // 2. Lấy đáp án mới mà thầy vừa gõ vào ô input
+//        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
 
-        } catch (e) {
-            // Nếu lỗi (đề kiểu cũ), dùng split
-            let parts = originalString.split('|');
-            parts[parts.length - 1] = dapAnMoi;
-            banDoMoi.push(parts.join('|'));
-        }
-    });
+//        try {
+//            // 3. Phục hồi chuỗi thành Object nguyên bản: 
+//            // VD: {"dap_an": "C", "ma_goc": "2605-756", "ma_cau_hoi": "q_b7bf894d89", "ma_loi_giai": "sol_f4465c311b"}
+//            let objCauHoi = JSON.parse(originalString);
 
-    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
+//            // 4. CHỈ thay đổi đúng thuộc tính dap_an, các thuộc tính ma_goc, ma_cau_hoi... GIỮ NGUYÊN
+//            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+//            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+//            else objCauHoi.dap_an = dapAnMoi; // Đề phòng trường hợp mất key
 
-    btnNode.disabled = true;
-    btnNode.innerText = "ĐANG ĐÓNG GÓI...";
+//            // 5. Đưa Object đã cập nhật đáp án vào mảng mới
+//            banDoMoi.push(objCauHoi);
 
-    try {
-        const { error } = await _supabase
-            .from('hoc_lieu')
-            .update({
-                ten_hoc_lieu: tenMoi,
-                thoi_gian_lam_bai: thoiGianMoi,
-                trang_thai: trangThaiMoi,
-                danh_sach_cau_hoi: banDoMoi,
-                quy_mo_cau_hoi: banDoMoi.length
-                // Thầy có thể cập nhật thêm cấu trúc TN-DS-TLN vào metadata ở đây nếu cần
-            })
-            .eq('ma_hoc_lieu', maHocLieu);
+//        } catch (e) {
+//            // Nếu lỗi (đề kiểu cũ), dùng split
+//            let parts = originalString.split('|');
+//            parts[parts.length - 1] = dapAnMoi;
+//            banDoMoi.push(parts.join('|'));
+//        }
+//    });
 
-        if (error) throw error;
+//    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
 
-        alert("✅ Đã cập nhật học liệu thành công!");
-        ham_6_1_ve_quan_ly_hoc_lieu();
+//    btnNode.disabled = true;
+//    btnNode.innerText = "ĐANG ĐÓNG GÓI...";
 
-    } catch (error) {
-        alert("Lỗi: " + error.message);
-        btnNode.disabled = false;
-        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
-    }
-}
+//    try {
+//        const { error } = await _supabase
+//            .from('hoc_lieu')
+//            .update({
+//                ten_hoc_lieu: tenMoi,
+//                thoi_gian_lam_bai: thoiGianMoi,
+//                trang_thai: trangThaiMoi,
+//                danh_sach_cau_hoi: banDoMoi,
+//                quy_mo_cau_hoi: banDoMoi.length
+//                // Thầy có thể cập nhật thêm cấu trúc TN-DS-TLN vào metadata ở đây nếu cần
+//            })
+//            .eq('ma_hoc_lieu', maHocLieu);
+
+//        if (error) throw error;
+
+//        alert("✅ Đã cập nhật học liệu thành công!");
+//        ham_6_1_ve_quan_ly_hoc_lieu();
+
+//    } catch (error) {
+//        alert("Lỗi: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+//    }
+//}
 
 
 // ==============================================================
