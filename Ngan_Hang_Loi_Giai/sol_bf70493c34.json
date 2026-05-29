@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_bf70493c34",
+    "dapAn": "FTTF",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Kẹo xanh là 35, kẹo đỏ là 21. Vì $35 > 21$ nên kẹo xanh nhiều hơn kẹo đỏ (Sai).\\\r\n\t\t\t\\itemch Tổng số kẹo: $35 + 21 = 56$ cái (Đúng).\\\r\n\t\t\t\\itemch Số kẹo xanh nhiều hơn đỏ là: $35 - 21 = 14$ cái (Đúng).\\\r\n\t\t\t\\itemch Ăn bớt 1 cái kẹo xanh thì còn $35 - 1 = 34$ cái. Số 34 có tận cùng là 4 nên không phải số tròn chục (Sai).\\\r\n\t\t\\end{itemchoice}"
+}

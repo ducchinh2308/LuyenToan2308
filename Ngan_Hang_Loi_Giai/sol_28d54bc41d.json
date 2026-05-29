@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_28d54bc41d",
+    "dapAn": "TFTF",
+    "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số 5 là số có 1 chữ số, các số còn lại có 2 chữ số nên số 5 nhỏ nhất (Đúng).\\\r\n\t\t\t\\itemch Số 52 phải gồm có 5 chục và 2 đơn vị. Phát biểu nói ngược là Sai.\\\r\n\t\t\t\\itemch So sánh: $5 < 25 < 50 < 52 \\Rightarrow$ Thứ tự sắp xếp từ bé đến lớn này là Đúng.\\\r\n\t\t\t\\itemch Số lớn nhất là 52, số nhỏ nhất là 5. Tổng bằng: $52 + 5 = 57$, phát biểu ra 55 là Sai.\\\r\n\t\t\\end{itemchoice}"
+}

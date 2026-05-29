@@ -1,0 +1,203 @@
+{
+    "maDe": "HL_DE_TPGQ09A",
+    "tenDe": "HL-TOÁN LỚP 1-de2",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_44effb371c",
+            "ma_goc": "9628-448",
+            "kieuCau": "TN",
+            "cauDan": "Số \"bảy mươi tư\" được viết là số nào dưới đây?",
+            "paA": "$704$",
+            "paB": "$74$",
+            "paC": "$47$",
+            "paD": "$7004$"
+        },
+        {
+            "maCau": "q_7d62b8580d",
+            "ma_goc": "2996-691",
+            "kieuCau": "TN",
+            "cauDan": "Số nào dưới đây là số tròn chục?",
+            "paA": "$35$",
+            "paB": "$7$",
+            "paC": "$60$",
+            "paD": "$100$"
+        },
+        {
+            "maCau": "q_9a992493db",
+            "ma_goc": "9365-651",
+            "kieuCau": "TN",
+            "cauDan": "Kết quả của phép tính $10 - 6 + 4$ bằng bao nhiêu?",
+            "paA": "$0$",
+            "paB": "$4$",
+            "paC": "$8$",
+            "paD": "$10$"
+        },
+        {
+            "maCau": "q_37d016aed4",
+            "ma_goc": "6986-530",
+            "kieuCau": "TN",
+            "cauDan": "Trong các số $87, 78, 90, 89$, số nhỏ nhất là số nào?",
+            "paA": "$87$",
+            "paB": "#78#",
+            "paC": "$90$",
+            "paD": "$89$"
+        },
+        {
+            "maCau": "q_7b8e966d4c",
+            "ma_goc": "2616-299",
+            "kieuCau": "TN",
+            "cauDan": "Điền dấu thích hợp vào chỗ chấm: $45 - 5 \\dots 30 + 10$.",
+            "paA": "$<$",
+            "paB": "$>$",
+            "paC": "$=$",
+            "paD": "Không có dấu phù hợp"
+        },
+        {
+            "maCau": "q_a4f514aad7",
+            "ma_goc": "3638-633",
+            "kieuCau": "TN",
+            "cauDan": "Phép tính nào sau đây đặt tính thẳng cột ĐÚNG?",
+            "paA": "Hàng đơn vị của số này thẳng hàng chục của số kia",
+            "paB": "Hàng chục thẳng hàng chục, hàng đơn vị thẳng hàng đơn vị",
+            "paC": "Đặt lệch sang bên phải hoàn toàn",
+            "paD": "Đặt lệch sang bên trái hoàn toàn"
+        },
+        {
+            "maCau": "q_e21235d8fd",
+            "ma_goc": "6125-823",
+            "kieuCau": "TN",
+            "cauDan": "Kết quả của phép tính $54\\text{ cm} + 23\\text{ cm}$ là:",
+            "paA": "$77$",
+            "paB": "$31\\text{ cm}$",
+            "paC": "$77\\text{ cm}$",
+            "paD": "$71\\text{ cm}$"
+        },
+        {
+            "maCau": "q_797f295372",
+            "ma_goc": "8372-795",
+            "kieuCau": "TN",
+            "cauDan": "Hôm nay là Thứ Ba ngày 12. Hỏi ngày mai là Thứ mấy?",
+            "paA": "Thứ Hai",
+            "paB": "Thứ Tư",
+            "paC": "Thứ Năm",
+            "paD": "Chủ Nhật"
+        },
+        {
+            "maCau": "q_f900d83dca",
+            "ma_goc": "5119-972",
+            "kieuCau": "TN",
+            "cauDan": "Một chiếc bút chì dài khoảng bao nhiêu xăng-ti-mét?",
+            "paA": "$2\\text{ cm}$",
+            "paB": "$15\\text{ cm}$",
+            "paC": "$80\\text{ cm}$",
+            "paD": "$100\\text{ cm}$"
+        },
+        {
+            "maCau": "q_3e1bdf91d5",
+            "ma_goc": "8033-185",
+            "kieuCau": "TN",
+            "cauDan": "Cái lon sữa đặc ông Thọ có hình dạng là khối gì?\r\n\t\\choice\r\n\tKhối lập phương\r\n\tKhối hộp chữ nhật\r\n\t{\\True Khối trụ}\r\n\tKhối cầu",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_90d0abac8a",
+            "ma_goc": "3135-890",
+            "kieuCau": "TN",
+            "cauDan": "An có $20$ nhãn vở, Bình cho An thêm $10$ nhãn vở nữa. Hỏi An có tất cả bao nhiêu nhãn vở?",
+            "paA": "$10$ nhãn vở",
+            "paB": "$30$ nhãn vở",
+            "paC": "$21$ nhãn vở",
+            "paD": "$40$ nhãn vở"
+        },
+        {
+            "maCau": "q_ae4481d59c",
+            "ma_goc": "4392-959",
+            "kieuCau": "TN",
+            "cauDan": "Dãy số nào sau đây được xếp theo thứ tự từ LỚN đến BÉ?",
+            "paA": "$12, 15, 18, 20$",
+            "paB": "$40, 50, 60, 30$",
+            "paC": "$90, 80, 70, 60$",
+            "paD": "$5, 6, 7, 8$"
+        },
+        {
+            "maCau": "q_a0fec1408d",
+            "ma_goc": "9430-749",
+            "kieuCau": "DS",
+            "cauDan": "Cho các số: $25, 52, 50, 5$. Xét tính đúng hoặc sai của các phát biểu sau:",
+            "paA": "a) Số nhỏ nhất trong bốn số trên là số $5$.",
+            "paB": "b) Số $52$ gồm có $2$ chục và $5$ đơn vị.",
+            "paC": "c) Nếu xếp các số trên từ bé đến lớn ta được: $5, 25, 50, 52$.",
+            "paD": "d) Tổng của số lớn nhất và số nhỏ nhất là $55$."
+        },
+        {
+            "maCau": "q_0e9e074c75",
+            "ma_goc": "6532-792",
+            "kieuCau": "DS",
+            "cauDan": "Bạn Minh đo độ dài các đồ vật trong cặp và ghi lại kết quả. Các câu sau đúng hay sai?",
+            "paA": "a) Quyển sách Toán 1 dài khoảng $2$ gang tay của Minh.",
+            "paB": "b) Thước kẻ của Minh dài $20\\text{ cm}$, tức là dài $2$ chục $\\text{cm}$.",
+            "paC": "c) Cái tẩy chì dài khoảng $15\\text{ cm}$.",
+            "paD": "d) Đoạn thẳng dài $10\\text{ cm}$ còn được gọi là dài $1$ đề-xi-mét."
+        },
+        {
+            "maCau": "q_cd49cbb002",
+            "ma_goc": "2200-174",
+            "kieuCau": "DS",
+            "cauDan": "Trên bàn có $35$ cái kẹo màu xanh và $21$ cái kẹo màu đỏ. Đánh giá tính đúng/sai của các nhận định dưới đây:",
+            "paA": "a) Số kẹo màu đỏ nhiều hơn số kẹo màu xanh.",
+            "paB": "b) Tổng số kẹo có trên bàn là $56$ cái kẹo.",
+            "paC": "c) Số kẹo màu xanh nhiều hơn số kẹo màu đỏ là $14$ cái.",
+            "paD": "d) Nếu ăn bớt đi $1$ cái kẹo xanh thì số kẹo xanh còn lại tròn chục."
+        },
+        {
+            "maCau": "q_ce222cc874",
+            "ma_goc": "2652-230",
+            "kieuCau": "DS",
+            "cauDan": "Bé hãy quan sát một tờ lịch tháng và cho biết các mệnh đề sau đúng hay sai:",
+            "paA": "a) Nếu ngày 5 là Thứ Hai thì ngày 6 cùng tuần đó là Thứ Ba.",
+            "paB": "b) Một tuần học sinh thường đi học cả 7 ngày.",
+            "paC": "c) Kim dài của đồng hồ quay nhanh hơn kim ngắn.",
+            "paD": "d) Khi kim ngắn chỉ vào số 12, kim dài chỉ vào số 12 thì lúc đó là 12 giờ."
+        },
+        {
+            "maCau": "q_d8d4f05252",
+            "ma_goc": "3746-589",
+            "kieuCau": "TLN",
+            "cauDan": "Tính kết quả của phép tính trừ sau: $96 - 43$."
+        },
+        {
+            "maCau": "q_117d49a410",
+            "ma_goc": "7875-481",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số thích hợp điền vào ô trống: $50 + \\square = 80$."
+        },
+        {
+            "maCau": "q_a8b22c192f",
+            "ma_goc": "3183-926",
+            "kieuCau": "TLN",
+            "cauDan": "Điền số thích hợp vào dấu hỏi chấm: Số $76$ gồm ? chục và $6$ đơn vị."
+        },
+        {
+            "maCau": "q_bf2dea5859",
+            "ma_goc": "6687-117",
+            "kieuCau": "TLN",
+            "cauDan": "Đàn vịt nhà bà có $45$ con dưới ao và $12$ con trên bờ. Hỏi nhà bà có tất cả bao nhiêu con vịt?"
+        },
+        {
+            "maCau": "q_de32e6ee24",
+            "ma_goc": "6378-288",
+            "kieuCau": "TLN",
+            "cauDan": "Một sợi dây dài $38\\text{ cm}$, em cắt bớt đi một đoạn dài $15\\text{ cm}$. Hỏi sợi dây còn lại dài bao nhiêu xăng-ti-mét?"
+        },
+        {
+            "maCau": "q_e0b9477689",
+            "ma_goc": "1781-649",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số lớn nhất có hai chữ số khác nhau."
+        }
+    ]
+}
