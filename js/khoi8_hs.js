@@ -3134,20 +3134,19 @@ window.ham_8_10_ve_giao_dien_lam_bai = function () {
     let htmlLiveDiem = '';
     if (phien.isLiveQuiz) {
         htmlLiveDiem = `
-            <div style="background: linear-gradient(135deg, #1e1e2f, #2a2a3c); border: 1px solid #444; border-radius: 12px; padding: 15px; margin-top: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-                <div style="font-size: 11px; color: #a0a0b2; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">Mã phòng đấu</div>
-                <div style="font-size: 22px; font-weight: 900; color: #e74c3c; letter-spacing: 3px; font-family: monospace; margin-bottom: 15px; background: rgba(231,76,60,0.1); padding: 5px; border-radius: 6px;">
+            <div style="background: linear-gradient(135deg, #1e1e2f, #2a2a3c); border: 1px solid #444; border-radius: 6px; padding: 6px 2px; margin-top: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">PIN</div>
+                <div style="font-size: 11px; font-weight: 900; color: #e74c3c; font-family: monospace; margin-bottom: 8px; letter-spacing: 0.5px;">
                     ${window.ThongTinLiveHocSinh ? window.ThongTinLiveHocSinh.maPhong : '---'}
                 </div>
                 
-                <div style="font-size: 11px; color: #a0a0b2; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">Điểm hiện tại</div>
-                <div id="diem-hien-tai-hs" style="font-size: 32px; font-weight: 900; color: #f1c40f; text-shadow: 0 0 10px rgba(241, 196, 15, 0.3); font-family: monospace; transition: all 0.3s ease;">
+                <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">ĐIỂM</div>
+                <div id="diem-hien-tai-hs" style="font-size: 11px; font-weight: 900; color: #f1c40f; font-family: monospace; transition: all 0.3s ease;">
                     0.00
                 </div>
             </div>
         `;
     }
-
     // 3. RÁP VÀO BỘ KHUNG 2 CỘT FULL MÀN HÌNH
     const rootDiv = document.createElement('div');
     rootDiv.id = 'khong-gian-thi-toan-man-hinh';
