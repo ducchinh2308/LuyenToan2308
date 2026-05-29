@@ -3597,9 +3597,9 @@ window.ham_8_10_ve_giao_dien_lam_bai = function () {
 
     let htmlContentRight = '';
     if (phien.isLiveQuiz) {
-        htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2></div>`;
+        htmlContentRight = `<div style="background:#e74c3c; color:white; padding:11px; border-radius:5px; margin-bottom:12px; box-shadow:0 2px 3px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:11px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2></div>`;
     } else {
-        htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+        htmlContentRight = `<div style="background:#0056b3; color:white; padding:11px; border-radius:5px; margin-bottom:13px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:13px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
     }
 
     let htmlNavLeft = ``;
@@ -3674,13 +3674,16 @@ window.ham_8_10_ve_giao_dien_lam_bai = function () {
                     <span id="so-cau-da-lam" style="color: #28a745;">0</span>/${phien.tong_so_cau}
                 </div>
                 
-                ${htmlLiveDiem}
+               
                 
                 <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Nộp Bài">NỘP</button>
+
+                 
             </div>
 
             <div id="vung-cuon-cau-hoi" style="flex: 1; overflow-y: auto; overflow-x: hidden; padding: 6px 4px; padding-top: 10px;">
-                <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 30px;">
+            ${htmlLiveDiem}    
+            <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 30px;">
                     ${htmlNavLeft}
                 </div>
             </div>
