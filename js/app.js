@@ -3294,8 +3294,88 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 }
 
 
+//// ==============================================================
+//// [Nhãn thời gian: 10:28 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File
+//// ==============================================================
+//window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
+//    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+//    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+//    const trangThaiMoi = document.getElementById('sua_trangThai').value;
+
+//    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
+//    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+//    let banDoMoi = [];
+
+//    rows.forEach(row => {
+//        const originalString = row.getAttribute('data-original-string');
+//        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
+
+//        try {
+//            let objCauHoi = JSON.parse(originalString);
+//            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+//            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+//            else objCauHoi.dap_an = dapAnMoi;
+
+//            banDoMoi.push(objCauHoi);
+//        } catch (e) {
+//            let parts = originalString.split('|');
+//            parts[parts.length - 1] = dapAnMoi;
+//            banDoMoi.push(parts.join('|'));
+//        }
+//    });
+
+//    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
+
+//    btnNode.disabled = true;
+//    btnNode.innerText = "ĐANG ĐÓNG GÓI VÀ LƯU...";
+
+//    try {
+//        const { error } = await _supabase
+//            .from('hoc_lieu')
+//            .update({
+//                ten_hoc_lieu: tenMoi,
+//                thoi_gian_lam_bai: thoiGianMoi,
+//                trang_thai: trangThaiMoi,
+//                danh_sach_cau_hoi: banDoMoi,
+//                quy_mo_cau_hoi: banDoMoi.length
+//            })
+//            .eq('ma_hoc_lieu', maHocLieu);
+
+//        if (error) throw error;
+
+//        // =====================================================================
+//        // 🌟 KIỂM TRA LỆNH GỌI BOT C# ĐỂ GỘP LẠI FILE GIẢI
+//        // =====================================================================
+//        let thongBaoGopFile = "";
+//        const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+
+//        if (chkGopFile && chkGopFile.checked) {
+//            console.log(`📡 Đang đánh thức C# Bot để gộp lại file giải cho Học liệu: ${maHocLieu}`);
+
+//            // Tìm 1 nhiệm vụ bất kỳ đang xài Học liệu này để làm mồi nhử cho C# chạy lệnh
+//            // (Vì C# được lập trình để quét bảng nhiem_vu)
+//            const { data: nvMoiNhu } = await _supabase.from('nhiem_vu').select('id').eq('ma_hoc_lieu', maHocLieu).limit(1).maybeSingle();
+
+//            if (nvMoiNhu && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+//                ham_7_10_ra_lenh_tao_file_giai(nvMoiNhu.id, maHocLieu, true);
+//                thongBaoGopFile = "\n🚀 Đã gửi lệnh C# tạo lại File Lời giải gộp!";
+//            } else {
+//                thongBaoGopFile = "\n⚠️ Đã lưu học liệu. Chưa thể gộp File Giải vì học liệu này chưa được gán cho Nhiệm vụ nào.";
+//            }
+//        }
+
+//        alert(`✅ Đã cập nhật học liệu thành công!${thongBaoGopFile}`);
+//        ham_6_1_ve_quan_ly_hoc_lieu();
+
+//    } catch (error) {
+//        alert("Lỗi: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+//    }
+//};
+
 // ==============================================================
-// [Nhãn thời gian: 10:28 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File
+// [Nhãn thời gian: 10:25 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File (Bổ sung Ghost Task)
 // ==============================================================
 window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
@@ -3344,7 +3424,7 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
         if (error) throw error;
 
         // =====================================================================
-        // 🌟 KIỂM TRA LỆNH GỌI BOT C# ĐỂ GỘP LẠI FILE GIẢI
+        // 🌟 KIỂM TRA LỆNH GỌI BOT C# (THUẬT TOÁN NHIỆM VỤ MỒI)
         // =====================================================================
         let thongBaoGopFile = "";
         const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
@@ -3352,15 +3432,39 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
         if (chkGopFile && chkGopFile.checked) {
             console.log(`📡 Đang đánh thức C# Bot để gộp lại file giải cho Học liệu: ${maHocLieu}`);
 
-            // Tìm 1 nhiệm vụ bất kỳ đang xài Học liệu này để làm mồi nhử cho C# chạy lệnh
-            // (Vì C# được lập trình để quét bảng nhiem_vu)
+            // Tìm 1 nhiệm vụ bất kỳ đang xài Học liệu này để làm mồi nhử cho C#
             const { data: nvMoiNhu } = await _supabase.from('nhiem_vu').select('id').eq('ma_hoc_lieu', maHocLieu).limit(1).maybeSingle();
 
-            if (nvMoiNhu && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
-                ham_7_10_ra_lenh_tao_file_giai(nvMoiNhu.id, maHocLieu, true);
+            let idDaiDienDeGom = null;
+
+            if (nvMoiNhu) {
+                idDaiDienDeGom = nvMoiNhu.id;
+            } else {
+                // NẾU CHƯA CÓ NHIỆM VỤ NÀO, TẠO MỘT "NHIỆM VỤ MỒI" ẨN ĐỂ ĐÁNH LỪA BOT C#
+                const maNVAo = "GHOST_" + Math.floor(Date.now() / 1000);
+                const { data: nvAo, error: errAo } = await _supabase.from('nhiem_vu').insert([{
+                    ma_nhiem_vu: maNVAo,
+                    ten_nhiem_vu: "👻 Nhiệm vụ mồi tạo file giải (Tự động)",
+                    loai_nhiem_vu: "Làm đề (Online)",
+                    ma_hoc_lieu: maHocLieu,
+                    trang_thai: 0, // Khóa 100%, ẩn với học sinh
+                    danh_sach_lop: JSON.stringify([]), // Không giao cho ai
+                    uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : null,
+                    cau_truc_de: banDoMoi.length + " câu"
+                }]).select('id').single();
+
+                if (!errAo && nvAo) {
+                    idDaiDienDeGom = nvAo.id;
+                    console.log("👻 Đã tạo thành công Nhiệm vụ mồi:", maNVAo);
+                }
+            }
+
+            // Gọi hàm phát lệnh cho C#
+            if (idDaiDienDeGom && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+                ham_7_10_ra_lenh_tao_file_giai(idDaiDienDeGom, maHocLieu, true);
                 thongBaoGopFile = "\n🚀 Đã gửi lệnh C# tạo lại File Lời giải gộp!";
             } else {
-                thongBaoGopFile = "\n⚠️ Đã lưu học liệu. Chưa thể gộp File Giải vì học liệu này chưa được gán cho Nhiệm vụ nào.";
+                thongBaoGopFile = "\n⚠️ Đã lưu học liệu, nhưng có lỗi cục bộ khi gọi Bot C#.";
             }
         }
 
