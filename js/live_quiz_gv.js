@@ -694,7 +694,121 @@ window.ham_9_1_tab_live_quiz = async function () {
 
 
 
-// [Nhãn thời gian: 13:42 - Ngày 28/05/2026] - Khởi tạo Phòng Live: Vá lỗi thuật toán chấm điểm sai do sai cấu trúc đề & Tắt đảo đề
+//// [Nhãn thời gian: 13:42 - Ngày 28/05/2026] - Khởi tạo Phòng Live: Vá lỗi thuật toán chấm điểm sai do sai cấu trúc đề & Tắt đảo đề
+//window.ham_9_2_tao_phong_live = async function () {
+//    window.Swal.fire({ title: '⏳ Đang tải kho học liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
+
+//    try {
+//        // Tải danh sách Học Liệu
+//        const { data: dsHL, error } = await _supabase.from('hoc_lieu').select('ma_hoc_lieu, ten_hoc_lieu').order('ngay_tao', { ascending: false });
+
+//        if (error) throw error;
+//        if (!dsHL || dsHL.length === 0) return Swal.fire('Thông báo', 'Kho học liệu trống. Thầy hãy tải lên File JSON đề thi trước nhé!', 'warning');
+
+//        let optionsHtml = '<option value="">-- Chọn File Đề thi (Học liệu) --</option>';
+//        dsHL.forEach(hl => { optionsHtml += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`; });
+
+//        Swal.fire({
+//            title: '🚀 KHỞI TẠO PHÒNG LIVE TỪ HỌC LIỆU',
+//            html: `
+//                <div style="text-align: left; margin-top: 10px;">
+//                    <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">1. Chọn Đề thi sử dụng cho trận đấu:</label>
+//                    <select id="swal-select-hoc-lieu" style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #1a73e8; border-radius: 6px; font-size: 14px; font-weight: bold;">
+//                        ${optionsHtml}
+//                    </select>
+
+//                    <label style="font-weight: bold; font-size: 13px; color: #d35400;">2. Cài đặt thời gian làm bài (Phút):</label>
+//                    <input type="number" id="swal-input-thoi-gian" value="45" min="1" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #d35400; border-radius: 6px; font-size: 14px; font-weight: bold;">
+//                </div>
+//            `,
+//            showCancelButton: true, confirmButtonText: 'Tạo Phòng Đấu Cấp Tốc', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
+//            preConfirm: () => {
+//                const maHL = document.getElementById('swal-select-hoc-lieu').value;
+//                const thoiGian = document.getElementById('swal-input-thoi-gian').value;
+//                if (!maHL) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
+//                if (!thoiGian || thoiGian <= 0) { Swal.showValidationMessage('Thời gian phải lớn hơn 0!'); return false; }
+
+//                const tenHL = document.getElementById('swal-select-hoc-lieu').options[document.getElementById('swal-select-hoc-lieu').selectedIndex].text;
+//                return { maHL, thoiGian, tenHL };
+//            }
+//        }).then(async (result) => {
+//            if (result.isConfirmed) {
+//                const { maHL, thoiGian, tenHL } = result.value;
+
+//                // Sinh Mã PIN và Mã Nhiệm Vụ Ảo
+//                const maPinLive = Math.floor(100000 + Math.random() * 900000).toString();
+//                const maNhiemVuAo = "LIVE_" + maPinLive;
+//                const tenNhiemVuAo = "🔥 Đấu trường PIN: " + maPinLive;
+
+//                Swal.fire({ title: 'Đang trích xuất đề thi và thiết lập Đấu trường...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+
+//                // 🌟 THUẬT TOÁN ĐẾM SỐ CÂU CHUẨN XÁC ĐỂ LÕI CHẤM ĐIỂM KHÔNG BỊ "NGÁO"
+//                let tongSoCau = 20; // Mặc định dự phòng
+//                try {
+//                    const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', maHL).single();
+//                    let urlFileGitHub = hl.url_github;
+//                    if (!urlFileGitHub) {
+//                        let maDeGoc = maHL;
+//                        if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+//                        urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+//                    } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
+//                        urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+//                    }
+
+//                    const res = await fetch(urlFileGitHub);
+//                    if (res.ok) {
+//                        const dataHL = await res.json();
+//                        const dsCauHoi = dataHL.danhSachCauHoi || dataHL.danh_sach_cau_hoi || [];
+//                        if (dsCauHoi.length > 0) tongSoCau = dsCauHoi.length;
+//                    }
+//                } catch (e) {
+//                    console.warn("Lấy số câu gốc thất bại, dùng mặc định:", e);
+//                }
+
+//                // 🌟 ÉP CHUẨN ĐỊNH DẠNG "X câu" CHO LÕI CHẤM ĐIỂM
+//                const cauTrucDeChuan = `${tongSoCau} câu`;
+
+//                // BƯỚC 1: TẠO NHIỆM VỤ ẢO NGẦM
+//                const { error: errNV } = await _supabase.from('nhiem_vu').insert([{
+//                    ma_nhiem_vu: maNhiemVuAo,
+//                    ten_nhiem_vu: tenNhiemVuAo,
+//                    loai_nhiem_vu: "Làm đề (Online)",
+//                    ma_hoc_lieu: maHL,
+//                    uid_gv_tao: AppState.user?.uid || '',
+//                    trang_thai: 1,
+//                    danh_sach_lop: JSON.stringify(["#LUYEN_TAP_TU_DO#"]),
+//                    so_luot_lam_bai: 1,
+//                    thoi_gian_lam_bai: parseInt(thoiGian),
+//                    dao_cau_hoi: JSON.stringify({ cau: false, abcd: false, ds: false }), // 🌟 TẮT ĐẢO ĐỀ Ở LIVE QUIZ ĐỂ TRÁNH LỆCH KẾT QUẢ ĐỒNG BỘ
+//                    cau_truc_de: cauTrucDeChuan
+//                }]);
+
+//                if (errNV) return Swal.fire('Lỗi tạo nhiệm vụ ngầm', errNV.message, 'error');
+
+//                // BƯỚC 2: TẠO PHÒNG LIVE
+//                const { error: errPhong } = await _supabase.from('phong_live_quiz').insert([{
+//                    ma_phong: maPinLive,
+//                    ma_nhiem_vu: maNhiemVuAo,
+//                    uid_gv_tao: AppState.user?.uid || '',
+//                    trang_thai: 0
+//                }]);
+
+//                if (errPhong) return Swal.fire('Lỗi tạo phòng', errPhong.message, 'error');
+
+//                Swal.fire({
+//                    icon: 'success', title: 'Tạo phòng thành công!',
+//                    html: `Hệ thống đã đúc Đề thi ${cauTrucDeChuan} thành công.<br><br>Mã PIN của phòng là: <b style="font-size: 32px; color: #e74c3c; letter-spacing: 2px;">${maPinLive}</b>`,
+//                    confirmButtonText: 'Vào Điều Khiển', confirmButtonColor: '#28a745'
+//                }).then(() => { ham_9_1_tab_live_quiz(); });
+//            }
+//        });
+
+//    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
+//}
+
+// =====================================================================
+// [Nhãn thời gian: 10:15 - Ngày 29/05/2026] - Hàm 9.2: Tạo Phòng Live (Bổ sung ô nhập tên phòng)
+// =====================================================================
 window.ham_9_2_tao_phong_live = async function () {
     window.Swal.fire({ title: '⏳ Đang tải kho học liệu...', allowOutsideClick: false, didOpen: () => { window.Swal.showLoading(); } });
 
@@ -709,7 +823,7 @@ window.ham_9_2_tao_phong_live = async function () {
         dsHL.forEach(hl => { optionsHtml += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`; });
 
         Swal.fire({
-            title: '🚀 KHỞI TẠO PHÒNG LIVE TỪ HỌC LIỆU',
+            title: '🚀 KHỞI TẠO PHÒNG LIVE',
             html: `
                 <div style="text-align: left; margin-top: 10px;">
                     <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">1. Chọn Đề thi sử dụng cho trận đấu:</label>
@@ -718,27 +832,42 @@ window.ham_9_2_tao_phong_live = async function () {
                     </select>
 
                     <label style="font-weight: bold; font-size: 13px; color: #d35400;">2. Cài đặt thời gian làm bài (Phút):</label>
-                    <input type="number" id="swal-input-thoi-gian" value="45" min="1" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #d35400; border-radius: 6px; font-size: 14px; font-weight: bold;">
+                    <input type="number" id="swal-input-thoi-gian" value="45" min="1" style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #d35400; border-radius: 6px; font-size: 14px; font-weight: bold;">
+                    
+                    <label style="font-weight: bold; font-size: 13px; color: #28a745;">3. Tên phòng thi (Tùy chọn):</label>
+                    <input type="text" id="swal-input-ten-phong" placeholder="VD: Kiem tra 15p" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #28a745; border-radius: 6px; font-size: 14px; font-weight: bold;">
                 </div>
             `,
             showCancelButton: true, confirmButtonText: 'Tạo Phòng Đấu Cấp Tốc', cancelButtonText: 'Hủy', confirmButtonColor: '#e74c3c',
             preConfirm: () => {
                 const maHL = document.getElementById('swal-select-hoc-lieu').value;
                 const thoiGian = document.getElementById('swal-input-thoi-gian').value;
+                const tenPhong = document.getElementById('swal-input-ten-phong').value.trim();
+
                 if (!maHL) { Swal.showValidationMessage('Vui lòng chọn 1 đề thi!'); return false; }
                 if (!thoiGian || thoiGian <= 0) { Swal.showValidationMessage('Thời gian phải lớn hơn 0!'); return false; }
 
                 const tenHL = document.getElementById('swal-select-hoc-lieu').options[document.getElementById('swal-select-hoc-lieu').selectedIndex].text;
-                return { maHL, thoiGian, tenHL };
+                return { maHL, thoiGian, tenHL, tenPhong };
             }
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { maHL, thoiGian, tenHL } = result.value;
+                const { maHL, thoiGian, tenHL, tenPhong } = result.value;
 
-                // Sinh Mã PIN và Mã Nhiệm Vụ Ảo
+                // Sinh Mã PIN
                 const maPinLive = Math.floor(100000 + Math.random() * 900000).toString();
-                const maNhiemVuAo = "LIVE_" + maPinLive;
-                const tenNhiemVuAo = "🔥 Đấu trường PIN: " + maPinLive;
+
+                // Cấu hình Mã Nhiệm Vụ Ảo & Tên Nhiệm Vụ Ảo dựa trên input của thầy
+                let maNhiemVuAo = "LIVE_" + maPinLive;
+                let tenNhiemVuAo = "🔥 Đấu trường PIN: " + maPinLive;
+
+                if (tenPhong) {
+                    // Lọc bỏ dấu tiếng Việt và dấu cách để làm Mã ID an toàn cho Database
+                    const safeSuffix = tenPhong.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toUpperCase();
+                    maNhiemVuAo = "LIVE_" + maPinLive + "_" + safeSuffix;
+                    // Tên hiển thị giữ nguyên đúng như thầy gõ
+                    tenNhiemVuAo = "LIVE_" + maPinLive + "_" + tenPhong;
+                }
 
                 Swal.fire({ title: 'Đang trích xuất đề thi và thiết lập Đấu trường...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
 
@@ -779,7 +908,7 @@ window.ham_9_2_tao_phong_live = async function () {
                     danh_sach_lop: JSON.stringify(["#LUYEN_TAP_TU_DO#"]),
                     so_luot_lam_bai: 1,
                     thoi_gian_lam_bai: parseInt(thoiGian),
-                    dao_cau_hoi: JSON.stringify({ cau: false, abcd: false, ds: false }), // 🌟 TẮT ĐẢO ĐỀ Ở LIVE QUIZ ĐỂ TRÁNH LỆCH KẾT QUẢ ĐỒNG BỘ
+                    dao_cau_hoi: JSON.stringify({ cau: false, abcd: false, ds: false }), // 🌟 TẮT ĐẢO ĐỀ Ở LIVE QUIZ
                     cau_truc_de: cauTrucDeChuan
                 }]);
 
@@ -804,7 +933,8 @@ window.ham_9_2_tao_phong_live = async function () {
         });
 
     } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
-}
+};
+
 
 
 // =====================================================================
