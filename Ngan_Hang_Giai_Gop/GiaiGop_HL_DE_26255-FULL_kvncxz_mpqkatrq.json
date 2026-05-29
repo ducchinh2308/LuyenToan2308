@@ -1,0 +1,110 @@
+{
+  "thoiGianGhep": "2026-05-29T06:49:46.540Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_9961e1599c",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\displaystyle u_2 = -2 \\cdot u_1 = -2 \\cdot \\frac{1}{2} = -1$. \\\\\r\n\t\t$u_3 = -2 \\cdot u_2 = -2 \\cdot (-1) = 2$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_8e469e78aa",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\int \\frac{e^x + 1}{2}\\text{d}x = \\frac{1}{2} \\int (e^x + 1)\\text{d}x = \\frac{e^x + x}{2} + C$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_74e83b9b45",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có tổng số thí sinh $n = 6 + 3 + 28 + 41 + 17 + 5 = 100$. \\\\\r\n\t\tKhi đó vị trí tìm nhóm chứa tứ phân vị thứ ba là $\\displaystyle \\frac{3n}{4} = 75$. \\\\\r\n\t\tTa tính tần số tích lũy dồn từ nhóm đầu tiên: $cf_1 = 6$, $cf_2 = 9$, $cf_3 = 37 < 75$, $cf_4 = 78 \\ge 75$. \\\\\r\n\t\tSuy ra tứ phân vị $Q_3$ thuộc nhóm thứ tư, tức là nhóm $[90; 105)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_3ab76e8543",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hàm số $y = \\cos x$ có tập xác định là $D = \\mathbb{R}$. \\\\\r\n\t\tTập giá trị của hàm số mới là $[-1; 1]$. \\\\\r\n\t\tDo đó mệnh đề cho tập xác định $D = [-1; 1]$ là sai. \\\\"
+    },
+    {
+      "maBaoMat": "sol_09b484a21f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Phương trình tham số của đường thẳng đi qua điểm $M_0(x_0; y_0; z_0)$ và có vectơ chỉ phương $\\vec{u} = (a; b; c)$ là $\\begin{cases} x = x_0 + at \\\\ y = y_0 + bt \\\\ z = z_0 + ct \\end{cases}$. \\\\\r\n\t\tÁp dụng với điểm $E(6; -2; -2)$ và $\\vec{u} = (1; 0; 3)$ ta được: $\\begin{cases} x = 6 + 1 \\cdot t \\\\ y = -2 + 0 \\cdot t \\\\ z = -2 + 3 \\cdot t \\end{cases} \\Leftrightarrow \\begin{cases} x = 6 + t \\\\ y = -2 \\\\ z = -2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_cc9efe418a",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có công thức cộng hai vectơ theo tọa độ: $\\vec{a} + \\vec{b} = (a_1 + b_1; a_2 + b_2; a_3 + b_3)$. \\\\\r\n\t\tThay số ta được: $\\vec{a} + \\vec{b} = (3 + 5; -2 + (-2); -6 + 3) = (8; -4; -3)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_a227020fa9",
+      "dapAn": "D",
+      "loiGiaiHtml": "Phương trình mặt cầu dạng khai triển có dạng: $x^2 + y^2 + z^2 - 2ax - 2by - 2cz + d = 0$. \\\\\r\n\t\tXác định các hệ số từ phương trình đề bài: $-2a = 0 \\Rightarrow a = 0$; $-2b = 4 \\Rightarrow b = -2$; $-2c = -2 \\Rightarrow c = 1$ và $d = 3$. \\\\\r\n\t\tBán kính $R$ của mặt cầu được tính theo công thức: $R = \\sqrt{a^2 + b^2 + c^2 - d}$. \\\\\r\n\t\tThay số ta được: $R = \\sqrt{0^2 + (-2)^2 + 1^2 - 3} = \\sqrt{0 + 4 + 1 - 3} = \\sqrt{2}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_e99a2157f3",
+      "dapAn": "A",
+      "loiGiaiHtml": "Theo tính chất chèn điểm của tích phân, ta có: $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x + \\int_2^4 f(x)\\text{d}x$. \\\\\r\n\t\tMặt khác, theo giả thiết: $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1$. \\\\\r\n\t\tĐồng nhất hai đẳng thức trên, ta thu được: $\\displaystyle \\int_1^2 f(x)\\text{d}x + \\int_2^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1 \\Rightarrow \\int_2^4 f(x)\\text{d}x = -1$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_d3db5bd6d8",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập xác định của hàm số là $D = \\mathbb{R}$. \\\\\r\n\t\tTa tính đạo hàm: $y' = -4x^2 + 12x$. \\\\\r\n\t\tXét tập nghiệm bất phương trình cho hàm số đồng biến: $y' \\ge 0 \\Leftrightarrow -4x^2 + 12x \\ge 0 \\Leftrightarrow 0 \\le x \\le 3$. \\\\\r\n\t\tDo đó, hàm số đồng biến trên khoảng $(0; 3)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_7920740336",
+      "dapAn": "D",
+      "loiGiaiHtml": "Xét giới hạn tại vô cực để tìm tiệm cận ngang: $\\displaystyle \\lim_{x \\to \\pm\\infty} y = \\lim_{x \\to \\pm\\infty} \\frac{2x + 2}{x + 3} = 2 \\Rightarrow y = 2$ là đường tiệm cận ngang. \\\\\r\n\t\tXét nghiệm mẫu số $x + 3 = 0 \\Leftrightarrow x = -3$. \\\\\r\n\t\tVì $\\displaystyle \\lim_{x \\to -3^+} y = -\\infty$ nên đường thẳng $x = -3$ là đường tiệm cận đứng của đồ thị hàm số. \\\\"
+    },
+    {
+      "maBaoMat": "sol_e7c7534aaa",
+      "dapAn": "A",
+      "loiGiaiHtml": "Xét phương án A: Công thức tích xác suất $P(AB) = P(A)P(B)$ chỉ áp dụng đúng khi hai biến cố $A$ và $B$ độc lập với nhau. Trong trường hợp tổng quát của hai biến cố ngẫu nhiên bất kỳ, công thức này hoàn toàn có thể sai. \\\\\r\n\t\tXét các phương án còn lại: B là định nghĩa chuẩn xác suất có điều kiện; C là tính chất biến cố đối; D là công thức xác suất đầy đủ (Đều luôn đúng). \\\\"
+    },
+    {
+      "maBaoMat": "sol_cfbcd53b53",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì cơ số $a = 10 > 1$, lấy lôgarít cơ số 10 cả hai vế của bất phương trình ta giữ nguyên chiều: \\\\\r\n\t\t$10^x < 20 \\Leftrightarrow x < \\log_{10} 20 \\Leftrightarrow x < \\log 20$. \\\\\r\n\t\tDo đó tập nghiệm của bất phương trình là $S = (-\\infty; \\log 20)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_23e650c201",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Diện tích đáy của khối chóp $S.ABCD$ là $A_{ABCD} = a_{ABCD}^2 = 6^2 = 36\\text{ cm}^2$.\\\\\r\n\t\t\tThể tích của khối chóp $S.ABCD$ là $V_{S.ABCD} = \\dfrac{1}{3}A_{ABCD} \\times h_{S.ABCD} = \\dfrac{1}{3} \\times 36 \\times 6 = 72\\text{ cm}^3$.\\\\\r\n\t\t\tKhẳng định này Đúng.\r\n\t\t\t\\itemch Chiều cao tổng thể của gọt bút chì là $h_{tong} = 6\\text{ cm}$.\\\\\r\n\t\t\tChiều cao của phần nắp là $h_{nap} = \\dfrac{1}{3}h_{tong} = \\dfrac{1}{3} \\times 6 = 2\\text{ cm}$.\\\\\r\n\t\t\tChiều cao của phần thân (hình chóp cụt $ABCD.A'B'C'D'$) là $h_{than} = \\dfrac{2}{3}h_{tong} = \\dfrac{2}{3} \\times 6 = 4\\text{ cm}$.\\\\\r\n\t\t\tChiều cao của phần lõi gọt (hình nón) là $h_{loi} = \\dfrac{1}{2}h_{than} = \\dfrac{1}{2} \\times 4 = 2\\text{ cm}$.\\\\\r\n\t\t\tKhẳng định này Đúng.\r\n\t\t\t\\itemch Phần lõi gọt là hình nón có bán kính đáy $r = 0{,}6\\text{ cm}$ và chiều cao $h_{loi} = 2\\text{ cm}$.\\\\\r\n\t\t\tĐộ dài đường sinh của hình nón là $l = \\sqrt{r^2 + h_{loi}^2} = \\sqrt{(0{,}6)^2 + 2^2} = \\sqrt{0{,}36 + 4} = \\sqrt{4{,}36}\\text{ cm}$.\\\\\r\n\t\t\tDiện tích xung quanh của phần lõi gọt là $S_{xq} = \\pi rl = \\pi \\times 0{,}6 \\times \\sqrt{4{,}36}$.\\\\\r\n\t\t\t$S_{xq} \\approx 3{,}14159 \\times 0{,}6 \\times 2{,}088056 \\approx 3{,}93988\\text{ cm}^2$.\\\\\r\n\t\t\tLàm tròn đến hàng phần trăm, ta được $S_{xq} \\approx 3{,}94\\text{ cm}^2$.\\\\\r\n\t\t\tKhẳng định này Sai.\r\n\t\t\t\\itemch Thể tích này bằng thể tích phần thân trừ đi thể tích phần lõi gọt ($V_{\\text{không gian}} = V_{\\text{thân}} - V_{\\text{lõi}}$).\\\\\r\n\t\t\tĐể tính $V_{\\text{thân}}$, ta cần tính diện tích hai đáy của hình chóp cụt $ABCD.A'B'C'D'$.\\\\\r\n\t\t\tĐáy lớn $ABCD$ có cạnh $a_{ABCD} = 6\\text{ cm}$, diện tích $S_{ABCD} = 36\\text{ cm}^2$.\\\\\r\n\t\t\tĐáy nhỏ $A'B'C'D'$ tương ứng là đáy của hình chóp với đỉnh $S$ và chiều cao $h_{\\text{nắp}} = 2\\text{ cm}$. Chiều cao của hình chóp ban đầu là $h_{S.ABCD} = 6\\text{ cm}$.\\\\\r\n\t\t\tTỉ số đồng dạng về chiều cao của hình chóp nhỏ $S.A'B'C'D'$ so với hình chóp lớn $S.ABCD$ là $k = \\dfrac{h_{\\text{nắp}}}{h_{S.ABCD}} = \\dfrac{2}{6} = \\dfrac{1}{3}$.\\\\\r\n\t\t\tCạnh đáy của hình vuông $A'B'C'D'$ là $a_{A'B'C'D'} = k \\times a_{ABCD} = \\dfrac{1}{3} \\times 6 = 2\\text{ cm}$.\\\\\r\n\t\t\tDiện tích đáy nhỏ $S_{A'B'C'D'} = \\left(a_{A'B'C'D'}\\right)^2 = 2^2 = 4\\text{ cm}^2$.\\\\\r\n\t\t\tThể tích của phần thân (hình chóp cụt) là:\\\\\r\n\t\t\t$V_{\\text{thân}} = \\dfrac{1}{3}h_{\\text{thân}}\\left(S_{ABCD} + \\sqrt{S_{ABCD} \\times S_{A'B'C'D'}} + S_{A'B'C'D'}\\right)$\\\\\r\n\t\t\t$V_{\\text{thân}} = \\dfrac{1}{3} \\times 4 \\times \\left(36 + \\sqrt{36 \\times 4} + 4\\right)$\\\\\r\n\t\t\t$V_{\\text{thân}} = \\dfrac{4}{3} \\times \\left(36 + \\sqrt{144} + 4\\right)$\\\\\r\n\t\t\t$V_{\\text{thân}} = \\dfrac{4}{3} \\times (36 + 12 + 4) = \\dfrac{4}{3} \\times 52 = \\dfrac{208}{3}\\text{ cm}^3$.\\\\\r\n\t\t\t$V_{\\text{thân}} \\approx 69{,}33333\\text{ cm}^3$.\\\\\r\n\t\t\tThể tích của phần lõi gọt (hình nón) là:\\\\\r\n\t\t\t$V_{\\text{lõi}} = \\dfrac{1}{3}\\pi r^2 h_{\\text{lõi}} = \\dfrac{1}{3}\\pi (0{,}6)^2 \\times 2 = \\dfrac{1}{3}\\pi \\times 0{,}36 \\times 2 = 0{,}24\\pi\\text{ cm}^3$.\\\\\r\n\t\t\t$V_{\\text{lõi}} \\approx 0{,}24 \\times 3{,}14159 \\approx 0{,}75398\\text{ cm}^3$.\\\\\r\n\t\t\tThể tích của phần không gian là $V_{\\text{không gian}} = V_{\\text{thân}} - V_{\\text{lõi}} \\approx 69{,}33333 - 0{,}75398 \\approx 68{,}57935\\text{ cm}^3$.\\\\\r\n\t\t\tLàm tròn đến hàng phần trăm, ta được $V_{\\text{không gian}} \\approx 68{,}58\\text{ cm}^3$.\\\\\r\n\t\t\tKhẳng định này Đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_3dd3c1cdcf",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Gọi $A$ là biến cố \"người tiếp xúc trực tiếp\", khi đó $P(A)=0{,}3$ và $P(\\overline{A})=0{,}7$. Gọi $B$ là biến cố \"người bị nhiễm bệnh\". Theo bài ra $P(B|A)=0{,}9$ và $P(\\overline{B}|\\overline{A})=0{,}36$.\r\n\t\t\t\\itemch Ý a) Sai: $P(\\overline{B}|A) = 1 - P(B|A) = 1 - 0{,}9 = 0{,}1 = 10\\% \\neq 90\\%$.\r\n\t\t\t\\itemch Ý b) Đúng: $P(B|\\overline{A}) = 1 - P(\\overline{B}|\\overline{A}) = 1 - 0{,}36 = 0{,}64 = 64\\% > 50\\%$.\r\n\t\t\t\\itemch Ý c) Sai: Xác suất để người đó nhiễm bệnh là $P(B) = P(A) \\cdot P(B|A) + P(\\overline{A}) \\cdot P(B|\\overline{A}) = 0{,}3 \\cdot 0{,}9 + 0{,}7 \\cdot 0{,}64 = 0{,}27 + 0{,}448 = 0{,}718 = 71{,}8\\%$.\r\n\t\t\t\\itemch Ý d) Đúng: Xác suất người đó tiếp xúc gián tiếp với chuột nhiễm bệnh khi biết người đó đã nhiễm bệnh là $P(\\overline{A}|B) = \\dfrac{P(\\overline{A}) \\cdot P(B|\\overline{A})}{P(B)} = \\dfrac{0{,}448}{0{,}718} \\approx 0{,}6239 = 62{,}4\\%$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_53f57cfda1",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ý a) đúng: Theo công thức tính tổng lượng khách, $N(t) = N(0) + \\displaystyle \\int_0^t K(x) \\, dx = 160 + \\displaystyle \\int_0^t K(x) \\, dx$.\r\n\t\t\t\\itemch Ý b) đúng: Khu vui chơi mở cửa lúc 8h00, từ 10h00 đến 13h00 tương ứng $t \\in [2; 5]$. Giải $K(t) = 4t^3 - 36t^2 + 80t - 48 = 0$, nghiệm là $t=1, t=2, t=6$. Trên khoảng $(2; 6)$, ta có $K(t) < 0$. Vì $[2; 5] \\subset [2; 6]$ nên $K(t) < 0$ trên $(2; 5)$, suy ra lượng khách luôn giảm trong khoảng thời gian này.\r\n\t\t\t\\itemch Ý c) sai: Lượng khách tại thời điểm $t$ là $N(t) = t^4 - 12t^3 + 40t^2 - 48t + 160$. Xét hàm số $N(t)$ trên đoạn $[0; 12]$, giá trị nhỏ nhất của $N(t)$ là $N(6) = 16$. Lượng khách không bao giờ giảm xuống mức 12 người.\r\n\t\t\t\\itemch Ý d) sai: Để quá tải thì $N(t) > 3600$. Giải bất phương trình $t^4 - 12t^3 + 40t^2 - 48t + 160 > 3600$, nghiệm là $11{,}24 < t \\le 12$. Thời gian quá tải là $12 - 11{,}24 = 0{,}76$ giờ $\\approx 45{,}6$ phút.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4cf0b4bab3",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số $f(x) = 2x - 4 + \\dfrac{2}{x+1}$ là hàm phân thức hữu tỉ nên liên tục trên các khoảng xác định $(-\\infty; -1)$ và $(-1; +\\infty)$.\r\n\t\t\t\\itemch Ta có $f'(x) = 2 - \\dfrac{2}{(x+1)^2} = \\dfrac{2(x+1)^2 - 2}{(x+1)^2} = \\dfrac{2(x^2+2x+1) - 2}{(x+1)^2} = \\dfrac{2x^2+4x}{(x+1)^2} = \\dfrac{2(x^2+2x)}{(x+1)^2}$.\r\n\t\t\t\\itemch $f'(x) = 0 \\Leftrightarrow x^2 + 2x = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\r\n\t\t\tTa có $f(0) = -2$ và $f(-2) = 2(-2) - 4 + \\dfrac{2}{-2+1} = -4 - 4 - 2 = -10$.\r\n\t\t\tDựa vào bảng biến thiên, tại $x=0$ hàm số đạt cực tiểu $(0; -2)$, tại $x=-2$ hàm số đạt cực đại $(-2; -10)$. Do đó ý c) sai.\r\n\t\t\t\\itemch Trên khoảng $(-1; +\\infty)$, hàm số đạt cực tiểu tại $x=0$ với giá trị $f(0)=-2$. Do đó giá trị nhỏ nhất của hàm số trên khoảng $(-1; +\\infty)$ là $-2$. Ý d) đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a7da6baa7a",
+      "dapAn": "3091",
+      "loiGiaiHtml": "Để được nhận phần quà Cháu yêu Bác Hồ, học sinh phải chọn 10 số trong tập các số từ 5 đến 19 ($19-5+1 = 15$ số). Vì cần xếp theo thứ tự tăng dần nên chỉ có 1 cách xếp cho 10 số đã chọn.\r\n\t\t\\\\\r\n\t\tSố cách chọn là $C_{15}^{10} = 3003$ (cách).\r\n\t\t\\\\\r\n\t\tĐể nhận được phần quà Muôn đời nhớ Bác:\r\n\t\t\\\\\r\n\t\t1) Bộ năm số $(A_1, A_3, A_5, A_7, A_9)$ lập thành cấp số nhân với công bội $q$ nguyên dương, $q > 1$. Gọi $A_1 = a$, ta có $A_3 = aq, A_5 = aq^2, A_7 = aq^3, A_9 = aq^4$.\r\n\t\t\\\\\r\n\t\tĐiều kiện $A_i \\le 1890 \\Rightarrow aq^4 \\le 1890$.\r\n\t\t\\\\\r\n\t\t2) Các bộ $(A_1, A_2, A_3), (A_3, A_4, A_5), (A_5, A_6, A_7), (A_7, A_8, A_9)$ và $(A_9, A_{10}, A_1)$ là cấp số cộng.\r\n\t\t\\\\\r\n\t\tTa có: $A_2 = \\dfrac{A_1+A_3}{2} = \\dfrac{a+aq}{2} = \\dfrac{a(1+q)}{2}$.\r\n\t\t\\\\\r\n\t\t$A_4 = \\dfrac{A_3+A_5}{2} = \\dfrac{aq(1+q)}{2}$, $A_6 = \\dfrac{A_5+A_7}{2} = \\dfrac{aq^2(1+q)}{2}$, $A_8 = \\dfrac{A_7+A_9}{2} = \\dfrac{aq^3(1+q)}{2}$.\r\n\t\t\\\\\r\n\t\t$A_{10} = \\dfrac{A_9+A_1}{2} = \\dfrac{a(q^4+1)}{2}$.\r\n\t\t\\\\\r\n\t\tVới $q \\in \\{2, 3, 4, 5, 6\\}$, ta xét các trường hợp để $a$ nguyên và $A_i$ nguyên:\r\n\t\t\\\\\r\n\t\t- Trường hợp 1: $q=2 \\Rightarrow aq^4 = 16a \\le 1890 \\Rightarrow a \\le 118{,}125$. Để $A_i \\in \\mathbb{Z}$, $a$ phải là số chẵn. $a \\in \\{2, 4, \\dots, 118\\}$ có 59 số.\r\n\t\t\\\\\r\n\t\t- Trường hợp 2: $q=3 \\Rightarrow aq^4 = 81a \\le 1890 \\Rightarrow a \\le 23{,}3$. Để $A_i \\in \\mathbb{Z}$, $a(1+q) = 4a$ là số chẵn (luôn đúng). $a \\in \\{1, 2, \\dots, 23\\}$ có 23 số.\r\n\t\t\\\\\r\n\t\t- Trường hợp 3: $q=4 \\Rightarrow aq^4 = 256a \\le 1890 \\Rightarrow a \\le 7{,}38$. Để $A_i \\in \\mathbb{Z}$, $a(1+q) = 5a$ là chẵn $\\Rightarrow a$ chẵn. $a \\in \\{2, 4, 6\\}$ có 3 số.\r\n\t\t\\\\\r\n\t\t- Trường hợp 4: $q=5 \\Rightarrow aq^4 = 625a \\le 1890 \\Rightarrow a \\le 3{,}02$. Để $A_i \\in \\mathbb{Z}$, $a(1+q) = 6a$ chẵn (luôn đúng). $a \\in \\{1, 2, 3\\}$ có 3 số.\r\n\t\t\\\\\r\n\t\t- Trường hợp 5: $q=6 \\Rightarrow aq^4 = 1296a \\le 1890 \\Rightarrow a \\le 1{,}45$. $a=1$, $A_2 = \\dfrac{1+6}{2} = 3{,}5$ (loại).\r\n\t\t\\\\\r\n\t\tTổng cách nhận quà Muôn đời nhớ Bác là $59 + 23 + 3 + 3 = 88$ cách.\r\n\t\t\\\\\r\n\t\tTổng số cách là $3003 + 88 = 3091$ cách."
+    },
+    {
+      "maBaoMat": "sol_8b64ff2162",
+      "dapAn": "0,88",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_8b64ff2162_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $M$ là trung điểm của $BC$, ta có $BC = \\sqrt{AB^2+AC^2} = \\sqrt{2^2+2^2} = 2\\sqrt{2}$.\r\n\t\t\\\\\r\n\t\t$AM = \\dfrac{1}{2}BC = \\sqrt{2}$ (đường trung tuyến ứng với cạnh huyền tam giác vuông cân).\r\n\t\t\\\\\r\n\t\t$AG = \\dfrac{2}{3}AM = \\dfrac{2\\sqrt{2}}{3}$.\r\n\t\t\\\\\r\n\t\tVì $A'G \\perp (ABC)$ nên $AG$ là hình chiếu vuông góc của $AA'$ trên mặt phẳng $(ABC)$.\r\n\t\t\\\\\r\n\t\tGóc giữa cạnh bên $AA'$ và mặt đáy $(ABC)$ là $\\alpha = \\widehat{A'AG}$.\r\n\t\t\\\\\r\n\t\tXét tam giác $A'AG$ vuông tại $G$:\r\n\t\t\\\\\r\n\t\t$\\cos \\alpha = \\dfrac{AG}{AA'} = \\dfrac{2\\sqrt{2}}{3} : 2 = \\dfrac{\\sqrt{2}}{3}$.\r\n\t\t\\\\\r\n\t\t$\\sin \\alpha = \\sqrt{1 - \\cos^2 \\alpha} = \\sqrt{1 - \\left(\\dfrac{\\sqrt{2}}{3}\\right)^2} = \\sqrt{1 - \\dfrac{2}{9}} = \\sqrt{\\dfrac{7}{9}} = \\dfrac{\\sqrt{7}}{3} \\approx 0{,}88$."
+    },
+    {
+      "maBaoMat": "sol_61af420f06",
+      "dapAn": "84",
+      "loiGiaiHtml": "Xét hàm số đại diện cho bán kính đường tròn thiết diện là $R(x) = |a\\sin x + b|$.\r\n\t\t\\\\\r\n\t\tTại đáy bình ($x=0$): bán kính bằng $2\\,\\text{dm} \\Rightarrow |a\\sin 0 + b| = 2 \\Rightarrow |b| = 2$. Chọn $b=2$.\r\n\t\t\\\\\r\n\t\tTại miệng bình ($x=\\dfrac{11\\pi}{6}$): bán kính bằng $1{,}5\\,\\text{dm} \\Rightarrow |a\\sin\\left(\\dfrac{11\\pi}{6}\\right) + 2| = 1{,}5$.\r\n\t\t\\\\\r\n\t\tTa có $\\sin\\left(\\dfrac{11\\pi}{6}\\right) = -\\dfrac{1}{2}$, nên $\\left| -\\dfrac{1}{2}a + 2 \\right| = 1{,}5$.\r\n\t\t\\\\\r\n\t\tSuy ra $\\left[ \\begin{array}{l} -\\dfrac{1}{2}a + 2 = 1{,}5 \\\\ -\\dfrac{1}{2}a + 2 = -1{,}5 \\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l} a = 1 \\\\ a = 7 \\end{array} \\right.$.\r\n\t\t\\\\\r\n\t\tNếu chọn $a=7$, hàm số trở thành $y = 7\\sin x + 2$, đường này cắt trục hoành tại các vị trí $\\sin x = -\\dfrac{2}{7}$, tạo ra các đoạn thắt nút bằng $0$ (bình bị tịt lòng), không đúng với thực tế. Do đó, chọn $a=1$ và $b=2$.\r\n\t\t\\\\\r\n\t\tVậy hàm số cần tìm là $y = \\sin x + 2$.\r\n\t\t\\\\\r\n\t\tThể tích vật thể tròn xoay được tính theo công thức:\r\n\t\t\\\\\r\n\t\t$V = \\pi \\displaystyle \\int_{0}^{\\frac{11\\pi}{6}} (\\sin x + 2)^2 \\, dx = \\pi \\displaystyle \\int_{0}^{\\frac{11\\pi}{6}} (\\sin^2 x + 4\\sin x + 4) \\, dx$.\r\n\t\t\\\\\r\n\t\tTa có $\\sin^2 x = \\dfrac{1 - \\cos 2x}{2}$, nên:\r\n\t\t\\\\\r\n\t\t$V = \\pi \\displaystyle \\int_{0}^{\\frac{11\\pi}{6}} \\left( \\dfrac{1 - \\cos 2x}{2} + 4\\sin x + 4 \\right) \\, dx = \\pi \\displaystyle \\int_{0}^{\\frac{11\\pi}{6}} \\left( 4{,}5 - 0{,}5\\cos 2x + 4\\sin x \\right) \\, dx$.\r\n\t\t\\\\\r\n\t\t$V = \\pi \\left[ 4{,}5x - 0{,}25\\sin 2x - 4\\cos x \\right]_{0}^{\\frac{11\\pi}{6}} \\approx \\pi \\times 26{,}67054 \\approx 83{,}788$.\r\n\t\t\\\\\r\n\t\tLàm tròn đến hàng đơn vị, ta được $V \\approx 84\\,\\text{dm}^3$."
+    },
+    {
+      "maBaoMat": "sol_9e0d27460e",
+      "dapAn": "7",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t\\includegraphics[scale=0.8]\r\n\t\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_151832.png}\r\n\t\t\\end{center}\r\n\t\tChọn hệ trục tọa độ như hình vẽ, ta có $D_1(0;0;0)$, $D_2(4;0;0)$, $D_3(0;4;0)$, suy ra đèn thứ tư $D_4(4;4;0)$.\\\\\r\n\t\tTâm của hình vuông đáy là trung điểm $I$ của $D_1D_4$, nên $I(2;2;0)$.\\\\\r\n\t\tGọi điểm cao nhất của chỏm cầu là $H(2;2;h)$ với $h>0$.\\\\\r\n\t\tTheo đề bài, khoảng cách từ $H$ đến các đèn chiếu là $\\dfrac{\\sqrt{86}}{2}$.\\\\\r\n\t\t$HD_4^2 = (4-2)^2 + (4-2)^2 + (0-h)^2 = 4 + 4 + h^2 = 8 + h^2$.\\\\\r\n\t\tTheo đề bài $HD_4^2 = \\left(\\dfrac{\\sqrt{86}}{2}\\right)^2 = \\dfrac{86}{4} = 21{,}5$.\\\\\r\n\t\tSuy ra $8 + h^2 = 21{,}5 \\Leftrightarrow h^2 = 13{,}5 = \\dfrac{27}{2} \\Rightarrow h = \\sqrt{\\dfrac{27}{2}} = \\dfrac{3\\sqrt{6}}{2}$. Vậy $H\\left(2;2;\\dfrac{3\\sqrt{6}}{2}\\right)$.\\\\\r\n\t\tGọi $K$ là tâm mặt cầu $(S)$. Vì $H$ là điểm cao nhất và bán kính mặt cầu $R=\\sqrt{6}$, nên $K$ nằm dưới $H$ một đoạn $\\sqrt{6}$.\\\\\r\n\t\t$K\\left(2;2;z_K\\right)$ với $z_K = z_H - R = \\dfrac{3\\sqrt{6}}{2} - \\sqrt{6} = \\dfrac{\\sqrt{6}}{2}$. Vậy $K\\left(2;2;\\dfrac{\\sqrt{6}}{2}\\right)$.\\\\\r\n\t\tPhương trình mặt cầu $(S): (x-2)^2 + (y-2)^2 + \\left(z-\\dfrac{\\sqrt{6}}{2}\\right)^2 = 6$.\\\\\r\n\t\tĐáy chỏm cầu là giao tuyến của mặt cầu với mặt phẳng $(Oxy)$, tức $z=0$.\\\\\r\n\t\tThay $z=0$ vào phương trình mặt cầu: $(x-2)^2 + (y-2)^2 + \\left(0-\\dfrac{\\sqrt{6}}{2}\\right)^2 = 6 \\Leftrightarrow (x-2)^2 + (y-2)^2 = 6 - \\dfrac{6}{4} = 4{,}5 = \\dfrac{9}{2}$.\\\\\r\n\t\tĐáy là đường tròn tâm $I(2;2;0)$, bán kính $r = \\sqrt{4{,}5} = \\dfrac{3\\sqrt{2}}{2}$.\\\\\r\n\t\tĐiểm $M(a;b;c)$ nằm trên đáy nên $c=0$. $M$ thuộc đường tròn đáy và gần $D_4$ nhất nên $M$ là giao điểm của đoạn $ID_4$ với đường tròn đáy.\\\\\r\n\t\tTa có vector $\\vec{ID_4} = (4-2; 4-2; 0) = (2;2;0)$ và $\\left|\\vec{ID_4}\\right| = \\sqrt{2^2+2^2} = 2\\sqrt{2}$.\\\\\r\n\t\tVì vector $\\vec{IM}$ cùng hướng với vector $\\vec{ID_4}$ và độ dài $IM=r$ nên $\\vec{IM} = \\dfrac{r}{\\left|\\vec{ID_4}\\right|} \\cdot \\vec{ID_4} = \\dfrac{\\frac{3\\sqrt{2}}{2}}{2\\sqrt{2}} \\cdot (2;2;0) = \\dfrac{3}{4} \\cdot (2;2;0) = \\left(\\dfrac{3}{2}; \\dfrac{3}{2}; 0\\right)$.\\\\\r\n\t\tSuy ra $M = I + \\vec{IM} = \\left(2+\\dfrac{3}{2}; 2+\\dfrac{3}{2}; 0\\right) = \\left(\\dfrac{7}{2}; \\dfrac{7}{2}; 0\\right)$.\\\\\r\n\t\tDo đó $a=\\dfrac{7}{2}, b=\\dfrac{7}{2}, c=0 \\Rightarrow a+b+c = \\dfrac{7}{2} + \\dfrac{7}{2} = 7$."
+    },
+    {
+      "maBaoMat": "sol_ee92c7d8ed",
+      "dapAn": "-58",
+      "loiGiaiHtml": "Mặt phẳng $(\\alpha)$ có vectơ pháp tuyến là $\\vec{n_{\\alpha}} = (3; -4; 0)$.\\\\\r\n\t\tĐường thẳng $d$ đi qua điểm $M(0; -1; 1)$ và có vectơ chỉ phương $\\vec{u_d} = (2; 3; -1)$.\\\\\r\n\t\tMặt phẳng $(\\beta)$ có vectơ pháp tuyến là $\\vec{n_{\\beta}} = (4; m; n)$.\\\\\r\n\t\tVì $(\\beta)$ chứa $d$ nên $\\vec{n_{\\beta}} \\perp \\vec{u_d} \\Rightarrow \\vec{n_{\\beta}} \\cdot \\vec{u_d} = 0 \\Leftrightarrow 4(2) + 3m - n = 0 \\Leftrightarrow n = 3m + 8 \\quad (1)$.\\\\\r\n\t\tVì $(\\beta) \\perp (\\alpha)$ nên $\\vec{n_{\\beta}} \\perp \\vec{n_{\\alpha}} \\Rightarrow \\vec{n_{\\beta}} \\cdot \\vec{n_{\\alpha}} = 0$.\\\\\r\n\t\t$\\Leftrightarrow 4(3) + m(-4) + n(0) = 0 \\Leftrightarrow 12 - 4m = 0 \\Leftrightarrow m = 3$.\\\\\r\n\t\tThay $m = 3$ vào (1) ta được: $n = 3(3) + 8 = 17$.\\\\\r\n\t\tVậy phương trình mặt phẳng $(\\beta)$ là: $4x + 3y + 17z + p = 0$.\\\\\r\n\t\tVì $(\\beta)$ chứa $d$ nên $(\\beta)$ đi qua điểm $M(0; -1; 1)$ thuộc đường thẳng $d$.\\\\\r\n\t\tThay tọa độ điểm $M$ vào phương trình mặt phẳng:\\\\\r\n\t\t$4(0) + 3(-1) + 17(1) + p = 0 \\Leftrightarrow -3 + 17 + p = 0 \\Leftrightarrow p = -14$.\\\\\r\n\t\tSuy ra: $3m + n + 6p = 3(3) + 17 + 6(-14) = 9 + 17 - 84 = -58$."
+    }
+  ]
+}
