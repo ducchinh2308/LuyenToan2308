@@ -520,8 +520,47 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
 };
 
 
+//// =====================================================================
+//// 5. Màn hình báo kết quả đã thi - Chờ các học sinh khác
+//// =====================================================================
+//window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
+//    // Gỡ bỏ không gian thi full màn hình nếu đang mở hiển thị
+//    const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
+//    if (khongGianThi) khongGianThi.remove();
+
+//    // Mở lại thanh cuộn cho trang chính
+//    document.body.style.overflow = 'auto';
+//    document.documentElement.style.overflow = 'auto';
+
+//    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
+//    if (!vungLamViec) return;
+
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 550px; margin: 60px auto; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+//            <div style="background: #27ae60; padding: 40px 20px; text-align: center; color: white;">
+//                <div style="font-size: 60px; margin-bottom: 10px; animation: pulse 2s infinite;">🏆</div>
+//                <h2 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 1px;">HOÀN THÀNH THI ĐẤU</h2>
+//                <p style="margin: 5px 0 0 0; opacity: 0.85; font-size: 14px;">Mã phòng đấu: ${window.ThongTinLiveHocSinh.maPhong || '---'}</p>
+//            </div>
+//            <div style="padding: 40px 30px; text-align: center;">
+//                <div style="font-size: 14px; color: #7f8c8d; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Điểm số chính thức của em</div>
+//                <div style="font-size: 64px; font-weight: 900; color: #2c3e50; margin: 10px 0; font-family: monospace;">${Number(diemSo).toFixed(2)}</div>
+
+//                <div style="background: #f8f9fa; border-left: 4px solid #2980b9; padding: 15px; border-radius: 8px; text-align: left; margin-top: 30px;">
+//                    <p style="margin: 0; color: #2c3e50; font-weight: bold; font-size: 15px;">⏳ Đang đợi các bạn khác nộp bài...</p>
+//                    <p style="margin: 5px 0 0 0; color: #7f8c8d; font-size: 13px;">Bảng xếp hạng tổng sắp toàn lớp sẽ được Thầy giáo công bố trên màn hình máy chiếu sau khi kết thúc phòng đấu.</p>
+//                </div>
+
+//                <button onclick="location.reload()" style="margin-top: 30px; width: 100%; padding: 14px; background: #34495e; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s;">
+//                    🔄 Cập nhật bảng điểm phòng đấu
+//                </button>
+//            </div>
+//        </div>
+//    `;
+//};
+
 // =====================================================================
-// 5. Màn hình báo kết quả đã thi - Chờ các học sinh khác
+// [Nhãn thời gian: 08:56 - Ngày 29/05/2026] - Hàm 8.6.6: Màn hình báo kết quả đã thi - Chờ các học sinh khác
 // =====================================================================
 window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
     // Gỡ bỏ không gian thi full màn hình nếu đang mở hiển thị
@@ -551,11 +590,51 @@ window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
                     <p style="margin: 5px 0 0 0; color: #7f8c8d; font-size: 13px;">Bảng xếp hạng tổng sắp toàn lớp sẽ được Thầy giáo công bố trên màn hình máy chiếu sau khi kết thúc phòng đấu.</p>
                 </div>
                 
-                <button onclick="location.reload()" style="margin-top: 30px; width: 100%; padding: 14px; background: #34495e; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s;">
-                    🔄 Cập nhật bảng điểm phòng đấu
+                <button onclick="ham_8_6_7_thoat_ve_trang_chu()" style="margin-top: 30px; width: 100%; padding: 14px; background: #34495e; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+                    🏠 TRỞ VỀ MÀN HÌNH CHÍNH
                 </button>
             </div>
         </div>
     `;
+};
+
+// =====================================================================
+// [Nhãn thời gian: 08:56 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp phiên Live Quiz và kích hoạt về màn hình chính
+// =====================================================================
+window.ham_8_6_7_thoat_ve_trang_chu = function () {
+    // 1. Dọn dẹp rác bộ nhớ của phiên Đấu trường
+    window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '', thoiGianDong: null };
+    window.DangKhoiTaoLiveQuiz = false;
+
+    if (window.HocSinhLiveChannel) {
+        _supabase.removeChannel(window.HocSinhLiveChannel);
+        window.HocSinhLiveChannel = null;
+    }
+
+    if (window.IntervalKiemTraPhong) {
+        clearInterval(window.IntervalKiemTraPhong);
+        window.IntervalKiemTraPhong = null;
+    }
+
+    // 2. Quay về màn hình chính (Dùng thuật toán giả lập click vào Menu)
+    const btnMenuTrangChu = document.getElementById('menu-hoc-sinh-trang-chu') ||
+        document.getElementById('btn-danh-sach-nhiem-vu') ||
+        document.querySelector('[onclick*="ham_8_1"]') ||
+        document.querySelector('[onclick*="ham_8_2"]');
+
+    if (btnMenuTrangChu) {
+        btnMenuTrangChu.click();
+    } else {
+        const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
+        if (vungLamViec) {
+            vungLamViec.innerHTML = `
+                <div style="text-align:center; padding: 80px 20px; color: #7f8c8d;">
+                    <div style="font-size: 40px; margin-bottom: 15px;">👋</div>
+                    <h3 style="color: #2c3e50; font-weight: 800;">ĐÃ THOÁT ĐẤU TRƯỜNG</h3>
+                    <p style="font-size: 16px;">Em hãy bấm chọn các chức năng ở <b>Thanh Menu bên trái</b> để tiếp tục học tập nhé!</p>
+                </div>
+            `;
+        }
+    }
 };
 
