@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-05-29T03:46:26.868Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_6d18f88382",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\log_2(3x-1)=3$ với $x>\\displaystyle \\frac{1}{3}$. Nên $3x-1=8$. Suy ra $x=3$ (nhận)."
+    },
+    {
+      "maBaoMat": "sol_dd91544730",
+      "dapAn": "B",
+      "loiGiaiHtml": "Cỡ mẫu $N=40$, nhóm chứa trung vị là $[80;120)$.\\\\\r\n\t\tTrung vị $M_e = 80 + \\displaystyle \\frac{\\displaystyle \\frac{1}{2} \\cdot 40 - 18}{12} \\cdot (120-80) = \\displaystyle \\frac{260}{3} \\approx 86,(6)$."
+    },
+    {
+      "maBaoMat": "sol_9103ec425c",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $u_7 = u_1 + 6d = 3 + 6 \\cdot (-2) = -9$."
+    },
+    {
+      "maBaoMat": "sol_3794f332ca",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\cos x = 0 \\Leftrightarrow x = \\displaystyle \\frac{\\pi}{2} + k\\pi \\ (k \\in \\mathbb{Z})$."
+    },
+    {
+      "maBaoMat": "sol_68a30a7367",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\vec{u} = -3\\vec{i} + 5\\vec{j} + 2\\vec{k} \\Rightarrow \\vec{u} = (-3;5;2)$."
+    },
+    {
+      "maBaoMat": "sol_50afecebb6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $f'(x) = (x^2+1)(x-2) > 0 \\Leftrightarrow x-2 > 0 \\Leftrightarrow x > 2$ (vì $x^2+1>0, \\forall x \\in \\mathbb{R}$).\\\\\r\n\t\tVậy hàm số đồng biến trên khoảng $(2;+\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_bba76e08e3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{MN}=(2;-2;1)$ là một véctơ chỉ phương của đường thẳng $MN$."
+    },
+    {
+      "maBaoMat": "sol_76f18ef061",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\int f(x)\\,dx = \\displaystyle \\int 5 \\cdot 2^x\\,dx = \\displaystyle \\frac{5 \\cdot 2^x}{\\ln 2} + C$."
+    },
+    {
+      "maBaoMat": "sol_72cda9ac4f",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $ABCD$ là hình bình hành và $O$ là giao điểm hai đường chéo nên $O$ là trung điểm của $AC$ và $BD$.\\\\\r\n\t\tTheo quy tắc trung điểm, với điểm $S$ bất kỳ ta có:\\\\\r\n\t\t$\\vec{SA}+\\vec{SC} = 2\\vec{SO}$;\\\\\r\n\t\t$\\vec{SB}+\\vec{SD} = 2\\vec{SO}$.\\\\\r\n\t\tDo đó, $\\vec{SA}+\\vec{SC} = \\vec{SB}+\\vec{SD}$."
+    },
+    {
+      "maBaoMat": "sol_67470a6ab4",
+      "dapAn": "A",
+      "loiGiaiHtml": "Một véctơ chỉ phương của đường thẳng $(d)$ là: $\\vec{u}_3=(2;-4;3)$."
+    },
+    {
+      "maBaoMat": "sol_49542c0a06",
+      "dapAn": "D",
+      "loiGiaiHtml": "Gọi $O$ là giao điểm của $AC$ và $BD$.\\\\\r\n\t\tHình chiếu của $A$ lên mặt phẳng $(BDD'B')$ chính là hình chiếu của $A$ lên $BD$.\\\\\r\n\t\t$AC = \\sqrt{AB^2+BC^2} = a\\sqrt{2}$. Suy ra\\\\\r\n\t\t$d\\left(A,(BDD'B')\\right) = AO = \\displaystyle \\frac{1}{2}AC = \\displaystyle \\frac{a\\sqrt{2}}{2}$."
+    },
+    {
+      "maBaoMat": "sol_2935389ae5",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $V = \\pi \\displaystyle \\int_0^2 (x^2)^2\\,dx = \\pi \\displaystyle \\int_0^2 x^4\\,dx = \\pi \\left[ \\displaystyle \\frac{x^5}{5} \\right]_0^2 = \\displaystyle \\frac{32\\pi}{5}$."
+    },
+    {
+      "maBaoMat": "sol_564fbf97e1",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $P'(t) = k \\cdot P(t) \\Leftrightarrow \\displaystyle \\frac{P'(t)}{P(t)} = k \\Rightarrow \\displaystyle \\int \\frac{P'(t)}{P(t)} \\, dt = \\displaystyle \\int k \\, dt \\Leftrightarrow \\ln P(t) = kt + C$ với $C \\in \\mathbb{R}$.\\\\\r\n\t\t\tSuy ra $P(t) = e^{kt+C}$.\\\\\r\n\t\t\tTa có $P(0) = 1000 \\Leftrightarrow e^C = 1000 \\Leftrightarrow C = \\ln 1000$. Suy ra $P(t) = e^{kt+\\ln 1000} = 1000e^{kt}$.\\\\\r\n\t\t\tVậy $P(t) = e^{kt+\\ln 1000} = e^{kt} \\cdot e^{\\ln 1000} = 1000e^{kt}$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Ta có $P(2) = 4000 \\Leftrightarrow 1000e^{2k} = 4000 \\Leftrightarrow e^{2k} = 4 \\Leftrightarrow 2k = \\ln 4 \\Leftrightarrow k = \\ln 2$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $P(t) = 1000e^{t\\ln 2}$. Số lượng vi khuẩn sau $5$ giờ là $P(5) = 1000e^{5\\ln 2} = 32000$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $P(t) = 64000 \\Leftrightarrow 1000e^{t\\ln 2} = 64000 \\Leftrightarrow e^{t\\ln 2} = 64 \\Leftrightarrow t\\ln 2 = 6\\ln 2 \\Leftrightarrow t=6$.\\\\\r\n\t\t\tVậy để số lượng vi khuẩn đạt $64000$ con, cần đúng $6$ giờ kể từ thời điểm ban đầu. Đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_e5def8ef08",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "Gọi $A$ là biến cố: \"Linh kiện đó do phân xưởng $I$ sản xuất\" $\\Rightarrow P(A) = 75\\% = 0,75$.\\\\\r\n\t\t$\\overline{A}$ là biến cố: \"Linh kiện đó do phân xưởng $II$ sản xuất\" $\\Rightarrow P(\\overline{A}) = 1 - P(A) = 1 - 0,75 = 0,25$.\\\\\r\n\t\tGọi $B$ là biến cố: \"Linh kiện đó bị lỗi\" $\\Rightarrow P(B|A) = 4\\% = 0,04$, $P(B|\\overline{A}) = 2\\% = 0,02$.\\\\\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Xác suất để linh kiện được chọn bị lỗi và do phân xưởng $I$ sản xuất là $P(A \\cap B) = P(A) \\cdot P(B|A) = 0,75 \\cdot 4\\% = 0,03$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Nếu linh kiện được chọn do phân xưởng $I$ sản xuất thì xác suất để linh kiện đó không bị lỗi là $P(\\overline{B}|A) = 1 - P(B|A) = 1 - 0,04 = 0,96$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Xác suất để linh kiện được chọn bị lỗi là $P(B) = P(A) \\cdot P(B|A) + P(\\overline{A}) \\cdot P(B|\\overline{A}) = 0,75 \\cdot 0,04 + 0,25 \\cdot 0,02 = 0,035$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Nếu linh kiện được chọn bị lỗi thì xác suất để linh kiện đó do phân xưởng $I$ sản xuất là $P(A|B) = \\displaystyle \\frac{P(A) \\cdot P(B|A)}{P(B)} = \\displaystyle \\frac{0,75 \\cdot 0,04}{0,035} = \\displaystyle \\frac{6}{7}$. Đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_060860cea4",
+      "dapAn": "FTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 3x^2 - 12$. Phương trình $f'(x) = 0 \\Leftrightarrow 3x^2 - 12 = 0 \\Leftrightarrow x = \\pm 2$. Tập nghiệm của phương trình $f'(x)=0$ là $S=\\{\\pm 2\\}$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x) = 3x^2 - 12$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $f(2) = 2^3 - 12 \\cdot 2 + 5 = -11$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Ta có $f'(x)=0 \\Leftrightarrow x = 2 \\Rightarrow f(2) = -11$ hoặc $x = -2 \\Rightarrow f(-2) = 21$. Xét các giá trị tại hai đầu mút: $f(3) = -4$, $f(-3) = 14$. Giá trị lớn nhất của hàm số $y=f(x)$ trên đoạn $[-3;3]$ bằng $21$. Đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_70de42dfa5",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Mặt cầu $(S)$ ban đầu có tâm $I(1;2;5)$ và bán kính $R=\\sqrt{25}=5$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Ta có $\\vec{IA}=(6;6;0)$; $\\vec{AB}=(1;-1;0)$ là một véctơ chỉ phương của đường thẳng $d$. Ta có $[\\vec{IA},\\vec{AB}]=(0;0;-12)$. Khoảng cách từ tâm $I(1;2;5)$ đến đường thẳng $d$ là $d(I,d) = \\displaystyle \\frac{\\big|[\\vec{IA},\\vec{AB}]\\big|}{\\big|\\vec{AB}\\big|} = \\displaystyle \\frac{12}{\\sqrt{2}} = 6\\sqrt{2}$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Đường thẳng $d$ đi qua $2$ điểm $A,B$ nên có một véctơ chỉ phương là $\\vec{AB}=(1;-1;0)$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Khi tịnh tiến mặt cầu theo hướng dương trục $Oz$, tâm mới của mặt cầu là $I'(1;2;5+t)$ với $t>0$, bán kính mặt cầu vẫn giữ nguyên $R=5$.\\\\\r\n\t\t\tTa có $\\vec{I'A}=(6;6;-t)$. Véctơ chỉ phương của $d$ là $\\vec{u}=(1;-1;0)$.\\\\\r\n\t\t\tKhi đó $[\\vec{I'A},\\vec{u}] = (-t;-t;-12)$.\\\\\r\n\t\t\tKhoảng cách từ tâm mới $I'$ đến đường thẳng $d$ là:\\\\\r\n\t\t\t$d(I',d) = \\displaystyle \\frac{\\big|[\\vec{I'A},\\vec{u}]\\big|}{\\big|\\vec{u}\\big|} = \\displaystyle \\frac{\\sqrt{(-t)^2 + (-t)^2 + (-12)^2}}{\\sqrt{1^2 + (-1)^2 + 0^2}} = \\displaystyle \\frac{\\sqrt{2t^2+144}}{\\sqrt{2}} = \\sqrt{t^2+72}$.\\\\\r\n\t\t\tDo $t>0$ nên $d(I',d) = \\sqrt{t^2+72} > \\sqrt{72} = 6\\sqrt{2} \\approx 8,485 > R = 5$.\\\\\r\n\t\t\tSuy ra không bao giờ có thời điểm mặt cầu tiếp xúc với đường thẳng $d$. Đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_64c695034c",
+      "dapAn": "2033",
+      "loiGiaiHtml": "Năm đầu chi phí là $2$ tỷ đồng, các năm sau tăng $10\\%$ so với năm liền kề trước. Vậy số tiền chi phí sau $n$ năm là $A_n = A_0(1+10\\%)^n = 2(1,1)^n$.\\\\\r\n\t\tSố tiền chi trả lớn hơn $4$ tỷ khi $2(1,1)^n > 4 \\Leftrightarrow (1,1)^n > 2 \\Leftrightarrow n > \\log_{1,1} 2 \\Leftrightarrow n > 7,27$.\\\\\r\n\t\tVậy vào năm thứ $8$ kể từ năm 2025 hay vào năm 2033 thì số tiền phải chi trả trên $4$ tỷ đồng."
+    },
+    {
+      "maBaoMat": "sol_982e34ce70",
+      "dapAn": "32",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_982e34ce70_lg_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $H$ là hình chiếu của $A$ lên $(Oyz)$ khi đó $H(0;8;15)$.\\\\\r\n\t\tGiả sử tia laser là tia $AK$, $AH \\perp (Oyz) \\Rightarrow AH \\parallel Ox$.\\\\\r\n\t\tDo tia laser tạo với $Ox$ góc $60^\\circ$ nên $\\widehat{HAK} = 60^\\circ$.\\\\\r\n\t\t$AH = 5\\sqrt{3} \\Rightarrow HK = AH \\cdot \\tan\\widehat{HAK} = 5\\sqrt{3} \\cdot \\tan 60^\\circ = 15$.\\\\\r\n\t\tVậy tập hợp điểm $M$ tạo nên đường tròn tâm $H$ bán kính $R = HK = 15$.\\\\\r\n\t\tKhoảng cách từ gốc $O$ đến $M$ lớn nhất là $OM_2 = OH + R = \\sqrt{8^2+15^2} + 15 = 17 + 15 = 32$ m."
+    },
+    {
+      "maBaoMat": "sol_024c7c66c0",
+      "dapAn": "151",
+      "loiGiaiHtml": "Ta có hàm lợi nhuận là $L(x) = 2x - (10\\ln x + 50)$.\\\\\r\n\t\tĐể lợi nhuận tối thiểu là $200$ triệu đồng ta cần có\\\\\r\n\t\t$L(x) \\ge 200 \\Leftrightarrow 2x - (10\\ln x + 50) \\ge 200 \\Leftrightarrow 2x - 10\\ln(x) \\ge 250 \\Leftrightarrow 2x - 10\\ln x - 250 \\ge 0$.\\\\\r\n\t\tĐặt $f(x) = 2x - 10\\ln(x) - 250$.\\\\\r\n\t\tTa có $f'(x) = 2 - \\displaystyle \\frac{10}{x}$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow x = 5$.\\\\\r\n\t\tTa có $f'(x) \\ge 0, \\forall x \\ge 5$ nên hàm số đồng biến trên khoảng $[5;+\\infty)$.\\\\\r\n\t\tMà $f(150,055) \\approx 0$ nên ta có $f(x) \\ge 0$ khi $x \\ge 151$.\\\\\r\n\t\tĐể thỏa mãn yêu cầu bài toán thì cần $151$ người."
+    },
+    {
+      "maBaoMat": "sol_d693ff7ad4",
+      "dapAn": "144",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d693ff7ad4_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $S_1 = S_{ABCD}, S_2 = S_{A'B'C'D'}$; $S_1 + S_2 = 54$.\\\\\r\n\t\tThể tích hình chóp cụt đều $ABCD.A'B'C'D'$ được tính $V = \\displaystyle \\frac{1}{3}h\\left(S_1 + S_2 + \\sqrt{S_1 \\cdot S_2}\\right)$ với $h$ là chiều cao.\\\\\r\n\t\tTa có $AC' = \\sqrt{AE^2 + EC'^2} = \\sqrt{AE^2 + h^2}$.\\\\\r\n\t\t$AE = AH + HE = \\displaystyle \\frac{AC - A'C'}{2} + A'C' = \\displaystyle \\frac{AC + A'C'}{2}$.\\\\\r\n\t\tGọi cạnh đáy lớn là $a$, cạnh đáy nhỏ là $b$ nên $AC = a\\sqrt{2}$; $A'C' = b\\sqrt{2}$ suy ra $AE = \\displaystyle \\frac{a\\sqrt{2} + b\\sqrt{2}}{2} = \\displaystyle \\frac{a+b}{\\sqrt{2}}$.\\\\\r\n\t\tTa có $AC' = \\sqrt{h^2 + \\left(\\displaystyle \\frac{a+b}{\\sqrt{2}}\\right)^2} \\Leftrightarrow h^2 + \\displaystyle \\frac{a^2+b^2+2ab}{2} = 81 \\Leftrightarrow h^2 + \\displaystyle \\frac{54 + 2ab}{2} = 81 \\Leftrightarrow ab = 54 - h^2$.\\\\\r\n\t\tTa có $\\sqrt{S_1 S_2} = \\sqrt{a^2 \\cdot b^2} = ab$ nên ta có $V = \\displaystyle \\frac{1}{3}h(54 + 54 - h^2) = f(h)$.\\\\\r\n\t\tKhảo sát hàm số $f(h) = h(54 + 54 - h^2) = 36h - \\displaystyle \\frac{1}{3}h^3$ ($h > 0$).\\\\\r\n\t\t$f'(h) = 36 - h^2$.\\\\\r\n\t\t$f'(h) = 0 \\Leftrightarrow h = 6$ (Do $h > 0$).\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d693ff7ad4_lg_tikz_2.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tThể tích lớn nhất của hình chóp cụt đều là $V = 144$ khi $h = 6$.\\\\\r\n\t\t\\textbf{Cách khác:}\\\\\r\n\t\tTa có: $V = \\displaystyle \\frac{1}{3}h(54+54-h^2) = \\displaystyle \\frac{\\sqrt{2}}{6} \\sqrt{2h^2(108-h^2)^2} \\le \\displaystyle \\frac{\\sqrt{2}}{6} \\sqrt{\\left(\\displaystyle \\frac{2h^2+108-h^2+108-h^2}{3}\\right)^3} = 144$.\\\\\r\n\t\tDấu $\"=\"$ xảy ra $\\Leftrightarrow 2h^2 = 108 - h^2 \\Leftrightarrow h = 6$.\\\\\r\n\t\tVậy thể tích lớn nhất của hình chóp cụt đều là $V = 144$ khi $h = 6$."
+    },
+    {
+      "maBaoMat": "sol_02dbf438f6",
+      "dapAn": "56",
+      "loiGiaiHtml": "- Tập hợp $S$ gồm các điểm $(x;y)$ với $x,y \\in \\{1, 2, \\dots, 15\\}$. Số phần tử của không gian mẫu là số cách chọn $2$ điểm từ $225$ điểm: $n(\\Omega) = C_{225}^2 = 25200$.\\\\\r\n\t\t- Để trung điểm $C$ của $A(x_A; y_A)$ và $B(x_B; y_B)$ có tọa độ nguyên thì $x_A+x_B$ và $y_A+y_B$ phải cùng là số chẵn. Điều này tương đương với $x_A, x_B$ cùng tính chẵn lẻ và $y_A, y_B$ cùng tính chẵn lẻ.\\\\\r\n\t\t- Phân loại $225$ điểm trong $S$ theo tính chẵn lẻ của tọa độ $(x;y)$:\\\\\r\n\t\t+ Loại 1 (Lẻ; Lẻ): Có $8 \\times 8 = 64$ điểm.\\\\\r\n\t\t+ Loại 2 (Lẻ; Chẵn): Có $8 \\times 7 = 56$ điểm.\\\\\r\n\t\t+ Loại 3 (Chẵn; Lẻ): Có $7 \\times 8 = 56$ điểm.\\\\\r\n\t\t+ Loại 4 (Chẵn; Chẵn): Có $7 \\times 7 = 49$ điểm.\\\\\r\n\t\t- Hai điểm A, B thỏa mãn yêu cầu bài toán khi và chỉ khi chúng cùng thuộc một trong $4$ loại trên.\\\\\r\n\t\tSố kết quả thuận lợi là: $n(X) = C_{64}^2 + C_{56}^2 + C_{56}^2 + C_{49}^2 = 2016 + 1540 + 1540 + 1176 = 6272$.\\\\\r\n\t\t- Xác suất $p = \\displaystyle \\frac{6272}{25200}$.\\\\\r\n\t\tVậy $225p = 225 \\times \\displaystyle \\frac{6272}{25200} = 225 \\times \\displaystyle \\frac{6272}{225 \\times 112} = \\displaystyle \\frac{6272}{112} = 56$.\\\\\r\n\t\tKết quả: $56$."
+    },
+    {
+      "maBaoMat": "sol_59d642678b",
+      "dapAn": "2",
+      "loiGiaiHtml": "Tính $f(2) = \\displaystyle \\frac{1}{4}(2)^3 + 2 = 4 \\Rightarrow P(2;4)$.\\\\\r\n\t\t- Đường thẳng $d$ đi qua $O(0;0)$ và $P(2;4)$ có phương trình $y = 2x$.\\\\\r\n\t\t- Tọa độ giao điểm $Q$ của $d$ và $\\Delta$: Giải hệ $2x = -x + 3 \\Rightarrow x = 1, y = 2 \\Rightarrow Q(1;2)$.\\\\\r\n\t\t- Tọa độ giao điểm $R$ của $\\Delta$ và trục hoành: Giải $-x + 3 = 0 \\Rightarrow x = 3 \\Rightarrow R(3;0)$.\\\\\r\n\t\t- Dựa vào đồ thị và các điểm cắt:\\\\\r\n\t\tGọi $x_K$ là hoành độ giao điểm của $y = f(x)$ và $\\Delta$ ($1 < x_K < 2$).\\\\\r\n\t\tDiện tích $B$ (phần giới hạn bởi $f(x)$, $\\Delta$ và trục $Ox$) là: $B = \\displaystyle \\int_0^{x_K} f(x)\\,dx + \\displaystyle \\int_{x_K}^3 (-x+3)\\,dx$\\\\\r\n\t\tDiện tích $A$ (phần giới hạn bởi đoạn $PQ$, $f(x)$ và $\\Delta$) chính là phần diện tích nằm dưới đường thẳng $y = 2x$ (từ $x=1$ đến $x=2$) trừ đi phần nằm dưới $\\Delta$ (từ $1$ đến $x_K$) và trừ đi phần nằm dưới $f(x)$ (từ $x_K$ đến $2$):\\\\\r\n\t\t$A = \\displaystyle \\int_1^2 2x\\,dx - \\left( \\displaystyle \\int_1^{x_K} (-x+3)\\,dx + \\displaystyle \\int_{x_K}^2 f(x)\\,dx \\right)$\\\\\r\n\t\t- Tính hiệu $B - A$:\\\\\r\n\t\t$B - A = \\left( \\displaystyle \\int_0^{x_K} f(x)\\,dx + \\displaystyle \\int_{x_K}^3 (-x+3)\\,dx \\right) - \\left( \\displaystyle \\int_1^2 2x\\,dx - \\displaystyle \\int_1^{x_K} (-x+3)\\,dx - \\displaystyle \\int_{x_K}^2 f(x)\\,dx \\right)$\\\\\r\n\t\t$B - A = \\left[ \\displaystyle \\int_0^{x_K} f(x)\\,dx + \\displaystyle \\int_{x_K}^2 f(x)\\,dx \\right] + \\left[ \\displaystyle \\int_{x_K}^3 (-x+3)\\,dx + \\displaystyle \\int_1^{x_K} (-x+3)\\,dx \\right] - \\displaystyle \\int_1^2 2x\\,dx$\\\\\r\n\t\t$B - A = \\displaystyle \\int_0^2 f(x)\\,dx + \\displaystyle \\int_1^3 (-x+3)\\,dx - \\displaystyle \\int_1^2 2x\\,dx$\\\\\r\n\t\t- Tiến hành tính các tích phân thành phần:\\\\\r\n\t\t1) $\\displaystyle \\int_0^2 \\left(\\displaystyle \\frac{1}{4}x^3 + x\\right)\\,dx = \\left[ \\displaystyle \\frac{x^4}{16} + \\displaystyle \\frac{x^2}{2} \\right]_0^2 = \\displaystyle \\frac{16}{16} + \\displaystyle \\frac{4}{2} = 1 + 2 = 3$\\\\\r\n\t\t2) $\\displaystyle \\int_1^3 (-x+3)\\,dx = \\left[ \\displaystyle \\frac{-x^2}{2} + 3x \\right]_1^3 = \\left(\\displaystyle \\frac{-9}{2} + 9\\right) - \\left(\\displaystyle \\frac{-1}{2} + 3\\right) = 4,5 - 2,5 = 2$\\\\\r\n\t\t3) $\\displaystyle \\int_1^2 2x\\,dx = \\left[ x^2 \\right]_1^2 = 4 - 1 = 3$\\\\\r\n\t\t- Thay vào biểu thức ta được: $B - A = 3 + 2 - 3 = 2$.\\\\\r\n\t\tKết quả: $2$."
+    }
+  ]
+}
