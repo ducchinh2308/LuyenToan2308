@@ -2874,17 +2874,205 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
 
 
 
+//// =====================================================================
+//// HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
+//// =====================================================================
+//    function ham_8_10_ve_giao_dien_lam_bai() {
+//    const vungLamViec = document.getElementById('dashboard-container');
+//    vungLamViec.style.display = 'none';
+
+//    const phien = window.PhienLamBai;
+//    document.body.style.overflow = 'hidden';
+//    document.documentElement.style.overflow = 'hidden';
+//        phien.thoi_diem_bat_dau = Date.now();
+
+//    // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
+//    let dsTN = [], dsDS = [], dsTLN = [];
+//    phien.danh_sach_cau_hoi.forEach(cau => {
+//        const loai = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+//        if (loai === "TN") dsTN.push(cau);
+//        else if (loai === "DS") dsDS.push(cau);
+//        else if (loai === "TLN") dsTLN.push(cau);
+//    });
+
+//    //let htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+
+//        // 🌟 [CẤY CHIP 2] ĐỔI MÀU GIAO DIỆN NẾU LÀ LIVE QUIZ
+//        let htmlContentRight = '';
+//        if (phien.isLiveQuiz) {
+//            //htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐANG THI ĐẤU LIVE: ${phien.ten_nhiem_vu}</h2><div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Điểm số của em đang được truyền hình trực tiếp lên màn hình Thầy giáo!</div></div>`;
+//            // Thêm cục hiển thị điểm số khổng lồ (id="diem-hien-tai-hs")
+//            htmlContentRight = `
+//            <div style="display: flex; justify-content: space-between; align-items: center; background:#e74c3c; color:white; padding:15px 25px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 10px; z-index: 100;">
+//                <div>
+//                    <h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2>
+//                    <div style="font-size: 13px; margin-top: 4px; opacity: 0.9;">Điểm của em được cập nhật sau mỗi câu gửi đi!</div>
+//                </div>
+//                <div style="text-align: right;">
+//                    <div style="font-size: 12px; font-weight: bold; text-transform: uppercase; opacity: 0.9;">ĐIỂM HIỆN TẠI</div>
+//                    <div style="font-size: 32px; font-weight: 900; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+//                        <span id="diem-hien-tai-hs">0.00</span>
+//                    </div>
+//                </div>
+//            </div>`;
+
+
+//        } else {
+//            htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+//        }
+
+
+//        let htmlNavLeft = ``;
+
+//    // 2. HÀM SINH GIAO DIỆN CHO TỪNG NHÓM
+//    const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
+//        if (danhSach.length === 0) return;
+
+//        // Vẽ Tiêu đề bên cột nội dung
+//        htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
+
+//        // Vẽ Tiêu đề bên cột điều hướng
+//        let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
+//        htmlNavLeft += `<div style="margin-bottom: 15px;">
+//                            <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍${tenNav}</h4>
+//                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+
+//        // 🌟 RESET SỐ THỨ TỰ VỀ 1 CHO MỖI PHẦN
+//        let sttPhan = 1;
+
+//        danhSach.forEach(cau => {
+//            // Truyền sttPhan vào hàm vẽ từng câu
+//            htmlContentRight += ham_8_11_taoGiaoDienCauHoi(cau, sttPhan, loaiCau);
+
+//            const maCau = cau.ma_cau_hoi || cau.maCau;
+//            htmlNavLeft += `
+//                <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})"
+//                     style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s;"
+//                     onmouseover="if(!this.classList.contains('da-lam')) this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) this.style.background='#fff'">
+//                    <span style="line-height: 1;">${sttPhan}</span>
+//                    <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
+//                </div>`;
+
+//            // Tăng số thứ tự cho câu tiếp theo trong cùng phần
+//            sttPhan++;
+//        });
+//        htmlNavLeft += `</div></div>`;
+//    };
+
+//    // Chạy sinh giao diện theo thứ tự
+//    sinhGiaoDienNhom("PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn", dsTN, "TN");
+//    sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
+//    sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
+
+//    // 3. RÁP VÀO BỘ KHUNG 2 CỘT FULL MÀN HÌNH
+//    const rootDiv = document.createElement('div');
+//    rootDiv.id = 'khong-gian-thi-toan-man-hinh';
+//    rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
+
+//        //<div style="padding: 15px; border-bottom: 1px solid #eee;">
+//        //    <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát</button>
+//        //</div>
+
+//    rootDiv.innerHTML = `
+//        <div style="flex: 0 0 50px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+
+
+
+//            <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
+//                <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+//                    <span id="dong-ho-dem-nguoc">--:--</span>
+//                </div>
+//                <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
+//                    <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
+//                </div>
+//            </div>
+//                <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
+
+//                <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP</button>
+//            </div>
+//            <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
+
+//        </div>
+
+//        <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
+//            <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
+//                ${htmlContentRight}
+//            </div>
+//        </div>
+//    `;
+
+//    document.body.appendChild(rootDiv);
+
+
+//    // ==============================================================
+//    // 🌟 KÍCH HOẠT CHÍNH XÁC KATEX / MATHJAX & TIKZ THEO CODE CŨ
+//    // ==============================================================
+//    const vungCuon = document.getElementById('khu-vuc-cuon-de');
+//    if (window.renderMathInElement) {
+//        window.renderMathInElement(vungCuon, {
+//            delimiters: [
+//                { left: "$$", right: "$$", display: true },
+//                { left: "$", right: "$", display: false }
+//            ],
+//            throwOnError: false,
+//            macros: {
+//                "\\heva": "\\left\\{\\begin{array}{l}#1\\end{array}\\right.",
+//                "\\hoac": "\\left[\\begin{array}{l}#1\\end{array}\\right."
+//            }
+//        });
+//    } else if (window.MathJax) {
+//        MathJax.typesetPromise();
+//    }
+
+//    // Nạp lại Script TikzJax để vẽ hình học
+//    let oldTikz = document.getElementById('tikz-script-reload');
+//    if (oldTikz) oldTikz.remove();
+//    let newTikz = document.createElement('script');
+//    newTikz.id = 'tikz-script-reload';
+//    newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
+//    document.body.appendChild(newTikz);
+
+//    // ==============================================================
+
+//    // Khởi động đồng hồ
+//    if (phien.id_timer) clearInterval(phien.id_timer);
+//    phien.id_timer = setInterval(() => {
+//        phien.thoi_gian_con_lai--;
+
+//        // 🌟 SỬA Ở ĐÂY: Dùng Math.floor để ép tròn số giây trước khi chia
+//        const tongGiayThucTe = Math.floor(phien.thoi_gian_con_lai);
+
+//        const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
+//        const ss = String(tongGiayThucTe % 60).padStart(2, '0');
+
+//        //const mm = String(Math.floor(phien.thoi_gian_con_lai / 60)).padStart(2, '0');
+//        //const ss = String(phien.thoi_gian_con_lai % 60).padStart(2, '0');
+//        document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
+
+//        if (phien.thoi_gian_con_lai <= 300) {
+//            const dh = document.getElementById('khung-dong-ho');
+//            dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb';
+//        }
+
+//        if (phien.thoi_gian_con_lai <= 0) {
+//            clearInterval(phien.id_timer);
+//            alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
+//            ham_8_12_nop_bai_va_cham_diem(true);
+//        }
+//    }, 1000);
+//}
+
 // =====================================================================
 // HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
 // =====================================================================
-    function ham_8_10_ve_giao_dien_lam_bai() {
+window.ham_8_10_ve_giao_dien_lam_bai = function () {
     const vungLamViec = document.getElementById('dashboard-container');
-    vungLamViec.style.display = 'none';
+    if (vungLamViec) vungLamViec.style.display = 'none';
 
     const phien = window.PhienLamBai;
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
-        phien.thoi_diem_bat_dau = Date.now();
+    phien.thoi_diem_bat_dau = Date.now();
 
     // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
     let dsTN = [], dsDS = [], dsTLN = [];
@@ -2895,34 +3083,16 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         else if (loai === "TLN") dsTLN.push(cau);
     });
 
-    //let htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+    // 🌟 ĐÃ XÓA KHỐI HIỂN THỊ STICKY ĐIỂM SỐ CHE MÀN HÌNH
+    // Trả lại tiêu đề đơn giản, gọn gàng cho khu vực đọc đề
+    let htmlContentRight = '';
+    if (phien.isLiveQuiz) {
+        htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2></div>`;
+    } else {
+        htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+    }
 
-        // 🌟 [CẤY CHIP 2] ĐỔI MÀU GIAO DIỆN NẾU LÀ LIVE QUIZ
-        let htmlContentRight = '';
-        if (phien.isLiveQuiz) {
-            //htmlContentRight = `<div style="background:#e74c3c; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐANG THI ĐẤU LIVE: ${phien.ten_nhiem_vu}</h2><div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Điểm số của em đang được truyền hình trực tiếp lên màn hình Thầy giáo!</div></div>`;
-            // Thêm cục hiển thị điểm số khổng lồ (id="diem-hien-tai-hs")
-            htmlContentRight = `
-            <div style="display: flex; justify-content: space-between; align-items: center; background:#e74c3c; color:white; padding:15px 25px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1); position: sticky; top: 10px; z-index: 100;">
-                <div>
-                    <h2 style="margin:0; font-size:18px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2>
-                    <div style="font-size: 13px; margin-top: 4px; opacity: 0.9;">Điểm của em được cập nhật sau mỗi câu gửi đi!</div>
-                </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 12px; font-weight: bold; text-transform: uppercase; opacity: 0.9;">ĐIỂM HIỆN TẠI</div>
-                    <div style="font-size: 32px; font-weight: 900; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
-                        <span id="diem-hien-tai-hs">0.00</span>
-                    </div>
-                </div>
-            </div>`;
-
-
-        } else {
-            htmlContentRight = `<div style="background:#0056b3; color:white; padding:15px; border-radius:8px; margin-bottom:20px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:18px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
-        }
-
-
-        let htmlNavLeft = ``;
+    let htmlNavLeft = ``;
 
     // 2. HÀM SINH GIAO DIỆN CHO TỪNG NHÓM
     const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
@@ -2937,13 +3107,10 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
                             <h4 style="margin: 0 0 10px 0; color: #c0392b; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">📍${tenNav}</h4>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
-        // 🌟 RESET SỐ THỨ TỰ VỀ 1 CHO MỖI PHẦN
         let sttPhan = 1;
 
         danhSach.forEach(cau => {
-            // Truyền sttPhan vào hàm vẽ từng câu
             htmlContentRight += ham_8_11_taoGiaoDienCauHoi(cau, sttPhan, loaiCau);
-
             const maCau = cau.ma_cau_hoi || cau.maCau;
             htmlNavLeft += `
                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
@@ -2952,32 +3119,42 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
                     <span style="line-height: 1;">${sttPhan}</span>
                     <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
                 </div>`;
-
-            // Tăng số thứ tự cho câu tiếp theo trong cùng phần
             sttPhan++;
         });
         htmlNavLeft += `</div></div>`;
     };
 
-    // Chạy sinh giao diện theo thứ tự
     sinhGiaoDienNhom("PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn", dsTN, "TN");
     sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
     sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
+
+    // ==============================================================
+    // 🌟 KHỐI HIỂN THỊ ĐIỂM SỐ & PIN CHUYỂN SANG CỘT TRÁI (CHỈ HIỆN KHI LIVE QUIZ)
+    // ==============================================================
+    let htmlLiveDiem = '';
+    if (phien.isLiveQuiz) {
+        htmlLiveDiem = `
+            <div style="background: linear-gradient(135deg, #1e1e2f, #2a2a3c); border: 1px solid #444; border-radius: 12px; padding: 15px; margin-top: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                <div style="font-size: 11px; color: #a0a0b2; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">Mã phòng đấu</div>
+                <div style="font-size: 22px; font-weight: 900; color: #e74c3c; letter-spacing: 3px; font-family: monospace; margin-bottom: 15px; background: rgba(231,76,60,0.1); padding: 5px; border-radius: 6px;">
+                    ${window.ThongTinLiveHocSinh ? window.ThongTinLiveHocSinh.maPhong : '---'}
+                </div>
+                
+                <div style="font-size: 11px; color: #a0a0b2; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">Điểm hiện tại</div>
+                <div id="diem-hien-tai-hs" style="font-size: 32px; font-weight: 900; color: #f1c40f; text-shadow: 0 0 10px rgba(241, 196, 15, 0.3); font-family: monospace; transition: all 0.3s ease;">
+                    0.00
+                </div>
+            </div>
+        `;
+    }
 
     // 3. RÁP VÀO BỘ KHUNG 2 CỘT FULL MÀN HÌNH
     const rootDiv = document.createElement('div');
     rootDiv.id = 'khong-gian-thi-toan-man-hinh';
     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
 
-        //<div style="padding: 15px; border-bottom: 1px solid #eee;">
-        //    <button onclick="ham_8_thoat_phong_thi()" style="width: 100%; padding: 10px; background: #f8f9fa; color: #dc3545; border: 1px solid #dc3545; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='#fff'" onmouseout="this.style.background='#f8f9fa'; this.style.color='#dc3545'">🚪 Thoát</button>
-        //</div>
-
     rootDiv.innerHTML = `
         <div style="flex: 0 0 50px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
-
-
-
             <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
                 <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
                     <span id="dong-ho-dem-nguoc">--:--</span>
@@ -2985,13 +3162,12 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
                 <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
                     <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
                 </div>
+                ${htmlLiveDiem}
             </div>
-                <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-
-                <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP</button>
+            <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
+                <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">📤 NỘP BÀI</button>
             </div>
             <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
-
         </div>
 
         <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
@@ -3003,56 +3179,8 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
 
     document.body.appendChild(rootDiv);
 
-//        // =====================================================================
-//        // KHUNG GIAO DIỆN 2 CỘT FULL MÀN HÌNH (BẢN TỐI ƯU CHO LIVE QUIZ)
-//        // =====================================================================
-//        const isLive = window.PhienLamBai && window.PhienLamBai.isLiveQuiz;
-
-//        // 1. Logic ẩn nút Nộp tổng nếu đang ở chế độ Live
-//        const htmlBtnNop = isLive ? '' : `
-//    <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-//        <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">📤 NỘP</button>
-//    </div>`;
-
-//        // 2. Logic hiện HUD Điểm nếu đang ở chế độ Live
-//        const htmlHudDiem = isLive ? `
-//    <div style="background: #e74c3c; color: white; padding: 12px; margin-top: 10px; border-radius: 6px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-//        <div style="font-size: 11px; text-transform: uppercase; opacity: 0.8;">Điểm của em</div>
-//        <div id="diem-hien-tai-hs" style="font-size: 24px; font-weight: 900;">0.00</div>
-//    </div>` : '';
-
-//        const rootDiv = document.createElement('div');
-//        rootDiv.id = 'khong-gian-thi-toan-man-hinh';
-//        rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
-
-//        rootDiv.innerHTML = `
-//    <div style="flex: 0 0 250px; background: #fff; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
-//        <div style="padding: 15px; background: #fdfdfe; border-bottom: 1px solid #eee;">
-//            <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-//                <span id="dong-ho-dem-nguoc">--:--</span>
-//            </div>
-//            <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 8px; margin-top: 10px; border-radius: 6px; font-size: 14px;">
-//                <span id="so-cau-da-lam" style="color: #28a745; font-size: 16px;">0</span> / ${phien.tong_so_cau}
-//            </div>
-//            ${htmlHudDiem}
-//        </div>
-        
-//        <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
-        
-//        ${htmlBtnNop}
-//    </div>
-
-//    <div id="khu-vuc-cuon-de" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
-//        <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
-//            ${htmlContentRight}
-//        </div>
-//    </div>
-//`;
-
-//        document.body.appendChild(rootDiv);
-
     // ==============================================================
-    // 🌟 KÍCH HOẠT CHÍNH XÁC KATEX / MATHJAX & TIKZ THEO CODE CŨ
+    // 🌟 KÍCH HOẠT CHÍNH XÁC KATEX / MATHJAX & TIKZ
     // ==============================================================
     const vungCuon = document.getElementById('khu-vuc-cuon-de');
     if (window.renderMathInElement) {
@@ -3071,7 +3199,6 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         MathJax.typesetPromise();
     }
 
-    // Nạp lại Script TikzJax để vẽ hình học
     let oldTikz = document.getElementById('tikz-script-reload');
     if (oldTikz) oldTikz.remove();
     let newTikz = document.createElement('script');
@@ -3079,26 +3206,20 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
     document.body.appendChild(newTikz);
 
-    // ==============================================================
-
     // Khởi động đồng hồ
     if (phien.id_timer) clearInterval(phien.id_timer);
     phien.id_timer = setInterval(() => {
         phien.thoi_gian_con_lai--;
 
-        // 🌟 SỬA Ở ĐÂY: Dùng Math.floor để ép tròn số giây trước khi chia
         const tongGiayThucTe = Math.floor(phien.thoi_gian_con_lai);
-
         const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
         const ss = String(tongGiayThucTe % 60).padStart(2, '0');
 
-        //const mm = String(Math.floor(phien.thoi_gian_con_lai / 60)).padStart(2, '0');
-        //const ss = String(phien.thoi_gian_con_lai % 60).padStart(2, '0');
         document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
 
         if (phien.thoi_gian_con_lai <= 300) {
             const dh = document.getElementById('khung-dong-ho');
-            dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb';
+            if (dh) { dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb'; }
         }
 
         if (phien.thoi_gian_con_lai <= 0) {
@@ -3108,6 +3229,7 @@ function ham_8_9_tron_de_thi(mangCauHoi) {
         }
     }, 1000);
 }
+
 // =====================================================================
 // 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
