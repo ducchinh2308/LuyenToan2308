@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6b44c613a4",
+  "dapAn": "FFFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đúng. Ta có $\\lim_{x \\to -1^+} y = +\\infty$ và $\\lim_{x \\to -1^-} y = -\\infty$, nên $x=-1$ là đường tiệm cận đứng.\r\n\t\t\t\\itemch Đúng. Ta có $y' = \\dfrac{(2x-1)(x+1) - (x^2-x+7)}{(x+1)^2} = \\dfrac{x^2+2x-8}{(x+1)^2}$.\r\n\t\t\t\\itemch Sai. Trên khoảng $(-4;-1)$, đạo hàm $y' < 0$ nên hàm số nghịch biến.\r\n\t\t\t\\itemch Sai. Trên khoảng $(-\\infty;-1)$, giá trị lớn nhất của hàm số bằng $-9$ tại $x=-4$.\r\n\t\t\\end{itemchoice}"
+}

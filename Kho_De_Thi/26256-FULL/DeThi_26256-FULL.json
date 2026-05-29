@@ -1,0 +1,203 @@
+{
+  "maDe": "26256-FULL",
+  "tenDe": "ĐỀ THI THỬ 26256-22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_da0ad539c0",
+      "ma_goc": "2605-1527",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2$, cạnh bên $SA$ vuông góc với mặt phẳng đáy và $SA = 3$. Thể tích của khối chóp $S.ABCD$ là",
+      "paA": "$12$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_e8546c886d",
+      "ma_goc": "2605-1528",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(0;-2;1)$ và bán kính $R=5$. Phương trình của $(S)$ là",
+      "paA": "$x^2+(y+2)^2+(z-1)^2=5$",
+      "paB": "$x^2+(y+2)^2+(z-1)^2=25$",
+      "paC": "$x^2+(y-2)^2+(z+1)^2=25$",
+      "paD": "$x^2+(y-2)^2+(z+1)^2=5$"
+    },
+    {
+      "maCau": "q_d95a1a5e85",
+      "ma_goc": "2605-1529",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x-1)=3$ là",
+      "paA": "$10$",
+      "paB": "$7$",
+      "paC": "$8$",
+      "paD": "$9$"
+    },
+    {
+      "maCau": "q_c77058b802",
+      "ma_goc": "2605-1530",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\dfrac{ax+b}{cx+d}$ ($a,b,c,d \\in \\mathbb{R}$ và $c \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c77058b802_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTiệm cận ngang của đồ thị hàm số đã cho có phương trình là",
+      "paA": "$x=1$",
+      "paB": "$x=-1$",
+      "paC": "$y=-1$",
+      "paD": "$y=1$"
+    },
+    {
+      "maCau": "q_b5ea786dd4",
+      "ma_goc": "2605-1531",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm trung bình môn Toán của các học sinh lớp được cho ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b5ea786dd4_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu trên bằng",
+      "paA": "$0{,}7$",
+      "paB": "$6$",
+      "paC": "$8{,}5$",
+      "paD": "$0{,}15$"
+    },
+    {
+      "maCau": "q_c13b28ca0c",
+      "ma_goc": "2605-1532",
+      "kieuCau": "TN",
+      "cauDan": "Đạo hàm của hàm số $y=3^x$ là",
+      "paA": "$y'=3^x \\ln 3$",
+      "paB": "$y'=3^x$",
+      "paC": "$y'=x \\cdot 3^{x-1}$",
+      "paD": "$y'=3^x \\ln x$"
+    },
+    {
+      "maCau": "q_958a17b709",
+      "ma_goc": "2605-1533",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\tan x=-1$ có tất cả các nghiệm là",
+      "paA": "$-\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paB": "$\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paC": "$\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$",
+      "paD": "$-\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_49b407c213",
+      "ma_goc": "2605-1534",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt phẳng $(P) \\colon 3x-y-z+2=0$. Một vectơ pháp tuyến của $(P)$ là",
+      "paA": "$\\vec{n}=(-1; -1; 2)$",
+      "paB": "$\\vec{n}=(3; -1; 2)$",
+      "paC": "$\\vec{n}=(3; -1; -1)$",
+      "paD": "$\\vec{n}=(3; 1; 1)$"
+    },
+    {
+      "maCau": "q_ceecc7d0f8",
+      "ma_goc": "2605-1535",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Phát biểu nào sau đây là sai?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ceecc7d0f8_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AB}+\\vec{AD}+\\vec{AA'}=\\vec{AC'}$",
+      "paB": "$\\vec{AB}+\\vec{AD}=\\vec{AC}$",
+      "paC": "$\\vec{AB'}+\\vec{CB}=\\vec{AC'}$",
+      "paD": "$\\vec{CC'}=\\vec{DD'}$"
+    },
+    {
+      "maCau": "q_9871c6c443",
+      "ma_goc": "2605-1536",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành tâm $O$, $M$ là trung điểm của $SA$. Phát biểu nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9871c6c443_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$OM \\parallel (SAD)$",
+      "paB": "$OM \\parallel (SAB)$",
+      "paC": "$OM \\parallel (SBD)$",
+      "paD": "$OM \\parallel (SCD)$"
+    },
+    {
+      "maCau": "q_966964609c",
+      "ma_goc": "2605-1537",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_966964609c_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-1; 3)$",
+      "paB": "$(3; +\\infty)$",
+      "paC": "$(-3; +\\infty)$",
+      "paD": "$(-\\infty; -1)$"
+    },
+    {
+      "maCau": "q_df160158ed",
+      "ma_goc": "2605-1538",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1=2$ và công bội $q=3$. Số hạng $u_3$ của cấp số nhân bằng",
+      "paA": "$18$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_6c5c07dfd3",
+      "ma_goc": "2605-1539",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\dfrac{x^2-x+7}{x+1}$.",
+      "paA": "Đường tiệm cận đứng của đồ thị hàm số có phương trình $x=-1$",
+      "paB": "$y' = \\dfrac{x^2+2x-8}{(x+1)^2}$",
+      "paC": "Hàm số đồng biến trên khoảng $(-4;-1)$",
+      "paD": "Giá trị lớn nhất của hàm số trên khoảng $(-\\infty;-1)$ bằng $3$"
+    },
+    {
+      "maCau": "q_9c2c09fa36",
+      "ma_goc": "2605-1540",
+      "kieuCau": "DS",
+      "cauDan": "Gia đình bạn An chuẩn bị đi tham quan một hòn đảo trong hai ngày thứ 7 và chủ nhật. Gọi $A$ là biến cố \"Ngày thứ 7 trời nắng\" và $B$ là biến cố \"Ngày chủ nhật trời mưa\". Cho biết $P(A)=0{,}7$; $P(B|A)=0{,}2$; $P(B|\\bar{A})=0{,}3$.",
+      "paA": "$P(A)=0{,}7$",
+      "paB": "$P(AB)=0{,}21$",
+      "paC": "$P(\\bar{B}|\\bar{A})=0{,}7$",
+      "paD": "Xác suất để ngày chủ nhật trời nắng là $0{,}8$"
+    },
+    {
+      "maCau": "q_480ad5a354",
+      "ma_goc": "2605-1541",
+      "kieuCau": "DS",
+      "cauDan": "Để thiết kế một loại xe mới, một nhà máy đã tiến hành khảo sát hai chiếc xe $A, B$. Tại thời điểm $t$ giây ($0 \\le t \\le 5$) kể từ khi bắt đầu khảo sát, mỗi loại xe di chuyển theo tốc độ như sau:\\\\\r\n\tXe $A$ di chuyển với tốc độ $v_A(t)=t^2-t+20(m/s)$.\\\\\r\n\tXe $B$ di chuyển với tốc độ $v_B(t)=t^3-6t^2+9t+20(m/s)$.\\\\\r\n\tNhà máy tiến hành khảo sát trong $5$ giây.",
+      "paA": "Tại thời điểm bắt đầu khảo sát, cả hai xe di chuyển với cùng tốc độ là $20(m/s)$",
+      "paB": "Xe $B$ đi được quãng đường lớn hơn xe $A$",
+      "paC": "Trong khoảng thời gian $0 \\le t \\le 5$, có hai thời điểm $t$ mà tại đó tốc độ hai xe $A, B$ bằng nhau",
+      "paD": "Nhà máy thiết kế một chiếc xe $C$, với tốc độ của xe $C$ là $v_C(t)=\\max\\{v_A(t);v_B(t)\\}$ trong thời gian $0 \\le t \\le 5$ như lần khảo sát trên. Gọi $S_A, S_B, S_C$ lần lượt là quãng đường (mét) mà các xe $A, B, C$ đi được trong 5 giây đó. Đặt $\\Delta S = S_C - \\max\\{S_A;S_B\\}$, khi đó $\\Delta S > 5{,}3$"
+    },
+    {
+      "maCau": "q_c628bc16bc",
+      "ma_goc": "2605-1542",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian tọa độ $Oxyz$, một trạm radar phòng không được đặt tại gốc tọa độ $O(0;0;0)$, mỗi đơn vị trên các trục tọa độ tương ứng với $1\\,km$. Radar có bán kính phủ sóng $250\\,km$, nghĩa là các mục tiêu bay cách radar không quá $250\\,km$ sẽ bị theo dõi và hiển thị trên màn hình radar. Một máy bay không người lái (UAV) xuất phát từ điểm $A(1000;-450;0)$, bay theo đường thẳng đi qua điểm $B(968;-435;1)$ với vận tốc không đổi $800\\,km/h$. UAV mang thiết bị gây nhiễu có tầm hoạt động hiệu quả $50\\,km$, nghĩa là nếu UAV bay cách radar không quá $50\\,km$ thì sẽ gây nhiễu thành công radar (không bị theo dõi), ngược lại nếu không gây nhiễu được thì UAV vẫn bị theo dõi nếu nằm trong tầm phủ sóng của radar.",
+      "paA": "Phương trình tham số của đường thẳng $AB$ là: $\\begin{cases} x=1000-32t \\\\ y=-450+15t \\\\ z=t \\end{cases} (t \\in \\mathbb{R})$",
+      "paB": "Vị trí đầu tiên UAV bị phát hiện bởi radar là vị trí có tọa độ $(232;-90;24)$",
+      "paC": "Gọi $P$ là vị trí đầu tiên mà UAV gây nhiễu được radar. Khi đó $AP > 1061(km)$",
+      "paD": "Tổng thời gian radar theo dõi được UAV lớn hơn 32 phút"
+    },
+    {
+      "maCau": "q_aac26bf556",
+      "ma_goc": "2605-1543",
+      "kieuCau": "TLN",
+      "cauDan": "Một cửa hàng bánh mỗi ngày chỉ làm hai loại bánh là bánh kem và bánh bông lan. Mỗi ngày cửa hàng sử dụng nguyên liệu tối đa $9$ túi bột, $210$ gam đường và $24$ gam hương liệu. Để làm được $1$ chiếc bánh kem cần $1$ túi bột, $30$ gam đường và $1$ gam hương liệu. Để làm $1$ chiếc bánh bông lan cần $1$ túi bột, $10$ gam đường và $4$ gam hương liệu. Mỗi chiếc bánh kem và bánh bông lan có giá bán lần lượt là $250$ nghìn đồng và $200$ nghìn đồng. Giả sử số bánh làm ra mỗi ngày đều bán hết, số tiền mỗi ngày cửa hàng thu được lớn nhất là bao nhiêu triệu đồng?"
+    },
+    {
+      "maCau": "q_97fafd40ab",
+      "ma_goc": "2605-1544",
+      "kieuCau": "TLN",
+      "cauDan": "Nhà thầy Hùng và chợ hải sản cách nhau $1\\text{ km}$, khoảng cách từ nhà thầy Hùng đến bờ biển bằng $1\\text{ km}$ còn khoảng cách từ chợ hải sản đến bờ biển bằng $400\\text{ m}$ (bờ biển xem như $1$ đường thẳng). Mỗi buổi sáng thầy Hùng chạy thể dục từ nhà ra bờ biển, sau đó chạy dọc bờ biển $500\\text{ m}$, rồi thầy chạy qua chợ hải sản để lấy thức ăn trong ngày, cuối cùng thầy chạy thẳng về nhà (tham khảo hình vẽ). Tổng quãng đường ngắn nhất mà thầy Hùng chạy trong mỗi buổi sáng là bao nhiêu mét (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_97fafd40ab_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_80c5e22123",
+      "ma_goc": "2605-1545",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình vuông, tam giác $SAB$ đều và nằm trong mặt phẳng vuông góc với đáy. Biết khoảng cách từ $A$ đến mặt phẳng $(SCD)$ bằng $\\displaystyle \\frac{3\\sqrt{7}}{7}$. Tính thể tích của khối chóp $S.ABCD$ (kết quả viết dưới dạng số thập phân).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_80c5e22123_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_c270782dfb",
+      "ma_goc": "2605-1546",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhóm $10$ bạn học sinh đã mua $10$ vé ứng với $10$ ghế liên tiếp nhau trong cùng $1$ hàng để xem bộ phim “Mưa đỏ” (mỗi vé tương ứng với một ghế). Tuy nhiên, đến hôm đi xem phim thì có $3$ bạn bận đột xuất nên chỉ có $7$ bạn đi xem phim gồm $2$ bạn lớp 12A, $2$ bạn lớp 12B, $3$ bạn còn lại đến từ $3$ lớp khác (mỗi lớp một bạn). Nhân viên rạp chiếu phim sắp xếp ngẫu nhiên cho $7$ bạn ngồi vào $7$ trong $10$ ghế ứng với các vé đã mua. Xác suất của biến cố “Không có $2$ bạn nào cùng lớp ngồi ở $2$ ghế liền nhau” bằng bao nhiêu? (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_dedf03df79",
+      "ma_goc": "2605-1547",
+      "kieuCau": "TLN",
+      "cauDan": "Một vật trang trí có dạng một khối tròn xoay được tạo thành khi quay miền $(H)$ (phần màu xám trong hình vẽ) quanh trục $AB$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_dedf03df79_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tMiền $(H)$ được giới hạn bởi đường tròn đường kính $AB$ và các cung tròn tâm $A, B$ có cùng bán kính. Biết $AB=10\\text{ cm}, AH=BK=2\\text{ cm}$. Thể tích vật trang trí đó bằng bao nhiêu $\\text{cm}^3$ (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)?"
+    },
+    {
+      "maCau": "q_0692d1434b",
+      "ma_goc": "2605-1548",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tập $S=\\{1;2;3;4;5;6;7;8;9;10;11;12;13;16;18\\}$. Gọi $T$ là số cách xếp $9$ số phân biệt được chọn từ $S$ vào $9$ ô vuông của bảng $3 \\times 3$ như hình vẽ sao cho các số các ô trên cả hai đường chéo đều theo thứ tự lập thành cấp số nhân. Giá trị của $\\displaystyle \\frac{T}{80}$ bằng bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0692d1434b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

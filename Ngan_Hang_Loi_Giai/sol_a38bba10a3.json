@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a38bba10a3",
+  "dapAn": "FFFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đúng. Theo giả thiết $P(A)=0{,}7$.\r\n\t\t\t\\itemch Sai. Ta có $P(AB) = P(A) \\cdot P(B|A) = 0{,}7 \\cdot 0{,}2 = 0{,}14$.\r\n\t\t\t\\itemch Đúng. $P(B|\\bar{A})=0{,}3 \\Rightarrow P(\\bar{B}|\\bar{A}) = 1 - P(B|\\bar{A}) = 0{,}7$.\r\n\t\t\t\\itemch Sai. Xác suất ngày chủ nhật trời nắng là $P(\\bar{B}) = P(A)P(\\bar{B}|A) + P(\\bar{A})P(\\bar{B}|\\bar{A}) = 0{,}7 \\cdot 0{,}8 + 0{,}3 \\cdot 0{,}7 = 0{,}77$.\r\n\t\t\\end{itemchoice}"
+}
