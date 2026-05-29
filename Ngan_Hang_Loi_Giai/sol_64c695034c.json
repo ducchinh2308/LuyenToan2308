@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_64c695034c",
+  "dapAn": "2033",
+  "loiGiai": "Năm đầu chi phí là $2$ tỷ đồng, các năm sau tăng $10\\%$ so với năm liền kề trước. Vậy số tiền chi phí sau $n$ năm là $A_n = A_0(1+10\\%)^n = 2(1,1)^n$.\\\\\r\n\t\tSố tiền chi trả lớn hơn $4$ tỷ khi $2(1,1)^n > 4 \\Leftrightarrow (1,1)^n > 2 \\Leftrightarrow n > \\log_{1,1} 2 \\Leftrightarrow n > 7,27$.\\\\\r\n\t\tVậy vào năm thứ $8$ kể từ năm 2025 hay vào năm 2033 thì số tiền phải chi trả trên $4$ tỷ đồng."
+}

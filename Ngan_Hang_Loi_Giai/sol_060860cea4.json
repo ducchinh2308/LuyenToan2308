@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_060860cea4",
+  "dapAn": "FTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 3x^2 - 12$. Phương trình $f'(x) = 0 \\Leftrightarrow 3x^2 - 12 = 0 \\Leftrightarrow x = \\pm 2$. Tập nghiệm của phương trình $f'(x)=0$ là $S=\\{\\pm 2\\}$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x) = 3x^2 - 12$. Đây là mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $f(2) = 2^3 - 12 \\cdot 2 + 5 = -11$. Đây là mệnh đề sai.\r\n\t\t\t\\itemch Ta có $f'(x)=0 \\Leftrightarrow x = 2 \\Rightarrow f(2) = -11$ hoặc $x = -2 \\Rightarrow f(-2) = 21$. Xét các giá trị tại hai đầu mút: $f(3) = -4$, $f(-3) = 14$. Giá trị lớn nhất của hàm số $y=f(x)$ trên đoạn $[-3;3]$ bằng $21$. Đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

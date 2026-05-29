@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_49542c0a06",
+  "dapAn": "D",
+  "loiGiai": "Gọi $O$ là giao điểm của $AC$ và $BD$.\\\\\r\n\t\tHình chiếu của $A$ lên mặt phẳng $(BDD'B')$ chính là hình chiếu của $A$ lên $BD$.\\\\\r\n\t\t$AC = \\sqrt{AB^2+BC^2} = a\\sqrt{2}$. Suy ra\\\\\r\n\t\t$d\\left(A,(BDD'B')\\right) = AO = \\displaystyle \\frac{1}{2}AC = \\displaystyle \\frac{a\\sqrt{2}}{2}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_982e34ce70",
+  "dapAn": "32",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_982e34ce70_lg_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $H$ là hình chiếu của $A$ lên $(Oyz)$ khi đó $H(0;8;15)$.\\\\\r\n\t\tGiả sử tia laser là tia $AK$, $AH \\perp (Oyz) \\Rightarrow AH \\parallel Ox$.\\\\\r\n\t\tDo tia laser tạo với $Ox$ góc $60^\\circ$ nên $\\widehat{HAK} = 60^\\circ$.\\\\\r\n\t\t$AH = 5\\sqrt{3} \\Rightarrow HK = AH \\cdot \\tan\\widehat{HAK} = 5\\sqrt{3} \\cdot \\tan 60^\\circ = 15$.\\\\\r\n\t\tVậy tập hợp điểm $M$ tạo nên đường tròn tâm $H$ bán kính $R = HK = 15$.\\\\\r\n\t\tKhoảng cách từ gốc $O$ đến $M$ lớn nhất là $OM_2 = OH + R = \\sqrt{8^2+15^2} + 15 = 17 + 15 = 32$ m."
+}
