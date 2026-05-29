@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8b64ff2162",
+  "dapAn": "0,88",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_8b64ff2162_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $M$ là trung điểm của $BC$, ta có $BC = \\sqrt{AB^2+AC^2} = \\sqrt{2^2+2^2} = 2\\sqrt{2}$.\r\n\t\t\\\\\r\n\t\t$AM = \\dfrac{1}{2}BC = \\sqrt{2}$ (đường trung tuyến ứng với cạnh huyền tam giác vuông cân).\r\n\t\t\\\\\r\n\t\t$AG = \\dfrac{2}{3}AM = \\dfrac{2\\sqrt{2}}{3}$.\r\n\t\t\\\\\r\n\t\tVì $A'G \\perp (ABC)$ nên $AG$ là hình chiếu vuông góc của $AA'$ trên mặt phẳng $(ABC)$.\r\n\t\t\\\\\r\n\t\tGóc giữa cạnh bên $AA'$ và mặt đáy $(ABC)$ là $\\alpha = \\widehat{A'AG}$.\r\n\t\t\\\\\r\n\t\tXét tam giác $A'AG$ vuông tại $G$:\r\n\t\t\\\\\r\n\t\t$\\cos \\alpha = \\dfrac{AG}{AA'} = \\dfrac{2\\sqrt{2}}{3} : 2 = \\dfrac{\\sqrt{2}}{3}$.\r\n\t\t\\\\\r\n\t\t$\\sin \\alpha = \\sqrt{1 - \\cos^2 \\alpha} = \\sqrt{1 - \\left(\\dfrac{\\sqrt{2}}{3}\\right)^2} = \\sqrt{1 - \\dfrac{2}{9}} = \\sqrt{\\dfrac{7}{9}} = \\dfrac{\\sqrt{7}}{3} \\approx 0{,}88$."
+}

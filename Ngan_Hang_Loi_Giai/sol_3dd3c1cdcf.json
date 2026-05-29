@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3dd3c1cdcf",
+  "dapAn": "FTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Gọi $A$ là biến cố \"người tiếp xúc trực tiếp\", khi đó $P(A)=0{,}3$ và $P(\\overline{A})=0{,}7$. Gọi $B$ là biến cố \"người bị nhiễm bệnh\". Theo bài ra $P(B|A)=0{,}9$ và $P(\\overline{B}|\\overline{A})=0{,}36$.\r\n\t\t\t\\itemch Ý a) Sai: $P(\\overline{B}|A) = 1 - P(B|A) = 1 - 0{,}9 = 0{,}1 = 10\\% \\neq 90\\%$.\r\n\t\t\t\\itemch Ý b) Đúng: $P(B|\\overline{A}) = 1 - P(\\overline{B}|\\overline{A}) = 1 - 0{,}36 = 0{,}64 = 64\\% > 50\\%$.\r\n\t\t\t\\itemch Ý c) Sai: Xác suất để người đó nhiễm bệnh là $P(B) = P(A) \\cdot P(B|A) + P(\\overline{A}) \\cdot P(B|\\overline{A}) = 0{,}3 \\cdot 0{,}9 + 0{,}7 \\cdot 0{,}64 = 0{,}27 + 0{,}448 = 0{,}718 = 71{,}8\\%$.\r\n\t\t\t\\itemch Ý d) Đúng: Xác suất người đó tiếp xúc gián tiếp với chuột nhiễm bệnh khi biết người đó đã nhiễm bệnh là $P(\\overline{A}|B) = \\dfrac{P(\\overline{A}) \\cdot P(B|\\overline{A})}{P(B)} = \\dfrac{0{,}448}{0{,}718} \\approx 0{,}6239 = 62{,}4\\%$.\r\n\t\t\\end{itemchoice}"
+}

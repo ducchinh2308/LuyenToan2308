@@ -1,0 +1,197 @@
+{
+  "maDe": "26255-FULL",
+  "tenDe": "ĐỀ THI THỬ 26255-22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_8cbc3f5272",
+      "ma_goc": "2605-1506",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ với $\\begin{cases} u_1 = \\displaystyle \\frac{1}{2} \\\\ u_{n+1} = -2u_n \\ (n \\in \\mathbb{N}^*) \\end{cases}$. Tính $u_3$.",
+      "paA": "$u_3 = -4$",
+      "paB": "$u_3 = 2$",
+      "paC": "$u_3 = 4$",
+      "paD": "$u_3 = -2$"
+    },
+    {
+      "maCau": "q_38fe50f8ac",
+      "ma_goc": "2605-1507",
+      "kieuCau": "TN",
+      "cauDan": "Tìm họ nguyên hàm của hàm số $\\displaystyle f(x) = \\frac{e^x + 1}{2}$.",
+      "paA": "$\\displaystyle \\int f(x)\\text{d}x = e^x + x + C$",
+      "paB": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{e^x + 1}{2} + C$",
+      "paC": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{e^x + x}{2} + C$",
+      "paD": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{(e^x + 1)^2}{4} + C$"
+    },
+    {
+      "maCau": "q_a78aafda5b",
+      "ma_goc": "2605-1508",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm thi HAS của 100 thí sinh trong một đợt thi, thu được kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a78aafda5b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm chứa tứ phân vị $Q_3$ của mẫu số liệu trên là",
+      "paA": "$[60; 75)$",
+      "paB": "$[75; 90)$",
+      "paC": "$[90; 105)$",
+      "paD": "$[105; 120)$"
+    },
+    {
+      "maCau": "q_08ceb4d691",
+      "ma_goc": "2605-1509",
+      "kieuCau": "TN",
+      "cauDan": "Xét hàm số $y = \\cos x$. Mệnh đề nào dưới đây \\textbf{sai}?",
+      "paA": "Hàm số tuần hoàn với chu kỳ $2\\pi$",
+      "paB": "Hàm số có đạo hàm $y' = -\\sin x$ với mọi $x \\in \\mathbb{R}$",
+      "paC": "Tập xác định của hàm số là $D = [-1; 1]$",
+      "paD": "Hàm số là hàm số chẵn"
+    },
+    {
+      "maCau": "q_0dc61910c4",
+      "ma_goc": "2605-1510",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, đường thẳng đi qua điểm $E(6; -2; -2)$ và nhận $\\vec{u} = (1; 0; 3)$ làm một vectơ chỉ phương có phương trình là",
+      "paA": "$\\begin{cases} x = -6 + t \\\\ y = 2 \\\\ z = 2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paB": "$\\begin{cases} x = 3 + t \\\\ y = -1 \\\\ z = -1 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paC": "$\\begin{cases} x = 1 - 6t \\\\ y = -2t \\\\ z = 3 - 2t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paD": "$\\begin{cases} x = 6 + t \\\\ y = -2 \\\\ z = -2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$"
+    },
+    {
+      "maCau": "q_a70a0d4600",
+      "ma_goc": "2605-1511",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a} = (3; -2; -6)$, $\\vec{b} = (5; -2; 3)$. Tìm tọa độ của vectơ $\\vec{a} + \\vec{b}$.",
+      "paA": "$\\vec{a} + \\vec{b} = (-2; 0; -9)$",
+      "paB": "$\\vec{a} + \\vec{b} = (8; -4; 3)$",
+      "paC": "$\\vec{a} + \\vec{b} = (-8; 4; 3)$",
+      "paD": "$\\vec{a} + \\vec{b} = (8; -4; -3)$"
+    },
+    {
+      "maCau": "q_e03cea0b53",
+      "ma_goc": "2605-1512",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, tính bán kính của mặt cầu có phương trình $x^2 + y^2 + z^2 + 4y - 2z + 3 = 0$.",
+      "paA": "$2$",
+      "paB": "$1$",
+      "paC": "$2\\sqrt{2}$",
+      "paD": "$\\sqrt{2}$"
+    },
+    {
+      "maCau": "q_aa7aa0dc61",
+      "ma_goc": "2605-1513",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[1; 4]$ thỏa mãn $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1$. Tính $\\displaystyle \\int_2^4 f(x)\\text{d}x$.",
+      "paA": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = -1$",
+      "paB": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 2$",
+      "paC": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 1$",
+      "paD": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 0$"
+    },
+    {
+      "maCau": "q_0aacfbb32f",
+      "ma_goc": "2605-1514",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
+      "paB": "$(0; 4)$",
+      "paC": "$(0; +\\infty)$",
+      "paD": "$(0; 3)$"
+    },
+    {
+      "maCau": "q_2184903d17",
+      "ma_goc": "2605-1515",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{2x + 2}{x + 3}$ có đồ thị là đường cong $(C)$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$(C)$ có tiệm cận đứng là đường thẳng $x = 3$, tiệm cận ngang là đường thẳng $y = 2$",
+      "paB": "$(C)$ có tiệm cận đứng là đường thẳng $x = -3$, tiệm cận ngang là đường thẳng $y = -2$",
+      "paC": "$(C)$ có tiệm cận đứng là đường thẳng $x = 2$, tiệm cận ngang là đường thẳng $y = -3$",
+      "paD": "$(C)$ có tiệm cận đứng là đường thẳng $x = -3$, tiệm cận ngang là đường thẳng $y = 2$"
+    },
+    {
+      "maCau": "q_09ca03de0c",
+      "ma_goc": "2605-1516",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$. Công thức nào dưới đây \\textbf{sai}?",
+      "paA": "$P(AB) = P(A)P(B)$",
+      "paB": "$\\displaystyle P(B|A) = \\frac{P(AB)}{P(A)}$ với $P(A) > 0$",
+      "paC": "$P(B) = 1 - P(\\overline{B})$",
+      "paD": "$P(B) = P(A)P(B|A) + P(\\overline{A})P(B|\\overline{A})$"
+    },
+    {
+      "maCau": "q_f02af114ca",
+      "ma_goc": "2605-1517",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $10^x < 20$ là",
+      "paA": "$(0; \\log 20)$",
+      "paB": "$(-\\infty; \\log 20)$",
+      "paC": "$(-\\infty; \\log_{20} 10)$",
+      "paD": "$(-\\infty; 2)$"
+    },
+    {
+      "maCau": "q_168b9034fc",
+      "ma_goc": "2605-1518",
+      "kieuCau": "DS",
+      "cauDan": "Thưởng niên, Giải thưởng Văn phòng phẩm Nhật Bản lại được tổ chức để vinh danh các thiết kế xuất sắc nhất. Một chuỗi cửa hàng văn phòng phẩm đã gửi một sản phẩm để tham gia cuộc thi. Sản phẩm dự thi là một loại gọt bút chì có hình ảnh ngọn núi Phú Sĩ với hình dạng tổng thể là một hình chóp tứ giác đều $S.ABCD$ có cạnh đáy và chiều cao đều bằng $6 \\text{ cm}$. Chiếc gọt bút chì gồm ba phần:\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.7]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_145359.png}\r\n\t\\end{center}\r\n\t\\begin{itemize}\r\n\t\t\\item Phần nắp: là hình chóp đều $S.A'B'C'D'$ với đáy $A'B'C'D'$ nằm trong mặt phẳng song song với mặt phẳng $(ABCD)$. Chiều cao của phần nắp bằng $\\dfrac{1}{3}$ chiều cao của gọt bút chì.\r\n\t\t\\item Phần thân: là hình chóp cụt đều $ABCD.A'B'C'D'$ với chiều cao bằng $\\dfrac{2}{3}$ chiều cao của gọt bút chì.\r\n\t\t\\item Phần lõi gọt: là phần chứa lưỡi dao gọt bút chì, có dạng một hình nón, được khoét ở phía trong của phần thân của chiếc gọt bút chì. Đáy của hình nón là đường tròn có bán kính bằng $0{,}6 \\text{ cm}$, có tâm trùng với tâm của hình vuông $A'B'C'D'$. Đỉnh $T$ của hình nón nằm trên đoạn thẳng nối hai tâm của hình chóp cụt $ABCD.A'B'C'D'$. Chiều cao của phần lõi gọt bằng $\\dfrac{1}{2}$ chiều cao của phần thân của chiếc gọt bút chì.\r\n\t\\end{itemize}",
+      "paA": "Thể tích của khối chóp $S.ABCD$ bằng $72 \\text{ cm}^3$",
+      "paB": "Chiều cao của Phần thân và Phần lõi gọt lần lượt là $4 \\text{ cm}$ và $2 \\text{ cm}$",
+      "paC": "Diện tích xung quanh của Phần lõi gọt bằng $4{,}94 \\text{ cm}^2$",
+      "paD": "Toàn bộ phần không gian ở giữa Phần thân và Phần lõi gọt được làm rỗng để chứa vỏ bút chì sau khi gọt. Thể tích của phần không gian này là $68{,}58 \\text{ cm}^3$"
+    },
+    {
+      "maCau": "q_300b71d5eb",
+      "ma_goc": "2605-1519",
+      "kieuCau": "DS",
+      "cauDan": "Virus Hanta là một loại virus gây bệnh truyền nhiễm, lây lan chủ yếu từ động vật sang người, phần lớn thông qua các loài động vật gặm nhấm (đặc biệt là chuột). Xét những người dân sống một khu vực X được cá nhân có chuột nhiễm virus Hanta. Xác suất để một người tiếp xúc trực tiếp với chuột nhiễm bệnh là $30\\%$, tiếp xúc gián tiếp với chuột nhiễm bệnh làm tổ hay trú ẩn là $70\\%$. Nếu tiếp xúc trực tiếp với chuột nhiễm bệnh, xác suất để người đó nhiễm bệnh là $90\\%$. Nếu tiếp xúc gián tiếp với chuột nhiễm bệnh, xác suất để người đó không nhiễm bệnh là $36\\%$. Chọn ngẫu nhiên một người dân sống trong khu vực X. (Lưu ý: Người nhiễm bệnh dưới đây được hiểu là nhiễm bệnh do virus Hanta gây ra).",
+      "paA": "Nếu tiếp xúc trực tiếp với chuột nhiễm bệnh, xác suất để người đó không nhiễm bệnh là $90\\%$",
+      "paB": "Nếu tiếp xúc gián tiếp với chuột nhiễm bệnh, xác suất người đó nhiễm bệnh lớn hơn $50\\%$",
+      "paC": "Xác suất để người đó nhiễm bệnh là $27\\%$",
+      "paD": "Người được chọn qua xét nghiệm, được xác nhận là đã nhiễm bệnh. Xác suất người đó tiếp xúc gián tiếp với chuột nhiễm bệnh là $62{,}4\\%$"
+    },
+    {
+      "maCau": "q_cdcd88d4f5",
+      "ma_goc": "2605-1520",
+      "kieuCau": "DS",
+      "cauDan": "Sau một thời gian đi vào hoạt động, một khu vui chơi giải trí đã theo dõi sự thay đổi số lượng khách vui chơi trong 12 giờ hoạt động (khu vui chơi mở cửa đón khách lúc 8h00 và đóng cửa lúc 20h00 hằng ngày). Vào một ngày trong tuần, người ta thống kê liên tục và xác định được tốc độ thay đổi số lượng khách trong khu vui chơi tại thời điểm $t$ ($0 \\le t \\le 12$, đơn vị: giờ, tính từ lúc bắt đầu mở cửa đón khách) là $K(t) = 4t^3 - 36t^2 + 80t - 48$ (người/giờ). Tại thời điểm bắt đầu mở cửa đón khách, khu vui chơi có 160 vị khách. Biết rằng khu vui chơi sẽ quá tải về mặt dịch vụ nếu lượng khách vượt quá 3600 người (việc phục vụ sẽ không đảm bảo chất lượng).",
+      "paA": "Số lượng khách (đơn vị: người) trong khu vui chơi tại thời điểm $t$ giờ ($0 \\le t \\le 12$) được xác định bởi hàm số $160 + \\displaystyle \\int_0^t K(x) \\, dx$",
+      "paB": "Trong khoảng thời gian từ 10h00 đến 13h00, lượng khách trong khu vui chơi luôn giảm",
+      "paC": "Trong thời gian khu vui chơi hoạt động, tồn tại thời điểm mà lượng khách đạt 12 người",
+      "paD": "Chỉ có đúng 15 phút cuối trước khi đóng cửa là khu vui chơi bị quá tải về mặt dịch vụ (kết quả làm tròn đến hàng đơn vị)"
+    },
+    {
+      "maCau": "q_063aaab6e8",
+      "ma_goc": "2605-1521",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = 2x - 4 + \\dfrac{2}{x+1}$ có tập xác định $D=(-\\infty;-1)\\cup(-1;+\\infty)$.",
+      "paA": "Hàm số đã cho liên tục trên các khoảng xác định",
+      "paB": "Hàm số đã cho có đạo hàm $f'(x) = \\dfrac{2(x^2+2x)}{(x+1)^2}$ với $x \\in D$",
+      "paC": "Điểm cực đại của đồ thị hàm số $y=f(x)$ có tọa độ $(0;-2)$",
+      "paD": "Giá trị nhỏ nhất của hàm số $y=f(x)$ trên khoảng $(-1;+\\infty)$ bằng $-2$"
+    },
+    {
+      "maCau": "q_a70389a860",
+      "ma_goc": "2605-1522",
+      "kieuCau": "TLN",
+      "cauDan": "Nhân dịp kỉ niệm 136 năm ngày sinh nhật Bác Hồ (19/5/1890 – 19/5/2026), trong giờ học Toán, cô Ánh tổ chức cho các bạn học sinh trong lớp chơi một trò chơi. Theo quy tắc mà cô đưa ra, mỗi học sinh cần chọn mười số khác nhau từ tập $S$ gồm các số tự nhiên từ 1 đến 1890 và xếp mười số đó vào mười vị trí được đánh dấu trước trên một hình ngôi sao (các vị trí gồm $A_1, A_3, A_5, A_7, A_9$ đặt tại các đỉnh của ngôi sao và $A_2, A_4, A_6, A_8, A_{10}$ đặt tại giao điểm của các đường chéo của ngôi sao).\r\n\tCô Ánh có hai loại phần quà: phần quà Cháu yêu Bác Hồ và phần quà Muôn đời nhớ Bác.\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_150715.png}\r\n\t\\end{center}\r\n\t\\begin{itemize}\r\n\t\t\\item Để được nhận phần quà Cháu yêu Bác Hồ, học sinh phải xếp được các số vào các vị trí $A_1, A_2, A_3, \\dots, A_9, A_{10}$ theo thứ tự tăng dần, đồng thời các số được điền đều thuộc đoạn $[5; 19]$.\r\n\t\t\\item Để nhận được phần quà Muôn đời nhớ Bác, học sinh phải xếp được các số thỏa mãn đồng thời hai điều kiện:\r\n\t\t\\begin{enumerate}\r\n\t\t\t\\item Bộ năm số được điền ở bộ năm vị trí $(A_1, A_3, A_5, A_7, A_9)$ lập thành một cấp số nhân với công bội là số nguyên theo thứ tự đó.\r\n\t\t\t\\item Tất cả các bộ ba số được điền ở các bộ ba vị trí $(A_1, A_2, A_3), (A_3, A_4, A_5), (A_5, A_6, A_7), (A_7, A_8, A_9)$ và $(A_9, A_{10}, A_1)$ đều lập thành cấp số cộng theo thứ tự đó.\r\n\t\t\\end{enumerate}\r\n\t\\end{itemize}\r\n\tBạn Cường được tham gia trò chơi đầu tiên. Hỏi có bao nhiêu cách điền số vào hình ngôi sao để bạn Cường nhận được một trong hai phần thưởng của cô Ánh?"
+    },
+    {
+      "maCau": "q_517d728dcf",
+      "ma_goc": "2605-1523",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình lăng trụ $ABC.A'B'C'$ có cạnh bên $AA'=2$ và đáy $ABC$ là tam giác vuông cân tại $A$ có $AB=2$. Hình chiếu vuông góc của $A'$ lên mặt phẳng $(ABC)$ trùng với trọng tâm $G$ của tam giác $ABC$. Gọi $\\alpha$ là góc giữa cạnh bên và mặt đáy. Tính $\\sin \\alpha$ (làm tròn kết quả đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_f4d971ed3a",
+      "ma_goc": "2605-1524",
+      "kieuCau": "TLN",
+      "cauDan": "Trên mặt phẳng với hệ tọa độ $Oxy$ (đơn vị trên mỗi trục là $1\\,\\text{dm}$), một vật thể tròn xoay được tạo thành bằng cách quay hình phẳng giới hạn bởi đồ thị hàm số $y = a\\sin x + b$ ($a;b \\in \\mathbb{R}; a \\neq 0$) và các đường thẳng $x=0$, $x=\\dfrac{11\\pi}{6}$ quanh trục hoành. Vật thể tròn xoay khi đó có hình dạng là một bình hoa. Bình hoa này có phần đáy bình và phần miệng bình là các đường tròn có bán kính lần lượt bằng $2\\,\\text{dm}$ và $1{,}5\\,\\text{dm}$. Tính thể tích của vật thể tròn xoay đó (làm tròn kết quả đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_c81882d103",
+      "ma_goc": "2605-1525",
+      "kieuCau": "TLN",
+      "cauDan": "Ở trung tâm của một vườn hoa, người ta đã thiết kế một khối chỏm cầu và cắm các loại hoa nhiều màu sắc trên đó. Vào mỗi buổi tối, người ta sử dụng bốn chiếc đèn chiếu, đặt ở bốn đỉnh của một hình vuông, cách đều tâm của khối chỏm cầu và cùng chiếu đèn để tăng thêm phần rực rỡ cho vườn hoa. Xét hệ trục tọa độ $Oxyz$ sao cho chiếc đèn chiếu thứ nhất $D_1$ được đặt tại gốc tọa độ, các chiếc đèn chiếu thứ hai và thứ ba được đặt tại các điểm $D_2(4;0;0)$, $D_3(0;4;0)$, đồng thời trục $Oz$ hướng lên trên (đơn vị trên mỗi trục là $1$ mét). Khối chỏm cầu được đặt tại chính giữa của hình vuông tạo bởi bốn chiếc đèn chiếu (tâm của khối chỏm cầu nằm trên trục của hình vuông), mặt đáy của khối chỏm cầu đó nằm trên mặt đất - trùng với mặt phẳng $(Oxy)$. Biết rằng điểm cao nhất của khối chỏm cầu (so với mặt đất) cách đều các đèn chiếu một khoảng bằng $\\dfrac{\\sqrt{86}}{2}$ (m) và khối chỏm cầu là một phần của khối cầu có bán kính bằng $\\sqrt{6}$ (m). Gọi $M(a;b;c)$ là điểm nằm trên đáy của khối chỏm cầu sao cho $M$ gần chiếc đèn chiếu thứ tư $D_4$ nhất. Tính $a+b+c$.\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_151759.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_be4e145ec5",
+      "ma_goc": "2605-1526",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho mặt phẳng $(\\alpha): 3x - 4y + 2 = 0$ và đường thẳng $d: \\dfrac{x}{2} = \\dfrac{y+1}{3} = \\dfrac{z-1}{-1}$. Gọi $(\\beta): 4x + my + nz + p = 0$ (với $m, n, p \\in \\mathbb{R}$) là mặt phẳng chứa đường thẳng $d$ và vuông góc với mặt phẳng $(\\alpha)$. Tính $3m + n + 6p$."
+    }
+  ]
+}
