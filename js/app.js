@@ -3659,85 +3659,159 @@ Nội dung câu hỏi trả lời ngắn nằm ở đây.
 // ==============================================================
 // [Nhãn thời gian: 11:35 - Ngày 29/05/2026] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Đúng bảng Học liệu)
 // ==============================================================
+//window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = true) {
+//    const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
+//    if (!data) return alert("Dữ liệu không tồn tại!");
+
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3>⏳ Đang kiểm tra File Giải trong Học liệu...</h3></div>`;
+
+//    // 🌟 QUÉT TRỰC TIẾP BẢNG HỌC LIỆU ĐỂ TÌM LINK FILE GIẢI
+//    let checkDaCoGiai = false;
+//    let urlFileGiai = "";
+
+//    try {
+//        // Chỉ cần select cột url_file_giai từ bảng hoc_lieu
+//        const { data: hlData, error } = await _supabase
+//            .from('hoc_lieu')
+//            .select('url_file_giai')
+//            .eq('ma_hoc_lieu', maHocLieu)
+//            .maybeSingle();
+
+//        if (!error && hlData && hlData.url_file_giai && hlData.url_file_giai.trim() !== '') {
+//            checkDaCoGiai = true;
+//            urlFileGiai = hlData.url_file_giai;
+//        }
+//    } catch (e) {
+//        console.error("Lỗi quét bảng học liệu:", e);
+//    }
+
+//    // ... (Giữ nguyên đoạn code tạo htmlRows và các biến hiển thị như cũ)
+//    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
+//    const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
+//    const disabledAttr = choPhepSua ? "" : "disabled";
+//    const hienThiCotXoa = choPhepSua ? "" : "display: none;";
+//    const dsCauHoi = data.danh_sach_cau_hoi || [];
+//    let htmlRows = '';
+
+//    // (Đoạn forEach tạo htmlRows giữ nguyên như cũ, em viết tắt để thầy đỡ phải thay)
+//    dsCauHoi.forEach((item, index) => {
+//        let maGoc = typeof item === 'object' ? (item.ma_goc || "N/A") : (item.split('|')[0] || "N/A");
+//        let maAoDe = typeof item === 'object' ? (item.ma_cau_hoi || "") : (item.split('|')[1] || "");
+//        let maAoGiai = typeof item === 'object' ? (item.ma_loi_giai || "") : (item.split('|')[2] || "");
+//        let dapAn = typeof item === 'object' ? (item.dap_an || "") : (item.split('|')[3] || "");
+//        let chuoiGocDeLuu = typeof item === 'object' ? JSON.stringify(item).replace(/"/g, '&quot;') : item;
+
+//        htmlRows += `<tr class="row-cau-hoi" data-original-string="${chuoiGocDeLuu}" style="border-bottom: 1px solid #eee;">
+//            <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
+//            <td style="padding: 8px;">${maGoc}</td>
+//            <td style="padding: 8px; font-size: 11px; color: #888;">${maAoDe}</td>
+//            <td style="padding: 8px; font-size: 11px; color: #888;">${maAoGiai}</td>
+//            <td style="padding: 8px;"><input type="text" class="input-dap-an" value="${dapAn}" style="width:60px; text-align:center;"></td>
+//            <td style="padding: 8px; ${hienThiCotXoa}"><button onclick="ham_6_xoa_cau_truc_tiep(this)">🗑️</button></td>
+//        </tr>`;
+//    });
+
+//    // 🌟 LOGIC HIỂN THỊ NÚT FILE GIẢI DỰA TRÊN TRẠNG THÁI
+//    let htmlTaoFileGiai = choPhepSua ? `
+//        <div style="background: ${checkDaCoGiai ? '#e6ffed' : '#fdfaf0'}; border: 1px solid ${checkDaCoGiai ? '#c3e6cb' : '#f0dfa8'}; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//            ${checkDaCoGiai ? `
+//                <h4 style="margin:0; color:#28a745;">✅ ĐÃ CÓ FILE GIẢI GỘP</h4>
+//                <p>Học liệu này đã được gộp file thành công.</p>
+//                <a href="${urlFileGiai}" target="_blank" style="padding:6px 15px; background:#28a745; color:white; text-decoration:none; border-radius:4px;">📥 Xem File Giải</a>
+//                <div style="margin-top:10px;">
+//                    <label><input type="checkbox" id="sua_hl_tu_dong_gom_file"> ⚠️ Gộp lại File Giải mới (Cập nhật sau khi sửa đề)</label>
+//                </div>
+//            ` : `
+//                <h4 style="margin:0; color:#d35400;">🛠️ CHƯA CÓ FILE GIẢI GỘP</h4>
+//                <label><input type="checkbox" id="sua_hl_tu_dong_gom_file" checked> 🚀 Tự động gộp File Giải sau khi lưu</label>
+//            `}
+//        </div>
+//    ` : '';
+
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 1000px; padding: 25px; background: white; margin: 0 auto;">
+//            <h3>${tieuDe}</h3>
+//            <div style="max-height: 400px; overflow-y: auto;"><table>${htmlRows}</table></div>
+//            ${htmlTaoFileGiai}
+//            <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${maHocLieu}', this)">💾 XÁC NHẬN LƯU</button>
+//        </div>
+//    `;
+//};
+
 window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3>⏳ Đang kiểm tra File Giải trong Học liệu...</h3></div>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3>⏳ Đang tải dữ liệu...</h3></div>`;
 
-    // 🌟 QUÉT TRỰC TIẾP BẢNG HỌC LIỆU ĐỂ TÌM LINK FILE GIẢI
+    // Quét trạng thái File Giải từ bảng hoc_lieu
     let checkDaCoGiai = false;
     let urlFileGiai = "";
-
     try {
-        // Chỉ cần select cột url_file_giai từ bảng hoc_lieu
-        const { data: hlData, error } = await _supabase
-            .from('hoc_lieu')
-            .select('url_file_giai')
-            .eq('ma_hoc_lieu', maHocLieu)
-            .maybeSingle();
-
-        if (!error && hlData && hlData.url_file_giai && hlData.url_file_giai.trim() !== '') {
+        const { data: hlData } = await _supabase.from('hoc_lieu').select('url_file_giai').eq('ma_hoc_lieu', maHocLieu).maybeSingle();
+        if (hlData && hlData.url_file_giai && hlData.url_file_giai.trim() !== '') {
             checkDaCoGiai = true;
             urlFileGiai = hlData.url_file_giai;
         }
-    } catch (e) {
-        console.error("Lỗi quét bảng học liệu:", e);
-    }
+    } catch (e) { console.warn("Lỗi:", e); }
 
-    // ... (Giữ nguyên đoạn code tạo htmlRows và các biến hiển thị như cũ)
     const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
     const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
     const disabledAttr = choPhepSua ? "" : "disabled";
     const hienThiCotXoa = choPhepSua ? "" : "display: none;";
-    const dsCauHoi = data.danh_sach_cau_hoi || [];
-    let htmlRows = '';
 
-    // (Đoạn forEach tạo htmlRows giữ nguyên như cũ, em viết tắt để thầy đỡ phải thay)
-    dsCauHoi.forEach((item, index) => {
+    const dsCauHoi = data.danh_sach_cau_hoi || [];
+    let htmlRows = dsCauHoi.map((item, index) => {
         let maGoc = typeof item === 'object' ? (item.ma_goc || "N/A") : (item.split('|')[0] || "N/A");
         let maAoDe = typeof item === 'object' ? (item.ma_cau_hoi || "") : (item.split('|')[1] || "");
         let maAoGiai = typeof item === 'object' ? (item.ma_loi_giai || "") : (item.split('|')[2] || "");
         let dapAn = typeof item === 'object' ? (item.dap_an || "") : (item.split('|')[3] || "");
         let chuoiGocDeLuu = typeof item === 'object' ? JSON.stringify(item).replace(/"/g, '&quot;') : item;
-
-        htmlRows += `<tr class="row-cau-hoi" data-original-string="${chuoiGocDeLuu}" style="border-bottom: 1px solid #eee;">
+        return `<tr class="row-cau-hoi" data-original-string="${chuoiGocDeLuu}" style="border-bottom: 1px solid #eee;">
             <td style="padding: 8px; text-align: center; font-weight: bold;">${index + 1}</td>
             <td style="padding: 8px;">${maGoc}</td>
             <td style="padding: 8px; font-size: 11px; color: #888;">${maAoDe}</td>
             <td style="padding: 8px; font-size: 11px; color: #888;">${maAoGiai}</td>
-            <td style="padding: 8px;"><input type="text" class="input-dap-an" value="${dapAn}" style="width:60px; text-align:center;"></td>
+            <td style="padding: 8px;"><input type="text" class="input-dap-an" value="${dapAn}" ${disabledAttr} style="width:60px; text-align:center;"></td>
             <td style="padding: 8px; ${hienThiCotXoa}"><button onclick="ham_6_xoa_cau_truc_tiep(this)">🗑️</button></td>
         </tr>`;
-    });
+    }).join('');
 
-    // 🌟 LOGIC HIỂN THỊ NÚT FILE GIẢI DỰA TRÊN TRẠNG THÁI
-    let htmlTaoFileGiai = choPhepSua ? `
-        <div style="background: ${checkDaCoGiai ? '#e6ffed' : '#fdfaf0'}; border: 1px solid ${checkDaCoGiai ? '#c3e6cb' : '#f0dfa8'}; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-            ${checkDaCoGiai ? `
-                <h4 style="margin:0; color:#28a745;">✅ ĐÃ CÓ FILE GIẢI GỘP</h4>
-                <p>Học liệu này đã được gộp file thành công.</p>
-                <a href="${urlFileGiai}" target="_blank" style="padding:6px 15px; background:#28a745; color:white; text-decoration:none; border-radius:4px;">📥 Xem File Giải</a>
-                <div style="margin-top:10px;">
-                    <label><input type="checkbox" id="sua_hl_tu_dong_gom_file"> ⚠️ Gộp lại File Giải mới (Cập nhật sau khi sửa đề)</label>
-                </div>
-            ` : `
-                <h4 style="margin:0; color:#d35400;">🛠️ CHƯA CÓ FILE GIẢI GỘP</h4>
-                <label><input type="checkbox" id="sua_hl_tu_dong_gom_file" checked> 🚀 Tự động gộp File Giải sau khi lưu</label>
-            `}
-        </div>
-    ` : '';
+    let htmlTaoFileGiai = choPhepSua ? (checkDaCoGiai ? `
+        <div style="background: #e6ffed; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+            <h4 style="margin:0 0 10px 0; color:#28a745; font-size:14px;">✅ ĐÃ CÓ FILE LỜI GIẢI GỘP</h4>
+            <a href="${urlFileGiai}" target="_blank" style="padding:6px 12px; background:#28a745; color:white; text-decoration:none; border-radius:4px; font-weight:bold; font-size:12px;">📥 Xem File Giải</a>
+            <div style="margin-top:15px; border-top:1px dashed #c3e6cb; padding-top:12px;">
+                <label style="cursor:pointer; font-weight:bold; font-size:13px;">
+                    <input type="checkbox" id="sua_hl_tu_dong_gom_file" style="transform:scale(1.2);"> ⚠️ Gom lại File Giải mới (Cập nhật khi sửa đề)
+                </label>
+            </div>
+        </div>` : `
+        <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+            <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TẠO FILE LỜI GIẢI GỘP</h4>
+            <label style="cursor:pointer; font-weight:bold; font-size:13px;">
+                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2);"> 🚀 Tự động gộp File Giải sau khi lưu
+            </label>
+        </div>`) : '';
 
     vungLamViec.innerHTML = `
-        <div style="max-width: 1000px; padding: 25px; background: white; margin: 0 auto;">
-            <h3>${tieuDe}</h3>
-            <div style="max-height: 400px; overflow-y: auto;"><table>${htmlRows}</table></div>
+        <div style="max-width: 1000px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
+            <h3 style="color:${mauTieuDe}">${tieuDe}: ${maHocLieu}</h3>
+            <div style="max-height: 400px; overflow-y: auto; margin-bottom:20px;">
+                <table style="width:100%; border-collapse:collapse;">${htmlRows}</table>
+            </div>
             ${htmlTaoFileGiai}
-            <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${maHocLieu}', this)">💾 XÁC NHẬN LƯU</button>
+            <div style="display: flex; gap: 10px;">
+                ${choPhepSua ? `<button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${maHocLieu}', this)" style="padding:15px; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">💾 LƯU THAY ĐỔI</button>` : ''}
+                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="padding:15px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer;">⬅️ QUAY LẠI</button>
+            </div>
         </div>
     `;
 };
+
+
 
 
 
@@ -4246,23 +4320,81 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 // ==============================================================
 // [Nhãn thời gian: 11:20 - Ngày 29/05/2026] - Hàm 6.7: Lưu Học Liệu (Tối giản & Trực tiếp)
 // ==============================================================
+//window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
+//    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+//    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+//    const trangThaiMoi = document.getElementById('sua_trangThai').value;
+
+//    // 1. Thu thập dữ liệu từ bảng
+//    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+//    let banDoMoi = [];
+
+//    rows.forEach(row => {
+//        const originalString = row.getAttribute('data-original-string');
+//        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
+//        try {
+//            let objCauHoi = JSON.parse(originalString);
+//            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+//            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+//            else objCauHoi.dap_an = dapAnMoi;
+//            banDoMoi.push(objCauHoi);
+//        } catch (e) {
+//            let parts = originalString.split('|');
+//            parts[parts.length - 1] = dapAnMoi;
+//            banDoMoi.push(parts.join('|'));
+//        }
+//    });
+
+//    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
+
+//    btnNode.disabled = true;
+//    btnNode.innerText = "ĐANG LƯU HỌC LIỆU...";
+
+//    try {
+//        // 2. Lưu vào Database
+//        const { error } = await _supabase.from('hoc_lieu').update({
+//            ten_hoc_lieu: tenMoi,
+//            thoi_gian_lam_bai: thoiGianMoi,
+//            trang_thai: trangThaiMoi,
+//            danh_sach_cau_hoi: banDoMoi,
+//            quy_mo_cau_hoi: banDoMoi.length
+//        }).eq('ma_hoc_lieu', maHocLieu);
+
+//        if (error) throw error;
+
+//        // 3. XỬ LÝ GỘP FILE GIẢI TRỰC TIẾP (Nếu người dùng tick chọn)
+//        const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+
+//        if (chkGopFile && chkGopFile.checked && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+//            btnNode.innerText = "ĐANG TẠO FILE GIẢI...";
+//            // Gọi trực tiếp hàm 7.10 với tham số là maHocLieu
+//            // (Hàm 7.10 của thầy đã được cấu hình để hoạt động với maHocLieu)
+//            await ham_7_10_ra_lenh_tao_file_giai(null, maHocLieu);
+//        }
+
+//        alert("✅ Đã cập nhật học liệu thành công!");
+//        ham_6_1_ve_quan_ly_hoc_lieu();
+
+//    } catch (error) {
+//        alert("Lỗi: " + error.message);
+//        btnNode.disabled = false;
+//        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+//    }
+//};
+
 window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
     const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
     const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
     const trangThaiMoi = document.getElementById('sua_trangThai').value;
 
-    // 1. Thu thập dữ liệu từ bảng
     const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
     let banDoMoi = [];
-
     rows.forEach(row => {
         const originalString = row.getAttribute('data-original-string');
         const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
         try {
             let objCauHoi = JSON.parse(originalString);
-            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
-            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
-            else objCauHoi.dap_an = dapAnMoi;
+            objCauHoi.dap_an = dapAnMoi;
             banDoMoi.push(objCauHoi);
         } catch (e) {
             let parts = originalString.split('|');
@@ -4271,42 +4403,33 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
         }
     });
 
-    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
-
     btnNode.disabled = true;
-    btnNode.innerText = "ĐANG LƯU HỌC LIỆU...";
+    btnNode.innerText = "ĐANG LƯU...";
 
     try {
-        // 2. Lưu vào Database
         const { error } = await _supabase.from('hoc_lieu').update({
-            ten_hoc_lieu: tenMoi,
-            thoi_gian_lam_bai: thoiGianMoi,
-            trang_thai: trangThaiMoi,
-            danh_sach_cau_hoi: banDoMoi,
-            quy_mo_cau_hoi: banDoMoi.length
+            ten_hoc_lieu: tenMoi, thoi_gian_lam_bai: thoiGianMoi, trang_thai: trangThaiMoi,
+            danh_sach_cau_hoi: banDoMoi, quy_mo_cau_hoi: banDoMoi.length
         }).eq('ma_hoc_lieu', maHocLieu);
 
         if (error) throw error;
 
-        // 3. XỬ LÝ GỘP FILE GIẢI TRỰC TIẾP (Nếu người dùng tick chọn)
         const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
-
         if (chkGopFile && chkGopFile.checked && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
-            btnNode.innerText = "ĐANG TẠO FILE GIẢI...";
-            // Gọi trực tiếp hàm 7.10 với tham số là maHocLieu
-            // (Hàm 7.10 của thầy đã được cấu hình để hoạt động với maHocLieu)
+            btnNode.innerText = "ĐANG GỘP FILE GIẢI...";
             await ham_7_10_ra_lenh_tao_file_giai(null, maHocLieu);
         }
 
-        alert("✅ Đã cập nhật học liệu thành công!");
+        alert("✅ Đã cập nhật thành công!");
         ham_6_1_ve_quan_ly_hoc_lieu();
-
     } catch (error) {
         alert("Lỗi: " + error.message);
         btnNode.disabled = false;
         btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
     }
 };
+
+
 
 
 // ==============================================================
