@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_768cd11ddb",
+  "dapAn": "A",
+  "loiGiai": "Ta có: $P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = 0,4 + 0,5 - 0,76 = 0,14$. \\\\\r\n\t\tXác suất của $A$ biết $B$ xảy ra là: \\\\\r\n\t\t$\\displaystyle P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0,14}{0,5} = 0,28$. \\\\"
+}

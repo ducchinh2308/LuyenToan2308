@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_48712006a7",
+  "dapAn": "6,4",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_48712006a7_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có mặt cầu mô phỏng $(S): x^2 + y^2 + z^2 = 9$ có tâm $O(0; 0; 0)$ bán kính $R = 3$. \\\\\r\n\t\tVì $M \\in d$ nên $M(1+t; 1+2t; 2-3t)$, gọi $N(x; y; z)$ là điểm bất kì trên đường tròn giao tuyến. \\\\\r\n\t\tTa có $MN^2 = OM^2 - R^2 = (1+t)^2 + (1+2t)^2 + (2-3t)^2 - 9 = 14t^2 - 6t - 3$ \\\\\r\n\t\tDo đó $(x - 1 - t)^2 + (y - 1 - 2t)^2 + (z - 2 + 3t)^2 = 14t^2 - 6t - 3$ \\\\\r\n\t\tHay $x^2 + y^2 + z^2 - 2(1+t)x - 2(1+2t)y + 2(-2+3t)z + 9 = 0$. \\\\\r\n\t\tMà $N \\in (S)$ nên $x^2 + y^2 + z^2 = 9$, suy ra \\\\\r\n\t\t$9 - 2(1+t)x - 2(1+2t)y + 2(-2+3t)z + 9 = 0 \\Leftrightarrow (1+t)x + (1+2t)y + (-2+3t)z - 9 = 0$, đây cũng là phương trình của $(P)$. \\\\\r\n\t\tDo $(P)$ qua $D(2; 0; 1)$ nên $\\displaystyle (1+t) \\cdot 2 + (1+2t) \\cdot 0 + (-2+3t) \\cdot 1 - 9 = 0 \\Leftrightarrow t = \\frac{9}{5}$. \\\\\r\n\t\t$OM = \\sqrt{(1+t)^2 + (1+2t)^2 + (2-3t)^2} \\approx 6,4$. \\\\"
+}

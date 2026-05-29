@@ -1,0 +1,203 @@
+{
+  "maDe": "26252-FULL",
+  "tenDe": "ĐỀ 26252-22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_6e19281344",
+      "ma_goc": "2605-1484",
+      "kieuCau": "TN",
+      "cauDan": "Thư viện ghi lại số giờ đọc sách của $50$ sinh viên trong một ngày và thu được mẫu số liệu ghép nhóm sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6e19281344_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu ghép nhóm trên bằng",
+      "paA": "$3$",
+      "paB": "$4$",
+      "paC": "$6$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_954f2d3041",
+      "ma_goc": "2605-1485",
+      "kieuCau": "TN",
+      "cauDan": "Cho biết đồ thị hàm số $\\displaystyle y = \\frac{2x^2 + x - 5}{x + 3}$ có đường tiệm cận xiên là đường thẳng $y = ax + b$ với $a, b \\in \\mathbb{R}$. Giá trị của $a - b$ bằng",
+      "paA": "$3$",
+      "paB": "$7$",
+      "paC": "$-3$",
+      "paD": "$-7$"
+    },
+    {
+      "maCau": "q_77a00a87f3",
+      "ma_goc": "2605-1486",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $y = \\sqrt{\\log_{0,3} x}$ là",
+      "paA": "$D = (0; 1]$",
+      "paB": "$[0; 1]$",
+      "paC": "$D = (-\\infty; 1]$",
+      "paD": "$(1; +\\infty)$"
+    },
+    {
+      "maCau": "q_55a10eb435",
+      "ma_goc": "2605-1487",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông, tam giác $SAC$ vuông cân tại $A$, có diện tích bằng $a^2$ và nằm trong mặt phẳng vuông góc với đáy. Thể tích $V$ của khối chóp $S.ABD$ bằng",
+      "paA": "$\\displaystyle \\frac{a^3}{3}$",
+      "paB": "$\\displaystyle \\frac{a^3\\sqrt{2}}{6}$",
+      "paC": "$\\displaystyle \\frac{a^3\\sqrt{2}}{3}$",
+      "paD": "$\\displaystyle \\frac{a^3}{6}$"
+    },
+    {
+      "maCau": "q_c316e65995",
+      "ma_goc": "2605-1488",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $d$ vuông góc với mặt phẳng $(Oyz)$. Một vectơ chỉ phương của đường thẳng $d$ là",
+      "paA": "$\\vec{u}_4 = (0; 1; 1)$",
+      "paB": "$\\vec{u}_2 = (1; 0; 0)$",
+      "paC": "$\\vec{u}_3 = (0; 0; 1)$",
+      "paD": "$\\vec{u}_1 = (0; 1; 0)$"
+    },
+    {
+      "maCau": "q_4b078930b2",
+      "ma_goc": "2605-1489",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ được giới hạn bởi đồ thị hàm số $y = \\tan x$, trục hoành và các đường thẳng $x = 0, x = \\displaystyle \\frac{\\pi}{3}$. Khối tròn xoay tạo thành khi quay $(H)$ quanh trục hoành có thể tích bằng",
+      "paA": "$\\displaystyle \\pi\\sqrt{3} - \\frac{\\pi^2}{3}$",
+      "paB": "$\\displaystyle \\pi\\sqrt{3} + \\frac{\\pi^2}{3}$",
+      "paC": "$\\pi\\sqrt{3}$",
+      "paD": "$\\displaystyle \\sqrt{3} - \\frac{\\pi}{3}$"
+    },
+    {
+      "maCau": "q_3affdb7a29",
+      "ma_goc": "2605-1490",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ biết $u_2 = 4u_1$ và $u_3 = 14$. Tính $u_{2026}$.",
+      "paA": "$u_{2026} = 4056$",
+      "paB": "$u_{2026} = 12152$",
+      "paC": "$u_{2026} = 12158$",
+      "paD": "$u_{2026} = 4058$"
+    },
+    {
+      "maCau": "q_b992144485",
+      "ma_goc": "2605-1491",
+      "kieuCau": "TN",
+      "cauDan": "Cho $A, B$ là hai biến cố thỏa mãn $P(A) = 0,4$, $P(B) = 0,5$ và $P(A \\cup B) = 0,76$. Tính $P(A|B)$.",
+      "paA": "$P(A|B) = 0,28$",
+      "paB": "$P(A|B) = 0,35$",
+      "paC": "$P(A|B) = 0,7$",
+      "paD": "$P(A|B) = 0,14$"
+    },
+    {
+      "maCau": "q_a2b4de30ec",
+      "ma_goc": "2605-1492",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\tan x = 0$",
+      "paA": "$S = \\{2k\\pi \\mid k \\in \\mathbb{Z}\\}$",
+      "paB": "$S = \\{k\\pi \\mid k \\in \\mathbb{Z}\\}$",
+      "paC": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{2} + 2k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paD": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_3f4d83d6f6",
+      "ma_goc": "2605-1493",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = 2, BC = 4, CC' = 5$. Độ dài vectơ $\\vec{u} = \\overrightarrow{AB} - \\overrightarrow{DA} + \\overrightarrow{DD'}$ bằng",
+      "paA": "$\\sqrt{41}$",
+      "paB": "$2\\sqrt{5}$",
+      "paC": "$\\sqrt{29}$",
+      "paD": "$3\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_9e95fc7abc",
+      "ma_goc": "2605-1494",
+      "kieuCau": "TN",
+      "cauDan": "Trong mặt phẳng tọa độ $(Oxy)$, cho elip $(E)$ có phương trình chính tắc $\\displaystyle \\frac{x^2}{16} + \\frac{y^2}{4} = 1$. Tiêu cự của elip $(E)$ bằng",
+      "paA": "$8$",
+      "paB": "$2\\sqrt{3}$",
+      "paC": "$4\\sqrt{3}$",
+      "paD": "$4\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_2f193a063a",
+      "ma_goc": "2605-1495",
+      "kieuCau": "TN",
+      "cauDan": "Biết $\\displaystyle \\int f(x)\\text{d}x = 2026^x + C$. Mệnh đề nào sau đây đúng?",
+      "paA": "$\\displaystyle f(x) = \\frac{2026^{x+1}}{x+1}$",
+      "paB": "$f(x) = 2026^x \\cdot \\ln 2026$",
+      "paC": "$f(x) = x \\cdot 2026^{x-1}$",
+      "paD": "$\\displaystyle f(x) = \\frac{2026^x}{\\ln 2026}$"
+    },
+    {
+      "maCau": "q_ddb8727d83",
+      "ma_goc": "2605-1496",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{x^2 - 3x + 5}{x + 1}$ có đồ thị $(C)$.",
+      "paA": "Đường thẳng $y = x + 1$ là tiệm cận xiên của đồ thị $(C)$",
+      "paB": "Đồ thị $(C)$ có tiệm cận đứng là đường thẳng $x = -1$",
+      "paC": "Đường thẳng đi qua điểm cực đại và điểm cực tiểu của đồ thị hàm số là $y = 2x + 3$",
+      "paD": "Hàm số nghịch biến trên khoảng $(-4; -1)$ và $(-1; 2)$"
+    },
+    {
+      "maCau": "q_424b35909e",
+      "ma_goc": "2605-1497",
+      "kieuCau": "DS",
+      "cauDan": "Lớp 12/1 có $25$ bạn nam và $10$ bạn nữ; lớp 12/2 có $20$ bạn nam và $15$ bạn nữ. Để chuẩn bị cho buổi sinh hoạt giao lưu với đơn vị kết nghĩa, Đoàn trường chọn ngẫu nhiên từ hai lớp trên mỗi lớp $2$ học sinh. Sau khi nhóm $4$ bạn đã tập hợp, cả nhóm bầu ngẫu nhiên một bạn trong số đó làm nhóm trưởng.",
+      "paA": "Biết rằng nhóm trưởng là học sinh lớp 12/1, xác suất để bạn đó là nữ bằng $\\displaystyle \\frac{3}{7}$",
+      "paB": "Xác suất để bạn nhóm trưởng được bầu là một bạn nữ bằng $\\displaystyle \\frac{5}{14}$",
+      "paC": "Biết rằng nhóm trưởng là một bạn nữ, xác suất để bạn đó đến từ lớp 12/1 bằng $\\displaystyle \\frac{2}{5}$",
+      "paD": "Biết rằng nhóm trưởng là một bạn nữ, xác suất để ba bạn còn lại đều là nam bằng $\\displaystyle \\frac{550}{2023}$"
+    },
+    {
+      "maCau": "q_7314ed8262",
+      "ma_goc": "2605-1498",
+      "kieuCau": "DS",
+      "cauDan": "Một trung tâm y tế được cấp một lô $10000$ liều vắc-xin viêm não Nhật Bản để tiêm cho người dân trong vòng $30$ ngày. Gọi $M(t)$ là số liều vắc-xin còn lại chưa sử dụng sau $t$ ngày, với $0 \\le t \\le 30$. Sau đúng $30$ ngày, trung tâm còn lại $280$ liều vắc-xin để dự phòng. Qua thống kê, tốc độ tiêm chủng tại thời điểm $t$ tỉ lệ thuận với bình phương thời gian còn lại, tức là $-M'(t) = k(30 - t)^2, k > 0$.",
+      "paA": "Hàm số $M(t)$ có dạng $\\displaystyle M(t) = \\frac{k}{3}(30 - t)^3 + C$",
+      "paB": "$k = 1,08$",
+      "paC": "Sau $20$ ngày, trung tâm còn lại $460$ liều vắc-xin chưa sử dụng",
+      "paD": "Tốc độ tiêm chủng trung bình trong $15$ ngày đầu tiên là $567$ liều/ngày"
+    },
+    {
+      "maCau": "q_b52858b7d6",
+      "ma_goc": "2605-1499",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{x + 2}{x - 1}$ có đồ thị $(C)$ và điểm $A(2; -3)$.",
+      "paA": "Hàm số đã cho nghịch biến trên $\\mathbb{R} \\setminus \\{1\\}$",
+      "paB": "Đồ thị $(C)$ có tâm đối xứng là điểm $I(1; 1)$",
+      "paC": "Tiếp tuyến của đồ thị $(C)$ tại giao điểm của $(C)$ và trục tung không đi qua điểm $A$",
+      "paD": "Gọi $\\Delta$ là đường thẳng thay đổi nhưng luôn đi qua tâm đối xứng của $(C)$ và cắt $(C)$ tại hai điểm $M, N$. Diện tích nhỏ nhất của tam giác $AMN$ bằng $4\\sqrt{3}$ (đvdt)"
+    },
+    {
+      "maCau": "q_8fd516ee97",
+      "ma_goc": "2605-1500",
+      "kieuCau": "TLN",
+      "cauDan": "Trong sảnh một trung tâm hội nghị, các kiến trúc sư lắp đặt một khối cầu trang trí phản quang có mặt ngoài được mô phỏng bởi phương trình $x^2 + y^2 + z^2 = 9$ (đơn vị: mét). Một đèn chiếu điểm (spotlight) di chuyển theo trục ray thẳng có phương trình $d: x - 1 = \\displaystyle \\frac{y - 1}{2} = \\frac{z - 2}{-3}$. Khi đèn ở vị trí $M$, các tia sáng phát ra tiếp xúc với khối cầu. Tập hợp các tiếp điểm tạo thành một đường tròn nằm trên mặt phẳng $(P)$, là ranh giới giữa vùng sáng và vùng tối (tham khảo hình vẽ).\r\n\tKhi đèn $M$ di chuyển đến vị trí sao cho mặt phẳng $(P)$ đi qua mắt cảm biến cố định $D(2; 0; 1)$, hãy tính khoảng cách từ đèn $M$ đến tâm khối cầu (làm tròn đến hàng phần chục của mét).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8fd516ee97_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_5594e57d97",
+      "ma_goc": "2605-1501",
+      "kieuCau": "TLN",
+      "cauDan": "Cho một hình tam giác đều cạnh $a=40\\text{cm}$ (Hình a). Chia mỗi cạnh của tam giác đó thành ba đoạn thẳng bằng nhau và vẽ ra phía ngoài một tam giác đều nhận đoạn ở giữa làm cạnh đồng thời bỏ đi đoạn ở giữa đó ta được Hình b). Tiếp tục chia mỗi cạnh của Hình b) thành ba đoạn thẳng có độ dài bằng nhau và vẽ ra phía ngoài một tam giác đều nhận đoạn ở giữa làm cạnh đồng thời bỏ đi đoạn ở giữa đó, ta được Hình c). Lặp lại quá trình trên; từ Hình c) ta tạo nên Hình d); từ Hình d) tạo nên Hình e);... và cứ như thế ta sẽ được một dãy các hình, gọi là dãy hình \\textbf{Bông tuyết Koch}.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_5594e57d97_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $S_n$ là diện tích của hình ở bước thứ $n$ ($S_0$ là diện tích tam giác đều ban đầu). Tính diện tích của hình thu được khi quá trình lặp lại vô hạn lần, tức là tính $\\displaystyle \\lim_{n \\to +\\infty} S_n$ (làm tròn kết quả đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_2be7016a01",
+      "ma_goc": "2605-1502",
+      "kieuCau": "TLN",
+      "cauDan": "Tuyến đường sắt cao tốc sau khi đưa vào hoạt động đã đem lại nhiều thuận lợi, thúc đẩy phát triển kinh tế - xã hội khu vực. Biết rằng sau khi khai trương thời gian giữa hai chuyến liên tiếp là $t$ (đơn vị: phút), với $2 \\le t \\le 18, t \\in \\mathbb{N}^*$. Sức chở của tàu cao tốc có liên hệ với $t$ như sau: \\\\\r\n\tKhi $10 \\le t \\le 20$, tàu ở trạng thái đầy, sức chở $1200$ người. \\\\\r\n\tKhi $2 \\le t < 10$ sức chở giảm so với mức đầy; số người giảm tỉ lệ thuận với $(10 - t)^2$. Biết rằng khi $t = 5$ phút sức chở là $950$ người. \\\\\r\n\tGọi $P(t)$ người là sức chở của tàu khi thời gian giữa hai chuyến là $t$ phút. Giả sử lợi nhuận ròng của tuyến khi đó là $\\displaystyle Q(t) = \\frac{t}{5} P(t) - 40t^2 + 660t - 1372$ (triệu đồng). Hỏi khi $t$ bằng bao nhiêu phút thì lợi nhuận ròng trung bình mỗi phút $\\displaystyle \\frac{Q(t)}{t}$ đạt giá trị lớn nhất?"
+    },
+    {
+      "maCau": "q_4d1018a247",
+      "ma_goc": "2605-1503",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp cụt tứ giác đều $ABCD.A'B'C'D'$ có độ dài các cạnh $AB=8, A'B'=4$ và $AA'=5$. Hỏi khoảng cách giữa hai đường thẳng $AA'$ và $CD$ bằng bao nhiêu? (Kết quả làm tròn đến hàng phần chục)."
+    },
+    {
+      "maCau": "q_0f6ab5342d",
+      "ma_goc": "2605-1504",
+      "kieuCau": "TLN",
+      "cauDan": "Có 3 hộp đựng bi: Hộp I có 3 bi trắng và 2 bi đen. Hộp II có 1 bi trắng và 4 bi đen. Hộp III có 4 bi đen. Người ta gieo một con xúc xắc cân đối, đồng chất. \\\\\r\n\tNếu con xúc xắc xuất hiện mặt chẵn thì lấy ngẫu nhiên đồng thời 2 viên bi từ hộp I bỏ vào hộp II; sau đó lắc đều hộp II là lấy ngẫu nhiên đồng thời ra 2 viên bi. \\\\\r\n\tNếu con xúc xắc xuất hiện mặt lẻ thì lấy ngẫu nhiên đồng thời 2 viên bi từ hộp I bỏ vào hộp III; sau đó lắc đều hộp III và lấy ngẫu nhiên đồng thời ra 2 viên bi. \\\\\r\n\tBiết rằng 2 bi lấy ra ở bước cuối cùng là 2 viên bi màu đen. Tính xác suất để con xúc xắc xuất hiện mặt chẵn (kết quả làm tròn đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_143220.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_442dc61007",
+      "ma_goc": "2605-1505",
+      "kieuCau": "TLN",
+      "cauDan": "Cho đồ thị của các hàm số $f(x) = -x^4 + x$, $g(x) = x^4 - x^3$ và $h(x) = a(x - x^2) (a \\in \\mathbb{R})$ tạo thành hai miền hình phẳng có diện tích $S_1, S_2$ như hình vẽ ($S_1$ là phần màu trắng, $S_2$ là phần được tô màu). Biết $S_1 = 2S_2$, hỏi giá trị của $1 - 30a$ bằng bao nhiêu?\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_143422.png}\r\n\t\\end{center}"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f68be84abf",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_f68be84abf_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\vec{u} = \\overrightarrow{AB} - \\overrightarrow{DA} + \\overrightarrow{DD'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$. \\\\\r\n\t\tDo đó, $\\displaystyle \\left|\\vec{u}\\right| = \\sqrt{\\left( \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} \\right)^2} = \\sqrt{AB^2 + AD^2 + AA'^2} = \\sqrt{2^2 + 4^2 + 5^2} = 3\\sqrt{5}$. \\\\"
+}

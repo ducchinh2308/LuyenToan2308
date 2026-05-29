@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_035bccc7e1",
+  "dapAn": "A",
+  "loiGiai": "Điều kiện xác định của hàm số là $\\displaystyle \\log_{0,3} x \\ge 0 \\Leftrightarrow \\begin{cases} x > 0 \\\\ x \\le 1 \\end{cases} \\Leftrightarrow 0 < x \\le 1$. \\\\"
+}
