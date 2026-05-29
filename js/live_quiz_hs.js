@@ -597,9 +597,8 @@ window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
         </div>
     `;
 };
-
-// // =====================================================================
-// [Nhãn thời gian: 09:12 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp phiên Live Quiz và thoát về màn hình chính
+// =====================================================================
+// [Nhãn thời gian: 09:36 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp phiên Live Quiz và gọi lại màn hình chính sau đăng nhập
 // =====================================================================
 window.ham_8_6_7_thoat_ve_trang_chu = function () {
     // 1. Dọn dẹp rác bộ nhớ của phiên Đấu trường
@@ -616,73 +615,70 @@ window.ham_8_6_7_thoat_ve_trang_chu = function () {
         window.IntervalKiemTraPhong = null;
     }
 
-    // Đảm bảo bật lại vùng làm việc (nếu trước đó bị ẩn)
+    // Đảm bảo bật lại vùng làm việc chính (nếu trước đó bị ẩn)
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
     if (vungLamViec) vungLamViec.style.display = 'block';
 
-    // 2. Thuật toán tự động bấm nút Menu (Nếu tìm thấy trực tiếp)
-    const btnMenuTrangChu = document.getElementById('menu-hoc-sinh-trang-chu') ||
-        document.getElementById('btn-danh-sach-nhiem-vu') ||
-        document.querySelector('[onclick*="ham_8_1"]');
-
-    if (btnMenuTrangChu) {
-        btnMenuTrangChu.click();
-    } else {
-        // 🌟 NẾU MENU BỊ ẨN (VD: TRÊN ĐIỆN THOẠI), HIỂN THỊ NÚT BẤM TO RÕ RÀNG ĐỂ HỌC SINH TỰ BẤM
-        if (vungLamViec) {
-            vungLamViec.innerHTML = `
-                <div style="text-align:center; padding: 60px 20px; color: #7f8c8d; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 20px auto; max-width: 500px;">
-                    <div style="font-size: 50px; margin-bottom: 15px;">👋</div>
-                    <h3 style="color: #2c3e50; font-weight: 900; text-transform: uppercase;">ĐÃ THOÁT ĐẤU TRƯỜNG</h3>
-                    <p style="font-size: 15px; margin-bottom: 30px; color: #555;">Hệ thống đã lưu lại kết quả của em. Hãy ấn nút bên dưới để quay lại bảng nhiệm vụ!</p>
-                    
-                    <button onclick="ham_8_x_tim_va_mo_trang_chu()" style="padding: 14px 28px; background: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); transition: 0.2s;" onmouseover="this.style.background='#2980b9'; this.style.transform='scale(1.05)'" onmouseout="this.style.background='#3498db'; this.style.transform='scale(1)'">
-                        🏠 VỀ LẠI TRANG CHỦ
-                    </button>
-                </div>
-            `;
+    // 2. GỌI TRỰC TIẾP HÀM VẼ GIAO DIỆN SAU ĐĂNG NHẬP
+    try {
+        if (typeof window.ham_8_1_ve_giao_dien_chinh === 'function') {
+            window.ham_8_1_ve_giao_dien_chinh();
+        } else if (typeof window.ham_8_1_tab_nhiem_vu === 'function') {
+            window.ham_8_1_tab_nhiem_vu();
+        } else {
+            // Trường hợp cực kỳ hiếm hoi nếu không tìm thấy hàm, yêu cầu học sinh tự bấm menu
+            Swal.fire({
+                title: 'Thành công',
+                text: 'Hệ thống đã lưu điểm. Em hãy chọn "Nhiệm vụ" ở menu bên trái để tiếp tục.',
+                icon: 'success'
+            });
         }
+    } catch (e) {
+        console.error("Lỗi khi gọi hàm trang chủ:", e);
     }
 };
 
 // =====================================================================
-// [Nhãn thời gian: 09:12 - Ngày 29/05/2026] - Hàm 8.x: Cỗ máy quét DOM tìm hàm Trang chủ không cần Reload
+// [Nhãn thời gian: 09:19 - Ngày 29/05/2026] - Hàm 8.6.8: Chốt nộp bài Đấu trường Live (Độc lập hoàn toàn, không reload)
 // =====================================================================
-window.ham_8_x_tim_va_mo_trang_chu = function () {
-    // Thuật toán truy quét toàn bộ các nút bấm có trên giao diện (Kể cả menu bị ẩn)
-    const tatCaCacThe = document.querySelectorAll('[onclick]');
-    let daMo = false;
+window.ham_8_6_8_chot_nop_bai_live = function () {
+    Swal.fire({
+        title: 'Xác nhận nộp bài?',
+        text: "Em có chắc chắn muốn chốt điểm và nộp bài lúc này không?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: '🚀 NỘP LUÔN',
+        cancelButtonText: 'Làm tiếp'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Đang chốt hạ...', didOpen: () => Swal.showLoading() });
+            try {
+                // 1. Lấy điểm số hiện tại trên màn hình
+                let diemSo = 0;
+                const hud = document.getElementById('diem-hien-tai-hs');
+                if (hud) diemSo = parseFloat(hud.innerText) || 0;
 
-    for (let i = 0; i < tatCaCacThe.length; i++) {
-        const strOnclick = tatCaCacThe[i].getAttribute('onclick') || '';
+                // 2. Chốt cờ "da_nop" trên Supabase
+                if (window.ThongTinLiveHocSinh && window.ThongTinLiveHocSinh.maPhong) {
+                    await _supabase.from('tien_do_live_quiz')
+                        .update({ da_nop: true })
+                        .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+                        .eq('uid_hoc_sinh', GocHocSinhState.uid);
+                }
 
-        // Nhận diện các lệnh mở trang chủ phổ biến của Học sinh (ham_8_1 hoặc có chữ nhiem_vu)
-        // Loại trừ các nút không liên quan như xem lại, nộp bài, đăng xuất
-        if (strOnclick.includes('ham_8_1') ||
-            (strOnclick.includes('nhiem_vu') && !strOnclick.includes('xem_lai') && !strOnclick.includes('nop_bai') && !strOnclick.includes('thong_ke'))) {
+                // 3. Dừng đồng hồ Đấu trường
+                if (window.PhienLamBai && window.PhienLamBai.id_timer) {
+                    clearInterval(window.PhienLamBai.id_timer);
+                }
 
-            tatCaCacThe[i].click(); // Ép click ngầm
-            daMo = true;
-            break;
+                Swal.close();
+
+                // 4. Gọi mượt mà sang Màn hình chờ (Hàm 8.6.6)
+                ham_8_6_6_man_hinh_ket_qua_cho(diemSo);
+
+            } catch (e) {
+                Swal.fire('Lỗi', 'Lỗi đường truyền: ' + e.message, 'error');
+            }
         }
-    }
-
-    // Phương án dự phòng cuối cùng nếu giao diện hoàn toàn không có Menu
-    if (!daMo) {
-        // Cố gắng gọi trực tiếp hàm nếu nó tồn tại trong bộ nhớ
-        if (typeof window.ham_8_1_ve_giao_dien_chinh === 'function') { window.ham_8_1_ve_giao_dien_chinh(); return; }
-        if (typeof window.ham_8_1_tab_nhiem_vu === 'function') { window.ham_8_1_tab_nhiem_vu(); return; }
-
-        // Bất đắc dĩ nhất mới phải reload
-        Swal.fire({
-            title: 'Đang làm mới',
-            text: 'Hệ thống đang đồng bộ lại giao diện...',
-            timer: 1500,
-            showConfirmButton: false,
-            allowOutsideClick: false
-        }).then(() => {
-            location.reload();
-        });
-    }
+    });
 };
-

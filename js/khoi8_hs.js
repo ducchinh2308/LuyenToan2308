@@ -3651,6 +3651,11 @@ window.ham_8_10_ve_giao_dien_lam_bai = function () {
         `;
     }
 
+    // 🌟 CHÌA KHÓA Ở ĐÂY: Quyết định hàm Nộp Bài tùy theo loại nhiệm vụ
+    const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live()" : "ham_8_12_nop_bai_va_cham_diem()";
+
+
+
     // 3. RÁP VÀO BỘ KHUNG
     const rootDiv = document.createElement('div');
     rootDiv.id = 'khong-gian-thi-toan-man-hinh';
