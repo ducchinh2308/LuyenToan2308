@@ -598,7 +598,7 @@ window.ham_8_6_6_man_hinh_ket_qua_cho = function (diemSo) {
     `;
 };
 // =====================================================================
-// [Nhãn thời gian: 09:36 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp phiên Live Quiz và gọi lại màn hình chính sau đăng nhập
+// [Nhãn thời gian: 09:48 - Ngày 29/05/2026] - Hàm 8.6.7: Dọn dẹp Live Quiz và Trở về màn hình Nhiệm vụ
 // =====================================================================
 window.ham_8_6_7_thoat_ve_trang_chu = function () {
     // 1. Dọn dẹp rác bộ nhớ của phiên Đấu trường
@@ -615,26 +615,20 @@ window.ham_8_6_7_thoat_ve_trang_chu = function () {
         window.IntervalKiemTraPhong = null;
     }
 
-    // Đảm bảo bật lại vùng làm việc chính (nếu trước đó bị ẩn)
-    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('dashboard-container');
-    if (vungLamViec) vungLamViec.style.display = 'block';
+    // 2. Bật lại vùng hiển thị chính (Đã bị ẩn đi lúc vào thi full màn hình)
+    const dashboard = document.getElementById('dashboard-container');
+    if (dashboard) dashboard.style.display = 'block';
 
-    // 2. GỌI TRỰC TIẾP HÀM VẼ GIAO DIỆN SAU ĐĂNG NHẬP
-    try {
-        if (typeof window.ham_8_1_ve_giao_dien_chinh === 'function') {
-            window.ham_8_1_ve_giao_dien_chinh();
-        } else if (typeof window.ham_8_1_tab_nhiem_vu === 'function') {
-            window.ham_8_1_tab_nhiem_vu();
-        } else {
-            // Trường hợp cực kỳ hiếm hoi nếu không tìm thấy hàm, yêu cầu học sinh tự bấm menu
-            Swal.fire({
-                title: 'Thành công',
-                text: 'Hệ thống đã lưu điểm. Em hãy chọn "Nhiệm vụ" ở menu bên trái để tiếp tục.',
-                icon: 'success'
-            });
-        }
-    } catch (e) {
-        console.error("Lỗi khi gọi hàm trang chủ:", e);
+    // 3. GỌI TRỰC TIẾP HÀM VẼ TAB NHIỆM VỤ CHÍNH XÁC CỦA THẦY
+    if (typeof window.ham_8_2_tab_nhiem_vu_bat_buoc === 'function') {
+        window.ham_8_2_tab_nhiem_vu_bat_buoc();
+    } else {
+        // Đề phòng lỗi (rất hiếm khi xảy ra), hướng dẫn học sinh tự bấm nút
+        Swal.fire({
+            title: 'Đã lưu điểm!',
+            text: 'Em hãy bấm vào nút "🚀 NHIỆM VỤ LỚP" ở trên cùng để tiếp tục nhé.',
+            icon: 'success'
+        });
     }
 };
 
