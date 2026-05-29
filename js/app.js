@@ -2978,10 +2978,140 @@ Nội dung câu hỏi trả lời ngắn nằm ở đây.
 };
 
 
+//// ==============================================================
+//// Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA) - TƯƠNG THÍCH NGƯỢC
+//// ==============================================================
+//function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
+//    const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
+//    if (!data) return alert("Dữ liệu không tồn tại!");
+
+//    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
+//    const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
+//    const disabledAttr = choPhepSua ? "" : "disabled";
+//    const hienThiCotXoa = choPhepSua ? "" : "display: none;";
+
+//    const dsCauHoi = data.danh_sach_cau_hoi || [];
+//    let htmlRows = '';
+
+//    dsCauHoi.forEach((item, index) => {
+//        // Bỏ qua nếu dữ liệu bị rỗng
+//        if (!item) return;
+
+//        let maGoc, maAoDe, maAoGiai, dapAn;
+//        let chuoiGocDeLuu = "";
+
+//        // 🌟 BỘ CHUYỂN ĐỔI THÔNG MINH
+//        if (typeof item === 'string') {
+//            const parts = item.split('|');
+//            if (parts.length >= 4) {
+//                [maGoc, maAoDe, maAoGiai, dapAn] = parts;
+//            } else {
+//                maGoc = "N/A";
+//                [maAoDe, maAoGiai, dapAn] = parts;
+//            }
+//            chuoiGocDeLuu = item;
+//        } else if (typeof item === 'object') {
+//            maGoc = item.ma_goc || "N/A";
+//            maAoDe = item.ma_cau_hoi || item.maCau || "";
+//            maAoGiai = item.ma_loi_giai || item.maBaoMat || "";
+//            dapAn = item.dap_an || item.dapAn || "";
+//            chuoiGocDeLuu = JSON.stringify(item).replace(/"/g, '&quot;');
+//        }
+
+//        htmlRows += `
+//            <tr class="row-cau-hoi" data-original-string="${chuoiGocDeLuu}" style="border-bottom: 1px solid #eee;">
+//                <td class="stt-cau" style="padding: 8px; text-align: center; font-weight: bold; color: #666;">${index + 1}</td>
+//                <td style="padding: 8px; font-weight: bold; color: #1a73e8;">${maGoc}</td>
+//                <td style="padding: 8px; color: #e67e22; font-size: 11px; font-family: monospace;">${maAoDe}</td>
+//                <td style="padding: 8px; color: #28a745; font-size: 11px; font-family: monospace;">${maAoGiai}</td>
+//                <td style="padding: 8px; text-align: center;">
+//                    <input type="text" class="input-dap-an" value="${dapAn}" ${disabledAttr}
+//                        style="width: 70px; padding: 5px; border: 2px solid ${choPhepSua ? '#ddd' : 'transparent'}; border-radius: 4px; text-align: center; font-weight: bold; color: #d32f2f; background: transparent;">
+//                </td>
+//                <td style="padding: 8px; text-align: center; ${hienThiCotXoa}">
+//                    <button onclick="ham_6_xoa_cau_truc_tiep(this)"
+//                        style="padding: 5px 10px; background: #fff1f0; color: #d32f2f; border: 1px solid #ffa39e; border-radius: 4px; cursor: pointer; font-size: 11px;">🗑️</button>
+//                </td>
+//            </tr>
+//        `;
+//    });
+
+//    let htmlNutBam = '';
+//    if (choPhepSua) {
+//        htmlNutBam = `
+//            <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
+//                💾 XÁC NHẬN LƯU THAY ĐỔI
+//            </button>
+//            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 15px; background: #f1f3f4; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                HỦY
+//            </button>
+//        `;
+//    } else {
+//        htmlNutBam = `
+//            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px;">
+//                ⬅️ QUAY LẠI DANH SÁCH
+//            </button>
+//        `;
+//    }
+
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 1000px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+//            <h3 style="color: ${mauTieuDe}; margin-top: 0; display: flex; justify-content: space-between; align-items: center;">
+//                <span>${tieuDe}: <small style="color:#666">${data.ma_hoc_lieu}</small></span>
+//                <span id="lblSoCauHienTai" style="background: ${mauTieuDe}; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Tổng: ${dsCauHoi.length} câu</span>
+//            </h3>
+
+//            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+//                <div>
+//                    <label style="font-weight: bold; font-size: 13px;">Tên Học Liệu:</label>
+//                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+//                </div>
+//                <div>
+//                    <label style="font-weight: bold; font-size: 13px;">Trạng thái:</label>
+//                    <select id="sua_trangThai" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+//                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
+//                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
+//                    </select>
+//                </div>
+//                <div>
+//                    <label style="font-weight: bold; font-size: 13px;">Thời gian (Phút):</label>
+//                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+//                </div>
+//            </div>
+
+//            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px;">
+//                    <table id="tblSuaCauHoi" style="width: 100%; border-collapse: collapse; font-size: 12px; background: white;">
+//                        <thead style="background: #e9ecef; position: sticky; top: 0; z-index: 1;">
+//                            <tr>
+//                                <th style="padding: 10px; border: 1px solid #ccc; width: 40px;">STT</th>
+//                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Gốc</th>
+//                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu (Ẩn)</th>
+//                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Giải (Ẩn)</th>
+//                                <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Đáp Án</th>
+//                                <th style="padding: 10px; border: 1px solid #ccc; width: 60px; ${hienThiCotXoa}">Xóa</th>
+//                            </tr>
+//                        </thead>
+//                        <tbody id="tbodySuaCauHoi">
+//                            ${htmlRows}
+//                        </tbody>
+//                    </table>
+//                </div>
+//            </div>
+
+//            <div style="display: flex; gap: 12px;">
+//                ${htmlNutBam}
+//            </div>
+//        </div>
+//    `;
+//}
+
+
 // ==============================================================
-// Hàm 6.6: Vẽ Form (Hỗ trợ 2 chế độ: XEM và SỬA) - TƯƠNG THÍCH NGƯỢC
+// [Nhãn thời gian: 10:28 - Ngày 29/05/2026] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Có Nút Lệnh Gộp File Giải)
 // ==============================================================
-function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
+window.ham_6_6_mo_form_sua_hoc_lieu = function (maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
@@ -2994,13 +3124,11 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
     let htmlRows = '';
 
     dsCauHoi.forEach((item, index) => {
-        // Bỏ qua nếu dữ liệu bị rỗng
         if (!item) return;
 
         let maGoc, maAoDe, maAoGiai, dapAn;
         let chuoiGocDeLuu = "";
 
-        // 🌟 BỘ CHUYỂN ĐỔI THÔNG MINH
         if (typeof item === 'string') {
             const parts = item.split('|');
             if (parts.length >= 4) {
@@ -3035,6 +3163,27 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
             </tr>
         `;
     });
+
+    // 🌟 KHỐI GIAO DIỆN MỚI: TẠO FILE LỜI GIẢI GỘP (CHỈ HIỆN KHI Ở CHẾ ĐỘ SỬA)
+    let htmlTaoFileGiai = '';
+    if (choPhepSua) {
+        htmlTaoFileGiai = `
+            <div style="background: #fdfaf0; border: 1px solid #f0dfa8; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                <h4 style="margin: 0 0 10px 0; color: #d35400; font-size: 14px;">🛠️ TẠO FILE LỜI GIẢI GỘP (CHO HỌC LIỆU NÀY)</h4>
+                
+                <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; background: white; border: 1px solid #eee; border-radius: 6px; margin-bottom: 10px;">
+                    <input type="checkbox" id="sua_hl_tu_dong_gom_file" style="transform: scale(1.3); margin-right: 10px;" checked>
+                    <span style="font-size: 14px; font-weight: bold; color: #333;">
+                        🚀 Tự động ra lệnh gộp File Giải ngay sau khi Lưu thay đổi
+                    </span>
+                </label>
+                
+                <p style="font-size: 11px; color: #666; margin: 0; font-style: italic;">
+                    * Lưu ý: Nếu thầy vừa xóa bớt câu hỏi, hệ thống C# sẽ tự động gộp lại file giải mới sao cho khớp chính xác với cấu trúc đề hiện tại.
+                </p>
+            </div>
+        `;
+    }
 
     let htmlNutBam = '';
     if (choPhepSua) {
@@ -3100,12 +3249,16 @@ function ham_6_6_mo_form_sua_hoc_lieu(maHocLieu, choPhepSua = true) {
                 </div>
             </div>
 
+            ${htmlTaoFileGiai}
+
             <div style="display: flex; gap: 12px;">
                 ${htmlNutBam}
             </div>
         </div>
     `;
-}
+};
+
+
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
 function ham_6_xoa_cau_hoi_tam_thoi(index) {
     const row = document.getElementById(`row_cau_${index}`);
@@ -3139,6 +3292,89 @@ function ham_6_xoa_cau_truc_tiep(btn) {
     // 3. Cập nhật lại nhãn "Tổng: X câu" trên tiêu đề
     document.getElementById('lblSoCauHienTai').innerText = `Tổng: ${rows.length} câu`;
 }
+
+
+// ==============================================================
+// [Nhãn thời gian: 10:28 - Ngày 29/05/2026] - Hàm 6.7: Lưu Cập Nhật Học Liệu & Gọi Lệnh Ghép File
+// ==============================================================
+window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
+    const tenMoi = document.getElementById('sua_tenHocLieu').value.trim();
+    const thoiGianMoi = parseInt(document.getElementById('sua_thoiGian').value) || 0;
+    const trangThaiMoi = document.getElementById('sua_trangThai').value;
+
+    // 1. Quét bảng thực tế để lấy danh sách câu hỏi còn lại
+    const rows = document.querySelectorAll('#tbodySuaCauHoi .row-cau-hoi');
+    let banDoMoi = [];
+
+    rows.forEach(row => {
+        const originalString = row.getAttribute('data-original-string');
+        const dapAnMoi = row.querySelector('.input-dap-an').value.trim().toUpperCase();
+
+        try {
+            let objCauHoi = JSON.parse(originalString);
+            if (objCauHoi.dap_an !== undefined) objCauHoi.dap_an = dapAnMoi;
+            else if (objCauHoi.dapAn !== undefined) objCauHoi.dapAn = dapAnMoi;
+            else objCauHoi.dap_an = dapAnMoi;
+
+            banDoMoi.push(objCauHoi);
+        } catch (e) {
+            let parts = originalString.split('|');
+            parts[parts.length - 1] = dapAnMoi;
+            banDoMoi.push(parts.join('|'));
+        }
+    });
+
+    if (banDoMoi.length === 0) return alert("Không thể lưu đề trống!");
+
+    btnNode.disabled = true;
+    btnNode.innerText = "ĐANG ĐÓNG GÓI VÀ LƯU...";
+
+    try {
+        const { error } = await _supabase
+            .from('hoc_lieu')
+            .update({
+                ten_hoc_lieu: tenMoi,
+                thoi_gian_lam_bai: thoiGianMoi,
+                trang_thai: trangThaiMoi,
+                danh_sach_cau_hoi: banDoMoi,
+                quy_mo_cau_hoi: banDoMoi.length
+            })
+            .eq('ma_hoc_lieu', maHocLieu);
+
+        if (error) throw error;
+
+        // =====================================================================
+        // 🌟 KIỂM TRA LỆNH GỌI BOT C# ĐỂ GỘP LẠI FILE GIẢI
+        // =====================================================================
+        let thongBaoGopFile = "";
+        const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+
+        if (chkGopFile && chkGopFile.checked) {
+            console.log(`📡 Đang đánh thức C# Bot để gộp lại file giải cho Học liệu: ${maHocLieu}`);
+
+            // Tìm 1 nhiệm vụ bất kỳ đang xài Học liệu này để làm mồi nhử cho C# chạy lệnh
+            // (Vì C# được lập trình để quét bảng nhiem_vu)
+            const { data: nvMoiNhu } = await _supabase.from('nhiem_vu').select('id').eq('ma_hoc_lieu', maHocLieu).limit(1).maybeSingle();
+
+            if (nvMoiNhu && typeof ham_7_10_ra_lenh_tao_file_giai === 'function') {
+                ham_7_10_ra_lenh_tao_file_giai(nvMoiNhu.id, maHocLieu, true);
+                thongBaoGopFile = "\n🚀 Đã gửi lệnh C# tạo lại File Lời giải gộp!";
+            } else {
+                thongBaoGopFile = "\n⚠️ Đã lưu học liệu. Chưa thể gộp File Giải vì học liệu này chưa được gán cho Nhiệm vụ nào.";
+            }
+        }
+
+        alert(`✅ Đã cập nhật học liệu thành công!${thongBaoGopFile}`);
+        ham_6_1_ve_quan_ly_hoc_lieu();
+
+    } catch (error) {
+        alert("Lỗi: " + error.message);
+        btnNode.disabled = false;
+        btnNode.innerText = "💾 XÁC NHẬN LƯU THAY ĐỔI";
+    }
+};
+
+
 
 // ==============================================================
 // Hàm 6.13: Kiểm tra file upload (Đã fix lỗi chặn nhầm dòng comment %)
