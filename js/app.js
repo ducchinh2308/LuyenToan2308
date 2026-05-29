@@ -3588,7 +3588,71 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
             <button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${data.ma_hoc_lieu}', this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
                 💾 XÁC NHẬN LƯU THAY ĐỔI
             </button>
-            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style
+            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="flex: 1; padding: 15px; background: #f1f3f4; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                HỦY
+            </button>
+        `;
+    } else {
+        htmlNutBam = `
+            <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px;">
+                ⬅️ QUAY LẠI DANH SÁCH
+            </button>
+        `;
+    }
+
+    vungLamViec.innerHTML = `
+        <div style="max-width: 1000px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h3 style="color: ${mauTieuDe}; margin-top: 0; display: flex; justify-content: space-between; align-items: center;">
+                <span>${tieuDe}: <small style="color:#666">${data.ma_hoc_lieu}</small></span>
+                <span id="lblSoCauHienTai" style="background: ${mauTieuDe}; color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Tổng: ${dsCauHoi.length} câu</span>
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div>
+                    <label style="font-weight: bold; font-size: 13px;">Tên Học Liệu:</label>
+                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+                </div>
+                <div>
+                    <label style="font-weight: bold; font-size: 13px;">Trạng thái:</label>
+                    <select id="sua_trangThai" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
+                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: bold; font-size: 13px;">Thời gian (Phút):</label>
+                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" ${disabledAttr} style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: ${choPhepSua ? '#fff' : '#f8f9fa'};">
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; border-radius: 4px;">
+                    <table id="tblSuaCauHoi" style="width: 100%; border-collapse: collapse; font-size: 12px; background: white;">
+                        <thead style="background: #e9ecef; position: sticky; top: 0; z-index: 1;">
+                            <tr>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 40px;">STT</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Gốc</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Câu (Ẩn)</th>
+                                <th style="padding: 10px; border: 1px solid #ccc;">Mã Giải (Ẩn)</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 80px;">Đáp Án</th>
+                                <th style="padding: 10px; border: 1px solid #ccc; width: 60px; ${hienThiCotXoa}">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodySuaCauHoi">
+                            ${htmlRows}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            ${htmlTaoFileGiai}
+
+            <div style="display: flex; gap: 12px;">
+                ${htmlNutBam}
+            </div>
+        </div>
+    `;
+};
 
 
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
