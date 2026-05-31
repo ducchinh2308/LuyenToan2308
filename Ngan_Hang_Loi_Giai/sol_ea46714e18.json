@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ea46714e18",
+  "dapAn": "FTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số xác định khi $x-1 \\neq 0 \\Leftrightarrow x \\neq 1$. Tập xác định là $D=\\mathbb{R} \\setminus \\{1\\}$. Do đó ý này sai.\r\n\t\t\t\\itemch Đồ thị hàm số $y=f(x)$ có tiệm cận đứng là đường thẳng $x=1$. Do đó ý này đúng.\r\n\t\t\t\\itemch Hàm số $\\displaystyle f(x)=\\frac{x^2+3}{x-1}=x+1+\\frac{4}{x-1}$. Đồ thị hàm số $y=f(x)$ có tiệm cận xiên là đường thẳng $y=x+1$. Do đó ý này sai.\r\n\t\t\t\\itemch Đồ thị hàm số $y=f(x)$ có tiệm cận đứng là đường thẳng $x=1$, tiệm cận xiên là đường thẳng $y=x+1$ nên tâm đối xứng là $A(1; 2) \\Rightarrow x_0+y_0=1+2=3$. Do đó ý này đúng.\r\n\t\t\\end{itemchoice}"
+}

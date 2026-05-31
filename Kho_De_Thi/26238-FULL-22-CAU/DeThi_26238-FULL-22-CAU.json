@@ -1,0 +1,203 @@
+{
+  "maDe": "26238-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26238 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_34ca889473",
+      "ma_goc": "2605-1026",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\displaystyle \\int \\tan x\\,dx = \\frac{1}{\\cos^2 x} + C$",
+      "paB": "$\\displaystyle \\int \\sin x\\,dx = -\\cos x + C$",
+      "paC": "$\\displaystyle \\int \\tan x\\,dx = -\\frac{1}{\\sin^2 x} + C$",
+      "paD": "$\\displaystyle \\int \\sin x\\,dx = \\frac{1}{2}\\sin^2 x + C$"
+    },
+    {
+      "maCau": "q_e762552dc7",
+      "ma_goc": "2605-1027",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có đạo hàm $f'(x) = x(x-1)(x-2)^2, \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là:",
+      "paA": "$1$",
+      "paB": "$5$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_d27cb18e7c",
+      "ma_goc": "2605-1028",
+      "kieuCau": "TN",
+      "cauDan": "Với $a$ là số thực dương tuỳ ý khác $1$, $\\displaystyle \\log_a \\left(\\frac{1}{a^3}\\right)$ bằng:",
+      "paA": "$-3$",
+      "paB": "$\\displaystyle -\\frac{2}{3}$",
+      "paC": "$3$",
+      "paD": "$\\displaystyle -\\frac{3}{2}$"
+    },
+    {
+      "maCau": "q_4741c70b3e",
+      "ma_goc": "2605-1029",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, véc tơ nào dưới đây là một véc tơ pháp tuyến của mặt phẳng $(P) \\colon 2x+y+z-3=0$.",
+      "paA": "$\\vec{n}_1(2;1;-1)$",
+      "paB": "$\\vec{n}_3(2;-1;1)$",
+      "paC": "$\\vec{n}_4(2;0;-3)$",
+      "paD": "$\\vec{n}_2(2;1;1)$"
+    },
+    {
+      "maCau": "q_d8f0e3e50a",
+      "ma_goc": "2605-1030",
+      "kieuCau": "TN",
+      "cauDan": "Đường cong trong hình vẽ là đồ thị của hàm số nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d8f0e3e50a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y=x^4-4x^2+2$",
+      "paB": "$\\displaystyle y=\\frac{x+3}{x-2}$",
+      "paC": "$\\displaystyle y=\\frac{x-3}{x+1}$",
+      "paD": "$y=x^3-3x$"
+    },
+    {
+      "maCau": "q_671560d6ab",
+      "ma_goc": "2605-1031",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$. Cạnh bên $SA$ vuông góc với mặt phẳng đáy. Biết $SA=AB=2a, BC=3a$. Thể tích của khối chóp $S.ABC$ là",
+      "paA": "$3a^3$",
+      "paB": "$2a^3$",
+      "paC": "$4a^3$",
+      "paD": "$a^3$"
+    },
+    {
+      "maCau": "q_024112d338",
+      "ma_goc": "2605-1032",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\displaystyle d \\colon \\frac{x-3}{2} = \\frac{y+1}{4} = \\frac{z+2}{-1}$. Điểm nào dưới đây thuộc $d$?",
+      "paA": "$P(2;4;-1)$",
+      "paB": "$Q(2;4;1)$",
+      "paC": "$M(3;1;2)$",
+      "paD": "$N(3;-1;-2)$"
+    },
+    {
+      "maCau": "q_8c550f1159",
+      "ma_goc": "2605-1033",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $3^{2x-1}=27$ có nghiệm là",
+      "paA": "$x=6$",
+      "paB": "$x=3$",
+      "paC": "$x=1$",
+      "paD": "$x=2$"
+    },
+    {
+      "maCau": "q_f9fb1138e1",
+      "ma_goc": "2605-1034",
+      "kieuCau": "TN",
+      "cauDan": "Tính diện tích hình phẳng $S$ giới hạn bởi đồ thị hàm số $y=x^2-6x+7$ và đường thẳng $y=3-x$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f9fb1138e1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$S=3$",
+      "paB": "$\\displaystyle S=\\frac{9}{2}$",
+      "paC": "$S=60$",
+      "paD": "$\\displaystyle S=\\frac{33\\pi}{5}$"
+    },
+    {
+      "maCau": "q_7c77b7d809",
+      "ma_goc": "2605-1035",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện đều $ABCD$ có cạnh bằng $a$. Tích vô hướng $\\vec{AB} \\cdot \\vec{AC}$ bằng",
+      "paA": "$\\displaystyle \\frac{\\sqrt{3}}{2}a^2$",
+      "paB": "$a^2$",
+      "paC": "$\\displaystyle \\frac{1}{2}a^2$",
+      "paD": "$-a^2$"
+    },
+    {
+      "maCau": "q_a560c006de",
+      "ma_goc": "2605-1036",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_1=3$ và công sai $d=2$. Số hạng $u_4$ bằng",
+      "paA": "$9$",
+      "paB": "$11$",
+      "paC": "$24$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_b2bc228b39",
+      "ma_goc": "2605-1037",
+      "kieuCau": "TN",
+      "cauDan": "Thành tích môn nhảy cao của các vận động viên tại một giải điền kinh dành cho học sinh trung học phổ thông như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b2bc228b39_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính độ lệch chuẩn của mẫu số liệu ghép nhóm trên (làm tròn kết quả đến hàng phần trăm)",
+      "paA": "$1,53$",
+      "paB": "$1,55$",
+      "paC": "$1,54$",
+      "paD": "$1,52$"
+    },
+    {
+      "maCau": "q_60cfda7605",
+      "ma_goc": "2605-1038",
+      "kieuCau": "DS",
+      "cauDan": "Nghiên cứu số bệnh nhân trong một viện bỏng, thấy rằng có hai nguyên nhân gây ra bỏng là bỏng nhiệt và bỏng do hóa chất. Bỏng nhiệt chiếm $60\\%$ số bệnh nhân và bỏng do hóa chất chiếm $40\\%$. Trong những bệnh nhân bị bỏng nhiệt thì có $20\\%$ bị biến chứng, trong những bệnh nhân bị bỏng hóa chất thì có $40\\%$ bị biến chứng. Rút ngẫu nhiên một bệnh án. Gọi $A$ là biến cố \"gặp bệnh án của bệnh nhân bị biến chứng\", $B$ là biến cố \"gặp bệnh án của bệnh nhân bị bỏng nhiệt\".",
+      "paA": "$P(B)=0{,}6$",
+      "paB": "$P\\left(A \\mid \\overline{B}\\right)=0{,}2$",
+      "paC": "Xác suất gặp bệnh án của bệnh nhân bị biến chứng là $32\\%$",
+      "paD": "Biết bệnh án rút ra là của bệnh nhân bị biến chứng, xác suất bệnh nhân bị bỏng nhiệt là $\\displaystyle \\frac{4}{7}$"
+    },
+    {
+      "maCau": "q_50779ec148",
+      "ma_goc": "2605-1039",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle f(x)=\\frac{x^2+3}{x-1}$.",
+      "paA": "Hàm số có tập xác định là $D=\\mathbb{R} \\setminus \\{-1\\}$",
+      "paB": "Đồ thị hàm số $y=f(x)$ có tiệm cận đứng là đường thẳng $x=1$",
+      "paC": "Đồ thị hàm số $y=f(x)$ có tiệm cận xiên là đường thẳng $y=x-1$",
+      "paD": "Biết điểm $A(x_0; y_0)$ là tâm đối xứng của đồ thị hàm số $y=f(x)$ thì $x_0+y_0=3$"
+    },
+    {
+      "maCau": "q_d3344af5bf",
+      "ma_goc": "2605-1040",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$ (đơn vị đo trên các trục là mét), mặt phẳng $Oxy$ được xem là mặt đất nằm ngang. Một sườn dốc được mô phỏng bởi mặt phẳng $(\\alpha) \\colon 2x+3y+6z-35=0$. Tại điểm chân sườn dốc, có một cây thông mọc thẳng đứng (vuông góc với mặt đất). Biết đỉnh của cây thông là điểm $S(5;7;26)$. Để gia cố cây thông không bị đổ, người ta dùng một sợi dây cáp buộc từ điểm $Q$ trên thân cây (ở độ cao $17$ mét so với mặt đất) và kéo căng vuông góc với mặt sườn dốc, cố định tại điểm $P$ nằm trên sườn dốc.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d3344af5bf_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Chiều cao ban đầu của cây thông là $26$ mét",
+      "paB": "Điểm $P$ (vị trí cắm cọc trên sườn dốc) có tọa độ $P(1;1;5)$",
+      "paC": "Giả sử một tia sét đánh trúng làm thân cây bị gãy ngang (phần ngọn không bị đứt lìa). Ngọn cây đổ gục xuống và chạm vào sườn dốc tại điểm $A(1;-1;6)$. Khi đó, vị trí thân cây bị gãy cách mặt đất $14$ mét",
+      "paD": "Giả sử sau khi cây gãy như trường hợp trên, điểm buộc dây $Q$ di chuyển đến vị trí mới là $Q'(a;b;c)$. Khi đó $2a+b+c=25$"
+    },
+    {
+      "maCau": "q_a0cd5e5f77",
+      "ma_goc": "2605-1041",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị $(P)$ và đường thẳng $d \\colon y=g(x)$. Biết $d$ cắt $(P)$ tại hai điểm $A(1;3), B(5;7)$. Hình phẳng giới hạn bởi đồ thị $(P)$ và đường thẳng $d$ có diện tích là $\\displaystyle S = \\frac{32}{3}$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a0cd5e5f77_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\int_1^5 g(x)\\,dx = 20$",
+      "paB": "$\\displaystyle \\int_1^5 [3g'(x)-1]\\,dx = 4$",
+      "paC": "$\\displaystyle \\int_1^5 f(x)\\,dx = 9$",
+      "paD": "Hình phẳng giới hạn bởi đồ thị $(P)$ và các đường thẳng $y=7, x=1, x=5$ có diện tích bằng $19$"
+    },
+    {
+      "maCau": "q_cc673b2325",
+      "ma_goc": "2605-1042",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhân viên của thư viện tỉnh muốn lập kế hoạch giới thiệu nội dung chương trình ``Kết nối bạn đọc yêu sách 2026'' đến bốn trường học trong khu vực lân cận. Độ dài quãng đường giữa các địa điểm (đơn vị: kilômét) được mô tả trong hình vẽ bên. Người nhân viên đó muốn xuất phát từ thư viện tỉnh và phải đi thăm cả bốn trường, mỗi trường chỉ đến đúng một lần, rồi quay trở về thư viện tỉnh. Tổng độ dài quãng đường đi (đơn vị: kilômét) thỏa mãn điều kiện trên nhận giá trị nhỏ nhất là bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_cc673b2325_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_790ab8e16c",
+      "ma_goc": "2605-1043",
+      "kieuCau": "TLN",
+      "cauDan": "Một mái vòm nhà thờ có thể tích là $200\\,\\text{m}^3$ được thiết kế với ba giá đỡ hình parabol có hình dạng giống nhau sao cho mỗi mặt cắt ngang (theo phương nằm ngang) đều là một lục giác đều (tham khảo hình vẽ). Ba parabol có cùng đỉnh và chiều cao, đáy vòm là một hình lục giác đều có độ dài đường chéo bằng $10$ mét. Chiều cao của mái vòm bằng bao nhiêu mét (làm tròn kết quả đến hàng phần trăm)? Biết mái vòm cao không quá $10$ mét.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_790ab8e16c_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_2de31c46c3",
+      "ma_goc": "2605-1044",
+      "kieuCau": "TLN",
+      "cauDan": "Tại một trường đại học, tỉ lệ số học sinh nam và số học sinh nữ là $2:3$. Biết rằng:\\\\\r\n\t+ Có $70\\%$ tổng số học sinh toàn trường có chứng chỉ tin học.\\\\\r\n\t+ Còn lại $30\\%$ tổng số học sinh toàn trường không có chứng chỉ tin học.\\\\\r\n\tKhi chọn ngẫu nhiên một học sinh trong toàn trường, xác suất học sinh đó là nam và có chứng chỉ tin học là $\\displaystyle \\frac{1}{5}$. Khi chọn ngẫu nhiên một học sinh trong số các học sinh không có chứng chỉ tin học, xác suất học sinh đó là nữ là bao nhiêu phần trăm (làm tròn kết quả đến hàng phần mười)?"
+    },
+    {
+      "maCau": "q_e2bb81fbad",
+      "ma_goc": "2605-1045",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Gọi $M, N$ lần lượt là trung điểm của $A'D$ và $C'D'$. Gọi $\\varphi$ là góc giữa hai vec tơ $\\vec{MN}$ và $\\vec{A'B}$. Số đo của góc $\\varphi$ bằng bao nhiêu độ?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e2bb81fbad_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_466b6eb445",
+      "ma_goc": "2605-1046",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$ (đơn vị đo trên các trục là mét), có hai chiếc máy bay không người lái (drone) xuất phát cùng lúc. Chiếc thứ nhất xuất phát từ gốc toạ độ $O$, chuyển động thẳng đều với vectơ vận tốc là $\\vec{u} = (3;2;-2)$. Chiếc thứ hai xuất phát từ điểm $A(10;20;48)$, chuyển động thẳng đều cùng hướng với vectơ $\\vec{v} = (-1;2;-2)$ và có tốc độ $6\\,(\\text{m/s})$. Hỏi trong $10$ giây đầu tiên kể từ lúc xuất phát, khoảng cách nhỏ nhất giữa hai chiếc drone xấp xỉ bằng bao nhiêu mét (làm tròn kết quả đến hàng đơn vị)?"
+    },
+    {
+      "maCau": "q_70d7a9d5b6",
+      "ma_goc": "2605-1047",
+      "kieuCau": "TLN",
+      "cauDan": "Người ta cần thiết kế một chậu cây cảnh cỡ lớn đặt ở sảnh toà nhà có dạng hình chóp cụt tứ giác đều $ABCD.A'B'C'D'$ như hình vẽ. Quy định được đưa ra là tổng diện tích của hai đáy bằng $102\\,\\text{m}^2$ và đường chéo $AC' = 12\\,\\text{m}$. Thể tích lớn nhất của chậu cây này là bao nhiêu mét khối? (Làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_70d7a9d5b6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

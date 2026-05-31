@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_789cd446ab",
+  "dapAn": "TFFF",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_789cd446ab_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $P(B)=0{,}6$. Do đó ý này đúng.\r\n\t\t\t\\itemch Ta có $P\\left(A \\mid \\overline{B}\\right)=0{,}4$. Do đó ý này sai.\r\n\t\t\t\\itemch Xác suất gặp bệnh án của bệnh nhân bị biến chứng là $\\displaystyle P(A) = 0{,}6 \\cdot 0{,}2 + 0{,}4 \\cdot 0{,}4 = 0{,}28 = 28\\%$. Do đó ý này sai.\r\n\t\t\t\\itemch Biết bệnh án rút ra là của bệnh nhân bị biến chứng, xác suất bệnh nhân bị bỏng nhiệt là $\\displaystyle P(B \\mid A) = \\frac{P(A \\mid B) \\cdot P(B)}{P(A)} = \\frac{0{,}6 \\cdot 0{,}2}{0{,}28} = \\frac{3}{7}$. Do đó ý này sai.\r\n\t\t\\end{itemchoice}"
+}

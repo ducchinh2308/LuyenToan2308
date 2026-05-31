@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_709ef3d332",
+  "dapAn": "B",
+  "loiGiai": "Xét phương trình hoành độ giao điểm ta có:\\\\\r\n\t\t$x^2-6x+7 = 3-x \\Leftrightarrow x^2-5x+4=0 \\Leftrightarrow \\left[\\begin{matrix} x=1 \\\\ x=4 \\end{matrix}\\right.$.\\\\\r\n\t\tDiện tích hình phẳng $S$ là: $\\displaystyle S = \\int_1^4 \\left| x^2-5x+4 \\right|\\,dx = \\frac{9}{2}$.\\\\"
+}
