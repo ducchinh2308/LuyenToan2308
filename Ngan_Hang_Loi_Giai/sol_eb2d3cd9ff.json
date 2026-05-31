@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_eb2d3cd9ff",
+  "dapAn": "C",
+  "loiGiai": "Từ $25$ số nguyên dương đầu tiên $\\{1, 2, \\dots, 25\\}$, có $13$ số lẻ và $12$ số chẵn.\\\\\r\n\t\tSố cách chọn ngẫu nhiên $2$ số khác nhau là không gian mẫu: $n(\\Omega) = C_{25}^2 = 300$.\\\\\r\n\t\tĐể tổng hai số là một số lẻ, ta phải chọn $1$ số lẻ và $1$ số chẵn: $n(A) = C_{13}^1 \\cdot C_{12}^1 = 13 \\cdot 12 = 156$.\\\\\r\n\t\tXác suất cần tìm: $P(A) = \\displaystyle\\frac{156}{300} = \\displaystyle\\frac{13}{25}$."
+}

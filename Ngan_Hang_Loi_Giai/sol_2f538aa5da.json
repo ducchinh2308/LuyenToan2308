@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2f538aa5da",
+  "dapAn": "A",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2f538aa5da_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTrong tam giác $SAD$, $MN$ là đường trung bình nên $MN \\parallel AD$. Mà $AD \\parallel BC \\Rightarrow MN \\parallel BC \\subset (SBC)$.\\\\\r\n\t\tTrong tam giác $SAC$, $MO$ là đường trung bình nên $MO \\parallel SC \\subset (SBC)$.\\\\\r\n\t\tVì $MN$ và $MO$ cùng cắt nhau tại $M$ và nằm trong $(MNO)$, suy ra $(MNO) \\parallel (SBC)$."
+}

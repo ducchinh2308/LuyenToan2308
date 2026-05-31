@@ -1,0 +1,203 @@
+{
+  "maDe": "26265-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26265- 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_6c6f4aa453",
+      "ma_goc": "2605-1725",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A_1B_1C_1D_1$. Phát biểu nào sau đây là đúng?",
+      "paA": "$\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{A_1C_1}$.",
+      "paB": "$\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{C_1A}$.",
+      "paC": "$\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{A_1C}$.",
+      "paD": "$\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{CA_1}$."
+    },
+    {
+      "maCau": "q_8c0432f005",
+      "ma_goc": "2605-1726",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P)\\colon 2x + 3y + z - 1 = 0$. Một vectơ pháp tuyến của mặt phẳng $(P)$ có tọa độ là",
+      "paA": "$(1; -2; 3)$.",
+      "paB": "$(1; 2; 3)$.",
+      "paC": "$(1; -3; 2)$.",
+      "paD": "$(2; 3; 1)$."
+    },
+    {
+      "maCau": "q_30cd883ab1",
+      "ma_goc": "2605-1727",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_3(x + 1) \\le 2$ là",
+      "paA": "$(1; 9)$.",
+      "paB": "$(-\\infty; 9]$.",
+      "paC": "$(-1; 8]$.",
+      "paD": "$(-1; 7]$."
+    },
+    {
+      "maCau": "q_518cf675ae",
+      "ma_goc": "2605-1728",
+      "kieuCau": "TN",
+      "cauDan": "Cho khối lăng trụ có diện tích đáy $B = 7a^2$ và chiều cao $h = 2a$. Thể tích khối lăng trụ đã cho bằng",
+      "paA": "$7a^3$.",
+      "paB": "$\\displaystyle\\frac{14}{3}a^3$.",
+      "paC": "$14a^3$.",
+      "paD": "$\\displaystyle\\frac{14}{2}a^3$."
+    },
+    {
+      "maCau": "q_5ed80d50c3",
+      "ma_goc": "2605-1729",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$. Gọi $M$ và $N$ theo thứ tự là trung điểm của cạnh $SA$ và $SD$. Mặt phẳng nào sau đây song song với mặt phẳng $(MNO)$?",
+      "paA": "$(SBC)$.",
+      "paB": "$(SCD)$.",
+      "paC": "$(SAD)$.",
+      "paD": "$(SAB)$."
+    },
+    {
+      "maCau": "q_a883a918df",
+      "ma_goc": "2605-1730",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = \\sin x + 4x^3$ là:",
+      "paA": "$-\\cos x + x^4 + C$.",
+      "paB": "$\\cos x + x^4 + C$.",
+      "paC": "$-\\cos x + 4x^4 + C$.",
+      "paD": "$\\cos x + 4x^4 + C$."
+    },
+    {
+      "maCau": "q_05a0c9e85b",
+      "ma_goc": "2605-1731",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = 0$ là:",
+      "paA": "$S = \\left\\{\\displaystyle\\frac{\\pi}{2} + k2\\pi \\mid k \\in \\mathbb{Z}\\right\\}$.",
+      "paB": "$S = \\{k\\pi \\mid k \\in \\mathbb{Z}\\}$.",
+      "paC": "$S = \\left\\{\\displaystyle\\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z}\\right\\}$.",
+      "paD": "$S = \\{k2\\pi \\mid k \\in \\mathbb{Z}\\}$."
+    },
+    {
+      "maCau": "q_272481cb7d",
+      "ma_goc": "2605-1732",
+      "kieuCau": "TN",
+      "cauDan": "Chọn ngẫu nhiên hai số khác nhau từ $25$ số nguyên dương đầu tiên. Xác suất để chọn được hai số có tổng là một số lẻ bằng:",
+      "paA": "$\\displaystyle\\frac{12}{25}$.",
+      "paB": "$\\displaystyle\\frac{11}{25}$.",
+      "paC": "$\\displaystyle\\frac{13}{25}$.",
+      "paD": "$\\displaystyle\\frac{14}{25}$."
+    },
+    {
+      "maCau": "q_9c0644701f",
+      "ma_goc": "2605-1733",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi các đường $y = x^2 + 3$, $y = 0$, $x = 0$, $x = 5$. Gọi $V$ là thể tích của khối tròn xoay sinh ra khi quay $(H)$ xung quanh trục $Ox$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$V = \\pi \\displaystyle\\int\\limits_0^5 (x^2 + 3) \\text{d}x$.",
+      "paB": "$V = \\displaystyle\\int\\limits_0^5 (x^2 + 3) \\text{d}x$.",
+      "paC": "$V = \\pi \\displaystyle\\int\\limits_0^5 (x^2 + 3)^2 \\text{d}x$.",
+      "paD": "$V = \\displaystyle\\int\\limits_0^5 (x^2 + 3)^2 \\text{d}x$."
+    },
+    {
+      "maCau": "q_c9aaa9f2ea",
+      "ma_goc": "2605-1734",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\displaystyle\\frac{ax + b}{cx + d} \\ (a, b, c, d \\in \\mathbb{R}, ad - bc \\ne 0)$ có đồ thị như hình vẽ. Đường tiệm cận ngang của đồ thị hàm số đã cho có phương trình là\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c9aaa9f2ea_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$x = 1$",
+      "paB": "$x = -1$",
+      "paC": "$y = 1$",
+      "paD": "$y = -1$"
+    },
+    {
+      "maCau": "q_b26fc1c7c2",
+      "ma_goc": "2605-1735",
+      "kieuCau": "TN",
+      "cauDan": "Một công ty cung cấp nước sạch thống kê lượng nước các hộ gia đình trong một khu vực tiêu thụ trong một tháng ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b26fc1c7c2_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "paA": "$20 \\text{ m}^2$.",
+      "paB": "$15 \\text{ m}^3$.",
+      "paC": "$18 \\text{ m}^2$.",
+      "paD": "$3 \\text{ m}^2$."
+    },
+    {
+      "maCau": "q_5980de3ebc",
+      "ma_goc": "2605-1736",
+      "kieuCau": "TN",
+      "cauDan": "Cấp số cộng $(u_n)$ có $u_1 = -1$ và $u_4 = 5$. Số hạng $u_9$ của cấp số cộng là",
+      "paA": "$9$.",
+      "paB": "$13$.",
+      "paC": "$5$.",
+      "paD": "$15$."
+    },
+    {
+      "maCau": "q_a68dab2323",
+      "ma_goc": "2605-1737",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = \\displaystyle\\frac{x^2 + 3}{x - 1}$.",
+      "paA": "Biết điểm $A(x_0; y_0)$ là tâm đối xứng của đồ thị hàm số $y = f(x)$ thì $x_0 + y_0 = 3$.",
+      "paB": "Đồ thị hàm số $y = f(x)$ có tiệm cận đứng là đường thẳng $x = 1$.",
+      "paC": "Đồ thị hàm số $y = f(x)$ có tiệm cận xiên là đường thẳng $y = x - 1$.",
+      "paD": "Hàm số $f(x)$ có tập xác định là $D = \\mathbb{R} \\setminus \\{-1\\}$."
+    },
+    {
+      "maCau": "q_29e0e3c391",
+      "ma_goc": "2605-1738",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, mỗi đơn vị trên trục ứng với $1\\text{ km}$. Một máy bay bay qua tọa độ $A(18; -13; 12)$ và $B(10; -8; 9)$ trong quá trình tiếp cận hạ cánh. Tại điểm $O(0;0;0)$ có một trạm radar, radar này phát hiện được những vật thể bay cách nó $7\\text{ km}$. Biết tốc độ bay của máy bay là $595\\text{ km/h}$.\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_085403.png}\r\n\t\\end{center}",
+      "paA": "Thời gian máy bay này bay trong vùng phủ sóng của radar là hơn $100$ giây.",
+      "paB": "Điểm $P$ là điểm đầu tiên radar phát hiện ra máy bay. Hoành độ của điểm $P$ là $2$.",
+      "paC": "Phương trình đường thẳng $AB$ là $\\displaystyle\\frac{x - 18}{8} = \\displaystyle\\frac{y + 13}{-5} = \\displaystyle\\frac{z - 12}{3}$.",
+      "paD": "Điểm hạ cánh là giao điểm của đường thẳng $AB$ và mặt phẳng $(Oxy)$, tọa độ là nghiệm của hệ phương trình, hoành độ điểm hạ cánh bằng $-14$."
+    },
+    {
+      "maCau": "q_be2a73ddbe",
+      "ma_goc": "2605-1739",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = f(x) = x^2 - 5x + 4$ có đồ thị như hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_be2a73ddbe_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết rằng đồ thị hàm số $f(x)$ tạo với trục hoành và $2$ đường thẳng $x = 0$, $x = 4$ một hình phẳng $(H)$ gồm $2$ phần có diện tích lần lượt là $S_1$, $S_2$. Xét tính đúng, sai của các mệnh đề sau:",
+      "paA": "$f(x)$ là một nguyên hàm của hàm số $g(x) = 2x - 5$ trên $\\mathbb{R}$",
+      "paB": "$S_1 = \\displaystyle\\frac{11}{6}$",
+      "paC": "Biết đường thẳng $d\\colon y = x + m$ cắt đồ thị $y = f(x)$ tại hai điểm phân biệt và diện tích hình phẳng giới hạn bởi $d$ và $(P)$ bằng $\\displaystyle\\frac{4}{3}$. Khi đó tổng các giá trị của tham số $m$ bằng $-4$",
+      "paD": "$S_1 = \\displaystyle\\int\\limits_0^4 f(x) \\text{d}x - S_2$"
+    },
+    {
+      "maCau": "q_35a66e5668",
+      "ma_goc": "2605-1740",
+      "kieuCau": "DS",
+      "cauDan": "Tại một công ty công nghệ, hệ thống trí tuệ nhân tạo (AI) được sử dụng để lọc email rác (spam). Qua thống kê, tỉ lệ email bị hệ thống phân loại là \"Rác\" (đưa vào hộp thư rác) là $15\\%$. Tuy nhiên, hệ thống nhận diện không chính xác tuyệt đối:\\\\\r\n\tTrong số những email bị phân loại là \"Rác\", có $4\\%$ thực chất là email \"Bình thường\" (bị nhận diện nhầm).\\\\\r\n\tTrong số những email được phân loại là \"Bình thường\" (đưa vào hộp thư chính), có $1\\%$ thực chất là email \"Rác\" (bị bỏ lọt).\\\\\r\n\tChọn ngẫu nhiên một email được gửi đến hệ thống.",
+      "paA": "Xác suất để email đó được hệ thống phân loại là \"Bình thường\", biết rằng nó thực sự là email \"Bình thường\" lớn hơn $0{,}995$",
+      "paB": "Xác suất để email đó thực sự là \"Bình thường\", biết rằng nó được hệ thống phân loại là \"Bình thường\", bằng $0{,}99$",
+      "paC": "Xác suất để email đó thực sự là email \"Bình thường\" là $0{,}8475$",
+      "paD": "Xác suất để email đó được hệ thống phân loại là \"Bình thường\" là $0{,}80$"
+    },
+    {
+      "maCau": "q_194cc4d5ab",
+      "ma_goc": "2605-1741",
+      "kieuCau": "TLN",
+      "cauDan": "Quan sát hai mã cổ phiếu A và B người ta nhận thấy trong mỗi phiên giao dịch, nếu cổ phiếu B không giảm giá thì cổ phiếu A giảm giá với xác suất $\\displaystyle\\frac{2}{5}$. Ngược lại, nếu cổ phiếu A không giảm giá thì cổ phiếu B giảm giá với xác suất $\\displaystyle\\frac{4}{7}$. Hơn nữa, xác suất cả hai cổ phiếu A và B giảm giá trong cùng một ngày là $0{,}1$. Hãy tính xác suất để có ít nhất một trong hai cổ phiếu A và B giảm giá trong một phiên giao dịch. (Kết quả làm tròn đến hàng phần chục)."
+    },
+    {
+      "maCau": "q_93f6f25bf6",
+      "ma_goc": "2605-1742",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp tứ giác $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2$. Biết rằng $SA$ vuông góc với mặt phẳng $(ABCD)$ và $SA = \\sqrt{6}$. Góc phẳng nhị diện $[S, BD, C]$ có số đo bằng bao nhiêu độ?"
+    },
+    {
+      "maCau": "q_3d31fa0db2",
+      "ma_goc": "2605-1743",
+      "kieuCau": "TLN",
+      "cauDan": "Một đội khảo sát đang sử dụng hai phương tiện giám sát trên không:\\\\\r\n\t- Flycam $A$ đang bay ở vị trí $A(1; -3; 4)$.\\\\\r\n\t- Flycam $B$ đang bay ở vị trí $B(-2; 1; 2)$.\\\\\r\n\tTrên mặt đất bằng phẳng (mặt phẳng $(Oxy)$), có hai robot cảm biến mặt đất $M$ và $N$ di chuyển để thu tín hiệu từ hai thiết bị trên. Hai robot $M$ và $N$ luôn giữ khoảng cách $2$ mét với nhau để duy trì mạng lưới truyền thông nội bộ. Robot $M$ nhận dữ liệu từ Flycam $A$, còn robot $N$ nhận tín hiệu từ Flycam $B$. Tính tổng khoảng cách nhỏ nhất từ các robot đến thiết bị tương ứng (tức là $AM + BN$ nhỏ nhất), kết quả làm tròn đến hàng phần trăm."
+    },
+    {
+      "maCau": "q_20e56ae1c1",
+      "ma_goc": "2605-1744",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhân viên của thư viện tỉnh muốn lập kế hoạch giới thiệu nội dung chương trình “Kết nối bạn đọc yêu sách 2026” đến bốn trường học trong khu vực lân cận. Độ dài quãng đường giữa các địa điểm (đơn vị: kilômét) được mô tả trong hình vẽ bên. Người nhân viên đó muốn xuất phát từ thư viện tỉnh và phải đi thăm cả bốn trường, mỗi trường chỉ đi đến đúng một lần, rồi quay trở về thư viện tỉnh. Tổng độ dài quãng đường đi (đơn vị: kilômét) thỏa mãn điều kiện trên nhận giá trị nhỏ nhất là bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_20e56ae1c1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_eef2ff1079",
+      "ma_goc": "2605-1745",
+      "kieuCau": "TLN",
+      "cauDan": "Một tấm khung trang trí tường có dạng hình phẳng giới hạn bởi trục hoành và đường cong Parabol $y = -x^2 + 4x$ (đơn vị trên các trục là mét). Một người thợ cần cắt một miếng kính hình chữ nhật nội tiếp trong khung Parabol này (một cạnh của hình chữ nhật nằm trên trục hoành, hai đỉnh còn lại nằm trên đường Parabol). Diện tích lớn nhất của miếng kính hình chữ nhật có thể cắt được là bao nhiêu mét vuông? (Làm tròn kết quả đến 2 chữ số thập phân).\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_085909.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_50ab4fc4ee",
+      "ma_goc": "2605-1746",
+      "kieuCau": "TLN",
+      "cauDan": "Trung tâm Bồi dưỡng Văn hóa xây dựng một khuôn viên có hình dạng là một Elip có độ dài trục lớn là $10\\text{ m}$ và độ dài trục bé là $8\\text{ m}$. Để tăng tính thẩm mỹ, khi thực hiện đã chia khuôn viên thành hai phần bằng một đường cong là một phần của đồ thị hàm số bậc ba $y = f(x)$, phần gạch chéo dùng để trồng hoa và phần còn lại dùng để trồng cỏ. Biết đồ thị hàm số bậc ba $y = f(x)$ có tâm đối xứng trùng với tâm đối xứng của Elip và tiếp xúc với Elip lần lượt tại hai điểm $A, B$ (với $A, B$ là giao điểm của Elip với hai đường thẳng đi qua tiêu điểm của Elip, đồng thời song song với trục bé) như hình vẽ. Cho biết chi phí trồng hoa $1\\text{ m}^2$ là $150$ nghìn đồng, trồng cỏ $1\\text{ m}^2$ là $100$ nghìn đồng. Tính tổng chi phí để hoàn thành công trình trên bằng bao nhiêu nghìn đồng? (Làm tròn đến hàng đơn vị).\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_090006.png}\r\n\t\\end{center}"
+    }
+  ]
+}

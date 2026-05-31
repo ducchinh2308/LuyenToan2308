@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f59f95adfc",
+  "dapAn": "17",
+  "loiGiai": "Gọi điểm $T$ là thư viện tỉnh.\\\\\r\n\t\tBốn điểm $A, B, C, D$ là bốn trường học.\\\\\r\n\t\tTừ hình vẽ, các quãng đường (km) Ta có $TA = 3$, $TD = 4$, $TB = 2$, $AB = 4$, $BD = 3$, $BC = 5$, $CD = 2$, $AC = 7$.\\\\\r\n\t\tNhân viên xuất phát từ thư viện tỉnh $T$, đi qua cả 4 trường, mỗi trường đúng 1 lần rồi quay về $T$.\\\\\r\n\t\tTa cần tìm chu trình có tổng độ dài nhỏ nhất.\\\\\r\n\t\tXét các phương án:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item[+)] Phương án 1: $T \\to A \\to B \\to C \\to D \\to T$, Độ dài: $3 + 4 + 5 + 2 + 4 = 18 \\ (\\text{km})$\r\n\t\t\t\\item[+)] Phương án 2: $T \\to D \\to C \\to B \\to A \\to T$, Độ dài: $4 + 2 + 5 + 4 + 3 = 18 \\ (\\text{km})$\r\n\t\t\t\\item[+)] Phương án 3: $T \\to A \\to C \\to D \\to B \\to T$, Độ dài: $3 + 7 + 2 + 3 + 2 = 17 \\ (\\text{km})$\r\n\t\t\t\\item[+)] Phương án 4: $T \\to B \\to D \\to C \\to A \\to T$, Độ dài: $2 + 3 + 2 + 7 + 3 = 17 \\ (\\text{km})$\r\n\t\t\\end{itemize}\r\n\t\tVậy tổng quãng đường nhỏ nhất là: $17\\text{ km}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e5061eb1fb",
+  "dapAn": "D",
+  "loiGiai": "Phương trình tổng quát của mặt phẳng $(P)$ có dạng $Ax + By + Cz + D = 0$ sẽ nhận vectơ $\\vec{n} = (A; B; C)$ làm một vectơ pháp tuyến.\\\\\r\n\t\tTừ phương trình mặt phẳng $(P)\\colon 2x + 3y + z - 1 = 0$, ta suy ra mặt phẳng $(P)$ có một vectơ pháp tuyến là $\\vec{n} = (2; 3; 1)$."
+}
