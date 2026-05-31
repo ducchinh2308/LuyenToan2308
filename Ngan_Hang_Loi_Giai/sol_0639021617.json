@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_0639021617",
+  "dapAn": "A",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_0639021617_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $SA \\perp (ABCD)$ nên $SA \\perp CD$.\\\\\r\n\t\tVì $ABCD$ là hình chữ nhật nên $AD \\perp CD$.\\\\\r\n\t\tSuy ra $CD \\perp (SAD)$ mà $CD \\subset (SCD)$ nên $(SCD) \\perp (SAD)$."
+}

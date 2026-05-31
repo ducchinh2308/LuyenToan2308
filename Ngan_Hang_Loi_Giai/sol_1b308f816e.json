@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1b308f816e",
+  "dapAn": "1781",
+  "loiGiai": "Ta có công thức: $u_n = C_{n+3}^4 = \\displaystyle\\frac{(n+3)(n+2)(n+1)n}{24}$.\\\\\r\n\t\tĐể $u_n$ là số nguyên lẻ, thì tích $P = (n+3)(n+2)(n+1)n$ phải chia hết cho $8$ nhưng không chia hết cho $16$.\\\\\r\n\t\tXét tính chẵn lẻ của $u_n$ theo chu kỳ $8$: $u_n$ lẻ $\\Leftrightarrow n \\equiv 1, 2, 3, 4 \\pmod 8$.\\\\\r\n\t\tBộ $3$ số hạng liên tiếp có tổng lẻ khi và chỉ khi chỉ số bắt đầu $i \\in \\{1, 2, 4, 7\\} \\pmod 8$.\\\\\r\n\t\tTổng số cách chọn $2$ bộ $A, B$ không giao nhau: $n(\\Omega) = A_{78}^2 - 2 \\cdot (77+76) = 5700$.\\\\\r\n\t\tSố cách chọn $2$ bộ có tổng lẻ: $n(X) = 1424$.\\\\\r\n\t\tXác suất $P = \\displaystyle\\frac{1424}{5700} = \\displaystyle\\frac{356}{1425} = \\displaystyle\\frac{a}{b} \\Rightarrow a=356, b=1425$.\\\\\r\n\t\tVậy $a+b = 356 + 1425 = 1781$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a5a0b5783f",
+  "dapAn": "C",
+  "loiGiai": "Ta có $I = \\displaystyle\\int_0^2 \\big(1 + 2f(x)\\big)\\text{d}x = \\displaystyle\\int_0^2 1\\text{d}x + 2\\displaystyle\\int_0^2 f(x)\\text{d}x = 2 + 2 \\cdot 3 = 8$."
+}

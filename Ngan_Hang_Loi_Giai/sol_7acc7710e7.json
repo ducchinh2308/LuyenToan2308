@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7acc7710e7",
+  "dapAn": "10",
+  "loiGiai": "Hàm số biểu diễn lợi nhuận mỗi ngày thu được là $P(x) = R(x) - C(x)$.\\\\\r\n\t\tVới $R(x) = 280x$ (doanh thu), ta có:\\\\\r\n\t\t$P(x) = 280x - (x^3 - 3x^2 + 40x + 500) = -x^3 + 3x^2 + 240x - 500$.\\\\\r\n\t\tXét hàm số $P(x) = -x^3 + 3x^2 + 240x - 500$ trên đoạn $[1;18]$.\\\\\r\n\t\tĐạo hàm: $P'(x) = -3x^2 + 6x + 240$. Giải $P'(x) = 0 \\Leftrightarrow -3x^2 + 6x + 240 = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x = 10 \\\\ x = -8 \\text{ (loại)} \\end{array} \\right.$.\\\\\r\n\t\tXét giá trị tại các điểm đặc biệt: $P(1) = -258$; $P(10) = 1200$; $P(18) = -1040$.\\\\\r\n\t\tTa thấy lợi nhuận đạt giá trị lớn nhất bằng $1200$ (tương đương $1{,}2$ triệu đồng) khi $x = 10$.\\\\\r\n\t\tĐể đạt được lợi nhuận cao nhất, nghệ nhân nên sản xuất $10$ bình hoa mỗi ngày."
+}
