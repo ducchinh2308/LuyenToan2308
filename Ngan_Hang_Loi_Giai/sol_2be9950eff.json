@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2be9950eff",
+  "dapAn": "C",
+  "loiGiai": "Hàm số xác định khi $x+1 \\ne 0 \\Leftrightarrow x \\ne -1$.\\\\\r\n\t\t$\\lim\\limits_{x \\to -1^+} y = \\lim\\limits_{x \\to -1^+} \\displaystyle\\frac{2x-3}{x+1} = -\\infty$.\\\\\r\n\t\tTiệm cận đứng của đồ thị hàm số là $x=-1$."
+}

@@ -1,0 +1,203 @@
+{
+  "maDe": "26261-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26261- 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_cf2bb218a0",
+      "ma_goc": "2605-1659",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(3;-2;3)$ và $B(-1;2;5)$. Tìm tọa độ trung điểm $I$ của đoạn thẳng $AB$.",
+      "paA": "$I(-2; 2; 1)$",
+      "paB": "$I(1; 0; 4)$",
+      "paC": "$I(2; 0; 8)$",
+      "paD": "$I(2; -2; -1)$"
+    },
+    {
+      "maCau": "q_521fba1963",
+      "ma_goc": "2605-1660",
+      "kieuCau": "TN",
+      "cauDan": "Cho khối chóp $S.ABC$ có đáy $ABC$ là tam giác vuông cân tại $B$ và $AC=a\\sqrt{2}$, cạnh bên $SA$ vuông góc với mặt phẳng đáy và $SA=a$. Thể tích $V$ của khối chóp đã cho bằng",
+      "paA": "$V = \\displaystyle\\frac{a^3}{3}$",
+      "paB": "$V = \\displaystyle\\frac{a^3}{6}$",
+      "paC": "$V = a^3$",
+      "paD": "$V = \\displaystyle\\frac{a^3}{2}$"
+    },
+    {
+      "maCau": "q_1ce59cc20c",
+      "ma_goc": "2605-1661",
+      "kieuCau": "TN",
+      "cauDan": "Khảo sát thời gian chơi thể thao trong một ngày của $40$ học sinh lớp $12A$, giáo viên thu được mẫu số liệu ghép nhóm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1ce59cc20c_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên là",
+      "paA": "$\\Delta Q = 17$",
+      "paB": "$\\Delta Q = 14$",
+      "paC": "$\\Delta Q = 14{,}5$",
+      "paD": "$\\Delta Q = 17{,}5$"
+    },
+    {
+      "maCau": "q_3bbd00fbd0",
+      "ma_goc": "2605-1662",
+      "kieuCau": "TN",
+      "cauDan": "Tìm nguyên hàm của hàm số $f(x) = x^2 - \\displaystyle\\frac{2}{x^2}$.",
+      "paA": "$\\displaystyle\\int f(x)\\text{d}x = \\displaystyle\\frac{x^3}{3} - \\displaystyle\\frac{1}{x} + C$",
+      "paB": "$\\displaystyle\\int f(x)\\text{d}x = \\displaystyle\\frac{x^3}{3} - \\displaystyle\\frac{2}{x} + C$",
+      "paC": "$\\displaystyle\\int f(x)\\text{d}x = \\displaystyle\\frac{x^3}{3} + \\displaystyle\\frac{1}{x} + C$",
+      "paD": "$\\displaystyle\\int f(x)\\text{d}x = \\displaystyle\\frac{x^3}{3} + \\displaystyle\\frac{2}{x} + C$"
+    },
+    {
+      "maCau": "q_2f7bf8adde",
+      "ma_goc": "2605-1663",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, đường thẳng $d \\colon \\displaystyle\\frac{x+3}{1} = \\displaystyle\\frac{y-1}{-1} = \\displaystyle\\frac{z-5}{2}$ có một vectơ chỉ phương là",
+      "paA": "$\\vec{u}_1 = (3; -1; 5)$",
+      "paB": "$\\vec{u}_3 = (1; -1; -2)$",
+      "paC": "$\\vec{u}_2 = (-3; 1; 5)$",
+      "paD": "$\\vec{u}_4 = (1; -1; 2)$"
+    },
+    {
+      "maCau": "q_60b8e8baa1",
+      "ma_goc": "2605-1664",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$. Gọi $S$ là diện tích hình phẳng giới hạn bởi các đường $y=f(x)$, $y=0$, $x=-1$ và $x=4$. Mệnh đề nào dưới đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_60b8e8baa1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$S = -\\displaystyle\\int\\limits_{-1}^1 f(x)\\text{d}x + \\displaystyle\\int\\limits_1^4 f(x)\\text{d}x$",
+      "paB": "$S = \\displaystyle\\int\\limits_{-1}^1 f(x)\\text{d}x + \\displaystyle\\int\\limits_1^4 f(x)\\text{d}x$",
+      "paC": "$S = -\\displaystyle\\int\\limits_{-1}^1 f(x)\\text{d}x - \\displaystyle\\int\\limits_1^4 f(x)\\text{d}x$",
+      "paD": "$S = \\displaystyle\\int\\limits_{-1}^1 f(x)\\text{d}x - \\displaystyle\\int\\limits_1^4 f(x)\\text{d}x$"
+    },
+    {
+      "maCau": "q_cf213e6143",
+      "ma_goc": "2605-1665",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai đường thẳng $BA'$ và $CD$ bằng",
+      "paA": "$45^\\circ$",
+      "paB": "$60^\\circ$",
+      "paC": "$90^\\circ$",
+      "paD": "$30^\\circ$"
+    },
+    {
+      "maCau": "q_bee1747d11",
+      "ma_goc": "2605-1666",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x+3) = 5$ là",
+      "paA": "$x = 7$",
+      "paB": "$x = 29$",
+      "paC": "$x = 13$",
+      "paD": "$x = 35$"
+    },
+    {
+      "maCau": "q_7093440525",
+      "ma_goc": "2605-1667",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(0;0;1), B(2;1;3)$. Mặt phẳng đi qua $A$ và vuông góc với $AB$ có phương trình là",
+      "paA": "$2x+y+4z-4=0$",
+      "paB": "$2x+y+2z-11=0$",
+      "paC": "$2x+y+2z-2=0$",
+      "paD": "$2x+y+4z-17=0$"
+    },
+    {
+      "maCau": "q_5272adf4be",
+      "ma_goc": "2605-1668",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ với $u_1=2; u_2=6$ giá trị $u_3$ bằng",
+      "paA": "$18$",
+      "paB": "$10$",
+      "paC": "$3$",
+      "paD": "$24$"
+    },
+    {
+      "maCau": "q_f122a08c29",
+      "ma_goc": "2605-1669",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\tan x = \\sqrt{3}$ là",
+      "paA": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{3} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{3} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paC": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{6} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paD": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{6} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_eeb7f2a083",
+      "ma_goc": "2605-1670",
+      "kieuCau": "TN",
+      "cauDan": "Đường tiệm cận đứng của đồ thị hàm số $y = \\displaystyle\\frac{2x-3}{x+1}$ là",
+      "paA": "$y=2$",
+      "paB": "$x=1$",
+      "paC": "$x=-1$",
+      "paD": "$y=-3$"
+    },
+    {
+      "maCau": "q_fd8be7836f",
+      "ma_goc": "2605-1671",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^4 - 8x^2 + 3$.",
+      "paA": "Hàm số đã cho có đạo hàm là $f'(x) = 4x^3 - 16x$",
+      "paB": "Hàm số $f(x)$ đồng biến trên các khoảng $(-2; 0)$ và $(2; +\\infty)$",
+      "paC": "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[1; 3]$ bằng $12$",
+      "paD": "Gọi $A, B, C$ là ba điểm cực trị của đồ thị hàm số đã cho. Diện tích tam giác $ABC$ bằng $16$ (đvdt)"
+    },
+    {
+      "maCau": "q_0201e1c554",
+      "ma_goc": "2605-1672",
+      "kieuCau": "DS",
+      "cauDan": "Để thúc đẩy kinh tế số, một tỉnh phê duyệt gói ngân sách $20$ tỷ đồng để xây dựng hạ tầng công nghệ cho dự án Công viên phần mềm trong vòng $20$ tháng. Gọi $t$ (tháng) là thời gian tính từ lúc bắt đầu dự án ($0 \\le t \\le 20$) và $V(t)$ (triệu đồng) là số tiền còn lại chưa giải ngân tại thời điểm $t$. Biết rằng tốc độ giải ngân $V'(t)$ tại thời điểm $t$ là $V'(t) = k \\cdot e^{0{,}1t}$, trong đó $k$ là hệ số tỉ lệ ($k < 0$). Toàn bộ số tiền $20$ tỷ đồng được giải ngân vừa hết sau đúng $20$ tháng.",
+      "paA": "$V(t)$ là một nguyên hàm của hàm số $V'(t) = k \\cdot e^{0{,}1t}$",
+      "paB": "Hệ số tỉ lệ $k = \\displaystyle\\frac{2000}{1 - e^2}$",
+      "paC": "Sau $10$ tháng, số tiền còn lại chưa giải ngân là $5{,}4$ tỷ đồng (làm tròn kết quả đến hàng phần chục)",
+      "paD": "Có duy nhất một thời điểm $t_0 \\in (0; 20)$ mà tại đó tốc độ giải ngân đúng bằng tốc độ giải ngân trung bình của cả dự án. Khi đó $t_0 > 12$"
+    },
+    {
+      "maCau": "q_2e9dc586aa",
+      "ma_goc": "2605-1673",
+      "kieuCau": "DS",
+      "cauDan": "Trên mặt đất bằng phẳng có ba chiếc cọc thẳng đứng, với ba chân cọc $A, B, C$ tạo thành một tam giác vuông cân tại $A$ và $AB = 60\\text{ cm}$. Ba đỉnh cọc $A', B', C'$ có độ cao lần lượt là $50\\text{ cm}, 50\\text{ cm}, 120\\text{ cm}$. Phía trên đầu cọc, người ta đặt một quả cầu trang trí sao cho mặt cầu tiếp xúc với cả ba đỉnh $A', B', C'$. Chọn hệ trục tọa độ $Oxyz$ sao cho $A$ là gốc tọa độ, $AB$ là trục $Ox$, $AC$ là trục $Oy$ và $AA'$ là trục cao (đơn vị đo trên các trục là cm).\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-30_151744.png}\r\n\t\\end{center}",
+      "paA": "$A' = (0; 0; 120)$",
+      "paB": "Mặt phẳng $(A'BC)$ có phương trình $5x + 5y + 6z - 300 = 0$",
+      "paC": "Đường thẳng $A'C'$ tạo với mặt đất một góc bằng $41^\\circ$ (làm tròn kết quả đến hàng đơn vị)",
+      "paD": "Người ta muốn thay đổi quả cầu hiện tại bằng một quả cầu mới có kích thước nhỏ nhất có thể sao cho mặt cầu này vẫn chạm được vào cả ba đỉnh cọc $A', B', C'$ (để không bị lọt hẳn xuống dưới). Khi đó bán kính của quả cầu mới này bằng $55\\text{ cm}$"
+    },
+    {
+      "maCau": "q_bc7d38e9a4",
+      "ma_goc": "2605-1674",
+      "kieuCau": "DS",
+      "cauDan": "Một hệ thống bán lẻ nhập khẩu điện thoại từ hai nhà máy A và B. Biết rằng nhà máy A cung cấp $60\\%$ số lượng, nhà máy B cung cấp $40\\%$ số lượng. Tỉ lệ điện thoại đạt chuẩn của nhà máy A là $95\\%$, của nhà máy B là $90\\%$. Khi có đơn đặt hàng online, hệ thống sẽ xuất ngẫu nhiên $1$ chiếc điện thoại để giao. Quy trình xuất kho như sau: Nếu đơn hàng là giao hỏa tốc, hệ thống chỉ xuất điện thoại từ kho của nhà máy A. Còn nếu đơn hàng là giao tiêu chuẩn, hệ thống xuất ngẫu nhiên $1$ chiếc điện thoại bất kỳ trong kho chung của cả $2$ nhà máy (xác suất chọn các máy là như nhau). Biết $20\\%$ đơn hàng của hệ thống là giao hỏa tốc, $80\\%$ đơn hàng là giao tiêu chuẩn.",
+      "paA": "Xác suất để chiếc điện thoại được xuất kho thuộc nhà máy A là $0{,}48$",
+      "paB": "Xác suất để chiếc điện thoại được xuất kho là của nhà máy B và đạt chuẩn là $0{,}288$",
+      "paC": "Xác suất chiếc điện thoại được xuất kho là điện thoại đạt chuẩn bằng $0{,}744$",
+      "paD": "Giả sử chiếc điện thoại được giao cho khách không đạt chuẩn. Xác suất để chiếc điện thoại đó do nhà máy B sản xuất là $\\displaystyle\\frac{17}{33}$"
+    },
+    {
+      "maCau": "q_f5567f0a3b",
+      "ma_goc": "2605-1675",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác cân tại $B$ với $BA=BC=a$, $\\widehat{ABC}=120^\\circ$. Tam giác $SAC$ là tam giác đều và nằm trong mặt phẳng vuông góc với đáy. Tính số đo của góc nhị diện $[A,SB,C]$ (đơn vị độ và làm tròn kết quả đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_f068b005fe",
+      "ma_goc": "2605-1676",
+      "kieuCau": "TLN",
+      "cauDan": "Một hợp tác xã nông nghiệp dự định đầu tư hệ thống nhà màng trồng dưa lưới công nghệ cao với tổng diện tích là $x$ (đơn vị: $1000\\text{ m}^2$). Qua khảo sát thị trường và kỹ thuật, các chỉ số tài chính được dự báo như sau:\r\n\t- Chi phí đầu tư ban đầu (xây dựng nhà màng, hệ thống tưới) là: $C_1(x) = 500 + 120x$ (triệu đồng).\r\n\t- Doanh thu dự kiến hằng năm $R(x) = 60x - 0{,}5x^2$ (triệu đồng/năm).\r\n\t- Chi phí vận hành hằng năm (cây giống, phân bón, điện nước, nhân công): $C_2(x) = 8 + 4x + 0{,}1x^2$ (triệu đồng/năm). Hãy xác định diện tích $x$ (làm tròn kết quả đến hàng phần chục) để tối đa hóa tỷ lệ lợi nhuận hằng năm trên chi phí đầu tư ban đầu."
+    },
+    {
+      "maCau": "q_e0ef2d39f5",
+      "ma_goc": "2605-1677",
+      "kieuCau": "TLN",
+      "cauDan": "Đầu tháng, một người mở tài khoản tiết kiệm trực tuyến tại một ngân hàng với số tiền $500$ triệu đồng, lãi suất tiền gửi là $0{,}6\\%$/tháng, hình thức lãi kép. Cuối mỗi tháng, người đó đều đặn gửi thêm vào tài khoản số tiền $10$ triệu đồng. Biết rằng lãi suất không thay đổi trong suốt quá trình gửi. Hỏi sau ít nhất bao nhiêu tháng (kể từ lần gửi đầu tiên), tổng số tiền người đó tích luỹ được lớn hơn $1$ tỉ đồng?"
+    },
+    {
+      "maCau": "q_888acf73a3",
+      "ma_goc": "2605-1678",
+      "kieuCau": "TLN",
+      "cauDan": "Hai bạn An và Bình tham gia trò chơi với một hộp chứa $10$ tấm thẻ được đánh số từ $1$ đến $10$. Trò chơi có quy tắc như sau:\\\\\r\n\tBước 1: An lấy ngẫu nhiên một tấm thẻ từ hộp, xem số rồi bỏ lại vào hộp. Nếu An lấy được số nguyên tố, An cho thêm vào hộp hai tấm thẻ đánh số $11$ và $12$. Nếu An lấy được số không phải số nguyên tố, An cho thêm vào hộp $3$ thẻ đánh số $13$, $14$ và $15$.\\\\\r\n\tBước 2: Bình lấy ngẫu nhiên đồng thời $3$ tấm thẻ từ hộp.\\\\\r\n\tBình thắng cuộc nếu $3$ tấm thẻ lấy ra lập thành một cấp số cộng. Tính xác suất để Bình thắng cuộc (làm tròn kết quả đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_a6717f9a3a",
+      "ma_goc": "2605-1679",
+      "kieuCau": "TLN",
+      "cauDan": "Một khu công viên dự định thiết kế một bồn hoa nghệ thuật có ranh giới là một tam giác đều $ABC$ với cạnh dài $6\\text{ m}$. Bên trong bồn hoa, người ta xây hai bờ kè phân cách có hình dạng là hai đường parabol bằng nhau đi qua $B$ và $C$, có trục đối xứng lần lượt song song với $BA$ và $CA$. Hai bờ kè này giao nhau tại một đài phun nước ở vị trí $D$. Biết rằng đoạn $BC$ của bồn hoa tiếp xúc với hai đường bờ kè parabol này và khoảng cách từ đỉnh $A$ của bồn hoa đến đài phun nước $D$ là $1{,}4\\text{ m}$. Diện tích phần giới hạn bởi hai bờ kè parabol và đoạn $BC$ (phần tô màu đen) được dùng để trồng hoa hồng. Tính diện tích phần đất trồng hoa hồng theo đơn vị $\\text{m}^2$ (làm tròn kết quả đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-30_152107.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_36c3aeac05",
+      "ma_goc": "2605-1680",
+      "kieuCau": "TLN",
+      "cauDan": "Để chuẩn bị cho lễ kỷ niệm 110 năm ngày thành lập trường THPT Hai Bà Trưng, Đoàn trường thiết kế một bảng trang trí gồm $12$ ô vuông xếp thành lưới như hình vẽ. Các học sinh lớp $12A4$ được giao nhiệm vụ gắn các chữ cái bằng đèn led lên bảng, bao gồm: $2$ chữ H, $1$ chữ B và $3$ chữ T (viết tắt của cụm từ \"Hai Bà Trưng\"). Biết mỗi ô vuông chỉ gắn tối đa một chữ cái. Hỏi có bao nhiêu cách sắp xếp các chữ cái này sao cho trên bảng xuất hiện ít nhất một dòng chữ HBT (theo hàng từ trái qua phải hoặc theo cột từ trên xuống dưới) và không có hàng nào bị bỏ trống?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_36c3aeac05_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

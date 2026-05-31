@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_704b9c8417",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\begin{cases} x_I = \\displaystyle\\frac{x_A + x_B}{2} = \\displaystyle\\frac{3 + (-1)}{2} = 1 \\\\ y_I = \\displaystyle\\frac{y_A + y_B}{2} = \\displaystyle\\frac{-2 + 2}{2} = 0 \\\\ z_I = \\displaystyle\\frac{z_A + z_B}{2} = \\displaystyle\\frac{3 + 5}{2} = 4 \\end{cases} \\Rightarrow I(1; 0; 4)$."
+}

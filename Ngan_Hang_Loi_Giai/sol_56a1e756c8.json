@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_56a1e756c8",
+  "dapAn": "B",
+  "loiGiai": "Biến đổi phương trình logarit đã cho, ta có phương trình tương đương:\\\\\r\n\t\t$\\log_2(x+3) = 5 \\Leftrightarrow x+3 = 2^5 \\Leftrightarrow x+3 = 32 \\Leftrightarrow x = 29$.\\\\\r\n\t\tVậy nghiệm của phương trình là $x = 29$."
+}
