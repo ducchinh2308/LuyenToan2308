@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f21f978905",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\displaystyle N=30$; $\\displaystyle \\frac{N}{4} = 7{,}5$; $\\displaystyle \\frac{3N}{4} = 22{,}5$.\\\\\r\n\t\tXét bảng tần số tích lũy sau:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_f21f978905_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tNhóm đầu tiên có tần số tích lũy lớn hơn hoặc bằng $\\displaystyle \\frac{N}{4}=7{,}5$ là $[40;50)$.\\\\\r\n\t\t$\\displaystyle Q_1 \\in [40;50) \\Rightarrow Q_1 = 40 + \\frac{7{,}5-7}{10} \\cdot (50-40) = \\frac{81}{2}$.\\\\\r\n\t\tNhóm đầu tiên có tần số tích lũy lớn hơn hoặc bằng $\\displaystyle \\frac{3N}{4}=22{,}5$ là $[50;60)$.\\\\\r\n\t\t$\\displaystyle Q_3 \\in [50;60) \\Rightarrow Q_3 = 50 + \\frac{22{,}5-17}{8} \\cdot (60-50) = \\frac{455}{8}$.\\\\\r\n\t\tVậy khoảng tứ phân vị $\\displaystyle \\Delta_Q = Q_3 - Q_1 = \\frac{455}{8} - \\frac{81}{2} = 16{,}375$.\\\\"
+}

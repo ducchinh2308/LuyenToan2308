@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3e162a043a",
+  "dapAn": "36",
+  "loiGiai": "Theo bài ra ta có $\\displaystyle \\log_3 x + \\log_x 729 = 5 \\Leftrightarrow \\log_3 x + 6\\log_x 3 = 5$.\\\\\r\n\t\tĐặt $\\displaystyle t = \\log_3 x$, suy ra $\\displaystyle t + \\frac{6}{t} = 5 \\Leftrightarrow \\left[ \\begin{array}{l} t=2 \\Rightarrow x=9 \\\\ t=3 \\Rightarrow x=27 \\end{array} \\right.$.\\\\\r\n\t\tVậy tổng các giá trị có thể có của $x$ bằng $36$.\\\\"
+}
