@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6cc0afa2a3",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_6cc0afa2a3_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $SA \\perp (ABC) \\Rightarrow A$ là hình chiếu vuông góc của $S$ lên mặt phẳng $(ABC)$. \\\\\r\n\t\tDo đó, $AB$ là hình chiếu vuông góc của đường thẳng $SB$ lên mặt phẳng $(ABC)$. \\\\\r\n\t\tSuy ra: $(SB, (ABC)) = (SB, AB) = \\widehat{SBA}$. \\\\\r\n\t\tXét tam giác $SAB$: \\\\\r\n\t\tVì $SA \\perp (ABC)$ nên $SA \\perp AB \\Rightarrow \\Delta SAB$ vuông tại $A$. \\\\\r\n\t\tMặt khác, $SA = AB \\Rightarrow \\Delta SAB$ vuông cân tại $A \\Rightarrow \\widehat{SBA} = 45^\\circ$. \\\\\r\n\t\tVậy góc giữa đường thẳng $SB$ và mặt phẳng đáy bằng $45^\\circ$. \\\\"
+}

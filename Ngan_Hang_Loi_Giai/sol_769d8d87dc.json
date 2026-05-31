@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_769d8d87dc",
+  "dapAn": "D",
+  "loiGiai": "Đáy $ABC$ là tam giác đều cạnh $a$ nên diện tích đáy là: $\\displaystyle S_{ABC} = \\frac{\\sqrt{3}}{4}a^2$. \\\\\r\n\t\tThể tích khối chóp $\\displaystyle V = \\frac{1}{3} \\cdot S_{ABC} \\cdot SA = \\frac{1}{3} \\cdot \\frac{\\sqrt{3}}{4}a^2 \\cdot a\\sqrt{3} = \\frac{a^3}{4}$. \\\\"
+}

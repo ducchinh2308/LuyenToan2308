@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f44c36f529",
+  "dapAn": "3000",
+  "loiGiai": "Gọi $x, y$ lần lượt là số lượng xe 7 chỗ ngồi và xe 16 chỗ ngồi $0 \\le x \\le 20; 0 \\le y \\le 10$. \\\\\r\n\t\tDiện tích cần sử dụng để xe là $10x + 20y$ và số lượng xe để trong bãi đỗ xe là $x + y$. \\\\\r\n\t\tDoanh thu mỗi đêm thu được là: $T = F(x; y) = 150x + 200y$. \\\\\r\n\t\tTừ giả thiết ta được: $\\begin{cases} x + y \\le 20 \\\\ 10x + 20y \\le 200 \\\\ 0 \\le x \\le 20 \\\\ 0 \\le y \\le 10 \\end{cases}$ \\\\\r\n\t\tBiểu diễn miền nghiệm của hệ bất phương trình: \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_f44c36f529_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ miền nghiệm ta có giá trị lớn nhất của $T$ đạt được tại các điểm biên của miền nghiệm. \\\\\r\n\t\t$T_{\\text{Max}} = F(20; 0) = 3000$ (nghìn đồng). \\\\"
+}

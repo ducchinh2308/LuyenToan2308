@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2c6ed9de5f",
+  "dapAn": "TFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Xét $Q_1'(t) = -2t^2 + 4t + 58$ đạt cực đại tại $\\displaystyle t = \\frac{-4}{2 \\cdot (-2)} = 1$. \\\\\r\n\t\t\tHiệu suất làm việc cực đại là $Q_1'(1) = -2 + 4 + 58 = 60$.\r\n\t\t\t\\itemch Hiệu suất của công nhân $A$ tại thời điểm $t = 5$ là $Q_1'(5) = -2 \\cdot 25 + 4 \\cdot 5 + 58 = 28$ sản phẩm mỗi giờ. \\\\\r\n\t\t\tTa có: $Q_2'(t) = 53 + at$ và dựa vào đồ thị $Q_2'(5) = Q_1'(5) = 53 + a \\cdot 5 = 28$. \\\\\r\n\t\t\tSuy ra $5a = -25$ hay $a = -5$.\r\n\t\t\t\\itemch Ta có: $Q_2'(t) = 53 - 5t$. \\\\\r\n\t\t\tSuy ra số sản phẩm anh công nhân $B$ làm được sau $6$ giờ là $\\displaystyle \\int_0^6 (53 - 5t)\\text{d}t = 228$ (sản phẩm).\r\n\t\t\t\\itemch Số sản phẩm làm ra được sau $6$ giờ của công nhân $A$ là $\\displaystyle \\int_0^6 (-2t^2 + 4t + 58)\\text{d}t = 276$ (sản phẩm). \\\\\r\n\t\t\tNên số sản phẩm anh công nhân $A$ làm ra trong $6$ giờ nhiều hơn số sản phẩm hoàn thành của công nhân $B$.\r\n\t\t\\end{itemchoice}"
+}
