@@ -1,0 +1,203 @@
+{
+  "maDe": "26263-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26263- 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_81016cff21",
+      "ma_goc": "2605-1703",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận đứng của đồ thị hàm số $y = \\displaystyle \\frac{x^2 + 4x + 1}{x - 1}$ là",
+      "paA": "$y = 1$",
+      "paB": "$x = 4$",
+      "paC": "$x = -4$",
+      "paD": "$x = 1$"
+    },
+    {
+      "maCau": "q_766058b73b",
+      "ma_goc": "2605-1704",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $4^{x+2} = 64$ là",
+      "paA": "$x = 1$",
+      "paB": "$x = 3$",
+      "paC": "$x = 2$",
+      "paD": "$x = 0$"
+    },
+    {
+      "maCau": "q_cc84317c8b",
+      "ma_goc": "2605-1705",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có số hạng đầu $u_1 = 2$ và công bội $q = 5$. Giá trị của $u_3$ bằng",
+      "paA": "$50$",
+      "paB": "$7$",
+      "paC": "$10$",
+      "paD": "$12$"
+    },
+    {
+      "maCau": "q_5cd63e0389",
+      "ma_goc": "2605-1706",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Khẳng định nào sau đây đúng?",
+      "paA": "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$",
+      "paB": "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$",
+      "paC": "$\\overrightarrow{AB} + \\overrightarrow{AB'} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$",
+      "paD": "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{A'A} = \\overrightarrow{AC'}$"
+    },
+    {
+      "maCau": "q_2a066aaac1",
+      "ma_goc": "2605-1707",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây có đồ thị như hình vẽ\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2a066aaac1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y = \\dfrac{x^2+3x-4}{x-2}$",
+      "paB": "$y = x^3-3x^2-4$",
+      "paC": "$y = \\dfrac{x-4}{x-1}$",
+      "paD": "$y = -x^3+3x^2-4$"
+    },
+    {
+      "maCau": "q_3df09e1e65",
+      "ma_goc": "2605-1708",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\sin x = 1$ có tập nghiệm là",
+      "paA": "$S = \\left\\{ \\dfrac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$S = \\{ k2\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paC": "$S = \\{ k\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paD": "$S = \\left\\{ \\dfrac{\\pi}{2} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_6475777cb4",
+      "ma_goc": "2605-1709",
+      "kieuCau": "TN",
+      "cauDan": "Họ tất cả các nguyên hàm của hàm số $f(x) = e^x + \\sin x$ là",
+      "paA": "$e^x - \\sin x + C$",
+      "paB": "$e^x + \\sin x + C$",
+      "paC": "$e^x + \\cos x + C$",
+      "paD": "$e^x - \\cos x + C$"
+    },
+    {
+      "maCau": "q_ad2aa2bbab",
+      "ma_goc": "2605-1710",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình phẳng $(H)$ giới hạn bởi các đường thẳng $y = x^3 + x + 2$, $y = 0$, $x = 0$, $x = 2$. Gọi $V$ là thể tích của khối tròn xoay được tạo thành khi quay $(H)$ xung quanh trục $Ox$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$V = \\displaystyle \\int_0^2 (x^3 + x + 2)^2 \\text{d}x$",
+      "paB": "$V = \\displaystyle \\int_0^2 (x^3 + x + 2) \\text{d}x$",
+      "paC": "$V = \\pi \\displaystyle \\int_0^2 (x^3 + x + 2) \\text{d}x$",
+      "paD": "$V = \\pi \\displaystyle \\int_0^2 (x^3 + x + 2)^2 \\text{d}x$"
+    },
+    {
+      "maCau": "q_a043a4b04a",
+      "ma_goc": "2605-1711",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình vuông, cạnh bên $SA$ vuông góc với đáy. Góc giữa đường thẳng $SC$ và mặt phẳng $(ABCD)$ là góc nào sau đây?",
+      "paA": "$\\widehat{SCB}$",
+      "paB": "$\\widehat{SAC}$",
+      "paC": "$\\widehat{SCA}$",
+      "paD": "$\\widehat{ASC}$"
+    },
+    {
+      "maCau": "q_260cce8571",
+      "ma_goc": "2605-1712",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, vectơ chỉ phương của đường thẳng $(d): \\displaystyle \\frac{x-2}{2} = \\displaystyle \\frac{y+1}{-1} = \\displaystyle \\frac{z-3}{1}$ là",
+      "paA": "$\\vec{u}_2 = (2; 1; 1)$",
+      "paB": "$\\vec{u}_1 = (2; -1; 3)$",
+      "paC": "$\\vec{u}_1 = (2; -1; 1)$",
+      "paD": "$\\vec{u}_4 = (-1; 1; 3)$"
+    },
+    {
+      "maCau": "q_79cdf97883",
+      "ma_goc": "2605-1713",
+      "kieuCau": "TN",
+      "cauDan": "Thời gian hoàn thành một câu hỏi trả lời ngắn (đơn vị là phút) của học sinh nữ lớp 12A thu được kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_79cdf97883_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu trên bảng bằng",
+      "paA": "$4$",
+      "paB": "$20$",
+      "paC": "$16$",
+      "paD": "$10$"
+    },
+    {
+      "maCau": "q_4b778433d9",
+      "ma_goc": "2605-1714",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S): (x-3)^2 + (y+2)^2 + (z-1)^2 = 9$. Bán kính của $(S)$ bằng",
+      "paA": "$18$",
+      "paB": "$3$",
+      "paC": "$9$",
+      "paD": "$81$"
+    },
+    {
+      "maCau": "q_90a0aa6202",
+      "ma_goc": "2605-1715",
+      "kieuCau": "DS",
+      "cauDan": "Một vật trang trí có dạng một khối tròn xoay được tạo thành khi quay miền $(R)$ quanh trục $MN$. Biết rằng $ABCD$ là hình chữ nhật với $AB=6\\text{ cm}$, $AD=10\\text{ cm}$ và $M, N$ lần lượt là trung điểm $AB, CD$. Hai đường cong là đường Elip có hình chữ nhật cơ sở là $ABCD$ và đường tròn tiếp xúc với hai cạnh $AD$ và $BC$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_90a0aa6202_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Đường tròn tâm $O$ tiếp xúc với hai cạnh $AD, BC$ có phương trình là: $x^2 + y^2 = 9$.",
+      "paB": "Phương trình của đường Elip có hình chữ nhật cơ sở là $ABCD$ là: $\\displaystyle \\frac{x^2}{25} + \\displaystyle \\frac{y^2}{9} = 1$.",
+      "paC": "Diện tích phần tô đậm là: $S = \\displaystyle \\int_{-5}^5 \\sqrt{9 \\left(1-\\frac{x^2}{25}\\right)} dx - \\displaystyle \\int_{-3}^3 \\sqrt{9-x^2} dx$.",
+      "paD": "Thể tích của vật trang trí đó (kết quả làm tròn đến hàng phần chục) là $75{,}4 \\text{ cm}^3$."
+    },
+    {
+      "maCau": "q_28afea9d2a",
+      "ma_goc": "2605-1716",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai mặt cầu $(S): (x-3)^2 + y^2 + z^2 = 9$; $(S'): x^2 + y^2 + z^2 - 12y + 12 = 0$ và mặt phẳng $(P): z-m=0$.",
+      "paA": "Mặt cầu $(S)$ có tâm là $I(3;0;0)$ và mặt cầu $(S')$ có bán kính $\\sqrt{24}$.",
+      "paB": "Mặt phẳng $(P)$ có một vectơ pháp tuyến là $\\vec{n}=(1;0;0)$.",
+      "paC": "Khoảng cách giữa hai tâm của hai mặt cầu $(S)$ và $(S')$ bằng $3\\sqrt{5}$.",
+      "paD": "Biết rằng hai mặt cầu $(S)$ và $(S')$ cắt nhau theo giao tuyến là đường tròn $(C)$. Gọi $T$ là tập hợp các giá trị của $m$ để trên mặt phẳng $(P)$ dựng được một tiếp tuyến đến đường tròn $(C)$. Tổng bình phương các phần tử của tập hợp $T$ là $2$."
+    },
+    {
+      "maCau": "q_4bf006b546",
+      "ma_goc": "2605-1717",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{2x^2-2x+2}{-x+1}$.",
+      "paA": "Hàm số nghịch biến trên khoảng $(-\\infty;0) \\cup (2;+\\infty)$.",
+      "paB": "Hàm số đạt cực tiểu tại $x=0$.",
+      "paC": "Giá trị nhỏ nhất của hàm số trên đoạn $\\left[\\frac{3}{2}; \\frac{7}{2}\\right]$ bằng $-7$.",
+      "paD": "Gọi $A, B$ là hai điểm cực trị của đồ thị hàm số. Cho điểm $M(-1;0)$, gọi $D(a;b)$ là chân đường phân giác trong góc $M$ của tam giác $MAB$. Khi đó $a+b=\\frac{1}{2}$."
+    },
+    {
+      "maCau": "q_a596c0fe46",
+      "ma_goc": "2605-1718",
+      "kieuCau": "DS",
+      "cauDan": "Hai bạn An và Bình tham gia một buổi phỏng vấn tuyển cộng tác viên. Ban xét tuyển có một hộp đựng $10$ câu hỏi thuộc lĩnh vực tự nhiên và $20$ câu hỏi thuộc lĩnh vực xã hội. An rút ngẫu nhiên $1$ câu hỏi (không bỏ lại vào hộp), sau đó Bình rút ngẫu nhiên $1$ câu hỏi.",
+      "paA": "Xác suất An rút được câu hỏi thuộc lĩnh vực tự nhiên là $\\frac{1}{3}$.",
+      "paB": "Biết rằng An rút được câu hỏi thuộc lĩnh vực tự nhiên, xác suất Bình rút được câu hỏi thuộc lĩnh vực xã hội là $\\frac{2}{3}$.",
+      "paC": "Xác suất Bình rút được câu hỏi thuộc lĩnh vực xã hội là $\\frac{2}{3}$.",
+      "paD": "Biết rằng Bình rút được câu hỏi thuộc lĩnh vực xã hội, xác suất để An rút được câu hỏi thuộc lĩnh vực tự nhiên là $\\frac{19}{29}$."
+    },
+    {
+      "maCau": "q_26cb67ae15",
+      "ma_goc": "2605-1719",
+      "kieuCau": "TLN",
+      "cauDan": "Một khu vui chơi có sơ đồ như hình vẽ. Khách hàng xuất phát từ khu Trung tâm, đi qua các cánh cửa để tham quan các khu vực khác. Giá vé cho mỗi lần đi qua một cột cửa (theo bất kỳ chiều nào) được ghi trên sơ đồ (đơn vị tiền là đồng). Sau khi đã đi qua tất cả các khu vực, khách hàng phải trở lại khu Trung tâm để ra ngoài. Hỏi khách hàng phải tốn ít nhất bao nhiêu nghìn đồng tiền mua vé?\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_064131.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_17dd930f6e",
+      "ma_goc": "2605-1720",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tập $S = \\{1; 2; 3; \\dots; 15\\}$. Có bao nhiêu cách chọn ra $6$ số phân biệt từ tập $S$ và sắp xếp chúng thành một dãy $(a_1; a_2; a_3; a_4; a_5; a_6)$ thỏa mãn đồng thời hai điều kiện sau:\r\n\t\\begin{itemize}\r\n\t\t\\item Biểu thức $\\log_3 a_1 + \\log_3 a_2 + \\log_3 a_3$ là một số nguyên.\r\n\t\t\\item $a_1 + a_6 = a_2 + a_5 = a_3 + a_4$.\r\n\t\\end{itemize}"
+    },
+    {
+      "maCau": "q_06807cf94c",
+      "ma_goc": "2605-1721",
+      "kieuCau": "TLN",
+      "cauDan": "Năm $2016$, trong chiến dịch mang tên “Niềm tự hào cuối cùng của loài người”, kỳ thủ cờ vây số một thế giới Lee Sedol đã có trận đấu lịch sử với trí tuệ nhân tạo AlphaGo. Một trò chơi mô phỏng trận đấu này có luật như sau: Điểm khởi đầu của kỳ thủ là $2$. Trong mỗi ván đấu, nếu thắng kỳ thủ được cộng $1$ điểm, nếu hòa điểm số không thay đổi, nếu thua bị trừ $1$ điểm. Trận đấu kết thúc khi kỳ thủ đạt $3$ điểm hoặc $0$ điểm (thất bại). Giả sử xác suất mỗi ván thắng, hòa, thua của kỳ thủ lần lượt là $\\frac{1}{4}, \\frac{1}{4}, \\frac{1}{2}$ và kết quả các ván đấu là độc lập với nhau. Xác suất để trận đấu kết thúc sau đúng $6$ ván và kỳ thủ là người giành chiến thắng là $p$. Tính $4096p$."
+    },
+    {
+      "maCau": "q_4cac213c12",
+      "ma_goc": "2605-1722",
+      "kieuCau": "TLN",
+      "cauDan": "Khi chế tạo cánh diều hình tứ giác, người ta sẽ tạo khung trước. Một khung cánh diều sẽ được tạo từ hai thanh chéo làm bằng gỗ và bốn sợi dây cước viền. Lấy bốn sợi dây tạo thành viền ngoài đã được cắt đúng độ dài với kích thước là $40, 40, 96, 96$ (theo đơn vị cm) như hình vẽ và lắp hai thanh gỗ làm đường chéo. Tính tổng độ dài hai thanh chéo gỗ khi diện tích cánh diều lớn nhất (đơn vị cm, kết quả làm tròn đến hàng đơn vị).\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_064829.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_f3bde6333f",
+      "ma_goc": "2605-1723",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thang vuông tại $A$ và $B$, $AB=BC=a$, $AD=2a$, $SA$ vuông góc với đáy và $SA=a$. Gọi $M,N$ lần lượt là trung điểm của $SB$ và $CD$. Tính góc giữa $MN$ và $(SAC)$ theo đơn vị độ (Kết quả làm tròn đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_553e84992c",
+      "ma_goc": "2605-1724",
+      "kieuCau": "TLN",
+      "cauDan": "Một khuôn viên dạng hình tròn, trên đó người ta thiết kế phần để trồng hoa có dạng của một cánh hoa hình parabol có đỉnh trùng với tâm và có trục đối xứng vuông góc với đường kính của nửa hình tròn, hai đầu mút của cánh hoa nằm trên đường tròn (phần tô màu) và cách nhau một khoảng bằng 4m. Phần còn lại của khuôn viên (phần không tô màu) dành để trồng cỏ Nhật Bản. Biết các kích thước cho như hình vẽ, chi phí để trồng hoa và cỏ Nhật Bản tương ứng là 150 000 đồng/m$^2$ và 100 000 đồng/m$^2$. Hỏi cần bao nhiêu tiền (triệu đồng) để trồng hoa và cỏ Nhật Bản trong khuôn viên đó? (Số tiền được làm tròn đến hàng phần trăm).\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_065027.png}\r\n\t\\end{center}"
+    }
+  ]
+}
