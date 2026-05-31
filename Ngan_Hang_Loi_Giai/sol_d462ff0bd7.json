@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d462ff0bd7",
+  "dapAn": "A",
+  "loiGiai": "Điều kiện xác định $x > 2$.\\\r\n\t\tKhi đó ta có $\\log_{\\frac{1}{2}}(x-2) > -5 \\Leftrightarrow x - 2 < 32 \\Leftrightarrow x < 34$.\\\r\n\t\tKết hợp với điều kiện ta có tập nghiệm là $(2;34)$."
+}

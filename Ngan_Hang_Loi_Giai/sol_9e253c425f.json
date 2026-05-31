@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9e253c425f",
+  "dapAn": "1560",
+  "loiGiai": "TH1: Dùng $5$ màu để tô, có $A_6^5 = 720$ (cách)\\\\\r\n\t\tTH2: Dùng $4$ màu để tô.\\\\\r\n\t\tKhi đó sẽ có $2$ phần khác nhau được tô cùng màu.\\\\\r\n\t\tChọn $2$ phần không cạnh nhau ($BD$ hoặc $AC$), có $2$ cách chọn\\\r\n\t\tChọn $1$ màu trong $6$ màu để tô vào $2$ phần không cạnh nhau nói trên có $6$ cách\\\\\r\n\t\tChọn $4$ trong $5$ màu còn lại để tô $4$ phần còn lại, có $A_5^4$ cách\\\\\r\n\t\tVậy TH2 có $2 \\cdot 6 \\cdot A_5^4 = 720$ cách.\\\\\r\n\t\tTH3: Dùng $3$ màu để tô.\\\\\r\n\t\tKhi đó chắc chắn: Phần $O$ được tô $1$ màu, phần $AC$ được tô $1$ màu, phần $BD$ được tô $1$ màu ($3$ màu này khác nhau). Chọn $3$ màu trong $6$ màu để tô vào $3$ phần này, có $A_6^3 = 120$ cách\\\\\r\n\t\tTừ 3TH trên, số cách tô màu là: $720 + 720 + 120 = 1560$."
+}

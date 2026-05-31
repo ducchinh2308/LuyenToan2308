@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_61e7d6b7d7",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào đồ thị ta thấy:\\\r\n\t\t$+$ Đây là đồ thị hàm số bậc 3 có hệ số $a < 0$ nên loại đáp án \\textbf{D}.\\\r\n\t\t$+$ Đồ thị cắt trục tung tại điểm $(0;-4)$ nên loại đáp án \\textbf{B}.\\\r\n\t\t$+$ Đồ thị hàm số đi qua điểm $(2;0)$ nên loại đáp án $y = -x^3+3x-4$, nhận đáp án $y = -x^3+3x^2-4$."
+}

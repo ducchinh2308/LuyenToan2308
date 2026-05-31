@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_680a29afcf",
+  "dapAn": "C",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_680a29afcf_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $SA \\perp (ABCD) \\Rightarrow SA \\perp BD$.\\\r\n\t\tLại có $BD \\perp AC$.\\\r\n\t\tSuy ra $BD \\perp (SAC)$, $BD \\subset (SBD) \\Rightarrow (SBD) \\perp (SAC)$.\\\r\n\t\tVậy ta có $[S;AC;B] = 90^\\circ$, $[S;BD;A] = \\widehat{SOA}$, $[S;BD;C] = \\widehat{SOC}$ và $(SAC) \\perp (SBD)$."
+}

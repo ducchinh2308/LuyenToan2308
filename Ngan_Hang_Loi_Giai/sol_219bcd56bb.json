@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_219bcd56bb",
+  "dapAn": "C",
+  "loiGiai": "Ta có: $f(x) = \\left(\\sin\\frac{x}{2} - \\cos\\frac{x}{2}\\right)^2 = 1 - \\sin x$.\\\r\n\t\tSuy ra $\\displaystyle \\int f(x)\\,\\mathrm{d}x = x + \\cos x + C$."
+}
