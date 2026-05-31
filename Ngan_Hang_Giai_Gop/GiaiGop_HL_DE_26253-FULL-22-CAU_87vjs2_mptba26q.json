@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-05-31T05:00:32.780Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_cb1fb8f1f8",
+      "dapAn": "A",
+      "loiGiaiHtml": "Quan sát đồ thị ta có đường tiệm cận đứng $x = -1$ nên ta loại hai đáp án $C, D$. \\\\\r\n\t\tĐồ thị hàm số cắt trục $Oy$ tại điểm có tung độ $y = 2$ nên ta chọn $A$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_d7e9992ed9",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = \\overrightarrow{AG} + \\overrightarrow{GB} + \\overrightarrow{AG} + \\overrightarrow{GC} + \\overrightarrow{AG} + \\overrightarrow{GD} = 3\\overrightarrow{AG} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = 3\\overrightarrow{AG}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_60f0e7e1c5",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\int (3^x + \\sin x)\\text{d}x = \\frac{3^x}{\\ln 3} - \\cos x + C$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_6850807b56",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $(ABA') \\equiv (ABB'A')$ mà $(ABB'A')$ và $(CB'D')$ có điểm $B'$ chung nên $D$ sai. \\\\"
+    },
+    {
+      "maBaoMat": "sol_4339de70d5",
+      "dapAn": "B",
+      "loiGiaiHtml": "Điều kiện $x > 1$. \\\\\r\n\t\tKhi đó ta có $\\displaystyle \\log_{\\frac{1}{2}} (x-1) \\ge -2 \\Leftrightarrow x-1 \\le 4 \\Leftrightarrow x \\le 5$. \\\\\r\n\t\tKết hợp với điều kiện ta có tập nghiệm là $S = (1; 5]$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_b6adc3f72f",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $u_{10} = u_1 + 9d \\Rightarrow u_1 = u_{10} - 9d = 25 - 9 \\cdot 3 = -2$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_ed0bd502ed",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\tan x = -1 \\Leftrightarrow \\tan x = \\tan\\left(-\\frac{\\pi}{4}\\right) \\Leftrightarrow x = -\\frac{\\pi}{4} + k\\pi, k \\in \\mathbb{Z}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_2f16ae3cfb",
+      "dapAn": "A",
+      "loiGiaiHtml": "Diện tích đáy $\\displaystyle S = \\frac{a^2\\sqrt{3}}{4}$. \\\\\r\n\t\tThể tích khối lăng trụ $\\displaystyle V = S \\cdot h = \\frac{a^2\\sqrt{3}}{4} \\cdot a\\sqrt{3} = \\frac{3a^3}{4}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_0ac7e6082a",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tổng số tháng: $n = 3 + 7 + 9 + 4 + 1 = 24$. \\\\\r\n\t\tVị trí của trung vị là: $\\displaystyle \\frac{n}{2} = \\frac{24}{2} = 12$. \\\\\r\n\t\tTa có bảng tần số tích lũy: \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_0ac7e6082a_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tNhóm chứa trung vị: $[25; 35)$ \\\\\r\n\t\tTrung vị: $\\displaystyle M_e = 25 + \\left( \\frac{12 - 10}{9} \\right) \\cdot 10 \\approx 27,222... \\approx 27,2$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_83238f6048",
+      "dapAn": "B",
+      "loiGiaiHtml": "Diện tích hình phẳng giới hạn bởi đồ thị hàm số $y = x^3 - 4x$, trục hoành và hai đường thẳng $x = 0, x = 3$ bằng $\\displaystyle S = \\int_0^3 |x^3 - 4x|\\text{d}x$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_f3a3e7ba37",
+      "dapAn": "C",
+      "loiGiaiHtml": "Trong không gian $Oxyz$, đường thẳng $d$ đi qua điểm $M(x_0; y_0; z_0)$ và có vectơ chỉ phương $\\vec{u} = (a; b; c)$ (với $a, b, c \\neq 0$) có phương trình chính tắc dạng: $\\displaystyle \\frac{x-x_0}{a} = \\frac{y-y_0}{b} = \\frac{z-z_0}{c}$. \\\\\r\n\t\tVậy phương trình của đường thẳng đi qua điểm $A(1; 2; -1)$ và có vectơ chỉ phương $\\vec{u} = (1; 3; 2)$ là $\\displaystyle \\frac{x-1}{1} = \\frac{y-2}{3} = \\frac{z+1}{2}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_16a2b0499c",
+      "dapAn": "D",
+      "loiGiaiHtml": "Vì mặt phẳng $(P)$ vuông góc với đường thẳng $d$ nên vectơ chỉ phương của đường thẳng $d$ chính là vectơ pháp tuyến của mặt phẳng $(P)$. Nghĩa là, $\\vec{n}_{(P)} = \\vec{u}_d = (2; 1; -3)$. \\\\\r\n\t\tMặt phẳng $(P)$ đi qua điểm $A(1; 0; 1)$ và có VTPT $\\vec{n}_{(P)} = (2; 1; -3)$ nên có phương trình là: $2(x-1) + 1(y-0) - 3(z-1) = 0 \\Leftrightarrow 2x + y - 3z + 1 = 0$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_7769e9ec62",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "Từ đề bài, ta có các dữ kiện xác suất sau: \\\\\r\n\t\t$\\bullet$ Xác suất người dùng tham gia từ hai khóa học trở lên: $P(A) = 68\\% = 0,68$. \\\\\r\n\t\t$\\bullet$ Xác suất người dùng tham gia khóa học tiếng Anh: $P(B) = 37\\% = 0,37$. \\\\\r\n\t\t$\\bullet$ Trong số những người tham gia từ hai khóa học trở lên, có $29\\%$ tham gia khóa học tiếng Anh: $P(B|A) = 29\\% = 0,29$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch $\\displaystyle P(\\overline{A}) = 1 - P(A) = 1 - 0,68 = 0,32$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch $P(B|A) = 0,29$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch $P(AB) = P(A) \\cdot P(B|A) = 0,68 \\cdot 0,29 = 0,1972$. \\\\\r\n\t\t\tDo $0,1972 < 0,2$ nên khẳng định $P(AB) > 0,2$ là Sai. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\t\\itemch Xác suất một người chỉ tham gia đúng một khóa học và không tham gia khóa học tiếng Anh là $P(\\overline{A}\\overline{B})$. \\\\\r\n\t\t\tTa có: $P(B) = P(AB) + P(\\overline{A}B) \\Rightarrow P(\\overline{A}B) = P(B) - P(AB) = 0,37 - 0,1972 = 0,1728$. \\\\\r\n\t\t\tMặt khác, tổng xác suất của nhóm người chỉ tham gia một khóa học ($\\overline{A}$) gồm hai nhóm con tách biệt: nhóm có học tiếng Anh ($\\overline{A}B$) và nhóm không học tiếng Anh ($\\overline{A}\\overline{B}$): \\\\\r\n\t\t\t$P(\\overline{A}) = P(\\overline{A}B) + P(\\overline{A}\\overline{B}) \\Rightarrow P(\\overline{A}\\overline{B}) = P(\\overline{A}) - P(\\overline{A}B) = 0,32 - 0,1728 = 0,1472$. \\\\\r\n\t\t\tVì $0,1472 < 0,15$ nên khẳng định này là Sai. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_5e18a59f7e",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Bán kính mặt cầu $(S)$ là $\\displaystyle R = \\frac{110}{2} = 55$. \\\\\r\n\t\t\tTa có $OI = OA - IA = 85 - 55 = 30$. \\\\\r\n\t\t\tTâm của mặt cầu $(S)$ nằm trên trục $Oz$ và cách gốc tọa độ một đoạn bằng $30$ nên có tọa độ $I(0;0;30)$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch Phương trình mặt cầu $(S)$ tâm $I(0;0;30)$ bán kính $R=55$ phải có dạng là $x^2 + y^2 + (z-30)^2 = 55^2$. Mệnh đề ghi sai biến $(y-30)^2$. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\t\\itemch Mặt sàn của tòa nhà là một hình tròn giao của $(S)$ và mặt phẳng $(Oxy)$ (tương ứng tại $z=0$). \\\\\r\n\t\t\tBán kính mặt sàn là $\\displaystyle r = \\sqrt{R^2 - OI^2} = \\sqrt{55^2 - 30^2} = 5\\sqrt{85}$. \\\\\r\n\t\t\tDiện tích mặt sàn là $\\displaystyle S = \\pi r^2 = \\pi \\cdot \\left(5\\sqrt{85}\\right)^2 \\approx 6676\\text{m}^2$. Mệnh đề ghi $5676\\text{m}^2$ là Sai. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\t\\itemch Thể tích toàn nhà (hình chỏm cầu chiều cao $h=85$) là: \\\\\r\n\t\t\t$\\displaystyle V = \\pi h^2 \\left(R - \\frac{h}{3}\\right) = \\pi \\cdot 85^2 \\cdot \\left(55 - \\frac{85}{3}\\right) \\approx 605000\\text{m}^3$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_753ebc66a6",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $P'(0) = 300 \\Leftrightarrow a \\cdot e^{0,1 \\cdot 0} + 150 \\cdot e^{-0,03 \\cdot 0} = 300 \\Leftrightarrow a + 150 = 300 \\Leftrightarrow a = 150$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch Ta có: $\\displaystyle P(t) = \\int P'(t)\\text{d}t = \\int \\left(150 \\cdot e^{0,1t} + 150 \\cdot e^{-0,03t}\\right)\\text{d}t = 1500 \\cdot e^{0,1t} - 5000 \\cdot e^{-0,03t} + C$. \\\\\r\n\t\t\tMà $P(0) = 200000 \\Leftrightarrow 1500 \\cdot e^{0,1 \\cdot 0} - 5000 \\cdot e^{-0,03 \\cdot 0} + C = 200000 \\Rightarrow C = 203500$. \\\\\r\n\t\t\tDo đó: $P(t) = 1500 \\cdot e^{0,1t} - 5000 \\cdot e^{-0,03t} + 203500$. Mệnh đề thiếu hằng số chuẩn. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\t\\itemch Ta có: $P(10) = 1500 \\cdot e^{0,1 \\cdot 10} - 5000 \\cdot e^{-0,03 \\cdot 10} + 203500 \\approx 203873 > 203800$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch Số cá thể trong quần thể $A$ sau 15 phút là: $P(15) = 1500 \\cdot e^{0,1 \\cdot 15} - 5000 \\cdot e^{-0,03 \\cdot 15} + 203500 \\approx 207034$. \\\\\r\n\t\t\tSau 5 phút (từ phút 10 đến phút 15), số cá thể quần thể $B$ tăng thêm là $\\displaystyle \\int_0^5 500 \\cdot e^{0,2t}\\text{d}t \\approx 4296$. \\\\\r\n\t\t\tGọi $B_0$ là số cá thể ban đầu của quần thể $B$ ở thời điểm bắt đầu cạnh tranh. \\\\\r\n\t\t\tĐể quần thể $A$ bị triệt tiêu hoàn toàn thì: $B_0 + 4296 = 207034 \\Rightarrow B_0 \\approx 202738 > 202730$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_6e79019de7",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Vì $x^2 + 4 \\neq 0, \\forall x \\in \\mathbb{R}$ nên TXĐ của hàm số $f(x)$ là $\\mathbb{R}$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $\\displaystyle \\lim_{x \\to \\pm\\infty} \\frac{2x - 3}{x^2 + 4} = \\lim_{x \\to \\pm\\infty} \\frac{\\displaystyle \\frac{2}{x} - \\frac{3}{x^2}}{\\displaystyle 1 + \\frac{4}{x^2}} = 0$. \\\\\r\n\t\t\tSuy ra đường thẳng $y = 0$ (trục hoành) là tiệm cận ngang của đồ thị. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $\\displaystyle f'(x) = \\frac{-2x^2 + 6x + 8}{(x^2 + 4)^2}$; $\\displaystyle f'(x) = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x = -1 \\\\ x = 4 \\end{array} \\right.$. \\\\\r\n\t\t\tBảng biến thiên: \\\\\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_6e79019de7_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tDựa vào BBT, hàm số đạt cực tiểu tại $x = -1$ và đạt cực đại tại $x = 4$. Mệnh đề khẳng định cực đại tại $x = -1$ là Sai. \\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\t\\itemch Từ BBT suy ra tập giá trị của hàm số là $\\displaystyle \\left[-1; \\frac{1}{4}\\right]$. \\\\\r\n\t\t\tDo đó $\\displaystyle a = -1, b = \\frac{1}{4} \\Rightarrow a + 4b = -1 + 4 \\cdot \\frac{1}{4} = 0$. \\\\\r\n\t\t\tVậy mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_949e32a315",
+      "dapAn": "3600",
+      "loiGiaiHtml": "Gọi $x, y$ (triệu đồng) lần lượt là số tiền chi cho quảng cáo trên Facebook và TikTok ($x, y \\ge 0$). \\\\\r\n\t\tTheo bài ra ta có hệ điều kiện ràng buộc: \\\\\r\n\t\t- Tổng ngân sách: $x + y \\le 80$ \\\\\r\n\t\t- Ngân sách cho Facebook: $20 \\le x \\le 50$ \\\\\r\n\t\t- Ngân sách cho TikTok tối thiểu $10$ triệu và không vượt quá Facebook: $10 \\le y \\le x$ \\\\\r\n\t\tHàm mục tiêu cần tối đa hóa (số khách hàng tiếp cận được, đơn vị: nghìn người): $F(x,y) = 40x + 50y$. \\\\\r\n\t\tMiền nghiệm của hệ bất phương trình là một đa giác với các đỉnh: $A(20; 10)$, $B(20; 20)$, $C(40; 40)$, $D(50; 30)$, $E(50; 10)$. \\\\\r\n\t\tTính giá trị của $F(x,y)$ tại các đỉnh này: \\\\\r\n\t\t- Tại $A(20; 10)$: $F = 40(20) + 50(10) = 1300$ \\\\\r\n\t\t- Tại $B(20; 20)$: $F = 40(20) + 50(20) = 1800$ \\\\\r\n\t\t- Tại $C(40; 40)$: $F = 40(40) + 50(40) = 3600$ \\\\\r\n\t\t- Tại $D(50; 30)$: $F = 40(50) + 50(30) = 3500$ \\\\\r\n\t\t- Tại $E(50; 10)$: $F = 40(50) + 50(10) = 2500$ \\\\\r\n\t\tGiá trị lớn nhất là $3600$ đạt được tại $x = 40, y = 40$. \\\\\r\n\t\tKết luận: Số khách hàng lớn nhất cửa hàng có thể tiếp cận là $3600$ (nghìn khách hàng). \\\\"
+    },
+    {
+      "maBaoMat": "sol_ea49662638",
+      "dapAn": "212",
+      "loiGiaiHtml": "Hàm số tổng chi phí $\\displaystyle f(x) = \\frac{ax^2+bx+c}{x+e}$. \\\\\r\n\t\tThực hiện phép chia đa thức ta có: \\\\\r\n\t\t$\\displaystyle f(x) = ax + (b-ae) + \\frac{c - ae^2 + be}{x+e}$ \\\\\r\n\t\tĐồ thị hàm số có đường tiệm cận đứng là $x = -e$ và tiệm cận xiên là $y = ax + b - ae$. \\\\\r\n\t\tTâm đối xứng $I$ là giao điểm của hai tiệm cận nên $I(-e; -2ae + b)$. \\\\\r\n\t\tTheo giả thiết, đồ thị có tâm đối xứng $\\displaystyle I\\left(-100; \\frac{2000}{3}\\right)$ nên ta có: \\\\\r\n\t\t$-e = -100 \\Rightarrow e = 100$ \\\\\r\n\t\t$-200a + b = \\displaystyle \\frac{2000}{3} \\quad (1)$ \\\\\r\n\t\tTiệm cận xiên đi qua điểm $B(300; 2000)$ nên ta thay tọa độ $B$ vào phương trình tiệm cận xiên: \\\\\r\n\t\t$2000 = a(300) + b - 100a \\Rightarrow 200a + b = 2000 \\quad (2)$ \\\\\r\n\t\tCộng $(1)$ và $(2)$ theo vế ta được: $\\displaystyle 2b = \\frac{8000}{3} \\Rightarrow b = \\frac{4000}{3}$. \\\\\r\n\t\tThay $b$ vào $(2)$ ta được: $\\displaystyle 200a + \\frac{4000}{3} = 2000 \\Rightarrow 200a = \\frac{2000}{3} \\Rightarrow a = \\frac{10}{3}$. \\\\\r\n\t\tTa thu được hàm chi phí: $\\displaystyle f(x) = \\frac{\\displaystyle \\frac{10}{3}x^2 + \\frac{4000}{3}x + c}{x + 100}$. \\\\\r\n\t\tLợi nhuận $\\Pi(x)$ được tính bằng Doanh thu trừ Chi phí: $\\Pi(x) = R(x) - f(x) = 0,1x^2 + 20x - f(x)$. \\\\\r\n\t\tKhi bán $200$ sản phẩm, lợi nhuận là $5250$ USD, tức là $\\Pi(200) = 5250$. \\\\\r\n\t\tMặt khác, doanh thu tại $x = 200$ là: $R(200) = 0,1(200)^2 + 20(200) = 4000 + 4000 = 8000$. \\\\\r\n\t\tSuy ra chi phí tại $x = 200$ là: $f(200) = R(200) - \\Pi(200) = 8000 - 5250 = 2750$. \\\\\r\n\t\tThay $x = 200$ vào hàm $f(x)$ ta có: \\\\\r\n\t\t$\\displaystyle f(200) = \\frac{\\displaystyle \\frac{10}{3}(200)^2 + \\frac{4000}{3}(200) + c}{200 + 100} = \\frac{\\displaystyle \\frac{400000}{3} + \\frac{800000}{3} + c}{300} = \\frac{400000 + c}{300}$. \\\\\r\n\t\tTừ đó: $\\displaystyle \\frac{400000 + c}{300} = 2750 \\Rightarrow 400000 + c = 825000 \\Rightarrow c = 425000$. \\\\\r\n\t\tVậy hàm tổng chi phí là: $\\displaystyle f(x) = \\frac{10x^2 + 4000x + 1275000}{3(x + 100)} = \\frac{10}{3} \\left( x + 300 + \\frac{97500}{x + 100} \\right)$. \\\\\r\n\t\tĐể tìm $x > 0$ sao cho $f(x)$ đạt giá trị nhỏ nhất, ta áp dụng bất đẳng thức AM-GM cho hai số dương $(x + 100)$ và $\\displaystyle \\frac{97500}{x + 100}$: \\\\\r\n\t\t$\\displaystyle (x + 100) + \\frac{97500}{x + 100} \\ge 2\\sqrt{97500} \\approx 624,5$. \\\\\r\n\t\tDấu \"$=$\" xảy ra khi $\\displaystyle (x + 100)^2 = 97500 \\Rightarrow x + 100 = \\sqrt{97500} \\approx 312,25 \\Rightarrow x \\approx 212,25$. \\\\\r\n\t\tVì số sản phẩm $x \\in \\mathbb{N}$, ta tính thử hàm chi phí tại $2$ giá trị nguyên gần nhất là $x = 212$ và $x = 213$: \\\\\r\n\t\t- Tại $x = 212$: $f(212) \\approx 2748,333$ USD \\\\\r\n\t\t- Tại $x = 213$: $f(213) \\approx 2748,338$ USD \\\\\r\n\t\tDo $f(212) < f(213)$, chi phí đạt giá trị nhỏ nhất tại $x = 212$. \\\\\r\n\t\tKết luận: Doanh nghiệp cần sản xuất $212$ sản phẩm để tổng chi phí là thấp nhất. \\\\"
+    },
+    {
+      "maBaoMat": "sol_4a862b5b3b",
+      "dapAn": "3059",
+      "loiGiaiHtml": "Xếp $10$ số được chọn theo thứ tự tăng dần: $x_1 < x_2 < \\dots < x_{10}$. \\\\\r\n\t\tDo quy tắc xếp số (hàng dưới lớn hơn hàng trên, trái nhỏ hơn phải), vị trí các ô biên phải cố định là: \\\\\r\n\t\t+) Ô hàng 1: $x_1$ \\\\\r\n\t\t+) Ô ngoài phải hàng 2: $x_3$ \\\\\r\n\t\t+) Ô ngoài phải hàng 3: $x_6$ \\\\\r\n\t\t+) Ô ngoài phải hàng 4: $x_{10}$ \\\\\r\n\t\tTheo giả thiết, 4 ô này lập thành cấp số cộng công sai $d \\in \\mathbb{N}^*$: \\\\\r\n\t\t$x_3 = x_1 + d, \\quad x_6 = x_1 + 2d, \\quad x_{10} = x_1 + 3d$ \\\\\r\n\t\tVì giữa các vị trí luôn có các số nguyên xen kẽ, ta có điều kiện: \\\\\r\n\t\t+) Giữa $x_1$ và $x_3$ có $x_2 \\Rightarrow x_3 - x_1 \\ge 2 \\Rightarrow d \\ge 2$ \\\\\r\n\t\t+) Giữa $x_3$ và $x_6$ có $x_4, x_5 \\Rightarrow x_6 - x_3 \\ge 3 \\Rightarrow d \\ge 3$ \\\\\r\n\t\t+) Giữa $x_6$ và $x_{10}$ có $x_7, x_8, x_9 \\Rightarrow x_{10} - x_6 \\ge 4 \\Rightarrow d \\ge 4$ \\\\\r\n\t\tSuy ra điều kiện công sai: $d \\ge 4$. \\\\\r\n\t\tVới mỗi cặp $(x_1; d)$, số cách chọn các phần tử xen kẽ còn lại là: \\\\\r\n\t\t+) Chọn $x_2$ từ $(d - 1)$ số nằm giữa $x_1$ và $x_3$: Có $C_{d-1}^1$ cách. \\\\\r\n\t\t+) Chọn $x_4, x_5$ từ $(d - 1)$ số nằm giữa $x_3$ và $x_6$: Có $C_{d-1}^2$ cách. \\\\\r\n\t\t+) Chọn $x_7, x_8, x_9$ từ $(d - 1)$ số nằm giữa $x_6$ và $x_{10}$: Có $C_{d-1}^3$ cách. \\\\\r\n\t\t$\\Rightarrow$ Số cách chọn các phần tử còn lại ứng với mỗi $d$ là: $f(d) = (d-1) \\cdot C_{d-1}^2 \\cdot C_{d-1}^3$. \\\\\r\n\t\tDo các số thuộc tập $\\{1; 2; \\dots; 26\\}$ nên $x_{10} \\le 26 \\Rightarrow x_1 + 3d \\le 26 \\Rightarrow x_1 \\le 26 - 3d$. \\\\\r\n\t\tVì $x_1 \\ge 1 \\Rightarrow 1 \\le x_1 \\le 26 - 3d$. Do đó có $(26 - 3d)$ cách chọn $x_1$. \\\\\r\n\t\tVì $26 - 3d \\ge 1 \\Rightarrow d \\le 8$. Mà $d \\ge 4 \\Rightarrow d \\in \\{4; 5; 6; 7; 8\\}$. \\\\\r\n\t\tTa lập bảng tính tổng số cách chọn $T$: \\\\\r\n\t\t- Với $d=4$: có $14$ cách chọn $x_1$, số cách chọn các phần tử còn lại là $3 \\cdot C_3^2 \\cdot C_3^3 = 9 \\Rightarrow 14 \\cdot 9 = 126$. \\\\\r\n\t\t- Với $d=5$: có $11$ cách chọn $x_1$, số cách chọn các phần tử còn lại là $4 \\cdot C_4^2 \\cdot C_4^3 = 96 \\Rightarrow 11 \\cdot 96 = 1056$. \\\\\r\n\t\t- Với $d=6$: có $8$ cách chọn $x_1$, số cách chọn các phần tử còn lại là $5 \\cdot C_5^2 \\cdot C_5^3 = 500 \\Rightarrow 8 \\cdot 500 = 4000$. \\\\\r\n\t\t- Với $d=7$: có $5$ cách chọn $x_1$, số cách chọn các phần tử còn lại là $6 \\cdot C_6^2 \\cdot C_6^3 = 1800 \\Rightarrow 5 \\cdot 1800 = 9000$. \\\\\r\n\t\t- Với $d=8$: có $2$ cách chọn $x_1$, số cách chọn các phần tử còn lại là $7 \\cdot C_7^2 \\cdot C_7^3 = 5145 \\Rightarrow 2 \\cdot 5145 = 10290$. \\\\\r\n\t\tTổng số cách chọn là: $T = 126 + 1056 + 4000 + 9000 + 10290 = 24472$. \\\\\r\n\t\tVậy giá trị cần tìm là: $\\displaystyle \\frac{T}{8} = \\frac{24472}{8} = 3059$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_0c3b4e8747",
+      "dapAn": "0,95",
+      "loiGiaiHtml": "Máy hoạt động khi rơi vào 1 trong 3 trường hợp xung khắc sau: \\\\\r\n\t\tĐộng cơ $A$ tốt, động cơ $B$ hỏng: $P_1 = P(A) \\cdot P(\\overline{B}) = 0,8 \\cdot 0,25 = 0,2$. \\\\\r\n\t\tĐộng cơ $A$ hỏng, động cơ $B$ tốt: $P_2 = P(\\overline{A}) \\cdot P(B) = 0,2 \\cdot 0,75 = 0,15$. \\\\\r\n\t\tCả hai động cơ $A$ và $B$ đều tốt: $P_3 = P(A) \\cdot P(B) = 0,8 \\cdot 0,75 = 0,6$. \\\\\r\n\t\tXác suất để máy hoạt động là tổng xác suất của các trường hợp trên: \\\\\r\n\t\t$P(X) = P_1 + P_2 + P_3 = 0,2 + 0,15 + 0,6 = 0,95$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_7c23f08b80",
+      "dapAn": "2,12",
+      "loiGiaiHtml": "Cabin di chuyển từ điểm $A(10; 3; 0)$ theo hướng của vectơ chỉ phương $\\vec{u} = (2; -2; 0)$. Phương trình tham số của đường thẳng quỹ đạo này là: $\\begin{cases} x = 10 + 2t \\\\ y = 3 - 2t \\\\ z = 0 \\end{cases}$. \\\\\r\n\t\tTheo giả thiết, cabin đi qua điểm $B$ có hoành độ $x_B = 9010$ \\\\\r\n\t\tnên ta có $10 + 2t = 9010 \\Rightarrow 2t = 9000 \\Rightarrow t = 4500$ suy ra $y_B = 3 - 2(4500) = -8997$ và $z_B = 0$. \\\\\r\n\t\tVậy điểm $B$ có tọa độ là $(9010; -8997; 0)$. \\\\\r\n\t\t$AB = \\sqrt{9000^2 + (-9000)^2} = \\sqrt{2 \\cdot 9000^2} = 9000\\sqrt{2}$ (mét). \\\\\r\n\t\tVới vận tốc không đổi $v = 100\\text{ m/s}$, thời gian chuyển động (tính bằng giây) là: \\\\\r\n\t\t$\\displaystyle t_{\\text{giây}} = \\frac{AB}{v} = \\frac{9000\\sqrt{2}}{100} = 90\\sqrt{2} \\text{ (giây)} \\approx 2,12132 \\text{ (phút)}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_74c727d950",
+      "dapAn": "0,77",
+      "loiGiaiHtml": "Vì $ABCD$ là hình thoi cạnh bằng $2$ và có $\\widehat{BAD} = 60^\\circ$ nên tam giác $ABD$ là tam giác đều cạnh $2$. \\\\\r\n\t\tDo đó, đường chéo $BD = 2$ và đường chéo $\\displaystyle AC = 2 \\cdot AO = 2 \\cdot \\frac{2\\sqrt{3}}{2} = 2\\sqrt{3}$. \\\\\r\n\t\tTa có $O$ là trung điểm của $AC$ và $BD$, đồng thời $AC \\perp BD$ tại $O$. \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_74c727d950_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $BD \\perp AC$ (tính chất hình thoi). \\\\\r\n\t\t$BD \\perp SA$ (do $SA \\perp (ABCD)$). \\\\\r\n\t\tTừ đó suy ra $BD \\perp (SAC)$. \\\\\r\n\t\tTrong mặt phẳng $(SAC)$, kẻ $OH \\perp SC$ tại $H$. \\\\\r\n\t\tVì $BD \\perp (SAC)$ và $OH \\subset (SAC)$ nên $BD \\perp OH$. \\\\\r\n\t\tVậy $OH$ là đoạn vuông góc chung của $BD$ và $SC$. Do đó $d(BD, SC) = OH$. \\\\\r\n\t\tXét tam giác $SAC$ vuông tại $A$ có $SA = \\sqrt{3}$ và $AC = 2\\sqrt{3}$. \\\\\r\n\t\tCạnh huyền $SC = \\sqrt{SA^2 + AC^2} = \\sqrt{3 + 12} = \\sqrt{15}$. \\\\\r\n\t\tSử dụng tính chất tam giác đồng dạng $\\Delta OHC \\sim \\Delta SAC$ (hoặc hệ thức lượng): \\\\\r\n\t\t$\\displaystyle \\frac{OH}{SA} = \\frac{OC}{SC} \\Rightarrow OH = \\frac{SA \\cdot OC}{SC}$. \\\\\r\n\t\tThay số với $\\displaystyle OC = \\frac{AC}{2} = \\sqrt{3}$: \\\\\r\n\t\t$\\displaystyle OH = \\frac{\\sqrt{3} \\cdot \\sqrt{3}}{\\sqrt{15}} = \\frac{3}{\\sqrt{15}} = \\frac{\\sqrt{15}}{5} \\approx 0,77$. \\\\"
+    }
+  ]
+}
