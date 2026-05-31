@@ -1,0 +1,203 @@
+{
+  "maDe": "26250-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26250 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_8578c06622",
+      "ma_goc": "2605-1440",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm thi của các thí sinh tham gia kỳ thi HSG cấp trường môn toán như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8578c06622_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTrung vị của mẫu số liệu trên",
+      "paA": "$6,6$",
+      "paB": "$6,4$",
+      "paC": "$6,3$",
+      "paD": "$6,5$"
+    },
+    {
+      "maCau": "q_a9d4ba7651",
+      "ma_goc": "2605-1441",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Đường thẳng $AB$ song song với mặt phẳng nào sau đây?",
+      "paA": "$(CC'A'A)$",
+      "paB": "$(AA'D'D)$",
+      "paC": "$(A'B'C'D')$",
+      "paD": "$(BB'C'C)$"
+    },
+    {
+      "maCau": "q_aa1be8c481",
+      "ma_goc": "2605-1442",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi điểm $G$ là trọng tâm tam giác $BCD$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} - \\vec{AD})$",
+      "paB": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paC": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paD": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC})$"
+    },
+    {
+      "maCau": "q_922340ae2c",
+      "ma_goc": "2605-1443",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y = \\displaystyle\\frac{2x+1}{3x-1}$ là đường thẳng có phương trình",
+      "paA": "$y = -\\displaystyle\\frac{1}{3}$",
+      "paB": "$y = \\displaystyle\\frac{2}{3}$",
+      "paC": "$y = -\\displaystyle\\frac{2}{3}$",
+      "paD": "$y = \\displaystyle\\frac{1}{3}$"
+    },
+    {
+      "maCau": "q_1bbd3c4059",
+      "ma_goc": "2605-1444",
+      "kieuCau": "TN",
+      "cauDan": "Trong mặt phẳng $Oxy$, diện tích $S$ của hình phẳng giới hạn bởi đồ thị của hàm số $y = x - 3$, trục hoành và hai đường thẳng $x = 1$, $x = 4$ được xác định bằng công thức",
+      "paA": "$S = \\displaystyle\\left| \\int\\limits_1^4 (x - 3) \\,\\mathrm{d}x \\right|$",
+      "paB": "$S = \\displaystyle\\int\\limits_1^4 |x - 3| \\,\\mathrm{d}x$",
+      "paC": "$S = \\pi \\displaystyle\\int\\limits_1^4 |x - 3| \\,\\mathrm{d}x$",
+      "paD": "$S = \\pi \\displaystyle\\int\\limits_1^4 (x - 3)^2 \\,\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_241e34305b",
+      "ma_goc": "2605-1445",
+      "kieuCau": "TN",
+      "cauDan": "Thể tích của khối chóp cụt đều có diện tích đáy lớn bằng $9$, diện tích đáy nhỏ bằng $4$ và chiều cao bằng $3$ là",
+      "paA": "$19$",
+      "paB": "$\\displaystyle\\frac{57}{2}$",
+      "paC": "$\\displaystyle\\frac{19}{3}$",
+      "paD": "$57$"
+    },
+    {
+      "maCau": "q_60f2536a16",
+      "ma_goc": "2605-1446",
+      "kieuCau": "TN",
+      "cauDan": "Trong hệ trục tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ có tọa độ là",
+      "paA": "$(2;-2;0)$",
+      "paB": "$(2;0;1)$",
+      "paC": "$(0;-2;1)$",
+      "paD": "$(0;0;1)$"
+    },
+    {
+      "maCau": "q_7cba76f77e",
+      "ma_goc": "2605-1447",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = e^x + x$ là",
+      "paA": "$\\displaystyle\\frac{1}{x+1}e^x + \\displaystyle\\frac{1}{2}x^2 + C$",
+      "paB": "$e^x + 1 + C$",
+      "paC": "$e^x + x^2 + C$",
+      "paD": "$e^x + \\displaystyle\\frac{1}{2}x^2 + C$"
+    },
+    {
+      "maCau": "q_84424b7981",
+      "ma_goc": "2605-1448",
+      "kieuCau": "TN",
+      "cauDan": "Cho dãy số $u_n = \\displaystyle\\frac{1}{n+1}, \\forall n \\in \\mathbb{N}^*$. Giá trị của $u_3$ bằng",
+      "paA": "$\\displaystyle\\frac{1}{4}$",
+      "paB": "$\\displaystyle\\frac{1}{3}$",
+      "paC": "$\\displaystyle\\frac{1}{2}$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_fe3909996b",
+      "ma_goc": "2605-1449",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = 0$ là",
+      "paA": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$S = \\{ k2\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paC": "$S = \\{ k\\pi \\mid k \\in \\mathbb{Z} \\}$",
+      "paD": "$S = \\left\\{ \\displaystyle\\frac{\\pi}{2} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_b4bb7c72e6",
+      "ma_goc": "2605-1450",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log(x-2) > 0$ là",
+      "paA": "$(-\\infty; 3)$",
+      "paB": "$(2; 3)$",
+      "paC": "$(3; +\\infty)$",
+      "paD": "$(12; +\\infty)$"
+    },
+    {
+      "maCau": "q_1643c3612a",
+      "ma_goc": "2605-1451",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(3;0;0)$, $B(0;1;0)$, $C(0;0;-2)$. Mặt phẳng $(ABC)$ có phương trình là:",
+      "paA": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{-1} + \\displaystyle\\frac{z}{2} = 1$",
+      "paB": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{-2} = 1$",
+      "paC": "$\\displaystyle\\frac{x}{3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{2} = 1$",
+      "paD": "$\\displaystyle\\frac{x}{-3} + \\displaystyle\\frac{y}{1} + \\displaystyle\\frac{z}{2} = 1$"
+    },
+    {
+      "maCau": "q_343ead3b44",
+      "ma_goc": "2605-1452",
+      "kieuCau": "DS",
+      "cauDan": "Một kho hàng có $85\\%$ sản phẩm loại I và $15\\%$ sản phẩm loại II, trong đó có $1\\%$ sản phẩm loại I bị hỏng, $4\\%$ sản phẩm loại II bị hỏng. Các sản phẩm có kích thước và hình dạng như nhau. Một khách hàng chọn ngẫu nhiên $1$ sản phẩm.\\\\\r\n\tXét các biến cố:\\\\\r\n\t$A$: “Khách hàng chọn được sản phẩm loại I”;\\\\\r\n\t$B$: “Khách hàng chọn được sản phẩm không bị hỏng”.\\\\\r\n\tXét tính đúng sai của các khẳng định sau:",
+      "paA": "$P(A\\mid B)=0,95$",
+      "paB": "$P(B)=0,9855$",
+      "paC": "$P(B\\mid A)=0,99$",
+      "paD": "$P(A)=0,85$"
+    },
+    {
+      "maCau": "q_c4657b5587",
+      "ma_goc": "2605-1453",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{ax^2 + bx + c}{x + m}$ có đồ thị như hình vẽ bên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c4657b5587_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Gọi $A$, $B$ là hai điểm cực trị của hàm số đã cho. Diện tích tam giác $OAB$ bằng $4$ đơn vị diện tích (với $O$ là gốc tọa độ)",
+      "paB": "Đồ thị của hàm số đã cho có tiệm cận xiên $y = x - 1$",
+      "paC": "Hàm số đã cho nghịch biến trên khoảng $(-2; -1)$",
+      "paD": "$a + b + c + m = 6$"
+    },
+    {
+      "maCau": "q_5d6ff68263",
+      "ma_goc": "2605-1454",
+      "kieuCau": "DS",
+      "cauDan": "Trong Vật lí, chu kì bán rã $T$ (đơn vị thời gian) của một chất phóng xạ là thời gian để một nửa lượng chất phóng xạ đó phân rã và biến đổi thành chất khác. Giả sử tốc độ phân rã của một chất phóng xạ được cho bởi $N'(t)=-\\lambda N_0 e^{-\\lambda t}$, trong đó $N_0$ là lượng chất phóng xạ ban đầu tại $t=0$ và $\\lambda>0$ là hằng số (hằng số phân rã).",
+      "paA": "$N(t)=N_0 \\cdot e^{-\\lambda t}$",
+      "paB": "Sau $3T$ lượng chất phóng xạ còn lại $25\\%$",
+      "paC": "Sau $T$ (năm) lượng chất phóng xạ còn lại một nửa so với lượng chất phóng xạ ban đầu",
+      "paD": "Hằng số phân rã tính theo công thức $\\lambda=\\displaystyle \\frac{T}{\\ln 2}$"
+    },
+    {
+      "maCau": "q_4f0aba3938",
+      "ma_goc": "2605-1455",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho các điểm $A(6;1;0)$, $B(-1;3;2)$ và $C(1;-1;1)$.",
+      "paA": "Phương trình mặt phẳng $(ABC)$ là $2x-y+8z-11=0$",
+      "paB": "Xét điểm $M$ thuộc mặt phẳng $(Oyz)$ sao cho $\\left| \\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} \\right| = 3\\sqrt{5}$. Giá trị lớn nhất của độ dài đoạn thẳng $AM$ bằng $\\sqrt{37}$",
+      "paC": "Đường thẳng $d$ đi qua $C$ và vuông góc với mặt phẳng $(ABC)$ có phương trình là $\\displaystyle \\frac{x+1}{2} = \\frac{y-1}{-1} = \\frac{z+1}{8}$",
+      "paD": "Mặt cầu đường kính $BC$ có phương trình $x^2 + (y-1)^2 + \\left(z-\\frac{3}{2}\\right)^2 = 21$"
+    },
+    {
+      "maCau": "q_d016edc027",
+      "ma_goc": "2605-1456",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn An có một bảng chữ nhật gồm $6$ hình vuông đơn vị, cố định không xoay như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d016edc027_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBạn An muốn dùng $3$ màu để tô tất cả các cạnh của các hình vuông đơn vị, mỗi cạnh tô một lần sao cho mỗi hình vuông đơn vị được tô bởi đúng $2$ màu, trong đó mỗi màu tô đúng $2$ cạnh. Biết số cách tô màu bảng của bạn An là $T$, tính $\\displaystyle \\frac{T}{4}$."
+    },
+    {
+      "maCau": "q_1a9fc36058",
+      "ma_goc": "2605-1457",
+      "kieuCau": "TLN",
+      "cauDan": "Để chuẩn bị quảng bá sản phẩm, người ta trang trí tấm pano dạng parabol như hình vẽ:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1a9fc36058_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết $OS=8\\,\\text{m}$, $AB=6\\,\\text{m}$ với $O$ là trung điểm của $AB$ và $S$ là đỉnh của parabol. Tấm pano được chia thành ba phần để trang trí với mức chi phí khác nhau: phần trên là phần kẻ sọc giá $100.000$ đồng$/\\text{m}^2$, phần giữa là hình quạt tâm $O$ bán kính $3\\,\\text{m}$ được tô đậm giá $200.000$ đồng$/\\text{m}^2$, phần còn lại giá $150.000$ đồng$/\\text{m}^2$. Tính tổng chi phí để trang trí tấm pano (đơn vị triệu đồng, kết quả làm tròn đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_a5fd4f42bd",
+      "ma_goc": "2605-1458",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi với $\\widehat{ABC} = 60^\\circ$ và $AB = 2$. Biết rằng hình chiếu vuông góc của $S$ trên mặt phẳng $(ABCD)$ là trọng tâm $H$ của tam giác $ABC$ và $SH = \\sqrt{3}$. Khoảng cách giữa hai đường thẳng $AC$ và $SD$ bằng bao nhiêu \\textit{(không làm tròn kết quả của các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)}?"
+    },
+    {
+      "maCau": "q_1963a989b0",
+      "ma_goc": "2605-1459",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ trục tọa độ cho trước, đơn vị đo trên các trục là kilomet, một ra đa phát hiện một máy bay chiến đấu di chuyển với vận tốc và hướng không đổi từ điểm $M(1000; 600; 14)$ đến điểm $N$ trong $30$ phút. Nếu đến $N$ máy bay tiếp tục giữ nguyên vận tốc và hướng bay thì tọa độ của máy bay sau $10$ phút tiếp theo là $Q(1400; 800; 16)$. Biết một khẩu pháo ở tọa độ vị trí điểm $E(100; 150; 9,5)$ được bắn ra với vận tốc không đổi gấp $5$ lần vận tốc máy bay nhằm bắn trúng máy bay tại vị trí $N$. Sau bao nhiêu phút kể từ khi máy bay bay từ $M$ thì người điều khiển pháo phải bắn?"
+    },
+    {
+      "maCau": "q_9b514fd8e2",
+      "ma_goc": "2605-1460",
+      "kieuCau": "TLN",
+      "cauDan": "Một cửa hàng kinh doanh máy lọc nước Karofi. Hàm cầu biểu thị liên hệ giữa giá bán của một chiếc máy với số lượng máy bán được trong một tháng là hàm bậc nhất. Khi giá bán là $5$ triệu đồng một chiếc thì một tháng bán được $100$ chiếc, khi giá bán là $4,5$ triệu đồng một chiếc thì một tháng bán được $120$ chiếc. Biết chi phí trung bình cho một chiếc máy khi bán được $x$ chiếc là $\\displaystyle \\frac{3x+50}{x}$. Hỏi cửa hàng cần bán với giá bao nhiêu triệu đồng một chiếc máy để lợi nhuận thu được trong một tháng lớn nhất?"
+    },
+    {
+      "maCau": "q_ad8e8b9595",
+      "ma_goc": "2605-1461",
+      "kieuCau": "TLN",
+      "cauDan": "Tỉ lệ lạm phát là tỉ lệ phần trăm biểu thị mức tăng chung của giá hàng hóa và dịch vụ trong một khoảng thời gian (thường tính theo năm). Nếu tỉ lệ lạm phát của năm sau so với năm trước là $i$ thì $A$ đồng ở năm trước tương đương với $P = A(1+i)$ đồng ở năm sau. Ông An gửi vào ngân hàng $100$ triệu đồng với lãi suất $6\\%$/năm, theo hình thức lãi kép, tính lãi mỗi năm một lần (tức là lãi của năm trước được nhập vào vốn để tính lãi cho năm sau). Sau $2$ năm, ông An nhận cả vốn và lãi. Giả sử trong $2$ năm đó, tỉ lệ lạm phát ổn định $4\\%$/năm. Nếu quy đổi theo mức giá tại thời điểm gửi tiền thì số tiền ông An nhận được sau $2$ năm tương đương bao nhiêu triệu đồng (làm tròn kết quả đến hàng đơn vị)?"
+    }
+  ]
+}

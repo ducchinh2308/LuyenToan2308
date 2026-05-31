@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6977346532",
+  "dapAn": "3888",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_6977346532_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t- Đầu tiên ta tô ô vuông số $1$ trước:\\\\\r\n\t\tCó $C_3^2$ cách chọn màu và $C_4^2$ cách chọn hai cạnh để tô, nên số cách tô ô số $1$ thỏa mãn yêu cầu của đề là $C_3^2 \\cdot C_4^2$.\\\\\r\n\t\t- Tô $1$ ô vuông đánh số $2$:\\\\\r\n\t\tVì đã có một cạnh được tô nên có $2$ cách lựa chọn màu và có $3$ cách lựa chọn cạnh để tô.\\\\\r\n\t\tSố cách tô màu một ô số $2$ là $2 \\cdot 3 = 6$.\\\\\r\n\t\t- Tô $1$ ô vuông đánh số $3$:\\\\\r\n\t\tTH1: Nếu hai cạnh tô sẵn cùng màu thì có hai cách chọn màu để tô và có duy nhất một cách chọn cạnh.\\\\\r\n\t\tTH2: Nếu hai cạnh tô sẵn có hai màu khác nhau thì có $2$ cách chọn cạnh để tô.\\\\\r\n\t\tSuy ra trong mọi trường hợp, số cách tô màu một ô số $3$ là $2$.\\\\\r\n\t\tSố cách tô thỏa mãn yêu cầu của bài toán là $T = C_3^2 \\cdot C_4^2 \\cdot 6^3 \\cdot 2^2 = 15552$.\\\\\r\n\t\tVậy $\\displaystyle \\frac{T}{4} = 3888$."
+}
