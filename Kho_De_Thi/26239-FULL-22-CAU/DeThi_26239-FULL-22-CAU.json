@@ -1,0 +1,203 @@
+{
+  "maDe": "26239-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26239 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_62ec61030b",
+      "ma_goc": "2605-1048",
+      "kieuCau": "TN",
+      "cauDan": "Cho một cấp số cộng có số hạng đầu là $u_1 = 3$, công sai $d = 2$. Tổng $S_n$ của $n$ ($n \\ge 1$) số hạng đầu tiên của cấp số cộng là:",
+      "paA": "$S_n = n^2 + 2n$",
+      "paB": "$S_n = n^2 + n$",
+      "paC": "$S_n = \\displaystyle \\frac{2n^2 + n}{2}$",
+      "paD": "$S_n = \\displaystyle \\frac{3n^2 + n}{2}$"
+    },
+    {
+      "maCau": "q_663297a625",
+      "ma_goc": "2605-1049",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\displaystyle \\int e \\,dx = \\displaystyle \\frac{e^x}{2} + C$",
+      "paB": "$\\displaystyle \\int e \\,dx = e^x + C$",
+      "paC": "$\\displaystyle \\int e \\,dx = e + C$",
+      "paD": "$\\displaystyle \\int e \\,dx = ex + C$"
+    },
+    {
+      "maCau": "q_5bce153efc",
+      "ma_goc": "2605-1050",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận đứng của đồ thị hàm số $y = \\displaystyle \\frac{2x-1}{x+3}$ là:",
+      "paA": "$x = -3$",
+      "paB": "$y = 2$",
+      "paC": "$y = -2$",
+      "paD": "$x = 3$"
+    },
+    {
+      "maCau": "q_64aa88c01b",
+      "ma_goc": "2605-1051",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Anh thống kê lại chiều cao (đơn vị cm) của các bạn học sinh nữ lớp 12C ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_64aa88c01b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn về chiều cao của mẫu số liệu (làm tròn đến hàng phần trăm) là:",
+      "paA": "$5,96$",
+      "paB": "$6,95$",
+      "paC": "$5,69$",
+      "paD": "$6,59$"
+    },
+    {
+      "maCau": "q_22f9f76d6a",
+      "ma_goc": "2605-1052",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $D$ là hình phẳng giới hạn bởi đồ thị hàm số $y = x^4$, trục hoành và hai đường thẳng $x = 0$, $x = 1$. Quay $D$ quanh trục $Ox$ ta được khối tròn xoay có thể tích bằng:",
+      "paA": "$\\displaystyle \\frac{\\pi}{9}$",
+      "paB": "$\\displaystyle \\frac{\\pi}{5}$",
+      "paC": "$\\displaystyle \\frac{1}{9}$",
+      "paD": "$\\displaystyle \\frac{1}{5}$"
+    },
+    {
+      "maCau": "q_3e099f84a1",
+      "ma_goc": "2605-1053",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $(d)\\colon \\displaystyle \\frac{x-1}{3} = \\displaystyle \\frac{2y+2}{2} = \\displaystyle \\frac{z-1}{2}$. Vectơ nào trong các vectơ có tọa độ sau đây là vectơ chỉ phương của đường thẳng $(d)$?",
+      "paA": "$(3; 2; -2)$",
+      "paB": "$(3; 1; 2)$",
+      "paC": "$(-3; -2; 2)$",
+      "paD": "$(3; 2; 2)$"
+    },
+    {
+      "maCau": "q_582d7b1db7",
+      "ma_goc": "2605-1054",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình mặt phẳng đi qua ba điểm $A(1;0;0)$, $B(0;2;0)$, $C(0;0;-1)$ là:",
+      "paA": "$2x + y + z - 2 = 0$",
+      "paB": "$x - y - z + 1 = 0$",
+      "paC": "$2x + y - 2z - 2 = 0$",
+      "paD": "$x + y + z - 1 = 0$"
+    },
+    {
+      "maCau": "q_b28a23c347",
+      "ma_goc": "2605-1055",
+      "kieuCau": "TN",
+      "cauDan": "Số nghiệm nguyên của bất phương trình $\\log_{\\frac{1}{2}}(2x-1) \\le \\log_{\\frac{1}{2}}(-x+5)$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$4$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_4211178c69",
+      "ma_goc": "2605-1056",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lăng trụ tam giác $ABC.A'B'C'$. Vectơ $\\vec{AA'} - \\vec{AB} + \\vec{AC}$ bằng vectơ nào sau đây?",
+      "paA": "$\\vec{B'C}$",
+      "paB": "$\\vec{C'B}$",
+      "paC": "$\\vec{BC'}$",
+      "paD": "$\\vec{B'C'}$"
+    },
+    {
+      "maCau": "q_678bab63cf",
+      "ma_goc": "2605-1057",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$ cho mặt cầu $(S)\\colon x^2 + y^2 + z^2 + 2y - 3 = 0$. Tọa độ tâm $I$ và bán kính $R$ của mặt cầu là",
+      "paA": "$I(0;-1;0), R=2$",
+      "paB": "$I(0;-1;0), R=4$",
+      "paC": "$I(0;1;0), R=2$",
+      "paD": "$I(0;1;0), R=4$"
+    },
+    {
+      "maCau": "q_2beab67d0e",
+      "ma_goc": "2605-1058",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2beab67d0e_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số là",
+      "paA": "$-2$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_59a9bd7f4a",
+      "ma_goc": "2605-1059",
+      "kieuCau": "TN",
+      "cauDan": "Cho một khối lăng trụ có diện tích đáy bằng $a^2\\sqrt{3}$ và có thể tích bằng $3a^3$. Chiều cao của khối lăng trụ là",
+      "paA": "$a$",
+      "paB": "$\\displaystyle \\frac{a}{\\sqrt{3}}$",
+      "paC": "$3a\\sqrt{3}$",
+      "paD": "$a\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_2bce324e31",
+      "ma_goc": "2605-1060",
+      "kieuCau": "DS",
+      "cauDan": "Một bể cá cảnh có mô hình bên trong là hình hộp chữ nhật $ABCD.A'B'C'D'$ với $AD=4\\text{ dm}$, $AB=8\\text{ dm}$, $AA'=4\\text{ dm}$. Trong quá trình thay nước cho bể cá, người ta rút bớt nước trong bể, phần nước còn lại khi nghiêng bể thì người ta thấy bề mặt thoáng của nước trong bể là tứ giác $CBHK$, trong đó $H$, $K$ lần lượt là trung điểm của $AA'$ và $DD'$ (tham khảo hình vẽ 1). Sau khi bể nước được đặt trở lại vị trí thăng bằng thì mặt thoáng của nước trong bể là tứ giác $MNPQ$, toàn bộ khối nước được đặt trong hệ trục tọa độ $Oxyz$ như hình vẽ 2: gốc $O$ trùng với $A$, tia $Ox$ trùng với tia $AD$, tia $Oy$ trùng với tia $AB$, tia $Oz$ trùng với tia $AA'$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2bce324e31_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Bể cá cảnh có thể chứa được tối đa $128$ lít nước",
+      "paB": "Thể tích nước còn lại trong bể không vượt quá $30$ lít",
+      "paC": "Người ta muốn đặt một bóng đèn trang trí tại trọng tâm $G$ của tam giác $APQ$. Tọa độ điểm $G\\left(\\displaystyle \\frac{16}{3}; \\displaystyle \\frac{4}{3}; \\displaystyle \\frac{4}{3}\\right)$",
+      "paD": "Người ta làm một dây sục khí cho bể cá là một cung tròn có điểm bắt đầu là $A'$ đi qua điểm $E(2;1;1)$ và kết thúc tại điểm $F(4;2;0)$. Độ dài của dây sục khí theo đơn vị decimet thuộc khoảng $(6,2; 6,3)$"
+    },
+    {
+      "maCau": "q_127ccc2a3d",
+      "ma_goc": "2605-1061",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{ax+b}{cx+d}$ với $a,b,c,d \\in \\mathbb{R}$ có đồ thị hàm số $f'(x)$ nhận đường thẳng $x=1$ làm tiệm cận đứng như hình vẽ bên. Biết rằng giá trị nhỏ nhất của hàm số $f(x)$ trên đoạn $[2;4]$ bằng $6$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_127ccc2a3d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số $f(x)$ đồng biến trên khoảng $(1; +\\infty)$",
+      "paB": "Giá trị của $f(2)$ bằng $6$",
+      "paC": "$\\displaystyle \\frac{a+b}{2c-d} = 1$",
+      "paD": "Có $4$ điểm trên đồ thị hàm số $y = f(x)$ có tọa độ nguyên"
+    },
+    {
+      "maCau": "q_add2a4644c",
+      "ma_goc": "2605-1062",
+      "kieuCau": "DS",
+      "cauDan": "Một hạt chuyển động thẳng trên trục $Ox$ và xuất phát tại $O$. Phương trình chuyển động của hạt là $x(t) = t - 2\\ln(t+1)$ (đơn vị: mét), trong đó $t$ là thời gian tính bằng giây. Hàm số $v(t) = x'(t)$ (đơn vị: m/s) biểu thị vận tốc chuyển động của hạt.",
+      "paA": "$v(t) = 2 - \\displaystyle \\frac{3}{t+1}$",
+      "paB": "Vận tốc ban đầu của hạt là $2\\text{ m/s}$",
+      "paC": "Vận tốc tức thời tại thời điểm $t=1\\text{s}$ là $0\\text{ m/s}$",
+      "paD": "Quãng đường hạt đi được trong $4$ giây đầu tiên (làm tròn kết quả đến hàng phần trăm) là $1,55\\text{ m}$"
+    },
+    {
+      "maCau": "q_4b9abee4d2",
+      "ma_goc": "2605-1063",
+      "kieuCau": "DS",
+      "cauDan": "Một sản phẩm do hai nhà máy $A$ và $B$ sản xuất. Tỉ lệ phế phẩm của nhà máy $A$ là $4\\%$, của nhà máy $B$ là $1\\%$. Trong một lô hàng có $120$ sản phẩm của nhà máy $A$; $80$ sản phẩm của nhà máy $B$. Lấy ngẫu nhiên một sản phẩm từ lô hàng. Xét các mệnh đề sau:",
+      "paA": "Xác suất lấy được sản phẩm do nhà máy $A$ sản xuất là $0,6$",
+      "paB": "Xác suất lấy được sản phẩm tốt biết rằng sản phẩm đó thuộc nhà máy $A$ bằng $0,96$",
+      "paC": "Xác suất lấy được sản phẩm tốt là $0,964$",
+      "paD": "Biết sản phẩm lấy ra là sản phẩm tốt. Xác suất sản phẩm đó do nhà máy $B$ sản xuất lớn hơn xác suất do nhà máy $A$ sản xuất"
+    },
+    {
+      "maCau": "q_2152f85d85",
+      "ma_goc": "2605-1064",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chữ nhật $ABCD$ tâm $O$, với $AB=6, BC=4$. Gọi $E, F, G, H$ lần lượt là trung điểm của $CD, AB, BC, AD$. Biết hai cung $GEH, GFH$ lần lượt là cung tròn đi qua $G, H, E$ và $G, F, H$. Tính diện tích phần hình được gạch sọc (làm tròn đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2152f85d85_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_e99f02a7cd",
+      "ma_goc": "2605-1065",
+      "kieuCau": "TLN",
+      "cauDan": "Giả sử cường độ ánh sáng $I$ dưới mặt nước biển giảm dần theo độ sâu theo công thức $I = I_0 \\cdot a^d$, trong đó $I_0$ là cường độ ánh sáng tại mặt nước biển, $a$ là một hằng số dương, $d$ là độ sâu tính từ mặt nước biển (đơn vị mét). Ở một vùng biển, cường độ ánh sáng tại độ sâu $1\\text{m}$ bằng $95\\%$ cường độ ánh sáng tại mặt biển. Tính tỷ lệ giữa cường độ ánh sáng tại độ sâu $20\\text{m}$ so với cường độ ánh sáng tại độ sâu $10\\text{m}$ ở vùng biển đó (làm tròn đến hàng phần chục)."
+    },
+    {
+      "maCau": "q_02557f5398",
+      "ma_goc": "2605-1066",
+      "kieuCau": "TLN",
+      "cauDan": "Gia đình anh Tuấn có mảnh đất, một phía giáp với đường (là một phần của đường thẳng), phần còn lại giáp với hồ nước là đường cong được mô hình hóa bởi một phần của đồ thị hàm số $f(x) = \\displaystyle \\frac{-x^2+5x-4}{x}$ như hình vẽ bên dưới, đơn vị trên mỗi trục tọa độ là $10\\text{ mét}$. Trong mảnh đất anh Tuấn muốn rào một khu vực hình chữ nhật $ABCD$ với hai đỉnh nằm trên đồ thị hàm số $f(x)$ (phần giáp hồ) và cạnh nằm trên trục hoành (phần giáp đường). Diện tích hình chữ nhật $ABCD$ đạt giá trị lớn nhất là bao nhiêu $\\text{m}^2$ (làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_02557f5398_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_aa6388b06b",
+      "ma_goc": "2605-1067",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhà kho có dạng hình lăng trụ đứng ngũ giác với các kích thước bên trong như hình vẽ. Thể tích phần không gian bên trong nhà kho là bao nhiêu mét khối?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_aa6388b06b_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_c8b21b61df",
+      "ma_goc": "2605-1068",
+      "kieuCau": "TLN",
+      "cauDan": "Vào một hội thi thiết kế đèn lồng Trung thu, ban tổ chức nhận được một chiếc đèn lồng đặc biệt có mô hình là một tứ diện đều. Trên mỗi cạnh của tứ diện thí sinh thiết kế ba bóng đèn nằm ở ba vị trí chia cạnh của tứ diện thành bốn đoạn bằng nhau. Cứ mỗi phút trôi qua sẽ có ngẫu nhiên ba bóng đèn phát sáng, các bóng đèn còn lại thì tắt. Tính xác suất để ngay phút đầu tiên ban giám khảo chấm điểm, có ba bóng đèn phát sáng ứng với ba điểm tạo nên một mặt phẳng song song với đúng một cạnh của tứ diện, biết rằng ba bóng đèn không thuộc cùng một cạnh của tứ diện (làm tròn kết quả đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c8b21b61df_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_709b1265a6",
+      "ma_goc": "2605-1069",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, đài kiểm soát không lưu sân bay đặt ở gốc tọa độ $O(0;0;0)$, mỗi đơn vị trên trục là $100$ ki-lô-mét (km). Một máy bay chuyển động theo đường thẳng, bay qua hai vị trí $A(2;-2;1)$ và $B(8;5;7)$. Khi máy bay ở gần đài kiểm soát không lưu nhất thì khoảng cách giữa vị trí của máy bay và đài kiểm soát không lưu là bao nhiêu km (làm tròn đến hàng đơn vị)?"
+    }
+  ]
+}
