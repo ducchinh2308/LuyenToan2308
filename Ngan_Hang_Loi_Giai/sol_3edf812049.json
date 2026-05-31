@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3edf812049",
+  "dapAn": "180",
+  "loiGiai": "Lợi nhuận $f(x) = x \\cdot p(x) - C(x) - 2x = 48x - x^2 - (x^2 + 6x + 20) - 2x = -2x^2 + 40x - 20$, với $x \\in [1; 20]$.\\\\\r\n\t\tTa có $f'(x) = -4x + 40 = 0 \\Leftrightarrow x = 10$ (thỏa mãn).\\\\\r\n\t\t$f(10) = 180$; $f(1) = 18$; $f(20) = -20$.\\\\\r\n\t\tVậy $\\max_{[1;20]} f(x) = f(10) = 180$ (triệu đồng)."
+}

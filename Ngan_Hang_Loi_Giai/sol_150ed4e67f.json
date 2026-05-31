@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_150ed4e67f",
+  "dapAn": "21,7",
+  "loiGiai": "Gọi $M$ là biến cố có mã độc, $A$ là biến cố bị ít nhất một bộ lọc cảnh báo.\\\\\r\n\t\t$P(M)=0{,}02, P(\\overline{M})=0{,}98$.\\\\\r\n\t\t$P(A \\mid M) = P(S_1 \\mid M) + P(S_2 \\mid M) - P(S_1S_2 \\mid M) = 0{,}9 + 0{,}8 - 0{,}75 = 0{,}95$.\\\\\r\n\t\t$P(A \\mid \\overline{M}) = 1 - P(\\text{không bị bộ lọc nào} \\mid \\overline{M}) = 1 - 0{,}93 = 0{,}07$.\\\\\r\n\t\t$P(A) = P(M)P(A \\mid M) + P(\\overline{M})P(A \\mid \\overline{M}) = 0{,}02 \\cdot 0{,}95 + 0{,}98 \\cdot 0{,}07 = 0{,}0876$.\\\\\r\n\t\t$P(M \\mid A) = \\frac{P(M)P(A \\mid M)}{P(A)} = \\frac{0{,}019}{0{,}0876} \\approx 21{,}7\\%$."
+}

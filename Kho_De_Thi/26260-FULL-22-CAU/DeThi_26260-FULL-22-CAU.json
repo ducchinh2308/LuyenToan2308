@@ -1,0 +1,203 @@
+{
+  "maDe": "26260-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26260- 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_638b8fc551",
+      "ma_goc": "2605-1637",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=\\frac{ax-1}{2x+d}$ ($ad \\neq -2$) có đồ thị như hình bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_638b8fc551_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tCác giá trị $a$ và $d$ lần lượt là",
+      "paA": "$a=-1; d=-2$",
+      "paB": "$a=1; d=1$",
+      "paC": "$\\displaystyle a=\\frac{1}{2}; d=2$",
+      "paD": "$a=1; d=2$"
+    },
+    {
+      "maCau": "q_b2aa660ddc",
+      "ma_goc": "2605-1638",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\log_2(3x-1)=3$ có nghiệm",
+      "paA": "$x=1$",
+      "paB": "$\\displaystyle x=\\frac{7}{3}$",
+      "paC": "$x=2$",
+      "paD": "$x=3$"
+    },
+    {
+      "maCau": "q_e4a7d9c5a7",
+      "ma_goc": "2605-1639",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\displaystyle 3^x > \\frac{1}{3}$ là",
+      "paA": "$(-1;+\\infty)$",
+      "paB": "$(1;+\\infty)$",
+      "paC": "$(-\\infty;1)$",
+      "paD": "$(-\\infty;-1)$"
+    },
+    {
+      "maCau": "q_cfea968010",
+      "ma_goc": "2605-1640",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\tan x = 0$ là",
+      "paA": "$S = \\{k2\\pi \\mid k \\in \\mathbb{Z}\\}$",
+      "paB": "$\\displaystyle S = \\left\\{\\frac{\\pi}{2} + k2\\pi \\mid k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$\\displaystyle S = \\left\\{\\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$S = \\{k\\pi \\mid k \\in \\mathbb{Z}\\}$"
+    },
+    {
+      "maCau": "q_0e6ed06c83",
+      "ma_goc": "2605-1641",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân có $u_1 = 2; u_2 = 5$. Số hạng $u_5$ của cấp số nhân là",
+      "paA": "$\\displaystyle \\frac{625}{8}$",
+      "paB": "$1250$",
+      "paC": "$14$",
+      "paD": "$\\displaystyle \\frac{625}{16}$"
+    },
+    {
+      "maCau": "q_40cac3e90a",
+      "ma_goc": "2605-1642",
+      "kieuCau": "TN",
+      "cauDan": "Một ngân hàng thống kê ở bảng dưới số tiền mà khách hàng rút từ một cây ATM (máy rút tiền tự động) trong một buổi sáng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_40cac3e90a_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khoảng tứ phân vị của số tiền rút (làm tròn kết quả đến hàng đơn vị)",
+      "paA": "$781$",
+      "paB": "$1533$",
+      "paC": "$2300$",
+      "paD": "$1519$"
+    },
+    {
+      "maCau": "q_7fce638123",
+      "ma_goc": "2605-1643",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt phẳng $(\\alpha)\\colon x - 2y - z + 1 = 0$ và mặt phẳng $(\\beta)\\colon 2x - 4y + mz = 0$. Hai mặt phẳng vuông góc nhau khi",
+      "paA": "$m=-10$",
+      "paB": "$m=10$",
+      "paC": "$m=2$",
+      "paD": "$m=-2$"
+    },
+    {
+      "maCau": "q_92a2a25c30",
+      "ma_goc": "2605-1644",
+      "kieuCau": "TN",
+      "cauDan": "Tìm họ nguyên hàm $\\displaystyle y = \\frac{x+x\\sqrt{x}}{x^2}$.",
+      "paA": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = -\\frac{1}{x^2} + 2\\sqrt{x} + C$",
+      "paB": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = \\frac{1}{x} + \\frac{1}{\\sqrt{x}} + C$",
+      "paC": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = -\\frac{1}{x^2} + \\frac{1}{\\sqrt{x}} + C$",
+      "paD": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = \\ln|x| + 2\\sqrt{x} + C$"
+    },
+    {
+      "maCau": "q_150845a965",
+      "ma_goc": "2605-1645",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho các điểm $I(2;1;-1)$ và $A(4;1;0)$. Mặt cầu $(S)$ tâm $I$ qua $A$ có phương trình là",
+      "paA": "$(S) \\colon (x-2)^2 + (y-1)^2 + (z+1)^2 = 5$",
+      "paB": "$(S) \\colon (x-2)^2 + (y-1)^2 + (z+1)^2 = 17$",
+      "paC": "$(S) \\colon (x-4)^2 + (y-1)^2 + z^2 = 5$",
+      "paD": "$(S) \\colon (x-4)^2 + (y-1)^2 + z^2 = 17$"
+    },
+    {
+      "maCau": "q_b9007c4230",
+      "ma_goc": "2605-1646",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật, $AB = BC\\sqrt{2} = 2$. $SA$ vuông góc với đáy $ABCD$ và $SA = \\sqrt{2}$. Số đo góc giữa $SC$ và mặt phẳng $(ABCD)$ bằng",
+      "paA": "$30^\\circ$",
+      "paB": "$55^\\circ$",
+      "paC": "$45^\\circ$",
+      "paD": "$60^\\circ$"
+    },
+    {
+      "maCau": "q_d7353f12b4",
+      "ma_goc": "2605-1647",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình $(H)$ được giới hạn bởi đồ thị hàm số $\\displaystyle y = 2\\sin \\frac{x}{2}$, trục hoành và đường thẳng $\\displaystyle x = \\frac{\\pi}{2}$. Thể tích của khối tròn xoay có được do quay hình $(H)$ quanh trục hoành được tính bởi công thức",
+      "paA": "$\\displaystyle V = 2\\pi \\int_0^{\\frac{\\pi}{2}} \\sin \\frac{x}{2} \\,dx$",
+      "paB": "$\\displaystyle V = 2\\pi \\int_0^{\\frac{\\pi}{2}} (1+\\cos x) \\,dx$",
+      "paC": "$\\displaystyle V = 2\\pi \\int_0^{\\frac{\\pi}{2}} \\sin^2 \\frac{x}{2} \\,dx$",
+      "paD": "$\\displaystyle V = 2\\pi \\int_0^{\\frac{\\pi}{2}} (1-\\cos x) \\,dx$"
+    },
+    {
+      "maCau": "q_b04ce52f87",
+      "ma_goc": "2605-1648",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lăng trụ $ABC.A'B'C'$ (hình bên dưới).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b04ce52f87_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhát biểu nào sau đây đúng?",
+      "paA": "$\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{CB'}$",
+      "paB": "$\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{C'B}$",
+      "paC": "$\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{C'B'}$",
+      "paD": "$\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{BC'}$"
+    },
+    {
+      "maCau": "q_119f72d31b",
+      "ma_goc": "2605-1649",
+      "kieuCau": "DS",
+      "cauDan": "Có $2$ hộp đựng các viên bi. Hộp I đựng $3$ viên bi xanh và $2$ viên bi đỏ; hộp II đựng $4$ viên bi xanh và $1$ viên bi đỏ. Lấy ngẫu nhiên $1$ bi từ hộp I bỏ vào hộp II, sau đó lấy ngẫu nhiên $1$ bi từ hộp II. Gọi $A$ là biến cố \"lấy được bi xanh từ hộp I\" và $B$ là biến cố \"lấy được bi xanh từ hộp II\". Khi đó:",
+      "paA": "$P(A) = \\displaystyle\\frac{3}{5}$",
+      "paB": "$P(\\overline{B} \\mid A) = \\displaystyle\\frac{1}{2}$",
+      "paC": "$P(B \\mid \\overline{A}) = \\displaystyle\\frac{1}{3}$",
+      "paD": "$P(A \\mid \\overline{B}) = \\displaystyle\\frac{3}{7}$"
+    },
+    {
+      "maCau": "q_4af51e2f1e",
+      "ma_goc": "2605-1650",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x \\ln x$.",
+      "paA": "$f\\left(\\displaystyle\\frac{1}{e^2}\\right) = -\\displaystyle\\frac{2}{e^2}$; $f(e) = e$",
+      "paB": "$f'(x) = \\ln x + \\displaystyle\\frac{1}{x}$",
+      "paC": "Phương trình $f'(x) = 0$ không có nghiệm trên đoạn $\\left[e^{-2}; e\\right]$",
+      "paD": "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[e^{-2}; e\\right]$ là $-\\displaystyle\\frac{1}{e}$"
+    },
+    {
+      "maCau": "q_4153e3ee23",
+      "ma_goc": "2605-1651",
+      "kieuCau": "DS",
+      "cauDan": "Với hệ tọa độ $Oxyz$ được chọn trước, mái nhà kho xem như một tấm phẳng bằng kim loại đi qua $3$ điểm $A(2;0;4)$, $B(8;0;4)$ và $C(5;6;7)$. Để đảm bảo an ninh cho một nhà kho, phía trên mái nhà, người ta lắp một camera quan sát tại điểm $M(5;7;8)$. Theo quy chuẩn kỹ thuật, để tránh bị nhiễu tín hiệu, camera phải cách nhà một khoảng ít nhất $0{,}5\\text{ m}$.",
+      "paA": "Mặt phẳng $(ABC)$ có cặp vectơ chỉ phương là $\\overrightarrow{AB} = (1;0;0)$ và $\\overrightarrow{AC} = (1;2;1)$",
+      "paB": "Vectơ pháp tuyến của mặt phẳng $(ABC)$ là $\\vec{n} = (0;1;-2)$",
+      "paC": "Phương trình mặt phẳng $(P)$ của mái nhà là $y - 2z + 8 = 0$",
+      "paD": "Vị trí lắp đặt camera đáp ứng đúng quy chuẩn kỹ thuật"
+    },
+    {
+      "maCau": "q_ec6a1d9190",
+      "ma_goc": "2605-1652",
+      "kieuCau": "DS",
+      "cauDan": "Sau một trận mưa lớn, lượng nước mưa đổ vào bể chứa của một trạm bơm được mô phỏng bởi hàm số lưu lượng $v(t) = 100 + 20t - t^2$ ($\\text{m}^3/\\text{phút}$), với $t$ là thời gian tính bằng phút ($0 \\le t \\le 25$). Tại thời điểm $t = 0$, bể chứa đang có sẵn $650\\text{ m}^3$ nước.",
+      "paA": "Tại thời điểm $t=10$ phút, tốc độ nước đổ vào bể là $100\\text{ m}^3/\\text{phút}$",
+      "paB": "Tổng lượng nước mưa đổ thêm vào bể sau $15$ phút đầu tiên được tính bởi công thức $Q = \\displaystyle\\int_0^{15} (-t^2 + 20t + 100) \\,dt$",
+      "paC": "Để tránh tràn bể, tại thời điểm $t=0$, trạm bơm bắt đầu vận hành xả nước ra kênh với công suất cố định là $150\\text{ m}^3/\\text{phút}$. Khi đó hàm số biểu thị tốc độ thay đổi lượng nước trong bể tại thời điểm $t$ là $f(t) = -t^2 + 20t - 50$",
+      "paD": "Biết rằng bể chứa của trạm bơm có dung tích tối đa là $1000\\text{ m}^3$. Trong suốt khoảng thời gian từ $0$ đến $25$ phút, trạm bơm trên không bị tràn bể chứa"
+    },
+    {
+      "maCau": "q_b20d392b5a",
+      "ma_goc": "2605-1653",
+      "kieuCau": "TLN",
+      "cauDan": "Một xí nghiệp sản xuất và tiêu thụ một loại sản phẩm. Giả sử hàm giá và hàm chi phí của loại sản phẩm này lần lượt là $p(x) = 48 - x$ (triệu đồng) và $C(x) = x^2 + 6x + 20$ (triệu đồng), trong đó $x$ ($1 \\le x \\le 20$) là số lượng sản phẩm được sản xuất. Hãy tính lợi nhuận tối đa của xí nghiệp, biết rằng mỗi sản phẩm bán ra phải chịu thêm mức thuế là $2$ triệu đồng."
+    },
+    {
+      "maCau": "q_374632082e",
+      "ma_goc": "2605-1654",
+      "kieuCau": "TLN",
+      "cauDan": "Một resort muốn đắp đồi trượt cỏ cho trẻ em. Đường trượt được thiết kế bắt đầu từ vị trí $A$ cao $3\\text{ m}$ thoải dần theo dạng một parabol $(P_1)$ có đỉnh ngay vị trí bắt đầu trượt và được kết nối với một parabol $(P_2)$ tại $N$ cách vị trí ban đầu $4\\text{ m}$ theo phương ngang. Về mặt kỹ thuật, để đường trượt mượt mà thì vị trí kết nối này phải đảm bảo hệ số góc của tiếp tuyến tại điểm kết nối của cả hai parabol trên phải bằng nhau. Parabol $(P_2)$ có đỉnh ở vị trí kết thúc $B$ có cao độ bằng $0$ và cách vị trí ban đầu $10\\text{ m}$ theo phương ngang. Biết đồi trượt rộng $5\\text{ m}$, tính số mét khối đất đắp thành đồi trượt.\r\n\t\\begin{center}\\\\<img src='HinhAnh/q_374632082e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\\\\\\end{center}"
+    },
+    {
+      "maCau": "q_75e61449f9",
+      "ma_goc": "2605-1655",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một kho logistics tự động, hệ thống định vị UWB được lắp để theo dõi xe tự hành. Với hệ trục $Oxyz$ (đơn vị trên trục bằng $10\\text{ m}$) có gốc tọa độ $O$ ở ngay trạm sạc trung tâm. Các bộ phát tín hiệu định vị được gắn ở các điểm $A(2;0;1)$, $B(0;3;1)$, $C(0;0;2)$ và $D(2;3;2)$. Một xe tự hành ở vị trí $M$ có các khoảng cách tới các bộ phát tín hiệu như sau: $MA=\\sqrt{3}$, $MB=\\sqrt{6}$, $MC=\\sqrt{6}$, $MD=3$. Khoảng cách từ xe đến trạm sạc là bao nhiêu mét?"
+    },
+    {
+      "maCau": "q_4d1a3c6dda",
+      "ma_goc": "2605-1656",
+      "kieuCau": "TLN",
+      "cauDan": "Cô Hà có một cửa hàng trực tuyến bán tranh và thiệp do chính cô làm bằng tay. Mỗi bức tranh được hoàn thành trong $2$ giờ và có giá $50000$ đồng; mỗi tấm thiệp được làm trong $45$ phút và có giá $20000$ đồng. Cô Hà chỉ dành được $15$ giờ mỗi tuần để vẽ tranh và làm thiệp. Ngoài ra do nguyên liệu mua mỗi tuần có hạn, cô ấy không thể làm quá $10$ bức tranh và thiệp mỗi tuần. Lợi nhuận kiếm được trên mỗi bức tranh và tấm thiệp lần lượt là $25000$ đồng và $15000$ đồng. Lợi nhuận cao nhất mà cô Hà có thể kiếm được trong tuần là bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_2ba2aeb93b",
+      "ma_goc": "2605-1657",
+      "kieuCau": "TLN",
+      "cauDan": "Một trung tâm an ninh mạng sử dụng hai bộ lọc độc lập $S_1$ và $S_2$ để quét các tập tin lạ. Tỷ lệ tập tin có mã độc trong hệ thống là $2\\%$. \\\\\r\n\tĐối với tập tin có mã độc, xác suất bị $S_1$ cảnh báo là $0{,}9$; bị $S_2$ cảnh báo là $0{,}8$ và xác suất bị cả hai bộ lọc cùng cảnh báo là $0{,}75$. \\\\\r\n\tĐối với tập tin không có mã độc, xác suất bị $S_1$ cảnh báo là $0{,}05$; bị $S_2$ cảnh báo là $0{,}03$ và xác suất không bị bộ lọc nào cảnh báo là $0{,}93$.\\\\\r\n\t Một tập tin bị ít nhất một bộ lọc cảnh báo. Xác suất để tập tin đó thực sự có mã độc là bao nhiêu phần trăm?"
+    },
+    {
+      "maCau": "q_88bb748aaa",
+      "ma_goc": "2605-1658",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2$. Tam giác $SAB$ đều và nằm trong mặt phẳng vuông góc với đáy. $M, N$ lần lượt là trung điểm các cạnh $AB$ và $BC$. Khoảng cách giữa hai đường thẳng $DN$ và $SC$ bằng bao nhiêu (Không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?"
+    }
+  ]
+}

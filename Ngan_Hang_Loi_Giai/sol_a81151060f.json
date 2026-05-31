@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a81151060f",
+  "dapAn": "D",
+  "loiGiai": "Phương trình hoành độ giao điểm hai đồ thị hàm số $\\displaystyle y = 2\\sin \\frac{x}{2}$ và trục hoành là $\\displaystyle 2\\sin \\frac{x}{2} = 0 \\Leftrightarrow x = 0$.\\\\\r\n\t\tThể tích của khối tròn xoay có được do quay hình $(H)$ quanh trục hoành được tính bởi công thức\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_0^{\\frac{\\pi}{2}} \\left(2\\sin \\frac{x}{2}\\right)^2 dx = \\pi \\int_0^{\\frac{\\pi}{2}} 4\\sin^2 \\frac{x}{2} \\,dx = \\pi \\int_0^{\\frac{\\pi}{2}} 4\\left(\\frac{1-\\cos x}{2}\\right) dx = 2\\pi \\int_0^{\\frac{\\pi}{2}} (1-\\cos x) \\,dx$."
+}

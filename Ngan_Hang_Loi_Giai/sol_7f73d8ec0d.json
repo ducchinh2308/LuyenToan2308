@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7f73d8ec0d",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\vec{n}_{\\alpha} = (1; -2; -1)$; $\\vec{n}_{\\beta} = (2; -4; m)$.\\\\\r\n\t\t$(\\alpha) \\perp (\\beta) \\Leftrightarrow \\vec{n}_{\\alpha} \\perp \\vec{n}_{\\beta} \\Leftrightarrow 1 \\cdot 2 + (-2) \\cdot (-4) - 1 \\cdot m = 0 \\Leftrightarrow m = 10$."
+}

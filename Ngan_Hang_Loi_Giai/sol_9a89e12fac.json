@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9a89e12fac",
+  "dapAn": "14,1",
+  "loiGiai": "Giả sử $M(a;b;c)$. Ta có các phương trình:\\\\\r\n\t\t$MA^2=3 \\Leftrightarrow a^2+b^2+c^2-4a-2c+2=0$; $MB^2=6 \\Leftrightarrow a^2+b^2+c^2-6b-2c+4=0$;\\\\\r\n\t\t$MC^2=6 \\Leftrightarrow a^2+b^2+c^2-4c-2=0$; $MD^2=9 \\Leftrightarrow a^2+b^2+c^2-4a-6b-4c+8=0$.\\\\\r\n\t\tTừ hệ phương trình, giải ra ta được $M(1;1;0)$.\\\\\r\n\t\tSuy ra $OM = \\sqrt{1^2+1^2+0^2} = \\sqrt{2}$.\\\\\r\n\t\tVậy khoảng cách từ xe đến trạm sạc là $\\sqrt{2} \\cdot 10 \\approx 14{,}1$ (mét)."
+}
