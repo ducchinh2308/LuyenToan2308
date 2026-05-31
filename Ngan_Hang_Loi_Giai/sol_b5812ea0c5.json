@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b5812ea0c5",
+  "dapAn": "12",
+  "loiGiai": "Ta gọi bài toán trên là bài toán gửi góp cuối kỳ.\\\\\r\n\t\tTa có công thức bài toán gửi góp cuối kỳ $S_n = A \\cdot \\displaystyle\\frac{(1+r)^n - 1}{r}$.\\\\\r\n\t\tTrong đó: $S_n$ là tổng số tiền thu được sau $n$ chu kỳ tính lãi, $A$ là số tiền gửi vào định kỳ, $r$ là tỷ lệ lãi suất, $n$ là số chu kỳ tính lãi.\\\\\r\n\t\tÁp dụng vào bài toán ta có: $A = 1$ triệu, $r = 0{,}6\\% = 0{,}006$, $n = 60$ tháng.\\\\\r\n\t\tTổng số tiền sau $60$ tháng là: $S_n = A \\cdot \\displaystyle\\frac{(1+r)^n - 1}{r} = 1 \\cdot \\displaystyle\\frac{(1+0{,}006)^{60} - 1}{0{,}006} \\approx 71{,}96$ triệu.\\\\\r\n\t\tDo bác mua xe hết $60$ triệu nên số tiền còn lại là: $71{,}96 - 60 = 11{,}96 \\approx 12$ triệu."
+}

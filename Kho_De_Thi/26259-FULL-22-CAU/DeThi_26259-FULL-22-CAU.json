@@ -1,0 +1,203 @@
+{
+  "maDe": "26259-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26259- 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_ebd84b4852",
+      "ma_goc": "2605-1615",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $y=\\displaystyle\\frac{1}{\\sin x}$ là",
+      "paA": "$D=\\mathbb{R} \\setminus \\{0\\}$",
+      "paB": "$D=\\mathbb{R} \\setminus \\{k\\pi, k \\in \\mathbb{Z}\\}$",
+      "paC": "$D=\\mathbb{R} \\setminus \\{0; \\pi\\}$",
+      "paD": "$D=\\mathbb{R} \\setminus \\{k2\\pi, k \\in \\mathbb{Z}\\}$"
+    },
+    {
+      "maCau": "q_3c436b04cf",
+      "ma_goc": "2605-1616",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, khoảng cách từ $A(1; 0; 0)$ tới mặt phẳng $(P)\\colon 2x+2y-z+1=0$ bằng",
+      "paA": "$9$",
+      "paB": "$\\sqrt{3}$",
+      "paC": "$3$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_7d6949ee00",
+      "ma_goc": "2605-1617",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ với $u_1=2$ và công bội $q=3$. Tìm số hạng thứ $4$ của cấp số nhân.",
+      "paA": "$24$",
+      "paB": "$54$",
+      "paC": "$162$",
+      "paD": "$48$"
+    },
+    {
+      "maCau": "q_4a59b59d9a",
+      "ma_goc": "2605-1618",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm thi tốt nghiệp môn Toán THPT năm $2024$ của một lớp $12$ thu được kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4a59b59d9a_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu thống kê trên bằng",
+      "paA": "$7$",
+      "paB": "$6$",
+      "paC": "$10$",
+      "paD": "$8$"
+    },
+    {
+      "maCau": "q_d1fdd7d5ec",
+      "ma_goc": "2605-1619",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật, $AB=a$, $AD=2a$, $SA$ vuông góc với đáy và $SA=a\\sqrt{3}$. Thể tích khối chóp $S.ABCD$ bằng",
+      "paA": "$2\\sqrt{3}a^3$",
+      "paB": "$\\displaystyle\\frac{2\\sqrt{3}a^3}{3}$",
+      "paC": "$4\\sqrt{3}a^3$",
+      "paD": "$\\displaystyle\\frac{4\\sqrt{3}a^3}{3}$"
+    },
+    {
+      "maCau": "q_f1c3e01fcd",
+      "ma_goc": "2605-1620",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x) = ax^3+bx^2+cx+d$ có đồ thị như hình sau đây:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f1c3e01fcd_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực đại của đồ thị hàm số $y=f(x)$ là",
+      "paA": "$x=0$",
+      "paB": "$x=2$",
+      "paC": "$y=3$",
+      "paD": "$M(2;3)$"
+    },
+    {
+      "maCau": "q_7a82d6a158",
+      "ma_goc": "2605-1621",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle\\int_0^9 f(x)\\,dx = 37$ và $\\displaystyle\\int_0^9 g(x)\\,dx = 16$. Khi đó $I = \\displaystyle\\int_0^9 \\big[ 2f(x) + 3g(x) \\big]\\,dx$ bằng",
+      "paA": "$122$",
+      "paB": "$26$",
+      "paC": "$143$",
+      "paD": "$58$"
+    },
+    {
+      "maCau": "q_2a5f8a9f1a",
+      "ma_goc": "2605-1622",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm $S$ của bất phương trình $\\log_{\\frac{1}{5}}(x+1) < \\log_{\\frac{1}{5}}(2x-1)$ là",
+      "paA": "$S = (2; +\\infty)$",
+      "paB": "$S = (-\\infty; 2)$",
+      "paC": "$S = (-1; 2)$",
+      "paD": "$S = \\left(\\displaystyle\\frac{1}{2}; 2\\right)$"
+    },
+    {
+      "maCau": "q_67f07a3b08",
+      "ma_goc": "2605-1623",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)\\colon (x-1)^2 + (y+2)^2 + (z+3)^2 = 4$. Tâm của $(S)$ có tọa độ là",
+      "paA": "$(-1; 2; 3)$",
+      "paB": "$(2; -4; -6)$",
+      "paC": "$(-2; 4; 6)$",
+      "paD": "$(1; -2; -3)$"
+    },
+    {
+      "maCau": "q_c05b6a4021",
+      "ma_goc": "2605-1624",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho vectơ $\\vec{u} = (-3; -2; 4)$. Tọa độ của vectơ $-2\\vec{u}$ là",
+      "paA": "$(6; -4; 8)$",
+      "paB": "$(3; 2; -4)$",
+      "paC": "$(-6; -4; 8)$",
+      "paD": "$(6; 4; -8)$"
+    },
+    {
+      "maCau": "q_bc1e416ca3",
+      "ma_goc": "2605-1625",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$ có $\\overrightarrow{AB} = \\vec{a}$, $\\overrightarrow{AD} = \\vec{b}$, $\\overrightarrow{AA'} = \\vec{c}$. Gọi $I$ là trung điểm của đoạn $BC'$. Phân tích vectơ $\\overrightarrow{AI}$ qua ba vectơ $\\vec{a}, \\vec{b}, \\vec{c}$.",
+      "paA": "$\\overrightarrow{AI} = 2\\vec{a} + \\displaystyle\\frac{1}{4}\\vec{b} + \\displaystyle\\frac{1}{3}\\vec{c}$",
+      "paB": "$\\overrightarrow{AI} = \\displaystyle\\frac{1}{2}\\vec{a} + \\vec{b} + \\displaystyle\\frac{1}{2}\\vec{c}$",
+      "paC": "$\\overrightarrow{AI} = \\vec{a} + \\displaystyle\\frac{1}{2}\\vec{b} + \\displaystyle\\frac{1}{2}\\vec{c}$",
+      "paD": "$\\overrightarrow{AI} = \\displaystyle\\frac{1}{2}\\vec{a} + \\displaystyle\\frac{1}{2}\\vec{b} + \\vec{c}$"
+    },
+    {
+      "maCau": "q_ec26962325",
+      "ma_goc": "2605-1626",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi đồ thị của hàm số $y=4x-x^2$, $y=2x$ và hai đường thẳng $x=0$, $x=2$ bằng",
+      "paA": "$-\\displaystyle\\frac{4}{3}$",
+      "paB": "$\\displaystyle\\frac{20}{3}$",
+      "paC": "$\\displaystyle\\frac{4}{3}$",
+      "paD": "$\\displaystyle\\frac{16}{3}$"
+    },
+    {
+      "maCau": "q_6697de9739",
+      "ma_goc": "2605-1627",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\displaystyle\\frac{x^2 - 3x + 5}{x + 1}$ có đồ thị $(C)$.",
+      "paA": "Đường thẳng $y = x + 1$ là tiệm cận xiên của đồ thị $(C)$",
+      "paB": "Đồ thị $(C)$ có tiệm cận đứng là đường thẳng $x = -1$",
+      "paC": "Đường thẳng đi qua điểm cực đại và điểm cực tiểu của đồ thị hàm số là $y = 2x + 3$",
+      "paD": "Hàm số nghịch biến trên khoảng $(-4; -1)$ và $(-1; 2)$"
+    },
+    {
+      "maCau": "q_ff329c25d8",
+      "ma_goc": "2605-1628",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, một tàu ngầm đang di chuyển dưới biển sâu với hướng di chuyển theo đường thẳng $\\Delta\\colon \\displaystyle\\frac{x - 50}{3} = \\displaystyle\\frac{y + 20}{-4} = \\displaystyle\\frac{z - 10}{1}$. Hải quân phát hiện một khu vực nguy hiểm được rải mìn, khu vực này có dạng hình cầu $(S)$ với tâm $C(200; -300; 60)$ và bán kính $R = 80$ (Đơn vị đo là mét).",
+      "paA": "Vectơ chỉ phương của đường di chuyển $\\Delta$ là $\\overrightarrow{u}_{\\Delta} = (3; 4; 1)$",
+      "paB": "Đường di chuyển $\\Delta$ nằm trong mặt phẳng $(P)\\colon 4x + 3y = 140$",
+      "paC": "Tàu ngầm sẽ đi vào khu vực nguy hiểm $(S)$",
+      "paD": "Gọi $M$ là điểm gần khu vực mìn nhất trên đường đi của tàu ngầm. Biết rằng tốc độ tàu ngầm không đổi là $5$ (m/s). Thời gian ngắn nhất để tàu ngầm di chuyển từ vị trí hiện tại $A(50; -20; 10)$ đến điểm $M$ là $64$ giây (Làm tròn kết quả đến hàng đơn vị)"
+    },
+    {
+      "maCau": "q_e62262ec4a",
+      "ma_goc": "2605-1629",
+      "kieuCau": "DS",
+      "cauDan": "Người ta khảo sát khả năng chơi thể thao của một nhóm học sinh nam nữ tại một trường phổ thông X. Xét phép thử chọn ngẫu nhiên $1$ học sinh trong nhóm đó. Gọi $A$ là biến cố \"học sinh biết chơi ít nhất một môn thể thao\" và $B$ là biến cố \"học sinh được chọn là nam\". Biết xác suất học sinh được chọn là nam bằng $0{,}2$; xác suất học sinh được chọn là nam và biết chơi ít nhất một môn thể thao là $0{,}12$; xác suất học sinh được chọn là nữ và biết chơi ít nhất một môn thể thao là $0{,}16$.",
+      "paA": "$P(A) = P(B) \\cdot P(A|B) + P(\\overline{B}) \\cdot P(A|\\overline{B})$",
+      "paB": "Xác suất chọn được học sinh biết chơi ít nhất một môn thể thao bằng $0{,}18$",
+      "paC": "Xác suất chọn được học sinh nam biết rằng học sinh được chọn biết chơi ít nhất một môn thể thao bằng $\\displaystyle\\frac{3}{7}$",
+      "paD": "Xác suất chọn được học sinh không biết chơi môn thể thao nào biết rằng học sinh được chọn là nữ bằng $0{,}8$"
+    },
+    {
+      "maCau": "q_6590c96520",
+      "ma_goc": "2605-1630",
+      "kieuCau": "DS",
+      "cauDan": "Trong đường đua, một chiếc xe công thức $1$ bắt đầu chuyển động và nó tăng tốc với gia tốc $a \\text{ (m/s}^2)$ không đổi, khi vận tốc đạt $80 \\text{ m/s}$ thì xe chuyển động đều trong thời gian $56$ giây; sau đó nó giảm vận tốc với độ lớn gia tốc là $b \\text{ (m/s}^2)$ không đổi đến khi dừng lại ($a$ và $b$ là các số dương). Biết rằng tổng thời gian chuyển động của xe là $74$ giây.",
+      "paA": "Thời điểm xe đạt vận tốc $80 \\text{ m/s}$ là $t_1 = \\displaystyle\\frac{80}{a} \\text{ (s)}$",
+      "paB": "Quãng đường mà xe chuyển động với vận tốc không đổi bằng $4{,}46 \\text{ km}$",
+      "paC": "$\\displaystyle\\frac{40}{a} + \\displaystyle\\frac{40}{b} = 9$",
+      "paD": "Tổng quãng đường xe đi được trong $74$ giây là $5{,}6 \\text{ km}$"
+    },
+    {
+      "maCau": "q_c0f60cfbe2",
+      "ma_goc": "2605-1631",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn Nhi vẽ trên đất một bảng gồm $9$ ô vuông như hình bên dưới. Sau đó, bạn cầm $4$ viên kẹo giống nhau đặt ngẫu nhiên vào $4$ ô vuông trong $9$ ô vuông của bảng đó. Biết xác suất để bất kì hàng nào và cột nào của bảng cũng có viên kẹo là $\\displaystyle\\frac{a}{b}$ ($a, b \\in \\mathbb{N}$ và $\\displaystyle\\frac{a}{b}$ tối giản). Tính giá trị biểu thức: $P = 2b - 5a$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c0f60cfbe2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_fb299c334e",
+      "ma_goc": "2605-1632",
+      "kieuCau": "TLN",
+      "cauDan": "Một bình Kjeldahl-Simax được sản xuất bằng thủy tinh boro-silicat, là một dụng cụ không thể thiếu trong các phòng thí nghiệm. Bình được cấu tạo bởi $3$ phần:\r\n\t- Phần dưới cùng là một phần của hình cầu, có bán kính $50 \\text{ mm}$.\r\n\t- Phần giữa là hình nón cụt, có bán kính đáy nhỏ $20 \\text{ mm}$, bán kính đáy lớn $40 \\text{ mm}$, chiều cao $40 \\text{ mm}$.\r\n\t- Phần trên cùng là hình trụ có chiều cao $100 \\text{ mm}$.\\\\\r\n\tTrong một thí nghiệm, người ta cần đong $500 \\text{ ml}$ một dung dịch. Khi đó, chiều cao của dung dịch là bao nhiêu mm tính từ đáy bình (Làm tròn kết quả đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_fb299c334e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_ef44b274f9",
+      "ma_goc": "2605-1633",
+      "kieuCau": "TLN",
+      "cauDan": "Bác An mỗi tháng trích từ quỹ lương số tiền $1$ triệu đồng để gửi tiết kiệm vào ngân hàng theo hình thức lãi kép với lãi suất $0{,}6\\%$/tháng. Cứ cuối mỗi tháng bác An gửi tiền một lần và lãi được nhập vào vốn cho tháng sau. Bác dự định sau đúng $5$ năm sẽ rút toàn bộ số tiền để mua xe máy có giá là $60$ triệu đồng. Biết rằng, lãi suất không thay đổi trong $5$ năm đó. Vậy bác An sau khi mua xe còn lại bao nhiêu triệu đồng (Làm tròn kết quả đến hàng đơn vị)?"
+    },
+    {
+      "maCau": "q_e7b65e1a86",
+      "ma_goc": "2605-1634",
+      "kieuCau": "TLN",
+      "cauDan": "Một xưởng cơ khí nhận làm một bể chứa nước hình hộp chữ nhật không nắp, có thể tích $V = 10 \\text{ m}^3$ cho trường THPT X. Do yêu cầu về không gian, chiều dài của đáy bể gấp đôi chiều rộng. Ngoài ra, bên trong bể cần lắp thêm một vách ngăn (cùng chất liệu với mặt bên, vuông góc với chiều dài đáy) để chia bể thành hai ngăn. Chi phí vật liệu làm mặt đáy là $250$ nghìn đồng/m$^2$, chi phí làm các mặt xung quanh là $150$ nghìn đồng/m$^2$ và chi phí làm vách ngăn bên trong là $100$ nghìn đồng/m$^2$. Biết rằng, độ dày vách ngăn và thành bể là không đáng kể. Hỏi chi phí vật liệu thấp nhất để hoàn thiện chiếc bể đó là bao nhiêu triệu đồng? (Làm tròn kết quả đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e7b65e1a86_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_3c8f4a8ece",
+      "ma_goc": "2605-1635",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$ cho đường tròn $(C)$ đi qua $3$ điểm $A(1;0;8)$, $B(2;1;7)$, $C(5;4;5)$. Gọi $M$ là điểm di động trên đường tròn, $d_1$ và $d_2$ lần lượt là khoảng cách từ $M$ đến mặt phẳng $(Oyz)$ và $(Oxz)$. Hãy xác định giá trị lớn nhất của $d_1 + 2d_2$? (Kết quả làm tròn đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_deae35f1ed",
+      "ma_goc": "2605-1636",
+      "kieuCau": "TLN",
+      "cauDan": "Cho lăng trụ đứng $ABC.A'B'C'$ có $AC=1$, $BC=2$, $\\widehat{ACB}=120^\\circ$. Gọi $M$ là trung điểm $BB'$. Tính khoảng cách giữa hai đường thẳng $AM$ và $CC'$? (Làm tròn kết quả đến hàng phần trăm)."
+    }
+  ]
+}
