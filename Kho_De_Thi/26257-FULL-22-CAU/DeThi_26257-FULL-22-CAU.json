@@ -1,0 +1,203 @@
+{
+  "maDe": "26257-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26257 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_45c080d3ce",
+      "ma_goc": "2605-1593",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $\\Delta \\colon \\displaystyle \\frac{x+1}{-2} = \\frac{y-3}{3} = \\frac{z-2}{-2}$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $\\Delta$?",
+      "paA": "$\\vec{u} = (-1; 3; 2)$",
+      "paB": "$\\vec{u} = (-2; 3; -2)$",
+      "paC": "$\\vec{u} = (-1; -3; -2)$",
+      "paD": "$\\vec{u} = (2; 3; -2)$"
+    },
+    {
+      "maCau": "q_a28351ed67",
+      "ma_goc": "2605-1594",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{0{,}5} x > 0$ là",
+      "paA": "$(0; 1)$",
+      "paB": "$(0; +\\infty)$",
+      "paC": "$(1; +\\infty)$",
+      "paD": "$(-\\infty; 1)$"
+    },
+    {
+      "maCau": "q_a1301bf964",
+      "ma_goc": "2605-1595",
+      "kieuCau": "TN",
+      "cauDan": "Cho bảng biểu diễn mẫu số liệu ghép nhóm về số tiền (đơn vị: nghìn đồng) mà $60$ khách hàng mua sữa ở một cửa hàng trong một ngày như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a1301bf964_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên",
+      "paA": "$50{,}00$",
+      "paB": "$70{,}87$",
+      "paC": "$40{,}00$",
+      "paD": "$14{,}23$"
+    },
+    {
+      "maCau": "q_68b7365284",
+      "ma_goc": "2605-1596",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M$ thỏa mãn $\\vec{OM} = -2\\vec{i} + \\vec{j} + 3\\vec{k}$. Tọa độ của điểm $M$ là",
+      "paA": "$(-2; 1; 3)$",
+      "paB": "$(1; -2; 3)$",
+      "paC": "$(2; 1; 3)$",
+      "paD": "$(1; 2; 3)$"
+    },
+    {
+      "maCau": "q_c256d2ff6a",
+      "ma_goc": "2605-1597",
+      "kieuCau": "TN",
+      "cauDan": "Họ tất cả các nguyên hàm của hàm số $f(x) = x^{2026}$ trên $\\mathbb{R}$ là",
+      "paA": "$2027x^{2027} + C$",
+      "paB": "$\\displaystyle \\frac{x^{2027}}{2027} + C$",
+      "paC": "$\\displaystyle \\frac{x^{2027}}{2026} + C$",
+      "paD": "$2026x^{2027} + C$"
+    },
+    {
+      "maCau": "q_cead86b7e4",
+      "ma_goc": "2605-1598",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y = \\displaystyle \\frac{6x - 4}{1 - 2x}$ là đường thẳng có phương trình:",
+      "paA": "$y = 2$",
+      "paB": "$x = -3$",
+      "paC": "$y = 6$",
+      "paD": "$y = -3$"
+    },
+    {
+      "maCau": "q_24f49cf464",
+      "ma_goc": "2605-1599",
+      "kieuCau": "TN",
+      "cauDan": "Nhiệm của phương trình $3^{x-1} = 8$ là",
+      "paA": "$x = \\log_3 8$",
+      "paB": "$x = 3$",
+      "paC": "$x = \\log_3 24$",
+      "paD": "$x = 1 + \\log_8 3$"
+    },
+    {
+      "maCau": "q_d37d9791fe",
+      "ma_goc": "2605-1600",
+      "kieuCau": "TN",
+      "cauDan": "Biết rằng $F(x)$ là một nguyên hàm của hàm số $f(x) = \\sin x$ trên $\\mathbb{R}$ và thỏa mãn $F(0) = 6$. Phát biểu nào dưới đây đúng?",
+      "paA": "$F(x) = -\\cos x + 5$",
+      "paB": "$F(x) = -\\cos x$",
+      "paC": "$F(x) = -\\cos x + 6$",
+      "paD": "$F(x) = -\\cos x + 7$"
+    },
+    {
+      "maCau": "q_170118e6ac",
+      "ma_goc": "2605-1601",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_170118e6ac_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$-1$",
+      "paB": "$4$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_8fd83b5738",
+      "ma_goc": "2605-1602",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$ và $S\\!A \\perp (ABC)$. Gọi $I$ là trung điểm của $BC$. Mặt phẳng nào dưới đây vuông góc với đường thẳng $BC$?",
+      "paA": "$(S\\!AI)$",
+      "paB": "$(SBI)$",
+      "paC": "$(S\\!AC)$",
+      "paD": "$(S\\!AB)$"
+    },
+    {
+      "maCau": "q_896357eeca",
+      "ma_goc": "2605-1603",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$ có trọng tâm $G$ và $M$ là một điểm bất kì. Phát biểu nào dưới đây sai?",
+      "paA": "$\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paB": "$\\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paC": "$\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$",
+      "paD": "$\\vec{MA} + \\vec{MB} + \\vec{MC} + \\vec{MD} = 4\\vec{MG}$"
+    },
+    {
+      "maCau": "q_961a8aab05",
+      "ma_goc": "2605-1604",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1 = -2$ và $u_2 = -4$. Giá trị $u_6$ bằng",
+      "paA": "$-128$",
+      "paB": "128",
+      "paC": "64",
+      "paD": "$-64$"
+    },
+    {
+      "maCau": "q_a71d8a2050",
+      "ma_goc": "2605-1605",
+      "kieuCau": "DS",
+      "cauDan": "Xét hàm số $\\displaystyle y = \\frac{bx - c}{x - a}$ ($ab \\neq 0$) có đồ thị như hình vẽ. Đánh giá tính đúng sai của các mệnh đề sau:\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.6]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_221724.png}\r\n\t\\end{center}",
+      "paA": "$a > 0, b > 0$",
+      "paB": "$c - ab > 0$",
+      "paC": "$a > 0, b < 0, c - ab < 0$",
+      "paD": "$a > 0, b > 0, c - ab < 0$"
+    },
+    {
+      "maCau": "q_a0d5622360",
+      "ma_goc": "2605-1606",
+      "kieuCau": "DS",
+      "cauDan": "Một quần thể vi khuẩn ban đầu gồm $500$ vi khuẩn, sau đó bắt đầu tăng trưởng. Sau $1$ ngày, số lượng vi khuẩn của quần thể đó đã tăng lên thành $600$ vi khuẩn. Gọi $P(t)$ là số lượng vi khuẩn của quần thể đó tại thời điểm $t$, trong đó $t$ tính theo ngày ($0 \\le t \\le 17$). Biết tốc độ tăng trưởng của quần thể vi khuẩn đó là đạo hàm $P'(t) = k\\sqrt{t}$, trong đó $k$ là hằng số.",
+      "paA": "$P'(t)$ là một nguyên hàm của $P(t)$",
+      "paB": "$P(0) = 500$",
+      "paC": "$P(t) = \\displaystyle\\frac{2}{3}k\\sqrt{t^3} + C$ với $C$ là một hằng số xác định",
+      "paD": "Số lượng vi khuẩn của quần thể đó sau $16$ ngày là $9600$"
+    },
+    {
+      "maCau": "q_ec2c5b4a4b",
+      "ma_goc": "2605-1607",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, một cabin trong hệ thống cáp treo ở Vinpearl Nha Trang xuất phát từ điểm $A(-1; 2; 6)$ chuyển động thẳng đều theo hướng vectơ $\\vec{u}(0; -3; 4)$ với tốc độ $5 \\text{ m/s}$ (đơn vị trên mỗi trục tọa độ là mét). Sau $6$ giây kể từ lúc xuất phát, cabin đến điểm $T(a; b; c)$.",
+      "paA": "Hai vectơ $\\vec{AT}$ và $\\vec{u}$ cùng hướng",
+      "paB": "Phương trình tham số đường thẳng $AT$ là: $\\begin{cases} x = -1+t \\\\ y = 2-3t \\\\ z = 6+4t \\end{cases} (t \\in \\mathbb{R})$",
+      "paC": "$AT = 36 \\text{ m}$",
+      "paD": "$12a - b + c = 34$"
+    },
+    {
+      "maCau": "q_bb8223d8f0",
+      "ma_goc": "2605-1608",
+      "kieuCau": "DS",
+      "cauDan": "Nhân dịp đầu năm mới, giáo viên chủ nhiệm lì xì cho học sinh lớp 12 chuyên toán (biết lớp có $35$ học sinh) với phương thức: Giáo viên đưa ra $35$ phong bì, trong đó $5$ phong bì có tiền lì xì và $30$ phong bì rỗng, rồi giáo viên gọi lần lượt các học sinh lên tự chọn cho mình $1$ phong bì.",
+      "paA": "Xác suất học sinh đầu tiên chọn được phong bì có tiền là $\\displaystyle \\frac{1}{7}$",
+      "paB": "Học sinh lên chọn đầu tiên có xác suất chọn được phong bì có tiền là cao nhất (cao hơn hẳn)",
+      "paC": "Học sinh nhận phong bì cuối cùng có xác suất chọn được phong bì có tiền là cao nhất (cao hơn hẳn)",
+      "paD": "Xác suất chọn được phong bì có tiền của tất cả các học sinh đều bằng nhau"
+    },
+    {
+      "maCau": "q_2826c33184",
+      "ma_goc": "2605-1609",
+      "kieuCau": "TLN",
+      "cauDan": "Một hộ kinh doanh mỗi ngày sản xuất được $x$ kg sản phẩm ($0 < x < 14$) với tổng chi phí sản xuất được tính bởi hàm chi phí $C(x) = x^3 - 3x^2 - 19x + 200$ (đơn vị: nghìn đồng). Giả sử hộ này bán hết sản phẩm mỗi ngày với giá $170$ nghìn đồng/kg. Hỏi hộ đó thu được lợi nhuận tối đa trong một ngày là bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_fe4f4cc41d",
+      "ma_goc": "2605-1610",
+      "kieuCau": "TLN",
+      "cauDan": "Một hợp tác xã chăn nuôi dự định trộn hai loại thức ăn gia súc $X$ và $Y$ để tạo thành thức ăn hỗn hợp cho gia súc. Giá một bao loại $X$ là $260$ nghìn đồng, giá một bao loại $Y$ là $210$ nghìn đồng. Mỗi bao loại $X$ chứa $2$ đơn vị chất dinh dưỡng $A$, $2$ đơn vị chất dinh dưỡng $B$ và $2$ đơn vị chất dinh dưỡng $C$. Mỗi bao loại $Y$ chứa $1$ đơn vị chất dinh dưỡng $A$, $9$ đơn vị chất dinh dưỡng $B$ và $3$ đơn vị chất dinh dưỡng $C$. Hỏi chi phí nhỏ nhất để mua hai loại thức ăn gia súc $X$ và $Y$ sao cho hỗn hợp thu được chứa tối thiểu $12$ đơn vị chất dinh dưỡng $A$, $36$ đơn vị chất dinh dưỡng $B$ và $24$ đơn vị chất dinh dưỡng $C$ là bao nhiêu nghìn đồng?"
+    },
+    {
+      "maCau": "q_8a6e966013",
+      "ma_goc": "2605-1611",
+      "kieuCau": "TLN",
+      "cauDan": "Trong mặt phẳng với hệ tọa độ $Oxy$, lấy $3$ điểm $A, B, C$ thuộc parabol $(P) \\colon y = x^2$ có hoành độ tương ứng là $3$ số nguyên liên tiếp nhau và đều lớn hơn $2026$. Hỏi diện tích của tam giác $ABC$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_790c98c99d",
+      "ma_goc": "2605-1612",
+      "kieuCau": "TLN",
+      "cauDan": "Trong mặt phẳng với hệ tọa độ $Oxy$, cho ngũ giác đều $ABCDE$ có tâm $I$, $A(-2; -4)$, $B(2; -4)$ và năm parabol $(P_1), (P_2), (P_3), (P_4), (P_5)$ giống nhau như hình dưới. Biết $(P_1)$ có đỉnh là gốc tọa độ $O$, hỏi diện tích hình phẳng giới hạn bởi năm parabol đã cho bằng bao nhiêu phần được gạch chéo \\textit{(không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)}?\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_222745.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_7723a3cf2b",
+      "ma_goc": "2605-1613",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB=2, BC=3$ và $CC'=6$. Gọi $I$ là trung điểm của $AA'$ và $G$ là trọng tâm tam giác $BCD$. Khoảng cách giữa hai đường thẳng $B'D'$ và $IG$ bằng bao nhiêu (không làm tròn kết quả ở các phép toán trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?"
+    },
+    {
+      "maCau": "q_3228137fd3",
+      "ma_goc": "2605-1614",
+      "kieuCau": "TLN",
+      "cauDan": "Trước mặt bạn có sáu cánh cửa. Trong số đó, có năm cánh cửa mà ở đằng sau mỗi cánh cửa có gắn $120$ USD và một cánh cửa mà ở đằng sau là \\textbf{“người thu hồi”}. Bạn có thể chọn bất kỳ sự kết hợp nào của các cánh cửa mà bạn thích và sau đó mở tất cả chúng ra. Nếu tất cả cánh cửa bạn mở đều có tiền thì bạn sẽ giữ tất cả số tiền đó. Tuy nhiên, nếu một trong những cánh cửa bạn mở ra có người thu hồi thì họ sẽ lấy hết số tiền ở các cánh cửa kia (nếu có) và bạn không nhận được gì. Nếu bạn chọn số lượng cửa tối ưu thì số tiền thắng được kỳ vọng của bạn là bao nhiêu USD?"
+    }
+  ]
+}

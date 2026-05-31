@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8e900f3ba6",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_8e900f3ba6_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\left.\\begin{aligned} S\\!A &\\perp (ABC) \\\\ BC &\\subset (ABC) \\end{aligned}\\right\\} \\Rightarrow S\\!A \\perp BC$.\\\\\r\n\t\tTam giác $ABC$ vuông tại $B$ nên $AB \\perp BC$.\\\\\r\n\t\tTrong mặt phẳng $(S\\!AB)$ có hai đường thẳng cắt nhau là $S\\!A$ và $AB$ cùng vuông góc với $BC$.\\\\\r\n\t\t$\\Rightarrow BC \\perp (S\\!AB)$."
+}

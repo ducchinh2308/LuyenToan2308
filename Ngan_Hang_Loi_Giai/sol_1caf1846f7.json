@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1caf1846f7",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Theo định nghĩa, $P(t)$ mới là một nguyên hàm của hàm số tốc độ tăng trưởng $P'(t)$, tức là $P(t) = \\int P'(t)dt$. Mệnh đề phát biểu ngược lại là sai.\r\n\t\t\t\\itemch Thời điểm ban đầu ứng với $t = 0$, do đó $P(0) = 500$.\r\n\t\t\t\\itemch $P(t) = \\int k\\sqrt{t} dt = k \\int t^{\\frac{1}{2}} dt = k \\cdot \\displaystyle\\frac{2}{3}t^{\\frac{3}{2}} + C = \\frac{2}{3}k\\sqrt{t^3} + C$.\r\n\t\t\t\\itemch Từ $P(0) = 500 \\Rightarrow \\displaystyle\\frac{2}{3}k \\cdot 0 \\cdot \\sqrt{0} + C = 500 \\Rightarrow C = 500$. Do sau $1$ ngày có $600$ vi khuẩn $\\Rightarrow P(1) = 600$: $P(1) = \\displaystyle\\frac{2}{3}k \\cdot 1 \\cdot \\sqrt{1} + 500 = 600 \\Rightarrow \\frac{2}{3}k = 100 \\Rightarrow k = 150$. Suy ra $P(t) = \\displaystyle\\frac{2}{3} \\cdot 150 \\cdot t\\sqrt{t} + 500 = 100t\\sqrt{t} + 500$. Vậy $P(16) = 100 \\cdot 16 \\cdot \\sqrt{16} + 500 = 100 \\cdot 16 \\cdot 4 + 500 = 6400 + 500 = 6900$.\r\n\t\t\\end{itemchoice}"
+}

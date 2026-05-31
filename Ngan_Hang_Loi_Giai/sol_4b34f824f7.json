@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4b34f824f7",
+  "dapAn": "3,12",
+  "loiGiai": "Chọn hệ trục tọa độ $Oxyz$ có $A \\equiv O$ như hình.\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_4b34f824f7_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tKhi đó ta có:\\\\\r\n\t\t$A(0;0;0), B(2;0;0), D(0;3;0), A'(0;0;6)$.\\\\\r\n\t\t$B'(2;0;6), D'(0;3;6), I(0;0;3)$.\\\\\r\n\t\t$C(2;3;0), \\vec{AC}(2;3;0), \\vec{AG} = \\displaystyle \\frac{2}{3}\\vec{AC}(2;3;0) \\Rightarrow \\vec{AG}\\left(\\frac{4}{3}; 2; 0\\right) \\Rightarrow G\\left(\\frac{4}{3}; 2; 0\\right)$.\\\\\r\n\t\t$\\vec{B'D'}(-2; 3; 0), \\vec{IG}\\left(\\displaystyle \\frac{4}{3}; 2; -3\\right), \\vec{IB'}(2; 0; 3), \\left[ \\vec{B'D'}, \\vec{IG} \\right] = (-9; -6; -8)$.\\\\\r\n\t\t$d(B'D'; IG) = \\displaystyle \\frac{\\left| \\left[ \\vec{B'D'}, \\vec{IG} \\right] \\cdot \\vec{IB'} \\right|}{\\left| \\left[ \\vec{B'D'}, \\vec{IG} \\right] \\right|} = \\frac{|-9 \\cdot 2 - 6 \\cdot 0 - 8 \\cdot 3|}{\\sqrt{9^2 + 6^2 + 8^2}} = \\frac{42\\sqrt{181}}{181} \\approx 3{,}12$."
+}

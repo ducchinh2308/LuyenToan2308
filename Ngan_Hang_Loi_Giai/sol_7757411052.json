@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7757411052",
+  "dapAn": "B",
+  "loiGiai": "Áp dụng công thức nguyên hàm cơ bản của hàm số lũy thừa:\\\\\r\n\t\t$\\displaystyle \\int x^{2026} \\, \\mathrm{d}x = \\frac{x^{2026+1}}{2026+1} + C = \\frac{x^{2027}}{2027} + C$."
+}

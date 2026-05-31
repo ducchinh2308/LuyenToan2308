@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f3a6928888",
+  "dapAn": "D",
+  "loiGiai": "Cấp số nhân $(u_n)$, với công bội $q$, có $u_1 = -2$ và $u_2 = -4 \\Rightarrow q = \\displaystyle \\frac{u_2}{u_1} = \\frac{-4}{-2} = 2$.\\\\\r\n\t\t$u_6 = u_1 q^5 = -2 \\cdot 2^5 = -64$."
+}

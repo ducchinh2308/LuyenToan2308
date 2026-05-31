@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f2562a0989",
+  "dapAn": "1",
+  "loiGiai": "Gọi hoành độ của $3$ điểm $A, B, C$ lần lượt là $n; n+1; n+2$ (với $n \\in \\mathbb{N}$ và $n > 2026$).\\\\\r\n\t\tDo $A, B, C \\in (P) \\colon y = x^2$ nên tọa độ của các điểm là: $A(n; n^2)$;\\\\\r\n\t\t$B(n+1; (n+1)^2) = B(n+1; n^2 + 2n + 1); C(n+2; (n+2)^2) = C(n+2; n^2 + 4n + 4)$.\\\\\r\n\t\tTa có $\\vec{AB} = (1; 2n+1)$\\\\\r\n\t\t$\\vec{AC} = (2; 4n+4)$\\\\\r\n\t\t$S_{\\Delta ABC} = \\displaystyle \\frac{1}{2} \\left| 1 \\cdot (4n+4) - (2n+1) \\cdot 2 \\right| = \\frac{1}{2} \\left| 4n+4 - (4n+2) \\right| = \\frac{1}{2}|2| = 1$."
+}
