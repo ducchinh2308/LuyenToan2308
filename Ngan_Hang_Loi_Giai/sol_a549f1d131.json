@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a549f1d131",
+  "dapAn": "0,73",
+  "loiGiai": "Gọi $A(a;0;0), B(0;b;0)$ ta có $\\overrightarrow{AB}=(-a;b;0)$, vectơ chỉ phương của đường thẳng $\\Delta$ là $\\vec{u}=(1;2;-1)$.\\\\\r\n\t\tTa có $AB$ và $\\Delta$ vuông góc với nhau nên $\\overrightarrow{AB}.\\vec{u} = 0 \\Leftrightarrow -a+2b = 0 \\Leftrightarrow a = 2b$.\\\\\r\n\t\tChọn $b=1$ thì $a=2$ ta có vectơ cùng phương với $\\overrightarrow{AB}$ là $\\vec{v}=(-2;1;0)$.\\\\\r\n\t\tTa có cặp vectơ chỉ phương của $(P)$ là $\\vec{u}=(1;2;-1)$ và $\\vec{v}=(-2;1;0)$ nên vectơ pháp tuyến của $(P)$ là $\\vec{n}=(1;2;5)$.\\\\\r\n\t\tTa có phương trình mặt phẳng $(P)$ đi qua điểm $M(2;1;0)$ của đường thẳng $\\Delta$ là:\\\\\r\n\t\t$1(x-2)+2(y-1)+5(z-0)=0 \\Leftrightarrow x+2y+5z-4=0$.\\\\\r\n\t\tKhoảng cách $d(O,(P))=\\displaystyle \\frac{|-4|}{\\sqrt{1+2^2+5^2}} = \\displaystyle \\frac{4}{\\sqrt{30}} \\approx 0,73$."
+}

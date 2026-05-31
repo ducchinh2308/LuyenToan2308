@@ -1,0 +1,203 @@
+{
+  "maDe": "26245-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26245 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_2933cf44ba",
+      "ma_goc": "2605-1286",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, đường thẳng đi qua điểm $A(3;-2;1)$ nhận $\\vec{u}=(4;-5;2)$ làm một vectơ chỉ phương có phương trình là:",
+      "paA": "$\\displaystyle \\frac{x-3}{4}=\\frac{y+2}{5}=\\frac{z-1}{2}$",
+      "paB": "$\\displaystyle \\frac{x-4}{3}=\\frac{y+5}{-2}=\\frac{z-2}{1}$",
+      "paC": "$\\displaystyle \\frac{x+3}{4}=\\frac{y-2}{-5}=\\frac{z+1}{2}$",
+      "paD": "$\\displaystyle \\frac{x-3}{4}=\\frac{y+2}{-5}=\\frac{z-1}{2}$"
+    },
+    {
+      "maCau": "q_e0a6a85907",
+      "ma_goc": "2605-1287",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\cos x = 0$ là:",
+      "paA": "$S = \\left\\{\\displaystyle \\frac{\\pi}{2} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paB": "$S = \\left\\{\\displaystyle \\frac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$S = \\left\\{k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$S = \\left\\{k\\pi, k \\in \\mathbb{Z}\\right\\}$"
+    },
+    {
+      "maCau": "q_cc7c363ba4",
+      "ma_goc": "2605-1288",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho véctơ $\\vec{a}=(2;-1;3)$. Toạ độ của véctơ $3\\vec{a}$ là:",
+      "paA": "$(6;-3;9)$",
+      "paB": "$(-6;3;-9)$",
+      "paC": "$(5;2;6)$",
+      "paD": "$(6;-1;3)$"
+    },
+    {
+      "maCau": "q_f0b462a0e0",
+      "ma_goc": "2605-1289",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x)=x^4$ là:",
+      "paA": "$\\displaystyle \\frac{1}{5}x^5+C$",
+      "paB": "$4x^5+C$",
+      "paC": "$5x^5+C$",
+      "paD": "$\\displaystyle \\frac{1}{4}x^5+C$"
+    },
+    {
+      "maCau": "q_db105e60c5",
+      "ma_goc": "2605-1290",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_db105e60c5_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$2$",
+      "paB": "$-2$",
+      "paC": "$-3$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_0d522db738",
+      "ma_goc": "2605-1291",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt phẳng $(P) \\colon x - 2y + 3z - 1 = 0$. Vectơ nào sau đây là một vectơ pháp tuyến của mặt phẳng $(P)$?",
+      "paA": "$\\vec{n}_1=(1;-2;3)$",
+      "paB": "$\\vec{n}_2=(1;2;3)$",
+      "paC": "$\\vec{n}_4=(1;2;-1)$",
+      "paD": "$\\vec{n}_3=(1;-2;-1)$"
+    },
+    {
+      "maCau": "q_a3d6c05612",
+      "ma_goc": "2605-1292",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$ với $P(B)>0$. Phát biểu nào sau đây đúng?",
+      "paA": "$P(A|B)=P(A).P(B)$",
+      "paB": "$P(A|B)=\\displaystyle \\frac{P(A)}{P(B)}$",
+      "paC": "$P(A|B)=\\displaystyle \\frac{P(A \\cap B)}{P(A)}$",
+      "paD": "$P(A|B)=\\displaystyle \\frac{P(A \\cap B)}{P(B)}$"
+    },
+    {
+      "maCau": "q_c7871ffe31",
+      "ma_goc": "2605-1293",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1 = 5$ và công bội $q = 2$. Giá trị của $u_4$ bằng",
+      "paA": "$11$",
+      "paB": "$40$",
+      "paC": "$13$",
+      "paD": "$80$"
+    },
+    {
+      "maCau": "q_50165ea85e",
+      "ma_goc": "2605-1294",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\int_0^2 f(x)\\,dx = 5$ và $\\displaystyle \\int_0^2 g(x)\\,dx = -2$. Giá trị của $\\displaystyle \\int_0^2 \\left[ f(x) - g(x) \\right]\\,dx$ bằng",
+      "paA": "$-7$",
+      "paB": "$7$",
+      "paC": "$14$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_9832bc8503",
+      "ma_goc": "2605-1295",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành. Đường thẳng $AB$ song song với mặt phẳng nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9832bc8503_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(SAD)$",
+      "paB": "$(SCD)$",
+      "paC": "$(SAB)$",
+      "paD": "$(SBC)$"
+    },
+    {
+      "maCau": "q_2c0f4c2759",
+      "ma_goc": "2605-1296",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho mặt cầu $(S): (x+2)^2 + (y-1)^2 + (z+4)^2 = 9$. Bán kính của mặt cầu $(S)$ bằng",
+      "paA": "$81$",
+      "paB": "$9$",
+      "paC": "$18$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_76c97492a1",
+      "ma_goc": "2605-1297",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\sin x = -1$. Giá trị của $\\cos 2x$ bằng",
+      "paA": "$-1$",
+      "paB": "$0$",
+      "paC": "$3$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_6333f0020d",
+      "ma_goc": "2605-1298",
+      "kieuCau": "DS",
+      "cauDan": "Tại một lễ hội dân gian, số lượng khách tham dự lễ hội được biểu diễn bằng hàm số $B(t) = 6t^4 - 96t^3 + 384t^2 + 16$, trong đó $t$ tính bằng giờ ($0 \\le t \\le 12$). Đạo hàm $B'(t)$ là tốc độ thay đổi lượng khách tham dự lễ hội (tính bằng khách/giờ).",
+      "paA": "Tốc độ thay đổi lượng khách tham dự lễ hội tại thời điểm $t = 2$ (giờ) là $576$",
+      "paB": "Trong khoảng thời gian từ sau $4$ giờ đến trước $8$ giờ số lượng khách tham dự lễ hội giảm dần",
+      "paC": "Tại thời điểm $t = 8$ (giờ) số lượng khách tham dự lễ hội ít nhất",
+      "paD": "Số lượng khách tham dự lễ hội nhiều nhất là $1552$ khách"
+    },
+    {
+      "maCau": "q_e9431fe590",
+      "ma_goc": "2605-1299",
+      "kieuCau": "DS",
+      "cauDan": "Doanh thu theo tháng của một cửa hàng trong hai năm 2024 và 2025 được thể hiện qua bảng tần số sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e9431fe590_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Độ lệch chuẩn cho doanh thu các tháng trong năm 2024 nhỏ hơn $\\displaystyle \\frac{43}{10} = 4,3$ (triệu đồng)",
+      "paB": "Doanh thu trung bình một tháng của cửa hàng trong năm 2024 là $\\displaystyle \\frac{305}{12}$ (triệu đồng)",
+      "paC": "Doanh thu trung bình một tháng của cửa hàng trong năm 2025 là $\\displaystyle \\frac{145}{6}$ (triệu đồng)",
+      "paD": "So sánh theo độ lệch chuẩn thì doanh thu hằng tháng năm 2025 ổn định hơn năm 2024"
+    },
+    {
+      "maCau": "q_10a0acff42",
+      "ma_goc": "2605-1300",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ toạ độ $Oxyz$, cho hai điểm $A(1; 2; 1)$ và $B(2; -2; 0)$.",
+      "paA": "Mặt phẳng trung trực của đoạn thẳng $AB$ có phương trình là $x - 4y - z - 1 = 0$",
+      "paB": "Trung điểm của đoạn thẳng $AB$ có toạ độ là $(3; 0; 1)$",
+      "paC": "Đường thẳng đi qua hai điểm $A, B$ có phương trình là $\\begin{cases} x = 1 + t \\\\ y = 2 - 4t \\\\ z = 1 - t \\end{cases} (t \\in \\mathbb{R})$",
+      "paD": "Gọi $(S)$ là mặt cầu đi qua hai điểm $A, B$ và có tâm thuộc trục $Oz$. Biết rằng $M$ là điểm thuộc $(S)$, giá trị lớn nhất của độ dài đoạn thẳng $OM$ bằng $4$"
+    },
+    {
+      "maCau": "q_45b4d08c0f",
+      "ma_goc": "2605-1301",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = \\log_2 \\displaystyle \\frac{8-x}{x}$.",
+      "paA": "Tập nghiệm của bất phương trình $f(x) > 0$ là $S = (-\\infty; 4)$",
+      "paB": "Đường thẳng $y = -1$ là tiệm cận ngang của đồ thị hàm số đã cho",
+      "paC": "Hàm số $y = f(x)$ nghịch biến trên khoảng $(0; 8)$",
+      "paD": "Hàm số $g(x) = f(x)\\ln 2 + \\displaystyle \\frac{1}{2}x$ không có điểm cực trị"
+    },
+    {
+      "maCau": "q_fe64904fab",
+      "ma_goc": "2605-1302",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $\\Delta \\colon \\displaystyle \\frac{x-2}{1} = \\displaystyle \\frac{y-1}{2} = \\displaystyle \\frac{z}{-1}$. Gọi $(P)$ là mặt phẳng chứa $\\Delta$ và cắt trục $Ox, Oy$ tương ứng tại $A, B$ sao cho hai đường thẳng $AB$ và $\\Delta$ vuông góc với nhau. Khoảng cách từ gốc tọa độ $O$ đến mặt phẳng $(P)$ bằng bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?"
+    },
+    {
+      "maCau": "q_9fc7a59a83",
+      "ma_goc": "2605-1303",
+      "kieuCau": "TLN",
+      "cauDan": "Một chậu trồng cây có dạng hình chóp cụt tứ giác đều có cạnh đáy lớn là $1,2\\text{ m}$; cạnh đáy nhỏ là $0,6\\text{ m}$; chiều cao là $0,75\\text{ m}$. Người ta đổ đất vào chậu, biết rằng $1\\text{m}^3$ đất có khối lượng $1,6$ tấn. Hỏi chậu chứa đầy sẽ có khối lượng đất bao nhiêu tấn (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9fc7a59a83_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_0d86a13cf6",
+      "ma_goc": "2605-1304",
+      "kieuCau": "TLN",
+      "cauDan": "Cô Lan dự định xây dựng một chiếc bể chứa nước mưa dạng hình hộp chữ nhật có thể tích $108\\text{ m}^3$. Biết rằng chiều dài gấp ba lần chiều rộng bể, trên nắp bể để hở một khoảng trống hình tròn có bán kính bằng $\\displaystyle \\frac{1}{3}$ chiều rộng bể. Tính chiều rộng của bể để chi phí nguyên vật liệu (bao gồm chi phí xây đáy, nắp và các mặt xung quanh bể) là nhỏ nhất (không làm tròn các kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_cfdb045617",
+      "ma_goc": "2605-1305",
+      "kieuCau": "TLN",
+      "cauDan": "Có hai hộp đựng các viên bi: Hộp thứ nhất có $9$ viên bi trắng và $2$ viên bi xanh, hộp thứ hai có $4$ viên bi trắng và $5$ viên bi xanh. Lấy ngẫu nhiên từ mỗi hộp ra một viên bi và không hoàn lại, sau đó đem số bi còn lại ở hai hộp này cho vào hộp thứ ba (hộp thứ ba trước đó không chứa viên bi nào). Lấy ngẫu nhiên một viên bi từ hộp thứ ba, xác suất để lấy được bi xanh là bao nhiêu (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_05900c1c77",
+      "ma_goc": "2605-1306",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $A(1;2;-1)$, mặt phẳng $(P) \\colon x+3y-2z+3029=0$ và đường thẳng $d \\colon \\displaystyle \\frac{x-1}{2} = \\displaystyle \\frac{y+1}{-1} = \\displaystyle \\frac{z-4}{1}$. Đường thẳng $\\Delta$ qua $A$, đồng thời cắt $(P)$ và $d$ tương ứng tại $B$ và $C$ sao cho $C$ là trung điểm của đoạn thẳng $AB$. Biết rằng tọa độ của điểm $C$ là $(a;b;c)$. Tính $a+b+c$."
+    },
+    {
+      "maCau": "q_b5ccb39629",
+      "ma_goc": "2605-1307",
+      "kieuCau": "TLN",
+      "cauDan": "Tính thể tích khối tròn xoay tạo thành khi cho hình phẳng giới hạn bởi đồ thị hàm số $y=3^x-1$, trục hoành và hai đường thẳng $x=0$, $x=2$ quay quanh trục $Ox$ (không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần mười)."
+    }
+  ]
+}
