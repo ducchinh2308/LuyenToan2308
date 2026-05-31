@@ -1,0 +1,203 @@
+{
+  "maDe": "26244-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26244 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_b7b20ca5e5",
+      "ma_goc": "2605-1330",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $F(x) = \\ln x$ là nguyên hàm của hàm số nào dưới đây trên khoảng $(0; +\\infty)$?",
+      "paA": "$\\displaystyle f(x) = 2026 - \\frac{1}{x}$",
+      "paB": "$\\displaystyle f(x) = - \\frac{1}{x}$",
+      "paC": "$\\displaystyle f(x) = \\frac{1}{x}$",
+      "paD": "$\\displaystyle f(x) = \\frac{1}{x} + 2026$"
+    },
+    {
+      "maCau": "q_89926e1e92",
+      "ma_goc": "2605-1331",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\cot(3x - 45^\\circ) = \\displaystyle \\frac{\\sqrt{3}}{3}$ là",
+      "paA": "$x = 25^\\circ + k180^\\circ$, $k \\in \\mathbb{Z}$",
+      "paB": "$x = 35^\\circ + k60^\\circ$, $k \\in \\mathbb{Z}$",
+      "paC": "$x = 30^\\circ + k60^\\circ$, $k \\in \\mathbb{Z}$",
+      "paD": "$x = 60^\\circ + k180^\\circ$, $k \\in \\mathbb{Z}$"
+    },
+    {
+      "maCau": "q_d63ba505d3",
+      "ma_goc": "2605-1332",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên đoạn $[a, b]$. Biết $\\displaystyle \\int_a^b f(x)\\,\\mathrm{d}x = 2026$, giá trị của $\\displaystyle \\int_b^a 2f(x)\\,\\mathrm{d}x$ là",
+      "paA": "$-4052$",
+      "paB": "$4052$",
+      "paC": "$1013$",
+      "paD": "$-1013$"
+    },
+    {
+      "maCau": "q_e3ec74035d",
+      "ma_goc": "2605-1333",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_4(x - 1) = 3$ là",
+      "paA": "$x = 68$",
+      "paB": "$x = 65$",
+      "paC": "$x = 66$",
+      "paD": "$x = 63$"
+    },
+    {
+      "maCau": "q_a5c7d51a32",
+      "ma_goc": "2605-1334",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[-1; 5]$ và có đồ thị như hình vẽ. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên $[-1; 5]$. Giá trị của $M - m$ bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a5c7d51a32_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$4$",
+      "paC": "$6$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_51137be975",
+      "ma_goc": "2605-1335",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho đường thẳng $d \\colon \\displaystyle \\frac{x - 3}{2} = \\frac{4 - y}{5} = \\frac{z + 1}{3}$. Vectơ nào dưới đây là một vectơ chỉ phương của $d$?",
+      "paA": "$\\vec{u}_2(2; 4; -1)$",
+      "paB": "$\\vec{u}_1(2; 5; 3)$",
+      "paC": "$\\vec{u}_4(3; 4; -1)$",
+      "paD": "$\\vec{u}_3(2; -5; 3)$"
+    },
+    {
+      "maCau": "q_88dc191f46",
+      "ma_goc": "2605-1336",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1 = -2$ và công bội $q = 3$. Số hạng $u_2$ là",
+      "paA": "$u_2 = -18$",
+      "paB": "$u_2 = 6$",
+      "paC": "$u_2 = 1$",
+      "paD": "$u_2 = -6$"
+    },
+    {
+      "maCau": "q_b87b5f31ff",
+      "ma_goc": "2605-1337",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có cạnh bên $SA$ vuông góc với mặt phẳng đáy $(ABCD)$. Hình chiếu của đường thẳng $SC$ trên mặt phẳng $(ABCD)$ là đường thẳng",
+      "paA": "$SB$",
+      "paB": "$AB$",
+      "paC": "$AC$",
+      "paD": "$SA$"
+    },
+    {
+      "maCau": "q_54c6a07ce8",
+      "ma_goc": "2605-1338",
+      "kieuCau": "TN",
+      "cauDan": "Tại một hội thảo quốc tế có $50$ nhà khoa học, trong đó có $31$ người thành thạo tiếng Anh, $21$ người thành thạo tiếng Pháp và $5$ người thành thạo cả tiếng Anh và tiếng Pháp. Chọn ngẫu nhiên một người trong hội thảo. Xác suất để người được chọn thành thạo ít nhất một trong hai thứ tiếng Anh hoặc Pháp là",
+      "paA": "$\\displaystyle \\frac{47}{50}$",
+      "paB": "$\\displaystyle \\frac{52}{50}$",
+      "paC": "$\\displaystyle \\frac{36}{50}$",
+      "paD": "$\\displaystyle \\frac{57}{50}$"
+    },
+    {
+      "maCau": "q_7dc1f3f0d2",
+      "ma_goc": "2605-1339",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, phương trình nào dưới đây là phương trình của một mặt cầu?",
+      "paA": "$x^2 + y^2 - z^2 - 4x + 2y + 2z - 3 = 0$",
+      "paB": "$x^2 + 2y^2 + z^2 - 4x + 2y + 2z - 10 = 0$",
+      "paC": "$x^2 + y^2 + z^2 - 4x + 2y + 2z - 2 = 0$",
+      "paD": "$x^2 + y^2 + z^2 - 4xy + 2y + 2z + 8 = 0$"
+    },
+    {
+      "maCau": "q_de473604a7",
+      "ma_goc": "2605-1340",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a} = (5; 3; -2)$ và $\\vec{b} = 2\\vec{i} + 3\\vec{k} - \\vec{j}$. Tìm tọa độ của vectơ $\\vec{u} = 2\\vec{a} + 3\\vec{b}$",
+      "paA": "$\\vec{u} = (10; 6; -4)$",
+      "paB": "$\\vec{u} = (16; 3; 5)$",
+      "paC": "$\\vec{u} = (16; 15; -7)$",
+      "paD": "$\\vec{u} = (10; -3; -6)$"
+    },
+    {
+      "maCau": "q_befb76ac3a",
+      "ma_goc": "2605-1341",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng xét dấu của đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_befb76ac3a_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực đại của hàm số đã cho là",
+      "paA": "$2$",
+      "paB": "$5$",
+      "paC": "$4$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_f87e9453db",
+      "ma_goc": "2605-1342",
+      "kieuCau": "DS",
+      "cauDan": "Trong một nghiên cứu, một nhóm học sinh được cho xem cùng một danh sách các loài động vật. Sau đó cứ mỗi tháng, các em sẽ được kiểm tra lại để xem còn nhớ bao nhiêu phần trăm số loài động vật có trong danh sách. Giả sử sau $t$ tháng, khả năng nhớ trung bình $M$ của nhóm học sinh đó được tính theo công thức $M(t) = 75 - 20\\ln(t+1)$, $0 \\le t \\le 12$ (đơn vị: $\\%$).",
+      "paA": "Khả năng nhớ trung bình của nhóm học sinh đó sau $6$ tháng là $36\\%$ (kết quả đã làm tròn đến hàng đơn vị)",
+      "paB": "Hàm số $y=M(t)$ nghịch biến trên đoạn $[0;12]$",
+      "paC": "Công thức tìm $t$ khi biết $M$ là $t = \\mathrm{e}^{75-M} - 1$",
+      "paD": "Sau ít nhất $10$ tháng thì khả năng nhớ trung bình của nhóm học sinh đó còn dưới $25\\%$"
+    },
+    {
+      "maCau": "q_499170a0fa",
+      "ma_goc": "2605-1343",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho tứ diện $ABCD$ với $A(1;2;-1)$, $B(2;0;1)$, $C(0;1;2)$, $D(1;1;1)$.",
+      "paA": "Gọi $DH$ là đường cao của tứ diện. Một vectơ chỉ phương của $DH$ là $\\vec{u}=(4;5;3)$",
+      "paB": "Cosin của góc tạo bởi đường thẳng $AD$ và mặt phẳng $(ABC)$ là $\\dfrac{\\sqrt{10}}{50}$",
+      "paC": "Phương trình của mặt cầu tâm $D$ tiếp xúc với mặt phẳng $(ABC)$ là $(x-1)^2+(y-1)^2+(z-1)^2=50$",
+      "paD": "Gọi $G$ là trọng tâm của tam giác $ABC$. Nếu $(P)$ có phương trình dạng $ax+by+cz-2=0$ là mặt phẳng đi qua điểm $G$ và cách điểm $D$ một khoảng lớn nhất thì $a+2b+3c=9$"
+    },
+    {
+      "maCau": "q_4e34158f71",
+      "ma_goc": "2605-1344",
+      "kieuCau": "DS",
+      "cauDan": "Độ tuổi của người đi xem một bộ phim mới tại một rạp chiếu phim được ghi lại trong bảng số liệu ghép nhóm sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4e34158f71_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Giá trị đại diện của nhóm $[50;60)$ là $60$",
+      "paB": "Độ tuổi được dự báo ít xem phim đó nhất là thuộc nhóm $[50;60)$",
+      "paC": "Nhóm chứa mốt là nhóm $[30;40)$",
+      "paD": "Độ tuổi được dự báo xem phim đó nhiều nhất là $31$ tuổi"
+    },
+    {
+      "maCau": "q_570acd75a9",
+      "ma_goc": "2605-1345",
+      "kieuCau": "DS",
+      "cauDan": "Một bồn chứa hình trụ có diện tích đáy $S = 100\\text{ m}^2$ đang chứa $1000\\text{ m}^3$ hóa chất lỏng. Do sự cố, hóa chất bị rò rỉ ra ngoài qua một lỗ hổng ở đáy. Đồng thời, do nhiệt độ cao, hóa chất cũng bị bốc hơi khỏi bề mặt. Tốc độ rò rỉ tại thời điểm $t$ (giờ) kể từ lúc bắt đầu sự cố tỉ lệ thuận với căn bậc hai của chiều cao cột hóa chất lỏng $h(t)$ còn lại trong bồn: $v_r(t) = 10\\sqrt{h(t)}\\text{ (m}^3\\text{/giờ)}$. Tốc độ bốc hơi tỉ lệ thuận với diện tích bề mặt tiếp xúc (là đáy trên của hình trụ) và thay đổi theo thời gian: $v_b(t) = \\dfrac{200}{t+1}\\text{ (m}^3\\text{/giờ)}$. Gọi $V(t)$ là thể tích hóa chất còn lại trong bồn tại thời điểm $t$ (giờ). Biết $V(0) = 1000\\text{ m}^3$.",
+      "paA": "Tại thời điểm bắt đầu sự cố ($t = 0$), tốc độ giảm thể tích tổng cộng của hóa chất trong bồn là $231{,}6\\text{ m}^3\\text{/giờ}$ (kết quả đã làm tròn đến hàng phần mười)",
+      "paB": "Mối liên hệ giữa chiều cao $h(t)$ và thời gian $t$ được xác định bởi hệ thức $h' = -0{,}1\\sqrt{h} - \\dfrac{2}{t+1}$",
+      "paC": "Trong khoảng thời gian gặp sự cố thì tốc độ giảm thể tích tổng cộng của hóa chất trong bồn luôn tăng",
+      "paD": "Nếu bỏ qua sự bốc hơi ($v_b = 0$) thì bồn sẽ cạn sạch hóa chất ($h = 0$) sau đúng $20$ giờ"
+    },
+    {
+      "maCau": "q_cd16b90cdf",
+      "ma_goc": "2605-1346",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty xây dựng cần xếp các ống thép hình trụ thành một chồng trong kho. Hàng dưới cùng có $50$ ống, hàng thứ hai có $49$ ống, hàng thứ ba có $48$ ống,... Cứ như thế, mỗi hàng phía trên ít hơn hàng ngay phía dưới là $1$ ống và hàng trên cùng có $21$ ống. Biết giá tiền nhập kho của mỗi ống thép là $250.000$ đồng. Tính tổng số tiền công ty đó đã chi để nhập toàn bộ số ống thép trên (kết quả làm tròn đến hàng đơn vị của triệu đồng)."
+    },
+    {
+      "maCau": "q_71f041030a",
+      "ma_goc": "2605-1347",
+      "kieuCau": "TLN",
+      "cauDan": "Trước thềm trận bóng đá giữa đội tuyển A và đội tuyển B, một đài truyền hình thực hiện phỏng vấn ngẫu nhiên một lượng người hâm mộ, với $20\\%$ số người được phỏng vấn đang mặc áo thi đấu của một trong hai đội. Kết quả khảo sát cho thấy $60\\%$ số người được phỏng vấn trả lời sẽ xem, số người còn lại trả lời sẽ không xem. Tuy nhiên, số liệu thực tế sau trận đấu cho thấy có sự sai lệch giữa câu trả lời và hành động thực tế: trong số những người trả lời \"có xem\", tỉ lệ người thực sự xem là $90\\%$; trong số những người trả lời \"không xem\", tỉ lệ người thực sự không xem là $85\\%$. Biết rằng trong số những người được phỏng vấn đang mặc áo thi đấu, tỉ lệ người thực sự xem trận đấu là $85\\%$, gọi tỉ lệ người thực sự xem trận đấu trong số những người không mặc áo thi đấu là $a\\%$. Tìm $a$ (kết quả làm tròn đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_0b699f0a7c",
+      "ma_goc": "2605-1348",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp sản xuất linh kiện công nghệ cao đang giữ vị thế độc quyền trên thị trường và luôn bán hết số sản phẩm sản xuất ra. Với $x$ là số lượng sản phẩm sản xuất ra ($0 < x < 3520$) thì giá bán của một sản phẩm được cho bởi công thức $P(x) = 1760 - 0{,}5x$ (tính bằng USD). Tổng chi phí sản xuất $x$ sản phẩm được cho bởi công thức $C(x) = \\dfrac{1}{3}x^3 - 10x^2 + 200x + 1000$ (tính bằng USD). Chính phủ dự định áp dụng chính sách thuế bằng cách thu của doanh nghiệp một khoản thuế là $t$ (USD) trên mỗi sản phẩm bán ra. Khi đó, doanh nghiệp sẽ điều chỉnh sản lượng $x$ để đạt lợi nhuận tối đa ứng với mức thuế $t$. Xác định mức thuế $t$ (USD) mà Chính phủ nên áp dụng để tổng số tiền thuế thu được từ doanh nghiệp này là lớn nhất."
+    },
+    {
+      "maCau": "q_3f7c4b18ba",
+      "ma_goc": "2605-1349",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, hai thanh dầm của một mái nhà được biểu diễn bởi hai đường thẳng lần lượt có phương trình:\r\n\t$d_1\\colon \\left\\{\\begin{aligned} &x = 1 \\\\ &y = 1 - 2t_1 \\\\ &z = 1 + t_1 \\end{aligned}\\right.$ ($t_1 \\in \\mathbb{R}$) và $d_2\\colon \\left\\{\\begin{aligned} &x = 0 \\\\ &y = -2 + 4t_2 \\\\ &z = 1 - 2t_2 \\end{aligned}\\right.$ ($t_2 \\in \\mathbb{R}$).\r\n\tMột máng nước nằm ở mép của mái nhà và vuông góc với hai thanh dầm này được biểu diễn bởi đường thẳng có vectơ chỉ phương có tọa độ là $(a;b;6)$. Tính giá trị của biểu thức $T = 7a + 5b$.\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_161648.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_c4e1f1d55c",
+      "ma_goc": "2605-1350",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty sản xuất kẹo thạch muốn thiết kế một loại vỏ nhựa có dạng hình tròn xoay. Hình này được tạo thành khi quay hình phẳng $(H)$ giới hạn bởi đường parabol $(P)\\colon y = x^2$ và đường thẳng $y = h$ (với $h > 0$) quanh trục tung $Oy$. Đơn vị đo trên các trục tọa độ là $\\text{mm}$. Bên trong vỏ nhựa có đặt một viên kẹo thạch hình cầu bán kính $R$. Biết viên kẹo tiếp xúc với mặt xung quanh của vỏ nhựa đồng thời tiếp xúc với mặt đáy của vỏ (với mặt phẳng đáy trùng với mặt phẳng chứa đường tròn giới hạn bởi mép vỏ nhựa). Gọi $M$ là điểm tiếp xúc giữa viên kẹo và mặt bên của vỏ nhựa, $M$ thuộc mặt phẳng $(Oxy)$. Khoảng cách từ điểm $M$ đến trục hoành bằng $20\\text{ mm}$. Phần không gian còn lại trong vỏ nhựa được đổ đầy nước trái cây. Tính thể tích $V$ của phần nước trái cây này (kết quả làm tròn đến hàng đơn vị của $\\text{mm}^3$, không làm tròn các bước trung gian, chỉ làm tròn ở bước cuối cùng, bỏ qua độ dày của vỏ).\r\n\t\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_161934.png}\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_40d3b5d281",
+      "ma_goc": "2605-1351",
+      "kieuCau": "TLN",
+      "cauDan": "Trong y học, máy tán sỏi ngoài cơ thể (Lithotripter) hoạt động dựa trên tính chất quang học của đường elip. Thiết bị này có một mặt phản xạ có mặt cắt là một nửa đường elip. Khi hoạt động, nguồn phát sóng xung kích được đặt tại tiêu điểm $F_1$ của elip, và viên sỏi thận của bệnh nhân được bác sĩ định vị chính xác tại tiêu điểm $F_2$ còn lại. Theo tính chất của elip, mọi tia sóng phát ra từ $F_1$ sau khi chạm vào mặt phản xạ đều hội tụ chính xác tại $F_2$, tạo ra năng lượng đủ lớn để phá vỡ viên sỏi mà không cần phẫu thuật. Một thiết bị tán sỏi thận có mặt cắt là một nửa đường elip với độ dài trục lớn là $20\\text{ cm}$ và khoảng cách từ tiêu điểm đến tâm elip là $8\\text{ cm}$. Xét một tia sóng phát ra từ nguồn $F_1$, đi theo phương vuông góc với trục lớn tại chính vị trí tiêu điểm $F_1$, chạm vào mặt phản xạ tại điểm $M$ rồi truyền đến viên sỏi tại tiêu điểm $F_2$. Tính độ dài quãng đường $MF_2$ (đơn vị: $\\text{cm}$) từ điểm phản xạ đến viên sỏi."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_96e3404ff8",
+  "dapAn": "16.4",
+  "loiGiai": "Chọn hệ trục tọa độ sao cho tâm elip là $O$, trục lớn nằm trên trục hoành.\\\\\r\n\t\tĐộ dài trục lớn của elip là $20\\text{ cm}$, nên: $2a = 20 \\Rightarrow a = 10$.\\\\\r\n\t\tKhoảng cách từ tiêu điểm đến tâm là $8\\text{ cm}$, nên: $c = 8$ và $F_1(-8;0)$, $F_2(8;0)$.\\\\\r\n\t\tTa có: $b^2 = a^2 - c^2 = 10^2 - 8^2 = 100 - 64 = 36 \\Rightarrow b = 6$ nên $(E)\\colon \\dfrac{x^2}{100} + \\dfrac{y^2}{36} = 1$.\\\\\r\n\t\tTia sóng phát ra từ $F_1$ theo phương vuông góc với trục lớn nên đi theo đường thẳng $x = -8$.\\\\\r\n\t\tNên $x_M = -8 \\Rightarrow y_M = 6\\sqrt{1 - \\dfrac{64}{100}} = \\dfrac{18}{5}$.\\\\\r\n\t\tVậy: $MF_1 = \\dfrac{18}{5}\\text{ cm}$.\\\\\r\n\t\tTheo tính chất của elip: $MF_1 + MF_2 = 2a = 20 \\Rightarrow MF_2 = 20 - \\dfrac{18}{5} = \\dfrac{82}{5} = 16{,}4\\text{ cm}$."
+}

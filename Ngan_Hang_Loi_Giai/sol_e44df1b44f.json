@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e44df1b44f",
+  "dapAn": "C",
+  "loiGiai": "Ta có $F(x) = \\displaystyle \\int f(x)\\,dx$ nên $f(x) = F'(x) = (\\ln x)' = \\displaystyle \\frac{1}{x}$.\\\\\r\n\t\tVậy hàm số cần tìm là $\\displaystyle f(x) = \\frac{1}{x}$.\\\\"
+}

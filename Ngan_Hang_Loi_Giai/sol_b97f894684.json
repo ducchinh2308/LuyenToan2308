@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b97f894684",
+  "dapAn": "266",
+  "loiGiai": "Số lượng ống thép ở mỗi hàng lập thành một cấp số cộng với $u_1 = 50$, công sai $d = -1$ và số hạng cuối $u_n = 21$.\\\\\r\n\t\tTa có: $u_n = u_1 + (n-1)d \\Leftrightarrow 21 = 50 + (n-1)(-1) \\Leftrightarrow n = 30$.\\\\\r\n\t\tNhư vậy, tổng số ống thép của công ty xây dựng là: $S_n = \\dfrac{n(u_1+u_n)}{2} = \\dfrac{30(50+21)}{2} = 1065$ (ống).\\\\\r\n\t\tTổng số tiền công ty đó đã chi để nhập $1065$ ống thép là: $1065 \\times 250.000 = 266.250.000$ (đồng).\\\\\r\n\t\tLàm tròn đến hàng đơn vị của triệu đồng: $266$ triệu đồng."
+}
