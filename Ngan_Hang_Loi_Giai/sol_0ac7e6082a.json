@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_0ac7e6082a",
+  "dapAn": "D",
+  "loiGiai": "Tổng số tháng: $n = 3 + 7 + 9 + 4 + 1 = 24$. \\\\\r\n\t\tVị trí của trung vị là: $\\displaystyle \\frac{n}{2} = \\frac{24}{2} = 12$. \\\\\r\n\t\tTa có bảng tần số tích lũy: \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_0ac7e6082a_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tNhóm chứa trung vị: $[25; 35)$ \\\\\r\n\t\tTrung vị: $\\displaystyle M_e = 25 + \\left( \\frac{12 - 10}{9} \\right) \\cdot 10 \\approx 27,222... \\approx 27,2$. \\\\"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_0c3b4e8747",
+  "dapAn": "0,95",
+  "loiGiai": "Máy hoạt động khi rơi vào 1 trong 3 trường hợp xung khắc sau: \\\\\r\n\t\tĐộng cơ $A$ tốt, động cơ $B$ hỏng: $P_1 = P(A) \\cdot P(\\overline{B}) = 0,8 \\cdot 0,25 = 0,2$. \\\\\r\n\t\tĐộng cơ $A$ hỏng, động cơ $B$ tốt: $P_2 = P(\\overline{A}) \\cdot P(B) = 0,2 \\cdot 0,75 = 0,15$. \\\\\r\n\t\tCả hai động cơ $A$ và $B$ đều tốt: $P_3 = P(A) \\cdot P(B) = 0,8 \\cdot 0,75 = 0,6$. \\\\\r\n\t\tXác suất để máy hoạt động là tổng xác suất của các trường hợp trên: \\\\\r\n\t\t$P(X) = P_1 + P_2 + P_3 = 0,2 + 0,15 + 0,6 = 0,95$. \\\\"
+}
