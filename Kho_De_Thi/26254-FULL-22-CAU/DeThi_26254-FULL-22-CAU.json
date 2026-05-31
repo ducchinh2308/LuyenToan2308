@@ -1,0 +1,203 @@
+{
+  "maDe": "26254-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26254 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_6ae389bc39",
+      "ma_goc": "2605-1571",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(-1;2;5)$ và $B(3;-6;1)$. Vectơ $\\vec{AB}$ cùng phương với vectơ nào dưới đây?",
+      "paA": "$\\vec{b}=(-1;2;-1)$",
+      "paB": "$\\vec{c}=(1;2;-1)$",
+      "paC": "$\\vec{a}=(1;2;1)$",
+      "paD": "$\\vec{d}=(-1;1;2)$"
+    },
+    {
+      "maCau": "q_665354693b",
+      "ma_goc": "2605-1572",
+      "kieuCau": "TN",
+      "cauDan": "Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_665354693b_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTứ phân vị thứ nhất của mẫu số liệu trên gần nhất với giá trị nào trong các giá trị sau?",
+      "paA": "$8$",
+      "paB": "$8{,}6$",
+      "paC": "$7{,}6$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_4f08f5b2c0",
+      "ma_goc": "2605-1573",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=x^4-2x^2-3$ bằng",
+      "paA": "$-4$",
+      "paB": "$0$",
+      "paC": "$-6$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_718abab310",
+      "ma_goc": "2605-1574",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y=\\dfrac{2x-1}{x+4}$ là",
+      "paA": "$x=-\\dfrac{1}{4}$",
+      "paB": "$y=4$",
+      "paC": "$y=-4$",
+      "paD": "$y=2$"
+    },
+    {
+      "maCau": "q_4919305d47",
+      "ma_goc": "2605-1575",
+      "kieuCau": "TN",
+      "cauDan": "Khảo sát thời gian sử dụng điện thoại một ngày của học sinh lớp 12A thu được mẫu số liệu ghép nhóm sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4919305d47_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn của mẫu số liệu ghép nhóm trên thuộc khoảng nào dưới đây?",
+      "paA": "$(20;22)$",
+      "paB": "$(22;24)$",
+      "paC": "$(18;20)$",
+      "paD": "$(24;26)$"
+    },
+    {
+      "maCau": "q_e9faf9661b",
+      "ma_goc": "2605-1576",
+      "kieuCau": "TN",
+      "cauDan": "Hộp I chứa 1 quả bóng màu trắng, 3 quả bóng màu đỏ và 2 quả bóng màu đen. Hộp II chứa 2 quả bóng màu trắng, 3 quả bóng màu đỏ và 4 quả bóng màu đen. Hộp III chứa 3 quả bóng màu trắng, 4 quả bóng màu đỏ và 5 quả bóng màu đen. Nếu mỗi hộp lấy ra 1 quả bóng, xác suất để 3 quả bóng được lấy ra cùng màu là:",
+      "paA": "$\\dfrac{283}{324}$",
+      "paB": "$\\dfrac{41}{324}$",
+      "paC": "$\\dfrac{5}{36}$",
+      "paD": "$\\dfrac{31}{36}$"
+    },
+    {
+      "maCau": "q_2c392f12dd",
+      "ma_goc": "2605-1577",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x)=\\sin x$ là",
+      "paA": "$-\\cos x + C$",
+      "paB": "$-\\sin x + C$",
+      "paC": "$\\sin x + C$",
+      "paD": "$\\cos x + C$"
+    },
+    {
+      "maCau": "q_dbb2e81abc",
+      "ma_goc": "2605-1578",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, bán kính của mặt cầu $(S)\\colon x^2+y^2+z^2+2x-2y-6z+3=0$ bằng",
+      "paA": "$8$",
+      "paB": "$\\sqrt{41}$",
+      "paC": "$41$",
+      "paD": "$2\\sqrt{2}$"
+    },
+    {
+      "maCau": "q_f2a2c95f38",
+      "ma_goc": "2605-1579",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi đồ thị hàm số $y=\\sqrt{1+3x}$, trục $Ox$ và hai đường thẳng $x=0, x=1$ bằng",
+      "paA": "$\\pi \\int_0^1 (1+3x)\\mathrm{d}x$",
+      "paB": "$\\int_0^1 \\sqrt{1+3x}\\mathrm{d}x$",
+      "paC": "$\\pi \\int_0^1 (1+3x)\\mathrm{d}x$",
+      "paD": "$\\int_0^1 (1+3x)\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_435c5c6e01",
+      "ma_goc": "2605-1580",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_435c5c6e01_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(-\\infty;1)$",
+      "paB": "$(1;+\\infty)$",
+      "paC": "$(0;1)$",
+      "paD": "$(-1;1)$"
+    },
+    {
+      "maCau": "q_054ce4c6d4",
+      "ma_goc": "2605-1581",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy là tam giác vuông tại $B$, $AB=a, SA=a\\sqrt{3}$ và $SA$ vuông góc với mặt phẳng đáy. Góc giữa $SB$ và mặt phẳng đáy bằng",
+      "paA": "$30^\\circ$",
+      "paB": "$60^\\circ$",
+      "paC": "$45^\\circ$",
+      "paD": "$90^\\circ$"
+    },
+    {
+      "maCau": "q_6cacc72ea6",
+      "ma_goc": "2605-1582",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $D$ là hình phẳng giới hạn bởi các đường $y=x^3, y=0, x=0$ và $x=1$. Khối tròn xoay tạo thành khi quay $D$ quanh trục $Ox$ có thể tích là",
+      "paA": "$\\pi \\int_0^1 x^3\\mathrm{d}x$",
+      "paB": "$\\pi \\int_0^1 x^6\\mathrm{d}x$",
+      "paC": "$\\pi \\int_0^1 x^6\\mathrm{d}x$",
+      "paD": "$\\pi \\int_0^1 (2x)^3\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_8fcf0028c0",
+      "ma_goc": "2605-1583",
+      "kieuCau": "DS",
+      "cauDan": "Ban tổ chức một buổi biểu diễn hàng đang chuẩn bị địa điểm và kiểm tra an toàn trước sự kiện. Các điểm $(x; y; z)$ được xác định theo hệ trục tọa độ $Oxyz$ với gốc tại cổng vào $O(0; 0; 0)$, đơn vị tính bằng mét. Một khu vực khán giả có chiều dài $50\\text{ m}$ và chiều rộng $40\\text{ m}$ được bố trí trên mặt đất phẳng. Một tấm chắn phẳng hình chữ nhật, trong suốt, được dựng lên để bảo vệ khán giả. Có thể coi tấm chắn có bề dày không đáng kể. Hai cột đỡ dài $25\\text{ m}$ được gắn tại các điểm $A$ và $B$ và được neo thẳng xuống mặt đất. Một chiếc trực thăng bay theo quỹ đạo là đường thẳng có phương trình: $\\begin{cases} x = 60 - 2t \\\\ y = 5t \\\\ z = 100 \\end{cases} \\ (t \\in \\mathbb{R})$.\r\n\t\\begin{center}\r\n\t\t\\includegraphics[scale=0.8]\r\n\t\t{D:/NganHangToan/Bank-PNG/2026-05-30_145109.png}\r\n\t\\end{center}",
+      "paA": "Khoảng cách ngắn nhất từ một khán giả đứng tại $P(30; 10; 1)$ đến quỹ đạo bay của trực thăng bằng $105\\text{m}$ (làm tròn kết quả đến hàng đơn vị)",
+      "paB": "Để kiểm tra nguy cơ va chạm với đám đông, một kỹ thuật viên bắn một tia laser từ điểm $P(30; 10; 1)$ theo hướng vuông góc với tấm chắn $ABCD$. Nếu giả sử tia laser truyền theo đường thẳng, thì tia laser không cắt quỹ đạo bay của trực thăng",
+      "paC": "Phương trình mặt phẳng $(ABCD)$ là $x + 2z - 50 = 0$",
+      "paD": "Để tăng an toàn, một tấm chắn thứ hai song song với $ABCD$ và khoảng cách giữa hai tấm chắn là $3\\text{m}$. Biết tấm chắn thứ hai được đặt xa khán giả hơn, phương trình của tấm chắn thứ hai là $x + 2z - 50 + 3\\sqrt{5} = 0$"
+    },
+    {
+      "maCau": "q_7e272f0ea0",
+      "ma_goc": "2605-1584",
+      "kieuCau": "DS",
+      "cauDan": "Cho hai hàm số $f(x) = \\left(\\sin\\dfrac{x}{2} + \\cos\\dfrac{x}{2}\\right)^2$ và $g(x) = \\left\\{\\begin{aligned} &\\cos x + m \\quad \\text{khi } x < 0 \\\\ &\\mathrm{e}^x + 2 \\quad \\text{khi } x \\ge 0 \\end{aligned}\\right.$.",
+      "paA": "$m=2$",
+      "paB": "$\\displaystyle\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} f(x)\\mathrm{d}x = 2$",
+      "paC": "Giá trị $\\displaystyle\\int_{\\frac{\\pi}{2}}^{x} [f(x)+g(x)]\\mathrm{d}x = \\mathrm{e}^2 + 3\\pi + 2$",
+      "paD": "Diện tích của hình phẳng giới hạn bởi đồ thị các hàm số $y = f(x), y = g(x)$ và hai đường thẳng $x = 0, x = \\frac{\\pi}{2}$ là $S = \\mathrm{e}^{\\frac{\\pi}{a}} + \\dfrac{\\pi}{b} - c$ ($a, b, c \\in \\mathbb{Z}$). Khi đó $a+b-c = 2$"
+    },
+    {
+      "maCau": "q_f7aa449c53",
+      "ma_goc": "2605-1585",
+      "kieuCau": "DS",
+      "cauDan": "Trường THPT X có $1000$ học sinh thì có $200$ học sinh tham gia câu lạc bộ âm nhạc, trong số học sinh đó có $85\\%$ học sinh biết chơi đàn guitar. Ngoài ra, có $10\\%$ số học sinh không tham gia câu lạc bộ âm nhạc biết chơi đàn guitar. Chọn ngẫu nhiên $1$ học sinh của trường.",
+      "paA": "Giả sử học sinh đó biết chơi đàn guitar. Xác suất chọn được học sinh thuộc câu lạc bộ âm nhạc là $0{,}7$",
+      "paB": "Xác suất chọn được học sinh không tham gia câu lạc bộ âm nhạc là $0{,}9$",
+      "paC": "Xác suất chọn được học sinh biết chơi đàn guitar là $0{,}25$",
+      "paD": "Xác suất chọn được học sinh vừa tham gia câu lạc bộ âm nhạc vừa biết chơi đàn guitar là $0{,}17$"
+    },
+    {
+      "maCau": "q_caa9e65678",
+      "ma_goc": "2605-1586",
+      "kieuCau": "DS",
+      "cauDan": "Chi phí vận hành trung bình (tính bằng triệu đồng/chuyến) của một công ty vận tải khi vận hành $x$ chuyến xe mỗi ngày được cho bởi hàm số $A(x) = 0{,}2x + 2 + \\dfrac{500}{x}$ với $10 \\le x \\le 100$.",
+      "paA": "Tổng chi phí vận hành của công ty vận tải trong một ngày thấp nhất là $1{,}1$ tỉ đồng",
+      "paB": "Đạo hàm của hàm chi phí trung bình là $A'(x) = \\dfrac{0{,}2x^2 + 500}{x^2}$",
+      "paC": "Nếu do giới hạn về số lượng tài xế khiến công ty chỉ có thể vận hành tối đa $40$ chuyến xe mỗi ngày. Chi phí trung bình cho mỗi chuyến xe trong trường hợp này thấp nhất bằng $22{,}5$ triệu đồng",
+      "paD": "Chi phí trung bình trên mỗi chuyến xe thấp nhất là $22$ triệu đồng"
+    },
+    {
+      "maCau": "q_8d346d6df0",
+      "ma_goc": "2605-1587",
+      "kieuCau": "TLN",
+      "cauDan": "Một chiếc hộp trưng bày (hình bên dưới) có dạng hình chóp cụt tứ giác đều $ABCD.A_1B_1C_1D_1$. Biết $AB = 2A_1B_1 = 4\\text{ dm}$ và côsin góc tạo bởi cạnh bên và mặt đáy bằng $\\displaystyle\\frac{\\sqrt{5}}{5}$. Toàn bộ bề mặt bên ngoài của hộp (tổng diện tích hai đáy và bốn mặt bên) được sơn phủ, với đơn giá $120\\,000$ đồng trên $1\\text{ m}^2$. Hỏi tiền sơn phủ hết bao nhiêu nghìn đồng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8d346d6df0_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_6fa8438ae0",
+      "ma_goc": "2605-1588",
+      "kieuCau": "TLN",
+      "cauDan": "Long tẩy là một trong những di vật nổi tiếng của Trung Quốc. Do bên trong chậu có hoa văn hình rồng nên được gọi là long tẩy, là đồ dùng để rửa của hoàng cung thời cổ đại. Phần thân chậu có thể coi gần đúng là một khối nón cụt tròn xoay. Hiện có một chậu long tẩy cao $15\\text{ cm}$, đường kính miệng chậu là $40\\text{ cm}$, đường kính đáy chậu là $20\\text{ cm}$. Đổ nước vào trong chậu, khi độ sâu của nước là $6\\text{ cm}$ thì thể tích nước trong chậu bằng bao nhiêu $\\text{cm}^3$? (làm tròn kết quả đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6fa8438ae0_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_b18080b6df",
+      "ma_goc": "2605-1589",
+      "kieuCau": "TLN",
+      "cauDan": "Khí thải do một nhà máy tạo ra được thải ra sau khi lọc. Trong quá trình lọc, mối quan hệ giữa hàm lượng chất ô nhiễm $P$ trong khí thải (đơn vị: mg/L) và thời gian $t$ (đơn vị: giờ) là $P = P_0 e^{-kt}$, trong đó $P_0$, $k$ là các hằng số dương. Nếu trong $10$ giờ đầu đã loại bỏ được $50\\%$ chất ô nhiễm, thì từ khi loại bỏ $60\\%$ chất ô nhiễm đến khi loại bỏ $80\\%$ chất ô nhiễm, cần trải qua khoảng thời gian bao nhiêu giờ?"
+    },
+    {
+      "maCau": "q_ad20b538c2",
+      "ma_goc": "2605-1590",
+      "kieuCau": "TLN",
+      "cauDan": "Hình vẽ cho thấy mặt cắt của một chiếc bát $PABQ$ và một phần đế $ABCD$ có chiều cao $h$, ($0 < h \\le 6$) (đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ad20b538c2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐường cong $(C)\\colon \\displaystyle\\frac{x^2}{64} + \\frac{(y-6)^2}{36} = 1$, $h \\le y \\le 6$, từ điểm $P$ đến $A$ và từ điểm $B$ đến $Q$ được quay quanh trục $Oy$ để tạo thành mặt cong của chiếc bát; còn hình chữ nhật $ABCD$ được quay quanh trục $Oy$ để tạo thành một đế hình trụ đặc.\\\\\r\n\tGiả sử thành bát mỏng không đáng kể. Hãy xác định (làm tròn kết quả đến hàng phần trăm) giá trị lớn nhất của $h$ sao cho thể tích của bát không nhỏ hơn $790$ đơn vị thể tích."
+    },
+    {
+      "maCau": "q_3da6d2a482",
+      "ma_goc": "2605-1591",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một hộp có $8$ quả bóng nhỏ giống hệt nhau về kích thước và khối lượng, chỉ khác màu. Trong đó có $2$ bóng đỏ, $2$ bóng đen và $4$ bóng trắng. Từ hộp lấy ra từng quả một, không hoàn lại. Nếu cứ tiếp tục rút cho đến khi rút hết $8$ quả bóng. Hãy tính xác suất để màu đỏ là màu bị rút hết trước tiên (làm tròn kết quả đến hàng phần trăm)."
+    },
+    {
+      "maCau": "q_e5c40bf6d1",
+      "ma_goc": "2605-1592",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian hệ trục tọa độ $Oxyz$, cho một khối chóp tam giác $PABC$ có đáy $ABC$ nằm trên mặt phẳng $(Oxy)$. Tam giác $ABC$ vuông cân tại $B$, cạnh huyền $AC = 2\\sqrt{2}\\text{ m}$, biết $PA = PB = PC = 3\\text{ m}$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e5c40bf6d1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $E$ là trung điểm của $PA$, điểm $Q$ di động trên đoạn $CE$. Gọi $d_1$ là khoảng cách từ điểm $Q$ đến mặt phẳng $(PBC)$, $d_2$ là khoảng cách từ điểm $Q$ đến đường thẳng $AB$. Tìm giá trị nhỏ nhất của $d_1 + d_2$ (làm tròn kết quả đến hàng phần trăm)."
+    }
+  ]
+}

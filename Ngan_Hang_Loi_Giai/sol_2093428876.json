@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2093428876",
+  "dapAn": "A",
+  "loiGiai": "Giá trị trung bình $\\bar{x} = \\dfrac{10 \\cdot 2 + 30 \\cdot 5 + 50 \\cdot 7 + 70 \\cdot 19 + 90 \\cdot 9}{42} = \\dfrac{190}{3}$.\\\\\r\n\t\tPhương sai $s^2 = \\dfrac{1}{42} \\sum n_i(x_i - \\bar{x})^2 \\approx 469{,}8$. Độ lệch chuẩn $s = \\sqrt{469{,}8} \\approx 21{,}7$."
+}

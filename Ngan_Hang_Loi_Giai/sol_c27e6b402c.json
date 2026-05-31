@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c27e6b402c",
+  "dapAn": "C",
+  "loiGiai": "Tập xác định: $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm: $y'=4x^3-4x$.\\\\\r\n\t\t$y'=0 \\Leftrightarrow 4x(x^2-1)=0 \\Leftrightarrow \\left[\\begin{aligned} &x=0 \\\\ &x=\\pm 1 \\end{aligned}\\right.$.\\\\\r\n\t\tVới $a=1>0$ và hàm số bậc bốn trùng phương có 3 cực trị nên cực tiểu đạt tại $x=\\pm 1$. Giá trị cực tiểu $y_{CT} = -6$."
+}
