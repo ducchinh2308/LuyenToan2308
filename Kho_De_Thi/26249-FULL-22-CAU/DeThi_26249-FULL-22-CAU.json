@@ -1,0 +1,203 @@
+{
+  "maDe": "26249-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26249 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_cb1387f3eb",
+      "ma_goc": "2605-1418",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật, đường thẳng $SA$ vuông góc với mặt phẳng $(ABCD)$.\r\n\tĐường thẳng $CD$ vuông góc với mặt phẳng nào dưới đây?",
+      "paA": "$(SAC)$",
+      "paB": "$(SAD)$",
+      "paC": "$(SBC)$",
+      "paD": "$(SAB)$"
+    },
+    {
+      "maCau": "q_353b9ee51f",
+      "ma_goc": "2605-1419",
+      "kieuCau": "TN",
+      "cauDan": "Tập hợp nghiệm của bất phương trình $\\log_{0,5}x > -1$ là",
+      "paA": "$(0; 2)$",
+      "paB": "$(-\\infty; 2)$",
+      "paC": "$(0; +\\infty)$",
+      "paD": "$(2; +\\infty)$"
+    },
+    {
+      "maCau": "q_1505a813a8",
+      "ma_goc": "2605-1420",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận đứng của đồ thị hàm số $\\displaystyle y = \\frac{2x-3}{x+1}$ là đường thẳng có phương trình",
+      "paA": "$x=2$",
+      "paB": "$y=-1$",
+      "paC": "$y=2$",
+      "paD": "$x=-1$"
+    },
+    {
+      "maCau": "q_31337b067a",
+      "ma_goc": "2605-1421",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$.\r\n\tVéctơ $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$ bằng véctơ nào dưới đây?",
+      "paA": "$\\overrightarrow{BD'}$",
+      "paB": "$\\overrightarrow{BC'}$",
+      "paC": "$\\overrightarrow{BA'}$",
+      "paD": "$\\overrightarrow{BD}$"
+    },
+    {
+      "maCau": "q_43b547bbb5",
+      "ma_goc": "2605-1422",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y=f(x)$ có đồ thị là đường cong như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_43b547bbb5_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(1;+\\infty)$",
+      "paB": "$(-1;1)$",
+      "paC": "$(-1;+\\infty)$",
+      "paD": "$(-\\infty;0)$"
+    },
+    {
+      "maCau": "q_5383e5f84e",
+      "ma_goc": "2605-1423",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\Delta$ có phương trình $\\displaystyle \\frac{x-1}{2} = \\frac{y+2}{1} = \\frac{z-4}{-3}$. Một véctơ chỉ phương của $\\Delta$ có tọa độ là:",
+      "paA": "$(2;1;3)$",
+      "paB": "$(1;2;4)$",
+      "paC": "$(1;-2;4)$",
+      "paD": "$(2;1;-3)$"
+    },
+    {
+      "maCau": "q_6142853a82",
+      "ma_goc": "2605-1424",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = 3\\cos x$ trên $(-\\infty;+\\infty)$ là",
+      "paA": "$-3\\cos x + C$",
+      "paB": "$3\\sin x + C$",
+      "paC": "$-3\\sin x + C$",
+      "paD": "$3\\cos x + C$"
+    },
+    {
+      "maCau": "q_5672945a5a",
+      "ma_goc": "2605-1425",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1;2;3)$ và mặt phẳng $(P)\\colon x+3y-4z+9=0$. Mặt phẳng $(Q)$ đi qua $M$ và song song với $(P)$ có phương trình là",
+      "paA": "$x+3y+4z+5=0$",
+      "paB": "$x+3y-4z+6=0$",
+      "paC": "$x+3y-4z+5=0$",
+      "paD": "$x+3y-4z-5=0$"
+    },
+    {
+      "maCau": "q_58a054c87f",
+      "ma_goc": "2605-1426",
+      "kieuCau": "TN",
+      "cauDan": "Biết $\\displaystyle F(x) = \\frac{1}{x}$ là một nguyên hàm của hàm số $f(x)$ trên $(0;+\\infty)$. Giá trị của $\\displaystyle \\int_1^3 6[f(x)+x]\\,dx$",
+      "paA": "$6\\ln 2 + 24$",
+      "paB": "$28$",
+      "paC": "$20$",
+      "paD": "$\\ln 3 + 24$"
+    },
+    {
+      "maCau": "q_fba3d01501",
+      "ma_goc": "2605-1427",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x) = \\displaystyle \\frac{mx^2+nx+p}{qx+r}$ có bảng biến thiên như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_fba3d01501_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số đã cho bằng",
+      "paA": "$-4$",
+      "paB": "$3$",
+      "paC": "$4$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_a3494806c9",
+      "ma_goc": "2605-1428",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có $u_2 = 4$, $u_3 = 2$. Khẳng định nào sau đây là đúng?",
+      "paA": "$u_1 = 6$",
+      "paB": "$u_1 = 0$",
+      "paC": "$u_1 = 8$",
+      "paD": "$u_1 = 2$"
+    },
+    {
+      "maCau": "q_a7825d061d",
+      "ma_goc": "2605-1429",
+      "kieuCau": "TN",
+      "cauDan": "Xét mẫu số liệu cho bởi bảng ghép nhóm sau đây:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a7825d061d_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm chứa mốt của mẫu số liệu trên là",
+      "paA": "$[8;12)$",
+      "paB": "$[16;20)$",
+      "paC": "$[12;16)$",
+      "paD": "$[4;8)$"
+    },
+    {
+      "maCau": "q_8e7971c55d",
+      "ma_goc": "2605-1430",
+      "kieuCau": "DS",
+      "cauDan": "Một hộp có chứa $9$ quả bóng màu xanh và $16$ quả bóng màu đỏ (các quả bóng có cùng hình dạng, kích thước và khối lượng). Bạn Nguyệt lấy ngẫu nhiên một quả bóng từ hộp đó (không trả lại). Nếu bạn Nguyệt lấy được quả bóng màu xanh thì bạn Đức lấy ngẫu nhiên đồng thời hai quả bóng từ số bóng còn lại trong hộp. Nếu bạn Nguyệt lấy được quả bóng màu đỏ thì bạn Đức lấy ngẫu nhiên đồng thời ba quả bóng từ số bóng còn lại trong hộp.",
+      "paA": "Xác suất để bạn Nguyệt lấy được quả bóng màu xanh là $0,4$",
+      "paB": "Nếu bạn Nguyệt lấy được quả bóng màu xanh thì xác suất để bạn Đức lấy được ít nhất một quả bóng màu đỏ là $0,46$ (kết quả làm tròn đến hàng phần trăm)",
+      "paC": "Nếu bạn Nguyệt lấy được quả bóng màu đỏ thì xác suất để bạn Đức lấy được ít nhất một quả bóng màu xanh là $0,78$ (kết quả làm tròn đến hàng phần trăm)",
+      "paD": "Biết rằng trong tất cả các quả bóng hai bạn Nguyệt và Đức lấy ra có đủ cả bóng màu xanh và bóng màu đỏ, thì xác suất để bạn Nguyệt lấy được quả bóng màu xanh là $0,39$ (kết quả làm tròn đến hàng phần trăm)"
+    },
+    {
+      "maCau": "q_e126fbd4e7",
+      "ma_goc": "2605-1431",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = f(x) = \\displaystyle \\frac{3x+2}{x-1}$ có đồ thị là $(C)$ và hai điểm $A(-4;2)$; $B(2;8)$.",
+      "paA": "$\\forall x \\neq 1$, hàm số đã cho có đạo hàm $y' = \\displaystyle \\frac{-5}{(x-1)^2}$",
+      "paB": "Tâm đối xứng của đồ thị hàm số đã cho là điểm $I(3;1)$",
+      "paC": "Gọi $m, M$ lần lượt là giá trị nhỏ nhất, giá trị lớn nhất của hàm số $y = f(x)$ trên $[2;5]$. Khi đó $4m + M = 25$",
+      "paD": "Điểm $K(a;b) \\in (C)$ sao cho trực tâm $H$ của tam giác $KAB$ thuộc vào đường thẳng $d \\colon 5x + 4y + 3 = 0$. Khi đó, giá trị của biểu thức $4a^2 - 3b$ bằng $6$"
+    },
+    {
+      "maCau": "q_370e31e77e",
+      "ma_goc": "2605-1432",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(2;4;1), B(-2;2;-3)$ và mặt phẳng $(P) \\colon x + y + z - 3 = 0$.",
+      "paA": "Phương trình mặt phẳng trung trực của đoạn thẳng $AB$ là $2x + y + 2z + 1 = 0$",
+      "paB": "Tọa độ trung điểm $I$ của đoạn thẳng $AB$ là $(0;3;-1)$",
+      "paC": "Phương trình mặt cầu đường kính $AB$ là $x^2 + (y-3)^2 + (z+1)^2 = 9$",
+      "paD": "Gọi $M$ là điểm di động trên mặt phẳng $(P)$ sao cho $M$ luôn cách đều hai điểm $A$ và $B$. Khoảng cách ngắn nhất từ $M$ đến gốc tọa độ $O$ bằng $3\\sqrt{3}$"
+    },
+    {
+      "maCau": "q_c597fb80a9",
+      "ma_goc": "2605-1433",
+      "kieuCau": "DS",
+      "cauDan": "Trong một bể xử lý nước thải, số lượng vi khuẩn gây hại tại thời điểm $t$ được kí hiệu bằng $N(t)$ (đơn vị: con). Người ta nhận thấy rằng trong giai đoạn đầu (khi môi trường chưa bị hạn chế), tốc độ biến thiên của số lượng vi khuẩn tuân theo quy luật hàm mũ và được mô hình hóa bởi hàm số $N'(t) = A.e^{kt}$, trong đó: $A, k$ là các hằng số dương, $t$ là thời gian (đơn vị: giờ). Từ các nghiên cứu thực nghiệm (sau khi xử lý và làm tròn số liệu), người ta ước lượng được $A = 1000\\ln 2$ và tại thời điểm $t=1$ giờ có $3000$ vi khuẩn; $N'(1) = 2000\\ln 2$. Biết rằng mức độ an toàn cho phép không quá $129000$ con.",
+      "paA": "$k = \\ln 2$",
+      "paB": "Số vi khuẩn tại thời điểm $t = 6$ giờ là $63000$ con",
+      "paC": "Số lượng vi khuẩn bắt đầu vượt ngưỡng an toàn từ sau thời điểm $t = 7$ giờ",
+      "paD": "Tại thời điểm $t = 7$ giờ người ta tiến hành xử lý để giảm số lượng vi khuẩn theo quy luật: $M(t) = 129000 \\cdot e^{-0,5(t-7)}$ với $M(t)$ là số con vi khuẩn ở thời điểm $t$ giờ $(t \\ge 7)$. Khi đó, sau $3\\ln 2$ giờ kể từ khi bắt đầu xử lý, số vi khuẩn còn lại $64500$ con"
+    },
+    {
+      "maCau": "q_35d5f1d35b",
+      "ma_goc": "2605-1434",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật với $AB=2, AD=2\\sqrt{3}$, cạnh $SA$ vuông góc với mặt phẳng đáy $(ABCD)$. Biết khoảng cách từ $C$ đến mặt phẳng $(SBD)$ bằng $\\displaystyle \\frac{2\\sqrt{15}}{5}$. Thể tích của khối chóp $S.ABCD$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_bd444d1b82",
+      "ma_goc": "2605-1435",
+      "kieuCau": "TLN",
+      "cauDan": "Khi đặt trong mặt phẳng tọa độ $Oxy$ với trục $Ox$ nằm ngang trên mặt đất, trục $Oy$ hướng thẳng lên trên (tham khảo hình vẽ), đơn vị trong hệ trục là $1$ kilômét thì đường đi của một khinh khí cầu bắt đầu xuất phát từ điểm $O$ được mô phỏng là một phần đồ thị của hàm số bậc hai trên bậc nhất $\\displaystyle f(x) = \\frac{ax^2+bx+c}{x+d}$. Biết đồ thị hàm số $f(x)$ cắt trục hoành tại điểm thứ hai có tọa độ $(8;0)$ và đạt cực đại tại điểm có tọa độ $(6;4)$. Sau khi đi qua điểm cực đại và đang trong quá trình hạ cánh, tại thời điểm khinh khí cầu cách mặt đất $2500$ mét thì hình chiếu của nó trên trục $Ox$ cách gốc tọa độ bao nhiêu kilômét?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bd444d1b82_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_da2be827f3",
+      "ma_goc": "2605-1436",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình vuông $ABCD$ tâm $O$. Gọi $M, N, P, Q$ lần lượt là trung điểm của các đoạn $AB, BC, CD, DA$. Các cung $\\overset{\\frown}{QM}, \\overset{\\frown}{MN}, \\overset{\\frown}{NP}, \\overset{\\frown}{PQ}$ lần lượt là các cung tròn của các đường tròn tâm $A, B, C, D$ với bán kính bằng nhau (tham khảo hình vẽ). Biết diện tích ``tứ giác cong'' $MNPQ$ (miền bị gạch chéo trong hình vẽ) bằng $25(4 - \\pi) \\text{ dm}^2$. Hỏi khi cho ``tứ giác cong'' $MNPQ$ quay quanh trục $NQ$ thì ta thu được vật thể có thể tích bằng bao nhiêu đề-xi-mét khối? (Kết quả làm tròn đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_da2be827f3_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_fa850723f5",
+      "ma_goc": "2605-1437",
+      "kieuCau": "TLN",
+      "cauDan": "Hai cột điện $AC, BD$ dựng vuông góc với mặt đất và cách nhau $100$ mét ($AB = CD = 100$ mét). Một dây điện được treo từ đầu $A$ cột này đến đầu $B$ cột kia (tham khảo hình vẽ) với $AC = BD$. Chọn hệ tọa độ $Oxy$ sao cho tia $Ox$ trùng với tia $OD$ ($O$ là trung điểm của đoạn $CD$), tia $Oy$ cùng hướng với tia $CA$, mỗi đơn vị trên các trục tương ứng với $1$ mét. Khi đó, dây điện nằm trong mặt phẳng $Oxy$ và tạo thành đường cong catenary có phương trình:\\\\\r\n\t$\\displaystyle y = 202 \\left( e^{\\frac{x}{404}} + e^{-\\frac{x}{404}} \\right) - 386 \\text{ với } -50 \\le x \\le 50$.\\\\\r\n\tGọi khoảng cách từ điểm thấp nhất trên dây điện đến đường thẳng nằm ngang $AB$ là độ võng của dây điện. Hỏi độ võng của dây điện bằng bao nhiêu mét (kết quả làm tròn đến hàng phần mười)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_fa850723f5_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_70bc2f07d4",
+      "ma_goc": "2605-1438",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt phẳng $(P) \\colon y - 1 = 0$, đường thẳng $d \\colon \\begin{cases} x = 1 \\\\ y = 2 - t \\\\ z = 1 \\end{cases}$ và hai điểm $A(-1;-3;11)$, $\\displaystyle B\\left(\\frac{1}{2}; 0; 8\\right)$. Hai điểm $M, N$ thuộc mặt phẳng $(P)$ sao cho $M$ luôn cách đường thẳng $d$ một khoảng bằng $2$ và $NA = 2NB$. Khoảng cách nhỏ nhất giữa hai điểm $M$ và $N$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_05c890f823",
+      "ma_goc": "2605-1439",
+      "kieuCau": "TLN",
+      "cauDan": "Chọn ngẫu nhiên cặp số bất kỳ $(x; y)$ thỏa mãn $x, y$ thuộc tập hợp $\\{2008^1; 2008^2; \\ldots; 2008^{25}\\}$. Xét biến cố $A$: ``$\\log_x y$ có giá trị là một số nguyên''. Biết rằng xác suất của biến cố $A$ bằng $\\displaystyle \\frac{a}{b}$ (với $a, b$ là các số nguyên dương, phân số $\\displaystyle \\frac{a}{b}$ tối giản). Tổng $a+b$ bằng bao nhiêu?"
+    }
+  ]
+}
