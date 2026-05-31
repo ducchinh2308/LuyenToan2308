@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_17936e0311",
+  "dapAn": "TTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tỉ lệ mắc bệnh $X$ trong cộng đồng là $0{,}5\\%$ nên $P(A) = 0{,}5\\% = 0{,}005$.\r\n\t\t\t\\itemch Xác suất người không mắc bệnh có kết quả âm tính là $P\\left(\\overline{B} \\big| \\overline{A}\\right) = 99\\% = 0{,}99$.\\\\\r\n\t\t\tSuy ra $P\\left(B \\big| \\overline{A}\\right) = 1 - P\\left(\\overline{B} \\big| \\overline{A}\\right) = 1 - 0{,}99 = 0{,}01$.\r\n\t\t\t\\itemch Xác suất người mắc bệnh có kết quả dương tính là $P\\left(B \\big| A\\right) = 0{,}95$.\\\\\r\n\t\t\tÁp dụng công thức xác suất toàn phần:\\\\\r\n\t\t\t$P(B) = P(A) \\cdot P\\left(B \\big| A\\right) + P\\left(\\overline{A}\\right) \\cdot P\\left(B \\big| \\overline{A}\\right) = 0{,}005 \\cdot 0{,}95 + (1 - 0{,}005) \\cdot 0{,}01 = 0{,}0147$.\r\n\t\t\t\\itemch Áp dụng công thức Bayes: Nếu xảy ra kết quả dương tính thì xác suất mắc bệnh là\\\\\r\n\t\t\t$P\\left(A \\big| B\\right) = \\displaystyle \\frac{P(A) \\cdot P\\left(B \\big| A\\right)}{P(B)} = \\displaystyle \\frac{0{,}005 \\cdot 0{,}95}{0{,}0147} \\approx 0{,}323 < 0{,}5$.\r\n\t\t\\end{itemchoice}"
+}

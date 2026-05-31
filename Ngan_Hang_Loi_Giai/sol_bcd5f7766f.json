@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bcd5f7766f",
+  "dapAn": "6000",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_bcd5f7766f_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tChọn hệ trục tọa độ $Oxy$ như hình vẽ.\\\\\r\n\t\tGọi phương trình đường parabol biểu diễn mặt cắt qua trục là $y = ax^2$, parabol có đỉnh $O$ và đi qua điểm $(20; 30)$ nên ta có $30 = a \\cdot 20^2 \\Leftrightarrow a = \\displaystyle \\frac{3}{40}$.\\\\\r\n\t\tTa có phương trình đường parabol là $y = \\displaystyle \\frac{3}{40}x^2$ suy ra $x = \\sqrt{\\displaystyle \\frac{40y}{3}}, x \\ge 0$.\\\\\r\n\t\tThể tích khối tròn xoay quanh trục $Oy$ là\\\\\r\n\t\t$V = \\pi \\displaystyle \\int_0^{30} \\left(\\sqrt{\\displaystyle \\frac{40y}{3}}\\right)^2 \\,\\mathrm{d}y = 6000\\pi \\text{ (cm}^3)$.\\\\\r\n\t\tVậy $a = 6000$."
+}

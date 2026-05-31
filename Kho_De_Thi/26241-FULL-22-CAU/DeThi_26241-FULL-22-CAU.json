@@ -1,0 +1,203 @@
+{
+  "maDe": "26241-FULL-22-CAU",
+  "tenDe": "ĐỀ THI THỬ 26241 - 22 CÂU",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_7c89234ea8",
+      "ma_goc": "2605-1242",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = 3x^2 + 2\\sin x$ là",
+      "paA": "$x^3 - 2\\cos x + C$",
+      "paB": "$x^3 + 2\\cos x + C$",
+      "paC": "$3x^3 + 2\\cos x + C$",
+      "paD": "$3x^3 - 2\\cos x + C$"
+    },
+    {
+      "maCau": "q_2bae18696b",
+      "ma_goc": "2605-1243",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(2;3;1)$ và $B(-4;-1;5)$. Tọa độ trung điểm $M$ của đoạn thẳng $AB$ là",
+      "paA": "$M(6;4;-4)$",
+      "paB": "$M(-6;-4;4)$",
+      "paC": "$M(-1;1;3)$",
+      "paD": "$M(-2;2;6)$"
+    },
+    {
+      "maCau": "q_f0b7ed0737",
+      "ma_goc": "2605-1244",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $\\Delta$ là tiếp tuyến của đồ thị hàm số $y = x^3 + 3x$ tại điểm có hoành độ bằng $1$. Hệ số góc của $\\Delta$ bằng",
+      "paA": "$4$",
+      "paB": "$6$",
+      "paC": "$1$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_50185af5c3",
+      "ma_goc": "2605-1245",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_2 = 6, u_3 = 12$. Công bội của cấp số nhân $(u_n)$ bằng",
+      "paA": "$6$",
+      "paB": "$\\displaystyle \\frac{1}{2}$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_d6cce8711e",
+      "ma_goc": "2605-1246",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(2;-3;-4)$ và tiếp xúc mặt phẳng $(Oxy)$. Bán kính của mặt cầu $(S)$ bằng",
+      "paA": "$3$",
+      "paB": "$16$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_0f8248e775",
+      "ma_goc": "2605-1247",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ thỏa mãn $\\displaystyle \\int_{-2}^1 f(x)\\,\\mathrm{d}x = 2$. Tính $\\displaystyle \\int_{-2}^1 (1 + f(x))\\,\\mathrm{d}x$.",
+      "paA": "$1$",
+      "paB": "$-1$",
+      "paC": "$-5$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_350af1ceb7",
+      "ma_goc": "2605-1248",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên dưới\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_350af1ceb7_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số $f(x)$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$-2$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_175bfdffe5",
+      "ma_goc": "2605-1249",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình chính tắc của đường thẳng đi qua $M(2;1;1)$ và có vec tơ chỉ phương $\\vec{u} = (2;-1;3)$ là",
+      "paA": "$\\displaystyle \\frac{x+2}{2} = \\frac{y-1}{1} = \\frac{z+3}{1}$",
+      "paB": "$\\displaystyle \\frac{x-2}{2} = \\frac{y+1}{1} = \\frac{z-3}{1}$",
+      "paC": "$\\displaystyle \\frac{x-2}{2} = \\frac{y-1}{-1} = \\frac{z-1}{3}$",
+      "paD": "$\\displaystyle \\frac{x+2}{2} = \\frac{y+1}{-1} = \\frac{z+1}{3}$"
+    },
+    {
+      "maCau": "q_a3813e0af9",
+      "ma_goc": "2605-1250",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = \\sin x$ tuần hoàn với chu kỳ:",
+      "paA": "$T = 3\\pi$",
+      "paB": "$T = 2\\pi$",
+      "paC": "$T = \\displaystyle \\frac{\\pi}{2}$",
+      "paD": "$T = \\pi$"
+    },
+    {
+      "maCau": "q_cc8572913a",
+      "ma_goc": "2605-1251",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có tứ phân vị là $Q_1=3, Q_2=5, Q_3=9$. Khoảng tứ phân vị của mẫu số liệu này là:",
+      "paA": "$2$",
+      "paB": "$6$",
+      "paC": "$4$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_6094e3abd1",
+      "ma_goc": "2605-1252",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A, B$ có $P(B) = 0{,}6$ và $P(A|B) = 0{,}5$. Khi đó $P(AB)$ bằng",
+      "paA": "$0{,}5$",
+      "paB": "$0{,}3$",
+      "paC": "$0{,}8$",
+      "paD": "$0{,}6$"
+    },
+    {
+      "maCau": "q_6b308a7a84",
+      "ma_goc": "2605-1253",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x-1)=3$ là",
+      "paA": "$x=8$",
+      "paB": "$x=7$",
+      "paC": "$x=5$",
+      "paD": "$x=9$"
+    },
+    {
+      "maCau": "q_80e3a7d1fd",
+      "ma_goc": "2605-1254",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = x - 3 + \\displaystyle \\frac{1}{x - 1}$ có đồ thị $(C)$.",
+      "paA": "Tập xác định của hàm số là $D = \\mathbb{R} \\setminus \\{1\\}$",
+      "paB": "Tiệm cận xiên của $(C)$ là đường thẳng $y = x - 3$",
+      "paC": "Điểm $I(1; -2)$ là tâm đối xứng của $(C)$",
+      "paD": "Gọi $A, B$ là hai điểm cực trị của $(C)$. Khi đó, ba điểm $A, B$ và $M(3; -2)$ thẳng hàng"
+    },
+    {
+      "maCau": "q_314f2d7e86",
+      "ma_goc": "2605-1255",
+      "kieuCau": "DS",
+      "cauDan": "Một xét nghiệm chẩn đoán bệnh $X$ có độ nhạy (xác suất người mắc bệnh có kết quả dương tính) là $95\\%$ và độ đặc hiệu (xác suất người không mắc bệnh có kết quả âm tính) là $99\\%$. Tỉ lệ mắc bệnh $X$ trong cộng đồng là $0{,}5\\%$. Chọn ngẫu nhiên một người trong cộng đồng để thực hiện xét nghiệm.\\\\\r\n\tGọi biến cố $A \\colon$ ``người được xét nghiệm mắc bệnh'',\\\\\r\n\tbiến cố $B \\colon$ ``kết quả xét nghiệm dương tính''.",
+      "paA": "$P(A) = 0{,}005$",
+      "paB": "$P\\left(B \\big| \\overline{A}\\right) = 0{,}01$",
+      "paC": "$P(B) = 0{,}02$",
+      "paD": "Nếu xảy ra kết quả dương tính thì xác suất mắc bệnh lớn hơn $0{,}5$"
+    },
+    {
+      "maCau": "q_3a3fd31fac",
+      "ma_goc": "2605-1256",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$ (đơn vị trên các trục là mét), mặt sân quảng trường trùng với mặt phẳng $(Oxy)$. Một tác phẩm nghệ thuật hình cầu $(S)$ có phương trình $\\left(x + 10\\sqrt{3}\\right)^2 + y^2 + (z - 30)^2 = 100$. Xét tại thời điểm $14\\text{h}$, lúc này phương của các tia nắng mặt trời được xác định bởi vectơ $\\vec{v} = \\left(1; 0; -\\sqrt{3}\\right)$.",
+      "paA": "Mặt cầu $(S)$ có tâm $I\\left(-10\\sqrt{3}; 0; 30\\right)$ và bán kính $R = 10 \\text{ (m)}$",
+      "paB": "Phương trình đường thẳng chứa tia nắng đi qua tâm mặt cầu là $\\begin{cases} x = -10\\sqrt{3} + t \\\\ y = 0 \\\\ z = 30 - \\sqrt{3}t \\end{cases}$",
+      "paC": "Gọi $K$ là hình chiếu của tâm $I$ theo phương tia nắng trên mặt sân, khi đó $K\\left(10\\sqrt{3}; 0; 0\\right)$",
+      "paD": "Biết rằng hình chiếu của mặt cầu lên mặt sân là một elip, tiêu cự của elip bằng $\\displaystyle \\frac{20}{\\sqrt{3}}$"
+    },
+    {
+      "maCau": "q_5229acf199",
+      "ma_goc": "2605-1257",
+      "kieuCau": "DS",
+      "cauDan": "Một hồ thủy lợi được tạo ra để điều hòa giữa lượng nước thu vào (từ các nguồn như nước sông, nước suối, nước mưa,...) và lượng nước xả ra (để tưới tiêu, nuôi trồng thủy sản,...), hồ vận hành an toàn khi thể tích nước bên trong nó nằm trong khoảng từ $20\\,000 \\text{ m}^3$ đến $60\\,000 \\text{ m}^3$. Sau một cơn mưa, người ta quan sát hồ trong $6$ giờ liên tục và đo được lưu lượng nước (tức là tốc độ thay đổi của lượng nước theo thời gian) trong hồ là:\\\\\r\n\t$Q(t) = 1000t^3 - 8000t^2 + 12\\,000t$\\\\\r\n\t$t$ có đơn vị là giờ, $Q(t)$ có đơn vị là $\\text{m}^3/\\text{giờ}$.\\\\\r\n\t\\textbf{Lưu ý:} Tại cùng một thời điểm\\\\\r\n\t$\\cdot$ $Q(t) > 0$ thể hiện lượng nước thu vào lớn hơn lượng nước xả ra.\\\\\r\n\t$\\cdot$ $Q(t) < 0$ thể hiện lượng nước thu vào nhỏ hơn lượng nước xả ra.\\\\\r\n\tBiết rằng tại thời điểm bắt đầu quan sát, trong hồ có $50\\,000 \\text{ m}^3$.",
+      "paA": "Sau $2$ giờ quan sát, thể tích nước trong hồ là $50\\,000 + \\displaystyle \\int_0^2 Q(t)\\,\\mathrm{d}t \\text{ m}^3$",
+      "paB": "Trong khoảng thời gian từ $0$ đến $4$ giờ, thể tích nước trong hồ luôn tăng",
+      "paC": "Trong $6$ giờ đầu quan sát, thể tích nước lớn nhất trong hồ là $\\displaystyle \\frac{170\\,000}{3} \\text{ m}^3$",
+      "paD": "Trong $6$ giờ đầu quan sát, hồ luôn vận hành an toàn"
+    },
+    {
+      "maCau": "q_4908d422a9",
+      "ma_goc": "2605-1258",
+      "kieuCau": "TLN",
+      "cauDan": "Một Pikachu khám phá \"mê cung kỳ lạ\" trong mặt phẳng $Oxy$, xuất phát từ $O$ và bước đi vô hạn bước theo quy luật sau:\\\\\r\n\t+ Bước đầu tiên: Dài $8$ đơn vị theo tia $Ox$.\\\\\r\n\t+ Các bước sau: Luôn rẽ trái $90^\\circ$ so với bước liền trước và dài bằng $\\displaystyle \\frac{3}{4}$ bước liền trước.\\\\\r\n\t(tham khảo hình bên).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4908d422a9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết rằng, với hành trình như trên thì Pikachu sẽ tiến đến điểm $M$. Độ dài đoạn thẳng $OM$ bằng bao nhiêu đơn vị?"
+    },
+    {
+      "maCau": "q_1c03ab843d",
+      "ma_goc": "2605-1259",
+      "kieuCau": "TLN",
+      "cauDan": "An chơi trò chơi Minesweeper (gỡ mìn), một trò chơi logic cổ điển, mục tiêu là mở toàn bộ các ô không chứa mìn trên một \"bãi mìn\" có $27$ quả mìn ẩn dưới $27$ ô vuông trong bảng $9 \\times 9$ ô vuông như hình bên. Nếu mở ô chứa mìn thì An thua cuộc, nếu mở ô không chứa mìn thì trong ô này sẽ hiện số tự nhiên $n$ với $1 \\le n \\le 8$ nhằm cảnh báo cho An rằng, trong số $8$ ô kề quanh ô này có $n$ ô chứa mìn. Hai ô đầu tiên An mở là ô ngay phía trên và ô ngay phía dưới ô trung tâm, hai số \"cảnh báo\" mà hai ô này đưa ra lần lượt là $4$ và $1$. Nếu ô tiếp theo An mở là ô trung tâm thì xác suất An thua cuộc ngay sau khi mở ô trung tâm là bao nhiêu \\textit{(không làm tròn các kết quả trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)}?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1c03ab843d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\\textit{Chú ý: Hai ô vuông đơn vị được gọi là kề nhau nếu chúng chung cạnh hoặc chung đỉnh.}"
+    },
+    {
+      "maCau": "q_313e261b5d",
+      "ma_goc": "2605-1260",
+      "kieuCau": "TLN",
+      "cauDan": "Một chiếc cối đá có lòng cối là một paraboloid tròn xoay (có mặt cắt qua trục là một parabol như hình bên), với miệng cối là đường tròn có đường kính $40 \\text{ cm}$ và chiều sâu lòng cối là $30 \\text{ cm}$. Biết rằng thể tích của lòng cối bằng $a\\pi \\text{ (cm}^3)$, giá trị $a$ bằng bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_313e261b5d_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_7f9d9121d5",
+      "ma_goc": "2605-1261",
+      "kieuCau": "TLN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $y = x - 4\\sqrt{x}$ trên đoạn $[0; 9]$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_6d2201860a",
+      "ma_goc": "2605-1262",
+      "kieuCau": "TLN",
+      "cauDan": "Một thiết bị có dạng hình hộp chữ nhật $ABCD.A'B'C'D'$ với $AB = 9 \\text{ dm}$, $AD = 12 \\text{ dm}$, $AA' = 11 \\text{ dm}$, bên trong thiết bị này có 2 vách ngăn có độ dày không đáng kể, chúng lần lượt có khoảng cách đến mặt $ABCD$ là $6 \\text{ dm}$ và $9 \\text{ dm}$ (tham khảo hình vẽ bên dưới).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6d2201860a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNgười ta làm một đường ống giải nhiệt thiết bị, gồm 3 đoạn ống thẳng nối tiếp nhau từ điểm $A$ đến điểm $C'$. Do đặc thù của thiết bị, đoạn ống giữa 2 vách ngăn phải vuông góc với 2 vách ngăn. Độ dài nhỏ nhất của đường ống giải nhiệt thiết bị là bao nhiêu $\\text{dm}$?"
+    },
+    {
+      "maCau": "q_aac148c57a",
+      "ma_goc": "2605-1263",
+      "kieuCau": "TLN",
+      "cauDan": "Sự tăng trưởng dân số được ước tính theo công thức tăng trưởng mũ $A = P.e^{rt}$. Trong đó: $P$ là dân số của năm lấy làm mốc; $A$ là dân số sau $t$ năm; $r$ là tỉ lệ tăng dân số hằng năm. Sau khi thực hiện sắp xếp địa giới hành chính cấp tỉnh (sáp nhập), dân số của thành phố Đồng Nai đạt $4{,}5$ triệu người. Nếu tỉ lệ tăng dân số hằng năm của thành phố được duy trì ổn định ở mức $1{,}32\\%$ thì sau 10 năm nữa dân số của thành phố Đồng Nai đạt bao nhiêu triệu người \\textit{(không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần trăm)}?"
+    }
+  ]
+}

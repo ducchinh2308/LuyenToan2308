@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ce6766e5fe",
+  "dapAn": "20",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_ce6766e5fe_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $MN = 9 - 6 = 3 \\text{ (dm)}$.\\\\\r\n\t\tTrên đoạn $AA'$ lấy điểm $H$ sao cho $AH = MN = 3 \\text{ (dm)}$.\\\\\r\n\t\tTa có $AHNM$ là hình bình hành $\\Rightarrow AM = HN$.\\\\\r\n\t\tĐộ dài đường ống giải nhiệt là $l = AM + MN + NC' = AH + HN + NC' = 3 + HN + NC'$.\\\\\r\n\t\tTa có $HN + NC' \\ge HC'$.\\\\\r\n\t\tVới $A'C' = \\sqrt{9^2 + 12^2} = 15$ và $HC' = \\sqrt{(HA')^2 + (A'C')^2} = \\sqrt{8^2 + 15^2} = 17$.\\\\\r\n\t\tSuy ra $l \\ge 3 + 17$ hay $l \\ge 20$.\\\\\r\n\t\tDấu ``$=$'' xảy ra khi $H, N, C'$ thẳng hàng.\\\\\r\n\t\tVậy độ dài nhỏ nhất của đường ống giải nhiệt thiết bị là $20 \\text{ dm}$."
+}
