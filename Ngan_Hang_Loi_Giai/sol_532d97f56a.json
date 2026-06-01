@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_532d97f56a",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_532d97f56a_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\tTrong tam giác $SAC$, có $O$ là trung điểm $AC$ và $M$ là trung điểm $SA$.\\\\\r\n\t\tSuy ra $OM$ là đường trung bình của tam giác $SAC$, nên $OM \\parallel SC$.\\\\\r\n\t\tMặt khác $SC \\subset (SCD) \\Rightarrow OM \\parallel (SCD)$."
+}

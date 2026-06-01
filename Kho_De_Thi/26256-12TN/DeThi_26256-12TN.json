@@ -1,0 +1,127 @@
+{
+  "maDe": "26256-12TN",
+  "tenDe": "ĐỀ 26256-12tn",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_8045dcffad",
+      "ma_goc": "2605-1527",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2$, cạnh bên $SA$ vuông góc với mặt phẳng đáy và $SA = 3$. Thể tích của khối chóp $S.ABCD$ là",
+      "paA": "$12$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_b17d7fc795",
+      "ma_goc": "2605-1528",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(0;-2;1)$ và bán kính $R=5$. Phương trình của $(S)$ là",
+      "paA": "$x^2+(y+2)^2+(z-1)^2=5$",
+      "paB": "$x^2+(y+2)^2+(z-1)^2=25$",
+      "paC": "$x^2+(y-2)^2+(z+1)^2=25$",
+      "paD": "$x^2+(y-2)^2+(z+1)^2=5$"
+    },
+    {
+      "maCau": "q_3e5f9d5844",
+      "ma_goc": "2605-1529",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x-1)=3$ là",
+      "paA": "$10$",
+      "paB": "$7$",
+      "paC": "$8$",
+      "paD": "$9$"
+    },
+    {
+      "maCau": "q_12bb7450f9",
+      "ma_goc": "2605-1530",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\dfrac{ax+b}{cx+d}$ ($a,b,c,d \\in \\mathbb{R}$ và $c \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_12bb7450f9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTiệm cận ngang của đồ thị hàm số đã cho có phương trình là",
+      "paA": "$x=1$",
+      "paB": "$x=-1$",
+      "paC": "$y=-1$",
+      "paD": "$y=1$"
+    },
+    {
+      "maCau": "q_3e463d134d",
+      "ma_goc": "2605-1531",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm trung bình môn Toán của các học sinh lớp được cho ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3e463d134d_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu trên bằng",
+      "paA": "$0{,}7$",
+      "paB": "$6$",
+      "paC": "$8{,}5$",
+      "paD": "$0{,}15$"
+    },
+    {
+      "maCau": "q_388930c4cf",
+      "ma_goc": "2605-1532",
+      "kieuCau": "TN",
+      "cauDan": "Đạo hàm của hàm số $y=3^x$ là",
+      "paA": "$y'=3^x \\ln 3$",
+      "paB": "$y'=3^x$",
+      "paC": "$y'=x \\cdot 3^{x-1}$",
+      "paD": "$y'=3^x \\ln x$"
+    },
+    {
+      "maCau": "q_77b8156f5b",
+      "ma_goc": "2605-1533",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\tan x=-1$ có tất cả các nghiệm là",
+      "paA": "$-\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paB": "$\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paC": "$\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$",
+      "paD": "$-\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_e0ba511a9c",
+      "ma_goc": "2605-1534",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt phẳng $(P) \\colon 3x-y-z+2=0$. Một vectơ pháp tuyến của $(P)$ là",
+      "paA": "$\\vec{n}=(-1; -1; 2)$",
+      "paB": "$\\vec{n}=(3; -1; 2)$",
+      "paC": "$\\vec{n}=(3; -1; -1)$",
+      "paD": "$\\vec{n}=(3; 1; 1)$"
+    },
+    {
+      "maCau": "q_3b405f626c",
+      "ma_goc": "2605-1535",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Phát biểu nào sau đây là sai?",
+      "paA": "$\\vec{AB}+\\vec{AD}+\\vec{AA'}=\\vec{AC'}$",
+      "paB": "$\\vec{AB}+\\vec{AD}=\\vec{AC}$",
+      "paC": "$\\vec{AB'}+\\vec{CB}=\\vec{AC'}$",
+      "paD": "$\\vec{CC'}=\\vec{DD'}$"
+    },
+    {
+      "maCau": "q_9f8233eb39",
+      "ma_goc": "2605-1536",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành tâm $O$, $M$ là trung điểm của $SA$. Phát biểu nào sau đây đúng?",
+      "paA": "$OM \\parallel (SAD)$",
+      "paB": "$OM \\parallel (SAB)$",
+      "paC": "$OM \\parallel (SBD)$",
+      "paD": "$OM \\parallel (SCD)$"
+    },
+    {
+      "maCau": "q_1b8c48d14f",
+      "ma_goc": "2605-1537",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1b8c48d14f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-1; 3)$",
+      "paB": "$(3; +\\infty)$",
+      "paC": "$(-3; +\\infty)$",
+      "paD": "$(-\\infty; -1)$"
+    },
+    {
+      "maCau": "q_b3bb76d666",
+      "ma_goc": "2605-1538",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1=2$ và công bội $q=3$. Số hạng $u_3$ của cấp số nhân bằng",
+      "paA": "$18$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$5$"
+    }
+  ]
+}
