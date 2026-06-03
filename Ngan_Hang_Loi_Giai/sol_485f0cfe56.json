@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_485f0cfe56",
+  "dapAn": "0,65",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_485f0cfe56_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDo $CC' \\parallel (ABB'A')$ và $AM \\subset (ABB'A')$ nên\r\n\t\t$d(CC', AM) = d\\big(CC', (ABB'A')\\big) = d\\big(C, (ABB'A')\\big)$.\\\\\r\n\t\tKẻ $CH \\perp AB$, có $CH \\perp AA'$ nên $CH \\perp (ABB'A') \\Rightarrow d\\big(C, (ABB'A')\\big) = CH$.\\\\\r\n\t\tTam giác $ABC$ có $AB = \\sqrt{1^2 + 2^2 - 2 \\cdot 1 \\cdot 2 \\cdot \\cos 120^\\circ} = \\sqrt{7}$ nên $CH \\cdot AB = AC \\cdot CB \\cdot \\sin 120^\\circ$\\\\\r\n\t\t$\\Leftrightarrow CH = \\displaystyle\\frac{1 \\cdot 2 \\cdot \\displaystyle\\frac{\\sqrt{3}}{2}}{\\sqrt{7}} = \\displaystyle\\frac{\\sqrt{3}}{\\sqrt{7}} \\approx 0{,}65$."
+}

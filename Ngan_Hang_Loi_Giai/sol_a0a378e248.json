@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a0a378e248",
+  "dapAn": "3",
+  "loiGiai": "Số phần tử của không gian mẫu là $n(\\Omega) = C_9^4 = 126$.\\\\\r\n\t\tGọi $A$ là biến cố: ``Đặt ngẫu nhiên vào $4$ ô vuông trong $9$ ô vuông của bảng sao cho bất kì hàng nào và cột nào của bảng cũng có viên kẹo''.\\\\\r\n\t\tTheo yêu cầu đề bài: Sẽ có một hàng có chứa đúng $2$ viên kẹo, hai hàng còn lại mỗi hàng chứa đúng $1$ viên kẹo; có một cột chứa đúng $2$ viên kẹo, hai cột còn lại mỗi cột chứa đúng $1$ viên kẹo.\\\\\r\n\t\t+ Chọn $1$ hàng trong $3$ hàng để đặt $2$ viên kẹo có $C_3^1 = 3$ cách.\\\\\r\n\t\t+ Chọn $2$ ô trong $3$ ô của hàng đã chọn để đặt kẹo có $C_3^2 = 3$ cách.\\\\\r\n\t\t+ Đặt $2$ viên kẹo còn lại vào $2$ hàng còn lại sao cho cột nào cũng có kẹo có: $1 + 2 \\cdot 2 = 5$ cách.\\\\\r\n\t\tDo đó $n(A) = C_3^1 \\cdot C_3^2 \\cdot 5 = 45$.\\\\\r\n\t\tXác suất của biến cố $A$ là $P(A) = \\displaystyle\\frac{45}{126} = \\displaystyle\\frac{5}{14}$.\\\\\r\n\t\tSuy ra $P = 2b - 5a = 2 \\cdot 14 - 5 \\cdot 5 = 3$."
+}
