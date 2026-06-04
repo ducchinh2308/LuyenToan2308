@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-06-04T08:24:24.412Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_8a77c63842",
+      "dapAn": "D",
+      "loiGiaiHtml": "Đường tiệm cận đứng có phương trình $\\displaystyle x=-\\frac{d}{2}=-1 \\Rightarrow d=2$.\\\\\r\n\t\tĐường tiệm cận ngang có phương trình $\\displaystyle y=\\frac{a}{2}=\\frac{1}{2} \\Rightarrow a=1$."
+    },
+    {
+      "maBaoMat": "sol_b8321e106d",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\log_2(3x-1)=3 \\Leftrightarrow 3x-1=8 \\Leftrightarrow x=3$."
+    },
+    {
+      "maBaoMat": "sol_1694e67db6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\displaystyle 3^x > \\frac{1}{3} \\Leftrightarrow 3^x > 3^{-1} \\Leftrightarrow x > -1$.\\\\\r\n\t\tVậy tập nghiệm của bất phương trình là $(-1;+\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_05761a25c9",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\tan x = 0 \\Leftrightarrow x = k\\pi$ ($k \\in \\mathbb{Z}$).\\\\\r\n\t\tVậy tập nghiệm của phương trình là $S = \\{k\\pi \\mid k \\in \\mathbb{Z}\\}$."
+    },
+    {
+      "maBaoMat": "sol_ab31d2675c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Cấp số nhân có $\\displaystyle u_1 = 2; u_2 = 5 \\Rightarrow q = \\frac{5}{2} \\Rightarrow u_5 = u_1 \\cdot q^{4} = 2 \\cdot \\left(\\frac{5}{2}\\right)^4 = \\frac{625}{8}$."
+    },
+    {
+      "maBaoMat": "sol_deff4770b7",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $n = 11 + 16 + 12 + 15 + 10 + 16 = 80 \\Rightarrow \\displaystyle \\frac{n}{4} = 20 \\Rightarrow Q_1 \\in [500;1000)$; $\\displaystyle \\frac{3n}{4} = 60 \\Rightarrow Q_3 \\in [2000;2500)$.\\\\\r\n\t\t$\\displaystyle Q_1 = 500 + \\frac{20-11}{16} \\cdot 500 = \\frac{3125}{4}$.\\\\\r\n\t\t$\\displaystyle Q_3 = 2000 + \\frac{60-54}{10} \\cdot 500 = 2300$.\\\\\r\n\t\t$\\displaystyle \\Delta_Q = Q_3 - Q_1 = 2300 - \\frac{3125}{4} = 1518{,}75 \\approx 1519$."
+    },
+    {
+      "maBaoMat": "sol_7f73d8ec0d",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\vec{n}_{\\alpha} = (1; -2; -1)$; $\\vec{n}_{\\beta} = (2; -4; m)$.\\\\\r\n\t\t$(\\alpha) \\perp (\\beta) \\Leftrightarrow \\vec{n}_{\\alpha} \\perp \\vec{n}_{\\beta} \\Leftrightarrow 1 \\cdot 2 + (-2) \\cdot (-4) - 1 \\cdot m = 0 \\Leftrightarrow m = 10$."
+    },
+    {
+      "maBaoMat": "sol_28de0b68ec",
+      "dapAn": "D",
+      "loiGiaiHtml": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = \\displaystyle \\int \\left(\\frac{1}{x} + \\frac{1}{\\sqrt{x}}\\right) dx = \\ln|x| + 2\\sqrt{x} + C$."
+    },
+    {
+      "maBaoMat": "sol_b014afce93",
+      "dapAn": "A",
+      "loiGiaiHtml": "Mặt cầu $(S)$ tâm $I$ qua $A$ có bán kính $IA = \\sqrt{(4-2)^2+(1-1)^2+(0+1)^2} = \\sqrt{5}$.\\\\\r\n\t\tSuy ra $(S) \\colon (x-2)^2 + (y-1)^2 + (z+1)^2 = 5$."
+    },
+    {
+      "maBaoMat": "sol_7e3e97a47c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $SA \\perp (ABCD) \\Rightarrow AC$ là hình chiếu của $SC$ lên mặt phẳng $(ABCD)$.\\\\\r\n\t\tSuy ra góc giữa $SC$ và mặt phẳng $(ABCD)$ bằng góc giữa $SC$ và $AC$ và là góc $\\widehat{SCA}$.\\\\\r\n\t\tTa có $\\displaystyle \\tan \\widehat{SCA} = \\frac{SA}{AC}$.\\\\\r\n\t\tTheo đề bài ta có $AB = 2$, $BC\\sqrt{2} = 2 \\Rightarrow BC = \\sqrt{2} \\Rightarrow AC = \\sqrt{AB^2 + BC^2} = \\sqrt{2^2 + (\\sqrt{2})^2} = \\sqrt{6}$.\\\\\r\n\t\tVậy $\\displaystyle \\tan \\widehat{SCA} = \\frac{SA}{AC} = \\frac{\\sqrt{2}}{\\sqrt{6}} = \\frac{1}{\\sqrt{3}} \\Rightarrow \\widehat{SCA} = 30^\\circ$."
+    },
+    {
+      "maBaoMat": "sol_a81151060f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Phương trình hoành độ giao điểm hai đồ thị hàm số $\\displaystyle y = 2\\sin \\frac{x}{2}$ và trục hoành là $\\displaystyle 2\\sin \\frac{x}{2} = 0 \\Leftrightarrow x = 0$.\\\\\r\n\t\tThể tích của khối tròn xoay có được do quay hình $(H)$ quanh trục hoành được tính bởi công thức\\\\\r\n\t\t$\\displaystyle V = \\pi \\int_0^{\\frac{\\pi}{2}} \\left(2\\sin \\frac{x}{2}\\right)^2 dx = \\pi \\int_0^{\\frac{\\pi}{2}} 4\\sin^2 \\frac{x}{2} \\,dx = \\pi \\int_0^{\\frac{\\pi}{2}} 4\\left(\\frac{1-\\cos x}{2}\\right) dx = 2\\pi \\int_0^{\\frac{\\pi}{2}} (1-\\cos x) \\,dx$."
+    },
+    {
+      "maBaoMat": "sol_79379b0bd3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB} = \\overrightarrow{C'B'}$."
+    },
+    {
+      "maBaoMat": "sol_0c19c7b198",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hộp I ban đầu có tổng cộng $5$ viên bi, trong đó có $3$ viên bi xanh. Xác suất để lấy được $1$ viên bi xanh từ hộp I là: $P(A) = \\displaystyle\\frac{3}{5}$.\r\n\t\t\t\\itemch Khi biến cố $A$ xảy ra, hộp II nhận thêm $1$ bi xanh, dẫn đến số bi trong hộp II lúc này gồm: $5$ bi xanh và $1$ bi đỏ (tổng cộng có $6$ viên bi). Xác suất lấy được bi đỏ từ hộp II khi đó là: $P(\\overline{B} \\mid A) = \\displaystyle\\frac{1}{6}$.\r\n\t\t\t\\itemch Xác suất lấy được bi đỏ từ hộp I ban đầu là: $P(\\overline{A}) = \\displaystyle\\frac{2}{5}$.\\\\ Khi biến cố $\\overline{A}$ xảy ra, hộp II nhận thêm $1$ bi đỏ, dẫn đến số bi trong hộp II lúc này gồm: $4$ bi xanh và $2$ bi đỏ (tổng cộng có $6$ viên bi).\\\\ Xác suất lấy được bi xanh từ hộp II khi đó là: $P(B \\mid \\overline{A}) = \\displaystyle\\frac{4}{6} = \\frac{2}{3}$.\r\n\t\t\t\\itemch Áp dụng công thức xác suất toàn phần, ta có:\\\\ $P(\\overline{B}) = P(A)P(\\overline{B} \\mid A) + P(\\overline{A})P(\\overline{B} \\mid \\overline{A}) = \\displaystyle\\frac{3}{5} \\cdot \\frac{1}{6} + \\frac{2}{5} \\cdot \\frac{2}{6} = \\frac{7}{30}$.\\\\ Bên cạnh đó, $P(A\\overline{B}) = P(A) \\cdot P(\\overline{B} \\mid A) = \\displaystyle\\frac{3}{5} \\cdot \\frac{1}{6} = \\frac{3}{30} = \\frac{1}{10}$.\\\\ Như vậy, $P(A \\mid \\overline{B}) = \\displaystyle\\frac{P(A\\overline{B})}{P(\\overline{B})} = \\frac{\\displaystyle\\frac{3}{30}}{\\displaystyle\\frac{7}{30}} = \\frac{3}{7}$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_16284ac705",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $f\\left(\\displaystyle\\frac{1}{e^2}\\right) = \\displaystyle\\frac{1}{e^2} \\ln\\left(e^{-2}\\right) = -\\frac{2}{e^2}$. Và $f(e) = e \\ln e = e$.\r\n\t\t\t\\itemch Ta có: $f'(x) = (x \\ln x)' = \\ln x + x \\cdot \\displaystyle\\frac{1}{x} = \\ln x + 1$.\r\n\t\t\t\\itemch Ta có $f'(x) = 0 \\Leftrightarrow \\ln x + 1 = 0 \\Leftrightarrow x = \\displaystyle\\frac{1}{e} \\in \\left[e^{-2}; e\\right]$.\r\n\t\t\t\\itemch Ta có: $f(e^{-2}) = -\\displaystyle\\frac{2}{e^2}$; $f(e^{-1}) = -\\displaystyle\\frac{1}{e}$; $f(e) = e$.\\\\ Vậy giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[e^{-2}; e\\right]$ là $-\\displaystyle\\frac{1}{e}$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_7f12787680",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $\\overrightarrow{AB} = (8-2;0-0;4-4) = (6;0;0)$; $\\overrightarrow{AC} = (5-2;6-0;7-4) = (3;6;3)$.\r\n\t\t\t\\itemch Mặt phẳng $(ABC)$ đi qua $3$ điểm $A$, $B$, $C$ nên sẽ nhận $\\overrightarrow{AB}$ và $\\overrightarrow{AC}$ làm cặp vectơ chỉ phương.\\\\ Một vectơ pháp tuyến của mặt phẳng $(ABC)$ là $\\left[\\overrightarrow{AB}, \\overrightarrow{AC}\\right] = (0;-18;36) = -18(0;1;-2) \\Rightarrow \\vec{n} = (0;1;-2)$.\r\n\t\t\t\\itemch Mặt phẳng mái nhà chính là mặt phẳng $(ABC)$. Mặt phẳng này đi qua điểm $A(2;0;4)$ và có vectơ pháp tuyến $\\vec{n} = (0;1;-2)$ vừa tìm được ở ý trên.\\\\ Phương trình tổng quát của mặt phẳng $(ABC)$ được viết như sau: $0(x-2) + 1(y-0) - 2(z-4) = 0 \\Leftrightarrow y - 2z + 8 = 0$.\r\n\t\t\t\\itemch Để kiểm tra vị trí camera có đạt chuẩn hay không, ta tính khoảng cách từ điểm đặt camera $M(5;7;8)$ đến mặt phẳng mái nhà $(ABC)$ có phương trình $y - 2z + 8 = 0$:\\\\ $d(M, (ABC)) = \\displaystyle\\frac{|y_M - 2z_M + 8|}{\\sqrt{0^2 + 1^2 + (-2)^2}} = \\frac{|7 - 2 \\cdot 8 + 8|}{\\sqrt{1+4}} = \\frac{|7-16+8|}{\\sqrt{5}} = \\frac{|-1|}{\\sqrt{5}} = \\frac{1}{\\sqrt{5}} \\approx 0{,}447\\text{ m}$.\\\\ Khoảng cách này nhỏ hơn $0{,}5\\text{ m}$ nên không đáp ứng đúng quy chuẩn.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_88ad1e167c",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch $v(10) = 100 + 20 \\cdot 10 - 10^2 = 200\\text{ m}^3/\\text{phút}$.\r\n\t\t\t\\itemch Tổng lượng nước thêm vào bể sau $15$ phút là $Q = \\displaystyle\\int_0^{15} v(t) \\,dt = \\int_0^{15} (-t^2 + 20t + 100) \\,dt$.\r\n\t\t\t\\itemch Tốc độ thay đổi lượng nước trong bể là $f(t) = v(t) - 150 = (100 + 20t - t^2) - 150 = -t^2 + 20t - 50$.\r\n\t\t\t\\itemch Lượng nước trong bể tại thời điểm $t$ được tính bằng lượng nước ban đầu cộng tổng lượng nước thay đổi từ $0$ đến $t$:\\\\ $V(t) = V_0 + \\displaystyle\\int_0^t f(x) \\,dx = 650 + \\int_0^t (-x^2 + 20x - 50) \\,dx \\Rightarrow V(t) = -\\frac{t^3}{3} + 10t^2 - 50t + 650$.\\\\ Suy ra $V'(t) = -t^2 + 20t - 50$. Cho $V'(t) = 0 \\Leftrightarrow -t^2 + 20t - 50 = 0 \\Leftrightarrow t_1 = 10 - 5\\sqrt{2} = a$ hoặc $t_2 = 10 + 5\\sqrt{2} = b$.\\\\ Bảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_88ad1e167c_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ bảng biến thiên suy ra tại $t_2 = 10 + 5\\sqrt{2} < 25 \\Rightarrow V > 1000$.\\\\ Suy ra bể bị tràn nước khi trước $25$ phút.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_3edf812049",
+      "dapAn": "180",
+      "loiGiaiHtml": "Lợi nhuận $f(x) = x \\cdot p(x) - C(x) - 2x = 48x - x^2 - (x^2 + 6x + 20) - 2x = -2x^2 + 40x - 20$, với $x \\in [1; 20]$.\\\\\r\n\t\tTa có $f'(x) = -4x + 40 = 0 \\Leftrightarrow x = 10$ (thỏa mãn).\\\\\r\n\t\t$f(10) = 180$; $f(1) = 18$; $f(20) = -20$.\\\\\r\n\t\tVậy $\\max_{[1;20]} f(x) = f(10) = 180$ (triệu đồng)."
+    },
+    {
+      "maBaoMat": "sol_724657a3ad",
+      "dapAn": "70",
+      "loiGiaiHtml": "\\begin{center}\\\\<img src='HinhAnh/sol_724657a3ad_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tChọn hệ trục tọa độ $Oxy$ như hình vẽ. Parabol $(P_1)$ có đỉnh $A(0;3)$ nên có phương trình $y = f(x) = a_1x^2 + 3$. Đạo hàm $y' = 2a_1x$. Tại vị trí kết nối $N(4; y_N)$, ta có $y_N = 16a_1 + 3$ và hệ số góc $k_1 = 8a_1$.\\\\\r\n\t\tParabol $(P_2)$ có đỉnh tại $B(10;0)$ nên có phương trình $y = g(x) = a_2(x-10)^2$. Đạo hàm $y' = 2a_2(x-10)$. Tại $N(4; y_N)$, ta có $y_N = 36a_2$ và hệ số góc $k_2 = 2a_2(4-10) = -12a_2$.\\\\\r\n\t\tĐiều kiện liên tục và cùng hệ số góc tại $N$:\r\n\t\t$\\begin{cases} 16a_1 + 3 = 36a_2 \\\\ 8a_1 = -12a_2 \\end{cases} \\Leftrightarrow \\begin{cases} a_1 = -\\frac{3}{40} \\\\ a_2 = \\frac{1}{20} \\end{cases}$.\\\\\r\n\t\tDiện tích mặt cắt: $S = \\int_0^4 \\left(-\\frac{3}{40}x^2 + 3\\right) dx + \\int_4^{10} \\frac{1}{20}(x-10)^2 dx = 14$.\\\\\r\n\t\tVậy $V = S \\cdot h = 14 \\cdot 5 = 70\\text{ m}^3$."
+    },
+    {
+      "maBaoMat": "sol_9a89e12fac",
+      "dapAn": "14,1",
+      "loiGiaiHtml": "Giả sử $M(a;b;c)$. Ta có các phương trình:\\\\\r\n\t\t$MA^2=3 \\Leftrightarrow a^2+b^2+c^2-4a-2c+2=0$; $MB^2=6 \\Leftrightarrow a^2+b^2+c^2-6b-2c+4=0$;\\\\\r\n\t\t$MC^2=6 \\Leftrightarrow a^2+b^2+c^2-4c-2=0$; $MD^2=9 \\Leftrightarrow a^2+b^2+c^2-4a-6b-4c+8=0$.\\\\\r\n\t\tTừ hệ phương trình, giải ra ta được $M(1;1;0)$.\\\\\r\n\t\tSuy ra $OM = \\sqrt{1^2+1^2+0^2} = \\sqrt{2}$.\\\\\r\n\t\tVậy khoảng cách từ xe đến trạm sạc là $\\sqrt{2} \\cdot 10 \\approx 14{,}1$ (mét)."
+    },
+    {
+      "maBaoMat": "sol_adebdd595b",
+      "dapAn": "210",
+      "loiGiaiHtml": "Gọi số lượng bức tranh cô Hà vẽ được trong một tuần là $x$ ($x \\in \\mathbb{N}$).\\\\\r\n\t\tGọi số lượng tấm thiệp cô Hà làm được trong một tuần là $y$ ($y \\in \\mathbb{N}$).\\\\\r\n\t\tTừ dữ kiện đề bài ta có hệ bất phương trình bậc nhất hai ẩn: $\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ x + y \\le 10 \\\\ 2x + \\displaystyle\\frac{3}{4}y \\le 15 \\end{cases}$.\\\\\r\n\t\tMiền nghiệm của hệ bất phương trình trên là miền không được tô màu (tính cả biên) trong hình vẽ sau:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_adebdd595b_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tCác đỉnh của miền nghiệm là $O(0;0)$, $A(0;10)$, $B(6;4)$, $C(7{,}5;0)$.\\\\\r\n\t\tLợi nhuận mà cô Hà có thể kiếm được trong một tuần là $F(x; y) = 25x + 15y$.\\\\\r\n\t\tTa có: $F(0; 0) = 0$, $F(0; 10) = 150$, $F(6; 4) = 210$, $F(7{,}5; 0) = 187{,}5$.\\\\\r\n\t\tVậy lợi nhuận cao nhất cô Hà có thể kiếm được là $210$ nghìn đồng."
+    },
+    {
+      "maBaoMat": "sol_150ed4e67f",
+      "dapAn": "21,7",
+      "loiGiaiHtml": "Gọi $M$ là biến cố có mã độc, $A$ là biến cố bị ít nhất một bộ lọc cảnh báo.\\\\\r\n\t\t$P(M)=0{,}02, P(\\overline{M})=0{,}98$.\\\\\r\n\t\t$P(A \\mid M) = P(S_1 \\mid M) + P(S_2 \\mid M) - P(S_1S_2 \\mid M) = 0{,}9 + 0{,}8 - 0{,}75 = 0{,}95$.\\\\\r\n\t\t$P(A \\mid \\overline{M}) = 1 - P(\\text{không bị bộ lọc nào} \\mid \\overline{M}) = 1 - 0{,}93 = 0{,}07$.\\\\\r\n\t\t$P(A) = P(M)P(A \\mid M) + P(\\overline{M})P(A \\mid \\overline{M}) = 0{,}02 \\cdot 0{,}95 + 0{,}98 \\cdot 0{,}07 = 0{,}0876$.\\\\\r\n\t\t$P(M \\mid A) = \\frac{P(M)P(A \\mid M)}{P(A)} = \\frac{0{,}019}{0{,}0876} \\approx 21{,}7\\%$."
+    },
+    {
+      "maBaoMat": "sol_d0678bcf37",
+      "dapAn": "0,55",
+      "loiGiaiHtml": "Tam giác $SAB$ đều và nằm trong mặt phẳng vuông góc với đáy nên $SM \\perp (ABCD)$ và $SM = \\sqrt{3}$.\\\\\r\n\t\tChọn hệ trục tọa độ $Oxyz$ như hình vẽ.\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d0678bcf37_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $D(-1; 2; 0)$, $N(1; 1; 0)$, $C(1; 2; 0)$, $S(0; 0; \\sqrt{3})$.\\\\\r\n\t\t$\\overrightarrow{DN} = (2; -1; 0)$, $\\overrightarrow{SC} = (1; 2; -\\sqrt{3})$.\\\\\r\n\t\t$\\left[\\overrightarrow{DN}, \\overrightarrow{SC}\\right] = (\\sqrt{3}; 2\\sqrt{3}; 5) \\Rightarrow \\left|\\left[\\overrightarrow{DN}, \\overrightarrow{SC}\\right]\\right| = 2\\sqrt{10}$.\\\\\r\n\t\t$\\overrightarrow{SD} = (-1; 2; -\\sqrt{3})$.\\\\\r\n\t\t$\\left[\\overrightarrow{DN}, \\overrightarrow{SC}\\right] \\cdot \\overrightarrow{SD} = \\sqrt{3}(-1) + 2\\sqrt{3}(2) + 5(-\\sqrt{3}) = -2\\sqrt{3}$.\\\\\r\n\t\t$\\displaystyle d(DN, SC) = \\frac{\\left|\\left[\\overrightarrow{DN}, \\overrightarrow{SC}\\right] \\cdot \\overrightarrow{SD}\\right|}{\\left|\\left[\\overrightarrow{DN}, \\overrightarrow{SC}\\right]\\right|} = \\frac{|-2\\sqrt{3}|}{2\\sqrt{10}} = \\frac{2\\sqrt{3}}{2\\sqrt{10}} = \\frac{\\sqrt{30}}{10} \\approx 0{,}55$."
+    }
+  ]
+}
