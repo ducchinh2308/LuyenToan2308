@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e92f9045fc",
+  "dapAn": "D",
+  "loiGiai": "Vị trí của $Q_1$ là $\\displaystyle \\frac{n}{4} = \\frac{60}{4} = 15$.\\\\\r\n\t\tQuan sát hàng tần số tích lũy, giá trị $15$ nằm trong nhóm $[60; 70)$ (vì $9 < 15 \\le 28$).\\\\\r\n\t\tÁp dụng công thức tính tứ phân vị: $Q_1 = L_1 + \\displaystyle \\frac{\\displaystyle \\frac{n}{4} - cf_1}{f_1} \\cdot h = 60 + \\frac{15 - 9}{19} \\cdot 10 = 60 + \\frac{60}{19} = \\frac{1200}{19}$.\\\\\r\n\t\tVị trí của $Q_3$ là $\\displaystyle \\frac{3n}{4} = \\frac{3 \\cdot 60}{4} = 45$.\\\\\r\n\t\tGiá trị $45$ nằm trong nhóm $[70; 80)$ (vì $28 < 45 \\le 51$).\\\\\r\n\t\tÁp dụng công thức: $Q_3 = L_3 + \\displaystyle \\frac{\\displaystyle \\frac{3n}{4} - cf_3}{f_3} \\cdot h_3 = 70 + \\frac{45 - 28}{23} \\cdot 10 = 70 + \\frac{170}{23} = \\frac{1780}{23}$.\\\\\r\n\t\tKhoảng tứ phân vị $\\Delta_Q = Q_3 - Q_1 = \\displaystyle \\frac{1780}{23} - \\frac{1200}{19} \\approx 14{,}23$."
+}

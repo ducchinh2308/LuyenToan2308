@@ -1,0 +1,247 @@
+{
+  "maDe": "26256-26257-24TN",
+  "tenDe": "ĐỀ 26256-26257-24TN",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_be6dbacb3e",
+      "ma_goc": "2605-1535",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Phát biểu nào sau đây là sai?",
+      "paA": "$\\vec{AB}+\\vec{AD}+\\vec{AA'}=\\vec{AC'}$",
+      "paB": "$\\vec{AB}+\\vec{AD}=\\vec{AC}$",
+      "paC": "$\\vec{AB'}+\\vec{CB}=\\vec{AC'}$",
+      "paD": "$\\vec{CC'}=\\vec{DD'}$"
+    },
+    {
+      "maCau": "q_8abfb77df3",
+      "ma_goc": "2605-1532",
+      "kieuCau": "TN",
+      "cauDan": "Đạo hàm của hàm số $y=3^x$ là",
+      "paA": "$y'=3^x \\ln 3$",
+      "paB": "$y'=3^x$",
+      "paC": "$y'=x \\cdot 3^{x-1}$",
+      "paD": "$y'=3^x \\ln x$"
+    },
+    {
+      "maCau": "q_299075391e",
+      "ma_goc": "2605-1533",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\tan x=-1$ có tất cả các nghiệm là",
+      "paA": "$-\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paB": "$\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$",
+      "paC": "$\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$",
+      "paD": "$-\\dfrac{\\pi}{4}+k2\\pi \\, (k \\in \\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_48d31630ad",
+      "ma_goc": "2605-1594",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_{0{,}5} x > 0$ là",
+      "paA": "$(0; 1)$",
+      "paB": "$(0; +\\infty)$",
+      "paC": "$(1; +\\infty)$",
+      "paD": "$(-\\infty; 1)$"
+    },
+    {
+      "maCau": "q_97fcac91e0",
+      "ma_goc": "2605-1538",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1=2$ và công bội $q=3$. Số hạng $u_3$ của cấp số nhân bằng",
+      "paA": "$18$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_ee61c44024",
+      "ma_goc": "2605-1534",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt phẳng $(P) \\colon 3x-y-z+2=0$. Một vectơ pháp tuyến của $(P)$ là",
+      "paA": "$\\vec{n}=(-1; -1; 2)$",
+      "paB": "$\\vec{n}=(3; -1; 2)$",
+      "paC": "$\\vec{n}=(3; -1; -1)$",
+      "paD": "$\\vec{n}=(3; 1; 1)$"
+    },
+    {
+      "maCau": "q_a88c703d74",
+      "ma_goc": "2605-1536",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành tâm $O$, $M$ là trung điểm của $SA$. Phát biểu nào sau đây đúng?",
+      "paA": "$OM \\parallel (SAD)$",
+      "paB": "$OM \\parallel (SAB)$",
+      "paC": "$OM \\parallel (SBD)$",
+      "paD": "$OM \\parallel (SCD)$"
+    },
+    {
+      "maCau": "q_17b740d94b",
+      "ma_goc": "2605-1598",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y = \\displaystyle \\frac{6x - 4}{1 - 2x}$ là đường thẳng có phương trình:",
+      "paA": "$y = 2$",
+      "paB": "$x = -3$",
+      "paC": "$y = 6$",
+      "paD": "$y = -3$"
+    },
+    {
+      "maCau": "q_a7e24a4b0f",
+      "ma_goc": "2605-1599",
+      "kieuCau": "TN",
+      "cauDan": "Nhiệm của phương trình $3^{x-1} = 8$ là",
+      "paA": "$x = \\log_3 8$",
+      "paB": "$x = 3$",
+      "paC": "$x = \\log_3 24$",
+      "paD": "$x = 1 + \\log_8 3$"
+    },
+    {
+      "maCau": "q_277d162490",
+      "ma_goc": "2605-1600",
+      "kieuCau": "TN",
+      "cauDan": "Biết rằng $F(x)$ là một nguyên hàm của hàm số $f(x) = \\sin x$ trên $\\mathbb{R}$ và thỏa mãn $F(0) = 6$. Phát biểu nào dưới đây đúng?",
+      "paA": "$F(x) = -\\cos x + 5$",
+      "paB": "$F(x) = -\\cos x$",
+      "paC": "$F(x) = -\\cos x + 6$",
+      "paD": "$F(x) = -\\cos x + 7$"
+    },
+    {
+      "maCau": "q_85382a3f94",
+      "ma_goc": "2605-1601",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_85382a3f94_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$-1$",
+      "paB": "$4$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_043e8e9af9",
+      "ma_goc": "2605-1602",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$ và $S\\!A \\perp (ABC)$. Gọi $I$ là trung điểm của $BC$. Mặt phẳng nào dưới đây vuông góc với đường thẳng $BC$?",
+      "paA": "$(S\\!AI)$",
+      "paB": "$(SBI)$",
+      "paC": "$(S\\!AC)$",
+      "paD": "$(S\\!AB)$"
+    },
+    {
+      "maCau": "q_c0f6e475c9",
+      "ma_goc": "2605-1603",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$ có trọng tâm $G$ và $M$ là một điểm bất kì. Phát biểu nào dưới đây sai?",
+      "paA": "$\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paB": "$\\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paC": "$\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$",
+      "paD": "$\\vec{MA} + \\vec{MB} + \\vec{MC} + \\vec{MD} = 4\\vec{MG}$"
+    },
+    {
+      "maCau": "q_2e31d09368",
+      "ma_goc": "2605-1604",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_1 = -2$ và $u_2 = -4$. Giá trị $u_6$ bằng",
+      "paA": "$-128$",
+      "paB": "128",
+      "paC": "64",
+      "paD": "$-64$"
+    },
+    {
+      "maCau": "q_e66cc24fc5",
+      "ma_goc": "2605-1531",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm trung bình môn Toán của các học sinh lớp được cho ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e66cc24fc5_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu trên bằng",
+      "paA": "$0{,}7$",
+      "paB": "$6$",
+      "paC": "$8{,}5$",
+      "paD": "$0{,}15$"
+    },
+    {
+      "maCau": "q_81eae9db8c",
+      "ma_goc": "2605-1530",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\dfrac{ax+b}{cx+d}$ ($a,b,c,d \\in \\mathbb{R}$ và $c \\neq 0$) có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_81eae9db8c_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTiệm cận ngang của đồ thị hàm số đã cho có phương trình là",
+      "paA": "$x=1$",
+      "paB": "$x=-1$",
+      "paC": "$y=-1$",
+      "paD": "$y=1$"
+    },
+    {
+      "maCau": "q_5ca9d3a7cf",
+      "ma_goc": "2605-1529",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x-1)=3$ là",
+      "paA": "$10$",
+      "paB": "$7$",
+      "paC": "$8$",
+      "paD": "$9$"
+    },
+    {
+      "maCau": "q_7099dbb485",
+      "ma_goc": "2605-1528",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(0;-2;1)$ và bán kính $R=5$. Phương trình của $(S)$ là",
+      "paA": "$x^2+(y+2)^2+(z-1)^2=5$",
+      "paB": "$x^2+(y+2)^2+(z-1)^2=25$",
+      "paC": "$x^2+(y-2)^2+(z+1)^2=25$",
+      "paD": "$x^2+(y-2)^2+(z+1)^2=5$"
+    },
+    {
+      "maCau": "q_ea510e25ee",
+      "ma_goc": "2605-1595",
+      "kieuCau": "TN",
+      "cauDan": "Cho bảng biểu diễn mẫu số liệu ghép nhóm về số tiền (đơn vị: nghìn đồng) mà $60$ khách hàng mua sữa ở một cửa hàng trong một ngày như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ea510e25ee_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên",
+      "paA": "$50{,}00$",
+      "paB": "$70{,}87$",
+      "paC": "$40{,}00$",
+      "paD": "$14{,}23$"
+    },
+    {
+      "maCau": "q_ec5d16e13f",
+      "ma_goc": "2605-1596",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M$ thỏa mãn $\\vec{OM} = -2\\vec{i} + \\vec{j} + 3\\vec{k}$. Tọa độ của điểm $M$ là",
+      "paA": "$(-2; 1; 3)$",
+      "paB": "$(1; -2; 3)$",
+      "paC": "$(2; 1; 3)$",
+      "paD": "$(1; 2; 3)$"
+    },
+    {
+      "maCau": "q_6d008ea446",
+      "ma_goc": "2605-1537",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6d008ea446_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-1; 3)$",
+      "paB": "$(3; +\\infty)$",
+      "paC": "$(-3; +\\infty)$",
+      "paD": "$(-\\infty; -1)$"
+    },
+    {
+      "maCau": "q_bbaa17f5ca",
+      "ma_goc": "2605-1597",
+      "kieuCau": "TN",
+      "cauDan": "Họ tất cả các nguyên hàm của hàm số $f(x) = x^{2026}$ trên $\\mathbb{R}$ là",
+      "paA": "$2027x^{2027} + C$",
+      "paB": "$\\displaystyle \\frac{x^{2027}}{2027} + C$",
+      "paC": "$\\displaystyle \\frac{x^{2027}}{2026} + C$",
+      "paD": "$2026x^{2027} + C$"
+    },
+    {
+      "maCau": "q_37937281e7",
+      "ma_goc": "2605-1527",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh bằng $2$, cạnh bên $SA$ vuông góc với mặt phẳng đáy và $SA = 3$. Thể tích của khối chóp $S.ABCD$ là",
+      "paA": "$12$",
+      "paB": "$6$",
+      "paC": "$8$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_a933403605",
+      "ma_goc": "2605-1593",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho đường thẳng $\\Delta \\colon \\displaystyle \\frac{x+1}{-2} = \\frac{y-3}{3} = \\frac{z-2}{-2}$. Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng $\\Delta$?",
+      "paA": "$\\vec{u} = (-1; 3; 2)$",
+      "paB": "$\\vec{u} = (-2; 3; -2)$",
+      "paC": "$\\vec{u} = (-1; -3; -2)$",
+      "paD": "$\\vec{u} = (2; 3; -2)$"
+    }
+  ]
+}
