@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1af3834805",
+  "dapAn": "A",
+  "loiGiai": "Sử dụng công thức nguyên hàm cơ bản:\\\\\r\n\t\t$\\displaystyle\\int (\\sin x + 4x^3) \\text{d}x = \\displaystyle\\int \\sin x \\text{d}x + 4\\displaystyle\\int x^3 \\text{d}x = -\\cos x + 4 \\cdot \\displaystyle\\frac{x^4}{4} + C = -\\cos x + x^4 + C$"
+}

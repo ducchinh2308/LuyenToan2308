@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6247195e14",
+  "dapAn": "D",
+  "loiGiai": "Tập xác định $D = \\mathbb{R} \\setminus \\{1\\}$. \\\\\r\n\t\tTa có $\\lim\\limits_{x \\to 1^+} \\frac{x^2 + 4x + 1}{x - 1} = +\\infty \\Rightarrow x = 1$ là đường tiệm cận đứng của đồ thị hàm số."
+}
