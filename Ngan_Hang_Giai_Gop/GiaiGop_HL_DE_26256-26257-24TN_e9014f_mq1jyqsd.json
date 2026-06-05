@@ -1,0 +1,125 @@
+{
+  "thoiGianGhep": "2026-06-05T23:25:50.746Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_7766dc4545",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_7766dc4545_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\tTa có $\\vec{AB'} + \\vec{CB} = \\vec{DA} + \\vec{AB'} = \\vec{DB'}$.\\\\\r\n\t\tPhát biểu sai là $\\vec{AB'} + \\vec{CB} = \\vec{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_2d01319c33",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $y'=(3^x)'=3^x \\ln 3$."
+    },
+    {
+      "maBaoMat": "sol_308324430b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\tan x=-1 \\Leftrightarrow x=-\\dfrac{\\pi}{4}+k\\pi \\, (k \\in \\mathbb{Z})$."
+    },
+    {
+      "maBaoMat": "sol_8ba2a42f4b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Điều kiện xác định: $x > 0$.\\\\\r\n\t\tTa có: $\\log_{0{,}5} x > \\log_{0{,}5} 1 \\Leftrightarrow x < 1$.\\\\\r\n\t\tKết hợp điều kiện ta được tập nghiệm của bất phương trình là $(0; 1)$."
+    },
+    {
+      "maBaoMat": "sol_1f891242bf",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $u_3 = u_1 \\cdot q^2 = 2 \\cdot 3^2 = 18$."
+    },
+    {
+      "maBaoMat": "sol_5603d73a12",
+      "dapAn": "C",
+      "loiGiaiHtml": "Một vectơ pháp tuyến của mặt phẳng $(P)$ là $\\vec{n}=(3; -1; -1)$."
+    },
+    {
+      "maBaoMat": "sol_bd563ab488",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_bd563ab488_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\tTrong tam giác $SAC$, có $O$ là trung điểm $AC$ và $M$ là trung điểm $SA$.\\\\\r\n\t\tSuy ra $OM$ là đường trung bình của tam giác $SAC$, nên $OM \\parallel SC$.\\\\\r\n\t\tMặt khác $SC \\subset (SCD) \\Rightarrow OM \\parallel (SCD)$."
+    },
+    {
+      "maBaoMat": "sol_7b9f7b8258",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\displaystyle \\lim_{x \\to +\\infty} y = \\lim_{x \\to -\\infty} y = \\frac{6}{-2} = -3$.\\\\\r\n\t\tSuy ra tiệm cận ngang của đồ thị hàm số $y = \\displaystyle \\frac{6x - 4}{1 - 2x}$ là đường thẳng có phương trình $y = -3$."
+    },
+    {
+      "maBaoMat": "sol_5a7c7e4d47",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $3^{x-1} = 8 \\Leftrightarrow x - 1 = \\log_3 8 \\Leftrightarrow x = 1 + \\log_3 8 \\Leftrightarrow x = \\log_3 3 + \\log_3 8 \\Leftrightarrow x = \\log_3 24$."
+    },
+    {
+      "maBaoMat": "sol_e83b8f8535",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\int f(x) \\, \\mathrm{d}x = \\int \\sin x \\, \\mathrm{d}x = -\\cos x + C \\Rightarrow F(x) = -\\cos x + C_1$.\\\\\r\n\t\tTheo giả thiết $F(0) = 6 \\Leftrightarrow -\\cos 0 + C_1 = 6 \\Leftrightarrow -1 + C_1 = 6 \\Leftrightarrow C_1 = 7$.\\\\\r\n\t\tSuy ra $F(x) = -\\cos x + 7$."
+    },
+    {
+      "maBaoMat": "sol_252c15548b",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, ta thấy điểm cực đại của đồ thị hàm số là $(-1; 2)$.\\\\\r\n\t\tDo đó, giá trị cực đại của hàm số đã cho bằng $2$."
+    },
+    {
+      "maBaoMat": "sol_644ce61367",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_644ce61367_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\left.\\begin{aligned} S\\!A &\\perp (ABC) \\\\ BC &\\subset (ABC) \\end{aligned}\\right\\} \\Rightarrow S\\!A \\perp BC$.\\\\\r\n\t\tTam giác $ABC$ vuông tại $B$ nên $AB \\perp BC$.\\\\\r\n\t\tTrong mặt phẳng $(S\\!AB)$ có hai đường thẳng cắt nhau là $S\\!A$ và $AB$ cùng vuông góc với $BC$.\\\\\r\n\t\t$\\Rightarrow BC \\perp (S\\!AB)$."
+    },
+    {
+      "maBaoMat": "sol_44201d9cee",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $G$ là trọng tâm của tứ diện $ABCD$ nên $\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow \\vec{GA} + \\vec{GA} + \\vec{AB} + \\vec{GA} + \\vec{AC} + \\vec{GA} + \\vec{AD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow 4\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0} \\Leftrightarrow \\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$.\\\\\r\n\t\tDo đó mệnh đề $\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$ là sai."
+    },
+    {
+      "maBaoMat": "sol_e31bb568cb",
+      "dapAn": "D",
+      "loiGiaiHtml": "Cấp số nhân $(u_n)$, với công bội $q$, có $u_1 = -2$ và $u_2 = -4 \\Rightarrow q = \\displaystyle \\frac{u_2}{u_1} = \\frac{-4}{-2} = 2$.\\\\\r\n\t\t$u_6 = u_1 q^5 = -2 \\cdot 2^5 = -64$."
+    },
+    {
+      "maBaoMat": "sol_77212152fd",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có bảng giá trị đại diện:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_77212152fd_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tCỡ mẫu: $n = 40$.\\\\\r\n\t\tSố trung bình của mẫu số liệu: $\\bar{x} = \\dfrac{6{,}5 \\cdot 2 + 7{,}5 \\cdot 8 + 8{,}5 \\cdot 18 + 9{,}5 \\cdot 12}{40} = 8{,}5$.\\\\\r\n\t\tPhương sai của mẫu số liệu: $S^2 = \\dfrac{1}{40}\\left(2 \\cdot 6{,}5^2 + 8 \\cdot 7{,}5^2 + 18 \\cdot 8{,}5^2 + 12 \\cdot 9{,}5^2\\right) - 8{,}5^2 = 0{,}7$."
+    },
+    {
+      "maBaoMat": "sol_497d594a70",
+      "dapAn": "C",
+      "loiGiaiHtml": "Đường thẳng nằm ngang song song với trục $Ox$ cắt trục tung $Oy$ tại điểm có tung độ là $-1$.\\\\\r\n\t\tDo đó, tiệm cận ngang của đồ thị hàm số đã cho là: $y=-1$."
+    },
+    {
+      "maBaoMat": "sol_d5cb7e5152",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập xác định: $D=(1;+\\infty)$.\\\\\r\n\t\tTa có: $\\log_2(x-1)=3 \\Leftrightarrow x-1=2^3 \\Leftrightarrow x-1=8 \\Rightarrow x=9$ (thỏa mãn).\\\\\r\n\t\tVậy nghiệm của phương trình $\\log_2(x-1)=3$ là $x=9$."
+    },
+    {
+      "maBaoMat": "sol_c04da29950",
+      "dapAn": "B",
+      "loiGiaiHtml": "Phương trình của $(S)$ có tâm $I(0;-2;1)$ và bán kính $R=5$ là $x^2+(y+2)^2+(z-1)^2=25$."
+    },
+    {
+      "maBaoMat": "sol_e92f9045fc",
+      "dapAn": "D",
+      "loiGiaiHtml": "Vị trí của $Q_1$ là $\\displaystyle \\frac{n}{4} = \\frac{60}{4} = 15$.\\\\\r\n\t\tQuan sát hàng tần số tích lũy, giá trị $15$ nằm trong nhóm $[60; 70)$ (vì $9 < 15 \\le 28$).\\\\\r\n\t\tÁp dụng công thức tính tứ phân vị: $Q_1 = L_1 + \\displaystyle \\frac{\\displaystyle \\frac{n}{4} - cf_1}{f_1} \\cdot h = 60 + \\frac{15 - 9}{19} \\cdot 10 = 60 + \\frac{60}{19} = \\frac{1200}{19}$.\\\\\r\n\t\tVị trí của $Q_3$ là $\\displaystyle \\frac{3n}{4} = \\frac{3 \\cdot 60}{4} = 45$.\\\\\r\n\t\tGiá trị $45$ nằm trong nhóm $[70; 80)$ (vì $28 < 45 \\le 51$).\\\\\r\n\t\tÁp dụng công thức: $Q_3 = L_3 + \\displaystyle \\frac{\\displaystyle \\frac{3n}{4} - cf_3}{f_3} \\cdot h_3 = 70 + \\frac{45 - 28}{23} \\cdot 10 = 70 + \\frac{170}{23} = \\frac{1780}{23}$.\\\\\r\n\t\tKhoảng tứ phân vị $\\Delta_Q = Q_3 - Q_1 = \\displaystyle \\frac{1780}{23} - \\frac{1200}{19} \\approx 14{,}23$."
+    },
+    {
+      "maBaoMat": "sol_26a2064d2b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ giả thiết $\\vec{OM} = -2\\vec{i} + 1\\vec{j} + 3\\vec{k}$, ta suy ra ngay tọa độ của điểm $M$ là $(-2; 1; 3)$."
+    },
+    {
+      "maBaoMat": "sol_57177c6fac",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, hàm số đã cho đồng biến trên các khoảng $(-\\infty; -1)$ và $(3; +\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_285dd0cb38",
+      "dapAn": "B",
+      "loiGiaiHtml": "Áp dụng công thức nguyên hàm cơ bản của hàm số lũy thừa:\\\\\r\n\t\t$\\displaystyle \\int x^{2026} \\, \\mathrm{d}x = \\frac{x^{2026+1}}{2026+1} + C = \\frac{x^{2027}}{2027} + C$."
+    },
+    {
+      "maBaoMat": "sol_94331d086e",
+      "dapAn": "D",
+      "loiGiaiHtml": "Diện tích đáy của khối chóp là: $S_d = 2^2 = 4$.\\\\\r\n\t\tThể tích của khối chóp $S.ABCD$ là: $V = \\dfrac{1}{3} \\cdot S_d \\cdot h = \\dfrac{1}{3} \\cdot 4 \\cdot 3 = 4$."
+    },
+    {
+      "maBaoMat": "sol_e4218cc799",
+      "dapAn": "B",
+      "loiGiaiHtml": "Quan sát phương trình đường thẳng $\\Delta$, các mẫu số lần lượt là $-2, 3$ và $-2$.\\\\\r\n\t\tDo đó, một vectơ chỉ phương của $\\Delta$ là $\\vec{u} = (-2; 3; -2)$."
+    }
+  ]
+}
