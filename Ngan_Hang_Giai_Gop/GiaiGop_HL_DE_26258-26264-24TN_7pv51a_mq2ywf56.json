@@ -1,0 +1,125 @@
+{
+  "thoiGianGhep": "2026-06-06T23:11:42.759Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_b84431e546",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào đồ thị, ta thấy đường tiệm cận đứng là đường thẳng $x=1$. Do đó, mẫu số phải có nghiệm $x=1$, ta loại phương án $D$ (vì mẫu số của D là $x+1$ có nghiệm $x=-1$).\\\\\r\n\t\tQuan sát đồ thị, ta thấy đồ thị hàm số đi qua điểm có tọa độ $(0; -1)$.\\\\\r\n\t\tLần lượt thay $x=0$ vào các hàm số ở phương án A, B, C:\\\\\r\n\t\tPhương án A: $y = \\displaystyle\\frac{0^2 - 0 + 1}{0 - 1} = -1$ (Thỏa mãn).\\\\\r\n\t\tPhương án B: $y = \\displaystyle\\frac{-0^2 + 0 - 1}{0 - 1} = 1 \\ne -1$ (Loại).\\\\\r\n\t\tPhương án C: $y = \\displaystyle\\frac{0^2 - 0 - 1}{0 - 1} = 1 \\ne -1$ (Loại)."
+    },
+    {
+      "maBaoMat": "sol_d3fe309a83",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vì $\\displaystyle\\int x e^{2x} dx = F(x) + C$\\\\\r\n\t\t$\\Rightarrow \\left[ F(x) + C \\right]' = x e^{2x}$\\\\\r\n\t\t$\\Rightarrow F'(x) = x e^{2x} \\Rightarrow F'(1) = e^2$\\\\\r\n\t\t$F''(x) = x' \\cdot e^{2x} + \\left( e^{2x} \\right)' \\cdot x = e^{2x} + 2x e^{2x}$\\\\\r\n\t\t$\\Rightarrow F''(1) = e^2 + 2e^2 = 3e^2$\\\\\r\n\t\t$P = F''(1) - 2F'(1) = 3e^2 - e^2 = 2e^2$."
+    },
+    {
+      "maBaoMat": "sol_646b768879",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_646b768879_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $S.ABC$ là hình chóp tam giác đều nên:\\\\\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $\\Delta ABC$ đều có $M$ là trung điểm của cạnh $BC$ nên $AM \\perp BC$.\r\n\t\t\t\\item $\\Delta SBC$ cân tại $S$ có $M$ là trung điểm của cạnh $BC$ nên $SM \\perp BC$.\r\n\t\t\t\\item Vậy góc $\\widehat{SMA}$ là góc phẳng nhị diện của góc nhị diện $[S; BC; A]$.\r\n\t\t\\end{itemize}"
+    },
+    {
+      "maBaoMat": "sol_8d34a0a5a8",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $2^{2+x^2} > 16 \\Leftrightarrow 2^{2+x^2} > 2^4 \\Leftrightarrow 2+x^2 > 4 \\Leftrightarrow x^2 > 2 \\Leftrightarrow x \\in (-\\infty; -\\sqrt{2}) \\cup (\\sqrt{2}; +\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_54eac72247",
+      "dapAn": "D",
+      "loiGiaiHtml": "Hàm số xác định khi $\\begin{cases} \\sin x \\ne 0 \\\\ \\cos x \\ne 0 \\end{cases} \\Rightarrow \\sin 2x \\ne 0 \\Rightarrow 2x \\ne k\\pi \\Rightarrow x \\ne k\\displaystyle\\frac{\\pi}{2}$\\\\\r\n\t\tVậy $D = \\mathbb{R} \\setminus \\left\\{ k\\displaystyle\\frac{\\pi}{2} \\mid k \\in \\mathbb{Z} \\right\\}$."
+    },
+    {
+      "maBaoMat": "sol_c47053c8be",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $u_5 = u_1 \\cdot q^4 = 3 \\cdot (-2)^4 = 48$."
+    },
+    {
+      "maBaoMat": "sol_4039bc31b6",
+      "dapAn": "C",
+      "loiGiaiHtml": "Mặt phẳng $(P)$ có phương trình $2x - y + 3z - 5 = 0$ nên có một vectơ pháp tuyến là $\\vec{n}_{(P)} = (2; -1; 3)$. Vì đường thẳng $d$ vuông góc với mặt phẳng $(P)$ nên đường thẳng $d$ nhận vectơ pháp tuyến của $(P)$ làm vectơ chỉ phương.\\\\\r\n\t\tDo đó, $\\vec{u}_d = \\vec{n}_{(P)} = (2; -1; 3)$.\\\\\r\n\t\tĐường thẳng $d$ đi qua điểm $M(1; -2; 3)$ và có vectơ chỉ phương $\\vec{u}_d = (2; -1; 3)$ có phương trình chính tắc là: $\\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{-1} = \\displaystyle\\frac{z-3}{3}$."
+    },
+    {
+      "maBaoMat": "sol_2085dbb1d8",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2085dbb1d8_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDo $O$ là tâm hình bình hành $ABCD$ nên $O$ là trung điểm của $BD$.\\\\\r\n\t\tXét $\\Delta SBD$ có $E, O$ lần lượt là trung điểm của $SB, BD \\Rightarrow EO$ là đường trung bình của $\\Delta SBD$.\\\\\r\n\t\t$\\Rightarrow EO \\parallel SD$. Mà $SD \\subset (SAD)$ nên $EO \\parallel (SAD)$.\\\\\r\n\t\t$\\begin{cases} KO \\parallel AD \\\\ KO \\not\\subset (SAD) \\\\ AD \\subset (SAD) \\end{cases} \\Rightarrow KO \\parallel (SAD)$.\\\\\r\n\t\t$\\begin{cases} OE \\parallel (SAD) \\\\ KO \\parallel (SAD) \\\\ \\text{Trong } (KOE), \\, OE \\cap KO = O \\end{cases} \\Rightarrow (KOE) \\parallel (SAD)$."
+    },
+    {
+      "maBaoMat": "sol_c468de2fa1",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_c468de2fa1_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $G$ là trọng tâm của tam giác $BCD$ nên ta có $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.\\\\\r\n\t\tSuy ra $-(\\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG}) = \\vec{0} \\Leftrightarrow \\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG} = \\vec{0}$. Vậy khẳng định C đúng.\\\\\r\n\t\tMặt khác, $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$ chứ không phải $\\overrightarrow{GA} + \\overrightarrow{GB} - \\overrightarrow{GD} = \\vec{0}$. Nên khẳng định D sai."
+    },
+    {
+      "maBaoMat": "sol_84500651f8",
+      "dapAn": "C",
+      "loiGiaiHtml": "Cấp số nhân là dãy số mà tỉ số giữa hai số hạng liên tiếp luôn là một hằng số (gọi là công bội $q$).\\\\\r\n\t\tXét dãy số ở đáp án C: $2; 4; 8$. Ta có $\\displaystyle\\frac{4}{2} = 2$ và $\\displaystyle\\frac{8}{4} = 2$. Vậy đây là một cấp số nhân với công bội $q = 2$.\\\\\r\n\t\tCác dãy số ở đáp án A (cấp số cộng $d = 1$), B (cấp số cộng $d = 3$), D (cấp số cộng $d = 2$) đều không phải là cấp số nhân."
+    },
+    {
+      "maBaoMat": "sol_bd105376a1",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\sin(-x) = -\\sin x \\Rightarrow y = \\sin x$ là hàm số lẻ.\\\\\r\n\t\t$\\tan(-x) = -\\tan x \\Rightarrow y = \\tan x$ là hàm số lẻ.\\\\\r\n\t\t$\\cos(-x) = \\cos x \\Rightarrow y = \\cos x$ là hàm số chẵn.\\\\\r\n\t\t$\\cot(-x) = -\\cot x \\Rightarrow y = \\cot x$ là hàm số lẻ."
+    },
+    {
+      "maBaoMat": "sol_d41ae7148d",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d41ae7148d_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì đáy $ABCD$ là hình vuông nên ta có $CD \\perp AD$.\\\\\r\n\t\tVì $SA \\perp (ABCD)$ nên $SA \\perp CD$.\\\\\r\n\t\tSuy ra: $CD \\perp (SAD)$. Do đó, $(SCD) \\perp (SAD)$."
+    },
+    {
+      "maBaoMat": "sol_c7f6a21429",
+      "dapAn": "D",
+      "loiGiaiHtml": "Mặt phẳng $(P)\\colon 2x - y + z + 3 = 0$ có một vectơ pháp tuyến là $\\vec{n}_1 = (2; -1; 1)$."
+    },
+    {
+      "maBaoMat": "sol_d6728ab88f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Phương trình chính tắc của mặt cầu trong không gian $Oxyz$ có dạng:\\\\\r\n\t\t$(x - a)^2 + (y - b)^2 + (z - c)^2 = R^2$ với $R > 0$."
+    },
+    {
+      "maBaoMat": "sol_441722a6af",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_441722a6af_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tÁp dụng quy tắc hình bình hành vào các hình bình hành $B'D'DB$, $A'B'C'D'$ ta có:\\\\\r\n\t\t$\\overrightarrow{B'D} = \\overrightarrow{B'B} + \\overrightarrow{B'D'} = \\overrightarrow{B'B} + \\overrightarrow{B'A'} + \\overrightarrow{B'C'} = \\overrightarrow{A'A} - \\overrightarrow{A'B'} + \\overrightarrow{AD} = -\\vec{c} - \\vec{a} + \\vec{b} = -\\vec{a} + \\vec{b} - \\vec{c}$."
+    },
+    {
+      "maBaoMat": "sol_b27049add2",
+      "dapAn": "D",
+      "loiGiaiHtml": "Bảng xét dấu $y=f'(x)$\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b27049add2_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSuy ra hàm số $f(x)$ có $1$ điểm cực tiểu."
+    },
+    {
+      "maBaoMat": "sol_5673df2cfe",
+      "dapAn": "A",
+      "loiGiaiHtml": "$\\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\displaystyle\\frac{1}{4} \\Leftrightarrow \\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\left(\\displaystyle\\frac{1}{2}\\right)^2 \\Leftrightarrow x^2-x \\le 2 \\Leftrightarrow -1 \\le x \\le 2$."
+    },
+    {
+      "maBaoMat": "sol_bac05bed49",
+      "dapAn": "C",
+      "loiGiaiHtml": "Trung vị $M_e$ của mẫu số liệu thuộc nhóm $[4;6)$.\\\\\r\n\t\t$M_e = 4 + \\displaystyle\\frac{20 - (5+12)}{15} \\cdot (6-4) = 4{,}4$"
+    },
+    {
+      "maBaoMat": "sol_104311f5ca",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ bảng biến thiên ta thấy hàm số nghịch biến trên khoảng $(1; 2)$."
+    },
+    {
+      "maBaoMat": "sol_b3d0c153be",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\displaystyle\\int \\sin x \\text{d}x = -\\cos x + C$."
+    },
+    {
+      "maBaoMat": "sol_7dc3efbb22",
+      "dapAn": "A",
+      "loiGiaiHtml": "Phương trình $f(x)=0$ có nghiệm là $a$ (với $-1 < a < 4$).\\\\\r\n\t\tTrên đoạn $[-1; a]$ ta có: $S_1 = \\displaystyle\\int_{-1}^a f(x) dx$.\\\\\r\n\t\tTrên đoạn $[a; 4]$, đồ thị hàm số nằm phía dưới trục hoành ($f(x) \\le 0$), do đó diện tích\\\\\r\n\t\t$S_2 = -\\displaystyle\\int_a^4 f(x) dx \\Rightarrow \\displaystyle\\int_a^4 f(x) dx = -S_2$.\\\\\r\n\t\tTa có: $\\displaystyle\\int_{-1}^4 f(x) dx = \\displaystyle\\int_{-1}^a f(x) dx + \\displaystyle\\int_a^4 f(x) dx = S_1 - S_2$."
+    },
+    {
+      "maBaoMat": "sol_d06e5392cb",
+      "dapAn": "D",
+      "loiGiaiHtml": "Bảng giá trị đại diện của mẫu số liệu:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d06e5392cb_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSố trung bình của mẫu số liệu là: $\\overline{x} = \\displaystyle\\frac{3 \\cdot 2{,}85 + 6 \\cdot 3{,}15 + 5 \\cdot 3{,}45 + 4 \\cdot 3{,}75 + 2 \\cdot 4{,}05}{20} = 3{,}39$.\\\\\r\n\t\tPhương sai của mẫu số liệu là\r\n\t\t\\begin{align*}\r\n\t\t\ts^2 &= \\frac{1}{20} \\left[ 3(2{,}85 - 3{,}39)^2 + 6(3{,}15 - 3{,}39)^2 + 5(3{,}45 - 3{,}39)^2 + 4(3{,}75 - 3{,}39)^2 + 2(4{,}05 - 3{,}39)^2 \\right]\\\\\r\n\t\t\t\\Leftrightarrow s^2 &= \\frac{1}{20} \\left[ 3(-0{,}54)^2 + 6(-0{,}24)^2 + 5(0{,}06)^2 + 4(0{,}36)^2 + 2(0{,}66)^2 \\right]\\\\\r\n\t\t\t\\Leftrightarrow s^2 &= \\frac{1}{20} \\left( 0{,}8748 + 0{,}3456 + 0{,}0180 + 0{,}5184 + 0{,}8712 \\right) = \\frac{2{,}628}{20} = 0{,}1314 \\approx 0{,}13.\r\n\t\t\\end{align*}"
+    },
+    {
+      "maBaoMat": "sol_c335ddf83d",
+      "dapAn": "B",
+      "loiGiaiHtml": "\\textbf{Chọn B}"
+    },
+    {
+      "maBaoMat": "sol_5dfe6a580e",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\displaystyle\\int\\limits_1^2 f(x) \\text{d}x = F(2) - F(1) = 5 - 9 = -4$."
+    }
+  ]
+}
