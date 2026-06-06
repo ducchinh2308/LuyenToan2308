@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_30b3fef9df",
+  "dapAn": "D",
+  "loiGiai": "Phương trình tham số của đường thẳng đi qua điểm $M_0(x_0; y_0; z_0)$ và có vectơ chỉ phương $\\vec{u} = (a; b; c)$ là $\\begin{cases} x = x_0 + at \\\\ y = y_0 + bt \\\\ z = z_0 + ct \\end{cases}$. \\\\\r\n\t\tÁp dụng với điểm $E(6; -2; -2)$ và $\\vec{u} = (1; 0; 3)$ ta được: $\\begin{cases} x = 6 + 1 \\cdot t \\\\ y = -2 + 0 \\cdot t \\\\ z = -2 + 3 \\cdot t \\end{cases} \\Leftrightarrow \\begin{cases} x = 6 + t \\\\ y = -2 \\\\ z = -2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$. \\\\"
+}

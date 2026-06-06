@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b2ec12797e",
+  "dapAn": "A",
+  "loiGiai": "Theo tính chất chèn điểm của tích phân, ta có: $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x + \\int_2^4 f(x)\\text{d}x$. \\\\\r\n\t\tMặt khác, theo giả thiết: $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1$. \\\\\r\n\t\tĐồng nhất hai đẳng thức trên, ta thu được: $\\displaystyle \\int_1^2 f(x)\\text{d}x + \\int_2^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1 \\Rightarrow \\int_2^4 f(x)\\text{d}x = -1$. \\\\"
+}

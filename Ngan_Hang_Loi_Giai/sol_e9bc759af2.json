@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e9bc759af2",
+  "dapAn": "D",
+  "loiGiai": "Xét giới hạn tại vô cực để tìm tiệm cận ngang: $\\displaystyle \\lim_{x \\to \\pm\\infty} y = \\lim_{x \\to \\pm\\infty} \\frac{2x + 2}{x + 3} = 2 \\Rightarrow y = 2$ là đường tiệm cận ngang. \\\\\r\n\t\tXét nghiệm mẫu số $x + 3 = 0 \\Leftrightarrow x = -3$. \\\\\r\n\t\tVì $\\displaystyle \\lim_{x \\to -3^+} y = -\\infty$ nên đường thẳng $x = -3$ là đường tiệm cận đứng của đồ thị hàm số. \\\\"
+}

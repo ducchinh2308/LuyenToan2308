@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8d70b71417",
+  "dapAn": "D",
+  "loiGiai": "Tập xác định của hàm số là $D = \\mathbb{R}$. \\\\\r\n\t\tTa tính đạo hàm: $y' = -4x^2 + 12x$. \\\\\r\n\t\tXét tập nghiệm bất phương trình cho hàm số đồng biến: $y' \\ge 0 \\Leftrightarrow -4x^2 + 12x \\ge 0 \\Leftrightarrow 0 \\le x \\le 3$. \\\\\r\n\t\tDo đó, hàm số đồng biến trên khoảng $(0; 3)$. \\\\"
+}

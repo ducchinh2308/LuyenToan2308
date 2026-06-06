@@ -1,0 +1,247 @@
+{
+  "maDe": "26254-26255-24TN",
+  "tenDe": "ĐỀ 26254-26255-24TN",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_c127c65d53",
+      "ma_goc": "2605-1512",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, tính bán kính của mặt cầu có phương trình $x^2 + y^2 + z^2 + 4y - 2z + 3 = 0$.",
+      "paA": "$2$",
+      "paB": "$1$",
+      "paC": "$2\\sqrt{2}$",
+      "paD": "$\\sqrt{2}$"
+    },
+    {
+      "maCau": "q_83e43cecb5",
+      "ma_goc": "2605-1514",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
+      "paB": "$(0; 4)$",
+      "paC": "$(0; +\\infty)$",
+      "paD": "$(0; 3)$"
+    },
+    {
+      "maCau": "q_3cf06e8e73",
+      "ma_goc": "2605-1511",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a} = (3; -2; -6)$, $\\vec{b} = (5; -2; 3)$. Tìm tọa độ của vectơ $\\vec{a} + \\vec{b}$.",
+      "paA": "$\\vec{a} + \\vec{b} = (-2; 0; -9)$",
+      "paB": "$\\vec{a} + \\vec{b} = (8; -4; 3)$",
+      "paC": "$\\vec{a} + \\vec{b} = (-8; 4; 3)$",
+      "paD": "$\\vec{a} + \\vec{b} = (8; -4; -3)$"
+    },
+    {
+      "maCau": "q_30fa27371d",
+      "ma_goc": "2605-1572",
+      "kieuCau": "TN",
+      "cauDan": "Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_30fa27371d_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTứ phân vị thứ nhất của mẫu số liệu trên gần nhất với giá trị nào trong các giá trị sau?",
+      "paA": "$8$",
+      "paB": "$8{,}6$",
+      "paC": "$7{,}6$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_dc6d2b223a",
+      "ma_goc": "2605-1517",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $10^x < 20$ là",
+      "paA": "$(0; \\log 20)$",
+      "paB": "$(-\\infty; \\log 20)$",
+      "paC": "$(-\\infty; \\log_{20} 10)$",
+      "paD": "$(-\\infty; 2)$"
+    },
+    {
+      "maCau": "q_f50319abf6",
+      "ma_goc": "2605-1513",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[1; 4]$ thỏa mãn $\\displaystyle \\int_1^4 f(x)\\text{d}x = \\int_1^2 f(x)\\text{d}x - 1$. Tính $\\displaystyle \\int_2^4 f(x)\\text{d}x$.",
+      "paA": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = -1$",
+      "paB": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 2$",
+      "paC": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 1$",
+      "paD": "$\\displaystyle \\int_2^4 f(x)\\text{d}x = 0$"
+    },
+    {
+      "maCau": "q_d7c4967e1c",
+      "ma_goc": "2605-1515",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{2x + 2}{x + 3}$ có đồ thị là đường cong $(C)$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$(C)$ có tiệm cận đứng là đường thẳng $x = 3$, tiệm cận ngang là đường thẳng $y = 2$",
+      "paB": "$(C)$ có tiệm cận đứng là đường thẳng $x = -3$, tiệm cận ngang là đường thẳng $y = -2$",
+      "paC": "$(C)$ có tiệm cận đứng là đường thẳng $x = 2$, tiệm cận ngang là đường thẳng $y = -3$",
+      "paD": "$(C)$ có tiệm cận đứng là đường thẳng $x = -3$, tiệm cận ngang là đường thẳng $y = 2$"
+    },
+    {
+      "maCau": "q_420fd17aa0",
+      "ma_goc": "2605-1576",
+      "kieuCau": "TN",
+      "cauDan": "Hộp I chứa 1 quả bóng màu trắng, 3 quả bóng màu đỏ và 2 quả bóng màu đen. Hộp II chứa 2 quả bóng màu trắng, 3 quả bóng màu đỏ và 4 quả bóng màu đen. Hộp III chứa 3 quả bóng màu trắng, 4 quả bóng màu đỏ và 5 quả bóng màu đen. Nếu mỗi hộp lấy ra 1 quả bóng, xác suất để 3 quả bóng được lấy ra cùng màu là:",
+      "paA": "$\\dfrac{283}{324}$",
+      "paB": "$\\dfrac{41}{324}$",
+      "paC": "$\\dfrac{5}{36}$",
+      "paD": "$\\dfrac{31}{36}$"
+    },
+    {
+      "maCau": "q_cd81ff159a",
+      "ma_goc": "2605-1577",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x)=\\sin x$ là",
+      "paA": "$-\\cos x + C$",
+      "paB": "$-\\sin x + C$",
+      "paC": "$\\sin x + C$",
+      "paD": "$\\cos x + C$"
+    },
+    {
+      "maCau": "q_391f6dff18",
+      "ma_goc": "2605-1578",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, bán kính của mặt cầu $(S)\\colon x^2+y^2+z^2+2x-2y-6z+3=0$ bằng",
+      "paA": "$8$",
+      "paB": "$\\sqrt{41}$",
+      "paC": "$41$",
+      "paD": "$2\\sqrt{2}$"
+    },
+    {
+      "maCau": "q_004f5744aa",
+      "ma_goc": "2605-1579",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích hình phẳng giới hạn bởi đồ thị hàm số $y=\\sqrt{1+3x}$, trục $Ox$ và hai đường thẳng $x=0, x=1$ bằng",
+      "paA": "$\\pi \\int_0^1 (1+3x)\\mathrm{d}x$",
+      "paB": "$\\int_0^1 \\sqrt{1+3x}\\mathrm{d}x$",
+      "paC": "$\\pi \\int_0^1 (1+3x)\\mathrm{d}x$",
+      "paD": "$\\int_0^1 (1+3x)\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_4eebad9a56",
+      "ma_goc": "2605-1580",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4eebad9a56_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(-\\infty;1)$",
+      "paB": "$(1;+\\infty)$",
+      "paC": "$(0;1)$",
+      "paD": "$(-1;1)$"
+    },
+    {
+      "maCau": "q_d0bd8bcf75",
+      "ma_goc": "2605-1581",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABC$ có đáy là tam giác vuông tại $B$, $AB=a, SA=a\\sqrt{3}$ và $SA$ vuông góc với mặt phẳng đáy. Góc giữa $SB$ và mặt phẳng đáy bằng",
+      "paA": "$30^\\circ$",
+      "paB": "$60^\\circ$",
+      "paC": "$45^\\circ$",
+      "paD": "$90^\\circ$"
+    },
+    {
+      "maCau": "q_51ff396583",
+      "ma_goc": "2605-1582",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $D$ là hình phẳng giới hạn bởi các đường $y=x^3, y=0, x=0$ và $x=1$. Khối tròn xoay tạo thành khi quay $D$ quanh trục $Ox$ có thể tích là",
+      "paA": "$\\pi \\int_0^1 x^3\\mathrm{d}x$",
+      "paB": "$\\pi \\int_0^1 x^6\\mathrm{d}x$",
+      "paC": "$\\pi \\int_0^1 x^6\\mathrm{d}x$",
+      "paD": "$\\pi \\int_0^1 (2x)^3\\mathrm{d}x$"
+    },
+    {
+      "maCau": "q_7a2d71a95b",
+      "ma_goc": "2605-1510",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, đường thẳng đi qua điểm $E(6; -2; -2)$ và nhận $\\vec{u} = (1; 0; 3)$ làm một vectơ chỉ phương có phương trình là",
+      "paA": "$\\begin{cases} x = -6 + t \\\\ y = 2 \\\\ z = 2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paB": "$\\begin{cases} x = 3 + t \\\\ y = -1 \\\\ z = -1 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paC": "$\\begin{cases} x = 1 - 6t \\\\ y = -2t \\\\ z = 3 - 2t \\end{cases} \\ (t \\in \\mathbb{R})$",
+      "paD": "$\\begin{cases} x = 6 + t \\\\ y = -2 \\\\ z = -2 + 3t \\end{cases} \\ (t \\in \\mathbb{R})$"
+    },
+    {
+      "maCau": "q_3b8a5f5f9e",
+      "ma_goc": "2605-1509",
+      "kieuCau": "TN",
+      "cauDan": "Xét hàm số $y = \\cos x$. Mệnh đề nào dưới đây \\textbf{sai}?",
+      "paA": "Hàm số tuần hoàn với chu kỳ $2\\pi$",
+      "paB": "Hàm số có đạo hàm $y' = -\\sin x$ với mọi $x \\in \\mathbb{R}$",
+      "paC": "Tập xác định của hàm số là $D = [-1; 1]$",
+      "paD": "Hàm số là hàm số chẵn"
+    },
+    {
+      "maCau": "q_d0e7e3a288",
+      "ma_goc": "2605-1508",
+      "kieuCau": "TN",
+      "cauDan": "Thống kê điểm thi HAS của 100 thí sinh trong một đợt thi, thu được kết quả như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d0e7e3a288_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm chứa tứ phân vị $Q_3$ của mẫu số liệu trên là",
+      "paA": "$[60; 75)$",
+      "paB": "$[75; 90)$",
+      "paC": "$[90; 105)$",
+      "paD": "$[105; 120)$"
+    },
+    {
+      "maCau": "q_e7c6f34d78",
+      "ma_goc": "2605-1507",
+      "kieuCau": "TN",
+      "cauDan": "Tìm họ nguyên hàm của hàm số $\\displaystyle f(x) = \\frac{e^x + 1}{2}$.",
+      "paA": "$\\displaystyle \\int f(x)\\text{d}x = e^x + x + C$",
+      "paB": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{e^x + 1}{2} + C$",
+      "paC": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{e^x + x}{2} + C$",
+      "paD": "$\\displaystyle \\int f(x)\\text{d}x = \\frac{(e^x + 1)^2}{4} + C$"
+    },
+    {
+      "maCau": "q_1dbcf238fa",
+      "ma_goc": "2605-1573",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=x^4-2x^2-3$ bằng",
+      "paA": "$-4$",
+      "paB": "$0$",
+      "paC": "$-6$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_4d7e712514",
+      "ma_goc": "2605-1574",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y=\\dfrac{2x-1}{x+4}$ là",
+      "paA": "$x=-\\dfrac{1}{4}$",
+      "paB": "$y=4$",
+      "paC": "$y=-4$",
+      "paD": "$y=2$"
+    },
+    {
+      "maCau": "q_2131ac7845",
+      "ma_goc": "2605-1516",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A$ và $B$. Công thức nào dưới đây \\textbf{sai}?",
+      "paA": "$P(AB) = P(A)P(B)$",
+      "paB": "$\\displaystyle P(B|A) = \\frac{P(AB)}{P(A)}$ với $P(A) > 0$",
+      "paC": "$P(B) = 1 - P(\\overline{B})$",
+      "paD": "$P(B) = P(A)P(B|A) + P(\\overline{A})P(B|\\overline{A})$"
+    },
+    {
+      "maCau": "q_0006b3a826",
+      "ma_goc": "2605-1575",
+      "kieuCau": "TN",
+      "cauDan": "Khảo sát thời gian sử dụng điện thoại một ngày của học sinh lớp 12A thu được mẫu số liệu ghép nhóm sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0006b3a826_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn của mẫu số liệu ghép nhóm trên thuộc khoảng nào dưới đây?",
+      "paA": "$(20;22)$",
+      "paB": "$(22;24)$",
+      "paC": "$(18;20)$",
+      "paD": "$(24;26)$"
+    },
+    {
+      "maCau": "q_9f1a253487",
+      "ma_goc": "2605-1506",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ với $\\begin{cases} u_1 = \\displaystyle \\frac{1}{2} \\\\ u_{n+1} = -2u_n \\ (n \\in \\mathbb{N}^*) \\end{cases}$. Tính $u_3$.",
+      "paA": "$u_3 = -4$",
+      "paB": "$u_3 = 2$",
+      "paC": "$u_3 = 4$",
+      "paD": "$u_3 = -2$"
+    },
+    {
+      "maCau": "q_d261a1768a",
+      "ma_goc": "2605-1571",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(-1;2;5)$ và $B(3;-6;1)$. Vectơ $\\vec{AB}$ cùng phương với vectơ nào dưới đây?",
+      "paA": "$\\vec{b}=(-1;2;-1)$",
+      "paB": "$\\vec{c}=(1;2;-1)$",
+      "paC": "$\\vec{a}=(1;2;1)$",
+      "paD": "$\\vec{d}=(-1;1;2)$"
+    }
+  ]
+}
