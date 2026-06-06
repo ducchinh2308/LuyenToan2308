@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_441722a6af",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_441722a6af_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tÁp dụng quy tắc hình bình hành vào các hình bình hành $B'D'DB$, $A'B'C'D'$ ta có:\\\\\r\n\t\t$\\overrightarrow{B'D} = \\overrightarrow{B'B} + \\overrightarrow{B'D'} = \\overrightarrow{B'B} + \\overrightarrow{B'A'} + \\overrightarrow{B'C'} = \\overrightarrow{A'A} - \\overrightarrow{A'B'} + \\overrightarrow{AD} = -\\vec{c} - \\vec{a} + \\vec{b} = -\\vec{a} + \\vec{b} - \\vec{c}$."
+}

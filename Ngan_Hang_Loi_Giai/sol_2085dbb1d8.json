@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2085dbb1d8",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2085dbb1d8_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDo $O$ là tâm hình bình hành $ABCD$ nên $O$ là trung điểm của $BD$.\\\\\r\n\t\tXét $\\Delta SBD$ có $E, O$ lần lượt là trung điểm của $SB, BD \\Rightarrow EO$ là đường trung bình của $\\Delta SBD$.\\\\\r\n\t\t$\\Rightarrow EO \\parallel SD$. Mà $SD \\subset (SAD)$ nên $EO \\parallel (SAD)$.\\\\\r\n\t\t$\\begin{cases} KO \\parallel AD \\\\ KO \\not\\subset (SAD) \\\\ AD \\subset (SAD) \\end{cases} \\Rightarrow KO \\parallel (SAD)$.\\\\\r\n\t\t$\\begin{cases} OE \\parallel (SAD) \\\\ KO \\parallel (SAD) \\\\ \\text{Trong } (KOE), \\, OE \\cap KO = O \\end{cases} \\Rightarrow (KOE) \\parallel (SAD)$."
+}

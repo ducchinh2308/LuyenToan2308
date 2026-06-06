@@ -1,0 +1,247 @@
+{
+  "maDe": "26258-26264-24TN",
+  "tenDe": "ĐỀ 26258-26264-24TN",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_e1610c9862",
+      "ma_goc": "2606-9",
+      "kieuCau": "TN",
+      "cauDan": "Đường cong trong hình vẽ dưới đây là đồ thị của một trong bốn hàm số được liệt kê ở bốn phương án $A, B, C, D$. Hỏi hàm số đó là hàm số nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e1610c9862_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y = \\displaystyle\\frac{x^2 - x + 1}{x - 1}$.",
+      "paB": "$y = \\displaystyle\\frac{-x^2 + x - 1}{x - 1}$.",
+      "paC": "$y = \\displaystyle\\frac{x^2 - x - 1}{x - 1}$.",
+      "paD": "$y = \\displaystyle\\frac{x^2 + x + 1}{x + 1}$."
+    },
+    {
+      "maCau": "q_89c90a4c67",
+      "ma_goc": "2606-6",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $F(x)$ thỏa mãn $\\displaystyle\\int x e^{2x} dx = F(x) + C$. Giá trị của biểu thức $P = F''(1) - 2F'(1)$ bằng",
+      "paA": "$0$.",
+      "paB": "$e^2$.",
+      "paC": "$2e^2$.",
+      "paD": "$3e^2$."
+    },
+    {
+      "maCau": "q_1ae7adc854",
+      "ma_goc": "2606-7",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp tam giác đều $S.ABC$. Gọi $M$ là trung điểm của cạnh $BC$. Góc phẳng nhị diện của góc nhị diện $[S; BC; A]$ là góc nào dưới đây?",
+      "paA": "$\\widehat{SAB}$.",
+      "paB": "$\\widehat{SBM}$.",
+      "paC": "$\\widehat{SMA}$.",
+      "paD": "$\\widehat{SCA}$."
+    },
+    {
+      "maCau": "q_92b9308280",
+      "ma_goc": "2606-24",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $2^{2+x^2} > 16$ là",
+      "paA": "$(-\\infty; -\\sqrt{2}) \\cup (\\sqrt{2}; +\\infty)$.",
+      "paB": "$(-\\infty; -\\sqrt{2}] \\cup [\\sqrt{2}; +\\infty)$.",
+      "paC": "$(-\\infty; -2) \\cup (2; +\\infty)$.",
+      "paD": "$(-\\infty; -2) \\cup [2; +\\infty)$."
+    },
+    {
+      "maCau": "q_8f6fc5a1af",
+      "ma_goc": "2606-12",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $y = \\displaystyle\\frac{1}{\\sin x} + \\tan x$ là",
+      "paA": "$D = \\mathbb{R} \\setminus \\left\\{ \\displaystyle\\frac{\\pi}{2} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$.",
+      "paB": "$D = \\mathbb{R} \\setminus \\{ k2\\pi \\mid k \\in \\mathbb{Z} \\}$.",
+      "paC": "$D = \\mathbb{R} \\setminus \\{ k\\pi \\mid k \\in \\mathbb{Z} \\}$.",
+      "paD": "$D = \\mathbb{R} \\setminus \\left\\{ k\\displaystyle\\frac{\\pi}{2} \\mid k \\in \\mathbb{Z} \\right\\}$."
+    },
+    {
+      "maCau": "q_83ded025f9",
+      "ma_goc": "2606-8",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có số hạng đầu $u_1 = 3$ và công bội $q = -2$. Số hạng thứ 5 của cấp số nhân đã cho bằng",
+      "paA": "$-5$.",
+      "paB": "$-48$.",
+      "paC": "$48$.",
+      "paD": "$-96$."
+    },
+    {
+      "maCau": "q_b4522e588b",
+      "ma_goc": "2606-10",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, đường thẳng đi qua điểm $M(1; -2; 3)$ và vuông góc với mặt phẳng $(P)\\colon 2x - y + 3z - 5 = 0$ có phương trình chính tắc là",
+      "paA": "$\\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{1} = \\displaystyle\\frac{z-3}{3}$.",
+      "paB": "$\\displaystyle\\frac{x+1}{2} = \\displaystyle\\frac{y-2}{-1} = \\displaystyle\\frac{z+3}{3}$.",
+      "paC": "$\\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{-1} = \\displaystyle\\frac{z-3}{3}$.",
+      "paD": "$\\displaystyle\\frac{x-2}{1} = \\displaystyle\\frac{y+1}{-2} = \\displaystyle\\frac{z-3}{3}$."
+    },
+    {
+      "maCau": "q_4346255270",
+      "ma_goc": "2606-28",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$. Gọi $E, I, K$ lần lượt là trung điểm của các cạnh $SB, BC, CD$. Mặt phẳng nào sau đây song song với $(SAD)$?",
+      "paA": "$(BEK)$.",
+      "paB": "$(EIK)$.",
+      "paC": "$(OEI)$.",
+      "paD": "$(KOE)$."
+    },
+    {
+      "maCau": "q_029807df81",
+      "ma_goc": "2606-29",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi $G$ là trọng tâm của tam giác $BCD$. Khẳng định nào sau đây là sai?",
+      "paA": "$\\overrightarrow{BC} + \\overrightarrow{BD} = 3\\overrightarrow{BG}$.",
+      "paB": "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+      "paC": "$\\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG} = \\vec{0}$.",
+      "paD": "$\\overrightarrow{GA} + \\overrightarrow{GB} - \\overrightarrow{GD} = \\vec{0}$."
+    },
+    {
+      "maCau": "q_2a2c38eda9",
+      "ma_goc": "2606-30",
+      "kieuCau": "TN",
+      "cauDan": "Dãy số nào trong các dãy số được cho dưới đây là một cấp số nhân?",
+      "paA": "$1; 2; 3$.",
+      "paB": "$3; 6; 9$.",
+      "paC": "$2; 4; 8$.",
+      "paD": "$2; 4; 6$."
+    },
+    {
+      "maCau": "q_fbfc22362b",
+      "ma_goc": "2606-31",
+      "kieuCau": "TN",
+      "cauDan": "Chọn mệnh đề \\textbf{sai} trong các mệnh đề sau?",
+      "paA": "Hàm số $y = \\sin x$ là hàm số lẻ.",
+      "paB": "Hàm số $y = \\tan x$ là hàm số lẻ.",
+      "paC": "Hàm số $y = \\cos x$ là hàm số chẵn.",
+      "paD": "Hàm số $y = \\cot x$ là hàm số chẵn."
+    },
+    {
+      "maCau": "q_f0c0e383b5",
+      "ma_goc": "2606-32",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình vuông và $SA \\perp (ABCD)$. Mặt phẳng nào sau đây vuông góc với mặt phẳng $(SCD)$?",
+      "paA": "$(SAC)$.",
+      "paB": "$(SBD)$.",
+      "paC": "$(SAD)$.",
+      "paD": "$(SAB)$."
+    },
+    {
+      "maCau": "q_1058486b6b",
+      "ma_goc": "2606-33",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, vectơ nào sau đây là vectơ pháp tuyến của mặt phẳng $(P)\\colon 2x - y + z + 3 = 0$?",
+      "paA": "$\\vec{n}_2 = (2; 1; 1)$.",
+      "paB": "$\\vec{n}_4 = (-1; 1; 3)$.",
+      "paC": "$\\vec{n}_3 = (2; -1; 3)$.",
+      "paD": "$\\vec{n}_1 = (2; -1; 1)$."
+    },
+    {
+      "maCau": "q_2d4008709a",
+      "ma_goc": "2606-34",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, phương trình nào sau đây là phương trình mặt cầu?",
+      "paA": "$(x^2 - 8)^2 + (y - 12)^2 + (z - 24)^2 = 9^2$.",
+      "paB": "$(x - 9)^2 + (y^2 - 10)^2 + (z - 11)^2 = 12^2$.",
+      "paC": "$(x - 13)^2 + (y - 24)^2 - (z - 36)^2 = 7^2$.",
+      "paD": "$(x - 1)^2 + (y - 2)^2 + (z - 3)^2 = 5^2$."
+    },
+    {
+      "maCau": "q_4837cb1509",
+      "ma_goc": "2606-5",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Đặt $\\vec{a} = \\overrightarrow{AB}, \\vec{b} = \\overrightarrow{AD}, \\vec{c} = \\overrightarrow{AA'}$. Khẳng định nào sau đây đúng?",
+      "paA": "$\\overrightarrow{B'D} = \\vec{a} - \\vec{b} - \\vec{c}$.",
+      "paB": "$\\overrightarrow{B'D} = \\vec{a} - \\vec{b} + \\vec{c}$.",
+      "paC": "$\\overrightarrow{B'D} = \\vec{a} + \\vec{b} + \\vec{c}$.",
+      "paD": "$\\overrightarrow{B'D} = -\\vec{a} + \\vec{b} - \\vec{c}$."
+    },
+    {
+      "maCau": "q_63b54d4eec",
+      "ma_goc": "2606-4",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ là hàm đa thức bậc 5, có đạo hàm $f'(x)$ trên $\\mathbb{R}$. Đồ thị của hàm số $y=f'(x)$ là đường cong có đúng ba điểm chung với trục hoành như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_63b54d4eec_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực tiểu của hàm số $f(x)$ là",
+      "paA": "$3$.",
+      "paB": "$0$.",
+      "paC": "$2$.",
+      "paD": "$1$."
+    },
+    {
+      "maCau": "q_c87217bd97",
+      "ma_goc": "2606-3",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\displaystyle\\frac{1}{4}$ là",
+      "paA": "$[-1; 2]$.",
+      "paB": "$(-\\infty; -1] \\cup [2; +\\infty)$.",
+      "paC": "$(-1; 2)$.",
+      "paD": "$[-2; 1]$."
+    },
+    {
+      "maCau": "q_e5a5ea6995",
+      "ma_goc": "2606-2",
+      "kieuCau": "TN",
+      "cauDan": "Khảo sát thời gian tự học trong một ngày (đơn vị tính bằng giờ) của 40 học sinh, ta thu được mẫu số liệu ghép nhóm sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e5a5ea6995_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTrung vị của mẫu số liệu trên bằng",
+      "paA": "$4{,}8$.",
+      "paB": "$4{,}5$.",
+      "paC": "$4{,}4$.",
+      "paD": "$4{,}2$."
+    },
+    {
+      "maCau": "q_0b4aa13827",
+      "ma_goc": "2606-25",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như bảng dưới đây.\r\n\tKhẳng định nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0b4aa13827_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số đồng biến trên khoảng $(1; 2)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(-5; 4)$.",
+      "paC": "Hàm số nghịch biến trên khoảng $(1; 2)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-5; 4)$."
+    },
+    {
+      "maCau": "q_826a829790",
+      "ma_goc": "2606-26",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = \\sin x$ là",
+      "paA": "$\\sin x + C$.",
+      "paB": "$-\\cos x + C$.",
+      "paC": "$-\\sin x + C$.",
+      "paD": "$\\cos x + C$."
+    },
+    {
+      "maCau": "q_ee8d04b5d9",
+      "ma_goc": "2606-11",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $S_1$ và $S_2$ là diện tích của hai hình phẳng giới hạn bởi đồ thị của hàm số $y=f(x)$ và trục hoành như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ee8d04b5d9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTích phân $\\displaystyle\\int_{-1}^4 f(x) dx$ bằng",
+      "paA": "$S_1 - S_2$.",
+      "paB": "$S_1 + S_2$.",
+      "paC": "$-S_1 - S_2$.",
+      "paD": "$-S_1 + S_2$."
+    },
+    {
+      "maCau": "q_12f43eec31",
+      "ma_goc": "2606-27",
+      "kieuCau": "TN",
+      "cauDan": "Mỗi ngày bác Mạnh đều đi bộ rèn luyện sức khoẻ. Quãng đường đi bộ mỗi ngày của bác trong 20 ngày được thống kê lại ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_12f43eec31_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tPhương sai của mẫu số liệu ghép nhóm là",
+      "paA": "$1{,}26$.",
+      "paB": "$0{,}26$.",
+      "paC": "$0{,}19$.",
+      "paD": "$0{,}13$."
+    },
+    {
+      "maCau": "q_c185de53fa",
+      "ma_goc": "2606-1",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1; -2; 3)$. Tìm tọa độ điểm $M'$ đối xứng với điểm $M$ qua mặt phẳng $(Oxy)$ là",
+      "paA": "$M'(-1; 2; -3)$.",
+      "paB": "$M'(1; -2; 0)$.",
+      "paC": "$M'(-1; 2; 3)$.",
+      "paD": "$M'(1; -2; -3)$."
+    },
+    {
+      "maCau": "q_466acf62a0",
+      "ma_goc": "2606-23",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có một nguyên hàm là $F(x)$. Biết rằng $F(1) = 9$, $F(2) = 5$. Giá trị của biểu thức $\\displaystyle\\int\\limits_1^2 f(x) \\text{d}x$ bằng",
+      "paA": "$14$.",
+      "paB": "$-4$.",
+      "paC": "$45$.",
+      "paD": "$4$."
+    }
+  ]
+}

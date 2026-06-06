@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8d34a0a5a8",
+  "dapAn": "A",
+  "loiGiai": "Ta có $2^{2+x^2} > 16 \\Leftrightarrow 2^{2+x^2} > 2^4 \\Leftrightarrow 2+x^2 > 4 \\Leftrightarrow x^2 > 2 \\Leftrightarrow x \\in (-\\infty; -\\sqrt{2}) \\cup (\\sqrt{2}; +\\infty)$."
+}

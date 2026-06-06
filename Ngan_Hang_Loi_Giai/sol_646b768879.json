@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_646b768879",
+  "dapAn": "C",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_646b768879_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $S.ABC$ là hình chóp tam giác đều nên:\\\\\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $\\Delta ABC$ đều có $M$ là trung điểm của cạnh $BC$ nên $AM \\perp BC$.\r\n\t\t\t\\item $\\Delta SBC$ cân tại $S$ có $M$ là trung điểm của cạnh $BC$ nên $SM \\perp BC$.\r\n\t\t\t\\item Vậy góc $\\widehat{SMA}$ là góc phẳng nhị diện của góc nhị diện $[S; BC; A]$.\r\n\t\t\\end{itemize}"
+}
