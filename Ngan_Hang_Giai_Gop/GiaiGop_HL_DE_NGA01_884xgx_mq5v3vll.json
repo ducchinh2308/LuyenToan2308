@@ -1,0 +1,175 @@
+{
+  "thoiGianGhep": "2026-06-08T23:48:50.706Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_b24cd1f431",
+      "dapAn": "A",
+      "loiGiaiHtml": "Điều kiện $\\displaystyle \\cos x \\ne 0 \\Leftrightarrow x \\ne \\frac{\\pi}{2}+k\\pi, k \\in \\mathbb{Z}$.\\\\\r\n\t\tTập xác định của hàm số $\\displaystyle y=\\tan x$ là $\\displaystyle \\mathbb{R}\\setminus\\left\\{\\frac{\\pi}{2}+k\\pi | k \\in \\mathbb{Z}\\right\\}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_210cfe71a7",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ bảng biến thiên suy ra $\\displaystyle \\begin{cases} M=2 \\\\ m=-1 \\end{cases}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_409a007944",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta đặt hệ trục tọa độ $Oxy$ sao cho:\\\\\r\n\t\tGốc $O$ tại trung điểm của cạnh đáy của cửa sắt (tức là trung điểm đoạn thẳng có chiều dài $5$ m).\\\\\r\n\t\tTrục $Ox$ nằm trên mặt đất, trục $Oy$ là trục đối xứng của cổng.\\\\\r\n\t\tKhi đó, hai chân của parabol (nơi nối với phần hình chữ nhật) có tọa độ là $\\displaystyle A(-2{,}5;1{,}5); B(2{,}5;1{,}5)$.\\\\\r\n\t\tPhương trình parabol có dạng $\\displaystyle y = ax^2 + c$.\\\\\r\n\t\tVì đỉnh tại $\\displaystyle (0;2)$, ta có $\\displaystyle c=2$.\\\\\r\n\t\tParabol đi qua điểm $\\displaystyle (2{,}5;1{,}5)$ ta có $\\displaystyle 1{,}5 = a\\cdot 2{,}5^2 + 2 \\Leftrightarrow a = -\\frac{2}{25}$.\\\\\r\n\t\tPhương trình parabol là $\\displaystyle y = -\\frac{2}{25}x^2 + 2$.\\\\\r\n\t\tDiện tích phần hình chữ nhật $\\displaystyle S = 1{,}5 \\cdot 5 = 7{,}5 = \\frac{15}{2} \\text{ m}^2$.\\\\\r\n\t\tDiện tích phần vòm parabol $\\displaystyle S_1 = \\int_{-2{,}5}^{2{,}5} \\left( -\\frac{2}{25}x^2 + 2 - 1{,}5 \\right) \\,dx = \\frac{5}{3} \\text{ m}^2$.\\\\\r\n\t\tTổng diện tích cổng: $\\displaystyle S = \\frac{15}{2} + \\frac{5}{3} = \\frac{55}{6} \\text{ m}^2$.\\\\\r\n\t\tTổng giá tiền theo đơn vị đồng: $\\displaystyle C = \\frac{55}{6} \\cdot 660000 = 6050000$ đồng.\\\\\r\n\t\tVậy, giá cửa sắt là $6050$ nghìn đồng.\\\\"
+    },
+    {
+      "maBaoMat": "sol_5ed5557c1a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo quy tắc hình hộp ta có $\\displaystyle \\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$; $\\displaystyle \\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DC} + \\overrightarrow{DD'}$; $\\displaystyle \\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_fc5b6237bf",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\displaystyle S = \\int_{-3}^{4} |f(x)|\\,dx = \\int_{-3}^{0} |f(x)|\\,dx + \\int_{0}^{4} |f(x)|\\,dx = \\int_{-3}^{0} f(x)\\,dx - \\int_{0}^{4} f(x)\\,dx$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_665164a18c",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta thấy đồ thị hàm số đi lên từ trái sang phải trên khoảng $\\displaystyle (0; 2)$ nên hàm số $\\displaystyle y=f(x)$ đồng biến trên khoảng $\\displaystyle (0; 2)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_ff93954168",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\frac{6}{5} \\ne \\frac{7}{6}$ nên dãy số $\\displaystyle 5; 6; 7; 8; \\dots$ không phải là cấp số nhân.\\\\\r\n\t\t$\\displaystyle \\frac{2}{\\sqrt{2}} \\ne \\frac{4}{2}$ nên dãy số $\\displaystyle \\sqrt{2}; 2; 4; 4\\sqrt{2}; \\dots$ không phải là cấp số nhân.\\\\\r\n\t\t$\\displaystyle \\frac{\\frac{1}{\\pi^2}}{\\frac{1}{\\pi}} \\ne \\frac{\\frac{1}{\\pi^4}}{\\frac{1}{\\pi^2}}$ nên dãy số $\\displaystyle \\frac{1}{\\pi}; \\frac{1}{\\pi^2}; \\frac{1}{\\pi^4}; \\frac{1}{\\pi^6}; \\dots$ không phải là cấp số nhân.\\\\\r\n\t\t$\\displaystyle \\frac{1}{1} = \\frac{1}{1} = \\frac{1}{1} = 1$ nên dãy số $\\displaystyle 1; 1; 1; 1; \\dots$ là một cấp số nhân với công bội $\\displaystyle q=1$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_b31df0d88d",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có tập xác định $D=\\mathbb{R}$.\\\\\r\n\t\t$\\displaystyle f'(x)=0 \\Leftrightarrow (x^2-4)(3-x)(x+2)=0$.\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow \\left[ \\begin{array}{l} x^2-4=0 \\\\ 3-x=0 \\\\ x+2=0 \\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l} x=2 \\\\ x=-2 \\\\ x=3 \\end{array} \\right.$.\\\\\r\n\t\tVì $x=-2$ là nghiệm kép nên $f'(x)$ chỉ đổi dấu khi qua các nghiệm $x=2$ và $x=3$.\\\\\r\n\t\tDo đó hàm số $y=f(x)$ có $2$ điểm cực trị.\\\\"
+    },
+    {
+      "maBaoMat": "sol_d651ba7630",
+      "dapAn": "B",
+      "loiGiaiHtml": "$\\displaystyle y = \\frac{2x^2-5x+3}{x-2} = 2x - 1 + \\frac{1}{x-2}$.\\\\\r\n\t\tTa có $\\displaystyle \\lim_{x \\to +\\infty} \\left[ y - (2x-1) \\right] = \\lim_{x \\to +\\infty} \\frac{1}{x-2} = 0$.\\\\\r\n\t\tTương tự $\\displaystyle \\lim_{x \\to -\\infty} \\left[ y - (2x-1) \\right] = \\lim_{x \\to -\\infty} \\frac{1}{x-2} = 0$.\\\\\r\n\t\tVậy tiệm cận xiên của đồ thị hàm số đã cho là $\\displaystyle y=2x-1$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_b7e528e755",
+      "dapAn": "D",
+      "loiGiaiHtml": "$\\displaystyle P = \\log_{2^{2018}} 2^2 - \\frac{1}{1009} + \\ln e^{2018} = \\frac{2}{2018} \\log_2 2 - \\frac{1}{1009} + 2018 \\ln e = \\frac{1}{1009} - \\frac{1}{1009} + 2018 = 2018$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_9d8470dbce",
+      "dapAn": "C",
+      "loiGiaiHtml": "$\\displaystyle x^2 + y^2 + z^2 - 4x + 2z + 4 = 0 \\Leftrightarrow (x^2-4x+4) + y^2 + (z^2+2z+1) = 1$.\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow (x-2)^2 + (y-0)^2 + (z+1)^2 = 1$.\\\\\r\n\t\tVậy mặt cầu $(S)$ có tâm $\\displaystyle I(2;0;-1)$, bán kính $\\displaystyle R=1$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_809fde0911",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\displaystyle N=30$; $\\displaystyle \\frac{N}{4} = 7{,}5$; $\\displaystyle \\frac{3N}{4} = 22{,}5$.\\\\\r\n\t\tXét bảng tần số tích lũy sau:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_809fde0911_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tNhóm đầu tiên có tần số tích lũy lớn hơn hoặc bằng $\\displaystyle \\frac{N}{4}=7{,}5$ là $[40;50)$.\\\\\r\n\t\t$\\displaystyle Q_1 \\in [40;50) \\Rightarrow Q_1 = 40 + \\frac{7{,}5-7}{10} \\cdot (50-40) = \\frac{81}{2}$.\\\\\r\n\t\tNhóm đầu tiên có tần số tích lũy lớn hơn hoặc bằng $\\displaystyle \\frac{3N}{4}=22{,}5$ là $[50;60)$.\\\\\r\n\t\t$\\displaystyle Q_3 \\in [50;60) \\Rightarrow Q_3 = 50 + \\frac{22{,}5-17}{8} \\cdot (60-50) = \\frac{455}{8}$.\\\\\r\n\t\tVậy khoảng tứ phân vị $\\displaystyle \\Delta_Q = Q_3 - Q_1 = \\frac{455}{8} - \\frac{81}{2} = 16{,}375$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_6b9f6c9be6",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Gọi phương trình Parabol có dạng $\\displaystyle f(x)=ax^2+bx+c$.\\\\\r\n\t\t\tParabol có tọa độ đỉnh $\\displaystyle (0{,}75;0{,}2)$ và đi qua hai điểm có tọa độ là $\\displaystyle (0;0{,}5)$ và $\\displaystyle (1{,}5;0{,}5)$.\\\\\r\n\t\t\tSuy ra ta có hệ phương trình: $\\displaystyle \\begin{cases} a\\cdot 0 + b\\cdot 0 + c = 0{,}5 \\\\ a\\cdot 1{,}5^2 + b\\cdot 1{,}5 + c = 0{,}5 \\\\ a\\cdot 0{,}75^2 + b\\cdot 0{,}75 + c = 0{,}2 \\end{cases} \\Rightarrow \\begin{cases} a = \\frac{8}{15} \\\\ b = -\\frac{4}{5} \\\\ c = \\frac{1}{2} \\end{cases} \\Rightarrow f(x) = \\frac{8}{15}x^2 - \\frac{4}{5}x + \\frac{1}{2}$.\\\\\r\n\t\t\t\\itemch Thể tích của thùng nước là $\\displaystyle V = \\pi \\int_0^{1{,}5} f^2(x)\\,\\mathrm{d}x = \\pi \\int_0^{1{,}5} \\left( \\frac{8}{15}x^2 - \\frac{4}{5}x + \\frac{1}{2} \\right)^2\\,\\mathrm{d}x \\approx 0{,}5\\text{ m}^3$.\\\\\r\n\t\t\t\\itemch Tốc độ bơm nước vào bể $5$ lít/phút $\\displaystyle = \\frac{5}{10^3}\\text{ m}^3\\text{/phút}$.\\\\\r\n\t\t\tThời gian để bơm đầy bể là $\\displaystyle \\frac{V \\cdot 10^3}{5} \\times \\frac{1}{60} \\approx 1{,}5$ (giờ).\\\\\r\n\t\t\t\\itemch Gọi $h$ là độ cao của nước trong thùng sau khi bơm được $t$ phút. Ta có:\\\\\r\n\t\t\t$\\displaystyle V_h = \\pi \\int_0^h \\left( \\frac{8}{15}x^2 - \\frac{4}{5}x + \\frac{1}{2} \\right)^2\\,\\mathrm{d}x = \\frac{5}{10^3}t$\\\\\r\n\t\t\t$\\displaystyle \\Leftrightarrow \\pi \\left( \\frac{64}{1125}h^5 - \\frac{16}{75}h^4 + \\frac{88}{225}h^3 - \\frac{2}{5}h^2 + \\frac{1}{4}h \\right) = 0{,}005t \\quad (*)$.\\\\\r\n\t\t\tTại thời điểm $t=20$ ta có $\\displaystyle \\pi \\left( \\frac{64}{1125}h^5 - \\frac{16}{75}h^4 + \\frac{88}{225}h^3 - \\frac{2}{5}h^2 + \\frac{1}{4}h \\right) = 0{,}1 \\Leftrightarrow h \\approx 0{,}1641$.\\\\\r\n\t\t\tĐạo hàm theo biến $t$ hai vế của $(*)$ ta được:\\\\\r\n\t\t\t$\\displaystyle \\pi \\left( \\frac{64}{225}h^4 - \\frac{64}{75}h^3 + \\frac{264}{225}h^2 - \\frac{4}{5}h + \\frac{1}{4} \\right) h'(t) = 0{,}005$.\\\\\r\n\t\t\tTốc độ dâng của nước là $\\displaystyle v(t) = h'(t) = \\frac{0{,}005}{\\pi \\left( \\frac{64}{225}h^4 - \\frac{64}{75}h^3 + \\frac{264}{225}h^2 - \\frac{4}{5}h + \\frac{1}{4} \\right)}$.\\\\\r\n\t\t\tTại thời điểm $t=20, h=0{,}1641$, tốc độ dâng của nước là $\\displaystyle v(20) = h'(20) \\approx 0{,}0108\\text{ m/phút}$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_02860b775b",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Xác suất để quả táo ở thùng A có cân nặng từ $280\\text{g}$ trở lên là $\\displaystyle P = \\frac{4+3}{25} = 0{,}28 \\ne 0{,}38$.\\\\\r\n\t\t\t\\itemch Xác suất để hai quả táo lấy ra đều nặng từ $270\\text{g}$ trở lên (1 từ thùng A, 1 từ thùng B) là $\\displaystyle P = P_A \\cdot P_B = \\frac{19}{25} \\cdot \\frac{21}{25} = \\frac{399}{625} = 0{,}6384$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle \\overline{x}_A = \\frac{2\\cdot 255 + 4\\cdot 265 + 12\\cdot 275 + 4\\cdot 285 + 3\\cdot 295}{25} = 275{,}8$.\\\\\r\n\t\t\t$\\displaystyle \\overline{x}_B = \\frac{1\\cdot 255 + 3\\cdot 265 + 7\\cdot 275 + 10\\cdot 285 + 4\\cdot 295}{25} = 280{,}2$.\\\\\r\n\t\t\tPhương sai:\\\\\r\n\t\t\t$\\displaystyle S_A^2 = \\frac{2(255-275{,}8)^2 + 4(265-275{,}8)^2 + 12(275-275{,}8)^2 + 4(285-275{,}8)^2 + 3(295-275{,}8)^2}{25} \\approx 111{,}36$.\\\\\r\n\t\t\t$\\displaystyle S_B^2 = \\frac{1(255-280{,}2)^2 + 3(265-280{,}2)^2 + 7(275-280{,}2)^2 + 10(285-280{,}2)^2 + 4(295-280{,}2)^2}{25} = 104{,}96$.\\\\\r\n\t\t\tDo $S_A^2 > S_B^2$ nên thùng A phân tán hơn.\\\\\r\n\t\t\t\\itemch Khoảng tứ phân vị $\\displaystyle \\Delta_Q = Q_3 - Q_1$.\\\\\r\n\t\t\tVị trí $Q_1$ là $\\displaystyle \\frac{N}{4} = \\frac{25}{4} = 6{,}25$.\\\\\r\n\t\t\tVị trí $Q_3$ là $\\displaystyle \\frac{3N}{4} = \\frac{3\\cdot 25}{4} = 18{,}75$.\\\\\r\n\t\t\tBảng tần số tích lũy thùng A:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_02860b775b_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ đó ta có $Q_1$ nằm trong lớp $[270;280)$, $Q_3$ nằm trong lớp $[280;290)$.\\\\\r\n\t\t\t$\\displaystyle Q_1 = 270 + \\frac{6{,}25-6}{12} \\cdot 10 = \\frac{6485}{24}$.\\\\\r\n\t\t\t$\\displaystyle Q_3 = 280 + \\frac{18{,}75-18}{4} \\cdot 10 = 281{,}875$.\\\\\r\n\t\t\t$\\displaystyle \\Delta_Q = Q_3 - Q_1 = 281{,}875 - \\frac{6485}{24} \\approx 11{,}7$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_05dfd48749",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\displaystyle f'(x) = 6x^2 + 2bx - 6$.\\\\\r\n\t\t\tVì $x=1$ là điểm cực trị nên $\\displaystyle f'(1)=0 \\Leftrightarrow 6\\cdot 1^2 + 2\\cdot b\\cdot 1 - 6 = 0 \\Leftrightarrow 2b = 0 \\Leftrightarrow b = 0$.\\\\\r\n\t\t\tKhi đó, $\\displaystyle f(x) = 2x^3 - 6x + d$.\\\\\r\n\t\t\tDo hàm số đạt cực trị bằng $4$ tại $x=1$ nên $\\displaystyle f(1)=4 \\Leftrightarrow 2\\cdot 1^3 - 6\\cdot 1 + d = 4 \\Leftrightarrow d - 4 = 4 \\Leftrightarrow d = 8$.\\\\\r\n\t\t\tVậy $\\displaystyle b+d = 0+8=8$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle f(x) = 2x^3 - 6x + 8$.\\\\\r\n\t\t\t$\\displaystyle f'(x) = 6x^2 - 6 = 6(x-1)(x+1) = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x=1 \\\\ x=-1 \\end{array} \\right.$.\\\\\r\n\t\t\tBảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_05dfd48749_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ bảng biến thiên, hàm số $\\displaystyle y=f(x)$ đạt cực tiểu tại $x=1$.\\\\\r\n\t\t\t\\itemch Từ bảng biến thiên, $x=-1$ là điểm cực đại của hàm số $\\displaystyle y=f(x)$, do đó nó là một điểm cực trị.\\\\\r\n\t\t\t\\itemch Giá trị cực tiểu của hàm số đã cho bằng $4$ (đạt tại $x=1$), còn $12$ là giá trị cực đại.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_7cf160aaaa",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $DA=DC=2$ nên hình chữ nhật $ABCD$ là hình vuông.\\\\\r\n\t\t\tDo đó, $A_1B_1C_1D_1$ cũng là hình vuông.\\\\\r\n\t\t\tKhi $M$ là trung điểm của $B_1D_1$, ta có $C_1M \\perp B_1D_1$ và $C_1M \\perp DD_1$.\\\\\r\n\t\t\tSuy ra $C_1M \\perp (BB_1D_1D)$.\\\\\r\n\t\t\t\\itemch Ta có $B(2;2;0)$, $A_1(2;0;1)$, $C_1(0;2;1)$, $B_1(2;2;1)$.\\\\\r\n\t\t\tKhi $M$ là trung điểm $B_1D_1$ thì $M(1;1;1)$, $\\displaystyle \\overrightarrow{MC_1}=(-1;1;0)$, $\\displaystyle \\overrightarrow{BC}=(-2;0;0)$.\\\\\r\n\t\t\t$\\displaystyle \\cos(MC_1;BC) = \\frac{|\\overrightarrow{MC_1} \\cdot \\overrightarrow{BC}|}{\\left|\\overrightarrow{MC_1}\\right| \\cdot \\left|\\overrightarrow{BC}\\right|} = \\frac{|2|}{\\sqrt{2} \\cdot 2} = \\frac{\\sqrt{2}}{2}$.\\\\\r\n\t\t\t\\itemch Ta có $\\displaystyle \\begin{cases} MB_1 \\parallel BD \\\\ BD \\subset (BDC_1) \\end{cases} \\Rightarrow MB_1 \\parallel (BDC_1) \\Rightarrow d(M;(BDC_1)) = d(B_1;(BDC_1))$.\\\\\r\n\t\t\tDo đó, $V_{M.BDC_1} = V_{B_1.BDC_1}$ hay $V_{C_1.BDM} = V_{B_1.BDC_1}$ không đổi.\\\\\r\n\t\t\t\\itemch Ta tìm đoạn vuông góc chung của hai đường thẳng chéo nhau $B_1D_1$ và $BC_1$.\\\\\r\n\t\t\tĐường thẳng $B_1D_1$ đi qua $D_1(0;0;1)$ và có VTCP $\\displaystyle \\vec{u} = \\frac{1}{2}\\overrightarrow{D_1B_1} = (1;1;0)$ nên có phương trình là $\\displaystyle \\begin{cases} x=t \\\\ y=t \\\\ z=1 \\end{cases}$.\\\\\r\n\t\t\tĐường thẳng $BC_1$ đi qua $B(2;2;0)$ và có VTCP $\\displaystyle \\overrightarrow{BC_1} = (-2;0;1)$ nên có phương trình là $\\displaystyle \\begin{cases} x=2-2s \\\\ y=2 \\\\ z=s \\end{cases}$.\\\\\r\n\t\t\tGọi $H(t;t;1) \\in B_1D_1$ và $K(2-2s;2;s) \\in BC_1$.\\\\\r\n\t\t\tTa có: $\\displaystyle \\overrightarrow{KH} = (t-2+2s; t-2; 1-s)$.\\\\\r\n\t\t\t$\\displaystyle \\begin{cases} \\overrightarrow{KH} \\cdot \\vec{u} = 0 \\\\ \\overrightarrow{KH} \\cdot \\overrightarrow{BC_1} = 0 \\end{cases} \\Rightarrow \\begin{cases} t-2+2s+t-2 = 0 \\\\ -2(t-2+2s) + 1-s = 0 \\end{cases} \\Rightarrow \\begin{cases} 2t+2s = 4 \\\\ -2t-5s = -5 \\end{cases} \\Rightarrow \\begin{cases} t = \\frac{5}{3} \\\\ s = \\frac{1}{3} \\end{cases}$.\\\\\r\n\t\t\tDo đó, $H\\left( \\frac{5}{3}; \\frac{5}{3}; 1 \\right)$, $K\\left( \\frac{4}{3}; 2; \\frac{1}{3} \\right)$.\\\\\r\n\t\t\tTa thấy $H\\left( \\frac{5}{3}; \\frac{5}{3}; 1 \\right)$ thuộc đoạn thẳng $B_1D_1$ nên khi $M$ là điểm di động trên đoạn thẳng $B_1D_1$ thì\r\n\t\t\t$\\displaystyle d(M, BC_1) \\ge HK = \\sqrt{\\left(\\frac{5}{3} - \\frac{4}{3}\\right)^2 + \\left(\\frac{5}{3} - 2\\right)^2 + \\left(1 - \\frac{1}{3}\\right)^2} = \\frac{\\sqrt{6}}{3}$. Dấu bằng xảy ra khi $M \\equiv H$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_dd1211b59f",
+      "dapAn": "109",
+      "loiGiaiHtml": "+) Xét trường hợp $0 < t \\le 10$:\\\\\r\n\t\tKhi đó $\\displaystyle V(t)=(-t^2+14t-40)e^{\\frac{t}{4}}+50 \\Rightarrow V'(t)=(-2t+14)e^{\\frac{t}{4}} + (-t^2+14t-40)e^{\\frac{t}{4}}\\cdot\\frac{1}{4}$\\\\\r\n\t\t$\\displaystyle \\Rightarrow V'(t)=\\left(-\\frac{t^2}{4}+\\frac{3}{2}t+4\\right)e^{\\frac{t}{4}}$.\\\\\r\n\t\tCho $\\displaystyle V'(t)=0 \\Leftrightarrow \\left[ \\begin{array}{l} t=-2 \\text{ (loại)} \\\\ t=8 \\text{ (tm)} \\end{array} \\right.$.\\\\\r\n\t\tKhi đó lượng nước lớn nhất xấp xỉ $109$ (đơn vị $10^8 \\, m^3$) khi $t=8$.\\\\\r\n\t\t+) Xét trường hợp $10 < t \\le 12$:\\\\\r\n\t\tKhi đó $\\displaystyle V(t)=4(t-10)(3t-41)+50 \\Rightarrow V'(t)=4(6t-71)$.\\\\\r\n\t\tCho $\\displaystyle V'(t)=0 \\Leftrightarrow t=\\frac{71}{6} \\text{ (tm)}$.\\\\\r\n\t\t$\\displaystyle V(10)=50; V\\left(\\frac{71}{6}\\right)=\\frac{29}{3}; V(12)=10$.\\\\\r\n\t\tKết luận từ 2 trường hợp, lượng nước tích trữ (đơn vị $10^8 \\, m^3$) lớn nhất của hồ trong một năm xấp xỉ $109$ (đơn vị $10^8 \\, m^3$) khi $t=8$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_84626b962c",
+      "dapAn": "36",
+      "loiGiaiHtml": "Theo bài ra ta có $\\displaystyle \\log_3 x + \\log_x 729 = 5 \\Leftrightarrow \\log_3 x + 6\\log_x 3 = 5$.\\\\\r\n\t\tĐặt $\\displaystyle t = \\log_3 x$, suy ra $\\displaystyle t + \\frac{6}{t} = 5 \\Leftrightarrow \\left[ \\begin{array}{l} t=2 \\Rightarrow x=9 \\\\ t=3 \\Rightarrow x=27 \\end{array} \\right.$.\\\\\r\n\t\tVậy tổng các giá trị có thể có của $x$ bằng $36$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_15b53eb895",
+      "dapAn": "1",
+      "loiGiaiHtml": "Gọi $x_A$ và $x_B$ lần lượt là hoành độ các điểm trên mặt cắt của $A$ và $B$ tại cùng tung độ $y$. Ta có $\\displaystyle x_A^2 = \\frac{y}{3}$ và $\\displaystyle x_B^2 = y$.\\\\\r\n\t\tThể tích nước bên trong khoang $A$ (tại độ cao $u$) và giữa khoang $A, B$ (tại độ cao $v$) lần lượt là\\\\\r\n\t\t$\\displaystyle V_{in} = \\int_0^u \\pi x_A^2\\,\\mathrm{d}y = \\int_0^u \\frac{\\pi y}{3}\\,\\mathrm{d}y = \\frac{\\pi u^2}{6}$\\\\\r\n\t\t$\\displaystyle V_{out} = \\int_0^v \\pi \\left(x_B^2 - x_A^2\\right)\\,\\mathrm{d}y = \\int_0^v \\pi \\left(y - \\frac{y}{3}\\right)\\,\\mathrm{d}y = \\int_0^v \\frac{2\\pi y}{3}\\,\\mathrm{d}y = \\frac{\\pi v^2}{3}$\\\\\r\n\t\tDo tổng thể tích nước được bảo toàn trong quá trình chảy nên $\\displaystyle V_{in} + V_{out} = C$ (với $C$ là hằng số).\\\\\r\n\t\tTa có phương trình $\\displaystyle \\frac{\\pi u^2}{6} + \\frac{\\pi v^2}{3} = C \\Leftrightarrow u^2 + 2v^2 = \\frac{6C}{\\pi}$.\\\\\r\n\t\tLấy vi phân hai vế, ta được $\\displaystyle 2u\\,\\mathrm{d}u + 4v\\,\\mathrm{d}v = 0 \\Leftrightarrow u\\,\\mathrm{d}u + 2v\\,\\mathrm{d}v = 0$.\\\\\r\n\t\tSuy ra tốc độ thay đổi của chiều cao $v$ theo chiều cao $u$ là $\\displaystyle \\frac{\\mathrm{d}v}{\\mathrm{d}u} = -\\frac{u}{2v}$.\\\\\r\n\t\tTại thời điểm $\\displaystyle v = \\frac{1}{2}u$, độ lớn tốc độ thay đổi là $\\displaystyle \\left| \\frac{\\mathrm{d}v}{\\mathrm{d}u} \\right| = \\left| -\\frac{u}{2 \\cdot \\frac{u}{2}} \\right| = |-1| = 1$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_37c5875ba2",
+      "dapAn": "2",
+      "loiGiaiHtml": "Gọi $r$ là bán kính mặt cầu $(O)$. Vì $O$ là trung điểm đường kính $EF$ nên $\\displaystyle \\overrightarrow{OF} = -\\overrightarrow{OE}$ và $OE = r$.\\\\\r\n\t\tTa có $\\displaystyle \\overrightarrow{QE} \\cdot \\overrightarrow{QF} = (\\overrightarrow{QO} + \\overrightarrow{OE}) \\cdot (\\overrightarrow{QO} - \\overrightarrow{OE}) = \\overrightarrow{QO}^2 - \\overrightarrow{OE}^2 = QO^2 - r^2$.\\\\\r\n\t\tĐể biểu thức đạt giá trị lớn nhất thì khoảng cách $QO$ phải lớn nhất.\\\\\r\n\t\tGọi $H$ là tâm hình vuông đáy $ABCD$. Ta có $PH \\perp (ABCD)$ và $O \\in PH$, suy ra $OH = r$.\\\\\r\n\t\tVới $AB = 2$, suy ra $\\displaystyle HA = \\sqrt{2}$. Xét tam giác vuông $PHA$, ta có\\\\\r\n\t\t$\\displaystyle PH = \\sqrt{PA^2 - HA^2} = \\sqrt{2^2 - (\\sqrt{2})^2} = \\sqrt{2}$\\\\\r\n\t\tDo $Q$ thuộc bề mặt hình chóp nên $QO$ lớn nhất khi $Q$ trùng với các đỉnh của hình chóp. Ta so sánh khoảng cách:\\\\\r\n\t\t$\\displaystyle OP^2 = (PH - OH)^2 = (\\sqrt{2} - r)^2 < 2$.\\\\\r\n\t\t$\\displaystyle OA^2 = OH^2 + HA^2 = r^2 + 2 > 2$.\\\\\r\n\t\tSuy ra $\\displaystyle \\max(QO^2) = OA^2 = r^2 + 2$.\\\\\r\n\t\tVậy giá trị lớn nhất của biểu thức là $\\displaystyle \\max(\\overrightarrow{QE} \\cdot \\overrightarrow{QF}) = (r^2+2) - r^2 = 2$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_becd0d5961",
+      "dapAn": "5",
+      "loiGiaiHtml": "Ta có gốc tọa độ $O(0;0;0)$ và điểm $B(1;1;1) \\Rightarrow OB = \\sqrt{1^2+1^2+1^2} = \\sqrt{3}$.\\\\\r\n\t\tCó $BP \\perp OA$ tại $P \\Rightarrow \\Delta OBP$ vuông tại $P$.\\\\\r\n\t\tKhi quay $\\Delta OBP$ quanh trục $OP$, ta thu được một khối nón có chiều cao $h = OP$, bán kính đáy là $r = BP$ và đường sinh $l = OB = \\sqrt{3}$.\\\\\r\n\t\tXét $\\Delta OBP$ vuông tại $P$, ta có: $\\displaystyle h^2 + r^2 = OB^2 = 3 \\Rightarrow r^2 = 3 - h^2$.\\\\\r\n\t\tĐiều kiện: $0 < h < \\sqrt{3}$.\\\\\r\n\t\tThể tích khối nón là: $\\displaystyle V = \\frac{1}{3}\\pi \\cdot r^2 \\cdot h = \\frac{1}{3}\\pi \\cdot (3 - h^2) \\cdot h = \\frac{\\pi}{3}(3h - h^3)$.\\\\\r\n\t\tXét $\\displaystyle f(h) = 3h - h^3$ trên $(0; \\sqrt{3})$, ta có: $\\displaystyle f'(h) = 3 - 3h^2$.\\\\\r\n\t\tCho $\\displaystyle f'(h) = 0 \\Leftrightarrow 3 - 3h^2 = 0 \\Rightarrow h = 1$ hoặc $h = -1$. Kết hợp điều kiện ở trên $\\Rightarrow h = 1$.\\\\\r\n\t\tTa có bảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_becd0d5961_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, ta thấy hàm số $\\displaystyle f(h)$ đạt cực đại trên khoảng $(0; \\sqrt{3})$ tại $h = 1$ và giá trị cực đại bằng $2$.\\\\\r\n\t\t$\\displaystyle \\Rightarrow V_{\\max} = \\frac{\\pi}{3}(3\\cdot 1 - 1^3) = \\frac{2\\pi}{3}$.\\\\\r\n\t\tCó $\\displaystyle V_{\\max} = \\frac{2\\pi}{3} = \\frac{a}{b}\\pi \\Rightarrow a=2, b=3$.\\\\\r\n\t\t$\\Rightarrow a + b = 2 + 3 = 5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_1b1a7c4c0e",
+      "dapAn": "43",
+      "loiGiaiHtml": "Tổng số bóng trong túi là $3+4=7$ (quả).\\\\\r\n\t\tVì lấy ngẫu nhiên đồng thời $3$ quả bóng nên tổng số bóng trắng ($m$) và số bóng đen ($n$) luôn bằng $3$.\\\\\r\n\t\t$\\Rightarrow m+n=3$ với các giá trị nguyên $m,n \\in \\{0;1;2;3\\}$.\\\\\r\n\t\tTheo giả thiết, ta xét điều kiện $2m \\ge n$. Thay $n = 3 - m$ vào bất phương trình này, ta có:\\\\\r\n\t\t$\\displaystyle 2m \\ge 3 - m \\Rightarrow 3m \\ge 3 \\Rightarrow m \\ge 1$.\\\\\r\n\t\tVì $m$ là số nguyên và tối đa là $3$, nên các trường hợp thỏa mãn điều kiện $2m \\ge n$ bao gồm: $m=1, m=2$ và $m=3$.\\\\\r\n\t\tGọi $A$ là biến cố \"lấy được số bóng thỏa mãn điều kiện $2m \\ge n$\".\\\\\r\n\t\tTrường hợp $m=1, n=2$ có số cách chọn là: $\\displaystyle C_3^1 \\cdot C_4^2 = 3 \\cdot 6 = 18$ (cách)\\\\\r\n\t\tTrường hợp $m=2, n=1$ có số cách chọn là: $\\displaystyle C_3^2 \\cdot C_4^1 = 3 \\cdot 4 = 12$ (cách)\\\\\r\n\t\tTrường hợp $m=3, n=0$ có số cách chọn là: $\\displaystyle C_3^3 \\cdot C_4^0 = 1 \\cdot 1 = 1$ (cách)\\\\\r\n\t\t$\\Rightarrow$ Tổng số kết quả thuận lợi của biến cố $A$ là: $18+12+1 = 31$.\\\\\r\n\t\tGọi $B$ là biến cố \"số quả bóng trắng lấy ra là $2$\" ($m=2$). Ta cần tính xác suất xảy ra $B$ trong điều kiện $A$ đã xảy ra.\\\\\r\n\t\tSố kết quả thuận lợi cho biến cố $B$ là số cách chọn khi $m=2, n=1$ là: $12$ cách.\\\\\r\n\t\tXác suất để số quả bóng trắng lấy ra là $2$ khi biết $2m \\ge n$ là: $\\displaystyle P = \\frac{12}{31}$.\\\\\r\n\t\tTa thấy $\\displaystyle P = \\frac{12}{31}$ là phân số đã tối giản.\\\\\r\n\t\t$\\Rightarrow q=12$ và $p=31$.\\\\\r\n\t\t$\\Rightarrow q+p = 12+31=43$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_2556b7dabf",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\displaystyle \\int f(x)\\,\\mathrm{d}x = \\displaystyle \\int (3x^2 + 2\\sin x)\\,\\mathrm{d}x = x^3 - 2\\cos x + C$."
+    },
+    {
+      "maBaoMat": "sol_3637ed5c06",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vì $M$ là trung điểm của đoạn thẳng $AB$ nên: $\\begin{cases} x_M = \\displaystyle \\frac{x_A + x_B}{2} = -1 \\\\ y_M = \\displaystyle \\frac{y_A + y_B}{2} = 1 \\\\ z_M = \\displaystyle \\frac{z_A + z_B}{2} = 3 \\end{cases}$."
+    },
+    {
+      "maBaoMat": "sol_aed5317147",
+      "dapAn": "B",
+      "loiGiaiHtml": "Phương trình tiếp tuyến với đồ thị hàm số tại điểm $(x_0, y_0)$ là\\\\\r\n\t\t$y = y'(x_0)(x - x_0) + y_0 = (3x_0^2 + 3)(x - x_0) + y_0$.\\\\\r\n\t\tThay $x_0 = 1; y_0 = 4$, ta có $y = 6(x - 1) + 4 \\Leftrightarrow y = 6x - 2$.\\\\\r\n\t\tHệ số góc của $\\Delta$ bằng $6$."
+    },
+    {
+      "maBaoMat": "sol_513f410f82",
+      "dapAn": "C",
+      "loiGiaiHtml": "Áp dụng công thức số hạng tổng quát của cấp số nhân, ta có $u_n = u_{n-1} \\cdot q \\, (n \\ge 2)$.\\\\\r\n\t\tTa có: $u_3 = u_2 \\cdot q \\Rightarrow q = \\displaystyle \\frac{u_3}{u_2} = 2$."
+    },
+    {
+      "maBaoMat": "sol_0af58600b6",
+      "dapAn": "C",
+      "loiGiaiHtml": "Phương trình mặt phẳng $(Oxy) \\colon z = 0$.\\\\\r\n\t\tDo $(S)$ tiếp xúc với $(Oxy)$ nên $R = d(I;(Oxy)) = 4$."
+    },
+    {
+      "maBaoMat": "sol_81f4fc24dd",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\displaystyle \\int_{-2}^1 (1 + f(x))\\,\\mathrm{d}x = \\displaystyle \\int_{-2}^1 1\\,\\mathrm{d}x + \\displaystyle \\int_{-2}^1 f(x)\\,\\mathrm{d}x = 3 + 2 = 5$."
+    },
+    {
+      "maBaoMat": "sol_d4b66b1670",
+      "dapAn": "A",
+      "loiGiaiHtml": "Giá trị cực đại của hàm số $f(x)$ là $3$."
+    },
+    {
+      "maBaoMat": "sol_cbf008dbdc",
+      "dapAn": "C",
+      "loiGiaiHtml": "Phương trình chính tắc của đường thẳng đi qua $M(2;1;1)$ và có vec tơ chỉ phương $\\vec{u} = (2;-1;3)$ là $\\displaystyle \\frac{x-2}{2} = \\frac{y-1}{-1} = \\frac{z-1}{3}$."
+    },
+    {
+      "maBaoMat": "sol_1cb64c9d6c",
+      "dapAn": "B",
+      "loiGiaiHtml": "Hàm số $y = \\sin x$ tuần hoàn với chu kỳ $T = 2\\pi$."
+    },
+    {
+      "maBaoMat": "sol_fa562eeaf4",
+      "dapAn": "B",
+      "loiGiaiHtml": "Khoảng tứ phân vị của mẫu số liệu này là $\\Delta Q = Q_3 - Q_1 = 9 - 3 = 6$."
+    },
+    {
+      "maBaoMat": "sol_35cec66264",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $P(A|B) = \\displaystyle \\frac{P(AB)}{P(B)} \\Rightarrow P(AB) = P(A|B) \\cdot P(B) = 0{,}5 \\cdot 0{,}6 = 0{,}3$."
+    },
+    {
+      "maBaoMat": "sol_33c34f1fd9",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\log_2(x-1)=3 \\Leftrightarrow x-1=2^3 \\Leftrightarrow x=9$."
+    }
+  ]
+}
