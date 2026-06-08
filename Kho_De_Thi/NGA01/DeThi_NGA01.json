@@ -1,0 +1,323 @@
+{
+  "maDe": "NGA01",
+  "tenDe": "ĐỀ NGA 01",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_2ae1dc4181",
+      "ma_goc": "2605-1220",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $\\displaystyle y=\\tan x$ là",
+      "paA": "$\\displaystyle \\mathbb{R}\\setminus\\left\\{\\frac{\\pi}{2}+k\\pi | k \\in \\mathbb{Z}\\right\\}$",
+      "paB": "$\\displaystyle \\mathbb{R}\\setminus\\left\\{k\\pi | k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$\\displaystyle \\mathbb{R}\\setminus\\left\\{k2\\pi | k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$\\displaystyle \\mathbb{R}\\setminus\\left\\{\\frac{\\pi}{2}+k2\\pi | k \\in \\mathbb{Z}\\right\\}$"
+    },
+    {
+      "maCau": "q_7b878296c7",
+      "ma_goc": "2605-1221",
+      "kieuCau": "TN",
+      "cauDan": "Cho bảng biến thiên của hàm số $\\displaystyle y=f(x)$ như hình vẽ. Gọi $\\displaystyle M = \\max_{[-2;3]} y$ và $\\displaystyle m = \\min_{[-2;3]} y$. Tính giá trị $M$ và $m$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7b878296c7_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\begin{cases} M=3 \\\\ m=-1 \\end{cases}$",
+      "paB": "$\\displaystyle \\begin{cases} M=0 \\\\ m=3 \\end{cases}$",
+      "paC": "$\\displaystyle \\begin{cases} M=2 \\\\ m=-1 \\end{cases}$",
+      "paD": "$\\displaystyle \\begin{cases} M=1 \\\\ m=-1 \\end{cases}$"
+    },
+    {
+      "maCau": "q_e3fb7c2d94",
+      "ma_goc": "2605-1222",
+      "kieuCau": "TN",
+      "cauDan": "Ông B muốn làm cửa sắt được thiết kế như hình bên. Vòm cổng của hình là $1$ dạng parabol. Giá $1\\text{m}^2$ cửa sắt là $660000$ đồng. Cửa sắt có giá nghìn đồng là\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e3fb7c2d94_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$5600$",
+      "paB": "$6500$",
+      "paC": "$6050$",
+      "paD": "$\\displaystyle \\frac{55}{6}\\cdot 10^3$"
+    },
+    {
+      "maCau": "q_e2e25e67d6",
+      "ma_goc": "2605-1223",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào sau đây \\textbf{sai}?",
+      "paA": "$\\displaystyle \\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$",
+      "paB": "$\\displaystyle \\overrightarrow{BC'} = \\overrightarrow{BC} + \\overrightarrow{BD} + \\overrightarrow{BB'}$",
+      "paC": "$\\displaystyle \\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DC} + \\overrightarrow{DD'}$",
+      "paD": "$\\displaystyle \\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$"
+    },
+    {
+      "maCau": "q_68696c7000",
+      "ma_goc": "2605-1224",
+      "kieuCau": "TN",
+      "cauDan": "Cho đồ thị hàm số $\\displaystyle y=f(x)$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_68696c7000_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tDiện tích hình phẳng (phần tô đậm trong hình) là",
+      "paA": "$\\displaystyle S = \\int_{-3}^{4} f(x)\\,dx + \\int_{1}^{4} f(x)\\,dx$",
+      "paB": "$\\displaystyle S = \\int_{-3}^{4} f(x)\\,dx$",
+      "paC": "$\\displaystyle S = \\int_{0}^{-3} f(x)\\,dx + \\int_{0}^{4} f(x)\\,dx$",
+      "paD": "$\\displaystyle S = \\int_{-3}^{0} f(x)\\,dx - \\int_{0}^{4} f(x)\\,dx$"
+    },
+    {
+      "maCau": "q_8a7eeac8db",
+      "ma_goc": "2605-1225",
+      "kieuCau": "TN",
+      "cauDan": "Cho đồ thị hàm số $\\displaystyle y=f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8a7eeac8db_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $\\displaystyle y=f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$\\displaystyle (-\\infty; 0)$",
+      "paB": "$\\displaystyle (0; 2)$",
+      "paC": "$\\displaystyle (2; +\\infty)$",
+      "paD": "$\\displaystyle (-2; 2)$"
+    },
+    {
+      "maCau": "q_14d93fa5d9",
+      "ma_goc": "2605-1226",
+      "kieuCau": "TN",
+      "cauDan": "Dãy số nào sau đây là cấp số nhân?",
+      "paA": "$\\displaystyle 5; 6; 7; 8; \\dots$",
+      "paB": "$\\displaystyle \\sqrt{2}; 2; 4; 4\\sqrt{2}; \\dots$",
+      "paC": "$\\displaystyle \\frac{1}{\\pi}; \\frac{1}{\\pi^2}; \\frac{1}{\\pi^4}; \\frac{1}{\\pi^6}; \\dots$",
+      "paD": "$\\displaystyle 1; 1; 1; 1; \\dots$"
+    },
+    {
+      "maCau": "q_e3684bb540",
+      "ma_goc": "2605-1227",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)$ có đạo hàm $\\displaystyle f'(x)=(x^2-4)(3-x)(x+2), \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là",
+      "paA": "$2$",
+      "paB": "$3$",
+      "paC": "$1$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_f605af85f0",
+      "ma_goc": "2605-1228",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{2x^2-5x+3}{x-2}$. Tiệm cận xiên của đồ thị hàm số đã cho là",
+      "paA": "$\\displaystyle y = x-2$",
+      "paB": "$\\displaystyle y = 2x-1$",
+      "paC": "$\\displaystyle x = 2$",
+      "paD": "$\\displaystyle y = x-1$"
+    },
+    {
+      "maCau": "q_cf1c6a084a",
+      "ma_goc": "2605-1229",
+      "kieuCau": "TN",
+      "cauDan": "Tính $\\displaystyle P = \\log_{2^{2018}} 4 - \\frac{1}{1009} + \\ln e^{2018}$.",
+      "paA": "$1009$",
+      "paB": "$2000$",
+      "paC": "$1000$",
+      "paD": "$2018$"
+    },
+    {
+      "maCau": "q_6da328a5d7",
+      "ma_goc": "2605-1230",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, mặt cầu $\\displaystyle (S): x^2 + y^2 + z^2 - 4x + 2z + 4 = 0$ có tâm và bán kính lần lượt là",
+      "paA": "$\\displaystyle I(2;0;-1), R=3$",
+      "paB": "$\\displaystyle I(4;0;-2), R=3$",
+      "paC": "$\\displaystyle I(2;0;-1), R=1$",
+      "paD": "$\\displaystyle I(-2;0;1), R=1$"
+    },
+    {
+      "maCau": "q_2403814ba9",
+      "ma_goc": "2605-1231",
+      "kieuCau": "TN",
+      "cauDan": "Cho bảng thống kê doanh số bán hàng của $30$ cửa hàng của một chuỗi siêu thị mini trong một ngày như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2403814ba9_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu trên là",
+      "paA": "$60$",
+      "paB": "$16{,}375$",
+      "paC": "$26{,}375$",
+      "paD": "$10$"
+    },
+    {
+      "maCau": "q_8ca75497fe",
+      "ma_goc": "2605-1232",
+      "kieuCau": "DS",
+      "cauDan": "Một thùng nước có dạng một khối tròn xoay với thiết diện qua trục của thùng (mặt cắt đi qua hai tâm của hai đường tròn đáy) là hai đường parabol đối xứng với nhau qua trục đó. Biết hai đường tròn đáy chậu cùng có bán kính $0{,}5\\text{m}$; thiết diện nhỏ nhất vuông góc với trục của chậu có bán kính $0{,}2\\text{m}$; chiều cao của chậu nước bằng $1{,}5\\text{m}$. Người ta bơm nước vào chậu với tốc độ $5$ lít/phút. Xét hệ trục tọa độ $Oxy$ với gốc $O$ trùng với tâm đường tròn đáy của chậu nước, tia $Ox$ chứa trục của chậu nước (đơn vị trên mỗi trục là mét). Mặt cắt qua trục của chậu nước cho ta hai nhánh parabol như hình vẽ, gọi $\\displaystyle y = f(x)$ là parabol nằm trên trục hoành.\r\n\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_8ca75497fe_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle f(x) = \\frac{8}{15}x^2 - \\frac{4}{5}x + \\frac{1}{2}$",
+      "paB": "Sức chứa tối đa của chậu nước bằng $0{,}5\\text{m}^3$ (làm tròn đến hàng phần chục của mét khối)",
+      "paC": "Sau $1{,}2$ giờ bơm nước (làm tròn đến hàng phần chục của giờ) thì chậu đầy nước",
+      "paD": "Nếu bơm từ đầu như thế thì đến phút thứ $20$, tốc độ dâng lên của nước bằng $0{,}01\\text{m}/\\text{phút}$ (làm tròn kết quả đến hàng phần trăm)"
+    },
+    {
+      "maCau": "q_aaadd4679e",
+      "ma_goc": "2605-1233",
+      "kieuCau": "DS",
+      "cauDan": "Hai thùng hàng A, B đều chứa $25$ quả táo. Kết quả kiểm tra cân nặng của $25$ quả táo ở mỗi thùng A và B được cho ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_aaadd4679e_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Lấy ngẫu nhiên một quả táo ở thùng A. Xác suất để quả táo ở thùng A có cân nặng từ $280\\text{g}$ trở lên là $0{,}38$",
+      "paB": "Lấy ngẫu nhiên một quả táo từ thùng A và một quả táo từ thùng B. Xác suất để hai quả táo lấy ra đều nặng từ $270\\text{g}$ trở lên là $0{,}6384$",
+      "paC": "Căn cứ vào phương sai của mẫu số liệu ghép nhóm trên thì cân nặng quả táo thùng A phân tán hơn cân nặng quả táo ở thùng B",
+      "paD": "Khoảng tứ phân vị của mẫu số liệu ghép nhóm về cân nặng các quả táo ở thùng A là $\\displaystyle \\Delta_Q \\approx 11{,}7\\text{g}$ (làm tròn kết quả đến hàng phần chục)"
+    },
+    {
+      "maCau": "q_28ed2343f1",
+      "ma_goc": "2605-1234",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle y = f(x) = 2x^3 + bx^2 - 6x + d$ đạt cực trị bằng $4$ tại $x=1$ (với $b$ và $d$ là hằng số).",
+      "paA": "Giá trị của $b+d=8$",
+      "paB": "Hàm số $\\displaystyle y=f(x)$ đạt cực đại tại $x=1$",
+      "paC": "$x=-1$ là một điểm cực trị của hàm số $\\displaystyle y=f(x)$",
+      "paD": "Giá trị cực tiểu của hàm số đã cho bằng $12$"
+    },
+    {
+      "maCau": "q_5e2f20d988",
+      "ma_goc": "2605-1235",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hình hộp chữ nhật $ABCD.A_1B_1C_1D_1$ sao cho $D(0;0;0)$, $A(2;0;0)$, $C(0;2;0)$, $D_1(0;0;1)$ (tham khảo hình vẽ).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_5e2f20d988_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $M$ là điểm di động trên đoạn thẳng $B_1D_1$ (kể cả hai đầu mút).",
+      "paA": "Khi điểm $M$ là trung điểm của $B_1D_1$ thì $C_1M \\perp (BB_1D_1D)$",
+      "paB": "Khi điểm $M$ là trung điểm của $B_1D_1$ thì giá trị cosin của góc tạo bởi đường thẳng $MC_1$ và đường thẳng $BC$ là $\\displaystyle \\frac{\\sqrt{2}}{3}$",
+      "paC": "Khi điểm $M$ chuyển động trên đoạn thẳng $B_1D_1$ thì thể tích khối chóp tam giác $C_1.BDM$ là một hằng số",
+      "paD": "Giá trị nhỏ nhất của khoảng cách từ điểm $M$ đến đường thẳng $BC_1$ là $\\displaystyle \\frac{\\sqrt{6}}{3}$"
+    },
+    {
+      "maCau": "q_d09901e82d",
+      "ma_goc": "2605-1236",
+      "kieuCau": "TLN",
+      "cauDan": "Lượng nước tích trữ của một hồ chứa thay đổi theo thời gian. Gọi $t$ là thời gian tính theo tháng, lấy đầu năm làm mốc. Theo số liệu nhiều năm, lượng nước tích trữ của hồ (đơn vị $10^8 \\, m^3$) theo $t$ được xấp xỉ bởi $\\displaystyle V(t) = \\begin{cases} (-t^2+14t-40)e^{\\frac{t}{4}}+50 & ,0<t\\le 10 \\\\ 4(t-10)(3t-41)+50 & ,10<t\\le 12 \\end{cases}$. Tính lượng nước tích trữ (đơn vị $10^8 \\, m^3$) lớn nhất của hồ trong một năm bằng bao nhiêu? (làm tròn kết quả đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_be8cfbaeff",
+      "ma_goc": "2605-1237",
+      "kieuCau": "TLN",
+      "cauDan": "Trên đường chạy như hình vẽ, khoảng cách từ An đến đích bằng $\\displaystyle \\log_3 x$ (km), khoảng cách từ Bình đến đích bằng $\\displaystyle \\log_x 729$ (km). Biết $x > 1$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_be8cfbaeff_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết rằng tổng khoảng cách từ An và Bình đến đích bằng $5$ km. Hỏi tổng các giá trị có thể có của $x$ bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_74738942a0",
+      "ma_goc": "2605-1238",
+      "kieuCau": "TLN",
+      "cauDan": "Có hai khối tròn xoay như sau: Khối tròn xoay $A$ được tạo thành khi quay đường cong $\\displaystyle y=3x^2$ ($0 \\le y \\le 10$) quanh trục $Oy$, và khối tròn xoay $B$ được tạo thành khi quay đường cong $\\displaystyle y=x^2$ ($0 \\le y \\le 10$) quanh trục $Oy$. Ban đầu, nước chỉ chứa ở phần bên trong $A$. Sau đó, qua một lỗ nhỏ gần gốc tọa độ $O$, nước bắt đầu chảy ra phần được bao quanh bởi mặt ngoài của $A$ và mặt trong của $B$. Gọi $u$ là độ cao mực nước ở phần bên trong $A$ và $v$ là độ cao mực nước ở phần bên ngoài $A$. Hãy xác định độ lớn tốc độ thay đổi của chiều cao mực nước ở khoang ngoài theo chiều cao mực nước ở khoang trong tại thời điểm $\\displaystyle v = \\frac{1}{2}u$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_74738942a0_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_a6cd2ebd4c",
+      "ma_goc": "2605-1239",
+      "kieuCau": "TLN",
+      "cauDan": "Cho mặt cầu $(O)$ nội tiếp hình chóp tứ giác đều $P.ABCD$, biết $PA=AB=2$. Cho $EF$ là một đường kính của mặt cầu $(O)$. Điểm $Q$ di động thuộc bề mặt của hình chóp. Giá trị lớn nhất của biểu thức $\\displaystyle \\overrightarrow{QE} \\cdot \\overrightarrow{QF}$ bằng bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a6cd2ebd4c_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_cba9a504af",
+      "ma_goc": "2605-1240",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian tọa độ $Oxyz$, điểm $A$ là một điểm thuộc mặt cầu tâm $O$, bán kính $1$. Điểm $B(1;1;1)$ không nằm trên đường thẳng $OA$. Từ $B$ hạ đường vuông góc $BP$ xuống đường thẳng $OA$. Khi quay tam giác $OBP$ quanh trục $OP$, ta được một khối tròn xoay có thể tích là $V$. Khi đó giá trị lớn nhất của $V$ bằng $\\displaystyle \\frac{a}{b}\\pi$, trong đó $\\displaystyle \\frac{a}{b}$ là phân số tối giản. Tính $a+b$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_cba9a504af_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "maCau": "q_f7b72dee15",
+      "ma_goc": "2605-1241",
+      "kieuCau": "TLN",
+      "cauDan": "Có một chiếc túi đựng $3$ quả bóng trắng và $4$ quả bóng đen. Từ chiếc túi này lấy ngẫu nhiên đồng thời $3$ quả bóng, gọi số quả bóng trắng và số quả bóng đen lấy ra lần lượt là $m, n$. Trong phép thử này, khi $2m \\ge n$, xác suất để số quả bóng trắng lấy ra là $2$ bằng $\\displaystyle \\frac{q}{p}$. Hãy tìm giá trị của $p+q$. (Biết rằng $p$ và $q$ là hai số tự nhiên nguyên tố cùng nhau)."
+    },
+    {
+      "maCau": "q_d2345168c6",
+      "ma_goc": "2605-1242",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = 3x^2 + 2\\sin x$ là",
+      "paA": "$x^3 - 2\\cos x + C$",
+      "paB": "$x^3 + 2\\cos x + C$",
+      "paC": "$3x^3 + 2\\cos x + C$",
+      "paD": "$3x^3 - 2\\cos x + C$"
+    },
+    {
+      "maCau": "q_e595878b34",
+      "ma_goc": "2605-1243",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(2;3;1)$ và $B(-4;-1;5)$. Tọa độ trung điểm $M$ của đoạn thẳng $AB$ là",
+      "paA": "$M(6;4;-4)$",
+      "paB": "$M(-6;-4;4)$",
+      "paC": "$M(-1;1;3)$",
+      "paD": "$M(-2;2;6)$"
+    },
+    {
+      "maCau": "q_a2ad56a73d",
+      "ma_goc": "2605-1244",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $\\Delta$ là tiếp tuyến của đồ thị hàm số $y = x^3 + 3x$ tại điểm có hoành độ bằng $1$. Hệ số góc của $\\Delta$ bằng",
+      "paA": "$4$",
+      "paB": "$6$",
+      "paC": "$1$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_f9ba70e12d",
+      "ma_goc": "2605-1245",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số nhân $(u_n)$ có $u_2 = 6, u_3 = 12$. Công bội của cấp số nhân $(u_n)$ bằng",
+      "paA": "$6$",
+      "paB": "$\\displaystyle \\frac{1}{2}$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_e49b012eef",
+      "ma_goc": "2605-1246",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S)$ có tâm $I(2;-3;-4)$ và tiếp xúc mặt phẳng $(Oxy)$. Bán kính của mặt cầu $(S)$ bằng",
+      "paA": "$3$",
+      "paB": "$16$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_28b93c6eb5",
+      "ma_goc": "2605-1247",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ thỏa mãn $\\displaystyle \\int_{-2}^1 f(x)\\,\\mathrm{d}x = 2$. Tính $\\displaystyle \\int_{-2}^1 (1 + f(x))\\,\\mathrm{d}x$.",
+      "paA": "$1$",
+      "paB": "$-1$",
+      "paC": "$-5$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_dd8be57064",
+      "ma_goc": "2605-1248",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên dưới\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_dd8be57064_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số $f(x)$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$-2$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_38182885f3",
+      "ma_goc": "2605-1249",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình chính tắc của đường thẳng đi qua $M(2;1;1)$ và có vec tơ chỉ phương $\\vec{u} = (2;-1;3)$ là",
+      "paA": "$\\displaystyle \\frac{x+2}{2} = \\frac{y-1}{1} = \\frac{z+3}{1}$",
+      "paB": "$\\displaystyle \\frac{x-2}{2} = \\frac{y+1}{1} = \\frac{z-3}{1}$",
+      "paC": "$\\displaystyle \\frac{x-2}{2} = \\frac{y-1}{-1} = \\frac{z-1}{3}$",
+      "paD": "$\\displaystyle \\frac{x+2}{2} = \\frac{y+1}{-1} = \\frac{z+1}{3}$"
+    },
+    {
+      "maCau": "q_ab940ae1d4",
+      "ma_goc": "2605-1250",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = \\sin x$ tuần hoàn với chu kỳ:",
+      "paA": "$T = 3\\pi$",
+      "paB": "$T = 2\\pi$",
+      "paC": "$T = \\displaystyle \\frac{\\pi}{2}$",
+      "paD": "$T = \\pi$"
+    },
+    {
+      "maCau": "q_247fb51703",
+      "ma_goc": "2605-1251",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm có tứ phân vị là $Q_1=3, Q_2=5, Q_3=9$. Khoảng tứ phân vị của mẫu số liệu này là:",
+      "paA": "$2$",
+      "paB": "$6$",
+      "paC": "$4$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_0ee9e4068a",
+      "ma_goc": "2605-1252",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A, B$ có $P(B) = 0{,}6$ và $P(A|B) = 0{,}5$. Khi đó $P(AB)$ bằng",
+      "paA": "$0{,}5$",
+      "paB": "$0{,}3$",
+      "paC": "$0{,}8$",
+      "paD": "$0{,}6$"
+    },
+    {
+      "maCau": "q_f324d162d9",
+      "ma_goc": "2605-1253",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\log_2(x-1)=3$ là",
+      "paA": "$x=8$",
+      "paB": "$x=7$",
+      "paC": "$x=5$",
+      "paD": "$x=9$"
+    }
+  ]
+}

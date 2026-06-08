@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b31df0d88d",
+  "dapAn": "A",
+  "loiGiai": "Ta có tập xác định $D=\\mathbb{R}$.\\\\\r\n\t\t$\\displaystyle f'(x)=0 \\Leftrightarrow (x^2-4)(3-x)(x+2)=0$.\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow \\left[ \\begin{array}{l} x^2-4=0 \\\\ 3-x=0 \\\\ x+2=0 \\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l} x=2 \\\\ x=-2 \\\\ x=3 \\end{array} \\right.$.\\\\\r\n\t\tVì $x=-2$ là nghiệm kép nên $f'(x)$ chỉ đổi dấu khi qua các nghiệm $x=2$ và $x=3$.\\\\\r\n\t\tDo đó hàm số $y=f(x)$ có $2$ điểm cực trị.\\\\"
+}
