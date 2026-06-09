@@ -1,0 +1,127 @@
+{
+  "maDe": "TN03",
+  "tenDe": "ON TN O1\r\nNGA_ON TN03",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_c4472a5916",
+      "ma_goc": "2605-561",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai đường thẳng $AB$ và $A'C'$ bằng",
+      "paA": "$90^\\circ$",
+      "paB": "$45^\\circ$",
+      "paC": "$60^\\circ$",
+      "paD": "$30^\\circ$"
+    },
+    {
+      "maCau": "q_e52548a2ac",
+      "ma_goc": "2605-562",
+      "kieuCau": "TN",
+      "cauDan": "Tìm tất cả nguyên hàm $F(x)$ của hàm số $\\displaystyle f(x)=x-\\frac{1}{x}$.",
+      "paA": "$\\displaystyle F(x)=\\frac{1}{2}x^2-\\ln|x|+C$",
+      "paB": "$\\displaystyle F(x)=1-\\ln|x|+C$",
+      "paC": "$\\displaystyle F(x)=\\frac{1}{2}x^2-\\ln|x|$",
+      "paD": "$\\displaystyle F(x)=\\frac{1}{2}x^2-\\ln x+C$"
+    },
+    {
+      "maCau": "q_0756915653",
+      "ma_goc": "2605-563",
+      "kieuCau": "TN",
+      "cauDan": "Cấp số nhân $(u_n)$ có $u_1=3$ và $u_2=6$. Số hạng $u_4$ của cấp số nhân là",
+      "paA": "$12$",
+      "paB": "$81$",
+      "paC": "$27$",
+      "paD": "$24$"
+    },
+    {
+      "maCau": "q_a09d16140a",
+      "ma_goc": "2605-569",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\displaystyle \\sin x = \\frac{1}{2}$ là",
+      "paA": "$\\displaystyle \\left[\\begin{array}{l} x=\\frac{\\pi}{6}+k2\\pi \\\\ x=-\\frac{\\pi}{6}+k2\\pi \\end{array}\\right. \\,(k \\in \\mathbb{Z})$",
+      "paB": "$\\displaystyle \\left[\\begin{array}{l} x=\\frac{\\pi}{6}+k2\\pi \\\\ x=\\frac{5\\pi}{6}+k2\\pi \\end{array}\\right. \\,(k \\in \\mathbb{Z})$",
+      "paC": "$\\displaystyle \\left[\\begin{array}{l} x=\\frac{\\pi}{6}+k\\pi \\\\ x=\\frac{5\\pi}{6}+k\\pi \\end{array}\\right. \\,(k \\in \\mathbb{Z})$",
+      "paD": "$\\displaystyle \\left[\\begin{array}{l} x=\\frac{\\pi}{3}+k2\\pi \\\\ x=-\\frac{\\pi}{2}+k2\\pi \\end{array}\\right. \\,(k \\in \\mathbb{Z})$"
+    },
+    {
+      "maCau": "q_6b12918d07",
+      "ma_goc": "2605-982",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\int_0^3 f(x)\\,\\mathrm{d}x = 3$. Khi đó $\\displaystyle J = \\int_0^3 \\big[4f(x) - 3\\big]\\,\\mathrm{d}x$ bằng",
+      "paA": "$2$",
+      "paB": "$3$",
+      "paC": "$4$",
+      "paD": "$9$"
+    },
+    {
+      "maCau": "q_689e7a495f",
+      "ma_goc": "2605-989",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho đường thẳng $\\Delta$ có phương trình $\\begin{cases} x = 1+t \\\\ y = 0 \\\\ z = 1+2t \\end{cases}$. Véctơ nào sau đây là một véctơ chỉ phương của đường thẳng $\\Delta$?",
+      "paA": "$(1;0;-2)$",
+      "paB": "$(-1;0;-2)$",
+      "paC": "$(1;0;1)$",
+      "paD": "$(1;-1;2)$"
+    },
+    {
+      "maCau": "q_fd4a6de08d",
+      "ma_goc": "2605-1051",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Anh thống kê lại chiều cao (đơn vị cm) của các bạn học sinh nữ lớp 12C ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_fd4a6de08d_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐộ lệch chuẩn về chiều cao của mẫu số liệu (làm tròn đến hàng phần trăm) là:",
+      "paA": "$5,96$",
+      "paB": "$6,95$",
+      "paC": "$5,69$",
+      "paD": "$6,59$"
+    },
+    {
+      "maCau": "q_ff2fb926b8",
+      "ma_goc": "2605-1054",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, phương trình mặt phẳng đi qua ba điểm $A(1;0;0)$, $B(0;2;0)$, $C(0;0;-1)$ là:",
+      "paA": "$2x + y + z - 2 = 0$",
+      "paB": "$x - y - z + 1 = 0$",
+      "paC": "$2x + y - 2z - 2 = 0$",
+      "paD": "$x + y + z - 1 = 0$"
+    },
+    {
+      "maCau": "q_8654334213",
+      "ma_goc": "2605-1056",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lăng trụ tam giác $ABC.A'B'C'$. Vectơ $\\vec{AA'} - \\vec{AB} + \\vec{AC}$ bằng vectơ nào sau đây?",
+      "paA": "$\\vec{B'C}$",
+      "paB": "$\\vec{C'B}$",
+      "paC": "$\\vec{BC'}$",
+      "paD": "$\\vec{B'C'}$"
+    },
+    {
+      "maCau": "q_dc14b2bc29",
+      "ma_goc": "2605-1057",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$ cho mặt cầu $(S)\\colon x^2 + y^2 + z^2 + 2y - 3 = 0$. Tọa độ tâm $I$ và bán kính $R$ của mặt cầu là",
+      "paA": "$I(0;-1;0), R=2$",
+      "paB": "$I(0;-1;0), R=4$",
+      "paC": "$I(0;1;0), R=2$",
+      "paD": "$I(0;1;0), R=4$"
+    },
+    {
+      "maCau": "q_cec80ed454",
+      "ma_goc": "2605-1058",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_cec80ed454_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số là",
+      "paA": "$-2$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_d33f903d4a",
+      "ma_goc": "2605-1059",
+      "kieuCau": "TN",
+      "cauDan": "Cho một khối lăng trụ có diện tích đáy bằng $a^2\\sqrt{3}$ và có thể tích bằng $3a^3$. Chiều cao của khối lăng trụ là",
+      "paA": "$a$",
+      "paB": "$\\displaystyle \\frac{a}{\\sqrt{3}}$",
+      "paC": "$3a\\sqrt{3}$",
+      "paD": "$a\\sqrt{3}$"
+    }
+  ]
+}

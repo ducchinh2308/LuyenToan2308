@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_65b07fa046",
+  "dapAn": "C",
+  "loiGiai": "Ta có cỡ mẫu là $n = 2 + 7 + 12 + 3 + 2 + 1 = 27$.\\\\\r\n\t\tGiá trị trung bình của mẫu là:\\\\\r\n\t\t$\\overline{x} = \\displaystyle \\frac{2 \\times 157,5 + 7 \\times 162,5 + 12 \\times 167,5 + 3 \\times 172,5 + 2 \\times 177,5 + 1 \\times 182,5}{27} = 167,31$.\\\\\r\n\t\tPhương sai của mẫu là:\\\\\r\n\t\t$s = \\sqrt{\\displaystyle \\frac{2(157,5 - \\overline{x})^2 + 7(162,5 - \\overline{x})^2 + 12(167,5 - \\overline{x})^2 + 3(172,5 - \\overline{x})^2 + 2(177,5 - \\overline{x})^2 + 1(182,5 - \\overline{x})^2}{27}} \\approx 5,69$."
+}

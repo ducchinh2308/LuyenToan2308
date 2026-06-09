@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a73cf60efa",
+  "dapAn": "A",
+  "loiGiai": "Ta có $\\displaystyle \\int f(x)\\mathrm{d}x=\\int \\left(x-\\frac{1}{x}\\right)\\mathrm{d}x=\\frac{1}{2}x^2-\\ln|x|+C$."
+}

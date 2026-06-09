@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_86e66603d9",
+  "dapAn": "C",
+  "loiGiai": "Mặt phẳng đi qua ba điểm $A(1;0;0)$, $B(0;2;0)$, $C(0;0;-1)$ có phương trình theo đoạn chắn là:\\\\\r\n\t\t$\\displaystyle \\frac{x}{1} + \\displaystyle \\frac{y}{2} + \\displaystyle \\frac{z}{-1} = 1 \\Leftrightarrow 2x + y - 2z - 2 = 0$.\\\\\r\n\t\tVậy phương trình mặt phẳng đó là: $2x + y - 2z - 2 = 0$."
+}
