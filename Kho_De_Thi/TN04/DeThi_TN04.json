@@ -1,0 +1,127 @@
+{
+  "maDe": "TN04",
+  "tenDe": "ON TN O1\r\nNGA_ON TN04",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_3baa2851ba",
+      "ma_goc": "2603-859",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ. Hàm số đã cho nghịch biến trên khoảng nào sau đây?\r\n\t\t\\begin{center}\n<img src='HinhAnh/q_3baa2851ba_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$(-\\infty; -1)$",
+      "paB": "$(-1; 1)$",
+      "paC": "$(-\\infty; 1)$",
+      "paD": "$(-1;+\\infty)$"
+    },
+    {
+      "maCau": "q_ef52e4ea3a",
+      "ma_goc": "2603-879",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=-x^3+3x^2+2$ đồng biến trên khoảng nào trong các khoảng sau?",
+      "paA": "$(-\\infty;0)$",
+      "paB": "$(2;+\\infty)$",
+      "paC": "$(-1;1)$",
+      "paD": "$(0;2)$"
+    },
+    {
+      "maCau": "q_69656dfa31",
+      "ma_goc": "2603-881",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành. Đẳng thức nào sau đây sai?",
+      "paA": "$\\overrightarrow{SA}+\\overrightarrow{SB}=\\overrightarrow{SC}+\\overrightarrow{SD}$",
+      "paB": "$\\overrightarrow{AB}+\\overrightarrow{AD}=\\overrightarrow{AC}$",
+      "paC": "$\\overrightarrow{AB}-\\overrightarrow{AD}=\\overrightarrow{DB}$",
+      "paD": "$\\overrightarrow{SA}+\\overrightarrow{SC}=\\overrightarrow{SB}+\\overrightarrow{SD}$"
+    },
+    {
+      "maCau": "q_85ef28a8d3",
+      "ma_goc": "2603-884",
+      "kieuCau": "TN",
+      "cauDan": "Cho cấp số cộng $(u_n)$ có số hạng $u_1=1;u_2=-2$. Số hạng thứ $5$ của cấp số cộng là",
+      "paA": "$-9$",
+      "paB": "$-7$",
+      "paC": "$-14$",
+      "paD": "$-11$"
+    },
+    {
+      "maCau": "q_a41338f181",
+      "ma_goc": "2604-1586",
+      "kieuCau": "TN",
+      "cauDan": "Thời gian truy cập Internet trong một buổi tối của một nhóm học sinh được cho trong bảng sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a41338f181_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính trung vị của mẫu số liệu ghép nhóm này:",
+      "paA": "$18{,}1$",
+      "paB": "$18{,}5$",
+      "paC": "$15{,}6$",
+      "paD": "$17{,}2$"
+    },
+    {
+      "maCau": "q_a39c91cf0c",
+      "ma_goc": "2604-1589",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\log_3(2x-1) = \\log_3(x-1)$ là",
+      "paA": "$S=\\{0\\}$",
+      "paB": "$S=\\{-2\\}$",
+      "paC": "$S=\\{2\\}$",
+      "paD": "$S=\\varnothing$"
+    },
+    {
+      "maCau": "q_9ceddf4a63",
+      "ma_goc": "2604-1591",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\int 5^x \\,\\mathrm{d}x = F(x) + C$. Khẳng định nào dưới đây đúng?",
+      "paA": "$F'(x) = 5^x$",
+      "paB": "$\\displaystyle F'(x) = \\frac{5^x}{\\ln 5}$",
+      "paC": "$F'(x) = 5^x + C$",
+      "paD": "$F'(x) = 5^x \\ln 5$"
+    },
+    {
+      "maCau": "q_44f44a5e3b",
+      "ma_goc": "2604-1592",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_44f44a5e3b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tXét các mệnh đề sau\\\\\r\n\ti) $AB \\parallel CD$.\\\\\r\n\tii) $BB' \\parallel (CC'D'D)$.\\\\\r\n\tiii) $(A'B'C') \\parallel (ABD)$.\\\\\r\n\tSố mệnh đề đúng trong các mệnh đề trên là",
+      "paA": "$2$",
+      "paB": "$3$",
+      "paC": "$1$",
+      "paD": "$0$"
+    },
+    {
+      "maCau": "q_4e50d51572",
+      "ma_goc": "2604-1593",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(0;1;1)$ và $B(1;2;3)$. Phương trình mặt phẳng $(P)$ đi qua điểm $A$ và có vectơ pháp tuyến $\\overrightarrow{AB}$ là",
+      "paA": "$(P)\\colon x+y+2z-3=0$",
+      "paB": "$(P)\\colon x+y+2z-9=0$",
+      "paC": "$(P)\\colon x+3y+4z-26=0$",
+      "paD": "$(P)\\colon x+3y+4z-7=0$"
+    },
+    {
+      "maCau": "q_7cb119f26d",
+      "ma_goc": "2604-1594",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(2;-3;5)$. Gọi điểm $H$ là hình chiếu vuông góc của điểm $A$ trên mặt phẳng $(Oxy)$. Tọa độ của điểm $H$ là",
+      "paA": "$H(0;0;5)$",
+      "paB": "$H(2;-3;0)$",
+      "paC": "$H(0;-3;5)$",
+      "paD": "$H(2;0;5)$"
+    },
+    {
+      "maCau": "q_4fc0eb17a8",
+      "ma_goc": "2604-1595",
+      "kieuCau": "TN",
+      "cauDan": "Họ nghiệm của phương trình $\\cos x = 1$ là",
+      "paA": "$\\displaystyle x = \\frac{\\pi}{2} + k2\\pi, k \\in \\mathbb{Z}$",
+      "paB": "$x = k\\pi, k \\in \\mathbb{Z}$",
+      "paC": "$x = k2\\pi, k \\in \\mathbb{Z}$",
+      "paD": "$\\displaystyle x = \\frac{k\\pi}{2}, k \\in \\mathbb{Z}$"
+    },
+    {
+      "maCau": "q_f676cc089b",
+      "ma_goc": "2604-1597",
+      "kieuCau": "TN",
+      "cauDan": "Diện tích phần hình phẳng gạch chéo trong hình vẽ bên được tính theo công thức nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f676cc089b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\int\\limits_{-1}^{2} (-2x^2 + 2x + 4) \\,\\mathrm{d}x$",
+      "paB": "$\\displaystyle \\int\\limits_{-1}^{2} (-2x + 2) \\,\\mathrm{d}x$",
+      "paC": "$\\displaystyle \\int\\limits_{-1}^{2} (2x - 2) \\,\\mathrm{d}x$",
+      "paD": "$\\displaystyle \\int\\limits_{1}^{2} (2x^2 - 2x - 4) \\,\\mathrm{d}x$"
+    }
+  ]
+}

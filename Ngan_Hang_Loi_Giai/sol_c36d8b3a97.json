@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c36d8b3a97",
+  "dapAn": "B",
+  "loiGiai": "Mệnh đề i) $AB \\parallel CD$ đúng do hình hộp $ABCD.A'B'C'D'$ có $ABCD$ là hình bình hành.\\\\\r\n\t\tMệnh đề ii) $BB' \\parallel (CC'D'D)$ đúng do $BB' \\parallel CC'$ ($BB'C'C$ là hình bình hành), mà $CC' \\subset (CC'D'D)$ và $BB' \\not\\subset (CC'D'D)$ nên $BB' \\parallel (CC'D'D)$.\\\\\r\n\t\tMệnh đề iii) $(A'B'C') \\parallel (ABD)$ đúng do $\\displaystyle \\begin{cases} A'B' \\parallel AB \\\\ AB \\subset (ABD) \\\\ A'B' \\not\\subset (ABD) \\end{cases}$ nên $A'B' \\parallel (ABD)$.\\\\\r\n\t\tMặt khác $A'B' \\subset (A'B'C')$ nên $(A'B'C') \\parallel (ABD)$.\\\\\r\n\t\tVậy cả 3 mệnh đề trên đều đúng."
+}
