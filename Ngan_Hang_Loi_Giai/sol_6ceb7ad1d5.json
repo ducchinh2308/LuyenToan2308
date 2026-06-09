@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6ceb7ad1d5",
+  "dapAn": "D",
+  "loiGiai": "Theo công thức xác suất toàn phần: $P(A) = P(B) \\cdot P(A \\mid B) + P(\\overline{B}) \\cdot P(A \\mid \\overline{B})$."
+}

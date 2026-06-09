@@ -1,0 +1,113 @@
+{
+  "maDe": "ON5DIEM-6",
+  "tenDe": "ĐỀ ÔN 5 ĐIỂM SỐ 6",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_0dc9639d14",
+      "ma_goc": "2605-44",
+      "kieuCau": "TLN",
+      "cauDan": "Dịp cuối tuần một nhóm $27$ bạn gồm Tâm, Vy, Tuệ và $24$ bạn khác cùng nhau đến rạp chiếu phim xem bộ phim \"Mưa đỏ\". Khi xếp tuỳ ý nhóm bạn này vào dãy ghế được đánh số từ $1$ đến $27$, mỗi bạn ngồi một ghế thì xác suất để ghế của Tâm, Vy, Tuệ theo thứ tự lập thành cấp số cộng là $\\displaystyle \\frac{P}{675}$. Tính $P$."
+    },
+    {
+      "maCau": "q_10c72603e5",
+      "ma_goc": "2605-440",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian tọa độ $Oxyz$, mặt cầu $(S)$ có tâm $I(2;1;-1)$ và đường kính bằng $6$ có phương trình là",
+      "paA": "$(x-2)^2 + (y-1)^2 + (z+1)^2 = 36$",
+      "paB": "$(x-2)^2 + (y-1)^2 + (z+1)^2 = 9$",
+      "paC": "$(x+2)^2 + (y+1)^2 + (z-1)^2 = 9$",
+      "paD": "$(x+2)^2 + (y+1)^2 + (z-1)^2 = 36$"
+    },
+    {
+      "maCau": "q_7552279577",
+      "ma_goc": "2605-441",
+      "kieuCau": "TN",
+      "cauDan": "Một mẫu số liệu ghép nhóm về chiều cao của một lớp (đơn vị là xentimét) có phương sai bằng $6{,}25$. Độ lệch chuẩn của mẫu số liệu đó bằng:",
+      "paA": "$2{,}5\\text{ (cm)}$",
+      "paB": "$12{,}5\\text{ (cm)}$",
+      "paC": "$3{,}125\\text{ (cm)}$",
+      "paD": "$42{,}25\\text{ (cm)}$"
+    },
+    {
+      "maCau": "q_b9c27fb1d0",
+      "ma_goc": "2605-442",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất $M$ của hàm số $y = \\displaystyle\\frac{3x-1}{x-3}$ trên đoạn $[0;2]$.",
+      "paA": "$M = 5$",
+      "paB": "$M = -5$",
+      "paC": "$M = \\displaystyle\\frac{1}{3}$",
+      "paD": "$M = -\\displaystyle\\frac{1}{3}$"
+    },
+    {
+      "maCau": "q_9ab16239e1",
+      "ma_goc": "2605-443",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai biến cố $A, B$ với $0 < P(B) < 1$. Phát biểu nào sau đây là \\textbf{đúng}?",
+      "paA": "$P(A) = P(B) \\cdot P(A \\mid B) + P(B) \\cdot P(A \\mid \\overline{B})$",
+      "paB": "$P(A) = P(B) \\cdot P(A \\mid B) - P(\\overline{B}) \\cdot P(A \\mid \\overline{B})$",
+      "paC": "$P(A) = P(\\overline{B}) \\cdot P(A \\mid \\overline{B}) - P(B) \\cdot P(A \\mid B)$",
+      "paD": "$P(A) = P(B) \\cdot P(A \\mid B) + P(\\overline{B}) \\cdot P(A \\mid \\overline{B})$"
+    },
+    {
+      "maCau": "q_0b4b2188c6",
+      "ma_goc": "2605-444",
+      "kieuCau": "TN",
+      "cauDan": "Một thư viện ghi lại số giờ đọc sách của $50$ sinh viên trong một ngày và thu được mẫu số liệu ghép nhóm sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0b4b2188c6_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng tứ phân vị của mẫu số liệu ghép nhóm gần nhất với giá trị nào sau đây?",
+      "paA": "$1{,}69$",
+      "paB": "$1{,}85$",
+      "paC": "$2{,}02$",
+      "paD": "$1{,}98$"
+    },
+    {
+      "maCau": "q_789421d1d8",
+      "ma_goc": "2605-445",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\log_3(2x - 1) < \\log_3(x + 2)$ là",
+      "paA": "$S = (3;+\\infty)$",
+      "paB": "$S = (-\\infty;3)$",
+      "paC": "$S = \\left(\\displaystyle\\frac{1}{2}; 3\\right)$",
+      "paD": "$S = (-2;3)$"
+    },
+    {
+      "maCau": "q_f2a067e3c3",
+      "ma_goc": "2605-446",
+      "kieuCau": "DS",
+      "cauDan": "Một vòng quay được chia thành $12$ phần bằng nhau và được đánh số từ $1$ đến $12$ như hình vẽ bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f2a067e3c3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tXét phép thử An và Bình lần lượt quay vòng quay trên. Gọi $A$ là biến cố \"An quay được số chia hết cho 3\"; $B$ là biến cố \"An quay được số chia hết cho 5\"; $C$ là biến cố \"Bình quay được số chẵn\".",
+      "paA": "Không gian mẫu của phép thử có số kết quả là $24$",
+      "paB": "Số kết quả thuận lợi cho biến cố $A, B, C$ lần lượt là $48, 24, 72$",
+      "paC": "Xác suất để Bình quay được số chẵn, biết An quay được số chia hết cho $3$ là $\\displaystyle\\frac{1}{6}$",
+      "paD": "Xác suất để An quay được số chia hết cho $5$, biết Bình quay được số lẻ là $\\displaystyle\\frac{1}{12}$"
+    },
+    {
+      "maCau": "q_802760842f",
+      "ma_goc": "2605-447",
+      "kieuCau": "DS",
+      "cauDan": "Một nhà khoa học đang nghiên cứu tác dụng của chất $X$ lên sự phát triển của loài hoa Kaiserkrone. Bằng cách trồng hai cây hoa đều cao $10\\text{cm}$ ở một môi trường có chất $X$ và một môi trường không có chất $X$ sau đó đánh giá. Sau 15 ngày trồng hoa, nhà khoa học nhận ra hoa được trồng trong môi trường không có chất $X$ phát triển với tốc độ $h_1(t) = e^{0{,}1t}$, hoa được trồng trong môi trường có chất $X$ phát triển với tốc độ $h_2(t) = a \\cdot e^{-0{,}1t}$ ($a \\in \\mathbb{R}$) trong đó $t$ tính bằng ngày, $h'$ tính bằng cm/ngày, $0 \\le t \\le 15$. Biết rằng ở thời điểm ban đầu, tốc độ tăng trưởng của cây hoa trong môi trường có chất $X$ gấp 4 lần cây hoa trong môi trường không có chất $X$. Theo đánh giá của nhà khoa học, chất $X$ có vai trò kích thích cây tăng trưởng thực sự nếu sau 15 ngày chiều cao của cây lớn hơn so với trồng thông thường.",
+      "paA": "$a = 4$",
+      "paB": "Hàm số xác định chiều cao của cây hoa được trồng trong môi trường không có chất $X$ sau $t$ ngày là $h_1(t) = 10e^{0{,}1t} + 10\\text{ (cm)}$ (với $0 \\le t \\le 15$)",
+      "paC": "Chất $X$ không có vai trò kích thích cây tăng trưởng thực sự",
+      "paD": "Biết rằng sau $t_0$ ngày ($0 < t_0 < 15$), hai cây hoa có chiều cao bằng nhau. Khi đó chiều cao của chúng bằng nhau và bằng $40\\text{cm}$"
+    },
+    {
+      "maCau": "q_82f9b688e5",
+      "ma_goc": "2605-448",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$ (đơn vị trên các trục là mét), một thiết bị bay không người lái xuất phát từ điểm $A(1;2;0)$. Thiết bị chuyển động thẳng nhanh dần theo hướng của vectơ đơn vị $\\vec{u} = (a;b;c)$ với độ dài $\\left|\\vec{u}\\right| = 1$. Tốc độ của thiết bị phụ thuộc vào thời gian $t$ (giây) theo công thức $v(t) = mt + 10\\text{ (m/s)}$, trong đó $m$ là hằng số dương. Biết rằng sau 5 giây kể từ lúc xuất phát, thiết bị đi được quãng đường $125\\text{ m}$. Vectơ chỉ phương chuyển động $\\vec{u}$ tạo với tia $Ox$ một góc $45^\\circ$, tạo với tia $Oy$ một góc $60^\\circ$ và tạo với tia $Oz$ một góc nhọn.",
+      "paA": "$c = \\displaystyle\\frac{1}{2}$",
+      "paB": "Phương trình quỹ đạo là đường thẳng $\\displaystyle\\frac{x-1}{\\sqrt{2}} = \\displaystyle\\frac{y-2}{1} = \\displaystyle\\frac{z}{1}$",
+      "paC": "$m = 4$",
+      "paD": "Sau 10 giây kể từ lúc xuất phát thì thiết bị đạt độ cao $200\\text{ mét}$"
+    },
+    {
+      "maCau": "q_83dd79a4b1",
+      "ma_goc": "2605-449",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = f(x)$, hàm số $y = f'(x)$ có đồ thị như hình vẽ bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_83dd79a4b1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết $f(-1) = -\\displaystyle\\frac{43}{4}$, diện tích hình phẳng $(H_1)$, $(H_2)$ lần lượt bằng $20$ và $128$.",
+      "paA": "Giá trị của $\\displaystyle\\int_{-1}^5 f'(x)\\,dx$ bằng $148$",
+      "paB": "Giá trị của $f(5)$ bằng $-\\displaystyle\\frac{475}{4}$",
+      "paC": "Giá trị của $f(2)$ bằng $-4$",
+      "paD": "Diện tích hình phẳng giới hạn bởi các đường $y=f(x)$, $y=-\\displaystyle\\frac{3}{2}x^2+15x$, trục tung và đường thẳng $x=5$ bằng $\\displaystyle\\frac{625}{2}$"
+    }
+  ]
+}

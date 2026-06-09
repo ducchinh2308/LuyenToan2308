@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f3ef494e90",
+  "dapAn": "D",
+  "loiGiai": "Tổng số sinh viên $n = 50$.\\\\\r\n\t\tTần số tích lũy của các nhóm lần lượt là: $cf_1 = 8, cf_2 = 19, cf_3 = 34, cf_4 = 43, cf_5 = 50$.\\\\\r\n\t\t- Tìm $Q_1$: Ta có $\\displaystyle\\frac{n}{4} = 12{,}5$. Nhóm chứa $Q_1$ là $[1;2)$.\\\\\r\n\t\t$Q_1 = 1 + \\displaystyle\\frac{12{,}5 - 8}{11} \\cdot 1 \\approx 1{,}409$.\\\\\r\n\t\t- Tìm $Q_3$: Ta có $\\displaystyle\\frac{3n}{4} = 37{,}5$. Nhóm chứa $Q_3$ là $[3;4)$.\\\\\r\n\t\t$Q_3 = 3 + \\displaystyle\\frac{37{,}5 - 34}{9} \\cdot 1 \\approx 3{,}389$.\\\\\r\n\t\t- Khoảng tứ phân vị: $\\Delta_Q = Q_3 - Q_1 = 3{,}389 - 1{,}409 = 1{,}98$."
+}
