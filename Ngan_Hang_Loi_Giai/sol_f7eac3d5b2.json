@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f7eac3d5b2",
+  "dapAn": "D",
+  "loiGiai": "Ta có họ nguyên hàm $\\displaystyle \\int f(x)\\,\\mathrm{d}x = \\displaystyle \\int 2 \\cdot 3^x\\,\\mathrm{d}x = 2 \\displaystyle \\int 3^x\\,\\mathrm{d}x = 2 \\cdot \\displaystyle\\frac{3^x}{\\ln 3} + C$.\\\\"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a0244d00b3",
+  "dapAn": "D",
+  "loiGiai": "Ta có: $\\vec{AB} = (2;3;-2)$.\\\\\r\n\t\tPTTS của đường thẳng $AB$ là $\\begin{cases} x = 1+2t \\\\ y = -2+3t \\\\ z = 3-2t \\end{cases} \\Leftrightarrow \\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{3} = \\displaystyle\\frac{z-3}{-2}$.\\\\"
+}
