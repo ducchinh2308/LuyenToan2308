@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c7bc41ed14",
+  "dapAn": "D",
+  "loiGiai": "Ta có: $\\lim\\limits_{x \\to +\\infty} f(x) = 0 \\Rightarrow y = 0$ là tiệm cận ngang của đồ thị hàm số.\\\\\r\n\t\t$\\lim\\limits_{x \\to (-1)^-} f(x) = -\\infty \\Rightarrow x = -1$ là tiệm cận đứng của đồ thị hàm số.\\\\\r\n\t\tVậy tổng số đường tiệm cận đứng và tiệm cận ngang là $2$."
+}

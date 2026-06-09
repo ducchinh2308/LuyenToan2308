@@ -1,0 +1,127 @@
+{
+  "maDe": "TN05",
+  "tenDe": "ON TN O1\r\nNGA_ON TN05",
+  "thoiGian": 20,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_964758d094",
+      "ma_goc": "2603-885",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên $[-2;2]$. Biết $F(x)$ là nguyên hàm của $f(x)$ trên và $F(2)-F(-2)=5$.\r\n\tGiá trị của tích phân $\\int_{-2}^{2}\\bigl[f(x)-2x+1\\bigr]dx$ bằng",
+      "paA": "$7$",
+      "paB": "$9$",
+      "paC": "$1$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_119e141cae",
+      "ma_goc": "2603-924",
+      "kieuCau": "TN",
+      "cauDan": "Tìm công sai $d$ của cấp số cộng $(u_n)$, $n \\in \\mathbb{N}^*$ có $u_1 = 1$; $u_4 = 13$.",
+      "paA": "$d = \\dfrac{1}{3}$",
+      "paB": "$d = 3$",
+      "paC": "$d = \\dfrac{1}{4}$",
+      "paD": "$d = 4$"
+    },
+    {
+      "maCau": "q_5aca442ba2",
+      "ma_goc": "2603-932",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Hãy chọn kết luận \\textbf{Sai}.",
+      "paA": "$A'B // (CDD'C')$",
+      "paB": "$CC' // (ABB'A')$",
+      "paC": "$BD // A'C'$",
+      "paD": "$(ABCD) // (A'B'C'D')$"
+    },
+    {
+      "maCau": "q_832678652a",
+      "ma_goc": "2603-949",
+      "kieuCau": "TN",
+      "cauDan": "Thời gian hoàn thành một bài tập khó (đơn vị là phút) của học sinh nữ lớp 12E thu được kết quả thống kê sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_832678652a_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tNhóm chứa tứ phân vị $Q_3$ của bảng mẫu ghép nhóm trên có tần số là?",
+      "paA": "$15$",
+      "paB": "$4$",
+      "paC": "$17$",
+      "paD": "$13$"
+    },
+    {
+      "maCau": "q_603860a0bf",
+      "ma_goc": "2603-988",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(1; 3; 5)$ và $B(5; -3; 1)$. Tọa độ trung điểm của đoạn thẳng $AB$ là",
+      "paA": "$(3; 0; 3)$",
+      "paB": "$(6; 0; 6)$",
+      "paC": "$(-2; 3; 2)$",
+      "paD": "$(-4; 6; 4)$"
+    },
+    {
+      "maCau": "q_685cedc031",
+      "ma_goc": "2603-990",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{u} = (2; -1; -2)$ và $\\vec{v} = (1; 1; 3)$. Giá trị của $\\vec{u} \\cdot \\vec{v}$ bằng",
+      "paA": "$9$",
+      "paB": "$7$",
+      "paC": "$3\\sqrt{11}$",
+      "paD": "$-5$"
+    },
+    {
+      "maCau": "q_a958af3e28",
+      "ma_goc": "2603-994",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a958af3e28_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTổng số đường tiệm cận đứng và tiệm cận ngang của đồ thị hàm số $y = f(x)$ là",
+      "paA": "$3$",
+      "paB": "$1$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_075d40a136",
+      "ma_goc": "2603-995",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ bên dưới. Giá trị cực đại của hàm số đã cho là\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_075d40a136_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$-1$",
+      "paC": "$2$",
+      "paD": "$-2$"
+    },
+    {
+      "maCau": "q_f572351694",
+      "ma_goc": "2603-996",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình đường tiệm cận xiên của đồ thị hàm số $y = \\dfrac{x^2 + x - 3}{x + 1}$ là",
+      "paA": "$y = x + 1$",
+      "paB": "$y = x$",
+      "paC": "$y = x - 3$",
+      "paD": "$y = 2x$"
+    },
+    {
+      "maCau": "q_a2abcbbaa6",
+      "ma_goc": "2603-1057",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = \\dfrac{1}{2}$ là",
+      "paA": "$\\left\\{ \\dfrac{\\pi}{3} + k2\\pi; \\dfrac{2\\pi}{3} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$\\left\\{ \\dfrac{\\pi}{6} + k\\pi; \\dfrac{5\\pi}{6} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paC": "$\\left\\{ \\dfrac{\\pi}{3} + k\\pi; \\dfrac{2\\pi}{3} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paD": "$\\left\\{ \\dfrac{\\pi}{6} + k2\\pi; \\dfrac{5\\pi}{6} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "maCau": "q_e80782b7c3",
+      "ma_goc": "2603-1257",
+      "kieuCau": "TN",
+      "cauDan": "Họ nguyên hàm của hàm số $f(x) = \\sin x + 3e^x$ là",
+      "paA": "$-\\cos x + 3e^x + C$",
+      "paB": "$\\cos x - 3e^x + C$",
+      "paC": "$\\cos x + 3e^x + C$",
+      "paD": "$-\\cos x - 3e^x + C$"
+    },
+    {
+      "maCau": "q_eeef25e5b6",
+      "ma_goc": "2603-1259",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm $S$ của bất phương trình $\\log_2(x-1) \\leq 3$ là",
+      "paA": "$S = (-\\infty; 9]$",
+      "paB": "$S = (1; 10]$",
+      "paC": "$S = (1; 9]$",
+      "paD": "$S = [0; +\\infty)$"
+    }
+  ]
+}
