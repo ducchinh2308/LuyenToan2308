@@ -135,21 +135,17 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 
 }
 
-
 //// =====================================================================
-//// [Nhãn thời gian: 13:40 - Ngày 10/06/2026] - Hàm 8.1.1: Vẽ thanh chạy thi đua nội bộ Lớp (Dành cho Học sinh)
+//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm 8.1.1: Vẽ thanh chạy thi đua nội bộ Lớp (Dành cho Học sinh)
 //// =====================================================================
 async function ham_8_1_1_ve_thanh_chay_lop_minh() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
         return;
     }
 
-    // Lấy danh sách mã lớp của học sinh đang đăng nhập
-    // (Đảm bảo lúc login, thầy đã gán AppState.user = data_hoc_sinh_tu_db)
     const lopCuaToi = (AppState.user && AppState.user.danh_sach_ma_lop) ? AppState.user.danh_sach_ma_lop : [];
 
     if (lopCuaToi.length === 0) {
-        // Nếu học sinh chưa được xếp lớp, không cần vẽ thanh chạy
         return;
     }
 
@@ -160,7 +156,6 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
             'Content-Type': 'application/json'
         };
 
-        // BƯỚC 1: Lấy Từ điển Lớp học
         const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop`, { method: 'GET', headers: headersAPI });
         const dataLop = await resLop.json();
         const tuDienLop = {};
@@ -168,7 +163,6 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
             dataLop.forEach(lop => tuDienLop[lop.ma_lop] = lop.ten_lop);
         }
 
-        // BƯỚC 2: Gọi API lấy 50 kết quả nộp bài mới nhất toàn trường để tăng xác suất lọt lưới lớp mình
         const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
         const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=50`;
         const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
@@ -176,42 +170,29 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
         if (!response.ok) throw new Error("Lỗi fetch bảng Kết quả thi");
         const data = await response.json();
 
-        // BƯỚC 3: BỘ LỌC ĐỘC QUYỀN - Chỉ giữ lại những bài thi mà mã lớp của nhiệm vụ có chứa mã lớp của học sinh này
         const dataLopMinh = data.filter(row => {
             if (!row.nhiem_vu || !row.nhiem_vu.danh_sach_lop) return false;
-
-            // Ép kiểu mảng để đảm bảo hàm .some() hoạt động
-            let mangLopNhiemVu = Array.isArray(row.nhiem_vu.danh_sach_lop)
-                ? row.nhiem_vu.danh_sach_lop
-                : [row.nhiem_vu.danh_sach_lop];
-
-            // Kiểm tra xem 2 mảng (Lớp của Nhiệm vụ và Lớp của Tôi) có điểm chung nào không
+            let mangLopNhiemVu = Array.isArray(row.nhiem_vu.danh_sach_lop) ? row.nhiem_vu.danh_sach_lop : [row.nhiem_vu.danh_sach_lop];
             return mangLopNhiemVu.some(maLop => lopCuaToi.includes(maLop));
         });
 
-        // Chỉ lấy 10 bạn mới nhất trong lớp để chạy cho gọn
         const top10LopMinh = dataLopMinh.slice(0, 10);
-
         let chuoiNoiDung = "";
 
         if (top10LopMinh.length === 0) {
-            // NẾU LỚP CHƯA CÓ AI NỘP -> Hiển thị lời kêu gọi
             chuoiNoiDung = `
-                <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 15px; color: #fbbf24; font-weight: bold; display: inline-block;">
-                    🏆 Bảng vàng đang trống. Hãy là người đầu tiên trong lớp hoàn thành nhiệm vụ để được vinh danh tại đây! 🚀
-                </span>
-            `;
+                <span style="margin-right: 50px; font-family: Arial, sans-serif; color: #fbbf24; font-weight: bold; display: inline-block;">
+                    🏆 Bảng vàng trống. Hãy là người đầu tiên trong lớp hoàn thành nhiệm vụ để ghi danh! 🚀
+                </span>`;
         } else {
-            // NẾU ĐÃ CÓ NGƯỜI NỘP -> Render danh sách bạn bè
             chuoiNoiDung = top10LopMinh.map(row => {
                 let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
                 let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
                 let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
 
-                // Highlight tên bạn bè cùng lớp (hoặc chính mình)
                 let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
-                let laChinhMinh = (tenHS.toUpperCase() === AppState.user.ten.toUpperCase()) ? true : false;
-                let mauTen = laChinhMinh ? "#f97316" : "#ffffff"; // Nếu là tên mình thì tô cam rực rỡ
+                let laChinhMinh = (AppState.user && AppState.user.ten && tenHS.toUpperCase() === AppState.user.ten.toUpperCase());
+                let mauTen = laChinhMinh ? "#f97316" : "#ffffff";
                 let nhanHienThi = laChinhMinh ? "Bạn" : "Bạn";
 
                 let tenNhiemVu = (row.nhiem_vu && row.nhiem_vu.ten_nhiem_vu) ? row.nhiem_vu.ten_nhiem_vu : "(Chưa đặt tên)";
@@ -222,25 +203,13 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
                     lopHienThi = mangTenLop.join(", ");
                 }
 
-                //return `
-                //    <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
-                //        <i style="color: #ffd700;">🔥</i> 
-                //        ${nhanHienThi} <b style="color: ${mauTen}; font-size: 15px;">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
-                //        vừa nộp <b>${tenNhiemVu}</b> - 
-                //        Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span> 
-                //        <span style="color: #475569; font-size: 12px; margin-left: 6px; background: #cbd5e1; padding: 2px 6px; border-radius: 4px; color: #0f172a;">⏱️ ${thoiGianHienThi}</span>
-                //    </span>
-                //`;
-
                 return `
-                    <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                    <span style="margin-right: 50px; font-family: Arial, sans-serif; display: inline-block;">
                         <i style="color: #ffd700;">🔥</i> 
-                        ${nhanHienThi} <b style="color: ${mauTen}; font-size: 15px;">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
+                        ${nhanHienThi} <b style="color: ${mauTen};">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
                         vừa nộp <b>${tenNhiemVu}</b>
-                        <span style="color: #475569; font-size: 12px; margin-left: 6px; background: #cbd5e1; padding: 2px 6px; border-radius: 4px; color: #0f172a;">⏱️ ${thoiGianHienThi}</span>
-                    </span>
-                `;
-
+                        <span style="color: #0f172a; margin-left: 4px; background: #cbd5e1; padding: 1px 3px; border-radius: 2px;">⏱️ ${thoiGianHienThi}</span>
+                    </span>`;
             }).join("");
         }
 
@@ -252,93 +221,57 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
 }
 
 //// =====================================================================
-//// CÁC HÀM PHỤ TRỢ DÀNH RIÊNG CHO THANH CHẠY CỦA HỌC SINH
+//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm phụ trợ vẽ khung Live trên đỉnh (TOP - Siêu nhỏ Font 9)
 //// =====================================================================
-//function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
-//    if (document.getElementById('thanh-chay-nop-bai-hs')) {
-//        document.getElementById('thanh-chay-nop-bai-hs').remove();
-//    }
-
-//    const tickerWrap = document.createElement('div');
-//    tickerWrap.id = 'thanh-chay-nop-bai-hs';
-//    tickerWrap.innerHTML = `
-//        <style>
-//            #thanh-chay-nop-bai-hs {
-//                position: fixed; bottom: 0; left: 0; width: 100%;
-//                background-color: #1e1e2f; color: #e2e8f0; padding: 12px 0;
-//                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
-//                border-top: 2px solid #8b5cf6; /* Viền tím mộng mơ hợp với giao diện học sinh */
-//            }
-//            .ticker-move-hs {
-//                display: inline-block; white-space: nowrap; padding-left: 100%;
-//            }
-//            .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
-//            @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-//        </style>
-//        <div class="ticker-move-hs" id="noi-dung-thanh-chay-hs">${chuoiHienThi}</div>
-//    `;
-//    document.body.appendChild(tickerWrap);
-
-//    // Thuật toán Tốc độ cố định
-//    setTimeout(() => {
-//        const textElement = document.getElementById('noi-dung-thanh-chay-hs');
-//        if (textElement) {
-//            const textWidth = textElement.scrollWidth;
-//            const screenWidth = window.innerWidth;
-//            const distance = screenWidth + textWidth;
-
-//            const speed = 100; // 70 pixels / 1 giây
-
-//            const duration = distance / speed;
-//            textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
-//        }
-//    }, 100);
-//}
-
-
-//// =====================================================================
-//// [Nhãn thời gian: 14:15 - Ngày 10/06/2026] - Các hàm vẽ thanh chạy cho Học sinh
-//// =====================================================================
-
-// 🌟 ĐIỀU CHỈNH 1: Sửa hàm phụ trợ vẽ khung Live để nó nằm ở TRÊN CÙNG (TOP)
 function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-hs')) {
         document.getElementById('thanh-chay-nop-bai-hs').remove();
     }
 
-    // Đẩy nội dung toàn trang xuống một chút để không bị thanh TOP che khuất
-    document.body.style.paddingTop = '28px';
+    // Tiết kiệm không gian: chỉ đẩy top màn hình xuống 14px cho vừa khít thanh chạy font 9
+    document.body.style.paddingTop = '14px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-chay-nop-bai-hs';
     tickerWrap.innerHTML = `
         <style>
             #thanh-chay-nop-bai-hs { 
-                position: fixed; top: 0; left: 0; width: 100%; /* SỬA THÀNH TOP: 0 */
-                background-color: #1e1e2f; color: #e2e8f0; padding: 10px 0; 
-                z-index: 9999; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
-                border-bottom: 1px solid #8b5cf6; /* Sửa thành viền dưới */
+                position: fixed; top: 0; left: 0; width: 100%; 
+                background-color: #1e1e2f; color: #e2e8f0; 
+                padding: 1px 0; /* Thu hẹp tối đa khoảng đệm dọc */
+                z-index: 9999; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.3); 
+                border-bottom: 1px solid #8b5cf6;
+                line-height: 11px;
+                height: 12px;
             }
             .ticker-move-hs { display: inline-block; white-space: nowrap; padding-left: 100%; }
             .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+            
+            /* Ép cứng font 9px cho toàn bộ thành phần con bên trong */
+            #thanh-chay-nop-bai-hs *, 
+            #thanh-chay-nop-bai-hs span, 
+            #thanh-chay-nop-bai-hs b { 
+                font-size: 9px !important; 
+            }
         </style>
         <div class="ticker-move-hs" id="noi-dung-thanh-chay-hs">${chuoiHienThi}</div>
     `;
     document.body.appendChild(tickerWrap);
 
-    // Tính tốc độ cố định
     setTimeout(() => {
         const textElement = document.getElementById('noi-dung-thanh-chay-hs');
         if (textElement) {
             const distance = window.innerWidth + textElement.scrollWidth;
-            const duration = distance / 100; // 70px/s
+            const duration = distance / 100; // Giữ nguyên vận tốc 100px/s cố định
             textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
         }
     }, 100);
 }
 
-// 🌟 TÍNH NĂNG MỚI: Hàm 8.1.2 - Chạy nhắc nhở 10 nhiệm vụ chưa làm ở ĐÁY màn hình
+//// =====================================================================
+//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm 8.1.2: Chạy nhắc nhở 10 nhiệm vụ chưa làm ở ĐÁY màn hình
+//// =====================================================================
 async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
 
@@ -347,51 +280,36 @@ async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
     if (!uid || dsLop.length === 0) return;
 
     try {
-        const headersAPI = {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`
-        };
+        const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
 
-        // BƯỚC 1: Quét bảng ket_qua_thi để xem học sinh này ĐÃ LÀM những nhiệm vụ nào
         const resDaLam = await fetch(`${SUPABASE_URL}/rest/v1/ket_qua_thi?uid_hoc_sinh=eq.${uid}&select=ma_nhiem_vu`, { headers: headersAPI });
         const dataDaLam = await resDaLam.json();
-
-        // Tạo một tập hợp (Set) chứa các mã nhiệm vụ ĐÃ LÀM để dễ tra cứu
         const setNhiemVuDaLam = new Set((dataDaLam || []).map(x => x.ma_nhiem_vu));
 
-        // BƯỚC 2: Quét bảng nhiem_vu để lấy các nhiệm vụ đang mở (trang_thai = 1)
         const resNhiemVu = await fetch(`${SUPABASE_URL}/rest/v1/nhiem_vu?select=ma_nhiem_vu,ten_nhiem_vu,danh_sach_lop,thoi_gian_mo&trang_thai=eq.1&order=thoi_gian_mo.desc`, { headers: headersAPI });
         const dataNhiemVu = await resNhiemVu.json();
 
-        // BƯỚC 3: Lọc ra các nhiệm vụ CHƯA LÀM và THUỘC VỀ LỚP CỦA MÌNH
         const danhSachChuaLam = (dataNhiemVu || []).filter(nv => {
-            // Loại bỏ nếu đã làm rồi
             if (setNhiemVuDaLam.has(nv.ma_nhiem_vu)) return false;
-
-            // Kiểm tra xem nhiệm vụ này có giao cho lớp của mình không
             let mangLopNV = Array.isArray(nv.danh_sach_lop) ? nv.danh_sach_lop : [nv.danh_sach_lop];
             return mangLopNV.some(maLop => dsLop.includes(maLop));
-        }).slice(0, 10); // Chỉ lấy 10 cái mới nhất
+        }).slice(0, 10);
 
-        // BƯỚC 4: Ráp chuỗi HTML
         let chuoiNoiDung = "";
 
         if (danhSachChuaLam.length === 0) {
-            // NẾU ĐÃ LÀM HẾT -> Báo chúc mừng
             chuoiNoiDung = `
-                <span style="margin-right: 50px; font-family: Arial, sans-serif; font-size: 15px; color: #4ade80; font-weight: bold; display: inline-block;">
-                    🎉 CHÚC MỪNG! Bạn đã hoàn thành xuất sắc toàn bộ nhiệm vụ được giao. Hãy nghỉ ngơi hoặc vào mục Tự Luyện để kiếm thêm Kim Cương nhé! 💎
+                <span style="margin-right: 50px; font-family: Arial, sans-serif; color: #4ade80; font-weight: bold; display: inline-block;">
+                    🎉 HOÀN THÀNH XUẤT SẮC! Bạn đã làm hết toàn bộ nhiệm vụ được giao. Hãy vào mục Tự Luyện để tích lũy thêm Kim Cương nhé! 💎
                 </span>`;
         } else {
-            // NẾU CÒN NỢ BÀI -> Nhắc nhở màu đỏ
-            chuoiNoiDung = `<span style="margin-right: 40px; font-family: Arial, sans-serif; font-size: 15px; color: #f87171; font-weight: bold; display: inline-block; background: #450a0a; padding: 2px 10px; border-radius: 5px;">⚠️ BẠN CÒN ${danhSachChuaLam.length} NHIỆM VỤ CHƯA HOÀN THÀNH: </span>`;
-
+            chuoiNoiDung = `<span style="margin-right: 30px; font-family: Arial, sans-serif; color: #f87171; font-weight: bold; display: inline-block; background: #450a0a; padding: 0 5px; border-radius: 2px;">⚠️ CÒN ${danhSachChuaLam.length} NHIỆM VỤ CHƯA LÀM: </span>`;
             chuoiNoiDung += danhSachChuaLam.map(nv => {
                 let thoiGianGiao = ham_3_3_tinh_thoi_gian_truoc_day(nv.thoi_gian_mo);
                 return `
-                    <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
-                        🎯 <b style="color: #60a5fa; font-size: 15px;">${nv.ten_nhiem_vu}</b> 
-                        <span style="color: #94a3b8; font-size: 12px; margin-left: 6px;">(Giao: ${thoiGianGiao})</span>
+                    <span style="margin-right: 50px; font-family: Arial, sans-serif; display: inline-block;">
+                        🎯 <b style="color: #60a5fa;">${nv.ten_nhiem_vu}</b> 
+                        <span style="color: #94a3b8; margin-left: 4px;">(${thoiGianGiao})</span>
                     </span>`;
             }).join("");
         }
@@ -403,14 +321,16 @@ async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
     }
 }
 
-// Hàm phụ trợ vẽ thanh chạy Đòi Nợ ở ĐÁY (BOTTOM: 0)
+//// =====================================================================
+//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm phụ trợ vẽ thanh chạy Đòi Nợ ở ĐÁY (BOTTOM - Siêu nhỏ Font 9)
+//// =====================================================================
 function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nhiem-vu-hs')) {
         document.getElementById('thanh-chay-nhiem-vu-hs').remove();
     }
 
-    // Đẩy nội dung toàn trang lên một chút để không bị thanh BOTTOM che khuất
-    document.body.style.paddingBottom = '28px';
+    // Đẩy lề đáy của body lên một khoảng tối thiểu 14px để giải phóng không gian cửa sổ
+    document.body.style.paddingBottom = '14px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-chay-nhiem-vu-hs';
@@ -418,19 +338,28 @@ function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
         <style>
             #thanh-chay-nhiem-vu-hs { 
                 position: fixed; bottom: 0; left: 0; width: 100%; 
-                background-color: #0f172a; color: #e2e8f0; padding: 12px 0; 
-                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.6); 
-                border-top: 1px solid #ef4444; /* Viền đỏ rực cảnh báo */
+                background-color: #0f172a; color: #e2e8f0; 
+                padding: 1px 0; /* Thu nhỏ padding dọc sát sàn */
+                z-index: 9999; overflow: hidden; box-shadow: 0 -1px 5px rgba(0,0,0,0.4); 
+                border-top: 1px solid #ef4444;
+                line-height: 11px;
+                height: 12px;
             }
             .ticker-move-nv { display: inline-block; white-space: nowrap; padding-left: 100%; }
             .ticker-move-nv:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-nv { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+            
+            /* Ép cứng kích thước chữ siêu nhỏ font 9px toàn bộ thanh nhắc nợ */
+            #thanh-chay-nhiem-vu-hs *, 
+            #thanh-chay-nhiem-vu-hs span, 
+            #thanh-chay-nhiem-vu-hs b { 
+                font-size: 9px !important; 
+            }
         </style>
         <div class="ticker-move-nv" id="noi-dung-thanh-chay-nv">${chuoiHienThi}</div>
     `;
     document.body.appendChild(tickerWrap);
 
-    // Tính tốc độ cố định
     setTimeout(() => {
         const textElement = document.getElementById('noi-dung-thanh-chay-nv');
         if (textElement) {
