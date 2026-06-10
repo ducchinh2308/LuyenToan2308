@@ -822,7 +822,7 @@ function ham_3_1_ve_dashboard_admin() {
         clearInterval(window.dongHoThanhChay);
     }
     ham_3_2_ve_thanh_chay_nop_bai();
-    window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 30000); // 30 giây lấy API 1 lần
+    window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000); // 30 giây lấy API 1 lần
 }
 
 //// =====================================================================
@@ -928,7 +928,7 @@ function ve_khung_html_thanh_chay(chuoiHienThi) {
             const screenWidth = window.innerWidth;     // Chiều dài màn hình máy tính
             const distance = screenWidth + textWidth;  // Tổng quãng đường cần di chuyển
 
-            const speed = 70; // VẬN TỐC CỐ ĐỊNH: 70 pixels / 1 giây (Thầy có thể chỉnh số này)
+            const speed = 100; // VẬN TỐC CỐ ĐỊNH: 70 pixels / 1 giây (Thầy có thể chỉnh số này)
 
             const duration = distance / speed; // Tính ra số giây cần thiết
             textElement.style.animation = `ticker-anim-admin ${duration}s linear infinite`;
