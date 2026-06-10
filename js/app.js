@@ -929,7 +929,7 @@ function ve_khung_html_thanh_chay(chuoiHienThi) {
             #thanh-chay-nop-bai-admin *,
             #thanh-chay-nop-bai-admin span,
             #thanh-chay-nop-bai-admin b {
-                font-size: 10px !important;
+                font-size: 11px !important;
             }
         </style>
         <div class="ticker-move-admin" id="noi-dung-thanh-chay">${chuoiHienThi}</div>
