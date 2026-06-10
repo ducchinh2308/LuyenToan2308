@@ -215,15 +215,25 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
                     lopHienThi = mangTenLop.join(", ");
                 }
 
+                //return `
+                //    <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                //        <i style="color: #ffd700;">🔥</i> 
+                //        ${nhanHienThi} <b style="color: ${mauTen}; font-size: 15px;">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
+                //        vừa nộp <b>${tenNhiemVu}</b> - 
+                //        Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span> 
+                //        <span style="color: #475569; font-size: 12px; margin-left: 6px; background: #cbd5e1; padding: 2px 6px; border-radius: 4px; color: #0f172a;">⏱️ ${thoiGianHienThi}</span>
+                //    </span>
+                //`;
+
                 return `
                     <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
                         <i style="color: #ffd700;">🔥</i> 
                         ${nhanHienThi} <b style="color: ${mauTen}; font-size: 15px;">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
-                        vừa nộp <b>${tenNhiemVu}</b> - 
-                        Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span> 
+                        vừa nộp <b>${tenNhiemVu}</b>
                         <span style="color: #475569; font-size: 12px; margin-left: 6px; background: #cbd5e1; padding: 2px 6px; border-radius: 4px; color: #0f172a;">⏱️ ${thoiGianHienThi}</span>
                     </span>
                 `;
+
             }).join("");
         }
 
