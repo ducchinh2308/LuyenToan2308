@@ -118,13 +118,20 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 
 
     // =================================================================
-    // 🌟 6. KHỞI CHẠY THANH THI ĐUA CỦA LỚP Ở ĐÁY MÀN HÌNH
+    // 🌟 6. KHỞI CHẠY HỆ THỐNG THANH THI ĐUA VÀ NHẮC NHỞ KÉP
     // =================================================================
-    if (window.dongHoThanhChayHS) {
-        clearInterval(window.dongHoThanhChayHS); // Đập bỏ đồng hồ cũ nếu có
-    }
-    ham_8_1_1_ve_thanh_chay_lop_minh(); // Vẽ ngay lập tức lần đầu tiên
-    window.dongHoThanhChayHS = setInterval(ham_8_1_1_ve_thanh_chay_lop_minh, 60000); // Lặp lại mỗi 60s
+
+    // Đập bỏ đồng hồ cũ (nếu có) để chống lag
+    if (window.dongHoThanhChayHS) clearInterval(window.dongHoThanhChayHS);
+    if (window.dongHoThanhChayNV) clearInterval(window.dongHoThanhChayNV);
+
+    // Kích hoạt thanh báo điểm (Trôi phía trên)
+    ham_8_1_1_ve_thanh_chay_lop_minh();
+    window.dongHoThanhChayHS = setInterval(ham_8_1_1_ve_thanh_chay_lop_minh, 60000);
+
+    // Kích hoạt thanh nhắc nợ bài tập (Trôi phía dưới)
+    ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam();
+    window.dongHoThanhChayNV = setInterval(ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam, 60000);
 
 }
 
@@ -247,24 +254,72 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
 //// =====================================================================
 //// CÁC HÀM PHỤ TRỢ DÀNH RIÊNG CHO THANH CHẠY CỦA HỌC SINH
 //// =====================================================================
+//function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
+//    if (document.getElementById('thanh-chay-nop-bai-hs')) {
+//        document.getElementById('thanh-chay-nop-bai-hs').remove();
+//    }
+
+//    const tickerWrap = document.createElement('div');
+//    tickerWrap.id = 'thanh-chay-nop-bai-hs';
+//    tickerWrap.innerHTML = `
+//        <style>
+//            #thanh-chay-nop-bai-hs {
+//                position: fixed; bottom: 0; left: 0; width: 100%;
+//                background-color: #1e1e2f; color: #e2e8f0; padding: 12px 0;
+//                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+//                border-top: 2px solid #8b5cf6; /* Viền tím mộng mơ hợp với giao diện học sinh */
+//            }
+//            .ticker-move-hs {
+//                display: inline-block; white-space: nowrap; padding-left: 100%;
+//            }
+//            .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
+//            @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+//        </style>
+//        <div class="ticker-move-hs" id="noi-dung-thanh-chay-hs">${chuoiHienThi}</div>
+//    `;
+//    document.body.appendChild(tickerWrap);
+
+//    // Thuật toán Tốc độ cố định
+//    setTimeout(() => {
+//        const textElement = document.getElementById('noi-dung-thanh-chay-hs');
+//        if (textElement) {
+//            const textWidth = textElement.scrollWidth;
+//            const screenWidth = window.innerWidth;
+//            const distance = screenWidth + textWidth;
+
+//            const speed = 100; // 70 pixels / 1 giây
+
+//            const duration = distance / speed;
+//            textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
+//        }
+//    }, 100);
+//}
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 14:15 - Ngày 10/06/2026] - Các hàm vẽ thanh chạy cho Học sinh
+//// =====================================================================
+
+// 🌟 ĐIỀU CHỈNH 1: Sửa hàm phụ trợ vẽ khung Live để nó nằm ở TRÊN CÙNG (TOP)
 function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-hs')) {
         document.getElementById('thanh-chay-nop-bai-hs').remove();
     }
+
+    // Đẩy nội dung toàn trang xuống một chút để không bị thanh TOP che khuất
+    document.body.style.paddingTop = '28px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-chay-nop-bai-hs';
     tickerWrap.innerHTML = `
         <style>
             #thanh-chay-nop-bai-hs { 
-                position: fixed; bottom: 0; left: 0; width: 100%; 
-                background-color: #1e1e2f; color: #e2e8f0; padding: 12px 0; 
-                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); 
-                border-top: 2px solid #8b5cf6; /* Viền tím mộng mơ hợp với giao diện học sinh */
+                position: fixed; top: 0; left: 0; width: 100%; /* SỬA THÀNH TOP: 0 */
+                background-color: #1e1e2f; color: #e2e8f0; padding: 10px 0; 
+                z-index: 9999; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+                border-bottom: 1px solid #8b5cf6; /* Sửa thành viền dưới */
             }
-            .ticker-move-hs { 
-                display: inline-block; white-space: nowrap; padding-left: 100%; 
-            }
+            .ticker-move-hs { display: inline-block; white-space: nowrap; padding-left: 100%; }
             .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
         </style>
@@ -272,18 +327,116 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     `;
     document.body.appendChild(tickerWrap);
 
-    // Thuật toán Tốc độ cố định
+    // Tính tốc độ cố định
     setTimeout(() => {
         const textElement = document.getElementById('noi-dung-thanh-chay-hs');
         if (textElement) {
-            const textWidth = textElement.scrollWidth;
-            const screenWidth = window.innerWidth;
-            const distance = screenWidth + textWidth;
-
-            const speed = 100; // 70 pixels / 1 giây
-
-            const duration = distance / speed;
+            const distance = window.innerWidth + textElement.scrollWidth;
+            const duration = distance / 100; // 70px/s
             textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
+        }
+    }, 100);
+}
+
+// 🌟 TÍNH NĂNG MỚI: Hàm 8.1.2 - Chạy nhắc nhở 10 nhiệm vụ chưa làm ở ĐÁY màn hình
+async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
+    if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
+
+    const dsLop = GocHocSinhState.danh_sach_ma_lop || [];
+    const uid = GocHocSinhState.uid;
+    if (!uid || dsLop.length === 0) return;
+
+    try {
+        const headersAPI = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+        };
+
+        // BƯỚC 1: Quét bảng ket_qua_thi để xem học sinh này ĐÃ LÀM những nhiệm vụ nào
+        const resDaLam = await fetch(`${SUPABASE_URL}/rest/v1/ket_qua_thi?uid_hoc_sinh=eq.${uid}&select=ma_nhiem_vu`, { headers: headersAPI });
+        const dataDaLam = await resDaLam.json();
+
+        // Tạo một tập hợp (Set) chứa các mã nhiệm vụ ĐÃ LÀM để dễ tra cứu
+        const setNhiemVuDaLam = new Set((dataDaLam || []).map(x => x.ma_nhiem_vu));
+
+        // BƯỚC 2: Quét bảng nhiem_vu để lấy các nhiệm vụ đang mở (trang_thai = 1)
+        const resNhiemVu = await fetch(`${SUPABASE_URL}/rest/v1/nhiem_vu?select=ma_nhiem_vu,ten_nhiem_vu,danh_sach_lop,thoi_gian_mo&trang_thai=eq.1&order=thoi_gian_mo.desc`, { headers: headersAPI });
+        const dataNhiemVu = await resNhiemVu.json();
+
+        // BƯỚC 3: Lọc ra các nhiệm vụ CHƯA LÀM và THUỘC VỀ LỚP CỦA MÌNH
+        const danhSachChuaLam = (dataNhiemVu || []).filter(nv => {
+            // Loại bỏ nếu đã làm rồi
+            if (setNhiemVuDaLam.has(nv.ma_nhiem_vu)) return false;
+
+            // Kiểm tra xem nhiệm vụ này có giao cho lớp của mình không
+            let mangLopNV = Array.isArray(nv.danh_sach_lop) ? nv.danh_sach_lop : [nv.danh_sach_lop];
+            return mangLopNV.some(maLop => dsLop.includes(maLop));
+        }).slice(0, 10); // Chỉ lấy 10 cái mới nhất
+
+        // BƯỚC 4: Ráp chuỗi HTML
+        let chuoiNoiDung = "";
+
+        if (danhSachChuaLam.length === 0) {
+            // NẾU ĐÃ LÀM HẾT -> Báo chúc mừng
+            chuoiNoiDung = `
+                <span style="margin-right: 50px; font-family: Arial, sans-serif; font-size: 15px; color: #4ade80; font-weight: bold; display: inline-block;">
+                    🎉 CHÚC MỪNG! Bạn đã hoàn thành xuất sắc toàn bộ nhiệm vụ được giao. Hãy nghỉ ngơi hoặc vào mục Tự Luyện để kiếm thêm Kim Cương nhé! 💎
+                </span>`;
+        } else {
+            // NẾU CÒN NỢ BÀI -> Nhắc nhở màu đỏ
+            chuoiNoiDung = `<span style="margin-right: 40px; font-family: Arial, sans-serif; font-size: 15px; color: #f87171; font-weight: bold; display: inline-block; background: #450a0a; padding: 2px 10px; border-radius: 5px;">⚠️ BẠN CÒN ${danhSachChuaLam.length} NHIỆM VỤ CHƯA HOÀN THÀNH: </span>`;
+
+            chuoiNoiDung += danhSachChuaLam.map(nv => {
+                let thoiGianGiao = ham_3_3_tinh_thoi_gian_truoc_day(nv.thoi_gian_mo);
+                return `
+                    <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                        🎯 <b style="color: #60a5fa; font-size: 15px;">${nv.ten_nhiem_vu}</b> 
+                        <span style="color: #94a3b8; font-size: 12px; margin-left: 6px;">(Giao: ${thoiGianGiao})</span>
+                    </span>`;
+            }).join("");
+        }
+
+        ve_khung_html_thanh_chay_nhiem_vu(chuoiNoiDung);
+
+    } catch (error) {
+        console.warn("⚠️ [Thanh chạy Nhắc việc]:", error.message);
+    }
+}
+
+// Hàm phụ trợ vẽ thanh chạy Đòi Nợ ở ĐÁY (BOTTOM: 0)
+function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
+    if (document.getElementById('thanh-chay-nhiem-vu-hs')) {
+        document.getElementById('thanh-chay-nhiem-vu-hs').remove();
+    }
+
+    // Đẩy nội dung toàn trang lên một chút để không bị thanh BOTTOM che khuất
+    document.body.style.paddingBottom = '28px';
+
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-chay-nhiem-vu-hs';
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-chay-nhiem-vu-hs { 
+                position: fixed; bottom: 0; left: 0; width: 100%; 
+                background-color: #0f172a; color: #e2e8f0; padding: 12px 0; 
+                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.6); 
+                border-top: 1px solid #ef4444; /* Viền đỏ rực cảnh báo */
+            }
+            .ticker-move-nv { display: inline-block; white-space: nowrap; padding-left: 100%; }
+            .ticker-move-nv:hover { animation-play-state: paused; cursor: pointer; }
+            @keyframes ticker-anim-nv { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        </style>
+        <div class="ticker-move-nv" id="noi-dung-thanh-chay-nv">${chuoiHienThi}</div>
+    `;
+    document.body.appendChild(tickerWrap);
+
+    // Tính tốc độ cố định
+    setTimeout(() => {
+        const textElement = document.getElementById('noi-dung-thanh-chay-nv');
+        if (textElement) {
+            const distance = window.innerWidth + textElement.scrollWidth;
+            const duration = distance / 100;
+            textElement.style.animation = `ticker-anim-nv ${duration}s linear infinite`;
         }
     }, 100);
 }
