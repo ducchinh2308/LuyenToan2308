@@ -484,6 +484,80 @@ function ham_2_5_xu_ly_dang_xuat() {
 // KHỐI 3: GIAO DIỆN QUẢN TRỊ VIÊN (ADMIN DASHBOARD)
 // ==============================================================================
 // Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
+//function ham_3_1_ve_dashboard_admin() {
+//    // 1. Ẩn form đăng nhập
+//    document.getElementById('khung-dang-nhap').style.display = 'none';
+
+//    // 2. Hiện nút Đăng xuất trên thanh trạng thái
+//    document.getElementById('btnLogout').style.display = 'inline-block';
+
+//    // ================================================================
+//    // 3. XỬ LÝ CHUỖI HIỂN THỊ TÊN TRÊN THANH TRẠNG THÁI (Góc trên cùng)
+//    // ================================================================
+//    let tenVaiTro = '';
+//    if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//    else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//    else tenVaiTro = 'Học sinh';
+
+//    // Viết hoa toàn bộ Tên (Ví dụ: HUỲNH ĐỨC CHÍNH)
+//    let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+
+//    // Ghép chuỗi theo đúng format: Vai trò: TÊN (SĐT)
+//    let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//    // Nạp chuỗi vào thẻ status (Thay thế chữ "Đang xác thực...")
+//    const lblStatus = document.getElementById('status');
+//    if (lblStatus) {
+//        lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//        lblStatus.style.color = '#1a73e8'; // Màu xanh dương cho nổi bật
+//        lblStatus.style.fontWeight = 'bold';
+//    }
+
+//    // ================================================================
+//    // 4. Vẽ cấu trúc HTML của Dashboard
+//    // ================================================================
+//    const dashboard = document.getElementById('dashboard-container');
+//    dashboard.style.display = 'block';
+
+//    dashboard.innerHTML = `
+//        <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+//            <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+//            <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
+
+//            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+//            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+//                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="padding: 15px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(40,167,69,0.3);">
+//                    📚 Kho Học Liệu & Đề Thi
+//                </button>
+//                <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="padding: 15px 25px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(23,162,184,0.3);">
+//                    🚀 Quản Lý Nhiệm Vụ
+//                </button>
+//                <button onclick="ham_7_12_tab_duyet_don()" style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+//                    📩 Duyệt Yêu Cầu Học Sinh
+//                </button>
+//                <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">
+//                    🏫 Quản Lý Lớp Học
+//                </button>
+//                <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 15px 25px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(111,66,193,0.3);">
+//                    🎓 Quản Lý Học Sinh
+//                </button>
+//                <button onclick="ham_9_1_tab_live_quiz()" style="padding: 15px 25px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(231,76,60,0.3); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+//                    🔴 TỔ CHỨC LIVE QUIZ
+//                </button>
+//            </div>
+
+//            <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+//                <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+//            </div>
+//        </div>
+//    `;
+//}
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 11:40 - Ngày 10/06/2026] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
+//// =====================================================================
 function ham_3_1_ve_dashboard_admin() {
     // 1. Ẩn form đăng nhập
     document.getElementById('khung-dang-nhap').style.display = 'none';
@@ -509,7 +583,7 @@ function ham_3_1_ve_dashboard_admin() {
     const lblStatus = document.getElementById('status');
     if (lblStatus) {
         lblStatus.innerText = `👤 ${chuoiHienThi}`;
-        lblStatus.style.color = '#1a73e8'; // Màu xanh dương cho nổi bật
+        lblStatus.style.color = '#1a73e8';
         lblStatus.style.fontWeight = 'bold';
     }
 
@@ -518,6 +592,9 @@ function ham_3_1_ve_dashboard_admin() {
     // ================================================================
     const dashboard = document.getElementById('dashboard-container');
     dashboard.style.display = 'block';
+
+    // Đẩy nội dung của thẻ body lên để tránh bị thanh chạy dưới đáy che mất
+    document.body.style.paddingBottom = '60px';
 
     dashboard.innerHTML = `
         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
@@ -552,6 +629,83 @@ function ham_3_1_ve_dashboard_admin() {
             </div>
         </div>
     `;
+
+    // Gọi thanh chạy thông tin 10 học sinh dưới đáy màn hình
+    ham_3_2_ve_thanh_chay_nop_bai();
+}
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 11:40 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy thông tin 10 học sinh nộp bài gần nhất
+//// =====================================================================
+function ham_3_2_ve_thanh_chay_nop_bai() {
+    // Tránh vẽ đè nhiều lần
+    if (document.getElementById('thanh-chay-nop-bai-admin')) {
+        document.getElementById('thanh-chay-nop-bai-admin').remove();
+    }
+
+    // Tạm thời dùng dữ liệu giả lập. Khi ráp API, đẩy 10 row mới nhất từ Supabase vào mảng này.
+    const dsHocSinh = [
+        { ten: "Nguyễn Lê Hoàng", lop: "12A1", diem: 8.5, time: "Vừa xong", de: "GK1 Toán" },
+        { ten: "Trần Thị Bé", lop: "12A3", diem: 9.0, time: "2 phút trước", de: "GK1 Toán" },
+        { ten: "Lê Văn Tám", lop: "12A1", diem: 6.5, time: "5 phút trước", de: "GK1 Toán" },
+        { ten: "Phạm Như Ngọc", lop: "12A5", diem: 10.0, time: "10 phút trước", de: "Test 15P" },
+        { ten: "Hoàng Gia Bảo", lop: "12A2", diem: 7.0, time: "12 phút trước", de: "Test 15P" }
+    ];
+
+    // Tạo chuỗi HTML hiển thị
+    let chuoiNoiDung = dsHocSinh.map(hs => {
+        return `
+            <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                <i style="color: #ffd700;">🔥</i> 
+                Học sinh <b>${hs.ten}</b> (<span style="color: #38bdf8;">${hs.lop}</span>) 
+                vừa nộp <b>${hs.de}</b> - 
+                Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${hs.diem}</span> 
+                <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ ${hs.time}</span>
+            </span>
+        `;
+    }).join("");
+
+    // Tạo thẻ wrapper ghim ở đáy
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-chay-nop-bai-admin';
+
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-chay-nop-bai-admin {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #0f172a; /* Nền tối để không làm chói mắt khi đang làm việc */
+                color: #ffffff;
+                padding: 12px 0;
+                z-index: 9999;
+                overflow: hidden;
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+                border-top: 2px solid #2563eb; /* Viền xanh dương chuẩn Admin */
+            }
+            .ticker-move-admin {
+                display: inline-block;
+                white-space: nowrap;
+                padding-left: 100%; 
+                animation: ticker-anim-admin 25s linear infinite; 
+            }
+            .ticker-move-admin:hover {
+                animation-play-state: paused;
+                cursor: pointer;
+            }
+            @keyframes ticker-anim-admin {
+                0% { transform: translate3d(0, 0, 0); }
+                100% { transform: translate3d(-100%, 0, 0); }
+            }
+        </style>
+        <div class="ticker-move-admin">
+            ${chuoiNoiDung}
+        </div>
+    `;
+
+    document.body.appendChild(tickerWrap);
 }
 
 
