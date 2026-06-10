@@ -115,10 +115,168 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 
     // 5. Mặc định mở Tab Nhiệm vụ khi vừa tải xong khung
     ham_8_2_tab_nhiem_vu_bat_buoc();
+
+
+    // =================================================================
+    // 🌟 6. KHỞI CHẠY THANH THI ĐUA CỦA LỚP Ở ĐÁY MÀN HÌNH
+    // =================================================================
+    if (window.dongHoThanhChayHS) {
+        clearInterval(window.dongHoThanhChayHS); // Đập bỏ đồng hồ cũ nếu có
+    }
+    ham_8_1_1_ve_thanh_chay_lop_minh(); // Vẽ ngay lập tức lần đầu tiên
+    window.dongHoThanhChayHS = setInterval(ham_8_1_1_ve_thanh_chay_lop_minh, 60000); // Lặp lại mỗi 60s
+
 }
 
 
+//// =====================================================================
+//// [Nhãn thời gian: 13:40 - Ngày 10/06/2026] - Hàm 8.1.1: Vẽ thanh chạy thi đua nội bộ Lớp (Dành cho Học sinh)
+//// =====================================================================
+async function ham_8_1_1_ve_thanh_chay_lop_minh() {
+    if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
+        return;
+    }
 
+    // Lấy danh sách mã lớp của học sinh đang đăng nhập
+    // (Đảm bảo lúc login, thầy đã gán AppState.user = data_hoc_sinh_tu_db)
+    const lopCuaToi = (AppState.user && AppState.user.danh_sach_ma_lop) ? AppState.user.danh_sach_ma_lop : [];
+
+    if (lopCuaToi.length === 0) {
+        // Nếu học sinh chưa được xếp lớp, không cần vẽ thanh chạy
+        return;
+    }
+
+    try {
+        const headersAPI = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json'
+        };
+
+        // BƯỚC 1: Lấy Từ điển Lớp học
+        const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop`, { method: 'GET', headers: headersAPI });
+        const dataLop = await resLop.json();
+        const tuDienLop = {};
+        if (dataLop && dataLop.length > 0) {
+            dataLop.forEach(lop => tuDienLop[lop.ma_lop] = lop.ten_lop);
+        }
+
+        // BƯỚC 2: Gọi API lấy 50 kết quả nộp bài mới nhất toàn trường để tăng xác suất lọt lưới lớp mình
+        const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
+        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=50`;
+        const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
+
+        if (!response.ok) throw new Error("Lỗi fetch bảng Kết quả thi");
+        const data = await response.json();
+
+        // BƯỚC 3: BỘ LỌC ĐỘC QUYỀN - Chỉ giữ lại những bài thi mà mã lớp của nhiệm vụ có chứa mã lớp của học sinh này
+        const dataLopMinh = data.filter(row => {
+            if (!row.nhiem_vu || !row.nhiem_vu.danh_sach_lop) return false;
+
+            // Ép kiểu mảng để đảm bảo hàm .some() hoạt động
+            let mangLopNhiemVu = Array.isArray(row.nhiem_vu.danh_sach_lop)
+                ? row.nhiem_vu.danh_sach_lop
+                : [row.nhiem_vu.danh_sach_lop];
+
+            // Kiểm tra xem 2 mảng (Lớp của Nhiệm vụ và Lớp của Tôi) có điểm chung nào không
+            return mangLopNhiemVu.some(maLop => lopCuaToi.includes(maLop));
+        });
+
+        // Chỉ lấy 10 bạn mới nhất trong lớp để chạy cho gọn
+        const top10LopMinh = dataLopMinh.slice(0, 10);
+
+        let chuoiNoiDung = "";
+
+        if (top10LopMinh.length === 0) {
+            // NẾU LỚP CHƯA CÓ AI NỘP -> Hiển thị lời kêu gọi
+            chuoiNoiDung = `
+                <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 15px; color: #fbbf24; font-weight: bold; display: inline-block;">
+                    🏆 Bảng vàng đang trống. Hãy là người đầu tiên trong lớp hoàn thành nhiệm vụ để được vinh danh tại đây! 🚀
+                </span>
+            `;
+        } else {
+            // NẾU ĐÃ CÓ NGƯỜI NỘP -> Render danh sách bạn bè
+            chuoiNoiDung = top10LopMinh.map(row => {
+                let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
+                let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
+                let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+
+                // Highlight tên bạn bè cùng lớp (hoặc chính mình)
+                let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
+                let laChinhMinh = (tenHS.toUpperCase() === AppState.user.ten.toUpperCase()) ? true : false;
+                let mauTen = laChinhMinh ? "#f97316" : "#ffffff"; // Nếu là tên mình thì tô cam rực rỡ
+                let nhanHienThi = laChinhMinh ? "Bạn" : "Bạn";
+
+                let tenNhiemVu = (row.nhiem_vu && row.nhiem_vu.ten_nhiem_vu) ? row.nhiem_vu.ten_nhiem_vu : "(Chưa đặt tên)";
+
+                let lopHienThi = "--";
+                if (row.nhiem_vu && Array.isArray(row.nhiem_vu.danh_sach_lop)) {
+                    let mangTenLop = row.nhiem_vu.danh_sach_lop.map(ma => tuDienLop[ma] || ma);
+                    lopHienThi = mangTenLop.join(", ");
+                }
+
+                return `
+                    <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                        <i style="color: #ffd700;">🔥</i> 
+                        ${nhanHienThi} <b style="color: ${mauTen}; font-size: 15px;">${tenHS}</b> (<span style="color: #a78bfa;">${lopHienThi}</span>) 
+                        vừa nộp <b>${tenNhiemVu}</b> - 
+                        Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span> 
+                        <span style="color: #475569; font-size: 12px; margin-left: 6px; background: #cbd5e1; padding: 2px 6px; border-radius: 4px; color: #0f172a;">⏱️ ${thoiGianHienThi}</span>
+                    </span>
+                `;
+            }).join("");
+        }
+
+        ve_khung_html_thanh_chay_hs(chuoiNoiDung);
+
+    } catch (error) {
+        console.warn("⚠️ [Thanh chạy Lớp mình bị gián đoạn]:", error.message);
+    }
+}
+
+//// =====================================================================
+//// CÁC HÀM PHỤ TRỢ DÀNH RIÊNG CHO THANH CHẠY CỦA HỌC SINH
+//// =====================================================================
+function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
+    if (document.getElementById('thanh-chay-nop-bai-hs')) {
+        document.getElementById('thanh-chay-nop-bai-hs').remove();
+    }
+
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-chay-nop-bai-hs';
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-chay-nop-bai-hs { 
+                position: fixed; bottom: 0; left: 0; width: 100%; 
+                background-color: #1e1e2f; color: #e2e8f0; padding: 12px 0; 
+                z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); 
+                border-top: 2px solid #8b5cf6; /* Viền tím mộng mơ hợp với giao diện học sinh */
+            }
+            .ticker-move-hs { 
+                display: inline-block; white-space: nowrap; padding-left: 100%; 
+            }
+            .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
+            @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        </style>
+        <div class="ticker-move-hs" id="noi-dung-thanh-chay-hs">${chuoiHienThi}</div>
+    `;
+    document.body.appendChild(tickerWrap);
+
+    // Thuật toán Tốc độ cố định
+    setTimeout(() => {
+        const textElement = document.getElementById('noi-dung-thanh-chay-hs');
+        if (textElement) {
+            const textWidth = textElement.scrollWidth;
+            const screenWidth = window.innerWidth;
+            const distance = screenWidth + textWidth;
+
+            const speed = 70; // 70 pixels / 1 giây
+
+            const duration = distance / speed;
+            textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
+        }
+    }, 100);
+}
 
 // =====================================================================
 // Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ĐÃ SỬA LỖI LỌC LỚP ĐỘNG)
