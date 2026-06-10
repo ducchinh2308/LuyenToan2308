@@ -252,7 +252,7 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
             #thanh-chay-nop-bai-hs *, 
             #thanh-chay-nop-bai-hs span, 
             #thanh-chay-nop-bai-hs b { 
-                font-size: 9px !important; 
+                font-size: 10px !important; 
             }
         </style>
         <div class="ticker-move-hs" id="noi-dung-thanh-chay-hs">${chuoiHienThi}</div>
@@ -353,7 +353,7 @@ function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
             #thanh-chay-nhiem-vu-hs *, 
             #thanh-chay-nhiem-vu-hs span, 
             #thanh-chay-nhiem-vu-hs b { 
-                font-size: 9px !important; 
+                font-size: 10px !important; 
             }
         </style>
         <div class="ticker-move-nv" id="noi-dung-thanh-chay-nv">${chuoiHienThi}</div>
