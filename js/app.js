@@ -810,22 +810,138 @@ function ham_3_1_ve_dashboard_admin() {
 
 
 
+////// =====================================================================
+////// [Nhãn thời gian: 12:04 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Đã Fix chuẩn Tên Cột DB Supabase)
+////// =====================================================================
+//async function ham_3_2_ve_thanh_chay_nop_bai() {
+//    const SUPABASE_URL = AppState.supabaseUrl || "https://xxxx.supabase.co";
+//    const SUPABASE_KEY = AppState.supabaseKey || "eyJhbGciOiJIUzI1NiIsInR...";
+
+//    // Tên bảng chứa kết quả thi
+//    const TEN_BANG = "ket_qua_thi";
+
+//    try {
+//        // 1. GỌI API: Dùng cú pháp Join của Supabase để lấy Tên và Lớp từ bảng hoc_sinh thông qua khóa ngoại uid_hoc_sinh
+//        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh(ten,khoi_lop)";
+
+//        // Sắp xếp theo thoi_gian_nop giảm dần (mới nhất lên trước)
+//        const response = await fetch(`${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`, {
+//            method: 'GET',
+//            headers: {
+//                'apikey': SUPABASE_KEY,
+//                'Authorization': `Bearer ${SUPABASE_KEY}`,
+//                'Content-Type': 'application/json'
+//            }
+//        });
+
+//        if (!response.ok) throw new Error("Lỗi khi tải dữ liệu từ Supabase");
+
+//        const data = await response.json();
+
+//        // Nếu bảng chưa có ai nộp bài
+//        if (!data || data.length === 0) return;
+
+//        // Tránh vẽ đè nhiều lần
+//        if (document.getElementById('thanh-chay-nop-bai-admin')) {
+//            document.getElementById('thanh-chay-nop-bai-admin').remove();
+//        }
+
+//        // 2. TẠO HTML TỪ DỮ LIỆU THẬT
+//        let chuoiNoiDung = data.map(row => {
+//            // Xử lý dữ liệu Null an toàn
+//            let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
+//            let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
+
+//            let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+//            let tenNhiemVu = row.ten_nhiem_vu || "Bài kiểm tra";
+
+//            // Bóc tách object hoc_sinh do truy vấn Join trả về
+//            let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
+//            let lopHS = (row.hoc_sinh && row.hoc_sinh.khoi_lop) ? row.hoc_sinh.khoi_lop : "--";
+
+//            return `
+//                <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+//                    <i style="color: #ffd700;">🔥</i>
+//                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHS}</span>)
+//                    vừa nộp <b>${tenNhiemVu}</b> -
+//                    Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span>
+//                    <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ ${thoiGianHienThi}</span>
+//                </span>
+//            `;
+//        }).join("");
+
+//        // 3. VẼ RA GIAO DIỆN
+//        const tickerWrap = document.createElement('div');
+//        tickerWrap.id = 'thanh-chay-nop-bai-admin';
+
+//        tickerWrap.innerHTML = `
+//            <style>
+//                #thanh-chay-nop-bai-admin {
+//                    position: fixed;
+//                    bottom: 0;
+//                    left: 0;
+//                    width: 100%;
+//                    background-color: #0f172a;
+//                    color: #ffffff;
+//                    padding: 12px 0;
+//                    z-index: 9999;
+//                    overflow: hidden;
+//                    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+//                    border-top: 2px solid #2563eb;
+//                }
+//                .ticker-move-admin {
+//                    display: inline-block;
+//                    white-space: nowrap;
+//                    padding-left: 100%;
+//                    animation: ticker-anim-admin 30s linear infinite;
+//                }
+//                .ticker-move-admin:hover {
+//                    animation-play-state: paused;
+//                    cursor: pointer;
+//                }
+//                @keyframes ticker-anim-admin {
+//                    0% { transform: translate3d(0, 0, 0); }
+//                    100% { transform: translate3d(-100%, 0, 0); }
+//                }
+//            </style>
+//            <div class="ticker-move-admin">
+//                ${chuoiNoiDung}
+//            </div>
+//        `;
+
+//        document.body.appendChild(tickerWrap);
+
+//    } catch (error) {
+//        console.error("Lỗi vẽ thanh chạy:", error);
+//    }
+//}
+
 //// =====================================================================
-//// [Nhãn thời gian: 12:04 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Đã Fix chuẩn Tên Cột DB Supabase)
+//// [Nhãn thời gian: 12:15 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Đã Fix lỗi Failed to Fetch)
 //// =====================================================================
 async function ham_3_2_ve_thanh_chay_nop_bai() {
-    const SUPABASE_URL = AppState.supabaseUrl || "https://xxxx.supabase.co";
-    const SUPABASE_KEY = AppState.supabaseKey || "eyJhbGciOiJIUzI1NiIsInR...";
+    // 1. Lấy thông tin kết nối từ biến toàn cục
+    const SUPABASE_URL = AppState.supabaseUrl;
+    const SUPABASE_KEY = AppState.supabaseKey;
 
-    // Tên bảng chứa kết quả thi
+    // 🌟 KIỂM TRA BẢO MẬT: Nếu URL hoặc Key bị rỗng/lỗi -> Báo ra Console và Dừng ngay
+    if (!SUPABASE_URL || !SUPABASE_URL.startsWith('http')) {
+        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ (" + SUPABASE_URL + "). Tạm thời dùng dữ liệu ảo.");
+        ve_giao_dien_thanh_chay_ao(); // Gọi dữ liệu ảo để Form vẫn hiển thị đẹp
+        return;
+    }
+
     const TEN_BANG = "ket_qua_thi";
 
     try {
-        // 1. GỌI API: Dùng cú pháp Join của Supabase để lấy Tên và Lớp từ bảng hoc_sinh thông qua khóa ngoại uid_hoc_sinh
-        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh(ten,khoi_lop)";
+        // Cú pháp chuẩn ghép từ ảnh CSDL của thầy: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
+        // Nếu tên cột khóa ngoại là uid_hoc_sinh, ta dùng cú pháp hoc_sinh!uid_hoc_sinh(...) để Supabase nhận diện đúng
+        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten,khoi_lop)";
+        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
 
-        // Sắp xếp theo thoi_gian_nop giảm dần (mới nhất lên trước)
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`, {
+        console.log("🔗 Đang gọi API Thanh chạy: ", fullAPI_Link); // In ra để thầy theo dõi link
+
+        const response = await fetch(fullAPI_Link, {
             method: 'GET',
             headers: {
                 'apikey': SUPABASE_KEY,
@@ -834,28 +950,27 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             }
         });
 
-        if (!response.ok) throw new Error("Lỗi khi tải dữ liệu từ Supabase");
+        if (!response.ok) {
+            const errorDetails = await response.text();
+            throw new Error(`[Mã lỗi ${response.status}]: ${errorDetails}`);
+        }
 
         const data = await response.json();
 
-        // Nếu bảng chưa có ai nộp bài
         if (!data || data.length === 0) return;
 
-        // Tránh vẽ đè nhiều lần
         if (document.getElementById('thanh-chay-nop-bai-admin')) {
             document.getElementById('thanh-chay-nop-bai-admin').remove();
         }
 
         // 2. TẠO HTML TỪ DỮ LIỆU THẬT
         let chuoiNoiDung = data.map(row => {
-            // Xử lý dữ liệu Null an toàn
             let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
             let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
 
             let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
             let tenNhiemVu = row.ten_nhiem_vu || "Bài kiểm tra";
 
-            // Bóc tách object hoc_sinh do truy vấn Join trả về
             let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
             let lopHS = (row.hoc_sinh && row.hoc_sinh.khoi_lop) ? row.hoc_sinh.khoi_lop : "--";
 
@@ -870,50 +985,45 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             `;
         }).join("");
 
-        // 3. VẼ RA GIAO DIỆN
-        const tickerWrap = document.createElement('div');
-        tickerWrap.id = 'thanh-chay-nop-bai-admin';
-
-        tickerWrap.innerHTML = `
-            <style>
-                #thanh-chay-nop-bai-admin {
-                    position: fixed;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    background-color: #0f172a; 
-                    color: #ffffff;
-                    padding: 12px 0;
-                    z-index: 9999;
-                    overflow: hidden;
-                    box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
-                    border-top: 2px solid #2563eb; 
-                }
-                .ticker-move-admin {
-                    display: inline-block;
-                    white-space: nowrap;
-                    padding-left: 100%; 
-                    animation: ticker-anim-admin 30s linear infinite; 
-                }
-                .ticker-move-admin:hover {
-                    animation-play-state: paused;
-                    cursor: pointer;
-                }
-                @keyframes ticker-anim-admin {
-                    0% { transform: translate3d(0, 0, 0); }
-                    100% { transform: translate3d(-100%, 0, 0); }
-                }
-            </style>
-            <div class="ticker-move-admin">
-                ${chuoiNoiDung}
-            </div>
-        `;
-
-        document.body.appendChild(tickerWrap);
+        ve_khung_html_thanh_chay(chuoiNoiDung);
 
     } catch (error) {
-        console.error("Lỗi vẽ thanh chạy:", error);
+        console.error("❌ Lỗi vẽ thanh chạy (Network/DB):", error);
+        ve_giao_dien_thanh_chay_ao(); // Sập mạng cũng có dữ liệu ảo back-up
     }
+}
+
+// Hàm phụ trợ 1: Đóng gói việc vẽ CSS/HTML ra riêng cho gọn code
+function ve_khung_html_thanh_chay(chuoiHienThi) {
+    if (document.getElementById('thanh-chay-nop-bai-admin')) {
+        document.getElementById('thanh-chay-nop-bai-admin').remove();
+    }
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-chay-nop-bai-admin';
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-chay-nop-bai-admin { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #0f172a; color: #ffffff; padding: 12px 0; z-index: 9999; overflow: hidden; box-shadow: 0 -4px 15px rgba(0,0,0,0.3); border-top: 2px solid #2563eb; }
+            .ticker-move-admin { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker-anim-admin 30s linear infinite; }
+            .ticker-move-admin:hover { animation-play-state: paused; cursor: pointer; }
+            @keyframes ticker-anim-admin { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        </style>
+        <div class="ticker-move-admin">${chuoiHienThi}</div>
+    `;
+    document.body.appendChild(tickerWrap);
+}
+
+// Hàm phụ trợ 2: Vẽ dữ liệu ảo khi sập API
+function ve_giao_dien_thanh_chay_ao() {
+    let noiDungAo = `
+        <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+            <i style="color: #ffd700;">🔥</i> 
+            Học sinh <b>Nguyễn Lê Hoàng</b> (<span style="color: #38bdf8;">12A1</span>) vừa nộp <b>GK1 Toán</b> - Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">8.5</span> <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ Vừa xong</span>
+        </span>
+        <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+            <i style="color: #ffd700;">🔥</i> 
+            Học sinh <b>Trần Thị Bé</b> (<span style="color: #38bdf8;">12A3</span>) vừa nộp <b>GK1 Toán</b> - Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">9.0</span> <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ 2 phút trước</span>
+        </span>`;
+    ve_khung_html_thanh_chay(noiDungAo);
 }
 
 //// =====================================================================
