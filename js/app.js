@@ -916,35 +916,106 @@ function ham_3_1_ve_dashboard_admin() {
 //    }
 //}
 
+////// =====================================================================
+////// [Nhãn thời gian: 12:15 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Đã Fix lỗi Failed to Fetch)
+////// =====================================================================
+//async function ham_3_2_ve_thanh_chay_nop_bai() {
+//    // 1. Lấy thông tin kết nối từ biến toàn cục
+//    const SUPABASE_URL = AppState.supabaseUrl;
+//    const SUPABASE_KEY = AppState.supabaseKey;
+
+//    // 🌟 KIỂM TRA BẢO MẬT: Nếu URL hoặc Key bị rỗng/lỗi -> Báo ra Console và Dừng ngay
+//    if (!SUPABASE_URL || !SUPABASE_URL.startsWith('http')) {
+//        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ (" + SUPABASE_URL + "). Tạm thời dùng dữ liệu ảo.");
+//        ve_giao_dien_thanh_chay_ao(); // Gọi dữ liệu ảo để Form vẫn hiển thị đẹp
+//        return;
+//    }
+
+//    const TEN_BANG = "ket_qua_thi";
+
+//    try {
+//        // Cú pháp chuẩn ghép từ ảnh CSDL của thầy: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
+//        // Nếu tên cột khóa ngoại là uid_hoc_sinh, ta dùng cú pháp hoc_sinh!uid_hoc_sinh(...) để Supabase nhận diện đúng
+//        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten,khoi_lop)";
+//        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+
+//        console.log("🔗 Đang gọi API Thanh chạy: ", fullAPI_Link); // In ra để thầy theo dõi link
+
+//        const response = await fetch(fullAPI_Link, {
+//            method: 'GET',
+//            headers: {
+//                'apikey': SUPABASE_KEY,
+//                'Authorization': `Bearer ${SUPABASE_KEY}`,
+//                'Content-Type': 'application/json'
+//            }
+//        });
+
+//        if (!response.ok) {
+//            const errorDetails = await response.text();
+//            throw new Error(`[Mã lỗi ${response.status}]: ${errorDetails}`);
+//        }
+
+//        const data = await response.json();
+
+//        if (!data || data.length === 0) return;
+
+//        if (document.getElementById('thanh-chay-nop-bai-admin')) {
+//            document.getElementById('thanh-chay-nop-bai-admin').remove();
+//        }
+
+//        // 2. TẠO HTML TỪ DỮ LIỆU THẬT
+//        let chuoiNoiDung = data.map(row => {
+//            let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
+//            let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
+
+//            let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+//            let tenNhiemVu = row.ten_nhiem_vu || "Bài kiểm tra";
+
+//            let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
+//            let lopHS = (row.hoc_sinh && row.hoc_sinh.khoi_lop) ? row.hoc_sinh.khoi_lop : "--";
+
+//            return `
+//                <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+//                    <i style="color: #ffd700;">🔥</i>
+//                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHS}</span>)
+//                    vừa nộp <b>${tenNhiemVu}</b> -
+//                    Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span>
+//                    <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ ${thoiGianHienThi}</span>
+//                </span>
+//            `;
+//        }).join("");
+
+//        ve_khung_html_thanh_chay(chuoiNoiDung);
+
+//    } catch (error) {
+//        console.error("❌ Lỗi vẽ thanh chạy (Network/DB):", error);
+//        ve_giao_dien_thanh_chay_ao(); // Sập mạng cũng có dữ liệu ảo back-up
+//    }
+//}
+
 //// =====================================================================
-//// [Nhãn thời gian: 12:15 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Đã Fix lỗi Failed to Fetch)
+//// [Nhãn thời gian: 12:12 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Sử dụng biến Toàn cục Khối 0)
 //// =====================================================================
 async function ham_3_2_ve_thanh_chay_nop_bai() {
-    // 1. Lấy thông tin kết nối từ biến toàn cục
-    const SUPABASE_URL = AppState.supabaseUrl;
-    const SUPABASE_KEY = AppState.supabaseKey;
-
-    // 🌟 KIỂM TRA BẢO MẬT: Nếu URL hoặc Key bị rỗng/lỗi -> Báo ra Console và Dừng ngay
-    if (!SUPABASE_URL || !SUPABASE_URL.startsWith('http')) {
-        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ (" + SUPABASE_URL + "). Tạm thời dùng dữ liệu ảo.");
-        ve_giao_dien_thanh_chay_ao(); // Gọi dữ liệu ảo để Form vẫn hiển thị đẹp
+    // 1. BỎ ĐỌC TỪ AppState, DÙNG TRỰC TIẾP HẰNG SỐ TOÀN CỤC THẦY ĐÃ KHAI BÁO
+    // 🌟 KIỂM TRA BẢO MẬT: Đảm bảo SUPABASE_URL đã được load
+    if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
+        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ. Tạm thời dùng dữ liệu ảo.");
+        ve_giao_dien_thanh_chay_ao();
         return;
     }
 
     const TEN_BANG = "ket_qua_thi";
 
     try {
-        // Cú pháp chuẩn ghép từ ảnh CSDL của thầy: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
-        // Nếu tên cột khóa ngoại là uid_hoc_sinh, ta dùng cú pháp hoc_sinh!uid_hoc_sinh(...) để Supabase nhận diện đúng
+        // Cú pháp chuẩn ghép từ CSDL: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
         const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten,khoi_lop)";
         const fullAPI_Link = `${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
-
-        console.log("🔗 Đang gọi API Thanh chạy: ", fullAPI_Link); // In ra để thầy theo dõi link
 
         const response = await fetch(fullAPI_Link, {
             method: 'GET',
             headers: {
-                'apikey': SUPABASE_KEY,
+                'apikey': SUPABASE_KEY, // Gọi trực tiếp từ Khối 0
                 'Authorization': `Bearer ${SUPABASE_KEY}`,
                 'Content-Type': 'application/json'
             }
@@ -989,7 +1060,7 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
 
     } catch (error) {
         console.error("❌ Lỗi vẽ thanh chạy (Network/DB):", error);
-        ve_giao_dien_thanh_chay_ao(); // Sập mạng cũng có dữ liệu ảo back-up
+        ve_giao_dien_thanh_chay_ao();
     }
 }
 
