@@ -221,26 +221,30 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
 }
 
 //// =====================================================================
-//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm phụ trợ vẽ khung Live trên đỉnh (TOP - Siêu nhỏ Font 9)
+//// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung chứa điểm học sinh (Giờ đã dời xuống ĐÁY, nằm TRÊN thanh đòi nợ)
 //// =====================================================================
 function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-hs')) {
         document.getElementById('thanh-chay-nop-bai-hs').remove();
     }
 
-    // Tiết kiệm không gian: chỉ đẩy top màn hình xuống 14px cho vừa khít thanh chạy font 9
-    document.body.style.paddingTop = '14px';
+    // Xóa padding ở trên đỉnh vì đã dời thanh này xuống đáy
+    document.body.style.paddingTop = '0px';
+    // Mở rộng padding đáy lên 30px để lấy chỗ chứa cả 2 thanh (15px + 15px)
+    document.body.style.paddingBottom = '30px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-chay-nop-bai-hs';
     tickerWrap.innerHTML = `
         <style>
             #thanh-chay-nop-bai-hs { 
-                position: fixed; top: 0; left: 0; width: 100%; 
+                position: fixed; 
+                bottom: 15px; /* 🌟 ĐẶT CÁCH ĐÁY 15PX ĐỂ NHƯỜNG CHỖ CHO THANH ĐÒI NỢ */
+                left: 0; width: 100%; 
                 background-color: #1e1e2f; color: #e2e8f0; 
-                padding: 1px 0; /* Thu hẹp tối đa khoảng đệm dọc */
-                z-index: 9999; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.3); 
-                border-bottom: 1px solid #8b5cf6;
+                padding: 1px 0; 
+                z-index: 9999; overflow: hidden; 
+                border-top: 1px solid #8b5cf6; /* Sửa lại thành viền trên cho đẹp */
                 line-height: 11px;
                 height: 12px;
             }
@@ -248,7 +252,6 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
             .ticker-move-hs:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-hs { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
             
-            /* Ép cứng font 9px cho toàn bộ thành phần con bên trong */
             #thanh-chay-nop-bai-hs *, 
             #thanh-chay-nop-bai-hs span, 
             #thanh-chay-nop-bai-hs b { 
@@ -263,7 +266,7 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
         const textElement = document.getElementById('noi-dung-thanh-chay-hs');
         if (textElement) {
             const distance = window.innerWidth + textElement.scrollWidth;
-            const duration = distance / 100; // Giữ nguyên vận tốc 100px/s cố định
+            const duration = distance / 100;
             textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
         }
     }, 100);
@@ -322,24 +325,26 @@ async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
 }
 
 //// =====================================================================
-//// [Nhãn thời gian: 16:46 - Ngày 10/06/2026] - Hàm phụ trợ vẽ thanh chạy Đòi Nợ ở ĐÁY (BOTTOM - Siêu nhỏ Font 9)
+//// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung nhắc việc chưa làm (Nằm SÁT ĐÁY)
 //// =====================================================================
 function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nhiem-vu-hs')) {
         document.getElementById('thanh-chay-nhiem-vu-hs').remove();
     }
 
-    // Đẩy lề đáy của body lên một khoảng tối thiểu 14px để giải phóng không gian cửa sổ
-    document.body.style.paddingBottom = '14px';
+    // Đảm bảo body đủ chỗ chứa (phòng hờ hàm này chạy sau)
+    document.body.style.paddingBottom = '30px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-chay-nhiem-vu-hs';
     tickerWrap.innerHTML = `
         <style>
             #thanh-chay-nhiem-vu-hs { 
-                position: fixed; bottom: 0; left: 0; width: 100%; 
+                position: fixed; 
+                bottom: 0; /* 🌟 THANH NÀY NẰM SÁT SÀN NHÀ */
+                left: 0; width: 100%; 
                 background-color: #0f172a; color: #e2e8f0; 
-                padding: 1px 0; /* Thu nhỏ padding dọc sát sàn */
+                padding: 1px 0; 
                 z-index: 9999; overflow: hidden; box-shadow: 0 -1px 5px rgba(0,0,0,0.4); 
                 border-top: 1px solid #ef4444;
                 line-height: 11px;
@@ -349,7 +354,6 @@ function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
             .ticker-move-nv:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-nv { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
             
-            /* Ép cứng kích thước chữ siêu nhỏ font 9px toàn bộ thanh nhắc nợ */
             #thanh-chay-nhiem-vu-hs *, 
             #thanh-chay-nhiem-vu-hs span, 
             #thanh-chay-nhiem-vu-hs b { 
