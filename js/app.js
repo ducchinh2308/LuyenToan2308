@@ -993,33 +993,111 @@ function ham_3_1_ve_dashboard_admin() {
 //    }
 //}
 
+////// =====================================================================
+////// [Nhãn thời gian: 12:12 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Sử dụng biến Toàn cục Khối 0)
+////// =====================================================================
+//async function ham_3_2_ve_thanh_chay_nop_bai() {
+//    // 1. BỎ ĐỌC TỪ AppState, DÙNG TRỰC TIẾP HẰNG SỐ TOÀN CỤC THẦY ĐÃ KHAI BÁO
+//    // 🌟 KIỂM TRA BẢO MẬT: Đảm bảo SUPABASE_URL đã được load
+//    if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
+//        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ. Tạm thời dùng dữ liệu ảo.");
+//        ve_giao_dien_thanh_chay_ao();
+//        return;
+//    }
+
+//    const TEN_BANG = "ket_qua_thi";
+
+//    try {
+//        // Cú pháp chuẩn ghép từ CSDL: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
+//        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten,khoi_lop)";
+//        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+
+//        const response = await fetch(fullAPI_Link, {
+//            method: 'GET',
+//            headers: {
+//                'apikey': SUPABASE_KEY, // Gọi trực tiếp từ Khối 0
+//                'Authorization': `Bearer ${SUPABASE_KEY}`,
+//                'Content-Type': 'application/json'
+//            }
+//        });
+
+//        if (!response.ok) {
+//            const errorDetails = await response.text();
+//            throw new Error(`[Mã lỗi ${response.status}]: ${errorDetails}`);
+//        }
+
+//        const data = await response.json();
+
+//        if (!data || data.length === 0) return;
+
+//        if (document.getElementById('thanh-chay-nop-bai-admin')) {
+//            document.getElementById('thanh-chay-nop-bai-admin').remove();
+//        }
+
+//        // 2. TẠO HTML TỪ DỮ LIỆU THẬT
+//        let chuoiNoiDung = data.map(row => {
+//            let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
+//            let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
+
+//            let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+//            let tenNhiemVu = row.ten_nhiem_vu || "Bài kiểm tra";
+
+//            let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
+//            let lopHS = (row.hoc_sinh && row.hoc_sinh.khoi_lop) ? row.hoc_sinh.khoi_lop : "--";
+
+//            return `
+//                <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+//                    <i style="color: #ffd700;">🔥</i>
+//                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHS}</span>)
+//                    vừa nộp <b>${tenNhiemVu}</b> -
+//                    Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span>
+//                    <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ ${thoiGianHienThi}</span>
+//                </span>
+//            `;
+//        }).join("");
+
+//        ve_khung_html_thanh_chay(chuoiNoiDung);
+
+//    } catch (error) {
+//        console.error("❌ Lỗi vẽ thanh chạy (Network/DB):", error);
+//        ve_giao_dien_thanh_chay_ao();
+//    }
+//}
+
 //// =====================================================================
-//// [Nhãn thời gian: 12:12 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy (Sử dụng biến Toàn cục Khối 0)
+//// [Nhãn thời gian: 12:45 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy Live (Liên kết 4 bảng DB)
 //// =====================================================================
 async function ham_3_2_ve_thanh_chay_nop_bai() {
-    // 1. BỎ ĐỌC TỪ AppState, DÙNG TRỰC TIẾP HẰNG SỐ TOÀN CỤC THẦY ĐÃ KHAI BÁO
-    // 🌟 KIỂM TRA BẢO MẬT: Đảm bảo SUPABASE_URL đã được load
+    // Kéo biến toàn cục ở Khối 0 để kiểm tra an toàn
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
-        console.warn("⚠️ [Thanh chạy Live]: URL Supabase không hợp lệ. Tạm thời dùng dữ liệu ảo.");
+        console.warn("⚠️ [Thanh chạy Live]: URL Supabase chưa sẵn sàng. Tạm thời dùng dữ liệu ảo.");
         ve_giao_dien_thanh_chay_ao();
         return;
     }
 
-    const TEN_BANG = "ket_qua_thi";
-
     try {
-        // Cú pháp chuẩn ghép từ CSDL: Lấy thông tin từ bảng ket_qua_thi và JOIN sang bảng hoc_sinh
-        const querySelect = "tong_diem,ten_nhiem_vu,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten,khoi_lop)";
-        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/${TEN_BANG}?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+        const headersAPI = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json'
+        };
 
-        const response = await fetch(fullAPI_Link, {
-            method: 'GET',
-            headers: {
-                'apikey': SUPABASE_KEY, // Gọi trực tiếp từ Khối 0
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Content-Type': 'application/json'
-            }
-        });
+        // 🌟 BƯỚC 1: Lấy bảng Lớp học để tạo bộ Từ điển dịch Mã Lớp -> Tên Lớp
+        const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop`, { method: 'GET', headers: headersAPI });
+        const dataLop = await resLop.json();
+
+        const tuDienLop = {};
+        if (dataLop && dataLop.length > 0) {
+            dataLop.forEach(lop => {
+                tuDienLop[lop.ma_lop] = lop.ten_lop;
+            });
+        }
+
+        // 🌟 BƯỚC 2: Gọi kết quả thi, JOIN với hoc_sinh (lấy tên) và nhiem_vu (lấy tên nhiệm vụ, danh sách mã lớp)
+        const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
+        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+
+        const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
 
         if (!response.ok) {
             const errorDetails = await response.text();
@@ -1028,27 +1106,38 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
 
         const data = await response.json();
 
+        // Nếu chưa có ai nộp bài thì dừng và không vẽ gì cả
         if (!data || data.length === 0) return;
 
-        if (document.getElementById('thanh-chay-nop-bai-admin')) {
-            document.getElementById('thanh-chay-nop-bai-admin').remove();
-        }
-
-        // 2. TẠO HTML TỪ DỮ LIỆU THẬT
+        // 🌟 BƯỚC 3: Dịch dữ liệu và nhúng vào HTML
         let chuoiNoiDung = data.map(row => {
+            // 1. Xử lý điểm số an toàn
             let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
             let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
 
+            // 2. Tính thời gian nộp bài
             let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
-            let tenNhiemVu = row.ten_nhiem_vu || "Bài kiểm tra";
 
+            // 3. Lấy tên học sinh
             let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
-            let lopHS = (row.hoc_sinh && row.hoc_sinh.khoi_lop) ? row.hoc_sinh.khoi_lop : "--";
 
+            // 4. Lấy tên nhiệm vụ
+            let tenNhiemVu = (row.nhiem_vu && row.nhiem_vu.ten_nhiem_vu) ? row.nhiem_vu.ten_nhiem_vu : "(Chưa đặt tên)";
+
+            // 5. Dịch mã lớp sang tên lớp bằng Từ điển
+            let lopHienThi = "--";
+            if (row.nhiem_vu && Array.isArray(row.nhiem_vu.danh_sach_lop)) {
+                // Ánh xạ từng mã lớp (VD: "57CF1") thành tên lớp (VD: "Lớp test số 1")
+                // Nếu mã lớp không tồn tại trong DB, hệ thống sẽ tự động hiển thị lại mã gốc (ma)
+                let mangTenLop = row.nhiem_vu.danh_sach_lop.map(ma => tuDienLop[ma] || ma);
+                lopHienThi = mangTenLop.join(", ");
+            }
+
+            // Trả về HTML cho 1 học sinh
             return `
-                <span style="margin-right: 60px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+                <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
                     <i style="color: #ffd700;">🔥</i> 
-                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHS}</span>) 
+                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHienThi}</span>) 
                     vừa nộp <b>${tenNhiemVu}</b> - 
                     Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">${diemHienThi}</span> 
                     <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ ${thoiGianHienThi}</span>
@@ -1056,12 +1145,66 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             `;
         }).join("");
 
+        // 🌟 BƯỚC 4: Xuất ra màn hình
         ve_khung_html_thanh_chay(chuoiNoiDung);
 
     } catch (error) {
         console.error("❌ Lỗi vẽ thanh chạy (Network/DB):", error);
         ve_giao_dien_thanh_chay_ao();
     }
+}
+
+//// =====================================================================
+//// CÁC HÀM PHỤ TRỢ CHO THANH CHẠY (HTML & CSS)
+//// =====================================================================
+function ve_khung_html_thanh_chay(chuoiHienThi) {
+    if (document.getElementById('thanh-chay-nop-bai-admin')) {
+        document.getElementById('thanh-chay-nop-bai-admin').remove();
+    }
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-chay-nop-bai-admin';
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-chay-nop-bai-admin { 
+                position: fixed; 
+                bottom: 0; 
+                left: 0; 
+                width: 100%; 
+                background-color: #0f172a; 
+                color: #ffffff; 
+                padding: 12px 0; 
+                z-index: 9999; 
+                overflow: hidden; 
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.3); 
+                border-top: 2px solid #2563eb; 
+            }
+            .ticker-move-admin { 
+                display: inline-block; 
+                white-space: nowrap; 
+                padding-left: 100%; 
+                animation: ticker-anim-admin 60s linear infinite; 
+            }
+            .ticker-move-admin:hover { 
+                animation-play-state: paused; 
+                cursor: pointer; 
+            }
+            @keyframes ticker-anim-admin { 
+                0% { transform: translate3d(0, 0, 0); } 
+                100% { transform: translate3d(-100%, 0, 0); } 
+            }
+        </style>
+        <div class="ticker-move-admin">${chuoiHienThi}</div>
+    `;
+    document.body.appendChild(tickerWrap);
+}
+
+function ve_giao_dien_thanh_chay_ao() {
+    let noiDungAo = `
+        <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
+            <i style="color: #ffd700;">🔥</i> 
+            Học sinh <b>Dữ liệu Đang lỗi</b> (<span style="color: #38bdf8;">--</span>) vừa nộp <b>--</b> - Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">0.0</span> <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ Vừa xong</span>
+        </span>`;
+    ve_khung_html_thanh_chay(noiDungAo);
 }
 
 // Hàm phụ trợ 1: Đóng gói việc vẽ CSS/HTML ra riêng cho gọn code
