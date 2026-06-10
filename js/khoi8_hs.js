@@ -270,7 +270,7 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
             const screenWidth = window.innerWidth;
             const distance = screenWidth + textWidth;
 
-            const speed = 70; // 70 pixels / 1 giây
+            const speed = 100; // 70 pixels / 1 giây
 
             const duration = distance / speed;
             textElement.style.animation = `ticker-anim-hs ${duration}s linear infinite`;
