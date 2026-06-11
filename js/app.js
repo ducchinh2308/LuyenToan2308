@@ -6217,3 +6217,39 @@ window.ham_gv_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maCa
         Swal.fire('Lỗi', 'Không thể mở bài thi: ' + error.message, 'error');
     }
 };
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 19:45 - Ngày 10/06/2026] - Xử lý Lưu thông báo (Phía Giáo viên)
+//// =====================================================================
+async function ham_them_moi_thong_bao(noiDung, guiToanTruong, mangMaLop) {
+    try {
+        const kieuGui = guiToanTruong ? 'CHUNG' : 'RIENG';
+        const dsLop = guiToanTruong ? [] : mangMaLop;
+
+        const bodyData = {
+            noi_dung: noiDung,
+            kieu_gui: kieuGui,
+            danh_sach_lop: dsLop,
+            trang_thai: 1
+        };
+
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao`, {
+            method: 'POST',
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(bodyData)
+        });
+
+        if (!response.ok) throw new Error("Không thể lưu thông báo");
+        alert("📢 Đã phát loa thông báo thành công!");
+
+    } catch (error) {
+        console.error("Lỗi:", error);
+        alert("Lỗi khi gửi thông báo.");
+    }
+}
