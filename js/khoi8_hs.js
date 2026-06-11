@@ -417,14 +417,16 @@ async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
             let colorTag = tb.kieu_gui === 'CHUNG' ? '#ef4444' : '#3b82f6'; // Đỏ cho toàn trường, Xanh cho lớp
 
             return `
-                <span style="margin-right: 80px; font-family: Arial, sans-serif; display: inline-block;">
-                    📢 <span style="background: ${colorTag}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-right: 5px;">${tag}</span> 
-                    <span style="font-size: 14px; font-weight: bold; color: #facc15;">${tb.noi_dung}</span>
-                </span>
-            `;
+        <span style="margin-right: 80px; font-family: Arial, sans-serif; display: inline-block;">
+            📢 <span style="background: ${colorTag}; color: white; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-right: 5px;">${tag}</span> 
+            <span style="font-weight: bold; color: #facc15;">${tb.noi_dung}</span>
+        </span>
+    `;
         }).join("");
 
         ve_khung_html_thanh_thong_bao_top(chuoiHienThi);
+
+
 
     } catch (error) {
         console.warn("⚠️ [Thanh thông báo GV bị gián đoạn]:", error.message);
@@ -432,15 +434,15 @@ async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
 }
 
 //// =====================================================================
-//// Hàm phụ trợ: Vẽ thanh Thông Báo trên ĐỈNH (TOP: 0) - Font 14px dễ nhìn
+//// Hàm phụ trợ: Vẽ thanh Thông Báo trên ĐỈNH (TOP: 0) - Ép siêu nhỏ vừa khít Font 12px
 //// =====================================================================
 function ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
     if (document.getElementById('thanh-thong-bao-gv')) {
         document.getElementById('thanh-thong-bao-gv').remove();
     }
 
-    // Đẩy nội dung web xuống một chút để nhường chỗ cho thanh thông báo (Font 14 nên cần khoảng 28px)
-    document.body.style.paddingTop = '28px';
+    // Tiết kiệm không gian: Chỉ đẩy lề trang web xuống 18px (vừa đủ chỗ cho thanh 16px + viền)
+    document.body.style.paddingTop = '18px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-thong-bao-gv';
@@ -449,26 +451,32 @@ function ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
             #thanh-thong-bao-gv { 
                 position: fixed; top: 0; left: 0; width: 100%; 
                 background-color: #1e293b; color: #ffffff; 
-                padding: 5px 0; 
-                z-index: 9999; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-                border-bottom: 2px solid #facc15; /* Viền vàng nổi bật */
+                padding: 1px 0; /* Thu hẹp padding dọc tối đa */
+                z-index: 9999; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+                border-bottom: 1px solid #facc15; 
+                line-height: 15px; /* Ép dòng sát với font 12 */
+                height: 16px; /* Tổng chiều cao siêu nhỏ */
             }
             .ticker-move-tb { display: inline-block; white-space: nowrap; padding-left: 100%; }
             .ticker-move-tb:hover { animation-play-state: paused; cursor: pointer; }
             @keyframes ticker-anim-tb { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
             
-            /* Thông báo của Thầy cần to rõ ràng, set cứng 13-14px */
-            #thanh-thong-bao-gv * { font-size: 13px !important; }
+            /* Ép cứng font 12px cho toàn bộ chữ trên thanh thông báo */
+            #thanh-thong-bao-gv *, 
+            #thanh-thong-bao-gv span { 
+                font-size: 12px !important; 
+            }
         </style>
         <div class="ticker-move-tb" id="noi-dung-thanh-thong-bao">${chuoiHienThi}</div>
     `;
     document.body.appendChild(tickerWrap);
 
+    // Thuật toán tính tốc độ chạy
     setTimeout(() => {
         const textElement = document.getElementById('noi-dung-thanh-thong-bao');
         if (textElement) {
             const distance = window.innerWidth + textElement.scrollWidth;
-            const duration = distance / 90; // Tốc độ trôi vừa phải (90px/s) để học sinh kịp đọc
+            const duration = distance / 90; // Vận tốc 90px/s
             textElement.style.animation = `ticker-anim-tb ${duration}s linear infinite`;
         }
     }, 100);
