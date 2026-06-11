@@ -809,6 +809,9 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_7_12_tab_duyet_don()" style="padding: 15px 25px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(255,193,7,0.3);">📩 Duyệt Yêu Cầu Học Sinh</button>
                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 15px 25px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(108,117,125,0.3);">🏫 Quản Lý Lớp Học</button>
                 <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 15px 25px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(111,66,193,0.3);">🎓 Quản Lý Học Sinh</button>
+
+                <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 15px 25px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(253,126,20,0.3);">📢 Quản Lý Thông Báo</button>
+
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 15px 25px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(231,76,60,0.3);">🔴 TỔ CHỨC LIVE QUIZ</button>
             </div>
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
@@ -6251,5 +6254,127 @@ async function ham_them_moi_thong_bao(noiDung, guiToanTruong, mangMaLop) {
     } catch (error) {
         console.error("Lỗi:", error);
         alert("Lỗi khi gửi thông báo.");
+    }
+}
+
+
+//// =====================================================================
+//// MODULE 11: QUẢN LÝ THÔNG BÁO TỪ GIÁO VIÊN
+//// =====================================================================
+
+// Hàm 11.1: Vẽ giao diện nhập liệu thông báo vào vùng làm việc chi tiết
+function ham_11_1_ve_quan_ly_thong_bao() {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `
+        <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto;">
+            <h3 style="color: #fd7e14; margin-top: 0; border-bottom: 2px solid #f8f9fa; padding-bottom: 10px;">📢 PHÁT LOA THÔNG BÁO</h3>
+            
+            <p style="font-size: 14px; color: #6c757d; margin-bottom: 15px;">Dòng thông báo này sẽ chạy ngang trên đỉnh màn hình của học sinh khi các em đăng nhập.</p>
+
+            <textarea id="txt-noi-dung-tb" placeholder="Nhập nội dung thông báo (VD: Thứ 7 tuần này lớp 12A1 kiểm tra 15 phút nhé...)" style="width: 100%; height: 100px; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 15px; box-sizing: border-box; resize: vertical;"></textarea>
+            
+            <div style="margin-bottom: 20px; background: #e9ecef; padding: 10px 15px; border-radius: 6px;">
+                <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="chk-toan-truong" onchange="toggleChonLop()" checked style="width: 18px; height: 18px;"> 
+                    🌍 Gửi Toàn Trường (Tất cả học sinh đều thấy)
+                </label>
+            </div>
+            
+            <div id="vung-chon-lop-tb" style="display: none; margin-bottom: 20px; background: #fff3cd; padding: 15px; border-radius: 6px; border: 1px solid #ffe69c;">
+                <p style="margin: 0 0 10px 0; font-size: 14px; font-weight: bold; color: #856404;">🎯 Gửi Riêng Theo Lớp</p>
+                <p style="margin: 0 0 8px 0; font-size: 13px; color: #664d03;">Nhập mã các lớp cần gửi, phân cách bằng dấu phẩy (,):</p>
+                <input type="text" id="txt-mang-lop-tb" placeholder="VD: C8P2B, 57CF1" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ced4da; box-sizing: border-box;">
+            </div>
+
+            <div style="text-align: right;">
+                <button onclick="xu_ly_gui_thong_bao_tu_ui(event)" style="padding: 12px 25px; background: #ef4444; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(239,68,68,0.3); transition: 0.2s;">
+                    🚀 PHÁT THÔNG BÁO NGAY
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Hàm 11.2: Ẩn/Hiện vùng chọn mã lớp
+function toggleChonLop() {
+    const isToanTruong = document.getElementById('chk-toan-truong').checked;
+    const vungChonLop = document.getElementById('vung-chon-lop-tb');
+    if (isToanTruong) {
+        vungChonLop.style.display = 'none';
+    } else {
+        vungChonLop.style.display = 'block';
+    }
+}
+
+// Hàm 11.3: Lấy dữ liệu từ giao diện, kiểm tra hợp lệ và gọi API
+async function xu_ly_gui_thong_bao_tu_ui(event) {
+    const noiDung = document.getElementById('txt-noi-dung-tb').value.trim();
+    const isToanTruong = document.getElementById('chk-toan-truong').checked;
+    const chuoiLop = document.getElementById('txt-mang-lop-tb').value.trim();
+
+    if (!noiDung) {
+        alert("⚠️ Thầy chưa nhập nội dung thông báo!");
+        document.getElementById('txt-noi-dung-tb').focus();
+        return;
+    }
+
+    let mangMaLop = [];
+    if (!isToanTruong) {
+        if (!chuoiLop) {
+            alert("⚠️ Thầy chưa nhập mã lớp để gửi riêng!");
+            document.getElementById('txt-mang-lop-tb').focus();
+            return;
+        }
+        mangMaLop = chuoiLop.split(',').map(item => item.trim()).filter(item => item !== "");
+    }
+
+    const btn = event.target;
+    const oldText = btn.innerHTML;
+    btn.innerHTML = "⏳ Đang phát loa...";
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    // Đã cập nhật gọi Hàm 11.4 ở đây
+    await ham_11_4_goi_api_luu_thong_bao(noiDung, isToanTruong, mangMaLop);
+
+    btn.innerHTML = oldText;
+    btn.disabled = false;
+    btn.style.opacity = '1';
+
+    // Reset lại form sau khi gửi thành công
+    document.getElementById('txt-noi-dung-tb').value = '';
+    document.getElementById('txt-mang-lop-tb').value = '';
+}
+
+// Hàm 11.4: Hàm Lõi - Push dữ liệu lên bảng thong_bao của Supabase
+async function ham_11_4_goi_api_luu_thong_bao(noiDung, guiToanTruong, mangMaLop) {
+    try {
+        const kieuGui = guiToanTruong ? 'CHUNG' : 'RIENG';
+        const dsLop = guiToanTruong ? [] : mangMaLop;
+
+        const bodyData = {
+            noi_dung: noiDung,
+            kieu_gui: kieuGui,
+            danh_sach_lop: dsLop,
+            trang_thai: 1
+        };
+
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao`, {
+            method: 'POST',
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(bodyData)
+        });
+
+        if (!response.ok) throw new Error("Không thể lưu thông báo");
+        alert("✅ Đã phát loa thông báo thành công! Học sinh sẽ nhìn thấy ngay lập tức.");
+
+    } catch (error) {
+        console.error("Lỗi:", error);
+        alert("❌ Lỗi khi gửi thông báo. Vui lòng kiểm tra lại kết nối hoặc CSDL.");
     }
 }
