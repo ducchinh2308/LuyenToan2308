@@ -118,21 +118,25 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
 
 
     // =================================================================
-    // 🌟 6. KHỞI CHẠY HỆ THỐNG THANH THI ĐUA VÀ NHẮC NHỞ KÉP
+    // 🌟 6. KHỞI CHẠY HỆ THỐNG THANH THI ĐUA, NHẮC NHỞ VÀ THÔNG BÁO
     // =================================================================
 
     // Đập bỏ đồng hồ cũ (nếu có) để chống lag
     if (window.dongHoThanhChayHS) clearInterval(window.dongHoThanhChayHS);
     if (window.dongHoThanhChayNV) clearInterval(window.dongHoThanhChayNV);
+    if (window.dongHoThanhChayTB) clearInterval(window.dongHoThanhChayTB); // 👈 Thêm đập đồng hồ Thông báo
 
     // Kích hoạt thanh báo điểm (Trôi phía trên)
     ham_8_1_1_ve_thanh_chay_lop_minh();
     window.dongHoThanhChayHS = setInterval(ham_8_1_1_ve_thanh_chay_lop_minh, 60000);
 
-    // Kích hoạt thanh nhắc nợ bài tập (Trôi phía dưới)
+    // Kích hoạt thanh nhắc nợ bài tập (Trôi phía dưới sát đáy)
     ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam();
     window.dongHoThanhChayNV = setInterval(ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam, 60000);
 
+    // 🌟 Kích hoạt thanh THÔNG BÁO TỪ GIÁO VIÊN (Trôi trên đỉnh cùng)
+    ham_8_1_3_ve_thanh_thong_bao_tu_gv();
+    window.dongHoThanhChayTB = setInterval(ham_8_1_3_ve_thanh_thong_bao_tu_gv, 60000);
 }
 
 //// =====================================================================
@@ -373,6 +377,104 @@ function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
         }
     }, 100);
 }
+
+
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 19:45 - Ngày 10/06/2026] - Hàm 8.1.3: Quét và hiển thị Thông báo từ GV (Màn hình HS)
+//// =====================================================================
+async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
+    if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
+
+    const dsLopCuaToi = GocHocSinhState.danh_sach_ma_lop || [];
+
+    try {
+        const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+
+        // 1. Chỉ lấy các thông báo đang Active (trang_thai = 1), mới nhất lên trước
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao?select=*&trang_thai=eq.1&order=thoi_gian_tao.desc`, { headers: headersAPI });
+        const dataThongBao = await res.json();
+
+        if (!dataThongBao || dataThongBao.length === 0) return;
+
+        // 2. BỘ LỌC THÔNG MINH: Giữ lại thông báo Chung, hoặc thông báo Riêng có chứa mã lớp của mình
+        const cacThongBaoHopLe = dataThongBao.filter(tb => {
+            if (tb.kieu_gui === 'CHUNG') return true; // Ai cũng được đọc
+
+            if (tb.kieu_gui === 'RIENG' && Array.isArray(tb.danh_sach_lop)) {
+                // Kiểm tra xem mảng lớp của thông báo có chứa lớp nào của học sinh không
+                return tb.danh_sach_lop.some(maLop => dsLopCuaToi.includes(maLop));
+            }
+            return false;
+        });
+
+        if (cacThongBaoHopLe.length === 0) return;
+
+        // 3. Ráp HTML cho thanh chữ chạy (Nối các thông báo lại với nhau)
+        let chuoiHienThi = cacThongBaoHopLe.map(tb => {
+            let tag = tb.kieu_gui === 'CHUNG' ? 'THÔNG BÁO CHUNG' : 'THÔNG BÁO LỚP';
+            let colorTag = tb.kieu_gui === 'CHUNG' ? '#ef4444' : '#3b82f6'; // Đỏ cho toàn trường, Xanh cho lớp
+
+            return `
+                <span style="margin-right: 80px; font-family: Arial, sans-serif; display: inline-block;">
+                    📢 <span style="background: ${colorTag}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-right: 5px;">${tag}</span> 
+                    <span style="font-size: 14px; font-weight: bold; color: #facc15;">${tb.noi_dung}</span>
+                </span>
+            `;
+        }).join("");
+
+        ve_khung_html_thanh_thong_bao_top(chuoiHienThi);
+
+    } catch (error) {
+        console.warn("⚠️ [Thanh thông báo GV bị gián đoạn]:", error.message);
+    }
+}
+
+//// =====================================================================
+//// Hàm phụ trợ: Vẽ thanh Thông Báo trên ĐỈNH (TOP: 0) - Font 14px dễ nhìn
+//// =====================================================================
+function ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
+    if (document.getElementById('thanh-thong-bao-gv')) {
+        document.getElementById('thanh-thong-bao-gv').remove();
+    }
+
+    // Đẩy nội dung web xuống một chút để nhường chỗ cho thanh thông báo (Font 14 nên cần khoảng 28px)
+    document.body.style.paddingTop = '28px';
+
+    const tickerWrap = document.createElement('div');
+    tickerWrap.id = 'thanh-thong-bao-gv';
+    tickerWrap.innerHTML = `
+        <style>
+            #thanh-thong-bao-gv { 
+                position: fixed; top: 0; left: 0; width: 100%; 
+                background-color: #1e293b; color: #ffffff; 
+                padding: 5px 0; 
+                z-index: 9999; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+                border-bottom: 2px solid #facc15; /* Viền vàng nổi bật */
+            }
+            .ticker-move-tb { display: inline-block; white-space: nowrap; padding-left: 100%; }
+            .ticker-move-tb:hover { animation-play-state: paused; cursor: pointer; }
+            @keyframes ticker-anim-tb { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+            
+            /* Thông báo của Thầy cần to rõ ràng, set cứng 13-14px */
+            #thanh-thong-bao-gv * { font-size: 13px !important; }
+        </style>
+        <div class="ticker-move-tb" id="noi-dung-thanh-thong-bao">${chuoiHienThi}</div>
+    `;
+    document.body.appendChild(tickerWrap);
+
+    setTimeout(() => {
+        const textElement = document.getElementById('noi-dung-thanh-thong-bao');
+        if (textElement) {
+            const distance = window.innerWidth + textElement.scrollWidth;
+            const duration = distance / 90; // Tốc độ trôi vừa phải (90px/s) để học sinh kịp đọc
+            textElement.style.animation = `ticker-anim-tb ${duration}s linear infinite`;
+        }
+    }, 100);
+}
+
+
 
 // =====================================================================
 // Hàm 8.2: Xử lý Tab "Nhiệm Vụ Trên Lớp" (ĐÃ SỬA LỖI LỌC LỚP ĐỘNG)
