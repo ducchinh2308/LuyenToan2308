@@ -6257,25 +6257,20 @@ async function ham_them_moi_thong_bao(noiDung, guiToanTruong, mangMaLop) {
     }
 }
 
+
+
 //// =====================================================================
-//// MODULE 11: QUẢN LÝ THÔNG BÁO TỪ GIÁO VIÊN (CẬP NHẬT: CHECKBOX CHỌN LỚP)
+//// MODULE 11: QUẢN LÝ THÔNG BÁO TỪ GIÁO VIÊN (CÓ HẸN GIỜ)
 //// =====================================================================
 
-// Hàm 11.1: Vẽ giao diện nhập liệu thông báo (Tự động quét DB để render danh sách Checkbox)
+// Hàm 11.1: Vẽ giao diện nhập liệu thông báo
 async function ham_11_1_ve_quan_ly_thong_bao() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-
-    // Hiển thị trạng thái chờ trong khi kéo danh sách lớp từ DB về
-    vungLamViec.innerHTML = `<div style="text-align:center; padding: 30px; color: #fd7e14; font-weight:bold;">⏳ Đang tải danh sách lớp học...</div>`;
+    vungLamViec.innerHTML = `<div style="text-align:center; padding: 30px; color: #fd7e14; font-weight:bold;">⏳ Đang tải form...</div>`;
 
     let chuoiCheckboxLop = "";
     try {
-        const headersAPI = {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`
-        };
-
-        // Lấy toàn bộ mã lớp và tên lớp xếp theo thứ tự bảng chữ cái
+        const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
         const res = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop&order=ten_lop.asc`, { method: 'GET', headers: headersAPI });
         const dataLop = await res.json();
 
@@ -6287,22 +6282,29 @@ async function ham_11_1_ve_quan_ly_thong_bao() {
                 </label>
             `).join("");
         } else {
-            chuoiCheckboxLop = `<p style="color: #6c757d; font-size: 13px; margin: 0;">❌ Chưa có dữ liệu lớp học nào trong cơ sở dữ liệu.</p>`;
+            chuoiCheckboxLop = `<p style="color: #6c757d; font-size: 13px; margin: 0;">❌ Chưa có lớp học nào.</p>`;
         }
     } catch (error) {
-        console.error("Lỗi tải lớp học:", error);
-        chuoiCheckboxLop = `<p style="color: #ef4444; font-size: 13px; margin: 0;">❌ Lỗi kết nối hệ thống, không thể tải danh sách lớp học.</p>`;
+        chuoiCheckboxLop = `<p style="color: #ef4444; font-size: 13px; margin: 0;">❌ Lỗi tải danh sách lớp.</p>`;
     }
 
-    // Tiến hành render toàn bộ cấu trúc UI ra màn hình
     vungLamViec.innerHTML = `
         <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto;">
-            <h3 style="color: #fd7e14; margin-top: 0; border-bottom: 2px solid #f8f9fa; padding-bottom: 10px;">📢 PHÁT LOA THÔNG BÁO</h3>
+            <h3 style="color: #fd7e14; margin-top: 0; border-bottom: 2px solid #f8f9fa; padding-bottom: 10px;">📢 PHÁT LOA THÔNG BÁO (CÓ HẸN GIỜ)</h3>
             
-            <p style="font-size: 14px; color: #6c757d; margin-bottom: 15px;">Dòng thông báo này sẽ chạy ngang trên đỉnh màn hình của học sinh khi các em đăng nhập.</p>
+            <textarea id="txt-noi-dung-tb" placeholder="Nhập nội dung thông báo..." style="width: 100%; height: 100px; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 15px; box-sizing: border-box; resize: vertical;"></textarea>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 15px; background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #e9ecef;">
+                <div style="flex: 1;">
+                    <label style="font-size: 13px; font-weight: bold; color: #495057;">⏰ Bắt đầu hiển thị:</label>
+                    <input type="datetime-local" id="txt-thoi-gian-mo" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da; margin-top: 5px; box-sizing: border-box;">
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 13px; font-weight: bold; color: #495057;">⏳ Kết thúc hiển thị (Bỏ trống = Mãi mãi):</label>
+                    <input type="datetime-local" id="txt-thoi-gian-tat" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ced4da; margin-top: 5px; box-sizing: border-box;">
+                </div>
+            </div>
 
-            <textarea id="txt-noi-dung-tb" placeholder="Nhập nội dung thông báo (VD: Thứ 7 tuần này trường nghỉ học, các em tự ôn tập ở nhà nhé...)" style="width: 100%; height: 100px; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 15px; box-sizing: border-box; resize: vertical;"></textarea>
-            
             <div style="margin-bottom: 20px; background: #e9ecef; padding: 10px 15px; border-radius: 6px;">
                 <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;">
                     <input type="checkbox" id="chk-toan-truong" onchange="toggleChonLop()" checked style="width: 18px; height: 18px;"> 
@@ -6312,8 +6314,6 @@ async function ham_11_1_ve_quan_ly_thong_bao() {
             
             <div id="vung-chon-lop-tb" style="display: none; margin-bottom: 20px; background: #fff3cd; padding: 15px; border-radius: 6px; border: 1px solid #ffe69c;">
                 <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: bold; color: #856404;">🎯 Gửi Riêng Theo Lớp</p>
-                <p style="margin: 0 0 12px 0; font-size: 13px; color: #664d03;">Thầy tích chọn các lớp muốn nhận thông báo này:</p>
-                
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; max-height: 200px; overflow-y: auto; padding: 5px 0;">
                     ${chuoiCheckboxLop}
                 </div>
@@ -6321,100 +6321,81 @@ async function ham_11_1_ve_quan_ly_thong_bao() {
 
             <div style="text-align: right;">
                 <button onclick="xu_ly_gui_thong_bao_tu_ui(event)" style="padding: 12px 25px; background: #ef4444; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(239,68,68,0.3); transition: 0.2s;">
-                    🚀 PHÁT THÔNG BÁO NGAY
+                    🚀 LƯU THÔNG BÁO
                 </button>
             </div>
         </div>
     `;
+
+    // Tự động điền giờ hiện tại vào ô "Bắt đầu hiển thị" cho tiện
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    document.getElementById('txt-thoi-gian-mo').value = now.toISOString().slice(0, 16);
 }
 
 // Hàm 11.2: Ẩn/Hiện vùng chọn mã lớp
 function toggleChonLop() {
     const isToanTruong = document.getElementById('chk-toan-truong').checked;
-    const vungChonLop = document.getElementById('vung-chon-lop-tb');
-    if (isToanTruong) {
-        vungChonLop.style.display = 'none';
-    } else {
-        vungChonLop.style.display = 'block';
-    }
+    document.getElementById('vung-chon-lop-tb').style.display = isToanTruong ? 'none' : 'block';
 }
 
-// Hàm 11.3: Thu thập dữ liệu từ các Checkbox được tích chọn và kiểm tra tính hợp lệ
+// Hàm 11.3: Xử lý dữ liệu
 async function xu_ly_gui_thong_bao_tu_ui(event) {
     const noiDung = document.getElementById('txt-noi-dung-tb').value.trim();
     const isToanTruong = document.getElementById('chk-toan-truong').checked;
+    const tgMo = document.getElementById('txt-thoi-gian-mo').value;
+    const tgTat = document.getElementById('txt-thoi-gian-tat').value;
 
-    if (!noiDung) {
-        alert("⚠️ Thầy chưa nhập nội dung thông báo!");
-        document.getElementById('txt-noi-dung-tb').focus();
-        return;
-    }
+    if (!noiDung) { alert("⚠️ Thầy chưa nhập nội dung!"); return; }
+    if (!tgMo) { alert("⚠️ Vui lòng chọn thời gian mở thông báo!"); return; }
 
     let mangMaLop = [];
     if (!isToanTruong) {
-        // Gom toàn bộ các ô checkbox có name="lop_thong_bao" đang được tích chọn
         const checkboxesChecked = document.querySelectorAll('input[name="lop_thong_bao"]:checked');
-
-        if (checkboxesChecked.length === 0) {
-            alert("⚠️ Thầy chưa chọn lớp nào! Vui lòng tích chọn ít nhất một lớp học.");
-            return;
-        }
-
-        // Đổ toàn bộ mã lớp (value) từ Checkbox vào mảng dữ liệu
+        if (checkboxesChecked.length === 0) { alert("⚠️ Thầy chưa chọn lớp nào!"); return; }
         mangMaLop = Array.from(checkboxesChecked).map(cb => cb.value);
     }
 
     const btn = event.target;
     const oldText = btn.innerHTML;
-    btn.innerHTML = "⏳ Đang phát loa...";
+    btn.innerHTML = "⏳ Đang lưu...";
     btn.disabled = true;
-    btn.style.opacity = '0.7';
 
-    await ham_11_4_goi_api_luu_thong_bao(noiDung, isToanTruong, mangMaLop);
+    await ham_11_4_goi_api_luu_thong_bao(noiDung, isToanTruong, mangMaLop, tgMo, tgTat);
 
     btn.innerHTML = oldText;
     btn.disabled = false;
-    btn.style.opacity = '1';
-
-    // Đưa form về trạng thái trống ban đầu sau khi phát thông báo thành công
     document.getElementById('txt-noi-dung-tb').value = '';
-
-    const tatCaCheckboxes = document.querySelectorAll('input[name="lop_thong_bao"]');
-    tatCaCheckboxes.forEach(cb => cb.checked = false);
-
-    document.getElementById('chk-toan-truong').checked = true;
-    toggleChonLop();
+    document.getElementById('txt-thoi-gian-tat').value = '';
 }
 
-// Hàm 11.4: Hàm Lõi - Đẩy dữ liệu trực tiếp lên Database Supabase
-async function ham_11_4_goi_api_luu_thong_bao(noiDung, guiToanTruong, mangMaLop) {
+// Hàm 11.4: Hàm lõi - Đẩy lên DB
+async function ham_11_4_goi_api_luu_thong_bao(noiDung, guiToanTruong, mangMaLop, tgMo, tgTat) {
     try {
-        const kieuGui = guiToanTruong ? 'CHUNG' : 'RIENG';
-        const dsLop = guiToanTruong ? [] : mangMaLop;
-
         const bodyData = {
             noi_dung: noiDung,
-            kieu_gui: kieuGui,
-            danh_sach_lop: dsLop,
-            trang_thai: 1
+            kieu_gui: guiToanTruong ? 'CHUNG' : 'RIENG',
+            danh_sach_lop: guiToanTruong ? [] : mangMaLop,
+            trang_thai: 1,
+            thoi_gian_mo: new Date(tgMo).toISOString(),
+            thoi_gian_tat: tgTat ? new Date(tgTat).toISOString() : null
         };
 
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao`, {
             method: 'POST',
             headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=minimal'
+                'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json', 'Prefer': 'return=minimal'
             },
             body: JSON.stringify(bodyData)
         });
 
-        if (!response.ok) throw new Error("Không thể lưu thông báo");
-        alert("✅ Đã phát loa thông báo thành công! Học sinh thuộc lớp được chọn sẽ nhìn thấy ngay.");
-
+        if (!res.ok) throw new Error("Lỗi API");
+        alert("✅ Đã lưu thông báo thành công!");
     } catch (error) {
-        console.error("Lỗi API thông báo:", error);
-        alert("❌ Lỗi khi gửi thông báo. Vui lòng kiểm tra cấu hình bảng thong_bao.");
+        console.error(error);
+        alert("❌ Lỗi khi lưu thông báo.");
     }
 }
+
+

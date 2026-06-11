@@ -384,49 +384,76 @@ function ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
 //// =====================================================================
 //// [Nhãn thời gian: 19:45 - Ngày 10/06/2026] - Hàm 8.1.3: Quét và hiển thị Thông báo từ GV (Màn hình HS)
 //// =====================================================================
+//// =====================================================================
+//// Hàm 8.1.3: Quét và hiển thị Thông báo (Kiểm tra lịch hẹn giờ)
+//// =====================================================================
 async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
-
     const dsLopCuaToi = GocHocSinhState.danh_sach_ma_lop || [];
 
     try {
         const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
-
-        // 1. Chỉ lấy các thông báo đang Active (trang_thai = 1), mới nhất lên trước
+        // Lấy tất cả thông báo trạng thái 1
         const res = await fetch(`${SUPABASE_URL}/rest/v1/thong_bao?select=*&trang_thai=eq.1&order=thoi_gian_tao.desc`, { headers: headersAPI });
         const dataThongBao = await res.json();
 
         if (!dataThongBao || dataThongBao.length === 0) return;
 
-        // 2. BỘ LỌC THÔNG MINH: Giữ lại thông báo Chung, hoặc thông báo Riêng có chứa mã lớp của mình
-        const cacThongBaoHopLe = dataThongBao.filter(tb => {
-            if (tb.kieu_gui === 'CHUNG') return true; // Ai cũng được đọc
+        const currentTime = new Date(); // Thời gian hiện tại lúc học sinh xem
 
+        // BỘ LỌC ĐA TẦNG: Lớp + Thời Gian
+        const cacThongBaoHopLe = dataThongBao.filter(tb => {
+            // 1. Kiểm tra hẹn giờ MỞ (Nếu thời gian hiện tại < thời gian mở -> Giấu)
+            if (tb.thoi_gian_mo) {
+                const tgMo = new Date(tb.thoi_gian_mo);
+                if (currentTime < tgMo) return false;
+            }
+            // 2. Kiểm tra hẹn giờ TẮT (Nếu thời gian hiện tại > thời gian tắt -> Giấu)
+            if (tb.thoi_gian_tat) {
+                const tgTat = new Date(tb.thoi_gian_tat);
+                if (currentTime > tgTat) return false;
+            }
+
+            // 3. Kiểm tra Lớp (Chung hay Riêng)
+            if (tb.kieu_gui === 'CHUNG') return true;
             if (tb.kieu_gui === 'RIENG' && Array.isArray(tb.danh_sach_lop)) {
-                // Kiểm tra xem mảng lớp của thông báo có chứa lớp nào của học sinh không
                 return tb.danh_sach_lop.some(maLop => dsLopCuaToi.includes(maLop));
             }
             return false;
         });
 
-        if (cacThongBaoHopLe.length === 0) return;
+        if (cacThongBaoHopLe.length === 0) {
+            // Nếu không có tb nào hợp lệ thì xóa khung (phòng khi tb vừa hết hạn)
+            if (document.getElementById('thanh-thong-bao-gv')) {
+                document.getElementById('thanh-thong-bao-gv').remove();
+                document.body.style.paddingTop = '0px';
+            }
+            return;
+        }
 
-        // 3. Ráp HTML cho thanh chữ chạy (Nối các thông báo lại với nhau)
         let chuoiHienThi = cacThongBaoHopLe.map(tb => {
             let tag = tb.kieu_gui === 'CHUNG' ? 'THÔNG BÁO CHUNG' : 'THÔNG BÁO LỚP';
-            let colorTag = tb.kieu_gui === 'CHUNG' ? '#ef4444' : '#3b82f6'; // Đỏ cho toàn trường, Xanh cho lớp
+            let colorTag = tb.kieu_gui === 'CHUNG' ? '#ef4444' : '#3b82f6';
+
+            // Format thời gian gốc (thoi_gian_tao) hoặc (thoi_gian_mo) để hiển thị
+            let timeToFormat = tb.thoi_gian_mo ? tb.thoi_gian_mo : tb.thoi_gian_tao;
+            let d = new Date(timeToFormat);
+            let gio = d.getHours().toString().padStart(2, '0');
+            let phut = d.getMinutes().toString().padStart(2, '0');
+            let ngay = d.getDate().toString().padStart(2, '0');
+            let thang = (d.getMonth() + 1).toString().padStart(2, '0');
+            let thoiGianPhat = `${gio}:${phut} ngày ${ngay}/${thang}`;
 
             return `
-        <span style="margin-right: 80px; font-family: Arial, sans-serif; display: inline-block;">
-            📢 <span style="background: ${colorTag}; color: white; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-right: 5px;">${tag}</span> 
-            <span style="font-weight: bold; color: #facc15;">${tb.noi_dung}</span>
-        </span>
-    `;
+                <span style="margin-right: 80px; font-family: Arial, sans-serif; display: inline-block;">
+                    📢 <span style="background: ${colorTag}; color: white; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-right: 5px;">${tag}</span> 
+                    <span style="font-weight: bold; color: #facc15;">${tb.noi_dung}</span>
+                    <span style="color: #cbd5e1; font-weight: normal; font-style: italic; margin-left: 6px;">(${thoiGianPhat})</span>
+                </span>
+            `;
         }).join("");
 
         ve_khung_html_thanh_thong_bao_top(chuoiHienThi);
-
-
 
     } catch (error) {
         console.warn("⚠️ [Thanh thông báo GV bị gián đoạn]:", error.message);
