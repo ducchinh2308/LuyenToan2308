@@ -1,7 +1,7 @@
 ﻿// ==============================================================
 // KHỐI 10: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
-const KHOI10_VERSION = "Block 10: Cập nhật lúc 3h1- Ngày 10/06";
+const KHOI10_VERSION = "Block 10: Cập nhật lúc 3h- Ngày 10/06";
 console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {

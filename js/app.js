@@ -1838,8 +1838,145 @@ window.ham_5_3_tim_kiem_live_hoc_sinh = function (tuKhoa) {
 
 
 
-// [Nhãn thời gian: 12:28 - Ngày 28/05/2026] - Bản chuẩn: Giữ nguyên giao diện gốc bảng học sinh, tích hợp lọc lớp, tìm kiếm và STT động liên tục
-window.ham_5_10_ve_bang_hoc_sinh = function () {
+//// [Nhãn thời gian: 12:28 - Ngày 28/05/2026] - Bản chuẩn: Giữ nguyên giao diện gốc bảng học sinh, tích hợp lọc lớp, tìm kiếm và STT động liên tục
+//window.ham_5_10_ve_bang_hoc_sinh = function () {
+//    const renderArea = document.getElementById('danh-sach-hs-render');
+//    let dsHocSinh = [...BangHocSinhState.duLieu];
+
+//    if (dsHocSinh.length === 0) {
+//        renderArea.innerHTML = `<p style="text-align: center; color: #666; padding: 20px; background: white; border-radius: 8px;">Chưa có học sinh nào.</p>`;
+//        return;
+//    }
+
+//    // 🌟 1. LẤY TRẠNG THÁI BỘ LỌC TỪ GIAO DIỆN
+//    const nutLopActive = document.querySelector('.btn-loc-lop-hs.active');
+//    const maLopDangChon = nutLopActive ? nutLopActive.getAttribute('onclick').match(/'([^']+)'/)[1] : 'TAT_CA';
+
+//    const oTimKiem = document.getElementById('input-tim-kiem-qlhs');
+//    const tuKhoa = oTimKiem ? oTimKiem.value.toLowerCase().trim() : '';
+
+//    // Thuật toán Sort giữ nguyên cấu trúc cũ của thầy
+//    const cot = BangHocSinhState.cotDangSort;
+//    const heSo = BangHocSinhState.tangDan ? 1 : -1;
+//    dsHocSinh.sort((a, b) => {
+//        let valA = a[cot] === null ? '' : a[cot];
+//        let valB = b[cot] === null ? '' : b[cot];
+
+//        // Xử lý sort riêng cho cột kim_cuong và diem_tich_luy
+//        if (cot === 'kim_cuong' || cot === 'diem_tich_luy') {
+//            return (Number(valA || 0) - Number(valB || 0)) * heSo;
+//        }
+
+//        if (valA < valB) return -1 * heSo;
+//        if (valA > valB) return 1 * heSo;
+//        return 0;
+//    });
+
+//    const iconSort = BangHocSinhState.tangDan ? '▲' : '▼';
+
+//    let htmlTable = `
+//        <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
+//            <table style="width: 100%; min-width: 1800px; border-collapse: collapse; background: white; font-size: 13px;">
+//                <thead>
+//                    <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
+//                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">STT</th>
+//                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Thao tác</th>
+//                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Trạng thái</th>
+//                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; color: #00838f;" onclick="ham_5_11_thay_doi_sort('kim_cuong')">💎 Kim Cương ${cot === 'kim_cuong' ? iconSort : '↕'}</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('sdt')">SĐT ${cot === 'sdt' ? iconSort : '↕'}</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Mật khẩu</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Trường</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Tỉnh</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Khối</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Mã lớp tham gia</th>
+//                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_5_11_thay_doi_sort('diem_tich_luy')">Điểm TL ${cot === 'diem_tich_luy' ? iconSort : '↕'}</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('lan_dang_nhap_cuoi')">Đăng nhập cuối ${cot === 'lan_dang_nhap_cuoi' ? iconSort : '↕'}</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Ngày tham gia</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">Metadata</th>
+//                        <th style="padding: 10px; border: 1px solid #eee;">UID (Mã định danh)</th>
+//                    </tr>
+//                </thead>
+//                <tbody>
+//    `;
+
+//    let sttChayHienTai = 1; // 🌟 2. BIẾN ĐẾM STT ĐỘNG
+//    let coHocSinhNaoKhong = false;
+
+//    dsHocSinh.forEach((hs) => {
+//        const ngayThamGia = hs.ngay_tham_gia ? new Date(hs.ngay_tham_gia).toLocaleString('vi-VN') : '-';
+//        const ngayCuoi = hs.lan_dang_nhap_cuoi ? new Date(hs.lan_dang_nhap_cuoi).toLocaleString('vi-VN') : 'Chưa vào';
+
+//        // Học sinh có thể tham gia nhiều lớp
+//        const arrMaLop = hs.danh_sach_ma_lop || [];
+//        const maLop = arrMaLop.length > 0 ? arrMaLop.join(', ') : '-';
+
+//        const tenHsLower = (hs.ten || '').toLowerCase();
+//        const sdtLower = (hs.so_dien_thoai || hs.sdt || '').toLowerCase();
+
+//        // 🌟 3. KIỂM TRA BỘ LỌC ĐỂ ẨN/HIỆN
+//        const hopLeLop = (maLopDangChon === 'TAT_CA' || arrMaLop.includes(maLopDangChon));
+//        const hopLeTimKiem = (tuKhoa === '' || tenHsLower.includes(tuKhoa) || sdtLower.includes(tuKhoa));
+
+//        if (hopLeLop && hopLeTimKiem) {
+//            coHocSinhNaoKhong = true;
+
+//            const mauTrangThai = hs.trang_thai == 1 ? '#28a745' : '#6c757d';
+//            const chuTrangThai = hs.trang_thai == 1 ? 'Mở' : 'Khóa';
+//            const tenAnToan = hs.ten ? hs.ten.replace(/'/g, "\\'") : 'Học sinh';
+//            const soKC = hs.kim_cuong || 0;
+
+//            // 🌟 4. TĂNG STT LIÊN TỤC VÀ DỰNG DÒNG
+//            htmlTable += `
+//                <tr style="border-bottom: 1px solid #eee; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="this.style.background='transparent'">
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; color:#666; font-weight:bold;">${sttChayHienTai++}</td>
+
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center;">
+//                        <div style="display: flex; gap: 6px; justify-content: center;">
+//                            <button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', ${hs.trang_thai == 1 ? 0 : 1}, '${tenAnToan}')"
+//                                    style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; background: ${hs.trang_thai == 1 ? '#fff1f0' : '#e6ffed'}; color: ${hs.trang_thai == 1 ? '#dc3545' : '#28a745'}; font-weight: bold; font-size:12px;">
+//                                ${hs.trang_thai == 1 ? '🔒 Khóa' : '🔓 Mở'}
+//                            </button>
+
+//                            <button onclick="ham_5_12_xoa_hoc_sinh('${hs.uid}')"
+//                                    style="padding: 4px 8px; border-radius: 4px; border: 1px solid #dc3545; cursor: pointer; background: #dc3545; color: white; font-weight: bold; font-size:12px; transition:0.2s;"
+//                                    onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">
+//                                🗑️ Xóa
+//                            </button>
+//                        </div>
+//                    </td>
+
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: 900; color: #00acc1;">${soKC}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hs.ten}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${hs.sdt}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; color: #666;">${hs.mat_khau}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee;">${hs.truong || '-'}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee;">${hs.tinh || '-'}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${hs.khoi_lop || '-'}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-weight: bold;">${maLop}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hs.diem_tich_luy || 0}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${ngayCuoi}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${ngayThamGia}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; font-size: 10px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">${JSON.stringify(hs.metadata)}</td>
+//                    <td style="padding: 10px; border: 1px solid #eee; font-family: monospace; color: #888; font-size: 11px;">${hs.uid}</td>
+//                </tr>
+//            `;
+//        }
+//    });
+
+//    htmlTable += `</tbody></table></div>`;
+
+//    if (!coHocSinhNaoKhong) {
+//        renderArea.innerHTML = `<p style="text-align: center; color: #999; padding: 20px; background: white; border-radius: 8px;">🔍 Không có học sinh nào phù hợp với bộ lọc.</p>`;
+//    } else {
+//        renderArea.innerHTML = htmlTable;
+//    }
+//}
+
+
+// [Nhãn thời gian: 21:05 - Ngày 11/06/2026] - Bản nâng cấp: Bóc tách JSON chi tiết Kim Cương theo Mã Nhiệm Vụ của Lớp
+window.ham_5_10_ve_bang_hoc_sinh = async function () {
     const renderArea = document.getElementById('danh-sach-hs-render');
     let dsHocSinh = [...BangHocSinhState.duLieu];
 
@@ -1851,28 +1988,77 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
     // 🌟 1. LẤY TRẠNG THÁI BỘ LỌC TỪ GIAO DIỆN
     const nutLopActive = document.querySelector('.btn-loc-lop-hs.active');
     const maLopDangChon = nutLopActive ? nutLopActive.getAttribute('onclick').match(/'([^']+)'/)[1] : 'TAT_CA';
-
     const oTimKiem = document.getElementById('input-tim-kiem-qlhs');
     const tuKhoa = oTimKiem ? oTimKiem.value.toLowerCase().trim() : '';
 
-    // Thuật toán Sort giữ nguyên cấu trúc cũ của thầy
+    // 🌟 2. THUẬT TOÁN ĐỐI CHIẾU MÃ NHIỆM VỤ -> LỚP
+    // Nếu lọc theo lớp cụ thể, ta cần kéo bảng nhiem_vu về làm Từ Điển (Chỉ kéo 1 lần lưu vào RAM để chống lag)
+    if (maLopDangChon !== 'TAT_CA' && !window.TuDienNhiemVu_Lop) {
+        try {
+            const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+            const resNV = await fetch(`${SUPABASE_URL}/rest/v1/nhiem_vu?select=ma_nhiem_vu,danh_sach_lop`, { method: 'GET', headers: headersAPI });
+            const dataNV = await resNV.json();
+
+            window.TuDienNhiemVu_Lop = {}; // Khởi tạo bộ nhớ tạm
+            if (dataNV) {
+                dataNV.forEach(nv => {
+                    let mangLop = [];
+                    // Đảm bảo parse chuẩn định dạng Array của Supabase (VD: ["C8P2B"])
+                    if (Array.isArray(nv.danh_sach_lop)) {
+                        mangLop = nv.danh_sach_lop;
+                    } else if (typeof nv.danh_sach_lop === 'string') {
+                        try { mangLop = JSON.parse(nv.danh_sach_lop); } catch (e) { mangLop = [nv.danh_sach_lop]; }
+                    }
+                    window.TuDienNhiemVu_Lop[nv.ma_nhiem_vu] = mangLop;
+                });
+            }
+        } catch (error) {
+            console.warn("⚠️ Không thể tải từ điển nhiệm vụ:", error);
+        }
+    }
+
+    // 🌟 3. TÍNH TOÁN LẠI ĐIỂM KIM CƯƠNG CHO TỪNG HỌC SINH
+    dsHocSinh.forEach(hs => {
+        if (maLopDangChon === 'TAT_CA') {
+            // Xem toàn trường -> Lấy cột tổng
+            hs._kimCuongLoc = hs.kim_cuong || 0;
+        } else {
+            // Xem riêng 1 lớp -> Bóc tách JSON {"NV_A": 4, "NV_B": 1}
+            let sumKC = 0;
+            if (hs.chi_tiet_kim_cuong && typeof hs.chi_tiet_kim_cuong === 'object' && window.TuDienNhiemVu_Lop) {
+                // Duyệt qua từng nhiệm vụ học sinh đã làm
+                for (const [maNV, diem] of Object.entries(hs.chi_tiet_kim_cuong)) {
+                    // Tra từ điển xem nhiệm vụ này có thuộc lớp đang chọn không
+                    const dsLopCuaNV = window.TuDienNhiemVu_Lop[maNV] || [];
+                    if (dsLopCuaNV.includes(maLopDangChon)) {
+                        sumKC += Number(diem); // Nếu đúng thuộc lớp này thì cộng dồn điểm
+                    }
+                }
+            }
+            hs._kimCuongLoc = sumKC;
+        }
+    });
+
+    // 🌟 4. THUẬT TOÁN SORT ĐỘNG (Dựa vào điểm vừa tính)
     const cot = BangHocSinhState.cotDangSort;
     const heSo = BangHocSinhState.tangDan ? 1 : -1;
     dsHocSinh.sort((a, b) => {
-        let valA = a[cot] === null ? '' : a[cot];
-        let valB = b[cot] === null ? '' : b[cot];
-
-        // Xử lý sort riêng cho cột kim_cuong và diem_tich_luy
-        if (cot === 'kim_cuong' || cot === 'diem_tich_luy') {
-            return (Number(valA || 0) - Number(valB || 0)) * heSo;
+        if (cot === 'kim_cuong') {
+            return (Number(a._kimCuongLoc || 0) - Number(b._kimCuongLoc || 0)) * heSo;
+        }
+        if (cot === 'diem_tich_luy') {
+            return (Number(a.diem_tich_luy || 0) - Number(b.diem_tich_luy || 0)) * heSo;
         }
 
+        let valA = a[cot] === null ? '' : a[cot];
+        let valB = b[cot] === null ? '' : b[cot];
         if (valA < valB) return -1 * heSo;
         if (valA > valB) return 1 * heSo;
         return 0;
     });
 
     const iconSort = BangHocSinhState.tangDan ? '▲' : '▼';
+    let nhanCotKimCuong = maLopDangChon === 'TAT_CA' ? '💎 Tổng Kim Cương' : `💎 KC (Lớp ${maLopDangChon})`;
 
     let htmlTable = `
         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
@@ -1882,7 +2068,7 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">STT</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Thao tác</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Trạng thái</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; color: #00838f;" onclick="ham_5_11_thay_doi_sort('kim_cuong')">💎 Kim Cương ${cot === 'kim_cuong' ? iconSort : '↕'}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center; color: #00838f; background: ${maLopDangChon !== 'TAT_CA' ? '#e0f7fa' : 'transparent'};" onclick="ham_5_11_thay_doi_sort('kim_cuong')" title="Nhấn để sắp xếp theo điểm Kim Cương">${nhanCotKimCuong} ${cot === 'kim_cuong' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('ten')">Họ và Tên ${cot === 'ten' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_5_11_thay_doi_sort('sdt')">SĐT ${cot === 'sdt' ? iconSort : '↕'}</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Mật khẩu</th>
@@ -1900,44 +2086,35 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                 <tbody>
     `;
 
-    let sttChayHienTai = 1; // 🌟 2. BIẾN ĐẾM STT ĐỘNG
+    let sttChayHienTai = 1;
     let coHocSinhNaoKhong = false;
 
     dsHocSinh.forEach((hs) => {
-        const ngayThamGia = hs.ngay_tham_gia ? new Date(hs.ngay_tham_gia).toLocaleString('vi-VN') : '-';
-        const ngayCuoi = hs.lan_dang_nhap_cuoi ? new Date(hs.lan_dang_nhap_cuoi).toLocaleString('vi-VN') : 'Chưa vào';
-
-        // Học sinh có thể tham gia nhiều lớp
         const arrMaLop = hs.danh_sach_ma_lop || [];
         const maLop = arrMaLop.length > 0 ? arrMaLop.join(', ') : '-';
-
         const tenHsLower = (hs.ten || '').toLowerCase();
         const sdtLower = (hs.so_dien_thoai || hs.sdt || '').toLowerCase();
 
-        // 🌟 3. KIỂM TRA BỘ LỌC ĐỂ ẨN/HIỆN
+        // Kiểm tra bộ lọc
         const hopLeLop = (maLopDangChon === 'TAT_CA' || arrMaLop.includes(maLopDangChon));
         const hopLeTimKiem = (tuKhoa === '' || tenHsLower.includes(tuKhoa) || sdtLower.includes(tuKhoa));
 
         if (hopLeLop && hopLeTimKiem) {
             coHocSinhNaoKhong = true;
-
             const mauTrangThai = hs.trang_thai == 1 ? '#28a745' : '#6c757d';
             const chuTrangThai = hs.trang_thai == 1 ? 'Mở' : 'Khóa';
             const tenAnToan = hs.ten ? hs.ten.replace(/'/g, "\\'") : 'Học sinh';
-            const soKC = hs.kim_cuong || 0;
+            const soKC = hs._kimCuongLoc; // XUẤT KIM CƯƠNG ĐÃ ĐƯỢC LỌC RA UI
 
-            // 🌟 4. TĂNG STT LIÊN TỤC VÀ DỰNG DÒNG
             htmlTable += `
                 <tr style="border-bottom: 1px solid #eee; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="this.style.background='transparent'">
                     <td style="padding: 10px; border: 1px solid #eee; text-align: center; color:#666; font-weight:bold;">${sttChayHienTai++}</td>
-
                     <td style="padding: 10px; border: 1px solid #eee; text-align: center;">
                         <div style="display: flex; gap: 6px; justify-content: center;">
                             <button onclick="ham_5_3_khoa_mo_tai_khoan('${hs.uid}', ${hs.trang_thai == 1 ? 0 : 1}, '${tenAnToan}')"
                                     style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; background: ${hs.trang_thai == 1 ? '#fff1f0' : '#e6ffed'}; color: ${hs.trang_thai == 1 ? '#dc3545' : '#28a745'}; font-weight: bold; font-size:12px;">
                                 ${hs.trang_thai == 1 ? '🔒 Khóa' : '🔓 Mở'}
                             </button>
-
                             <button onclick="ham_5_12_xoa_hoc_sinh('${hs.uid}')"
                                     style="padding: 4px 8px; border-radius: 4px; border: 1px solid #dc3545; cursor: pointer; background: #dc3545; color: white; font-weight: bold; font-size:12px; transition:0.2s;"
                                     onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">
@@ -1945,9 +2122,8 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                             </button>
                         </div>
                     </td>
-
                     <td style="padding: 10px; border: 1px solid #eee; text-align: center; color: ${mauTrangThai}; font-weight: bold;">${chuTrangThai}</td>
-                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: 900; color: #00acc1;">${soKC}</td>
+                    <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: 900; color: #00acc1; background: ${maLopDangChon !== 'TAT_CA' ? '#fff9c4' : 'transparent'}; font-size: 14px;">${soKC}</td>
                     <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #1a73e8;">${hs.ten}</td>
                     <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">${hs.sdt}</td>
                     <td style="padding: 10px; border: 1px solid #eee; color: #666;">${hs.mat_khau}</td>
@@ -1956,8 +2132,8 @@ window.ham_5_10_ve_bang_hoc_sinh = function () {
                     <td style="padding: 10px; border: 1px solid #eee; text-align: center;">${hs.khoi_lop || '-'}</td>
                     <td style="padding: 10px; border: 1px solid #eee; color: #d35400; font-weight: bold;">${maLop}</td>
                     <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold; color: #e67e22;">${hs.diem_tich_luy || 0}</td>
-                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${ngayCuoi}</td>
-                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${ngayThamGia}</td>
+                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${hs.lan_dang_nhap_cuoi ? new Date(hs.lan_dang_nhap_cuoi).toLocaleString('vi-VN') : 'Chưa vào'}</td>
+                    <td style="padding: 10px; border: 1px solid #eee; color: #555;">${hs.ngay_tham_gia ? new Date(hs.ngay_tham_gia).toLocaleString('vi-VN') : '-'}</td>
                     <td style="padding: 10px; border: 1px solid #eee; font-size: 10px; color: #999; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">${JSON.stringify(hs.metadata)}</td>
                     <td style="padding: 10px; border: 1px solid #eee; font-family: monospace; color: #888; font-size: 11px;">${hs.uid}</td>
                 </tr>
