@@ -469,7 +469,7 @@ function ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
     }
 
     // Tiết kiệm không gian: Chỉ đẩy lề trang web xuống 18px (vừa đủ chỗ cho thanh 16px + viền)
-    document.body.style.paddingTop = '18px';
+    document.body.style.paddingTop = '28px';
 
     const tickerWrap = document.createElement('div');
     tickerWrap.id = 'thanh-thong-bao-gv';
