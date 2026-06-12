@@ -147,18 +147,23 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             if (don.trang_thai === 0) {
                 trangThaiBadge = `<span style="color: #fd7e14; font-weight: bold; font-size: 13px;">⏳ Chờ duyệt</span>`;
                 hanhDongHtml = `
-                    <div style="display: flex; gap: 5px; justify-content: center;">
-                        <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'DUYET')" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">✅ DUYỆT</button>
-                        <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'TU_CHOI')" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">❌ TỪ CHỐI</button>
-                    </div>
-                `;
-            } else if (don.trang_thai === 1) {
-                trangThaiBadge = `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`;
-                hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
-            } else {
-                trangThaiBadge = `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
-                hanhDongHtml = `<span style="color: #ccc; font-size: 12px; font-weight: bold;">Đã xử lý</span>`;
-            }
+                <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'DUYET')" style="padding: 6px 8px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">✅ DUYỆT</button>
+                    <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'TU_CHOI')" style="padding: 6px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">❌ TỪ CHỐI</button>
+                    <button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>
+                </div>
+            `;
+                    } else {
+                        trangThaiBadge = (don.trang_thai === 1)
+                            ? `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`
+                            : `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
+
+                        hanhDongHtml = `
+                <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+                    <span style="color: #ccc; font-size: 11px; font-weight: bold;">Đã xử lý</span>
+                    <button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>
+                </div>
+            `;
 
             // =====================================================================
             // 🌟 ĐIỂM SỬA CHÍNH: HIỂN THỊ CẢ MÃ LỚP VÀ TÊN LỚP ĐƯỢC MAP TỪ DATABASE
@@ -500,3 +505,28 @@ window.ham_14_3_thay_doi_sap_xep = function (colKey) {
     }
     ham_14_1_tab_duyet_don();
 }
+
+window.ham_14_4_xoa_yeu_cau = async function (idDon) {
+    const result = await Swal.fire({
+        title: 'Xóa yêu cầu?',
+        text: "Bạn có chắc chắn muốn xóa vĩnh viễn yêu cầu này khỏi hòm thư không?",
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: '🗑️ Xóa luôn',
+        cancelButtonText: 'Hủy',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d'
+    });
+
+    if (result.isConfirmed) {
+        try {
+            const { error } = await _supabase.from('yeu_cau_hoc_sinh').delete().eq('id', idDon);
+            if (error) throw error;
+
+            Swal.fire({ icon: 'success', title: 'Đã xóa đơn!', timer: 1000, showConfirmButton: false });
+            if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
+        } catch (e) {
+            Swal.fire('Lỗi!', e.message, 'error');
+        }
+    }
+};
