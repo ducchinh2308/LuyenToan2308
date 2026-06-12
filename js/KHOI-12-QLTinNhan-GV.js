@@ -355,6 +355,7 @@ window.ham_12_13_toggle_maximize_gv = function () {
 
 
 //// [Nhãn thời gian: 21:30 - Ngày 12/06/2026] - Hàm 12.14: Vẽ bảng với đầy đủ tính năng Sort & Thao tác
+//// [Nhãn thời gian: 21:40 - Ngày 12/06/2026] - Hàm 12.14: Vẽ bảng quản lý Tin nhắn (Phiên bản Hoàn thiện)
 window.ham_12_14_ve_bang_tin_nhan = function () {
     const vungDS = document.getElementById('vung-danh-sach-tn');
     if (!vungDS) return;
@@ -384,7 +385,7 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         return;
     }
 
-    // 🌟 BƯỚC 2: SORT
+    // 🌟 BƯỚC 2: SORT (Sắp xếp)
     const cot = BangTinNhanState.cotDangSort;
     const heSo = BangTinNhanState.tangDan ? 1 : -1;
 
@@ -417,9 +418,7 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
                 <th style="padding: 10px; text-align: center; width: 40px;">STT</th>
                 <th style="padding: 10px; width: 160px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('hoc_sinh')">HỌC SINH ${cot === 'hoc_sinh' ? iconSort : '↕'}</th>
                 <th style="padding: 10px; width: 110px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('chu_de')">CHỦ ĐỀ ${cot === 'chu_de' ? iconSort : '↕'}</th>
-        
                 <th style="padding: 10px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('so_luot')">NỘI DUNG / LƯỢT CHAT ${cot === 'so_luot' ? iconSort : '↕'}</th>
-        
                 <th style="padding: 10px; width: 90px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('thoi_gian_cap_nhat')">CẬP NHẬT ${cot === 'thoi_gian_cap_nhat' ? iconSort : '↕'}</th>
                 <th style="padding: 10px; text-align: center; width: 100px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('trang_thai')">TRẠNG THÁI ${cot === 'trang_thai' ? iconSort : '↕'}</th>
                 <th style="padding: 10px; text-align: center; width: 150px;">THAO TÁC</th>
@@ -430,7 +429,7 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
     dataLoc.forEach((tn, i) => {
         let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
 
-        // 🌟 BỔ SUNG: Lấy danh sách lớp từ mảng danh_sach_ma_lop
+        // Hiện danh sách lớp
         let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop && tn.hoc_sinh.danh_sach_ma_lop.length > 0)
             ? `<div style="font-size:11px; color:#64748b; margin-top:2px;">Lớp: ${tn.hoc_sinh.danh_sach_ma_lop.join(", ")}</div>`
             : `<div style="font-size:11px; color:#94a3b8; margin-top:2px;">(Chưa có lớp)</div>`;
@@ -439,23 +438,29 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         let tinCuoi = (soLuot > 0) ? (tn.lich_su_chat[soLuot - 1].noidung || "[Hình ảnh]") : "Chưa có nội dung";
         let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
 
+        let tgCapNhat = `
+            <div style="font-weight:bold;">${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')}</div>
+            <div style="font-size:11px; color:#64748b;">${dCapNhat.getDate().toString().padStart(2, '0')}/${(dCapNhat.getMonth() + 1).toString().padStart(2, '0')}</div>
+        `;
+
         // Nút Khóa / Mở khóa
         let btnAction = (tn.trang_thai === 2)
-            ? `<button onclick="ham_12_16_mo_khoa_tin_nhan('${tn.id}')" style="background:#10b981; color:white; border:none; padding:8px; border-radius:6px;" title="Mở khóa">🔓</button>`
-            : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:8px; border-radius:6px;" title="Khóa">🔒</button>`;
+            ? `<button onclick="ham_12_16_mo_khoa_tin_nhan('${tn.id}')" style="background:#10b981; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Mở khóa">🔓</button>`
+            : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Khóa">🔒</button>`;
 
         htmlBang += `
             <tr style="border-bottom: 1px solid #e2e8f0; ${tn.trang_thai === 0 ? "background: #fff8f8;" : ""}">
                 <td style="padding: 10px; text-align: center;">${i + 1}</td>
-                
                 <td style="padding: 10px;">
                     <b style="color: #0ea5e9;">${tenHS}</b>
                     ${dsLop} 
                 </td>
-                
                 <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
-                <td style="padding: 10px;">(${soLuot} lượt) <br><i>"${tinCuoi.substring(0, 30)}..."</i></td>
-                <td style="padding: 10px;">${dCapNhat.getHours()}:${dCapNhat.getMinutes()}</td>
+                <td style="padding: 10px;">
+                    <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt liên lạc)</span><br>
+                    <i style="color: #334155;">"${tinCuoi.substring(0, 30)}..."</i>
+                </td>
+                <td style="padding: 10px;">${tgCapNhat}</td>
                 <td style="padding: 10px; text-align: center;">${tn.trang_thai === 2 ? "🔒 Đã khóa" : (tn.trang_thai === 1 ? "🟢 Đã trả lời" : "🔴 Chờ xử lý")}</td>
                 <td style="padding: 10px; text-align: center;">
                     <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
@@ -472,7 +477,6 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
     });
     vungDS.innerHTML = htmlBang + `</tbody></table>`;
 };
-
 
 
 
