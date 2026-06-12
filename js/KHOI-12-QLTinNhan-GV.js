@@ -69,6 +69,14 @@ window.ham_12_2_tai_danh_sach_tin_nhan = async function () {
         const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(ten,danh_sach_ma_lop)&order=thoi_gian_cap_nhat.desc`, { headers: headersAPI });
         const dataTN = await resTN.json();
 
+        // 🌟 THÊM RÀO CHẮN NÀY ĐỂ BẮT LỖI
+        if (!resTN.ok) {
+            console.error("Lỗi từ Supabase:", dataTN);
+            vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL: ${dataTN.message || "Bad Request"}</div>`;
+            return;
+        }
+
+
         if (!dataTN || dataTN.length === 0) {
             vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:#6c757d;">Hộp thư trống. Chưa có học sinh nào nhắn tin.</div>`; return;
         }

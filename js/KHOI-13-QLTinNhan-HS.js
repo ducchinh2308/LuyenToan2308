@@ -66,6 +66,13 @@ window.ham_13_2_tai_danh_sach_tin_nhan_hs = async function () {
         const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?uid_hoc_sinh=eq.${uidHocSinhHienTai}&order=thoi_gian_cap_nhat.desc`, { headers: headersAPI });
         const dataTN = await resTN.json();
 
+        // 🌟 THÊM RÀO CHẮN NÀY ĐỂ BẮT LỖI
+        if (!resTN.ok) {
+            console.error("Lỗi từ Supabase:", dataTN);
+            vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL: ${dataTN.message || "Bad Request"}</div>`;
+            return;
+        }
+
         if (!dataTN || dataTN.length === 0) {
             vungDS.innerHTML = `<div style="text-align:center; padding:30px; color:#6c757d; border: 1px dashed #ccc; border-radius: 8px;">Em chưa gửi câu hỏi nào cho thầy.<br>Bấm "Gửi câu hỏi mới" nếu em cần hỗ trợ nhé!</div>`; return;
         }
