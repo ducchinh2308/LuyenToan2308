@@ -415,14 +415,17 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         <thead>
             <tr style="background-color: #f1f5f9; color: #334155; text-align: left;">
                 <th style="padding: 10px; text-align: center; width: 40px;">STT</th>
-                <th style="padding: 10px; width: 170px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('hoc_sinh')">HỌC SINH ${cot === 'hoc_sinh' ? iconSort : '↕'}</th>
-                <th style="padding: 10px; width: 130px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('chu_de')">CHỦ ĐỀ ${cot === 'chu_de' ? iconSort : '↕'}</th>
+                <th style="padding: 10px; width: 160px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('hoc_sinh')">HỌC SINH ${cot === 'hoc_sinh' ? iconSort : '↕'}</th>
+                <th style="padding: 10px; width: 110px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('chu_de')">CHỦ ĐỀ ${cot === 'chu_de' ? iconSort : '↕'}</th>
+        
                 <th style="padding: 10px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('so_luot')">NỘI DUNG / LƯỢT CHAT ${cot === 'so_luot' ? iconSort : '↕'}</th>
-                <th style="padding: 10px; width: 100px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('thoi_gian_cap_nhat')">CẬP NHẬT ${cot === 'thoi_gian_cap_nhat' ? iconSort : '↕'}</th>
-                <th style="padding: 10px; text-align: center; width: 110px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('trang_thai')">TRẠNG THÁI ${cot === 'trang_thai' ? iconSort : '↕'}</th>
-                <th style="padding: 10px; text-align: center; width: 180px;">THAO TÁC</th>
+        
+                <th style="padding: 10px; width: 90px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('thoi_gian_cap_nhat')">CẬP NHẬT ${cot === 'thoi_gian_cap_nhat' ? iconSort : '↕'}</th>
+                <th style="padding: 10px; text-align: center; width: 100px; cursor: pointer;" onclick="ham_12_15_thay_doi_sort('trang_thai')">TRẠNG THÁI ${cot === 'trang_thai' ? iconSort : '↕'}</th>
+                <th style="padding: 10px; text-align: center; width: 150px;">THAO TÁC</th>
             </tr>
-        </thead><tbody>`;
+        </thead>
+        <tbody>`;
 
     dataLoc.forEach((tn, i) => {
         let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
@@ -469,6 +472,9 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
     });
     vungDS.innerHTML = htmlBang + `</tbody></table>`;
 };
+
+
+
 
 //// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.15: Cập nhật Trạng thái Sắp xếp (Sort)
 window.ham_12_15_thay_doi_sort = function (cotDuocChon) {
