@@ -6,15 +6,10 @@ let hsCurrentChatId = null;
 let hsCurrentChatHistory = [];
 let hsCurrentImageBase64 = null;
 
-//// [Nhãn thời gian: 17:35 - Ngày 12/06/2026] - Hàm 13.1: Vẽ giao diện chính Hộp thư Học sinh
+//// [Nhãn thời gian: 17:45 - Ngày 12/06/2026] - Hàm 13.1: Vẽ giao diện chính Hộp thư Học sinh
 window.ham_13_1_ve_hop_thu_hoc_sinh = function () {
-    // 🌟 SỬA TẠI ĐÂY: Trỏ đúng vào id "vung-lam-viec-hoc-sinh" trong hàm ham_8_1 của thầy
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh') || document.getElementById('vung-lam-viec-chi-tiet');
-
-    if (!vungLamViec) {
-        console.error("Không tìm thấy vùng hiển thị cho học sinh!");
-        return;
-    }
+    if (!vungLamViec) return;
 
     vungLamViec.innerHTML = `
         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 100%; margin: 0 auto;">
@@ -24,8 +19,38 @@ window.ham_13_1_ve_hop_thu_hoc_sinh = function () {
                     ➕ GỬI CÂU HỎI MỚI
                 </button>
             </div>
-            
             <div id="vung-danh-sach-tn-hs" style="overflow-x: auto;"></div>
+        </div>
+
+        <div id="modal-tao-moi-hs" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10001; justify-content: center; align-items: center;">
+            <div style="background: white; width: 90%; max-width: 400px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                <div style="background: #22c55e; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0; font-size: 16px;">➕ Gửi câu hỏi mới</h3>
+                    <button onclick="document.getElementById('modal-tao-moi-hs').style.display='none'" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">✖</button>
+                </div>
+                <div style="padding: 20px;">
+                    <p style="margin-top: 0; color: #475569; font-size: 14px; font-weight: bold;">Em muốn hỏi Thầy về vấn đề gì?</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <label style="cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                            <input type="radio" name="rd-chu-de" value="Lỗi đề bài" onchange="ham_13_4_1_an_hien_chu_de_khac()" checked style="width: 16px; height: 16px;"> 📝 Lỗi đề bài / Báo sai đáp án
+                        </label>
+                        <label style="cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                            <input type="radio" name="rd-chu-de" value="Hỏi bài tập" onchange="ham_13_4_1_an_hien_chu_de_khac()" style="width: 16px; height: 16px;"> 📚 Hỏi bài tập / Nhờ thầy giảng lại
+                        </label>
+                        <label style="cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                            <input type="radio" name="rd-chu-de" value="Lỗi hệ thống" onchange="ham_13_4_1_an_hien_chu_de_khac()" style="width: 16px; height: 16px;"> ⚙️ Lỗi hệ thống (Không nộp được bài...)
+                        </label>
+                        <label style="cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                            <input type="radio" name="rd-chu-de" value="Khác" onchange="ham_13_4_1_an_hien_chu_de_khac()" style="width: 16px; height: 16px;"> 💡 Vấn đề khác...
+                        </label>
+                    </div>
+                    
+                    <input type="text" id="txt-chu-de-khac" placeholder="Nhập ngắn gọn chủ đề em muốn hỏi..." style="display: none; width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; box-sizing: border-box; margin-bottom: 15px; font-family: inherit;">
+                    
+                    <button id="btn-xac-nhan-tao-moi" onclick="ham_13_10_xac_nhan_tao_moi()" style="width: 100%; padding: 12px; background: #22c55e; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;">BẮT ĐẦU TRÒ CHUYỆN</button>
+                </div>
+            </div>
         </div>
 
         <div id="modal-chat-hs" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center;">
@@ -34,15 +59,12 @@ window.ham_13_1_ve_hop_thu_hoc_sinh = function () {
                     <h3 style="margin: 0; font-size: 16px;" id="tieude-chat-hs">Trò chuyện</h3>
                     <button onclick="document.getElementById('modal-chat-hs').style.display='none'" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">✖</button>
                 </div>
-                
                 <div id="khung-hien-thi-chat-hs" style="flex: 1; padding: 15px; overflow-y: auto; background: #f1f5f9; display: flex; flex-direction: column; gap: 15px; min-height: 350px;"></div>
-
                 <div id="vung-preview-anh-hs" style="display: none; padding: 10px; background: #e2e8f0; border-top: 1px solid #cbd5e1; position: relative;">
                     <span style="font-size: 12px; font-weight: bold; color: #475569;">Ảnh đính kèm:</span>
                     <img id="img-preview-hs" src="" style="max-height: 80px; display: block; margin-top: 5px; border-radius: 4px; border: 1px solid #94a3b8;">
                     <button onclick="ham_13_5_xoa_anh_preview_hs()" style="position: absolute; top: 10px; left: 90px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; font-size: 10px;">✖</button>
                 </div>
-
                 <div style="padding: 15px; background: white; border-top: 1px solid #e2e8f0; display: flex; gap: 10px; align-items: flex-end;">
                     <label style="cursor: pointer; padding: 10px; background: #f1f5f9; border-radius: 6px; border: 1px solid #cbd5e1;" title="Đính kèm ảnh">
                         📷<input type="file" id="file-anh-chat-hs" accept="image/*" style="display: none;" onchange="ham_13_6_chon_anh_hs(event)">
@@ -171,35 +193,20 @@ window.ham_13_3_mo_khung_chat_hs = async function (id_tin_nhan, chu_de) {
     } catch (e) { console.error(e); }
 }
 
-//// [Nhãn thời gian: 17:35 - Ngày 12/06/2026] - Hàm 13.4: Tạo câu hỏi mới
-window.ham_13_4_mo_form_tao_moi = async function () {
-    let chuDe = prompt("Em muốn hỏi thầy về chủ đề gì? (VD: Lỗi đề, Hỏi bài tập, Lỗi hệ thống...)");
-    if (!chuDe || chuDe.trim() === "") return;
-
-    try {
-        const uidHocSinhHienTai = GocHocSinhState.uid || (AppState.user && AppState.user.uid);
-        const payload = {
-            uid_hoc_sinh: uidHocSinhHienTai,
-            chu_de: `[${chuDe.trim()}]`,
-            lich_su_chat: [],
-            trang_thai: 0
-        };
-
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan`, {
-            method: 'POST',
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
-            body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-        if (data && data.length > 0) {
-            ham_13_2_tai_danh_sach_tin_nhan_hs();
-            ham_13_3_mo_khung_chat_hs(data[0].id, data[0].chu_de);
-        }
-    } catch (e) { alert("Lỗi kết nối. Em thử lại nhé!"); }
+//// [Nhãn thời gian: 17:45 - Ngày 12/06/2026] - Hàm 13.4: Bật Modal Chọn Chủ Đề
+window.ham_13_4_mo_form_tao_moi = function () {
+    document.getElementById('modal-tao-moi-hs').style.display = 'flex';
+    // Đưa form về mặc định
+    document.querySelector('input[name="rd-chu-de"][value="Lỗi đề bài"]').checked = true;
+    ham_13_4_1_an_hien_chu_de_khac();
+    document.getElementById('txt-chu-de-khac').value = '';
 }
 
-
+//// [Nhãn thời gian: 17:45 - Ngày 12/06/2026] - Hàm 13.4.1: Ẩn/Hiện ô nhập tay nếu chọn "Khác"
+window.ham_13_4_1_an_hien_chu_de_khac = function () {
+    const val = document.querySelector('input[name="rd-chu-de"]:checked').value;
+    document.getElementById('txt-chu-de-khac').style.display = (val === 'Khác') ? 'block' : 'none';
+}
 
 //// [Nhãn thời gian: 17:15 - Ngày 12/06/2026] - Các hàm sự kiện ảnh cho Học Sinh
 window.ham_13_5_xoa_anh_preview_hs = function () {
@@ -305,3 +312,51 @@ window.ham_13_9_nen_anh_hs = function (fileBlob) {
     }
 }
 
+
+//// [Nhãn thời gian: 17:45 - Ngày 12/06/2026] - Hàm 13.10: Xử lý nút "BẮT ĐẦU TRÒ CHUYỆN"
+window.ham_13_10_xac_nhan_tao_moi = async function () {
+    let chuDe = document.querySelector('input[name="rd-chu-de"]:checked').value;
+
+    // Nếu chọn Khác thì lấy dữ liệu từ ô text
+    if (chuDe === 'Khác') {
+        chuDe = document.getElementById('txt-chu-de-khac').value.trim();
+        if (!chuDe) {
+            alert("⚠️ Em vui lòng nhập nội dung chủ đề nhé!");
+            document.getElementById('txt-chu-de-khac').focus();
+            return;
+        }
+    }
+
+    const btn = document.getElementById('btn-xac-nhan-tao-moi');
+    btn.innerHTML = "⏳ Đang tạo...";
+    btn.disabled = true;
+
+    try {
+        const uidHocSinhHienTai = GocHocSinhState.uid || (AppState.user && AppState.user.uid);
+        const payload = {
+            uid_hoc_sinh: uidHocSinhHienTai,
+            chu_de: `[${chuDe}]`,
+            lich_su_chat: [],
+            trang_thai: 0
+        };
+
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (data && data.length > 0) {
+            // Tắt popup chọn chủ đề, Tải lại danh sách, Mở thẳng khung chat lên
+            document.getElementById('modal-tao-moi-hs').style.display = 'none';
+            ham_13_2_tai_danh_sach_tin_nhan_hs();
+            ham_13_3_mo_khung_chat_hs(data[0].id, data[0].chu_de);
+        }
+    } catch (e) {
+        alert("Lỗi kết nối. Em thử lại nhé!");
+    } finally {
+        btn.innerHTML = "BẮT ĐẦU TRÒ CHUYỆN";
+        btn.disabled = false;
+    }
+}
