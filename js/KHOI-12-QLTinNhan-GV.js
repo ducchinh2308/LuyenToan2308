@@ -227,7 +227,7 @@ window.ham_12_9_nen_va_preview_anh = function (fileBlob) {
 //// [Nhãn thời gian: 16:45 - Ngày 12/06/2026] - Hàm 12.7: XỬ LÝ LÕI ĐẨY ẢNH LÊN STORAGE VÀ CẬP NHẬT JSONB
 window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
     const noiDungText = document.getElementById('txt-noi-dung-chat').value.trim();
-    if (!noiDungText && !currentImageBase64) return; // Nếu trống hoàn toàn thì không gửi
+    if (!noiDungText && !currentImageBase64) return;
 
     const btnGui = document.getElementById('btn-gui-chat');
     btnGui.innerText = "⏳..."; btnGui.disabled = true;
@@ -235,17 +235,16 @@ window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
     try {
         let imageUrl = null;
 
-        // NẾU CÓ ẢNH -> Upload lên Bucket "chat_images" trước
         if (currentImageBase64) {
-            // Chuyển Base64 về Blob nhị phân chuẩn để Supabase nhận diện tốt nhất
             const byteCharacters = atob(currentImageBase64.split(',')[1]);
             const byteNumbers = new Array(byteCharacters.length);
             for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
             const blobAnh = new Blob([new Uint8Array(byteNumbers)], { type: 'image/jpeg' });
 
-            const tenFile = `gv_${Date.now()}_${Math.floor(Math.random() * 1000)}.jpg`;
+            // 🌟 CẤU TRÚC MỚI: [idTinNhan]_[nguoiGui]_[timestamp].jpg
+            const timestamp = Date.now();
+            const tenFile = `${currentChatId}_gv_${timestamp}.jpg`;
 
-            // Gọi API Storage của Supabase
             const resUpload = await fetch(`${SUPABASE_URL}/storage/v1/object/chat_images/${tenFile}`, {
                 method: 'POST',
                 headers: {
@@ -257,12 +256,9 @@ window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
             });
 
             if (!resUpload.ok) throw new Error("Lỗi upload ảnh");
-
-            // Lấy link ảnh Public sau khi upload thành công
             imageUrl = `${SUPABASE_URL}/storage/v1/object/public/chat_images/${tenFile}`;
         }
 
-        // TẠO OBJECT TIN NHẮN MỚI
         const tinNhanMoi = {
             nguoi_gui: "GV",
             noidung: noiDungText,
@@ -270,31 +266,26 @@ window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
             time: new Date().toISOString()
         };
 
-        // Đẩy vào mảng lịch sử đang mở trên RAM
         currentChatHistory.push(tinNhanMoi);
 
-        // GỌI API CẬP NHẬT BẢNG TIN NHẮN
         const payload = {
             lich_su_chat: currentChatHistory,
-            trang_thai: 1, // Chuyển thành 1 (Đã trả lời)
+            trang_thai: 1, // Chuyển sang trạng thái "Đã phản hồi"
             thoi_gian_cap_nhat: new Date().toISOString()
         };
 
-        const resUpdate = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${currentChatId}`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${currentChatId}`, {
             method: 'PATCH',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
-        if (!resUpdate.ok) throw new Error("Lỗi cập nhật tin nhắn");
-
-        // GỬI XONG -> Refresh lại khung chat và dọn dẹp form
         ham_12_3_mo_khung_chat(currentChatId);
-        ham_12_2_tai_danh_sach_tin_nhan(); // Cập nhật lại danh sách bên ngoài
+        ham_12_2_tai_danh_sach_tin_nhan();
 
     } catch (e) {
         console.error(e);
-        alert("❌ Lỗi khi gửi tin nhắn, vui lòng thử lại!");
+        alert("❌ Lỗi khi gửi tin nhắn!");
     } finally {
         btnGui.innerText = "GỬI 🚀"; btnGui.disabled = false;
     }
@@ -315,59 +306,32 @@ window.ham_12_11_khoa_tin_nhan = async function (id) {
 
 //// [Nhãn thời gian: 20:30 - Ngày 12/06/2026] - Hàm 12.12: Xóa tin nhắn (Tích hợp thuật toán quét dọn rác Storage)
 window.ham_12_12_xoa_tin_nhan = async function (id) {
-    if (!confirm("🗑️ CẢNH BÁO: Thầy có chắc muốn XÓA VĨNH VIỄN toàn bộ tin nhắn này VÀ CÁC ẢNH ĐÍNH KÈM khỏi hệ thống?")) return;
+    if (!confirm("🗑️ Xóa tin nhắn và toàn bộ ảnh đính kèm?")) return;
 
     try {
-        // 🌟 BƯỚC 1: Lấy lịch sử chat để dò tìm các đường link ảnh
-        const resGet = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${id}&select=lich_su_chat`, {
-            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        // 🌟 BƯỚC 1: Tìm tất cả ảnh có tiền tố là id tin nhắn trong storage
+        const { data: files } = await supabase.storage.from('chat_images').list('', {
+            search: id // Supabase tự lọc các file bắt đầu bằng id này
         });
-        const dataGet = await resGet.json();
 
-        if (dataGet && dataGet.length > 0) {
-            const lichSu = dataGet[0].lich_su_chat || [];
-            let mangTenFileAnh = [];
-
-            // Quét từng bong bóng chat
-            lichSu.forEach(msg => {
-                if (msg.hinh_anh && Array.isArray(msg.hinh_anh)) {
-                    msg.hinh_anh.forEach(url => {
-                        // Cắt chuỗi để lấy đúng tên file. 
-                        // VD: https://.../public/chat_images/hs_123.jpg -> lấy "hs_123.jpg"
-                        const parts = url.split('/chat_images/');
-                        if (parts.length > 1) {
-                            mangTenFileAnh.push(parts[1]);
-                        }
-                    });
-                }
-            });
-
-            // 🌟 BƯỚC 2: Bắn API xóa hàng loạt ảnh trên Supabase Storage
-            if (mangTenFileAnh.length > 0) {
-                const promisesXoaAnh = mangTenFileAnh.map(tenFile =>
-                    fetch(`${SUPABASE_URL}/storage/v1/object/chat_images/${tenFile}`, {
-                        method: 'DELETE',
-                        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-                    })
-                );
-                // Đợi xóa xong tất cả ảnh cùng 1 lúc
-                await Promise.all(promisesXoaAnh);
-                console.log(`🧹 Đã dọn dẹp ${mangTenFileAnh.length} ảnh rác trên Storage!`);
-            }
+        if (files && files.length > 0) {
+            const promisesXoaAnh = files.map(file =>
+                supabase.storage.from('chat_images').remove([file.name])
+            );
+            await Promise.all(promisesXoaAnh);
+            console.log(`🧹 Đã xóa ${files.length} ảnh liên quan đến tin nhắn ${id}`);
         }
 
-        // 🌟 BƯỚC 3: Xóa dòng văn bản trong bảng tin_nhan
+        // 🌟 BƯỚC 2: Xóa dữ liệu văn bản
         await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${id}`, {
             method: 'DELETE',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
         });
 
-        // 🌟 BƯỚC 4: Tải lại giao diện bảng
         ham_12_2_tai_danh_sach_tin_nhan();
-
     } catch (e) {
         console.error(e);
-        alert("❌ Lỗi mạng khi xóa dữ liệu. Thầy thử lại nhé!");
+        alert("❌ Lỗi xóa dữ liệu!");
     }
 }
 

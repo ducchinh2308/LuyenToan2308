@@ -221,7 +221,6 @@ window.ham_13_7_gui_tin_nhan_tu_hs = async function () {
 
     try {
         let imageUrl = null;
-        const uidHocSinhHienTai = GocHocSinhState.uid || (AppState.user && AppState.user.uid);
 
         if (hsCurrentImageBase64) {
             const byteCharacters = atob(hsCurrentImageBase64.split(',')[1]);
@@ -229,13 +228,17 @@ window.ham_13_7_gui_tin_nhan_tu_hs = async function () {
             for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
             const blobAnh = new Blob([new Uint8Array(byteNumbers)], { type: 'image/jpeg' });
 
-            const tenFile = `hs_${uidHocSinhHienTai}_${Date.now()}.jpg`;
+            // 🌟 CẤU TRÚC MỚI: [idTinNhan]_[nguoiGui]_[timestamp].jpg
+            const timestamp = Date.now();
+            const tenFile = `${hsCurrentChatId}_hs_${timestamp}.jpg`;
+
             const resUpload = await fetch(`${SUPABASE_URL}/storage/v1/object/chat_images/${tenFile}`, {
                 method: 'POST',
                 headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'image/jpeg' },
                 body: blobAnh
             });
-            if (!resUpload.ok) throw new Error("Lỗi upload");
+
+            if (!resUpload.ok) throw new Error("Lỗi upload ảnh");
             imageUrl = `${SUPABASE_URL}/storage/v1/object/public/chat_images/${tenFile}`;
         }
 
@@ -245,31 +248,30 @@ window.ham_13_7_gui_tin_nhan_tu_hs = async function () {
             hinh_anh: imageUrl ? [imageUrl] : [],
             time: new Date().toISOString()
         };
+
         hsCurrentChatHistory.push(tinNhanMoi);
 
         const payload = {
             lich_su_chat: hsCurrentChatHistory,
-            trang_thai: 0,
+            trang_thai: 0, // Trả về 0 để báo Thầy là "Chờ xử lý"
             thoi_gian_cap_nhat: new Date().toISOString()
         };
 
-        const resUpdate = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${hsCurrentChatId}`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${hsCurrentChatId}`, {
             method: 'PATCH',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
-        if (!resUpdate.ok) throw new Error("Lỗi cập nhật");
 
         ham_13_3_mo_khung_chat_hs(hsCurrentChatId, document.getElementById('tieude-chat-hs').innerText.replace('Chủ đề: ', ''));
         ham_13_2_tai_danh_sach_tin_nhan_hs();
     } catch (e) {
         console.error(e);
-        alert("Lỗi khi gửi tin.");
+        alert("❌ Lỗi khi gửi tin nhắn!");
     } finally {
         btnGui.innerText = "GỬI"; btnGui.disabled = false;
     }
 }
-
 window.ham_13_8_khoi_tao_su_kien_anh_hs = function () {
     const txtArea = document.getElementById('txt-noi-dung-chat-hs');
     txtArea.addEventListener('paste', (e) => {
