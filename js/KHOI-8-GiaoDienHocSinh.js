@@ -233,7 +233,7 @@ function ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     }
 
     // Xóa padding ở trên đỉnh vì đã dời thanh này xuống đáy
-    document.body.style.paddingTop = '0px';
+    document.body.style.paddingTop = '16px';
     // Mở rộng padding đáy lên 30px để lấy chỗ chứa cả 2 thanh (15px + 15px)
     document.body.style.paddingBottom = '30px';
 
