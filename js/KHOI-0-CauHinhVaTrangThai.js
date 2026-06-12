@@ -2,7 +2,7 @@
 // KHỐI 00: ĐÁNH DẤU PHIÊN BẢN (VERSION CONTROL)
 // ==============================================================
 const KHOI00_VERSION = "Block 00: Cập nhật lúc 3h- Ngày 12/06";
-console.log(`%c🚀 ĐANG CHẠY: ${KHOI10_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
+console.log(`%c🚀 ĐANG CHẠY: ${KHOI00_VERSION}`, "background: #28a745; color: white; font-size: 14px; padding: 5px; font-weight: bold;");
 
 window.addEventListener('load', () => {
     let versionBadge = document.createElement('div');
