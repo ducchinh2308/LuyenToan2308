@@ -313,18 +313,24 @@ window.ham_13_9_nen_anh_hs = function (fileBlob) {
 }
 
 
-//// [Nhãn thời gian: 17:45 - Ngày 12/06/2026] - Hàm 13.10: Xử lý nút "BẮT ĐẦU TRÒ CHUYỆN"
+//// [Nhãn thời gian: 19:05 - Ngày 12/06/2026] - Hàm 13.10: Xử lý tạo tin nhắn (Đã fix chuẩn hóa dữ liệu Chủ Đề)
 window.ham_13_10_xac_nhan_tao_moi = async function () {
-    let chuDe = document.querySelector('input[name="rd-chu-de"]:checked').value;
+    let loaiChuDe = document.querySelector('input[name="rd-chu-de"]:checked').value;
+    let chuDeLuuDB = "";
 
-    // Nếu chọn Khác thì lấy dữ liệu từ ô text
-    if (chuDe === 'Khác') {
-        chuDe = document.getElementById('txt-chu-de-khac').value.trim();
-        if (!chuDe) {
+    // 🌟 THUẬT TOÁN ÉP TIỀN TỐ ĐỂ CHỐNG RÁC DỮ LIỆU
+    if (loaiChuDe === 'Khác') {
+        let noiDungKhac = document.getElementById('txt-chu-de-khac').value.trim();
+        if (!noiDungKhac) {
             alert("⚠️ Em vui lòng nhập nội dung chủ đề nhé!");
             document.getElementById('txt-chu-de-khac').focus();
             return;
         }
+        // Ép cố định chữ [Khác] lên đầu để thầy dễ lọc
+        chuDeLuuDB = `[Khác] ${noiDungKhac}`;
+    } else {
+        // Nếu chọn mục có sẵn thì giữ nguyên định dạng
+        chuDeLuuDB = `[${loaiChuDe}]`;
     }
 
     const btn = document.getElementById('btn-xac-nhan-tao-moi');
@@ -335,7 +341,7 @@ window.ham_13_10_xac_nhan_tao_moi = async function () {
         const uidHocSinhHienTai = GocHocSinhState.uid || (AppState.user && AppState.user.uid);
         const payload = {
             uid_hoc_sinh: uidHocSinhHienTai,
-            chu_de: `[${chuDe}]`,
+            chu_de: chuDeLuuDB, // Đã chuẩn hóa gọn gàng
             lich_su_chat: [],
             trang_thai: 0
         };
@@ -348,7 +354,6 @@ window.ham_13_10_xac_nhan_tao_moi = async function () {
 
         const data = await res.json();
         if (data && data.length > 0) {
-            // Tắt popup chọn chủ đề, Tải lại danh sách, Mở thẳng khung chat lên
             document.getElementById('modal-tao-moi-hs').style.display = 'none';
             ham_13_2_tai_danh_sach_tin_nhan_hs();
             ham_13_3_mo_khung_chat_hs(data[0].id, data[0].chu_de);
