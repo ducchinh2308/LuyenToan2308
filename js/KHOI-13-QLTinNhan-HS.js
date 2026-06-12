@@ -469,7 +469,7 @@ window.ham_13_12_ve_bang_tin_nhan_hs = function () {
         let tgCapNhat = `${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')} <br><span style="font-size:11px; color:#6c757d;">${dCapNhat.getDate()}/${dCapNhat.getMonth() + 1}</span>`;
 
         let badgeTT = tn.trang_thai === 0 ? `<span style="background:#f1f5f9; color:#475569; padding:4px 6px; border-radius:4px; font-size:11px;">Chờ Thầy đọc</span>`
-            : (tn.trang_thai === 1 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 6px; border-radius:4px; font-size:11px; font-weight:bold;">🔔 Thầy phản hồi</span>`
+            : (tn.trang_thai === 1 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 6px; border-radius:4px; font-size:11px; font-weight:bold;">🔔 Thầy đã phản hồi</span>`
                 : `<span style="background:#f1f5f9; color:#94a3b8; padding:4px 6px; border-radius:4px; font-size:11px;">Đã Đóng</span>`);
 
         let dongDam = tn.trang_thai === 1 ? "font-weight: bold; background: #fffcf0;" : "";
