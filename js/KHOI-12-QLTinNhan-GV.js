@@ -474,3 +474,28 @@ window.ham_12_15_thay_doi_sort = function (cotDuocChon) {
 }
 
 
+//// [Nhãn thời gian: 21:15 - Ngày 12/06/2026] - Hàm 12.16: Mở khóa tin nhắn
+window.ham_12_16_mo_khoa_tin_nhan = async function (id) {
+    if (!confirm("🔓 Thầy muốn mở lại cuộc trò chuyện này để học sinh nhắn tiếp?")) return;
+
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${id}`, {
+            method: 'PATCH',
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ trang_thai: 1 }) // Đưa về 1 (Đã trả lời) để HS có thể thấy và chat tiếp
+        });
+
+        if (res.ok) {
+            ham_12_14_ve_bang_tin_nhan(); // Vẽ lại bảng ngay
+        } else {
+            alert("❌ Lỗi khi mở khóa!");
+        }
+    } catch (e) {
+        console.error(e);
+        alert("❌ Lỗi kết nối!");
+    }
+}
