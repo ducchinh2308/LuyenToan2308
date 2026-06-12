@@ -292,6 +292,7 @@ window.ham_13_8_khoi_tao_su_kien_anh_hs = function () {
     });
 }
 
+//// [CẬP NHẬT] Hàm 13.9: Nén và Preview Ảnh cho Học sinh (Fix lỗi PNG)
 window.ham_13_9_nen_anh_hs = function (fileBlob) {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -299,13 +300,28 @@ window.ham_13_9_nen_anh_hs = function (fileBlob) {
         const img = new Image();
         img.src = event.target.result;
         img.onload = function () {
-            const MAX_WIDTH = 1000; // Giảm một chút cho HS để tối ưu băng thông
-            let width = img.width, height = img.height;
-            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+            const MAX_WIDTH = 1000;
+            let width = img.width;
+            let height = img.height;
+
+            if (width > MAX_WIDTH) {
+                // 🌟 LÀM TRÒN SỐ
+                height = Math.round((height * MAX_WIDTH) / width);
+                width = MAX_WIDTH;
+            }
+
             const canvas = document.createElement('canvas');
-            canvas.width = width; canvas.height = height;
-            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            hsCurrentImageBase64 = canvas.toDataURL('image/jpeg', 0.7); // Nén mạnh hơn xíu
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            // 🌟 ĐỔ NỀN TRẮNG CHỐNG ĐEN ẢNH PNG
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            hsCurrentImageBase64 = canvas.toDataURL('image/jpeg', 0.7);
             document.getElementById('img-preview-hs').src = hsCurrentImageBase64;
             document.getElementById('vung-preview-anh-hs').style.display = 'block';
         }

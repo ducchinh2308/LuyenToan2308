@@ -215,6 +215,7 @@ window.ham_12_8_khoi_tao_su_kien_anh = function () {
     });
 }
 
+//// [CẬP NHẬT] Hàm 12.9: Nén và Preview Ảnh cho Giáo Viên (Fix lỗi PNG)
 window.ham_12_9_nen_va_preview_anh = function (fileBlob) {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -223,11 +224,27 @@ window.ham_12_9_nen_va_preview_anh = function (fileBlob) {
         img.src = event.target.result;
         img.onload = function () {
             const MAX_WIDTH = 1200;
-            let width = img.width, height = img.height;
-            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+            let width = img.width;
+            let height = img.height;
+
+            if (width > MAX_WIDTH) {
+                // 🌟 FIX LỖI 1: Ép làm tròn thành số nguyên để trình duyệt không bị lỗi
+                height = Math.round((height * MAX_WIDTH) / width);
+                width = MAX_WIDTH;
+            }
+
             const canvas = document.createElement('canvas');
-            canvas.width = width; canvas.height = height;
-            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            // 🌟 FIX LỖI 2: Đổ nền trắng toàn bộ để cứu các ảnh PNG trong suốt
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, width, height);
+
+            // Vẽ ảnh thật lên trên nền trắng
+            ctx.drawImage(img, 0, 0, width, height);
+
             currentImageBase64 = canvas.toDataURL('image/jpeg', 0.8);
             document.getElementById('img-preview').src = currentImageBase64;
             document.getElementById('vung-preview-anh').style.display = 'block';
