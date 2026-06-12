@@ -487,7 +487,13 @@ window.ham_13_12_ve_bang_tin_nhan_hs = function () {
                 <td style="padding: 10px; font-size: 12px;">${tgCapNhat}</td>
                 <td style="padding: 10px; text-align: center;">${badgeTT}</td>
                 <td style="padding: 10px; text-align: center;">
-                    <button onclick="ham_13_3_mo_khung_chat_hs('${tn.id}', '${tn.chu_de}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px;">💬</button>
+                    <button onclick="ham_13_3_mo_khung_chat_hs('${tn.id}', '${tn.chu_de}')" 
+                        style="background: #0ea5e9; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+                        onmouseover="this.style.background='#0284c7'; this.style.transform='scale(1.05)';"
+                        onmouseout="this.style.background='#0ea5e9'; this.style.transform='scale(1)';"
+                    >
+                        💬 Mở chat
+                    </button>
                 </td>
             </tr>`;
     });

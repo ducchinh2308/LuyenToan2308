@@ -480,7 +480,15 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
                 <td style="padding: 10px; text-align: center; font-size:11px;">${badgeTT}</td>
                 <td style="padding: 10px; text-align: center;">
                     <div style="display:flex; gap:5px; justify-content:center;">
-                        <button onclick="ham_12_3_mo_khung_chat('${tn.id}')" style="background:#0ea5e9; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Mở Khung Chat">💬</button>
+                        <button onclick="ham_12_3_mo_khung_chat('${tn.id}')" 
+                            style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; display: flex; align-items: center; gap: 5px; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+                            onmouseover="this.style.background='#d97706'; this.style.transform='scale(1.05)';"
+                            onmouseout="this.style.background='#f59e0b'; this.style.transform='scale(1)';"
+                        >
+                            💬 Mở chat
+                        </button>
+
+
                         ${btnKhoa}
                         <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Xóa vĩnh viễn">🗑️</button>
                     </div>
