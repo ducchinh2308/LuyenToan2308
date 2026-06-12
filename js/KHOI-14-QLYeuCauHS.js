@@ -37,7 +37,7 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
 
         const cssBadge = soDonChuaDuyet > 0
             ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
-            : "background: rgba(0,0,0,0.1; color: #333;";
+            : "background: rgba(0,0,0,0.1); color: #333;";
 
         // =====================================================================
         // 2. TRUY VẤN SONG SONG BỐC TÊN NHIỆM VỤ VÀ TÊN LỚP (TỐI ƯU 1 REQUEST BULK)
