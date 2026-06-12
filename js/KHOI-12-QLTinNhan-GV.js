@@ -425,6 +425,13 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         </thead><tbody>`;
 
     dataLoc.forEach((tn, i) => {
+        let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
+
+        // 🌟 BỔ SUNG: Lấy danh sách lớp từ mảng danh_sach_ma_lop
+        let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop && tn.hoc_sinh.danh_sach_ma_lop.length > 0)
+            ? `<div style="font-size:11px; color:#64748b; margin-top:2px;">Lớp: ${tn.hoc_sinh.danh_sach_ma_lop.join(", ")}</div>`
+            : `<div style="font-size:11px; color:#94a3b8; margin-top:2px;">(Chưa có lớp)</div>`;
+
         let soLuot = tn.lich_su_chat?.length || 0;
         let tinCuoi = (soLuot > 0) ? (tn.lich_su_chat[soLuot - 1].noidung || "[Hình ảnh]") : "Chưa có nội dung";
         let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
@@ -437,7 +444,12 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         htmlBang += `
             <tr style="border-bottom: 1px solid #e2e8f0; ${tn.trang_thai === 0 ? "background: #fff8f8;" : ""}">
                 <td style="padding: 10px; text-align: center;">${i + 1}</td>
-                <td style="padding: 10px;"><b>${tn.hoc_sinh?.ten || "Ẩn danh"}</b></td>
+                
+                <td style="padding: 10px;">
+                    <b style="color: #0ea5e9;">${tenHS}</b>
+                    ${dsLop} 
+                </td>
+                
                 <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
                 <td style="padding: 10px;">(${soLuot} lượt) <br><i>"${tinCuoi.substring(0, 30)}..."</i></td>
                 <td style="padding: 10px;">${dCapNhat.getHours()}:${dCapNhat.getMinutes()}</td>
@@ -450,7 +462,7 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
                             💬 Mở chat
                         </button>
                         ${btnAction}
-                        <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:8px; border-radius:6px;">🗑️</button>
+                        <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;">🗑️</button>
                     </div>
                 </td>
             </tr>`;
