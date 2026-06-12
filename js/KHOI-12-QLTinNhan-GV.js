@@ -1,13 +1,16 @@
 ﻿//// =====================================================================
-//// MODULE 12: QUẢN LÝ TIN NHẮN TƯƠNG TÁC (TICKETING & CHAT)
+//// MODULE 12: QUẢN LÝ TIN NHẮN TƯƠNG TÁC (TÍCH HỢP BỘ SORT CAO CẤP)
 //// =====================================================================
 
-// Các biến toàn cục xử lý Chat
-let currentChatId = null;
-let currentChatHistory = [];
-let currentImageBase64 = null;
+// 🌟 KHỞI TẠO BỘ NHỚ TẠM ĐỂ QUẢN LÝ SORT & FILTER
+window.BangTinNhanState = {
+    cotDangSort: 'thoi_gian_cap_nhat',
+    tangDan: false, // Mặc định False (Giảm dần) để tin mới nhất luôn nằm trên cùng
+    duLieuGoc: []
+};
 
-//// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.1: Thêm nút Phóng To
+
+//// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.1: Vẽ Khung Quản lý (Trỏ sự kiện về hàm Vẽ Bảng)
 window.ham_12_1_ve_quan_ly_tin_nhan = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `
@@ -16,15 +19,23 @@ window.ham_12_1_ve_quan_ly_tin_nhan = function () {
                 <h3 style="color: #0ea5e9; margin: 0;">💬 HỘP THƯ HỖ TRỢ HỌC SINH</h3>
             </div>
             
-            <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                <input type="text" id="txt-tim-kiem-tn" onkeyup="ham_12_2_tai_danh_sach_tin_nhan()" placeholder="🔍 Tìm tên HS, Lớp, Chủ đề..." style="flex: 1; min-width: 250px; padding: 10px; border-radius: 6px; border: 1px solid #ced4da;">
-                <select id="sel-loc-trang-thai-tn" onchange="ham_12_2_tai_danh_sach_tin_nhan()" style="padding: 10px; border-radius: 6px; border: 1px solid #ced4da;">
-                    <option value="TAT_CA">Tất cả</option>
-                    <option value="0" selected>🔴 Chờ Thầy xử lý (Mới)</option>
-                    <option value="1">🟢 Đã trả lời (Chờ HS)</option>
-                    <option value="2">🔒 Đã khóa</option>
-                </select>
+            <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <input type="text" id="txt-tim-kiem-tn" onkeyup="ham_12_14_ve_bang_tin_nhan()" placeholder="🔍 Tìm tên HS, Lớp, Chủ đề..." style="flex: 1; min-width: 250px; padding: 8px 12px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit;">
+                
+                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                    <span style="font-weight: bold; color: #475569; font-size: 13px;">Trạng thái hiển thị:</span>
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: bold; color: #b91c1c;">
+                        <input type="checkbox" id="chk-tt-cho" onchange="ham_12_14_ve_bang_tin_nhan()" checked style="width: 16px; height: 16px; cursor: pointer;"> 🔴 Chờ xử lý
+                    </label>
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: bold; color: #15803d;">
+                        <input type="checkbox" id="chk-tt-da-tl" onchange="ham_12_14_ve_bang_tin_nhan()" style="width: 16px; height: 16px; cursor: pointer;"> 🟢 Đã trả lời
+                    </label>
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: bold; color: #475569;">
+                        <input type="checkbox" id="chk-tt-khoa" onchange="ham_12_14_ve_bang_tin_nhan()" style="width: 16px; height: 16px; cursor: pointer;"> 🔒 Đã khóa
+                    </label>
+                </div>
             </div>
+            
             <div id="vung-danh-sach-tn" style="overflow-x: auto;"></div>
         </div>
 
@@ -33,21 +44,18 @@ window.ham_12_1_ve_quan_ly_tin_nhan = function () {
                 <div style="background: #0ea5e9; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="margin: 0; font-size: 16px;" id="tieude-chat-gv">Cuộc trò chuyện</h3>
                     <div>
-                        <button onclick="ham_12_13_toggle_maximize_gv()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; margin-right: 15px;" title="Phóng to/Thu nhỏ">🗖</button>
-                        <button onclick="document.getElementById('modal-chat-gv').style.display='none'" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;" title="Đóng">✖</button>
+                        <button onclick="ham_12_13_toggle_maximize_gv()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; margin-right: 15px;">🗖</button>
+                        <button onclick="document.getElementById('modal-chat-gv').style.display='none'" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;">✖</button>
                     </div>
                 </div>
-                
                 <div id="khung-hien-thi-chat" style="flex: 1; padding: 15px; overflow-y: auto; background: #f1f5f9; display: flex; flex-direction: column; gap: 15px;"></div>
-
                 <div id="vung-preview-anh" style="display: none; padding: 10px; background: #e2e8f0; border-top: 1px solid #cbd5e1; position: relative;">
                     <span style="font-size: 12px; font-weight: bold; color: #475569;">Ảnh đính kèm:</span>
                     <img id="img-preview" src="" style="max-height: 80px; display: block; margin-top: 5px; border-radius: 4px; border: 1px solid #94a3b8;">
                     <button onclick="ham_12_5_xoa_anh_preview()" style="position: absolute; top: 8px; left: 100px; background: #64748b; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 11px; font-weight: bold;">🗑️ Hủy</button>
                 </div>
-
                 <div id="vung-nhap-lieu-gv" style="padding: 15px; background: white; border-top: 1px solid #e2e8f0; display: flex; gap: 10px; align-items: flex-end;">
-                    <label style="cursor: pointer; padding: 10px; background: #f1f5f9; border-radius: 6px; border: 1px solid #cbd5e1;" title="Đính kèm ảnh">
+                    <label style="cursor: pointer; padding: 10px; background: #f1f5f9; border-radius: 6px; border: 1px solid #cbd5e1;">
                         📷<input type="file" id="file-anh-chat" accept="image/*" style="display: none;" onchange="ham_12_6_chon_anh_tu_input(event)">
                     </label>
                     <textarea id="txt-noi-dung-chat" placeholder="Nhập câu trả lời..." style="flex: 1; resize: none; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; max-height: 100px;" rows="2"></textarea>
@@ -56,88 +64,34 @@ window.ham_12_1_ve_quan_ly_tin_nhan = function () {
             </div>
         </div>
     `;
-    ham_12_2_tai_danh_sach_tin_nhan();
+    ham_12_2_tai_danh_sach_tin_nhan(); // Tải Database lần đầu
     ham_12_8_khoi_tao_su_kien_anh();
 }
 
-//// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.2: Thêm Số lượt chat & Nút Khóa/Xóa
+//// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.2: Lấy dữ liệu và nhét vào Bộ nhớ tạm (Không vẽ bảng)
 window.ham_12_2_tai_danh_sach_tin_nhan = async function () {
     const vungDS = document.getElementById('vung-danh-sach-tn');
-    vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang đồng bộ...</div>`;
-    const tuKhoa = document.getElementById('txt-tim-kiem-tn').value.toLowerCase().trim();
-    const locTrangThai = document.getElementById('sel-loc-trang-thai-tn').value;
+    if (!vungDS) return;
+    vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang đồng bộ CSDL...</div>`;
 
     try {
+        // Tải 1 lần toàn bộ tin nhắn
         const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
-        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(ten,danh_sach_ma_lop)&order=thoi_gian_cap_nhat.desc`, { headers: headersAPI });
+        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(ten,danh_sach_ma_lop)`, { headers: headersAPI });
         const dataTN = await resTN.json();
 
-        if (!dataTN || dataTN.length === 0) {
-            vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:#6c757d;">Hộp thư trống.</div>`; return;
+        if (resTN.ok) {
+            BangTinNhanState.duLieuGoc = dataTN || [];
+            ham_12_14_ve_bang_tin_nhan(); // Tải xong thì gọi hàm Xử lý & Vẽ Bảng
+        } else {
+            throw new Error("Lỗi API");
         }
-
-        const dataLoc = dataTN.filter(tn => {
-            let hopLeTrangThai = (locTrangThai === "TAT_CA" || tn.trang_thai == locTrangThai);
-            let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten.toLowerCase() : "";
-            let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop) ? tn.hoc_sinh.danh_sach_ma_lop.join(" ").toLowerCase() : "";
-            let hopLeTuKhoa = (tuKhoa === "" || tenHS.includes(tuKhoa) || dsLop.includes(tuKhoa) || tn.chu_de.toLowerCase().includes(tuKhoa));
-            return hopLeTrangThai && hopLeTuKhoa;
-        });
-
-        let htmlBang = `
-            <table style="width: 100%; border-collapse: collapse; min-width: 900px; font-size:13px;">
-                <thead>
-                    <tr style="background-color: #f1f5f9; color: #334155; text-align: left;">
-                        <th style="padding: 10px; text-align: center;">STT</th>
-                        <th style="padding: 10px;">HỌC SINH</th>
-                        <th style="padding: 10px;">CHỦ ĐỀ</th>
-                        <th style="padding: 10px;">TRÍCH LƯỢC</th>
-                        <th style="padding: 10px; text-align: center;">TRẠNG THÁI</th>
-                        <th style="padding: 10px; text-align: center; width: 140px;">THAO TÁC</th>
-                    </tr>
-                </thead><tbody>
-        `;
-
-        dataLoc.forEach((tn, i) => {
-            let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
-            let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop) ? tn.hoc_sinh.danh_sach_ma_lop.join(", ") : "--";
-            let soLuot = tn.lich_su_chat ? tn.lich_su_chat.length : 0;
-
-            let tinCuoi = "Chưa có nội dung";
-            if (soLuot > 0) {
-                let msgObj = tn.lich_su_chat[soLuot - 1];
-                tinCuoi = msgObj.noidung || "[Có hình ảnh]";
-                if (tinCuoi.length > 40) tinCuoi = tinCuoi.substring(0, 40) + "...";
-            }
-
-            let badgeTT = tn.trang_thai === 0 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 8px; border-radius:4px;">🔴 Chờ Thầy</span>` : (tn.trang_thai === 1 ? `<span style="background:#dcfce7; color:#15803d; padding:4px 8px; border-radius:4px;">🟢 Đã trả lời</span>` : `<span style="background:#f1f5f9; color:#475569; padding:4px 8px; border-radius:4px;">🔒 Đã Khóa</span>`);
-            let dongDam = tn.trang_thai === 0 ? "font-weight: bold; background: #fff8f8;" : "";
-
-            // 🌟 Nút Thao Tác Mới
-            let btnKhoa = tn.trang_thai === 2 ? "" : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Khóa chat">🔒</button>`;
-
-            htmlBang += `
-                <tr style="border-bottom: 1px solid #e2e8f0; ${dongDam}">
-                    <td style="padding: 10px; text-align: center;">${i + 1}</td>
-                    <td style="padding: 10px;"><b style="color: #0ea5e9;">${tenHS}</b><br><span style="font-size:11px; color:#64748b;">Lớp: ${dsLop}</span></td>
-                    <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
-                    <td style="padding: 10px;">
-                        <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt)</span><br>
-                        <i style="color: #334155;">"${tinCuoi}"</i>
-                    </td>
-                    <td style="padding: 10px; text-align: center; font-size:11px; font-weight:bold;">${badgeTT}</td>
-                    <td style="padding: 10px; text-align: center;">
-                        <div style="display:flex; gap:5px; justify-content:center;">
-                            <button onclick="ham_12_3_mo_khung_chat('${tn.id}')" style="background:#0ea5e9; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Mở Chat">💬</button>
-                            ${btnKhoa}
-                            <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Xóa vĩnh viễn">🗑️</button>
-                        </div>
-                    </td>
-                </tr>`;
-        });
-        vungDS.innerHTML = htmlBang + `</tbody></table>`;
-    } catch (e) { console.error(e); }
+    } catch (e) {
+        console.error(e);
+        vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL.</div>`;
+    }
 }
+
 
 //// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.3: Thêm Thời gian & Kiểm tra Khóa
 window.ham_12_3_mo_khung_chat = async function (id_tin_nhan) {
@@ -388,3 +342,157 @@ window.ham_12_13_toggle_maximize_gv = function () {
         modal.style.borderRadius = '0';
     }
 }
+
+
+//// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.14: Xử lý Lọc, Sắp xếp (Sort) và Dựng HTML
+window.ham_12_14_ve_bang_tin_nhan = function () {
+    const vungDS = document.getElementById('vung-danh-sach-tn');
+    if (!vungDS) return;
+
+    if (BangTinNhanState.duLieuGoc.length === 0) {
+        vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:#6c757d;">Hộp thư trống.</div>`;
+        return;
+    }
+
+    // 🌟 BƯỚC 1: LẤY BỘ LỌC TỪ GIAO DIỆN
+    const tuKhoa = document.getElementById('txt-tim-kiem-tn').value.toLowerCase().trim();
+    const mangTrangThaiCanXem = [];
+    if (document.getElementById('chk-tt-cho') && document.getElementById('chk-tt-cho').checked) mangTrangThaiCanXem.push(0);
+    if (document.getElementById('chk-tt-da-tl') && document.getElementById('chk-tt-da-tl').checked) mangTrangThaiCanXem.push(1);
+    if (document.getElementById('chk-tt-khoa') && document.getElementById('chk-tt-khoa').checked) mangTrangThaiCanXem.push(2);
+
+    // 🌟 BƯỚC 2: LỌC DỮ LIỆU
+    let dataLoc = BangTinNhanState.duLieuGoc.filter(tn => {
+        let hopLeTrangThai = mangTrangThaiCanXem.includes(Number(tn.trang_thai));
+        let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten.toLowerCase() : "";
+        let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop) ? tn.hoc_sinh.danh_sach_ma_lop.join(" ").toLowerCase() : "";
+        let hopLeTuKhoa = (tuKhoa === "" || tenHS.includes(tuKhoa) || dsLop.includes(tuKhoa) || tn.chu_de.toLowerCase().includes(tuKhoa));
+        return hopLeTrangThai && hopLeTuKhoa;
+    });
+
+    if (dataLoc.length === 0) {
+        vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:#6c757d;">🔍 Không có tin nhắn nào phù hợp với bộ lọc đang chọn.</div>`;
+        return;
+    }
+
+    // 🌟 BƯỚC 3: THUẬT TOÁN SORT ĐỘNG THEO TỪNG CỘT
+    const cot = BangTinNhanState.cotDangSort;
+    const heSo = BangTinNhanState.tangDan ? 1 : -1;
+
+    dataLoc.sort((a, b) => {
+        let valA, valB;
+        if (cot === 'hoc_sinh') {
+            valA = (a.hoc_sinh && a.hoc_sinh.ten) ? a.hoc_sinh.ten.toLowerCase() : "";
+            valB = (b.hoc_sinh && b.hoc_sinh.ten) ? b.hoc_sinh.ten.toLowerCase() : "";
+        } else if (cot === 'chu_de') {
+            valA = a.chu_de.toLowerCase();
+            valB = b.chu_de.toLowerCase();
+        } else if (cot === 'so_luot') {
+            valA = a.lich_su_chat ? a.lich_su_chat.length : 0;
+            valB = b.lich_su_chat ? b.lich_su_chat.length : 0;
+        } else if (cot === 'trang_thai') {
+            valA = Number(a.trang_thai);
+            valB = Number(b.trang_thai);
+        } else {
+            // Cột thời gian
+            valA = new Date(a.thoi_gian_cap_nhat).getTime();
+            valB = new Date(b.thoi_gian_cap_nhat).getTime();
+        }
+
+        if (valA < valB) return -1 * heSo;
+        if (valA > valB) return 1 * heSo;
+        return 0;
+    });
+
+    // 🌟 BƯỚC 4: RÁP GIAO DIỆN BẢNG
+    const iconSort = BangTinNhanState.tangDan ? '▲' : '▼';
+
+    let htmlBang = `
+        <table style="width: 100%; border-collapse: collapse; min-width: 900px; font-size:13px;">
+            <thead>
+                <tr style="background-color: #f1f5f9; color: #334155; text-align: left; user-select: none;">
+                    <th style="padding: 10px; text-align: center; width: 40px; border-bottom: 2px solid #cbd5e1;">STT</th>
+                    
+                    <th style="padding: 10px; width: 170px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_12_15_thay_doi_sort('hoc_sinh')">
+                        HỌC SINH ${cot === 'hoc_sinh' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; width: 130px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_12_15_thay_doi_sort('chu_de')">
+                        CHỦ ĐỀ ${cot === 'chu_de' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_12_15_thay_doi_sort('so_luot')">
+                        NỘI DUNG / LƯỢT CHAT ${cot === 'so_luot' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; width: 100px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_12_15_thay_doi_sort('thoi_gian_cap_nhat')">
+                        CẬP NHẬT ${cot === 'thoi_gian_cap_nhat' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; text-align: center; width: 110px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_12_15_thay_doi_sort('trang_thai')">
+                        TRẠNG THÁI ${cot === 'trang_thai' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; text-align: center; width: 130px; border-bottom: 2px solid #cbd5e1;">THAO TÁC</th>
+                </tr>
+            </thead><tbody>
+    `;
+
+    dataLoc.forEach((tn, i) => {
+        let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
+        let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop) ? tn.hoc_sinh.danh_sach_ma_lop.join(", ") : "--";
+        let soLuot = tn.lich_su_chat ? tn.lich_su_chat.length : 0;
+
+        let tinCuoi = "Chưa có nội dung";
+        if (soLuot > 0) {
+            let msgObj = tn.lich_su_chat[soLuot - 1];
+            tinCuoi = msgObj.noidung || "[Có hình ảnh]";
+            if (tinCuoi.length > 40) tinCuoi = tinCuoi.substring(0, 40) + "...";
+        }
+
+        let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
+        let tgCapNhat = `${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')} <br><span style="font-size:11px; color:#6c757d;">${dCapNhat.getDate()}/${dCapNhat.getMonth() + 1}</span>`;
+
+        let badgeTT = tn.trang_thai === 0 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 8px; border-radius:4px; font-weight:bold;">🔴 Chờ Thầy</span>` : (tn.trang_thai === 1 ? `<span style="background:#dcfce7; color:#15803d; padding:4px 8px; border-radius:4px; font-weight:bold;">🟢 Đã trả lời</span>` : `<span style="background:#f1f5f9; color:#475569; padding:4px 8px; border-radius:4px; font-weight:bold;">🔒 Đã Khóa</span>`);
+        let dongDam = tn.trang_thai === 0 ? "font-weight: bold; background: #fff8f8;" : "";
+        let btnKhoa = tn.trang_thai === 2 ? "" : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Khóa cuộc chat">🔒</button>`;
+
+        htmlBang += `
+            <tr style="border-bottom: 1px solid #e2e8f0; transition: 0.2s; ${dongDam}" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 10px; text-align: center;">${i + 1}</td>
+                <td style="padding: 10px;"><b style="color: #0ea5e9;">${tenHS}</b><br><span style="font-size:11px; color:#64748b;">Lớp: ${dsLop}</span></td>
+                <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
+                <td style="padding: 10px;">
+                    <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt liên lạc)</span><br>
+                    <i style="color: #334155;">"${tinCuoi}"</i>
+                </td>
+                <td style="padding: 10px; font-size: 12px;">${tgCapNhat}</td>
+                <td style="padding: 10px; text-align: center; font-size:11px;">${badgeTT}</td>
+                <td style="padding: 10px; text-align: center;">
+                    <div style="display:flex; gap:5px; justify-content:center;">
+                        <button onclick="ham_12_3_mo_khung_chat('${tn.id}')" style="background:#0ea5e9; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Mở Khung Chat">💬</button>
+                        ${btnKhoa}
+                        <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" title="Xóa vĩnh viễn">🗑️</button>
+                    </div>
+                </td>
+            </tr>`;
+    });
+    vungDS.innerHTML = htmlBang + `</tbody></table>`;
+}
+
+//// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.15: Cập nhật Trạng thái Sắp xếp (Sort)
+window.ham_12_15_thay_doi_sort = function (cotDuocChon) {
+    if (BangTinNhanState.cotDangSort === cotDuocChon) {
+        // Nếu bấm lại cột đang sort -> Đảo chiều
+        BangTinNhanState.tangDan = !BangTinNhanState.tangDan;
+    } else {
+        // Nếu bấm cột mới -> Đổi sang cột đó và mặc định sắp xếp giảm dần (hoặc tăng)
+        BangTinNhanState.cotDangSort = cotDuocChon;
+        BangTinNhanState.tangDan = true;
+    }
+
+    // Gọi hàm vẽ lại bảng siêu nhanh từ bộ nhớ RAM
+    ham_12_14_ve_bang_tin_nhan();
+}
+
+

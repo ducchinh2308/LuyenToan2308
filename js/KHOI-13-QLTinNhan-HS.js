@@ -2,9 +2,12 @@
 //// MODULE 13: GÓC HỌC SINH - CẬP NHẬT CHUẨN ID VÀ STATE GỐC
 //// =====================================================================
 
-let hsCurrentChatId = null;
-let hsCurrentChatHistory = [];
-let hsCurrentImageBase64 = null;
+// 🌟 KHỞI TẠO BỘ NHỚ TẠM CHO HỌC SINH
+window.BangTinNhanHSState = {
+    cotDangSort: 'thoi_gian_cap_nhat',
+    tangDan: false,
+    duLieuGoc: []
+};
 
 //// [Nhãn thời gian: 20:15 - Ngày 12/06/2026] - Hàm 13.1: Vẽ giao diện Hộp thư Học sinh (BẢN HOÀN CHỈNH TỔNG HỢP)
 window.ham_13_1_ve_hop_thu_hoc_sinh = function () {
@@ -92,13 +95,12 @@ window.ham_13_1_ve_hop_thu_hoc_sinh = function () {
     ham_13_8_khoi_tao_su_kien_anh_hs();
 }
 
-//// [Nhãn thời gian: 17:35 - Ngày 12/06/2026] - Hàm 13.2: Tải danh sách của riêng Học Sinh đó
+//// [Nhãn thời gian: 20:45 - Ngày 12/06/2026] - Hàm 13.2: Tải dữ liệu lưu vào RAM
 window.ham_13_2_tai_danh_sach_tin_nhan_hs = async function () {
     const vungDS = document.getElementById('vung-danh-sach-tn-hs');
     if (!vungDS) return;
-    vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang tải hộp thư...</div>`;
+    vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang đồng bộ hộp thư...</div>`;
 
-    // 🌟 SỬA TẠI ĐÂY: Ăn chắc theo biến GocHocSinhState.uid thầy vừa nạp ở hàm ham_8_1
     const uidHocSinhHienTai = GocHocSinhState.uid || (AppState.user && AppState.user.uid);
 
     if (!uidHocSinhHienTai) {
@@ -108,59 +110,20 @@ window.ham_13_2_tai_danh_sach_tin_nhan_hs = async function () {
 
     try {
         const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
-        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?uid_hoc_sinh=eq.${uidHocSinhHienTai}&order=thoi_gian_cap_nhat.desc`, { headers: headersAPI });
+        // Kéo dữ liệu về (không sắp xếp bằng API nữa, để JS tự làm)
+        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?uid_hoc_sinh=eq.${uidHocSinhHienTai}`, { headers: headersAPI });
         const dataTN = await resTN.json();
 
-        if (!resTN.ok) {
-            vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối: ${dataTN.message}</div>`;
-            return;
+        if (resTN.ok) {
+            BangTinNhanHSState.duLieuGoc = dataTN || [];
+            ham_13_12_ve_bang_tin_nhan_hs(); // Chuyển qua hàm vẽ bảng
+        } else {
+            throw new Error(dataTN.message);
         }
-
-        if (!dataTN || dataTN.length === 0) {
-            vungDS.innerHTML = `<div style="text-align:center; padding:30px; color:#6c757d; border: 1px dashed #ccc; border-radius: 8px; font-size:13px;">Em chưa gửi câu hỏi nào cho thầy.<br>Bấm "Gửi câu hỏi mới" nếu em cần hỗ trợ nhé!</div>`; return;
-        }
-
-        let htmlBang = `
-            <table style="width: 100%; border-collapse: collapse; min-width: 500px; font-size:13px;">
-                <thead>
-                    <tr style="background-color: #f1f5f9; color: #334155; text-align: left;">
-                        <th style="padding: 10px; width: 110px;">CHỦ ĐỀ</th>
-                        <th style="padding: 10px;">TRÍCH LƯỢC</th>
-                        <th style="padding: 10px; width: 90px;">CẬP NHẬT</th>
-                        <th style="padding: 10px; width: 120px; text-align: center;">TRẠNG THÁI</th>
-                        <th style="padding: 10px; width: 80px; text-align: center;">XEM</th>
-                    </tr>
-                </thead><tbody>
-        `;
-
-        dataTN.forEach(tn => {
-            let tinCuoi = "Chưa có nội dung";
-            if (Array.isArray(tn.lich_su_chat) && tn.lich_su_chat.length > 0) {
-                let msgObj = tn.lich_su_chat[tn.lich_su_chat.length - 1];
-                tinCuoi = msgObj.noidung || "[Có hình ảnh]";
-                if (tinCuoi.length > 40) tinCuoi = tinCuoi.substring(0, 40) + "...";
-            }
-
-            let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
-            let tgCapNhat = `${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')} <br><span style="font-size:11px; color:#6c757d;">${dCapNhat.getDate()}/${dCapNhat.getMonth() + 1}</span>`;
-            let badgeTT = tn.trang_thai === 0 ? `<span style="background:#f1f5f9; color:#475569; padding:4px 6px; border-radius:4px; font-size:11px;">Chờ Thầy đọc</span>`
-                : (tn.trang_thai === 1 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 6px; border-radius:4px; font-size:11px; font-weight:bold;">🔔 Thầy phản hồi</span>`
-                    : `<span style="background:#f1f5f9; color:#94a3b8; padding:4px 6px; border-radius:4px; font-size:11px;">Đã Đóng</span>`);
-            let dongDam = tn.trang_thai === 1 ? "font-weight: bold; background: #fffcf0;" : "";
-
-            htmlBang += `
-                <tr style="border-bottom: 1px solid #e2e8f0; ${dongDam}">
-                    <td style="padding: 10px; font-weight: bold; color: #0ea5e9;">${tn.chu_de}</td>
-                    <td style="padding: 10px; color: #334155;">"${tinCuoi}"</td>
-                    <td style="padding: 10px; font-size: 12px;">${tgCapNhat}</td>
-                    <td style="padding: 10px; text-align: center;">${badgeTT}</td>
-                    <td style="padding: 10px; text-align: center;">
-                        <button onclick="ham_13_3_mo_khung_chat_hs('${tn.id}', '${tn.chu_de}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px;">💬</button>
-                    </td>
-                </tr>`;
-        });
-        vungDS.innerHTML = htmlBang + `</tbody></table>`;
-    } catch (e) { console.error(e); }
+    } catch (e) {
+        console.error(e);
+        vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL: ${e.message}</div>`;
+    }
 }
 
 
@@ -424,4 +387,121 @@ window.ham_13_11_toggle_maximize_hs = function () {
         modal.style.maxWidth = 'none';
         modal.style.borderRadius = '0';
     }
+}
+
+//// [Nhãn thời gian: 20:45 - Ngày 12/06/2026] - Hàm 13.12: Xử lý Sắp xếp và Dựng HTML (Học sinh)
+window.ham_13_12_ve_bang_tin_nhan_hs = function () {
+    const vungDS = document.getElementById('vung-danh-sach-tn-hs');
+    if (!vungDS) return;
+
+    if (BangTinNhanHSState.duLieuGoc.length === 0) {
+        vungDS.innerHTML = `<div style="text-align:center; padding:30px; color:#6c757d; border: 1px dashed #ccc; border-radius: 8px; font-size:13px;">Em chưa gửi câu hỏi nào cho thầy.<br>Bấm "Gửi câu hỏi mới" nếu em cần hỗ trợ nhé!</div>`;
+        return;
+    }
+
+    // 🌟 THUẬT TOÁN SORT CHO HỌC SINH
+    let dataLoc = [...BangTinNhanHSState.duLieuGoc];
+    const cot = BangTinNhanHSState.cotDangSort;
+    const heSo = BangTinNhanHSState.tangDan ? 1 : -1;
+
+    dataLoc.sort((a, b) => {
+        let valA, valB;
+        if (cot === 'chu_de') {
+            valA = a.chu_de.toLowerCase();
+            valB = b.chu_de.toLowerCase();
+        } else if (cot === 'so_luot') {
+            valA = a.lich_su_chat ? a.lich_su_chat.length : 0;
+            valB = b.lich_su_chat ? b.lich_su_chat.length : 0;
+        } else if (cot === 'trang_thai') {
+            valA = Number(a.trang_thai);
+            valB = Number(b.trang_thai);
+        } else {
+            // Mặc định sort theo ngày cập nhật
+            valA = new Date(a.thoi_gian_cap_nhat).getTime();
+            valB = new Date(b.thoi_gian_cap_nhat).getTime();
+        }
+
+        if (valA < valB) return -1 * heSo;
+        if (valA > valB) return 1 * heSo;
+        return 0;
+    });
+
+    // 🌟 RÁP GIAO DIỆN CÓ ICON SORT
+    const iconSort = BangTinNhanHSState.tangDan ? '▲' : '▼';
+
+    let htmlBang = `
+        <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-size:13px;">
+            <thead>
+                <tr style="background-color: #f1f5f9; color: #334155; text-align: left; user-select: none;">
+                    <th style="padding: 10px; width: 40px; text-align: center; border-bottom: 2px solid #cbd5e1;">STT</th>
+                    
+                    <th style="padding: 10px; width: 140px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_13_13_thay_doi_sort_hs('chu_de')">
+                        CHỦ ĐỀ ${cot === 'chu_de' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_13_13_thay_doi_sort_hs('so_luot')">
+                        NỘI DUNG / LƯỢT CHAT ${cot === 'so_luot' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; width: 100px; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_13_13_thay_doi_sort_hs('thoi_gian_cap_nhat')">
+                        CẬP NHẬT ${cot === 'thoi_gian_cap_nhat' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; width: 120px; text-align: center; border-bottom: 2px solid #cbd5e1; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='transparent'" onclick="ham_13_13_thay_doi_sort_hs('trang_thai')">
+                        TRẠNG THÁI ${cot === 'trang_thai' ? `<span style="color:#0ea5e9;">${iconSort}</span>` : '↕'}
+                    </th>
+                    
+                    <th style="padding: 10px; width: 80px; text-align: center; border-bottom: 2px solid #cbd5e1;">XEM</th>
+                </tr>
+            </thead><tbody>
+    `;
+
+    dataLoc.forEach((tn, i) => {
+        let soLuot = tn.lich_su_chat ? tn.lich_su_chat.length : 0;
+        let tinCuoi = "Chưa có nội dung";
+        if (soLuot > 0) {
+            let msgObj = tn.lich_su_chat[soLuot - 1];
+            tinCuoi = msgObj.noidung || "[Có hình ảnh]";
+            if (tinCuoi.length > 40) tinCuoi = tinCuoi.substring(0, 40) + "...";
+        }
+
+        let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
+        let tgCapNhat = `${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')} <br><span style="font-size:11px; color:#6c757d;">${dCapNhat.getDate()}/${dCapNhat.getMonth() + 1}</span>`;
+
+        let badgeTT = tn.trang_thai === 0 ? `<span style="background:#f1f5f9; color:#475569; padding:4px 6px; border-radius:4px; font-size:11px;">Chờ Thầy đọc</span>`
+            : (tn.trang_thai === 1 ? `<span style="background:#fee2e2; color:#b91c1c; padding:4px 6px; border-radius:4px; font-size:11px; font-weight:bold;">🔔 Thầy phản hồi</span>`
+                : `<span style="background:#f1f5f9; color:#94a3b8; padding:4px 6px; border-radius:4px; font-size:11px;">Đã Đóng</span>`);
+
+        let dongDam = tn.trang_thai === 1 ? "font-weight: bold; background: #fffcf0;" : "";
+
+        htmlBang += `
+            <tr style="border-bottom: 1px solid #e2e8f0; transition: 0.2s; ${dongDam}" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 10px; text-align: center;">${i + 1}</td>
+                <td style="padding: 10px; font-weight: bold; color: #0ea5e9;">${tn.chu_de}</td>
+                <td style="padding: 10px;">
+                    <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt liên lạc)</span><br>
+                    <i style="color: #334155;">"${tinCuoi}"</i>
+                </td>
+                <td style="padding: 10px; font-size: 12px;">${tgCapNhat}</td>
+                <td style="padding: 10px; text-align: center;">${badgeTT}</td>
+                <td style="padding: 10px; text-align: center;">
+                    <button onclick="ham_13_3_mo_khung_chat_hs('${tn.id}', '${tn.chu_de}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px;">💬</button>
+                </td>
+            </tr>`;
+    });
+    vungDS.innerHTML = htmlBang + `</tbody></table>`;
+}
+
+//// [Nhãn thời gian: 20:45 - Ngày 12/06/2026] - Hàm 13.13: Cập nhật biến Sort (Học sinh)
+window.ham_13_13_thay_doi_sort_hs = function (cotDuocChon) {
+    if (BangTinNhanHSState.cotDangSort === cotDuocChon) {
+        // Đảo chiều nếu bấm lại cột cũ
+        BangTinNhanHSState.tangDan = !BangTinNhanHSState.tangDan;
+    } else {
+        // Mặc định tăng dần nếu đổi cột
+        BangTinNhanHSState.cotDangSort = cotDuocChon;
+        BangTinNhanHSState.tangDan = true;
+    }
+    // Render lại từ RAM
+    ham_13_12_ve_bang_tin_nhan_hs();
 }
