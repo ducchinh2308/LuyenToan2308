@@ -313,16 +313,62 @@ window.ham_12_11_khoa_tin_nhan = async function (id) {
     } catch (e) { alert("Lỗi khi khóa!"); }
 }
 
-//// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.12: Xử lý Xóa tin nhắn
+//// [Nhãn thời gian: 20:30 - Ngày 12/06/2026] - Hàm 12.12: Xóa tin nhắn (Tích hợp thuật toán quét dọn rác Storage)
 window.ham_12_12_xoa_tin_nhan = async function (id) {
-    if (!confirm("🗑️ CẢNH BÁO: Thầy có chắc muốn XÓA VĨNH VIỄN toàn bộ tin nhắn này khỏi CSDL?")) return;
+    if (!confirm("🗑️ CẢNH BÁO: Thầy có chắc muốn XÓA VĨNH VIỄN toàn bộ tin nhắn này VÀ CÁC ẢNH ĐÍNH KÈM khỏi hệ thống?")) return;
+
     try {
+        // 🌟 BƯỚC 1: Lấy lịch sử chat để dò tìm các đường link ảnh
+        const resGet = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${id}&select=lich_su_chat`, {
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        });
+        const dataGet = await resGet.json();
+
+        if (dataGet && dataGet.length > 0) {
+            const lichSu = dataGet[0].lich_su_chat || [];
+            let mangTenFileAnh = [];
+
+            // Quét từng bong bóng chat
+            lichSu.forEach(msg => {
+                if (msg.hinh_anh && Array.isArray(msg.hinh_anh)) {
+                    msg.hinh_anh.forEach(url => {
+                        // Cắt chuỗi để lấy đúng tên file. 
+                        // VD: https://.../public/chat_images/hs_123.jpg -> lấy "hs_123.jpg"
+                        const parts = url.split('/chat_images/');
+                        if (parts.length > 1) {
+                            mangTenFileAnh.push(parts[1]);
+                        }
+                    });
+                }
+            });
+
+            // 🌟 BƯỚC 2: Bắn API xóa hàng loạt ảnh trên Supabase Storage
+            if (mangTenFileAnh.length > 0) {
+                const promisesXoaAnh = mangTenFileAnh.map(tenFile =>
+                    fetch(`${SUPABASE_URL}/storage/v1/object/chat_images/${tenFile}`, {
+                        method: 'DELETE',
+                        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+                    })
+                );
+                // Đợi xóa xong tất cả ảnh cùng 1 lúc
+                await Promise.all(promisesXoaAnh);
+                console.log(`🧹 Đã dọn dẹp ${mangTenFileAnh.length} ảnh rác trên Storage!`);
+            }
+        }
+
+        // 🌟 BƯỚC 3: Xóa dòng văn bản trong bảng tin_nhan
         await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${id}`, {
             method: 'DELETE',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
         });
+
+        // 🌟 BƯỚC 4: Tải lại giao diện bảng
         ham_12_2_tai_danh_sach_tin_nhan();
-    } catch (e) { alert("Lỗi khi xóa!"); }
+
+    } catch (e) {
+        console.error(e);
+        alert("❌ Lỗi mạng khi xóa dữ liệu. Thầy thử lại nhé!");
+    }
 }
 
 //// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.13: Thuật toán Phóng To / Thu Nhỏ Modal (GV)
