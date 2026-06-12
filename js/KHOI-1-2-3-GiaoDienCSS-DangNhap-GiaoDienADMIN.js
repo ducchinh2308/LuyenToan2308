@@ -494,6 +494,8 @@ function ham_3_1_ve_dashboard_admin() {
 
                 <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 15px 25px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(253,126,20,0.3);">📢 Quản Lý Thông Báo</button>
 
+                <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 15px 25px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(14,165,233,0.3);">💬 Hộp Thư Hỗ Trợ</button>
+
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 15px 25px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(231,76,60,0.3);">🔴 TỔ CHỨC LIVE QUIZ</button>
             </div>
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
