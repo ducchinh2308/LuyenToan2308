@@ -503,7 +503,7 @@ window.ham_14_3_thay_doi_sap_xep = function (colKey) {
         window.DuyetDonSortState.key = colKey;
         window.DuyetDonSortState.asc = true;
     }
-    ham_14_1_tab_duyet_don();
+    ham_14_1_ve_tab_duyet_don();
 }
 
 window.ham_14_4_xoa_yeu_cau = async function (idDon) {
