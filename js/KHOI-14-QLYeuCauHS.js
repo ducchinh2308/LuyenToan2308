@@ -9,7 +9,7 @@ if (!window.DuyetDonSortState) {
 // =====================================================================
 // Hàm 14.1: Tab HÒM THƯ DUYỆT ĐƠN (ĐÃ HIỆN CẢ MÃ LỚP VÀ TÊN LỚP XIN VÀO)
 // =====================================================================
-window.ham_14_1_tab_duyet_don = async function () {
+window.ham_14_1_ve_tab_duyet_don = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#ffc107;">⏳ Đang mở hòm thư và trích xuất cấu trúc nhiệm vụ...</h3></div>`;
 
