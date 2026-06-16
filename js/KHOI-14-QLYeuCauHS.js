@@ -80,24 +80,31 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
         }
 
         // =====================================================================
-        // 3. LOGIC SẮP XẾP ĐA TẦNG (CẢI TIẾN TRẠNG THÁI MẶC ĐỊNH)
+        // 3. LOGIC SẮP XẾP ĐA TẦNG (CẢI TIẾN: ƯU TIÊN CHỜ DUYỆT LÊN ĐẦU)
         // =====================================================================
         dsDon.sort((a, b) => {
             const sortKey = window.DuyetDonSortState.key;
+            const isAsc = window.DuyetDonSortState.asc;
 
+            // 🌟 LOGIC ĐẶC BIỆT CHO CỘT TRẠNG THÁI
             if (sortKey === 'trang_thai') {
-                const trangThaiA = Number(a.trang_thai) || 0;
-                const trangThaiB = Number(b.trang_thai) || 0;
+                const ttA = Number(a.trang_thai);
+                const ttB = Number(b.trang_thai);
 
-                if (trangThaiA !== trangThaiB) {
-                    return window.DuyetDonSortState.asc ? (trangThaiA - trangThaiB) : (trangThaiB - trangThaiA);
-                } else {
-                    const thoiGianA = new Date(a.ngay_tao || 0).getTime();
-                    const thoiGianB = new Date(b.ngay_tao || 0).getTime();
-                    return thoiGianB - thoiGianA;
+                // Luôn ưu tiên 0 lên đầu
+                if (ttA === 0 && ttB !== 0) return -1;
+                if (ttA !== 0 && ttB === 0) return 1;
+
+                // Nếu cùng trạng thái, ưu tiên thời gian mới nhất lên đầu
+                if (ttA === ttB) {
+                    return new Date(b.ngay_tao || 0) - new Date(a.ngay_tao || 0);
                 }
+
+                // Nếu khác trạng thái (và không có cái nào là 0), sort bình thường theo asc/desc
+                return isAsc ? (ttA - ttB) : (ttB - ttA);
             }
 
+            // 🌟 LOGIC CHO CÁC CỘT THÔNG TIN KHÁC
             let valA, valB;
             if (sortKey === 'hoc_sinh') {
                 valA = (a.ten_hoc_sinh || '').toLowerCase();
@@ -112,12 +119,12 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                 valA = new Date(a.ngay_tao || 0).getTime();
                 valB = new Date(b.ngay_tao || 0).getTime();
             } else {
-                valA = a[sortKey];
-                valB = b[sortKey];
+                valA = a[sortKey] || '';
+                valB = b[sortKey] || '';
             }
 
-            if (valA < valB) return window.DuyetDonSortState.asc ? -1 : 1;
-            if (valA > valB) return window.DuyetDonSortState.asc ? 1 : -1;
+            if (valA < valB) return isAsc ? -1 : 1;
+            if (valA > valB) return isAsc ? 1 : -1;
             return 0;
         });
 
