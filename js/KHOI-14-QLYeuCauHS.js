@@ -156,17 +156,18 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                     <button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>
                 </div>
             `;
-                    } else {
-                        trangThaiBadge = (don.trang_thai === 1)
-                            ? `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`
-                            : `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
+            } else {
+                trangThaiBadge = (don.trang_thai === 1)
+                    ? `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`
+                    : `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
 
-                        hanhDongHtml = `
+                hanhDongHtml = `
                 <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
                     <span style="color: #ccc; font-size: 11px; font-weight: bold;">Đã xử lý</span>
                     <button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>
                 </div>
             `;
+            }
 
             // =====================================================================
             // 🌟 ĐIỂM SỬA CHÍNH: HIỂN THỊ CẢ MÃ LỚP VÀ TÊN LỚP ĐƯỢC MAP TỪ DATABASE
