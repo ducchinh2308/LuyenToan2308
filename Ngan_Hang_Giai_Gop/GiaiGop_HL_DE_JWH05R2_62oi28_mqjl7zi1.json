@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-06-18T14:20:52.728Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_a42ac5c636",
+      "dapAn": "D",
+      "loiGiaiHtml": "15 - 3 + 5 = 17."
+    },
+    {
+      "maBaoMat": "sol_151edec329",
+      "dapAn": "B",
+      "loiGiaiHtml": "19 - 7 = 12."
+    },
+    {
+      "maBaoMat": "sol_08982e07bf",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hùng có 8 viên. Tổng: 10 + 8 = 18."
+    },
+    {
+      "maBaoMat": "sol_93654808ce",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hình tam giác."
+    },
+    {
+      "maBaoMat": "sol_afa3bf3c40",
+      "dapAn": "B",
+      "loiGiaiHtml": "98."
+    },
+    {
+      "maBaoMat": "sol_b96dccc6a6",
+      "dapAn": "B",
+      "loiGiaiHtml": "10 - 2 = 8 giờ."
+    },
+    {
+      "maBaoMat": "sol_a386348e94",
+      "dapAn": "B",
+      "loiGiaiHtml": "10, 11, ..., 19 (có 10 số)."
+    },
+    {
+      "maBaoMat": "sol_d24889ad77",
+      "dapAn": "C",
+      "loiGiaiHtml": "12 - 8 = 4."
+    },
+    {
+      "maBaoMat": "sol_944aa80916",
+      "dapAn": "C",
+      "loiGiaiHtml": "20 - 5 + 2 = 17."
+    },
+    {
+      "maBaoMat": "sol_a89b1da4ac",
+      "dapAn": "B",
+      "loiGiaiHtml": "Số 14."
+    },
+    {
+      "maBaoMat": "sol_e7c37c4ab4",
+      "dapAn": "B",
+      "loiGiaiHtml": "18 chia 2 = 9."
+    },
+    {
+      "maBaoMat": "sol_d98d1cab75",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thứ Tư."
+    },
+    {
+      "maBaoMat": "sol_a3002461a0",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\\itemch Đúng. \\itemch Sai. \\itemch Đúng. \\itemch Sai. \\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_2427e728cc",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\\itemch Đúng. \\itemch Sai. \\itemch Đúng. \\itemch Sai. \\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4dc2054ce7",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\\itemch Đúng. \\itemch Sai. \\itemch Đúng. \\itemch Sai. \\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a9b6c3c7ef",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\\itemch Đúng. \\itemch Sai. \\itemch Đúng. \\itemch Sai. \\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_ff2ee2beac",
+      "dapAn": "7",
+      "loiGiaiHtml": "12 - 5 = 7"
+    },
+    {
+      "maBaoMat": "sol_fefbce8f7d",
+      "dapAn": "42",
+      "loiGiaiHtml": "20 + 22 = 42"
+    },
+    {
+      "maBaoMat": "sol_e1f7769e64",
+      "dapAn": "5",
+      "loiGiaiHtml": "15:3 = 5"
+    },
+    {
+      "maBaoMat": "sol_3647c05594",
+      "dapAn": "91",
+      "loiGiaiHtml": "91"
+    },
+    {
+      "maBaoMat": "sol_ed55b84e1c",
+      "dapAn": "38",
+      "loiGiaiHtml": "38"
+    },
+    {
+      "maBaoMat": "sol_d804a29649",
+      "dapAn": "4",
+      "loiGiaiHtml": "16:4 = 4"
+    }
+  ]
+}
