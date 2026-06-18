@@ -1,0 +1,203 @@
+{
+    "maDe": "HL_DE_JWH05R2",
+    "tenDe": "TOÁN 1-12-4-6",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_3369255b4b",
+            "ma_goc": "1374-153",
+            "kieuCau": "TN",
+            "cauDan": "Trong rổ có 15 quả cam, mẹ lấy ra 3 quả rồi sau đó cho thêm 5 quả vào rổ. Hỏi lúc này trong rổ có bao nhiêu quả cam?",
+            "paA": "12",
+            "paB": "13",
+            "paC": "16",
+            "paD": "17"
+        },
+        {
+            "maCau": "q_15237effde",
+            "ma_goc": "5022-671",
+            "kieuCau": "TN",
+            "cauDan": "Tìm một số biết rằng số đó cộng với 7 thì được kết quả là 19?",
+            "paA": "10",
+            "paB": "12",
+            "paC": "13",
+            "paD": "14"
+        },
+        {
+            "maCau": "q_13a07f6bab",
+            "ma_goc": "1518-157",
+            "kieuCau": "TN",
+            "cauDan": "Lan có 1 chục viên bi, Hùng có số bi ít hơn Lan 2 viên. Hỏi cả hai bạn có bao nhiêu viên bi?",
+            "paA": "12",
+            "paB": "15",
+            "paC": "18",
+            "paD": "20"
+        },
+        {
+            "maCau": "q_11941086b5",
+            "ma_goc": "4480-440",
+            "kieuCau": "TN",
+            "cauDan": "Hình nào có 3 cạnh?",
+            "paA": "Hình vuông",
+            "paB": "Hình chữ nhật",
+            "paC": "Hình tam giác",
+            "paD": "Hình tròn"
+        },
+        {
+            "maCau": "q_7dc6696579",
+            "ma_goc": "8025-856",
+            "kieuCau": "TN",
+            "cauDan": "Số lớn nhất có hai chữ số khác nhau là?",
+            "paA": "99",
+            "paB": "98",
+            "paC": "89",
+            "paD": "90"
+        },
+        {
+            "maCau": "q_7db4884d24",
+            "ma_goc": "2343-691",
+            "kieuCau": "TN",
+            "cauDan": "Mẹ đi chợ về lúc 10 giờ, Lan đi học về sớm hơn mẹ 2 giờ. Lan về lúc mấy giờ?",
+            "paA": "7 giờ",
+            "paB": "8 giờ",
+            "paC": "9 giờ",
+            "paD": "12 giờ"
+        },
+        {
+            "maCau": "q_12329f1ffd",
+            "ma_goc": "4493-956",
+            "kieuCau": "TN",
+            "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng chục là 1?",
+            "paA": "9",
+            "paB": "10",
+            "paC": "11",
+            "paD": "8"
+        },
+        {
+            "maCau": "q_d889d50d8d",
+            "ma_goc": "9032-850",
+            "kieuCau": "TN",
+            "cauDan": "Điền số vào ô trống: 5 + 7 = 8 + ?",
+            "paA": "3",
+            "paB": "5",
+            "paC": "4",
+            "paD": "6"
+        },
+        {
+            "maCau": "q_ea581859f9",
+            "ma_goc": "6636-511",
+            "kieuCau": "TN",
+            "cauDan": "Một đoàn tàu có 20 toa, tàu bỏ lại 5 toa, sau đó thêm 2 toa. Đoàn tàu có mấy toa?",
+            "paA": "15",
+            "paB": "16",
+            "paC": "17",
+            "paD": "18"
+        },
+        {
+            "maCau": "q_9787375439",
+            "ma_goc": "1455-842",
+            "kieuCau": "TN",
+            "cauDan": "Số nào bé hơn 15 nhưng lớn hơn 13?",
+            "paA": "16",
+            "paB": "14",
+            "paC": "12",
+            "paD": "13"
+        },
+        {
+            "maCau": "q_8ba1ff6993",
+            "ma_goc": "4233-193",
+            "kieuCau": "TN",
+            "cauDan": "Mẹ có 18 cái kẹo, mẹ chia đều cho 2 bạn. Mỗi bạn được mấy cái?",
+            "paA": "8",
+            "paB": "9",
+            "paC": "10",
+            "paD": "7"
+        },
+        {
+            "maCau": "q_3688863ee2",
+            "ma_goc": "3165-252",
+            "kieuCau": "TN",
+            "cauDan": "Ngày 20 là thứ Hai, vậy ngày 22 là thứ mấy?",
+            "paA": "Thứ Hai",
+            "paB": "Thứ Ba",
+            "paC": "Thứ Tư",
+            "paD": "Thứ Năm"
+        },
+        {
+            "maCau": "q_4c0646b82b",
+            "ma_goc": "8024-500",
+            "kieuCau": "DS",
+            "cauDan": "Xét các khẳng định về số học:",
+            "paA": "15 + 4 > 18",
+            "paB": "19 - 9 < 8",
+            "paC": "20 - 6 = 14",
+            "paD": "17 + 2 < 18"
+        },
+        {
+            "maCau": "q_d945962b68",
+            "ma_goc": "8058-482",
+            "kieuCau": "DS",
+            "cauDan": "Về hình học và đo lường:",
+            "paA": "1 giờ = 60 phút",
+            "paB": "1 mét = 10 cm",
+            "paC": "Hình chữ nhật có 4 góc vuông",
+            "paD": "Tam giác có 4 cạnh"
+        },
+        {
+            "maCau": "q_fc5f83555a",
+            "ma_goc": "4766-506",
+            "kieuCau": "DS",
+            "cauDan": "Cho dãy số 2, 4, 6, 8, ...:",
+            "paA": "Số tiếp theo là 10",
+            "paB": "Số tiếp theo là 9",
+            "paC": "Đây là dãy số tăng dần",
+            "paD": "Đây là dãy số giảm dần"
+        },
+        {
+            "maCau": "q_aa9fa654d9",
+            "ma_goc": "5189-325",
+            "kieuCau": "DS",
+            "cauDan": "Xét các phép tính sau:",
+            "paA": "9 + 9 = 18",
+            "paB": "8 + 7 = 16",
+            "paC": "15 - 8 = 7",
+            "paD": "12 - 5 = 6"
+        },
+        {
+            "maCau": "q_7a5633436f",
+            "ma_goc": "1383-953",
+            "kieuCau": "TLN",
+            "cauDan": "Hùng có 12 viên bi, Hùng cho Bình 5 viên. Hùng còn lại?"
+        },
+        {
+            "maCau": "q_f1489084cc",
+            "ma_goc": "4762-669",
+            "kieuCau": "TLN",
+            "cauDan": "Lớp 1A có 20 bạn, lớp 1B có 22 bạn. Tổng hai lớp?"
+        },
+        {
+            "maCau": "q_3583b7f875",
+            "ma_goc": "2503-343",
+            "kieuCau": "TLN",
+            "cauDan": "Có 15 bông hoa, cắm vào 3 lọ. Mỗi lọ mấy bông?"
+        },
+        {
+            "maCau": "q_1b9371e2e8",
+            "ma_goc": "3559-131",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số lớn nhất có 2 chữ số mà tổng hai chữ số bằng 10?"
+        },
+        {
+            "maCau": "q_2108443140",
+            "ma_goc": "8423-496",
+            "kieuCau": "TLN",
+            "cauDan": "Có 3 chục và 8 đơn vị, viết số đó?"
+        },
+        {
+            "maCau": "q_e7019efb05",
+            "ma_goc": "3849-509",
+            "kieuCau": "TLN",
+            "cauDan": "Một hình vuông có chu vi 16cm, cạnh của nó là?"
+        }
+    ]
+}
