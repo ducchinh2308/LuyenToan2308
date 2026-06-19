@@ -225,12 +225,11 @@ window.ham_8_6_bat_dau_thi_ngay = function (phong) {
 //};
 
 
-// [Nhãn thời gian: 16:00 - Ngày 19/06/2026] - Hàm 8.6.3: Nạp đề + Gọi lệnh phục hồi
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
-        Swal.fire({ title: '⏳ Đang phục hồi bài thi của em...', didOpen: () => Swal.showLoading() });
-
+        Swal.fire({ title: '⏳ Đang nạp đề...', didOpen: () => Swal.showLoading() });
         const { data: nv } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
+
         window.DangKhoiTaoLiveQuiz = true;
 
         if (window.ThongTinLiveHocSinh.thoiGianDong) {
@@ -238,13 +237,15 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
             nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
         }
 
-        // 1. Gọi hàm vẽ đề gốc (hàm này phải vẽ xong UI trước)
+        // QUAN TRỌNG: Phải chờ hàm này chạy xong (vẽ xong giao diện) rồi mới gọi phục hồi
         await ham_8_8_khoi_tao_phong_thi(nv);
 
-        // 2. 🌟 GỌI LỆNH PHỤC HỒI DỮ LIỆU TỪ BẢNG live_quiz_chi_tiet
-        await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+        // Đợi 200ms để DOM cập nhật hoàn toàn các ID câu hỏi
+        setTimeout(async () => {
+            await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+            Swal.close();
+        }, 200);
 
-        Swal.close();
     } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
 };
 
@@ -402,11 +403,9 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
 
 
-
-// [Nhãn thời gian: 16:05 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi
+// [Nhãn thời gian: 16:30 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi (BẢN ĐÃ BỔ SUNG TLN)
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
     try {
-        // Lấy tất cả các câu đã nộp thành công
         const { data: dsDaNop } = await _supabase.from('live_quiz_chi_tiet')
             .select('ma_cau, dap_an_chon, diem_cau')
             .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
@@ -424,8 +423,9 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
             const khoiCau = document.getElementById(`cau-${item.ma_cau}`);
             if (!khoiCau) return;
 
-            // 1. Đổ lại đáp án vào input/radio
             const kieuCau = (khoiCau.getAttribute('data-loaicau') || 'TN').toUpperCase();
+
+            // 1. Đổ lại đáp án
             if (kieuCau === 'TN') {
                 const rad = khoiCau.querySelector(`input[value="${item.dap_an_chon}"]`);
                 if (rad) { rad.checked = true; rad.closest('label').style.background = '#e8f0fe'; }
@@ -435,6 +435,11 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
                     const radDS = khoiCau.querySelector(`input[name="ds_${item.ma_cau}_${k}"][value="${ans}"]`);
                     if (radDS) radDS.checked = true;
                 });
+            } else if (kieuCau === 'TLN') {
+                // 🌟 BỔ SUNG: Xử lý phục hồi cho câu tự luận
+                const inputs = khoiCau.querySelectorAll('input[type="text"]');
+                const dapAnArr = item.dap_an_chon.split(''); // Giả sử đáp án TLN lưu theo từng ký tự
+                inputs.forEach((inp, idx) => { if (dapAnArr[idx]) inp.value = dapAnArr[idx]; });
             }
 
             // 2. KHÓA LẠI CÂU ĐÃ LÀM
@@ -447,13 +452,11 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
             if (nutNav) nutNav.style.background = '#d4edda';
         });
 
-        // Cập nhật điểm trên màn hình
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) hudDiem.innerText = Number(tongDiemPhucHoi).toFixed(2);
 
     } catch (e) { console.error("Lỗi phục hồi:", e); }
 };
-
 
 //// =====================================================================
 //// 5. Màn hình báo kết quả đã thi - Chờ các học sinh khác
