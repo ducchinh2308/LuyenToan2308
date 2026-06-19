@@ -404,14 +404,14 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
 
 // =====================================================================
-// [Nhãn thời gian: 16:50 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi (Bản Debug & Chống lỗi đồng bộ)
+// [Nhãn thời gian: 17:00 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi (Bản Debug sâu & Loại bỏ khoảng trắng)
 // =====================================================================
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
-    console.log("🔍 [DEBUG] Bắt đầu phục hồi...");
-    console.log("Phòng thi:", window.ThongTinLiveHocSinh.maPhong);
-    console.log("UID Học sinh:", GocHocSinhState ? GocHocSinhState.uid : "Chưa có UID");
+    console.log("🔍 [DEBUG SÂU] Bắt đầu phục hồi...");
+    console.log("Phòng thi hiện tại:", window.ThongTinLiveHocSinh.maPhong);
+    console.log("UID Học sinh hiện tại:", GocHocSinhState ? GocHocSinhState.uid : "Chưa có UID");
 
-    // Lớp bảo vệ: Đợi UID nếu chưa tải kịp
+    // Đợi UID nếu mạng load chậm
     if (!GocHocSinhState || !GocHocSinhState.uid) {
         console.warn("⚠️ UID chưa sẵn sàng, đợi 1 giây...");
         setTimeout(ham_8_6_5_khoi_phuc_dap_an_da_nop, 1000);
@@ -419,23 +419,38 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
     }
 
     try {
-        // Truy vấn dữ liệu từ DB (Ép kiểu ma_phong sang string để tránh lệch kiểu)
-        const { data: dsDaNop, error: err } = await _supabase.from('live_quiz_chi_tiet')
-            .select('ma_cau, dap_an_chon, diem_cau')
-            .eq('ma_phong', String(window.ThongTinLiveHocSinh.maPhong))
-            .eq('uid_hoc_sinh', GocHocSinhState.uid);
+        // TẠM THỜI: Lấy tất cả dữ liệu của phòng này để kiểm tra RLS hoặc lỗi sai kiểu
+        const { data: dsDaNopTheoPhong, error: err } = await _supabase.from('live_quiz_chi_tiet')
+            .select('*')
+            .eq('ma_phong', String(window.ThongTinLiveHocSinh.maPhong).trim()); // trim() xóa khoảng trắng thừa
 
         if (err) {
             console.error("❌ Lỗi truy vấn Supabase:", err);
             return;
         }
 
-        console.log("📦 Dữ liệu phục hồi nhận được:", dsDaNop);
-        if (!dsDaNop || dsDaNop.length === 0) {
-            console.warn("⚠️ Không tìm thấy dữ liệu đã nộp cho phiên này!");
+        console.log("📦 [DEBUG] Dữ liệu tải về theo Mã Phòng:", dsDaNopTheoPhong);
+
+        if (!dsDaNopTheoPhong || dsDaNopTheoPhong.length === 0) {
+            console.warn("⚠️ Bảng trắng! CÓ THỂ DO RLS (Row Level Security) đang chặn quyền SELECT. Thầy vào Supabase kiểm tra tab RLS nhé!");
             return;
         }
 
+        // Lọc thủ công bằng JavaScript để loại trừ lỗi do Supabase so sánh chuỗi
+        const dsDaNop = dsDaNopTheoPhong.filter(item =>
+            String(item.uid_hoc_sinh).trim() === String(GocHocSinhState.uid).trim()
+        );
+
+        console.log("📦 [DEBUG] Dữ liệu sau khi lọc đúng UID của học sinh này:", dsDaNop);
+
+        if (dsDaNop.length === 0) {
+            console.warn("⚠️ Không tìm thấy kết quả nào khớp với UID này trong phòng!");
+            return;
+        }
+
+        // ==========================================
+        // BẮT ĐẦU QUÁ TRÌNH KHÔI PHỤC GIAO DIỆN
+        // ==========================================
         let tongDiemPhucHoi = 0;
         if (!window.PhienLamBai.danh_sach_cau_da_nop) window.PhienLamBai.danh_sach_cau_da_nop = new Set();
 
@@ -443,38 +458,38 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
             tongDiemPhucHoi += Number(item.diem_cau || 0);
             window.PhienLamBai.danh_sach_cau_da_nop.add(item.ma_cau);
 
-            // Tìm khối câu hỏi tương ứng trong giao diện (Phải dùng đúng ID đặt trong hàm vẽ)
             const khoiCau = document.getElementById(`cau-${item.ma_cau}`);
             if (!khoiCau) {
-                console.warn(`⚠️ Không tìm thấy DOM của câu: cau-${item.ma_cau}`);
+                console.warn(`⚠️ Không tìm thấy HTML DOM của câu: cau-${item.ma_cau}`);
                 return;
             }
 
-            // 1. Phục hồi đáp án dựa trên kiểu câu
             const kieuCau = (khoiCau.getAttribute('data-loaicau') || 'TN').toUpperCase();
+            const chuoiAns = item.dap_an_chon || "";
 
+            // 1. Đổ lại đáp án (Hỗ trợ TN, DS, TLN)
             if (kieuCau === 'TN') {
-                const rad = khoiCau.querySelector(`input[value="${item.dap_an_chon}"]`);
+                const rad = khoiCau.querySelector(`input[value="${chuoiAns}"]`);
                 if (rad) {
                     rad.checked = true;
                     rad.closest('label').style.background = '#e8f0fe';
                 }
             } else if (kieuCau === 'DS') {
-                [...item.dap_an_chon].forEach((ans, idx) => {
+                [...chuoiAns].forEach((ans, idx) => {
                     const k = ['A', 'B', 'C', 'D'][idx];
                     const radDS = khoiCau.querySelector(`input[name="ds_${item.ma_cau}_${k}"][value="${ans}"]`);
                     if (radDS) radDS.checked = true;
                 });
             } else if (kieuCau === 'TLN') {
                 const inputs = khoiCau.querySelectorAll('input[type="text"]');
-                const arr = item.dap_an_chon.split('');
+                const arr = chuoiAns.split('');
                 inputs.forEach((inp, idx) => { if (arr[idx]) inp.value = arr[idx]; });
             }
 
-            // 2. KHÓA LẠI CÂU ĐÃ LÀM (Chống sửa đáp án sau khi đã nộp)
+            // 2. KHÓA LẠI CÂU ĐÃ LÀM
             khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
-            // 3. Cập nhật nút nộp bài thành trạng thái Đã nộp
+            // 3. Cập nhật nút nộp bài
             const btn = document.getElementById(`btn-live-${item.ma_cau}`);
             if (btn) {
                 btn.disabled = true;
@@ -482,22 +497,21 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
                 btn.style.background = "#95a5a6";
             }
 
-            // 4. Đánh dấu nút điều hướng (nếu có)
+            // 4. Đánh dấu nút điều hướng
             const nutNav = document.getElementById(`btn-nav-${item.ma_cau}`);
             if (nutNav) nutNav.style.background = '#d4edda';
         });
 
-        // Cập nhật điểm trên màn hình
+        // Cập nhật điểm trên màn hình HUD
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) hudDiem.innerText = Number(tongDiemPhucHoi).toFixed(2);
 
-        console.log("✅ Phục hồi thành công! Tổng điểm:", tongDiemPhucHoi);
+        console.log("✅ Phục hồi hoàn tất! Điểm khôi phục:", tongDiemPhucHoi);
 
     } catch (e) {
-        console.error("❌ Lỗi nghiêm trọng khi phục hồi:", e);
+        console.error("❌ Lỗi phục hồi hệ thống:", e);
     }
 };
-
 //// =====================================================================
 //// 5. Màn hình báo kết quả đã thi - Chờ các học sinh khác
 //// =====================================================================
