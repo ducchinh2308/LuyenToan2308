@@ -31,47 +31,113 @@ window.ham_8_6_tab_live_quiz = function () {
 };
 
 
+//// =====================================================================
+//// 2. Hàm Vào phòng & Điều hướng thông minh theo 4 tình huống
+//// =====================================================================
+//window.ham_8_6_1_vao_phong = async function () {
+//    const maPin = document.getElementById('txtPinLive').value.trim();
+//    if (!maPin) return Swal.fire('Nhắc', 'Nhập mã PIN!', 'warning');
+//    Swal.fire({ title: 'Đang kết nối...', didOpen: () => Swal.showLoading() });
+
+//    try {
+//        const { data: phong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPin).maybeSingle();
+//        if (!phong) throw new Error("Mã PIN không đúng!");
+//        if (phong.trang_thai === 2) throw new Error("Đấu trường đã đóng!");
+
+//        // Truy vấn tiến độ cũ của học sinh này
+//        const { data: tienDoCu } = await _supabase.from('tien_do_live_quiz')
+//            .select('*').eq('ma_phong', maPin).eq('uid_hoc_sinh', GocHocSinhState.uid).maybeSingle();
+
+//        // 🌟 XỬ LÝ TÌNH HUỐNG 1 & 2 (KHI THOÁT RA VÀO LẠI): Đã chốt hạ trước đó
+//        if (tienDoCu && tienDoCu.da_nop === true) {
+//            window.ThongTinLiveHocSinh.maPhong = maPin;
+//            Swal.close();
+//            // Đẩy thẳng ra màn hình kết quả chờ, không cho vào phòng thi nữa
+//            ham_8_6_6_man_hinh_ket_qua_cho(tienDoCu.diem_so || 0);
+//            return;
+//        }
+
+//        // TÌNH HUỐNG 3 & 4: Chưa làm gì hoặc đang làm dở (Chưa chốt hạ)
+//        window.ThongTinLiveHocSinh.maPhong = maPin;
+//        window.ThongTinLiveHocSinh.maNhiemVu = phong.ma_nhiem_vu;
+
+//        // Ghi nhận danh tính (giữ nguyên tiến độ cũ nếu có nhờ cơ chế upsert)
+//        await _supabase.from('tien_do_live_quiz').upsert({
+//            ma_phong: maPin,
+//            uid_hoc_sinh: GocHocSinhState.uid,
+//            ten_hoc_sinh: GocHocSinhState.ten
+//        }, { onConflict: 'ma_phong,uid_hoc_sinh' });
+
+//        Swal.close();
+//        if (phong.trang_thai === 0) ham_8_6_2_phong_cho_live();
+//        else if (phong.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(phong);
+//    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
+//};
+
+
 // =====================================================================
-// 2. Hàm Vào phòng & Điều hướng thông minh theo 4 tình huống
+// [Nhãn thời gian: 16:20 - Ngày 19/06/2026] - Hàm 8.6.1: Vào phòng & Phục hồi trạng thái
 // =====================================================================
 window.ham_8_6_1_vao_phong = async function () {
     const maPin = document.getElementById('txtPinLive').value.trim();
-    if (!maPin) return Swal.fire('Nhắc', 'Nhập mã PIN!', 'warning');
-    Swal.fire({ title: 'Đang kết nối...', didOpen: () => Swal.showLoading() });
+    if (!maPin) return Swal.fire('Nhắc nhở', 'Vui lòng nhập mã PIN của phòng thi!', 'warning');
+
+    Swal.fire({ title: 'Đang xác thực và kết nối...', didOpen: () => Swal.showLoading() });
 
     try {
-        const { data: phong } = await _supabase.from('phong_live_quiz').select('*').eq('ma_phong', maPin).maybeSingle();
-        if (!phong) throw new Error("Mã PIN không đúng!");
-        if (phong.trang_thai === 2) throw new Error("Đấu trường đã đóng!");
+        // 1. Kiểm tra phòng thi tồn tại và trạng thái
+        const { data: phong, error: errPhong } = await _supabase
+            .from('phong_live_quiz')
+            .select('*')
+            .eq('ma_phong', maPin)
+            .maybeSingle();
 
-        // Truy vấn tiến độ cũ của học sinh này
+        if (errPhong || !phong) throw new Error("Mã PIN không tồn tại!");
+        if (phong.trang_thai === 2) throw new Error("Đấu trường này đã đóng!");
+
+        // 2. Truy vấn tiến độ hiện tại của học sinh (Cơ chế kiểm tra xem đã từng vào hay chưa)
         const { data: tienDoCu } = await _supabase.from('tien_do_live_quiz')
-            .select('*').eq('ma_phong', maPin).eq('uid_hoc_sinh', GocHocSinhState.uid).maybeSingle();
+            .select('*')
+            .eq('ma_phong', maPin)
+            .eq('uid_hoc_sinh', GocHocSinhState.uid)
+            .maybeSingle();
 
-        // 🌟 XỬ LÝ TÌNH HUỐNG 1 & 2 (KHI THOÁT RA VÀO LẠI): Đã chốt hạ trước đó
+        // 🌟 TÌNH HUỐNG 1: Học sinh đã nộp bài thành công trước đó -> Đẩy ra màn hình kết quả
         if (tienDoCu && tienDoCu.da_nop === true) {
             window.ThongTinLiveHocSinh.maPhong = maPin;
             Swal.close();
-            // Đẩy thẳng ra màn hình kết quả chờ, không cho vào phòng thi nữa
             ham_8_6_6_man_hinh_ket_qua_cho(tienDoCu.diem_so || 0);
             return;
         }
 
-        // TÌNH HUỐNG 3 & 4: Chưa làm gì hoặc đang làm dở (Chưa chốt hạ)
+        // 3. THIẾT LẬP THÔNG TIN PHIÊN THI
         window.ThongTinLiveHocSinh.maPhong = maPin;
         window.ThongTinLiveHocSinh.maNhiemVu = phong.ma_nhiem_vu;
 
-        // Ghi nhận danh tính (giữ nguyên tiến độ cũ nếu có nhờ cơ chế upsert)
-        await _supabase.from('tien_do_live_quiz').upsert({
+        // 4. Upsert danh tính (Ghi danh vào phòng)
+        const { error: errUpsert } = await _supabase.from('tien_do_live_quiz').upsert({
             ma_phong: maPin,
             uid_hoc_sinh: GocHocSinhState.uid,
-            ten_hoc_sinh: GocHocSinhState.ten
+            ten_hoc_sinh: GocHocSinhState.ten,
+            thoi_gian_cap_nhat: new Date().toISOString()
         }, { onConflict: 'ma_phong,uid_hoc_sinh' });
 
+        if (errUpsert) throw new Error("Không thể ghi danh vào phòng thi.");
+
+        // 5. ĐIỀU HƯỚNG THEO TRẠNG THÁI PHÒNG
         Swal.close();
-        if (phong.trang_thai === 0) ham_8_6_2_phong_cho_live();
-        else if (phong.trang_thai === 1) ham_8_6_bat_dau_thi_ngay(phong);
-    } catch (e) { Swal.fire('Lỗi', e.message, 'error'); }
+
+        if (phong.trang_thai === 0) {
+            // Phòng đang chờ
+            ham_8_6_2_phong_cho_live();
+        } else if (phong.trang_thai === 1) {
+            // Phòng đang thi: Hệ thống sẽ tự động gọi nạp đề và phục hồi đáp án cũ
+            ham_8_6_bat_dau_thi_ngay(phong);
+        }
+
+    } catch (e) {
+        Swal.fire('Lỗi kết nối', e.message, 'error');
+    }
 };
 // =====================================================================
 // 3. Hàm Phòng chờ & Kiểm tra thủ công
@@ -134,32 +200,53 @@ window.ham_8_6_bat_dau_thi_ngay = function (phong) {
 
 
 
-// 3. Khởi tạo bài thi & Đồng bộ thời gian
+//// 3. Khởi tạo bài thi & Đồng bộ thời gian
+//window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
+//    try {
+//        Swal.fire({ title: '⏳ Đang nạp đề thi Live...', didOpen: () => Swal.showLoading() });
+//        const { data: nv } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
+
+//        window.DangKhoiTaoLiveQuiz = true;
+
+//        // Ghi đè thời gian đếm ngược bằng Master Time
+//        if (window.ThongTinLiveHocSinh.thoiGianDong) {
+//            const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
+
+//            // 🌟 Sửa tại đây: Giữ lại 2 chữ số thập phân (Ví dụ: 45.33)
+//            nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
+//        }
+
+//        await ham_8_8_khoi_tao_phong_thi(nv); // Gọi hàm gốc
+
+//        // Sau khi vẽ đề xong, MỞ CƠ CHẾ PHỤC HỒI
+//        await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+
+//    } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
+//};
+
+
+// [Nhãn thời gian: 16:00 - Ngày 19/06/2026] - Hàm 8.6.3: Nạp đề + Gọi lệnh phục hồi
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
-        Swal.fire({ title: '⏳ Đang nạp đề thi Live...', didOpen: () => Swal.showLoading() });
-        const { data: nv } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
+        Swal.fire({ title: '⏳ Đang phục hồi bài thi của em...', didOpen: () => Swal.showLoading() });
 
+        const { data: nv } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
         window.DangKhoiTaoLiveQuiz = true;
 
-        // Ghi đè thời gian đếm ngược bằng Master Time
         if (window.ThongTinLiveHocSinh.thoiGianDong) {
             const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
-
-            // 🌟 Sửa tại đây: Giữ lại 2 chữ số thập phân (Ví dụ: 45.33)
             nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
         }
 
-        await ham_8_8_khoi_tao_phong_thi(nv); // Gọi hàm gốc
+        // 1. Gọi hàm vẽ đề gốc (hàm này phải vẽ xong UI trước)
+        await ham_8_8_khoi_tao_phong_thi(nv);
 
-        // Sau khi vẽ đề xong, MỞ CƠ CHẾ PHỤC HỒI
+        // 2. 🌟 GỌI LỆNH PHỤC HỒI DỮ LIỆU TỪ BẢNG live_quiz_chi_tiet
         await ham_8_6_5_khoi_phuc_dap_an_da_nop();
 
+        Swal.close();
     } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
 };
-
-
-
 
 // =====================================================================
 // Hàm chạy ngầm: Bắn tín hiệu cập nhật thanh tiến độ Live Quiz
@@ -315,57 +402,56 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
 
 
-// 5. Hàm Phục hồi khi Rớt mạng
+
+// [Nhãn thời gian: 16:05 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
     try {
-        const { data: dsDaNop } = await _supabase.from('live_quiz_chi_tiet').select('ma_cau, dap_an_chon, diem_cau')
-            .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong).eq('uid_hoc_sinh', GocHocSinhState.uid);
+        // Lấy tất cả các câu đã nộp thành công
+        const { data: dsDaNop } = await _supabase.from('live_quiz_chi_tiet')
+            .select('ma_cau, dap_an_chon, diem_cau')
+            .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+            .eq('uid_hoc_sinh', GocHocSinhState.uid);
 
-        if (!dsDaNop || dsDaNop.length === 0) { Swal.close(); return; }
+        if (!dsDaNop || dsDaNop.length === 0) return;
 
         let tongDiemPhucHoi = 0;
+        if (!window.PhienLamBai.danh_sach_cau_da_nop) window.PhienLamBai.danh_sach_cau_da_nop = new Set();
 
         dsDaNop.forEach(item => {
-            tongDiemPhucHoi += Number(item.diem_cau);
-            const maCau = item.ma_cau;
-            const chuoiAns = item.dap_an_chon || "";
-            const khoiCau = document.getElementById(`cau-${maCau}`);
+            tongDiemPhucHoi += Number(item.diem_cau || 0);
+            window.PhienLamBai.danh_sach_cau_da_nop.add(item.ma_cau);
+
+            const khoiCau = document.getElementById(`cau-${item.ma_cau}`);
             if (!khoiCau) return;
 
+            // 1. Đổ lại đáp án vào input/radio
             const kieuCau = (khoiCau.getAttribute('data-loaicau') || 'TN').toUpperCase();
-
-            // 5.1 Đổ lại đáp án lên UI
             if (kieuCau === 'TN') {
-                const rad = khoiCau.querySelector(`input[value="${chuoiAns}"]`);
+                const rad = khoiCau.querySelector(`input[value="${item.dap_an_chon}"]`);
                 if (rad) { rad.checked = true; rad.closest('label').style.background = '#e8f0fe'; }
             } else if (kieuCau === 'DS') {
-                ['A', 'B', 'C', 'D'].forEach((k, idx) => {
-                    if (chuoiAns[idx] && chuoiAns[idx] !== '_') {
-                        const radDS = khoiCau.querySelector(`input[name="ds_${maCau}_${k}"][value="${chuoiAns[idx]}"]`);
-                        if (radDS) radDS.checked = true;
-                    }
+                [...item.dap_an_chon].forEach((ans, idx) => {
+                    const k = ['A', 'B', 'C', 'D'][idx];
+                    const radDS = khoiCau.querySelector(`input[name="ds_${item.ma_cau}_${k}"][value="${ans}"]`);
+                    if (radDS) radDS.checked = true;
                 });
-            } else if (kieuCau === 'TLN') {
-                const inputs = khoiCau.querySelectorAll('input[type="text"]');
-                for (let i = 0; i < 4; i++) { if (inputs[i] && chuoiAns[i]) inputs[i].value = chuoiAns[i]; }
             }
 
-            // 5.2 Khóa UI và nút bấm
+            // 2. KHÓA LẠI CÂU ĐÃ LÀM
             khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
-            const btnLive = document.getElementById(`btn-live-${maCau}`);
-            if (btnLive) { btnLive.disabled = true; btnLive.innerText = "✅ ĐÃ KHÓA (KHÔI PHỤC)"; btnLive.style.background = "#95a5a6"; }
+            const btn = document.getElementById(`btn-live-${item.ma_cau}`);
+            if (btn) { btn.disabled = true; btn.innerText = "✅ ĐÃ NỘP"; btn.style.background = "#95a5a6"; }
 
-            // 5.3 Phục hồi màu nút điều hướng bên trái
-            const nutNav = document.getElementById(`btn-nav-${maCau}`);
-            if (nutNav) { nutNav.classList.add('da-lam'); nutNav.style.background = '#d4edda'; }
+            // 3. Đánh dấu nút điều hướng
+            const nutNav = document.getElementById(`btn-nav-${item.ma_cau}`);
+            if (nutNav) nutNav.style.background = '#d4edda';
         });
 
-        // Cập nhật lại Bảng điểm HUD
+        // Cập nhật điểm trên màn hình
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) hudDiem.innerText = Number(tongDiemPhucHoi).toFixed(2);
 
-        Swal.close();
-    } catch (e) { console.error(e); Swal.close(); }
+    } catch (e) { console.error("Lỗi phục hồi:", e); }
 };
 
 
