@@ -1710,11 +1710,27 @@ async function ham_8_8_khoi_tao_phong_thi(nv) {
 
         if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
 
+        //// =========================================================
+        //// 4. TRỘN ĐỀ TRỰC TIẾP TỪ DỮ LIỆU GITHUB
+        //// =========================================================
+        //// Không cần ráp với Database nữa, vì Database chứa mã bảo mật.
+        //const deThiDaTron = ham_8_9_tron_de_thi(dsNoiDungGH);
+
         // =========================================================
-        // 4. TRỘN ĐỀ TRỰC TIẾP TỪ DỮ LIỆU GITHUB
+        // 4. TRỘN ĐỀ CÓ ĐIỀU KIỆN (CHỈ XÁO KHI KHÔNG PHẢI LIVE QUIZ)
         // =========================================================
-        // Không cần ráp với Database nữa, vì Database chứa mã bảo mật.
-        const deThiDaTron = ham_8_9_tron_de_thi(dsNoiDungGH);
+        let deThiDaTron;
+        const isLive = (window.DangKhoiTaoLiveQuiz === true);
+
+        if (isLive) {
+            // NẾU LÀ THI LIVE: Giữ nguyên thứ tự tuyệt đối
+            deThiDaTron = dsNoiDungGH;
+        } else {
+            // NẾU LÀ NHIỆM VỤ THƯỜNG: Xáo trộn bình thường
+            deThiDaTron = ham_8_9_tron_de_thi(dsNoiDungGH);
+        }
+
+
 
         // Lấy đường dẫn thư mục chứa đề thi để xử lý Hình Ảnh
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
