@@ -403,15 +403,38 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
 
 
 
-// [Nhãn thời gian: 16:30 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi (BẢN ĐÃ BỔ SUNG TLN)
+// =====================================================================
+// [Nhãn thời gian: 16:50 - Ngày 19/06/2026] - Hàm 8.6.5: Phục hồi bài thi (Bản Debug & Chống lỗi đồng bộ)
+// =====================================================================
 window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
+    console.log("🔍 [DEBUG] Bắt đầu phục hồi...");
+    console.log("Phòng thi:", window.ThongTinLiveHocSinh.maPhong);
+    console.log("UID Học sinh:", GocHocSinhState ? GocHocSinhState.uid : "Chưa có UID");
+
+    // Lớp bảo vệ: Đợi UID nếu chưa tải kịp
+    if (!GocHocSinhState || !GocHocSinhState.uid) {
+        console.warn("⚠️ UID chưa sẵn sàng, đợi 1 giây...");
+        setTimeout(ham_8_6_5_khoi_phuc_dap_an_da_nop, 1000);
+        return;
+    }
+
     try {
-        const { data: dsDaNop } = await _supabase.from('live_quiz_chi_tiet')
+        // Truy vấn dữ liệu từ DB (Ép kiểu ma_phong sang string để tránh lệch kiểu)
+        const { data: dsDaNop, error: err } = await _supabase.from('live_quiz_chi_tiet')
             .select('ma_cau, dap_an_chon, diem_cau')
-            .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+            .eq('ma_phong', String(window.ThongTinLiveHocSinh.maPhong))
             .eq('uid_hoc_sinh', GocHocSinhState.uid);
 
-        if (!dsDaNop || dsDaNop.length === 0) return;
+        if (err) {
+            console.error("❌ Lỗi truy vấn Supabase:", err);
+            return;
+        }
+
+        console.log("📦 Dữ liệu phục hồi nhận được:", dsDaNop);
+        if (!dsDaNop || dsDaNop.length === 0) {
+            console.warn("⚠️ Không tìm thấy dữ liệu đã nộp cho phiên này!");
+            return;
+        }
 
         let tongDiemPhucHoi = 0;
         if (!window.PhienLamBai.danh_sach_cau_da_nop) window.PhienLamBai.danh_sach_cau_da_nop = new Set();
@@ -420,15 +443,22 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
             tongDiemPhucHoi += Number(item.diem_cau || 0);
             window.PhienLamBai.danh_sach_cau_da_nop.add(item.ma_cau);
 
+            // Tìm khối câu hỏi tương ứng trong giao diện (Phải dùng đúng ID đặt trong hàm vẽ)
             const khoiCau = document.getElementById(`cau-${item.ma_cau}`);
-            if (!khoiCau) return;
+            if (!khoiCau) {
+                console.warn(`⚠️ Không tìm thấy DOM của câu: cau-${item.ma_cau}`);
+                return;
+            }
 
+            // 1. Phục hồi đáp án dựa trên kiểu câu
             const kieuCau = (khoiCau.getAttribute('data-loaicau') || 'TN').toUpperCase();
 
-            // 1. Đổ lại đáp án
             if (kieuCau === 'TN') {
                 const rad = khoiCau.querySelector(`input[value="${item.dap_an_chon}"]`);
-                if (rad) { rad.checked = true; rad.closest('label').style.background = '#e8f0fe'; }
+                if (rad) {
+                    rad.checked = true;
+                    rad.closest('label').style.background = '#e8f0fe';
+                }
             } else if (kieuCau === 'DS') {
                 [...item.dap_an_chon].forEach((ans, idx) => {
                     const k = ['A', 'B', 'C', 'D'][idx];
@@ -436,26 +466,36 @@ window.ham_8_6_5_khoi_phuc_dap_an_da_nop = async function () {
                     if (radDS) radDS.checked = true;
                 });
             } else if (kieuCau === 'TLN') {
-                // 🌟 BỔ SUNG: Xử lý phục hồi cho câu tự luận
                 const inputs = khoiCau.querySelectorAll('input[type="text"]');
-                const dapAnArr = item.dap_an_chon.split(''); // Giả sử đáp án TLN lưu theo từng ký tự
-                inputs.forEach((inp, idx) => { if (dapAnArr[idx]) inp.value = dapAnArr[idx]; });
+                const arr = item.dap_an_chon.split('');
+                inputs.forEach((inp, idx) => { if (arr[idx]) inp.value = arr[idx]; });
             }
 
-            // 2. KHÓA LẠI CÂU ĐÃ LÀM
+            // 2. KHÓA LẠI CÂU ĐÃ LÀM (Chống sửa đáp án sau khi đã nộp)
             khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
-            const btn = document.getElementById(`btn-live-${item.ma_cau}`);
-            if (btn) { btn.disabled = true; btn.innerText = "✅ ĐÃ NỘP"; btn.style.background = "#95a5a6"; }
 
-            // 3. Đánh dấu nút điều hướng
+            // 3. Cập nhật nút nộp bài thành trạng thái Đã nộp
+            const btn = document.getElementById(`btn-live-${item.ma_cau}`);
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "✅ ĐÃ NỘP";
+                btn.style.background = "#95a5a6";
+            }
+
+            // 4. Đánh dấu nút điều hướng (nếu có)
             const nutNav = document.getElementById(`btn-nav-${item.ma_cau}`);
             if (nutNav) nutNav.style.background = '#d4edda';
         });
 
+        // Cập nhật điểm trên màn hình
         const hudDiem = document.getElementById('diem-hien-tai-hs');
         if (hudDiem) hudDiem.innerText = Number(tongDiemPhucHoi).toFixed(2);
 
-    } catch (e) { console.error("Lỗi phục hồi:", e); }
+        console.log("✅ Phục hồi thành công! Tổng điểm:", tongDiemPhucHoi);
+
+    } catch (e) {
+        console.error("❌ Lỗi nghiêm trọng khi phục hồi:", e);
+    }
 };
 
 //// =====================================================================
