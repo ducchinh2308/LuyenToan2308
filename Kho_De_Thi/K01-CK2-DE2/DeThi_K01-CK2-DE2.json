@@ -1,0 +1,203 @@
+{
+  "maDe": "K01-CK2-DE2",
+  "tenDe": "ĐỀ TOÁN 1 CK2- ĐỀ 2",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_8802befef0",
+      "ma_goc": "2606-67",
+      "kieuCau": "TN",
+      "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị là 0?",
+      "paA": "8",
+      "paB": "9",
+      "paC": "10",
+      "paD": "11"
+    },
+    {
+      "maCau": "q_e9e0497d21",
+      "ma_goc": "2606-68",
+      "kieuCau": "TN",
+      "cauDan": "Trong một đoàn xe, xe của An đứng thứ 10 từ đầu lên và thứ 5 từ cuối xuống. Đoàn xe có bao nhiêu xe?",
+      "paA": "14",
+      "paB": "14",
+      "paC": "15",
+      "paD": "16"
+    },
+    {
+      "maCau": "q_34905224d8",
+      "ma_goc": "2606-69",
+      "kieuCau": "TN",
+      "cauDan": "Điền số thích hợp: 18 - 4 = 10 + ?",
+      "paA": "3",
+      "paB": "4",
+      "paC": "5",
+      "paD": "6"
+    },
+    {
+      "maCau": "q_92a571b0b7",
+      "ma_goc": "2606-70",
+      "kieuCau": "TN",
+      "cauDan": "Một cây gậy có 2 đầu. Hỏi 5 cây gậy có bao nhiêu đầu?",
+      "paA": "5",
+      "paB": "8",
+      "paC": "10",
+      "paD": "12"
+    },
+    {
+      "maCau": "q_1a8c40d4f0",
+      "ma_goc": "2606-71",
+      "kieuCau": "TN",
+      "cauDan": "Số liền trước của số bé nhất có hai chữ số là số nào?",
+      "paA": "8",
+      "paB": "9",
+      "paC": "9",
+      "paD": "11"
+    },
+    {
+      "maCau": "q_38dbb94034",
+      "ma_goc": "2606-72",
+      "kieuCau": "TN",
+      "cauDan": "Mẹ đi làm về lúc 17 giờ, mẹ mất 1 giờ đi đường. Mẹ xuất phát lúc mấy giờ?",
+      "paA": "15",
+      "paB": "16",
+      "paC": "18",
+      "paD": "17"
+    },
+    {
+      "maCau": "q_c27fef1ffb",
+      "ma_goc": "2606-73",
+      "kieuCau": "TN",
+      "cauDan": "Hình nào không có cạnh nào?",
+      "paA": "Hình tam giác",
+      "paB": "Hình vuông",
+      "paC": "Hình tròn",
+      "paD": "Hình chữ nhật"
+    },
+    {
+      "maCau": "q_44143b2360",
+      "ma_goc": "2606-74",
+      "kieuCau": "TN",
+      "cauDan": "An có 20 viên bi, An cho Bình 4 viên, cho Cường 4 viên. An còn lại mấy viên?",
+      "paA": "10",
+      "paB": "12",
+      "paC": "14",
+      "paD": "16"
+    },
+    {
+      "maCau": "q_069aef7bfc",
+      "ma_goc": "2606-75",
+      "kieuCau": "TN",
+      "cauDan": "Số gồm 2 chục và 5 đơn vị là?",
+      "paA": "52",
+      "paB": "25",
+      "paC": "20",
+      "paD": "50"
+    },
+    {
+      "maCau": "q_cf4ca7f159",
+      "ma_goc": "2606-76",
+      "kieuCau": "TN",
+      "cauDan": "Dãy số nào sau đây giảm dần?",
+      "paA": "10, 11, 12",
+      "paB": "12, 11, 10",
+      "paC": "10, 12, 11",
+      "paD": "11, 10, 12"
+    },
+    {
+      "maCau": "q_a6822515ff",
+      "ma_goc": "2606-77",
+      "kieuCau": "TN",
+      "cauDan": "Nếu hôm nay là thứ Tư ngày 15, thì thứ Tư tuần sau là ngày mấy?",
+      "paA": "21",
+      "paB": "22",
+      "paC": "23",
+      "paD": "20"
+    },
+    {
+      "maCau": "q_76aa2c5004",
+      "ma_goc": "2606-78",
+      "kieuCau": "TN",
+      "cauDan": "Có bao nhiêu hình tam giác trong hình vẽ? (Giả sử hình ngôi sao 5 cánh đơn giản)",
+      "paA": "5",
+      "paB": "10",
+      "paC": "15",
+      "paD": "20"
+    },
+    {
+      "maCau": "q_6ff38afd90",
+      "ma_goc": "2606-79",
+      "kieuCau": "DS",
+      "cauDan": "Xét tính đúng sai:",
+      "paA": "12 + 8 = 20",
+      "paB": "19 - 9 = 9",
+      "paC": "11 + 6 > 16",
+      "paD": "10 + 10 < 19"
+    },
+    {
+      "maCau": "q_aca6752806",
+      "ma_goc": "2606-80",
+      "kieuCau": "DS",
+      "cauDan": "Khẳng định về đo lường:",
+      "paA": "1 tuần = 7 ngày",
+      "paB": "1 tháng = 20 ngày",
+      "paC": "1 giờ = 60 phút",
+      "paD": "1 ngày = 12 giờ"
+    },
+    {
+      "maCau": "q_a9ca1c1662",
+      "ma_goc": "2606-81",
+      "kieuCau": "DS",
+      "cauDan": "Dãy số 5, 10, 15, 20:",
+      "paA": "Đây là dãy tăng dần",
+      "paB": "Số tiếp theo là 22",
+      "paC": "Khoảng cách giữa các số là 5",
+      "paD": "Dãy có 3 số"
+    },
+    {
+      "maCau": "q_1deb4f24d9",
+      "ma_goc": "2606-82",
+      "kieuCau": "DS",
+      "cauDan": "Phép tính tư duy:",
+      "paA": "8 + 4 = 12",
+      "paB": "7 + 8 = 14",
+      "paC": "16 - 6 = 10",
+      "paD": "13 - 3 = 11"
+    },
+    {
+      "maCau": "q_07d520897d",
+      "ma_goc": "2606-83",
+      "kieuCau": "TLN",
+      "cauDan": "14 cộng với 5 bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_6797b896d8",
+      "ma_goc": "2606-84",
+      "kieuCau": "TLN",
+      "cauDan": "20 trừ đi 7 bằng bao nhiêu?"
+    },
+    {
+      "maCau": "q_9663ffd6df",
+      "ma_goc": "2606-85",
+      "kieuCau": "TLN",
+      "cauDan": "Số chục của số 27 là bao nhiêu?"
+    },
+    {
+      "maCau": "q_607c662802",
+      "ma_goc": "2606-86",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn An có 10 viên bi, An mua thêm 1 chục viên nữa. Hỏi An có tất cả bao nhiêu viên bi?"
+    },
+    {
+      "maCau": "q_9ac3bc510c",
+      "ma_goc": "2606-87",
+      "kieuCau": "TLN",
+      "cauDan": "Số nhỏ nhất có hai chữ số là số nào?"
+    },
+    {
+      "maCau": "q_232fbc5946",
+      "ma_goc": "2606-88",
+      "kieuCau": "TLN",
+      "cauDan": "18 trừ đi số nào để được kết quả bằng 9?"
+    }
+  ]
+}
