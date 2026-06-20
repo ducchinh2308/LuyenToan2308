@@ -7,7 +7,7 @@
             "maCau": "q_8802befef0",
             "ma_goc": "2606-67",
             "kieuCau": "TN",
-            "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị là 0?",
+            "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị là 1?",
             "paA": "8",
             "paB": "9",
             "paC": "10",
@@ -117,11 +117,11 @@
             "maCau": "q_76aa2c5004",
             "ma_goc": "2606-78",
             "kieuCau": "TN",
-            "cauDan": "Cho 1 hình vuông, kẻ 2 đường chéo của hình vuông đó. Có bao nhiêu hình tam giác trong hình vẽ?",
-            "paA": "4",
+            "cauDan": "Có bao nhiêu hình tam giác trong hình vẽ? (Giả sử hình ngôi sao 5 cánh đơn giản)",
+            "paA": "5",
             "paB": "10",
-            "paC": "6",
-            "paD": "8"
+            "paC": "15",
+            "paD": "20"
         },
         {
             "maCau": "q_6ff38afd90",
