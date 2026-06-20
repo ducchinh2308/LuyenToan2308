@@ -1,227 +1,227 @@
 {
-  "maDe": "K1-CK2-TV-DE-1",
-  "tenDe": "TIẾNG VIỆT ĐÈ 1 LỚP 1",
-  "thoiGian": 45,
-  "danhSachCauHoi": [
-    {
-      "maCau": "q_3aaa949749",
-      "ma_goc": "2606-89",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "",
-      "paB": "",
-      "paC": "",
-      "paD": ""
-    },
-    {
-      "maCau": "q_0494a80f6c",
-      "ma_goc": "2606-90",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "chả cáp",
-      "paB": "cá chép",
-      "paC": "chả chép",
-      "paD": "cá chếp"
-    },
-    {
-      "maCau": "q_8efc3713cd",
-      "ma_goc": "2606-91",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "ôc",
-      "paB": "oc",
-      "paC": "oac",
-      "paD": "uoc"
-    },
-    {
-      "maCau": "q_0c60a6c0a2",
-      "ma_goc": "2606-92",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "gầy",
-      "paB": "thấp",
-      "paC": "nhỏ",
-      "paD": "ngắn"
-    },
-    {
-      "maCau": "q_99f09d1070",
-      "ma_goc": "2606-93",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "Bé",
-      "paB": "đang đọc sách",
-      "paC": "đọc",
-      "paD": "sách"
-    },
-    {
-      "maCau": "q_96dc7f2005",
-      "ma_goc": "2606-94",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "ngả",
-      "paB": "nghỉ",
-      "paC": "ngon",
-      "paD": "ngu"
-    },
-    {
-      "maCau": "q_f596c7b47b",
-      "ma_goc": "2606-95",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "tây",
-      "paB": "đông",
-      "paC": "bắc",
-      "paD": "nam"
-    },
-    {
-      "maCau": "q_6a11eb831f",
-      "ma_goc": "2606-96",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "xinh xắn",
-      "paB": "đá bóng",
-      "paC": "đẹp",
-      "paD": "ngoan"
-    },
-    {
-      "maCau": "q_af6a0ccfe4",
-      "ma_goc": "2606-97",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "Bé chơi đồ chơi",
-      "paB": "Hoa hồng đỏ thắm",
-      "paC": "Mẹ nấu cơm",
-      "paD": "Bố đi làm"
-    },
-    {
-      "maCau": "q_6ce2cb3b48",
-      "ma_goc": "2606-98",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "Dấu chấm",
-      "paB": "Dấu chấm hỏi",
-      "paC": "Dấu phẩy",
-      "paD": "Dấu chấm than"
-    },
-    {
-      "maCau": "q_c3ca84a25c",
-      "ma_goc": "2606-99",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "con cá",
-      "paB": "con chim",
-      "paC": "con mèo",
-      "paD": "con chó"
-    },
-    {
-      "maCau": "q_82cdfcadb4",
-      "ma_goc": "2606-100",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "sự vật",
-      "paB": "đặc điểm",
-      "paC": "hoạt động",
-      "paD": "tình cảm"
-    },
-    {
-      "maCau": "q_e2cefd5392",
-      "ma_goc": "2606-101",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "uoc",
-      "paB": "uôc",
-      "paC": "oc",
-      "paD": "ac"
-    },
-    {
-      "maCau": "q_a0fd2febfc",
-      "ma_goc": "2606-102",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "ăn",
-      "paB": "đọc",
-      "paC": "chạy",
-      "paD": "đi"
-    },
-    {
-      "maCau": "q_9d8ee0dcaa",
-      "ma_goc": "2606-103",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "bàn ghế",
-      "paB": "nhỏ nhắn",
-      "paC": "sách vở",
-      "paD": "học sinh"
-    },
-    {
-      "maCau": "q_afecb8f6fc",
-      "ma_goc": "2606-104",
-      "kieuCau": "TN",
-      "cauDan": "",
-      "paA": "Câu hỏi",
-      "paB": "Câu kể",
-      "paC": "Câu cảm",
-      "paD": "Câu khiến"
-    },
-    {
-      "maCau": "q_dad75bf29f",
-      "ma_goc": "2606-105",
-      "kieuCau": "DS",
-      "cauDan": "Xét các từ sau:",
-      "paA": "\"Sách\" có vần ach",
-      "paB": "\"Bàn\" chỉ hoạt động",
-      "paC": "\"Nhà\" chỉ sự vật",
-      "paD": "\"Chạy\" chỉ đặc điểm"
-    },
-    {
-      "maCau": "q_fb4be04bb4",
-      "ma_goc": "2606-106",
-      "kieuCau": "DS",
-      "cauDan": "Chính tả:",
-      "paA": "\"Gà\" dùng âm g",
-      "paB": "\"Ghế\" dùng âm gh",
-      "paC": "\"Ngà\" dùng âm ngh",
-      "paD": "\"Nghỉ\" dùng âm ng"
-    },
-    {
-      "maCau": "q_7e93017b8d",
-      "ma_goc": "2606-107",
-      "kieuCau": "DS",
-      "cauDan": "",
-      "paA": "",
-      "paB": "",
-      "paC": "",
-      "paD": ""
-    },
-    {
-      "maCau": "q_b736adb8ec",
-      "ma_goc": "2606-108",
-      "kieuCau": "DS",
-      "cauDan": "",
-      "paA": "",
-      "paB": "",
-      "paC": "",
-      "paD": ""
-    },
-    {
-      "maCau": "q_35c192012a",
-      "ma_goc": "2606-109",
-      "kieuCau": "DS",
-      "cauDan": "Đạo đức:",
-      "paA": "Đi học đúng giờ",
-      "paB": "Nói dối là tốt",
-      "paC": "Yêu thương bạn bè",
-      "paD": "Không chào hỏi"
-    },
-    {
-      "maCau": "q_b723ce5662",
-      "ma_goc": "2606-110",
-      "kieuCau": "DS",
-      "cauDan": "Đặc điểm và Hoạt động:",
-      "paA": "\"Thơm ngát\" là đặc điểm",
-      "paB": "\"Đá bóng\" là hoạt động",
-      "paC": "\"Cái bút\" là hoạt động",
-      "paD": "\"Chăm chỉ\" là sự vật"
-    }
-  ]
+    "maDe": "HL_DE_K1-CK2-TV-DE-1",
+    "tenDe": "TIẾNG VIỆT ĐÈ 1 LỚP 1",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_3aaa949749",
+            "ma_goc": "2606-89",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_0494a80f6c",
+            "ma_goc": "2606-90",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "chả cáp",
+            "paB": "cá chép",
+            "paC": "chả chép",
+            "paD": "cá chếp"
+        },
+        {
+            "maCau": "q_8efc3713cd",
+            "ma_goc": "2606-91",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "ôc",
+            "paB": "oc",
+            "paC": "oac",
+            "paD": "uoc"
+        },
+        {
+            "maCau": "q_0c60a6c0a2",
+            "ma_goc": "2606-92",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "gầy",
+            "paB": "thấp",
+            "paC": "nhỏ",
+            "paD": "ngắn"
+        },
+        {
+            "maCau": "q_99f09d1070",
+            "ma_goc": "2606-93",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "Bé",
+            "paB": "đang đọc sách",
+            "paC": "đọc",
+            "paD": "sách"
+        },
+        {
+            "maCau": "q_96dc7f2005",
+            "ma_goc": "2606-94",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "ngả",
+            "paB": "nghỉ",
+            "paC": "ngon",
+            "paD": "ngu"
+        },
+        {
+            "maCau": "q_f596c7b47b",
+            "ma_goc": "2606-95",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "tây",
+            "paB": "đông",
+            "paC": "bắc",
+            "paD": "nam"
+        },
+        {
+            "maCau": "q_6a11eb831f",
+            "ma_goc": "2606-96",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "xinh xắn",
+            "paB": "đá bóng",
+            "paC": "đẹp",
+            "paD": "ngoan"
+        },
+        {
+            "maCau": "q_af6a0ccfe4",
+            "ma_goc": "2606-97",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "Bé chơi đồ chơi",
+            "paB": "Hoa hồng đỏ thắm",
+            "paC": "Mẹ nấu cơm",
+            "paD": "Bố đi làm"
+        },
+        {
+            "maCau": "q_6ce2cb3b48",
+            "ma_goc": "2606-98",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "Dấu chấm",
+            "paB": "Dấu chấm hỏi",
+            "paC": "Dấu phẩy",
+            "paD": "Dấu chấm than"
+        },
+        {
+            "maCau": "q_c3ca84a25c",
+            "ma_goc": "2606-99",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "con cá",
+            "paB": "con chim",
+            "paC": "con mèo",
+            "paD": "con chó"
+        },
+        {
+            "maCau": "q_82cdfcadb4",
+            "ma_goc": "2606-100",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "sự vật",
+            "paB": "đặc điểm",
+            "paC": "hoạt động",
+            "paD": "tình cảm"
+        },
+        {
+            "maCau": "q_e2cefd5392",
+            "ma_goc": "2606-101",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "uoc",
+            "paB": "uôc",
+            "paC": "oc",
+            "paD": "ac"
+        },
+        {
+            "maCau": "q_a0fd2febfc",
+            "ma_goc": "2606-102",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "ăn",
+            "paB": "đọc",
+            "paC": "chạy",
+            "paD": "đi"
+        },
+        {
+            "maCau": "q_9d8ee0dcaa",
+            "ma_goc": "2606-103",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "bàn ghế",
+            "paB": "nhỏ nhắn",
+            "paC": "sách vở",
+            "paD": "học sinh"
+        },
+        {
+            "maCau": "q_afecb8f6fc",
+            "ma_goc": "2606-104",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "Câu hỏi",
+            "paB": "Câu kể",
+            "paC": "Câu cảm",
+            "paD": "Câu khiến"
+        },
+        {
+            "maCau": "q_dad75bf29f",
+            "ma_goc": "2606-105",
+            "kieuCau": "DS",
+            "cauDan": "Xét các từ sau:",
+            "paA": "\"Sách\" có vần ach",
+            "paB": "\"Bàn\" chỉ hoạt động",
+            "paC": "\"Nhà\" chỉ sự vật",
+            "paD": "\"Chạy\" chỉ đặc điểm"
+        },
+        {
+            "maCau": "q_fb4be04bb4",
+            "ma_goc": "2606-106",
+            "kieuCau": "DS",
+            "cauDan": "Chính tả:",
+            "paA": "\"Gà\" dùng âm g",
+            "paB": "\"Ghế\" dùng âm gh",
+            "paC": "\"Ngà\" dùng âm ngh",
+            "paD": "\"Nghỉ\" dùng âm ng"
+        },
+        {
+            "maCau": "q_7e93017b8d",
+            "ma_goc": "2606-107",
+            "kieuCau": "DS",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_b736adb8ec",
+            "ma_goc": "2606-108",
+            "kieuCau": "DS",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_35c192012a",
+            "ma_goc": "2606-109",
+            "kieuCau": "DS",
+            "cauDan": "Đạo đức:",
+            "paA": "Đi học đúng giờ",
+            "paB": "Nói dối là tốt",
+            "paC": "Yêu thương bạn bè",
+            "paD": "Không chào hỏi"
+        },
+        {
+            "maCau": "q_b723ce5662",
+            "ma_goc": "2606-110",
+            "kieuCau": "DS",
+            "cauDan": "Đặc điểm và Hoạt động:",
+            "paA": "\"Thơm ngát\" là đặc điểm",
+            "paB": "\"Đá bóng\" là hoạt động",
+            "paC": "\"Cái bút\" là hoạt động",
+            "paD": "\"Chăm chỉ\" là sự vật"
+        }
+    ]
 }
