@@ -50,7 +50,7 @@
             "cauDan": "Số liền trước của số bé nhất có hai chữ số là số nào?",
             "paA": "8",
             "paB": "9",
-            "paC": "10",
+            "paC": "9",
             "paD": "11"
         },
         {
@@ -117,11 +117,11 @@
             "maCau": "q_76aa2c5004",
             "ma_goc": "2606-78",
             "kieuCau": "TN",
-            "cauDan": "Có bao nhiêu hình tam giác trong hình vẽ? (Giả sử hình ngôi sao 5 cánh đơn giản)",
-            "paA": "5",
+            "cauDan": "Cho 1 hình vuông, kẻ 2 đường chéo của hình vuông đó. Có bao nhiêu hình tam giác trong hình vẽ?",
+            "paA": "4",
             "paB": "10",
-            "paC": "15",
-            "paD": "20"
+            "paC": "6",
+            "paD": "8"
         },
         {
             "maCau": "q_6ff38afd90",
