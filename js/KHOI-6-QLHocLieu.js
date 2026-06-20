@@ -1057,7 +1057,7 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
         <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
             <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TẠCH VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
             <label style="cursor:pointer; display:block; margin-bottom:8px;">
-                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file Đề thi trên GitHub
+                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file giải trên GitHub
             </label>
             ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
         </div>` : '';
