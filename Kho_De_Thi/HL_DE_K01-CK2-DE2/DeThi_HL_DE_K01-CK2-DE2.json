@@ -7,7 +7,7 @@
             "maCau": "q_8802befef0",
             "ma_goc": "2606-67",
             "kieuCau": "TN",
-            "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị là 1?",
+            "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng đơn vị là 0?",
             "paA": "8",
             "paB": "9",
             "paC": "10",
@@ -19,7 +19,7 @@
             "kieuCau": "TN",
             "cauDan": "Trong một đoàn xe, xe của An đứng thứ 10 từ đầu lên và thứ 5 từ cuối xuống. Đoàn xe có bao nhiêu xe?",
             "paA": "14",
-            "paB": "14",
+            "paB": "13",
             "paC": "15",
             "paD": "16"
         },
