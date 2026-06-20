@@ -18,7 +18,7 @@
             "ma_goc": "2606-68",
             "kieuCau": "TN",
             "cauDan": "Trong một đoàn xe, xe của An đứng thứ 10 từ đầu lên và thứ 5 từ cuối xuống. Đoàn xe có bao nhiêu xe?",
-            "paA": "14",
+            "paA": "13",
             "paB": "14",
             "paC": "15",
             "paD": "16"
@@ -50,7 +50,7 @@
             "cauDan": "Số liền trước của số bé nhất có hai chữ số là số nào?",
             "paA": "8",
             "paB": "9",
-            "paC": "10",
+            "paC": "9",
             "paD": "11"
         },
         {
