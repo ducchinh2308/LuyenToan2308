@@ -965,179 +965,32 @@ Nội dung câu hỏi trả lời ngắn nằm ở đây.
 //};
 
 
-//// ==============================================================
-//// [Nhãn thời gian: 20:30 - Ngày 19/06/2026] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Sửa nội dung trực tiếp)
-//// ==============================================================
-//window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = true) {
-//    const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
-//    if (!data) return alert("Dữ liệu không tồn tại!");
-
-//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div><h3 style="color:#1a73e8; margin-top:15px;">⏳ Đang tải nội dung đề từ GitHub...</h3></div>`;
-
-//    let dsCauHoiGithub = [];
-//    let urlFileGiai = data.url_file_giai || "";
-
-//    try {
-//        // 1. Tải file Đề thi từ GitHub (Thêm Date.now để chống cache trình duyệt)
-//        if (data.url_github) {
-//            const res = await fetch(data.url_github + "?t=" + Date.now());
-//            if (res.ok) {
-//                const dataGH = await res.json();
-//                dsCauHoiGithub = dataGH.danhSachCauHoi || [];
-//            } else {
-//                console.warn("Không tải được nội dung từ GitHub");
-//            }
-//        }
-//    } catch (e) {
-//        console.error("Lỗi nạp file GitHub:", e);
-//    }
-
-//    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA NỘI DUNG HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
-//    const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
-//    const disabledAttr = choPhepSua ? "" : "disabled";
-//    const bgInput = choPhepSua ? "#fff" : "#f1f3f4";
-
-//    const dsCauHoiDB = data.danh_sach_cau_hoi || [];
-//    let htmlCards = '';
-
-//    dsCauHoiDB.forEach((itemDB, index) => {
-//        // Bóc tách dữ liệu Database
-//        let maGoc = typeof itemDB === 'object' ? (itemDB.ma_goc || "") : (itemDB.split('|')[0] || "");
-//        let maCau = typeof itemDB === 'object' ? (itemDB.ma_cau_hoi || "") : (itemDB.split('|')[1] || "");
-//        let maGiai = typeof itemDB === 'object' ? (itemDB.ma_loi_giai || "") : (itemDB.split('|')[2] || "");
-//        let dapAnDB = typeof itemDB === 'object' ? (itemDB.dap_an || "") : (itemDB.split('|')[3] || "");
-
-//        // Khớp với dữ liệu GitHub để lấy Nội dung
-//        let itemGH = dsCauHoiGithub.find(c => c.maCau === maCau) || {};
-//        let kieuCau = itemGH.kieuCau || "TN";
-//        let cauDan = itemGH.cauDan || "";
-
-//        let htmlNoiDung = '';
-
-//        if (kieuCau === 'TN') {
-//            htmlNoiDung = `
-//                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
-//                    <div><b style="color:#1a73e8">A.</b> <input type="text" class="edit-paA" value="${(itemGH.paA || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#1a73e8">B.</b> <input type="text" class="edit-paB" value="${(itemGH.paB || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#1a73e8">C.</b> <input type="text" class="edit-paC" value="${(itemGH.paC || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#1a73e8">D.</b> <input type="text" class="edit-paD" value="${(itemGH.paD || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                </div>
-//            `;
-//        } else if (kieuCau === 'DS') {
-//            htmlNoiDung = `
-//                <div style="display:grid; grid-template-columns: 1fr; gap:8px; margin-top:10px;">
-//                    <div><b style="color:#d35400">Ý 1:</b> <input type="text" class="edit-paA" value="${(itemGH.paA || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#d35400">Ý 2:</b> <input type="text" class="edit-paB" value="${(itemGH.paB || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#d35400">Ý 3:</b> <input type="text" class="edit-paC" value="${(itemGH.paC || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                    <div><b style="color:#d35400">Ý 4:</b> <input type="text" class="edit-paD" value="${(itemGH.paD || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
-//                </div>
-//            `;
-//        }
-
-//        htmlCards += `
-//            <div class="card-cau-hoi" data-macau="${maCau}" data-magoc="${maGoc}" data-magiai="${maGiai}" data-kieucau="${kieuCau}" style="background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-//                <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px dashed #ccc; padding-bottom:5px;">
-//                    <span style="font-weight:bold; color:#333;">Câu ${index + 1} (${kieuCau}) - Mã gốc: <span style="color:#28a745">${maGoc}</span></span>
-//                    <div>
-//                        <span style="font-weight:bold; color:#d32f2f; margin-right:10px;">ĐÁP ÁN:</span>
-//                        <input type="text" class="edit-dapan" value="${dapAnDB}" ${disabledAttr} placeholder="${kieuCau === 'DS' ? 'TFTF' : 'A'}" style="width:80px; padding:4px; text-align:center; font-weight:bold; border:2px solid #d32f2f; border-radius:4px; text-transform:uppercase;">
-//                        ${choPhepSua ? `<button onclick="ham_6_xoa_cau_truc_tiep(this)" style="margin-left:10px; padding:4px 8px; background:#dc3545; color:white; border:none; border-radius:4px; cursor:pointer;" title="Xóa câu này">🗑️</button>` : ''}
-//                    </div>
-//                </div>
-//                <div>
-//                    <textarea class="edit-caudan" ${disabledAttr} rows="3" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; background:${bgInput}; font-family:inherit; resize:vertical;">${cauDan}</textarea>
-//                </div>
-//                ${htmlNoiDung}
-//            </div>
-//        `;
-//    });
-
-//    let htmlTaoFileGiai = choPhepSua ? `
-//        <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-//            <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TẠCH VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
-//            <label style="cursor:pointer; display:block; margin-bottom:8px;">
-//                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file giải trên GitHub
-//            </label>
-//            ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
-//        </div>` : '';
-
-//    vungLamViec.innerHTML = `
-//        <div style="max-width: 1000px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
-//            <h3 style="color:${mauTieuDe}; margin-top:0;">${tieuDe}: ${maHocLieu}</h3>
-
-//            <div style="display:flex; gap:10px; margin-bottom:20px; padding:15px; background:#f8f9fa; border-radius:8px;">
-//                <div style="flex:2">
-//                    <label style="font-weight:bold; font-size:12px; color:#666;">Tên Học Liệu</label>
-//                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
-//                </div>
-//                <div style="flex:1">
-//                    <label style="font-weight:bold; font-size:12px; color:#666;">Trạng thái</label>
-//                    <select id="sua_trangThai" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
-//                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
-//                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
-//                    </select>
-//                </div>
-//                <div style="flex:1">
-//                    <label style="font-weight:bold; font-size:12px; color:#666;">Thời gian (Phút)</label>
-//                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
-//                </div>
-//            </div>
-
-//            <div id="vung-chua-cau-hoi" style="max-height: 500px; overflow-y: auto; margin-bottom:20px; padding-right:10px;">
-//                ${htmlCards || '<p style="text-align:center; color:#999;">Không có dữ liệu câu hỏi.</p>'}
-//            </div>
-
-//            ${htmlTaoFileGiai}
-
-//            <div style="display: flex; gap: 10px;">
-//                ${choPhepSua ? `<button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${maHocLieu}', this)" style="padding:15px; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; flex:2;">💾 LƯU THAY ĐỔI VÀ ĐỒNG BỘ GITHUB</button>` : ''}
-//                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="padding:15px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; flex:1;">⬅️ QUAY LẠI</button>
-//            </div>
-//        </div>
-//    `;
-//};
-
-
 // ==============================================================
-// [Nhãn thời gian: Mới nhất] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Sửa trực tiếp + Vượt rào Cache)
+// [Nhãn thời gian: 20:30 - Ngày 19/06/2026] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Sửa nội dung trực tiếp)
 // ==============================================================
 window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div><h3 style="color:#1a73e8; margin-top:15px;">⏳ Đang tải nội dung gốc từ kho GitHub...</h3></div>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div><h3 style="color:#1a73e8; margin-top:15px;">⏳ Đang tải nội dung đề từ GitHub...</h3></div>`;
 
     let dsCauHoiGithub = [];
     let urlFileGiai = data.url_file_giai || "";
 
     try {
+        // 1. Tải file Đề thi từ GitHub (Thêm Date.now để chống cache trình duyệt)
         if (data.url_github) {
-            let fetchUrl = data.url_github + "?t=" + Date.now();
-
-            // 🌟 CHUYỂN LINK SANG RAW ĐỂ XÓA MÙ CACHE GITHUB PAGES
-            if (typeof CFG_HE_THONG !== 'undefined' && data.url_github.includes('.io/')) {
-                try {
-                    const urlParts = data.url_github.split('.io/');
-                    let pathParts = urlParts[1].split('/');
-                    pathParts.shift(); // Bỏ tên Repo
-                    const pathFileDe = pathParts.join('/');
-                    fetchUrl = `https://raw.githubusercontent.com/${CFG_HE_THONG.GITHUB_REPO}/main/${pathFileDe}?t=${Date.now()}`;
-                    console.log("🔗 [DEBUG FETCH] Đang kéo file siêu tốc từ:", fetchUrl);
-                } catch (e) { }
-            }
-
-            const res = await fetch(fetchUrl);
+            const res = await fetch(data.url_github + "?t=" + Date.now());
             if (res.ok) {
                 const dataGH = await res.json();
                 dsCauHoiGithub = dataGH.danhSachCauHoi || [];
             } else {
-                console.warn("Lỗi 404: Không tìm thấy file trên Github Raw");
+                console.warn("Không tải được nội dung từ GitHub");
             }
         }
     } catch (e) {
-        console.error("Lỗi mạng khi nạp file:", e);
+        console.error("Lỗi nạp file GitHub:", e);
     }
 
     const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA NỘI DUNG HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
@@ -1162,7 +1015,6 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
 
         let htmlNoiDung = '';
 
-        // Tùy biến giao diện nhập liệu theo từng loại câu hỏi
         if (kieuCau === 'TN') {
             htmlNoiDung = `
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
@@ -1203,9 +1055,9 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
 
     let htmlTaoFileGiai = choPhepSua ? `
         <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-            <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TÁC VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
+            <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TẠCH VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
             <label style="cursor:pointer; display:block; margin-bottom:8px;">
-                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file Đề thi trên GitHub
+                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file giải trên GitHub
             </label>
             ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
         </div>` : '';
@@ -1245,6 +1097,154 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
         </div>
     `;
 };
+
+
+//// ==============================================================
+//// [Nhãn thời gian: Mới nhất] - Hàm 6.6: Vẽ Form Sửa Học Liệu (Sửa trực tiếp + Vượt rào Cache)
+//// ==============================================================
+//window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = true) {
+//    const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
+//    if (!data) return alert("Dữ liệu không tồn tại!");
+
+//    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div><h3 style="color:#1a73e8; margin-top:15px;">⏳ Đang tải nội dung gốc từ kho GitHub...</h3></div>`;
+
+//    let dsCauHoiGithub = [];
+//    let urlFileGiai = data.url_file_giai || "";
+
+//    try {
+//        if (data.url_github) {
+//            let fetchUrl = data.url_github + "?t=" + Date.now();
+
+//            // 🌟 CHUYỂN LINK SANG RAW ĐỂ XÓA MÙ CACHE GITHUB PAGES
+//            if (typeof CFG_HE_THONG !== 'undefined' && data.url_github.includes('.io/')) {
+//                try {
+//                    const urlParts = data.url_github.split('.io/');
+//                    let pathParts = urlParts[1].split('/');
+//                    pathParts.shift(); // Bỏ tên Repo
+//                    const pathFileDe = pathParts.join('/');
+//                    fetchUrl = `https://raw.githubusercontent.com/${CFG_HE_THONG.GITHUB_REPO}/main/${pathFileDe}?t=${Date.now()}`;
+//                    console.log("🔗 [DEBUG FETCH] Đang kéo file siêu tốc từ:", fetchUrl);
+//                } catch (e) { }
+//            }
+
+//            const res = await fetch(fetchUrl);
+//            if (res.ok) {
+//                const dataGH = await res.json();
+//                dsCauHoiGithub = dataGH.danhSachCauHoi || [];
+//            } else {
+//                console.warn("Lỗi 404: Không tìm thấy file trên Github Raw");
+//            }
+//        }
+//    } catch (e) {
+//        console.error("Lỗi mạng khi nạp file:", e);
+//    }
+
+//    const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA NỘI DUNG HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
+//    const mauTieuDe = choPhepSua ? "#f39c12" : "#1a73e8";
+//    const disabledAttr = choPhepSua ? "" : "disabled";
+//    const bgInput = choPhepSua ? "#fff" : "#f1f3f4";
+
+//    const dsCauHoiDB = data.danh_sach_cau_hoi || [];
+//    let htmlCards = '';
+
+//    dsCauHoiDB.forEach((itemDB, index) => {
+//        // Bóc tách dữ liệu Database
+//        let maGoc = typeof itemDB === 'object' ? (itemDB.ma_goc || "") : (itemDB.split('|')[0] || "");
+//        let maCau = typeof itemDB === 'object' ? (itemDB.ma_cau_hoi || "") : (itemDB.split('|')[1] || "");
+//        let maGiai = typeof itemDB === 'object' ? (itemDB.ma_loi_giai || "") : (itemDB.split('|')[2] || "");
+//        let dapAnDB = typeof itemDB === 'object' ? (itemDB.dap_an || "") : (itemDB.split('|')[3] || "");
+
+//        // Khớp với dữ liệu GitHub để lấy Nội dung
+//        let itemGH = dsCauHoiGithub.find(c => c.maCau === maCau) || {};
+//        let kieuCau = itemGH.kieuCau || "TN";
+//        let cauDan = itemGH.cauDan || "";
+
+//        let htmlNoiDung = '';
+
+//        // Tùy biến giao diện nhập liệu theo từng loại câu hỏi
+//        if (kieuCau === 'TN') {
+//            htmlNoiDung = `
+//                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
+//                    <div><b style="color:#1a73e8">A.</b> <input type="text" class="edit-paA" value="${(itemGH.paA || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#1a73e8">B.</b> <input type="text" class="edit-paB" value="${(itemGH.paB || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#1a73e8">C.</b> <input type="text" class="edit-paC" value="${(itemGH.paC || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#1a73e8">D.</b> <input type="text" class="edit-paD" value="${(itemGH.paD || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:90%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                </div>
+//            `;
+//        } else if (kieuCau === 'DS') {
+//            htmlNoiDung = `
+//                <div style="display:grid; grid-template-columns: 1fr; gap:8px; margin-top:10px;">
+//                    <div><b style="color:#d35400">Ý 1:</b> <input type="text" class="edit-paA" value="${(itemGH.paA || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#d35400">Ý 2:</b> <input type="text" class="edit-paB" value="${(itemGH.paB || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#d35400">Ý 3:</b> <input type="text" class="edit-paC" value="${(itemGH.paC || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                    <div><b style="color:#d35400">Ý 4:</b> <input type="text" class="edit-paD" value="${(itemGH.paD || "").replace(/"/g, '&quot;')}" ${disabledAttr} style="width:95%; padding:5px; background:${bgInput}; border:1px solid #ccc; border-radius:4px;"></div>
+//                </div>
+//            `;
+//        }
+
+//        htmlCards += `
+//            <div class="card-cau-hoi" data-macau="${maCau}" data-magoc="${maGoc}" data-magiai="${maGiai}" data-kieucau="${kieuCau}" style="background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+//                <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px dashed #ccc; padding-bottom:5px;">
+//                    <span style="font-weight:bold; color:#333;">Câu ${index + 1} (${kieuCau}) - Mã gốc: <span style="color:#28a745">${maGoc}</span></span>
+//                    <div>
+//                        <span style="font-weight:bold; color:#d32f2f; margin-right:10px;">ĐÁP ÁN:</span>
+//                        <input type="text" class="edit-dapan" value="${dapAnDB}" ${disabledAttr} placeholder="${kieuCau === 'DS' ? 'TFTF' : 'A'}" style="width:80px; padding:4px; text-align:center; font-weight:bold; border:2px solid #d32f2f; border-radius:4px; text-transform:uppercase;">
+//                        ${choPhepSua ? `<button onclick="ham_6_xoa_cau_truc_tiep(this)" style="margin-left:10px; padding:4px 8px; background:#dc3545; color:white; border:none; border-radius:4px; cursor:pointer;" title="Xóa câu này">🗑️</button>` : ''}
+//                    </div>
+//                </div>
+//                <div>
+//                    <textarea class="edit-caudan" ${disabledAttr} rows="3" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; background:${bgInput}; font-family:inherit; resize:vertical;">${cauDan}</textarea>
+//                </div>
+//                ${htmlNoiDung}
+//            </div>
+//        `;
+//    });
+
+//    let htmlTaoFileGiai = choPhepSua ? `
+//        <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//            <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TÁC VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
+//            <label style="cursor:pointer; display:block; margin-bottom:8px;">
+//                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file Đề thi trên GitHub
+//            </label>
+//            ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
+//        </div>` : '';
+
+//    vungLamViec.innerHTML = `
+//        <div style="max-width: 1000px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
+//            <h3 style="color:${mauTieuDe}; margin-top:0;">${tieuDe}: ${maHocLieu}</h3>
+
+//            <div style="display:flex; gap:10px; margin-bottom:20px; padding:15px; background:#f8f9fa; border-radius:8px;">
+//                <div style="flex:2">
+//                    <label style="font-weight:bold; font-size:12px; color:#666;">Tên Học Liệu</label>
+//                    <input type="text" id="sua_tenHocLieu" value="${data.ten_hoc_lieu}" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+//                </div>
+//                <div style="flex:1">
+//                    <label style="font-weight:bold; font-size:12px; color:#666;">Trạng thái</label>
+//                    <select id="sua_trangThai" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+//                        <option value="noi_bo" ${data.trang_thai === 'noi_bo' ? 'selected' : ''}>🔴 Nội bộ</option>
+//                        <option value="cong_khai" ${data.trang_thai === 'cong_khai' ? 'selected' : ''}>🟢 Công khai</option>
+//                    </select>
+//                </div>
+//                <div style="flex:1">
+//                    <label style="font-weight:bold; font-size:12px; color:#666;">Thời gian (Phút)</label>
+//                    <input type="number" id="sua_thoiGian" value="${data.thoi_gian_lam_bai}" ${disabledAttr} style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;">
+//                </div>
+//            </div>
+
+//            <div id="vung-chua-cau-hoi" style="max-height: 500px; overflow-y: auto; margin-bottom:20px; padding-right:10px;">
+//                ${htmlCards || '<p style="text-align:center; color:#999;">Không có dữ liệu câu hỏi.</p>'}
+//            </div>
+
+//            ${htmlTaoFileGiai}
+
+//            <div style="display: flex; gap: 10px;">
+//                ${choPhepSua ? `<button onclick="ham_6_7_luu_cap_nhat_hoc_lieu('${maHocLieu}', this)" style="padding:15px; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; flex:2;">💾 LƯU THAY ĐỔI VÀ ĐỒNG BỘ GITHUB</button>` : ''}
+//                <button onclick="ham_6_1_ve_quan_ly_hoc_lieu()" style="padding:15px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; flex:1;">⬅️ QUAY LẠI</button>
+//            </div>
+//        </div>
+//    `;
+//};
 
 
 
