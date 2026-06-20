@@ -1,0 +1,227 @@
+{
+  "maDe": "TV1-DE-1",
+  "tenDe": "TV1-ĐỀ 1",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_1bce7de933",
+      "ma_goc": "2606-133",
+      "kieuCau": "TN",
+      "cauDan": "Tiếng nào chứa vần \"uôi\"?",
+      "paA": "cây đuốc",
+      "paB": "con suối",
+      "paC": "cái túi",
+      "paD": "cái mũi"
+    },
+    {
+      "maCau": "q_887b688e4e",
+      "ma_goc": "2606-134",
+      "kieuCau": "TN",
+      "cauDan": "Từ nào viết đúng chính tả?",
+      "paA": "chả cáp",
+      "paB": "cá chép",
+      "paC": "chả chép",
+      "paD": "cá chếp"
+    },
+    {
+      "maCau": "q_bb30d0a60f",
+      "ma_goc": "2606-135",
+      "kieuCau": "TN",
+      "cauDan": "Tiếng \"học\" có vần gì?",
+      "paA": "ôc",
+      "paB": "oc",
+      "paC": "oac",
+      "paD": "uoc"
+    },
+    {
+      "maCau": "q_abb67e3958",
+      "ma_goc": "2606-136",
+      "kieuCau": "TN",
+      "cauDan": "Từ nào trái nghĩa với \"cao\"?",
+      "paA": "gầy",
+      "paB": "thấp",
+      "paC": "nhỏ",
+      "paD": "ngắn"
+    },
+    {
+      "maCau": "q_71f2cac1cd",
+      "ma_goc": "2606-137",
+      "kieuCau": "TN",
+      "cauDan": "Bộ phận nào trong câu \"Bé đang đọc sách\" trả lời cho câu hỏi \"Làm gì?\"?",
+      "paA": "Bé",
+      "paB": "đang đọc sách",
+      "paC": "đọc",
+      "paD": "sách"
+    },
+    {
+      "maCau": "q_6365a0652f",
+      "ma_goc": "2606-138",
+      "kieuCau": "TN",
+      "cauDan": "Tiếng nào bắt đầu bằng âm \"ngh\"?",
+      "paA": "ngả",
+      "paB": "nghỉ",
+      "paC": "ngon",
+      "paD": "ngu"
+    },
+    {
+      "maCau": "q_7d5ae7fa5b",
+      "ma_goc": "2606-139",
+      "kieuCau": "TN",
+      "cauDan": "\"Mặt trời mọc ở đằng...\"?",
+      "paA": "tây",
+      "paB": "đông",
+      "paC": "bắc",
+      "paD": "nam"
+    },
+    {
+      "maCau": "q_655bc117b4",
+      "ma_goc": "2606-140",
+      "kieuCau": "TN",
+      "cauDan": "Từ nào chỉ hoạt động?",
+      "paA": "xinh xắn",
+      "paB": "đá bóng",
+      "paC": "đẹp",
+      "paD": "ngoan"
+    },
+    {
+      "maCau": "q_41a9dda448",
+      "ma_goc": "2606-141",
+      "kieuCau": "TN",
+      "cauDan": "Câu nào có từ chỉ đặc điểm?",
+      "paA": "Bé chơi đồ chơi",
+      "paB": "Hoa hồng đỏ thắm",
+      "paC": "Mẹ nấu cơm",
+      "paD": "Bố đi làm"
+    },
+    {
+      "maCau": "q_2df78dd87f",
+      "ma_goc": "2606-142",
+      "kieuCau": "TN",
+      "cauDan": "Dấu câu đặt cuối câu hỏi?",
+      "paA": "Dấu chấm",
+      "paB": "Dấu chấm hỏi",
+      "paC": "Dấu phẩy",
+      "paD": "Dấu chấm than"
+    },
+    {
+      "maCau": "q_bf63497093",
+      "ma_goc": "2606-143",
+      "kieuCau": "TN",
+      "cauDan": "Con vật nào biết bay?",
+      "paA": "con cá",
+      "paB": "con chim",
+      "paC": "con mèo",
+      "paD": "con chó"
+    },
+    {
+      "maCau": "q_8867d347da",
+      "ma_goc": "2606-144",
+      "kieuCau": "TN",
+      "cauDan": "",
+      "paA": "sự vật",
+      "paB": "đặc điểm",
+      "paC": "hoạt động",
+      "paD": "tình cảm"
+    },
+    {
+      "maCau": "q_902ab4f0be",
+      "ma_goc": "2606-145",
+      "kieuCau": "TN",
+      "cauDan": "Tiếng \"quốc\" có vần gì?",
+      "paA": "uoc",
+      "paB": "uôc",
+      "paC": "oc",
+      "paD": "ac"
+    },
+    {
+      "maCau": "q_0fe90baf96",
+      "ma_goc": "2606-146",
+      "kieuCau": "TN",
+      "cauDan": "Điền từ: \"Em ... sách.\"?",
+      "paA": "ăn",
+      "paB": "đọc",
+      "paC": "chạy",
+      "paD": "đi"
+    },
+    {
+      "maCau": "q_a5cd0f167d",
+      "ma_goc": "2606-147",
+      "kieuCau": "TN",
+      "cauDan": "Từ nào là từ láy?",
+      "paA": "bàn ghế",
+      "paB": "nhỏ nhắn",
+      "paC": "sách vở",
+      "paD": "học sinh"
+    },
+    {
+      "maCau": "q_3c9c775743",
+      "ma_goc": "2606-148",
+      "kieuCau": "TN",
+      "cauDan": "Câu \"Bạn Lan rất thông minh\" là câu gì?",
+      "paA": "Câu hỏi",
+      "paB": "Câu kể",
+      "paC": "Câu cảm",
+      "paD": "Câu khiến"
+    },
+    {
+      "maCau": "q_9eb6b7aabf",
+      "ma_goc": "2606-149",
+      "kieuCau": "DS",
+      "cauDan": "Xét các từ sau:",
+      "paA": "\"Sách\" có vần ach",
+      "paB": "\"Bàn\" chỉ hoạt động",
+      "paC": "\"Nhà\" chỉ sự vật",
+      "paD": "\"Chạy\" chỉ đặc điểm"
+    },
+    {
+      "maCau": "q_2fd248564b",
+      "ma_goc": "2606-150",
+      "kieuCau": "DS",
+      "cauDan": "Chính tả:",
+      "paA": "\"Gà\" dùng âm g",
+      "paB": "\"Ghế\" dùng âm gh",
+      "paC": "\"Ngà\" dùng âm ngh",
+      "paD": "\"Nghỉ\" dùng âm ng"
+    },
+    {
+      "maCau": "q_882b820dad",
+      "ma_goc": "2606-151",
+      "kieuCau": "DS",
+      "cauDan": "Cấu tạo câu:",
+      "paA": "Câu có bộ phận chỉ sự vật",
+      "paB": "Câu có bộ phận chỉ hoạt động",
+      "paC": "Câu không cần dấu chấm",
+      "paD": "Câu nào cũng có dấu phẩy"
+    },
+    {
+      "maCau": "q_cc7ba52b63",
+      "ma_goc": "2606-152",
+      "kieuCau": "DS",
+      "cauDan": "Các từ chỉ mùa:",
+      "paA": "Xuân, Hạ, Thu, Đông",
+      "paB": "Mùa Xuân ấm áp",
+      "paC": "Mùa Hè lạnh lẽo",
+      "paD": "Mùa Thu có hoa đào"
+    },
+    {
+      "maCau": "q_7aa1fc4f72",
+      "ma_goc": "2606-153",
+      "kieuCau": "DS",
+      "cauDan": "Đạo đức:",
+      "paA": "Đi học đúng giờ",
+      "paB": "Nói dối là tốt",
+      "paC": "Yêu thương bạn bè",
+      "paD": "Không chào hỏi"
+    },
+    {
+      "maCau": "q_62d857156e",
+      "ma_goc": "2606-154",
+      "kieuCau": "DS",
+      "cauDan": "Đặc điểm và Hoạt động:",
+      "paA": "\"Thơm ngát\" là đặc điểm",
+      "paB": "\"Đá bóng\" là hoạt động",
+      "paC": "\"Cái bút\" là hoạt động",
+      "paD": "\"Chăm chỉ\" là sự vật"
+    }
+  ]
+}
