@@ -1,203 +1,203 @@
 {
-  "maDe": "TOAN1-DE-4",
-  "tenDe": "TOÁN 1 ĐỀ 4",
-  "thoiGian": 45,
-  "danhSachCauHoi": [
-    {
-      "maCau": "q_8a0132a10a",
-      "ma_goc": "2606-155",
-      "kieuCau": "TN",
-      "cauDan": "Bạn Sutin xếp hàng mua kem. Phía trước Sutin có $3$ bạn, phía sau Sutin có $4$ bạn. Hỏi hàng xếp mua kem có tất cả bao nhiêu bạn?",
-      "paA": "$7$ bạn",
-      "paB": "$8$ bạn",
-      "paC": "$6$ bạn",
-      "paD": "$9$ bạn"
-    },
-    {
-      "maCau": "q_ecf19f19f1",
-      "ma_goc": "2606-156",
-      "kieuCau": "TN",
-      "cauDan": "Số nào tiếp theo trong dãy số sau: $2, 4, 6, 8, \\dots$?",
-      "paA": "$9$",
-      "paB": "$12$",
-      "paC": "$10$",
-      "paD": "$11$"
-    },
-    {
-      "maCau": "q_6707f7877d",
-      "ma_goc": "2606-157",
-      "kieuCau": "TN",
-      "cauDan": "Hình bên dưới có tất cả bao nhiêu hình tam giác?\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_6707f7877d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}",
-      "paA": "$2$ hình",
-      "paB": "$3$ hình",
-      "paC": "$4$ hình",
-      "paD": "$1$ hình"
-    },
-    {
-      "maCau": "q_d3ffcd2fcd",
-      "ma_goc": "2606-158",
-      "kieuCau": "TN",
-      "cauDan": "Trong sân có $2$ con chó và $2$ con gà. Hỏi có tất cả bao nhiêu cái chân?",
-      "paA": "$8$ chân",
-      "paB": "$10$ chân",
-      "paC": "$12$ chân",
-      "paD": "$14$ chân"
-    },
-    {
-      "maCau": "q_f82304eeb0",
-      "ma_goc": "2606-159",
-      "kieuCau": "TN",
-      "cauDan": "Hôm nay là Thứ Ba. Hỏi $5$ ngày nữa là thứ mấy?",
-      "paA": "Thứ Bảy",
-      "paB": "Chủ Nhật",
-      "paC": "Thứ Hai",
-      "paD": "Thứ Sáu"
-    },
-    {
-      "maCau": "q_776d8ee09f",
-      "ma_goc": "2606-160",
-      "kieuCau": "TN",
-      "cauDan": "Anh hai năm nay $10$ tuổi, em gái năm nay $6$ tuổi. Hỏi $3$ năm nữa, anh hai hơn em gái bao nhiêu tuổi?",
-      "paA": "$7$ tuổi",
-      "paB": "$1$ tuổi",
-      "paC": "$5$ tuổi",
-      "paD": "$4$ tuổi"
-    },
-    {
-      "maCau": "q_fc4b313d87",
-      "ma_goc": "2606-161",
-      "kieuCau": "TN",
-      "cauDan": "Số lớn nhất có hai chữ số khác nhau là số nào?",
-      "paA": "$99$",
-      "paB": "$98$",
-      "paC": "$89$",
-      "paD": "$90$"
-    },
-    {
-      "maCau": "q_cb7f18cb4b",
-      "ma_goc": "2606-162",
-      "kieuCau": "TN",
-      "cauDan": "Trên mặt bàn có $3$ quả táo. Mẹ đặt thêm vào $5$ quả táo, sau đó bé ăn mất $2$ quả. Hỏi trên bàn còn lại mấy quả táo?",
-      "paA": "$7$ quả",
-      "paB": "$6$ quả",
-      "paC": "$8$ quả",
-      "paD": "$5$ quả"
-    },
-    {
-      "maCau": "q_7d353de6ea",
-      "ma_goc": "2606-163",
-      "kieuCau": "TN",
-      "cauDan": "Một chiếc đồng hồ có kim dài chỉ thẳng số $12$, kim ngắn chỉ thẳng số $8$. Hỏi lúc đó là mấy giờ?",
-      "paA": "$12$ giờ",
-      "paB": "$4$ giờ",
-      "paC": "$8$ giờ",
-      "paD": "$20$ giờ"
-    },
-    {
-      "maCau": "q_857b48bdcc",
-      "ma_goc": "2606-164",
-      "kieuCau": "TN",
-      "cauDan": "Bạn Nam cao hơn bạn Bình, bạn Bình cao hơn bạn Cường. Hỏi trong ba bạn, ai là người thấp nhất?",
-      "paA": "Bạn Nam",
-      "paB": "Bạn Bình",
-      "paC": "Bạn Cường",
-      "paD": "Không biết được"
-    },
-    {
-      "maCau": "q_6202b79264",
-      "ma_goc": "2606-165",
-      "kieuCau": "TN",
-      "cauDan": "Một khúc gỗ dài được cưa thành $4$ đoạn ngắn. Hỏi bác thợ mộc phải cưa bao nhiêu lần?",
-      "paA": "$4$ lần",
-      "paB": "$2$ lần",
-      "paC": "$3$ lần",
-      "paD": "$5$ lần"
-    },
-    {
-      "maCau": "q_091a488fe6",
-      "ma_goc": "2606-166",
-      "kieuCau": "TN",
-      "cauDan": "Số điền vào chỗ chấm trong phép tính $15 + \\dots = 20 - 2$ là?",
-      "paA": "$2$",
-      "paB": "$3$",
-      "paC": "$4$",
-      "paD": "$5$"
-    },
-    {
-      "maCau": "q_971dd070ee",
-      "ma_goc": "2606-167",
-      "kieuCau": "DS",
-      "cauDan": "Xét tính đúng, sai của các phép tính sau đây:",
-      "paA": "$12 + 6 = 18$",
-      "paB": "$20 - 5 = 14$",
-      "paC": "$10 + 5 > 14$",
-      "paD": "$19 - 9 < 8$"
-    },
-    {
-      "maCau": "q_3313907dee",
-      "ma_goc": "2606-168",
-      "kieuCau": "DS",
-      "cauDan": "Quan sát các hình học cơ bản và xét tính đúng sai:",
-      "paA": "Hình vuông có $4$ cạnh dài bằng nhau.",
-      "paB": "Hình tròn có $3$ góc.",
-      "paC": "Hình tam giác có $3$ cạnh.",
-      "paD": "Khối rubik có dạng khối lập phương."
-    },
-    {
-      "maCau": "q_ac445f0017",
-      "ma_goc": "2606-169",
-      "kieuCau": "DS",
-      "cauDan": "Về thời gian và các ngày trong tuần, xét tính đúng sai của các câu sau:",
-      "paA": "Một tuần lễ có $7$ ngày.",
-      "paB": "Ngày liền sau của Thứ Bảy là Thứ Sáu.",
-      "paC": "Kim ngắn chỉ giờ, kim dài chỉ giây.",
-      "paD": "Hôm qua là Thứ Tư thì ngày mai là Thứ Sáu."
-    },
-    {
-      "maCau": "q_bbc9d00a08",
-      "ma_goc": "2606-170",
-      "kieuCau": "DS",
-      "cauDan": "Cho các nhận định về quy luật số học:",
-      "paA": "Số liền trước của số $20$ là $19$.",
-      "paB": "Số liền sau của số $15$ là $14$.",
-      "paC": "Số lớn nhất có một chữ số là số $10$.",
-      "paD": "Dãy số $1, 3, 5, 7, 9$ là dãy các số lẻ."
-    },
-    {
-      "maCau": "q_e4694f9046",
-      "ma_goc": "2606-171",
-      "kieuCau": "TLN",
-      "cauDan": "Sutin có $15$ viên bi. Sutin cho em $5$ viên bi, sau đó mẹ mua cho Sutin thêm $3$ viên nữa. Hỏi bây giờ Sutin có tất cả bao nhiêu viên bi?"
-    },
-    {
-      "maCau": "q_5b469c0631",
-      "ma_goc": "2606-172",
-      "kieuCau": "TLN",
-      "cauDan": "Tìm số cần điền vào dấu hỏi chấm để hoàn thành quy luật hình tam giác số dưới đây:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_5b469c0631_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}"
-    },
-    {
-      "maCau": "q_d74916f2ba",
-      "ma_goc": "2606-173",
-      "kieuCau": "TLN",
-      "cauDan": "Có một cân thăng bằng. Đĩa bên trái để $1$ quả dưa hấu. Đĩa bên phải để $3$ quả cam và $1$ quả dưa lưới. Biết $1$ quả dưa lưới nặng bằng $2$ quả cam. Hỏi $1$ quả dưa hấu nặng bằng mấy quả cam?"
-    },
-    {
-      "maCau": "q_4aacbb5018",
-      "ma_goc": "2606-174",
-      "kieuCau": "TLN",
-      "cauDan": "Trong một bãi đỗ xe có $3$ chiếc xe ô tô và $2$ chiếc xe máy. Biết mỗi xe ô tô có $4$ bánh, mỗi xe máy có $2$ bánh. Hỏi có tất cả bao nhiêu bánh xe trong bãi đỗ?"
-    },
-    {
-      "maCau": "q_4c8dd13c17",
-      "ma_goc": "2606-175",
-      "kieuCau": "TLN",
-      "cauDan": "Từ các số $1, 2, 5$, em có thể ghép được bao nhiêu số có hai chữ số khác nhau?"
-    },
-    {
-      "maCau": "q_88e169f338",
-      "ma_goc": "2606-176",
-      "kieuCau": "TLN",
-      "cauDan": "Tìm số liền trước của số bé nhất có hai chữ số."
-    }
-  ]
+    "maDe": "HL_DE_TOAN1-DE-4",
+    "tenDe": "TOÁN 1 ĐỀ 4",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_8a0132a10a",
+            "ma_goc": "2606-155",
+            "kieuCau": "TN",
+            "cauDan": "Bạn Sutin xếp hàng mua kem. Phía trước Sutin có $3$ bạn, phía sau Sutin có $4$ bạn. Hỏi hàng xếp mua kem có tất cả bao nhiêu bạn?",
+            "paA": "$7$ bạn",
+            "paB": "$8$ bạn",
+            "paC": "$6$ bạn",
+            "paD": "$9$ bạn"
+        },
+        {
+            "maCau": "q_ecf19f19f1",
+            "ma_goc": "2606-156",
+            "kieuCau": "TN",
+            "cauDan": "Số nào tiếp theo trong dãy số sau: $2, 4, 6, 8, \\dots$?",
+            "paA": "$9$",
+            "paB": "$12$",
+            "paC": "$10$",
+            "paD": "$11$"
+        },
+        {
+            "maCau": "q_6707f7877d",
+            "ma_goc": "2606-157",
+            "kieuCau": "TN",
+            "cauDan": "Hình bên dưới có tất cả bao nhiêu hình tam giác?\n\t\t\\begin{center}\n\t\t\t<img src='HinhAnh/q_6707f7877d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\t\t\\end{center}",
+            "paA": "$2$ hình",
+            "paB": "$3$ hình",
+            "paC": "$4$ hình",
+            "paD": "$1$ hình"
+        },
+        {
+            "maCau": "q_d3ffcd2fcd",
+            "ma_goc": "2606-158",
+            "kieuCau": "TN",
+            "cauDan": "Trong sân có $2$ con chó và $2$ con gà. Hỏi có tất cả bao nhiêu cái chân?",
+            "paA": "$8$ chân",
+            "paB": "$10$ chân",
+            "paC": "$12$ chân",
+            "paD": "$14$ chân"
+        },
+        {
+            "maCau": "q_f82304eeb0",
+            "ma_goc": "2606-159",
+            "kieuCau": "TN",
+            "cauDan": "Hôm nay là Thứ Ba. Hỏi $5$ ngày nữa là thứ mấy?",
+            "paA": "Thứ Bảy",
+            "paB": "Chủ Nhật",
+            "paC": "Thứ Hai",
+            "paD": "Thứ Sáu"
+        },
+        {
+            "maCau": "q_776d8ee09f",
+            "ma_goc": "2606-160",
+            "kieuCau": "TN",
+            "cauDan": "Anh hai năm nay $10$ tuổi, em gái năm nay $6$ tuổi. Hỏi $3$ năm nữa, anh hai hơn em gái bao nhiêu tuổi?",
+            "paA": "$7$ tuổi",
+            "paB": "$1$ tuổi",
+            "paC": "$5$ tuổi",
+            "paD": "$4$ tuổi"
+        },
+        {
+            "maCau": "q_fc4b313d87",
+            "ma_goc": "2606-161",
+            "kieuCau": "TN",
+            "cauDan": "Số lớn nhất có hai chữ số khác nhau là số nào?",
+            "paA": "$99$",
+            "paB": "$98$",
+            "paC": "$89$",
+            "paD": "$90$"
+        },
+        {
+            "maCau": "q_cb7f18cb4b",
+            "ma_goc": "2606-162",
+            "kieuCau": "TN",
+            "cauDan": "Trên mặt bàn có $3$ quả táo. Mẹ đặt thêm vào $5$ quả táo, sau đó bé ăn mất $2$ quả. Hỏi trên bàn còn lại mấy quả táo?",
+            "paA": "$7$ quả",
+            "paB": "$6$ quả",
+            "paC": "$8$ quả",
+            "paD": "$5$ quả"
+        },
+        {
+            "maCau": "q_7d353de6ea",
+            "ma_goc": "2606-163",
+            "kieuCau": "TN",
+            "cauDan": "Một chiếc đồng hồ có kim dài chỉ thẳng số $12$, kim ngắn chỉ thẳng số $8$. Hỏi lúc đó là mấy giờ?",
+            "paA": "$12$ giờ",
+            "paB": "$4$ giờ",
+            "paC": "$8$ giờ",
+            "paD": "$20$ giờ"
+        },
+        {
+            "maCau": "q_857b48bdcc",
+            "ma_goc": "2606-164",
+            "kieuCau": "TN",
+            "cauDan": "Bạn Nam cao hơn bạn Bình, bạn Bình cao hơn bạn Cường. Hỏi trong ba bạn, ai là người thấp nhất?",
+            "paA": "Bạn Nam",
+            "paB": "Bạn Bình",
+            "paC": "Bạn Cường",
+            "paD": "Không biết được"
+        },
+        {
+            "maCau": "q_6202b79264",
+            "ma_goc": "2606-165",
+            "kieuCau": "TN",
+            "cauDan": "Một khúc gỗ dài được cưa thành $4$ đoạn ngắn. Hỏi bác thợ mộc phải cưa bao nhiêu lần?",
+            "paA": "$4$ lần",
+            "paB": "$2$ lần",
+            "paC": "$3$ lần",
+            "paD": "$5$ lần"
+        },
+        {
+            "maCau": "q_091a488fe6",
+            "ma_goc": "2606-166",
+            "kieuCau": "TN",
+            "cauDan": "Số điền vào chỗ chấm trong phép tính $15 + \\dots = 20 - 2$ là?",
+            "paA": "$2$",
+            "paB": "$3$",
+            "paC": "$4$",
+            "paD": "$5$"
+        },
+        {
+            "maCau": "q_971dd070ee",
+            "ma_goc": "2606-167",
+            "kieuCau": "DS",
+            "cauDan": "Xét tính đúng, sai của các phép tính sau đây:",
+            "paA": "$12 + 6 = 18$",
+            "paB": "$20 - 5 = 14$",
+            "paC": "$10 + 5 > 14$",
+            "paD": "$19 - 9 < 8$"
+        },
+        {
+            "maCau": "q_3313907dee",
+            "ma_goc": "2606-168",
+            "kieuCau": "DS",
+            "cauDan": "Quan sát các hình học cơ bản và xét tính đúng sai:",
+            "paA": "Hình vuông có $4$ cạnh dài bằng nhau.",
+            "paB": "Hình tròn có $3$ góc.",
+            "paC": "Hình tam giác có $3$ cạnh.",
+            "paD": "Khối rubik có dạng khối lập phương."
+        },
+        {
+            "maCau": "q_ac445f0017",
+            "ma_goc": "2606-169",
+            "kieuCau": "DS",
+            "cauDan": "Về thời gian và các ngày trong tuần, xét tính đúng sai của các câu sau:",
+            "paA": "Một tuần lễ có $7$ ngày.",
+            "paB": "Ngày liền sau của Thứ Bảy là Thứ Sáu.",
+            "paC": "Kim ngắn chỉ giờ, kim dài chỉ giây.",
+            "paD": "Hôm qua là Thứ Tư thì ngày mai là Thứ Sáu."
+        },
+        {
+            "maCau": "q_bbc9d00a08",
+            "ma_goc": "2606-170",
+            "kieuCau": "DS",
+            "cauDan": "Cho các nhận định về quy luật số học:",
+            "paA": "Số liền trước của số $20$ là $19$.",
+            "paB": "Số liền sau của số $15$ là $14$.",
+            "paC": "Số lớn nhất có một chữ số là số $10$.",
+            "paD": "Dãy số $1, 3, 5, 7, 9$ là dãy các số lẻ."
+        },
+        {
+            "maCau": "q_e4694f9046",
+            "ma_goc": "2606-171",
+            "kieuCau": "TLN",
+            "cauDan": "Sutin có $15$ viên bi. Sutin cho em $5$ viên bi, sau đó mẹ mua cho Sutin thêm $3$ viên nữa. Hỏi bây giờ Sutin có tất cả bao nhiêu viên bi?"
+        },
+        {
+            "maCau": "q_5b469c0631",
+            "ma_goc": "2606-172",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số cần điền vào dấu hỏi chấm để hoàn thành quy luật hình tam giác số dưới đây:\n\t\t\\begin{center}\n\t\t\t<img src='HinhAnh/q_5b469c0631_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\t\t\\end{center}"
+        },
+        {
+            "maCau": "q_d74916f2ba",
+            "ma_goc": "2606-173",
+            "kieuCau": "TLN",
+            "cauDan": "Có một cân thăng bằng. Đĩa bên trái để $1$ quả dưa hấu. Đĩa bên phải để $3$ quả cam và $1$ quả dưa lưới. Biết $1$ quả dưa lưới nặng bằng $2$ quả cam. Hỏi $1$ quả dưa hấu nặng bằng mấy quả cam?"
+        },
+        {
+            "maCau": "q_4aacbb5018",
+            "ma_goc": "2606-174",
+            "kieuCau": "TLN",
+            "cauDan": "Trong một bãi đỗ xe có $3$ chiếc xe ô tô và $2$ chiếc xe máy. Biết mỗi xe ô tô có $4$ bánh, mỗi xe máy có $2$ bánh. Hỏi có tất cả bao nhiêu bánh xe trong bãi đỗ?"
+        },
+        {
+            "maCau": "q_4c8dd13c17",
+            "ma_goc": "2606-175",
+            "kieuCau": "TLN",
+            "cauDan": "Từ các số $1, 2, 5$, em có thể ghép được bao nhiêu số có hai chữ số khác nhau?"
+        },
+        {
+            "maCau": "q_88e169f338",
+            "ma_goc": "2606-176",
+            "kieuCau": "TLN",
+            "cauDan": "Tìm số liền trước của số bé nhất có hai chữ số."
+        }
+    ]
 }
