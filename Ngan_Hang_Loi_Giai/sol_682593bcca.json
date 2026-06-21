@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_682593bcca",
+  "dapAn": "4",
+  "loiGiai": "Chữ số hàng chục không thể là số $0$. Ta xét các trường hợp:\\\\\r\n\t\t\t- Hàng chục là $1$: ghép được số $10, 12$.\\\\\r\n\t\t\t- Hàng chục là $2$: ghép được số $20, 21$.\\\\\r\n\t\t\tTổng cộng ghép được $4$ số có hai chữ số khác nhau."
+}
