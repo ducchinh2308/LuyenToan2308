@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ee868cd15c",
+  "dapAn": "TFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Số liền trước của $20$ là $20 - 1 = 19$. (Đúng)\r\n\t\t\t\t\\itemch Số liền sau của $15$ là $15 + 1 = 16$. (Sai)\r\n\t\t\t\t\\itemch Số lớn nhất có một chữ số là số $9$. (Sai)\r\n\t\t\t\t\\itemch Các số $1, 3, 5, 7, 9$ đều là số lẻ. (Đúng)\r\n\t\t\t\\end{itemchoice}"
+}
