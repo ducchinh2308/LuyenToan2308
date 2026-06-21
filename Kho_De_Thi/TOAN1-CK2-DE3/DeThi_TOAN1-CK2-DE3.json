@@ -1,0 +1,203 @@
+{
+  "maDe": "TOAN1-CK2-DE3",
+  "tenDe": "TOÁN 1 CK2 ĐỀ 3",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_9ef4856428",
+      "ma_goc": "2606-111",
+      "kieuCau": "TN",
+      "cauDan": "Trong rổ có 15 quả cam, mẹ lấy ra 3 quả rồi cho thêm 5 quả vào. Hỏi trong rổ có bao nhiêu quả cam?",
+      "paA": "12",
+      "paB": "13",
+      "paC": "16",
+      "paD": "17"
+    },
+    {
+      "maCau": "q_a36002919e",
+      "ma_goc": "2606-112",
+      "kieuCau": "TN",
+      "cauDan": "Tìm một số, biết rằng số đó cộng với 7 thì được kết quả là 19?",
+      "paA": "10",
+      "paB": "12",
+      "paC": "13",
+      "paD": "14"
+    },
+    {
+      "maCau": "q_cfa23ec159",
+      "ma_goc": "2606-113",
+      "kieuCau": "TN",
+      "cauDan": "Lan có 1 chục viên bi, Hùng có ít hơn Lan 2 viên. Cả hai bạn có bao nhiêu viên?",
+      "paA": "12",
+      "paB": "15",
+      "paC": "18",
+      "paD": "20"
+    },
+    {
+      "maCau": "q_172b8dd2c8",
+      "ma_goc": "2606-114",
+      "kieuCau": "TN",
+      "cauDan": "Hình nào có 3 cạnh?",
+      "paA": "Hình vuông",
+      "paB": "Hình chữ nhật",
+      "paC": "Hình tam giác",
+      "paD": "Hình tròn"
+    },
+    {
+      "maCau": "q_57b6f18b30",
+      "ma_goc": "2606-115",
+      "kieuCau": "TN",
+      "cauDan": "Số lớn nhất có hai chữ số khác nhau là?",
+      "paA": "99",
+      "paB": "98",
+      "paC": "89",
+      "paD": "90"
+    },
+    {
+      "maCau": "q_f935e28c3a",
+      "ma_goc": "2606-116",
+      "kieuCau": "TN",
+      "cauDan": "Mẹ về lúc 10 giờ, Lan về sớm hơn mẹ 2 giờ. Lan về lúc mấy giờ?",
+      "paA": "7 giờ",
+      "paB": "8 giờ",
+      "paC": "9 giờ",
+      "paD": "12 giờ"
+    },
+    {
+      "maCau": "q_5573673748",
+      "ma_goc": "2606-117",
+      "kieuCau": "TN",
+      "cauDan": "Có bao nhiêu số có hai chữ số mà chữ số hàng chục là 1?",
+      "paA": "9",
+      "paB": "10",
+      "paC": "11",
+      "paD": "8"
+    },
+    {
+      "maCau": "q_999dc93a99",
+      "ma_goc": "2606-118",
+      "kieuCau": "TN",
+      "cauDan": "Điền số: 5 + 7 = 8 + ?",
+      "paA": "3",
+      "paB": "5",
+      "paC": "4",
+      "paD": "6"
+    },
+    {
+      "maCau": "q_4a05587c46",
+      "ma_goc": "2606-119",
+      "kieuCau": "TN",
+      "cauDan": "Đoàn tàu có 20 toa, bỏ lại 5 toa, thêm 2 toa. Tàu có mấy toa?",
+      "paA": "15",
+      "paB": "16",
+      "paC": "17",
+      "paD": "18"
+    },
+    {
+      "maCau": "q_8f71f9be3f",
+      "ma_goc": "2606-120",
+      "kieuCau": "TN",
+      "cauDan": "Số nào bé hơn 15 nhưng lớn hơn 13?",
+      "paA": "16",
+      "paB": "14",
+      "paC": "12",
+      "paD": "13"
+    },
+    {
+      "maCau": "q_0dd248e1f9",
+      "ma_goc": "2606-121",
+      "kieuCau": "TN",
+      "cauDan": "Mẹ có 18 cái kẹo, chia đều cho 2 bạn. Mỗi bạn được mấy cái?",
+      "paA": "8",
+      "paB": "9",
+      "paC": "10",
+      "paD": "7"
+    },
+    {
+      "maCau": "q_2c04ef903d",
+      "ma_goc": "2606-122",
+      "kieuCau": "TN",
+      "cauDan": "Ngày 20 là thứ Hai, thứ Tư là ngày mấy?",
+      "paA": "21",
+      "paB": "22",
+      "paC": "23",
+      "paD": "24"
+    },
+    {
+      "maCau": "q_36ab6030b5",
+      "ma_goc": "2606-123",
+      "kieuCau": "DS",
+      "cauDan": "Xét các khẳng định:",
+      "paA": "15+4 > 18",
+      "paB": "19-9 < 8",
+      "paC": "20-6 = 14",
+      "paD": "17+2 < 18"
+    },
+    {
+      "maCau": "q_484823b42e",
+      "ma_goc": "2606-124",
+      "kieuCau": "DS",
+      "cauDan": "",
+      "paA": "1 giờ = 60 phút",
+      "paB": "1 mét = 10 cm",
+      "paC": "Hình chữ nhật có 4 góc",
+      "paD": "Tam giác có 4 cạnh"
+    },
+    {
+      "maCau": "q_f413184974",
+      "ma_goc": "2606-125",
+      "kieuCau": "DS",
+      "cauDan": "",
+      "paA": "Số tiếp theo là 10",
+      "paB": "Số tiếp theo là 9",
+      "paC": "Đây là dãy tăng",
+      "paD": "Dãy giảm dần"
+    },
+    {
+      "maCau": "q_a5840985a4",
+      "ma_goc": "2606-126",
+      "kieuCau": "DS",
+      "cauDan": "Phép tính:",
+      "paA": "9+9 = 18",
+      "paB": "8+7 = 16",
+      "paC": "15-8 = 7",
+      "paD": "12-5 = 6"
+    },
+    {
+      "maCau": "q_ff64276844",
+      "ma_goc": "2606-127",
+      "kieuCau": "TLN",
+      "cauDan": "Hùng có 12 bi, cho Bình 5 bi. Hùng còn?"
+    },
+    {
+      "maCau": "q_6297984dde",
+      "ma_goc": "2606-128",
+      "kieuCau": "TLN",
+      "cauDan": ""
+    },
+    {
+      "maCau": "q_e02cf25caf",
+      "ma_goc": "2606-129",
+      "kieuCau": "TLN",
+      "cauDan": ""
+    },
+    {
+      "maCau": "q_338491be42",
+      "ma_goc": "2606-130",
+      "kieuCau": "TLN",
+      "cauDan": ""
+    },
+    {
+      "maCau": "q_725f791183",
+      "ma_goc": "2606-131",
+      "kieuCau": "TLN",
+      "cauDan": ""
+    },
+    {
+      "maCau": "q_15ecf8794b",
+      "ma_goc": "2606-132",
+      "kieuCau": "TLN",
+      "cauDan": ""
+    }
+  ]
+}
