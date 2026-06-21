@@ -1,0 +1,203 @@
+{
+  "maDe": "TOAN1-DE5",
+  "tenDe": "TOÁN 1 ĐỀ 5",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_0bdad26893",
+      "ma_goc": "2606-177",
+      "kieuCau": "TN",
+      "cauDan": "Sutin có $15$ quyển truyện tranh. Sutin tặng cho em gái $4$ quyển. Hỏi Sutin còn lại bao nhiêu quyển truyện?",
+      "paA": "$10$ quyển",
+      "paB": "$11$ quyển",
+      "paC": "$12$ quyển",
+      "paD": "$19$ quyển"
+    },
+    {
+      "maCau": "q_3e4530194a",
+      "ma_goc": "2606-178",
+      "kieuCau": "TN",
+      "cauDan": "Hình vẽ bên dưới có bao nhiêu hình chữ nhật?\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_3e4530194a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}",
+      "paA": "$3$ hình",
+      "paB": "$4$ hình",
+      "paC": "$5$ hình",
+      "paD": "$6$ hình"
+    },
+    {
+      "maCau": "q_860a67e06a",
+      "ma_goc": "2606-179",
+      "kieuCau": "TN",
+      "cauDan": "Dãy số: $10, 20, 30, \\dots, 50$. Số cần điền vào chỗ chấm là?",
+      "paA": "$35$",
+      "paB": "$40$",
+      "paC": "$60$",
+      "paD": "$31$"
+    },
+    {
+      "maCau": "q_74898ddd22",
+      "ma_goc": "2606-180",
+      "kieuCau": "TN",
+      "cauDan": "Hôm qua là thứ Năm. Hỏi ngày mai là thứ mấy?",
+      "paA": "Thứ Tư",
+      "paB": "Thứ Sáu",
+      "paC": "Thứ Bảy",
+      "paD": "Chủ Nhật"
+    },
+    {
+      "maCau": "q_eb1b073a83",
+      "ma_goc": "2606-181",
+      "kieuCau": "TN",
+      "cauDan": "Kết quả của phép tính: $18 - 5 + 3$ là?",
+      "paA": "$10$",
+      "paB": "$15$",
+      "paC": "$16$",
+      "paD": "$14$"
+    },
+    {
+      "maCau": "q_62db398896",
+      "ma_goc": "2606-182",
+      "kieuCau": "TN",
+      "cauDan": "Sợi dây màu xanh dài $15$ cm, sợi dây màu đỏ dài $12$ cm. Cả hai sợi dây dài bao nhiêu xăng-ti-mét?",
+      "paA": "$3$ cm",
+      "paB": "$17$ cm",
+      "paC": "$27$ cm",
+      "paD": "$28$ cm"
+    },
+    {
+      "maCau": "q_0944b3b392",
+      "ma_goc": "2606-183",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Sutin đứng xếp hàng chờ mua vé xem phim. Tính từ đầu hàng, Sutin đứng thứ $5$. Tính từ cuối hàng, Sutin đứng thứ $3$. Hỏi hàng đó có tất cả bao nhiêu bạn?",
+      "paA": "$8$ bạn",
+      "paB": "$7$ bạn",
+      "paC": "$6$ bạn",
+      "paD": "$9$ bạn"
+    },
+    {
+      "maCau": "q_d0b27c835f",
+      "ma_goc": "2606-184",
+      "kieuCau": "TN",
+      "cauDan": "Số bé nhất có hai chữ số giống nhau là số nào?",
+      "paA": "$10$",
+      "paB": "$11$",
+      "paC": "$22$",
+      "paD": "$99$"
+    },
+    {
+      "maCau": "q_d495c7d7c6",
+      "ma_goc": "2606-185",
+      "kieuCau": "TN",
+      "cauDan": "Đồng hồ nhà em có kim ngắn chỉ số $7$, kim dài chỉ số $12$. Lúc đó là mấy giờ?",
+      "paA": "$7$ giờ",
+      "paB": "$12$ giờ",
+      "paC": "$5$ giờ",
+      "paD": "$8$ giờ"
+    },
+    {
+      "maCau": "q_7afe8baf15",
+      "ma_goc": "2606-186",
+      "kieuCau": "TN",
+      "cauDan": "Tìm số lớn hơn $16$ nhưng bé hơn $18$.",
+      "paA": "$15$",
+      "paB": "$16$",
+      "paC": "$17$",
+      "paD": "$19$"
+    },
+    {
+      "maCau": "q_6ddf37db13",
+      "ma_goc": "2606-187",
+      "kieuCau": "TN",
+      "cauDan": "Chị gái năm nay $12$ tuổi, em trai năm nay $7$ tuổi. Hỏi $2$ năm nữa, chị gái hơn em trai mấy tuổi?",
+      "paA": "$7$ tuổi",
+      "paB": "$5$ tuổi",
+      "paC": "$9$ tuổi",
+      "paD": "$4$ tuổi"
+    },
+    {
+      "maCau": "q_ec9f99ca03",
+      "ma_goc": "2606-188",
+      "kieuCau": "TN",
+      "cauDan": "Một số gồm $1$ chục và $9$ đơn vị. Hỏi số liền sau của số đó là số mấy?",
+      "paA": "$18$",
+      "paB": "$19$",
+      "paC": "$20$",
+      "paD": "$21$"
+    },
+    {
+      "maCau": "q_51c9c1a6a6",
+      "ma_goc": "2606-189",
+      "kieuCau": "DS",
+      "cauDan": "Xét tính đúng, sai của các phép tính toán học sau:",
+      "paA": "$15 > 12$",
+      "paB": "$10 + 6 = 16$",
+      "paC": "$19 - 8 < 10$",
+      "paD": "$20 = 2$ chục"
+    },
+    {
+      "maCau": "q_d880bfa4dc",
+      "ma_goc": "2606-190",
+      "kieuCau": "DS",
+      "cauDan": "Nhận xét về hình học cơ bản trong cuộc sống:",
+      "paA": "Hình tam giác có $4$ cạnh.",
+      "paB": "Hình tròn không có góc nào.",
+      "paC": "Hình chữ nhật có $4$ góc.",
+      "paD": "Quả bóng có dạng khối cầu."
+    },
+    {
+      "maCau": "q_84cead84c7",
+      "ma_goc": "2606-191",
+      "kieuCau": "DS",
+      "cauDan": "Về thời gian, lịch và đồng hồ, hãy xét tính đúng sai:",
+      "paA": "Một tuần lễ có $7$ ngày.",
+      "paB": "Ngày liền trước thứ Năm là thứ Bảy.",
+      "paC": "Một ngày có $24$ giờ.",
+      "paD": "Buổi sáng em thường đi học lúc $7$ giờ."
+    },
+    {
+      "maCau": "q_4d3eda1b40",
+      "ma_goc": "2606-192",
+      "kieuCau": "DS",
+      "cauDan": "Cho dãy số sau: $2, 4, 6, 8, 10$. Nhận định nào đúng, nhận định nào sai?",
+      "paA": "Số liền trước của số $6$ trong dãy là số $5$.",
+      "paB": "Đây là dãy số đếm thêm $2$ bắt đầu từ $2$.",
+      "paC": "Số tiếp theo của dãy số này sẽ là $12$.",
+      "paD": "Số bé nhất trong dãy số này là số $4$."
+    },
+    {
+      "maCau": "q_66457c0100",
+      "ma_goc": "2606-193",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn Sutin có $14$ quả bóng bay. Sutin cho mượn $4$ quả, sau đó vô tình bị vỡ mất $2$ quả. Hỏi Sutin còn lại bao nhiêu quả bóng bay?"
+    },
+    {
+      "maCau": "q_6d811c8a51",
+      "ma_goc": "2606-194",
+      "kieuCau": "TLN",
+      "cauDan": "Trong bãi xe có $3$ chiếc xe đạp và $2$ chiếc xe ô tô. Biết mỗi chiếc xe đạp có $2$ bánh, mỗi chiếc xe ô tô có $4$ bánh. Hỏi trong bãi đỗ xe có tất cả bao nhiêu chiếc bánh xe?"
+    },
+    {
+      "maCau": "q_6c94f8d352",
+      "ma_goc": "2606-195",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm số thích hợp điền vào dấu hỏi chấm để hai bên bằng nhau:\\\\\r\n\t\t$12 + \\dots = 19 - 2$"
+    },
+    {
+      "maCau": "q_cfe07e900d",
+      "ma_goc": "2606-196",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm số ở đỉnh tháp. Biết quy luật là số ở viên gạch phía trên bằng tổng của hai số ở hai viên gạch nằm ngay sát bên dưới nó.\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_cfe07e900d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}"
+    },
+    {
+      "maCau": "q_f2fd31863e",
+      "ma_goc": "2606-197",
+      "kieuCau": "TLN",
+      "cauDan": "Lớp 1A có $20$ học sinh. Buổi sáng có $2$ bạn xin nghỉ học. Buổi chiều lại có thêm $1$ bạn xin cô giáo về sớm do bị ốm. Hỏi buổi chiều trong lớp còn lại bao nhiêu bạn học sinh?"
+    },
+    {
+      "maCau": "q_9811bc24c5",
+      "ma_goc": "2606-198",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm số bé nhất có hai chữ số mà tổng hai chữ số của số đó bằng $8$."
+    }
+  ]
+}

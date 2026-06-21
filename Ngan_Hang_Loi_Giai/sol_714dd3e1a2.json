@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_714dd3e1a2",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Dãy chỉ gồm các số chẵn, số liền trước $6$ trong dãy này là $4$. (Sai)\r\n\t\t\t\t\\itemch Các số cách nhau $2$ đơn vị ($2+2=4$, $4+2=6$,...). (Đúng)\r\n\t\t\t\t\\itemch Số tiếp theo đếm thêm $2$ là: $10 + 2 = 12$. (Đúng)\r\n\t\t\t\t\\itemch Số bé nhất trong dãy được cho là $2$, không phải $4$. (Sai)\r\n\t\t\t\\end{itemchoice}"
+}
