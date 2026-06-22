@@ -1,207 +1,207 @@
 {
-  "maDe": "K12-DONDIEU-20CAUTN",
-  "tenDe": "K12-ĐƠN ĐIỆU-20 CÂU TN",
-  "thoiGian": 45,
-  "danhSachCauHoi": [
-    {
-      "maCau": "q_07528d435a",
-      "ma_goc": "2605-655",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y=x^3-3x$ nghịch biến trên khoảng nào?",
-      "paA": "$(-\\infty;-1)$",
-      "paB": "$(0;+\\infty)$",
-      "paC": "$(-\\infty;+\\infty)$",
-      "paD": "$(-1;1)$"
-    },
-    {
-      "maCau": "q_1ee1ba4f4c",
-      "ma_goc": "2605-694",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$, có bảng biến thiên như hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1ee1ba4f4c_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y = f(x)$ đồng biến trên khoảng nào trong các khoảng sau?",
-      "paA": "$(2026; +\\infty)$",
-      "paB": "$(0; +\\infty)$",
-      "paC": "$(-1; 1)$",
-      "paD": "$(-2; -1)$"
-    },
-    {
-      "maCau": "q_05b78fae7e",
-      "ma_goc": "2605-773",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_05b78fae7e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
-      "paA": "$(-\\infty;-1)$",
-      "paB": "$(-\\infty;1)$",
-      "paC": "$(-1;1)$",
-      "paD": "$(1;+\\infty)$"
-    },
-    {
-      "maCau": "q_16a14b0fb8",
-      "ma_goc": "2605-905",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R} \\setminus \\{-6\\}$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_16a14b0fb8_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y = f(x)$ đồng biến trên khoảng nào trong các khoảng dưới đây?",
-      "paA": "$(-7; -6)$",
-      "paB": "$(-6; +\\infty)$",
-      "paC": "$(-10; 1)$",
-      "paD": "$(0; +\\infty)$"
-    },
-    {
-      "maCau": "q_0d9d8e4a71",
-      "ma_goc": "2605-965",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm trên $\\mathbb{R}$ và hàm số $y=f'(x)$ có đồ thị như hình sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0d9d8e4a71_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y=f(x)$ đồng biến trên khoảng nào trong các khoảng sau",
-      "paA": "$(0;1)$",
-      "paB": "$(0;2)$",
-      "paC": "$(-\\infty;0)$",
-      "paD": "$(1;2)$"
-    },
-    {
-      "maCau": "q_f6670c9008",
-      "ma_goc": "2605-1010",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f6670c9008_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
-      "paA": "$(-1;1)$",
-      "paB": "$(-2;2)$",
-      "paC": "$(1;+\\infty)$",
-      "paD": "$(-2;1)$"
-    },
-    {
-      "maCau": "q_03bb7ef039",
-      "ma_goc": "2605-1195",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_03bb7ef039_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
-      "paA": "$(-\\infty;-1)$",
-      "paB": "$(-\\infty;1)$",
-      "paC": "$(-1;1)$",
-      "paD": "$(1;+\\infty)$"
-    },
-    {
-      "maCau": "q_3645e38da1",
-      "ma_goc": "2605-1196",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
-      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
-      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
-      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
-      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
-    },
-    {
-      "maCau": "q_370900b8bf",
-      "ma_goc": "2605-1197",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số nào dưới đây đồng biến trên khoảng $\\mathbb{R}$?",
-      "paA": "$y = 2 - x^{2}$",
-      "paB": "$\\displaystyle y = \\frac{2x-5}{x-1}$",
-      "paC": "$y = x^{4} - 2x^{2} + 2$",
-      "paD": "$\\displaystyle y = \\frac{1}{3}x^{3} + x^{2} + 7x$"
-    },
-    {
-      "maCau": "q_def930bd32",
-      "ma_goc": "2605-1198",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $\\displaystyle y = \\frac{3x-9}{1-x}$. Khẳng định nào sau đây đúng?",
-      "paA": "Hàm số đồng biến trên $\\mathbb{R} \\setminus \\{1\\}$.",
-      "paB": "Hàm số nghịch biến trên mỗi khoảng $(-\\infty;1)$ và $(1;+\\infty)$.",
-      "paC": "Hàm số đồng biến trên khoảng $(1;+\\infty)$.",
-      "paD": "Hàm số nghịch biến trên khoảng $(-3;5)$."
-    },
-    {
-      "maCau": "q_98ab4ef9a9",
-      "ma_goc": "2605-1199",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ. Khẳng định nào sai?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_98ab4ef9a9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
-      "paA": "Hàm số đồng biến trên $(3;+\\infty)$.",
-      "paB": "Hàm số đồng biến trên $(-\\infty;1)$.",
-      "paC": "Hàm số nghịch biến trên $(-2;2)$.",
-      "paD": "Hàm số nghịch biến trên $(1;3)$."
-    },
-    {
-      "maCau": "q_464ba10111",
-      "ma_goc": "2605-1200",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_464ba10111_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khẳng định đúng",
-      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
-      "paB": "Hàm số đồng biến trên khoảng $(-1;0) \\cup (1;+\\infty)$.",
-      "paC": "Hàm số đồng biến trên khoảng $(-1;0)$ và $(1;+\\infty)$.",
-      "paD": "Hàm số đồng biến trên khoảng $(-1;1)$."
-    },
-    {
-      "maCau": "q_24cfe1bf19",
-      "ma_goc": "2605-1225",
-      "kieuCau": "TN",
-      "cauDan": "Cho đồ thị hàm số $\\displaystyle y=f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_24cfe1bf19_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $\\displaystyle y=f(x)$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$\\displaystyle (-\\infty; 0)$",
-      "paB": "$\\displaystyle (0; 2)$",
-      "paC": "$\\displaystyle (2; +\\infty)$",
-      "paD": "$\\displaystyle (-2; 2)$"
-    },
-    {
-      "maCau": "q_fc7320355e",
-      "ma_goc": "2605-1379",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)$ liên tục trên $\\mathbb{R}$. Biết rằng $f'(x)=(x^2+1)(x-2)$ với mọi $x \\in \\mathbb{R}$. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(2;+\\infty)$",
-      "paB": "$(0;2)$",
-      "paC": "$(-\\infty;-1)$",
-      "paD": "$(-1;2)$"
-    },
-    {
-      "maCau": "q_91c15a2098",
-      "ma_goc": "2605-1422",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số bậc ba $y=f(x)$ có đồ thị là đường cong như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_91c15a2098_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(1;+\\infty)$",
-      "paB": "$(-1;1)$",
-      "paC": "$(-1;+\\infty)$",
-      "paD": "$(-\\infty;0)$"
-    },
-    {
-      "maCau": "q_d53ce7f285",
-      "ma_goc": "2605-1468",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d53ce7f285_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
-      "paA": "$(0; 1)$",
-      "paB": "$(0; +\\infty)$",
-      "paC": "$(-\\infty; 1)$",
-      "paD": "$(-\\infty; 0)$"
-    },
-    {
-      "maCau": "q_40645f2a31",
-      "ma_goc": "2605-1514",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
-      "paB": "$(0; 4)$",
-      "paC": "$(0; +\\infty)$",
-      "paD": "$(0; 3)$"
-    },
-    {
-      "maCau": "q_a7467710e3",
-      "ma_goc": "2605-1537",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a7467710e3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
-      "paA": "$(-1; 3)$",
-      "paB": "$(3; +\\infty)$",
-      "paC": "$(-3; +\\infty)$",
-      "paD": "$(-\\infty; -1)$"
-    },
-    {
-      "maCau": "q_924fbf60fe",
-      "ma_goc": "2605-1580",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_924fbf60fe_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
-      "paA": "$(-\\infty;1)$",
-      "paB": "$(1;+\\infty)$",
-      "paC": "$(0;1)$",
-      "paD": "$(-1;1)$"
-    },
-    {
-      "maCau": "q_201ace6c0d",
-      "ma_goc": "2606-25",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như bảng dưới đây.\r\n\tKhẳng định nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_201ace6c0d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
-      "paA": "Hàm số đồng biến trên khoảng $(1; 2)$.",
-      "paB": "Hàm số đồng biến trên khoảng $(-5; 4)$.",
-      "paC": "Hàm số nghịch biến trên khoảng $(1; 2)$.",
-      "paD": "Hàm số nghịch biến trên khoảng $(-5; 4)$."
-    }
-  ]
+    "maDe": "HL_DE_K12-DONDIEU-20CAUTN",
+    "tenDe": "K12-ĐƠN ĐIỆU-20 CÂU TN-P1",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_07528d435a",
+            "ma_goc": "2605-655",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_1ee1ba4f4c",
+            "ma_goc": "2605-694",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_05b78fae7e",
+            "ma_goc": "2605-773",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_16a14b0fb8",
+            "ma_goc": "2605-905",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_0d9d8e4a71",
+            "ma_goc": "2605-965",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_f6670c9008",
+            "ma_goc": "2605-1010",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_03bb7ef039",
+            "ma_goc": "2605-1195",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_3645e38da1",
+            "ma_goc": "2605-1196",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_370900b8bf",
+            "ma_goc": "2605-1197",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_def930bd32",
+            "ma_goc": "2605-1198",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_98ab4ef9a9",
+            "ma_goc": "2605-1199",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_464ba10111",
+            "ma_goc": "2605-1200",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_24cfe1bf19",
+            "ma_goc": "2605-1225",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_fc7320355e",
+            "ma_goc": "2605-1379",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_91c15a2098",
+            "ma_goc": "2605-1422",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_d53ce7f285",
+            "ma_goc": "2605-1468",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_40645f2a31",
+            "ma_goc": "2605-1514",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_a7467710e3",
+            "ma_goc": "2605-1537",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_924fbf60fe",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_201ace6c0d",
+            "ma_goc": "2606-25",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        }
+    ]
 }
