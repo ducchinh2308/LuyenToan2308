@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a031a2ebf2",
+  "dapAn": "B",
+  "loiGiai": "Tập xác định của hàm số phân thức bậc nhất: $\\mathscr{D} = \\mathbb{R} \\setminus \\{1\\}$.\\\\\r\n\t\tTa viết lại hàm số dưới dạng tiêu chuẩn để tính nhanh đạo hàm: $\\displaystyle y = \\frac{3x-9}{-x+1}$.\\\\\r\n\t\tĐạo hàm của hàm số bằng:\\\\\r\n\t\t$\\displaystyle y' = \\frac{3 \\cdot 1 - (-9) \\cdot (-1)}{(1-x)^2} = \\frac{3 - 9}{(1-x)^2} = \\frac{-6}{(1-x)^2}$.\\\\\r\n\t\tVì $\\displaystyle y' < 0, \\,\\forall x \\neq 1$ nên hàm số luôn luôn nghịch biến trên từng khoảng xác định riêng biệt của tập hợp.\\\\\r\n\t\tDo đó, khẳng định đúng là: Hàm số nghịch biến trên mỗi khoảng $(-\\infty;1)$ và $(1;+\\infty)$."
+}
