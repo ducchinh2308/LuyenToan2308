@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cbc0d4f81d",
+  "dapAn": "B",
+  "loiGiai": "Tập xác định: $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm của hàm số: $\\displaystyle y' = -3x^2 + 3$.\\\\\r\n\t\tCho đạo hàm bằng không: $\\displaystyle y' = 0 \\Leftrightarrow -3x^2 + 3 = 0 \\Leftrightarrow \\left[\\begin{aligned} &x = 1 \\Rightarrow y = 1 \\\\ &x = -1 \\Rightarrow y = -3 \\end{aligned}\\right.$\\\\\r\n\t\tBảng xét dấu đạo hàm chỉ ra rằng hàm số đổi dấu từ âm sang dương khi đi qua giá trị điểm tới hạn $x=-1$.\\\\\r\n\t\tDo đó, hàm số đạt cực tiểu tại điểm $x=-1$ và giá trị cực tiểu tương ứng của hàm số bằng $y_{\\text{CT}} = -3$."
+}

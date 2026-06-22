@@ -1,0 +1,107 @@
+{
+  "maDe": "K12-DDIEU-CTRI-CONGTHUC-10CAUTN",
+  "tenDe": "K12-ĐƠN ĐIỆU-CỰC TRỊ BẰNG CÔNG THỨC-10CAUTN",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_12d0d980f3",
+      "ma_goc": "2605-482",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\displaystyle\\frac{2x - 2}{x + 2}$ có tập xác định là $D$. Hàm số đã cho có đạo hàm trên $D$ là",
+      "paA": "$y' = -\\displaystyle\\frac{2}{(x + 2)^2}$",
+      "paB": "$y' = \\displaystyle\\frac{6}{(x + 2)^2}$",
+      "paC": "$y' = \\displaystyle\\frac{2}{(x + 2)^2}$",
+      "paD": "$y' = -\\displaystyle\\frac{6}{(x + 2)^2}$"
+    },
+    {
+      "maCau": "q_2521779091",
+      "ma_goc": "2605-655",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=x^3-3x$ nghịch biến trên khoảng nào?",
+      "paA": "$(-\\infty;-1)$",
+      "paB": "$(0;+\\infty)$",
+      "paC": "$(-\\infty;+\\infty)$",
+      "paD": "$(-1;1)$"
+    },
+    {
+      "maCau": "q_463f708be2",
+      "ma_goc": "2605-1196",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
+      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
+    },
+    {
+      "maCau": "q_7ad4cc6629",
+      "ma_goc": "2605-1379",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)$ liên tục trên $\\mathbb{R}$. Biết rằng $f'(x)=(x^2+1)(x-2)$ với mọi $x \\in \\mathbb{R}$. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(2;+\\infty)$",
+      "paB": "$(0;2)$",
+      "paC": "$(-\\infty;-1)$",
+      "paD": "$(-1;2)$"
+    },
+    {
+      "maCau": "q_1ab87d06d9",
+      "ma_goc": "2605-1514",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
+      "paB": "$(0; 4)$",
+      "paC": "$(0; +\\infty)$",
+      "paD": "$(0; 3)$"
+    },
+    {
+      "maCau": "q_defa99a6a4",
+      "ma_goc": "2605-1027",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có đạo hàm $f'(x) = x(x-1)(x-2)^2, \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là:",
+      "paA": "$1$",
+      "paB": "$5$",
+      "paC": "$2$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_9157a34bc5",
+      "ma_goc": "2605-1203",
+      "kieuCau": "TN",
+      "cauDan": "Điểm cực tiểu của đồ thị hàm số $y=x^{3}-3x+5$ là",
+      "paA": "$Q(3;1)$",
+      "paB": "$M(1;3)$",
+      "paC": "$P(7;-1)$",
+      "paD": "$N(-1;7)$"
+    },
+    {
+      "maCau": "q_bb9ed98766",
+      "ma_goc": "2605-1204",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=-x^{3}+3x-1$ là",
+      "paA": "$y_{\\text{CT}}=1$",
+      "paB": "$y_{\\text{CT}}=-3$",
+      "paC": "$y_{\\text{CT}}=-1$",
+      "paD": "$y_{\\text{CT}}=3$"
+    },
+    {
+      "maCau": "q_1a1945b131",
+      "ma_goc": "2605-1227",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y=f(x)$ có đạo hàm $\\displaystyle f'(x)=(x^2-4)(3-x)(x+2), \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là",
+      "paA": "$2$",
+      "paB": "$3$",
+      "paC": "$1$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_991fbaad33",
+      "ma_goc": "2605-1573",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=x^4-2x^2-3$ bằng",
+      "paA": "$-6$",
+      "paB": "$0$",
+      "paC": "$-4$",
+      "paD": "$-3$"
+    }
+  ]
+}
