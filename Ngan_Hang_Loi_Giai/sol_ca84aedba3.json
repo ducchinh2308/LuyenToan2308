@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ca84aedba3",
+  "dapAn": "C",
+  "loiGiai": "Xét hàm số $y = \\sin x + 2x$ có tập xác định $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tTa có $y' = \\cos x + 2 > 0$, $\\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tVậy hàm số $y = \\sin x + 2x$ đồng biến trên $\\mathbb{R}$."
+}

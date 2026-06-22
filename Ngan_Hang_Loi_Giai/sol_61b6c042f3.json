@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_61b6c042f3",
+  "dapAn": "D",
+  "loiGiai": "Ta có $y=-x^3+3x^2+2\\Rightarrow y'=-3x^2+6x$.\\\\\r\n\t\t$y'>0\\Leftrightarrow -3x^2+6x>0\\Leftrightarrow 0<x<2$.\\\\\r\n\t\tVậy hàm số đồng biến trên khoảng $(0;2)$."
+}

@@ -1,0 +1,207 @@
+{
+  "maDe": "K12-DONDIEU-P1-20CAU-TN",
+  "tenDe": "K12-ĐƠN ĐIỆU PHẦN 1-20 CÂU TN",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_c83e2a22f1",
+      "ma_goc": "2603-463",
+      "kieuCau": "TN",
+      "cauDan": "Cho đồ thị hàm số $y=f(x)$ có đồ thị như hình vẽ. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=0.7, font=\\footnotesize, line join=round, line cap=round, >=stealth]\r\n\t\t\t\\draw[->] (-4,0) -- (4,0) node[below] {$x$};\r\n\t\t\t\\draw[->] (0,-2) -- (0,3) node[left] {$y$};\r\n\t\t\t\\node at (0,0) [below left] {$O$};\r\n\t\t\t\\draw[thick, color=teal!80!black] plot[smooth, tension=0.7] coordinates {\r\n\t\t\t\t(-3.8, 3) (-3, -1) (-2, 0.5) (-1, 2) (0, 0.5) (1, -1) (1.8, 3)\r\n\t\t\t};\r\n\t\t\t\\draw[dashed] (-3,0) node[below] {$-3$} -- (-3,-1) -- (0,-1) node[right] {$-1$};\r\n\t\t\t\\draw[dashed] (-1,0) node[below] {$-1$} -- (-1,2) -- (0,2) node[right] {$2$};\r\n\t\t\t\\draw[dashed] (1,0) node[below] {$1$} -- (1,-1);\r\n\t\t\t\\node[below] at (3,0) {$3$}; % Số 3 trên trục hoành theo hình mẫu\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}",
+      "paA": "$(-1;0)$",
+      "paB": "$(-3;0)$",
+      "paC": "$(-3;-1)$",
+      "paD": "$(1;3)$"
+    },
+    {
+      "maCau": "q_f31f2e94c4",
+      "ma_goc": "2603-492",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = \\displaystyle \\frac{5-2x}{x+3}$ nghịch biến trên khoảng nào sau đây?",
+      "paA": "$\\mathbb{R} \\setminus \\{-3\\}$",
+      "paB": "$(-\\infty; -3) \\cup (-3; +\\infty)$",
+      "paC": "$(-\\infty; -3)$",
+      "paD": "$(3; +\\infty)$"
+    },
+    {
+      "maCau": "q_3b515613eb",
+      "ma_goc": "2603-507",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm trên $\\mathbb{R}$. Đồ thị hàm số $y=f'(x)$ như hình vẽ.\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=0.5, font=\\footnotesize, line join=round, line cap=round, >=stealth]\r\n\t\t\t\\draw[->] (-3,0) -- (6.5,0) node[below] {$x$};\r\n\t\t\t\\draw[->] (0,-2.5) -- (0,4.5) node[left] {$y$};\r\n\t\t\t\\node at (0,0) [below left] {$O$};\r\n\t\t\t\\draw[smooth, samples=100, domain=-2.3:5.8] plot (\\x, {0.15*(\\x+2)*(\\x-2)*(\\x-5)});\r\n\t\t\t\\fill (-2,0) circle (1.5pt) node[below left] {$-2$};\r\n\t\t\t\\fill (2,0) circle (1.5pt) node[below left] {$2$};\r\n\t\t\t\\fill (5,0) circle (1.5pt) node[below right] {$5$};\r\n\t\t\t\\node at (5.5,3.5) {$y=f'(x)$};\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}\r\n\tHàm số $y=f(x)$ nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty;0)$",
+      "paB": "$(0;5)$",
+      "paC": "$(-3;-2)$",
+      "paD": "$(5;+\\infty)$"
+    },
+    {
+      "maCau": "q_1ca2daed43",
+      "ma_goc": "2603-511",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=0.8, font=\\footnotesize, line join=round, line cap=round, >=stealth]\r\n\t\t\t\\draw (0,0) rectangle (8,3);\r\n\t\t\t\\draw (0,1) -- (8,1) (0,2) -- (8,2) (2,0) -- (2,3);\r\n\t\t\t\\node at (1,2.5) {$x$}; \\node at (2.5,2.5) {$-\\infty$}; \\node at (4,2.5) {$1$}; \\node at (5.5,2.5) {$3$}; \\node at (7.5,2.5) {$+\\infty$};\r\n\t\t\t\\node at (1,1.5) {$f'(x)$}; \\node at (3.25,1.5) {$+$}; \\node at (4,1.5) {$0$}; \\node at (4.75,1.5) {$-$}; \\node at (5.5,1.5) {$0$}; \\node at (6.75,1.5) {$+$};\r\n\t\t\t\\node at (1,0.5) {$f(x)$}; \\node at (2.5,0.2) {$-\\infty$}; \\node at (4,0.8) {$2$}; \\node at (5.5,0.2) {$0$}; \\node at (7.5,0.8) {$+\\infty$};\r\n\t\t\t\\draw[->] (2.7,0.3) -- (3.7,0.7); \\draw[->] (4.3,0.7) -- (5.2,0.3); \\draw[->] (5.8,0.3) -- (7.2,0.7);\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}\r\n\tHàm số nghịch biến trong khoảng nào dưới đây?",
+      "paA": "$(0;2)$",
+      "paB": "$(3;+\\infty)$",
+      "paC": "$(1;3)$",
+      "paD": "$(-\\infty;1)$"
+    },
+    {
+      "maCau": "q_955312060c",
+      "ma_goc": "2603-537",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}\r\n\t\t\t\\tkzTabInit[lgt=1.2, espcl=2.5]{$x$ /1, $f'(x)$ /1}\r\n\t\t\t{$-\\infty$, $-2$, $0$, $2$, $+\\infty$}\r\n\t\t\t\\tkzTabLine{,+,0,-,0,+,0,-,}\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(2; +\\infty)$",
+      "paB": "$(-\\infty; -2)$",
+      "paC": "$(-2; 2)$",
+      "paD": "$(-2; +\\infty)$"
+    },
+    {
+      "maCau": "q_f18cb887c9",
+      "ma_goc": "2603-551",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f18cb887c9_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y = f(x)$ đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "paA": "$(-1; +\\infty)$",
+      "paB": "$(-5; +\\infty)$",
+      "paC": "$(-5; -1)$",
+      "paD": "$(-\\infty; -1)$"
+    },
+    {
+      "maCau": "q_db5165a450",
+      "ma_goc": "2603-579",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R} \\setminus \\{0\\}$, có đồ thị như hình vẽ bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_db5165a450_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "paA": "$(0; 1)$",
+      "paB": "$(-\\infty; -1)$",
+      "paC": "$(-\\infty; 0)$",
+      "paD": "$(0; +\\infty)$"
+    },
+    {
+      "maCau": "q_ee886cb61a",
+      "ma_goc": "2603-618",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)=ax^3+bx^2+cx+d$\\, $(a,b,c,d \\in \\mathbb{R}, a \\ne 0)$ có bảng biến thiên như sau:\r\n\\begin{center}\r\n\t<img src='HinhAnh/q_ee886cb61a_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-\\infty;3)$",
+      "paB": "$(4;+\\infty)$",
+      "paC": "$(-5;+\\infty)$",
+      "paD": "$(0;4)$"
+    },
+    {
+      "maCau": "q_7de235b6f2",
+      "ma_goc": "2603-728",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)=ax^3+bx^2+cx+d$ ($a, b, c, d \\in \\mathbb{R}, a \\neq 0$) có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7de235b6f2_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-\\infty; 3)$",
+      "paB": "$(4; +\\infty)$",
+      "paC": "$(-5; +\\infty)$",
+      "paD": "$(0; 4)$"
+    },
+    {
+      "maCau": "q_842dce370d",
+      "ma_goc": "2603-769",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có $f'(x) = 4 - x^2$ với mọi số thực $x$. Hàm số $y = f(x)$ đồng biến trên khoảng nào sau đây?",
+      "paA": "$(-2; 2)$",
+      "paB": "$(-\\infty; -2)$",
+      "paC": "$(0; +\\infty)$",
+      "paD": "$(0; 4)$"
+    },
+    {
+      "maCau": "q_189024c636",
+      "ma_goc": "2603-792",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=x^3-3x+1$ nghịch biến trên khoảng nào sau đây ?",
+      "paA": "$\\left(-\\infty;1\\right)$",
+      "paB": "$\\left(-1;1\\right)$",
+      "paC": "$\\left(-2;2\\right)$",
+      "paD": "$\\left(1;+\\infty\\right)$"
+    },
+    {
+      "maCau": "q_ed199287d9",
+      "ma_goc": "2603-801",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=\\sqrt{8+2x-x^2}$ đồng biến trên khoảng nào sau đây?",
+      "paA": "$\\left(1;+\\infty\\right)$",
+      "paB": "$\\left(-\\infty;1\\right)$",
+      "paC": "$\\left(-2;1\\right)$",
+      "paD": "$\\left(1;4\\right)$"
+    },
+    {
+      "maCau": "q_bd052e99ff",
+      "ma_goc": "2603-813",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bd052e99ff_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty ; 0)$",
+      "paB": "$(-\\infty ; 2)$",
+      "paC": "$(0;2)$",
+      "paD": "$(0 ;+\\infty)$"
+    },
+    {
+      "maCau": "q_93acca904d",
+      "ma_goc": "2603-835",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_93acca904d_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-2;2)$",
+      "paB": "$(-1;1)$",
+      "paC": "$(-2;1)$",
+      "paD": "$(-1;+\\infty)$"
+    },
+    {
+      "maCau": "q_1de9dea809",
+      "ma_goc": "2603-859",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ. Hàm số đã cho nghịch biến trên khoảng nào sau đây?\r\n\t\t\\begin{center}\n<img src='HinhAnh/q_1de9dea809_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$(-\\infty; -1)$",
+      "paB": "$(-1; 1)$",
+      "paC": "$(-\\infty; 1)$",
+      "paD": "$(-1;+\\infty)$"
+    },
+    {
+      "maCau": "q_a5d111ce5d",
+      "ma_goc": "2603-860",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+      "paA": "$y = \\dfrac{x-1}{2x+3}$",
+      "paB": "$y = x^3 - x$",
+      "paC": "$y = \\sin x+2 x$",
+      "paD": "$y = \\sqrt{x}$"
+    },
+    {
+      "maCau": "q_ac8a92d7c9",
+      "ma_goc": "2603-879",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=-x^3+3x^2+2$ đồng biến trên khoảng nào trong các khoảng sau?",
+      "paA": "$(-\\infty;0)$",
+      "paB": "$(2;+\\infty)$",
+      "paC": "$(-1;1)$",
+      "paD": "$(0;2)$"
+    },
+    {
+      "maCau": "q_a87b9be8ee",
+      "ma_goc": "2603-933",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình sau. Mệnh đề nào sau đây đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a87b9be8ee_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số nghịch biến trên khoảng $(-\\infty;-1)$",
+      "paB": "Hàm số nghịch biến trên khoảng $(-\\infty;2)$",
+      "paC": "Hàm số đồng biến trên khoảng $(1;+\\infty)$",
+      "paD": "Hàm số đồng biến trên khoảng $(-1;+\\infty)$"
+    },
+    {
+      "maCau": "q_ea1677723f",
+      "ma_goc": "2603-947",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào dưới đây không đơn điệu trên tập xác định của nó?",
+      "paA": "$\\displaystyle y=\\sqrt{x^3+x-5}$",
+      "paB": "$\\displaystyle y=\\frac{4x-2}{x-1}$",
+      "paC": "$\\displaystyle y=x^4+x^3+11$",
+      "paD": "$\\displaystyle y=\\cot 2x$"
+    },
+    {
+      "maCau": "q_c3a5183c4e",
+      "ma_goc": "2603-989",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$, có bảng xét dấu đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c3a5183c4e_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào dưới đây đúng?",
+      "paA": "Hàm số nghịch biến trên khoảng $(-\\infty; 0)$",
+      "paB": "Hàm số đồng biến trên khoảng $(1; +\\infty)$",
+      "paC": "Hàm số đồng biến trên khoảng $(-\\infty; -2)$",
+      "paD": "Hàm số nghịch biến trên khoảng $(0; 4)$"
+    }
+  ]
+}
