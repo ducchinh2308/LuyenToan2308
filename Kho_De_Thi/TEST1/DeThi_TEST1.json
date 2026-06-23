@@ -8,7 +8,7 @@
             "ma_goc": "2606-1",
             "kieuCau": "TN",
             "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1; -2; 3)$. Tọa độ điểm $M'$ đối xứng với điểm $M$ qua mặt phẳng $(Oxy)$ là",
-            "paA": "$M'(-1; 2; -3)$.",
+            "paA": "$M'(-1; 2; 3)$.",
             "paB": "$M'(1; -2; 0)$.",
             "paC": "$M'(-1; 2; 3)$.",
             "paD": "$M'(1; -2; -3)$."
