@@ -975,22 +975,84 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div><h3 style="color:#1a73e8; margin-top:15px;">⏳ Đang tải nội dung đề từ GitHub...</h3></div>`;
 
+    //let dsCauHoiGithub = [];
+    //let urlFileGiai = data.url_file_giai || "";
+
+    //try {
+    //    // 1. Tải file Đề thi từ GitHub (Thêm Date.now để chống cache trình duyệt)
+    //    if (data.url_github) {
+    //        const res = await fetch(data.url_github + "?t=" + Date.now());
+    //        if (res.ok) {
+    //            const dataGH = await res.json();
+    //            dsCauHoiGithub = dataGH.danhSachCauHoi || [];
+    //        } else {
+    //            console.warn("Không tải được nội dung từ GitHub");
+    //        }
+    //    }
+    //} catch (e) {
+    //    console.error("Lỗi nạp file GitHub:", e);
+    //}
+
     let dsCauHoiGithub = [];
     let urlFileGiai = data.url_file_giai || "";
 
     try {
-        // 1. Tải file Đề thi từ GitHub (Thêm Date.now để chống cache trình duyệt)
         if (data.url_github) {
-            const res = await fetch(data.url_github + "?t=" + Date.now());
+            let fetchUrl = data.url_github;
+            let fetchOptions = { cache: 'no-store' };
+
+            // 🌟 CÔNG NGHỆ CHỐNG CACHE 100%: DÙNG GITHUB API
+            if (typeof CFG_HE_THONG !== 'undefined' && CFG_HE_THONG.GITHUB_TOKEN) {
+                try {
+                    let repoPath = "";
+                    // Bóc tách đường dẫn file từ mọi loại link C# ném lên
+                    if (fetchUrl.includes('.io/')) {
+                        const urlParts = fetchUrl.split('.io/');
+                        let pathParts = urlParts[1].split('/');
+                        pathParts.shift(); // Bỏ tên Repo
+                        repoPath = pathParts.join('/');
+                    } else if (fetchUrl.includes('github.com') && fetchUrl.includes('/blob/')) {
+                        repoPath = fetchUrl.split('/main/')[1] || fetchUrl.split('/master/')[1];
+                    } else if (fetchUrl.includes('raw.githubusercontent.com')) {
+                        repoPath = fetchUrl.split('/main/')[1] || fetchUrl.split('/master/')[1];
+                    }
+
+                    if (repoPath) {
+                        fetchUrl = `https://api.github.com/repos/${CFG_HE_THONG.GITHUB_REPO}/contents/${repoPath}`;
+                        fetchOptions = {
+                            method: 'GET',
+                            headers: {
+                                "Authorization": `token ${CFG_HE_THONG.GITHUB_TOKEN}`,
+                                "Accept": "application/vnd.github.v3.raw", // Ép GitHub ói ra data thô, xuyên thủng mọi lớp Cache
+                                "Cache-Control": "no-cache"
+                            },
+                            cache: 'no-store'
+                        };
+                        console.log("🚀 [API MODE] Đang móc data thời gian thực từ Github API:", fetchUrl);
+                    }
+                } catch (e) {
+                    // Dự phòng nếu bóc tách lỗi
+                    fetchUrl = fetchUrl + "?t=" + Date.now();
+                }
+            } else {
+                fetchUrl = fetchUrl + "?t=" + Date.now();
+            }
+
+            const res = await fetch(fetchUrl, fetchOptions);
+
             if (res.ok) {
                 const dataGH = await res.json();
-                dsCauHoiGithub = dataGH.danhSachCauHoi || [];
+                // Bắt đồng thời cả 2 chuẩn: C# (snake_case) và Web (camelCase)
+                dsCauHoiGithub = dataGH.danhSachCauHoi || dataGH.danh_sach_cau_hoi || [];
+                console.log("📦 [DEBUG] Đã tải được số câu hỏi:", dsCauHoiGithub.length);
             } else {
-                console.warn("Không tải được nội dung từ GitHub");
+                console.warn("❌ Lỗi mạng hoặc 404 từ Github API:", fetchUrl);
             }
+        } else {
+            console.warn("⚠️ Cột url_github đang bị trống!");
         }
     } catch (e) {
-        console.error("Lỗi nạp file GitHub:", e);
+        console.error("❌ Lỗi Exception khi nạp file:", e);
     }
 
     const tieuDe = choPhepSua ? "✏️ CHỈNH SỬA NỘI DUNG HỌC LIỆU" : "👁️ XEM CHI TIẾT HỌC LIỆU";
