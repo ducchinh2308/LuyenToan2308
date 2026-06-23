@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_49801155a4",
+  "dapAn": "B",
+  "loiGiai": "Ta có $y = \\displaystyle\\frac{2x - 2}{x + 2}$. Đạo hàm của hàm số là:\\\\\r\n\t\t$y' = \\displaystyle\\frac{2(x + 2) - 1(2x - 2)}{(x + 2)^2} = \\displaystyle\\frac{2x + 4 - 2x + 2}{(x + 2)^2} = \\displaystyle\\frac{6}{(x + 2)^2}$.\\\\\r\n\t\tChọn đáp án B."
+}

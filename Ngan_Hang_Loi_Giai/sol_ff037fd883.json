@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ff037fd883",
+  "dapAn": "D",
+  "loiGiai": "Hàm số mũ $\\displaystyle y = \\left(\\frac{2026}{2025}\\right)^x$ có cơ số $\\displaystyle \\frac{2026}{2025} > 1$ nên hàm số đồng biến trên $\\mathbb{R}$. \\\\\r\n\t\tHàm số $y = \\log_{\\frac{1}{2}} x$ chỉ xác định khi $x > 0$ nên không thể nghịch biến trên $\\mathbb{R}$. \\\\\r\n\t\tHàm số $\\displaystyle y = \\frac{2x-1}{x-1}$ xác định khi $x \\neq 1$ nên không thỏa mãn đầu bài. \\\\\r\n\t\tHàm số $\\displaystyle y = e^{-x} = \\left(\\frac{1}{e}\\right)^x$ có cơ số $\\displaystyle \\frac{1}{e} < 1$ nên nghịch biến trên $\\mathbb{R}$."
+}

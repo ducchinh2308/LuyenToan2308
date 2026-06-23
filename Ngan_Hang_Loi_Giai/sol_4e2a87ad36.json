@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4e2a87ad36",
+  "dapAn": "A",
+  "loiGiai": "Hàm số xác định khi $-x^2+2x \\ge 0 \\Leftrightarrow 0 \\le x \\le 2$. Tập xác định $D=[0;2]$.\\\\\r\n\t\tĐạo hàm $y' = \\dfrac{-2x+2}{2\\sqrt{-x^2+2x}} = \\dfrac{-x+1}{\\sqrt{-x^2+2x}}$.\\\\\r\n\t\t$y' > 0 \\Leftrightarrow -x+1 > 0 \\Leftrightarrow x < 1$.\\\\\r\n\t\tKết hợp điều kiện, hàm số đồng biến trên khoảng $(0;1)$."
+}

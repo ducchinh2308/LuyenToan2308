@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_78e2b8e527",
+  "dapAn": "A",
+  "loiGiai": "Xét hàm số $y = -2x^3 + 9x^2 + 24x - 114$.\\\\\r\n\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm: $y' = -6x^2 + 18x + 24$.\\\\\r\n\t\t$y' = 0 \\iff -6x^2 + 18x + 24 = 0 \\iff \\left[\\begin{aligned} &x = -1 \\\\ &x = 4 \\end{aligned}\\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_78e2b8e527_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên, hàm số $y = -2x^3 + 9x^2 + 24x - 114$ đồng biến trên khoảng $(-1;4)$."
+}

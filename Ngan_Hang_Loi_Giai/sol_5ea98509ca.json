@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5ea98509ca",
+  "dapAn": "C",
+  "loiGiai": "Tập xác định $\\mathscr{D}=\\left[-2;4\\right]$.\\\\\r\n\tĐạo hàm $y'=\\dfrac{2-2x}{2\\sqrt{8+2x-x^2}}$.\\\\\r\n\t$y'=0\\Leftrightarrow x=1$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/sol_5ea98509ca_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đồng biến trên khoảng $\\left(-2;1\\right)$."
+}

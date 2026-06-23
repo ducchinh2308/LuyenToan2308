@@ -1019,15 +1019,32 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
         `;
     });
 
-    let htmlTaoFileGiai = choPhepSua ? `
+    // let htmlTaoFileGiai = choPhepSua ? `
+    //    <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+    //        <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TÁC VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
+    //        <label style="cursor:pointer; display:block; margin-bottom:8px;">
+    //            <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file giải trên GitHub
+    //        </label>
+    //        ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
+    //    </div>` : '';
+
+        let htmlTaoFileGiai = choPhepSua ? `
         <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
             <h4 style="margin:0 0 10px 0; color:#d35400; font-size:14px;">🛠️ TÁC VỤ ĐỒNG BỘ SAU KHI LƯU</h4>
-            <label style="cursor:pointer; display:block; margin-bottom:8px;">
-                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:8px;"> 🚀 Tự động Cập nhật file giải trên GitHub
+            <label style="cursor:pointer; display:flex; align-items: center; margin-bottom:8px;">
+                <input type="checkbox" id="sua_hl_tu_dong_gom_file" checked style="transform:scale(1.2); margin-right:10px;"> 
+                <span style="font-weight:bold; font-size:14px; color:#333;">🚀 Tự động ${urlFileGiai ? 'cập nhật (ghi đè)' : 'tạo mới'} file giải gộp trên GitHub</span>
             </label>
-            ${urlFileGiai ? `<a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline;">📥 Bấm để xem File Giải gộp hiện tại</a>` : `<span style="font-size:12px; color:#666;">Chưa có file giải gộp. Sẽ tự động tạo nếu đánh dấu tick trên.</span>`}
+            <div style="margin-left: 28px;">
+                ${urlFileGiai 
+                    ? `<span style="font-size:12px; color:#28a745; font-weight:bold;">✅ Đã có file giải gốc.</span> 
+                       <span style="font-size:12px; color:#666;">Hệ thống sẽ đồng bộ lại các đáp án/lời giải vừa sửa vào file hiện tại.</span><br>
+                       <a href="${urlFileGiai}" target="_blank" style="font-size:12px; color:#1a73e8; text-decoration:underline; display:inline-block; margin-top:5px;">📥 Bấm để xem File Giải gộp hiện tại</a>` 
+                    : `<span style="font-size:12px; color:#d35400; font-weight:bold;">⚠️ Chưa có file giải gộp.</span> 
+                       <span style="font-size:12px; color:#666;">Hệ thống sẽ tự động quét các file giải lẻ để đóng gói tạo thành 1 file mới.</span>`
+                }
+            </div>
         </div>` : '';
-
     vungLamViec.innerHTML = `
         <div style="max-width: 1000px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
             <h3 style="color:${mauTieuDe}; margin-top:0;">${tieuDe}: ${maHocLieu}</h3>
@@ -1409,8 +1426,90 @@ function ham_6_xoa_cau_truc_tiep(btn) {
 //    }
 //};
 
+// // ==============================================================
+// // [DEBUG SÂU] - Hàm 6.7: Lấy dữ liệu form và Lưu Cập Nhật
+// // ==============================================================
+// window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
+//     console.log("🛠️ [RADAR 1] Bắt đầu quét dữ liệu trên Giao diện...");
+
+//     const elTen = document.getElementById('sua_tenHocLieu');
+//     const elThoiGian = document.getElementById('sua_thoiGian');
+//     const elTrangThai = document.getElementById('sua_trangThai');
+//     if (!elTen) return alert("Lỗi giao diện!");
+
+//     const tenMoi = elTen.value.trim();
+//     const thoiGianMoi = parseInt(elThoiGian.value) || 0;
+//     const trangThaiMoi = elTrangThai.value;
+
+//     const cards = document.querySelectorAll('.card-cau-hoi');
+//     let banDoSupabase = [];
+//     let dsCauHoiGithubMoi = [];
+//     let danhSachGiaiCapNhat = [];
+
+//     cards.forEach((card, index) => {
+//         const maCau = card.getAttribute('data-macau');
+//         const maGoc = card.getAttribute('data-magoc');
+//         const maGiai = card.getAttribute('data-magiai');
+//         const kieuCau = card.getAttribute('data-kieucau');
+
+//         // Trích xuất dữ liệu Textbox
+//         const dapAn = card.querySelector('.edit-dapan').value.trim().toUpperCase();
+//         const cauDan = card.querySelector('.edit-caudan').value;
+
+//         banDoSupabase.push({ dap_an: dapAn, ma_goc: maGoc, ma_cau_hoi: maCau, ma_loi_giai: maGiai });
+
+//         let cauHoiGH = { maCau: maCau, ma_goc: maGoc, kieuCau: kieuCau, cauDan: cauDan };
+
+//         if (kieuCau !== 'TLN') {
+//             cauHoiGH.paA = card.querySelector('.edit-paA') ? card.querySelector('.edit-paA').value : "";
+//             cauHoiGH.paB = card.querySelector('.edit-paB') ? card.querySelector('.edit-paB').value : "";
+//             cauHoiGH.paC = card.querySelector('.edit-paC') ? card.querySelector('.edit-paC').value : "";
+//             cauHoiGH.paD = card.querySelector('.edit-paD') ? card.querySelector('.edit-paD').value : "";
+//         }
+//         dsCauHoiGithubMoi.push(cauHoiGH);
+//         danhSachGiaiCapNhat.push({ maGiai: maGiai, dapAn: dapAn });
+
+//         // In thử câu đầu tiên ra xem có hút được chữ thầy vừa sửa không
+//         if (index === 0) {
+//             console.log("🛠️ [RADAR 2] Nội dung Câu 1 hút được từ ô nhập:", cauHoiGH);
+//         }
+//     });
+
+//     btnNode.disabled = true;
+//     btnNode.innerText = "⏳ ĐANG ĐỒNG BỘ GITHUB...";
+//     btnNode.style.background = "#f39c12";
+
+//     try {
+//         // Lấy link cũ từ DB để dò đường
+//         const { data: oldData } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', maHocLieu).single();
+//         const urlDeCu = oldData ? oldData.url_github : "";
+//         console.log("🛠️ [RADAR 3] Link Đề cũ lôi từ Database ra:", urlDeCu);
+
+//         const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+//         if (chkGopFile && chkGopFile.checked) {
+//             await window.ham_6_7_b_cap_nhat_file_github(maHocLieu, tenMoi, thoiGianMoi, dsCauHoiGithubMoi, danhSachGiaiCapNhat, urlDeCu);
+//         }
+
+//         btnNode.innerText = "⏳ ĐANG LƯU VÀO DATABASE...";
+//         await _supabase.from('hoc_lieu').update({
+//             ten_hoc_lieu: tenMoi, thoi_gian_lam_bai: thoiGianMoi, trang_thai: trangThaiMoi,
+//             danh_sach_cau_hoi: banDoSupabase, quy_mo_cau_hoi: banDoSupabase.length
+//         }).eq('ma_hoc_lieu', maHocLieu);
+
+//         console.log("✅ [RADAR 7] KẾT THÚC THÀNH CÔNG GIAO DỊCH!");
+//         Swal.fire('Thành công!', 'Đã lưu và đồng bộ toàn bộ lên GitHub!', 'success');
+//         ham_6_1_ve_quan_ly_hoc_lieu();
+//     } catch (error) {
+//         console.error("❌ LỖI RỒI THẦY ƠI:", error);
+//         Swal.fire('Lỗi', error.message, 'error');
+//         btnNode.disabled = false;
+//         btnNode.innerText = "💾 LƯU THAY ĐỔI VÀ ĐỒNG BỘ GITHUB";
+//         btnNode.style.background = "#28a745";
+//     }
+// };
+
 // ==============================================================
-// [DEBUG SÂU] - Hàm 6.7: Lấy dữ liệu form và Lưu Cập Nhật
+// [ĐÃ FIX] - Hàm 6.7: Lấy dữ liệu form, Lưu Cập Nhật & Tạo File Giải
 // ==============================================================
 window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
     console.log("🛠️ [RADAR 1] Bắt đầu quét dữ liệu trên Giao diện...");
@@ -1451,11 +1550,6 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
         }
         dsCauHoiGithubMoi.push(cauHoiGH);
         danhSachGiaiCapNhat.push({ maGiai: maGiai, dapAn: dapAn });
-
-        // In thử câu đầu tiên ra xem có hút được chữ thầy vừa sửa không
-        if (index === 0) {
-            console.log("🛠️ [RADAR 2] Nội dung Câu 1 hút được từ ô nhập:", cauHoiGH);
-        }
     });
 
     btnNode.disabled = true;
@@ -1466,21 +1560,31 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
         // Lấy link cũ từ DB để dò đường
         const { data: oldData } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', maHocLieu).single();
         const urlDeCu = oldData ? oldData.url_github : "";
-        console.log("🛠️ [RADAR 3] Link Đề cũ lôi từ Database ra:", urlDeCu);
 
         const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
+        
+        // 1. CẬP NHẬT FILE ĐỀ LÊN GITHUB
         if (chkGopFile && chkGopFile.checked) {
             await window.ham_6_7_b_cap_nhat_file_github(maHocLieu, tenMoi, thoiGianMoi, dsCauHoiGithubMoi, danhSachGiaiCapNhat, urlDeCu);
         }
 
+        // 2. CẬP NHẬT CẤU TRÚC XUỐNG SUPABASE
         btnNode.innerText = "⏳ ĐANG LƯU VÀO DATABASE...";
         await _supabase.from('hoc_lieu').update({
             ten_hoc_lieu: tenMoi, thoi_gian_lam_bai: thoiGianMoi, trang_thai: trangThaiMoi,
             danh_sach_cau_hoi: banDoSupabase, quy_mo_cau_hoi: banDoSupabase.length
         }).eq('ma_hoc_lieu', maHocLieu);
 
+        // 🌟 3. CHỐT CHẶN BỊ THIẾU: GỌI LỆNH RÁP FILE GIẢI GỘP
+        if (chkGopFile && chkGopFile.checked && typeof window.ham_7_10_ra_lenh_tao_file_giai === 'function') {
+            btnNode.innerText = "⏳ ĐANG GOM FILE GIẢI (JSON)...";
+            // Hàm này sẽ tự động ghép giải đẩy lên Github và ghi link vào Supabase
+            await window.ham_7_10_ra_lenh_tao_file_giai(null, maHocLieu);
+        }
+
         console.log("✅ [RADAR 7] KẾT THÚC THÀNH CÔNG GIAO DỊCH!");
-        Swal.fire('Thành công!', 'Đã lưu và đồng bộ toàn bộ lên GitHub!', 'success');
+        // Bỏ Swal.fire ở đây đi vì hàm gom file giải bên khối 7 đã có sẵn thông báo "Thành công" rồi để tránh popup 2 lần
+        
         ham_6_1_ve_quan_ly_hoc_lieu();
     } catch (error) {
         console.error("❌ LỖI RỒI THẦY ƠI:", error);
@@ -1491,162 +1595,163 @@ window.ham_6_7_luu_cap_nhat_hoc_lieu = async function (maHocLieu, btnNode) {
     }
 };
 
-// ==============================================================
-// [DEBUG SÂU] - Hàm 6.7.b: Đẩy File Đề qua Tree Commit
-// ==============================================================
-window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
-    if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
 
-    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
-    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
-    const BRANCH = "main";
-    const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
-    const headers = {
-        "Authorization": `token ${GITHUB_TOKEN}`,
-        "Accept": "application/vnd.github.v3+json",
-        "Content-Type": "application/json"
-    };
+// // ==============================================================
+// // [DEBUG SÂU] - Hàm 6.7.b: Đẩy File Đề qua Tree Commit
+// // ==============================================================
+// window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
+//     if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
 
-    // NÂNG CẤP BỘ CẮT TỌA ĐỘ SIÊU CHUẨN
-    let tenFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
-    if (urlDeCu) {
-        try {
-            if (urlDeCu.includes('.io/')) {
-                const parts = urlDeCu.split('.io/');
-                let p = parts[1].split('/'); p.shift(); // Bỏ tên repo
-                tenFileDe = p.join('/');
-            } else if (urlDeCu.includes('/main/')) {
-                tenFileDe = urlDeCu.split('/main/')[1];
-            } else if (urlDeCu.includes('Kho_De_Thi')) {
-                tenFileDe = urlDeCu.substring(urlDeCu.indexOf('Kho_De_Thi'));
-            }
-        } catch (e) { }
-    }
+//     const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+//     const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+//     const BRANCH = "main";
+//     const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+//     const headers = {
+//         "Authorization": `token ${GITHUB_TOKEN}`,
+//         "Accept": "application/vnd.github.v3+json",
+//         "Content-Type": "application/json"
+//     };
 
-    console.log("🛠️ [RADAR 4] Tọa độ ĐÈ FILE CHÍNH XÁC trên GitHub:", tenFileDe);
+//     // NÂNG CẤP BỘ CẮT TỌA ĐỘ SIÊU CHUẨN
+//     let tenFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+//     if (urlDeCu) {
+//         try {
+//             if (urlDeCu.includes('.io/')) {
+//                 const parts = urlDeCu.split('.io/');
+//                 let p = parts[1].split('/'); p.shift(); // Bỏ tên repo
+//                 tenFileDe = p.join('/');
+//             } else if (urlDeCu.includes('/main/')) {
+//                 tenFileDe = urlDeCu.split('/main/')[1];
+//             } else if (urlDeCu.includes('Kho_De_Thi')) {
+//                 tenFileDe = urlDeCu.substring(urlDeCu.indexOf('Kho_De_Thi'));
+//             }
+//         } catch (e) { }
+//     }
 
-    let filesToCommit = [{
-        path: tenFileDe,
-        mode: "100644",
-        type: "blob",
-        content: JSON.stringify({ maDe: maHL, tenDe: tenHL, thoiGian: thoiGian, danhSachCauHoi: dsCauHoiGithubMoi }, null, 4)
-    }];
+//     console.log("🛠️ [RADAR 4] Tọa độ ĐÈ FILE CHÍNH XÁC trên GitHub:", tenFileDe);
 
-    try {
-        let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
-        let data = await res.json();
-        let baseCommitSha = data.object.sha;
+//     let filesToCommit = [{
+//         path: tenFileDe,
+//         mode: "100644",
+//         type: "blob",
+//         content: JSON.stringify({ maDe: maHL, tenDe: tenHL, thoiGian: thoiGian, danhSachCauHoi: dsCauHoiGithubMoi }, null, 4)
+//     }];
 
-        res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
-        data = await res.json();
-        let baseTreeSha = data.tree.sha;
+//     try {
+//         let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+//         let data = await res.json();
+//         let baseCommitSha = data.object.sha;
 
-        res = await fetch(`${baseURL}/git/trees`, {
-            method: "POST", headers,
-            body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
-        });
-        data = await res.json();
-        let newTreeSha = data.sha;
-        console.log("🛠️ [RADAR 5] Đã tạo Tree thành công:", newTreeSha);
+//         res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+//         data = await res.json();
+//         let baseTreeSha = data.tree.sha;
 
-        res = await fetch(`${baseURL}/git/commits`, {
-            method: "POST", headers,
-            body: JSON.stringify({ message: `Web Update: Sửa câu hỏi đề ${maHL}`, tree: newTreeSha, parents: [baseCommitSha] })
-        });
-        data = await res.json();
-        let newCommitSha = data.sha;
+//         res = await fetch(`${baseURL}/git/trees`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+//         });
+//         data = await res.json();
+//         let newTreeSha = data.sha;
+//         console.log("🛠️ [RADAR 5] Đã tạo Tree thành công:", newTreeSha);
 
-        res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
-            method: "PATCH", headers,
-            body: JSON.stringify({ sha: newCommitSha })
-        });
+//         res = await fetch(`${baseURL}/git/commits`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ message: `Web Update: Sửa câu hỏi đề ${maHL}`, tree: newTreeSha, parents: [baseCommitSha] })
+//         });
+//         data = await res.json();
+//         let newCommitSha = data.sha;
 
-        console.log("🛠️ [RADAR 6] Đã xác nhận Commit. SHA:", newCommitSha);
+//         res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+//             method: "PATCH", headers,
+//             body: JSON.stringify({ sha: newCommitSha })
+//         });
 
-        const repoParts = GITHUB_REPO.split('/');
-        return `https://${repoParts[0]}.github.io/${repoParts[1]}/${tenFileDe}`;
+//         console.log("🛠️ [RADAR 6] Đã xác nhận Commit. SHA:", newCommitSha);
 
-    } catch (err) {
-        throw err;
-    }
-};
-// ==============================================================
-// [Nhãn thời gian: 21:10 - Ngày 19/06/2026] - Hàm 6.7.b: Cập nhật File Đề (Trích xuất Path siêu chuẩn)
-// ==============================================================
-window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
-    if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
+//         const repoParts = GITHUB_REPO.split('/');
+//         return `https://${repoParts[0]}.github.io/${repoParts[1]}/${tenFileDe}`;
 
-    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
-    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
-    const BRANCH = "main";
-    const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
-    const headers = {
-        "Authorization": `token ${GITHUB_TOKEN}`,
-        "Accept": "application/vnd.github.v3+json",
-        "Content-Type": "application/json"
-    };
+//     } catch (err) {
+//         throw err;
+//     }
+// };
+// // ==============================================================
+// // [Nhãn thời gian: 21:10 - Ngày 19/06/2026] - Hàm 6.7.b: Cập nhật File Đề (Trích xuất Path siêu chuẩn)
+// // ==============================================================
+// window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
+//     if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
 
-    // 🌟 ĐỊNH VỊ TỌA ĐỘ FILE GHI ĐÈ
-    let tenFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`; // Dự phòng
-    if (urlDeCu && urlDeCu.includes('.io/')) {
-        try {
-            const urlParts = urlDeCu.split('.io/');
-            let pathParts = urlParts[1].split('/');
-            pathParts.shift(); // Cắt bỏ tên Repo (LuyenToan2308)
-            tenFileDe = pathParts.join('/'); // Lấy đúng tọa độ gốc
-        } catch (e) { console.warn("Lỗi bóc tách path:", e); }
-    }
+//     const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+//     const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+//     const BRANCH = "main";
+//     const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+//     const headers = {
+//         "Authorization": `token ${GITHUB_TOKEN}`,
+//         "Accept": "application/vnd.github.v3+json",
+//         "Content-Type": "application/json"
+//     };
 
-    console.log("🔗 [DEBUG] Tọa độ chuẩn bị đè file trên GitHub:", tenFileDe);
+//     // 🌟 ĐỊNH VỊ TỌA ĐỘ FILE GHI ĐÈ
+//     let tenFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`; // Dự phòng
+//     if (urlDeCu && urlDeCu.includes('.io/')) {
+//         try {
+//             const urlParts = urlDeCu.split('.io/');
+//             let pathParts = urlParts[1].split('/');
+//             pathParts.shift(); // Cắt bỏ tên Repo (LuyenToan2308)
+//             tenFileDe = pathParts.join('/'); // Lấy đúng tọa độ gốc
+//         } catch (e) { console.warn("Lỗi bóc tách path:", e); }
+//     }
 
-    let filesToCommit = [{
-        path: tenFileDe,
-        mode: "100644",
-        type: "blob",
-        content: JSON.stringify({
-            maDe: maHL, tenDe: tenHL, thoiGian: thoiGian, danhSachCauHoi: dsCauHoiGithubMoi
-        }, null, 4)
-    }];
+//     console.log("🔗 [DEBUG] Tọa độ chuẩn bị đè file trên GitHub:", tenFileDe);
 
-    try {
-        let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
-        if (!res.ok) throw new Error("Không truy cập được nhánh Github.");
-        let data = await res.json();
-        let baseCommitSha = data.object.sha;
+//     let filesToCommit = [{
+//         path: tenFileDe,
+//         mode: "100644",
+//         type: "blob",
+//         content: JSON.stringify({
+//             maDe: maHL, tenDe: tenHL, thoiGian: thoiGian, danhSachCauHoi: dsCauHoiGithubMoi
+//         }, null, 4)
+//     }];
 
-        res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
-        data = await res.json();
-        let baseTreeSha = data.tree.sha;
+//     try {
+//         let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+//         if (!res.ok) throw new Error("Không truy cập được nhánh Github.");
+//         let data = await res.json();
+//         let baseCommitSha = data.object.sha;
 
-        res = await fetch(`${baseURL}/git/trees`, {
-            method: "POST", headers,
-            body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
-        });
-        if (!res.ok) throw new Error("Lỗi cập nhật cấu trúc file Github.");
-        data = await res.json();
-        let newTreeSha = data.sha;
+//         res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+//         data = await res.json();
+//         let baseTreeSha = data.tree.sha;
 
-        res = await fetch(`${baseURL}/git/commits`, {
-            method: "POST", headers,
-            body: JSON.stringify({ message: `Web Update: Chỉnh sửa trực tiếp nội dung đề ${maHL}`, tree: newTreeSha, parents: [baseCommitSha] })
-        });
-        data = await res.json();
-        let newCommitSha = data.sha;
+//         res = await fetch(`${baseURL}/git/trees`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+//         });
+//         if (!res.ok) throw new Error("Lỗi cập nhật cấu trúc file Github.");
+//         data = await res.json();
+//         let newTreeSha = data.sha;
 
-        res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
-            method: "PATCH", headers,
-            body: JSON.stringify({ sha: newCommitSha })
-        });
-        if (!res.ok) throw new Error("Đẩy dữ liệu chốt sổ thất bại.");
+//         res = await fetch(`${baseURL}/git/commits`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ message: `Web Update: Chỉnh sửa trực tiếp nội dung đề ${maHL}`, tree: newTreeSha, parents: [baseCommitSha] })
+//         });
+//         data = await res.json();
+//         let newCommitSha = data.sha;
 
-        const repoParts = GITHUB_REPO.split('/');
-        return `https://${repoParts[0]}.github.io/${repoParts[1]}/${tenFileDe}`;
+//         res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+//             method: "PATCH", headers,
+//             body: JSON.stringify({ sha: newCommitSha })
+//         });
+//         if (!res.ok) throw new Error("Đẩy dữ liệu chốt sổ thất bại.");
 
-    } catch (err) {
-        console.error("❌ Lỗi Tree Commit:", err);
-        throw err;
-    }
-};
+//         const repoParts = GITHUB_REPO.split('/');
+//         return `https://${repoParts[0]}.github.io/${repoParts[1]}/${tenFileDe}`;
+
+//     } catch (err) {
+//         console.error("❌ Lỗi Tree Commit:", err);
+//         throw err;
+//     }
+// };
 
 
 
@@ -1735,6 +1840,97 @@ window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, d
 //        throw err;
 //    }
 //};
+
+
+// ==============================================================
+// [ĐÃ GỘP VÀ TỐI ƯU] - Hàm 6.7.b: Cập nhật File Đề lên GitHub (Tree Commit)
+// ==============================================================
+window.ham_6_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
+    if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
+
+    const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+    const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+    const BRANCH = "main";
+    const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+    const headers = {
+        "Authorization": `token ${GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+    };
+
+    // 🌟 ĐỊNH VỊ TỌA ĐỘ FILE GHI ĐÈ (Tổng hợp bộ cắt tọa độ siêu chuẩn)
+    let tenFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`; // Dự phòng
+    if (urlDeCu) {
+        try {
+            if (urlDeCu.includes('.io/')) {
+                const urlParts = urlDeCu.split('.io/');
+                let pathParts = urlParts[1].split('/');
+                pathParts.shift(); // Cắt bỏ tên Repo
+                tenFileDe = pathParts.join('/');
+            } else if (urlDeCu.includes('/main/')) {
+                tenFileDe = urlDeCu.split('/main/')[1];
+            } else if (urlDeCu.includes('Kho_De_Thi')) {
+                tenFileDe = urlDeCu.substring(urlDeCu.indexOf('Kho_De_Thi'));
+            }
+        } catch (e) {
+            console.warn("Lỗi bóc tách path:", e);
+        }
+    }
+
+    console.log("🔗 [DEBUG] Tọa độ đè file chính xác trên GitHub:", tenFileDe);
+
+    let filesToCommit = [{
+        path: tenFileDe,
+        mode: "100644",
+        type: "blob",
+        content: JSON.stringify({
+            maDe: maHL, tenDe: tenHL, thoiGian: thoiGian, danhSachCauHoi: dsCauHoiGithubMoi
+        }, null, 4)
+    }];
+
+    try {
+        let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+        if (!res.ok) throw new Error("Không truy cập được nhánh Github.");
+        let data = await res.json();
+        let baseCommitSha = data.object.sha;
+
+        res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+        data = await res.json();
+        let baseTreeSha = data.tree.sha;
+
+        res = await fetch(`${baseURL}/git/trees`, {
+            method: "POST", headers,
+            body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+        });
+        if (!res.ok) throw new Error("Lỗi cập nhật cấu trúc file Github.");
+        data = await res.json();
+        let newTreeSha = data.sha;
+        console.log("🛠️ [RADAR 5] Đã tạo Tree thành công:", newTreeSha);
+
+        res = await fetch(`${baseURL}/git/commits`, {
+            method: "POST", headers,
+            body: JSON.stringify({ message: `Web Update: Chỉnh sửa trực tiếp nội dung đề ${maHL}`, tree: newTreeSha, parents: [baseCommitSha] })
+        });
+        data = await res.json();
+        let newCommitSha = data.sha;
+
+        res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+            method: "PATCH", headers,
+            body: JSON.stringify({ sha: newCommitSha })
+        });
+        if (!res.ok) throw new Error("Đẩy dữ liệu chốt sổ thất bại.");
+
+        console.log("🛠️ [RADAR 6] Đã xác nhận Commit. SHA:", newCommitSha);
+
+        const repoParts = GITHUB_REPO.split('/');
+        return `https://${repoParts[0]}.github.io/${repoParts[1]}/${tenFileDe}`;
+
+    } catch (err) {
+        console.error("❌ Lỗi Tree Commit:", err);
+        throw err;
+    }
+};
+
 
 // ==============================================================
 // Hàm 6.13: Kiểm tra file upload (Đã fix lỗi chặn nhầm dòng comment %)

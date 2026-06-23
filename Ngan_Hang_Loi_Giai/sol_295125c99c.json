@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_295125c99c",
+  "dapAn": "B",
+  "loiGiai": "Xét $y = -x^3 + 3x + 1$ có $y' = -3x^2 + 3$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow x = \\pm 1$ nên hàm số có các khoảng đồng biến và nghịch biến.\\\\\r\n\t\tXét $y = 2x^3 + x - 5$ có $y' = 6x^2 + 1$.\\\\\r\n\t\t$y' > 0, \\forall x \\in \\mathbb{R}$ nên hàm số đồng biến trên $\\mathbb{R}$.\\\\\r\n\t\tXét $y = \\sqrt{x}$ có tập xác định là $[0; +\\infty)$ nên không xác định trên toàn bộ $\\mathbb{R}$.\\\\\r\n\t\tXét $\\displaystyle y = \\frac{2x - 1}{x + 1}$ có tập xác định $D = \\mathbb{R} \\setminus \\{-1\\}$ nên hàm số gián đoạn tại $x = -1$ nên không thể đồng biến trên toàn bộ $\\mathbb{R}$.\\\\"
+}

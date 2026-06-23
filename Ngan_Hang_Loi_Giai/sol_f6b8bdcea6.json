@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f6b8bdcea6",
+  "dapAn": "A",
+  "loiGiai": "Ta có $f'(x) = (x^2+1)(x-2) > 0 \\Leftrightarrow x-2 > 0 \\Leftrightarrow x > 2$ (vì $x^2+1>0, \\forall x \\in \\mathbb{R}$).\\\\\r\n\t\tVậy hàm số đồng biến trên khoảng $(2;+\\infty)$."
+}
