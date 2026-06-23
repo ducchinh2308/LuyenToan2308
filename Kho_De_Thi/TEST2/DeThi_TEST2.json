@@ -1,17 +1,17 @@
 {
-  "maDe": "TEST2",
-  "tenDe": "ĐỀ TEST 2",
-  "thoiGian": 90,
-  "danhSachCauHoi": [
-    {
-      "maCau": "q_c43b156e73",
-      "ma_goc": "2606-2",
-      "kieuCau": "TN",
-      "cauDan": "Khảo sát thời gian tự học trong một ngày (đơn vị tính bằng giờ) của 40 học sinh, ta thu được mẫu số liệu ghép nhóm sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c43b156e73_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTrung vị của mẫu số liệu trên bằng",
-      "paA": "$4{,}8$.",
-      "paB": "$4{,}5$.",
-      "paC": "$4{,}4$.",
-      "paD": "$4{,}2$."
-    }
-  ]
+    "maDe": "HL_DE_TEST2",
+    "tenDe": "ĐỀ TEST 2",
+    "thoiGian": 90,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_c43b156e73",
+            "ma_goc": "2606-2",
+            "kieuCau": "TN",
+            "cauDan": "Khảo sát thời gian tự học trong một ngày (đơn vị tính bằng giờ) của 40 học sinh, ta thu được mẫu số liệu ghép nhóm sau\n\t\\begin{center}\n\t\t<img src='HinhAnh/q_c43b156e73_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\n\t\\end{center}\n\tTrung vị của mẫu số liệu trên bằng",
+            "paA": "$4{,}8$.",
+            "paB": "$4{,}5$.",
+            "paC": "$4{,}4$.",
+            "paD": "$4{,}2$."
+        }
+    ]
 }
