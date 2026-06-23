@@ -1,0 +1,17 @@
+{
+  "maDe": "TEST3",
+  "tenDe": "ĐỀ TEST 3",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_b10b0b6074",
+      "ma_goc": "2606-3",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của bất phương trình $\\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\displaystyle\\frac{1}{4}$ là",
+      "paA": "$[-1; 2]$.",
+      "paB": "$(-\\infty; -1] \\cup [2; +\\infty)$.",
+      "paC": "$(-1; 2)$.",
+      "paD": "$[-2; 1]$."
+    }
+  ]
+}
