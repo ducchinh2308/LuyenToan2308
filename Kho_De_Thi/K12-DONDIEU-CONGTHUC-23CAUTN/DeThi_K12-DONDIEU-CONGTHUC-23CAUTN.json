@@ -1,227 +1,227 @@
 {
-  "maDe": "K12-DONDIEU-CONGTHUC-23CAUTN",
-  "tenDe": "ĐỀ K12-DONDIEU-CONGTHUC-23CAUTN",
-  "thoiGian": 90,
-  "danhSachCauHoi": [
-    {
-      "maCau": "q_7ed830cbe9",
-      "ma_goc": "2603-492",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y = \\displaystyle \\frac{5-2x}{x+3}$ nghịch biến trên khoảng nào sau đây?",
-      "paA": "$\\mathbb{R} \\setminus \\{-3\\}$",
-      "paB": "$(-\\infty; -3) \\cup (-3; +\\infty)$",
-      "paC": "$(-\\infty; -3)$",
-      "paD": "$(3; +\\infty)$"
-    },
-    {
-      "maCau": "q_39db35d437",
-      "ma_goc": "2603-769",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có $f'(x) = 4 - x^2$ với mọi số thực $x$. Hàm số $y = f(x)$ đồng biến trên khoảng nào sau đây?",
-      "paA": "$(-2; 2)$",
-      "paB": "$(-\\infty; -2)$",
-      "paC": "$(0; +\\infty)$",
-      "paD": "$(0; 4)$"
-    },
-    {
-      "maCau": "q_af0cb545a7",
-      "ma_goc": "2603-792",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y=x^3-3x+1$ nghịch biến trên khoảng nào sau đây ?",
-      "paA": "$\\left(-\\infty;1\\right)$",
-      "paB": "$\\left(-1;1\\right)$",
-      "paC": "$\\left(-2;2\\right)$",
-      "paD": "$\\left(1;+\\infty\\right)$"
-    },
-    {
-      "maCau": "q_c0bf004e5d",
-      "ma_goc": "2603-801",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y=\\sqrt{8+2x-x^2}$ đồng biến trên khoảng nào sau đây?",
-      "paA": "$\\left(1;+\\infty\\right)$",
-      "paB": "$\\left(-\\infty;1\\right)$",
-      "paC": "$\\left(-2;1\\right)$",
-      "paD": "$\\left(1;4\\right)$"
-    },
-    {
-      "maCau": "q_744a02ba06",
-      "ma_goc": "2603-860",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
-      "paA": "$y = \\dfrac{x-1}{2x+3}$",
-      "paB": "$y = x^3 - x$",
-      "paC": "$y = \\sin x+2 x$",
-      "paD": "$y = \\sqrt{x}$"
-    },
-    {
-      "maCau": "q_34bcdba888",
-      "ma_goc": "2603-879",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y=-x^3+3x^2+2$ đồng biến trên khoảng nào trong các khoảng sau?",
-      "paA": "$(-\\infty;0)$",
-      "paB": "$(2;+\\infty)$",
-      "paC": "$(-1;1)$",
-      "paD": "$(0;2)$"
-    },
-    {
-      "maCau": "q_027de367e1",
-      "ma_goc": "2603-947",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số nào dưới đây không đơn điệu trên tập xác định của nó?",
-      "paA": "$\\displaystyle y=\\sqrt{x^3+x-5}$",
-      "paB": "$\\displaystyle y=\\frac{4x-2}{x-1}$",
-      "paC": "$\\displaystyle y=x^4+x^3+11$",
-      "paD": "$\\displaystyle y=\\cot 2x$"
-    },
-    {
-      "maCau": "q_a631043a34",
-      "ma_goc": "2603-1057",
-      "kieuCau": "TN",
-      "cauDan": "Tập nghiệm của phương trình $\\sin x = \\dfrac{1}{2}$ là",
-      "paA": "$\\left\\{ \\dfrac{\\pi}{3} + k2\\pi; \\dfrac{2\\pi}{3} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
-      "paB": "$\\left\\{ \\dfrac{\\pi}{6} + k\\pi; \\dfrac{5\\pi}{6} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
-      "paC": "$\\left\\{ \\dfrac{\\pi}{3} + k\\pi; \\dfrac{2\\pi}{3} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
-      "paD": "$\\left\\{ \\dfrac{\\pi}{6} + k2\\pi; \\dfrac{5\\pi}{6} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
-    },
-    {
-      "maCau": "q_d6bf514da4",
-      "ma_goc": "2603-1079",
-      "kieuCau": "TN",
-      "cauDan": "Trong các hàm số sau, hàm số nào nghịch biến trên $\\mathbb{R}$?",
-      "paA": "$y = x^3 + 2x + 1$",
-      "paB": "$y = -x^2 + 2x$",
-      "paC": "$y = \\dfrac{x+3}{x+1}$",
-      "paD": "$y = -x^3 - 3x + 1$"
-    },
-    {
-      "maCau": "q_a32d27fa93",
-      "ma_goc": "2603-1106",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y = \\sqrt{-x^2+2x}$ đồng biến trên khoảng nào?",
-      "paA": "$(0;1)$",
-      "paB": "$(1;2)$",
-      "paC": "$(-\\infty;0)$",
-      "paD": "$(2;+\\infty)$"
-    },
-    {
-      "maCau": "q_fd68773e88",
-      "ma_goc": "2603-1189",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y = -2x^3 + 9x^2 + 24x - 114$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(-1;4)$",
-      "paB": "$(-4;-1)$",
-      "paC": "$(-\\infty;-1)$",
-      "paD": "$(4;+\\infty)$"
-    },
-    {
-      "maCau": "q_f69a01338c",
-      "ma_goc": "2603-1219",
-      "kieuCau": "TN",
-      "cauDan": "Trong các hàm số cho dưới đây, hàm số nào đồng biến trên khoảng $(-\\infty; +\\infty)$?",
-      "paA": "$y = -x^3 + 3x + 1$",
-      "paB": "$y = 2x^3 + x - 5$",
-      "paC": "$y = \\sqrt{x}$",
-      "paD": "$y = \\displaystyle \\frac{2x - 1}{x + 1}$"
-    },
-    {
-      "maCau": "q_2f6cbe0ec0",
-      "ma_goc": "2603-1324",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số nào sau đây nghịch biến trên $\\mathbb{R}$.",
-      "paA": "$\\displaystyle y = \\left(\\frac{2026}{2025}\\right)^x$",
-      "paB": "$y = \\log_{\\frac{1}{2}} x$",
-      "paC": "$\\displaystyle y = \\frac{2x-1}{x-1}$",
-      "paD": "$y = e^{-x}$"
-    },
-    {
-      "maCau": "q_488f8ae212",
-      "ma_goc": "2604-180",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y = x^3 - 3x + 2026$ nghịch biến trong khoảng nào dưới đây?",
-      "paA": "$(-1;1)$",
-      "paB": "$(1;+\\infty)$",
-      "paC": "$(-\\infty;1)$",
-      "paD": "$(-2;2)$"
-    },
-    {
-      "maCau": "q_a8f2f91f55",
-      "ma_goc": "2604-1268",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
-      "paA": "$y=3^x$",
-      "paB": "$y=\\ln x$",
-      "paC": "$\\displaystyle y=\\log_{\\frac{2}{5}} x$",
-      "paD": "$\\displaystyle y=\\left(\\frac{1}{2}\\right)^x$"
-    },
-    {
-      "maCau": "q_ea4be83083",
-      "ma_goc": "2604-2111",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)=(x+1)(2x-5)^2$ với mọi $x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào?",
-      "paA": "$(-1;+\\infty)$",
-      "paB": "$(-3;1)$",
-      "paC": "$\\left(-1;\\displaystyle \\frac{5}{2}\\right)$",
-      "paD": "$(-\\infty;-1)$"
-    },
-    {
-      "maCau": "q_562252e966",
-      "ma_goc": "2605-11",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y = x^3 - 3x^2 + 1$ đồng biến trên khoảng nào sau đây?",
-      "paA": "$(0;+\\infty)$",
-      "paB": "$(-\\infty;2)$",
-      "paC": "$(2;+\\infty)$",
-      "paD": "$(0;2)$"
-    },
-    {
-      "maCau": "q_14f702bbac",
-      "ma_goc": "2605-482",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y = \\displaystyle\\frac{2x - 2}{x + 2}$ có tập xác định là $D$. Hàm số đã cho có đạo hàm trên $D$ là",
-      "paA": "$y' = -\\displaystyle\\frac{2}{(x + 2)^2}$",
-      "paB": "$y' = \\displaystyle\\frac{6}{(x + 2)^2}$",
-      "paC": "$y' = \\displaystyle\\frac{2}{(x + 2)^2}$",
-      "paD": "$y' = -\\displaystyle\\frac{6}{(x + 2)^2}$"
-    },
-    {
-      "maCau": "q_55dc921a99",
-      "ma_goc": "2605-655",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $y=x^3-3x$ nghịch biến trên khoảng nào?",
-      "paA": "$(-\\infty;-1)$",
-      "paB": "$(0;+\\infty)$",
-      "paC": "$(-\\infty;+\\infty)$",
-      "paD": "$(-1;1)$"
-    },
-    {
-      "maCau": "q_37cfe22110",
-      "ma_goc": "2605-1196",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
-      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
-      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
-      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
-      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
-    },
-    {
-      "maCau": "q_ffdcaa73e5",
-      "ma_goc": "2605-1379",
-      "kieuCau": "TN",
-      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)$ liên tục trên $\\mathbb{R}$. Biết rằng $f'(x)=(x^2+1)(x-2)$ với mọi $x \\in \\mathbb{R}$. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(2;+\\infty)$",
-      "paB": "$(0;2)$",
-      "paC": "$(-\\infty;-1)$",
-      "paD": "$(-1;2)$"
-    },
-    {
-      "maCau": "q_6e9b2cdd0b",
-      "ma_goc": "2605-1514",
-      "kieuCau": "TN",
-      "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
-      "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
-      "paB": "$(0; 4)$",
-      "paC": "$(0; +\\infty)$",
-      "paD": "$(0; 3)$"
-    }
-  ]
+    "maDe": "HL_DE_K12-DONDIEU-CONGTHUC-23CAUTN",
+    "tenDe": "ĐỀ K12-DONDIEU-CONGTHUC-23CAUTN",
+    "thoiGian": 90,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_7ed830cbe9",
+            "ma_goc": "2603-492",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y = \\displaystyle \\frac{5-2x}{x+3}$ nghịch biến trên khoảng nào sau đây?",
+            "paA": "$\\mathbb{R} \\setminus \\{-3\\}$",
+            "paB": "$(-\\infty; -3) \\cup (-3; +\\infty)$",
+            "paC": "$(-\\infty; -3)$",
+            "paD": "$(3; +\\infty)$"
+        },
+        {
+            "maCau": "q_39db35d437",
+            "ma_goc": "2603-769",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có $f'(x) = 4 - x^2$ với mọi số thực $x$. Hàm số $y = f(x)$ đồng biến trên khoảng nào sau đây?",
+            "paA": "$(-2; 2)$",
+            "paB": "$(-\\infty; -2)$",
+            "paC": "$(0; +\\infty)$",
+            "paD": "$(0; 4)$"
+        },
+        {
+            "maCau": "q_af0cb545a7",
+            "ma_goc": "2603-792",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y=x^3-3x+1$ nghịch biến trên khoảng nào sau đây ?",
+            "paA": "$\\left(-\\infty;1\\right)$",
+            "paB": "$\\left(-1;1\\right)$",
+            "paC": "$\\left(-2;2\\right)$",
+            "paD": "$\\left(1;+\\infty\\right)$"
+        },
+        {
+            "maCau": "q_c0bf004e5d",
+            "ma_goc": "2603-801",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y=\\sqrt{8+2x-x^2}$ đồng biến trên khoảng nào sau đây?",
+            "paA": "$\\left(1;+\\infty\\right)$",
+            "paB": "$\\left(-\\infty;1\\right)$",
+            "paC": "$\\left(-2;1\\right)$",
+            "paD": "$\\left(1;4\\right)$"
+        },
+        {
+            "maCau": "q_744a02ba06",
+            "ma_goc": "2603-860",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+            "paA": "$y = \\dfrac{x-1}{2x+3}$",
+            "paB": "$y = x^3 - x$",
+            "paC": "$y = \\sin x+2 x$",
+            "paD": "$y = \\sqrt{x}$"
+        },
+        {
+            "maCau": "q_34bcdba888",
+            "ma_goc": "2603-879",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y=-x^3+3x^2+2$ đồng biến trên khoảng nào trong các khoảng sau?",
+            "paA": "$(-\\infty;0)$",
+            "paB": "$(2;+\\infty)$",
+            "paC": "$(-1;1)$",
+            "paD": "$(0;2)$"
+        },
+        {
+            "maCau": "q_027de367e1",
+            "ma_goc": "2603-947",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số nào dưới đây không đơn điệu trên tập xác định của nó?",
+            "paA": "$\\displaystyle y=\\sqrt{x^3+x-5}$",
+            "paB": "$\\displaystyle y=\\frac{4x-2}{x-1}$",
+            "paC": "$\\displaystyle y=x^4+x^3+11$",
+            "paD": "$\\displaystyle y=\\cot 2x$"
+        },
+        {
+            "maCau": "q_a631043a34",
+            "ma_goc": "2603-1057",
+            "kieuCau": "TN",
+            "cauDan": "Tập nghiệm của phương trình $\\sin x = \\dfrac{1}{2}$ là",
+            "paA": "$\\left\\{ \\dfrac{\\pi}{3} + k2\\pi; \\dfrac{2\\pi}{3} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+            "paB": "$\\left\\{ \\dfrac{\\pi}{6} + k\\pi; \\dfrac{5\\pi}{6} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+            "paC": "$\\left\\{ \\dfrac{\\pi}{3} + k\\pi; \\dfrac{2\\pi}{3} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+            "paD": "$\\left\\{ \\dfrac{\\pi}{6} + k2\\pi; \\dfrac{5\\pi}{6} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+        },
+        {
+            "maCau": "q_d6bf514da4",
+            "ma_goc": "2603-1079",
+            "kieuCau": "TN",
+            "cauDan": "Trong các hàm số sau, hàm số nào nghịch biến trên $\\mathbb{R}$?",
+            "paA": "$y = x^3 + 2x + 1$",
+            "paB": "$y = -x^2 + 2x$",
+            "paC": "$y = \\dfrac{x+3}{x+1}$",
+            "paD": "$y = -x^3 - 3x + 1$"
+        },
+        {
+            "maCau": "q_a32d27fa93",
+            "ma_goc": "2603-1106",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y = \\sqrt{-x^2+2x}$ đồng biến trên khoảng nào?",
+            "paA": "$(0;1)$",
+            "paB": "$(1;2)$",
+            "paC": "$(-\\infty;0)$",
+            "paD": "$(2;+\\infty)$"
+        },
+        {
+            "maCau": "q_fd68773e88",
+            "ma_goc": "2603-1189",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y = -2x^3 + 9x^2 + 24x - 114$ đồng biến trên khoảng nào dưới đây?",
+            "paA": "$(-1;4)$",
+            "paB": "$(-4;-1)$",
+            "paC": "$(-\\infty;-1)$",
+            "paD": "$(4;+\\infty)$"
+        },
+        {
+            "maCau": "q_f69a01338c",
+            "ma_goc": "2603-1219",
+            "kieuCau": "TN",
+            "cauDan": "Trong các hàm số cho dưới đây, hàm số nào đồng biến trên khoảng $(-\\infty; +\\infty)$?",
+            "paA": "$y = -x^3 + 3x + 1$",
+            "paB": "$y = 2x^3 + x - 5$",
+            "paC": "$y = \\sqrt{x}$",
+            "paD": "$y = \\displaystyle \\frac{2x - 1}{x + 1}$"
+        },
+        {
+            "maCau": "q_2f6cbe0ec0",
+            "ma_goc": "2603-1324",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số nào sau đây nghịch biến trên $\\mathbb{R}$.",
+            "paA": "$\\displaystyle y = \\left(\\frac{2026}{2025}\\right)^x$",
+            "paB": "$y = \\log_{\\frac{1}{2}} x$",
+            "paC": "$\\displaystyle y = \\frac{2x-1}{x-1}$",
+            "paD": "$y = e^{-x}$"
+        },
+        {
+            "maCau": "q_488f8ae212",
+            "ma_goc": "2604-180",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y = x^3 - 3x + 2026$ nghịch biến trong khoảng nào dưới đây?",
+            "paA": "$(-1;1)$",
+            "paB": "$(1;+\\infty)$",
+            "paC": "$(-\\infty;1)$",
+            "paD": "$(-2;2)$"
+        },
+        {
+            "maCau": "q_a8f2f91f55",
+            "ma_goc": "2604-1268",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+            "paA": "$y=3^x$",
+            "paB": "$y=\\ln x$",
+            "paC": "$\\displaystyle y=\\log_{\\frac{2}{5}} x$",
+            "paD": "$\\displaystyle y=\\left(\\frac{1}{2}\\right)^x$"
+        },
+        {
+            "maCau": "q_ea4be83083",
+            "ma_goc": "2604-2111",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)=(x+1)(2x-5)^2$ với mọi $x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào?",
+            "paA": "$(-1;+\\infty)$",
+            "paB": "$(-3;1)$",
+            "paC": "$\\left(-1;\\displaystyle \\frac{5}{2}\\right)$",
+            "paD": "$(-\\infty;-1)$"
+        },
+        {
+            "maCau": "q_562252e966",
+            "ma_goc": "2605-11",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y = x^3 - 3x^2 + 1$ đồng biến trên khoảng nào sau đây?",
+            "paA": "$(0;+\\infty)$",
+            "paB": "$(-\\infty;2)$",
+            "paC": "$(2;+\\infty)$",
+            "paD": "$(0;2)$"
+        },
+        {
+            "maCau": "q_14f702bbac",
+            "ma_goc": "2605-482",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y = \\displaystyle\\frac{2x - 2}{x + 2}$ có tập xác định là $D$. Hàm số đã cho có đạo hàm trên $D$ là",
+            "paA": "$y' = -\\displaystyle\\frac{2}{(x + 2)^2}$",
+            "paB": "$y' = \\displaystyle\\frac{6}{(x + 2)^2}$",
+            "paC": "$y' = \\displaystyle\\frac{2}{(x + 2)^2}$",
+            "paD": "$y' = -\\displaystyle\\frac{6}{(x + 2)^2}$"
+        },
+        {
+            "maCau": "q_55dc921a99",
+            "ma_goc": "2605-655",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y=x^3-3x$ nghịch biến trên khoảng nào?",
+            "paA": "$(-\\infty;-1)$",
+            "paB": "$(0;+\\infty)$",
+            "paC": "$(-\\infty;+\\infty)$",
+            "paD": "$(-1;1)$"
+        },
+        {
+            "maCau": "q_37cfe22110",
+            "ma_goc": "2605-1196",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
+            "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+            "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
+            "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
+            "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
+        },
+        {
+            "maCau": "q_ffdcaa73e5",
+            "ma_goc": "2605-1379",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)$ liên tục trên $\\mathbb{R}$. Biết rằng $f'(x)=(x^2+1)(x-2)$ với mọi $x \\in \\mathbb{R}$. Hàm số $y=f(x)$ đồng biến trên khoảng nào dưới đây?",
+            "paA": "$(2;+\\infty)$",
+            "paB": "$(0;2)$",
+            "paC": "$(-\\infty;-1)$",
+            "paD": "$(-1;2)$"
+        },
+        {
+            "maCau": "q_6e9b2cdd0b",
+            "ma_goc": "2605-1514",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $\\displaystyle y = -\\frac{4}{3}x^3 + 6x^2 + 11$ đồng biến trên khoảng nào dưới đây?",
+            "paA": "$(-\\infty; 0)$ và $(3; +\\infty)$",
+            "paB": "$(0; 4)$",
+            "paC": "$(0; +\\infty)$",
+            "paD": "$(0; 3)$"
+        }
+    ]
 }
