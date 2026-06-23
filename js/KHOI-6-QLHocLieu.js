@@ -1001,7 +1001,7 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
             let fetchUrl = data.url_github;
             let fetchOptions = { cache: 'no-store' };
 
-            // 🌟 CÔNG NGHỆ CHỐNG CACHE 100%: DÙNG GITHUB API
+            // 🌟 CÔNG NGHỆ CHỐNG CACHE 100%: DÙNG GITHUB API (ĐÃ FIX LỖI CORS)
             if (typeof CFG_HE_THONG !== 'undefined' && CFG_HE_THONG.GITHUB_TOKEN) {
                 try {
                     let repoPath = "";
@@ -1018,15 +1018,15 @@ window.ham_6_6_mo_form_sua_hoc_lieu = async function (maHocLieu, choPhepSua = tr
                     }
 
                     if (repoPath) {
-                        fetchUrl = `https://api.github.com/repos/${CFG_HE_THONG.GITHUB_REPO}/contents/${repoPath}`;
+                        fetchUrl = `https://api.github.com/repos/${CFG_HE_THONG.GITHUB_REPO}/contents/${repoPath}?t=${Date.now()}`;
                         fetchOptions = {
                             method: 'GET',
                             headers: {
                                 "Authorization": `token ${CFG_HE_THONG.GITHUB_TOKEN}`,
-                                "Accept": "application/vnd.github.v3.raw", // Ép GitHub ói ra data thô, xuyên thủng mọi lớp Cache
-                                "Cache-Control": "no-cache"
+                                "Accept": "application/vnd.github.v3.raw"
+                                // ❌ Đã xóa dòng "Cache-Control" gây lỗi CORS
                             },
-                            cache: 'no-store'
+                            cache: 'no-store' // Thuộc tính của fetch API nội bộ trình duyệt, không vi phạm CORS
                         };
                         console.log("🚀 [API MODE] Đang móc data thời gian thực từ Github API:", fetchUrl);
                     }
