@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e29ef0faee",
+  "dapAn": "A",
+  "loiGiai": "Tập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm $y' = 3x^2 - 6x$; $y' = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 2 \\\\ x &= 0 \\end{aligned} \\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_e29ef0faee_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, giá trị cực tiểu của hàm số là $y_{CT} = 2021$ tại $x = 2$.\\\\\r\n\t\tChọn đáp án A."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_972a7d4126",
+  "dapAn": "D",
+  "loiGiai": "Hàm số $y = x^2 \\ln x$ có tập xác định $D = (0; +\\infty)$.\\\\\r\n\t\tTa có $y' = 2x \\ln x + x^2 \\cdot \\frac{1}{x} = 2x \\ln x + x = x(2 \\ln x + 1)$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x = 0 \\notin (0; +\\infty) \\\\ &2 \\ln x + 1 = 0 \\end{aligned} \\right. \\Leftrightarrow \\ln x = -\\frac{1}{2} \\Leftrightarrow x = e^{-\\frac{1}{2}} = \\frac{1}{\\sqrt{e}} \\in (0; +\\infty)$.\\\\\r\n\t\tBảng xét dấu $y'$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_972a7d4126_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy hàm số đã cho đạt cực trị (cực tiểu) tại $x = \\displaystyle \\frac{1}{\\sqrt{e}}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2f57de0aa8",
+  "dapAn": "B",
+  "loiGiai": "Tập xác định của hàm số bậc ba: $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm của hàm số: $\\displaystyle y' = 3x^2 - 3$.\\\\\r\n\t\tGiải phương trình: $\\displaystyle y' = 0 \\Leftrightarrow 3x^2 - 3 = 0 \\Leftrightarrow \\left[\\begin{aligned} &x = 1 \\Rightarrow y = 3 \\\\ &x = -1 \\Rightarrow y = 7 \\end{aligned}\\right.$\\\\\r\n\t\tTa tính đạo hàm cấp hai: $\\displaystyle y'' = 6x$.\\\\\r\n\t\t- Tại điểm $x=1 \\Rightarrow y''(1) = 6 > 0$, suy ra hàm số đạt cực tiểu tại $x=1$, tọa độ điểm cực tiểu của đồ thị là $M(1;3)$.\\\\\r\n\t\t- Tại điểm $x=-1 \\Rightarrow y''(-1) = -6 < 0$, suy ra hàm số đạt cực đại tại $x=-1$, tọa độ điểm cực đại của đồ thị là $N(-1;7)$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c828726b46",
+  "dapAn": "B",
+  "loiGiai": "Xét $f(x) = x^3 - 3x + 2$.\\\\\r\n\t\t$f'(x) = 3x^2 - 3$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 1 \\\\ x = -1. \\end{array}\\right.$\\\\\r\n\t\tTa có bảng biến thiên sau đây:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_c828726b46_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên ta có: giá trị cực đại của hàm số đã cho bằng $4$."
+}

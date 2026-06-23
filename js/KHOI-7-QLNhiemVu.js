@@ -527,11 +527,14 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                 <div style="background: #e6f2ff; border: 1px solid #b8daff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
-                    <div style="margin-bottom: 15px;">
-                        <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
+                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+                        <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="flex: 1; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
                             <option value="">-- Vui lòng chọn một đề thi --</option>
                             ${htmlOptionsHL}
                         </select>
+                        <button onclick="ham_7_copy_text_combobox('add_nv_maHL', this)" title="Copy tên Học Liệu" style="padding: 10px 15px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 4px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#dde2e6'" onmouseout="this.style.background='#e9ecef'">
+                            📋 Copy Text
+                        </button>
                     </div>
                     <div id="khu_vuc_thong_tin_hl" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; opacity: 0.5; pointer-events: none;">
                         <div><label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label><select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"><option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option><option value="Khác">Khác</option></select></div>
@@ -1110,9 +1113,14 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
                 <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
                 <div style="margin-bottom: 15px;">
                     <label style="font-size: 12px; font-weight:bold; color: #d35400;">🔄 Thầy/Cô có thể chọn lại Học liệu khác cho nhiệm vụ này:</label>
-                    <select id="edit_nv_maHL" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold; margin-top: 5px;">
-                        ${htmlOptionsHL}
-                    </select>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+                        <select id="edit_nv_maHL" style="flex: 1; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
+                            ${htmlOptionsHL}
+                        </select>
+                        <button onclick="ham_7_copy_text_combobox('edit_nv_maHL', this)" title="Copy tên Học Liệu" style="padding: 10px 15px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 4px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#dde2e6'" onmouseout="this.style.background='#e9ecef'">
+                            📋 Copy Text
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1231,6 +1239,50 @@ async function ham_7_6_mo_form_nhiem_vu(maNhiemVu) {
     // Thả dòng này vào cuối hàm mở form xem/sửa nhiệm vụ, truyền vào mã học liệu của nhiệm vụ đó
     ham_7_11_ve_nut_loi_giai_dong(data.ma_hoc_lieu);
 }
+
+
+
+// =====================================================================
+// Hàm Bổ trợ: Tự động bóc tách Text từ Combobox và Copy vào Clipboard
+// =====================================================================
+window.ham_7_copy_text_combobox = function(idSelect, btnNode) {
+    const selectEl = document.getElementById(idSelect);
+    if (!selectEl) return;
+
+    // Kiểm tra nếu chưa chọn học liệu
+    if (selectEl.value === "" || selectEl.value === "KHONG_DUNG") {
+        if (typeof Swal !== 'undefined') {
+            Swal.fire('Chú ý', 'Thầy vui lòng chọn một học liệu trước khi copy!', 'info');
+        } else {
+            alert('Vui lòng chọn học liệu trước khi copy!');
+        }
+        return;
+    }
+
+    // Lấy nội dung hiển thị của mục đang được chọn
+    const textToCopy = selectEl.options[selectEl.selectedIndex].text;
+
+    // Ghi vào bộ nhớ tạm (Clipboard)
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Hiệu ứng UX: Đổi màu nút để báo hiệu thành công
+        const mauGoc = btnNode.style.background;
+        const chuGoc = btnNode.innerHTML;
+        
+        btnNode.style.background = "#28a745";
+        btnNode.style.color = "white";
+        btnNode.innerHTML = "✅ Đã Copy!";
+        
+        // Trả lại trạng thái cũ sau 1.5 giây
+        setTimeout(() => {
+            btnNode.style.background = mauGoc;
+            btnNode.style.color = "#495057";
+            btnNode.innerHTML = chuGoc;
+        }, 1500);
+    }).catch(err => {
+        console.error('Lỗi copy:', err);
+        alert('Trình duyệt của thầy chặn quyền Copy. Vui lòng kiểm tra lại cài đặt.');
+    });
+};
 
 // ==============================================================
 // Hàm 7.7: Thu thập và Gửi Cập nhật Nhiệm vụ (FULL JSON & THỜI GIAN LÀM BÀI)

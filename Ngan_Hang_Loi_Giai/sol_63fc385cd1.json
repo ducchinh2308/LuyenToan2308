@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_63fc385cd1",
+  "dapAn": "B",
+  "loiGiai": "Giải $f'(x)=0 \\Leftrightarrow x(x-2)^2=0 \\Leftrightarrow \\left[ \\begin{aligned} &x=0 \\\\ &x=2 \\end{aligned} \\right.$.\\\\\r\n\t\tKhi qua nghiệm $x=2$, $f'(x)$ không đổi dấu.\\\\\r\n\t\tKhi qua nghiệm $x=0$, $f'(x)$ đổi dấu.\\\\\r\n\t\tVậy hàm số chỉ có $1$ điểm cực trị tại $x=0$.\\\\"
+}
