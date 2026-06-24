@@ -519,6 +519,78 @@ function ham_3_1_ve_dashboard_admin() {
 //// =====================================================================
 //// [Nhãn thời gian: 17:00 - Ngày 10/06/2026] - Hàm 3.2: Vẽ thanh chạy lấy API trực tiếp từ Supabase (Màn hình Admin)
 //// =====================================================================
+// async function ham_3_2_ve_thanh_chay_nop_bai() {
+//     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
+//         return;
+//     }
+
+//     try {
+//         const headersAPI = {
+//             'apikey': SUPABASE_KEY,
+//             'Authorization': `Bearer ${SUPABASE_KEY}`,
+//             'Content-Type': 'application/json'
+//         };
+
+//         // 1. Lấy bảng Lớp học để tạo bộ Từ điển dịch Mã Lớp -> Tên Lớp
+//         const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop`, { method: 'GET', headers: headersAPI });
+//         const dataLop = await resLop.json();
+
+//         const tuDienLop = {};
+//         if (dataLop && dataLop.length > 0) {
+//             dataLop.forEach(lop => {
+//                 tuDienLop[lop.ma_lop] = lop.ten_lop;
+//             });
+//         }
+
+//         // 2. Gọi kết quả thi, JOIN với hoc_sinh (lấy tên) và nhiem_vu (lấy tên nhiệm vụ, danh sách mã lớp)
+//         const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
+//         const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+
+//         const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
+
+//         if (!response.ok) throw new Error("Lỗi fetch bảng Kết quả thi");
+//         const data = await response.json();
+
+//         if (!data || data.length === 0) return;
+
+//         // 3. Dịch dữ liệu và nhúng vào HTML
+//         let chuoiNoiDung = data.map(row => {
+//             let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
+//             let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
+//             let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+
+//             let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
+//             let tenNhiemVu = (row.nhiem_vu && row.nhiem_vu.ten_nhiem_vu) ? row.nhiem_vu.ten_nhiem_vu : "(Chưa đặt tên)";
+
+//             let lopHienThi = "--";
+//             if (row.nhiem_vu && Array.isArray(row.nhiem_vu.danh_sach_lop)) {
+//                 let mangTenLop = row.nhiem_vu.danh_sach_lop.map(ma => tuDienLop[ma] || ma);
+//                 lopHienThi = mangTenLop.join(", ");
+//             }
+
+//             return `
+//                 <span style="margin-right: 60px; font-family: Arial, sans-serif; display: inline-block;">
+//                     <i style="color: #ffd700;">🔥</i> 
+//                     Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHienThi}</span>) 
+//                     vừa nộp <b>${tenNhiemVu}</b> - 
+//                     Điểm: <span style="color: #4ade80; font-weight: bold;">${diemHienThi}</span> 
+//                     <span style="color: #94a3b8; margin-left: 6px; background: #334155; padding: 1px 4px; border-radius: 3px;">⏱️ ${thoiGianHienThi}</span>
+//                 </span>
+//             `;
+//         }).join("");
+
+//         ve_khung_html_thanh_chay(chuoiNoiDung);
+
+//     } catch (error) {
+//         console.warn("⚠️ [Thanh chạy Live Admin bị gián đoạn]:", error.message);
+//     }
+
+// }
+
+
+//// =====================================================================
+//// [ĐÃ SỬA] - Hàm 3.2: Vẽ thanh chạy lấy API trực tiếp từ Supabase (Lọc bỏ phòng LIVE)
+//// =====================================================================
 async function ham_3_2_ve_thanh_chay_nop_bai() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) {
         return;
@@ -542,9 +614,10 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             });
         }
 
-        // 2. Gọi kết quả thi, JOIN với hoc_sinh (lấy tên) và nhiem_vu (lấy tên nhiệm vụ, danh sách mã lớp)
+        // 2. Gọi kết quả thi, JOIN với hoc_sinh và nhiem_vu
+        // 🌟 ĐÃ THÊM BỘ LỌC: &ma_nhiem_vu=not.ilike.LIVE_* (Loại bỏ các mã bắt đầu bằng chữ LIVE)
         const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
-        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=10`;
+        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&ma_nhiem_vu=not.ilike.LIVE_*&order=thoi_gian_nop.desc&limit=10`;
 
         const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
 

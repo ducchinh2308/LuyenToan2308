@@ -92,10 +92,10 @@ async function ham_11_1_ve_quan_ly_thong_bao() {
                         <td style="padding: 10px;">
                             <div style="display:flex; gap:5px; justify-content:center;">
                                 <button onclick="ham_11_5_xoa_thong_bao('${tb.id}')" style="background:#ef4444; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer; font-size:12px;" title="Xóa">🗑️ Xóa</button>
-                                <button onclick="ham_11_6_sua_nhanh_thong_bao('${tb.id}', '${tb.trang_thai}')" style="background:#3b82f6; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer; font-size:12px;" title="Bật/Tắt">🔄 Đổi TT</button>
+                                <button onclick="ham_11_6_sua_nhanh_thong_bao('${tb.id}', '${tb.trang_thai}')" style="background:#3b82f6; color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer; font-size:12px;" title="Bật/Tắt">🔄 Bật/Tắt</button>
                             </div>
                         </td>
-                        <td style="padding: 10px; max-width: 250px; word-wrap: break-word; color:#1e293b; font-weight:500;">${tb.noi_dung}</td>
+                        <td style="padding: 10px; max-width: 500px; word-wrap: break-word; color:#1e293b; font-weight:500;">${tb.noi_dung}</td>
                         <td style="padding: 10px; font-size:13px; color:#475569;">${dsLopHienThi}</td>
                         <td style="padding: 10px; text-align: center;">${badgeTrangThai}</td>
                         <td style="padding: 10px; text-align: center; font-size:13px;">${formatTimeTB(tb.thoi_gian_tao)}</td>
@@ -121,7 +121,7 @@ async function ham_11_1_ve_quan_ly_thong_bao() {
                             <tr style="background-color: #f1f5f9; color: #334155; font-size: 13px; text-align: center;">
                                 <th style="padding: 12px; width: 40px;">STT</th>
                                 <th style="padding: 12px; width: 140px;">THAO TÁC</th>
-                                <th style="padding: 12px; text-align: left;">NỘI DUNG</th>
+                                <th style="padding: 12px; text-align: left; min-width: 350px;">NỘI DUNG</th>
                                 <th style="padding: 12px; text-align: left; width: 150px;">ĐỐI TƯỢNG</th>
                                 <th style="padding: 12px; width: 90px;">TRẠNG THÁI</th>
                                 <th style="padding: 12px; width: 90px;">T.G TẠO</th>

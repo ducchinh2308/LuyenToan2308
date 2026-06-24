@@ -454,7 +454,226 @@ window.ham_7_16_tim_kiem_live_nhiem_vu = function (tuKhoa) {
 
 
 
-// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới + Bổ sung TÍNH CHẤT)
+// // Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (Áp dụng Hằng số & Giao diện mới + Bổ sung TÍNH CHẤT)
+// async function ham_7_3_hien_form_them_nhiem_vu() {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
+
+//     try {
+//         const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+//         let chuoiNgauNhien = '';
+//         for (let i = 0; i < 6; i++) {
+//             chuoiNgauNhien += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
+//         }
+//         const maNV_MacDinh = "NV_DE_" + chuoiNgauNhien;
+
+//         const { data: dsHocLieu } = await _supabase.from('hoc_lieu').select('*').order('ngay_tao', { ascending: false });
+//         window.tempDsHocLieu = dsHocLieu || [];
+
+//         let htmlOptionsHL = `<option value="KHONG_DUNG" style="font-weight: bold; color: red;">[ --- Không sử dụng học liệu --- ]</option>`;
+//         window.tempDsHocLieu.forEach(hl => {
+//             htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">[${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
+//         });
+
+//         let dsLop = [];
+//         if (typeof BangLopState !== 'undefined' && BangLopState.duLieu && BangLopState.duLieu.length > 0) dsLop = BangLopState.duLieu;
+//         else {
+//             const { data, error } = await _supabase.from('lop_hoc').select('*');
+//             if (!error && data) dsLop = data;
+//         }
+
+//         let htmlLop = '';
+//         if (dsLop.length > 0) {
+//             dsLop.forEach(l => {
+//                 const maLop = l.ma_lop || l.ma || l.id;
+//                 const tenLop = l.ten_lop || l.ten || l.name || maLop;
+//                 htmlLop += `
+//                     <label style="display: inline-flex; align-items: center; width: 140px; margin-bottom: 10px; cursor: pointer;">
+//                         <input type="checkbox" class="chk-lop" value="${maLop}" style="transform: scale(1.3); margin-right: 8px;"> 
+//                         <span style="font-weight: bold; color: #1a73e8; font-size: 14px;">${tenLop}</span>
+//                     </label>
+//                 `;
+//             });
+//         } else {
+//             htmlLop = `<div style="padding: 10px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px;"><span style="color: #856404; font-weight: bold;">⚠️ Không tìm thấy danh sách lớp!</span></div>`;
+//         }
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 950px; background: white; padding: 25px; border-radius: 12px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+//                 <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px;">🎯 TẠO NHIỆM VỤ MỚI</h3>
+                
+//                 <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//                     <h4 style="margin-top: 0; color: #495057;">1. Thông tin chung</h4>
+//                     <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px;">
+//                         <div>
+//                             <label style="font-weight:bold; font-size: 13px;">Mã NV (Tự động):</label>
+//                             <input type="text" id="add_nv_ma" value="${maNV_MacDinh}" data-random="${chuoiNgauNhien}" readonly style="width: 100%; padding: 8px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; font-weight:bold; color: #dc3545; cursor: not-allowed;">
+//                         </div>
+//                         <div>
+//                             <label style="font-weight:bold; font-size: 13px;">Tên Nhiệm Vụ (*):</label>
+//                             <input type="text" id="add_nv_ten" placeholder="Nhập tên nhiệm vụ..." style="width: 100%; padding: 8px; border: 1px solid #1a73e8; border-radius: 4px;">
+//                         </div>
+//                         <div>
+//                             <label style="font-weight:bold; font-size: 13px;">Loại nhiệm vụ:</label>
+//                             <select id="add_nv_loai" onchange="ham_7_3_d_cap_nhat_ma_nv()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+//                                 <option value="Làm đề (Online)">📝 Làm đề (Online)</option>
+//                                 <option value="Tự luận (Nộp ảnh)">📷 Làm Tự luận (Chụp ảnh nộp)</option>
+//                                 <option value="Xem bài giảng">📺 Xem Video / Slide</option>
+//                                 <option value="Khảo sát">📊 Khảo sát / Lấy ý kiến</option>
+//                             </select>
+//                         </div>
+//                     </div>
+//                 </div>
+
+//                 <div style="background: #e6f2ff; border: 1px solid #b8daff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//                     <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
+//                     <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
+//                         <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="flex: 1; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
+//                             <option value="">-- Vui lòng chọn một đề thi --</option>
+//                             ${htmlOptionsHL}
+//                         </select>
+//                         <button onclick="ham_7_copy_text_combobox('add_nv_maHL', this)" title="Copy tên Học Liệu" style="padding: 10px 15px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 4px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#dde2e6'" onmouseout="this.style.background='#e9ecef'">
+//                             📋 Copy Text
+//                         </button>
+//                     </div>
+//                     <div id="khu_vuc_thong_tin_hl" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; opacity: 0.5; pointer-events: none;">
+//                         <div><label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label><select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"><option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option><option value="Khác">Khác</option></select></div>
+//                         <div><label style="font-size: 12px; font-weight:bold;">Loại kiểm tra:</label><input type="text" id="add_nv_loaiKT" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
+//                         <div><label style="font-size: 12px; font-weight:bold; color: #6f42c1;">Quy mô:</label><input type="text" id="add_nv_quymo" readonly style="width: 100%; padding: 6px; background:#f4f4f4; border: 1px dotted #6f42c1; border-radius: 4px; color:#6f42c1; font-weight:bold;"></div>
+//                     </div>
+//                 </div>
+
+//                 <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//                     <h4 style="margin-top: 0; color: #d35400;">3. Phân công & Cấu hình Đăng ký</h4>
+
+//                     <div style="margin-bottom: 15px; padding: 10px; background: #e8f4fd; border: 1px solid #b8daff; border-radius: 6px;">
+//                         <label style="font-size: 12px; font-weight:bold; color: #0056b3;">Tính chất bài tập:</label>
+//                         <div style="display: flex; gap: 20px; margin-top: 5px;">
+//                             <label style="cursor: pointer; font-weight: bold; font-size: 13px;">
+//                                 <input type="radio" name="add_nv_tinhchat" value="BAT_BUOC" checked onchange="document.getElementById('khung_chon_lop').style.display='block'">
+//                                 🎯 Bắt buộc (Giao cho Lớp)
+//                             </label>
+//                             <label style="cursor: pointer; font-weight: bold; font-size: 13px; color: #d35400;">
+//                                 <input type="radio" name="add_nv_tinhchat" value="TU_DO" onchange="document.getElementById('khung_chon_lop').style.display='none'">
+//                                 🌍 Luyện tập tự do (Mở cho tất cả)
+//                             </label>
+//                         </div>
+//                     </div>
+
+//                     <div id="khung_chon_lop" style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+//                         <label style="font-weight:bold; font-size: 13px; display:block; margin-bottom: 5px;">Giao cho Lớp (*):</label>
+//                         <div style="margin-bottom: 10px;">
+//                             <button onclick="ham_7_3_b_chon_tat_ca_lop(true)" style="padding: 3px 8px; font-size: 11px;">Chọn tất cả</button>
+//                             <button onclick="ham_7_3_b_chon_tat_ca_lop(false)" style="padding: 3px 8px; font-size: 11px;">Bỏ chọn</button>
+//                         </div>
+//                         <div style="background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px; max-height: 120px; overflow-y: auto;">
+//                             ${htmlLop}
+//                         </div>
+//                     </div>
+
+//                     <div style="display: flex; flex-direction: column; gap: 12px;">
+                        
+//                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+//                             <label style="width: 160px; font-size: 13px; font-weight:bold;">🟢 Trạng thái NV:</label>
+//                             <select id="add_nv_trangthai" style="flex: 1; padding: 8px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
+//                                 <option value="1" selected>🟢 Mở (Kích hoạt)</option>
+//                                 <option value="0">🔴 Khóa (Tạm dừng)</option>
+//                             </select>
+//                         </div>
+
+//                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+//                             <label style="width: 160px; font-size: 13px; font-weight:bold; color: #d35400;">⏱️ Thời gian làm (phút):</label>
+//                             <input type="number" id="add_nv_thoigian" placeholder="Ví dụ: 45, 90..." min="0" style="flex: 1; padding: 8px; border: 1px solid #d35400; border-radius: 4px; font-weight: bold;">
+//                         </div>
+
+//                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+//                             <label style="width: 160px; font-size: 13px; font-weight:bold;">🔄 Số lượt làm bài:</label>
+//                             <input type="number" id="add_nv_soluot" value="0" min="0" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+//                         </div>
+
+//                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+//                             <label style="width: 160px; font-size: 13px; font-weight:bold;">📅 Mở Lúc:</label>
+//                             <input type="datetime-local" id="add_nv_mo" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
+//                         </div>
+
+//                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
+//                             <label style="width: 160px; font-size: 13px; font-weight:bold;">⛔ Đóng Lúc:</label>
+//                             <input type="datetime-local" id="add_nv_dong" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
+//                         </div>
+
+//                     </div>
+
+//                     <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
+//                         <label style="font-weight:bold; font-size: 13px; color: #d35400;">🔀 Chế độ Đảo đề (Dùng JSON):</label>
+//                         <select id="add_nv_che_do_dao" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; font-weight: bold; font-size: 14px;">
+//                             <option value="${CFG_NV.DAO_DE.KHONG}">❌ Không đảo gì cả</option>
+//                             <option value="${CFG_NV.DAO_DE.CO_BAN}" selected>🔀 Đảo Câu hỏi + Đảo ABCD (Nhóm TN)</option>
+//                             <option value="${CFG_NV.DAO_DE.TOAN_DIEN}">🌪️ Đảo Câu hỏi + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
+//                         </select>
+//                     </div>
+//                 </div>
+
+//                 <div style="background: #e6ffed; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+//                     <h4 style="margin-top: 0; color: #28a745;">4. Cấu hình Công bố & Bảo mật</h4>
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+//                         <div>
+//                             <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
+//                             <select id="add_nv_thoigiano" onchange="ham_7_3_c_xu_ly_cong_bo()" style="width: 100%; padding: 10px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
+//                                 <option value="${CFG_NV.THOI_DIEM.KHOA}">🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
+//                                 <option value="${CFG_NV.THOI_DIEM.SAU_NOP}">✅ Ngay sau khi nộp bài</option>
+//                                 <option value="${CFG_NV.THOI_DIEM.SAU_HET_HAN}">⏳ Sau khi hết hạn Đóng đề</option>
+//                                 <option value="${CFG_NV.THOI_DIEM.HEN_GIO}">⏰ Hẹn một giờ cụ thể...</option>
+//                             </select>
+//                             <div id="khu_vuc_hen_gio" style="display: none; margin-top: 10px;">
+//                                 <label style="font-size: 12px; color: #d35400; font-weight:bold;">Giờ kích hoạt:</label>
+//                                 <input type="datetime-local" id="add_nv_giocongbo" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
+//                             </div>
+//                         </div>
+//                         <div id="khu_vuc_muc_do" style="opacity: 0.3; pointer-events: none;">
+//                             <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
+//                             <select id="add_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
+//                                 <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}">📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
+//                                 <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}" selected>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
+//                             </select>
+//                             <p style="font-size: 11px; color: #666; margin-top: 8px; font-style: italic;">
+//                                 🛡️ <strong style="color:#d35400;">Bảo mật:</strong> File Lời giải đang được mã hóa ẩn. Hệ thống chỉ bắt đầu tiến hành dịch và ráp file khi có Lệnh hoặc khi đến Thời điểm công bố.
+//                             </p>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-top: 15px; border-top: 1px dashed #c3e6cb; padding-top: 15px;">
+//                         <h4 style="margin: 0 0 10px 0; color: #6f42c1; font-size: 14px;">🛠️ TẠO FILE LỜI GIẢI GỘP (JSON)</h4>
+//                         <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px;">
+//                             <input type="checkbox" id="add_nv_tu_dong_gom_file" style="transform: scale(1.3); margin-right: 10px;">
+//                             <span style="font-size: 14px; font-weight: bold; color: #333;">
+//                                 🚀 Tự động ra lệnh gom File Lời giải ngay sau khi tạo Nhiệm vụ (nếu đã có file giải thì sử dụng lại)
+//                             </span>
+//                         </label>
+//                         <p style="font-size: 11px; color: #666; margin-top: 5px; font-style: italic; margin-left: 28px;">
+//                             * Hệ thống sẽ ngầm tải các file lời giải lẻ của từng câu và ghép thành 1 file duy nhất đẩy lên Github ngay khi thầy nhấn Xác Nhận Giao Bài.
+//                         </p>
+//                     </div>
+//                 </div>
+
+//                 <div style="display: flex; gap: 15px;">
+//                     <button onclick="ham_7_4_luu_nhiem_vu_moi(this)" style="flex: 2; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">
+//                         💾 XÁC NHẬN GIAO BÀI
+//                     </button>
+
+//                     <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="flex: 1; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+//                         HỦY
+//                     </button>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color:red; text-align:center;">Lỗi khởi tạo form: ${error.message}</p>`;
+//     }
+// }
+
+// =====================================================================
+// Hàm 7.3: Vẽ Form Tạo Nhiệm Vụ (BẢN TÍCH HỢP LIÊN THÔNG KHỐI 15 - TỰ LUẬN)
+// =====================================================================
 async function ham_7_3_hien_form_them_nhiem_vu() {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><p>⏳ Đang tải dữ liệu hệ thống (Học liệu, Danh sách lớp)...</p></div>`;
@@ -515,7 +734,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                         </div>
                         <div>
                             <label style="font-weight:bold; font-size: 13px;">Loại nhiệm vụ:</label>
-                            <select id="add_nv_loai" onchange="ham_7_3_d_cap_nhat_ma_nv()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <select id="add_nv_loai" onchange="ham_7_3_d_cap_nhat_ma_nv(); if(typeof ham_15_4_doi_loai_nhiem_vu === 'function') ham_15_4_doi_loai_nhiem_vu();" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                                 <option value="Làm đề (Online)">📝 Làm đề (Online)</option>
                                 <option value="Tự luận (Nộp ảnh)">📷 Làm Tự luận (Chụp ảnh nộp)</option>
                                 <option value="Xem bài giảng">📺 Xem Video / Slide</option>
@@ -527,6 +746,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
 
                 <div style="background: #e6f2ff; border: 1px solid #b8daff; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0; color: #0056b3;">2. Dữ liệu Học Liệu (Đề thi)</h4>
+                    
                     <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: center;">
                         <select id="add_nv_maHL" onchange="ham_7_3_a_xu_ly_chon_hoc_lieu()" style="flex: 1; padding: 10px; border: 2px solid #d35400; border-radius: 4px; font-weight:bold;">
                             <option value="">-- Vui lòng chọn một đề thi --</option>
@@ -536,6 +756,9 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
                             📋 Copy Text
                         </button>
                     </div>
+
+                    ${typeof ham_15_3_html_khu_vuc_tao_tu_luan === 'function' ? ham_15_3_html_khu_vuc_tao_tu_luan() : ''}
+                    
                     <div id="khu_vuc_thong_tin_hl" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; opacity: 0.5; pointer-events: none;">
                         <div><label style="font-size: 12px; font-weight:bold;">Khối Lớp:</label><select id="add_nv_khoi" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"><option value="12">Khối 12</option><option value="11">Khối 11</option><option value="10">Khối 10</option><option value="Khác">Khác</option></select></div>
                         <div><label style="font-size: 12px; font-weight:bold;">Loại kiểm tra:</label><input type="text" id="add_nv_loaiKT" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"></div>
@@ -670,6 +893,7 @@ async function ham_7_3_hien_form_them_nhiem_vu() {
         vungLamViec.innerHTML = `<p style="color:red; text-align:center;">Lỗi khởi tạo form: ${error.message}</p>`;
     }
 }
+
 
 
 

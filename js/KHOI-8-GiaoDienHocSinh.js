@@ -171,7 +171,8 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
         }
 
         const querySelect = "tong_diem,thoi_gian_nop,hoc_sinh!uid_hoc_sinh(ten),nhiem_vu(ten_nhiem_vu,danh_sach_lop)";
-        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=50`;
+        //const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&order=thoi_gian_nop.desc&limit=50`;
+        const fullAPI_Link = `${SUPABASE_URL}/rest/v1/ket_qua_thi?select=${querySelect}&ma_nhiem_vu=not.ilike.LIVE_*&order=thoi_gian_nop.desc&limit=50`;
         const response = await fetch(fullAPI_Link, { method: 'GET', headers: headersAPI });
 
         if (!response.ok) throw new Error("Lỗi fetch bảng Kết quả thi");
