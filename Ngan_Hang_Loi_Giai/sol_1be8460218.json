@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_1be8460218",
+    "dapAn": "B",
+    "loiGiai": "Ta có bảng giá trị đại diện:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t\\begin{tabular}{|c|c|c|c|c|c|}\r\n\t\t\t\t\\hline\r\n\t\t\t\tDoanh thu & $[5;7)$ & $[7;9)$ & $[9;11)$ & $[11;13)$ & $[13;15)$ \\\\\r\n\t\t\t\t\\hline\r\n\t\t\t\tGiá trị đại diện & $6$ & $8$ & $10$ & $12$ & $14$ \\\\\r\n\t\t\t\t\\hline\r\n\t\t\t\tSố ngày & $2$ & $7$ & $7$ & $3$ & $1$ \\\\\r\n\t\t\t\t\\hline\r\n\t\t\t\\end{tabular}\r\n\t\t\\end{center}\r\n\t\t$\\displaystyle \\bar{x} = \\frac{6 \\cdot 2 + 8 \\cdot 7 + 10 \\cdot 7 + 12 \\cdot 3 + 14 \\cdot 1}{2+7+7+3+1} = \\frac{12+56+70+36+14}{20} = \\frac{188}{20} = 9{,}4$.\\\\\r\n\t\tGiá trị $9{,}4$ nằm trong khoảng $[9;11)$."
+}
