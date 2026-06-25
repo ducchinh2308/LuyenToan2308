@@ -1,0 +1,203 @@
+{
+    "maDe": "HL_TN_GK1_6IGZYKC",
+    "tenDe": "eeee",
+    "thoiGian": 0,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_27c648eb51",
+            "ma_goc": "5107-596",
+            "kieuCau": "TN",
+            "cauDan": "Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\r\n\t\\begin{center}\r\n\t\t\\begin{tabular}{|c|c|c|c|c|c|}\r\n\t\t\t\\hline\r\n\t\t\tDoanh thu & $[5;7)$ & $[7;9)$ & $[9;11)$ & $[11;13)$ & $[13;15)$ \\\\\r\n\t\t\t\\hline\r\n\t\t\tSố ngày & $2$ & $7$ & $7$ & $3$ & $1$ \\\\\r\n\t\t\t\\hline\r\n\t\t\\end{tabular}\r\n\t\\end{center}\r\n\tSố trung bình của mẫu số liệu trên thuộc khoảng nào trong các khoảng dưới đây?",
+            "paA": "$[7;9)$",
+            "paB": "$[9;11)$",
+            "paC": "$[11;13)$",
+            "paD": "$[13;15)$"
+        },
+        {
+            "maCau": "q_07ce3cfc9b",
+            "ma_goc": "6761-942",
+            "kieuCau": "TN",
+            "cauDan": "Cho hình chóp đều $S.ABCD$ có cạnh đáy bằng $a\\sqrt{2}$, cạnh bên bằng $2a$. Thể tích khối chóp $S.ABCD$ là",
+            "paA": "$\\displaystyle \\frac{4a^3}{3}$",
+            "paB": "$\\displaystyle \\frac{a^3}{3}$",
+            "paC": "$\\displaystyle \\frac{2a^3\\sqrt{3}}{3}$",
+            "paD": "$\\displaystyle \\frac{2a^3}{3}$"
+        },
+        {
+            "maCau": "q_c78c62b925",
+            "ma_goc": "1536-193",
+            "kieuCau": "TN",
+            "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành tâm $O$, $SA = SC$, $SB = SD$. Trong các khẳng định sau khẳng định nào đúng?",
+            "paA": "$SO \\perp (ABCD)$",
+            "paB": "$SC \\perp (ABCD)$",
+            "paC": "$SB \\perp (ABCD)$",
+            "paD": "$SA \\perp (ABCD)$"
+        },
+        {
+            "maCau": "q_789dbd8a6e",
+            "ma_goc": "2758-800",
+            "kieuCau": "TN",
+            "cauDan": "Trong không gian $Oxyz$, vectơ nào sau đây là vectơ pháp tuyến của mặt phẳng $(P) \\colon 2x - y + z + 3 = 0$?",
+            "paA": "$\\vec{n_1} = (2;-1;1)$",
+            "paB": "$\\vec{n_3} = (2;-1;3)$",
+            "paC": "$\\vec{n_2} = (2;1;1)$",
+            "paD": "$\\vec{n_4} = (-1;1;3)$"
+        },
+        {
+            "maCau": "q_9af35a7f97",
+            "ma_goc": "3437-765",
+            "kieuCau": "TN",
+            "cauDan": "Cho $\\displaystyle \\int_0^1 f(x)\\,dx = 1$ và $\\displaystyle \\int_0^2 f(x)\\,dx = -4$. Tích phân $\\displaystyle \\int_1^2 f(x)\\,dx$ bằng",
+            "paA": "$3$",
+            "paB": "$5$",
+            "paC": "$-3$",
+            "paD": "$-5$"
+        },
+        {
+            "maCau": "q_0beb1441c9",
+            "ma_goc": "6528-904",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=1.0, >=stealth]\r\n\t\t\t\\draw[->] (-1.5,0) -- (3.5,0) node[below] {$x$};\r\n\t\t\t\\draw[->] (0,-2.5) -- (0,3) node[right] {$y$};\r\n\t\t\t\\node[below left] at (0,0) {$O$};\r\n\t\t\t\\draw[dashed] (2,0) -- (2,-2) -- (0,-2);\r\n\t\t\t\\node[above] at (2,0) {$2$};\r\n\t\t\t\\node[left] at (0,-2) {$-2$};\r\n\t\t\t\\node[left] at (0,2) {$2$};\r\n\t\t\t\\node[below left] at (1,0) {$1$};\r\n\t\t\t\\draw[thick, domain=-0.99:2.99, samples=100] plot (\\x, {(\\x)^3 - 3*(\\x)^2 + 2});\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}\r\n\tĐiểm cực tiểu của hàm số đó là",
+            "paA": "$x = -2$",
+            "paB": "$x = 2$",
+            "paC": "$x = 0$",
+            "paD": "$y = -2$"
+        },
+        {
+            "maCau": "q_6d83696194",
+            "ma_goc": "1942-255",
+            "kieuCau": "TN",
+            "cauDan": "Họ tất cả các nguyên hàm của hàm số $f(x) = \\sin x$ là",
+            "paA": "$-\\sin x + C$",
+            "paB": "$\\sin x + C$",
+            "paC": "$-\\cos x + C$",
+            "paD": "$\\cos x + C$"
+        },
+        {
+            "maCau": "q_43445f7a26",
+            "ma_goc": "4842-579",
+            "kieuCau": "TN",
+            "cauDan": "Trong không gian $Oxyz$, cho mặt cầu $(S) \\colon (x-2)^2 + (y+1)^2 + (z-3)^2 = 4$. Tâm của $(S)$ có tọa độ là",
+            "paA": "$(-2;1;-3)$",
+            "paB": "$(-4;2;-6)$",
+            "paC": "$(4;-2;6)$",
+            "paD": "$(2;-1;3)$"
+        },
+        {
+            "maCau": "q_c5f9399271",
+            "ma_goc": "3637-513",
+            "kieuCau": "TN",
+            "cauDan": "Giá trị lớn nhất của hàm số $f(x) = x^4 - 2x^2 + 5$ trên đoạn $[-2;2]$ là",
+            "paA": "$\\displaystyle \\max_{[-2;2]} f(x) = 13$",
+            "paB": "$\\displaystyle \\max_{[-2;2]} f(x) = 14$",
+            "paC": "$\\displaystyle \\max_{[-2;2]} f(x) = -4$",
+            "paD": "$\\displaystyle \\max_{[-2;2]} f(x) = 23$"
+        },
+        {
+            "maCau": "q_f266981574",
+            "ma_goc": "5128-934",
+            "kieuCau": "TN",
+            "cauDan": "Tiệm cận ngang của đồ thị hàm số $\\displaystyle y = \\frac{4x+1}{x-1}$ là",
+            "paA": "$y = 2$",
+            "paB": "$x = 1$",
+            "paC": "$y = 4$",
+            "paD": "$x = 4$"
+        },
+        {
+            "maCau": "q_0c495a127a",
+            "ma_goc": "2661-426",
+            "kieuCau": "TN",
+            "cauDan": "Cho hai biến cố độc lập $A$, $B$. Biết $\\displaystyle P(A) = \\frac{1}{5}$, $\\displaystyle P(B) = \\frac{2}{3}$. $P(AB)$ bằng",
+            "paA": "$\\displaystyle \\frac{13}{15}$",
+            "paB": "$\\displaystyle \\frac{2}{15}$",
+            "paC": "$\\displaystyle \\frac{3}{5}$",
+            "paD": "$\\displaystyle \\frac{11}{15}$"
+        },
+        {
+            "maCau": "q_93e471f8b5",
+            "ma_goc": "5641-621",
+            "kieuCau": "TN",
+            "cauDan": "Cho cấp số cộng $(u_n)$ có số hạng đầu $u_1 = 2$ và công sai $d = 5$. Giá trị của $u_4$ bằng",
+            "paA": "$12$",
+            "paB": "$22$",
+            "paC": "$250$",
+            "paD": "$17$"
+        },
+        {
+            "maCau": "q_a0c283ddca",
+            "ma_goc": "7112-147",
+            "kieuCau": "DS",
+            "cauDan": "Cho hàm số $\\displaystyle y = f(x) = \\frac{ax^2 + bx + c}{x + d}$ có đồ thị là đường cong như hình vẽ.\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[>=stealth, scale=0.8]\r\t\t\t\\clip (-4,-5) rectangle (6,5);\r\t\t\t\\draw[->] (-3.5,0) -- (5.5,0) node[above] {$x$};\r\n\t\t\t\\draw[->] (0,-4.65) -- (0,4.5) node[right] {$y$};\r\n\t\t\t\\node[below left] at (0,0) {$O$};\r\t\t\t\\draw[solid] (2,-4.65) -- (2,4.5);\r\n\t\t\t\\node[below left] at (2,0) {$2$};\r\t\t\t\\draw[solid, domain=-3.7:4.7] plot (\\x, {-\\x});\r\t\t\t\\draw[thick, smooth, samples=100, domain=-3.5:1.15] \r\n\t\t\tplot (\\x, {(-\\x*\\x + 2*\\x + 3) / (\\x - 2)});\r\t\t\t\\draw[thick, smooth, samples=100, domain=2.43:5.5] \r\n\t\t\tplot (\\x, {(-\\x*\\x + 2*\\x + 3) / (\\x - 2)});\r\t\t\t\\fill (3,0) circle (1.5pt) node[below right] {$3$};\r\n\t\t\t\\fill (-1,0) circle (1.5pt) node[below left] {$-1$};\r\n\t\t\t\\fill (0,-1.5) circle (1.5pt) node[left] {$-\\frac{3}{2}$};\r\n\t\t\t\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}",
+            "paA": "Đạo hàm của hàm số $y = f(x)$ luôn dương $\\forall x \\in \\mathbb{R} \\setminus \\{2\\}$",
+            "paB": "Tổng của hai hệ số $c$ và $d$ bằng $1$",
+            "paC": "Đồ thị hàm số $y = f(x)$ có tiệm cận xiên là đường thẳng $y = -x$",
+            "paD": "Để đường thẳng $y = m$ cắt đồ thị hàm số $y = f(x)$ tại hai điểm phân biệt $A$ và $B$ sao cho $OA \\perp OB$ thì $m$ là nghiệm của phương trình $m^2 - 2m - 3 = 0$"
+        },
+        {
+            "maCau": "q_e38e841b25",
+            "ma_goc": "4021-267",
+            "kieuCau": "DS",
+            "cauDan": "Trước thềm cuộc bầu cử đại biểu Hội đồng nhân dân ở tỉnh $X$, một cuộc trưng cầu dân ý online đã được tổ chức. Kết quả cho thấy có $40\\%$ cử tri tham gia trả lời sẽ bầu cử cho ứng cử viên $A$. Sau cuộc bầu cử, tất cả cử tri từng tham gia cuộc trưng cầu dân ý online đều phản hồi lại kết quả mình đã bầu chọn. Các phản hồi cho thấy trong số các cử tri từng trả lời sẽ bầu cho ứng cử viên $A$ có $90\\%$ đã thực sự bầu, trong số các cử tri từng trả lời sẽ không bầu cho ứng cử viên $A$ có $20\\%$ đã bầu cho ứng cử viên $A$. Nếu chỉ xét những người tham gia cuộc trưng cầu dân ý online thì",
+            "paA": "Xác suất cử tri bầu ứng viên $A$ biết rằng trước bầu cử họ trả lời sẽ bầu ứng cử viên $A$ là $0{,}9$",
+            "paB": "Xác suất cử tri không bầu ứng viên $A$ biết rằng trước bầu cử họ trả lời sẽ không bầu ứng cử viên $A$ là $0{,}2$",
+            "paC": "Tỉ lệ cử tri bầu cho ứng cử viên $A$ là $48\\%$",
+            "paD": "Biết rằng một cử tri đã bầu cho ứng cử viên $A$, xác suất để họ đã nói sẽ không bầu ứng cử viên $A$ trước bầu cử là $0{,}2$"
+        },
+        {
+            "maCau": "q_a1a705986b",
+            "ma_goc": "1084-884",
+            "kieuCau": "DS",
+            "cauDan": "Trong không gian $Oxyz$ cho mặt cầu $(S) \\colon x^2 + (y-2)^2 + (z+1)^2 = 29$, hai điểm $A(0; 0; 4)$, $B(6; -2; 6)$ và đường thẳng $\\displaystyle d \\colon \\frac{x-4}{1} = \\frac{y+8}{-1} = \\frac{z-4}{2}$. Gọi $M$ điểm thuộc mặt cầu $(S)$ sao cho $\\widehat{AMB} = 90^\\circ$.",
+            "paA": "Điểm $A$ nằm trên mặt cầu $(S)$ và điểm $B$ nằm ngoài mặt cầu $(S)$",
+            "paB": "Đường thẳng $d$ là tiếp tuyến của mặt cầu $(S)$",
+            "paC": "Điểm $M$ nằm trên mặt phẳng $(P) \\colon x - y + 2z - 8 = 0$",
+            "paD": "Gọi $(a; b; c)$ là tọa độ của điểm $M$ khi khoảng cách từ điểm $M$ đến đường thẳng $d$ ngắn nhất. Giá trị của biểu thức $T = a^2 + b^2 + c^2$ bằng $10$"
+        },
+        {
+            "maCau": "q_649b6760ec",
+            "ma_goc": "8116-650",
+            "kieuCau": "DS",
+            "cauDan": "Một chất điểm chuyển động trên đường thẳng với vận tốc $v(t)$, $0 \\le t \\le 5$ ($t$ có đơn vị là giây và $v(t)$ có đơn vị mét/giây). Hàm số $v(t)$ có đồ thị gồm hai đoạn thẳng $OB$, $BC$ và đường cong $CD$ là một phần parabol $v(t) = at^2 + bt + c$ ($a, b, c \\in \\mathbb{R}$) có đỉnh $C$ (như hình vẽ).\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=1.0, >=stealth]\r\n\t\t\t\\draw[help lines, step=1] (-0.5,-0.5) grid (5.5,3.5);\r\n\t\t\t\\draw[->] (-0.5,0) -- (6,0) node[below] {$t$};\r\n\t\t\t\\draw[->] (0,-0.5) -- (0,4) node[left] {$v$};\r\n\t\t\t\\node[below right] at (0,0) {$O$};\r\n\t\t\t\\node[below] at (1,0) {$1$};\r\n\t\t\t\\node[below] at (2,0) {$2$};\r\n\t\t\t\\node[below] at (3,0) {$3$};\r\n\t\t\t\\node[below] at (4,0) {$4$};\r\n\t\t\t\\node[below] at (5,0) {$5$};\r\n\t\t\t\\node[left] at (0,1) {$1$};\r\n\t\t\t\\node[left] at (0,2) {$2$};\r\n\t\t\t\\draw[thick] (0,0) -- (1,2) node[above left] {$B$} -- (3,2) node[above right] {$C$};\r\n\t\t\t\\draw[thick, domain=3:5, samples=100] plot (\\x, {-0.5*(\\x-3)^2 + 2});\r\n\t\t\t\\node[above right] at (5,0) {$D$};\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}",
+            "paA": "Trong một giây đầu tiên, vận tốc của chất điểm là $v(t) = 2t$, $0 \\le t \\le 1$",
+            "paB": "Quãng đường chất điểm đi được trong hai giây đầu tiên là $3m$",
+            "paC": "Giá trị của $a$ là $\\displaystyle a = -\\frac{5}{2}$",
+            "paD": "Quãng đường chất điểm đi được trong khoảng thời gian bốn giây đầu tiên là $7{,}7m$ (làm tròn đến hàng phần mười)"
+        },
+        {
+            "maCau": "q_b1addc42ce",
+            "ma_goc": "6505-281",
+            "kieuCau": "TLN",
+            "cauDan": "Trong kế hoạch khai thác tuyến ca nô cao tốc phục vụ du lịch sinh thái trên vùng lòng hồ Thủy điện Sơn La (từ bến Mường La đi Quỳnh Nhai) có chiều dài $100\\text{ km}$. Ban quản lý cần xác định vận tốc khai thác $v\\text{ (km/h)}$ cho ca nô ($30 \\le v \\le 70$) để đạt lợi nhuận kinh tế cao nhất. Các thông số được xác định như sau: Công suất tiêu thụ điện của động cơ ca nô là $P(v) = 10v^3\\text{ (W)}$. Giá điện kinh doanh tại bến sạc là $2000\\text{ đồng/kWh}$. Chi phí vận hành cố định: Bao gồm nhân lực lái tàu, khấu hao và bến bãi, được tính là $2500000\\text{ đồng}$ cho mỗi giờ ca nô chạy. Số lượng khách mua vé cho mỗi chuyến phụ thuộc vào vận tốc khai thác theo hàm số: $\\displaystyle N(v) = \\frac{v}{5} + 20$ (hành khách). Giá vé bình quân cho tuyến này là $500000\\text{ đồng/khách}$. Hãy xác định vận tốc khai thác $v$ để lợi nhuận ròng của mỗi chuyến ca nô trên tuyến này là lớn nhất. (Biết công thức tính điện lượng tiêu thụ là $A = P(v) \\cdot t$)."
+        },
+        {
+            "maCau": "q_d2379aaa16",
+            "ma_goc": "6927-202",
+            "kieuCau": "TLN",
+            "cauDan": "Một xưởng mộc tại Mai Sơn sản xuất những chiếc bàn cờ Ô quan bằng gỗ nguyên khối. Mặt trên của bàn cờ là một mặt phẳng được thiết kế và có kích thước như hình vẽ gồm ba phần: phần chính giữa là một hình chữ nhật có chiều dài $100\\text{ cm}$ và chiều rộng $40\\text{ cm}$; hai \"ô quan\" ở hai đầu trái và phải là hai hình phẳng bằng nhau được ghép nối liền mạch với hai cạnh chiều rộng của hình chữ nhật. Biết rằng đường bao ngoài của mỗi \"ô quan\" là một cung tròn. Xưởng mộc tiến hành phủ một lớp keo bảo vệ bóng lên toàn bộ bề mặt trên của chiếc bàn cờ này. Biết chi phí vật tư và nhân công để phủ keo là $100000\\text{ đồng/m}^2$. Tính tổng chi phí $x$ (nghìn đồng) để hoàn thiện việc phủ keo cho mặt bàn cờ (Kết quả làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[line width=1pt, scale=0.6]\r\t\t\t\\draw (0,0) rectangle (10,4);\r\n\t\t\t\\draw (0,2) -- (10,2);\r\n\t\t\t\\foreach \\x in {2, 4, 6, 8} {\r\n\t\t\t\t\\draw (\\x,0) -- (\\x,4);\r\n\t\t\t}\r\t\t\t\\draw (0,4) arc (90:270:1 and 2);\r\t\t\t\\draw (10,4) arc (90:-90:1 and 2);\r\t\t\t\\draw[dash pattern=on 6pt off 8pt, thick] (0,5.5) -- (10,5.5);\r\n\t\t\t\\node[above] at (5,5.5) {$100 \\text{ cm}$};\r\t\t\t\\draw[dash pattern=on 6pt off 8pt, thick] (12.5,0) -- (12.5,4);\r\n\t\t\t\\node[right] at (12.5,2) {$40 \\text{ cm}$};\r\t\t\t\\draw[dashed, thick] (10,2) -- (11,2);\r\n\t\t\t\\node[above, inner sep=2pt] at (10.8,2) {\\small $10 \\text{ cm}$};\r\n\t\t\t\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}"
+        },
+        {
+            "maCau": "q_a0681f2199",
+            "ma_goc": "7284-782",
+            "kieuCau": "TLN",
+            "cauDan": "Một cá nhân gây thiệt hại cho tài sản nhà nước với tổng số tiền là $450\\text{ triệu đồng}$. Để được giảm nhẹ trách nhiệm hình sự, người này được yêu cầu phải hoàn thành việc bồi thường ít nhất $60\\%$ tổng số tiền gốc trong vòng $6$ tháng đầu tiên. Phương thức bồi thường được thỏa thuận như sau: Tháng thứ nhất người đó nộp $m\\text{ (triệu đồng)}$; kể từ tháng thứ hai, mỗi tháng số tiền nộp bằng $90\\%$ số tiền đã nộp ở tháng liền trước đó. Hỏi số tiền $m$ nhỏ nhất mà người này phải nộp trong tháng đầu tiên là bao nhiêu để được giảm nhẹ trách nhiệm hình sự? (Kết quả làm tròn đến hàng đơn vị)."
+        },
+        {
+            "maCau": "q_3c9882356c",
+            "ma_goc": "8439-309",
+            "kieuCau": "TLN",
+            "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình thang, $AB = 2a; AD = DC = CB = a$, $SA$ vuông góc với mặt phẳng đáy và $SA = 3a$. Gọi $M$ là trung điểm của $AB$. Khoảng cách giữa hai đường thẳng $SB$ và $DM$ bằng $\\displaystyle \\frac{xa}{y}$ (với $x, y \\in \\mathbb{N}^*$, $\\displaystyle \\frac{x}{y}$ tối giản). Tính $x + y + xy$."
+        },
+        {
+            "maCau": "q_75ed639643",
+            "ma_goc": "5891-207",
+            "kieuCau": "TLN",
+            "cauDan": "Trong một trò chơi thám hiểm, anh Sơn phải vượt qua một mê cung gồm các phòng thông nhau như sơ đồ dưới đây. Tại mỗi phòng, anh Sơn sẽ chọn ngẫu nhiên một trong các cửa thông với phòng hiện tại (với xác suất như nhau) để đi tiếp. Quá trình di chuyển diễn ra liên tục và trò chơi sẽ kết thúc ngay khi anh bước vào phòng chứa Kho báu hoặc phòng có Bẫy. Biết anh Sơn bắt đầu từ Phòng 1, tính xác suất để anh tìm được kho báu. (Kết quả làm tròn đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t\\begin{tikzpicture}[scale=1.0]\r\n\t\t\t\\draw[thick] (0,0) rectangle (6,4);\r\n\t\t\t\\draw[thick] (3,0) -- (3,4);\r\n\t\t\t\\draw[thick] (0,2) -- (6,2);\r\n\t\t\t\\draw[thick] (2.5,3) -- (3.5,3);\r\n\t\t\t\\draw[thick] (2.5,1) -- (3.5,1);\r\n\t\t\t\\draw[thick] (1.5,1.5) -- (1.5,2.5);\r\n\t\t\t\\draw[thick] (4.5,1.5) -- (4.5,2.5);\r\n\t\t\t\\node at (1.5,3) {Phòng 1};\r\n\t\t\t\\node at (4.5,3) {Phòng 2};\r\n\t\t\t\\node at (1.5,1) {Phòng 3};\r\n\t\t\t\\node at (4.5,1) {Phòng 4};\r\n\t\t\t\\draw[thick] (-2,2) rectangle (0,4);\r\n\t\t\t\\node at (-1,3) {Kho báu};\r\n\t\t\t\\draw[thick] (6,0) rectangle (8,2);\r\n\t\t\t\\node at (7,1) {Bẫy};\r\n\t\t\\end{tikzpicture}\r\n\t\\end{center}"
+        },
+        {
+            "maCau": "q_8378ab9900",
+            "ma_goc": "2411-363",
+            "kieuCau": "TLN",
+            "cauDan": "Nhân dịp nghỉ lễ 30/4, siêu thị X in ra 100 phiếu thưởng được đánh số thứ tự từ 1 đến 100, mỗi phiếu ghi 1 số, các phiếu khác nhau ghi số khác nhau. Mỗi khách hàng trong 100 khách hàng đầu tiên đến siêu thị trong ngày 30/4 sẽ được nhận 1 phiếu thưởng. Những người được nhận phiếu thưởng có thể tìm thêm 2 người khác để ghép thành 1 nhóm có 3 người. Nếu tổng các số ghi trên 3 thẻ của 3 người trong nhóm bằng 100 thì mỗi người trong nhóm được nhận 50.000đ. Siêu thị quy định:\\\\\r\n\t1) Một người có thể ghép vào nhiều nhóm nên có thể nhận thưởng nhiều lần.\\\\\r\n\t2) Mỗi nhóm 3 người chỉ được nhận thưởng 1 lần.\\\\\r\n\tHỏi ban quản lý siêu thị phải chuẩn bị số tiền thưởng lớn nhất là bao nhiêu triệu đồng (kết quả làm tròn đến hàng đơn vị)?"
+        }
+    ]
+}
