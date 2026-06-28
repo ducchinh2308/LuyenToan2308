@@ -1,0 +1,33 @@
+{
+    "maDe": "HL_TN_GK1_FNGW25",
+    "tenDe": "t4",
+    "thoiGian": 0,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_414be403c1",
+            "ma_goc": "2061-786",
+            "kieuCau": "TN",
+            "cauDan": "Nội dung câu hỏi trắc nghiệm (Chọn 1 đáp án đúng) nằm ở đây.",
+            "paA": "Đáp án A sai",
+            "paB": "Đáp án B đúng",
+            "paC": "Đáp án C sai",
+            "paD": "Đáp án D sai"
+        },
+        {
+            "maCau": "q_71e21661bb",
+            "ma_goc": "8749-678",
+            "kieuCau": "DS",
+            "cauDan": "Nội dung câu hỏi Đúng/Sai nằm ở đây.",
+            "paA": "Ý A đúng",
+            "paB": "Ý B sai",
+            "paC": "Ý C đúng",
+            "paD": "Ý D sai"
+        },
+        {
+            "maCau": "q_c5ac38f678",
+            "ma_goc": "1420-606",
+            "kieuCau": "TLN",
+            "cauDan": "Nội dung câu hỏi trả lời ngắn nằm ở đây."
+        }
+    ]
+}
