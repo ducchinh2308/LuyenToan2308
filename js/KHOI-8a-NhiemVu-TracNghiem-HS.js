@@ -390,7 +390,7 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
         }
 
         // =====================================================================
-        // 3. LOGIC PHÂN LOẠI CHÍNH XÁC (4 TRẠNG THÁI)
+        // 3. LOGIC PHÂN LOẠI CHÍNH XÁC (DỰA VÀO LƯỢT VÀ THỜI GIAN)
         // =====================================================================
         const now = new Date();
         let dsCanLam = [], dsLamLai = [], dsChuaLamKhoa = [], dsDaLamKhoa = [];
@@ -399,28 +399,27 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
         GocHocSinhState.danhSachNhiemVu.forEach(nv => {
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
-            const gioiHanLuot = nv.so_luot_lam_bai || 0;
+            const gioiHanLuot = parseInt(nv.so_luot_lam_bai) || 0; // 0 = Vô hạn
             
             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+            
+            // Logic: Đã hết lượt nếu (Giới hạn > 0) VÀ (Đã làm >= Giới hạn)
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
-            const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
-            // Chỉ khóa cứng nếu GV chủ động bấm khóa (trang_thai_cham = 1)
-            const daBiKhoaGiaoVien = kqLatest && kqLatest.trang_thai_cham === 1;
-
             if (soLuotDaLam === 0) {
-                // CHƯA LÀM
-                if (daQuaHan || daBiKhoaGiaoVien) {
-                    dsChuaLamKhoa.push(nv);
+                // --- NHÓM CHƯA LÀM ---
+                if (daQuaHan) {
+                    dsChuaLamKhoa.push(nv); // Chưa làm mà đã hết hạn
                 } else {
-                    dsCanLam.push(nv);
+                    dsCanLam.push(nv); // Chưa làm, còn hạn
                 }
             } else {
-                // ĐÃ LÀM
-                if (daQuaHan || daHetLuot || daBiKhoaGiaoVien) {
+                // --- NHÓM ĐÃ LÀM (N > 0) ---
+                // Bài bị khóa nếu: Đã quá hạn HOẶC đã làm hết lượt cho phép
+                if (daQuaHan || daHetLuot) {
                     dsDaLamKhoa.push(nv);
                 } else {
-                    dsLamLai.push(nv);
+                    dsLamLai.push(nv); // Còn hạn VÀ còn lượt làm
                 }
             }
         });
@@ -461,7 +460,7 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             else { mauVien = "#28a745"; textBadgeTrangThai = "🟩 CHƯA LÀM (MỚI)"; }
 
             const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
-            const daBiKhoaGiaoVien = kqLatest && kqLatest.trang_thai_cham === 1;
+            //const daBiKhoaGiaoVien = kqLatest && kqLatest.trang_thai_cham === 1;
 
             let htmlKetQua = "";
             if (soLuotDaLam > 0 && kqLatest) {
@@ -479,9 +478,10 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             }
 
             let nutHanhDong = "";
-            if (daBiKhoaGiaoVien) {
-                nutHanhDong = `<button disabled style="width: 100%; padding: 11px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">🔒 ĐÃ CHẤM (KHÓA NỘP LẠI)</button>`;
-            } else if (dinhDangTab === 'CHUA_LAM_KHOA') {
+            // if (daBiKhoaGiaoVien) {
+            //     //nutHanhDong = `<button disabled style="width: 100%; padding: 11px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">🔒 ĐÃ CHẤM (KHÓA NỘP LẠI)</button>`;
+            // } else 
+            if (dinhDangTab === 'CHUA_LAM_KHOA') {
                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
             } else if (dinhDangTab === 'DA_LAM_KHOA') {
@@ -767,11 +767,7 @@ async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
 
         if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
 
-        //// =========================================================
-        //// 4. TRỘN ĐỀ TRỰC TIẾP TỪ DỮ LIỆU GITHUB
-        //// =========================================================
-        //// Không cần ráp với Database nữa, vì Database chứa mã bảo mật.
-        //const deThiDaTron = ham_8_9_tron_de_thi_trac_nghiem(dsNoiDungGH);
+        
 
         // =========================================================
         // 4. TRỘN ĐỀ CÓ ĐIỀU KIỆN (CHỈ XÁO KHI KHÔNG PHẢI LIVE QUIZ)

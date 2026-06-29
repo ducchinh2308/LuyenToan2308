@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_20a6c68b93",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Hình chữ nhật có $4$ cạnh. (Sai)\r\n\t\t\t\t\\itemch Hình vuông có đúng $4$ cạnh bằng nhau. (Đúng)\r\n\t\t\t\t\\itemch Hình tròn (hoặc khối cầu) không có góc cạnh nên có thể lăn được. (Đúng)\r\n\t\t\t\t\\itemch Khối rubik có dạng khối lập phương, không phải hình chữ nhật. (Sai)\r\n\t\t\t\\end{itemchoice}"
+}

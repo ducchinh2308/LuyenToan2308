@@ -51,7 +51,7 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
 
         if (mangMaNV.length > 0) {
             const { data: dsNVGoc } = await _supabase
-                .from('nhiem_vu')
+                .from('nhiem_vu_trac_nghiem')
                 .select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai, cau_truc_de')
                 .in('ma_nhiem_vu', mangMaNV);
 
@@ -400,7 +400,7 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                     let offset = ngayMai.getTimezoneOffset() * 60000;
                     let thoiGianMoiISO = (new Date(ngayMai - offset)).toISOString().slice(0, 19);
 
-                    const { error: errNhiemVu } = await _supabase.from('nhiem_vu').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
+                    const { error: errNhiemVu } = await _supabase.from('nhiem_vu_trac_nghiem').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
                     if (errNhiemVu) throw errNhiemVu;
 
                     const { error: errUpdate } = await _supabase.from('yeu_cau_hoc_sinh').update({ trang_thai: 1, uid_gv_duyet: window.GocGiaoVienState?.uid || null }).eq('id', idDon);

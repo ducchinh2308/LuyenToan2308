@@ -309,7 +309,7 @@ window.ham_9_2_tao_phong_live = async function () {
 
     try {
         // Tải danh sách Học Liệu
-        const { data: dsHL, error } = await _supabase.from('hoc_lieu').select('ma_hoc_lieu, ten_hoc_lieu').order('ngay_tao', { ascending: false });
+        const { data: dsHL, error } = await _supabase.from('hoc_lieu_trac_nghiem').select('ma_hoc_lieu, ten_hoc_lieu').order('ngay_tao', { ascending: false });
 
         if (error) throw error;
         if (!dsHL || dsHL.length === 0) return Swal.fire('Thông báo', 'Kho học liệu trống. Thầy hãy tải lên File JSON đề thi trước nhé!', 'warning');
@@ -369,11 +369,11 @@ window.ham_9_2_tao_phong_live = async function () {
                 // 🌟 THUẬT TOÁN ĐẾM SỐ CÂU CHUẨN XÁC ĐỂ LÕI CHẤM ĐIỂM KHÔNG BỊ "NGÁO"
                 let tongSoCau = 20; // Mặc định dự phòng
                 try {
-                    const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', maHL).single();
+                    const { data: hl } = await _supabase.from('hoc_lieu_trac_nghiem').select('url_github').eq('ma_hoc_lieu', maHL).single();
                     let urlFileGitHub = hl.url_github;
                     if (!urlFileGitHub) {
                         let maDeGoc = maHL;
-                        if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+                        if (maDeGoc.startsWith("HL_TN_")) maDeGoc = maDeGoc.replace("HL_TN_", "");
                         urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
                     } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
                         urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
@@ -393,7 +393,7 @@ window.ham_9_2_tao_phong_live = async function () {
                 const cauTrucDeChuan = `${tongSoCau} câu`;
 
                 // BƯỚC 1: TẠO NHIỆM VỤ ẢO NGẦM
-                const { error: errNV } = await _supabase.from('nhiem_vu').insert([{
+                const { error: errNV } = await _supabase.from('nhiem_vu_trac_nghiem').insert([{
                     ma_nhiem_vu: maNhiemVuAo,
                     ten_nhiem_vu: tenNhiemVuAo,
                     loai_nhiem_vu: "Làm đề (Online)",
@@ -455,17 +455,17 @@ window.ham_9_3_vao_dieu_khien_phong = async function (maPhong) {
         if (errPhong) throw errPhong;
 
         // 1. LẤY THÔNG TIN NHIỆM VỤ ĐỂ TRUY VẾT HỌC LIỆU GỐC
-        const { data: nv } = await _supabase.from('nhiem_vu').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai, ma_hoc_lieu').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
+        const { data: nv } = await _supabase.from('nhiem_vu_trac_nghiem').select('ten_nhiem_vu, cau_truc_de, thoi_gian_lam_bai, ma_hoc_lieu').eq('ma_nhiem_vu', phong.ma_nhiem_vu).single();
 
         // 🌟 2. THUẬT TOÁN ĐẾM SỐ CÂU CHUẨN XÁC 100% (TRỰC TIẾP TỪ FILE ĐỀ)
         let tongSoCau = 20; // Mặc định nếu file lỗi
         try {
-            const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
+            const { data: hl } = await _supabase.from('hoc_lieu_trac_nghiem').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
 
             let urlFileGitHub = hl.url_github;
             if (!urlFileGitHub) {
                 let maDeGoc = nv.ma_hoc_lieu;
-                if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+                if (maDeGoc.startsWith("HL_TN_")) maDeGoc = maDeGoc.replace("HL_TN_", "");
                 urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
             } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
                 urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
@@ -706,14 +706,14 @@ window.ham_gv_xem_de_thi_truc_tiep = async function () {
         Swal.fire({ title: '⏳ Đang tải nội dung đề...', didOpen: () => Swal.showLoading() });
 
         const maNV = window.ThongTinPhongLive.maNhiemVu || window.ThongTinLiveGiaoVien.maNhiemVu;
-        const { data: nv } = await _supabase.from('nhiem_vu').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNV).single();
-        const { data: hl } = await _supabase.from('hoc_lieu').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
+        const { data: nv } = await _supabase.from('nhiem_vu_trac_nghiem').select('ma_hoc_lieu').eq('ma_nhiem_vu', maNV).single();
+        const { data: hl } = await _supabase.from('hoc_lieu_trac_nghiem').select('url_github').eq('ma_hoc_lieu', nv.ma_hoc_lieu).single();
 
         // 1. THUẬT TOÁN VÁ LINK GITHUB (Chống lỗi null)
         let urlFileGitHub = hl.url_github;
         if (!urlFileGitHub) {
             let maDeGoc = nv.ma_hoc_lieu;
-            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            if (maDeGoc.startsWith("HL_TN_")) maDeGoc = maDeGoc.replace("HL_TN_", "");
             urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
             urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
@@ -800,7 +800,7 @@ window.ham_9_3_4_soi_bai_live = async function (uidHocSinh) {
 
     try {
         const maNV = window.ThongTinPhongLive.maNhiemVu;
-        const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
+        const { data: dsKQ } = await _supabase.from('ket_qua_trac_nghiem').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
 
         if (dsKQ && dsKQ.length > 0) {
             const kq = dsKQ[0];
@@ -905,17 +905,17 @@ window.ham_9_3_5_mo_full_de_live = async function (uidHocSinh, maCauScroll) {
         if (!hsLive) throw new Error("Mất kết nối với học sinh này.");
 
         // 1. Tải khung nhiệm vụ và mã học liệu
-        const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNV).single();
+        const { data: nvData, error: errNV } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').eq('ma_nhiem_vu', maNV).single();
         if (errNV) throw errNV;
 
-        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+        const { data: hlData, error: errHL } = await _supabase.from('hoc_lieu_trac_nghiem').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
         if (errHL) throw errHL;
 
         // 2. Tải File Đề gốc từ Github
         let urlFileGitHub = hlData.url_github;
         if (!urlFileGitHub) {
             let maDeGoc = nvData.ma_hoc_lieu;
-            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            if (maDeGoc.startsWith("HL_TN_")) maDeGoc = maDeGoc.replace("HL_TN_", "");
             urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
             urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
@@ -956,7 +956,7 @@ window.ham_9_3_5_mo_full_de_live = async function (uidHocSinh, maCauScroll) {
         let chiTietMock = [];
         let diemMock = hsLive.diem_so || 0;
 
-        const { data: dsKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
+        const { data: dsKQ } = await _supabase.from('ket_qua_trac_nghiem').select('*').eq('ma_nhiem_vu', maNV).eq('uid_hoc_sinh', uidHocSinh).order('thoi_gian_nop', { ascending: false });
         if (dsKQ && dsKQ.length > 0) {
             const kq = dsKQ[0];
             let rawData = kq.chi_tiet_lam_bai || kq.chi_tiet || kq.ket_qua_chi_tiet || '[]';
@@ -1032,10 +1032,10 @@ window.ham_9_4_xoa_phong_live = async function (maPhong, maNhiemVuAo) {
 
                 if (maNhiemVuAo) {
                     // 3. Xóa Dữ liệu bài làm (Chi tiết và điểm) trong bảng Hệ thống gốc
-                    await _supabase.from('ket_qua_thi').delete().eq('ma_nhiem_vu', maNhiemVuAo);
+                    await _supabase.from('ket_qua_trac_nghiem').delete().eq('ma_nhiem_vu', maNhiemVuAo);
 
                     // 4. Tiêu hủy Nhiệm vụ Ảo
-                    await _supabase.from('nhiem_vu').delete().eq('ma_nhiem_vu', maNhiemVuAo);
+                    await _supabase.from('nhiem_vu_trac_nghiem').delete().eq('ma_nhiem_vu', maNhiemVuAo);
                 }
 
                 Swal.fire('Thành công!', 'Đã dọn dẹp sạch sẽ Phòng Đấu Trường và mọi kết quả liên quan.', 'success');
@@ -1071,7 +1071,7 @@ window.ham_9_5_thong_ke_live_quiz = async function (maPhong, maNhiemVuAo, tenNhi
         }
 
         // 2. Kéo dữ liệu nộp bài chính thức
-        const { data: dsKQ, error: errKQ } = await _supabase.from('ket_qua_thi').select('*').eq('ma_nhiem_vu', maNhiemVuAo).order('thoi_gian_nop', { ascending: false });
+        const { data: dsKQ, error: errKQ } = await _supabase.from('ket_qua_trac_nghiem').select('*').eq('ma_nhiem_vu', maNhiemVuAo).order('thoi_gian_nop', { ascending: false });
         if (errKQ) throw errKQ;
 
         let tuDienKQCuoi = {};
@@ -1320,13 +1320,13 @@ window.ham_9_5_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maC
         const { maNhiemVuAo, mangDaThamGia } = window.DataThongKeLiveHienTai;
         const hs = mangDaThamGia[indexHocSinh];
 
-        const { data: nvData } = await _supabase.from('nhiem_vu').select('*').eq('ma_nhiem_vu', maNhiemVuAo).single();
+        const { data: nvData } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').eq('ma_nhiem_vu', maNhiemVuAo).single();
         const { data: hlData } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
 
         let urlFileGitHub = hlData.url_github;
         if (!urlFileGitHub) {
             let maDeGoc = nvData.ma_hoc_lieu;
-            if (maDeGoc.startsWith("HL_DE_")) maDeGoc = maDeGoc.replace("HL_DE_", "");
+            if (maDeGoc.startsWith("HL_TN_")) maDeGoc = maDeGoc.replace("HL_TN_", "");
             urlFileGitHub = `https://ducchinh2308.github.io/LuyenToan2308/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         } else if (urlFileGitHub.includes('github.com') && urlFileGitHub.includes('/blob/')) {
             urlFileGitHub = urlFileGitHub.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');

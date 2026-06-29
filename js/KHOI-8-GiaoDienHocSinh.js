@@ -109,12 +109,18 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
             <button onclick="ham_8_2d_tab_nhiem_vu_khao_sat()" style="padding: 12px 15px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📊 NV KHẢO SÁT</button>
             </div>
 
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
-                <button onclick="ham_8_4_tab_ket_qua()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📊 KẾT QUẢ</button>
-                <button onclick="ham_8_5_tab_ho_so()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">👤 HỒ SƠ</button>
-                <button onclick="ham_13_1_ve_hop_thu_hoc_sinh()" style="padding: 10px 15px; background: #0ea5e9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">💬 HỎI ĐÁP</button>
-                <button onclick="ham_8_6_tab_live_quiz()" style="padding: 10px 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">⚔️ LIVE QUIZ</button>
-            </div>
+           <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
+    <button onclick="ham_8_4_tab_ket_qua_trac_nghiem()" style="padding: 10px 15px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📝 KQ Trắc Nghiệm</button>
+    <button onclick="" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📷 KQ Tự Luận</button>
+    <button onclick="" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📺 KQ Đọc Bài</button>
+    <button onclick="" style="padding: 10px 15px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📊 KQ Khảo Sát</button>
+</div>
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
+    <button onclick="ham_8_5_tab_ho_so()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">👤 HỒ SƠ</button>
+    <button onclick="ham_13_1_ve_hop_thu_hoc_sinh()" style="padding: 10px 15px; background: #0ea5e9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">💬 HỎI ĐÁP</button>
+    <button onclick="ham_8_6_tab_live_quiz()" style="padding: 10px 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">⚔️ LIVE QUIZ</button>
+</div>
             
             <div id="vung-lam-viec-hoc-sinh" style="padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 300px;"></div>
         </div>
@@ -669,7 +675,7 @@ window.ham_8_2d_tab_nhiem_vu_khao_sat = async function() {
 // =====================================================================
 // Hàm 8.4: Tab HỌC BÀ VÀ ĐIỂM SỐ (Bảng điều khiển cá nhân)
 // =====================================================================
-async function ham_8_4_tab_ket_qua() {
+async function ham_8_4_tab_ket_qua_trac_nghiem() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 60px;">
@@ -707,7 +713,7 @@ async function ham_8_4_tab_ket_qua() {
 
         if (danhSachMaNhiemVu.length > 0) {
             const { data: dsNV } = await _supabase
-                .from('nhiem_vu')
+                .from('nhiem_vu_trac_nghiem')
                 .select('ma_nhiem_vu, ten_nhiem_vu, loai_nhiem_vu')
                 .in('ma_nhiem_vu', danhSachMaNhiemVu);
 
