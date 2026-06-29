@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_cb6b180bd5",
-  "dapAn": "B",
-  "loiGiai": "Ta có $\\cot(3x - 45^\\circ) = \\displaystyle \\frac{\\sqrt{3}}{3} \\Leftrightarrow \\cot(3x - 45^\\circ) = \\cot(60^\\circ) \\Leftrightarrow 3x - 45^\\circ = 60^\\circ + k180^\\circ$ $(k \\in \\mathbb{Z})$\\\\\r\n\t\t$\\Leftrightarrow 3x = 105^\\circ + k180^\\circ$ $(k \\in \\mathbb{Z}) \\Leftrightarrow x = 35^\\circ + k60^\\circ$ $(k \\in \\mathbb{Z})$.\\\\"
-}

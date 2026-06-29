@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f507902102",
-  "dapAn": "C",
-  "loiGiai": "Diện tích của tam giác đều $ABC$ cạnh $a$ được tính theo công thức:\\\\\r\n\t\t$\\displaystyle S_{ABC} = \\frac{a^2\\sqrt{3}}{4}$.\\\\\r\n\t\tTừ công thức thể tích khối chóp tổng quát $\\displaystyle V = \\frac{1}{3} \\cdot S_{ABC} \\cdot SA$, ta suy ra chiều cao $SA$:\\\\\r\n\t\t$\\displaystyle SA = \\frac{3V}{S_{ABC}} = \\frac{3 \\cdot \\frac{a^3}{4}}{\\frac{a^2\\sqrt{3}}{4}} = \\frac{3a}{\\sqrt{3}} = a\\sqrt{3}$."
-}

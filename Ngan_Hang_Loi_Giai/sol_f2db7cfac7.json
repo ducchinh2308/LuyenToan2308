@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f2db7cfac7",
-  "dapAn": "C",
-  "loiGiai": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.A_1B_1C_1D_1$ (xét từ đỉnh $A_1$):\\\\\r\n\t\tTa có tổng ba vectơ các cạnh xuất phát từ đỉnh $A_1$ bằng vectơ đường chéo xuất phát từ đỉnh đó.\\\\\r\n\t\tDo đó: $\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{A_1C}$."
-}

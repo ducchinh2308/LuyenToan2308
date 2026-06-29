@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_e45668c087",
-  "dapAn": "D",
-  "loiGiai": "Sử dụng công thức số hạng tổng quát của cấp số cộng: $\\displaystyle u_n = u_1 + (n-1)d$.\\\\\r\n\t\tTừ giả thiết bài toán, ta lập hệ phương trình bậc nhất hai ẩn:\\\\\r\n\t\t$\\displaystyle \\begin{cases} u_1 + d = -24 \\\\ u_1 + 6d = 4 \\end{cases} \\Leftrightarrow \\begin{cases} 5d = 28 \\\\ u_1 + d = -24 \\end{cases} \\Leftrightarrow \\begin{cases} d = \\frac{28}{5} \\\\ u_1 = -\\frac{148}{5} \\end{cases}$.\\\\\r\n\t\tÁp dụng công thức tính tổng $n$ số hạng đầu tiên của một cấp số cộng:\\\\\r\n\t\t$\\displaystyle S_n = \\frac{n \\cdot [2u_1 + (n-1)d]}{2}$.\\\\\r\n\t\tThay số cho $n = 10$, ta thu được tổng của 10 số hạng đầu tiên:\\\\\r\n\t\t$\\displaystyle S_{10} = \\frac{10 \\cdot \\left[ 2 \\cdot \\left(-\\frac{148}{5}\\right) + 9 \\cdot \\frac{28}{5} \\right]}{2} = 5 \\cdot \\left( \\frac{-296 + 252}{5} \\right) = -44$.\\\\\r\n\t\tVậy tổng của mười số hạng đầu tiên là $S_{10} = -44$."
-}

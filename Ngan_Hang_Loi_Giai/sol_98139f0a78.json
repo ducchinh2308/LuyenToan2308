@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_98139f0a78",
-  "dapAn": "42",
-  "loiGiai": "\\begin{center}\r\n\t\t\t\\includegraphics[scale=0.8]\r\n\t\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_064934.png}\r\n\t\t\\end{center}\r\n\t\tChọ hệ trục tọa độ như hình vẽ. Khi đó:\\\\\r\n\t\t$A(0;0;0), B(a;0;0), C(a;a;0), D(0;2a;0), S(0;0;a); M\\left(\\frac{a}{2}; 0; \\frac{a}{2}\\right); N\\left(\\frac{a}{2}; \\frac{3a}{2}; 0\\right)$.\\\\\r\n\t\tVà $\\overrightarrow{MN}\\left(0; \\frac{3a}{2}; -\\frac{a}{2}\\right); \\overrightarrow{AC}=(a;a;0); \\overrightarrow{SA}=(0;0;-a)$.\\\\\r\n\t\tVéc tơ chỉ phương của đường thẳng $MN$ là: $\\vec{u}=(0; 3; -1)$.\\\\\r\n\t\tCặp véc tơ chỉ phương của mặt phẳng $(SAC)$ có tọa độ là: $\\vec{a}=(1; 1; 0); \\text{ và } \\vec{b}=(0; 0; -1)$.\\\\\r\n\t\tVéc tơ pháp tuyến của mặt phẳng $(SAC): \\vec{n}=[\\vec{a};\\vec{b}]=(-1; 1; 0)$.\\\\\r\n\t\tGọi $\\alpha$ là góc giữa $AC$ và mặt phẳng $(SAC)$, khi đó: $\\sin \\alpha = \\frac{|3|}{\\sqrt{2} \\cdot \\sqrt{10}} \\Rightarrow \\alpha \\approx 42^\\circ$."
-}

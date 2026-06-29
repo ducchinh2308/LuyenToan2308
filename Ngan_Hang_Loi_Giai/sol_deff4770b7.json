@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_deff4770b7",
-  "dapAn": "D",
-  "loiGiai": "Ta có $n = 11 + 16 + 12 + 15 + 10 + 16 = 80 \\Rightarrow \\displaystyle \\frac{n}{4} = 20 \\Rightarrow Q_1 \\in [500;1000)$; $\\displaystyle \\frac{3n}{4} = 60 \\Rightarrow Q_3 \\in [2000;2500)$.\\\\\r\n\t\t$\\displaystyle Q_1 = 500 + \\frac{20-11}{16} \\cdot 500 = \\frac{3125}{4}$.\\\\\r\n\t\t$\\displaystyle Q_3 = 2000 + \\frac{60-54}{10} \\cdot 500 = 2300$.\\\\\r\n\t\t$\\displaystyle \\Delta_Q = Q_3 - Q_1 = 2300 - \\frac{3125}{4} = 1518{,}75 \\approx 1519$."
-}

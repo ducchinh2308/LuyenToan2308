@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_adebdd595b",
-  "dapAn": "210",
-  "loiGiai": "Gọi số lượng bức tranh cô Hà vẽ được trong một tuần là $x$ ($x \\in \\mathbb{N}$).\\\\\r\n\t\tGọi số lượng tấm thiệp cô Hà làm được trong một tuần là $y$ ($y \\in \\mathbb{N}$).\\\\\r\n\t\tTừ dữ kiện đề bài ta có hệ bất phương trình bậc nhất hai ẩn: $\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ x + y \\le 10 \\\\ 2x + \\displaystyle\\frac{3}{4}y \\le 15 \\end{cases}$.\\\\\r\n\t\tMiền nghiệm của hệ bất phương trình trên là miền không được tô màu (tính cả biên) trong hình vẽ sau:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_adebdd595b_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tCác đỉnh của miền nghiệm là $O(0;0)$, $A(0;10)$, $B(6;4)$, $C(7{,}5;0)$.\\\\\r\n\t\tLợi nhuận mà cô Hà có thể kiếm được trong một tuần là $F(x; y) = 25x + 15y$.\\\\\r\n\t\tTa có: $F(0; 0) = 0$, $F(0; 10) = 150$, $F(6; 4) = 210$, $F(7{,}5; 0) = 187{,}5$.\\\\\r\n\t\tVậy lợi nhuận cao nhất cô Hà có thể kiếm được là $210$ nghìn đồng."
-}

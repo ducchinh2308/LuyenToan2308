@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_c2a5e5c6f3",
-  "dapAn": "A",
-  "loiGiai": "Điều kiện xác định: $x > 0$.\\\\\r\n\t\tTa có: $\\log_{0{,}5} x > \\log_{0{,}5} 1 \\Leftrightarrow x < 1$.\\\\\r\n\t\tKết hợp điều kiện ta được tập nghiệm của bất phương trình là $(0; 1)$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5fb1298132",
-  "dapAn": "B",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_5fb1298132_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $CB \\perp AB$ (do $ABCD$ là hình vuông) và $CB \\perp SA$ (vì $SA \\perp (ABCD)$) $\\Rightarrow CB \\perp (SAB)$.\\\\\r\n\t\tDo đó, hình chiếu vuông góc của điểm $C$ trên mặt phẳng $(SAB)$ là điểm $B$.\\\\\r\n\t\tMà điểm $S$ thuộc mặt phẳng $(SAB)$ nên hình chiếu của đường thẳng $SC$ trên mặt phẳng $(SAB)$ là đường thẳng $SB$."
-}

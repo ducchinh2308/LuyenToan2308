@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_de19e4b7f5",
-  "dapAn": "C",
-  "loiGiai": "Ta có tổng số thí sinh $n = 6 + 3 + 28 + 41 + 17 + 5 = 100$. \\\\\r\n\t\tKhi đó vị trí tìm nhóm chứa tứ phân vị thứ ba là $\\displaystyle \\frac{3n}{4} = 75$. \\\\\r\n\t\tTa tính tần số tích lũy dồn từ nhóm đầu tiên: $cf_1 = 6$, $cf_2 = 9$, $cf_3 = 37 < 75$, $cf_4 = 78 \\ge 75$. \\\\\r\n\t\tSuy ra tứ phân vị $Q_3$ thuộc nhóm thứ tư, tức là nhóm $[90; 105)$. \\\\"
-}

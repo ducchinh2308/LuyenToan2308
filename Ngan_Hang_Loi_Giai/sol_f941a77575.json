@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f941a77575",
-  "dapAn": "B",
-  "loiGiai": "Ta có $y = \\dfrac{x^2 + x - 3}{x + 1} = \\dfrac{x(x + 1) - 3}{x + 1} = x - \\dfrac{3}{x + 1}$.\\\\\r\n\t\t$\\lim\\limits_{x \\to \\infty} (y - x) = \\lim\\limits_{x \\to \\infty} \\left( - \\dfrac{3}{x + 1} \\right) = 0$.\\\\\r\n\t\tVậy đường tiệm cận xiên của đồ thị hàm số đã cho là $y = x$."
-}

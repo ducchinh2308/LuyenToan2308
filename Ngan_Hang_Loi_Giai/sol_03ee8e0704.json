@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_03ee8e0704",
-  "dapAn": "C",
-  "loiGiai": "Ta có $n=40$.\\\\\r\n\t\t$Q_3 = \\displaystyle \\frac{x_{30} + x_{31}}{2} \\Rightarrow Q_3 \\in [120;160)$.\\\\\r\n\t\t$Q_3 = 120 + \\displaystyle \\frac{\\displaystyle \\frac{3}{4} \\cdot 40 - (11+10+6)}{8} \\cdot 40 = 135$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_cfbcd53b53",
-  "dapAn": "B",
-  "loiGiai": "Vì cơ số $a = 10 > 1$, lấy lôgarít cơ số 10 cả hai vế của bất phương trình ta giữ nguyên chiều: \\\\\r\n\t\t$10^x < 20 \\Leftrightarrow x < \\log_{10} 20 \\Leftrightarrow x < \\log 20$. \\\\\r\n\t\tDo đó tập nghiệm của bất phương trình là $S = (-\\infty; \\log 20)$. \\\\"
-}

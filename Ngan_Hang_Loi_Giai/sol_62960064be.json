@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_62960064be",
-  "dapAn": "D",
-  "loiGiai": "Xét hàm số $y = -x^3 - 3x + 1$, ta có $y' = -3x^2 - 3 = -3(x^2+1) < 0, \\forall x \\in \\mathbb{R}$.\r\n\t\tDo đó hàm số nghịch biến trên $\\mathbb{R}$."
-}

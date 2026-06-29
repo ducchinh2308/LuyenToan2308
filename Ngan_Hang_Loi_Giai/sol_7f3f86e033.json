@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_7f3f86e033",
-  "dapAn": "TFTT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có công thức xác suất toàn phần: $P(A) = P(B) \\cdot P(A|B) + P(\\overline{B}) \\cdot P(A|\\overline{B})$.\r\n\t\t\t\\itemch Xác suất chọn được học sinh biết chơi ít nhất một môn thể thao là:\\\\\r\n\t\t\t$P(A) = P(BA) + P(\\overline{B}A) = 0{,}12 + 0{,}16 = 0{,}28$.\r\n\t\t\t\\itemch Xác suất chọn được học sinh nam biết rằng học sinh được chọn biết chơi ít nhất một môn thể thao là: $P(B|A) = \\displaystyle\\frac{P(BA)}{P(A)} = \\displaystyle\\frac{0{,}12}{0{,}28} = \\displaystyle\\frac{12}{28} = \\displaystyle\\frac{3}{7}$.\r\n\t\t\t\\itemch Xác suất một học sinh biết chơi thể thao nếu biết học sinh đó là nữ là:\\\\\r\n\t\t\t$P(A|\\overline{B}) = \\displaystyle\\frac{P(\\overline{B}A)}{P(\\overline{B})} = \\displaystyle\\frac{0{,}16}{0{,}8} = 0{,}2$.\\\\\r\n\t\t\tXác suất để học sinh đó không biết chơi thể thao khi biết họ là nữ là:\\\\\r\n\t\t\t$P(\\overline{A}|\\overline{B}) = 1 - P(A|\\overline{B}) = 1 - 0{,}2 = 0{,}8$.\r\n\t\t\\end{itemchoice}"
-}

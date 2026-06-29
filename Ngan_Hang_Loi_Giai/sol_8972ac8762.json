@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8972ac8762",
-  "dapAn": "A",
-  "loiGiai": "Tìm hàm nguyên hàm trực tiếp theo biến số đại số $x$ ta được:\\\\\r\n\t\t$\\displaystyle \\int_{0}^{b}(3x^{2}-2025)\\,\\mathrm{d}x = \\left(x^{3}-2025x\\right) \\Big|_{0}^{b} = (b^{3}-2025b) - (0^{3}-2025 \\cdot 0) = b^{3}-2025b$."
-}

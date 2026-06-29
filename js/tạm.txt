@@ -1,0 +1,17 @@
+giao diện học sinh
+
+nhiệm vụ tự luận
+
+nhiệm vụ đã làm
+
+đã có hiện điểm số được chấm
+
+yêu cầu hiện thêm lời nhận xét của giáo viên
+
+khi bấm nút xem giải thì báo lỗi do được thiết kế cho trắc nghiệm
+
+❌ Lỗi mở bài thi: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+
+yêu cầu:
+
+nút xem bài giải thì mở file giải hoặc các ảnh giải của học liệu đó (cần thiết kế thêm phần này)

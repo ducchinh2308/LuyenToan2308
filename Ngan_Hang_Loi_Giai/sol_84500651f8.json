@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_84500651f8",
-  "dapAn": "C",
-  "loiGiai": "Cấp số nhân là dãy số mà tỉ số giữa hai số hạng liên tiếp luôn là một hằng số (gọi là công bội $q$).\\\\\r\n\t\tXét dãy số ở đáp án C: $2; 4; 8$. Ta có $\\displaystyle\\frac{4}{2} = 2$ và $\\displaystyle\\frac{8}{4} = 2$. Vậy đây là một cấp số nhân với công bội $q = 2$.\\\\\r\n\t\tCác dãy số ở đáp án A (cấp số cộng $d = 1$), B (cấp số cộng $d = 3$), D (cấp số cộng $d = 2$) đều không phải là cấp số nhân."
-}

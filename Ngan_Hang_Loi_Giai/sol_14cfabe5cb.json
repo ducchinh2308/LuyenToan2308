@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_14cfabe5cb",
-  "dapAn": "560",
-  "loiGiai": "\\begin{center}\r\n\t\t\t\\includegraphics[scale=0.8]\r\n\t\t\t{D:/NganHangToan/Bank-PNG/2026-05-31_064212.png}\r\n\t\t\\end{center}\r\n\t\tĐánh số các khu vực như hình vẽ.\\\\\r\n\t\tCần tìm một lộ trình đi qua tất cả các khu vực với chi phí nhỏ nhất. Để bảo đảm chi phí thấp nhất, lộ trình đi phải không cắt qua nhau và chọn chi phí qua cửa thấp nhất.\\\\\r\n\t\tKhách hàng xuất phát từ khu $1$, có thể đi qua $3$ cánh cửa, chọn cánh cửa có giá thấp nhất: $80\\,000$ để đi qua khu $2$ (nếu chọn $2$ cánh cửa còn lại, để đi qua khu $2$ sẽ tốn hơn).\\\\\r\n\t\tTừ khu $2$, chọn cánh cửa có giá thấp nhất: $90\\,000$ đồng để đi qua khu $3$ và sang khu $4$ qua cánh cửa $100\\,000$ (nếu đi sang khu $5$ trước, giá để sang khu $4$ cao hơn nhiều).\\\\\r\n\t\tTừ khu $4$, đi cánh cửa $120\\,000$ để qua khu $5$ rồi quay về trung tâm.\\\\\r\n\t\tTổng số tiền: $80\\,000 + 90\\,000 + 100\\,000 + 120\\,000 + 170\\,000 = 560\\,000$ đồng."
-}

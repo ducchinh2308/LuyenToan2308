@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_e7c7534aaa",
-  "dapAn": "A",
-  "loiGiai": "Xét phương án A: Công thức tích xác suất $P(AB) = P(A)P(B)$ chỉ áp dụng đúng khi hai biến cố $A$ và $B$ độc lập với nhau. Trong trường hợp tổng quát của hai biến cố ngẫu nhiên bất kỳ, công thức này hoàn toàn có thể sai. \\\\\r\n\t\tXét các phương án còn lại: B là định nghĩa chuẩn xác suất có điều kiện; C là tính chất biến cố đối; D là công thức xác suất đầy đủ (Đều luôn đúng). \\\\"
-}

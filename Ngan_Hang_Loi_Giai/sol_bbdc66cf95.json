@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_bbdc66cf95",
-  "dapAn": "1015",
-  "loiGiai": "Doanh thu từ việc bán $x$ kg sản phẩm mỗi ngày là: $R(x) = 170x$ (nghìn đồng).\\\\\r\n\t\tHàm lợi nhuận $P(x)$ bằng doanh thu trừ đi chi phí: $P(x) = R(x) - C(x)$.\\\\\r\n\t\t$P(x) = 170x - (x^3 - 3x^2 - 19x + 200)$\\\\\r\n\t\t$P(x) = -x^3 + 3x^2 + 189x - 200$, $x \\in (0; 14)$.\\\\\r\n\t\t$P'(x) = -3x^2 + 6x + 189$\\\\\r\n\t\t$P'(x) = 0 \\Leftrightarrow -3x^2 + 6x + 189 = 0 \\Leftrightarrow x = 9$ (do $x \\in (0; 14)$).\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_bbdc66cf95_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, hộ đó thu được lợi nhuận tối đa trong một ngày là $1015$ nghìn đồng."
-}

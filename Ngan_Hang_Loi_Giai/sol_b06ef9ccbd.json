@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b06ef9ccbd",
-  "dapAn": "B",
-  "loiGiai": "Một dãy số là cấp số cộng nếu kể từ số hạng thứ hai, mỗi số hạng đều bằng số hạng đứng ngay trước nó cộng với một số không đổi $d$ ($u_{n+1} - u_n = d$).\\\\\r\n\t\t- Xét dãy số ở phương án B: Ta thấy hiệu giữa hai số hạng liên tiếp luôn là hằng số:\\\\\r\n\t\t$\\displaystyle \\frac{2}{3} - \\frac{1}{3} = \\frac{1}{3}; \\quad 1 - \\frac{2}{3} = \\frac{1}{3}; \\quad \\frac{4}{3} - 1 = \\frac{1}{3}; \\quad \\frac{5}{3} - \\frac{4}{3} = \\frac{1}{3}$.\\\\\r\n\t\tDo đó, đây là một cấp số cộng với công sai $\\displaystyle d = \\frac{1}{3}$."
-}

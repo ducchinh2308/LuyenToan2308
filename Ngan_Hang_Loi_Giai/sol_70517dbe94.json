@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_70517dbe94",
-  "dapAn": "45,1",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_70517dbe94_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tXây dựng hệ trục tọa độ sao cho $O \\equiv A$, $B \\in Ox$ và $D \\in Oy$. \\\\\r\n\t\tTa được tiệm cận đứng là $x = 3 \\Rightarrow d = -3c$. \\\\\r\n\t\tTiệm cận ngang là $y = 3 \\Rightarrow a = 3c$. \\\\\r\n\t\tĐoạn $\\displaystyle AE = \\frac{2}{5}AB \\Rightarrow AE = 4 \\Rightarrow E(4; 0) \\Rightarrow b = -4a = -12c$. \\\\\r\n\t\tNên $\\displaystyle y = \\frac{3x - 12}{x - 3}$. \\\\\r\n\t\tPhần diện tích phải tính là: \\\\\r\n\t\t$\\displaystyle S = \\int_{0}^{2} \\frac{3x - 12}{x - 3} \\text{d}x + 2 \\cdot 6 + \\int_{4}^{10} \\left( 6 - \\frac{3x - 12}{x - 3} \\right) \\text{d}x \\approx 45,1$. \\\\"
-}

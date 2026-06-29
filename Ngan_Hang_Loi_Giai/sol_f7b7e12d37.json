@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f7b7e12d37",
-  "dapAn": "TTTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $B'(t) = 24t^3 - 288t^2 + 768t \\Rightarrow B'(2) = 576$. Vậy phát biểu này đúng.\r\n\t\t\t\\itemch Ta có $B'(t) = 0 \\Leftrightarrow t = 0$ hoặc $t = 4$ hoặc $t = 8$. Bảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_f7b7e12d37_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tDựa vào bảng biến thiên, trong khoảng $(4; 8)$ hàm số nghịch biến nên lượng khách giảm dần. Vậy phát biểu này đúng.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, tại $t = 8$ hàm số đạt giá trị nhỏ nhất trên đoạn $[0; 12]$ là $16$. Vậy phát biểu này đúng.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, số lượng khách tham dự lễ hội nhiều nhất là $13840$ khách tại thời điểm $t = 12$. Vậy phát biểu này sai.\r\n\t\t\\end{itemchoice}"
-}

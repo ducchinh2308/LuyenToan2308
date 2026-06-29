@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_233381ebf8",
-  "dapAn": "D",
-  "loiGiai": "Công thức số hạng tổng quát của cấp số cộng: $u_n = u_1 + (n-1)d \\Leftrightarrow u_4 = u_1 + 3d \\Leftrightarrow 5 = -1 + 3d$\\\\\r\n\t\t$\\Rightarrow d = 2 \\Rightarrow u_9 = u_1 + 8d = -1 + 8 \\cdot 2 = 15$."
-}

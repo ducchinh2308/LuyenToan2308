@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f02116c269",
-  "dapAn": "35",
-  "loiGiai": "Gọi $A_0 = 500$ triệu đồng, $a = 10$ triệu đồng, $r = 0{,}006$. $A_n$ là số tiền người đó có sau $n$ tháng kể từ lần gửi đầu tiên.\\\\\r\n\t\tSau $1$ tháng: $A_1 = A_0(1+r) + a$.\\\\\r\n\t\tSau $2$ tháng: $A_2 = \\big(A_0(1+r) + a\\big)(1+r) + a = A_0(1+r)^2 + a(1+r) + a$.\\\\\r\n\t\tSau $n$ tháng: $A_n = A_0(1+r)^n + a(1+r)^{n-1} + a(1+r)^{n-2} + \\dots + a(1+r) + a$\\\\\r\n\t\t$= A_0(1+r)^n + a\\Big( (1+r)^{n-1} + (1+r)^{n-2} + \\dots + (1+r) + 1 \\Big)$\\\\\r\n\t\t$= A_0(1+r)^n + a \\cdot \\displaystyle\\frac{(1+r)^n - 1}{r} = 500 \\cdot 1{,}006^n + 10 \\cdot \\displaystyle\\frac{1{,}006^n - 1}{0{,}006} \\ge 1000$\\\\\r\n\t\t$\\Leftrightarrow 500 \\cdot 1{,}006^n + \\displaystyle\\frac{5000}{3} \\cdot 1{,}006^n - \\displaystyle\\frac{5000}{3} \\ge 1000 \\Leftrightarrow 6500 \\cdot 1{,}006^n \\ge 8000 \\Leftrightarrow 1{,}006^n \\ge \\displaystyle\\frac{8000}{6500}$\\\\\r\n\t\t$\\Leftrightarrow n \\ge \\log_{1{,}006} \\displaystyle\\frac{8000}{6500} \\approx 34{,}7 \\Rightarrow n = 35$.\\\\\r\n\t\tVậy sau ít nhất $35$ tháng, người đó có số tiền tích luỹ lớn hơn $1$ tỉ đồng."
-}

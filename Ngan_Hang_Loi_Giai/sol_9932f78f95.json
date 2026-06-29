@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_9932f78f95",
-  "dapAn": "C",
-  "loiGiai": "Vì $M$ là trung điểm của đoạn thẳng $AB$ nên: $\\begin{cases} x_M = \\displaystyle \\frac{x_A + x_B}{2} = -1 \\\\ y_M = \\displaystyle \\frac{y_A + y_B}{2} = 1 \\\\ z_M = \\displaystyle \\frac{z_A + z_B}{2} = 3 \\end{cases}$."
-}

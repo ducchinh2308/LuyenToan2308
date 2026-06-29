@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_cc44c28153",
-  "dapAn": "FTTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Giá trị đại diện của nhóm $[50;60)$ được tính bằng công thức trung bình cộng hai đầu mút: $\\dfrac{50+60}{2} = 55$.\\\\\r\n\t\t\tKhẳng định này Sai.\r\n\t\t\t\\itemch Độ tuổi được dự báo ít xem phim nhất tương ứng với nhóm có tần số thấp nhất.\\\\\r\n\t\t\tTa so sánh tần số của từng nhóm: $6, 12, 16, 7, 2$.\\\\\r\n\t\t\tTần số nhỏ nhất là $2$, tương ứng với nhóm $[50;60)$.\\\\\r\n\t\t\tKhẳng định này Đúng.\r\n\t\t\t\\itemch Nhóm chứa mốt là nhóm có tần số lớn nhất.\\\\\r\n\t\t\tTrong bảng số liệu, nhóm $[30;40)$ có tần số lớn nhất là $16$.\\\\\r\n\t\t\tKhẳng định này Đúng.\r\n\t\t\t\\itemch Nhóm chứa mốt của mẫu số liệu là nhóm $[30;40)$. Do đó:\\\\\r\n\t\t\t$u_m = 30$, $n_m = 16$, $n_{m-1} = 12$, $n_{m+1} = 7$, $h = 10$.\\\\\r\n\t\t\tMốt của mẫu số liệu ghép nhóm là:\\\\\r\n\t\t\t$M_0 = 30 + \\dfrac{16-12}{(16-12)+(16-7)} \\cdot 10 = 30 + \\dfrac{4}{4+9} \\cdot 10 = 30 + \\dfrac{40}{13} \\approx 33$ tuổi.\\\\\r\n\t\t\tKhẳng định này Sai.\r\n\t\t\\end{itemchoice}"
-}

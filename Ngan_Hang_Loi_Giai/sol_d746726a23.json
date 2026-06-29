@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d746726a23",
-  "dapAn": "TFFT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số cách chọn ngẫu nhiên $1$ phong bì từ $35$ phong bì là $35$. Số cách chọn được phong bì có tiền là $5$. Vậy xác suất là $\\displaystyle \\frac{5}{35} = \\frac{1}{7}$. (Đúng)\r\n\t\t\t\\itemch Trong một chuỗi chọn ngẫu nhiên lần lượt không hoàn lại, nếu các học sinh không biết kết quả của những người chọn trước đó thì xác suất chọn được phong bì có tiền của mỗi học sinh tại mọi lượt vị trí là như nhau. (Sai)\r\n\t\t\t\\itemch Xác suất của học sinh cuối cùng vẫn bằng $\\displaystyle \\frac{1}{7}$, bằng với các học sinh khác. (Sai)\r\n\t\t\t\\itemch Xác suất chọn được phong bì có tiền của tất cả các học sinh đều bằng nhau và đều bằng $\\displaystyle \\frac{1}{7}$. (Đúng)\r\n\t\t\\end{itemchoice}"
-}

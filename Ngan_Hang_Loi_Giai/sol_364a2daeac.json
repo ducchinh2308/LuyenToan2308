@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_364a2daeac",
-  "dapAn": "C",
-  "loiGiai": "Theo định nghĩa công thức tính xác suất có điều kiện trong chương trình giáo khoa:\\\\\r\n\t\tXác suất của biến cố $A$ với điều kiện biến cố $B$ đã xảy ra bằng tỉ số giữa xác suất của biến cố giao $A \\cap B$ và xác suất của biến cố $B$.\\\\\r\n\t\tDo đó công thức đúng là: $\\displaystyle P(A|B)=\\frac{P(A\\cap B)}{P(B)}$."
-}

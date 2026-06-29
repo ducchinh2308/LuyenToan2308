@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1817f18b72",
-  "dapAn": "D",
-  "loiGiai": "Họ các nguyên hàm của hàm số mũ cơ số 2 là: $\\displaystyle F(x) = \\int 2^{x}\\,\\mathrm{d}x = \\frac{2^{x}}{\\ln 2}+C$.\\\\\r\n\t\tDựa vào điều kiện đề bài $\\displaystyle F(0)=0 \\Rightarrow \\frac{2^{0}}{\\ln 2}+C = 0 \\Rightarrow \\frac{1}{\\ln 2}+C = 0 \\Rightarrow C = -\\frac{1}{\\ln 2}$.\\\\\r\n\t\tKhi đó, hàm nguyên hàm cụ thể là: $\\displaystyle F(x) = \\frac{2^{x}-1}{\\ln 2}$.\\\\\r\n\t\tSuy ra giá trị tại điểm điểm cần tính: $\\displaystyle F(2) = \\frac{2^{2}-1}{\\ln 2} = \\frac{3}{\\ln 2}$."
-}

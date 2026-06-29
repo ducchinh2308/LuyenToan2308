@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_2f6517c591",
-  "dapAn": "TTFF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Phương trình mặt cầu $(S)$ mô tả ranh giới bên ngoài của vùng phủ trong không gian có tâm $I(-3; 5; 2)$ và bán kính $4\\text{km}$. \\\\\r\n\t\t\tNên phương trình mặt cầu $(S): (x+3)^2 + (y-5)^2 + (z-2)^2 = 16$. \\\\\r\n\t\t\t\\itemch Do đường kính của mặt cầu trên bằng $8\\text{km}$ nên khoảng cách xa nhất giữa hai điểm thuộc vùng phủ sóng là $8\\text{km}$. \\\\\r\n\t\t\t\\itemch Người dùng điện thoại ở vị trí $A$ có tọa độ $(-3; 4; 1)$. \\\\\r\n\t\t\t$IA = \\sqrt{(-3+3)^2 + (4-5)^2 + (1-2)^2} = \\sqrt{2} < R = 4$. \\\\\r\n\t\t\tNên người dùng điện thoại ở vị trí $A$ có tọa độ $(-3; 4; 1)$ có thể sử dụng dịch vụ của trạm thu phát sóng đó. \\\\\r\n\t\t\t\\itemch Ta có $IB = \\sqrt{(2+3)^2 + (6-5)^2 + (2-2)^2} = \\sqrt{26} > 4$. \\\\\r\n\t\t\tNên người dùng điện thoại ở vị trí $B$ có tọa độ $(2; 6; 2)$ không thể sử dụng dịch vụ của trạm thu phát sóng đó. \\\\\r\n\t\t\tĐể sử dụng được dịch vụ của trạm thu phát sóng đó người đó cần đi quãng đường ngắn nhất là: $IB - R = \\sqrt{26} - 4 \\approx 1,1\\text{km}$. \\\\\r\n\t\t\\end{itemchoice}"
-}

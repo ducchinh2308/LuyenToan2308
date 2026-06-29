@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d68fe81c61",
-  "dapAn": "74,9",
-  "loiGiai": "Thể tích cần tìm là:\\\\\r\n\t\t$V = \\pi \\displaystyle \\int_0^2 \\left(3^x-1\\right)^2\\,dx = \\pi \\displaystyle \\int_0^2 \\left(3^{2x} - 2 \\cdot 3^x + 1\\right)\\,dx = \\pi \\left. \\left( \\displaystyle \\frac{9^x}{\\ln 9} - \\displaystyle \\frac{2 \\cdot 3^x}{\\ln 3} + x \\right) \\right|_0^2 = \\pi \\left( \\displaystyle \\frac{24}{\\ln 3} + 2 \\right) \\approx 74,9$."
-}

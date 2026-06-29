@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d55696ab3b",
-  "dapAn": "D",
-  "loiGiai": "Tổng số thí sinh: $n = 6 + 7 + 15 + 23 + 17 + 8 + 4 = 80$.\\\\\r\n\t\tTa có: $\\displaystyle\\frac{n}{2} = 40$ nên nhóm chứa trung vị là nhóm $[6;7) \\Rightarrow M_e = 6 + \\displaystyle\\frac{40 - 28}{23} \\cdot 1 \\approx 6,5$."
-}

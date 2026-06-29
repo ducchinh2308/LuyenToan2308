@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_9d8470dbce",
-  "dapAn": "C",
-  "loiGiai": "$\\displaystyle x^2 + y^2 + z^2 - 4x + 2z + 4 = 0 \\Leftrightarrow (x^2-4x+4) + y^2 + (z^2+2z+1) = 1$.\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow (x-2)^2 + (y-0)^2 + (z+1)^2 = 1$.\\\\\r\n\t\tVậy mặt cầu $(S)$ có tâm $\\displaystyle I(2;0;-1)$, bán kính $\\displaystyle R=1$.\\\\"
-}

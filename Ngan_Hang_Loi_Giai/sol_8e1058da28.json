@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8e1058da28",
-  "dapAn": "A",
-  "loiGiai": "Để tìm giao điểm, ta thế phương trình tham số của đường thẳng $d$ vào phương trình tổng quát của mặt phẳng $(P)$:\\\\\r\n\t\t$\\displaystyle (2+t) + (-t) - (3+3t) - 2 = 0 \\Leftrightarrow 2 - 3 - 3t - 2 = 0 \\Leftrightarrow -3 - 3t = 0 \\Leftrightarrow t = -1$.\\\\\r\n\t\tThay giá trị tham số $t = -1$ ngược lại vào phương trình đường thẳng $d$ ta thu được tọa độ của giao điểm:\\\\\r\n\t\t$\\displaystyle x = 2 + (-1) = 1$.\\\\\r\n\t\t$\\displaystyle y = -(-1) = 1$.\\\\\r\n\t\t$\\displaystyle z = 3 + 3 \\cdot (-1) = 0$.\\\\\r\n\t\tVậy tọa độ giao điểm chính xác của đường thẳng và mặt phẳng là $(1;1;0)$, ứng với phương án A."
-}

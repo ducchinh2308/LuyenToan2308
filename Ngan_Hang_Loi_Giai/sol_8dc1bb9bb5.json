@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8dc1bb9bb5",
-  "dapAn": "C",
-  "loiGiai": "Dựa vào hình vẽ đồ thị, diện tích hình phẳng phần gạch sọc giới hạn bởi parabol $\\displaystyle y=x^{2}$, trục hoành và hai đường thẳng dọc $x=1, x=2$ là:\\\\\r\n\t\t$\\displaystyle S = \\int_{1}^{2} x^{2}\\,\\mathrm{d}x = \\frac{x^{3}}{3} \\Big|_{1}^{2} = \\frac{2^{3}}{3} - \\frac{1^{3}}{3} = \\frac{8}{3} - \\frac{1}{3} = \\frac{7}{3}$.\\\\\r\n\t\tDo phân số $\\displaystyle \\frac{7}{3}$ đã tối giản nên ta chọn được $\\displaystyle a = 7$ và $\\displaystyle b = 3$.\\\\\r\n\t\tGiá trị của biểu thức hiệu cần tìm là: $\\displaystyle a - b = 7 - 3 = 4$."
-}

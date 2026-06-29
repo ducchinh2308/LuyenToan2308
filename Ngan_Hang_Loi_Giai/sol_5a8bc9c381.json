@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5a8bc9c381",
-  "dapAn": "B",
-  "loiGiai": "Vectơ pháp tuyến của $(Oyz)$ là: $\\vec{n} = (1; 0; 0)$. \\\\\r\n\t\tĐường thẳng $d$ vuông góc với mặt phẳng $(Oyz)$ nên vectơ chỉ phương của $d$ cùng phương với $\\vec{n}$. \\\\\r\n\t\tSuy ra, một vectơ chỉ phương của $d$ là: $\\vec{u}_d = (1; 0; 0)$. \\\\"
-}

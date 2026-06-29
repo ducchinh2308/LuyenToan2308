@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_92c600f040",
-  "dapAn": "A",
-  "loiGiai": "Ta có $\\displaystyle V = \\pi \\int_0^{\\frac{\\pi}{3}} (y)^2 \\text{d}x = \\pi \\int_0^{\\frac{\\pi}{3}} \\tan^2 x \\, \\text{d}x$. \\\\\r\n\t\tMà $\\displaystyle \\tan^2 x = \\frac{1}{\\cos^2 x} - 1$. \\\\\r\n\t\t$\\displaystyle \\Rightarrow V = \\pi \\int_0^{\\frac{\\pi}{3}} \\left( \\frac{1}{\\cos^2 x} - 1 \\right) \\text{d}x$ \\\\\r\n\t\t$\\displaystyle = \\pi (\\tan x - x) \\Big|_0^{\\frac{\\pi}{3}} = \\pi \\left( \\tan \\frac{\\pi}{3} - \\frac{\\pi}{3} - (\\tan 0 - 0) \\right)$. \\\\\r\n\t\t$\\displaystyle = \\pi \\left( \\sqrt{3} - \\frac{\\pi}{3} \\right)$. \\\\\r\n\t\tVậy $\\displaystyle V = \\pi\\sqrt{3} - \\frac{\\pi^2}{3}$. \\\\"
-}

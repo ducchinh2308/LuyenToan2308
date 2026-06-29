@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_45dae930d8",
-  "dapAn": "C",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_45dae930d8_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\displaystyle\\frac{n}{4} = \\displaystyle\\frac{40}{4} = 10$, kể từ nhóm $[40; 50)$ thì tần số tích lũy là $12 > \\displaystyle\\frac{n}{4}$ nên chứa $Q_1$.\\\\\r\n\t\t$Q_1 = s + \\displaystyle\\frac{\\displaystyle\\frac{n}{4} - cf_{p-1}}{n_p} \\cdot h = 40 + \\displaystyle\\frac{10 - 2}{10} \\cdot 10 = 48$.\\\\\r\n\t\tTa có $\\displaystyle\\frac{3n}{4} = \\displaystyle\\frac{3 \\cdot 40}{4} = 30$, kể từ nhóm $[60; 70)$ thì tần số tích lũy là $36 > \\displaystyle\\frac{3n}{4}$ nên chứa $Q_3$.\\\\\r\n\t\t$Q_3 = t + \\displaystyle\\frac{\\displaystyle\\frac{3n}{4} - cf_{q-1}}{n_q} \\cdot l = 60 + \\displaystyle\\frac{30 - 28}{8} \\cdot 10 = 62{,}5$.\\\\\r\n\t\tKhoảng tứ phân vị của mẫu số liệu trên là: $\\Delta Q = Q_3 - Q_1 = 62{,}5 - 48 = 14{,}5$."
-}

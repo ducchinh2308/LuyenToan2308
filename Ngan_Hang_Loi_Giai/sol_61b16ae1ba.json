@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_61b16ae1ba",
-  "dapAn": "C",
-  "loiGiai": "Điều kiện xác định: $x + 1 > 0 \\Leftrightarrow x > -1$.\\\\\r\n\t\tTa có: $\\log_3(x + 1) \\le 2$\\\\\r\n\t\t$\\Leftrightarrow x + 1 \\le 3^2$ (do cơ số $3 > 1$)\\\\\r\n\t\t$\\Leftrightarrow x + 1 \\le 9$\\\\\r\n\t\t$\\Leftrightarrow x \\le 8$.\\\\\r\n\t\tKết hợp với điều kiện $x > -1$, ta được tập nghiệm của bất phương trình là $S = (-1; 8]$."
-}

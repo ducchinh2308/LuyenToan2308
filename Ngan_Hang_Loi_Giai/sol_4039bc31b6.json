@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4039bc31b6",
-  "dapAn": "C",
-  "loiGiai": "Mặt phẳng $(P)$ có phương trình $2x - y + 3z - 5 = 0$ nên có một vectơ pháp tuyến là $\\vec{n}_{(P)} = (2; -1; 3)$. Vì đường thẳng $d$ vuông góc với mặt phẳng $(P)$ nên đường thẳng $d$ nhận vectơ pháp tuyến của $(P)$ làm vectơ chỉ phương.\\\\\r\n\t\tDo đó, $\\vec{u}_d = \\vec{n}_{(P)} = (2; -1; 3)$.\\\\\r\n\t\tĐường thẳng $d$ đi qua điểm $M(1; -2; 3)$ và có vectơ chỉ phương $\\vec{u}_d = (2; -1; 3)$ có phương trình chính tắc là: $\\displaystyle\\frac{x-1}{2} = \\displaystyle\\frac{y+2}{-1} = \\displaystyle\\frac{z-3}{3}$."
-}

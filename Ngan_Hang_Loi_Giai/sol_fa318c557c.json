@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_fa318c557c",
-  "dapAn": "D",
-  "loiGiai": "Tập xác định $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tTa có $y' = 3x^2 - 3$.\\\\\r\n\t\tKhi đó $y'=0 \\Leftrightarrow 3x^2 - 3 = 0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx=1 \\\\  x=-1.\n\\end{array} \\right.$\\\\\r\n\t\tBảng biến thiên\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_fa318c557c_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTọa độ hai điểm cực trị của đồ thị hàm số $A(-1; 4)$, $B(1; 0)$. Suy ra $AB = 2\\sqrt{5}$."
-}

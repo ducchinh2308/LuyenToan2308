@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4339de70d5",
-  "dapAn": "B",
-  "loiGiai": "Điều kiện $x > 1$. \\\\\r\n\t\tKhi đó ta có $\\displaystyle \\log_{\\frac{1}{2}} (x-1) \\ge -2 \\Leftrightarrow x-1 \\le 4 \\Leftrightarrow x \\le 5$. \\\\\r\n\t\tKết hợp với điều kiện ta có tập nghiệm là $S = (1; 5]$. \\\\"
-}

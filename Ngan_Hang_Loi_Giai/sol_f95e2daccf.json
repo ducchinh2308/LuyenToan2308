@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f95e2daccf",
-  "dapAn": "FFTT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng chi phí $C(x) = x \\cdot A(x) = 0{,}2x^2 + 2x + 500$. Đạo hàm $C'(x) = 0{,}4x + 2$. Với $x \\in [10;100]$, $C'(x) > 0$. Chi phí thấp nhất là $C(10) = 540$ triệu đồng. Khẳng định này Sai.\r\n\t\t\t\\itemch $A'(x) = 0{,}2 - \\dfrac{500}{x^2} = \\dfrac{0{,}2x^2 - 500}{x^2}$. Khẳng định này Sai.\r\n\t\t\t\\itemch $A'(x) = 0 \\Leftrightarrow x^2 = 2500 \\Leftrightarrow x = 50$. Với $x \\in [10;40]$, hàm $A(x)$ nghịch biến nên $A(x)$ thấp nhất tại $x=40 \\Rightarrow A(40) = 0{,}2(40) + 2 + \\dfrac{500}{40} = 22{,}5$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Với $x \\in [10;100]$, $A(x)$ thấp nhất tại $x=50 \\Rightarrow A(50) = 0{,}2(50) + 2 + \\dfrac{500}{50} = 22$. Khẳng định này Đúng.\r\n\t\t\\end{itemchoice}"
-}

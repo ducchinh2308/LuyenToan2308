@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_087cd55b01",
-  "dapAn": "B",
-  "loiGiai": "Ta có $\\vec{MP} = \\vec{MA} + \\vec{AD} + \\vec{DP}$ và $\\vec{MP} = \\vec{MB} + \\vec{BC} + \\vec{CP}$.\\\\\r\n\t\tSuy ra $2\\vec{MP} = \\vec{AD} + \\vec{BC} \\Leftrightarrow \\vec{MP} = \\displaystyle\\frac{1}{2}\\left(\\vec{AD} + \\vec{BA} + \\vec{AC}\\right) = \\displaystyle\\frac{1}{2}\\left(\\vec{d} + \\vec{b} + \\vec{c}\\right)$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b4b5e3f0a0",
-  "dapAn": "B",
-  "loiGiai": "Ta có $f'(x)=(x-1)(x-2)^{2}(x-3)^{3} = 0 \\Leftrightarrow \\begin{bmatrix} x=1 \\\\ x=2 \\\\ x=3 \\end{bmatrix}$.\\\\\r\n\t\tNhận thấy $x=2$ là nghiệm kép nên qua điểm $x=2$ đạo hàm không đổi dấu. Đạo hàm chỉ đổi dấu khi qua $x=1$ và $x=3$. Vậy hàm số $y=f(x)$ có 2 điểm cực trị."
-}

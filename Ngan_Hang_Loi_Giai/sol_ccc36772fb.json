@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ccc36772fb",
-  "dapAn": "B",
-  "loiGiai": "Biến đổi cô lập hàm tang và chuyển giá trị về góc lượng giác đặc biệt:\\\\\r\n\t\t$\\displaystyle \\tan 2x = -1 \\Leftrightarrow \\tan 2x = \\tan\\left(-\\frac{\\pi}{4}\\right)$.\\\\\r\n\t\tÁp dụng hệ thức tính nghiệm tuần hoàn của phương trình lượng giác cơ bản hàm tang:\\\\\r\n\t\t$\\displaystyle 2x = - \\frac{\\pi}{4} + k\\pi \\quad (k \\in \\mathbb{Z})$.\\\\\r\n\t\tChia cả hai vế của phương trình cho 2 để tìm nghiệm thực $x$:\\\\\r\n\t\t$\\displaystyle x = -\\frac{\\pi}{8} + \\frac{k\\pi}{2} \\quad (k \\in \\mathbb{Z})$."
-}

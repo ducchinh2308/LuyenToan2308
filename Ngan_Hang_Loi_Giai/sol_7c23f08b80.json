@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_7c23f08b80",
-  "dapAn": "2,12",
-  "loiGiai": "Cabin di chuyển từ điểm $A(10; 3; 0)$ theo hướng của vectơ chỉ phương $\\vec{u} = (2; -2; 0)$. Phương trình tham số của đường thẳng quỹ đạo này là: $\\begin{cases} x = 10 + 2t \\\\ y = 3 - 2t \\\\ z = 0 \\end{cases}$. \\\\\r\n\t\tTheo giả thiết, cabin đi qua điểm $B$ có hoành độ $x_B = 9010$ \\\\\r\n\t\tnên ta có $10 + 2t = 9010 \\Rightarrow 2t = 9000 \\Rightarrow t = 4500$ suy ra $y_B = 3 - 2(4500) = -8997$ và $z_B = 0$. \\\\\r\n\t\tVậy điểm $B$ có tọa độ là $(9010; -8997; 0)$. \\\\\r\n\t\t$AB = \\sqrt{9000^2 + (-9000)^2} = \\sqrt{2 \\cdot 9000^2} = 9000\\sqrt{2}$ (mét). \\\\\r\n\t\tVới vận tốc không đổi $v = 100\\text{ m/s}$, thời gian chuyển động (tính bằng giây) là: \\\\\r\n\t\t$\\displaystyle t_{\\text{giây}} = \\frac{AB}{v} = \\frac{9000\\sqrt{2}}{100} = 90\\sqrt{2} \\text{ (giây)} \\approx 2,12132 \\text{ (phút)}$. \\\\"
-}

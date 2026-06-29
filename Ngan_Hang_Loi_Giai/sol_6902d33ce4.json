@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_6902d33ce4",
-  "dapAn": "D",
-  "loiGiai": "Thể tích khối tròn xoay quanh trục $Ox$ có hình phẳng $(H)$ giới hạn bởi đồ thị hàm số $y=f(x)$ và hai đường thẳng $x=a$, $x=b$ là:\\\\\r\n\t\t$V = \\pi \\displaystyle \\int_a^b \\left[ f(x) \\right]^2 \\, \\mathrm{d}x$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1103efe343",
-  "dapAn": "A",
-  "loiGiai": "Ta có $I = \\displaystyle\\int_0^9 \\big[ 2f(x) + 3g(x) \\big]\\,dx = 2 \\displaystyle\\int_0^9 f(x)\\,dx + 3 \\displaystyle\\int_0^9 g(x)\\,dx = 2 \\cdot 37 + 3 \\cdot 16 = 122$."
-}

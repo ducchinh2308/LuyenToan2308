@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_97d17a8b0b",
-  "dapAn": "C",
-  "loiGiai": "Dựa vào phương trình chính tắc của đường thẳng $d$, một vectơ chỉ phương của đường thẳng là $\\vec{u} = (-2;1;-2)$.\\\\\r\n\t\tChọn vectơ đối của $\\vec{u}$ ta được $\\vec{u}_3 = -1 \\cdot (-2;1;-2) = (2;-1;2)$ cũng là một vectơ chỉ phương của $d$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_7eadde9e02",
-  "dapAn": "A",
-  "loiGiai": "Ta có $\\displaystyle \\int_2^0 3f(x) \\mathrm{\\,d}x = 3 \\displaystyle \\int_2^0 f(x) \\mathrm{\\,d}x = 3 \\cdot \\left( -\\displaystyle \\int_0^2 f(x) \\mathrm{\\,d}x \\right) = 3 \\cdot (-2) = -6$."
-}

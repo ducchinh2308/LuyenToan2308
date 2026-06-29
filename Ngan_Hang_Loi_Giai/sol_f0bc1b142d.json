@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f0bc1b142d",
-  "dapAn": "A",
-  "loiGiai": "Ta có $S_n = \\displaystyle \\frac{\\left[2u_1 + (n-1)d\\right]n}{2} = \\displaystyle \\frac{\\left[2 \\cdot 3 + (n-1) \\cdot 2\\right]n}{2} = \\displaystyle \\frac{\\left[2n + 4\\right]n}{2} = n^2 + 2n$."
-}

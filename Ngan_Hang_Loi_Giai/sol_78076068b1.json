@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_78076068b1",
-  "dapAn": "A",
-  "loiGiai": "Gọi $A$ là biến cố người được chọn thành thạo tiếng Anh, suy ra $P(A) = \\displaystyle \\frac{31}{50}$.\\\\\r\n\t\tGọi $B$ là biến cố người được chọn thành thạo tiếng Pháp, suy ra $P(B) = \\displaystyle \\frac{21}{50}$.\\\\\r\n\t\tKhi đó $AB$ là biến cố người được chọn thành thạo cả tiếng Anh và tiếng Pháp, suy ra $P(AB) = \\displaystyle \\frac{5}{50}$.\\\\\r\n\t\tXác suất để người được chọn thành thạo ít nhất một trong hai thứ tiếng Anh hoặc Pháp là:\\\\\r\n\t\t$P(A \\cup B) = P(A) + P(B) - P(AB) = \\displaystyle \\frac{31}{50} + \\frac{21}{50} - \\frac{5}{50} = \\frac{47}{50}$.\\\\"
-}

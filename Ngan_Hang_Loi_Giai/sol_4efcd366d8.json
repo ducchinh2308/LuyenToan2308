@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4efcd366d8",
-  "dapAn": "4",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_4efcd366d8_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $M$ là trung điểm của $BC$. Ta có: $[A';BC;A] = \\widehat{AMA'} = 30^\\circ$.\\\\\r\n\t\tĐặt $AB = x, (x > 0)$.\\\\\r\n\t\tXét tam giác $A'AM$ có $A'M = \\dfrac{AM}{\\cos 30^\\circ} = \\dfrac{\\dfrac{x\\sqrt{3}}{2}}{\\dfrac{\\sqrt{3}}{2}} = x$.\\\\\r\n\t\t$S_{A'BC} = \\dfrac{1}{2} \\cdot A'M \\cdot BC = 32 \\Leftrightarrow \\dfrac{1}{2} \\cdot x \\cdot x = 32 \\Leftrightarrow x = 8$.\\\\\r\n\t\tTa có: $AA' \\perp AB, AA' \\perp A'C'$ nên $d(AB; A'C') = AA'$.\\\\\r\n\t\tNên $\\tan 30^\\circ = \\dfrac{AA'}{AM} \\Rightarrow AA' = \\dfrac{8\\sqrt{3}}{2} \\cdot \\dfrac{\\sqrt{3}}{3} = 4$."
-}

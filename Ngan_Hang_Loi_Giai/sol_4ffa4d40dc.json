@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4ffa4d40dc",
-  "dapAn": "104",
-  "loiGiai": "Ta có: Số tiền gốc $P_0 = 100$ (triệu đồng), lãi suất $r = 6\\% = 0,06$, kỳ hạn $n=2$ (năm). \\\\\r\n\t\tTổng số tiền ông An nhận được sau $2$ năm là: $S = P_0(1+r)^n = 100(1+0,06)^2 = 112,36$ (triệu đồng). \\\\\r\n\t\tTheo đề bài, $A$ đồng ở năm trước tương đương với $A(1+i)$ đồng ở năm sau. Mở rộng cho $2$ năm, giá trị $V$ ở thời điểm hiện tại sẽ tương đương với $V(1+i)^2$ sau $2$ năm. \\\\\r\n\t\tGọi $V_0$ là giá trị thực tế của số tiền $112,36$ triệu đồng quy đổi về thời điểm gửi (cách đây $2$ năm) với tỉ lệ lạm phát $i = 4\\% = 0,04$. Ta có phương trình: \\\\\r\n\t\t$V_0(1+0,04)^2 = 112,36$ \\\\\r\n\t\t$\\Leftrightarrow V_0 \\cdot (1,04)^2 = 112,36$ \\\\\r\n\t\t$\\Leftrightarrow V_0 = \\displaystyle \\frac{112,36}{1,0816} \\approx 104$ (triệu đồng). \\\\\r\n\t\tVậy nếu quy đổi theo mức giá tại thời điểm gửi tiền, số tiền ông An nhận được tương đương khoảng $104$ triệu đồng. \\\\"
-}

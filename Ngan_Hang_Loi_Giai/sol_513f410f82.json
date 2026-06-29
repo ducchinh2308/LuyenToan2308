@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_513f410f82",
-  "dapAn": "C",
-  "loiGiai": "Áp dụng công thức số hạng tổng quát của cấp số nhân, ta có $u_n = u_{n-1} \\cdot q \\, (n \\ge 2)$.\\\\\r\n\t\tTa có: $u_3 = u_2 \\cdot q \\Rightarrow q = \\displaystyle \\frac{u_3}{u_2} = 2$."
-}

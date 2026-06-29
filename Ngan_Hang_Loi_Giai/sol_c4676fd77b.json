@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_c4676fd77b",
-  "dapAn": "65",
-  "loiGiai": "Gọi $x$ là giá vé vào cửa cần tìm ($x > 0$).\\\\\r\n\t\tSố khách đến công viên với giá vé mới: $\\displaystyle N(x) = 1000 - \\frac{100}{5}(x-90) = 2800 - 20x$.\\\\\r\n\t\tSố tiền thu từ dịch vụ đi kèm cho một khách: $10$ (nghìn đồng).\\\\\r\n\t\tDoanh thu của công viên với giá vé mới: $D(x) = (2800 - 20x)(x + 10)$.\\\\\r\n\t\tSuy ra $D(x) = -20x^2 + 2600x + 28000$.\\\\\r\n\t\t$D'(x) = -40x + 2600$.\\\\\r\n\t\t$D'(x) = 0 \\Leftrightarrow x = 65$.\\\\\r\n\t\tBảng biến thiên:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_c4676fd77b_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, để doanh thu của công viên là lớn nhất thì nhà quản lý công viên này nên xác định giá vé vào cổng là $65$ nghìn đồng."
-}

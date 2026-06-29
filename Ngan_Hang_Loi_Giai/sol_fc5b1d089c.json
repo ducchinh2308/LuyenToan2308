@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_fc5b1d089c",
-  "dapAn": "1004",
-  "loiGiai": "Vì $C \\in d \\Rightarrow C(1+2t;-1-t;4+t)$.\\\\\r\n\t\tVì $C$ là trung điểm của đoạn thẳng $AB$ nên $B(1+4t;-4-2t;9+2t)$.\\\\\r\n\t\tMặt khác $B \\in (P) \\Rightarrow 1+4t+3(-4-2t)-2(9+2t)+3029=0 \\Rightarrow t=500$.\\\\\r\n\t\tSuy ra $C(1001;-501;504) \\Rightarrow a=1001$, $b=-501$, $c=504$.\\\\\r\n\t\tVậy $a+b+c=1001-501+504=1004$."
-}

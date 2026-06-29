@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_77f24aa410",
-  "dapAn": "FFTT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch $v(t) = x'(t) = 1 - \\displaystyle \\frac{2}{t+1} = \\displaystyle \\frac{t+1-2}{t+1} = \\displaystyle \\frac{t-1}{t+1}$.\r\n\t\t\t\\itemch Vận tốc ban đầu của hạt là: $v(0) = 1 - \\displaystyle \\frac{2}{0+1} = 1 - 2 = -1\\text{ m/s}$.\r\n\t\t\t\\itemch Vận tốc tức thời tại thời điểm $t=1\\text{s}$ là $v(1) = \\displaystyle \\frac{1-1}{1+1} = 0\\text{ m/s}$.\r\n\t\t\t\\itemch Quãng đường hạt đi được trong $4$ giây đầu tiên là:\\\\\r\n\t\t\t$S = \\displaystyle \\int_0^4 |v(t)|\\,dt = \\displaystyle \\int_0^4 \\left| \\displaystyle \\frac{t-1}{t+1} \\right| \\,dt = -2 + 4\\ln 2 - 2\\ln 5 \\approx 1,55$.\r\n\t\t\\end{itemchoice}"
-}

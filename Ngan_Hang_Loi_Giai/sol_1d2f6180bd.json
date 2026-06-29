@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1d2f6180bd",
-  "dapAn": "D",
-  "loiGiai": "Diện tích $S$ của hình phẳng giới hạn bởi đồ thị hàm số $y=2x+1$, trục hoành và hai đường thẳng $x=1$, $x=2$ được xác định bằng công thức $\\displaystyle S=\\int\\limits_1^2 |2x+1|\\,\\mathrm{d}x$.\\\\\r\n\t\tDo $2x+1>0$ với mọi $x \\in [1;2]$ nên $\\displaystyle S=\\int\\limits_1^2 (2x+1)\\,\\mathrm{d}x$."
-}

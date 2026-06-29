@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_35c07fe466",
-  "dapAn": "0,6",
-  "loiGiai": "Cường độ ánh sáng tại độ sâu $1\\text{m}$ bằng $95\\%$ cường độ ánh sáng tại mặt biển:\\\\\r\n\t\t$I = I_0 \\cdot a^1 = 95\\% I_0 \\Rightarrow a = 0,95$.\\\\\r\n\t\tTỷ lệ giữa cường độ ánh sáng tại độ sâu $20\\text{m}$ so với cường độ ánh sáng tại độ sâu $10\\text{m}$ ở vùng biển đó là:\\\\\r\n\t\t$\\displaystyle \\frac{I_0 \\cdot (0,95)^{20}}{I_0 \\cdot (0,95)^{10}} = (0,95)^{10} \\approx 0,6$."
-}

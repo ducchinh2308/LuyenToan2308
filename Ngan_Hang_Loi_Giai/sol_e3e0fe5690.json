@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_e3e0fe5690",
-  "dapAn": "D",
-  "loiGiai": "$f'(x) = 0 \\Rightarrow x^2(x+1)^2(2x-1) = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x=0 \\\\ &x=-1 \\\\ &x=\\frac{1}{2} \\end{aligned} \\right.$\\\\\r\n\t\t$f'(x)$ có $3$ nghiệm trong đó có $2$ nghiệm kép và $1$ nghiệm đơn nên hàm số $y = f(x)$ có $1$ điểm cực trị."
-}

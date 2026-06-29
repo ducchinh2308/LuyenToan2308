@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_bdf7c5b5da",
-  "dapAn": "B",
-  "loiGiai": "Vì $ABCD$ là hình bình hành và $O$ là giao điểm hai đường chéo nên $O$ là trung điểm của $AC$ và $BD$.\\\\\r\n\t\tTheo quy tắc trung điểm, với điểm $S$ bất kỳ ta có:\\\\\r\n\t\t$\\vec{SA}+\\vec{SC} = 2\\vec{SO}$;\\\\\r\n\t\t$\\vec{SB}+\\vec{SD} = 2\\vec{SO}$.\\\\\r\n\t\tDo đó, $\\vec{SA}+\\vec{SC} = \\vec{SB}+\\vec{SD}$."
-}

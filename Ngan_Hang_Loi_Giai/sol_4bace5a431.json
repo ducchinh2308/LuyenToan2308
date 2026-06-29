@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4bace5a431",
-  "dapAn": "D",
-  "loiGiai": "Ta có $\\log_{\\frac{1}{5}}(x+1) < \\log_{\\frac{1}{5}}(2x-1) \\Leftrightarrow \\begin{cases} 2x-1 > 0 \\\\ x+1 > 2x-1 \\end{cases} \\Leftrightarrow \\begin{cases} x > \\displaystyle\\frac{1}{2} \\\\ x < 2 \\end{cases} \\Leftrightarrow \\displaystyle\\frac{1}{2} < x < 2$.\\\\\r\n\t\tTập nghiệm của bất phương trình là $S = \\left(\\displaystyle\\frac{1}{2}; 2\\right)$."
-}

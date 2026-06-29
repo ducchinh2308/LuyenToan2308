@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1f946796cb",
-  "dapAn": "B",
-  "loiGiai": "Xác suất cùng trắng: $\\dfrac{1}{6} \\cdot \\dfrac{2}{9} \\cdot \\dfrac{3}{12} = \\dfrac{6}{648}$.\\\\\r\n\t\tXác suất cùng đỏ: $\\dfrac{3}{6} \\cdot \\dfrac{3}{9} \\cdot \\dfrac{4}{12} = \\dfrac{36}{648}$.\\\\\r\n\t\tXác suất cùng đen: $\\dfrac{2}{6} \\cdot \\dfrac{4}{9} \\cdot \\dfrac{5}{12} = \\dfrac{40}{648}$.\\\\\r\n\t\tTổng xác suất: $\\dfrac{6+36+40}{648} = \\dfrac{82}{648} = \\dfrac{41}{324}$."
-}

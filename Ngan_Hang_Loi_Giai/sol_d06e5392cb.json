@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d06e5392cb",
-  "dapAn": "D",
-  "loiGiai": "Bảng giá trị đại diện của mẫu số liệu:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d06e5392cb_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSố trung bình của mẫu số liệu là: $\\overline{x} = \\displaystyle\\frac{3 \\cdot 2{,}85 + 6 \\cdot 3{,}15 + 5 \\cdot 3{,}45 + 4 \\cdot 3{,}75 + 2 \\cdot 4{,}05}{20} = 3{,}39$.\\\\\r\n\t\tPhương sai của mẫu số liệu là\r\n\t\t\\begin{align*}\r\n\t\t\ts^2 &= \\frac{1}{20} \\left[ 3(2{,}85 - 3{,}39)^2 + 6(3{,}15 - 3{,}39)^2 + 5(3{,}45 - 3{,}39)^2 + 4(3{,}75 - 3{,}39)^2 + 2(4{,}05 - 3{,}39)^2 \\right]\\\\\r\n\t\t\t\\Leftrightarrow s^2 &= \\frac{1}{20} \\left[ 3(-0{,}54)^2 + 6(-0{,}24)^2 + 5(0{,}06)^2 + 4(0{,}36)^2 + 2(0{,}66)^2 \\right]\\\\\r\n\t\t\t\\Leftrightarrow s^2 &= \\frac{1}{20} \\left( 0{,}8748 + 0{,}3456 + 0{,}0180 + 0{,}5184 + 0{,}8712 \\right) = \\frac{2{,}628}{20} = 0{,}1314 \\approx 0{,}13.\r\n\t\t\\end{align*}"
-}

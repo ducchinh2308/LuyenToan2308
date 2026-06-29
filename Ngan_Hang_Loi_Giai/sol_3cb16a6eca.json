@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_3cb16a6eca",
-  "dapAn": "A",
-  "loiGiai": "Mặt phẳng vuông góc với đường thẳng $AB$ nên nó sẽ nhận vectơ liên hợp $\\displaystyle \\vec{AB}$ làm vectơ pháp tuyến.\\\\\r\n\t\tTa tính tọa độ vectơ pháp tuyến: $\\displaystyle \\vec{AB} = (1-5; 2-(-4); 4-2) = (-4; 6; 2)$.\\\\\r\n\t\tRút gọn vectơ pháp tuyến cùng phương: $\\displaystyle \\vec{n} = -\\frac{1}{2}\\vec{AB} = (2; -3; -1)$.\\\\\r\n\t\tPhương trình mặt phẳng đi qua điểm $A(5;-4;2)$ là:\\\\\r\n\t\t$\\displaystyle 2(x-5) - 3(y+4) - 1(z-2) = 0 \\Leftrightarrow 2x - 10 - 3y - 12 - z + 2 = 0 \\Leftrightarrow 2x - 3y - z - 20 = 0$."
-}

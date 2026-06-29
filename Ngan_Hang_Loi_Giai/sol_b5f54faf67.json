@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b5f54faf67",
-  "dapAn": "57",
-  "loiGiai": "Doanh thu mỗi tháng của xưởng là: $D(x) = x \\cdot p(x) = x(2000 - 9x)$ (nghìn đồng). \\\\\r\n\t\tLợi nhuận mỗi tháng của xưởng là: \\\\\r\n\t\t$L(x) = D(x) - C(x) = -0,004x^3 - 5,4x^2 + 1200x - 5000$ (nghìn đồng) \\\\\r\n\t\tTa có $L'(x) = -0,012x^2 - 10,8x + 1200$ \\\\\r\n\t\t$L'(x) = 0 \\Leftrightarrow \\begin{cases} x = 100 \\\\ x = -1000 \\ (L) \\end{cases}$ \\\\\r\n\t\tBảng biến thiên \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b5f54faf67_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tLợi nhuận lớn nhất mỗi tháng mà xưởng thu được là: \\\\\r\n\t\t$L(100) = 57000 \\text{ (nghìn đồng)} = 57 \\text{ (triệu)}$. \\\\"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5673df2cfe",
-  "dapAn": "A",
-  "loiGiai": "$\\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\displaystyle\\frac{1}{4} \\Leftrightarrow \\left(\\displaystyle\\frac{1}{2}\\right)^{x^2-x} \\ge \\left(\\displaystyle\\frac{1}{2}\\right)^2 \\Leftrightarrow x^2-x \\le 2 \\Leftrightarrow -1 \\le x \\le 2$."
-}

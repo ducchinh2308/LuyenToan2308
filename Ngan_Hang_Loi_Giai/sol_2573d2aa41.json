@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_2573d2aa41",
-  "dapAn": "D",
-  "loiGiai": "Ta có $\\displaystyle \\int f(x) \\, \\mathrm{d}x = \\int \\sin x \\, \\mathrm{d}x = -\\cos x + C \\Rightarrow F(x) = -\\cos x + C_1$.\\\\\r\n\t\tTheo giả thiết $F(0) = 6 \\Leftrightarrow -\\cos 0 + C_1 = 6 \\Leftrightarrow -1 + C_1 = 6 \\Leftrightarrow C_1 = 7$.\\\\\r\n\t\tSuy ra $F(x) = -\\cos x + 7$."
-}

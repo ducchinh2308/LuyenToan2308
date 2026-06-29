@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_2ea25664ad",
-  "dapAn": "16,3",
-  "loiGiai": "Gọi: $C_1(x) = 500 + 120x$ (triệu đồng). Là chi phí đầu tư ban đầu.\\\\\r\n\t\t- $R(x) = 60x - 0{,}5x^2$ (triệu đồng/năm) là doanh thu hằng năm.\\\\\r\n\t\t- $C_2(x) = 8 + 4x + 0{,}1x^2$ (triệu đồng/năm) là chi phí vận hành hằng năm.\\\\\r\n\t\tTa cần tối đa hóa tỷ lệ lợi nhuận hằng năm trên chi phí đầu tư ban đầu.\\\\\r\n\t\tHàm lợi nhuận hằng năm $P(x) = R(x) - C_2(x) = 56x - 0{,}6x^2 - 8$.\\\\\r\n\t\tHàm tỷ lệ cần tối đa $T(x) = \\displaystyle\\frac{P(x)}{C_1(x)} = \\displaystyle\\frac{-0{,}6x^2 + 56x - 8}{120x + 500}$. Xét hàm số $T(x)$ trên $[0; +\\infty)$.\\\\\r\n\t\tTa có $T'(x) = \\displaystyle\\frac{(-1{,}2x + 56)(120x + 500) - 120(-0{,}6x^2 + 56x - 8)}{(120x + 500)^2} = \\displaystyle\\frac{-72x^2 - 600x + 28960}{(120x + 500)^2}$.\\\\\r\n\t\t$T'(x) = 0 \\Leftrightarrow -72x^2 - 600x + 28960 = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x \\approx 16{,}3 \\\\ x \\approx -24{,}7 \\end{array} \\right.$.\\\\\r\n\t\tXét hàm số trên $[0; +\\infty)$ ta có $T(x)_{\\max}$ khi $x \\approx 16{,}3$ (nghìn $\\text{m}^2$)."
-}

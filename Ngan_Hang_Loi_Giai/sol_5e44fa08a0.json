@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5e44fa08a0",
-  "dapAn": "C",
-  "loiGiai": "Cỡ mẫu $n = 40$.\\\\\r\n\t\tVị trí tứ phân vị thứ nhất $Q_1$ là $\\displaystyle\\frac{n}{4} = 10$.\\\\\r\n\t\tSuy ra nhóm chứa $Q_1$ là nhóm đầu tiên $[0;40)$.\\\\\r\n\t\tÁp dụng công thức:\\\\\r\n\t\t$Q_1 = 0 + \\displaystyle\\frac{10-0}{11} \\cdot 40 = \\displaystyle\\frac{400}{11}$.\\\\"
-}

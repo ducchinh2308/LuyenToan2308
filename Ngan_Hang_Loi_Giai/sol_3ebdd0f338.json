@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_3ebdd0f338",
-  "dapAn": "TTFT",
-  "loiGiai": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_3ebdd0f338_lg_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Phương trình mặt phẳng $(ABC)$ theo đoạn chắn: $\\displaystyle \\frac{x}{1}+\\displaystyle \\frac{y}{2}+\\displaystyle \\frac{z}{3}=1 \\Leftrightarrow 6x+3y+2z-6=0$.\r\n\t\t\t\\itemch Khoảng cách $d(S,(ABC)) = \\displaystyle \\frac{|6(1)+3(2)+2(3)-6|}{\\sqrt{6^2+3^2+2^2}} = \\displaystyle \\frac{12}{\\sqrt{49}} = \\displaystyle \\frac{12}{7}$.\r\n\t\t\t\\itemch Dựa vào phương trình mặt phẳng $(ABC)$ ở ý trên, ta có một vectơ pháp tuyến là $\\vec{n}=(6;3;2)$ không cùng phương với $(1;2;3)$.\r\n\t\t\t\\itemch Tọa độ hình chiếu vuông góc của một điểm lên mặt phẳng $(Oxy)$ là giữ nguyên hoành độ, tung độ và cho cao độ bằng 0. Hình chiếu của $S(1;2;3)$ là $(1;2;0)$.\r\n\t\t\\end{itemchoice}"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_79b3f560d2",
-  "dapAn": "A",
-  "loiGiai": "Ta có $f'(x) = 0 \\Leftrightarrow x(x-1)(x-2)^2 = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 0 \\\\ x &= 1 \\\\ x &= 2 \\end{aligned} \\right.$.\\\\\r\n\t\tBảng xét dấu $f'(x)$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_79b3f560d2_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa thấy đạo hàm đổi dấu khi qua $x=0$ và $x=1$. Tại $x=2$ đạo hàm không đổi dấu (nghiệm bội chẵn).\\\\\r\n\t\tVậy hàm số có 2 điểm cực trị."
-}

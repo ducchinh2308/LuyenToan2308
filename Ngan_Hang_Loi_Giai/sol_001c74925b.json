@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_001c74925b",
-  "dapAn": "B",
-  "loiGiai": "Ta có $f'(x) = 0 \\Leftrightarrow (x+1)x^2(x-3)^3 = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= -1 \\\\ x &= 0 \\\\ x &= 3 \\end{aligned} \\right.$.\\\\\r\n\t\tDo $f'(x)$ đổi dấu khi qua các nghiệm đơn (hoặc bội lẻ) $x=-1$ và $x=3$, nhưng không đổi dấu khi qua nghiệm bội chẵn $x=0$.\\\\\r\n\t\tVậy hàm số có 2 điểm cực trị."
-}

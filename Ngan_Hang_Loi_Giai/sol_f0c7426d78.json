@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f0c7426d78",
-  "dapAn": "D",
-  "loiGiai": "Điều kiện xác định của bất phương trình: $\\displaystyle x+1>0 \\Leftrightarrow x>-1$.\\\\\r\n\t\tVì cơ số $\\displaystyle a=0,5<1$, khi phá logarit bất phương trình phải đổi chiều ngược lại:\\\\\r\n\t\t$\\displaystyle \\log_{0,5}(x+1)>-3 \\Leftrightarrow x+1 < (0,5)^{-3} \\Leftrightarrow x+1 < \\left(\\frac{1}{2}\\right)^{-3} \\Leftrightarrow x+1 < 2^{3} \\Leftrightarrow x+1 < 8 \\Leftrightarrow x < 7$.\\\\\r\n\t\tKết hợp với điều kiện xác định $\\displaystyle x>-1$, ta được tập nghiệm chính xác là $\\displaystyle S=(-1;7)$."
-}

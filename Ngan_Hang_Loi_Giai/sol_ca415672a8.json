@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ca415672a8",
-  "dapAn": "C",
-  "loiGiai": "Sử dụng công thức xác định xác suất Bayes, ta có:\\\\\r\n\t\t$P(A|B) = \\dfrac{P(B|A) \\cdot P(A)}{P(B)} = \\dfrac{0{,}2 \\cdot 0{,}6}{0{,}3} = 0{,}4$."
-}

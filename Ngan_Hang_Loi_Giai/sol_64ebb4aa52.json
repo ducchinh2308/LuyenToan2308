@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_64ebb4aa52",
-  "dapAn": "C",
-  "loiGiai": "Thể tích khối tròn xoay quanh trục $Ox$: $V = \\pi \\displaystyle\\int\\limits_a^b f^2(x) \\text{d}x$.\\\\\r\n\t\tÁp dụng với $f(x) = x^2 + 3$, $a = 0$, $b = 5$: $V = \\pi \\displaystyle\\int\\limits_0^5 (x^2 + 3)^2 \\text{d}x$."
-}

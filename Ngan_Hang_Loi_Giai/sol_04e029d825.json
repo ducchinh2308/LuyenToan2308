@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_04e029d825",
-  "dapAn": "2739",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_04e029d825_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDễ thấy $OK = IH = A'O' = 10 \\Rightarrow AK = OA - OK = 10$.\\\\\r\n\t\tXét tam giác $A'KA$ có $MI$ song song với $AK \\Rightarrow \\displaystyle\\frac{A'I}{A'K} = \\frac{MI}{AK} \\Rightarrow MI = 4 \\Rightarrow HM = 14$.\\\\\r\n\t\tThể tích phần nước đựng trong chậu là $V = \\displaystyle\\frac{6\\pi}{3}\\left(10^2 + 14^2 + 10 \\cdot 14\\right) \\approx 2739$."
-}

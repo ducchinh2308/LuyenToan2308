@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_a865e80501",
-  "dapAn": "B",
-  "loiGiai": "Ta có: $\\displaystyle a = \\lim_{x \\to +\\infty} \\frac{2x^2 + x - 5}{x(x + 3)} = 2$. \\\\\r\n\t\t$\\displaystyle b = \\lim_{x \\to +\\infty} \\left( \\frac{2x^2 + x - 5}{x + 3} - ax \\right) = \\lim_{x \\to +\\infty} \\left( \\frac{2x^2 + x - 5}{x + 3} - 2x \\right) = -5$. \\\\\r\n\t\tVậy $a - b = 7$. \\\\"
-}

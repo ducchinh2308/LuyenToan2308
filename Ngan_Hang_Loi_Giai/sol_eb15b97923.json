@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_eb15b97923",
-  "dapAn": "A",
-  "loiGiai": "Tập xác định của hàm số bậc ba: $\\mathscr{D} = \\mathbb{R}$.\\\\\r\n\t\tTa tính đạo hàm của hàm số:\\\\\r\n\t\t$\\displaystyle y' = -x^{2} + x + 6$.\\\\\r\n\t\tXét phương trình đạo hàm bằng 0:\\\\\r\n\t\t$\\displaystyle y' = 0 \\Leftrightarrow -x^{2} + x + 6 = 0 \\Leftrightarrow \\left[\\begin{aligned} &x = 3 \\\\ &x = -2 \\end{aligned}\\right.$\\\\\r\n\t\tBảng xét dấu đạo hàm chỉ ra rằng:\\\\\r\n\t\t- Hàm số đồng biến trên khoảng $(-2;3)$ vì đạo hàm $y' > 0$ trên miền này.\\\\\r\n\t\t- Hàm số nghịch biến trên các khoảng $(-\\infty;-2)$ và $(3;+\\infty)$ vì đạo hàm $y' < 0$.\\\\\r\n\t\tDo khoảng $(0;3)$ là tập con của khoảng đồng biến $(-2;3)$ (tức là $(0;3) \\subset (-2;3)$), khẳng định ``Hàm số đồng biến trên khoảng $(0;3)$'' là hoàn toàn chính xác.\\\\\r\n\t\tVậy ta chọn phương án A."
-}

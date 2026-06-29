@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_0f11c65281",
-  "dapAn": "",
-  "loiGiai": "Ta có: $\\sin x = \\dfrac{1}{2} \\Leftrightarrow \\sin x = \\sin \\dfrac{\\pi}{6}$.\\\\\r\n\t\t$\\Leftrightarrow \\left[ \\begin{aligned} x &= \\dfrac{\\pi}{6} + k2\\pi \\\\ x &= \\pi - \\dfrac{\\pi}{6} + k2\\pi \\end{aligned} \\right. \\Leftrightarrow \\left[ \\begin{aligned} x &= \\dfrac{\\pi}{6} + k2\\pi \\\\ x &= \\dfrac{5\\pi}{6} + k2\\pi \\end{aligned} \\right. (k \\in \\mathbb{Z})$."
-}

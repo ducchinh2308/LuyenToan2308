@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8891f45ff2",
-  "dapAn": "C",
-  "loiGiai": "Xét hàm số $y = 4x^3 - 6x^2 + 11$.\\\\\r\n\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm: $y' = 12x^2 - 12x$.\\\\\r\n\t\t$y' = 0 \\iff 12x^2 - 12x = 0 \\iff \\left[\\begin{aligned} &x = 0 \\\\ &x = 1 \\end{aligned}\\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_8891f45ff2_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên, giá trị cực tiểu của hàm số $y = 4x^3 - 6x^2 + 11$ bằng $9$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_a571d8f894",
-  "dapAn": "B",
-  "loiGiai": "Dựa vào bảng biến thiên, ta thấy $\\lim\\limits_{x \\to -2^-} y = -\\infty$ và $\\lim\\limits_{x \\to -2^+} y = +\\infty$. Do đó, đường tiệm cận đứng của đồ thị hàm số là $x=-2$."
-}

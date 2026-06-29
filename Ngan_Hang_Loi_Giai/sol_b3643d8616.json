@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b3643d8616",
-  "dapAn": "A",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b3643d8616_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDo tính chất hình lập phương, ta có $CD \\parallel AB$.\\\\\r\n\t\tSuy ra góc giữa hai đường thẳng $BA'$ và $CD$ chính bằng góc giữa $BA'$ và $AB$.\\\\\r\n\t\tXét hình vuông $ABB'A'$, đường chéo $BA'$ tạo với cạnh $AB$ một góc $45^\\circ$.\\\\\r\n\t\tVậy góc cần tìm bằng $45^\\circ$."
-}

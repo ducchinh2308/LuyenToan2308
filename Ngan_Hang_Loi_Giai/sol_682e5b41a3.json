@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_682e5b41a3",
-  "dapAn": "A",
-  "loiGiai": "Điều kiện xác định $x-1 > 0 \\Leftrightarrow x > 1$.\\\\\r\n\t\tKhi đó ta có $\\log_2 (x-1) < 3 \\Leftrightarrow x-1 < 8 \\Leftrightarrow x < 9$.\\\\\r\n\t\tKết hợp với điều kiện $x>1$ ta được tập nghiệm của bất phương trình là $(1;9)$."
-}

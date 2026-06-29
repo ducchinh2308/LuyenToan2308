@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_75932dd917",
-  "dapAn": "TFTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng lượng điện tiêu thụ tăng thêm của khu vực $A$ là: $V_A = \\displaystyle\\int_0^4 (2^t + 8) \\text{d}t = \\left[ \\displaystyle\\frac{2^t}{\\ln 2} + 8t \\right]_0^4 = \\displaystyle\\frac{16-1}{\\ln 2} + 32 = \\displaystyle\\frac{15}{\\ln 2} + 32 \\approx 53{,}64$ (triệu kWh).\r\n\t\t\t\\itemch Ta có $E'_A(t_0) = 12 \\Leftrightarrow 2^{t_0} + 8 = 12 \\Leftrightarrow 2^{t_0} = 4 \\Leftrightarrow t_0 = 2$. Vậy mệnh đề sai.\r\n\t\t\t\\itemch Tại thời điểm $t=3$, ta có: $E'_A(3) = 2^3 + 8 = 16$ (triệu kWh/năm).\r\n\t\t\t\\itemch Từ giả thiết $t=0$ tốc độ bằng nhau: $E'_A(0) = E'_B(0) \\Rightarrow 2^0 + 8 = 3{,}75 \\cdot 0 + n \\Rightarrow n = 9$. Vậy $E'_B(t) = 3{,}75t + 9$.\\\\\r\n\t\t\tTổng lượng điện tiêu thụ tăng thêm của khu vực $B$ là: $V_B = \\displaystyle\\int_0^4 (3{,}75t + 9) \\text{d}t = \\left[ \\displaystyle\\frac{3{,}75t^2}{2} + 9t \\right]_0^4 = 30 + 36 = 66$ (triệu kWh).\\\\\r\n\t\t\tChênh lệch $\\Delta V = V_B - V_A = 66 - 53{,}64 = 12{,}36 \\ne 10{,}93$.\r\n\t\t\\end{itemchoice}"
-}

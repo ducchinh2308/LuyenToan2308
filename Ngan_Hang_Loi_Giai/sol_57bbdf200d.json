@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_57bbdf200d",
-  "dapAn": "B",
-  "loiGiai": "$\\displaystyle \\frac{x^2}{16} + \\frac{y^2}{4} = 1 \\Rightarrow \\begin{cases} a^2 = 16 \\\\ b^2 = 4 \\end{cases} \\Rightarrow c = \\sqrt{16 - 4} = 2\\sqrt{3}$. \\\\\r\n\t\tVậy tiêu cự của $(E)$ bằng $2c = 4\\sqrt{3}$. \\\\\r\n\t\t\\textit{(Lưu ý: Lời giải trên ảnh tính ra $4\\sqrt{3}$ nhưng lại khoanh vùng Chọn B là $2\\sqrt{3}$. Mã LaTeX được trình bày mô phỏng sát theo văn bản trong ảnh gốc).}"
-}

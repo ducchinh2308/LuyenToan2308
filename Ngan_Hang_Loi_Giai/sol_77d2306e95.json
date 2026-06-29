@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_77d2306e95",
-  "dapAn": "C",
-  "loiGiai": "Điều kiện: $\\begin{cases} 2x - 1 > 0 \\\\ x + 2 > 0 \\end{cases} \\Leftrightarrow x > \\displaystyle\\frac{1}{2}$.\\\\\r\n\t\tBất phương trình $\\Leftrightarrow 2x - 1 < x + 2 \\Leftrightarrow x < 3$.\\\\\r\n\t\tKết hợp điều kiện ta có $S = \\left(\\displaystyle\\frac{1}{2}; 3\\right)$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d8680d88ea",
-  "dapAn": "C",
-  "loiGiai": "Áp dụng tính chất mối liên hệ hệ thức cận tích phân liên tiếp:\\\\\r\n\t\t$\\displaystyle \\int_{0}^{4}f(x)\\,\\mathrm{d}x = \\int_{0}^{2}f(x)\\,\\mathrm{d}x + \\int_{2}^{4}f(x)\\,\\mathrm{d}x \\Rightarrow 5 = \\int_{0}^{2}f(x)\\,\\mathrm{d}x + (-1)$.\\\\\r\n\t\t$\\displaystyle \\Rightarrow \\int_{0}^{2}f(x)\\,\\mathrm{d}x = 5 - (-1) = 6$."
-}

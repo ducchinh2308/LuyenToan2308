@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_0d92edb6bf",
-  "dapAn": "C",
-  "loiGiai": "$\\log_2(x-1) \\leq 3 \\Leftrightarrow \\begin{cases} x-1 > 0 \\\\ x-1 \\leq 2^3 \\end{cases} \\Leftrightarrow 1 < x \\leq 9$.\\\\"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8044280b67",
-  "dapAn": "A",
-  "loiGiai": "Ta có $\\log_{0,5} x > -1 \\Leftrightarrow \\log_{0,5} x > \\log_{0,5} (0,5)^{-1} \\Leftrightarrow 0 < x < (0,5)^{-1} \\Leftrightarrow 0 < x < 2$."
-}

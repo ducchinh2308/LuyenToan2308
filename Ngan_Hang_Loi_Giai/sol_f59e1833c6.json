@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_f59e1833c6",
-  "dapAn": "1,01",
-  "loiGiai": "Ta có diện tích đáy lớn bằng $S_1 = 1,2^2 = 1,44\\text{ m}^2$, diện tích đáy nhỏ bằng $S_2 = 0,6^2 = 0,36\\text{ m}^2$.\\\\\r\n\t\tThể tích chậu là\\\\\r\n\t\t$V = \\displaystyle \\frac{1}{3}h\\left(S_1 + S_2 + \\sqrt{S_1S_2}\\right) = \\displaystyle \\frac{1}{3}0,75\\left(1,44 + 0,36 + \\sqrt{1,44 \\cdot 0,36}\\right) = 0,63\\text{ (m}^3)$.\\\\\r\n\t\tKhối lượng đất trong chậu là $M = 0,63 \\cdot 1,6 = 1,008 \\approx 1,01$ (tấn)."
-}

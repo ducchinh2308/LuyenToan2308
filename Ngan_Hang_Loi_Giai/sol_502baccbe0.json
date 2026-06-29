@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_502baccbe0",
-  "dapAn": "C",
-  "loiGiai": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có: $\\displaystyle y' = \\frac{(2x+3)'(x+1) - (x+1)'(2x+3)}{(x+1)^2}$.\\\\\r\n\t\t$\\displaystyle y' = \\frac{-1}{(x+1)^2} < 0, \\forall x \\in D$ nên hàm số nghịch biến trên $(-\\infty; -1)$ và $(-1; +\\infty)$.\\\\\r\n\t\tVậy hàm số không có cực trị."
-}

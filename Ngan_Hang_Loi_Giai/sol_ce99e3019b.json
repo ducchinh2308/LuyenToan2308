@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ce99e3019b",
-  "dapAn": "26",
-  "loiGiai": "Để quạ uống được nước thì chiều cao nước tối thiểu trong cốc là $15-3=12$ cm.\\\\\r\n\t\tKhi đó thể tích sỏi cho vào chính là phần nước dâng lên có chiều cao bằng $12-\\dfrac{2}{3} \\cdot 15=2$ (cm).\\\\\r\n\t\tThể tích những viên sỏi thêm vào là $V=\\pi \\cdot R^2 \\cdot h=\\pi \\cdot\\left(\\dfrac{7}{2}\\right)^2 \\cdot 2=\\dfrac{49 \\pi}{2}$.\\\\\r\n\t\tThể tích của $1$ viên sỏi là $V_1=\\dfrac{4}{3} \\pi R^3=\\dfrac{4}{3} \\pi \\cdot 0{,}9^3=\\dfrac{243}{250} \\pi$.\\\\\r\n\t\tTa có $\\dfrac{V}{V_1}=25{,}2$.\\\\\r\n\t\tVậy số viên sỏi cần thêm vào ít nhất là $26$ viên."
-}

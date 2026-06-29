@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_6092f9a9ea",
-  "dapAn": "7,2",
-  "loiGiai": "\\begin{center}\r\n\t\t\t\\includegraphics[scale=0.8]\r\n\t\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_142630.png}\r\n\t\t\\end{center}\r\n\t\tGọi $O, O'$ lần lượt là tâm của hai đáy, ta có $OO'$ là chiều cao của hình chóp cụt tứ giác đều $ABCD.A'B'C'D'$. \\\\\r\n\t\tGọi $M$ là hình chiếu của điểm $A'$ lên mặt phẳng đáy $(ABCD)$, ta có $AO = 4\\sqrt{2} = 2A'O = 2OM \\Rightarrow AM = 2\\sqrt{2}$. \\\\\r\n\t\tGọi $N$ là trung điểm của $AB$, $K$ là trung điểm $AN$, suy ra $MK \\perp AB$. \\\\\r\n\t\tGọi $H$ là hình chiếu của $M$ lên $A'K$, suy ra $MH = d(M, (ABB'A'))$. \\\\\r\n\t\tTa có $\\displaystyle \\frac{1}{MH^2} = \\frac{1}{MK^2} + \\frac{1}{MA^2} = \\frac{1}{2^2} + \\frac{1}{5^2 - (2\\sqrt{2})^2} = \\frac{21}{68} \\Rightarrow MH = \\frac{2\\sqrt{357}}{21}$. \\\\\r\n\t\tMặt khác, ta có $CD \\parallel (ABB'A') \\Rightarrow d(CD, AA') = d(C, (ABB'A')) = 4d(M, (ABB'A'))$. \\\\\r\n\t\tVậy $d(CD, AA') = 4.MH \\approx 7,2$. \\\\"
-}

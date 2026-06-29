@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_390a2c5e7d",
-  "dapAn": "109",
-  "loiGiai": "+) Xét trường hợp $0 < t \\le 10$:\\\\\r\n\t\tKhi đó $\\displaystyle V(t)=(-t^2+14t-40)e^{\\frac{t}{4}}+50 \\Rightarrow V'(t)=(-2t+14)e^{\\frac{t}{4}} + (-t^2+14t-40)e^{\\frac{t}{4}}\\cdot\\frac{1}{4}$\\\\\r\n\t\t$\\displaystyle \\Rightarrow V'(t)=\\left(-\\frac{t^2}{4}+\\frac{3}{2}t+4\\right)e^{\\frac{t}{4}}$.\\\\\r\n\t\tCho $\\displaystyle V'(t)=0 \\Leftrightarrow \\left[ \\begin{array}{l} t=-2 \\text{ (loại)} \\\\ t=8 \\text{ (tm)} \\end{array} \\right.$.\\\\\r\n\t\tKhi đó lượng nước lớn nhất xấp xỉ $109$ (đơn vị $10^8 \\, m^3$) khi $t=8$.\\\\\r\n\t\t+) Xét trường hợp $10 < t \\le 12$:\\\\\r\n\t\tKhi đó $\\displaystyle V(t)=4(t-10)(3t-41)+50 \\Rightarrow V'(t)=4(6t-71)$.\\\\\r\n\t\tCho $\\displaystyle V'(t)=0 \\Leftrightarrow t=\\frac{71}{6} \\text{ (tm)}$.\\\\\r\n\t\t$\\displaystyle V(10)=50; V\\left(\\frac{71}{6}\\right)=\\frac{29}{3}; V(12)=10$.\\\\\r\n\t\tKết luận từ 2 trường hợp, lượng nước tích trữ (đơn vị $10^8 \\, m^3$) lớn nhất của hồ trong một năm xấp xỉ $109$ (đơn vị $10^8 \\, m^3$) khi $t=8$.\\\\"
-}

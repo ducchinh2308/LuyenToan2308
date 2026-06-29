@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1719bf70ba",
-  "dapAn": "B",
-  "loiGiai": "Vì $SA \\perp (ABC)$ nên $AB$ hình chiếu của $SB$ lên $(ABC)$.\\\\\r\n\t\tGóc $\\widehat{(SB, (ABC))} = \\widehat{SBA} = \\varphi$. Tam giác $SAB$ vuông tại $A$, $\\tan \\varphi = \\dfrac{SA}{AB} = \\sqrt{3} \\Rightarrow \\varphi = 60^\\circ$."
-}

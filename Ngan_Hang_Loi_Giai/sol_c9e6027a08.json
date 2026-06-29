@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_c9e6027a08",
-  "dapAn": "B",
-  "loiGiai": "Vì điểm $M$ thuộc đoạn thẳng $AB$ nên hai vectơ $\\overrightarrow{MA}$ và $\\overrightarrow{MB}$ ngược hướng.\\\r\n\t\tMà $MA = 2MB \\Rightarrow \\overrightarrow{MA} = -2\\overrightarrow{MB}$.\\\r\n\t\tGọi $M(x;y;z)$.\\\r\n\t\tTa có: $\\overrightarrow{MA} = (3-x; 1-y; -2-z)$.\\\r\n\t\t$\\overrightarrow{MB} = (2-x; -3-y; 5-z) \\Rightarrow -2\\overrightarrow{MB} = (-4+2x; 6+2y; -10+2z)$.\\\r\n\t\tTừ $\\overrightarrow{MA} = -2\\overrightarrow{MB}$ ta có:\r\n\t\t$\\begin{cases} 3-x = -4+2x \\\\ 1-y = 6+2y \\\\ -2-z = -10+2z \\end{cases} \\Leftrightarrow \\begin{cases} x = \\displaystyle \\frac{7}{3} \\\\ y = -\\displaystyle \\frac{5}{3} \\\\ z = \\displaystyle \\frac{8}{3} \\end{cases}$.\\\r\n\t\tVậy tọa độ điểm $M$ là $\\left(\\displaystyle \\frac{7}{3}; -\\displaystyle \\frac{5}{3}; \\displaystyle \\frac{8}{3}\\right)$."
-}

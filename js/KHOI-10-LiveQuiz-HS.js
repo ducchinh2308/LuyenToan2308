@@ -216,7 +216,7 @@ window.ham_8_6_bat_dau_thi_ngay = function (phong) {
 //            nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
 //        }
 
-//        await ham_8_8_khoi_tao_phong_thi(nv); // Gọi hàm gốc
+//        await ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv); // Gọi hàm gốc
 
 //        // Sau khi vẽ đề xong, MỞ CƠ CHẾ PHỤC HỒI
 //        await ham_8_6_5_khoi_phuc_dap_an_da_nop();
@@ -238,7 +238,7 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
         }
 
         // QUAN TRỌNG: Phải chờ hàm này chạy xong (vẽ xong giao diện) rồi mới gọi phục hồi
-        await ham_8_8_khoi_tao_phong_thi(nv);
+        await ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv);
 
         // Đợi 200ms để DOM cập nhật hoàn toàn các ID câu hỏi
         setTimeout(async () => {
@@ -323,7 +323,7 @@ window.ham_8_6_4_nop_tung_cau = async function (maCau, kieuCau) {
     if (khoiCau) khoiCau.querySelectorAll('input').forEach(i => i.disabled = true);
 
     try {
-        const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau', {
+        const { data: ketQuaTraVe, error } = await _supabase.rpc('cham_diem_mot_cau_trac_nghiem', {
             p_ma_phong: window.ThongTinLiveHocSinh.maPhong,
             p_uid: GocHocSinhState.uid,
             p_ma_cau: maCau,
@@ -706,7 +706,7 @@ window.ham_8_6_7_thoat_ve_trang_chu = function () {
 // =====================================================================
 // [Nhãn thời gian: 09:19 - Ngày 29/05/2026] - Hàm 8.6.8: Chốt nộp bài Đấu trường Live (Độc lập hoàn toàn, không reload)
 // =====================================================================
-window.ham_8_6_8_chot_nop_bai_live = function () {
+window.ham_8_6_8_chot_nop_bai_live_trac_nghiem = function () {
     Swal.fire({
         title: 'Xác nhận nộp bài?',
         text: "Em có chắc chắn muốn chốt điểm và nộp bài lúc này không?",

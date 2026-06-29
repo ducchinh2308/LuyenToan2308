@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d3fe309a83",
-  "dapAn": "C",
-  "loiGiai": "Vì $\\displaystyle\\int x e^{2x} dx = F(x) + C$\\\\\r\n\t\t$\\Rightarrow \\left[ F(x) + C \\right]' = x e^{2x}$\\\\\r\n\t\t$\\Rightarrow F'(x) = x e^{2x} \\Rightarrow F'(1) = e^2$\\\\\r\n\t\t$F''(x) = x' \\cdot e^{2x} + \\left( e^{2x} \\right)' \\cdot x = e^{2x} + 2x e^{2x}$\\\\\r\n\t\t$\\Rightarrow F''(1) = e^2 + 2e^2 = 3e^2$\\\\\r\n\t\t$P = F''(1) - 2F'(1) = 3e^2 - e^2 = 2e^2$."
-}

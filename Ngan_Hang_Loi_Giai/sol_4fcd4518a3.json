@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4fcd4518a3",
-  "dapAn": "TFFT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Từ hàm số $\\displaystyle y = \\frac{bx - c}{x - a}$, ta xác định được: Đường tiệm cận đứng là đường thẳng $x = a$. Đường tiệm cận ngang là đường thẳng $y = b$. Đạo hàm: $\\displaystyle y' = \\frac{b(x - a) - 1(bx - c)}{(x - a)^2} = \\frac{-ab + c}{(x - a)^2} = \\frac{c - ab}{(x - a)^2}$. Đường tiệm cận đứng nằm bên phải trục tung $Oy$ nên $a > 0$. Đường tiệm cận ngang nằm phía trên trục hoành $Ox$ nên $b > 0$.\r\n\t\t\t\\itemch Đồ thị hàm số đi xuống từ trái sang phải trên từng khoảng xác định, nghĩa là hàm số nghịch biến. Do đó $y' < 0 \\Rightarrow c - ab < 0$.\r\n\t\t\t\\itemch Hoặc có thể thấy đồ thị cắt trục tung tại điểm có tung độ âm $\\Rightarrow y(0) = \\displaystyle\\frac{c}{a} < 0$. Mà $a > 0 \\Rightarrow c < 0$. Từ đó $c - ab < 0$ do $c < 0, a > 0, b > 0$.\r\n\t\t\t\\itemch Kết hợp các điều kiện ta có $a > 0, b > 0, c - ab < 0$.\r\n\t\t\\end{itemchoice}"
-}

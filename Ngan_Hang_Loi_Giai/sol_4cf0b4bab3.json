@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4cf0b4bab3",
-  "dapAn": "TTFT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số $f(x) = 2x - 4 + \\dfrac{2}{x+1}$ là hàm phân thức hữu tỉ nên liên tục trên các khoảng xác định $(-\\infty; -1)$ và $(-1; +\\infty)$.\r\n\t\t\t\\itemch Ta có $f'(x) = 2 - \\dfrac{2}{(x+1)^2} = \\dfrac{2(x+1)^2 - 2}{(x+1)^2} = \\dfrac{2(x^2+2x+1) - 2}{(x+1)^2} = \\dfrac{2x^2+4x}{(x+1)^2} = \\dfrac{2(x^2+2x)}{(x+1)^2}$.\r\n\t\t\t\\itemch $f'(x) = 0 \\Leftrightarrow x^2 + 2x = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\r\n\t\t\tTa có $f(0) = -2$ và $f(-2) = 2(-2) - 4 + \\dfrac{2}{-2+1} = -4 - 4 - 2 = -10$.\r\n\t\t\tDựa vào bảng biến thiên, tại $x=0$ hàm số đạt cực tiểu $(0; -2)$, tại $x=-2$ hàm số đạt cực đại $(-2; -10)$. Do đó ý c) sai.\r\n\t\t\t\\itemch Trên khoảng $(-1; +\\infty)$, hàm số đạt cực tiểu tại $x=0$ với giá trị $f(0)=-2$. Do đó giá trị nhỏ nhất của hàm số trên khoảng $(-1; +\\infty)$ là $-2$. Ý d) đúng.\r\n\t\t\\end{itemchoice}"
-}

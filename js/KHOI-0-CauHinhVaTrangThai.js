@@ -40,6 +40,8 @@ window.CFG_HE_THONG = {
     LINK_GITHUB_GOC: "https://ducchinh2308.github.io/LuyenToan2308",
     KHO_GIAI_LE_URL: "https://ducchinh2308.github.io/LuyenToan2308/Ngan_Hang_Loi_Giai",
 
+    URL_APPS_SCRIPT_XOA_DRIVE: "https://script.google.com/macros/s/AKfycbys7lFGJmssgxCvAKyFzbwzhGzr4eI4Zstq-IELVq9RqfZ0NPW8gQzd-N6zLEMOlhrRyA/exec",
+    URL_APPS_SCRIPT_TU_LUAN: "https://script.google.com/macros/s/AKfycbznLMAX7a72I1w-rJ9ZeIKhIVOFFGfUiD7tyXvxbnhLlROGbBLz1lwFY7VKCKabpq08/exec"
     // Thầy có thể thêm các cấu hình khác vào đây sau này...
 };
 

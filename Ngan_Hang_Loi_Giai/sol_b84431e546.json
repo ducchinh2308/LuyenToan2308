@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b84431e546",
-  "dapAn": "A",
-  "loiGiai": "Dựa vào đồ thị, ta thấy đường tiệm cận đứng là đường thẳng $x=1$. Do đó, mẫu số phải có nghiệm $x=1$, ta loại phương án $D$ (vì mẫu số của D là $x+1$ có nghiệm $x=-1$).\\\\\r\n\t\tQuan sát đồ thị, ta thấy đồ thị hàm số đi qua điểm có tọa độ $(0; -1)$.\\\\\r\n\t\tLần lượt thay $x=0$ vào các hàm số ở phương án A, B, C:\\\\\r\n\t\tPhương án A: $y = \\displaystyle\\frac{0^2 - 0 + 1}{0 - 1} = -1$ (Thỏa mãn).\\\\\r\n\t\tPhương án B: $y = \\displaystyle\\frac{-0^2 + 0 - 1}{0 - 1} = 1 \\ne -1$ (Loại).\\\\\r\n\t\tPhương án C: $y = \\displaystyle\\frac{0^2 - 0 - 1}{0 - 1} = 1 \\ne -1$ (Loại)."
-}

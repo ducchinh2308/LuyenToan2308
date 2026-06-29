@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_32bf7ffadf",
-  "dapAn": "C",
-  "loiGiai": "Ta có: $3^{x-1} = 8 \\Leftrightarrow x - 1 = \\log_3 8 \\Leftrightarrow x = 1 + \\log_3 8 \\Leftrightarrow x = \\log_3 3 + \\log_3 8 \\Leftrightarrow x = \\log_3 24$."
-}

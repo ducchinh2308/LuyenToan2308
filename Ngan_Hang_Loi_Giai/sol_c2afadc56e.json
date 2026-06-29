@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_c2afadc56e",
-  "dapAn": "-11",
-  "loiGiai": "Ta có $f(x) = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x = 0 \\\\ x = 1 \\end{array} \\right.$. \\\\\r\n\t\tKhi đó $\\displaystyle S_1 + S_2 = \\int_0^1 (-x^4 + x) - (x^4 - x^3) \\text{d}x = \\frac{7}{20}$. \\\\\r\n\t\t$\\displaystyle S_2 = \\int_0^1 a(x - x^2) - (x^4 - x^3) \\text{d}x = \\frac{a}{6} + \\frac{1}{20}$. \\\\\r\n\t\tMà $S_1 = 2S_2 \\Rightarrow S_1 + S_2 = 3S_2 \\Rightarrow \\displaystyle \\frac{7}{20} = 3 \\left( \\frac{a}{6} + \\frac{1}{20} \\right) \\Rightarrow a = \\frac{2}{5}$. \\\\\r\n\t\tVậy $1 - 30a = 1 - 30 \\cdot \\frac{2}{5} = -11$. \\\\"
-}

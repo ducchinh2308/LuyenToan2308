@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_36d4957330",
-  "dapAn": "TFTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Ta có $12 + 6 = 18$. (Đúng)\r\n\t\t\t\t\\itemch Ta có $20 - 5 = 15 \\neq 14$. (Sai)\r\n\t\t\t\t\\itemch Ta có $10 + 5 = 15$. Vì $15 > 14$ nên phép so sánh đúng. (Đúng)\r\n\t\t\t\t\\itemch Ta có $19 - 9 = 10$. Vì $10$ không nhỏ hơn $8$ nên phép so sánh sai. (Sai)\r\n\t\t\t\\end{itemchoice}"
-}

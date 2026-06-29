@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_d41ae7148d",
-  "dapAn": "C",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d41ae7148d_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì đáy $ABCD$ là hình vuông nên ta có $CD \\perp AD$.\\\\\r\n\t\tVì $SA \\perp (ABCD)$ nên $SA \\perp CD$.\\\\\r\n\t\tSuy ra: $CD \\perp (SAD)$. Do đó, $(SCD) \\perp (SAD)$."
-}

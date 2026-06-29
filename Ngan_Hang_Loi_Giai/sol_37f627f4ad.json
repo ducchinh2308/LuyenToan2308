@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_37f627f4ad",
-  "dapAn": "FTTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch $v(t) = x'(t) = 40t e^{-0{,}5t} - 10t^2 e^{-0{,}5t} = \\big(40t - 10t^2\\big) e^{-0{,}5t}$.\\\\\r\n\t\t\tTại $t=0$, $v(0) = 0$.\r\n\t\t\t\\itemch $v(t) = 0 \\Leftrightarrow 40t - 10t^2 = 0 \\Leftrightarrow \\left[ \\begin{aligned} & t=0 \\\\ & t=4 \\end{aligned} \\right.$.\\\\\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_37f627f4ad_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTrong khoảng $(0; +\\infty)$, vận tốc chỉ đổi dấu đúng $1$ lần tại $t=4$.\\\\\r\n\t\t\tHạt đổi chiều một lần tại $t=4$.\r\n\t\t\t\\itemch $x(4) = 20 \\cdot 4^2 \\cdot e^{-0{,}5 \\cdot 4} = 320e^{-2}$.\\\\\r\n\t\t\tHạt chuyển động ra xa nhất tại $t=4$, thay vào phương trình vị trí: $x(4) = 20(4^2)e^{-2} = 320e^{-2}$ (m).\r\n\t\t\t\\itemch Quãng đường đi từ $t=0$ đến $t=4$ là $320e^{-2}$, sau đó hạt quay lại $O$.\\\\\r\n\t\t\tTổng quãng đường hạt đi được là $2 \\cdot 320e^{-2} = 640e^{-2}$.\r\n\t\t\\end{itemchoice}"
-}

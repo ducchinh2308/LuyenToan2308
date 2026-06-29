@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_2b7879fe6f",
-  "dapAn": "C",
-  "loiGiai": "Mặt cắt của vật thể vuông góc với trục $Ox$ tại điểm có hoành độ $x$ là một hình vuông cạnh $\\displaystyle \\sqrt{1-x^{4}}$.\\\\\r\n\t\tDo đó, diện tích thiết diện của mặt cắt này được xác định bởi công thức:\\\\\r\n\t\t$\\displaystyle S(x) = \\left(\\sqrt{1-x^{4}}\\right)^{2} = 1 - x^{4}$.\\\\\r\n\t\tThể tích toàn phần của vật thể giới hạn tính theo nguyên lý thiết diện phẳng tổng quát (không có hằng số pi nhân ở trước):\\\\\r\n\t\t$\\displaystyle V = \\int_{-1}^{1} S(x)\\,\\mathrm{d}x = \\int_{-1}^{1} (1-x^{4})\\,\\mathrm{d}x = \\left(x - \\frac{x^{5}}{5}\\right) \\Big|_{-1}^{1}$.\\\\\r\n\t\t$\\displaystyle V = \\left(1 - \\frac{1}{5}\\right) - \\left(-1 - \\frac{(-1)^{5}}{5}\\right) = \\frac{4}{5} - \\left(-1 + \\frac{1}{5}\\right) = \\frac{4}{5} - \\left(-\\frac{4}{5}\\right) = \\frac{8}{5}$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_78e8719040",
-  "dapAn": "0,42",
-  "loiGiai": "\\begin{center}\r\n\t\t\t\\includegraphics[scale=0.8]\r\n\t\t\t{D:/NganHangToan/Bank-PNG/2026-05-24_143332.png}\r\n\t\t\\end{center}\r\n\t\tGọi biến cố: \\\\\r\n\t\t$A$: \"xúc xắc xuất hiện mặt chẵn\", $\\overline{A}$: \"xúc xắc xuất hiện mặt lẻ\". \\\\\r\n\t\t$C$: \"Hai quả lấy ra bước cuối màu đen\". \\\\\r\n\t\tTheo sơ đồ cây: \\\\\r\n\t\t$\\displaystyle P(A) = \\frac{1}{2}, P(\\overline{A}) = \\frac{1}{2}$. \\\\\r\n\t\t$\\displaystyle P(C|A) = \\frac{3}{10} \\cdot \\frac{2}{7} + \\frac{6}{10} \\cdot \\frac{6}{21} + \\frac{1}{10} \\cdot \\frac{5}{7} = \\frac{31}{70}$. \\\\\r\n\t\t$\\displaystyle P(C|\\overline{A}) = \\frac{3}{10} \\cdot \\frac{2}{5} + \\frac{6}{10} \\cdot \\frac{2}{3} + \\frac{1}{10} \\cdot 1 = \\frac{31}{50}$. \\\\\r\n\t\tSuy ra $\\displaystyle P(A|C) = \\frac{P(A)P(C|A)}{P(A)P(C|A) + P(\\overline{A})P(C|\\overline{A})} = \\frac{5}{12} \\approx 0,42$. \\\\"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5b90c758f2",
-  "dapAn": "B",
-  "loiGiai": "Sắp xếp mẫu số liệu theo thứ tự không giảm: $x_1 \\le x_2 \\le \\dots \\le x_{30}$.\\\\\r\n\t\tDo $n=30$ nên trung vị của nửa bên trái là $x_8$, nên $Q_1$ thuộc nhóm $[4;6)$.\\\\"
-}

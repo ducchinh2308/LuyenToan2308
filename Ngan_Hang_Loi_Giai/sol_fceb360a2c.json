@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_fceb360a2c",
-  "dapAn": "B",
-  "loiGiai": "Vì $\\displaystyle \\int a^x\\text{d}x = \\frac{a^x}{\\ln a} + C$ nên với $\\displaystyle \\int f(x)\\text{d}x = 2026^x + C \\Rightarrow f(x) = 2026^x \\cdot \\ln 2026$. \\\\"
-}

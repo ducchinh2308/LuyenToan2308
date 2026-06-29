@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_6ff740a979",
-  "dapAn": "TFFT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Cabin xuất phát từ $A(-1; 2; 6)$ theo hướng $\\vec{u}(0; -3; 4)$ đến $T$ nên $\\vec{AT}$ cùng hướng với $\\vec{u}$. (Đúng)\r\n\t\t\t\\itemch Đường thẳng $AT$ đi qua $A(-1; 2; 6)$ và có vectơ chỉ phương $\\vec{u}(0; -3; 4)$ nên có phương trình: $\\begin{cases} x = -1 \\\\ y = 2 - 3t \\\\ z = 6 + 4t \\end{cases} (t \\in \\mathbb{R})$. Mệnh đề trong câu b) sai vì thiếu $x=-1$. (Sai)\r\n\t\t\t\\itemch Cabin xuất phát từ $A$ di chuyển với vận tốc $5 \\text{ m/s}$ trong thời gian $6$ giây để đến $T$ nên $AT = 5 \\cdot 6 = 30 \\text{ m}$. (Sai)\r\n\t\t\t\\itemch Do $T$ là điểm trên đường $AT$ nên tọa độ của $T(-1; 2-3t; 6+4t)$. Mà $AT = 30 \\text{ m} \\Leftrightarrow \\sqrt{(-1+1)^2 + (2-3t-2)^2 + (6+4t-6)^2} = 30 \\Leftrightarrow 9t^2 + 16t^2 = 900 \\Leftrightarrow t^2 = 36 \\Leftrightarrow t = 6$ (vì $\\vec{AT}$ cùng hướng $\\vec{u}$). Với $t=6$ ta có $T(-1; -16; 30)$. Khi đó $12a-b+c = 12(-1) - (-16) + 30 = 34$. (Đúng)\r\n\t\t\\end{itemchoice}"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_a4a710b621",
-  "dapAn": "D",
-  "loiGiai": "Ta có $f'(x)=0 \\Leftrightarrow (x+1)(2x-5)^2=0 \\Leftrightarrow \\left[\\begin{array}{l} x+1=0 \\\\ (2x-5)^2=0 \\end{array}\\right. \\Leftrightarrow \\left[\\begin{array}{l} x=-1 \\\\ x=\\displaystyle \\frac{5}{2} \\text{ (nghiệm kép)} \\end{array}\\right.$.\\\\\r\n\t\tXét dấu $f'(x)$ ta có $f'(x)<0 \\Leftrightarrow x<-1$.\\\\\r\n\t\tHàm số đã cho nghịch biến trên $(-\\infty;-1)$.\\\\"
-}

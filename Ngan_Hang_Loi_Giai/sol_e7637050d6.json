@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_e7637050d6",
-  "dapAn": "C",
-  "loiGiai": "- Đáy của lăng trụ tam giác đều là tam giác đều cạnh $2a$. Diện tích đáy bằng:\\\\\r\n\t\t$\\displaystyle S = (2a)^2 \\cdot \\frac{\\sqrt{3}}{4} = 4a^2 \\cdot \\frac{\\sqrt{3}}{4} = a^2\\sqrt{3}$.\\\\\r\n\t\t- Lăng trụ đều là lăng trụ đứng nên chiều cao của lăng trụ bằng độ dài cạnh bên: $\\displaystyle h = 2a$.\\\\\r\n\t\t- Thể tích của khối lăng trụ tam giác đều bằng:\\\\\r\n\t\t$\\displaystyle V = S \\cdot h = a^2\\sqrt{3} \\cdot 2a = 2a^3\\sqrt{3}$."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_54eac72247",
-  "dapAn": "D",
-  "loiGiai": "Hàm số xác định khi $\\begin{cases} \\sin x \\ne 0 \\\\ \\cos x \\ne 0 \\end{cases} \\Rightarrow \\sin 2x \\ne 0 \\Rightarrow 2x \\ne k\\pi \\Rightarrow x \\ne k\\displaystyle\\frac{\\pi}{2}$\\\\\r\n\t\tVậy $D = \\mathbb{R} \\setminus \\left\\{ k\\displaystyle\\frac{\\pi}{2} \\mid k \\in \\mathbb{Z} \\right\\}$."
-}

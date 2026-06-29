@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_7be410f1c4",
-  "dapAn": "TTTF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ban đầu: $5\\,\\text{kg} = 5000\\,\\text{g}$, Mỗi phút thêm: $1\\,\\text{kg} = 1000\\,\\text{g}$.\\\\\r\n\t\t\tKhối lượng đường trong thùng trộn sau $t$ phút là $1000t+5000$ (gam).\\\\\r\n\t\t\t\\itemch Khối lượng: $1000t+5000$.\\\\\r\n\t\t\tThể tích: $50t+2000$.\\\\\r\n\t\t\tNồng độ đường trong thùng sau $t$ phút (tính bằng tỉ số giữa khối lượng đường và thể tích nước, đơn vị gam/lít) là $\\displaystyle f(t)=\\frac{1000t+5000}{50t+2000}$.\\\\\r\n\t\t\t\\itemch $\\displaystyle f'(t) = \\frac{1750000}{(50t+2000)^2} > 0$.\\\\\r\n\t\t\tSuy ra nồng độ đường trong thùng luôn tăng khi sản xuất trong thời gian dài liên tục.\\\\\r\n\t\t\t\\itemch $\\displaystyle \\lim_{t \\to +\\infty} f(t) = \\displaystyle \\lim_{t \\to +\\infty} \\frac{1000t+5000}{50t+2000} = 20 \\Rightarrow y = 20$ là tiệm cận ngang của đồ thị hàm số.\\\\\r\n\t\t\tTa thấy: Thực tế $y=f(t)$ luôn nhỏ hơn $20$.\\\\\r\n\t\t\tKhông có thời điểm nào vượt quá ngưỡng.\\\\\r\n\t\t\tDo đó nhà máy có thể sản xuất liên tục mãi không bị vi phạm tiêu chuẩn.\\\\\r\n\t\t\\end{itemchoice}"
-}

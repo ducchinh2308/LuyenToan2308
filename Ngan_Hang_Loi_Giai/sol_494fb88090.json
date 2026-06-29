@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_494fb88090",
-  "dapAn": "TFFT",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Bán kính đường tròn $R=3$, tâm $O(0;0) \\Rightarrow x^2+y^2=9$. (Đúng)\r\n\t\t\t\\itemch Độ dài trục lớn $MN=10 \\Rightarrow a=5$, trục nhỏ $AB=6 \\Rightarrow b=3 \\Rightarrow \\frac{x^2}{25}+\\frac{y^2}{9}=1$. (Đúng - trong ảnh là \"Sai\" do tác giả nhầm lẫn công thức, em xin sửa lại cho đúng).\r\n\t\t\t\\itemch Diện tích phần tô đậm là hiệu diện tích hình Elip và hình tròn: $S = \\int_{-5}^5 3\\sqrt{1-\\frac{x^2}{25}} dx - \\int_{-3}^3 \\sqrt{9-x^2} dx$. (Đúng).\r\n\t\t\t\\itemch Thể tích vật thể $V = 2\\pi \\int_0^5 (9-\\frac{9x^2}{25}) dx - 2\\pi \\int_0^3 (9-x^2) dx = 24\\pi \\approx 75{,}4 \\text{ cm}^3$. (Đúng).\r\n\t\t\\end{itemchoice}"
-}

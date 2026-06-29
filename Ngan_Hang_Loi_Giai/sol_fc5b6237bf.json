@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_fc5b6237bf",
-  "dapAn": "D",
-  "loiGiai": "Ta có: $\\displaystyle S = \\int_{-3}^{4} |f(x)|\\,dx = \\int_{-3}^{0} |f(x)|\\,dx + \\int_{0}^{4} |f(x)|\\,dx = \\int_{-3}^{0} f(x)\\,dx - \\int_{0}^{4} f(x)\\,dx$.\\\\"
-}

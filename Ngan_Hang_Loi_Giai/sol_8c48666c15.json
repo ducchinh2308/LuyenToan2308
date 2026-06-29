@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_8c48666c15",
-  "dapAn": "1,19",
-  "loiGiai": "Số tiền còn nợ lại là $11{,}5$ triệu với lãi suất $3{,}5\\%$/tháng và trả góp trong $12$ tháng.\\\\\r\n\t\tGiả sử $m$ là số tiền bác Minh trả hằng tháng.\\\\\r\n\t\t$S_1 = 11{,}5 \\cdot (1{,}035) - m$\\\\\r\n\t\t$S_2 = S_1 \\cdot (1{,}035) - m = 11{,}5 \\cdot (1{,}035)^2 - m \\cdot (1{,}035) - m$\\\\\r\n\t\t$S_{12} = 11{,}5 \\cdot (1{,}035)^{12} - m(1 + 1{,}035 + \\dots + 1{,}035^{11}) = 0$.\\\\\r\n\t\t$\\Rightarrow m = \\displaystyle\\frac{11{,}5 \\cdot (1{,}035)^{12} \\cdot (1{,}035-1)}{(1{,}035)^{12} - 1} \\approx 1{,}19$ (triệu đồng).\\\\\r\n\t\tVậy mỗi tháng bác Minh phải trả $1{,}19$ triệu đồng."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_6abf60f0fa",
-  "dapAn": "1",
-  "loiGiai": "Gọi $H, K$ lần lượt là hình chiếu của điểm $A'$ trên $B'C'$ và $AH$. Tam giác $A'B'C'$ đều cạnh $2$ nên $H$ là trung điểm $B'C'$ và $A'H = \\sqrt{3} \\text{ dm}$.\\\\\r\n\t\tTa có $\\begin{cases} B'C' \\perp A'H \\\\ B'C' \\perp A'A \\end{cases} \\Rightarrow B'C' \\perp (A'AH) \\Rightarrow B'C' \\perp A'K$.\\\\\r\n\t\tVì $\\begin{cases} A'K \\perp B'C' \\\\ A'K \\perp AH \\end{cases} \\Rightarrow A'K \\perp (AB'C')$.\\\\\r\n\t\tSuy ra $d(A',(AB'C')) = A'K = \\displaystyle\\frac{\\sqrt{3}}{2} \\text{ dm}$.\\\\\r\n\t\tTrong tam giác vuông $AA'H$ có: $\\displaystyle\\frac{1}{A'K^2} = \\displaystyle\\frac{1}{A'H^2} + \\displaystyle\\frac{1}{AA'^2} \\Leftrightarrow \\displaystyle\\frac{1}{\\left(\\frac{\\sqrt{3}}{2}\\right)^2} = \\displaystyle\\frac{1}{(\\sqrt{3})^2} + \\displaystyle\\frac{1}{AA'^2} \\Rightarrow AA'=1 \\text{ dm}$.\\\\\r\n\t\tVậy khoảng cách giữa hai mặt phẳng đáy bằng $1 \\text{ dm}$."
-}

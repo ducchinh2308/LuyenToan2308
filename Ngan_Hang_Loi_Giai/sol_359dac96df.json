@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_359dac96df",
-  "dapAn": "D",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_359dac96df_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì đáy $ABC$ là tam giác đều cạnh bằng $4\\text{ cm}$ nên diện tích đáy là: $B = S_{\\triangle ABC} = 4^2 \\cdot \\dfrac{\\sqrt{3}}{4} = 4\\sqrt{3}\\text{ cm}^2$.\\\\\r\n\t\tChiều cao của lăng trụ đều là cạnh bên: $h = AA' = 4\\text{ cm}$.\\\\\r\n\t\tSuy ra thể tích khối lăng trụ đã cho bằng: $V = B \\cdot h = 4\\sqrt{3} \\cdot 4 = 16\\sqrt{3}\\text{ cm}^3$."
-}

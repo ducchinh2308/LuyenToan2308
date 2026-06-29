@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_015a8077a5",
-  "dapAn": "180",
-  "loiGiai": "+ Giả sử bạn chọn $k$ cánh cửa $1 \\le k \\le 6$. Để giữ được tiền thì $k$ cánh cửa phải nằm trong $5$ cánh cửa có tiền.\\\\\r\n\t\tXác suất $P = \\displaystyle \\frac{C_5^k}{C_6^k} = \\frac{6-k}{6}$.\\\\\r\n\t\tSố tiền nhận được là $120k$ USD.\\\\\r\n\t\t+ Trong trường hợp ngược lại, mở trúng cánh cửa có người thu hồi bạn nhận được $0$ USD.\\\\\r\n\t\tDo đó số tiền thắng kỳ vọng sẽ là:\\\\\r\n\t\t$E(k) = 120k \\cdot P + 0 \\cdot (1-P) = -20k^2 + 120k$.\\\\\r\n\t\t+ Xét hàm $E(k) = -20k^2 + 120k$ đạt giá trị lớn nhất tại $k = -\\displaystyle \\frac{120}{2 \\cdot (-20)} = 3$.\\\\\r\n\t\tSố tiền thắng kỳ vọng là $E(3) = -20 \\cdot 3^2 + 120 \\cdot 3 = 180$ USD."
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_3e88f50627",
-  "dapAn": "B",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_3e88f50627_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì tam giác $SAC$ cân tại $A$ nên $SA \\perp AC$. \\\\\r\n\t\tVậy ta có: \\\\\r\n\t\t$\\begin{cases} (SAC) \\perp (ABCD) \\\\ (SAC) \\cap (ABCD) = AC \\Rightarrow SA \\perp (ABCD) \\\\ SA \\subset (SAC), SA \\perp AC \\end{cases}$. \\\\\r\n\t\tTheo giả thiết tam giác $SAC$ vuông cân tại $A$, có diện tích bằng $a^2$ nên ta có: \\\\\r\n\t\t$\\displaystyle \\frac{1}{2} \\cdot SA \\cdot AC = a^2 \\Leftrightarrow \\frac{1}{2} \\cdot SA \\cdot SA = a^2 \\Leftrightarrow SA = a\\sqrt{2}$. \\\\\r\n\t\t$\\Rightarrow AC = a\\sqrt{2} \\Rightarrow AB = a$. \\\\\r\n\t\tNhận thấy khối chóp $S.ABD$ là một tam diện vuông nên \\\\\r\n\t\t$\\displaystyle V_{S.ABD} = \\frac{1}{6} SA \\cdot AB \\cdot AD = \\frac{1}{6} \\cdot a\\sqrt{2} \\cdot a \\cdot a = \\frac{a^3\\sqrt{2}}{6}$. \\\\"
-}

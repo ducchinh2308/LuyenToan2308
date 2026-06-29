@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_005abd8b92",
-  "dapAn": "D",
-  "loiGiai": "Đưa hằng số số thực ở vế phải về giá trị góc của hàm số cosin tương ứng:\\\\\r\n\t\t$\\displaystyle \\frac{\\sqrt{2}}{2} = \\cos\\left(\\frac{\\pi}{4}\\right)$.\\\\\r\n\t\tÁp dụng công thức nghiệm của phương trình cosin cơ bản, ta tách thành hai họ nghiệm riêng biệt:\\\\\r\n\t\t- Nhánh nghiệm thứ nhất:\\\\\r\n\t\t$\\displaystyle x + \\frac{\\pi}{4} = \\frac{\\pi}{4} + k2\\pi \\Leftrightarrow x = k2\\pi \\quad (k \\in \\mathbb{Z})$.\\\\\r\n\t\t- Nhánh nghiệm thứ hai:\\\\\r\n\t\t$\\displaystyle x + \\frac{\\pi}{4} = -\\frac{\\pi}{4} + k2\\pi \\Leftrightarrow x = -\\frac{\\pi}{2} + k2\\pi \\quad (k \\in \\mathbb{Z})$.\\\\\r\n\t\tGộp hai nhánh biểu diễn dưới dạng ngoặc vuông hệ nghiệm."
-}

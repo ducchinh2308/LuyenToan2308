@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_28de0b68ec",
-  "dapAn": "D",
-  "loiGiai": "$\\displaystyle \\int \\frac{x+x\\sqrt{x}}{x^2} \\,dx = \\displaystyle \\int \\left(\\frac{1}{x} + \\frac{1}{\\sqrt{x}}\\right) dx = \\ln|x| + 2\\sqrt{x} + C$."
-}

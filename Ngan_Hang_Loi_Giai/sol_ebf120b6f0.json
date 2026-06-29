@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_ebf120b6f0",
-  "dapAn": "1008",
-  "loiGiai": "Giả sử giá để sách chưa có vách ngăn, số cách sắp xếp $7$ quyển sách là $7!$ cách.\\\\\r\n\t\tVì giá để sách có bốn ngăn và mỗi ngăn phải có ít nhất một quyển sách, nên ta cần $3$ vách ngăn.\\\\\r\n\t\tGiữa các quyển sách có $6$ khoảng trống để xếp $3$ vách ngăn.\\\\\r\n\t\tDo đó số cách xếp $3$ vách ngăn vào $6$ khoảng trống là $C_6^3$ cách.\\\\\r\n\t\tVậy số cách xếp thỏa mãn yêu cầu bài toán là: $T = 7! \\cdot C_6^3 = 100800$ (cách).\\\\\r\n\t\tSuy ra $\\displaystyle \\frac{T}{100} = \\displaystyle \\frac{100800}{100} = 1008$."
-}

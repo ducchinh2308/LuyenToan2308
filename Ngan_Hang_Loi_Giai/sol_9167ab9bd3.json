@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_9167ab9bd3",
-  "dapAn": "D",
-  "loiGiai": "Ta có: $\\displaystyle\\int f(x)\\text{d}x = \\displaystyle\\int \\left( x^2 - \\displaystyle\\frac{2}{x^2} \\right) \\text{d}x = \\displaystyle\\int x^2\\text{d}x - 2 \\displaystyle\\int \\displaystyle\\frac{1}{x^2}\\text{d}x = \\displaystyle\\frac{x^3}{3} - 2 \\cdot \\displaystyle\\frac{-1}{x} + C = \\displaystyle\\frac{x^3}{3} + \\displaystyle\\frac{2}{x} + C$."
-}

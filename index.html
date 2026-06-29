@@ -20,7 +20,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <link rel="icon" href="data:,">
 
 </head>
@@ -55,12 +56,22 @@
         // 2. Danh sách các file JS cần nhúng (Thứ tự rất quan trọng: Nền móng để trên, chức năng để dưới)
         var danhSachFiles = [
             'js/KHOI-0-CauHinhVaTrangThai.js',
-            'js/KHOI-1-2-3-GiaoDienCSS-DangNhap-GiaoDienADMIN.js',
+            'js/KHOI-1-GiaoDienCSS.js',
+            'js/KHOI-2-DangNhap.js',
+            'js/KHOI-3-GiaoDienADMIN.js',
             'js/KHOI-4-QLLopHoc.js',
             'js/KHOI-5-QLHocSinh.js',
-            'js/KHOI-6-QLHocLieu.js',
-            'js/KHOI-7-QLNhiemVu.js',
+            'js/KHOI-6a-QLHocLieu-TracNghiem.js',
+            'js/KHOI-6b-QLHocLieu-TuLuan.js',
+            'js/KHOI-6c-QLHocLieu-DocBai.js',
+            'js/KHOI-6d-QLHocLieu-KhaoSat.js',
+            'js/KHOI-7a-QLNhiemVu-TracNghiem.js',
+            'js/KHOI-7b-QLNhiemVu-TuLuan.js',
+            'js/KHOI-7c-QLNhiemVu-DocBai.js',
+            'js/KHOI-7d-QLNhiemVu-KhaoSat.js',
+            
             'js/KHOI-8-GiaoDienHocSinh.js',
+            'js/KHOI-8a-NhiemVu-TracNghiem-HS.js',
             'js/KHOI-9-LiveQuiz-GV.js',
             'js/KHOI-10-LiveQuiz-HS.js',
             'js/KHOI-11-QLThongBao.js',

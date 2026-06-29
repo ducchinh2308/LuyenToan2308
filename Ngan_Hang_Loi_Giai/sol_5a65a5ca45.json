@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_5a65a5ca45",
-  "dapAn": "B",
-  "loiGiai": "Gọi $(u_n)$ là cấp số cộng có $u_2 = 4u_1$ và $u_3 = 14$. \\\\\r\n\t\tGọi công sai là $d$. Ta có: \\\\\r\n\t\t$\\begin{cases} u_2 = u_1 + d = 4u_1 \\Rightarrow d = 3u_1 \\\\ u_3 = u_1 + 2d = 14 \\end{cases}$ \\\\\r\n\t\tThay $d = 3u_1$ vào: $u_1 + 2 \\cdot 3u_1 = 14 \\Rightarrow 7u_1 = 14 \\Rightarrow u_1 = 2$. \\\\\r\n\t\tSuy ra $d = 3u_1 = 6$. \\\\\r\n\t\tSố hạng tổng quát: $u_n = u_1 + (n - 1)d = 2 + 6(n - 1) = 6n - 4$. \\\\\r\n\t\tDo đó $u_{2026} = 6 \\cdot 2026 - 4 = 12152$. \\\\"
-}

@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_283318f930",
-  "dapAn": "134",
-  "loiGiai": "Ghép hệ trục tọa độ vào hình như hình trên nên $A'(0; 0; a)$, $B(0; 4a; 0)$, $D(a; 0; 0)$.\\\\\r\n\t\tMặt phẳng $(A'BD) \\colon \\displaystyle \\frac{x}{a} + \\displaystyle \\frac{y}{4a} + \\displaystyle \\frac{z}{a} = 1 \\Rightarrow (A'BD) \\colon 4x + y + 4z - 4a = 0$.\\\\\r\n\t\tVTPT của $(A'BD)$ là $\\vec{n}_1 = (4; 1; 4)$.\\\\\r\n\t\tMặt phẳng $(ABCD)$ có VTPT là $\\vec{k} = (0; 0; 1)$.\\\\\r\n\t\tTa có: $\\cos[A'; BD; C] = -\\cos((A'BD); (ABCD)) = -\\displaystyle \\frac{\\left| \\vec{n}_1 \\cdot \\vec{k} \\right|}{\\left| \\vec{n}_1 \\right| \\cdot \\left| \\vec{k} \\right|}$\\\\\r\n\t\tSuy ra $\\cos[A'; BD; C] = -\\displaystyle \\frac{4}{\\sqrt{33} \\cdot 1} = -\\displaystyle \\frac{4}{\\sqrt{33}}$.\\\\\r\n\t\tSuy ra $\\alpha \\approx 134^\\circ$."
-}

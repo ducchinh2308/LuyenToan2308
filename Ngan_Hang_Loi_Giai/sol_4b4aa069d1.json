@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_4b4aa069d1",
-  "dapAn": "C",
-  "loiGiai": "Ta có $\\displaystyle \\int \\frac{e^x + 1}{2}\\text{d}x = \\frac{1}{2} \\int (e^x + 1)\\text{d}x = \\frac{e^x + x}{2} + C$. \\\\"
-}

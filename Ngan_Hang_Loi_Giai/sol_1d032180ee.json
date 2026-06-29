@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_1d032180ee",
-  "dapAn": "A",
-  "loiGiai": "Ta có: $\\displaystyle \\int_{1}^{2}[f(x)+3g(x)]\\,\\mathrm{d}x = \\int_{1}^{2}f(x)\\,\\mathrm{d}x + 3\\int_{1}^{2}g(x)\\,\\mathrm{d}x = 9$.\\\\\r\n\t\tThay số vào: $\\displaystyle \\int_{1}^{2}f(x)\\,\\mathrm{d}x + 3 \\cdot 2 = 9 \\Rightarrow \\int_{1}^{2}f(x)\\,\\mathrm{d}x = 9 - 6 = 3$."
-}

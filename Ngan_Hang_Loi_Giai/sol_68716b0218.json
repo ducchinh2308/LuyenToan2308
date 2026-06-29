@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_68716b0218",
-  "dapAn": "3,1",
-  "loiGiai": "Xét hàm số mô tả đường cong dây điện:\\\\\r\n\t\t$\\displaystyle f(x) = 202 \\left( e^{\\frac{x}{404}} + e^{-\\frac{x}{404}} \\right) - 386$.\\\\\r\n\t\tTa có $f(-x) = f(x) \\;\\forall x \\in [-50; 50]$ nên $f(x)$ là hàm chẵn, do đó đồ thị đối xứng qua trục $Oy$.\\\\\r\n\t\tMặt khác: $\\displaystyle f(x) = 202 \\left( e^{\\frac{x}{404}} + e^{-\\frac{x}{404}} \\right) - 386 \\ge 202 \\cdot 2 - 386 = 18$. Dấu bằng xảy ra tại $x = 0$.\\\\\r\n\t\tDo đó điểm thấp nhất của dây điện ứng với giá trị $f(0) = 18$.\\\\\r\n\t\tVậy điểm thấp nhất của dây có tung độ $18$.\\\\\r\n\t\tHai đầu dây điện nằm tại vị trí $2$ cột $A$ và $B$, ứng với giá trị $x = -50$ và $x = 50$ (phạm vi định nghĩa của hàm).\\\\\r\n\t\tVì hàm là hàm chẵn nên $f(50) = f(-50)$\\\\\r\n\t\t$\\displaystyle f(50) = f(-50) = 202 \\left( e^{\\frac{50}{404}} + e^{-\\frac{50}{404}} \\right) - 386 \\approx 21,098$.\\\\\r\n\t\tDo đó đường thẳng nối $2$ đầu cột $AB$ có tung độ $y \\approx 21,098$.\\\\\r\n\t\tĐộ võng của dây điện:\\\\\r\n\t\t$h = f(50) - f(0) \\approx 21,098 - 18 = 3,098 \\approx 3,1 \\text{ (mét)}$."
-}

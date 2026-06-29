@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_9e12151711",
-  "dapAn": "C",
-  "loiGiai": "Ta có $\\displaystyle \\int_1^3 6[f(x)+x]\\,dx = 6\\int_1^3 [f(x)+x]\\,dx = 6\\left(F(x)+\\frac{x^2}{2}\\right)\\bigg|_1^3 = 6\\left(\\frac{1}{x}+\\frac{x^2}{2}\\right)\\bigg|_1^3 = 29 - 9 = 20$."
-}

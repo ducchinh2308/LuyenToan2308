@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_7e3e97a47c",
-  "dapAn": "A",
-  "loiGiai": "Ta có $SA \\perp (ABCD) \\Rightarrow AC$ là hình chiếu của $SC$ lên mặt phẳng $(ABCD)$.\\\\\r\n\t\tSuy ra góc giữa $SC$ và mặt phẳng $(ABCD)$ bằng góc giữa $SC$ và $AC$ và là góc $\\widehat{SCA}$.\\\\\r\n\t\tTa có $\\displaystyle \\tan \\widehat{SCA} = \\frac{SA}{AC}$.\\\\\r\n\t\tTheo đề bài ta có $AB = 2$, $BC\\sqrt{2} = 2 \\Rightarrow BC = \\sqrt{2} \\Rightarrow AC = \\sqrt{AB^2 + BC^2} = \\sqrt{2^2 + (\\sqrt{2})^2} = \\sqrt{6}$.\\\\\r\n\t\tVậy $\\displaystyle \\tan \\widehat{SCA} = \\frac{SA}{AC} = \\frac{\\sqrt{2}}{\\sqrt{6}} = \\frac{1}{\\sqrt{3}} \\Rightarrow \\widehat{SCA} = 30^\\circ$."
-}

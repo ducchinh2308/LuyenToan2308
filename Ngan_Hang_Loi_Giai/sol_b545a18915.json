@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_b545a18915",
-  "dapAn": "B",
-  "loiGiai": "Trên đoạn $[-1; 1]$, đồ thị hàm số nằm phía trên trục hoành $Ox \\Rightarrow f(x) \\geq 0$. \\\\\r\n\t\tDo đó $\\displaystyle \\int_{-1}^1 |f(x)|\\text{d}x = \\int_{-1}^1 f(x)\\text{d}x$. \\\\\r\n\t\tTrên đoạn $[1; 5]$, đồ thị hàm số nằm phía dưới trục hoành $Ox \\Rightarrow f(x) \\leq 0$. \\\\\r\n\t\tDo đó $\\displaystyle \\int_1^5 |f(x)|\\text{d}x = -\\int_1^5 f(x)\\text{d}x$. \\\\\r\n\t\tDiện tích hình phẳng giới hạn bởi các đường $y = f(x), y = 0, x = -1$ và $x = 5$ là: \\\\\r\n\t\t$\\displaystyle S = \\int_{-1}^1 f(x)\\text{d}x - \\int_1^5 f(x)\\text{d}x$. \\\\"
-}

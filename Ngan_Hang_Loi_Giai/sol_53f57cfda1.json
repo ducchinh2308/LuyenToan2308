@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_53f57cfda1",
-  "dapAn": "TTFF",
-  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ý a) đúng: Theo công thức tính tổng lượng khách, $N(t) = N(0) + \\displaystyle \\int_0^t K(x) \\, dx = 160 + \\displaystyle \\int_0^t K(x) \\, dx$.\r\n\t\t\t\\itemch Ý b) đúng: Khu vui chơi mở cửa lúc 8h00, từ 10h00 đến 13h00 tương ứng $t \\in [2; 5]$. Giải $K(t) = 4t^3 - 36t^2 + 80t - 48 = 0$, nghiệm là $t=1, t=2, t=6$. Trên khoảng $(2; 6)$, ta có $K(t) < 0$. Vì $[2; 5] \\subset [2; 6]$ nên $K(t) < 0$ trên $(2; 5)$, suy ra lượng khách luôn giảm trong khoảng thời gian này.\r\n\t\t\t\\itemch Ý c) sai: Lượng khách tại thời điểm $t$ là $N(t) = t^4 - 12t^3 + 40t^2 - 48t + 160$. Xét hàm số $N(t)$ trên đoạn $[0; 12]$, giá trị nhỏ nhất của $N(t)$ là $N(6) = 16$. Lượng khách không bao giờ giảm xuống mức 12 người.\r\n\t\t\t\\itemch Ý d) sai: Để quá tải thì $N(t) > 3600$. Giải bất phương trình $t^4 - 12t^3 + 40t^2 - 48t + 160 > 3600$, nghiệm là $11{,}24 < t \\le 12$. Thời gian quá tải là $12 - 11{,}24 = 0{,}76$ giờ $\\approx 45{,}6$ phút.\r\n\t\t\\end{itemchoice}"
-}

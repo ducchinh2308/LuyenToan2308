@@ -1,5 +1,0 @@
-{
-    "maBaoMat": "sol_687e234d21",
-    "dapAn": "0,22",
-    "loiGiai": "Theo giả thiết $\\displaystyle F(x) = \\int f(x)\\,dx = \\int (2^x + x + 1)\\,dx = \\frac{2^x}{\\ln 2} + \\frac{x^2}{2} + x + C$.\\\\\r\n\t\tMặt khác $\\displaystyle F(0) = 1 \\Rightarrow \\frac{2^0}{\\ln 2} + C = 1 \\Rightarrow C = 1 - \\frac{1}{\\ln 2}$.\\\\\r\n\t\tKhi đó $\\displaystyle |F(-1)| = \\left| \\frac{2^{-1}}{\\ln 2} + \\frac{1}{2} - 1 + 1 - \\frac{1}{\\ln 2} \\right| = \\left| \\frac{1}{2} - \\frac{1}{2\\ln 2} \\right| \\approx 0,22$."
-}

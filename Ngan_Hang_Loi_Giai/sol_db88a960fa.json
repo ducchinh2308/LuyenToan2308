@@ -1,5 +1,0 @@
-{
-  "maBaoMat": "sol_db88a960fa",
-  "dapAn": "TFTF",
-  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_db88a960fa_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch $P(A) = \\frac{10}{30} = \\frac{1}{3}$. (Đúng)\r\n\t\t\t\\itemch Biết An rút được tự nhiên, trong hộp còn $9$ tự nhiên và $20$ xã hội. Xác suất Bình rút được xã hội là $\\frac{20}{29} \\ne \\frac{2}{3}$. (Sai)\r\n\t\t\t\\itemch $P(B_{xh}) = P(A_{tn}) \\cdot P(B_{xh}|A_{tn}) + P(A_{xh}) \\cdot P(B_{xh}|A_{xh}) = \\frac{10}{30} \\cdot \\frac{20}{29} + \\frac{20}{30} \\cdot \\frac{19}{29} = \\frac{200+380}{870} = \\frac{580}{870} = \\frac{2}{3}$. (Đúng)\r\n\t\t\t\\itemch $P(A_{tn}|B_{xh}) = \\frac{P(A_{tn} \\cap B_{xh})}{P(B_{xh})} = \\frac{10/30 \\cdot 20/29}{2/3} = \\frac{200/870}{580/870} = \\frac{20}{58} = \\frac{10}{29} \\ne \\frac{19}{29}$. (Sai)\r\n\t\t\\end{itemchoice}"
-}
