@@ -1,0 +1,37 @@
+{
+    "maDe": "HL_TN_GK1_FNGW25",
+    "tenDe": "t4",
+    "thoiGian": 0,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_414be403c1",
+            "ma_goc": "2061-786",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_71e21661bb",
+            "ma_goc": "8749-678",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_c5ac38f678",
+            "ma_goc": "1420-606",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        }
+    ]
+}
