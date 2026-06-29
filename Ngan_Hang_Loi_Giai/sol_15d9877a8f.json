@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_15d9877a8f",
+    "dapAn": "58",
+    "loiGiai": "Đây là tổng cấp số nhân với $u_1 = m$ và $q = 0{,}9$.\\\\\r\n\t\tTổng tiền cần bồi thường $\\displaystyle S_6 = m \\cdot \\frac{1 - (0{,}9)^6}{1 - 0{,}9}$.\\\\\r\n\t\tTheo bài ra ta có $\\displaystyle S_6 \\ge \\frac{60 \\cdot 450}{100} \\Leftrightarrow m \\cdot \\frac{1 - (0{,}9)^6}{1 - 0{,}9} \\ge 270 \\Leftrightarrow m \\ge 270 \\cdot \\frac{0{,}1}{1 - (0{,}9)^6} \\approx 58$."
+}

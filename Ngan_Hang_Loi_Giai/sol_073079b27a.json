@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_073079b27a",
+    "dapAn": "A",
+    "loiGiai": "$f'(x) = 4x^3 - 4x = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\\\ x = 1 \\\\ x = -1 \\end{array}\\right.$.\\\\\r\n\t\tCả $3$ nghiệm $x=0, x=1, x=-1$ đều thuộc đoạn $[-2;2]$.\\\\\r\n\t\t$f(-2) = 13$, $f(-1) = 4$, $f(0) = 5$, $f(1) = 4$, $f(2) = 13$.\\\\\r\n\t\tSo sánh các kết quả trên, ta thấy giá trị lớn nhất là $13$."
+}
