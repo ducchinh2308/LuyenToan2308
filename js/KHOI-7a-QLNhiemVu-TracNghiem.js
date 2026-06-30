@@ -84,13 +84,69 @@ function ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem() {
 
 
 
-// =====================================================================
-// Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu (Bổ sung sinh nút lọc lớp 🏫)
-// =====================================================================
+// // =====================================================================
+// // Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu (Bổ sung sinh nút lọc lớp 🏫)
+// // =====================================================================
+// async function ham_7a_2_tai_danh_sach_nhiem_vu_trac_nghiem() {
+//     const renderArea = document.getElementById('danh-sach-nv-render');
+//     try {
+//         const { data: dsNhiemVu, error } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').order('ngay_tao', { ascending: false });
+//         if (error) throw error;
+
+//         // 1. Lấy tên GV
+//         const danhSachUidGv = [...new Set((dsNhiemVu || []).map(nv => nv.uid_gv_tao).filter(id => id))];
+//         let tuDienTenGv = {};
+//         if (danhSachUidGv.length > 0) {
+//             const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
+//             if (dsGv) dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
+//         }
+
+//         // 2. Lấy Tên Lớp làm từ điển (Nếu chưa có)
+//         if (!window.tempDsLop) {
+//             const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
+//             window.tempDsLop = dsLop || [];
+//         }
+
+//         // 🌟 VỊ TRÍ CẤY GHÉP: TỰ ĐỘNG SINH CÁC NÚT BẤM LỌC LỚP DỰA TRÊN TỪ ĐIỂN LỚP THỰC TẾ
+//         const khungNutLop = document.getElementById('cac-nut-lop-dong');
+//         if (khungNutLop && window.tempDsLop) {
+//             let htmlNutLop = '';
+//             window.tempDsLop.forEach(l => {
+//                 const maLop = l.ma_lop || l.ma || l.id;
+//                 const tenLop = l.ten_lop || l.ten || l.name || maLop;
+//                 htmlNutLop += `
+//                     <button class="btn-loc-lop" onclick="ham_7a_5_loc_nhiem_vu_theo_lop_trac_nghiem('${maLop}', this)" style="padding: 6px 14px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+//                         🏫 ${tenLop}
+//                     </button>
+//                 `;
+//             });
+//             khungNutLop.innerHTML = htmlNutLop;
+//         }
+
+//         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
+//             ...nv,
+//             ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định'
+//         }));
+
+//         ham_7a_10_ve_bang_nhiem_vu_trac_nghiem();
+//     } catch (error) {
+//         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+//     }
+// }
+
+
 async function ham_7a_2_tai_danh_sach_nhiem_vu_trac_nghiem() {
     const renderArea = document.getElementById('danh-sach-nv-render');
     try {
-        const { data: dsNhiemVu, error } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').order('ngay_tao', { ascending: false });
+        // 🌟 JOIN CỰC GỌN (Vì đã xóa bớt FK thừa)
+        const { data: dsNhiemVu, error } = await _supabase
+            .from('nhiem_vu_trac_nghiem')
+            .select(`
+                *,
+                hoc_lieu_trac_nghiem ( metadata )
+            `)
+            .order('ngay_tao', { ascending: false });
+            
         if (error) throw error;
 
         // 1. Lấy tên GV
@@ -101,38 +157,118 @@ async function ham_7a_2_tai_danh_sach_nhiem_vu_trac_nghiem() {
             if (dsGv) dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
         }
 
-        // 2. Lấy Tên Lớp làm từ điển (Nếu chưa có)
+        // 2. Lấy Tên Lớp
         if (!window.tempDsLop) {
             const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
             window.tempDsLop = dsLop || [];
         }
 
-        // 🌟 VỊ TRÍ CẤY GHÉP: TỰ ĐỘNG SINH CÁC NÚT BẤM LỌC LỚP DỰA TRÊN TỪ ĐIỂN LỚP THỰC TẾ
+        // 3. Render nút lớp (giữ nguyên logic cũ của thầy)
         const khungNutLop = document.getElementById('cac-nut-lop-dong');
         if (khungNutLop && window.tempDsLop) {
             let htmlNutLop = '';
             window.tempDsLop.forEach(l => {
                 const maLop = l.ma_lop || l.ma || l.id;
                 const tenLop = l.ten_lop || l.ten || l.name || maLop;
-                htmlNutLop += `
-                    <button class="btn-loc-lop" onclick="ham_7a_5_loc_nhiem_vu_theo_lop_trac_nghiem('${maLop}', this)" style="padding: 6px 14px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
-                        🏫 ${tenLop}
-                    </button>
-                `;
+                htmlNutLop += `<button class="btn-loc-lop" onclick="ham_7a_5_loc_nhiem_vu_theo_lop_trac_nghiem('${maLop}', this)" style="padding: 6px 14px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px;">🏫 ${tenLop}</button>`;
             });
             khungNutLop.innerHTML = htmlNutLop;
         }
 
+        // 🌟 GỘP DỮ LIỆU VÀ METADATA VÀO STATE
         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
             ...nv,
-            ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định'
+            ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định',
+            // Vì dùng join, hoc_lieu_trac_nghiem giờ là 1 object, không phải mảng
+            metadata_hoc_lieu: nv.hoc_lieu_trac_nghiem ? nv.hoc_lieu_trac_nghiem.metadata : null
         }));
 
         ham_7a_10_ve_bang_nhiem_vu_trac_nghiem();
+        
     } catch (error) {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
     }
 }
+
+
+// // =====================================================================
+// // Hàm 7.2: Tải dữ liệu từ bảng nhiem_vu (Bổ sung sinh nút lọc lớp 🏫)
+// // =====================================================================
+// async function ham_7a_2_tai_danh_sach_nhiem_vu_trac_nghiem() {
+//     const renderArea = document.getElementById('danh-sach-nv-render');
+
+    
+//     try {
+//         // Thay thế đoạn gọi Supabase cũ bằng khối này:
+// let dsNhiemVu = []; // Khai báo trước với giá trị rỗng
+
+// try {
+//     // 1. Dùng cú pháp chỉ định rõ cầu nối để tránh lỗi "more than one relationship"
+//     const response = await _supabase
+//         .from('nhiem_vu_trac_nghiem')
+//         .select(`
+//             *,
+//             hoc_lieu_trac_nghiem!fk_nhiem_vu_tn_hoc_lieu ( metadata )
+//         `)
+//         .order('ngay_tao', { ascending: false });
+
+//     if (response.error) {
+//         console.error("Lỗi Supabase:", response.error);
+//         // Nếu vẫn lỗi "more than one", hãy thử thay fk_nhiem_vu_tn_hoc_lieu bằng tên cái kia
+//         throw new Error(response.error.message);
+//     }
+    
+//     dsNhiemVu = response.data || [];
+//     console.log("Tải thành công", dsNhiemVu.length, "nhiệm vụ.");
+
+// } catch (err) {
+//     console.error("Không thể lấy dữ liệu:", err);
+//     renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${err.message}</p>`;
+//     return; // Dừng hàm tại đây nếu không có dữ liệu
+// }
+//         // 1. Lấy tên GV
+//         const danhSachUidGv = [...new Set((dsNhiemVu || []).map(nv => nv.uid_gv_tao).filter(id => id))];
+//         let tuDienTenGv = {};
+//         if (danhSachUidGv.length > 0) {
+//             const { data: dsGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', danhSachUidGv);
+//             if (dsGv) dsGv.forEach(gv => tuDienTenGv[gv.uid] = gv.ten);
+//         }
+
+//         // 2. Lấy Tên Lớp làm từ điển (Nếu chưa có)
+//         if (!window.tempDsLop) {
+//             const { data: dsLop } = await _supabase.from('lop_hoc').select('*');
+//             window.tempDsLop = dsLop || [];
+//         }
+
+//         // TỰ ĐỘNG SINH CÁC NÚT BẤM LỌC LỚP DỰA TRÊN TỪ ĐIỂN LỚP THỰC TẾ
+//         const khungNutLop = document.getElementById('cac-nut-lop-dong');
+//         if (khungNutLop && window.tempDsLop) {
+//             let htmlNutLop = '';
+//             window.tempDsLop.forEach(l => {
+//                 const maLop = l.ma_lop || l.ma || l.id;
+//                 const tenLop = l.ten_lop || l.ten || l.name || maLop;
+//                 htmlNutLop += `
+//                     <button class="btn-loc-lop" onclick="ham_7a_5_loc_nhiem_vu_theo_lop_trac_nghiem('${maLop}', this)" style="padding: 6px 14px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">
+//                         🏫 ${tenLop}
+//                     </button>
+//                 `;
+//             });
+//             khungNutLop.innerHTML = htmlNutLop;
+//         }
+
+//         // 🌟 SỬA TẠI ĐÂY: Gắn luôn metadata vào state để hàm vẽ (7a_10) lấy xài cho tiện
+//         BangNhiemVuState.duLieu = (dsNhiemVu || []).map(nv => ({
+//             ...nv,
+//             ten_gv_tao: tuDienTenGv[nv.uid_gv_tao] || 'Không xác định',
+//             metadata_hoc_lieu: nv.hoc_lieu_trac_nghiem ? nv.hoc_lieu_trac_nghiem.metadata : null
+//         }));
+
+//         // Chuyển sang hàm vẽ HTML
+//         ham_7a_10_ve_bang_nhiem_vu_trac_nghiem();
+//     } catch (error) {
+//         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
+//     }
+// }
 
 
 
@@ -1189,6 +1325,7 @@ window.ham_7a_10_ve_bang_nhiem_vu_trac_nghiem = async function () {
         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
 
+        
         let loaiHienThi = "❓ Khác"; let badgeColor = "#6c757d";
         if (nv._isLiveTask) { loaiHienThi = "🔥 Live Quiz"; badgeColor = "#e74c3c"; }
         else if (nv.loai_nhiem_vu === "Làm đề (Online)") { loaiHienThi = "📝 Làm đề"; badgeColor = "#17a2b8"; }
@@ -1271,7 +1408,17 @@ window.ham_7a_10_ve_bang_nhiem_vu_trac_nghiem = async function () {
                 </td>
 
                 <td style="padding: 10px; font-weight: bold; color: ${nv._isLiveTask ? '#e74c3c' : (nv._isLuyenTapTuDo ? '#17a2b8' : '#6f42c1')};">${nv.ma_nhiem_vu}</td>
-                <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b><br><small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small></td>
+                
+                
+                <td style="padding: 10px;">
+                    <div style="font-weight: bold; margin-bottom: 2px;">${nv.ten_nhiem_vu}</div>
+                    ${window.ham_7a_24_tao_nhan_cau_truc_tu_metadata(nv.metadata_hoc_lieu)}
+                    <div style="margin-top: 4px;">
+                        <small style="color:#888;">HL: ${nv.ma_hoc_lieu || 'Không'}</small>
+                    </div>
+                </td>
+                
+                
                 <td style="padding: 10px; color: #1a73e8;">${hienThiLop}</td>
                 
                 <td style="padding: 10px; text-align: center;">${htmlTienDo}</td>
@@ -1292,6 +1439,183 @@ window.ham_7a_10_ve_bang_nhiem_vu_trac_nghiem = async function () {
 };
 
 
+// window.ham_7a_10_ve_bang_nhiem_vu_trac_nghiem = async function () {
+//     const renderArea = document.getElementById('danh-sach-nv-render');
+//     let dsNV = [...BangNhiemVuState.duLieu];
+
+//     if (dsNV.length === 0) {
+//         renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Chưa có nhiệm vụ nào.</h4></div>`;
+//         return;
+//     }
+
+//     renderArea.innerHTML = `<div style="text-align: center; padding: 50px; color: #1a73e8;"><h3 style="margin:0;">⏳ Đang tính toán dữ liệu tiến độ lớp học...</h3></div>`;
+
+//     const nutLopActive = document.querySelector('.btn-loc-lop.active');
+//     const maLopDangChon = nutLopActive ? nutLopActive.getAttribute('onclick').match(/'([^']+)'/)[1] : 'TAT_CA';
+//     const oTimKiem = document.getElementById('input-tim-kiem-qlnv');
+//     const tuKhoa = oTimKiem ? oTimKiem.value.toLowerCase().trim() : '';
+
+//     let dsHienThi = [];
+//     dsNV.forEach(nv => {
+//         const tenNvLower = (nv.ten_nhiem_vu || '').toLowerCase();
+//         const loaiNvLower = (nv.loai_nhiem_vu || '').toLowerCase();
+//         const maNvLower = (nv.ma_nhiem_vu || '').toLowerCase();
+
+//         let arrLop = [];
+//         let chuoiLopGoc = "";
+//         try {
+//             chuoiLopGoc = typeof nv.danh_sach_lop === 'string' ? nv.danh_sach_lop : JSON.stringify(nv.danh_sach_lop || []);
+//             arrLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+//         } catch (e) { }
+
+//         const isLuyenTapTuDo = (nv.tinh_chat_bai_tap === 'TU_DO' || chuoiLopGoc.includes("LUYEN_TAP_TU_DO"));
+//         const isLiveTask = maNvLower.startsWith('live_');
+
+//         let hopLeLop = false;
+//         if (maLopDangChon === 'TAT_CA') { hopLeLop = !isLiveTask && !isLuyenTapTuDo; }
+//         else if (maLopDangChon === 'TU_DO') { hopLeLop = isLuyenTapTuDo && !isLiveTask; }
+//         else if (maLopDangChon === 'LIVE') { hopLeLop = isLiveTask; }
+//         else { if (arrLop.includes(maLopDangChon)) hopLeLop = true; }
+
+//         const hopLeTimKiem = (tuKhoa === '' || tenNvLower.includes(tuKhoa) || loaiNvLower.includes(tuKhoa) || maNvLower.includes(tuKhoa) || chuoiLopGoc.toLowerCase().includes(tuKhoa));
+
+//         if (hopLeLop && hopLeTimKiem) {
+//             nv._arrLop = arrLop;
+//             nv._isLuyenTapTuDo = isLuyenTapTuDo;
+//             nv._isLiveTask = isLiveTask;
+//             dsHienThi.push(nv);
+//         }
+//     });
+
+//     if (dsHienThi.length === 0) {
+//         renderArea.innerHTML = `<div style="text-align: center; padding: 30px;"><h4>Không tìm thấy nhiệm vụ nào phù hợp với bộ lọc.</h4></div>`;
+//         return;
+//     }
+
+//     let tuDienKQ = {};
+//     const mangMaNVHienThi = dsHienThi.map(nv => nv.ma_nhiem_vu);
+
+//     try {
+//         if (mangMaNVHienThi.length > 0) {
+//             const { data: dsKQ } = await _supabase.from('ket_qua_trac_nghiem').select('ma_nhiem_vu, uid_hoc_sinh').in('ma_nhiem_vu', mangMaNVHienThi);
+//             if (dsKQ) {
+//                 dsKQ.forEach(kq => {
+//                     if (!tuDienKQ[kq.ma_nhiem_vu]) tuDienKQ[kq.ma_nhiem_vu] = new Set();
+//                     tuDienKQ[kq.ma_nhiem_vu].add(kq.uid_hoc_sinh);
+//                 });
+//             }
+//         }
+//         const { data: dsHS } = await _supabase.from('hoc_sinh').select('uid, danh_sach_ma_lop');
+//         window._tempDsHsThongKe = dsHS || [];
+//     } catch (e) { console.warn("Lỗi tính toán thống kê:", e); }
+
+//     const taoThSort = (cotDB, tenHienThi, width = '') => {
+//         let icon = "<span style='color:#ccc; font-size:10px; margin-left:5px;'>↕️</span>";
+//         let bgStyle = "";
+//         if (BangNhiemVuState.cotDangSort === cotDB) {
+//             icon = BangNhiemVuState.tangDan ? "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔼</span>" : "<span style='color:#d35400; font-size:12px; margin-left:5px;'>🔽</span>";
+//             bgStyle = "background-color: #e6f2ff;";
+//         }
+//         return `<th onclick="ham_7_11_sort_nhiem_vu('${cotDB}')" style="padding: 12px 10px; border: 1px solid #eee; width: ${width}; cursor: pointer; user-select: none; transition: 0.2s; ${bgStyle}">${tenHienThi} ${icon}</th>`;
+//     };
+
+//     let htmlTable = `
+//         <div style="overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px;">
+//             <table style="width: 100%; min-width: 1500px; border-collapse: collapse; background: white; font-size: 13px;">
+//                 <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+//                     <tr>
+//                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 40px;">STT</th>
+//                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 160px; text-align: center;">Thao tác</th>
+//                         ${taoThSort('ma_nhiem_vu', 'Mã NV', '110px')}
+//                         ${taoThSort('ten_nhiem_vu', 'Tên Nhiệm Vụ', '150px')}
+//                         ${taoThSort('danh_sach_lop', 'Giao Cho', '120px')}
+//                         <th style="padding: 12px 10px; border: 1px solid #eee; width: 100px; text-align: center;">Tiến Độ HS</th>
+//                         ${taoThSort('loai_nhiem_vu', 'Loại NV', '90px')}
+//                         ${taoThSort('thoi_gian_mo', 'Mở Lúc')}
+//                         ${taoThSort('thoi_gian_dong', 'Đóng Lúc')}
+//                         ${taoThSort('dao_cau_hoi', 'Đảo Đề', '120px')}
+//                         ${taoThSort('trang_thai', 'Tình Trạng')}
+//                     </tr>
+//                 </thead>
+//                 <tbody>`;
+
+//     const now = new Date();
+//     const tinhKhoangThoiGian = (targetDate, isPast) => {
+//         if (!targetDate) return "";
+//         const diff = isPast ? (now - targetDate) : (targetDate - now);
+//         if (diff <= 0) return isPast ? "vừa xong" : "hết hạn";
+//         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+//         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+//         const m = Math.floor((diff / (1000 * 60)) % 60);
+//         let result = [];
+//         if (d > 0) result.push(`${d}n`);
+//         if (h > 0) result.push(`${h}g`);
+//         if (m > 0 && d === 0) result.push(`${m}p`);
+//         return isPast ? `(đã mở ${result.join(' ')})` : `(còn ${result.join(' ')})`;
+//     };
+
+//     let sttChayHienTai = 1;
+//     dsHienThi.forEach((nv) => {
+//         const timeMo = nv.thoi_gian_mo ? new Date(nv.thoi_gian_mo) : null;
+//         const timeDong = nv.thoi_gian_dong ? new Date(nv.thoi_gian_dong) : null;
+        
+//         // 🌟 LẤY CẤU TRÚC HỌC LIỆU
+//         const htmlCauTruc = window.ham_7a_24_tao_nhan_cau_truc_tu_metadata(nv.metadata_hoc_lieu);
+
+//         let loaiHienThi = "❓ Khác"; let badgeColor = "#6c757d";
+//         if (nv._isLiveTask) { loaiHienThi = "🔥 Live Quiz"; badgeColor = "#e74c3c"; }
+//         else if (nv.loai_nhiem_vu === "Làm đề (Online)") { loaiHienThi = "📝 Làm đề"; badgeColor = "#17a2b8"; }
+//         else if (nv.loai_nhiem_vu) { loaiHienThi = nv.loai_nhiem_vu; }
+
+//         let htmlLoaiNV = `<span style="display:inline-block; padding:5px 8px; background:${badgeColor}15; color:${badgeColor}; border: 1px solid ${badgeColor}40; border-radius:6px; font-weight:bold; font-size:11px; white-space:nowrap;">${loaiHienThi}</span>`;
+
+//         let hienThiLop = nv._arrLop.map(ma => {
+//             const lopObj = window.tempDsLop?.find(l => (l.ma_lop || l.ma || l.id) === ma);
+//             return `<div style="margin-bottom:2px;"><b>${lopObj ? (lopObj.ten_lop || lopObj.ten) : "Lớp ẩn"}</b></div>`;
+//         }).join('');
+
+//         let soDaLam = tuDienKQ[nv.ma_nhiem_vu] ? tuDienKQ[nv.ma_nhiem_vu].size : 0;
+//         let tongGiao = 0;
+//         if (!nv._isLiveTask && !nv._isLuyenTapTuDo && window._tempDsHsThongKe) {
+//             let setHS = new Set();
+//             window._tempDsHsThongKe.forEach(hs => {
+//                 let lopCuaEm = [];
+//                 try { lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//                 if (lopCuaEm.some(m => nv._arrLop.includes(m))) setHS.add(hs.uid);
+//             });
+//             tongGiao = setHS.size;
+//         }
+
+//         let htmlTienDo = nv._isLiveTask || nv._isLuyenTapTuDo ? `<div style="color:#28a745; font-weight:bold;">✅ Đã làm: ${soDaLam}</div>` : `<div style="color:#28a745; font-weight:bold;">✅ ${soDaLam}</div><div style="color:#dc3545; font-weight:bold;">⏳ ${Math.max(0, tongGiao - soDaLam)}</div>`;
+
+//         let txtDaoDe = nv.dao_cau_hoi ? "🌪️ Có đảo" : "❌ Không";
+//         const fTime = (d) => d ? d.toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "-";
+
+//         htmlTable += `
+//             <tr style="border-bottom: 1px solid #eee;">
+//                 <td style="padding: 10px; text-align: center;">${sttChayHienTai++}</td>
+//                 <td style="padding: 10px;">
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+//                         <button onclick="ham_7a_6_mo_form_nhiem_vu_trac_nghiem('${nv.ma_nhiem_vu}')" class="btn btn-sm btn-warning">✏️</button>
+//                         <button onclick="ham_7a_8_xoa_nhiem_vu_trac_nghiem('${nv.ma_nhiem_vu}')" class="btn btn-sm btn-danger">❌</button>
+//                     </div>
+//                 </td>
+//                 <td style="padding: 10px;">${nv.ma_nhiem_vu}</td>
+//                 <td style="padding: 10px;"><b>${nv.ten_nhiem_vu}</b> ${htmlCauTruc}</td>
+//                 <td style="padding: 10px;">${hienThiLop}</td>
+//                 <td style="padding: 10px; text-align: center;">${htmlTienDo}</td>
+//                 <td style="padding: 10px;">${htmlLoaiNV}</td>
+//                 <td style="padding: 10px;">${fTime(timeMo)}</td>
+//                 <td style="padding: 10px;">${fTime(timeDong)}</td>
+//                 <td style="padding: 10px;">${txtDaoDe}</td>
+//                 <td style="padding: 10px;">${nv.trang_thai == 1 ? "✅ Mở" : "⏸️ Khóa"}</td>
+//             </tr>`;
+//     });
+
+//     htmlTable += `</tbody></table></div>`;
+//     renderArea.innerHTML = htmlTable;
+// };
+
 
 
 // ==============================================================
@@ -1301,6 +1625,11 @@ window.ham_7a_10_ve_bang_nhiem_vu_trac_nghiem = async function () {
 // ==============================================================
 // Hàm 7.11: Xử lý Logic Sắp xếp (Sort) cho Bảng Nhiệm Vụ
 // ==============================================================
+
+
+
+
+
 function ham_7a_11_sort_nhiem_vu_trac_nghiem(cotSort) {
     // 1. Đảo chiều nếu bấm lại cột cũ, hoặc mặc định Tăng dần nếu bấm cột mới
     if (BangNhiemVuState.cotDangSort === cotSort) {
@@ -2302,3 +2631,16 @@ window.ham_7a_23_gv_mo_giao_dien_xem_lai_chi_tiet_trac_nghiem = async function (
     }
 };
 
+window.ham_7a_24_tao_nhan_cau_truc_tu_metadata = function(metadataGoc) {
+    //console.log("Giá trị metadata truyền vào:", metadataGoc); // <--- Dòng này để debug
+    if (!metadataGoc) return `<span style="color:#999; font-size:11px; font-style:italic;">Chưa có cấu trúc</span>`;
+    try {
+        const meta = typeof metadataGoc === 'string' ? JSON.parse(metadataGoc) : metadataGoc;
+        if (meta.cau_truc) {
+            return `<span style="font-size: 11px; background: #e8f4f8; color: #0056b3; padding: 2px 6px; border-radius: 4px; border: 1px solid #b8daff; display: inline-block;">
+                        📝 <b>${meta.cau_truc.replace(/-/g, ' | ')}</b>
+                    </span>`;
+        }
+        return '';
+    } catch (e) { return ''; }
+};

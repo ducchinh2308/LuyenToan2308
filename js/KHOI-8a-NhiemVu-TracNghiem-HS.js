@@ -1828,24 +1828,50 @@ function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCa
         htmlBlock += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
         const mangPA = cau.dsTron || [{ idGoc: 'A', text: cau.paA }, { idGoc: 'B', text: cau.paB }, { idGoc: 'C', text: cau.paC }, { idGoc: 'D', text: cau.paD }];
 
+       
         mangPA.forEach((pa, idx) => {
             const nhan = String.fromCharCode(65 + idx);
             const isStudentPicked = (pa.idGoc === baiLamHS.luaChonHS);
             const isCorrect = (pa.idGoc === cau.dap_an);
 
-            let bgLabel = "#f8f9fa", borderLabel = "#ddd", icon = "";
+            // Logic CSS
+            let bgLabel = "#f8f9fa", borderLabel = "#ddd", colorLabel = "#495057";
 
             if (choPhepXemDapAn) {
-                if (isStudentPicked && isCorrect) { bgLabel = "#d4edda"; borderLabel = "#28a745"; icon = "✅ Chốt"; }
-                else if (isStudentPicked && !isCorrect) { bgLabel = "#f8d7da"; borderLabel = "#dc3545"; icon = "❌ Em chọn"; }
-            } else {
-                if (isStudentPicked) { bgLabel = "#e8f4f8"; borderLabel = "#b8daff"; icon = "🔷 Lựa chọn của em"; }
+                if (isStudentPicked) {
+                    if (isCorrect) {
+                        // ĐÚNG: Xanh dương toàn bộ
+                        bgLabel = "#007bff"; borderLabel = "#0056b3"; colorLabel = "#ffffff";
+                        // Lưu mô tả ĐÚNG vào biến tạm để ném xuống footer
+                        window.tempMoTaTN = `<div style="padding: 8px 16px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px; font-weight: bold; color: #155724; font-size: 13px; flex-grow: 1; margin-right: 10px;">✅ Đúng, em chọn ${nhan}</div>`;
+                    } else {
+                        // SAI: Đỏ nhạt
+                        bgLabel = "#f8d7da"; borderLabel = "#f5c6cb"; colorLabel = "#721c24";
+                        // Lưu mô tả SAI vào biến tạm để ném xuống footer
+                        window.tempMoTaTN = `<div style="padding: 8px 16px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 6px; font-weight: bold; color: #721c24; font-size: 13px; flex-grow: 1; margin-right: 10px;">❌ Sai, em chọn ${nhan}, đáp án là ${cau.dap_an || "chưa rõ"}</div>`;
+                    }
+                } else if (isCorrect) {
+                    // ĐÁP ÁN ĐÚNG (Khi HS không chọn): Viền xanh lá
+                    borderLabel = "#28a745"; bgLabel = "#d4edda"; colorLabel = "#155724";
+
+                    // Trường hợp học sinh bỏ trống không chọn gì cả
+                    if (!baiLamHS.luaChonHS && window.tempMoTaTN === "") {
+                        window.tempMoTaTN = `<div style="padding: 8px 16px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px; font-weight: bold; color: #856404; font-size: 13px; flex-grow: 1; margin-right: 10px;">⚠️ Em bỏ trống, đáp án là ${nhan}</div>`;
+                    }
+                }
+            }
+            else if (isStudentPicked) {
+                bgLabel = "#e8f4f8"; borderLabel = "#b8daff"; colorLabel = "#0056b3";
+                window.tempMoTaTN = `<div style="padding: 8px 16px; background: #e8f4f8; border: 1px solid #b8daff; border-radius: 6px; font-weight: bold; color: #0056b3; font-size: 13px; flex-grow: 1; margin-right: 10px;">🔷 Em đã chọn ${nhan}</div>`;
             }
 
+            // Giao diện thẻ Label (Đã xóa textMota bên trong)
             htmlBlock += `
-                <label style="display: flex; align-items: flex-start; padding: 12px; border: 2px solid ${borderLabel}; border-radius: 6px; background: ${bgLabel};">
-                    <input type="radio" ${isStudentPicked ? 'checked' : ''} style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
-                    <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyNoiDung(pa.text)} <span style="font-weight:bold; font-size:14px; float:right;">${icon}</span></div>
+                <label style="display: flex; align-items: flex-start; padding: 12px; margin-bottom:8px; border: 2px solid ${borderLabel}; border-radius: 6px; background: ${bgLabel}; color: ${colorLabel}; transition: 0.2s;">
+                    <input type="radio" ${isStudentPicked ? 'checked' : ''} disabled style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
+                    <div style="flex:1; font-size: 17px;">
+                        <b>${nhan}.</b> ${xuLyNoiDung(pa.text)}
+                    </div>
                 </label>`;
         });
         htmlBlock += `</div>`;
@@ -1859,67 +1885,128 @@ function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCa
         const dapAnChuan = cau.dap_an || ""; // Ví dụ: "TTFT"
         const chuoiBaiLam = baiLamHS.luaChonHS || ""; // Ví dụ: "TFTT" (Lấy từ dữ liệu thầy gửi)
 
+        let soYDung = 0;
         mangY.forEach((y, idx) => {
-            const nhanThuong = ['a', 'b', 'c', 'd'][idx];
-            // Lấy ký tự tại vị trí idx: 'T' hoặc 'F'
-            const hsChon = chuoiBaiLam[idx] || "";
-            const correctVal = dapAnChuan[idx] || "";
+            if (chuoiBaiLam[idx] === dapAnChuan[idx]) soYDung++;
+        });
+
+        mangY.forEach((y, idx) => {
+            const nhan = ['a', 'b', 'c', 'd'][idx];
+            const hsChon = chuoiBaiLam[idx];
+            const correctVal = dapAnChuan[idx];
 
             const hsT = (hsChon === 'T');
             const hsF = (hsChon === 'F');
 
-            let bgT = "transparent", borderT = "#ccc", colorT = "#495057";
-            let bgF = "transparent", borderF = "#ccc", colorF = "#495057";
+            let bgT = "#f8f9fa", borderT = "#ccc", colorT = "#495057";
+            let bgF = "#f8f9fa", borderF = "#ccc", colorF = "#495057";
 
             if (choPhepXemDapAn) {
-                // Nếu học sinh chọn đúng
-                if (hsT && correctVal === 'T') { bgT = "#d4edda"; borderT = "#28a745"; colorT = "#28a745"; }
-                else if (hsT && correctVal === 'F') { bgT = "#f8d7da"; borderT = "#dc3545"; colorT = "#dc3545"; }
+                // Tô màu cho nút ĐÚNG
+                if (hsT) {
+                    if (correctVal === 'T') { bgT = "#007bff"; borderT = "#0056b3"; colorT = "#ffffff"; }
+                    else { bgT = "#f8d7da"; borderT = "#f5c6cb"; colorT = "#721c24"; }
+                } else if (correctVal === 'T') { borderT = "#28a745"; bgT = "#d4edda"; colorT = "#155724"; }
 
-                if (hsF && correctVal === 'F') { bgF = "#d4edda"; borderF = "#28a745"; colorF = "#28a745"; }
-                else if (hsF && correctVal === 'T') { bgF = "#f8d7da"; borderF = "#dc3545"; colorF = "#dc3545"; }
+                // Tô màu cho nút SAI
+                if (hsF) {
+                    if (correctVal === 'F') { bgF = "#007bff"; borderF = "#0056b3"; colorF = "#ffffff"; }
+                    else { bgF = "#f8d7da"; borderF = "#f5c6cb"; colorF = "#721c24"; }
+                } else if (correctVal === 'F') { borderF = "#28a745"; bgF = "#d4edda"; colorF = "#155724"; }
             } else {
-                // Chỉ hiển thị lựa chọn của HS
-                if (hsT) { bgT = "#e8f4f8"; borderT = "#80bdff"; colorT = "#0056b3"; }
-                if (hsF) { bgF = "#e8f4f8"; borderF = "#80bdff"; colorF = "#0056b3"; }
+                // 🌟 CHỈ HIỂN THỊ LỰA CHỌN CỦA HS KHI KHÓA ĐÁP ÁN
+                if (hsT) { bgT = "#e8f4f8"; borderT = "#b8daff"; colorT = "#0056b3"; }
+                if (hsF) { bgF = "#e8f4f8"; borderF = "#b8daff"; colorF = "#0056b3"; }
             }
 
             htmlBlock += `
-            <div style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-                <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
-                <div style="display: flex; gap: 10px; flex-shrink: 0;">
-                    <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderT}; background: ${bgT}; font-weight: bold; color: ${colorT}; display:flex; align-items:center; gap:5px;">
-                        <input type="radio" ${hsT ? 'checked' : ''} disabled style="transform: scale(1.2);"> Đúng
-                    </span>
-                    <span style="padding: 5px 10px; border-radius: 20px; border: 2px solid ${borderF}; background: ${bgF}; font-weight: bold; color: ${colorF}; display:flex; align-items:center; gap:5px;">
-                        <input type="radio" ${hsF ? 'checked' : ''} disabled style="transform: scale(1.2);"> Sai
-                    </span>
+            <div style="margin-bottom: 8px; padding: 10px; background: #fff; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex: 1; font-size: 16px;"><strong>${nhan})</strong> ${xuLyNoiDung(y.text)}</div>
+                <div style="display: flex; gap: 10px;">
+                    <span style="padding: 4px 12px; border-radius: 4px; border: 2px solid ${borderT}; background: ${bgT}; color: ${colorT}; font-weight: bold;">Đúng</span>
+                    <span style="padding: 4px 12px; border-radius: 4px; border: 2px solid ${borderF}; background: ${bgF}; color: ${colorF}; font-weight: bold;">Sai</span>
                 </div>
             </div>`;
         });
+
+        // 🌟 CHUYỂN DÒNG MÔ TẢ XUỐNG DƯỚI VÀ KIỂM TRA ĐIỀU KIỆN
+        // Xử lý chuỗi hiển thị: Nếu hs chưa chọn thì hiện "_" thay vì lỗi
+        const chuoiDichHS = Array.from(chuoiBaiLam).map(k => k === 'T' ? 'Đ' : (k === 'F' ? 'S' : '_')).join('-');
+
+        if (choPhepXemDapAn) {
+            // Khi cho phép xem: Hiện đầy đủ số câu đúng, lựa chọn và đáp án
+            const chuoiDichDA = Array.from(dapAnChuan).map(k => k === 'T' ? 'Đ' : 'S').join('-');
+            window.tempMoTaDS = `
+                <div style="padding: 8px 16px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 6px; font-weight: bold; color: #856404; font-size: 13px; flex-grow: 1; margin-right: 10px;">
+                    🎯 Đúng ${soYDung}/4 ý | 👤 Em: ${chuoiDichHS} | ✅ ĐA: ${chuoiDichDA}
+                </div>`;
+        } else {
+            // Khi khóa đáp án: Chỉ hiện dòng thông báo lựa chọn của học sinh (Màu xanh lam nhẹ nhàng)
+            window.tempMoTaDS = `
+                <div style="padding: 8px 16px; background: #e8f4f8; border: 1px solid #b8daff; border-radius: 6px; font-weight: bold; color: #0056b3; font-size: 13px; flex-grow: 1; margin-right: 10px;">
+                    🔷 Em đã chọn: ${chuoiDichHS}
+                </div>`;
+        }
+
         htmlBlock += `</div>`;
+        
     }
     // 3. DẠNG TRẢ LỜI NGẮN (TLN)
     else if (loaiCau === "TLN") {
-        const hsAns = baiLamHS.luaChonHS || "";
-        const isCorrect = (baiLamHS.ketQua === "Đúng");
+        // 🌟 BƯỚC SỬA LỖI: Xử lý an toàn mọi kiểu dữ liệu (Số, Mảng, Object rỗng, Chuỗi)
+        let rawAns = baiLamHS.luaChonHS;
+        let hsAns = "";
 
-        let borderColor = "#1a73e8", bgInput = "#fff", labelStatus = "Lựa chọn bài làm của em:";
+        if (rawAns !== null && rawAns !== undefined) {
+            if (typeof rawAns === 'object' && !Array.isArray(rawAns)) {
+                hsAns = ""; // Trường hợp mặc định object rỗng {}
+            } else if (Array.isArray(rawAns)) {
+                hsAns = rawAns.join(""); // Nếu Database lưu dạng mảng
+            } else {
+                hsAns = String(rawAns).trim(); // Ép số (VD: 12.5) thành chuỗi "12.5"
+            }
+        }
+
+        const isCorrect = (baiLamHS.ketQua === "Đúng");
+        const dapAnChuan = cau.dap_an || "Chưa cập nhật";
+
+        let borderColor = "#1a73e8", bgInput = "#fff", colorText = "#1a73e8";
+
         if (choPhepXemDapAn) {
-            borderColor = isCorrect ? "#28a745" : "#dc3545";
-            bgInput = isCorrect ? "#d4edda" : "#f8d7da";
-            labelStatus = isCorrect ? "✅ CHÍNH XÁC" : "❌ CHƯA CHÍNH XÁC";
+            if (isCorrect) {
+                // ĐÚNG: Xanh lá
+                borderColor = "#28a745"; bgInput = "#d4edda"; colorText = "#155724";
+                window.tempMoTaTLN = `
+                    <div style="padding: 8px 16px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px; font-weight: bold; color: #155724; font-size: 13px; flex-grow: 1; margin-right: 10px;">
+                        ✅ Chính xác, em đã điền: ${hsAns}
+                    </div>`;
+            } else {
+                // SAI: Đỏ nhạt
+                borderColor = "#dc3545"; bgInput = "#f8d7da"; colorText = "#721c24";
+                const hsHienThi = hsAns ? hsAns : "Bỏ trống";
+                window.tempMoTaTLN = `
+                    <div style="padding: 8px 16px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 6px; font-weight: bold; color: #721c24; font-size: 13px; flex-grow: 1; margin-right: 10px;">
+                        ❌ Sai, em điền: ${hsHienThi} | ✅ ĐA chuẩn: ${dapAnChuan}
+                    </div>`;
+            }
+        } else {
+            // KHÓA ĐÁP ÁN: Xanh lam nhạt
+            const hsHienThi = hsAns ? hsAns : "Chưa điền";
+            window.tempMoTaTLN = `
+                <div style="padding: 8px 16px; background: #e8f4f8; border: 1px solid #b8daff; border-radius: 6px; font-weight: bold; color: #0056b3; font-size: 13px; flex-grow: 1; margin-right: 10px;">
+                    🔷 Em đã điền: ${hsHienThi}
+                </div>`;
         }
 
         let inputHtml = "";
+        // Rải đều chuỗi hsAns vào 4 ô vuông
         for (let i = 0; i < 4; i++) {
             let char = hsAns[i] || "";
-            inputHtml += `<input type="text" value="${char}" readonly style="width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid ${borderColor}; border-radius: 8px; color: ${borderColor}; outline: none; background: ${bgInput}; text-transform: uppercase;">`;
+            inputHtml += `<input type="text" value="${char}" readonly style="width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid ${borderColor}; border-radius: 8px; color: ${colorText}; outline: none; background: ${bgInput}; text-transform: uppercase;">`;
         }
 
         htmlBlock += `
             <div style="margin-top: 15px; padding: 25px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; text-align: center;">
-                <div style="font-weight: bold; color: ${borderColor}; font-size: 15px; margin-bottom: 15px;">${labelStatus}</div>
                 <div style="display: flex; justify-content: center; gap: 12px;">${inputHtml}</div>
             </div>`;
     }
@@ -1948,6 +2035,8 @@ function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCa
 
     htmlBlock += `
         <div style="margin-top: 20px; border-top: 1px dotted #ccc; padding-top: 15px; display: flex; gap: 12px; flex-wrap: wrap; pointer-events: auto;">
+            ${(loaiCau === 'DS' ? (window.tempMoTaDS || '') : (loaiCau === 'TLN' ? (window.tempMoTaTLN || '') : (window.tempMoTaTN || '')))}
+
             
             ${choPhepXemDapAn ? `
                 <button style="padding: 8px 16px; background: #e8f4f8; color: #1a73e8; border: 1.5px solid #1a73e8; border-radius: 6px; font-weight: bold; font-size: 13px; cursor: default;">
@@ -1968,10 +2057,14 @@ function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCa
 
         <div id="${idVungLoiGiai}" style="display: none; margin-top: 15px; padding: 20px; background: #faf8ff; border-left: 4px solid #6f42c1; border-radius: 4px; font-size: 16px; line-height: 1.6; overflow-x: auto; color: #2c3e50; pointer-events: auto;">
             <div style="font-weight: bold; color: #6f42c1; margin-bottom: 8px; font-size:14px; text-transform:uppercase;">💡 Hướng dẫn giải chi tiết:</div>
-            
             ${xuLyNoiDung(cau.loiGiaiHtml || "<p style='color:#999; font-style:italic;'>Hệ thống chưa cập nhật lời giải văn bản cho câu hỏi này.</p>", true)}
         </div>
     `;
+
+    // 🌟 RESET TẤT CẢ BIẾN TẠM SAU KHI VẼ XONG CÂU
+    window.tempMoTaDS = "";
+    window.tempMoTaTN = "";
+    window.tempMoTaTLN = "";
 
     return htmlBlock + `</div>`;
 }
