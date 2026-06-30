@@ -138,31 +138,216 @@
 // }
 
 // [Nhãn thời gian: BẢN NÂNG CẤP MỚI] - Hàm 9.1: Vẽ Tab Quản lý Live Quiz (TỰ ĐỘNG CHỐT PHÒNG HẾT GIỜ)
+// window.ham_9_1_tab_live_quiz = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang tải dữ liệu Đấu trường Live...</h3></div>`;
+
+//     try {
+//         // 1. Tải danh sách phòng
+//         const { data: dsPhong, error } = await _supabase
+//             .from('phong_live_quiz')
+//             .select('*')
+//             .order('ngay_tao', { ascending: false });
+
+//         if (error) throw error;
+
+//         // 2. Tải từ điển Nhiệm Vụ (Lấy thêm cột thoi_gian_lam_bai để tính toán hết giờ)
+//         let tuDienNV = {};
+//         let tuDienTGNV = {};
+//         const { data: dsNV } = await _supabase.from('nhiem_vu_trac_nghiem').select('ma_nhiem_vu, ten_nhiem_vu, thoi_gian_lam_bai');
+//         if (dsNV) {
+//             dsNV.forEach(nv => {
+//                 tuDienNV[nv.ma_nhiem_vu] = nv.ten_nhiem_vu;
+//                 tuDienTGNV[nv.ma_nhiem_vu] = nv.thoi_gian_lam_bai || 45; // Mặc định 45 phút nếu rỗng
+//             });
+//         }
+
+//         // 🌟 3. THUẬT TOÁN KIỂM DUYỆT NGẦM: TỰ ĐỘNG ĐÓNG PHÒNG HẾT GIỜ MÀ KHÔNG CẦN VÀO PHÒNG
+//         const now = Date.now();
+//         if (dsPhong && dsPhong.length > 0) {
+//             dsPhong.forEach(phong => {
+//                 // Chỉ xét những phòng đang trong trạng thái THI (1) và đã có thời điểm bắt đầu
+//                 if (phong.trang_thai === 1 && phong.thoi_gian_bat_dau) {
+//                     const thoiGianLamBai = tuDienTGNV[phong.ma_nhiem_vu] || 45;
+//                     const tStart = new Date(phong.thoi_gian_bat_dau).getTime();
+//                     const tEnd = tStart + (thoiGianLamBai * 60000); // Đổi phút ra mili-giây
+
+//                     // Nếu thời gian hiện tại đã vượt quá thời gian kết thúc
+//                     if (now >= tEnd) {
+//                         phong.trang_thai = 2; // Ép hiển thị trên Giao diện thành KẾT THÚC
+                        
+//                         // Âm thầm gửi lệnh bắn lên Supabase để chốt sổ Database
+//                         _supabase.from('phong_live_quiz')
+//                             .update({ trang_thai: 2 })
+//                             .eq('ma_phong', phong.ma_phong)
+//                             .then(({error}) => {
+//                                 if(!error) console.log(`[Auto-Close] Đã tự động đóng phòng lố giờ: ${phong.ma_phong}`);
+//                             });
+//                     }
+//                 }
+//             });
+//         }
+
+//         // 4. THUẬT TOÁN ĐẾM SỐ HỌC SINH THAM GIA TỪ BẢNG TIẾN ĐỘ LIVE
+//         let tuDienSoHS = {};
+//         if (dsPhong && dsPhong.length > 0) {
+//             const mangMaPhong = dsPhong.map(p => p.ma_phong);
+//             const { data: dsTienDo } = await _supabase
+//                 .from('tien_do_live_quiz')
+//                 .select('ma_phong, uid_hoc_sinh')
+//                 .in('ma_phong', mangMaPhong);
+
+//             if (dsTienDo) {
+//                 dsTienDo.forEach(td => {
+//                     if (!tuDienSoHS[td.ma_phong]) tuDienSoHS[td.ma_phong] = new Set();
+//                     tuDienSoHS[td.ma_phong].add(td.uid_hoc_sinh); 
+//                 });
+//             }
+//         }
+
+//         // 5. VẼ BẢNG DANH SÁCH
+//         let htmlRows = '';
+//         if (!dsPhong || dsPhong.length === 0) {
+//             htmlRows = `<tr><td colspan="7" style="text-align:center; padding: 30px; color:#6c757d;">Chưa có phòng thi Live nào được tạo. Hãy bấm "Tạo Phòng Mới" để bắt đầu!</td></tr>`;
+//         } else {
+//             dsPhong.forEach((phong, index) => {
+//                 const tenNhiemVu = tuDienNV[phong.ma_nhiem_vu] || 'Nhiệm vụ ảo đã bị xóa';
+//                 const thoiGianTao = new Date(phong.ngay_tao).toLocaleString('vi-VN');
+
+//                 const soHocSinh = tuDienSoHS[phong.ma_phong] ? tuDienSoHS[phong.ma_phong].size : 0;
+//                 const htmlSoHS = `<span style="background: #e3f2fd; color: #1565c0; padding: 4px 10px; border-radius: 12px; font-weight: 900; font-size: 13px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">👤 ${soHocSinh}</span>`;
+
+//                 let badgeTrangThai = '';
+//                 let htmlThaoTac = '';
+
+//                 // CHUẨN BỊ CÁC NÚT BẤM (Grid 2x2)
+//                 const btnThongKe = `<button onclick="ham_9_5_thong_ke_live_quiz('${phong.ma_phong}', '${phong.ma_nhiem_vu}', '${tenNhiemVu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem kết quả bài làm">📊 K.Quả</button>`;
+//                 const btnXoa = `<button onclick="ham_9_4_xoa_phong_live('${phong.ma_phong}', '${phong.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xóa phòng">❌ Xóa</button>`;
+//                 const btnDuPhong = `<button onclick="Swal.fire('Tính năng dự phòng', 'Nút này sẽ dùng cho các tính năng nâng cấp sau này!', 'info')" style="padding: 6px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Dự phòng">⚙️ C.Đặt</button>`;
+
+//                 let btnDieuKhien = '';
+
+//                 if (phong.trang_thai === 0) {
+//                     badgeTrangThai = `<span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #c8e6c9; white-space:nowrap;">ĐANG CHỜ HS</span>`;
+//                     btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Vào phòng điều khiển">🚀 V.Phòng</button>`;
+//                 } else if (phong.trang_thai === 1) {
+//                     badgeTrangThai = `<span style="background:#ffebee; color:#c62828; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #ffcdd2; white-space:nowrap;">🔥 ĐANG THI</span>`;
+//                     btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #e74c3c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem thi đấu trực tiếp">👀 Live</button>`;
+//                 } else {
+//                     badgeTrangThai = `<span style="background:#f1f3f4; color:#5f6368; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:bold; border:1px solid #dadce0; white-space:nowrap;">ĐÃ KẾT THÚC</span>`;
+//                     btnDieuKhien = `<button onclick="ham_9_3_vao_dieu_khien_phong('${phong.ma_phong}')" style="padding: 6px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px; width: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);" title="Xem bảng xếp hạng">🏆 X.Hạng</button>`;
+//                 }
+
+//                 htmlThaoTac = `
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 160px; margin: 0 auto;">
+//                         ${btnDieuKhien}
+//                         ${btnThongKe}
+//                         ${btnXoa}
+//                         ${btnDuPhong}
+//                     </div>
+//                 `;
+
+//                 htmlRows += `
+//                     <tr style="border-bottom: 1px solid #eee; background: #fff; transition: 0.2s;" onmouseover="this.style.background='#fdf2f2'" onmouseout="this.style.background='#fff'">
+//                         <td style="padding: 12px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+//                         <td style="padding: 12px 10px; text-align: center;">
+//                             <b style="font-size: 20px; color: #e74c3c; font-family: monospace; letter-spacing: 2px;">${phong.ma_phong}</b>
+//                         </td>
+//                         <td style="padding: 12px 10px;">
+//                             <div style="font-weight: bold; color: #1a73e8; font-size: 14px; line-height: 1.4;">${tenNhiemVu}</div>
+//                             <div style="font-size: 11px; color: #888; margin-top: 4px;">Mã NV Ảo: ${phong.ma_nhiem_vu}</div>
+//                         </td>
+//                         <td style="padding: 12px 10px; font-size: 12px; color: #555;">${thoiGianTao}</td>
+//                         <td style="padding: 12px 10px; text-align: center;">${htmlSoHS}</td>
+//                         <td style="padding: 12px 10px; text-align: center;">${badgeTrangThai}</td>
+//                         <td style="padding: 12px 10px; text-align: center;">${htmlThaoTac}</td>
+//                     </tr>
+//                 `;
+//             });
+//         }
+
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+//                 <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center;">
+//                     <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">🔴 TRUNG TÂM ĐIỀU KHIỂN LIVE QUIZ</h3>
+//                     <button onclick="ham_9_2_tao_phong_live()" style="background: white; color: #c0392b; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">
+//                         🚀 TẠO PHÒNG MỚI
+//                     </button>
+//                 </div>
+                
+//                 <div style="overflow-x: auto; padding: 10px;">
+//                     <table style="width: 100%; border-collapse: collapse; min-width: 950px; text-align: left;">
+//                         <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+//                             <tr>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 50px;">STT</th>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 120px;">Mã PIN</th>
+//                                 <th style="padding: 12px 10px; color: #495057;">Sử dụng Đề thi / Học liệu</th>
+//                                 <th style="padding: 12px 10px; color: #495057; width: 100px;">Thời gian tạo</th>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 60px;">Số HS</th>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 150px;">Trạng Thái</th>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #495057; width: 180px;">Thao Tác</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>
+//                             ${htmlRows}
+//                         </tbody>
+//                     </table>
+//                 </div>
+//             </div>
+//         `;
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất danh sách phòng: ${error.message}</div>`;
+//     }
+// }
+
+
+// [Nhãn thời gian: BẢN NÂNG CẤP MỚI] - Hàm 9.1: Vẽ Tab Quản lý Live Quiz (TỰ ĐỘNG CHỐT PHÒNG HẾT GIỜ + GẮN DEBUG)
 window.ham_9_1_tab_live_quiz = async function () {
+    //console.log("==================================================");
+    //console.log("👉 [DEBUG 9.1] 1. BẮT ĐẦU CHẠY HÀM ham_9_1_tab_live_quiz");
+    console.log("==================================================");
+
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#e74c3c;">⏳ Đang tải dữ liệu Đấu trường Live...</h3></div>`;
 
     try {
         // 1. Tải danh sách phòng
+        //console.log("👉 [DEBUG 9.1] 2. Đang gọi Supabase bảng 'phong_live_quiz'...");
         const { data: dsPhong, error } = await _supabase
             .from('phong_live_quiz')
             .select('*')
             .order('ngay_tao', { ascending: false });
 
-        if (error) throw error;
+        if (error) {
+            //console.error("❌ [DEBUG 9.1] LỖI lấy dsPhong:", error);
+            throw error;
+        }
+        //console.log("✅ [DEBUG 9.1] Dữ liệu dsPhong tải thành công:", dsPhong);
 
         // 2. Tải từ điển Nhiệm Vụ (Lấy thêm cột thoi_gian_lam_bai để tính toán hết giờ)
+        //console.log("👉 [DEBUG 9.1] 3. Đang gọi Supabase bảng 'nhiem_vu_trac_nghiem'...");
         let tuDienNV = {};
         let tuDienTGNV = {};
-        const { data: dsNV } = await _supabase.from('nhiem_vu').select('ma_nhiem_vu, ten_nhiem_vu, thoi_gian_lam_bai');
-        if (dsNV) {
-            dsNV.forEach(nv => {
-                tuDienNV[nv.ma_nhiem_vu] = nv.ten_nhiem_vu;
-                tuDienTGNV[nv.ma_nhiem_vu] = nv.thoi_gian_lam_bai || 45; // Mặc định 45 phút nếu rỗng
-            });
+
+        // Tách riêng error ra để bắt lỗi cục bộ nếu bảng này có vấn đề
+        const { data: dsNV, error: errNV } = await _supabase.from('nhiem_vu_trac_nghiem').select('ma_nhiem_vu, ten_nhiem_vu, thoi_gian_lam_bai');
+
+        if (errNV) {
+            //console.error("❌ [DEBUG 9.1] LỖI lấy nhiem_vu_trac_nghiem:", errNV);
+            // Không ném lỗi ra ngoài để xem giao diện có vẽ tiếp được không
+        } else {
+            //console.log("✅ [DEBUG 9.1] Dữ liệu dsNV tải thành công:", dsNV);
+            if (dsNV) {
+                dsNV.forEach(nv => {
+                    tuDienNV[nv.ma_nhiem_vu] = nv.ten_nhiem_vu;
+                    tuDienTGNV[nv.ma_nhiem_vu] = nv.thoi_gian_lam_bai || 45; // Mặc định 45 phút nếu rỗng
+                });
+            }
         }
 
         // 🌟 3. THUẬT TOÁN KIỂM DUYỆT NGẦM: TỰ ĐỘNG ĐÓNG PHÒNG HẾT GIỜ MÀ KHÔNG CẦN VÀO PHÒNG
+        //console.log("👉 [DEBUG 9.1] 4. Bắt đầu kiểm duyệt ngầm đóng phòng lố giờ...");
         const now = Date.now();
         if (dsPhong && dsPhong.length > 0) {
             dsPhong.forEach(phong => {
@@ -174,14 +359,16 @@ window.ham_9_1_tab_live_quiz = async function () {
 
                     // Nếu thời gian hiện tại đã vượt quá thời gian kết thúc
                     if (now >= tEnd) {
+                        //console.log(`⚠️ [DEBUG 9.1] Phòng ${phong.ma_phong} đã lố giờ. Đang tự động đóng...`);
                         phong.trang_thai = 2; // Ép hiển thị trên Giao diện thành KẾT THÚC
-                        
+
                         // Âm thầm gửi lệnh bắn lên Supabase để chốt sổ Database
                         _supabase.from('phong_live_quiz')
                             .update({ trang_thai: 2 })
                             .eq('ma_phong', phong.ma_phong)
-                            .then(({error}) => {
-                                if(!error) console.log(`[Auto-Close] Đã tự động đóng phòng lố giờ: ${phong.ma_phong}`);
+                            .then(({ error }) => {
+                                if (!error) console.log(`✅ [Auto-Close] Đã tự động đóng phòng lố giờ: ${phong.ma_phong} trên DB.`);
+                                else console.error(`❌ [Auto-Close] Lỗi đóng phòng trên DB:`, error);
                             });
                     }
                 }
@@ -189,23 +376,30 @@ window.ham_9_1_tab_live_quiz = async function () {
         }
 
         // 4. THUẬT TOÁN ĐẾM SỐ HỌC SINH THAM GIA TỪ BẢNG TIẾN ĐỘ LIVE
+        //console.log("👉 [DEBUG 9.1] 5. Đang đếm học sinh từ 'tien_do_live_quiz'...");
         let tuDienSoHS = {};
         if (dsPhong && dsPhong.length > 0) {
             const mangMaPhong = dsPhong.map(p => p.ma_phong);
-            const { data: dsTienDo } = await _supabase
+            const { data: dsTienDo, error: errTienDo } = await _supabase
                 .from('tien_do_live_quiz')
                 .select('ma_phong, uid_hoc_sinh')
                 .in('ma_phong', mangMaPhong);
 
-            if (dsTienDo) {
-                dsTienDo.forEach(td => {
-                    if (!tuDienSoHS[td.ma_phong]) tuDienSoHS[td.ma_phong] = new Set();
-                    tuDienSoHS[td.ma_phong].add(td.uid_hoc_sinh); 
-                });
+            if (errTienDo) {
+                //console.error("❌ [DEBUG 9.1] LỖI lấy tien_do_live_quiz:", errTienDo);
+            } else {
+                //console.log("✅ [DEBUG 9.1] Dữ liệu dsTienDo tải thành công:", dsTienDo);
+                if (dsTienDo) {
+                    dsTienDo.forEach(td => {
+                        if (!tuDienSoHS[td.ma_phong]) tuDienSoHS[td.ma_phong] = new Set();
+                        tuDienSoHS[td.ma_phong].add(td.uid_hoc_sinh);
+                    });
+                }
             }
         }
 
         // 5. VẼ BẢNG DANH SÁCH
+        //console.log("👉 [DEBUG 9.1] 6. Đang tiến hành vẽ HTML...");
         let htmlRows = '';
         if (!dsPhong || dsPhong.length === 0) {
             htmlRows = `<tr><td colspan="7" style="text-align:center; padding: 30px; color:#6c757d;">Chưa có phòng thi Live nào được tạo. Hãy bấm "Tạo Phòng Mới" để bắt đầu!</td></tr>`;
@@ -296,10 +490,15 @@ window.ham_9_1_tab_live_quiz = async function () {
             </div>
         `;
 
+        //console.log("✅ [DEBUG 9.1] HÀM CHẠY KẾT THÚC THÀNH CÔNG KHÔNG GẶP LỖI NÀO.");
+
     } catch (error) {
+        console.error("❌ [DEBUG 9.1] LỖI TOÀN HÀM:", error);
         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất danh sách phòng: ${error.message}</div>`;
     }
 }
+
+
 
 // =====================================================================
 // [Nhãn thời gian: 10:15 - Ngày 29/05/2026] - Hàm 9.2: Tạo Phòng Live (Bổ sung ô nhập tên phòng)
@@ -1321,7 +1520,7 @@ window.ham_9_5_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maC
         const hs = mangDaThamGia[indexHocSinh];
 
         const { data: nvData } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').eq('ma_nhiem_vu', maNhiemVuAo).single();
-        const { data: hlData } = await _supabase.from('hoc_lieu').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
+        const { data: hlData } = await _supabase.from('hoc_lieu_trac_nghiem').select('*').eq('ma_hoc_lieu', nvData.ma_hoc_lieu).single();
 
         let urlFileGitHub = hlData.url_github;
         if (!urlFileGitHub) {

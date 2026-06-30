@@ -1654,7 +1654,7 @@ async function ham_7_8_xoa_nhiem_vu(maNhiemVu) {
     try {
         // 2. Gửi lệnh Delete lên Supabase
         const { error } = await _supabase
-            .from('nhiem_vu')
+            .from('nhiem_vu_trac_nghiem')
             .delete()
             .eq('ma_nhiem_vu', maNhiemVu);
 
