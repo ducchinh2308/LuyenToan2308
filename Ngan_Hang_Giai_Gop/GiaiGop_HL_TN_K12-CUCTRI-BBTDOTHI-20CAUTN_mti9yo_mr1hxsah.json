@@ -1,0 +1,105 @@
+{
+  "thoiGianGhep": "2026-07-01T03:08:49.143Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_ebf93fd956",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng xét dấu của $f'(x)$, ta thấy:\\\\\r\n\t\t- Khi đi qua điểm $x = -3$, đạo hàm $f'(x)$ đổi dấu từ âm sang dương, nên hàm số đạt cực tiểu tại $x = -3$.\\\\\r\n\t\t- Khi đi qua điểm $x = 1$, đạo hàm $f'(x)$ không đổi dấu (vẫn mang dấu dương), nên $x = 1$ không phải là điểm cực trị.\\\\\r\n\t\t- Khi đi qua điểm $x = 2$, đạo hàm $f'(x)$ đổi dấu từ dương sang âm, nên hàm số đạt cực đại tại $x = 2$.\\\\\r\n\t\tVậy hàm số $y = f(x)$ có tất cả $2$ điểm cực trị."
+    },
+    {
+      "maBaoMat": "sol_4a74ef9d0b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $y'=x^2-4x+3$. Cho $y'=0 \\Leftrightarrow \\left[ \\begin{aligned} &x=1 \\\\ &x=3 \\end{aligned} \\right.$. $y''=2x-4$.\\\\\r\n\t\tTại $x=1$: $y''(1)=-2<0 \\Rightarrow$ hàm số đạt cực đại tại $x=1$.\\\\\r\n\t\tTại $x=3$: $y''(3)=2>0 \\Rightarrow$ hàm số đạt cực tiểu tại $x=3$."
+    },
+    {
+      "maBaoMat": "sol_8cacbb4641",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị, hàm số đạt cực đại tại điểm $(0;2)$, do đó điểm cực đại của hàm số là $x = 0$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_e9a25566c3",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $f'(x) = 3x^2 - 3$; $f'(x) = 0 \\Leftrightarrow x = \\pm 1$.\\\\\r\n\t\tBảng biến thiên cho thấy hàm số đạt cực đại tại $x = -1$.\\\\\r\n\t\tGiá trị cực đại là $y_{\\text{cđ}} = f(-1) = (-1)^3 - 3(-1) + 2 = -1 + 3 + 2 = 4$."
+    },
+    {
+      "maBaoMat": "sol_20ae49a4bd",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có điểm cực đại của hàm số là $x=-4$."
+    },
+    {
+      "maBaoMat": "sol_c3877f7988",
+      "dapAn": "D",
+      "loiGiaiHtml": "Vì hàm số $y=f(x)$ liên tục trên $\\mathbb{R} \\setminus \\{1\\}$ và $f'(x)$ đổi dấu khi qua $x=2$, $x=-2$ và $x=3$ nên hàm số có $3$ điểm cực trị."
+    },
+    {
+      "maBaoMat": "sol_52b4cafcd2",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ đồ thị hàm số ta có: điểm cực đại của đồ thị hàm số $y=f(x)$ là $M(-1;2)$."
+    },
+    {
+      "maBaoMat": "sol_248607a056",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ bảng xét dấu của hàm số $y = f(x)$ ta có bảng biến thiên sau đây:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_248607a056_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên ta thấy: hàm số có $2$ điểm cực đại và $2$ điểm cực tiểu.\\\\"
+    },
+    {
+      "maBaoMat": "sol_b3ad692a7e",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, giá trị cực đại của hàm số đã cho bằng $3$."
+    },
+    {
+      "maBaoMat": "sol_229b1bf07b",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tại $x = 0$ ta thấy $y'$ đổi dấu từ dương sang âm nên hàm số đạt cực đại."
+    },
+    {
+      "maBaoMat": "sol_1457b90957",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có giá trị cực tiểu của hàm số là $-2$."
+    },
+    {
+      "maBaoMat": "sol_a3694fa7f8",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, tại điểm $x=0$ đạo hàm đổi dấu từ dương sang âm nên hàm số đạt cực đại tại điểm $x=0$, giá trị cực đại tương ứng của hàm số bằng $3$.\\\\\r\n\t\tDo đó, khẳng định ``Hàm số đạt cực đại tại điểm $x=3$'' là khẳng định sai (vì $x=3$ là giá trị cực đại chứ không phải điểm cực đại của hàm số)."
+    },
+    {
+      "maBaoMat": "sol_e14d879201",
+      "dapAn": "A",
+      "loiGiaiHtml": "Giá trị cực đại của hàm số $f(x)$ là $3$."
+    },
+    {
+      "maBaoMat": "sol_41606973e8",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên ta nhận thấy giá trị cực đại là $5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_b0a737c5ce",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, ta thấy đồ thị hàm số đạt cực tiểu tại điểm $x=2$."
+    },
+    {
+      "maBaoMat": "sol_294446a6ca",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng xét dấu ta thấy $y'$ đổi dấu từ dương sang âm tại $x = -2$ và $x = 5$. Suy ra hàm số đạt cực đại tại $x = -2$ và $x = 5$.\\\\\r\n\t\tVậy hàm số có $2$ điểm cực đại.\\\\"
+    },
+    {
+      "maBaoMat": "sol_4c006719f0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Giá trị cực tiểu của hàm số đã cho là $y=4$."
+    },
+    {
+      "maBaoMat": "sol_9675545899",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, ta thấy điểm cực đại của đồ thị hàm số là $(-1; 2)$.\\\\\r\n\t\tDo đó, giá trị cực đại của hàm số đã cho bằng $2$."
+    },
+    {
+      "maBaoMat": "sol_eb87ea402b",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào đồ thị, điểm cực đại của đồ thị hàm số $y=f(x)$ là $M(2;3)$."
+    },
+    {
+      "maBaoMat": "sol_16ba08de82",
+      "dapAn": "D",
+      "loiGiaiHtml": "Bảng xét dấu $y=f'(x)$\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_16ba08de82_lg_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSuy ra hàm số $f(x)$ có $1$ điểm cực tiểu."
+    }
+  ]
+}
