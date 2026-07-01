@@ -326,10 +326,239 @@
 //     }
 // }
 
+// // =====================================================================
+// // Hàm 8.2 (A): Load Nhiệm vụ TRẮC NGHIỆM
+// // =====================================================================
+// window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
+//     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#1a73e8;">⏳ Đang tải dữ liệu phân hệ Trắc Nghiệm...</h3></div>`;
+
+//     try {
+//         let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
+//         if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
+
+//         const orQuery = dsLop.map(ma => {
+//             const giaTriJson = JSON.stringify([ma]);
+//             return `danh_sach_lop.cs."${giaTriJson.replace(/"/g, '\\"')}"`;
+//         }).join(',');
+
+//         // 1. TẢI TỪ BẢNG NHIỆM VỤ TRẮC NGHIỆM
+//         try {
+//             const { data: dsNV, error: errNV } = await _supabase
+//                 .from('nhiem_vu_trac_nghiem')
+//                 .select('*')
+//                 .eq('trang_thai', 1)
+//                 .or(orQuery)
+//                 .order('ngay_tao', { ascending: false });
+
+//             if (errNV) throw errNV;
+//             GocHocSinhState.danhSachNhiemVu = dsNV || [];
+//         } catch (error) { console.error("Lỗi lấy NV Trắc Nghiệm:", error); }
+
+//         let demSoLuotLam = {};
+//         let ketQuaGanNhat = {};
+
+//         // 2. TẢI TỪ BẢNG KẾT QUẢ TRẮC NGHIỆM
+//         try {
+//             const { data: hsData } = await _supabase.from('hoc_sinh').select('tien_do_lam_bai').eq('uid', GocHocSinhState.uid).single();
+//             if (hsData && hsData.tien_do_lam_bai) {
+//                 demSoLuotLam = typeof hsData.tien_do_lam_bai === 'string' ? JSON.parse(hsData.tien_do_lam_bai) : hsData.tien_do_lam_bai;
+//             }
+
+//             const { data: dsKQ } = await _supabase
+//                 .from('ket_qua_trac_nghiem')
+//                 .select('id, ma_nhiem_vu, tong_diem, thoi_gian_nop, nhan_xet_gv, trang_thai_cham')
+//                 .eq('uid_hoc_sinh', GocHocSinhState.uid)
+//                 .order('thoi_gian_nop', { ascending: true });
+
+//             if (dsKQ) {
+//                 dsKQ.forEach(kq => {
+//                     ketQuaGanNhat[kq.ma_nhiem_vu] = { id: kq.id, diem: kq.tong_diem, thoi_gian_nop: kq.thoi_gian_nop, nhan_xet_gv: kq.nhan_xet_gv, trang_thai_cham: kq.trang_thai_cham };
+//                 });
+//             }
+//         } catch (e) { console.error("Lỗi lấy điểm Trắc Nghiệm:", e); }
+
+//         let tuDienLop = {}; let tuDienGv = {}; let tapUidGv = new Set();
+//         const { data: dataLop } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop, uid_gv_tao').in('ma_lop', dsLop);
+//         if (dataLop) {
+//             dataLop.forEach(l => { tuDienLop[l.ma_lop] = l.ten_lop; if (l.uid_gv_tao) tapUidGv.add(l.uid_gv_tao); });
+//         }
+//         GocHocSinhState.danhSachNhiemVu.forEach(nv => { if (nv.uid_gv_tao) tapUidGv.add(nv.uid_gv_tao); });
+//         if (tapUidGv.size > 0) {
+//             const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
+//             if (dataGv) { dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten); }
+//         }
+
+//         // =====================================================================
+//         // 3. LOGIC PHÂN LOẠI CHÍNH XÁC (DỰA VÀO LƯỢT VÀ THỜI GIAN)
+//         // =====================================================================
+//         const now = new Date();
+//         let dsCanLam = [], dsLamLai = [], dsChuaLamKhoa = [], dsDaLamKhoa = [];
+//         const anToanThoiGian = (chuoiThoiGian) => chuoiThoiGian ? new Date(chuoiThoiGian) : null;
+
+//         GocHocSinhState.danhSachNhiemVu.forEach(nv => {
+//             const tDong = anToanThoiGian(nv.thoi_gian_dong);
+//             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+//             const gioiHanLuot = parseInt(nv.so_luot_lam_bai) || 0; // 0 = Vô hạn
+            
+//             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+            
+//             // Logic: Đã hết lượt nếu (Giới hạn > 0) VÀ (Đã làm >= Giới hạn)
+//             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+
+//             if (soLuotDaLam === 0) {
+//                 // --- NHÓM CHƯA LÀM ---
+//                 if (daQuaHan) {
+//                     dsChuaLamKhoa.push(nv); // Chưa làm mà đã hết hạn
+//                 } else {
+//                     dsCanLam.push(nv); // Chưa làm, còn hạn
+//                 }
+//             } else {
+//                 // --- NHÓM ĐÃ LÀM (N > 0) ---
+//                 // Bài bị khóa nếu: Đã quá hạn HOẶC đã làm hết lượt cho phép
+//                 if (daQuaHan || daHetLuot) {
+//                     dsDaLamKhoa.push(nv);
+//                 } else {
+//                     dsLamLai.push(nv); // Còn hạn VÀ còn lượt làm
+//                 }
+//             }
+//         });
+
+//         const tinhKhoangCachThoiGian = (targetDate) => {
+//             if (!targetDate) return "";
+//             const diff = targetDate.getTime() - now.getTime();
+//             const d = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24));
+//             const h = Math.floor((Math.abs(diff) / (1000 * 60 * 60)) % 24);
+//             const m = Math.floor((Math.abs(diff) / (1000 * 60)) % 60);
+//             let str = "";
+//             if (d > 0) str += `${d} ngày `; if (h > 0) str += `${h} giờ `; if (m > 0 && d === 0) str += `${m} phút`;
+//             return diff > 0 ? `(Còn ${str || "vài giây"})` : `(Đã đóng ${str || "vài giây"} trước)`;
+//         };
+
+//         const renderCard = (nv, dinhDangTab) => {
+//             const tDong = anToanThoiGian(nv.thoi_gian_dong);
+//             const fTime = (d) => d ? d.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không quy định";
+            
+//             let tenLopHienThi = "Không xác định"; let chuoiMangLopGoc = "[]"; 
+//             try {
+//                 const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+//                 chuoiMangLopGoc = JSON.stringify(mangLopCuaNV);
+//                 const cacLopKhop = mangLopCuaNV.filter(m => dsLop.includes(m)).map(m => tuDienLop[m] || m);
+//                 if (cacLopKhop.length > 0) tenLopHienThi = cacLopKhop.join(', ');
+//             } catch (e) { }
+
+//             const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
+//             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
+//             const gioiHanLuot = nv.so_luot_lam_bai || 0;
+//             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
+//             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
+
+//             let mauVien = "#28a745", textBadgeTrangThai = "";
+//             if (dinhDangTab === 'CHUA_LAM_KHOA') { mauVien = "#7f8c8d"; textBadgeTrangThai = "⬛ CHƯA LÀM (QUÁ HẠN)"; }
+//             else if (dinhDangTab === 'DA_LAM_KHOA') { mauVien = "#e74c3c"; textBadgeTrangThai = "🟥 ĐÃ LÀM (ĐÃ KHÓA)"; }
+//             else if (dinhDangTab === 'LAM_LAI') { mauVien = "#00b4d8"; textBadgeTrangThai = "🟨 ĐÃ LÀM (CÒN LƯỢT)"; }
+//             else { mauVien = "#28a745"; textBadgeTrangThai = "🟩 CHƯA LÀM (MỚI)"; }
+
+//             const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
+//             //const daBiKhoaGiaoVien = kqLatest && kqLatest.trang_thai_cham === 1;
+
+//             let htmlKetQua = "";
+//             if (soLuotDaLam > 0 && kqLatest) {
+//                 htmlKetQua = `
+//                     <div style="background: #fffdf5; border: 1px dashed #f39c12; border-radius: 8px; padding: 10px; margin-bottom: 12px;">
+//                         <div style="display: flex; justify-content: space-between; align-items: center;">
+//                             <div>
+//                                 <div style="font-size: 10px; color: #d35400; font-weight: bold;">⭐ ĐIỂM SỐ ĐÃ ĐẠT:</div>
+//                                 <div style="color: #c0392b; font-size: 20px; font-weight: 900;">${kqLatest.diem !== undefined ? kqLatest.diem : (kqLatest.tong_diem || '-')} <span style="font-size: 11px; font-weight: normal; color: #666;">điểm</span></div>
+//                             </div>
+//                             <button onclick="ham_8_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
+//                         </div>
+//                     </div>
+//                 `;
+//             }
+
+//             let nutHanhDong = "";
+//             // if (daBiKhoaGiaoVien) {
+//             //     //nutHanhDong = `<button disabled style="width: 100%; padding: 11px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">🔒 ĐÃ CHẤM (KHÓA NỘP LẠI)</button>`;
+//             // } else 
+//             if (dinhDangTab === 'CHUA_LAM_KHOA') {
+//                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
+//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
+//             } else if (dinhDangTab === 'DA_LAM_KHOA') {
+//                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
+//                 const loaiXin = (daHetLuot && !daQuaHan) ? "HET_LUOT" : "QUA_HAN";
+//                 const btnText = (daHetLuot && !daQuaHan) ? "🙋 XIN THÊM LƯỢT LÀM" : "🙋 XIN GỠ ĐIỂM QUÁ HẠN";
+//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', '${loaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${btnText}</button>`;
+//             } else if (dinhDangTab === 'LAM_LAI') {
+//                 nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LÀM LẠI LẦN NỮA</button>`;
+//             } else {
+//                 nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LÀM BÀI</button>`;
+//             }
+
+//             return `
+//                 <div class="card-nhiem-vu-hs" data-mangs-lop='${chuoiMangLopGoc}' style="background: white; border: 1px solid #e0e0e0; border-top: 4px solid ${mauVien}; border-radius: 10px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between;">
+//                     <div>
+//                         <div style="font-size: 11px; font-weight: bold; color: ${mauVien}; margin-bottom: 6px; text-transform: uppercase;">${textBadgeTrangThai}</div>
+//                         <h4 style="margin: 0 0 10px 0; color: #2c3e50; font-size: 15px; line-height: 1.4;">${nv.ten_nhiem_vu}</h4>
+//                         <div style="background: #f8f9fa; border-radius: 6px; padding: 8px; margin-bottom: 10px; font-size: 12px; color: #666;">
+//                             <div>🏫 <b>Lớp:</b> ${tenLopHienThi}</div>
+//                             <div>👤 <b>Thầy/Cô:</b> ${tenGV}</div>
+//                         </div>
+//                         <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">
+//                             <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">⏱️ ${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' ph' : 'Tự do'}</span>
+//                             <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">🔄 Lượt: ${soLuotDaLam}/${gioiHanLuot===0?"Vô hạn":gioiHanLuot}</span>
+//                         </div>
+//                         <div style="font-size: 11px; color: #7f8c8d; margin-bottom: 12px;">
+//                             <span style="color:#7f8c8d; font-weight:bold;">Hạn chót:</span> ${fTime(tDong)} <br>
+//                             <span style="color:#d35400; font-style:italic;">${tDong && !daQuaHan ? tinhKhoangCachThoiGian(tDong) : ""}</span>
+//                         </div>
+//                     </div>
+//                     <div>
+//                         ${htmlKetQua}
+//                         ${nutHanhDong}
+//                     </div>
+//                 </div>
+//             `;
+//         };
+
+//         vungLamViec.innerHTML = `
+//             <div id="thanh-loc-lop-goc-hoc-sing" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: #fff; border-radius: 8px; border: 1px dashed #ced4da; align-items: center;">
+//                 <span style="font-weight: bold; color: #495057; font-size: 13px;">🏫 Lớp đang xem:</span>
+//                 <button class="btn-loc-lop-cua-hs active" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #1a73e8; color: white; border: 1px solid #1a73e8; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
+//                 <span id="cac-nut-lop-hs-loc" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
+//             </div>
+
+//             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
+//                 <button id="btn-tab-can-lam" onclick="ham_8_23_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🎯 CẦN LÀM (${dsCanLam.length})</button>
+//                 <button id="btn-tab-lam-lai" onclick="ham_8_23_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
+//                 <button id="btn-tab-chua-lam-khoa" onclick="ham_8_23_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
+//                 <button id="btn-tab-da-lam-khoa" onclick="ham_8_23_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
+//             </div>
+
+//             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
+//         `;
+
+//         const khungNutLopCuaHs = document.getElementById('cac-nut-lop-hs-loc');
+//         if (khungNutLopCuaHs && dataLop) {
+//             khungNutLopCuaHs.innerHTML = dataLop.map(l => `<button class="btn-loc-lop-cua-hs" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px;">🏫 ${l.ten_lop}</button>`).join('');
+//         }
+
+//         window.MaLopDangLocHienTai = 'TAT_CA';
+//         window.CachedCardsCanLamHtml = dsCanLam.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px;">Hoàn thành sạch sẽ!</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsCanLam.map(nv => renderCard(nv, 'CAN_LAM')).join('')}</div>`;
+//         window.CachedCardsLamLaiHtml = dsLamLai.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px;">Không có bài tập.</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsLamLai.map(nv => renderCard(nv, 'LAM_LAI')).join('')}</div>`;
+//         window.CachedCardsChuaLamKhoaHtml = dsChuaLamKhoa.length === 0 ? '<div style="text-align:center; color:#28a745; padding: 40px;">✅ Không bỏ sót bài nào!</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsChuaLamKhoa.map(nv => renderCard(nv, 'CHUA_LAM_KHOA')).join('')}</div>`;
+//         window.CachedCardsDaLamKhoaHtml = dsDaLamKhoa.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px;">Trống.</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsDaLamKhoa.map(nv => renderCard(nv, 'DA_LAM_KHOA')).join('')}</div>`;
+
+//         window.ham_8_23_switch_sub_tab('CAN_LAM');
+
+//     } catch (error) { vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`; }
+// };
+
+
 // =====================================================================
 // Hàm 8.2 (A): Load Nhiệm vụ TRẮC NGHIỆM
 // =====================================================================
-window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
+window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#1a73e8;">⏳ Đang tải dữ liệu phân hệ Trắc Nghiệm...</h3></div>`;
 
@@ -378,6 +607,7 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             }
         } catch (e) { console.error("Lỗi lấy điểm Trắc Nghiệm:", e); }
 
+        // Tải từ điển lớp học và danh sách UID giáo viên
         let tuDienLop = {}; let tuDienGv = {}; let tapUidGv = new Set();
         const { data: dataLop } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop, uid_gv_tao').in('ma_lop', dsLop);
         if (dataLop) {
@@ -387,6 +617,35 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
         if (tapUidGv.size > 0) {
             const { data: dataGv } = await _supabase.from('hoc_sinh').select('uid, ten').in('uid', Array.from(tapUidGv));
             if (dataGv) { dataGv.forEach(gv => tuDienGv[gv.uid] = gv.ten); }
+        }
+
+        // =====================================================================
+        // 🌟 TỰ ĐỘNG TẢI CẤU TRÚC ĐỀ TỪ BẢNG HỌC LIỆU TRẮC NGHIỆM (THÊM MỚI CHỖ NÀY)
+        // =====================================================================
+        let tuDienCauTruc = {};
+        let tapMaHocLieu = new Set();
+        GocHocSinhState.danhSachNhiemVu.forEach(nv => { if (nv.ma_hoc_lieu) tapMaHocLieu.add(nv.ma_hoc_lieu); });
+
+        if (tapMaHocLieu.size > 0) {
+            try {
+                const { data: dataHL } = await _supabase
+                    .from('hoc_lieu_trac_nghiem')
+                    .select('ma_hoc_lieu, metadata')
+                    .in('ma_hoc_lieu', Array.from(tapMaHocLieu));
+
+                if (dataHL) {
+                    dataHL.forEach(hl => {
+                        if (hl.metadata) {
+                            try {
+                                const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata) : hl.metadata;
+                                if (meta && meta.cau_truc) {
+                                    tuDienCauTruc[hl.ma_hoc_lieu] = meta.cau_truc;
+                                }
+                            } catch (e) { console.error("Lỗi phân giải metadata của học liệu:", hl.ma_hoc_lieu, e); }
+                        }
+                    });
+                }
+            } catch (errHL) { console.error("Lỗi lấy thông tin học liệu cấu trúc:", errHL); }
         }
 
         // =====================================================================
@@ -400,27 +659,14 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
             const gioiHanLuot = parseInt(nv.so_luot_lam_bai) || 0; // 0 = Vô hạn
-            
+
             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
-            
-            // Logic: Đã hết lượt nếu (Giới hạn > 0) VÀ (Đã làm >= Giới hạn)
             const daHetLuot = (gioiHanLuot > 0 && soLuotDaLam >= gioiHanLuot);
 
             if (soLuotDaLam === 0) {
-                // --- NHÓM CHƯA LÀM ---
-                if (daQuaHan) {
-                    dsChuaLamKhoa.push(nv); // Chưa làm mà đã hết hạn
-                } else {
-                    dsCanLam.push(nv); // Chưa làm, còn hạn
-                }
+                if (daQuaHan) { dsChuaLamKhoa.push(nv); } else { dsCanLam.push(nv); }
             } else {
-                // --- NHÓM ĐÃ LÀM (N > 0) ---
-                // Bài bị khóa nếu: Đã quá hạn HOẶC đã làm hết lượt cho phép
-                if (daQuaHan || daHetLuot) {
-                    dsDaLamKhoa.push(nv);
-                } else {
-                    dsLamLai.push(nv); // Còn hạn VÀ còn lượt làm
-                }
+                if (daQuaHan || daHetLuot) { dsDaLamKhoa.push(nv); } else { dsLamLai.push(nv); }
             }
         });
 
@@ -438,8 +684,8 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
         const renderCard = (nv, dinhDangTab) => {
             const tDong = anToanThoiGian(nv.thoi_gian_dong);
             const fTime = (d) => d ? d.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : "Không quy định";
-            
-            let tenLopHienThi = "Không xác định"; let chuoiMangLopGoc = "[]"; 
+
+            let tenLopHienThi = "Không xác định"; let chuoiMangLopGoc = "[]";
             try {
                 const mangLopCuaNV = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
                 chuoiMangLopGoc = JSON.stringify(mangLopCuaNV);
@@ -448,6 +694,10 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             } catch (e) { }
 
             const tenGV = tuDienGv[nv.uid_gv_tao] || "Thầy/Cô";
+
+            // 🌟 Lấy cấu trúc đề từ Từ điển vừa tạo (THÊM MỚI)
+            const cauTrucHL = tuDienCauTruc[nv.ma_hoc_lieu] || "Chưa có cấu trúc";
+
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
             const gioiHanLuot = nv.so_luot_lam_bai || 0;
             const daQuaHan = (tDong && now.getTime() > tDong.getTime());
@@ -460,7 +710,6 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             else { mauVien = "#28a745"; textBadgeTrangThai = "🟩 CHƯA LÀM (MỚI)"; }
 
             const kqLatest = ketQuaGanNhat[nv.ma_nhiem_vu];
-            //const daBiKhoaGiaoVien = kqLatest && kqLatest.trang_thai_cham === 1;
 
             let htmlKetQua = "";
             if (soLuotDaLam > 0 && kqLatest) {
@@ -478,9 +727,6 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
             }
 
             let nutHanhDong = "";
-            // if (daBiKhoaGiaoVien) {
-            //     //nutHanhDong = `<button disabled style="width: 100%; padding: 11px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed; opacity: 0.8;">🔒 ĐÃ CHẤM (KHÓA NỘP LẠI)</button>`;
-            // } else 
             if (dinhDangTab === 'CHUA_LAM_KHOA') {
                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
@@ -503,10 +749,11 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
                         <div style="background: #f8f9fa; border-radius: 6px; padding: 8px; margin-bottom: 10px; font-size: 12px; color: #666;">
                             <div>🏫 <b>Lớp:</b> ${tenLopHienThi}</div>
                             <div>👤 <b>Thầy/Cô:</b> ${tenGV}</div>
+                            <div style="color: #1a73e8; margin-top: 2px;">📊 <b>Cấu trúc:</b> ${cauTrucHL}</div>
                         </div>
                         <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">
                             <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">⏱️ ${nv.thoi_gian_lam_bai > 0 ? nv.thoi_gian_lam_bai + ' ph' : 'Tự do'}</span>
-                            <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">🔄 Lượt: ${soLuotDaLam}/${gioiHanLuot===0?"Vô hạn":gioiHanLuot}</span>
+                            <span style="font-size: 11px; background: #e9ecef; color: #495057; padding: 2px 6px; border-radius:4px;">🔄 Lượt: ${soLuotDaLam}/${gioiHanLuot === 0 ? "Vô hạn" : gioiHanLuot}</span>
                         </div>
                         <div style="font-size: 11px; color: #7f8c8d; margin-bottom: 12px;">
                             <span style="color:#7f8c8d; font-weight:bold;">Hạn chót:</span> ${fTime(tDong)} <br>
@@ -553,6 +800,9 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
 
     } catch (error) { vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`; }
 };
+
+
+
 
 // [Nhãn thời gian: 13:21 - Ngày 28/05/2026] - Hàm 8.3: Tab Luyện tập tự do (ĐÃ CHẶN NHIỆM VỤ ẢO CỦA PHÒNG LIVE)
 window.ham_8_3_tab_luyen_tap_tu_do_trac_nghiem = async function () {
