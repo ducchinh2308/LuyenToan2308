@@ -126,7 +126,10 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
 
             let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
-            let tenNhiemVu = (row.nhiem_vu && row.nhiem_vu.ten_nhiem_vu) ? row.nhiem_vu.ten_nhiem_vu : "(Chưa đặt tên)";
+            // SỬA CHỖ NÀY: Dùng row.nhiem_vu_trac_nghiem thay vì row.nhiem_vu
+            let tenNhiemVu = (row.nhiem_vu_trac_nghiem && row.nhiem_vu_trac_nghiem.ten_nhiem_vu)
+                ? row.nhiem_vu_trac_nghiem.ten_nhiem_vu
+                : "(Chưa đặt tên)";
 
             let lopHienThi = "--";
             if (row.nhiem_vu && Array.isArray(row.nhiem_vu.danh_sach_lop)) {
@@ -134,13 +137,23 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
                 lopHienThi = mangTenLop.join(", ");
             }
 
+            // return `
+            //     <span style="margin-right: 60px; font-family: Arial, sans-serif; display: inline-block;">
+            //         <i style="color: #ffd700;">🔥</i> 
+            //         Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHienThi}</span>) 
+            //         vừa nộp <b>${tenNhiemVu}</b> - 
+            //         Điểm: <span style="color: #4ade80; font-weight: bold;">${diemHienThi}</span> 
+            //         <span style="color: #94a3b8; margin-left: 6px; background: #334155; padding: 1px 4px; border-radius: 3px;">⏱️ ${thoiGianHienThi}</span>
+            //     </span>
+            // `;
             return `
-                <span style="margin-right: 60px; font-family: Arial, sans-serif; display: inline-block;">
+                <span style="margin-right: 60px; font-family: Arial, sans-serif; display: inline-block; font-size: 14px;">
                     <i style="color: #ffd700;">🔥</i> 
-                    Học sinh <b>${tenHS}</b> (<span style="color: #38bdf8;">${lopHienThi}</span>) 
-                    vừa nộp <b>${tenNhiemVu}</b> - 
-                    Điểm: <span style="color: #4ade80; font-weight: bold;">${diemHienThi}</span> 
-                    <span style="color: #94a3b8; margin-left: 6px; background: #334155; padding: 1px 4px; border-radius: 3px;">⏱️ ${thoiGianHienThi}</span>
+                    Học sinh <b style="color: #ff9f43; text-shadow: 0 0 5px rgba(255, 159, 67, 0.4);">${tenHS}</b> 
+                    (<span style="color: #38bdf8;">${lopHienThi}</span>) 
+                    vừa nộp <b style="color: #feca57; text-shadow: 0 0 5px rgba(254, 202, 87, 0.4);">${tenNhiemVu}</b> - 
+                    Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 15px;">${diemHienThi}</span> 
+                    <span style="color: #94a3b8; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px; font-size: 12px;">⏱️ ${thoiGianHienThi}</span>
                 </span>
             `;
         }).join("");

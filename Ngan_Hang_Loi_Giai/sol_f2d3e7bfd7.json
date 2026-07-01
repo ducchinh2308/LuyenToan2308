@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f2d3e7bfd7",
+  "dapAn": "B",
+  "loiGiai": "Theo quy tắc hình hộp xuất phát từ đỉnh $A$, tổng ba vectơ thành phần tương ứng dọc theo ba cạnh chung đỉnh sẽ bằng vectơ đường chéo chính xuất phát từ $A$:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$."
+}

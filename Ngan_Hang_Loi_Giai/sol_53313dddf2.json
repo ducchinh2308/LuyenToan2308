@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_53313dddf2",
+  "dapAn": "A",
+  "loiGiai": "Vì $G$ là trọng tâm của tứ diện $ABCD$ nên $\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow \\vec{GA} + \\vec{GA} + \\vec{AB} + \\vec{GA} + \\vec{AC} + \\vec{GA} + \\vec{AD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow 4\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0} \\Leftrightarrow \\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$.\\\\\r\n\t\tDo đó mệnh đề $\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$ là sai."
+}

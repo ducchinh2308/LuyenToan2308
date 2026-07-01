@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b10b91ecf0",
+  "dapAn": "B",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b10b91ecf0_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $G$ là trọng tâm tam giác $BCD$ nên $\\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$.\\\\\r\n\t\tChèn điểm $A$ vào biểu thức, ta được: $(\\vec{GA} + \\vec{AB}) + (\\vec{GA} + \\vec{AC}) + (\\vec{GA} + \\vec{AD}) = \\vec{0}$.\\\\\r\n\t\t$\\Leftrightarrow 3\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0}$.\\\\\r\n\t\t$\\Leftrightarrow 3\\vec{AG} = \\vec{AB} + \\vec{AC} + \\vec{AD} \\Leftrightarrow \\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$."
+}
