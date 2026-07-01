@@ -1,0 +1,105 @@
+{
+  "thoiGianGhep": "2026-07-01T09:22:05.374Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_f2d3e7bfd7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo quy tắc hình hộp xuất phát từ đỉnh $A$, tổng ba vectơ thành phần tương ứng dọc theo ba cạnh chung đỉnh sẽ bằng vectơ đường chéo chính xuất phát từ $A$:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_54676babf8",
+      "dapAn": "B",
+      "loiGiaiHtml": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.EFGH$ với các đỉnh tương ứng ($E$ tương ứng $A$, $F$ tương ứng $B$, $G$ tương ứng $C$, $H$ tương ứng $D$):\\\\\r\n\t\tTổng của ba vectơ chung gốc $A$ là:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AE} = \\vec{AG}$."
+    },
+    {
+      "maBaoMat": "sol_c8ce21e3fe",
+      "dapAn": "D",
+      "loiGiaiHtml": "Theo quy tắc hình hộp, đối với hình hộp $ABCD.A'B'C'D'$, ta luôn có:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$.\\\\\r\n\t\tPhép cộng vectơ có tính chất giao hoán nên $\\displaystyle \\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'}$ là mệnh đề đúng."
+    },
+    {
+      "maBaoMat": "sol_3f4f6dc666",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo quy tắc hình hộp ta có $\\displaystyle \\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$; $\\displaystyle \\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DC} + \\overrightarrow{DD'}$; $\\displaystyle \\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_4acf18c4b0",
+      "dapAn": "A",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_4acf18c4b0_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có phép biến đổi vectơ dựa vào tính chất hình hộp dời thế chân vectơ như sau:\\\\\r\n\t\t$\\vec{u} = \\vec{A'C'} - \\vec{A'A} = \\vec{A'C'} + \\vec{AA'}$.\\\\\r\n\t\tVì $ABCD.A'B'C'D'$ là hình lập phương nên $\\vec{AA'} = \\vec{CC'}$. Thay vào hệ thức ta được:\\\\\r\n\t\t$\\vec{u} = \\vec{A'C'} + \\vec{CC'} = \\vec{C'C} + \\vec{A'C'} = \\vec{A'C}$.\\\\\r\n\t\tĐộ dài của vectơ $\\left|\\vec{u}\\right| = \\left| \\vec{A'C} \\right| = A'C$.\\\\\r\n\t\tĐoạn thẳng $A'C$ chính là đường chéo của hình lập phương có độ dài cạnh bằng $a$.\\\\\r\n\t\tSuy ra: $A'C = \\sqrt{a^2+a^2+a^2} = a\\sqrt{3}$.\\\\\r\n\t\tVậy độ dài của vectơ đã cho bằng $a\\sqrt{3}$."
+    },
+    {
+      "maBaoMat": "sol_26ab7d2767",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $ABCD$ là hình bình hành và $O$ là giao điểm hai đường chéo nên $O$ là trung điểm của $AC$ và $BD$.\\\\\r\n\t\tTheo quy tắc trung điểm, với điểm $S$ bất kỳ ta có:\\\\\r\n\t\t$\\vec{SA}+\\vec{SC} = 2\\vec{SO}$;\\\\\r\n\t\t$\\vec{SB}+\\vec{SD} = 2\\vec{SO}$.\\\\\r\n\t\tDo đó, $\\vec{SA}+\\vec{SC} = \\vec{SB}+\\vec{SD}$."
+    },
+    {
+      "maBaoMat": "sol_03e0b56fb3",
+      "dapAn": "A",
+      "loiGiaiHtml": "Do $ABCD$ là hình chữ nhật suy ra $\\vec{AD} = \\vec{BC}$."
+    },
+    {
+      "maBaoMat": "sol_1d590860aa",
+      "dapAn": "A",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_1d590860aa_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTheo quy tắc hình hộp ta có $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$."
+    },
+    {
+      "maBaoMat": "sol_b10b91ecf0",
+      "dapAn": "B",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b10b91ecf0_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $G$ là trọng tâm tam giác $BCD$ nên $\\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$.\\\\\r\n\t\tChèn điểm $A$ vào biểu thức, ta được: $(\\vec{GA} + \\vec{AB}) + (\\vec{GA} + \\vec{AC}) + (\\vec{GA} + \\vec{AD}) = \\vec{0}$.\\\\\r\n\t\t$\\Leftrightarrow 3\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0}$.\\\\\r\n\t\t$\\Leftrightarrow 3\\vec{AG} = \\vec{AB} + \\vec{AC} + \\vec{AD} \\Leftrightarrow \\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$."
+    },
+    {
+      "maBaoMat": "sol_35b3050ac7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tích vô hướng hai vectơ: $\\displaystyle \\vec{u} \\cdot \\vec{v} = \\left|\\vec{u}\\right| \\cdot \\left|\\vec{v}\\right| \\cdot \\cos(\\vec{u}; \\vec{v}) = 5 \\cdot 8 \\cdot \\left( -\\frac{1}{2} \\right) = -20$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_d530294441",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d530294441_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\vec{u} = \\overrightarrow{AB} - \\overrightarrow{DA} + \\overrightarrow{DD'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$. \\\\\r\n\t\tDo đó, $\\displaystyle \\left|\\vec{u}\\right| = \\sqrt{\\left( \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} \\right)^2} = \\sqrt{AB^2 + AD^2 + AA'^2} = \\sqrt{2^2 + 4^2 + 5^2} = 3\\sqrt{5}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_0608f474b5",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_0608f474b5_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\tTa có $\\vec{AB'} + \\vec{CB} = \\vec{DA} + \\vec{AB'} = \\vec{DB'}$.\\\\\r\n\t\tPhát biểu sai là $\\vec{AB'} + \\vec{CB} = \\vec{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_f1e06e224c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = \\overrightarrow{AG} + \\overrightarrow{GB} + \\overrightarrow{AG} + \\overrightarrow{GC} + \\overrightarrow{AG} + \\overrightarrow{GD} = 3\\overrightarrow{AG} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = 3\\overrightarrow{AG}$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_53313dddf2",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $G$ là trọng tâm của tứ diện $ABCD$ nên $\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow \\vec{GA} + \\vec{GA} + \\vec{AB} + \\vec{GA} + \\vec{AC} + \\vec{GA} + \\vec{AD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow 4\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0} \\Leftrightarrow \\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$.\\\\\r\n\t\tDo đó mệnh đề $\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$ là sai."
+    },
+    {
+      "maBaoMat": "sol_af6b621428",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_af6b621428_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có: $\\overrightarrow{AI} = \\overrightarrow{AB} + \\displaystyle\\frac{1}{2}\\overrightarrow{BC'}$, với $\\overrightarrow{BC'} = \\vec{b} + \\vec{c}$.\\\\\r\n\t\tSuy ra $\\overrightarrow{AI} = \\vec{a} + \\displaystyle\\frac{1}{2}\\big(\\vec{b} + \\vec{c}\\big) = \\vec{a} + \\displaystyle\\frac{1}{2}\\vec{b} + \\displaystyle\\frac{1}{2}\\vec{c}$."
+    },
+    {
+      "maBaoMat": "sol_db6fef0659",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB} = \\overrightarrow{C'B'}$."
+    },
+    {
+      "maBaoMat": "sol_3bac32a428",
+      "dapAn": "A",
+      "loiGiaiHtml": "Theo quy tắc hình hộp, ta có $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_e7882747f0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.A_1B_1C_1D_1$ (xét từ đỉnh $A_1$):\\\\\r\n\t\tTa có tổng ba vectơ các cạnh xuất phát từ đỉnh $A_1$ bằng vectơ đường chéo xuất phát từ đỉnh đó.\\\\\r\n\t\tDo đó: $\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{A_1C}$."
+    },
+    {
+      "maBaoMat": "sol_93d8af4d54",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_93d8af4d54_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tÁp dụng quy tắc hình bình hành vào các hình bình hành $B'D'DB$, $A'B'C'D'$ ta có:\\\\\r\n\t\t$\\overrightarrow{B'D} = \\overrightarrow{B'B} + \\overrightarrow{B'D'} = \\overrightarrow{B'B} + \\overrightarrow{B'A'} + \\overrightarrow{B'C'} = \\overrightarrow{A'A} - \\overrightarrow{A'B'} + \\overrightarrow{AD} = -\\vec{c} - \\vec{a} + \\vec{b} = -\\vec{a} + \\vec{b} - \\vec{c}$."
+    },
+    {
+      "maBaoMat": "sol_0826c3541a",
+      "dapAn": "D",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_0826c3541a_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $G$ là trọng tâm của tam giác $BCD$ nên ta có $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.\\\\\r\n\t\tSuy ra $-(\\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG}) = \\vec{0} \\Leftrightarrow \\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG} = \\vec{0}$. Vậy khẳng định C đúng.\\\\\r\n\t\tMặt khác, $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$ chứ không phải $\\overrightarrow{GA} + \\overrightarrow{GB} - \\overrightarrow{GD} = \\vec{0}$. Nên khẳng định D sai."
+    }
+  ]
+}
