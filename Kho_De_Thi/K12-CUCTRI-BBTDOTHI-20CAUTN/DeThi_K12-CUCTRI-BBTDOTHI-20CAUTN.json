@@ -1,0 +1,207 @@
+{
+  "maDe": "K12-CUCTRI-BBTDOTHI-20CAUTN",
+  "tenDe": "ĐỀ K12-CUCTRI-BBTDOTHI-20CAUTN",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_e7fbbd3382",
+      "ma_goc": "2605-386",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đạo hàm trên $\\mathbb{R}$ và có bảng xét dấu của $f'(x)$ như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e7fbbd3382_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực trị của hàm số $y = f(x)$ là",
+      "paA": "$2$",
+      "paB": "$1$",
+      "paC": "$3$",
+      "paD": "$0$"
+    },
+    {
+      "maCau": "q_6f095362c6",
+      "ma_goc": "2605-467",
+      "kieuCau": "TN",
+      "cauDan": "Điểm cực tiểu của hàm số $y=\\displaystyle\\frac{1}{3}x^3-2x^2+3x-1$ là",
+      "paA": "$x=3$",
+      "paB": "$x=1$",
+      "paC": "$x=\\displaystyle\\frac{1}{3}$",
+      "paD": "$x=-1$"
+    },
+    {
+      "maCau": "q_7bd277b43f",
+      "ma_goc": "2605-491",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Điểm cực đại của hàm số đã cho là\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7bd277b43f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$x = 1$",
+      "paB": "$x = 2$",
+      "paC": "$x = 0$",
+      "paD": "$x = -2$"
+    },
+    {
+      "maCau": "q_b9ac5f23e9",
+      "ma_goc": "2605-499",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x) = x^3 - 3x + 2$. Giá trị cực đại của hàm số đã cho bằng",
+      "paA": "$-1$",
+      "paB": "$0$",
+      "paC": "$1$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_10a524be22",
+      "ma_goc": "2605-559",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_10a524be22_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực đại của hàm số $y=f(x)$ là",
+      "paA": "$x=-7$",
+      "paB": "$x=-6$",
+      "paC": "$x=-3$",
+      "paD": "$x=-4$"
+    },
+    {
+      "maCau": "q_9c6165f902",
+      "ma_goc": "2605-580",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên $\\mathbb{R} \\setminus \\{1\\}$ và có bảng xét dấu đạo hàm $f'(x)$ như hình vẽ dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9c6165f902_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực trị của hàm số $y=f(x)$ là",
+      "paA": "$1$",
+      "paB": "$2$",
+      "paC": "$4$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_f3e1c73f68",
+      "ma_goc": "2605-883",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ xác định và liên tục trên đoạn $[-2;2]$ và có đồ thị là đường cong trong hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f3e1c73f68_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực đại của đồ thị hàm số $y=f(x)$ là",
+      "paA": "$M(2;4)$",
+      "paB": "$x=-1$",
+      "paC": "$M(-1;2)$",
+      "paD": "$x=2$"
+    },
+    {
+      "maCau": "q_abe38cb2f2",
+      "ma_goc": "2605-896",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng xét dấu của đạo hàm như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_abe38cb2f2_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực trị của hàm số đã cho là",
+      "paA": "$4$",
+      "paB": "$5$",
+      "paC": "$3$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_1d0f66cbd6",
+      "ma_goc": "2605-927",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1d0f66cbd6_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$3$",
+      "paB": "$-1$",
+      "paC": "$-2$",
+      "paD": "$2$"
+    },
+    {
+      "maCau": "q_4eb7bfdbc4",
+      "ma_goc": "2605-949",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4eb7bfdbc4_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho đạt cực đại tại điểm",
+      "paA": "$y = 1$",
+      "paB": "$y = 3$",
+      "paC": "$x = 0$",
+      "paD": "$(0; 3)$"
+    },
+    {
+      "maCau": "q_c2c390e78f",
+      "ma_goc": "2605-1058",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c2c390e78f_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số là",
+      "paA": "$-2$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_d1eb117bb1",
+      "ma_goc": "2605-1201",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d1eb117bb1_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhẳng định nào sau đây sai?",
+      "paA": "Hàm số có ba điểm cực trị.",
+      "paB": "Hàm số có hai điểm cực tiểu.",
+      "paC": "Hàm số đạt cực đại tại điểm $x=0$.",
+      "paD": "Hàm số đạt cực đại tại điểm $x=3$."
+    },
+    {
+      "maCau": "q_4ebc8f262c",
+      "ma_goc": "2605-1248",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên dưới\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4ebc8f262c_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số $f(x)$ là",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$-2$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_cc4748fd89",
+      "ma_goc": "2605-1290",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_cc4748fd89_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$2$",
+      "paB": "$-2$",
+      "paC": "$-3$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_f85383ba3a",
+      "ma_goc": "2605-1311",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f85383ba3a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực tiểu của hàm số đã cho là",
+      "paA": "$x=1$",
+      "paB": "$x=4$",
+      "paC": "$x=2$",
+      "paD": "$x=0$"
+    },
+    {
+      "maCau": "q_da99f17a31",
+      "ma_goc": "2605-1341",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng xét dấu của đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_da99f17a31_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực đại của hàm số đã cho là",
+      "paA": "$2$",
+      "paB": "$5$",
+      "paC": "$4$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_10ab84d9f2",
+      "ma_goc": "2605-1427",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x) = \\displaystyle \\frac{mx^2+nx+p}{qx+r}$ có bảng biến thiên như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_10ab84d9f2_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số đã cho bằng",
+      "paA": "$-4$",
+      "paB": "$3$",
+      "paC": "$4$",
+      "paD": "$-1$"
+    },
+    {
+      "maCau": "q_415cdd6fce",
+      "ma_goc": "2605-1601",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_415cdd6fce_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực đại của hàm số đã cho bằng",
+      "paA": "$-1$",
+      "paB": "$4$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_920e7ace4f",
+      "ma_goc": "2605-1620",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x) = ax^3+bx^2+cx+d$ có đồ thị như hình sau đây:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_920e7ace4f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực đại của đồ thị hàm số $y=f(x)$ là",
+      "paA": "$x=0$",
+      "paB": "$x=2$",
+      "paC": "$y=3$",
+      "paD": "$M(2;3)$"
+    },
+    {
+      "maCau": "q_35aca12691",
+      "ma_goc": "2606-4",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ là hàm đa thức bậc 5, có đạo hàm $f'(x)$ trên $\\mathbb{R}$. Đồ thị của hàm số $y=f'(x)$ là đường cong có đúng ba điểm chung với trục hoành như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_35aca12691_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSố điểm cực tiểu của hàm số $f(x)$ là",
+      "paA": "$3$.",
+      "paB": "$0$.",
+      "paC": "$2$.",
+      "paD": "$1$."
+    }
+  ]
+}

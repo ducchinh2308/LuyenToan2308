@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ebf93fd956",
+  "dapAn": "A",
+  "loiGiai": "Dựa vào bảng xét dấu của $f'(x)$, ta thấy:\\\\\r\n\t\t- Khi đi qua điểm $x = -3$, đạo hàm $f'(x)$ đổi dấu từ âm sang dương, nên hàm số đạt cực tiểu tại $x = -3$.\\\\\r\n\t\t- Khi đi qua điểm $x = 1$, đạo hàm $f'(x)$ không đổi dấu (vẫn mang dấu dương), nên $x = 1$ không phải là điểm cực trị.\\\\\r\n\t\t- Khi đi qua điểm $x = 2$, đạo hàm $f'(x)$ đổi dấu từ dương sang âm, nên hàm số đạt cực đại tại $x = 2$.\\\\\r\n\t\tVậy hàm số $y = f(x)$ có tất cả $2$ điểm cực trị."
+}

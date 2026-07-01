@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e9a25566c3",
+  "dapAn": "D",
+  "loiGiai": "Ta có $f'(x) = 3x^2 - 3$; $f'(x) = 0 \\Leftrightarrow x = \\pm 1$.\\\\\r\n\t\tBảng biến thiên cho thấy hàm số đạt cực đại tại $x = -1$.\\\\\r\n\t\tGiá trị cực đại là $y_{\\text{cđ}} = f(-1) = (-1)^3 - 3(-1) + 2 = -1 + 3 + 2 = 4$."
+}

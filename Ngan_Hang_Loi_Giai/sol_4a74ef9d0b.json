@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4a74ef9d0b",
+  "dapAn": "A",
+  "loiGiai": "Ta có $y'=x^2-4x+3$. Cho $y'=0 \\Leftrightarrow \\left[ \\begin{aligned} &x=1 \\\\ &x=3 \\end{aligned} \\right.$. $y''=2x-4$.\\\\\r\n\t\tTại $x=1$: $y''(1)=-2<0 \\Rightarrow$ hàm số đạt cực đại tại $x=1$.\\\\\r\n\t\tTại $x=3$: $y''(3)=2>0 \\Rightarrow$ hàm số đạt cực tiểu tại $x=3$."
+}
