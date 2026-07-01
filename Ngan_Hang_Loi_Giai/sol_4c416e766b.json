@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4c416e766b",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào hình vẽ đồ thị hàm số, ta phân tích tính đơn điệu biến thiên như sau:\\\\\r\n\t\t- Hàm số đạt cực đại tại điểm $x = 1$ với giá trị cực đại $y = 2$.\\\\\r\n\t\t- Hàm số đạt cực tiểu tại điểm $x = 3$ với giá trị cực tiểu $y = -2$.\\\\\r\n\t\tTừ đó, ta có tính chất đơn điệu của hàm số:\\\\\r\n\t\t+ Hàm số đồng biến (đồ thị đi lên từ trái sang phải) trên các khoảng $(-\\infty;1)$ và $(3;+\\infty)$, do đó phương án A và B phát biểu đúng.\\\\\r\n\t\t+ Hàm số nghịch biến (đồ thị đi xuống từ trái sang phải) trên khoảng $(1;3)$, do đó phương án D phát biểu đúng.\\\\\r\n\t\t- Xét miền khoảng thuộc phương án C: Trên khoảng $(-2;2)$, điểm cực đại $x=1$ nằm bên trong miền này ($\\displaystyle 1 \\in (-2;2)$). Do đó hàm số vừa đồng biến trên đoạn $(-2;1)$ vừa nghịch biến trên đoạn $(1;2)$ chứ không thể nghịch biến trên toàn bộ khoảng $(-2;2)$.\\\\\r\n\t\tVậy khẳng định sai cần tìm là đáp án C."
+}

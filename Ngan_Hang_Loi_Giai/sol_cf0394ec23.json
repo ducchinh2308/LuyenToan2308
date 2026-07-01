@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cf0394ec23",
+  "dapAn": "B",
+  "loiGiai": "Xét hàm số $y = 2x^3 + x - 5$, ta có $y' = 6x^2 + 1$. Vì $y' > 0$ với mọi $x \\in \\mathbb{R}$, nên hàm số đồng biến trên $(-\\infty;+\\infty)$.\\\\\r\n\t\tChọn đáp án B."
+}
