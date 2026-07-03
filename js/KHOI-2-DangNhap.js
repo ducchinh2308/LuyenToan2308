@@ -163,8 +163,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
                 }
-
-                ham_8_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+                window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
             }
         } catch (error) {
             errorMsg.innerText = error.message;

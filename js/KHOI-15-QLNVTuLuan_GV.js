@@ -12,22 +12,344 @@ function ham_15_tao_ma_6_ky_tu() {
     return chuoiNgauNhien;
 }
 
-// --- Hàm 15.3: Giao diện Tự luận (Hỗ trợ nạp Văn bản trực tiếp vào Kho) ---
-window.ham_15_3_html_khu_vuc_tao_tu_luan = function() {
+
+// =====================================================================
+// Hàm 15.0: Vẽ màn hình Quản lý Kho Học Liệu Tự Luận (Dành cho Dashboard)
+// =====================================================================
+window.ham_15_0_ve_quan_ly_hoc_lieu_tu_luan = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<div style="text-align:center; padding: 30px; color: #28a745; font-weight:bold;">⏳ Đang mở kho học liệu tự luận...</div>`;
+
+    try {
+        // Gọi hàm 15.3 để lấy chuỗi HTML
+        const htmlKhuVucTuLuan = await window.ham_15_3_html_khu_vuc_tao_tu_luan();
+
+        // In chuỗi HTML đó lên màn hình
+        vungLamViec.innerHTML = `
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;">
+                <h3 style="color: #28a745; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px;">
+                    📚 KHO HỌC LIỆU TỰ LUẬN
+                </h3>
+                ${htmlKhuVucTuLuan}
+            </div>
+        `;
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color:red; text-align:center;">❌ Lỗi: ${error.message}</div>`;
+    }
+};
+
+// // =====================================================================
+// // Hàm 6b.1: Vẽ màn hình Quản lý Kho Học Liệu Tự Luận (Bảng danh sách)
+// // =====================================================================
+// window.ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+//     vungLamViec.innerHTML = `<div style="text-align:center; padding: 40px; color: #28a745; font-weight:bold;">⏳ Đang tải kho học liệu tự luận...</div>`;
+
+//     try {
+//         // 1. Tải dữ liệu từ bảng mới
+//         const { data: dataHL, error } = await _supabase
+//             .from('hoc_lieu_tu_luan')
+//             .select('*')
+//             .order('ngay_tao', { ascending: false });
+
+//         if (error) throw error;
+
+//         // 2. Dựng các dòng cho Bảng danh sách
+//         let chuoiCacDong = "";
+//         if (!dataHL || dataHL.length === 0) {
+//             chuoiCacDong = `<tr><td colspan="5" style="text-align:center; padding: 25px; color:#6c757d;">Kho học liệu tự luận đang trống. Thầy/cô hãy tạo mới ở phía trên nhé!</td></tr>`;
+//         } else {
+//             chuoiCacDong = dataHL.map((hl, index) => {
+//                 const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {});
+//                 const isText = meta.loai_tu_luan === 'text' || meta.kieu_de_tu_luan === 'van_ban';
+//                 const loaiHienThi = isText ? '✍️ Văn bản' : '📁 File đính kèm';
+//                 const ngayTao = hl.ngay_tao ? new Date(hl.ngay_tao).toLocaleDateString('vi-VN') : '';
+
+//                 return `
+//                     <tr style="border-bottom: 1px solid #e2e8f0; hover:background-color: #f8fafc;">
+//                         <td style="padding: 12px; text-align: center;">${index + 1}</td>
+//                         <td style="padding: 12px; font-weight: bold; color: #2c3e50;">${hl.ten_hoc_lieu}</td>
+//                         <td style="padding: 12px; text-align: center;">${loaiHienThi}</td>
+//                         <td style="padding: 12px; text-align: center; font-size: 13px; color: #64748b;">${ngayTao}</td>
+//                         <td style="padding: 12px; text-align: center;">
+//                             <button onclick="alert('Chức năng xem/sửa chi tiết đang được cập nhật!')" style="background:#17a2b8; color:white; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:12px;">👁️ Xem</button>
+//                         </td>
+//                     </tr>
+//                 `;
+//             }).join("");
+//         }
+
+//         // 3. Gọi hàm 15.3 để nhúng form Tạo mới vào
+//         let htmlFormThemMoi = await window.ham_15_3_html_khu_vuc_tao_tu_luan();
+
+//         // 4. Vẽ toàn bộ giao diện
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+//                 <h3 style="color: #28a745; margin: 0 0 20px 0; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px;">
+//                     📚 QUẢN LÝ KHO HỌC LIỆU TỰ LUẬN
+//                 </h3>
+                
+//                 <div style="margin-bottom: 30px;">
+//                     ${htmlFormThemMoi}
+//                 </div>
+
+//                 <h4 style="margin-top:0; color: #0f172a; margin-bottom: 15px;">📋 Danh sách đề bài trong kho:</h4>
+//                 <div style="overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+//                     <table style="width: 100%; border-collapse: collapse; min-width: 700px;">
+//                         <thead>
+//                             <tr style="background-color: #f8fafc; color: #334155; font-size: 13px; text-align: center;">
+//                                 <th style="padding: 12px; width: 50px; border-bottom: 1px solid #e2e8f0;">STT</th>
+//                                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0;">TÊN HỌC LIỆU (ĐỀ BÀI)</th>
+//                                 <th style="padding: 12px; width: 150px; border-bottom: 1px solid #e2e8f0;">DẠNG ĐỀ</th>
+//                                 <th style="padding: 12px; width: 120px; border-bottom: 1px solid #e2e8f0;">NGÀY TẠO</th>
+//                                 <th style="padding: 12px; width: 100px; border-bottom: 1px solid #e2e8f0;">THAO TÁC</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>
+//                             ${chuoiCacDong}
+//                         </tbody>
+//                     </table>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (error) {
+//         console.error("Lỗi:", error);
+//         vungLamViec.innerHTML = `<div style="text-align:center; padding: 30px; color: red;">❌ Lỗi: ${error.message}</div>`;
+//     }
+// };
+
+
+// =====================================================================
+// Hàm 15.1: Vẽ Form Tạo Mới Nhiệm Vụ Tự Luận (Đã tích hợp 15.3)
+// =====================================================================
+window.ham_15_1_ve_form_tao_nhiem_vu_tu_luan = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<div style="text-align:center; padding: 40px; color: #6f42c1; font-weight:bold;">⏳ Đang khởi tạo Form giao bài Tự Luận...</div>`;
+
+    try {
+        const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+
+        // 1. Tải danh sách Lớp học để thầy cô tick chọn
+        const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop&order=ten_lop.asc`, { method: 'GET', headers: headersAPI });
+        const dataLop = await resLop.json();
+
+        let chuoiCheckboxLop = "";
+        if (dataLop && dataLop.length > 0) {
+            chuoiCheckboxLop = dataLop.map(lop => `
+                <label style="display: inline-flex; align-items: center; gap: 6px; background: white; padding: 8px 12px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; font-size: 13px;">
+                    <input type="checkbox" name="chk_lop_tu_luan" value="${lop.ma_lop}" style="width: 16px; height: 16px; margin: 0; accent-color: #6f42c1;"> 
+                    <span style="font-weight: bold; color: #334155;">${lop.ten_lop}</span>
+                </label>
+            `).join("");
+        }
+
+        // 2. Gọi hàm 15.3 (đã sửa thành async) để lấy nguyên cái cụm giao diện Tạo/Chọn đề bài
+        let htmlKhuVucTaoDe = await window.ham_15_3_html_khu_vuc_tao_tu_luan();
+
+        // 3. Render toàn bộ Form
+        vungLamViec.innerHTML = `
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h3 style="color: #6f42c1; margin: 0; font-size: 18px;">✍️ GIAO NHIỆM VỤ TỰ LUẬN MỚI</h3>
+                    <button onclick="ham_7_1_ve_quan_ly_nhiem_vu()" style="padding: 8px 15px; background: #64748b; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight:bold;">
+                        ⬅️ Quay Lại
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Tên nhiệm vụ (*):</label>
+                    <input type="text" id="txt_ten_nhiem_vu_tl" placeholder="Ví dụ: Bài tập về nhà tuần 4 - Tự luận Toán..." style="width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Giao cho các lớp (*):</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #e9ecef;">
+                        ${chuoiCheckboxLop || '<span style="color:red; font-size:13px;">Chưa có dữ liệu lớp học. Vui lòng tạo lớp trước!</span>'}
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 25px; background: #fff3cd; padding: 15px; border-radius: 6px; border: 1px solid #ffe69c;">
+                    <label style="font-weight: bold; font-size: 13px; color: #856404; display: block; margin-bottom: 5px;">⏳ Hạn chót nộp bài (Bỏ trống = Không giới hạn):</label>
+                    <input type="datetime-local" id="txt_han_chot_tl" style="padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold; width: 250px;">
+                </div>
+
+                ${htmlKhuVucTaoDe}
+
+                <div style="text-align: right; border-top: 1px solid #e9ecef; padding-top: 20px;">
+                    <button id="btn_luu_nv_tl" onclick="ham_15_2_thuc_thi_luu_nv_tu_luan()" style="padding: 15px 35px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3); transition: 0.2s;">
+                        🚀 LƯU VÀ GIAO BÀI TỰ LUẬN
+                    </button>
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        console.error("Lỗi:", error);
+        vungLamViec.innerHTML = `<div style="text-align:center; padding: 30px; color: red;">❌ Lỗi khởi tạo form: ${error.message}</div>`;
+    }
+};
+
+// =====================================================================
+// Hàm 15.2: Thực thi Lưu Nhiệm vụ Tự Luận vào Database (Bảng Mới)
+// =====================================================================
+window.ham_15_2_thuc_thi_luu_nv_tu_luan = async function () {
+    // 1. Thu thập dữ liệu từ giao diện
+    const tenNhiemVu = document.getElementById('txt_ten_nhiem_vu_tl').value.trim();
+    const hanChot = document.getElementById('txt_han_chot_tl').value;
+    const maHocLieu = document.getElementById('add_nv_maHL_tu_luan').value;
+
+    // Lấy danh sách lớp được tick chọn
+    const checkboxesLop = document.querySelectorAll('input[name="chk_lop_tu_luan"]:checked');
+    const mangLop = Array.from(checkboxesLop).map(cb => cb.value);
+
+    // 2. Kiểm tra tính hợp lệ
+    if (!tenNhiemVu) return alert("❌ Thầy/cô chưa nhập tên nhiệm vụ!");
+    if (mangLop.length === 0) return alert("❌ Thầy/cô chưa chọn lớp nào để giao bài!");
+    if (!maHocLieu || maHocLieu === "KHONG_DUNG") return alert("❌ Thầy/cô chưa chọn đề bài từ Kho học liệu!");
+
+    // Đổi giao diện nút bấm để tránh click nhiều lần
+    const btnLuu = document.getElementById('btn_luu_nv_tl');
+    btnLuu.disabled = true;
+    btnLuu.innerText = "⏳ ĐANG GIAO BÀI...";
+
+    try {
+        // Khởi tạo an toàn cho biến State (Khắc phục triệt để lỗi is not defined)
+        window.BangNhiemVuState = window.BangNhiemVuState || [];
+
+        // 3. Đóng gói dữ liệu
+        const payload = {
+            ma_nhiem_vu: "NV_TL_" + ham_15_tao_ma_6_ky_tu(),
+            ten_nhiem_vu: tenNhiemVu,
+            ma_hoc_lieu: maHocLieu,
+            danh_sach_lop: mangLop, // Supabase sẽ tự lưu mảng này thành JSONB
+            thoi_gian_dong: hanChot ? new Date(hanChot).toISOString() : null,
+            trang_thai: 1, // 1 = Đang mở
+            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : null
+            // Bỏ qua ngay_tao vì DB tự động sinh (created_at)
+        };
+
+        // 4. Lưu vào bảng MỚI
+        const { error } = await _supabase.from('nhiem_vu_tu_luan').insert([payload]);
+        if (error) throw error;
+
+        alert("✅ Giao bài Tự luận thành công!");
+
+        // 5. Quay trở lại màn hình quản lý (Nếu có hàm của Khối 7b thì gọi, nếu không thì tải lại trang)
+        if (typeof ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan === 'function') {
+            ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan();
+        } else if (typeof ham_7_1_ve_quan_ly_nhiem_vu === 'function') {
+            ham_7_1_ve_quan_ly_nhiem_vu();
+        } else {
+            location.reload();
+        }
+
+    } catch (error) {
+        console.error("Lỗi khi lưu nhiệm vụ:", error);
+        alert("❌ Đã xảy ra lỗi: " + error.message);
+        btnLuu.disabled = false;
+        btnLuu.innerText = "🚀 LƯU VÀ GIAO BÀI TỰ LUẬN";
+    }
+};
+
+// // --- [ĐÃ SỬA] Hàm 15.3: Giao diện Tự luận (Tự động tải dữ liệu từ bảng mới) ---
+// window.ham_15_3_html_khu_vuc_tao_tu_luan = async function () {
+//     let htmlOptionsHL = `<option value="KHONG_DUNG">[ --- Chọn Học liệu tự luận (File/Văn bản) --- ]</option>`;
+// console.log("DEBUG: Bắt đầu tải danh sách học liệu tự luận từ Supabase...");
+//     try {
+//         // 1. Tự động gọi API lấy danh sách Học liệu Tự luận từ bảng mới
+//         const { data: dataHL, error } = await _supabase
+//             .from('hoc_lieu_tu_luan')
+//             .select('ma_hoc_lieu, ten_hoc_lieu, metadata')
+//             .order('ngay_tao', { ascending: false });
+
+//             console.log("DEBUG: Kết quả tải học liệu tự luận:", { dataHL, error });
+//         if (!error && dataHL) {
+//             // Lưu tạm vào RAM để các hàm khác (như tạo text mới) có thể dùng chung
+//             window.tempDsHocLieuTuLuan = dataHL;
+
+//             dataHL.forEach(hl => {
+//                 const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {});
+//                 // Biểu tượng icon tùy theo loại (văn bản hay file)
+//                 const icon = meta.kieu_de_tu_luan === 'van_ban' ? '✍️' : '📁';
+//                 htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">${icon} [${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
+//             });
+//         }
+//     } catch (err) {
+//         console.error("Lỗi khi tải kho học liệu tự luận:", err);
+//     }
+
+//     // 2. Trả về khối HTML y như cũ
+//     return `
+//         <div id="khu_vuc_tu_luan" style="display: block; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px dashed #17a2b8; margin-bottom: 15px;">
+//             <label style="font-weight: bold; color: #17a2b8; font-size: 13px;">📝 NGUỒN ĐỀ BÀI TỰ LUẬN:</label>
+//             <div style="margin-top: 10px; display: flex; gap: 20px; font-size: 14px; font-weight: bold; color: #495057;">
+//                 <label style="cursor: pointer;">
+//                     <input type="radio" name="loai_de_tu_luan" value="file" checked onchange="ham_15_5_doi_nguon_tu_luan()"> 
+//                     📂 Chọn từ Kho (File/Văn bản đã có)
+//                 </label>
+//                 <label style="cursor: pointer;">
+//                     <input type="radio" name="loai_de_tu_luan" value="text" onchange="ham_15_5_doi_nguon_tu_luan()"> 
+//                     ✍️ Soạn nội dung mới
+//                 </label>
+//             </div>
+            
+//             <div id="khung_tu_luan_file" style="margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+//                 <select id="add_nv_maHL_tu_luan" style="flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold;">
+//                     ${htmlOptionsHL}
+//                 </select>
+//                 <button type="button" onclick="ham_7_copy_text_combobox('add_nv_maHL_tu_luan', this)" style="padding: 10px 15px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold; cursor: pointer;">
+//                     📋 Copy Text
+//                 </button>
+//                 <button type="button" onclick="ham_15_8_mo_popup_upload_tu_luan()" style="padding: 10px 15px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(253,126,20,0.3);">
+//                     ➕ Tải file mới lên
+//                 </button>
+//             </div>
+
+//             <div id="khung_tu_luan_text" style="display: none; margin-top: 15px; background: white; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6;">
+//                 <div style="margin-bottom: 10px;">
+//                     <label style="font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #333;">Tên Học Liệu Văn Bản (*):</label>
+//                     <input type="text" id="text_ten_hl_tu_luan" placeholder="Ví dụ: Bài tập tự luận Tuần 24 - Khảo sát hàm số..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold;">
+//                 </div>
+//                 <div style="margin-bottom: 15px;">
+//                     <label style="font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #333;">Nội dung chi tiết đề bài (*):</label>
+//                     <textarea id="text_de_tu_luan" placeholder="Thầy gõ nội dung đề bài tự luận hoặc yêu cầu tại đây..." style="width: 100%; height: 120px; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 14px; resize: vertical;"></textarea>
+//                 </div>
+//                 <button type="button" id="btn_tao_hl_text" onclick="ham_15_10_tao_hoc_lieu_text()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,123,255,0.3);">
+//                     💾 TẠO HỌC LIỆU VĂN BẢN
+//                 </button>
+//             </div>
+//         </div>
+//     `;
+// };
+
+
+// --- [ĐÃ SỬA] Hàm 15.3: Giao diện Tự luận (Tự động tải dữ liệu từ bảng mới) ---
+window.ham_15_3_html_khu_vuc_tao_tu_luan = async function () {
     let htmlOptionsHL = `<option value="KHONG_DUNG">[ --- Chọn Học liệu tự luận (File/Văn bản) --- ]</option>`;
-    if (window.tempDsHocLieu) {
-        window.tempDsHocLieu.forEach(hl => {
-            const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {});
-            // Hiển thị cả dạng File và dạng Text đã lưu trong kho học liệu tự luận
-            if (meta.loai_tu_luan === 'file' || meta.loai_tu_luan === 'text') {
-                const icon = meta.loai_tu_luan === 'text' ? '✍️' : '📁';
+
+    try {
+        // Gọi thẳng vào bảng MỚI, sắp xếp theo ngay_tao
+        const { data: dataHL, error } = await _supabase
+            .from('hoc_lieu_tu_luan')
+            .select('ma_hoc_lieu, ten_hoc_lieu, metadata')
+            .order('ngay_tao', { ascending: false });
+
+        if (!error && dataHL) {
+            window.tempDsHocLieuTuLuan = dataHL;
+            dataHL.forEach(hl => {
+                const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {});
+                const isText = meta.loai_tu_luan === 'text' || meta.kieu_de_tu_luan === 'van_ban';
+                const icon = isText ? '✍️' : '📁';
                 htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">${icon} [${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
-            }
-        });
+            });
+        }
+    } catch (err) {
+        console.error("Lỗi khi tải kho học liệu tự luận:", err);
     }
 
     return `
-        <div id="khu_vuc_tu_luan" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px dashed #17a2b8; margin-bottom: 15px;">
+        <div id="khu_vuc_tu_luan" style="display: block; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px dashed #17a2b8; margin-bottom: 15px;">
             <label style="font-weight: bold; color: #17a2b8; font-size: 13px;">📝 NGUỒN ĐỀ BÀI TỰ LUẬN:</label>
             <div style="margin-top: 10px; display: flex; gap: 20px; font-size: 14px; font-weight: bold; color: #495057;">
                 <label style="cursor: pointer;">
@@ -52,14 +374,14 @@ window.ham_15_3_html_khu_vuc_tao_tu_luan = function() {
                 </button>
             </div>
 
-            <div id="khung_tu_luan_text" style="display: none; margin-top: 15px; background: #white; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6;">
+            <div id="khung_tu_luan_text" style="display: none; margin-top: 15px; background: white; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6;">
                 <div style="margin-bottom: 10px;">
                     <label style="font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #333;">Tên Học Liệu Văn Bản (*):</label>
-                    <input type="text" id="text_ten_hl_tu_luan" placeholder="Ví dụ: Bài tập tự luận Tuần 24 - Khảo sát hàm số..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold;">
+                    <input type="text" id="text_ten_hl_tu_luan" placeholder="Ví dụ: Bài tập tự luận Tuần 24..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold;">
                 </div>
                 <div style="margin-bottom: 15px;">
                     <label style="font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #333;">Nội dung chi tiết đề bài (*):</label>
-                    <textarea id="text_de_tu_luan" placeholder="Thầy gõ nội dung đề bài tự luận hoặc yêu cầu tại đây..." style="width: 100%; height: 120px; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 14px; resize: vertical;"></textarea>
+                    <textarea id="text_de_tu_luan" placeholder="Gõ nội dung đề bài tự luận tại đây..." style="width: 100%; height: 120px; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; font-family: inherit; font-size: 14px; resize: vertical;"></textarea>
                 </div>
                 <button type="button" id="btn_tao_hl_text" onclick="ham_15_10_tao_hoc_lieu_text()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,123,255,0.3);">
                     💾 TẠO HỌC LIỆU VĂN BẢN
@@ -68,6 +390,8 @@ window.ham_15_3_html_khu_vuc_tao_tu_luan = function() {
         </div>
     `;
 };
+
+
 
 
 // --- Hàm 15.4: Bật/Tắt phân hệ tự luận và Ẩn/Hiện cấu hình Trắc nghiệm ---
@@ -267,10 +591,13 @@ window.ham_15_9_thuc_thi_upload_drive = async function() {
                 dinh_dang: tagDinhDang,
                 ten_file_goc: file.name, // Lưu tên gốc để hiển thị cho thầy biết
                 ngay_cap_nhat: new Date().toISOString()
-            }
+            },
+            ngay_tao: new Date().toISOString(),
+            // 🌟 Thêm dòng này để lưu UID người tạo
+            uid_gv_tao: (typeof AppState !== 'undefined' && AppState.user) ? AppState.user.uid : null
         };
 
-        const { error } = await _supabase.from('hoc_lieu').insert([hocLieuMoi]);
+        const { error } = await _supabase.from('hoc_lieu_tu_luan').insert([hocLieuMoi]);
         if (error) throw error;
 
         // 🌟 BƯỚC 5: CẬP NHẬT GIAO DIỆN
@@ -323,7 +650,7 @@ window.ham_15_10_tao_hoc_lieu_text = async function() {
             ngay_tao: new Date().toISOString()
         };
 
-        const { error } = await _supabase.from('hoc_lieu').insert([hocLieuTextMoi]);
+        const { error } = await _supabase.from('hoc_lieu_tu_luan').insert([hocLieuTextMoi]);
         if (error) throw error;
 
         // 3. Cập nhật lại giao diện ngay tức thì
@@ -365,25 +692,6 @@ window.ham_15_10_tao_hoc_lieu_text = async function() {
 // KHỐI 15: PLUGIN XỬ LÝ FORM HỌC LIỆU NGOÀI TRẮC NGHIỆM (NHÚNG VÀO KHỐI 6)
 // ==============================================================================
 
-
-
-// // Thêm vào file KHOI-15-QLNVTuLuan_GV.js
-// window.ham_15_11_html_form_hoc_lieu_khac = function(loaiChon) {
-//     const isText = (loaiChon === 'TL_TXT');
-    
-//     return `
-//         <div style="padding: 20px; border: 2px dashed #6f42c1; border-radius: 8px; background: #fdfbfe;">
-//             <h4 style="margin-top: 0; color: #6f42c1;">📦 CẤU HÌNH TỰ LUẬN / BÀI GIẢNG</h4>
-//             ${isText ? `
-//                 <label>Nội dung văn bản:</label>
-//                 <textarea id="txt_noi_dung_khac_k15" rows="8" style="width:100%;"></textarea>
-//             ` : `
-//                 <label>Chọn file đính kèm:</label>
-//                 <input type="file" id="upload_file_khac_k15" style="width:100%; padding:10px;">
-//             `}
-//         </div>
-//     `;
-// };
 
 
 // =====================================================================
@@ -815,7 +1123,7 @@ window.ham_15_13_render_xem_hoc_lieu_khac = function(data, choPhepSua = true) {
     setTimeout(async () => {
         const elGiai = document.getElementById(`ten_file_giai_hien_tai_${data.ma_hoc_lieu}`);
         if (!elGiai || !urlGiaiCu) return;
-        if (elGiai.innerText.includes("Bai_Giai_Ghep_Tu_Dong") && typeof CFG_HE_THONG !== 'undefined' && CFG_HE_THONG.URL_APPS_SCRIPT_XOA_DRIVE) {
+        if (elGiai.innerText.includes("Ghep_Tu_Dong") && typeof CFG_HE_THONG !== 'undefined' && CFG_HE_THONG.URL_APPS_SCRIPT_XOA_DRIVE) {
             let idGiai = "";
             const m1 = urlGiaiCu.match(/\/d\/([a-zA-Z0-9_-]+)/);
             const m2 = urlGiaiCu.match(/id=([a-zA-Z0-9_-]+)/);
@@ -1078,7 +1386,7 @@ window.ham_15_15_ghep_anh_thanh_pdf_k15 = async function(fileList) {
             doc.addImage(imgObj.data, imgType, imgX, imgY, finalWidth, finalHeight, undefined, 'FAST');
         }
 
-        const tenFileGhep = `Bai_Giai_Ghep_Tu_Dong_${new Date().getTime()}.pdf`;
+        const tenFileGhep = `Ghep_Tu_Dong_${new Date().getTime()}.pdf`;
         const pdfBlob = doc.output('blob');
         
         return new File([pdfBlob], tenFileGhep, { type: 'application/pdf' });
@@ -1115,7 +1423,7 @@ window.ham_15_16_hien_thi_ten_file_giai = function(inputElement) {
         let danhSachTen = Array.from(files).map(f => f.name).join(', ');
         
         // Tạo một cái tên file PDF ảo để báo cho GV biết hệ thống sẽ gộp thành tên này
-        let tenFileGhep = `Bai_Giai_Ghep_Tu_Dong_${new Date().getTime()}.pdf`;
+        let tenFileGhep = `Ghep_Tu_Dong_${new Date().getTime()}.pdf`;
 
         vungHienThi.innerHTML = `
             <div style="color: #d35400; margin-bottom: 4px;">📸 Đã chọn ${files.length} ảnh. Hệ thống sẽ tự động ghép thành 1 file PDF khi lưu học liệu.</div>

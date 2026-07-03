@@ -115,7 +115,7 @@
 //             // let htmlNutXemLaiBaiTuLuan = "";
 //             // if (loaiTab === 'TU_LUAN' && soLuotDaLam > 0 && kqLatest) {
 //             //     htmlNutXemLaiBaiTuLuan = `
-//             //         <button onclick="ham_16_9_hs_xem_lai_bai_nop('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="width: 100%; padding: 11px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 8px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+//             //         <button onclick="ham_8b_10_hs_xem_lai_bai_nop('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="width: 100%; padding: 11px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 8px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
 //             //             👁️ XEM BÀI ĐÃ NỘP KHÁC
 //             //         </button>
 //             //     `;
@@ -186,7 +186,7 @@
 //             // Nếu đúng là tab Tự luận và học sinh đã nộp bài ít nhất 1 lần thì mới dựng nút
 //             if (loaiTab === 'TU_LUAN' && soLuotDaLam > 0 && kqLatest) {
 //                 htmlNutXemLaiBaiTuLuan = `
-//                     <button onclick="ham_16_9_hs_xem_lai_bai_nop('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="width: 100%; padding: 11px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 8px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+//                     <button onclick="ham_8b_10_hs_xem_lai_bai_nop('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="width: 100%; padding: 11px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-bottom: 8px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
 //                         👁️ XEM BÀI ĐÃ NỘP
 //                     </button>
 //                 `;
@@ -249,13 +249,13 @@
 //                 let textBtn = "🔄 LÀM LẠI LẦN NỮA";
 //                 if (loaiTab === 'TU_LUAN') textBtn = "🔄 NỘP LẠI ẢNH KHÁC";
 //                 if (loaiTab === 'DOC_BAI') textBtn = "🔄 XEM LẠI BÀI";
-//                 nutHanhDong = `<button onclick="ham_8_24_router_vao_lam_bai('${nv.ma_nhiem_vu}', '${loaiTab}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textBtn}</button>`;
+//                 nutHanhDong = `<button onclick="ham_3b_18_router_vao_lam_bai('${nv.ma_nhiem_vu}', '${loaiTab}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textBtn}</button>`;
 //             } else {
 //                 let textBtn = "🚀 VÀO LÀM BÀI";
 //                 if (loaiTab === 'TU_LUAN') textBtn = "📷 MỞ CHỤP ẢNH TỰ LUẬN";
 //                 if (loaiTab === 'DOC_BAI') textBtn = "📺 VÀO XEM BÀI GIẢNG";
 //                 if (loaiTab === 'KHAO_SAT') textBtn = "📊 LÀM KHẢO SÁT";
-//                 nutHanhDong = `<button onclick="ham_8_24_router_vao_lam_bai('${nv.ma_nhiem_vu}', '${loaiTab}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textBtn}</button>`;
+//                 nutHanhDong = `<button onclick="ham_3b_18_router_vao_lam_bai('${nv.ma_nhiem_vu}', '${loaiTab}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textBtn}</button>`;
 //             }
 
 //             return `
@@ -294,10 +294,10 @@
 //             </div>
 
 //             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
-//                 <button id="btn-tab-can-lam" onclick="ham_8_23_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🎯 CẦN LÀM (${dsCanLam.length})</button>
-//                 <button id="btn-tab-lam-lai" onclick="ham_8_23_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
-//                 <button id="btn-tab-chua-lam-khoa" onclick="ham_8_23_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
-//                 <button id="btn-tab-da-lam-khoa" onclick="ham_8_23_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
+//                 <button id="btn-tab-can-lam" onclick="ham_3b_17_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🎯 CẦN LÀM (${dsCanLam.length})</button>
+//                 <button id="btn-tab-lam-lai" onclick="ham_3b_17_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
+//                 <button id="btn-tab-chua-lam-khoa" onclick="ham_3b_17_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
+//                 <button id="btn-tab-da-lam-khoa" onclick="ham_3b_17_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer; transition: 0.2s;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
 //             </div>
 
 //             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
@@ -319,7 +319,7 @@
 //         window.CachedCardsChuaLamKhoaHtml = dsChuaLamKhoa.length === 0 ? '<div style="text-align:center; color:#28a745; padding: 40px; font-style:italic; background:white; border-radius:8px; font-weight:bold;">✅ Rất tốt! Không bỏ sót bài nào!</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsChuaLamKhoa.map(nv => renderCard(nv, 'CHUA_LAM_KHOA')).join('')}</div>`;
 //         window.CachedCardsDaLamKhoaHtml = dsDaLamKhoa.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px; font-style:italic; background:white; border-radius:8px; border:1px dashed #ccc;">Trống.</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsDaLamKhoa.map(nv => renderCard(nv, 'DA_LAM_KHOA')).join('')}</div>`;
 
-//         window.ham_8_23_switch_sub_tab('CAN_LAM');
+//         window.ham_3b_17_switch_sub_tab('CAN_LAM');
 
 //     } catch (error) {
 //         vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`;
@@ -329,7 +329,7 @@
 // // =====================================================================
 // // Hàm 8.2 (A): Load Nhiệm vụ TRẮC NGHIỆM
 // // =====================================================================
-// window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function() {
+// window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function() {
 //     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
 //     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#1a73e8;">⏳ Đang tải dữ liệu phân hệ Trắc Nghiệm...</h3></div>`;
 
@@ -529,10 +529,10 @@
 //             </div>
 
 //             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
-//                 <button id="btn-tab-can-lam" onclick="ham_8_23_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🎯 CẦN LÀM (${dsCanLam.length})</button>
-//                 <button id="btn-tab-lam-lai" onclick="ham_8_23_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
-//                 <button id="btn-tab-chua-lam-khoa" onclick="ham_8_23_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
-//                 <button id="btn-tab-da-lam-khoa" onclick="ham_8_23_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
+//                 <button id="btn-tab-can-lam" onclick="ham_3b_17_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🎯 CẦN LÀM (${dsCanLam.length})</button>
+//                 <button id="btn-tab-lam-lai" onclick="ham_3b_17_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
+//                 <button id="btn-tab-chua-lam-khoa" onclick="ham_3b_17_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
+//                 <button id="btn-tab-da-lam-khoa" onclick="ham_3b_17_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
 //             </div>
 
 //             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
@@ -549,7 +549,7 @@
 //         window.CachedCardsChuaLamKhoaHtml = dsChuaLamKhoa.length === 0 ? '<div style="text-align:center; color:#28a745; padding: 40px;">✅ Không bỏ sót bài nào!</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsChuaLamKhoa.map(nv => renderCard(nv, 'CHUA_LAM_KHOA')).join('')}</div>`;
 //         window.CachedCardsDaLamKhoaHtml = dsDaLamKhoa.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px;">Trống.</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsDaLamKhoa.map(nv => renderCard(nv, 'DA_LAM_KHOA')).join('')}</div>`;
 
-//         window.ham_8_23_switch_sub_tab('CAN_LAM');
+//         window.ham_3b_17_switch_sub_tab('CAN_LAM');
 
 //     } catch (error) { vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`; }
 // };
@@ -558,7 +558,7 @@
 // =====================================================================
 // Hàm 8.2 (A): Load Nhiệm vụ TRẮC NGHIỆM
 // =====================================================================
-window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function () {
+window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#1a73e8;">⏳ Đang tải dữ liệu phân hệ Trắc Nghiệm...</h3></div>`;
 
@@ -776,10 +776,10 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function () {
             </div>
 
             <div style="display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; gap: 5px; background: #fff; padding: 5px 5px 0 5px; border-radius: 8px 8px 0 0; flex-wrap: wrap;">
-                <button id="btn-tab-can-lam" onclick="ham_8_23_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🎯 CẦN LÀM (${dsCanLam.length})</button>
-                <button id="btn-tab-lam-lai" onclick="ham_8_23_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
-                <button id="btn-tab-chua-lam-khoa" onclick="ham_8_23_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
-                <button id="btn-tab-da-lam-khoa" onclick="ham_8_23_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
+                <button id="btn-tab-can-lam" onclick="ham_3b_17_switch_sub_tab('CAN_LAM')" style="padding: 10px 16px; border: none; background: #28a745; color: white; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🎯 CẦN LÀM (${dsCanLam.length})</button>
+                <button id="btn-tab-lam-lai" onclick="ham_3b_17_switch_sub_tab('LAM_LAI')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🔄 ĐÃ LÀM (CÒN LƯỢT) (${dsLamLai.length})</button>
+                <button id="btn-tab-chua-lam-khoa" onclick="ham_3b_17_switch_sub_tab('CHUA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">⬛ CHƯA LÀM (ĐÃ KHÓA) (${dsChuaLamKhoa.length})</button>
+                <button id="btn-tab-da-lam-khoa" onclick="ham_3b_17_switch_sub_tab('DA_LAM_KHOA')" style="padding: 10px 16px; border: none; background: transparent; color: #495057; font-weight: bold; font-size: 13px; border-radius: 6px 6px 0 0; cursor: pointer;">🟥 ĐÃ LÀM (ĐÃ KHÓA) (${dsDaLamKhoa.length})</button>
             </div>
 
             <div id="vung-chua-cards-nhiem-vu" style="min-height: 200px;"></div>
@@ -796,7 +796,7 @@ window.ham_8_2a_tab_nhiem_vu_trac_nghiem = async function () {
         window.CachedCardsChuaLamKhoaHtml = dsChuaLamKhoa.length === 0 ? '<div style="text-align:center; color:#28a745; padding: 40px;">✅ Không bỏ sót bài nào!</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsChuaLamKhoa.map(nv => renderCard(nv, 'CHUA_LAM_KHOA')).join('')}</div>`;
         window.CachedCardsDaLamKhoaHtml = dsDaLamKhoa.length === 0 ? '<div style="text-align:center; color:#7f8c8d; padding: 40px;">Trống.</div>' : `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">${dsDaLamKhoa.map(nv => renderCard(nv, 'DA_LAM_KHOA')).join('')}</div>`;
 
-        window.ham_8_23_switch_sub_tab('CAN_LAM');
+        window.ham_3b_17_switch_sub_tab('CAN_LAM');
 
     } catch (error) { vungLamViec.innerHTML = `<div style="color: red; text-align: center; padding: 20px;">❌ Lỗi hệ thống: ${error.message}</div>`; }
 };
@@ -1100,7 +1100,7 @@ async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
     } catch (err) {
         console.error("LỖI NẠP ĐỀ:", err);
         alert("Lỗi nạp đề thi: " + err.message);
-        ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+        ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
     }
 }
 
@@ -1571,7 +1571,7 @@ async function ham_8_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
                 confirmButtonColor: '#28a745'
             }).then(() => {
                 document.getElementById('dashboard-container').style.display = 'block';
-                ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+                ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
             });
         }
 

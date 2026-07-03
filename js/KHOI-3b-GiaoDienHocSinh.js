@@ -30,8 +30,9 @@ const GocHocSinhState = {
 // ==============================================================
 // Hàm 8.1: Dựng Bộ Khung Giao Diện (Bổ sung Ví Kim Cương 💎)
 // ==============================================================
-async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
-    // 1. Lưu vào State
+window.ham_3b_1_tai_nhiem_vu_cua_toi = async function (uidHocSinh, dsMaLopHocSinh, tenHocSinh) {
+        // 1. Lưu vào State
+        //console.log(`%c🚀 Đang tải dữ liệu Học sinh: ${tenHocSinh} (UID: ${uidHocSinh})`, "background: #1a73e8; color: white; font-size: 12px; padding: 5px; font-weight: bold;");
     GocHocSinhState.uid = uidHocSinh;
     GocHocSinhState.danh_sach_ma_lop = dsMaLopHocSinh || [];
     GocHocSinhState.ten = tenHocSinh;
@@ -103,29 +104,34 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
     
-            <button onclick="ham_8_2a_tab_nhiem_vu_trac_nghiem()" style="padding: 12px 15px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📝 NV TRẮC NGHIỆM</button>
-            <button onclick="ham_8_2b_tab_nhiem_vu_tu_luan()" style="padding: 12px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📷 NV TỰ LUẬN</button>
-            <button onclick="ham_8_2c_tab_nhiem_vu_doc_bai()" style="padding: 12px 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📺 NV ĐỌC BÀI</button>
-            <button onclick="ham_8_2d_tab_nhiem_vu_khao_sat()" style="padding: 12px 15px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📊 NV KHẢO SÁT</button>
+            <button onclick="window.ham_8a_2_tab_nhiem_vu_trac_nghiem()" style="padding: 12px 15px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📝 NV TRẮC NGHIỆM</button>
+            <button onclick="window.ham_8b_2_tab_nhiem_vu_tu_luan()" style="padding: 12px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📷 NV TỰ LUẬN</button>
+            <button onclick="ham_3b_9_tab_nhiem_vu_doc_bai()" style="padding: 12px 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📺 NV ĐỌC BÀI</button>
+            <button onclick="ham_3b_10_tab_nhiem_vu_khao_sat()" style="padding: 12px 15px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">📊 NV KHẢO SÁT</button>
             </div>
 
            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
-    <button onclick="ham_8_4_tab_ket_qua_trac_nghiem()" style="padding: 10px 15px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📝 KQ Trắc Nghiệm</button>
+    <button onclick="ham_3b_11_tab_ket_qua_trac_nghiem()" style="padding: 10px 15px; background: #1a73e8; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📝 KQ Trắc Nghiệm</button>
     <button onclick="" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📷 KQ Tự Luận</button>
     <button onclick="" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📺 KQ Đọc Bài</button>
     <button onclick="" style="padding: 10px 15px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;">📊 KQ Khảo Sát</button>
 </div>
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
-    <button onclick="ham_8_5_tab_ho_so()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">👤 HỒ SƠ</button>
+    <button onclick="ham_3b_12_tab_ho_so()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">👤 HỒ SƠ</button>
     <button onclick="ham_13_1_ve_hop_thu_hoc_sinh()" style="padding: 10px 15px; background: #0ea5e9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">💬 HỎI ĐÁP</button>
-    <button onclick="ham_8_6_tab_live_quiz()" style="padding: 10px 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">⚔️ LIVE QUIZ</button>
+    <button onclick="ham_3b_15_tab_live_quiz()" style="padding: 10px 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">⚔️ LIVE QUIZ</button>
 </div>
             
             <div id="vung-lam-viec-hoc-sinh" style="padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 300px;"></div>
         </div>
     `;
-    ham_8_2a_tab_nhiem_vu_trac_nghiem(); // Mặc định hiển thị Trắc nghiệm
+    ham_8a_2_tab_nhiem_vu_trac_nghiem(); // Mặc định hiển thị Trắc nghiệm
+
+    // THÊM DÒNG NÀY ĐỂ TẢI CẢ BÀI TỰ LUẬN XUỐNG DƯỚI BÀI TRẮC NGHIỆM
+    if (typeof ham_8b_1_tai_nhiem_vu_tu_luan_cua_toi === 'function') {
+        ham_8b_1_tai_nhiem_vu_tu_luan_cua_toi(uid, dsLop, ten);
+    }
 
     // =================================================================
     // 🌟 6. KHỞI CHẠY HỆ THỐNG THANH THI ĐUA, NHẮC NHỞ VÀ THÔNG BÁO
@@ -137,22 +143,22 @@ async function ham_8_1_tai_nhiem_vu_cua_toi(uidHocSinh, dsMaLopHocSinh, tenHocSi
     if (window.dongHoThanhChayTB) clearInterval(window.dongHoThanhChayTB); // 👈 Thêm đập đồng hồ Thông báo
 
     // Kích hoạt thanh báo điểm (Trôi phía trên)
-    ham_8_1_1_ve_thanh_chay_lop_minh();
-    window.dongHoThanhChayHS = setInterval(ham_8_1_1_ve_thanh_chay_lop_minh, 60000);
+    ham_3b_2_tai_nhiem_vu_cua_toi();
+    window.dongHoThanhChayHS = setInterval(ham_3b_2_tai_nhiem_vu_cua_toi, 60000);
 
     // Kích hoạt thanh nhắc nợ bài tập (Trôi phía dưới sát đáy)
-    ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam();
-    window.dongHoThanhChayNV = setInterval(ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam, 60000);
+    ham_3b_3_ve_thanh_chay_nhiem_vu_chua_lam();
+    window.dongHoThanhChayNV = setInterval(ham_3b_3_ve_thanh_chay_nhiem_vu_chua_lam, 60000);
 
     // 🌟 Kích hoạt thanh THÔNG BÁO TỪ GIÁO VIÊN (Trôi trên đỉnh cùng)
-    ham_8_1_3_ve_thanh_thong_bao_tu_gv();
-    window.dongHoThanhChayTB = setInterval(ham_8_1_3_ve_thanh_thong_bao_tu_gv, 60000);
+    ham_3b_4_ve_thanh_thong_bao_tu_gv();
+    window.dongHoThanhChayTB = setInterval(ham_3b_4_ve_thanh_thong_bao_tu_gv, 60000);
 }
 
 // =====================================================================
 // Hàm 8.1.1: Vẽ thanh chạy thi đua nội bộ Lớp (Quét cả 4 phân hệ)
 // =====================================================================
-async function ham_8_1_1_ve_thanh_chay_lop_minh() {
+async function ham_3b_2_tai_nhiem_vu_cua_toi() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
 
     const lopCuaToi = (AppState.user && AppState.user.danh_sach_ma_lop) ? AppState.user.danh_sach_ma_lop : [];
@@ -229,7 +235,7 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
             }).join("");
         }
 
-        ham_8_1_4_ve_khung_html_thanh_chay_hs(chuoiNoiDung);
+        ham_3b_5_ve_khung_html_thanh_chay_hs(chuoiNoiDung);
 
     } catch (error) {
         console.warn("⚠️ [Thanh chạy Lớp mình bị gián đoạn]:", error.message);
@@ -239,7 +245,7 @@ async function ham_8_1_1_ve_thanh_chay_lop_minh() {
 // =====================================================================
 // Hàm 8.1.2: Chạy nhắc nhở nhiệm vụ chưa làm ở ĐÁY màn hình
 // =====================================================================
-async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
+async function ham_3b_3_ve_thanh_chay_nhiem_vu_chua_lam() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
 
     const dsLop = GocHocSinhState.danh_sach_ma_lop || [];
@@ -296,7 +302,7 @@ async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
             }).join("");
         }
 
-        ham_8_1_5_ve_khung_html_thanh_chay_nhiem_vu(chuoiNoiDung);
+        ham_3b_6_ve_khung_html_thanh_chay_nhiem_vu(chuoiNoiDung);
 
     } catch (error) {
         console.warn("⚠️ [Thanh chạy Nhắc việc]:", error.message);
@@ -312,7 +318,7 @@ async function ham_8_1_2_ve_thanh_chay_nhiem_vu_chua_lam() {
 //// =====================================================================
 //// Hàm 8.1.3: Quét và hiển thị Thông báo (Kiểm tra lịch hẹn giờ)
 //// =====================================================================
-async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
+async function ham_3b_4_ve_thanh_thong_bao_tu_gv() {
     if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL.startsWith('http')) return;
     const dsLopCuaToi = GocHocSinhState.danh_sach_ma_lop || [];
 
@@ -378,7 +384,7 @@ async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
             `;
         }).join("");
 
-        ham_8_1_6_ve_khung_html_thanh_thong_bao_top(chuoiHienThi);
+        ham_3b_7_ve_khung_html_thanh_thong_bao_top(chuoiHienThi);
 
     } catch (error) {
         console.warn("⚠️ [Thanh thông báo GV bị gián đoạn]:", error.message);
@@ -390,7 +396,7 @@ async function ham_8_1_3_ve_thanh_thong_bao_tu_gv() {
 //// =====================================================================
 //// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung chứa điểm học sinh (Giờ đã dời xuống ĐÁY, nằm TRÊN thanh đòi nợ)
 //// =====================================================================
-function ham_8_1_4_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
+function ham_3b_5_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-hs')) {
         document.getElementById('thanh-chay-nop-bai-hs').remove();
     }
@@ -442,7 +448,7 @@ function ham_8_1_4_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
 //// =====================================================================
 //// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung nhắc việc chưa làm (Nằm SÁT ĐÁY)
 //// =====================================================================
-function ham_8_1_5_ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
+function ham_3b_6_ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nhiem-vu-hs')) {
         document.getElementById('thanh-chay-nhiem-vu-hs').remove();
     }
@@ -495,7 +501,7 @@ function ham_8_1_5_ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
 //// =====================================================================
 //// Hàm phụ trợ: Vẽ thanh Thông Báo trên ĐỈNH (TOP: 0) - Ép siêu nhỏ vừa khít Font 12px
 //// =====================================================================
-function ham_8_1_6_ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
+function ham_3b_7_ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
     if (document.getElementById('thanh-thong-bao-gv')) {
         document.getElementById('thanh-thong-bao-gv').remove();
     }
@@ -544,50 +550,9 @@ function ham_8_1_6_ve_khung_html_thanh_thong_bao_top(chuoiHienThi) {
 
 
 // =====================================================================
-// Hàm 8.2b: Load Nhiệm vụ TỰ LUẬN
-// =====================================================================
-window.ham_8_2b_tab_nhiem_vu_tu_luan = async function() {
-    const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
-    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#6f42c1;">⏳ Đang tải phân hệ Tự Luận...</h3></div>`;
-
-    try {
-        let dsLop = GocHocSinhState.danh_sach_ma_lop || [];
-        if (dsLop.length === 0) dsLop = ["#KHONG_CO_LOP#"];
-
-        const orQuery = dsLop.map(ma => `danh_sach_lop.cs."${JSON.stringify([ma]).replace(/"/g, '\\"')}"`).join(',');
-
-        // 1. Tải từ bảng nhiệm vụ tự luận
-        const { data: dsNV } = await _supabase
-            .from('nhiem_vu_tu_luan')
-            .select('*')
-            .eq('trang_thai', 1)
-            .or(orQuery)
-            .order('ngay_tao', { ascending: false });
-
-        GocHocSinhState.danhSachNhiemVu = dsNV || [];
-
-        // 2. Tải từ bảng kết quả tự luận
-        let ketQuaGanNhat = {};
-        const { data: dsKQ } = await _supabase
-            .from('ket_qua_tu_luan')
-            .select('id, ma_nhiem_vu, tong_diem, nhan_xet_gv, trang_thai_cham')
-            .eq('uid_hoc_sinh', GocHocSinhState.uid);
-
-        if (dsKQ) {
-                dsKQ.forEach(kq => {
-                    ketQuaGanNhat[kq.ma_nhiem_vu] = { id: kq.id, diem: kq.tong_diem, thoi_gian_nop: kq.thoi_gian_nop, nhan_xet_gv: kq.nhan_xet_gv, trang_thai_cham: kq.trang_thai_cham };
-                });
-            }
-    } catch (error) {
-        vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
-    }
-};
-
-
-// =====================================================================
 // Hàm 8.2c: Load Nhiệm vụ ĐỌC BÀI
 // =====================================================================
-window.ham_8_2c_tab_nhiem_vu_doc_bai = async function() {
+window.ham_3b_9_tab_nhiem_vu_doc_bai = async function() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#28a745;">📺 Đang tải phân hệ Đọc bài...</h3></div>`;
 
@@ -620,7 +585,7 @@ window.ham_8_2c_tab_nhiem_vu_doc_bai = async function() {
 
         // ... [Giữ nguyên logic renderCard như các hàm trước]
         // Nút 'VÀO XEM BÀI GIẢNG' sẽ gọi: 
-        // ham_8_24_router_vao_lam_bai(nv.ma_nhiem_vu, 'DOC_BAI')
+        // ham_3b_18_router_vao_lam_bai(nv.ma_nhiem_vu, 'DOC_BAI')
     } catch (error) {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
@@ -632,7 +597,7 @@ window.ham_8_2c_tab_nhiem_vu_doc_bai = async function() {
 // =====================================================================
 // Hàm 8.2d: Load Nhiệm vụ KHẢO SÁT
 // =====================================================================
-window.ham_8_2d_tab_nhiem_vu_khao_sat = async function() {
+window.ham_3b_10_tab_nhiem_vu_khao_sat = async function() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#fd7e14;">📊 Đang tải phân hệ Khảo sát...</h3></div>`;
 
@@ -664,7 +629,7 @@ window.ham_8_2d_tab_nhiem_vu_khao_sat = async function() {
         }
 
         // Logic render tương tự như các tab khác, nút bấm sẽ gọi:
-        // ham_8_24_router_vao_lam_bai(nv.ma_nhiem_vu, 'KHAO_SAT')
+        // ham_3b_18_router_vao_lam_bai(nv.ma_nhiem_vu, 'KHAO_SAT')
     } catch (error) {
         vungLamViec.innerHTML = `<div style="color: red; text-align: center;">❌ Lỗi: ${error.message}</div>`;
     }
@@ -675,7 +640,7 @@ window.ham_8_2d_tab_nhiem_vu_khao_sat = async function() {
 // =====================================================================
 // Hàm 8.4: Tab HỌC BÀ VÀ ĐIỂM SỐ (Bảng điều khiển cá nhân)
 // =====================================================================
-async function ham_8_4_tab_ket_qua_trac_nghiem() {
+async function ham_3b_11_tab_ket_qua_trac_nghiem() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 60px;">
@@ -838,7 +803,7 @@ async function ham_8_4_tab_ket_qua_trac_nghiem() {
 // =====================================================================
 // Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (ĐÃ CẬP NHẬT NÚT XIN VÀO LỚP)
 // =====================================================================
-async function ham_8_5_tab_ho_so() {
+async function ham_3b_12_tab_ho_so() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 60px;">
@@ -902,7 +867,7 @@ async function ham_8_5_tab_ho_so() {
                         <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box; line-height: 1.4;">
                             ${tenLopHienThi}
                         </div>
-                        <button onclick="ham_8_5_2_xin_vao_lop_moi()" style="margin-top: 8px; padding: 6px 12px; background: white; color: #1a73e8; border: 1px solid #1a73e8; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a73e8'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#1a73e8'">
+                        <button onclick="ham_3b_14_xin_vao_lop_moi()" style="margin-top: 8px; padding: 6px 12px; background: white; color: #1a73e8; border: 1px solid #1a73e8; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a73e8'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#1a73e8'">
                             ➕ Xin gia nhập lớp mới
                         </button>
                     </div>
@@ -921,10 +886,10 @@ async function ham_8_5_tab_ho_so() {
                     <hr style="border: 0; border-top: 1px solid #e9ecef; margin: 25px 0;">
 
                     <div style="display: flex; gap: 15px;">
-                        <button onclick="ham_8_5_1_luu_ho_so(this)" style="flex: 2; padding: 14px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(40,167,69,0.2);" onmouseover="this.style.background='#218838'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#28a745'; this.style.transform='translateY(0)'">
+                        <button onclick="ham_3b_13_luu_ho_so(this)" style="flex: 2; padding: 14px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(40,167,69,0.2);" onmouseover="this.style.background='#218838'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#28a745'; this.style.transform='translateY(0)'">
                             💾 CẬP NHẬT HỒ SƠ
                         </button>
-                        <button onclick="ham_8_18_dang_xuat()" style="flex: 1; padding: 14px; background: #fff; color: #dc3545; border: 2px solid #dc3545; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='white'" onmouseout="this.style.background='#fff'; this.style.color='#dc3545'">
+                        <button onclick="ham_3b_16_dang_xuat()" style="flex: 1; padding: 14px; background: #fff; color: #dc3545; border: 2px solid #dc3545; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='white'" onmouseout="this.style.background='#fff'; this.style.color='#dc3545'">
                             🚪 THOÁT
                         </button>
                     </div>
@@ -939,7 +904,7 @@ async function ham_8_5_tab_ho_so() {
 // =====================================================================
 // Hàm 8.5.1: Xử lý Lưu cập nhật Hồ sơ lên Supabase (Có so dò mật khẩu)
 // =====================================================================
-window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
+window.ham_3b_13_luu_ho_so = async function (btnLuu) {
     const tenMoi = document.getElementById('hs_edit_ten').value.trim();
     const mkMoi1 = document.getElementById('hs_edit_mk').value.trim();
     const mkMoi2 = document.getElementById('hs_edit_mk_2').value.trim();
@@ -981,7 +946,7 @@ window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
             timer: 1500,
             showConfirmButton: false
         }).then(() => {
-            ham_8_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+            ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
         });
 
     } catch (err) {
@@ -996,7 +961,7 @@ window.ham_8_5_1_luu_ho_so = async function (btnLuu) {
 // =====================================================================
 // Hàm 8.5.2: Học sinh gửi mã xin tham gia lớp học mới
 // =====================================================================
-window.ham_8_5_2_xin_vao_lop_moi = function () {
+window.ham_3b_14_xin_vao_lop_moi = function () {
     Swal.fire({
         title: '🏫 XIN GIA NHẬP LỚP MỚI',
         text: 'Em hãy nhập đúng Mã Lớp do Thầy cung cấp:',
@@ -1083,7 +1048,7 @@ window.ham_8_5_2_xin_vao_lop_moi = function () {
 };
 
 
-window.ham_8_6_tab_live_quiz = function () {
+window.ham_3b_15_tab_live_quiz = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     if (!vungLamViec) return console.error("Lỗi: Không tìm thấy thẻ vung-lam-viec-hoc-sinh!");
 
@@ -1124,7 +1089,7 @@ window.ham_8_6_tab_live_quiz = function () {
 // =====================================================================
 // Hàm Bổ trợ Đăng xuất
 // =====================================================================
-window.ham_8_18_dang_xuat = function () {
+window.ham_3b_16_dang_xuat = function () {
     Swal.fire({
         title: 'Đăng xuất?',
         text: "Em có chắc chắn muốn thoát khỏi phiên làm việc hiện tại?",
@@ -1168,7 +1133,7 @@ window.ThongTinLiveHocSinh = { maPhong: '', maNhiemVu: '' };
 // =====================================================================
 // Hàm bổ trợ: Chuyển đổi trạng thái Tab nội bộ (Giữ bộ số đếm động)
 // =====================================================================
-window.ham_8_23_switch_sub_tab = function (loaiTab) {
+window.ham_3b_17_switch_sub_tab = function (loaiTab) {
     const btnCanLam = document.getElementById('btn-tab-can-lam');
     const btnLamLai = document.getElementById('btn-tab-lam-lai');
     const btnChuaKhoa = document.getElementById('btn-tab-chua-lam-khoa');
@@ -1215,15 +1180,15 @@ window.ham_8_23_switch_sub_tab = function (loaiTab) {
 // =====================================================================
 // Bộ Điều Hướng: Xử lý click vào làm bài theo đúng loại nhiệm vụ
 // =====================================================================
-window.ham_8_24_router_vao_lam_bai = function(maNhiemVu, loai) {
+window.ham_3b_18_router_vao_lam_bai = function(maNhiemVu, loai) {
     const nv = GocHocSinhState.danhSachNhiemVu.find(x => x.ma_nhiem_vu === maNhiemVu);
     if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu nhiệm vụ!");
     
     if (loai === 'TRAC_NGHIEM') {
         if (typeof ham_8_7_cua_an_ninh === 'function') ham_8_7_cua_an_ninh(maNhiemVu);
     } else if (loai === 'TU_LUAN') {
-        if (typeof ham_16_1_mo_phong_thi_tu_luan === 'function') {
-            ham_16_1_mo_phong_thi_tu_luan(nv, GocHocSinhState.uid);
+        if (typeof ham_8b_1_mo_phong_thi_tu_luan === 'function') {
+            ham_8b_1_mo_phong_thi_tu_luan(nv, GocHocSinhState.uid);
         } else {
             alert("⚠️ Phân hệ Tự luận (Khối 16) chưa được nạp vào hệ thống!");
         }
@@ -1235,21 +1200,21 @@ window.ham_8_24_router_vao_lam_bai = function(maNhiemVu, loai) {
 };
 
 
-window.ham_8_24b_vao_lam_bai_tu_luan = function(maNhiemVu) {
+window.ham_3b_19_vao_lam_bai_tu_luan = function(maNhiemVu) {
     const nv = GocHocSinhState.danhSachNhiemVu.find(x => x.ma_nhiem_vu === maNhiemVu);
-    if (nv && typeof ham_16_1_mo_phong_thi_tu_luan === 'function') {
-        ham_16_1_mo_phong_thi_tu_luan(nv, GocHocSinhState.uid);
+    if (nv && typeof ham_8b_1_mo_phong_thi_tu_luan === 'function') {
+        ham_8b_1_mo_phong_thi_tu_luan(nv, GocHocSinhState.uid);
     } else {
         alert("⚠️ Phân hệ Tự luận (Khối 16) chưa sẵn sàng!");
     }
 };
 
-window.ham_8_24c_vao_lam_bai_doc_bai = function(maNhiemVu) {
+window.ham_3b_20_vao_lam_bai_doc_bai = function(maNhiemVu) {
     // Thầy điền hàm gọi giao diện Đọc bài vào đây
     alert("Đang chuyển sang giao diện Đọc bài...");
 };
 
-window.ham_8_24d_vao_lam_bai_khao_sat = function(maNhiemVu) {
+window.ham_3b_21_vao_lam_bai_khao_sat = function(maNhiemVu) {
     // Thầy điền hàm gọi giao diện Khảo sát vào đây
     alert("Đang chuyển sang giao diện Khảo sát...");
 };

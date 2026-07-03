@@ -44,7 +44,7 @@ function ham_3_1_ve_dashboard_admin() {
             <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
-                <button onclick="" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
+                <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
 
                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
@@ -53,7 +53,7 @@ function ham_3_1_ve_dashboard_admin() {
             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
-                <button onclick="ham_7_1_nv_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
+                <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
                 
                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>

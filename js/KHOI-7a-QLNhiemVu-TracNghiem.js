@@ -136,6 +136,13 @@ function ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem() {
 
 
 async function ham_7a_2_tai_danh_sach_nhiem_vu_trac_nghiem() {
+    // Khởi tạo "kho" chứa dữ liệu nhiệm vụ nếu chưa có
+    if (!window.BangNhiemVuState) {
+        window.BangNhiemVuState = {
+            duLieu: [] // Mảng rỗng ban đầu để chứa danh sách nhiệm vụ
+        };
+    }
+    
     const renderArea = document.getElementById('danh-sach-nv-render');
     try {
         // 🌟 JOIN CỰC GỌN (Vì đã xóa bớt FK thừa)
@@ -430,9 +437,9 @@ async function ham_7a_3_hien_form_them_nhiem_vu_trac_nghiem() {
                     <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
                         <label style="font-weight:bold; font-size: 13px; color: #d35400;">🔀 Chế độ Đảo đề (Dùng JSON):</label>
                         <select id="add_nv_che_do_dao" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; font-weight: bold; font-size: 14px;">
-                            <option value="${CFG_NV.DAO_DE.KHONG}">❌ Không đảo gì cả</option>
-                            <option value="${CFG_NV.DAO_DE.CO_BAN}" selected>🔀 Đảo Câu hỏi + Đảo ABCD (Nhóm TN)</option>
-                            <option value="${CFG_NV.DAO_DE.TOAN_DIEN}">🌪️ Đảo Câu hỏi + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
+                            <option value="${CFG_NV_TN.DAO_DE.KHONG}">❌ Không đảo gì cả</option>
+                            <option value="${CFG_NV_TN.DAO_DE.CO_BAN}" selected>🔀 Đảo Câu hỏi + Đảo ABCD (Nhóm TN)</option>
+                            <option value="${CFG_NV_TN.DAO_DE.TOAN_DIEN}">🌪️ Đảo Câu hỏi + Đảo ABCD + Đảo ý a,b,c,d (Nhóm ĐS)</option>
                         </select>
                     </div>
                 </div>
@@ -443,10 +450,10 @@ async function ham_7a_3_hien_form_them_nhiem_vu_trac_nghiem() {
                         <div>
                             <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
                             <select id="add_nv_thoigiano" onchange="ham_7a_3_c_xu_ly_cong_bo_trac_nghiem()" style="width: 100%; padding: 10px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
-                                <option value="${CFG_NV.THOI_DIEM.KHOA}">🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
-                                <option value="${CFG_NV.THOI_DIEM.SAU_NOP}">✅ Ngay sau khi nộp bài</option>
-                                <option value="${CFG_NV.THOI_DIEM.SAU_HET_HAN}">⏳ Sau khi hết hạn Đóng đề</option>
-                                <option value="${CFG_NV.THOI_DIEM.HEN_GIO}">⏰ Hẹn một giờ cụ thể...</option>
+                                <option value="${CFG_NV_TN.THOI_DIEM.KHOA}">🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
+                                <option value="${CFG_NV_TN.THOI_DIEM.SAU_NOP}">✅ Ngay sau khi nộp bài</option>
+                                <option value="${CFG_NV_TN.THOI_DIEM.SAU_HET_HAN}">⏳ Sau khi hết hạn Đóng đề</option>
+                                <option value="${CFG_NV_TN.THOI_DIEM.HEN_GIO}">⏰ Hẹn một giờ cụ thể...</option>
                             </select>
                             <div id="khu_vuc_hen_gio" style="display: none; margin-top: 10px;">
                                 <label style="font-size: 12px; color: #d35400; font-weight:bold;">Giờ kích hoạt:</label>
@@ -456,8 +463,8 @@ async function ham_7a_3_hien_form_them_nhiem_vu_trac_nghiem() {
                         <div id="khu_vuc_muc_do" style="opacity: 0.3; pointer-events: none;">
                             <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
                             <select id="add_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
-                                <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}">📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
-                                <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}" selected>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
+                                <option value="${CFG_NV_TN.MUC_DO.DAPAN_DIEM}">📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
+                                <option value="${CFG_NV_TN.MUC_DO.FULL_LOIGIAI}" selected>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
                             </select>
                             <p style="font-size: 11px; color: #666; margin-top: 8px; font-style: italic;">
                                 🛡️ <strong style="color:#d35400;">Bảo mật:</strong> File Lời giải đang được mã hóa ẩn. Hệ thống chỉ bắt đầu tiến hành dịch và ráp file khi có Lệnh hoặc khi đến Thời điểm công bố.
@@ -533,11 +540,11 @@ function ham_7a_3_b_chon_tat_ca_lop_trac_nghiem(isCheck) {
 function ham_7a_3_c_xu_ly_cong_bo_trac_nghiem() {
     const thoiDiem = document.getElementById('add_nv_thoigiano').value;
 
-    document.getElementById('khu_vuc_hen_gio').style.display = (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) ? "block" : "none";
-    if (thoiDiem !== CFG_NV.THOI_DIEM.HEN_GIO) document.getElementById('add_nv_giocongbo').value = "";
+    document.getElementById('khu_vuc_hen_gio').style.display = (thoiDiem === CFG_NV_TN.THOI_DIEM.HEN_GIO) ? "block" : "none";
+    if (thoiDiem !== CFG_NV_TN.THOI_DIEM.HEN_GIO) document.getElementById('add_nv_giocongbo').value = "";
 
     const khuVucMucDo = document.getElementById('khu_vuc_muc_do');
-    if (thoiDiem === CFG_NV.THOI_DIEM.KHOA) {
+    if (thoiDiem === CFG_NV_TN.THOI_DIEM.KHOA) {
         khuVucMucDo.style.opacity = "0.3";
         khuVucMucDo.style.pointerEvents = "none";
     } else {
@@ -555,7 +562,7 @@ function ham_7a_3_d_cap_nhat_ma_nv_trac_nghiem() {
     const randomStr = inputMa.getAttribute('data-random');
 
     // Tra từ điển lấy Tiền tố (DE, TL, BG...), nếu không có thì mặc định là KH (Khác)
-    const prefix = CFG_NV.PREFIX_LOAI[loaiNV] || "KH";
+    const prefix = CFG_NV_TN.PREFIX_LOAI[loaiNV] || "KH";
 
     // Ghép lại và hiển thị ra ô Input
     inputMa.value = `NV_${prefix}_${randomStr}`;
@@ -628,22 +635,22 @@ window.ham_7a_4_luu_nhiem_vu_moi_trac_nghiem = async function(btnNode) {
             }
 
             const cheDoDao = document.getElementById('add_nv_che_do_dao').value;
-            let configDaoDe = { cau: cheDoDao !== CFG_NV.DAO_DE.KHONG, abcd: cheDoDao !== CFG_NV.DAO_DE.KHONG, ds: cheDoDao === CFG_NV.DAO_DE.TOAN_DIEN };
+            let configDaoDe = { cau: cheDoDao !== CFG_NV_TN.DAO_DE.KHONG, abcd: cheDoDao !== CFG_NV_TN.DAO_DE.KHONG, ds: cheDoDao === CFG_NV_TN.DAO_DE.TOAN_DIEN };
 
             const thoiDiem = document.getElementById('add_nv_thoigiano').value;
             const mucDo = document.getElementById('add_nv_mucdo').value;
-            let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
+            let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV_TN.THOI_DIEM.KHOA) ? CFG_NV_TN.MUC_DO.KHONG : mucDo };
 
-            if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO) {
+            if (thoiDiem === CFG_NV_TN.THOI_DIEM.HEN_GIO) {
                 const gioCongBo = document.getElementById('add_nv_giocongbo').value;
                 if (!gioCongBo) throw new Error("❌ Thầy chọn Hẹn giờ thì phải nhập Giờ vào nhé!");
-                configCongBo.thoi_diem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
+                configCongBo.thoi_diem = `${CFG_NV_TN.THOI_DIEM.HEN_GIO}|${new Date(gioCongBo).toISOString()}`;
             }
 
             const chkTuyenLenhGom = document.getElementById('add_nv_tu_dong_gom_file');
             const isYeuCauGomFile = chkTuyenLenhGom && chkTuyenLenhGom.checked;
 
-            let finalTrangThaiLoiGiai = CFG_NV.FILE_GIAI.CHUA_LENH;
+            let finalTrangThaiLoiGiai = CFG_NV_TN.FILE_GIAI.CHUA_LENH;
             let finalUrlFileGiai = null;
             let canGoiBotCSharp = false;
 
@@ -669,7 +676,7 @@ window.ham_7a_4_luu_nhiem_vu_moi_trac_nghiem = async function(btnNode) {
         }
 
             const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-            const prefix = "NV_" + (CFG_NV.PREFIX_LOAI ? (CFG_NV.PREFIX_LOAI[loaiNV] || "KH") : "KH") + "_";
+            const prefix = "NV_" + (CFG_NV_TN.PREFIX_LOAI ? (CFG_NV_TN.PREFIX_LOAI[loaiNV] || "KH") : "KH") + "_";
 
             const insertPayloads = dsLopChon.map((maLop) => {
                 let maNV_ChinhThuc = (dsLopChon.length === 1) ? maNVTrenForm : prefix + Array(6).fill(0).map(() => tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length))).join('');
@@ -821,34 +828,34 @@ async function ham_7a_6_mo_form_nhiem_vu_trac_nghiem(maNhiemVu) {
 
     let dao = { cau: false, abcd: false, ds: false };
     try { dao = typeof data.dao_cau_hoi === 'string' ? JSON.parse(data.dao_cau_hoi) : (data.dao_cau_hoi || dao); } catch (e) { }
-    let modeDao = CFG_NV.DAO_DE.KHONG;
-    if (dao.cau && dao.abcd && dao.ds) modeDao = CFG_NV.DAO_DE.TOAN_DIEN;
-    else if (dao.cau && dao.abcd) modeDao = CFG_NV.DAO_DE.CO_BAN;
+    let modeDao = CFG_NV_TN.DAO_DE.KHONG;
+    if (dao.cau && dao.abcd && dao.ds) modeDao = CFG_NV_TN.DAO_DE.TOAN_DIEN;
+    else if (dao.cau && dao.abcd) modeDao = CFG_NV_TN.DAO_DE.CO_BAN;
 
-    let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
+    let congBo = { thoi_diem: CFG_NV_TN.THOI_DIEM.KHOA, muc_do: CFG_NV_TN.MUC_DO.KHONG };
     try { congBo = typeof data.cau_hinh_dap_an === 'string' ? JSON.parse(data.cau_hinh_dap_an) : (data.cau_hinh_dap_an || congBo); } catch (e) { }
 
-    let thoiDiemVal = congBo.thoi_diem || CFG_NV.THOI_DIEM.KHOA;
+    let thoiDiemVal = congBo.thoi_diem || CFG_NV_TN.THOI_DIEM.KHOA;
     let thoiDiemSelect = thoiDiemVal;
     let gioHen = "";
     if (thoiDiemVal.startsWith("HEN_GIO|")) {
-        thoiDiemSelect = CFG_NV.THOI_DIEM.HEN_GIO;
+        thoiDiemSelect = CFG_NV_TN.THOI_DIEM.HEN_GIO;
         gioHen = formatToLocal(thoiDiemVal.split("|")[1]);
     }
 
     // =========================================================
     // 🌟 KHỞI TẠO BẢNG ĐIỀU KHIỂN GOM FILE GIẢI (JSON)
     // =========================================================
-    const ttFile = data.trang_thai_loi_giai || CFG_NV.FILE_GIAI.CHUA_LENH;
+    const ttFile = data.trang_thai_loi_giai || CFG_NV_TN.FILE_GIAI.CHUA_LENH;
     const urlFile = data.url_file_giai || "";
 
     let btnFileHtml = "";
-    if (ttFile === CFG_NV.FILE_GIAI.HOAN_THANH && urlFile) {
+    if (ttFile === CFG_NV_TN.FILE_GIAI.HOAN_THANH && urlFile) {
         btnFileHtml = `
             <button onclick="window.open('${urlFile}', '_blank')" style="padding:8px 15px; background:#28a745; color:white; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">👁️ XEM FILE GỘP (JSON)</button>
             <button onclick="ham_7_10_ra_lenh_tao_file_giai('${data.id}', '${data.ma_hoc_lieu}')" style="padding:8px 15px; background:#f8f9fa; color:#6c757d; border:1px solid #ccc; border-radius:4px; font-weight:bold; cursor:pointer;">🔄 GOM LẠI FILE MỚI</button>
         `;
-    } else if (ttFile === CFG_NV.FILE_GIAI.DANG_CHO || ttFile === CFG_NV.FILE_GIAI.DANG_XU_LY) {
+    } else if (ttFile === CFG_NV_TN.FILE_GIAI.DANG_CHO || ttFile === CFG_NV_TN.FILE_GIAI.DANG_XU_LY) {
         btnFileHtml = `<button disabled style="padding:8px 15px; background:#ffc107; color:#333; border:none; border-radius:4px; font-weight:bold; cursor:wait;">⏳ HỆ THỐNG ĐANG GOM DỮ LIỆU...</button>`;
     } else {
         // Nút ra lệnh lần đầu hoặc khi bị lỗi
@@ -947,9 +954,9 @@ async function ham_7a_6_mo_form_nhiem_vu_trac_nghiem(maNhiemVu) {
                 <div style="margin-top: 15px; border-top: 1px dashed #e5c381; padding-top: 15px;">
                     <label style="font-weight:bold; font-size: 13px; color: #d35400;">🔀 Chế độ Đảo đề:</label>
                     <select id="edit_nv_che_do_dao" style="width: 100%; padding: 10px; border: 2px solid #d35400; border-radius: 6px; font-weight: bold;">
-                        <option value="${CFG_NV.DAO_DE.KHONG}" ${modeDao === CFG_NV.DAO_DE.KHONG ? 'selected' : ''}>❌ Không đảo gì cả</option>
-                        <option value="${CFG_NV.DAO_DE.CO_BAN}" ${modeDao === CFG_NV.DAO_DE.CO_BAN ? 'selected' : ''}>🔀 Đảo Câu hỏi + Đảo đáp án ABCD</option>
-                        <option value="${CFG_NV.DAO_DE.TOAN_DIEN}" ${modeDao === CFG_NV.DAO_DE.TOAN_DIEN ? 'selected' : ''}>🌪️ Đảo Toàn Diện (Câu + ABCD + Đ/S)</option>
+                        <option value="${CFG_NV_TN.DAO_DE.KHONG}" ${modeDao === CFG_NV_TN.DAO_DE.KHONG ? 'selected' : ''}>❌ Không đảo gì cả</option>
+                        <option value="${CFG_NV_TN.DAO_DE.CO_BAN}" ${modeDao === CFG_NV_TN.DAO_DE.CO_BAN ? 'selected' : ''}>🔀 Đảo Câu hỏi + Đảo đáp án ABCD</option>
+                        <option value="${CFG_NV_TN.DAO_DE.TOAN_DIEN}" ${modeDao === CFG_NV_TN.DAO_DE.TOAN_DIEN ? 'selected' : ''}>🌪️ Đảo Toàn Diện (Câu + ABCD + Đ/S)</option>
                     </select>
                 </div>
             </div>
@@ -960,12 +967,12 @@ async function ham_7a_6_mo_form_nhiem_vu_trac_nghiem(maNhiemVu) {
                     <div>
                         <label style="font-weight:bold; font-size: 13px;">Thời điểm công bố:</label>
                         <select id="edit_nv_thoigiano" onchange="document.getElementById('khu_vuc_hen_gio_edit').style.display = (this.value === 'HEN_GIO') ? 'block' : 'none'" style="width: 100%; padding: 10px; border: 1px solid #28a745; border-radius: 4px; font-weight: bold;">
-                           <option value="${CFG_NV.THOI_DIEM.KHOA}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.KHOA ? 'selected' : ''}>🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
-                            <option value="${CFG_NV.THOI_DIEM.SAU_NOP}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.SAU_NOP ? 'selected' : ''}>✅ Ngay sau khi nộp bài</option>
-                            <option value="${CFG_NV.THOI_DIEM.SAU_HET_HAN}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.SAU_HET_HAN ? 'selected' : ''}>⏳ Sau khi hết hạn Đóng đề</option>
-                            <option value="${CFG_NV.THOI_DIEM.HEN_GIO}" ${thoiDiemSelect === CFG_NV.THOI_DIEM.HEN_GIO ? 'selected' : ''}>⏰ Hẹn một giờ cụ thể...</option>
+                           <option value="${CFG_NV_TN.THOI_DIEM.KHOA}" ${thoiDiemSelect === CFG_NV_TN.THOI_DIEM.KHOA ? 'selected' : ''}>🔒 Khóa hoàn toàn (Không bao giờ xem)</option>
+                            <option value="${CFG_NV_TN.THOI_DIEM.SAU_NOP}" ${thoiDiemSelect === CFG_NV_TN.THOI_DIEM.SAU_NOP ? 'selected' : ''}>✅ Ngay sau khi nộp bài</option>
+                            <option value="${CFG_NV_TN.THOI_DIEM.SAU_HET_HAN}" ${thoiDiemSelect === CFG_NV_TN.THOI_DIEM.SAU_HET_HAN ? 'selected' : ''}>⏳ Sau khi hết hạn Đóng đề</option>
+                            <option value="${CFG_NV_TN.THOI_DIEM.HEN_GIO}" ${thoiDiemSelect === CFG_NV_TN.THOI_DIEM.HEN_GIO ? 'selected' : ''}>⏰ Hẹn một giờ cụ thể...</option>
                         </select>
-                        <div id="khu_vuc_hen_gio_edit" style="display: ${thoiDiemSelect === CFG_NV.THOI_DIEM.HEN_GIO ? 'block' : 'none'}; margin-top: 10px;">
+                        <div id="khu_vuc_hen_gio_edit" style="display: ${thoiDiemSelect === CFG_NV_TN.THOI_DIEM.HEN_GIO ? 'block' : 'none'}; margin-top: 10px;">
                             <label style="font-size: 12px; color: #d35400; font-weight:bold;">Giờ kích hoạt:</label>
                             <input type="datetime-local" id="edit_nv_giocongbo" value="${gioHen}" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;">
                         </div>
@@ -973,8 +980,8 @@ async function ham_7a_6_mo_form_nhiem_vu_trac_nghiem(maNhiemVu) {
                     <div>
                         <label style="font-weight:bold; font-size: 13px;">Mức độ công bố:</label>
                         <select id="edit_nv_mucdo" style="width: 100%; padding: 10px; border: 1px solid #1a73e8; border-radius: 4px; font-weight: bold; color: #1a73e8;">
-                            <option value="${CFG_NV.MUC_DO.DAPAN_DIEM}" ${congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM ? 'selected' : ''}>📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
-                            <option value="${CFG_NV.MUC_DO.FULL_LOIGIAI}" ${congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI ? 'selected' : ''}>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
+                            <option value="${CFG_NV_TN.MUC_DO.DAPAN_DIEM}" ${congBo.muc_do === CFG_NV_TN.MUC_DO.DAPAN_DIEM ? 'selected' : ''}>📊 Chỉ xem Bảng Đáp án (A,B,C,D) & Điểm</option>
+                            <option value="${CFG_NV_TN.MUC_DO.FULL_LOIGIAI}" ${congBo.muc_do === CFG_NV_TN.MUC_DO.FULL_LOIGIAI ? 'selected' : ''}>📚 Xem Đáp án VÀ Tải File Lời giải chi tiết</option>
                         </select>
                     </div>
                 </div>
@@ -984,10 +991,10 @@ async function ham_7a_6_mo_form_nhiem_vu_trac_nghiem(maNhiemVu) {
                     <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                         <div>
                             <select id="edit_nv_trang_thai_file" disabled style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; background: #e9ecef; font-weight:bold; color:#495057;">
-                                <option value="${CFG_NV.FILE_GIAI.CHUA_LENH}" ${ttFile === CFG_NV.FILE_GIAI.CHUA_LENH ? 'selected' : ''}>⚪ Chưa có lệnh</option>
-                                <option value="${CFG_NV.FILE_GIAI.DANG_XU_LY}" ${ttFile === CFG_NV.FILE_GIAI.DANG_XU_LY ? 'selected' : ''}>⚙️ Đang xử lý (Gom data)</option>
-                                <option value="${CFG_NV.FILE_GIAI.HOAN_THANH}" ${ttFile === CFG_NV.FILE_GIAI.HOAN_THANH ? 'selected' : ''}>✅ Đã hoàn thành</option>
-                                <option value="${CFG_NV.FILE_GIAI.LOI}" ${ttFile === CFG_NV.FILE_GIAI.LOI ? 'selected' : ''}>❌ Lỗi gom file</option>
+                                <option value="${CFG_NV_TN.FILE_GIAI.CHUA_LENH}" ${ttFile === CFG_NV_TN.FILE_GIAI.CHUA_LENH ? 'selected' : ''}>⚪ Chưa có lệnh</option>
+                                <option value="${CFG_NV_TN.FILE_GIAI.DANG_XU_LY}" ${ttFile === CFG_NV_TN.FILE_GIAI.DANG_XU_LY ? 'selected' : ''}>⚙️ Đang xử lý (Gom data)</option>
+                                <option value="${CFG_NV_TN.FILE_GIAI.HOAN_THANH}" ${ttFile === CFG_NV_TN.FILE_GIAI.HOAN_THANH ? 'selected' : ''}>✅ Đã hoàn thành</option>
+                                <option value="${CFG_NV_TN.FILE_GIAI.LOI}" ${ttFile === CFG_NV_TN.FILE_GIAI.LOI ? 'selected' : ''}>❌ Lỗi gom file</option>
                             </select>
                         </div>
                         <div id="khu-vuc-nut-file" style="display:flex; gap:10px;">${btnFileHtml}</div>
@@ -1067,8 +1074,8 @@ async function ham_7a_7_luu_cap_nhat_nhiem_vu_trac_nghiem(maNhiemVu, btnNode) {
     const elDao = document.getElementById('edit_nv_che_do_dao');
     let configDaoDe = { cau: false, abcd: false, ds: false };
     if (elDao) {
-        if (elDao.value === CFG_NV.DAO_DE.CO_BAN) configDaoDe = { cau: true, abcd: true, ds: false };
-        else if (elDao.value === CFG_NV.DAO_DE.TOAN_DIEN) configDaoDe = { cau: true, abcd: true, ds: true };
+        if (elDao.value === CFG_NV_TN.DAO_DE.CO_BAN) configDaoDe = { cau: true, abcd: true, ds: false };
+        else if (elDao.value === CFG_NV_TN.DAO_DE.TOAN_DIEN) configDaoDe = { cau: true, abcd: true, ds: true };
     }
 
     // 4. Cấu hình Công Bố (Kiểm tra an toàn cho các ô có thể bị ẩn)
@@ -1076,15 +1083,15 @@ async function ham_7a_7_luu_cap_nhat_nhiem_vu_trac_nghiem(maNhiemVu, btnNode) {
     const elMucDo = document.getElementById('edit_nv_mucdo');
     const elGioHen = document.getElementById('edit_nv_giocongbo');
 
-    let thoiDiem = elThoiDiem ? elThoiDiem.value : CFG_NV.THOI_DIEM.KHOA;
-    let mucDo = elMucDo ? elMucDo.value : CFG_NV.MUC_DO.KHONG;
+    let thoiDiem = elThoiDiem ? elThoiDiem.value : CFG_NV_TN.THOI_DIEM.KHOA;
+    let mucDo = elMucDo ? elMucDo.value : CFG_NV_TN.MUC_DO.KHONG;
 
-    if (thoiDiem === CFG_NV.THOI_DIEM.HEN_GIO && elGioHen) {
+    if (thoiDiem === CFG_NV_TN.THOI_DIEM.HEN_GIO && elGioHen) {
         const gioHen = elGioHen.value;
         if (!gioHen) return alert("❌ Thầy phải nhập Giờ công bộ!");
-        thoiDiem = `${CFG_NV.THOI_DIEM.HEN_GIO}|${new Date(gioHen).toISOString()}`;
+        thoiDiem = `${CFG_NV_TN.THOI_DIEM.HEN_GIO}|${new Date(gioHen).toISOString()}`;
     }
-    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV.THOI_DIEM.KHOA) ? CFG_NV.MUC_DO.KHONG : mucDo };
+    let configCongBo = { thoi_diem: thoiDiem, muc_do: (thoiDiem === CFG_NV_TN.THOI_DIEM.KHOA) ? CFG_NV_TN.MUC_DO.KHONG : mucDo };
 
     // 5. Gửi cập nhật
     btnNode.disabled = true;
@@ -1163,7 +1170,7 @@ async function ham_7a_9_kich_hoat_tao_file_giai_trac_nghiem(maNhiemVu) {
         const { error } = await _supabase
             .from('nhiem_vu_trac_nghiem')
             .update({
-                trang_thai_loi_giai: CFG_NV.FILE_GIAI.DANG_CHO
+                trang_thai_loi_giai: CFG_NV_TN.FILE_GIAI.DANG_CHO
             })
             .eq('ma_nhiem_vu', maNhiemVu);
 

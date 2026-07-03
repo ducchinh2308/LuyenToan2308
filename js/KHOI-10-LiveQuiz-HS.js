@@ -9,7 +9,7 @@ window.HocSinhLiveChannel = null;
 // =====================================================================
 // 1. Hàm vẽ giao diện nhập mã PIN
 // =====================================================================
-window.ham_8_6_tab_live_quiz = function () {
+window.ham_3b_15_tab_live_quiz = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     if (!vungLamViec) return;
 
@@ -644,8 +644,8 @@ window.ham_8_6_7_thoat_ve_trang_chu = function () {
 
     // 2. GỌI LẠI HÀM "DỰNG BỘ KHUNG GIAO DIỆN (Hàm 8.1)" CỦA THẦY
     // Việc này đảm bảo thẻ "vung-lam-viec-hoc-sinh" được sinh ra lại mới tinh 100%, khắc phục dứt điểm lỗi Null.
-    if (typeof window.ham_8_1_tai_nhiem_vu_cua_toi === 'function') {
-        window.ham_8_1_tai_nhiem_vu_cua_toi(
+    if (typeof window.ham_3b_1_tai_nhiem_vu_cua_toi === 'function') {
+        window.ham_3b_1_tai_nhiem_vu_cua_toi(
             GocHocSinhState.uid,
             GocHocSinhState.danh_sach_ma_lop,
             GocHocSinhState.ten
