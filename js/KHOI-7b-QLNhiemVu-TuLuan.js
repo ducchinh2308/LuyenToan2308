@@ -1310,7 +1310,7 @@ window.ham_7b_12_ve_bang_nhiem_vu_tu_luan = async function () {
                         <button onclick="ham_7b_7_mo_form_sua_nhiem_vu_tu_luan('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #ffc107; color: #333; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px;">✏️ Sửa</button>
                         <button onclick="ham_7b_11_xoa_nhiem_vu_tu_luan('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #dc3545; color: white; border:none; border-radius:4px; font-weight:bold; cursor:pointer; font-size: 11px;">❌ Xóa</button>
                         <button onclick="ham_7b_13_thong_ke_nhiem_vu_tu_luan('${nv.ma_nhiem_vu}', '${nv.ten_nhiem_vu.replace(/'/g, "\\'")}')" style="padding: 6px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">📊 Tiến độ</button>
-                        <button onclick="alert('Tính năng chấm bài Tự luận sẽ được kết nối sau!')" style="padding: 6px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">✍️ Chấm bài</button>
+                        <button onclick="ham_7b_17_mo_giao_dien_cham_bai('${nv.ma_nhiem_vu}')" style="padding: 6px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">✍️ Chấm bài</button>
                     </div>
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #17a2b8;">${nv.ma_nhiem_vu}</td>
@@ -1452,4 +1452,497 @@ window.ham_7b_16_sub_danh_sach_chua_lam_tu_luan = function () {
 };
 
 
+
+// =====================================================================
+// BỘ STATE LƯU TRỮ TẠM THỜI CHO KHỐI CHẤM BÀI TỰ LUẬN
+// =====================================================================
+window.ChamBaiTL_State = {
+    maNV: null,
+    tenNV: '',
+    dsKetQua: [],
+    dsHocSinh: [],
+    uidDangCham: null,
+    gocXoay: {}, // Lưu góc xoay của từng ảnh
+    mucZoom: {},  // Lưu độ phóng to của từng ảnh
+    tieuChiSort: 'stt' // 🌟 THÊM DÒNG NÀY ĐỂ LƯU CHẾ ĐỘ SORT
+};
+
+// =====================================================================
+// Hàm 7b.17: Mở giao diện và tải dữ liệu Chấm Bài
+// =====================================================================
+window.ham_7b_17_mo_giao_dien_cham_bai = async function (maNV) {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 50px; font-size: 18px;">⏳ Đang tải dữ liệu bài làm... Vui lòng đợi...</div>`;
+
+    try {
+        // 1. Tải thông tin nhiệm vụ
+        const { data: nv } = await _supabase.from('nhiem_vu_tu_luan').select('*').eq('ma_nhiem_vu', maNV).single();
+        if (!nv) throw new Error("Không tìm thấy nhiệm vụ!");
+
+        ChamBaiTL_State.maNV = maNV;
+        ChamBaiTL_State.tenNV = nv.ten_nhiem_vu;
+        const cacLopDuocGiao = nv.danh_sach_lop || [];
+
+        // 2. Tải toàn bộ học sinh (để lọc ra HS thuộc lớp được giao)
+        const { data: allHS } = await _supabase.from('hoc_sinh').select('uid, ten, danh_sach_ma_lop, anh_dai_dien');
+        let dsHSHopLe = [];
+        if (allHS) {
+            allHS.forEach(hs => {
+                let lopCuaHS = [];
+                try { lopCuaHS = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+                if (lopCuaHS.some(maLop => cacLopDuocGiao.includes(maLop))) {
+                    dsHSHopLe.push(hs);
+                }
+            });
+        }
+        // Sắp xếp HS theo tên ABC
+        dsHSHopLe.sort((a, b) => (a.ten || '').localeCompare(b.ten || ''));
+        ChamBaiTL_State.dsHocSinh = dsHSHopLe;
+
+        // 3. Tải toàn bộ kết quả đã nộp của nhiệm vụ này
+        const { data: dsKQ } = await _supabase.from('ket_qua_tu_luan').select('*').eq('ma_nhiem_vu', maNV);
+        ChamBaiTL_State.dsKetQua = dsKQ || [];
+
+        // 4. Render Layout Tổng thể
+        ham_7b_18_render_layout_tong_cham_bai();
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding: 30px;">❌ Lỗi tải dữ liệu: ${error.message}</div>`;
+    }
+};
+
+// =====================================================================
+// Hàm 7b.18: Render Khung Giao Diện (Đã bổ sung Sort theo Trạng thái & Điểm)
+// =====================================================================
+window.ham_7b_18_render_layout_tong_cham_bai = function () {
+    let htmlDanhSachHS = '';
+    let soDaCham = 0;
+    let soChoCham = 0;
+    let soChuaNop = 0;
+
+    // 1. LOGIC SẮP XẾP DANH SÁCH (SORTING)
+    let dsRender = [...ChamBaiTL_State.dsHocSinh];
+    const tieuChi = ChamBaiTL_State.tieuChiSort || 'stt';
+
+    // Hàm lấy chữ cuối cùng trong tên để sort ABC
+    const layTenCuoi = (fullName) => {
+        if (!fullName) return "";
+        const parts = fullName.trim().split(" ");
+        return parts[parts.length - 1].toLowerCase();
+    };
+
+    // Hàm xác định độ ưu tiên của Trạng thái (1: Đã chấm, 2: Chờ chấm, 3: Chưa nộp)
+    const layUuTienTrangThai = (hsUid) => {
+        const kq = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === hsUid);
+        if (!kq) return 3; // Chưa nộp bài
+        if (kq.trang_thai_cham === 1) return 1; // Đã chấm
+        return 2; // Đã nộp, chờ chấm
+    };
+
+    // Áp dụng thuật toán sắp xếp
+    if (tieuChi === 'ten') {
+        // Sort 1: Theo Tên (A-Z)
+        dsRender.sort((a, b) => layTenCuoi(a.ten).localeCompare(layTenCuoi(b.ten)));
+
+    } else if (tieuChi === 'diem_desc') {
+        // Sort 2: Tuyệt đối theo Điểm (Cao -> Thấp)
+        dsRender.sort((a, b) => {
+            const kqA = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === a.uid);
+            const kqB = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === b.uid);
+            const diemA = (kqA && kqA.trang_thai_cham === 1) ? Number(kqA.tong_diem || 0) : -1;
+            const diemB = (kqB && kqB.trang_thai_cham === 1) ? Number(kqB.tong_diem || 0) : -1;
+            return diemB - diemA;
+        });
+
+    } else if (tieuChi === 'trang_thai') {
+        // 🌟 Sort 3: Đã chấm (Cao->Thấp) > Chờ chấm (A->Z) > Chưa nộp (A->Z)
+        dsRender.sort((a, b) => {
+            const uuTienA = layUuTienTrangThai(a.uid);
+            const uuTienB = layUuTienTrangThai(b.uid);
+
+            if (uuTienA !== uuTienB) {
+                return uuTienA - uuTienB; // Xếp theo nhóm trạng thái trước
+            }
+
+            // Nếu cùng nằm trong nhóm ĐÃ CHẤM (uuTien == 1) -> Xếp theo điểm
+            if (uuTienA === 1) {
+                const kqA = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === a.uid);
+                const kqB = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === b.uid);
+                const diemA = Number(kqA.tong_diem || 0);
+                const diemB = Number(kqB.tong_diem || 0);
+                if (diemA !== diemB) return diemB - diemA;
+            }
+
+            // Nếu cùng nhóm chờ chấm/chưa nộp (hoặc điểm bằng nhau) -> Xếp theo Tên ABC
+            return layTenCuoi(a.ten).localeCompare(layTenCuoi(b.ten));
+        });
+
+    } else {
+        // Mặc định (stt): Sort theo toàn bộ chuỗi Họ và Tên (A-Z)
+        dsRender.sort((a, b) => (a.ten || "").localeCompare(b.ten || ""));
+    }
+
+    // 2. RENDER GIAO DIỆN TỪNG HỌC SINH
+    dsRender.forEach((hs, index) => {
+        const baiNop = ChamBaiTL_State.dsKetQua.find(kq => kq.uid_hoc_sinh === hs.uid);
+
+        let phanHienThiPhai = '';
+
+        if (!baiNop) {
+            phanHienThiPhai = `<span style="font-size: 11px; font-weight: bold; color: #dc3545; background: #ffe3e6; padding: 4px 8px; border-radius: 4px;">Chưa nộp</span>`;
+            soChuaNop++;
+        } else if (baiNop.trang_thai_cham === 1) {
+            phanHienThiPhai = `<span style="font-size: 16px; font-weight: 900; color: #28a745;">${baiNop.tong_diem} <span style="font-size:11px; font-weight:bold;">đ</span></span>`;
+            soDaCham++;
+        } else {
+            phanHienThiPhai = `<span style="font-size: 11px; font-weight: bold; color: #d35400; background: #ffe8d6; padding: 4px 8px; border-radius: 4px;">Chờ chấm</span>`;
+            soChoCham++;
+        }
+
+        htmlDanhSachHS += `
+            <div onclick="ham_7b_19_xem_bai_hoc_sinh('${hs.uid}')" id="hs_card_${hs.uid}" class="cham-bai-hs-card ${ChamBaiTL_State.uidDangCham === hs.uid ? 'active' : ''}" style="padding: 10px 15px; border-bottom: 1px solid #eee; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; gap: 10px;">
+                <div style="font-weight: bold; font-size: 13px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1;" title="${hs.ten}">
+                    ${index + 1}. ${hs.ten || 'Chưa cập nhật'}
+                </div>
+                <div style="white-space: nowrap; display: flex; align-items: center;">
+                    ${phanHienThiPhai}
+                </div>
+            </div>
+        `;
+    });
+
+    // 3. RENDER KHUNG TỔNG THỂ
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `
+        <style>
+            .cham-bai-hs-card:hover { background: #f8f9fa; }
+            .cham-bai-hs-card.active { background: #e8f4fd; border-left: 4px solid #0056b3; }
+        </style>
+        <div id="container-cham-bai-tong" style="max-width: 1300px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; height: 85vh; overflow: hidden;">
+            
+            <div id="cot-trai-cham-bai" style="width: 330px; min-width: 250px; max-width: 600px; border-right: 1px solid #dee2e6; display: flex; flex-direction: column; flex-shrink: 0;">
+                <div style="padding: 15px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; border-radius: 8px 0 0 0;">
+                    <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight:bold; margin-bottom: 10px; width: 100%;">⬅️ Quay lại DS Nhiệm vụ</button>
+                    <h4 style="margin: 0 0 5px 0; color: #0056b3; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${ChamBaiTL_State.tenNV}">📝 ${ChamBaiTL_State.tenNV}</h4>
+                    
+                    <div style="font-size: 12px; color: #666; margin-bottom: 10px;">
+                        Tiến độ: 
+                        <span style="color:#28a745; font-weight:bold;">${soDaCham} đã chấm</span> / 
+                        <span style="color:#d35400; font-weight:bold;">${soChoCham} chờ</span> / 
+                        <span style="color:#dc3545; font-weight:bold;">${soChuaNop} chưa nộp</span>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 8px; border-top: 1px dashed #ccc; padding-top: 10px;">
+                        <span style="font-size: 12px; font-weight: bold; color: #495057;">Sắp xếp:</span>
+                        <select onchange="ham_7b_23_doi_sort_cham_bai(this.value)" style="flex: 1; padding: 4px 8px; border-radius: 4px; border: 1px solid #ced4da; font-size: 12px; outline: none; cursor: pointer; background: white;">
+                            <option value="stt" ${tieuChi === 'stt' ? 'selected' : ''}>Mặc định (Họ và Tên)</option>
+                            <option value="ten" ${tieuChi === 'ten' ? 'selected' : ''}>Theo Tên (A - Z)</option>
+                            <option value="diem_desc" ${tieuChi === 'diem_desc' ? 'selected' : ''}>Theo Điểm (Cao -> Thấp)</option>
+                            <option value="trang_thai" ${tieuChi === 'trang_thai' ? 'selected' : ''}>Theo Trạng thái & Điểm</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="flex: 1; overflow-y: auto; background: #fff;">
+                    ${htmlDanhSachHS}
+                </div>
+            </div>
+
+            <div id="thanh-keo-gian-cham-bai" style="width: 8px; background: #e9ecef; cursor: col-resize; z-index: 50; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: background 0.2s;" onmouseover="this.style.background='#17a2b8'" onmouseout="this.style.background='#e9ecef'">
+                <div style="color: #6c757d; font-size: 14px; user-select: none;">⋮</div>
+                <div style="color: #6c757d; font-size: 14px; user-select: none;">⋮</div>
+                <div style="color: #6c757d; font-size: 14px; user-select: none;">⋮</div>
+            </div>
+
+            <div id="khung-cham-bai-phai" style="flex: 1; display: flex; flex-direction: column; background: #f4f6f9; border-radius: 0 8px 8px 0; overflow: hidden;">
+                <div style="flex: 1; display: flex; justify-content: center; align-items: center; color: #888; flex-direction: column;">
+                    <div style="font-size: 40px; margin-bottom: 15px;">👈</div>
+                    <h3>Hãy chọn một học sinh bên danh sách để bắt đầu chấm bài</h3>
+                </div>
+            </div>
+        </div>
+    `;
+
+    setTimeout(ham_7b_22_kich_hoat_thanh_keo, 100);
+
+    if (ChamBaiTL_State.uidDangCham) {
+        ham_7b_19_xem_bai_hoc_sinh(ChamBaiTL_State.uidDangCham);
+    }
+};
+// =====================================================================
+// Hàm 7b.19: Xem bài và hiện Form chấm của 1 học sinh (Đã tô màu tên học sinh đẹp hơn)
+// =====================================================================
+window.ham_7b_19_xem_bai_hoc_sinh = function (uidHocSinh) {
+    ChamBaiTL_State.uidDangCham = uidHocSinh;
+
+    // Highlight card đang chọn
+    document.querySelectorAll('.cham-bai-hs-card').forEach(el => el.classList.remove('active'));
+    const cardActive = document.getElementById('hs_card_' + uidHocSinh);
+    if (cardActive) cardActive.classList.add('active');
+
+    const hs = ChamBaiTL_State.dsHocSinh.find(h => h.uid === uidHocSinh);
+    const kq = ChamBaiTL_State.dsKetQua.find(k => k.uid_hoc_sinh === uidHocSinh);
+    const khungPhai = document.getElementById('khung-cham-bai-phai');
+
+    if (!kq) {
+        khungPhai.innerHTML = `
+            <div style="padding: 20px; background: white; border-bottom: 1px solid #ddd;">
+                <h3 style="margin: 0; color: #1a73e8; font-size: 20px;">👤 ${hs.ten}</h3>
+            </div>
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; color: #dc3545; font-weight: bold; font-size: 18px;">
+                ❌ Học sinh này chưa nộp bài!
+            </div>
+        `;
+        return;
+    }
+
+    // Phân tích bài làm
+    const chiTiet = typeof kq.chi_tiet_lam_bai === 'string' ? JSON.parse(kq.chi_tiet_lam_bai || '{}') : (kq.chi_tiet_lam_bai || {});
+    const dsAnh = chiTiet.danh_sach_link_anh || chiTiet.danh_sach_anh || [];
+
+    // Dùng Thumbnail API với kích thước lớn (w2000) để tránh bị Google chặn
+    const taoLinkAnhTrucTiep = (url) => {
+        if (!url) return '';
+        if (url.includes('drive.google.com')) {
+            const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+            if (idMatch && idMatch[1]) {
+                return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w2000`;
+            }
+        }
+        return url;
+    };
+
+    let htmlAnhBaiLam = '';
+    if (dsAnh.length === 0) {
+        htmlAnhBaiLam = `<div style="padding: 20px; text-align:center; color: #888;">Không có ảnh đính kèm.</div>`;
+    } else {
+        dsAnh.forEach((linkGoc, idx) => {
+            const imgId = `img_bai_lam_${idx}`;
+            const linkTrucTiep = taoLinkAnhTrucTiep(linkGoc);
+
+            if (ChamBaiTL_State.gocXoay[imgId] === undefined) ChamBaiTL_State.gocXoay[imgId] = 0;
+            if (ChamBaiTL_State.mucZoom[imgId] === undefined) ChamBaiTL_State.mucZoom[imgId] = 1;
+
+            htmlAnhBaiLam += `
+                <div style="margin-bottom: 25px; border: 2px solid #ddd; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden;">
+                    <div style="background: #e9ecef; padding: 8px 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: bold; color: #495057;">Trang ${idx + 1}</span>
+                        <div style="display: flex; gap: 8px;">
+                            <a href="${linkGoc}" target="_blank" style="padding: 4px 8px; cursor: pointer; border:1px solid #007bff; border-radius:4px; background:#e7f1ff; color:#007bff; text-decoration:none; font-size:12px; font-weight:bold; display:flex; align-items:center;">Mở Tab Mới</a>
+                            <button onclick="ham_7b_21_dieu_chinh_anh('${imgId}', 'xoay_trai')" title="Xoay Trái" style="padding: 4px 8px; cursor: pointer; border:1px solid #ccc; border-radius:4px; background:white;">↺ Xoay Trái</button>
+                            <button onclick="ham_7b_21_dieu_chinh_anh('${imgId}', 'xoay_phai')" title="Xoay Phải" style="padding: 4px 8px; cursor: pointer; border:1px solid #ccc; border-radius:4px; background:white;">↻ Xoay Phải</button>
+                            <button onclick="ham_7b_21_dieu_chinh_anh('${imgId}', 'zoom_in')" title="Phóng to" style="padding: 4px 8px; cursor: pointer; border:1px solid #ccc; border-radius:4px; background:white;">➕ To</button>
+                            <button onclick="ham_7b_21_dieu_chinh_anh('${imgId}', 'zoom_out')" title="Thu nhỏ" style="padding: 4px 8px; cursor: pointer; border:1px solid #ccc; border-radius:4px; background:white;">➖ Nhỏ</button>
+                            <button onclick="ham_7b_21_dieu_chinh_anh('${imgId}', 'reset')" title="Khôi phục" style="padding: 4px 8px; cursor: pointer; border:1px solid #ccc; border-radius:4px; background:#ffc107; font-weight:bold;">Khôi phục</button>
+                        </div>
+                    </div>
+                    
+                    <div style="width: 100%; height: 550px; min-height: 200px; resize: vertical; overflow: auto; padding: 20px; box-sizing: border-box; background: #525659; border-bottom: 3px solid #ccc;">
+                        <img id="${imgId}" src="${linkTrucTiep}" alt="Bài làm trang ${idx + 1}" style="max-width: 100%; transition: transform 0.3s ease; transform-origin: top center; display: block; margin: 0 auto;" 
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\\'color:white; padding:20px; text-align:center;\\'>⚠️ File không phải định dạng ảnh hoặc thư mục Drive chưa được bật quyền công khai. <br><br>Hãy bấm <b>[Mở Tab Mới]</b> để xem.</div>';">
+                    </div>
+                    
+                    <div style="text-align:center; background:#e9ecef; font-size:11px; color:#6c757d; padding:3px;">
+                        ↕️ Có thể kéo rê viền xám bên trên để mở rộng khung ảnh
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Render form chấm
+    const thoiGianNop = kq.thoi_gian_nop ? new Date(kq.thoi_gian_nop).toLocaleString('vi-VN') : 'Không rõ';
+    const luotNop = chiTiet.luot_nop || 1;
+
+    // Xử lý an toàn nếu kq.diem bị undefined
+    const diemHienThi = (kq.tong_diem !== null && kq.tong_diem !== undefined) ? kq.tong_diem : '';
+
+    khungPhai.innerHTML = `
+        <div style="padding: 15px 20px; background: white; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); z-index: 10;">
+            <div>
+                <h3 style="margin: 0 0 5px 0; color: #1a73e8; font-size: 20px;">👤 ${hs.ten}</h3>
+                <div style="font-size: 12px; color: #666;">Nộp lúc: <b>${thoiGianNop}</b> (Làm bài lần ${luotNop})</div>
+            </div>
+            ${kq.trang_thai_cham === 1 ? `<div style="background:#28a745; color:white; padding:5px 10px; border-radius:4px; font-weight:bold; font-size:12px;">✅ Đã chấm</div>` : ''}
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; padding: 20px; background: #e9ecef;">
+            ${htmlAnhBaiLam}
+        </div>
+
+        <div style="padding: 15px 20px; background: white; border-top: 1px solid #ddd; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 10;">
+            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                <div style="width: 120px;">
+                    <label style="font-weight: bold; color: #dc3545; font-size: 13px; display: block; margin-bottom: 5px;">Điểm số:</label>
+                    <input type="number" id="diem_tu_luan_gv" value="${diemHienThi}" step="0.25" min="0" max="100" placeholder="VD: 8.5" style="width: 100%; padding: 10px; font-size: 18px; font-weight: bold; border: 2px solid #ffc107; border-radius: 6px; text-align: center; color: #dc3545; box-sizing: border-box;">
+                </div>
+                
+                <div style="flex: 1;">
+                    <label style="font-weight: bold; color: #0056b3; font-size: 13px; display: block; margin-bottom: 5px;">Lời phê / Nhận xét:</label>
+                    <textarea id="nhan_xet_tu_luan_gv" placeholder="Nhập nhận xét cho học sinh..." style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ced4da; border-radius: 6px; resize: none; height: 46px; box-sizing: border-box;">${kq.nhan_xet_gv || ''}</textarea>
+                </div>
+                
+                <div style="padding-top: 24px;">
+                    <button onclick="ham_7b_20_luu_diem_tu_luan('${kq.id}')" style="padding: 10px 25px; height: 46px; background: #28a745; color: white; border: none; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.3); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                        💾 LƯU ĐIỂM
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+};
+
+// =====================================================================
+// Hàm 7b.20: Lưu Điểm & Cập nhật Supabase
+// =====================================================================
+window.ham_7b_20_luu_diem_tu_luan = async function (idKetQua) {
+    const diemRaw = document.getElementById('diem_tu_luan_gv').value;
+    const nhanXet = document.getElementById('nhan_xet_tu_luan_gv').value.trim();
+
+    if (diemRaw === '') {
+        return alert("❌ Thầy/cô chưa nhập điểm!");
+    }
+
+    const diemSo = parseFloat(diemRaw);
+    if (diemSo < 0 || diemSo > 100) { // Max 100 tuỳ thang điểm của thầy cô
+        return alert("❌ Điểm số không hợp lệ!");
+    }
+
+    const btn = event.currentTarget;
+    const oldText = btn.innerText;
+    btn.disabled = true;
+    btn.innerText = "⏳ Đang lưu...";
+
+    try {
+        const payloadUpdate = {
+            tong_diem: diemSo,
+            nhan_xet_gv: nhanXet,
+            trang_thai_cham: 1 // 1: Đã chấm
+        };
+
+        const { error } = await _supabase.from('ket_qua_tu_luan')
+            .update(payloadUpdate)
+            .eq('id', idKetQua);
+
+        if (error) throw error;
+
+        // Cập nhật lại State ở máy (để đổi màu xanh bên danh sách)
+        const idx = ChamBaiTL_State.dsKetQua.findIndex(k => k.id === idKetQua);
+        if (idx !== -1) {
+            ChamBaiTL_State.dsKetQua[idx].tong_diem = diemSo;
+            ChamBaiTL_State.dsKetQua[idx].nhan_xet_gv = nhanXet;
+            ChamBaiTL_State.dsKetQua[idx].trang_thai_cham = 1;
+        }
+
+        // Render lại Layout Tổng để update màu danh sách bên trái
+        ham_7b_18_render_layout_tong_cham_bai();
+
+        // Mở lại bài học sinh đó
+        ham_7b_19_xem_bai_hoc_sinh(ChamBaiTL_State.uidDangCham);
+
+        // Báo hiệu bằng popup nháy nhỏ gọn
+        const thongBao = document.createElement('div');
+        thongBao.innerHTML = "✅ Đã lưu điểm!";
+        thongBao.style.cssText = "position:fixed; top:20px; right:20px; background:#28a745; color:white; padding:15px 25px; border-radius:8px; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:9999; animation: fadein 0.5s;";
+        document.body.appendChild(thongBao);
+        setTimeout(() => document.body.removeChild(thongBao), 2000);
+
+    } catch (error) {
+        alert("❌ Lỗi khi lưu điểm: " + error.message);
+        btn.disabled = false;
+        btn.innerText = oldText;
+    }
+};
+
+// =====================================================================
+// Hàm 7b.21: Helper Xoay và Phóng to/Thu nhỏ Ảnh bài làm
+// =====================================================================
+window.ham_7b_21_dieu_chinh_anh = function (imgId, hanhDong) {
+    // Khởi tạo nếu mảng state bị miss
+    if (ChamBaiTL_State.gocXoay[imgId] === undefined) ChamBaiTL_State.gocXoay[imgId] = 0;
+    if (ChamBaiTL_State.mucZoom[imgId] === undefined) ChamBaiTL_State.mucZoom[imgId] = 1;
+
+    if (hanhDong === 'xoay_trai') {
+        ChamBaiTL_State.gocXoay[imgId] -= 90;
+    } else if (hanhDong === 'xoay_phai') {
+        ChamBaiTL_State.gocXoay[imgId] += 90;
+    } else if (hanhDong === 'zoom_in') {
+        ChamBaiTL_State.mucZoom[imgId] += 0.2;
+    } else if (hanhDong === 'zoom_out') {
+        ChamBaiTL_State.mucZoom[imgId] = Math.max(0.2, ChamBaiTL_State.mucZoom[imgId] - 0.2); // Không cho zoom nhỏ hơn 0.2
+    } else if (hanhDong === 'reset') {
+        ChamBaiTL_State.gocXoay[imgId] = 0;
+        ChamBaiTL_State.mucZoom[imgId] = 1;
+    }
+
+    const img = document.getElementById(imgId);
+    if (img) {
+        // Áp dụng CSS Transform: Vừa scale vừa rotate
+        img.style.transform = `scale(${ChamBaiTL_State.mucZoom[imgId]}) rotate(${ChamBaiTL_State.gocXoay[imgId]}deg)`;
+    }
+};
+
+
+
+
+// =====================================================================
+// Hàm 7b.22: Kích hoạt tính năng Kéo giãn cột (Resizable Splitter)
+// =====================================================================
+window.ham_7b_22_kich_hoat_thanh_keo = function () {
+    const resizer = document.getElementById('thanh-keo-gian-cham-bai');
+    const leftPanel = document.getElementById('cot-trai-cham-bai');
+
+    if (!resizer || !leftPanel) return;
+
+    let isResizing = false;
+
+    // Khi người dùng bấm giữ chuột vào thanh kéo
+    resizer.addEventListener('mousedown', function (e) {
+        isResizing = true;
+        // Đổi con trỏ chuột của toàn trang thành dạng mũi tên 2 chiều ngang
+        document.body.style.cursor = 'col-resize';
+        // Ngăn chặn việc bôi đen văn bản vô tình khi đang kéo chuột
+        e.preventDefault();
+    });
+
+    // Khi người dùng di chuyển chuột (kéo)
+    document.addEventListener('mousemove', function (e) {
+        if (!isResizing) return;
+
+        // Lấy tọa độ mép trái của toàn bộ khung to
+        const container = document.getElementById('container-cham-bai-tong');
+        const containerRect = container.getBoundingClientRect();
+
+        // Tính toán chiều rộng mới cho cột trái dựa trên vị trí chuột
+        let newWidth = e.clientX - containerRect.left;
+
+        // Giới hạn không cho kéo quá nhỏ (min 200px) hoặc quá to (max 600px)
+        if (newWidth < 200) newWidth = 200;
+        if (newWidth > 600) newWidth = 600;
+
+        // Áp dụng chiều rộng mới
+        leftPanel.style.width = `${newWidth}px`;
+    });
+
+    // Khi người dùng nhả chuột ra (kết thúc kéo)
+    document.addEventListener('mouseup', function () {
+        if (isResizing) {
+            isResizing = false;
+            // Trả lại con trỏ chuột bình thường
+            document.body.style.cursor = 'default';
+        }
+    });
+};
+
+
+// =====================================================================
+// Hàm 7b.23: Lắng nghe sự kiện đổi chế độ Sắp Xếp
+// =====================================================================
+window.ham_7b_23_doi_sort_cham_bai = function (kieuSort) {
+    // Lưu trạng thái sort mới
+    ChamBaiTL_State.tieuChiSort = kieuSort;
+
+    // Gọi lại hàm vẽ layout (nó sẽ tự động áp dụng logic sort mới)
+    ham_7b_18_render_layout_tong_cham_bai();
+};
 
