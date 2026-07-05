@@ -40,16 +40,31 @@ function ham_1_1_nhung_css() {
 function ham_1_2_dung_khung_html() {
     //console.log("Đang vào hàm 1_2");
     const htmlContent = `
-        <div class="header-section">
-            <h1>ÔN LUYỆN TOÁN</h1>
-            <h3>THẦY CHÍNH - THPT GIA ĐỊNH - 0987979648</h3>
-        </div>
+        <div class="header-container" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 15px 20px; gap: 20px; width: 100%; box-sizing: border-box;">
 
-        <div class="status-bar">
-            <span id="status">Đang kết nối hệ thống...</span>
-            <button id="btnLogout" onclick="ham_2_5_xu_ly_dang_xuat()">Đăng xuất</button>
-        </div>
+            <div class="header-left"></div>
 
+            <div class="header-center" style="text-align: center; white-space: nowrap;">
+
+                <div class="header-section">
+                    <h1>ÔN LUYỆN TOÁN</h1>
+                    <h3>THẦY CHÍNH - THPT GIA ĐỊNH - 0987979648</h3>
+                </div>
+
+                <div class="status-bar" style="margin-top: 8px;">
+                    <span id="status">Đang kết nối hệ thống...</span>
+                    <button id="btnLogout" onclick="ham_2_5_xu_ly_dang_xuat()">Đăng xuất</button>
+                </div>
+
+            </div>
+
+            <div class="header-right" style="text-align: right;">
+                <img src="https://ffjrjgujzhkjetqyuska.supabase.co/storage/v1/object/public/system_images/qrcodes/qrcode.png"
+                     alt="QR Code"
+                     style="height: 115px; width: auto; border-radius: 6px; object-fit: contain; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: inline-block; vertical-align: middle;">
+            </div>
+
+        </div>
         <div id="khung-dang-nhap">
             <h2 id="form-title">ĐĂNG NHẬP</h2>
             <p id="form-subtitle">Chào mừng bạn trở lại phòng thi</p>
