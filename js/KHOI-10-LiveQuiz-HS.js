@@ -165,7 +165,7 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
         }
 
         // QUAN TRỌNG: Phải chờ hàm này chạy xong (vẽ xong giao diện) rồi mới gọi phục hồi
-        await ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv);
+        await ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv);
 
         // Đợi 200ms để DOM cập nhật hoàn toàn các ID câu hỏi
         setTimeout(async () => {

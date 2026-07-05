@@ -218,7 +218,7 @@
 //                                 <div style="font-size: 10px; color: #d35400; font-weight: bold;">⭐ ĐIỂM SỐ ĐÃ ĐẠT:</div>
 //                                 <div style="color: #c0392b; font-size: 20px; font-weight: 900;">${kqLatest.diem !== undefined ? kqLatest.diem : (kqLatest.tong_diem || '-')} <span style="font-size: 11px; font-weight: normal; color: #666;">điểm</span></div>
 //                             </div>
-//                             <button onclick="ham_8_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
+//                             <button onclick="ham_8a_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
 //                         </div>
                         
 //                         ${htmlLoiPhe}
@@ -239,12 +239,12 @@
 //             }
 //             else    if (dinhDangTab === 'CHUA_LAM_KHOA') {
 //                 const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
-//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
 //             } else if (dinhDangTab === 'DA_LAM_KHOA') {
 //                 const tenNhiemVuAnToan = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
 //                 let textNutXin = daHetLuot && !daQuaHan ? "🙋 XIN THÊM LƯỢT LÀM" : "🙋 XIN GỠ ĐIỂM QUÁ HẠN";
 //                 let maLoaiXin = daHetLuot && !daQuaHan ? "HET_LUOT" : "QUA_HAN";
-//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', '${maLoaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textNutXin}</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${tenNhiemVuAnToan}', '${maLoaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${textNutXin}</button>`;
 //             } else if (dinhDangTab === 'LAM_LAI') {
 //                 let textBtn = "🔄 LÀM LẠI LẦN NỮA";
 //                 if (loaiTab === 'TU_LUAN') textBtn = "🔄 NỘP LẠI ẢNH KHÁC";
@@ -289,7 +289,7 @@
 //         vungLamViec.innerHTML = `
 //             <div id="thanh-loc-lop-goc-hoc-sing" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: #fff; border-radius: 8px; border: 1px dashed #ced4da; align-items: center;">
 //                 <span style="font-weight: bold; color: #495057; font-size: 13px;">🏫 Lớp đang xem:</span>
-//                 <button class="btn-loc-lop-cua-hs active" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #6f42c1; color: white; border: 1px solid #6f42c1; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
+//                 <button class="btn-loc-lop-cua-hs active" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #6f42c1; color: white; border: 1px solid #6f42c1; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
 //                 <span id="cac-nut-lop-hs-loc" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
 //             </div>
 
@@ -307,7 +307,7 @@
 //         if (khungNutLopCuaHs && dataLop) {
 //             let htmlNutLop = '';
 //             dataLop.forEach(l => {
-//                 htmlNutLop += `<button class="btn-loc-lop-cua-hs" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">🏫 ${l.ten_lop}</button>`;
+//                 htmlNutLop += `<button class="btn-loc-lop-cua-hs" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f1f3f4'" onmouseout="if(!this.classList.contains('active')) this.style.background='white'">🏫 ${l.ten_lop}</button>`;
 //             });
 //             khungNutLopCuaHs.innerHTML = htmlNutLop;
 //         }
@@ -471,7 +471,7 @@
 //                                 <div style="font-size: 10px; color: #d35400; font-weight: bold;">⭐ ĐIỂM SỐ ĐÃ ĐẠT:</div>
 //                                 <div style="color: #c0392b; font-size: 20px; font-weight: 900;">${kqLatest.diem !== undefined ? kqLatest.diem : (kqLatest.tong_diem || '-')} <span style="font-size: 11px; font-weight: normal; color: #666;">điểm</span></div>
 //                             </div>
-//                             <button onclick="ham_8_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
+//                             <button onclick="ham_8a_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
 //                         </div>
 //                     </div>
 //                 `;
@@ -483,16 +483,16 @@
 //             // } else 
 //             if (dinhDangTab === 'CHUA_LAM_KHOA') {
 //                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
-//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
 //             } else if (dinhDangTab === 'DA_LAM_KHOA') {
 //                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
 //                 const loaiXin = (daHetLuot && !daQuaHan) ? "HET_LUOT" : "QUA_HAN";
 //                 const btnText = (daHetLuot && !daQuaHan) ? "🙋 XIN THÊM LƯỢT LÀM" : "🙋 XIN GỠ ĐIỂM QUÁ HẠN";
-//                 nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', '${loaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${btnText}</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', '${loaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${btnText}</button>`;
 //             } else if (dinhDangTab === 'LAM_LAI') {
-//                 nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LÀM LẠI LẦN NỮA</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_24_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LÀM LẠI LẦN NỮA</button>`;
 //             } else {
-//                 nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LÀM BÀI</button>`;
+//                 nutHanhDong = `<button onclick="ham_8a_24_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LÀM BÀI</button>`;
 //             }
 
 //             return `
@@ -524,7 +524,7 @@
 //         vungLamViec.innerHTML = `
 //             <div id="thanh-loc-lop-goc-hoc-sing" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: #fff; border-radius: 8px; border: 1px dashed #ced4da; align-items: center;">
 //                 <span style="font-weight: bold; color: #495057; font-size: 13px;">🏫 Lớp đang xem:</span>
-//                 <button class="btn-loc-lop-cua-hs active" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #1a73e8; color: white; border: 1px solid #1a73e8; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
+//                 <button class="btn-loc-lop-cua-hs active" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #1a73e8; color: white; border: 1px solid #1a73e8; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
 //                 <span id="cac-nut-lop-hs-loc" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
 //             </div>
 
@@ -540,7 +540,7 @@
 
 //         const khungNutLopCuaHs = document.getElementById('cac-nut-lop-hs-loc');
 //         if (khungNutLopCuaHs && dataLop) {
-//             khungNutLopCuaHs.innerHTML = dataLop.map(l => `<button class="btn-loc-lop-cua-hs" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px;">🏫 ${l.ten_lop}</button>`).join('');
+//             khungNutLopCuaHs.innerHTML = dataLop.map(l => `<button class="btn-loc-lop-cua-hs" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px;">🏫 ${l.ten_lop}</button>`).join('');
 //         }
 
 //         window.MaLopDangLocHienTai = 'TAT_CA';
@@ -720,7 +720,7 @@ window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
                                 <div style="font-size: 10px; color: #d35400; font-weight: bold;">⭐ ĐIỂM SỐ ĐÃ ĐẠT:</div>
                                 <div style="color: #c0392b; font-size: 20px; font-weight: 900;">${kqLatest.diem !== undefined ? kqLatest.diem : (kqLatest.tong_diem || '-')} <span style="font-size: 11px; font-weight: normal; color: #666;">điểm</span></div>
                             </div>
-                            <button onclick="ham_8_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
+                            <button onclick="ham_8a_13_xem_lai_ket_qua_trac_nghiem('${nv.ma_nhiem_vu}', '${kqLatest.id}')" style="padding: 5px 10px; background: white; color: #d35400; border: 1px solid #d35400; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer;">👁️ XEM GIẢI</button>
                         </div>
                     </div>
                 `;
@@ -729,16 +729,16 @@ window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
             let nutHanhDong = "";
             if (dinhDangTab === 'CHUA_LAM_KHOA') {
                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
-                nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
+                nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', 'QUA_HAN')" style="width: 100%; padding: 11px; background: #7f8c8d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🙋 XIN NỘP QUÁ HẠN</button>`;
             } else if (dinhDangTab === 'DA_LAM_KHOA') {
                 const safeName = (nv.ten_nhiem_vu || "Nhiệm vụ").replace(/'/g, "\\'");
                 const loaiXin = (daHetLuot && !daQuaHan) ? "HET_LUOT" : "QUA_HAN";
                 const btnText = (daHetLuot && !daQuaHan) ? "🙋 XIN THÊM LƯỢT LÀM" : "🙋 XIN GỠ ĐIỂM QUÁ HẠN";
-                nutHanhDong = `<button onclick="ham_8_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', '${loaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${btnText}</button>`;
+                nutHanhDong = `<button onclick="ham_8a_15_xin_luot_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}', '${safeName}', '${loaiXin}')" style="width: 100%; padding: 11px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">${btnText}</button>`;
             } else if (dinhDangTab === 'LAM_LAI') {
-                nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LÀM LẠI LẦN NỮA</button>`;
+                nutHanhDong = `<button onclick="ham_8a_24_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LÀM LẠI LẦN NỮA</button>`;
             } else {
-                nutHanhDong = `<button onclick="ham_8_24a_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LÀM BÀI</button>`;
+                nutHanhDong = `<button onclick="ham_8a_24_vao_lam_bai_trac_nghiem('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 11px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LÀM BÀI</button>`;
             }
 
             return `
@@ -771,7 +771,7 @@ window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
         vungLamViec.innerHTML = `
             <div id="thanh-loc-lop-goc-hoc-sing" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; padding: 10px; background: #fff; border-radius: 8px; border: 1px dashed #ced4da; align-items: center;">
                 <span style="font-weight: bold; color: #495057; font-size: 13px;">🏫 Lớp đang xem:</span>
-                <button class="btn-loc-lop-cua-hs active" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #1a73e8; color: white; border: 1px solid #1a73e8; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
+                <button class="btn-loc-lop-cua-hs active" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('TAT_CA', this)" style="padding: 5px 12px; background: #1a73e8; color: white; border: 1px solid #1a73e8; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s;">🌍 Tất cả các lớp</button>
                 <span id="cac-nut-lop-hs-loc" style="display: flex; gap: 8px; flex-wrap: wrap;"></span>
             </div>
 
@@ -787,7 +787,7 @@ window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
 
         const khungNutLopCuaHs = document.getElementById('cac-nut-lop-hs-loc');
         if (khungNutLopCuaHs && dataLop) {
-            khungNutLopCuaHs.innerHTML = dataLop.map(l => `<button class="btn-loc-lop-cua-hs" onclick="ham_8_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px;">🏫 ${l.ten_lop}</button>`).join('');
+            khungNutLopCuaHs.innerHTML = dataLop.map(l => `<button class="btn-loc-lop-cua-hs" onclick="ham_8a_16_loc_card_theo_lop_trac_nghiem('${l.ma_lop}', this)" style="padding: 5px 12px; background: white; color: #495057; border: 1px solid #ced4da; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 12px;">🏫 ${l.ten_lop}</button>`).join('');
         }
 
         window.MaLopDangLocHienTai = 'TAT_CA';
@@ -805,7 +805,7 @@ window.ham_8a_2_tab_nhiem_vu_trac_nghiem = async function () {
 
 
 // [Nhãn thời gian: 13:21 - Ngày 28/05/2026] - Hàm 8.3: Tab Luyện tập tự do (ĐÃ CHẶN NHIỆM VỤ ẢO CỦA PHÒNG LIVE)
-window.ham_8_3_tab_luyen_tap_tu_do_trac_nghiem = async function () {
+window.ham_8a_3_tab_luyen_tap_tu_do_trac_nghiem = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#17a2b8;">⏳ Đang tải danh sách bài tự luyện...</h3></div>`;
 
@@ -843,12 +843,12 @@ window.ham_8_3_tab_luyen_tap_tu_do_trac_nghiem = async function () {
             const soLuotDaLam = demSoLuotLam[nv.ma_nhiem_vu] || 0;
             const textLuot = nv.so_luot_lam_bai > 0 ? `${soLuotDaLam}/${nv.so_luot_lam_bai}` : `${soLuotDaLam}/Vô hạn`;
 
-            let btnAction = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LUYỆN TẬP</button>`;
+            let btnAction = `<button onclick="ham_8a_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #17a2b8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🚀 VÀO LUYỆN TẬP</button>`;
 
             if (nv.so_luot_lam_bai > 0 && soLuotDaLam >= nv.so_luot_lam_bai) {
                 btnAction = `<button disabled style="width: 100%; padding: 10px; background: #e9ecef; color: #dc3545; border: none; border-radius: 6px; font-weight: bold; cursor: not-allowed;">🛑 ĐÃ HẾT LƯỢT</button>`;
             } else if (soLuotDaLam > 0) {
-                btnAction = `<button onclick="ham_8_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LUYỆN TẬP LẠI</button>`;
+                btnAction = `<button onclick="ham_8a_7_cua_an_ninh('${nv.ma_nhiem_vu}')" style="width: 100%; padding: 10px; background: #00b4d8; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 LUYỆN TẬP LẠI</button>`;
             }
 
             htmlCards += `
@@ -878,7 +878,7 @@ window.ham_8_3_tab_luyen_tap_tu_do_trac_nghiem = async function () {
 // =====================================================================
 // Hàm 8.7: Cửa An Ninh - Kiểm tra lượt làm và Xác nhận vào thi (ĐỒNG BỘ TIẾN ĐỘ)
 // =====================================================================
-async function ham_8_7_cua_an_ninh(maNhiemVu) {
+async function ham_8a_7_cua_an_ninh(maNhiemVu) {
     // 1. Tìm thông tin nhiệm vụ trong danh sách đã tải về ở GocHocSinhState
     const nv = GocHocSinhState.danhSachNhiemVu.find(item => item.ma_nhiem_vu === maNhiemVu);
     if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu bài tập!");
@@ -949,7 +949,7 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Chuyển sang Hàm 8.8 gốc của thầy: Khởi tạo phòng thi và bốc đề
-                ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv);
+                ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv);
             }
         });
 
@@ -959,10 +959,350 @@ async function ham_8_7_cua_an_ninh(maNhiemVu) {
 }
 
 
-// ==============================================================
-// Hàm 8.8: Khởi tạo Phòng thi (BẢO MẬT TUYỆT ĐỐI - KHÔNG ĐỤNG ĐẾN ĐÁP ÁN)
-// ==============================================================
-async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
+// // ==============================================================
+
+// // Hàm 8.8: Khởi tạo Phòng thi (BẢO MẬT TUYỆT ĐỐI - KHÔNG ĐỤNG ĐẾN ĐÁP ÁN)
+// // ==============================================================
+// async function ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv) {
+//     const vungLamViec = document.getElementById('dashboard-container');
+//     vungLamViec.innerHTML = `
+//         <div style="text-align: center; padding: 100px;">
+//             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+//             <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang nạp đề thi bảo mật...</h3>
+//             <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+//         </div>
+//     `;
+
+//     try {
+//         const maHocLieu = nv.ma_hoc_lieu;
+//         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
+
+//         // =========================================================
+//         // 1. CHỈ LẤY DUY NHẤT LINK GITHUB (CẤM GỌI danh_sach_cau_hoi)
+//         // =========================================================
+//         const { data: dataHocLieu, error: errHL } = await _supabase
+//             .from('hoc_lieu_trac_nghiem')
+//             .select('ma_hoc_lieu, url_github') // 🔒 KHOÁ CHẶT: Tuyệt đối không select cột chứa đáp án
+//             .eq('ma_hoc_lieu', maHocLieu)
+//             .single();
+
+//         if (errHL) throw errHL;
+
+//         // =========================================================
+//         // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
+//         // =========================================================
+//         let urlFileGitHub = dataHocLieu.url_github;
+
+//         if (!urlFileGitHub) {
+//             let maDeGoc = maHocLieu;
+//             if (maHocLieu.startsWith("HL_DE_")) {
+//                 maDeGoc = maHocLieu.replace("HL_DE_", "");
+//             }
+//             const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308";
+//             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+//         }
+
+//         //console.log("🔍 Đang tải nội dung đề thô từ:", urlFileGitHub);
+
+//         // =========================================================
+//         // 3. TẢI ĐỀ THI SẠCH (KHÔNG ĐÁP ÁN) TỪ GITHUB
+//         // =========================================================
+//         const response = await fetch(urlFileGitHub);
+//         if (!response.ok) {
+//             throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ chưa.\nLink: " + urlFileGitHub);
+//         }
+
+//         const dataGitHub = await response.json();
+//         // Lấy danh sách câu hỏi trực tiếp từ file Github (Chỉ có nội dung, không có đáp án)
+//         const dsNoiDungGH = dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || [];
+
+//         if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
+
+        
+
+//         // =========================================================
+//         // 4. TRỘN ĐỀ CÓ ĐIỀU KIỆN (CHỈ XÁO KHI KHÔNG PHẢI LIVE QUIZ)
+//         // =========================================================
+//         let deThiDaTron;
+//         const isLive = (window.DangKhoiTaoLiveQuiz === true);
+
+//         if (isLive) {
+//             // NẾU LÀ THI LIVE: Giữ nguyên thứ tự tuyệt đối
+//             deThiDaTron = dsNoiDungGH;
+//         } else {
+//             // NẾU LÀ NHIỆM VỤ THƯỜNG: Xáo trộn bình thường
+//             deThiDaTron = ham_8a_9_tron_de_thi_trac_nghiem(dsNoiDungGH);
+//         }
+
+
+
+//         // Lấy đường dẫn thư mục chứa đề thi để xử lý Hình Ảnh
+//         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+
+//         // =========================================================
+//         // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
+//         // =========================================================
+//         const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
+
+//         const { count, error: countErr } = await _supabase
+//             .from('ket_qua_trac_nghiem')
+//             .select('*', { count: 'exact', head: true })
+//             .eq('uid_hoc_sinh', GocHocSinhState.uid)
+//             .eq('ma_nhiem_vu', maNhiemVuThuc);
+
+//         const lanThuHienTai = (count || 0) + 1;
+
+//         // Ghi nhận ngay 1 phiên làm bài trên Database
+//         const { data: recordNhao, error: errNhao } = await _supabase
+//             .from('ket_qua_trac_nghiem')
+//             .insert([{
+//                 uid_hoc_sinh: GocHocSinhState.uid,
+//                 ma_nhiem_vu: maNhiemVuThuc,
+//                 lan_thu: lanThuHienTai,
+//                 tong_diem: 0,
+//                 chi_tiet_lam_bai: [],
+//                 thoi_gian_lam_bai: "0 phút 0 giây",
+//                 thoi_gian_nop: new Date().toISOString()
+//             }])
+//             .select('id')
+//             .single();
+
+//         if (errNhao) throw errNhao;
+
+        
+//         //// =========================================================
+//         //// 6. MỞ GIAO DIỆN THI
+//         //// =========================================================
+//         //ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem();
+//         // Lưu toàn bộ vào RAM trình duyệt
+//         window.PhienLamBai = {
+//             id_ket_qua_database: recordNhao.id,
+//             ma_nhiem_vu: maNhiemVuThuc,
+//             ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+//             thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
+//             tong_so_cau: deThiDaTron.length,
+//             danh_sach_cau_hoi: deThiDaTron,
+//             dap_an_hoc_sinh: {},
+//             id_timer: null,
+//             base_url_anh: baseUrlHinhAnh
+//         };
+
+//         // 🌟 [CẤY CHIP 1] CẤP THẺ VIP NẾU LÀ TRẬN LIVE QUIZ
+//         window.PhienLamBai.isLiveQuiz = window.DangKhoiTaoLiveQuiz === true;
+//         window.PhienLamBai.maPhongLive = window.DangKhoiTaoLiveQuiz ? window.ThongTinLiveHocSinh.maPhong : null;
+//         window.DangKhoiTaoLiveQuiz = false; // Reset lại trạng thái
+
+//         // =========================================================
+//         // 6. MỞ GIAO DIỆN THI
+//         // =========================================================
+//         ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem();
+
+
+//     } catch (err) {
+//         console.error("LỖI NẠP ĐỀ:", err);
+//         alert("Lỗi nạp đề thi: " + err.message);
+//         ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+//     }
+// }
+
+// // ==============================================================
+// // Hàm 8.8: Khởi tạo Phòng thi (ĐÃ TÍCH HỢP KHÔI PHỤC AUTO-SAVE)
+// // ==============================================================
+// async function ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv) {
+//     const vungLamViec = document.getElementById('dashboard-container');
+//     vungLamViec.innerHTML = `
+//         <div style="text-align: center; padding: 100px;">
+//             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+//             <h3 style="margin-top:20px; color:#1a73e8;">⚡ Đang nạp đề thi bảo mật...</h3>
+//             <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+//         </div>
+//     `;
+
+//     try {
+//         const maHocLieu = nv.ma_hoc_lieu;
+//         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
+
+//         const { data: dataHocLieu, error: errHL } = await _supabase.from('hoc_lieu_trac_nghiem').select('ma_hoc_lieu, url_github').eq('ma_hoc_lieu', maHocLieu).single();
+//         if (errHL) throw errHL;
+
+//         let urlFileGitHub = dataHocLieu.url_github;
+//         if (!urlFileGitHub) {
+//             let maDeGoc = maHocLieu;
+//             if (maHocLieu.startsWith("HL_DE_")) maDeGoc = maHocLieu.replace("HL_DE_", "");
+//             const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308";
+//             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
+//         }
+
+//         const response = await fetch(urlFileGitHub);
+//         if (!response.ok) throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ chưa.\nLink: " + urlFileGitHub);
+
+//         const dataGitHub = await response.json();
+//         const dsNoiDungGH = dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || [];
+//         if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
+
+//         let deThiDaTron;
+//         const isLive = (window.DangKhoiTaoLiveQuiz === true);
+//         if (isLive) deThiDaTron = dsNoiDungGH;
+//         else deThiDaTron = ham_8a_9_tron_de_thi_trac_nghiem(dsNoiDungGH);
+
+//         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
+//         const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
+
+//         // =========================================================
+//         // 🌟 [AUTO-SAVE BƯỚC 3] KIỂM TRA BÀI ĐANG LÀM DỞ VÀ TRỪ THỜI GIAN
+//         // =========================================================
+//         let recordIdHienTai = null;
+//         let isRestore = false;
+//         let thoiGianConLaiThucTe = (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60; // Tính ra Giây
+
+//         if (!isLive) {
+//             // 1. Quét tìm bài thi 'dang_lam'
+//             const { data: baiDangLam, error: errCheck } = await _supabase
+//                 .from('ket_qua_trac_nghiem')
+//                 .select('id, thoi_gian_bat_dau, chi_tiet_lam_bai')
+//                 .eq('uid_hoc_sinh', GocHocSinhState.uid)
+//                 .eq('ma_nhiem_vu', maNhiemVuThuc)
+//                 .eq('trang_thai_lam_bai', 'dang_lam')
+//                 .maybeSingle();
+
+//             if (baiDangLam) {
+//                 // Đang làm dở -> Khôi phục
+//                 recordIdHienTai = baiDangLam.id;
+//                 isRestore = true;
+
+//                 // Tính toán số giây đã trôi qua kể từ lúc ấn bắt đầu lần đầu tiên
+//                 if (baiDangLam.thoi_gian_bat_dau && thoiGianConLaiThucTe > 0) {
+//                     const thoiGianDaQuaGiay = Math.floor((Date.now() - new Date(baiDangLam.thoi_gian_bat_dau).getTime()) / 1000);
+//                     thoiGianConLaiThucTe = thoiGianConLaiThucTe - thoiGianDaQuaGiay;
+//                     if (thoiGianConLaiThucTe <= 0) thoiGianConLaiThucTe = 1; // Cho 1 giây để nó tự động trigger nộp bài
+//                 }
+
+//                 // Kéo dữ liệu từ Supabase đắp xuống LocalStorage phòng khi hs đổi máy tính
+//                 const keyLocal = `nhap_trac_nghiem_${GocHocSinhState.uid}_${maNhiemVuThuc}`;
+//                 if (!localStorage.getItem(keyLocal) && Array.isArray(baiDangLam.chi_tiet_lam_bai)) {
+//                     let dictTam = {};
+//                     baiDangLam.chi_tiet_lam_bai.forEach(item => {
+//                         if (item.maCau && item.luaChonHS) dictTam[item.maCau] = item.luaChonHS;
+//                     });
+//                     localStorage.setItem(keyLocal, JSON.stringify(dictTam));
+//                 }
+
+//             } else {
+//                 // Không có bài dở -> TẠO MỚI (Logic cũ của thầy/cô)
+//                 const { count } = await _supabase.from('ket_qua_trac_nghiem').select('*', { count: 'exact', head: true }).eq('uid_hoc_sinh', GocHocSinhState.uid).eq('ma_nhiem_vu', maNhiemVuThuc);
+//                 const lanThuHienTai = (count || 0) + 1;
+
+//                 const { data: recordNhao, error: errNhao } = await _supabase.from('ket_qua_trac_nghiem').insert([{
+//                     uid_hoc_sinh: GocHocSinhState.uid,
+//                     ma_nhiem_vu: maNhiemVuThuc,
+//                     lan_thu: lanThuHienTai,
+//                     tong_diem: 0,
+//                     chi_tiet_lam_bai: [],
+//                     thoi_gian_bat_dau: new Date().toISOString(), // Lưu mốc thời gian bắt đầu
+//                     trang_thai_lam_bai: 'dang_lam',              // Bật cờ đang làm
+//                     thoi_gian_nop: new Date().toISOString()
+//                 }]).select('id').single();
+
+//                 if (errNhao) throw errNhao;
+//                 recordIdHienTai = recordNhao.id;
+//             }
+//         } else {
+//             // Logic cho phòng Live
+//             recordIdHienTai = "LIVE_" + Date.now();
+//         }
+
+//     //     // =========================================================
+//     //     // LƯU RAM VÀ GỌI GIAO DIỆN
+//     //     // =========================================================
+//     //     window.PhienLamBai = {
+//     //         id_ket_qua_database: recordIdHienTai,
+//     //         ma_nhiem_vu: maNhiemVuThuc,
+//     //         ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+//     //         thoi_gian_con_lai: thoiGianConLaiThucTe,
+//     //         tong_so_cau: deThiDaTron.length,
+//     //         danh_sach_cau_hoi: deThiDaTron,
+//     //         dap_an_hoc_sinh: {},
+//     //         id_timer: null,
+//     //         base_url_anh: baseUrlHinhAnh
+//     //     };
+
+//     //     window.PhienLamBai.isLiveQuiz = isLive;
+//     //     window.PhienLamBai.maPhongLive = isLive ? window.ThongTinLiveHocSinh.maPhong : null;
+//     //     window.DangKhoiTaoLiveQuiz = false;
+
+//     //     // Mở giao diện
+//     //     ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem();
+
+//     //     // Hiện thông báo nếu đang khôi phục
+//     //     if (isRestore) {
+//     //         Swal.fire({
+//     //             title: 'Khôi phục bài làm!',
+//     //             text: 'Phát hiện bài làm đang dang dở. Các đáp án em đã chọn trước đó đang được khôi phục...',
+//     //             icon: 'info',
+//     //             timer: 3000,
+//     //             showConfirmButton: false
+//     //         });
+//     //     }
+
+//     // } catch (err) {
+//     //     console.error("LỖI NẠP ĐỀ:", err);
+//     //     alert("Lỗi nạp đề thi: " + err.message);
+//     //     ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+//     // }
+//         // =========================================================
+//         // LƯU RAM VÀ GỌI GIAO DIỆN
+//         // =========================================================
+//         window.PhienLamBai = {
+//             id_ket_qua_database: recordIdHienTai,
+//             ma_nhiem_vu: maNhiemVuThuc,
+//             ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
+//             thoi_gian_con_lai: thoiGianConLaiThucTe,
+//             tong_so_cau: deThiDaTron.length,
+//             danh_sach_cau_hoi: deThiDaTron,
+//             dap_an_hoc_sinh: {},
+//             id_timer: null,
+//             base_url_anh: baseUrlHinhAnh
+//         };
+
+//         window.PhienLamBai.isLiveQuiz = isLive;
+//         window.PhienLamBai.maPhongLive = isLive ? window.ThongTinLiveHocSinh.maPhong : null;
+//         window.DangKhoiTaoLiveQuiz = false;
+
+//         // Mở giao diện
+//         ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem();
+
+//         // 🌟 KÍCH HOẠT BỘ MÁY LƯU NHÁP (CHÍNH LÀ CHỖ CÒN THIẾU KHIẾN NÚT BỊ ĐƠ)
+//         if (!isLive) {
+//             // 1. Nạp mã nhiệm vụ vào bộ máy và khởi động đồng hồ 60s
+//             if (typeof ham_16_3_khoi_dong_auto_save === 'function') ham_16_3_khoi_dong_auto_save(maNhiemVuThuc);
+
+//             // 2. Khôi phục lại giao diện (Tick lại các đáp án) nếu là bài làm dở
+//             setTimeout(() => {
+//                 if (typeof ham_16_6_khoi_phuc_giao_dien === 'function') ham_16_6_khoi_phuc_giao_dien(maNhiemVuThuc);
+//             }, 500);
+//         }
+
+//         // Hiện thông báo nếu đang khôi phục
+//         if (isRestore) {
+//             Swal.fire({
+//                 title: 'Khôi phục bài làm!',
+//                 text: 'Phát hiện bài làm đang dang dở. Các đáp án em đã chọn trước đó đang được khôi phục...',
+//                 icon: 'info',
+//                 timer: 4000,
+//                 showConfirmButton: false
+//             });
+//         }
+
+//     } catch (err) {
+//         console.error("LỖI NẠP ĐỀ:", err);
+//         alert("Lỗi nạp đề thi: " + err.message);
+//         ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+//     }
+// }
+
+
+
+async function ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv) {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.innerHTML = `
         <div style="text-align: center; padding: 100px;">
@@ -976,109 +1316,120 @@ async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
         const maHocLieu = nv.ma_hoc_lieu;
         if (!maHocLieu) throw new Error("Nhiệm vụ này chưa được gắn Học liệu!");
 
-        // =========================================================
-        // 1. CHỈ LẤY DUY NHẤT LINK GITHUB (CẤM GỌI danh_sach_cau_hoi)
-        // =========================================================
-        const { data: dataHocLieu, error: errHL } = await _supabase
-            .from('hoc_lieu_trac_nghiem')
-            .select('ma_hoc_lieu, url_github') // 🔒 KHOÁ CHẶT: Tuyệt đối không select cột chứa đáp án
-            .eq('ma_hoc_lieu', maHocLieu)
-            .single();
-
+        const { data: dataHocLieu, error: errHL } = await _supabase.from('hoc_lieu_trac_nghiem').select('ma_hoc_lieu, url_github').eq('ma_hoc_lieu', maHocLieu).single();
         if (errHL) throw errHL;
 
-        // =========================================================
-        // 2. TÍNH TOÁN ĐƯỜNG LINK GITHUB CHUẨN XÁC
-        // =========================================================
         let urlFileGitHub = dataHocLieu.url_github;
-
         if (!urlFileGitHub) {
             let maDeGoc = maHocLieu;
-            if (maHocLieu.startsWith("HL_DE_")) {
-                maDeGoc = maHocLieu.replace("HL_DE_", "");
-            }
+            if (maHocLieu.startsWith("HL_DE_")) maDeGoc = maHocLieu.replace("HL_DE_", "");
             const LINK_GITHUB_GOC = "https://ducchinh2308.github.io/LuyenToan2308";
             urlFileGitHub = `${LINK_GITHUB_GOC}/Kho_De_Thi/${maDeGoc}/DeThi_${maDeGoc}.json`;
         }
 
-        //console.log("🔍 Đang tải nội dung đề thô từ:", urlFileGitHub);
-
-        // =========================================================
-        // 3. TẢI ĐỀ THI SẠCH (KHÔNG ĐÁP ÁN) TỪ GITHUB
-        // =========================================================
         const response = await fetch(urlFileGitHub);
-        if (!response.ok) {
-            throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ chưa.\nLink: " + urlFileGitHub);
-        }
+        if (!response.ok) throw new Error("Không tải được đề! Thầy hãy kiểm tra xem Github đã đồng bộ chưa.\nLink: " + urlFileGitHub);
 
         const dataGitHub = await response.json();
-        // Lấy danh sách câu hỏi trực tiếp từ file Github (Chỉ có nội dung, không có đáp án)
         const dsNoiDungGH = dataGitHub.danhSachCauHoi || dataGitHub.danh_sach_cau_hoi || [];
-
         if (dsNoiDungGH.length === 0) throw new Error("File đề trên Github đang bị trống!");
 
-        
-
-        // =========================================================
-        // 4. TRỘN ĐỀ CÓ ĐIỀU KIỆN (CHỈ XÁO KHI KHÔNG PHẢI LIVE QUIZ)
-        // =========================================================
         let deThiDaTron;
         const isLive = (window.DangKhoiTaoLiveQuiz === true);
+        if (isLive) deThiDaTron = dsNoiDungGH;
+        else deThiDaTron = ham_8a_9_tron_de_thi_trac_nghiem(dsNoiDungGH);
 
-        if (isLive) {
-            // NẾU LÀ THI LIVE: Giữ nguyên thứ tự tuyệt đối
-            deThiDaTron = dsNoiDungGH;
-        } else {
-            // NẾU LÀ NHIỆM VỤ THƯỜNG: Xáo trộn bình thường
-            deThiDaTron = ham_8_9_tron_de_thi_trac_nghiem(dsNoiDungGH);
-        }
-
-
-
-        // Lấy đường dẫn thư mục chứa đề thi để xử lý Hình Ảnh
         const baseUrlHinhAnh = urlFileGitHub.substring(0, urlFileGitHub.lastIndexOf('/')) + "/HinhAnh";
-
-        // =========================================================
-        // 5. TÍNH LƯỢT VÀ TẠO BẢN NHÁP (CHỐNG GIAN LẬN THOÁT ĐỀ)
-        // =========================================================
         const maNhiemVuThuc = nv.ma_nhiem_vu || nv.maNhiemVu || maHocLieu;
 
-        const { count, error: countErr } = await _supabase
-            .from('ket_qua_trac_nghiem')
-            .select('*', { count: 'exact', head: true })
-            .eq('uid_hoc_sinh', GocHocSinhState.uid)
-            .eq('ma_nhiem_vu', maNhiemVuThuc);
+        // =========================================================
+        // 🌟 [AUTO-SAVE BƯỚC 3] KIỂM TRA BÀI ĐANG LÀM DỞ VÀ TRỪ THỜI GIAN
+        // =========================================================
+        let recordIdHienTai = null;
+        let isRestore = false;
+        let thoiGianConLaiThucTe = (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60; // Tính ra Giây
 
-        const lanThuHienTai = (count || 0) + 1;
+        if (!isLive) {
+            // 🐛 TRẠM DEBUG 1: KIỂM TRA THÔNG SỐ TRƯỚC KHI QUÉT
+            console.log("%c[DEBUG AUTO-SAVE] 1. BẮT ĐẦU QUÉT BÀI DỞ DANG...", "color: blue; font-weight: bold;");
+            console.log("- UID Học sinh:", GocHocSinhState.uid);
+            console.log("- Mã Nhiệm vụ:", maNhiemVuThuc);
 
-        // Ghi nhận ngay 1 phiên làm bài trên Database
-        const { data: recordNhao, error: errNhao } = await _supabase
-            .from('ket_qua_trac_nghiem')
-            .insert([{
-                uid_hoc_sinh: GocHocSinhState.uid,
-                ma_nhiem_vu: maNhiemVuThuc,
-                lan_thu: lanThuHienTai,
-                tong_diem: 0,
-                chi_tiet_lam_bai: [],
-                thoi_gian_lam_bai: "0 phút 0 giây",
-                thoi_gian_nop: new Date().toISOString()
-            }])
-            .select('id')
-            .single();
+            // 1. Quét tìm bài thi 'dang_lam'
+            const { data: baiDangLam, error: errCheck } = await _supabase
+                .from('ket_qua_trac_nghiem')
+                .select('id, thoi_gian_bat_dau, chi_tiet_lam_bai')
+                .eq('uid_hoc_sinh', GocHocSinhState.uid)
+                .eq('ma_nhiem_vu', maNhiemVuThuc)
+                .eq('trang_thai_lam_bai', 'dang_lam')
+                .maybeSingle();
 
-        if (errNhao) throw errNhao;
+            // 🐛 TRẠM DEBUG 2: XEM SUPABASE TRẢ VỀ CÁI GÌ
+            console.log("%c[DEBUG AUTO-SAVE] 2. KẾT QUẢ TỪ SUPABASE:", "color: orange; font-weight: bold;", baiDangLam);
+            if (errCheck) console.error("❌ LỖI TRUY VẤN DATABASE:", errCheck);
 
-        
-        //// =========================================================
-        //// 6. MỞ GIAO DIỆN THI
-        //// =========================================================
-        //ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem();
-        // Lưu toàn bộ vào RAM trình duyệt
+            if (baiDangLam) {
+                // Đang làm dở -> Khôi phục
+                console.log("%c[DEBUG AUTO-SAVE] 3. -> ĐÃ TÌM THẤY BÀI DỞ DANG! (Sẽ tiến hành khôi phục)", "color: green; font-weight: bold;");
+                recordIdHienTai = baiDangLam.id;
+                isRestore = true;
+
+                // Tính toán số giây đã trôi qua kể từ lúc ấn bắt đầu lần đầu tiên
+                if (baiDangLam.thoi_gian_bat_dau && thoiGianConLaiThucTe > 0) {
+                    const thoiGianDaQuaGiay = Math.floor((Date.now() - new Date(baiDangLam.thoi_gian_bat_dau).getTime()) / 1000);
+                    thoiGianConLaiThucTe = thoiGianConLaiThucTe - thoiGianDaQuaGiay;
+                    if (thoiGianConLaiThucTe <= 0) thoiGianConLaiThucTe = 1; // Cho 1 giây để nó tự động trigger nộp bài
+                }
+
+                // Kéo dữ liệu từ Supabase đắp xuống LocalStorage phòng khi hs đổi máy tính
+                const keyLocal = `nhap_trac_nghiem_${GocHocSinhState.uid}_${maNhiemVuThuc}`;
+                if (!localStorage.getItem(keyLocal) && Array.isArray(baiDangLam.chi_tiet_lam_bai)) {
+                    let dictTam = {};
+                    baiDangLam.chi_tiet_lam_bai.forEach(item => {
+                        if (item.maCau && item.luaChonHS) dictTam[item.maCau] = item.luaChonHS;
+                    });
+                    localStorage.setItem(keyLocal, JSON.stringify(dictTam));
+                }
+
+            } else {
+                // Không có bài dở -> TẠO MỚI (Logic cũ của thầy/cô)
+                console.log("%c[DEBUG AUTO-SAVE] 3. -> KHÔNG TÌM THẤY BÀI NÀO. SẼ TẠO MỚI!", "color: purple; font-weight: bold;");
+
+                const { count } = await _supabase.from('ket_qua_trac_nghiem').select('*', { count: 'exact', head: true }).eq('uid_hoc_sinh', GocHocSinhState.uid).eq('ma_nhiem_vu', maNhiemVuThuc);
+                const lanThuHienTai = (count || 0) + 1;
+
+                const { data: recordNhao, error: errNhao } = await _supabase.from('ket_qua_trac_nghiem').insert([{
+                    uid_hoc_sinh: GocHocSinhState.uid,
+                    ma_nhiem_vu: maNhiemVuThuc,
+                    lan_thu: lanThuHienTai,
+                    tong_diem: 0,
+                    chi_tiet_lam_bai: [],
+                    thoi_gian_bat_dau: new Date().toISOString(), // Lưu mốc thời gian bắt đầu
+                    trang_thai_lam_bai: 'dang_lam',              // Bật cờ đang làm
+                    thoi_gian_nop: new Date().toISOString()
+                }]).select('id').single();
+
+                if (errNhao) {
+                    console.error("❌ LỖI KHI TẠO MỚI DỮ LIỆU:", errNhao);
+                    throw errNhao;
+                }
+
+                console.log("%c[DEBUG AUTO-SAVE] 4. ĐÃ TẠO MỚI THÀNH CÔNG VỚI ID:", "color: green; font-weight: bold;", recordNhao.id);
+                recordIdHienTai = recordNhao.id;
+            }
+        } else {
+            // Logic cho phòng Live
+            recordIdHienTai = "LIVE_" + Date.now();
+        }
+
+        // =========================================================
+        // LƯU RAM VÀ GỌI GIAO DIỆN
+        // =========================================================
         window.PhienLamBai = {
-            id_ket_qua_database: recordNhao.id,
+            id_ket_qua_database: recordIdHienTai,
             ma_nhiem_vu: maNhiemVuThuc,
             ten_nhiem_vu: nv.ten_nhiem_vu || nv.tenDe || nv.tenHocLieu || "Bài Luyện Tập",
-            thoi_gian_con_lai: (nv.thoi_gian_lam_bai || nv.thoi_gian || nv.thoiGian || 90) * 60,
+            thoi_gian_con_lai: thoiGianConLaiThucTe,
             tong_so_cau: deThiDaTron.length,
             danh_sach_cau_hoi: deThiDaTron,
             dap_an_hoc_sinh: {},
@@ -1086,16 +1437,34 @@ async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
             base_url_anh: baseUrlHinhAnh
         };
 
-        // 🌟 [CẤY CHIP 1] CẤP THẺ VIP NẾU LÀ TRẬN LIVE QUIZ
-        window.PhienLamBai.isLiveQuiz = window.DangKhoiTaoLiveQuiz === true;
-        window.PhienLamBai.maPhongLive = window.DangKhoiTaoLiveQuiz ? window.ThongTinLiveHocSinh.maPhong : null;
-        window.DangKhoiTaoLiveQuiz = false; // Reset lại trạng thái
+        window.PhienLamBai.isLiveQuiz = isLive;
+        window.PhienLamBai.maPhongLive = isLive ? window.ThongTinLiveHocSinh.maPhong : null;
+        window.DangKhoiTaoLiveQuiz = false;
 
-        // =========================================================
-        // 6. MỞ GIAO DIỆN THI
-        // =========================================================
-        ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem();
+        // Mở giao diện
+        ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem();
 
+        // 🌟 KÍCH HOẠT BỘ MÁY LƯU NHÁP (CHÍNH LÀ CHỖ CÒN THIẾU KHIẾN NÚT BỊ ĐƠ)
+        if (!isLive) {
+            // 1. Nạp mã nhiệm vụ vào bộ máy và khởi động đồng hồ 60s
+            if (typeof ham_16_3_khoi_dong_auto_save === 'function') ham_16_3_khoi_dong_auto_save(maNhiemVuThuc);
+
+            // 2. Khôi phục lại giao diện (Tick lại các đáp án) nếu là bài làm dở
+            setTimeout(() => {
+                if (typeof ham_16_6_khoi_phuc_giao_dien === 'function') ham_16_6_khoi_phuc_giao_dien(maNhiemVuThuc);
+            }, 500);
+        }
+
+        // Hiện thông báo nếu đang khôi phục
+        if (isRestore) {
+            Swal.fire({
+                title: 'Khôi phục bài làm!',
+                text: 'Phát hiện bài làm đang dang dở. Các đáp án em đã chọn trước đó đang được khôi phục...',
+                icon: 'info',
+                timer: 4000,
+                showConfirmButton: false
+            });
+        }
 
     } catch (err) {
         console.error("LỖI NẠP ĐỀ:", err);
@@ -1104,10 +1473,11 @@ async function ham_8_8a_khoi_tao_phong_thi_trac_nghiem(nv) {
     }
 }
 
+
 // ==============================================================
 // Hàm 8.9: Trộn thứ tự câu hỏi (Chống gian lận)
 // ==============================================================
-function ham_8_9_tron_de_thi_trac_nghiem(mangCauHoi) {
+function ham_8a_9_tron_de_thi_trac_nghiem(mangCauHoi) {
     // 1. Trộn thứ tự các câu hỏi với nhau (Shuffle mảng)
     let dsTron = mangCauHoi.sort(() => Math.random() - 0.5);
 
@@ -1144,7 +1514,7 @@ function ham_8_9_tron_de_thi_trac_nghiem(mangCauHoi) {
 // HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
 // [Nhãn thời gian: 08:45 - Ngày 29/05/2026] - Cố định Đồng hồ & Nút nộp, chỉ cuộn danh sách câu
 // =====================================================================
-window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
+window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     const vungLamViec = document.getElementById('dashboard-container');
     if (vungLamViec) vungLamViec.style.display = 'none';
 
@@ -1183,7 +1553,7 @@ window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
 
         let sttPhan = 1;
         danhSach.forEach(cau => {
-            htmlContentRight += ham_8_11_taoGiaoDienCauHoi_trac_nghiem(cau, sttPhan, loaiCau);
+            htmlContentRight += ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, sttPhan, loaiCau);
             const maCau = cau.ma_cau_hoi || cau.maCau;
             htmlNavLeft += `
                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
@@ -1219,7 +1589,7 @@ window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
     }
 
     // 🌟 CHÌA KHÓA Ở ĐÂY: Quyết định hàm Nộp Bài tùy theo loại nhiệm vụ
-    const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live_trac_nghiem()" : "ham_8_12_nop_bai_va_cham_diem_trac_nghiem()";
+    const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live_trac_nghiem()" : "ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()";
 
 
 
@@ -1246,10 +1616,11 @@ window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
                     <span id="so-cau-da-lam" style="color: #28a745;">0</span>/${phien.tong_so_cau}
                 </div>
                 
-               
-                
-                <button id="btn-nop-bai" onclick="ham_8_12_nop_bai_va_cham_diem_trac_nghiem()" style="width: 100%; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Nộp Bài">NỘP</button>
-
+               <div style="display: flex; gap: 5px; width: 100%;">
+                    <button id="btn-luu-tam" onclick="ham_16_7_luu_tam_thu_cong(this)" style="flex: 1; padding: 10px 0; background: #ffc107; color: #856404; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Cất tạm lên máy chủ">LƯU TẠM</button>
+                    
+                    <button id="btn-nop-bai" onclick="ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()" style="flex: 1; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Chấm dứt làm bài">NỘP</button>
+                </div>
                  
             </div>
 
@@ -1311,7 +1682,7 @@ window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
         if (phien.thoi_gian_con_lai <= 0) {
             clearInterval(phien.id_timer);
             alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
-            ham_8_12_nop_bai_va_cham_diem_trac_nghiem(true);
+            ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(true);
         }
     }, 1000);
 }
@@ -1322,7 +1693,7 @@ window.ham_8_10a_ve_giao_dien_lam_bai_trac_nghiem = function () {
 // =====================================================================
 // 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
 // =====================================================================
-function ham_8_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
+function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
 
     // 🌟 Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
@@ -1433,7 +1804,7 @@ function ham_8_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
 // =====================================================================
 // HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT (KÈM TÍNH KIM CƯƠNG)
 // =====================================================================
-async function ham_8_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
+async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
     if (!isForce) {
         if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
     }
@@ -1478,6 +1849,23 @@ async function ham_8_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
         });
 
         if (errCham) throw errCham;
+
+
+        // 🌟 [AUTO-SAVE BƯỚC 4] CHỐT TRẠNG THÁI VÀ DỌN RÁC BỘ NHỚ
+        if (!phien.isLiveQuiz) {
+            // Update trạng thái thành Đã Nộp để đóng sổ
+            await _supabase.from('ket_qua_trac_nghiem')
+                .update({ trang_thai_lam_bai: 'da_nop' })
+                .eq('id', phien.id_ket_qua_database);
+
+            // Xóa bộ nhớ tạm và dừng đồng hồ Auto-save
+            if (typeof ham_16_4_don_dep_sau_khi_nop === 'function') {
+                ham_16_4_don_dep_sau_khi_nop(phien.ma_nhiem_vu);
+            }
+        }
+
+
+
 
         const diemTongKet = Number(diemSoBiMat || 0);
 
@@ -1583,7 +1971,7 @@ async function ham_8_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
 // ==============================================================
 // Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
 // ==============================================================
-window.ham_8_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQua) {
+window.ham_8a_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQua) {
     const vungLamViec = document.getElementById('dashboard-container');
     vungLamViec.style.display = 'none';
 
@@ -1679,7 +2067,7 @@ window.ham_8_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQu
         document.getElementById('khong-gian-loading-xem-lai').remove();
 
         // Truyền thẳng quyền hạn đã chốt xuống Hàm vẽ giao diện
-        ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThiHoanChinh, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
+        ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThiHoanChinh, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
     } catch (err) {
         document.getElementById('khong-gian-loading-xem-lai')?.remove();
@@ -1691,7 +2079,7 @@ window.ham_8_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQu
 // ==============================================================
 // Hàm 8.14: Vẽ Giao diện Xem Lại (Chỉ làm nhiệm vụ hiển thị đơn thuần)
 // ==============================================================
-function ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThi, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
+function ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThi, nv, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
@@ -1737,7 +2125,7 @@ function ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThi, nv, baseUrlHin
             //const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: null, ketQua: "Bỏ trống", diem: 0 };
             const baiLamCuaHS = chiTietHS[maCauLogic] || { luaChonHS: {}, ketQua: "Bỏ trống", diem: 0 };
 
-            htmlContentRight += ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
+            htmlContentRight += ham_8a_20_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamCuaHS, sttPhan, loaiCau, baseUrlHinhAnh, choPhepXemDapAn, choPhepXemLoiGiai);
 
             let mauNut = "#e9ecef", vienNut = "#ced4da", mauChu = "#495057";
             if (choPhepXemDapAn) {
@@ -1775,7 +2163,7 @@ function ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThi, nv, baseUrlHin
             </div>
             <div style="flex: 1; overflow-y: auto; padding: 15px; background: #fcfcfc;">${htmlNavLeft}</div>
             <div style="padding: 15px; border-top: 1px solid #eee; background: #fff;">
-                <button onclick="ham_8_22_dongGiaoDienXemLai_trac_nghiem()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">⬅️ QUAY LẠI</button>
+                <button onclick="ham_8a_22_dongGiaoDienXemLai_trac_nghiem()" style="width: 100%; padding: 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">⬅️ QUAY LẠI</button>
             </div>
         </div>
         <div id="khu-vuc-cuon-review" style="flex: 1; padding: 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
@@ -1802,7 +2190,7 @@ function ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQua, deThi, nv, baseUrlHin
 // =====================================================================
 // Hàm 8.15: Sự kiện Học sinh nộp lý do xin giải cứu (XỬ LÝ ĐA LUỒNG)
 // =====================================================================
-window.ham_8_15_xin_luot_lam_bai_trac_nghiem = function (maNhiemVu, tenNhiemVu, loaiXin) {
+window.ham_8a_15_xin_luot_lam_bai_trac_nghiem = function (maNhiemVu, tenNhiemVu, loaiXin) {
     let tieuDePrompt = 'XIN THÊM LƯỢT LÀM BÀI';
     let placeholderPrompt = 'Ví dụ: Em muốn làm lại để cải thiện điểm số, mong Thầy cấp thêm lượt...';
 
@@ -1891,7 +2279,7 @@ window.ham_8_15_xin_luot_lam_bai_trac_nghiem = function (maNhiemVu, tenNhiemVu, 
 // =====================================================================
 // Hàm bổ trợ: Thực hiện bóc tách mảng JSON để lọc lớp chính xác 100%
 // =====================================================================
-window.ham_8_16_loc_card_theo_lop_trac_nghiem = function (maLopChon, nutBam, isGoiNoiBo = false) {
+window.ham_8a_16_loc_card_theo_lop_trac_nghiem = function (maLopChon, nutBam, isGoiNoiBo = false) {
     window.MaLopDangLocHienTai = maLopChon;
 
     // Chỉ đổi màu nút khi click trực tiếp, không đổi màu nếu là hàm switch_tab gọi ngầm
@@ -1928,7 +2316,7 @@ window.ham_8_16_loc_card_theo_lop_trac_nghiem = function (maLopChon, nutBam, isG
         }
     });
     // 2. 🌟 TÍNH NĂNG NÂNG CẤP: ĐẾM ĐỘNG SỐ LƯỢNG THEO LỚP CHO TOÀN BỘ 4 NHÃN TAB
-    window.ham_8_17_cap_nhat_so_luong_nhan_tab_trac_nghiem(maLopChon);
+    window.ham_8a_17_cap_nhat_so_luong_nhan_tab_trac_nghiem(maLopChon);
 
 };
 
@@ -1937,7 +2325,7 @@ window.ham_8_16_loc_card_theo_lop_trac_nghiem = function (maLopChon, nutBam, isG
 // =====================================================================
 // Hàm phụ mới: Tính toán và cập nhật con số hiển thị trên 4 nhãn Tab
 // =====================================================================
-window.ham_8_17_cap_nhat_so_luong_nhan_tab_trac_nghiem = function (maLopChon) {
+window.ham_8a_17_cap_nhat_so_luong_nhan_tab_trac_nghiem = function (maLopChon) {
     // Tạo một trình giả lập kiểm tra điều kiện lớp nhanh
     const checkHopLeLop = (htmlCardStr) => {
         if (maLopChon === 'TAT_CA') return true;
@@ -1987,7 +2375,7 @@ window.ham_8_17_cap_nhat_so_luong_nhan_tab_trac_nghiem = function (maLopChon) {
 
 
 
-function ham_8_19_capNhatMauNutLuoi_trac_nghiem(maCauHoi, textHienThi) {
+function ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, textHienThi) {
     const nut = document.getElementById(`btn-nav-${maCauHoi}`);
     const ansSpan = document.getElementById(`nav-ans-${maCauHoi}`);
 
@@ -2003,7 +2391,7 @@ function ham_8_19_capNhatMauNutLuoi_trac_nghiem(maCauHoi, textHienThi) {
     if (ansSpan) ansSpan.innerText = textHienThi.substring(0, 4); // Rút gọn chuỗi ĐS
 }
 
-window.ham_8_20_thoat_phong_thi_trac_nghiem = async () => {
+window.ham_8a_19_thoat_phong_thi_trac_nghiem = async () => {
     const daLam = Object.keys(window.PhienLamBai.dap_an_hoc_sinh).length;
     if (daLam > 0) {
         if (!confirm("⚠️ CẢNH BÁO!\nNếu thoát bây giờ, bài của bạn SẼ BỊ HỦY KHÔNG GHI NHẬN ĐIỂM. Bạn có chắc chắn muốn thoát?")) return;
@@ -2023,7 +2411,7 @@ window.ham_8_20_thoat_phong_thi_trac_nghiem = async () => {
 // Hàm Bổ trợ: Vẽ từng câu hỏi (Sửa lỗi 404 tách biệt 2 kho Ảnh)
 // ==============================================================
 
-function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
+function ham_8a_20_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCau, thuMucAnh, choPhepXemDapAn, choPhepXemLoiGiai) {
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
     const maCauHienThi = cau.ma_goc || cau.maCauGoc || maCauLogic;
 
@@ -2320,22 +2708,65 @@ function ham_8_21_taoGiaoDienCauHoiDaCham_trac_nghiem(cau, baiLamHS, stt, loaiCa
 }
 
 
-window.ham_8_22_dongGiaoDienXemLai_trac_nghiem = function () {
+window.ham_8a_22_dongGiaoDienXemLai_trac_nghiem = function () {
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
     document.getElementById('khong-gian-xem-lai-toan-man-hinh')?.remove();
     document.getElementById('dashboard-container').style.display = 'block';
 };
 
-window.ham_8_24a_vao_lam_bai_trac_nghiem = function(maNhiemVu) {
+window.ham_8a_24_vao_lam_bai_trac_nghiem = function(maNhiemVu) {
     // Gọi thẳng đến hàm an ninh của Trắc nghiệm
-    if (typeof ham_8_7_cua_an_ninh === 'function') {
-        ham_8_7_cua_an_ninh(maNhiemVu);
+    if (typeof ham_8a_7_cua_an_ninh === 'function') {
+        ham_8a_7_cua_an_ninh(maNhiemVu);
     } else {
         alert("⚠️ Lỗi: Không tìm thấy hàm an ninh Trắc nghiệm!");
     }
 };
 
+
+
+
+// // =====================================================================
+// // HÀM BỔ TRỢ: XỬ LÝ LƯU ĐÁP ÁN & CẬP NHẬT GIAO DIỆN NAV
+// // =====================================================================
+// window.ham_8_25_luuDapAn = function (maCauHoi, luaChon, element) {
+//     if (!luaChon) return; // Nếu TLN xóa trắng thì bỏ qua
+//     window.PhienLamBai.dap_an_hoc_sinh[maCauHoi] = luaChon;
+
+//     // Xử lý đổi màu radio box TN
+//     if (element && element.type === 'radio') {
+//         const khoiTN = element.closest('.cau-hoi');
+//         khoiTN.querySelectorAll('label').forEach(lbl => {
+//             lbl.style.background = '#f8f9fa'; lbl.style.borderColor = '#ddd';
+//         });
+//         const labelChon = element.closest('label');
+//         labelChon.style.background = '#e8f0fe'; labelChon.style.borderColor = '#b8daff';
+//     }
+
+//     ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, luaChon);
+
+//     // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
+//     //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+
+
+// };
+
+// window.ham_8_26_luuDapAnDS = function (maCauHoi, y, giaTri, element) {
+//     if (!window.PhienLamBai.dap_an_hoc_sinh[maCauHoi]) window.PhienLamBai.dap_an_hoc_sinh[maCauHoi] = {};
+//     window.PhienLamBai.dap_an_hoc_sinh[maCauHoi][y] = giaTri;
+
+//     let chuoiDS = "";
+//     ['A', 'B', 'C', 'D'].forEach(key => {
+//         const val = window.PhienLamBai.dap_an_hoc_sinh[maCauHoi][key];
+//         chuoiDS += val ? (val === 'T' ? 'Đ' : 'S') : '_';
+//     });
+//     ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, chuoiDS);
+
+//     // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
+//     //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
+
+// };
 
 
 
@@ -2356,12 +2787,12 @@ window.ham_8_25_luuDapAn = function (maCauHoi, luaChon, element) {
         labelChon.style.background = '#e8f0fe'; labelChon.style.borderColor = '#b8daff';
     }
 
-    ham_8_19_capNhatMauNutLuoi_trac_nghiem(maCauHoi, luaChon);
+    ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, luaChon);
 
-    // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
-    //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
-
-
+    // 🌟 [AUTO-SAVE BƯỚC 2] LƯU XUỐNG LOCAL-STORAGE KHI CHỌN ĐÁP ÁN
+    if (!window.PhienLamBai.isLiveQuiz && typeof ham_16_1_luu_local_storage === 'function') {
+        ham_16_1_luu_local_storage(window.PhienLamBai.ma_nhiem_vu, maCauHoi, luaChon);
+    }
 };
 
 window.ham_8_26_luuDapAnDS = function (maCauHoi, y, giaTri, element) {
@@ -2373,11 +2804,12 @@ window.ham_8_26_luuDapAnDS = function (maCauHoi, y, giaTri, element) {
         const val = window.PhienLamBai.dap_an_hoc_sinh[maCauHoi][key];
         chuoiDS += val ? (val === 'T' ? 'Đ' : 'S') : '_';
     });
-    ham_8_19_capNhatMauNutLuoi_trac_nghiem(maCauHoi, chuoiDS);
+    ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, chuoiDS);
 
-    // 🌟 [CẤY CHIP 3] VỪA BẤM VỪA BẮN SÓNG NẾU ĐANG THI LIVE
-    //if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) ham_8_6_4_ban_song_realtime();
-
+    // 🌟 [AUTO-SAVE BƯỚC 2] LƯU XUỐNG LOCAL-STORAGE KHI CHỌN ĐÁP ÁN (Lưu cả Object Đúng/Sai)
+    if (!window.PhienLamBai.isLiveQuiz && typeof ham_16_1_luu_local_storage === 'function') {
+        ham_16_1_luu_local_storage(window.PhienLamBai.ma_nhiem_vu, maCauHoi, window.PhienLamBai.dap_an_hoc_sinh[maCauHoi]);
+    }
 };
 
 

@@ -1946,3 +1946,64 @@ window.ham_7b_23_doi_sort_cham_bai = function (kieuSort) {
     ham_7b_18_render_layout_tong_cham_bai();
 };
 
+
+
+
+// =====================================================================
+// Hàm 15.15: Thuật toán ghép nhiều ảnh thành 1 file PDF giữ nét (Chạy ngầm)
+// =====================================================================
+window.ham_15_15_ghep_anh_thanh_pdf_k15 = async function (fileList) {
+    try {
+
+        // 🌟 BƯỚC BẢO VỆ: KIỂM TRA VÀ TỰ ĐỘNG TẢI THƯ VIỆN NẾU THIẾU
+        if (typeof window.jspdf === 'undefined') {
+            await new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+                script.onload = resolve;
+                script.onerror = () => reject(new Error("Không thể kết nối Internet để tải thư viện jsPDF"));
+                document.head.appendChild(script);
+            });
+        }
+
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = doc.internal.pageSize.getHeight();
+
+        const loadImg = (file) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => resolve({ data: e.target.result, w: img.width, h: img.height, type: file.type });
+                img.onerror = () => reject(new Error("Lỗi đọc ảnh"));
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        for (let i = 0; i < fileList.length; i++) {
+            const imgObj = await loadImg(fileList[i]);
+            if (i > 0) doc.addPage();
+
+            const ratio = Math.min(pdfWidth / imgObj.w, pdfHeight / imgObj.h);
+            const finalWidth = imgObj.w * ratio;
+            const finalHeight = imgObj.h * ratio;
+            const imgX = (pdfWidth - finalWidth) / 2;
+            const imgY = 10;
+
+            const imgType = imgObj.type === 'image/png' ? 'PNG' : 'JPEG';
+            doc.addImage(imgObj.data, imgType, imgX, imgY, finalWidth, finalHeight, undefined, 'FAST');
+        }
+
+        const tenFileGhep = `Ghep_Tu_Dong_${new Date().getTime()}.pdf`;
+        const pdfBlob = doc.output('blob');
+
+        return new File([pdfBlob], tenFileGhep, { type: 'application/pdf' });
+
+    } catch (err) {
+        throw new Error("Lỗi khi ghép ảnh thành PDF: " + err.message);
+    }
+};
+

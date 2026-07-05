@@ -1171,9 +1171,9 @@ window.ham_9_3_5_mo_full_de_live = async function (uidHocSinh, maCauScroll) {
         Swal.close();
 
         // 🌟 GỌI LÕI RENDER GIAO DIỆN XEM LẠI (Tương đương bên Thống Kê)
-        if (typeof ham_8_14_ve_giao_dien_xem_lai_trac_nghiem === 'function') {
+        if (typeof ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem === 'function') {
             // Cho phép xem đáp án = true, Cho phép xem lời giải = true
-            ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQuaMockObj, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
+            ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem(ketQuaMockObj, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
         } else {
             return Swal.fire('Lỗi Module', 'Trình duyệt chưa tải kịp file giao diện xem lại. Vui lòng thử lại!', 'error');
         }
@@ -1562,8 +1562,8 @@ window.ham_9_5_mo_giao_dien_xem_lai_chi_tiet = async function (indexHocSinh, maC
         let ketQuaMock = { tong_diem: hs.diem, chi_tiet_lam_bai: chiTiet };
 
         Swal.close();
-        if (typeof ham_8_14_ve_giao_dien_xem_lai_trac_nghiem === 'function') {
-            ham_8_14_ve_giao_dien_xem_lai_trac_nghiem(ketQuaMock, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
+        if (typeof ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem === 'function') {
+            ham_8a_14_ve_giao_dien_xem_lai_trac_nghiem(ketQuaMock, deThiHoanChinh, nvData, baseUrlHinhAnh, true, true);
         } else {
             return Swal.fire('Tính năng đang xây dựng', 'Vui lòng quay lại sau!', 'info');
         }

@@ -758,7 +758,7 @@ async function ham_3b_11_tab_ket_qua_trac_nghiem() {
                         </span>
                     </td>
                     <td style="padding: 12px 10px; text-align: center;">
-                        <button onclick="ham_8_13_xem_lai_ket_qua_trac_nghiem('${kq.ma_nhiem_vu}', '${kq.id}')" 
+                        <button onclick="ham_8a_13_xem_lai_ket_qua_trac_nghiem('${kq.ma_nhiem_vu}', '${kq.id}')" 
                                 style="padding: 6px 12px; background: #fff; color: #6f42c1; border: 1px solid #6f42c1; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;"
                                 onmouseover="this.style.background='#6f42c1'; this.style.color='#fff'" onmouseout="this.style.background='#fff'; this.style.color='#6f42c1'">
                             👁️ CHI TIẾT
@@ -1167,7 +1167,7 @@ window.ham_3b_17_switch_sub_tab = function (loaiTab) {
     const nutActive = document.querySelector('.btn-loc-lop-cua-hs.active');
     const lopHienTai = window.MaLopDangLocHienTai || 'TAT_CA';
     if (nutActive) {
-        window.ham_8_16_loc_card_theo_lop_trac_nghiem(lopHienTai, nutActive, true);
+        window.ham_8a_16_loc_card_theo_lop_trac_nghiem(lopHienTai, nutActive, true);
     }
 };
 
@@ -1185,7 +1185,7 @@ window.ham_3b_18_router_vao_lam_bai = function(maNhiemVu, loai) {
     if (!nv) return alert("Lỗi: Không tìm thấy dữ liệu nhiệm vụ!");
     
     if (loai === 'TRAC_NGHIEM') {
-        if (typeof ham_8_7_cua_an_ninh === 'function') ham_8_7_cua_an_ninh(maNhiemVu);
+        if (typeof ham_8a_7_cua_an_ninh === 'function') ham_8a_7_cua_an_ninh(maNhiemVu);
     } else if (loai === 'TU_LUAN') {
         if (typeof ham_8b_1_mo_phong_thi_tu_luan === 'function') {
             ham_8b_1_mo_phong_thi_tu_luan(nv, GocHocSinhState.uid);
