@@ -122,6 +122,8 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
+                
+                <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 Mục lục SGK</button>
             </div>
 
             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
@@ -474,5 +476,68 @@ window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
         // 6. Trả lại nút bấm như cũ
         btnElement.innerHTML = oldText;
         btnElement.disabled = false;
+    }
+};
+
+// Hàm mở danh sách ảnh Mục Lục SGK (Tự động lấy tất cả ảnh từ Supabase)
+window.ham_3_6_xem_muc_luc_sgk = async function () {
+    // Hiện thông báo đang tải (loading) để người dùng khỏi bỡ ngỡ khi chờ máy chủ quét file
+    Swal.fire({
+        title: 'Đang tải dữ liệu...',
+        text: 'Đang kết nối kho ảnh Mục lục SGK',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    try {
+        // 1. Quét danh sách file trong bucket 'system_images', thư mục 'sgk'
+        // Lưu ý: biến _supabase phải đang hoạt động bình thường trong ứng dụng của bạn
+        const { data: danhSachFiles, error } = await _supabase
+            .storage
+            .from('system_images')
+            .list('sgk', {
+                limit: 100, // Lấy tối đa 100 ảnh (bạn có thể tăng lên nếu cần)
+                offset: 0,
+                sortBy: { column: 'name', order: 'asc' }, // Sắp xếp theo chữ cái tên file (A-Z)
+            });
+
+        if (error) throw error;
+
+        // 2. Lọc ra danh sách tên file hợp lệ (chỉ lấy file ảnh, bỏ qua file ẩn của hệ thống)
+        const mangTenFile = danhSachFiles
+            .filter(file => file.name && file.name.match(/\.(png|jpg|jpeg|webp)$/i))
+            .map(file => file.name);
+
+        if (mangTenFile.length === 0) {
+            Swal.fire('Thông báo', 'Hiện chưa có ảnh mục lục nào được đăng lên hệ thống.', 'info');
+            return;
+        }
+
+        // 3. Đường dẫn gốc tới thư mục sgk
+        const baseUrl = 'https://ffjrjgujzhkjetqyuska.supabase.co/storage/v1/object/public/system_images/sgk';
+
+        // 4. Nối HTML hiển thị các ảnh
+        const htmlHienThiAnh = mangTenFile.map(tenFile => {
+            return `<img src="${baseUrl}/${tenFile}" alt="Mục lục" style="width: 100%; height: auto; margin-bottom: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: block;">`;
+        }).join('');
+
+        // 5. Mở Popup hiển thị ảnh lên
+        Swal.fire({
+            title: '<h3 style="margin: 0; color: #fd7e14;">📚 MỤC LỤC SÁCH GIÁO KHOA</h3>',
+            html: `<div style="max-height: 70vh; overflow-y: auto; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                        ${htmlHienThiAnh}
+                   </div>`,
+            width: '800px',
+            showCloseButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Đóng lại',
+            confirmButtonColor: '#6c757d'
+        });
+
+    } catch (error) {
+        console.error("Lỗi khi tải danh sách ảnh:", error);
+        Swal.fire('Lỗi kết nối', 'Không thể lấy dữ liệu ảnh từ máy chủ. Vui lòng thử lại sau!', 'error');
     }
 };
