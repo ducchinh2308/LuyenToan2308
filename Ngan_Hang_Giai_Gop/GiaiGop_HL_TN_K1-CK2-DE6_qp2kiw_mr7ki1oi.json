@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-07-05T09:07:10.720Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_a58790ab62",
+      "dapAn": "C",
+      "loiGiaiHtml": "Số kẹo Sutin còn lại sau khi ăn: $10 - 2 = 8$ (cái).\\\\\r\n\t\t\tSố kẹo Sutin có sau khi được cho thêm: $8 + 3 = 11$ (cái)."
+    },
+    {
+      "maBaoMat": "sol_52d0d092e2",
+      "dapAn": "B",
+      "loiGiaiHtml": "Đây là dãy các số lẻ liên tiếp (hoặc đếm thêm $2$). Số liền sau của $7$ trong dãy là $9$."
+    },
+    {
+      "maBaoMat": "sol_9903869d29",
+      "dapAn": "B",
+      "loiGiaiHtml": "Hình trên gồm có $4$ hình vuông nhỏ ở bên trong.\\\\\r\n\t\t\tGhép $4$ hình vuông nhỏ lại ta được thêm $1$ hình vuông lớn bao ngoài.\\\\\r\n\t\t\tTổng số hình vuông là: $4 + 1 = 5$ (hình)."
+    },
+    {
+      "maBaoMat": "sol_5267b96cc3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Chú chó có $4$ chân.\\\\\r\n\t\t\tMỗi chú vịt có $2$ chân, vậy $2$ chú vịt có: $2 + 2 = 4$ (chân).\\\\\r\n\t\t\tTổng số chân là: $4 + 4 = 8$ (chân)."
+    },
+    {
+      "maBaoMat": "sol_022d9629ab",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hôm qua là thứ Hai $\\Rightarrow$ Hôm nay là thứ Ba.\\\\\r\n\t\t\tĐếm tiếp $3$ ngày từ thứ Ba: Thứ Tư (1) $\\rightarrow$ Thứ Năm (2) $\\rightarrow$ Thứ Sáu (3).\\\\\r\n\t\t\tVậy $3$ ngày nữa là thứ Sáu."
+    },
+    {
+      "maBaoMat": "sol_410d405fc9",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hiệu số tuổi của hai anh em không bao giờ thay đổi.\\\\\r\n\t\t\tHiện nay anh hơn em: $8 - 5 = 3$ (tuổi).\\\\\r\n\t\t\tVậy $4$ năm nữa anh vẫn hơn em $3$ tuổi."
+    },
+    {
+      "maBaoMat": "sol_4bf49ad929",
+      "dapAn": "B",
+      "loiGiaiHtml": "Số bé nhất có hai chữ số là $10$. Vì chữ số $1$ và chữ số $0$ khác nhau nên $10$ chính là đáp án cần tìm."
+    },
+    {
+      "maBaoMat": "sol_4cce79940f",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tính phép cộng vế phải trước: $4 + 2 = 6$.\\\\\r\n\t\t\tPhép tính trở thành: $10 - \\dots = 6$. Số cần điền là $10 - 6 = 4$."
+    },
+    {
+      "maBaoMat": "sol_156e33b8d3",
+      "dapAn": "B",
+      "loiGiaiHtml": "Khi kim dài chỉ số $12$ và kim ngắn chỉ số $9$, đồng hồ đang chỉ đúng $9$ giờ."
+    },
+    {
+      "maBaoMat": "sol_6a766e45f7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Đứng thứ $2$ từ trên xuống $\\Rightarrow$ Phía trước Sutin có $1$ bạn.\\\\\r\n\t\t\tĐứng thứ $4$ từ dưới lên $\\Rightarrow$ Phía sau Sutin có $3$ bạn.\\\\\r\n\t\t\tTổng số bạn: $1$ (trước) + $1$ (Sutin) + $3$ (sau) = $5$ (bạn)."
+    },
+    {
+      "maBaoMat": "sol_45f4898aa5",
+      "dapAn": "C",
+      "loiGiaiHtml": "Để cưa một thanh gỗ thành $n$ đoạn, ta cần cưa $n - 1$ lần.\\\\\r\n\t\t\tSố lần cưa cần thiết: $5 - 1 = 4$ (lần)."
+    },
+    {
+      "maBaoMat": "sol_45f1b9f714",
+      "dapAn": "B",
+      "loiGiaiHtml": "Mỗi quả táo thay bằng $3$ quả dâu tây.\\\\\r\n\t\t\tQuả dưa hấu nặng bằng $2$ quả táo $\\Rightarrow$ nặng bằng: $3 + 3 = 6$ quả dâu tây."
+    },
+    {
+      "maBaoMat": "sol_c778de82a8",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Phép trừ $17 - 5 = 12$. (Đúng)\r\n\t\t\t\t\\itemch Phép cộng $14 + 5 = 19$. Số $19$ không lớn hơn $20$. (Sai)\r\n\t\t\t\t\\itemch Phép cộng $10 + 10 = 20$. (Đúng)\r\n\t\t\t\t\\itemch Phép trừ $18 - 4 = 14$. Số $14$ không bé hơn $13$. (Sai)\r\n\t\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_e9dbb7c00a",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Hình chữ nhật có $4$ cạnh. (Sai)\r\n\t\t\t\t\\itemch Hình vuông có đúng $4$ cạnh bằng nhau. (Đúng)\r\n\t\t\t\t\\itemch Hình tròn (hoặc khối cầu) không có góc cạnh nên có thể lăn được. (Đúng)\r\n\t\t\t\t\\itemch Khối rubik có dạng khối lập phương, không phải hình chữ nhật. (Sai)\r\n\t\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_94ee843b47",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Tuần mới bắt đầu bằng Thứ Hai ngay sau Chủ Nhật. (Đúng)\r\n\t\t\t\t\\itemch Một ngày đêm có $24$ giờ. (Sai)\r\n\t\t\t\t\\itemch Kim phút (kim dài) chạy nhanh hơn kim giờ (kim ngắn). (Đúng)\r\n\t\t\t\t\\itemch $12$ giờ là thời điểm chính giữa buổi trưa. (Đúng)\r\n\t\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_c1bc631ff7",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\t\\itemch Số liền sau $19$ là $19 + 1 = 20$. (Đúng)\r\n\t\t\t\t\\itemch Số lớn nhất có một chữ số là số $9$. (Sai)\r\n\t\t\t\t\\itemch Các số $2, 4, 6, 8$ đều chia hết cho $2$ nên là số chẵn. (Đúng)\r\n\t\t\t\t\\itemch Số $15$ gồm $1$ chục và $5$ đơn vị. (Sai)\r\n\t\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_5517e1605e",
+      "dapAn": "18",
+      "loiGiaiHtml": "Số chim trên sân hiện tại là: $20 - 5 + 3 = 18$ (con)."
+    },
+    {
+      "maBaoMat": "sol_790cae47dc",
+      "dapAn": "14",
+      "loiGiaiHtml": "Quy luật của dãy số là số sau bằng số trước cộng thêm $3$.\\\\\r\n\t\t\tTa có: $2+3=5$; $5+3=8$; $8+3=11$.\\\\\r\n\t\t\tVậy số tiếp theo là: $11 + 3 = 14$."
+    },
+    {
+      "maBaoMat": "sol_706383742e",
+      "dapAn": "10",
+      "loiGiaiHtml": "Số bánh của $2$ chiếc xe ô tô là: $4 + 4 = 8$ (bánh).\\\\\r\n\t\t\tSố bánh của $1$ chiếc xe đạp là: $2$ (bánh).\\\\\r\n\t\t\tTổng số bánh xe là: $8 + 2 = 10$ (bánh)."
+    },
+    {
+      "maBaoMat": "sol_843caeea0d",
+      "dapAn": "",
+      "loiGiaiHtml": "Theo đề bài: Chó $>$ Mèo và Mèo $>$ Chuột.\\\\\r\n\t\t\tSắp xếp theo thứ tự cân nặng: Chó $>$ Mèo $>$ Chuột.\\\\\r\n\t\t\tVậy Chó là con vật nặng nhất."
+    },
+    {
+      "maBaoMat": "sol_dc0f788fb1",
+      "dapAn": "4",
+      "loiGiaiHtml": "Chữ số hàng chục không thể là số $0$. Ta xét các trường hợp:\\\\\r\n\t\t\t- Hàng chục là $1$: ghép được số $10, 12$.\\\\\r\n\t\t\t- Hàng chục là $2$: ghép được số $20, 21$.\\\\\r\n\t\t\tTổng cộng ghép được $4$ số có hai chữ số khác nhau."
+    },
+    {
+      "maBaoMat": "sol_19c5f206fd",
+      "dapAn": "5",
+      "loiGiaiHtml": "Tổng số hộp sữa mẹ mua là: $4 + 4 = 8$ (hộp).\\\\\r\n\t\t\tSố hộp sữa Lan còn lại là: $8 - 3 = 5$ (hộp)."
+    }
+  ]
+}
