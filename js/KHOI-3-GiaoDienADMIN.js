@@ -5,6 +5,82 @@
 // ==============================================================================
 
 
+// //// =====================================================================
+// //// [Nhãn thời gian: 13:05 - Ngày 10/06/2026] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
+// //// =====================================================================
+
+// function ham_3_1_ve_dashboard_admin() {
+//     document.getElementById('khung-dang-nhap').style.display = 'none';
+//     document.getElementById('btnLogout').style.display = 'inline-block';
+
+//     let tenVaiTro = '';
+//     if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//     else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//     else tenVaiTro = 'Học sinh';
+
+//     let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//     let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//     const lblStatus = document.getElementById('status');
+//     if (lblStatus) {
+//         lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//         lblStatus.style.color = '#1a73e8';
+//         lblStatus.style.fontWeight = 'bold';
+//     }
+
+//     const dashboard = document.getElementById('dashboard-container');
+//     dashboard.style.display = 'block';
+//     document.body.style.paddingBottom = '60px';
+
+//     // Định nghĩa chung style nút để code gọn hơn
+//     const btnStyle = "padding: 15px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; color: white;";
+
+//     dashboard.innerHTML = `
+//         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+//             <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+//             <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
+//             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+//             <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
+//                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
+
+//                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
+//                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
+//             </div>
+
+//             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
+//                 <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
+                
+//                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
+//                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
+//             </div>
+
+//             <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG KHÁC</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+//                 <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
+//                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
+//                 <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
+//                 <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
+//                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
+//                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
+//             </div>
+
+//             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+//                 <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+//             </div>
+//         </div>
+//     `;
+
+//     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
+//     ham_3_2_ve_thanh_chay_nop_bai();
+//     window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000);
+// }
+
+
 //// =====================================================================
 //// [Nhãn thời gian: 13:05 - Ngày 10/06/2026] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
 //// =====================================================================
@@ -32,7 +108,6 @@ function ham_3_1_ve_dashboard_admin() {
     dashboard.style.display = 'block';
     document.body.style.paddingBottom = '60px';
 
-    // Định nghĩa chung style nút để code gọn hơn
     const btnStyle = "padding: 15px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; color: white;";
 
     dashboard.innerHTML = `
@@ -45,7 +120,6 @@ function ham_3_1_ve_dashboard_admin() {
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
-
                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
             </div>
@@ -54,7 +128,6 @@ function ham_3_1_ve_dashboard_admin() {
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
                 <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
-                
                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
             </div>
@@ -67,6 +140,8 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
+                
+                <button onclick="ham_3_4_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt HT</button>
             </div>
 
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
@@ -79,6 +154,8 @@ function ham_3_1_ve_dashboard_admin() {
     ham_3_2_ve_thanh_chay_nop_bai();
     window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000);
 }
+
+
 
 
 //// =====================================================================
@@ -259,3 +336,143 @@ window.onload = function () {
     document.getElementById('status').innerText = "Hệ thống sẵn sàng";
 };
 
+
+
+
+// ==============================================================================
+// KHỐI 15: QUẢN TRỊ CÀI ĐẶT HỆ THỐNG
+// ==============================================================================
+
+window.AppConfig = {}; // Lưu trữ cấu hình toàn cục
+window.dsCaiDatGoc = [];
+//// =====================================================================
+//// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã sửa lỗi nút Lưu)
+//// =====================================================================
+window.ham_3_4_ve_cai_dat_he_thong = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
+
+    try {
+        const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
+        if (error) throw error;
+
+        window.dsCaiDatGoc = data || [];
+
+        window.dsCaiDatGoc.forEach(item => {
+            window.AppConfig[item.ma_cai_dat] = item.gia_tri;
+        });
+
+        let htmlDanhSachCaiDat = '';
+        window.dsCaiDatGoc.forEach(item => {
+            let mauNhom = '#6c757d';
+            if (item.nhom === 'THI_CU') mauNhom = '#dc3545';
+            if (item.nhom === 'CHAM_DIEM') mauNhom = '#28a745';
+            if (item.nhom === 'GIAO_DIEN') mauNhom = '#007bff';
+            if (item.nhom === 'TAI_KHOAN') mauNhom = '#6f42c1';
+
+            let phanNhapLieu = '';
+
+            if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
+                phanNhapLieu = `
+                    <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
+                        <option value="CHO_DUYET" ${item.gia_tri === 'CHO_DUYET' ? 'selected' : ''}>⏳ Chờ GV Duyệt</option>
+                        <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
+                    </select>
+                `;
+            } else {
+                phanNhapLieu = `
+                    <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
+                `;
+            }
+
+            htmlDanhSachCaiDat += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold; color: #333; font-size: 16px; margin-bottom: 4px;">
+                            ${item.mo_ta}
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span style="font-size: 11px; background: ${mauNhom}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${item.nhom}</span>
+                            <span style="font-size: 12px; color: #888; font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${item.ma_cai_dat}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        ${phanNhapLieu}
+                        
+                        <button onclick="ham_3_5_luu_mot_cai_dat('${item.ma_cai_dat}', this)" style="padding: 10px 20px; background: #34495e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+                            💾 LƯU
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        vungLamViec.innerHTML = `
+            <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; animation: fadein 0.4s;">
+                <div style="background: #34495e; padding: 20px; text-align: center; border-bottom: 4px solid #2c3e50;">
+                    <h2 style="margin: 0; color: white; font-size: 22px;">⚙️ BẢNG ĐIỀU KHIỂN HỆ THỐNG</h2>
+                    <div style="color: #bdc3c7; font-size: 13px; margin-top: 5px;">Điều chỉnh các tham số cốt lõi (Có tác dụng ngay lập tức trên toàn hệ thống)</div>
+                </div>
+                
+                <div style="padding: 10px 20px 30px 20px;">
+                    ${htmlDanhSachCaiDat}
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
+    }
+};
+
+//// =====================================================================
+//// Hàm 3.5: Lưu một thông số cài đặt lên Database (Đã bẫy lỗi triệt để)
+//// =====================================================================
+window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
+    // 1. Đọc giá trị mới nhất từ ô input/select
+    const inputEl = document.getElementById('input_setting_' + maCaiDat);
+    const giaTriMoi = inputEl.value.trim();
+
+    if (giaTriMoi === '') {
+        inputEl.focus();
+        return alert("❌ Giá trị không được để trống!");
+    }
+
+    // 2. Khóa nút bấm để chống click đúp
+    const oldText = btnElement.innerHTML;
+    btnElement.innerHTML = "⏳...";
+    btnElement.disabled = true;
+
+    try {
+        // 3. Đẩy dữ liệu mới lên Supabase
+        const { error } = await _supabase.from('cai_dat_he_thong')
+            .update({ gia_tri: giaTriMoi })
+            .eq('ma_cai_dat', maCaiDat);
+
+        if (error) throw error;
+
+        // 🌟 4. CẬP NHẬT ĐỒNG BỘ TRÊN BỘ NHỚ TRÌNH DUYỆT
+        window.AppConfig[maCaiDat] = giaTriMoi; // Dùng cho hệ thống
+
+        // Tìm và cập nhật cả ở mảng gốc để vẽ lại không bị lỗi
+        const itemGoc = window.dsCaiDatGoc.find(x => x.ma_cai_dat === maCaiDat);
+        if (itemGoc) {
+            itemGoc.gia_tri = giaTriMoi;
+        }
+
+        // 5. Hiện thông báo
+        const thongBao = document.createElement('div');
+        thongBao.innerHTML = `✅ Đã cập nhật tham số <b>${maCaiDat}</b> thành công!`;
+        thongBao.style.cssText = "position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#28a745; color:white; padding:15px 30px; border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:9999; animation: fadeup 0.3s;";
+        document.body.appendChild(thongBao);
+        setTimeout(() => document.body.removeChild(thongBao), 2500);
+
+    } catch (error) {
+        alert("❌ Lỗi khi lưu cài đặt: " + error.message);
+    } finally {
+        // 6. Trả lại nút bấm như cũ
+        btnElement.innerHTML = oldText;
+        btnElement.disabled = false;
+    }
+};
