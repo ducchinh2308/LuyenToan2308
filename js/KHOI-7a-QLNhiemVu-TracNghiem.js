@@ -2082,7 +2082,7 @@ window.ham_7a_16_tim_kiem_live_nhiem_vu_trac_nghiem = function (tuKhoa) {
 // [Nhãn thời gian: 14:02 - Ngày 28/05/2026] - Hàm 7.17: Xem chi tiết câu trả lời của Học sinh (Đối chiếu Github)
 window.ham_7a_17_xem_chi_tiet_bai_lam_trac_nghiem = async function (maNhiemVu, uidHocSinh, isLiveSync, tenHocSinh) {
     if (isLiveSync === true) {
-        return Swal.fire({
+        return Swal.fire({ 
             title: 'Chỉ có điểm tổng kết',
             html: `Học sinh <b>${tenHocSinh}</b> chưa bấm nộp bài chính thức. Điểm số được hệ thống vớt tự động từ Sóng Live nên không có lịch sử chi tiết (ABCD) từng câu!`,
             icon: 'info'
