@@ -2000,7 +2000,7 @@ window.ham_8a_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQ
         // ==============================================================
         // 🔒 CHỐT CHẶN BẢO MẬT: KIỂM TRA QUYỀN TRUY CẬP TRƯỚC KHI TẢI DỮ LIỆU
         // ==============================================================
-        let congBo = { thoi_diem: CFG_NV.THOI_DIEM.KHOA, muc_do: CFG_NV.MUC_DO.KHONG };
+        let congBo = { thoi_diem: CFG_NV_TN.THOI_DIEM.KHOA, muc_do: CFG_NV_TN.MUC_DO.KHONG };
         try { congBo = typeof nv.cau_hinh_dap_an === 'string' ? JSON.parse(nv.cau_hinh_dap_an) : (nv.cau_hinh_dap_an || congBo); } catch (e) { }
 
         const now = new Date();
@@ -2008,12 +2008,12 @@ window.ham_8a_13_xem_lai_ket_qua_trac_nghiem = async function (maNhiemVu, idKetQ
         let hopLeThoiDiem = false;
 
         const td = congBo.thoi_diem;
-        if (td === CFG_NV.THOI_DIEM.SAU_NOP) { hopLeThoiDiem = true; }
-        else if (td === CFG_NV.THOI_DIEM.SAU_HET_HAN) { if (tDongDe && now > tDongDe) hopLeThoiDiem = true; }
+        if (td === CFG_NV_TN.THOI_DIEM.SAU_NOP) { hopLeThoiDiem = true; }
+        else if (td === CFG_NV_TN.THOI_DIEM.SAU_HET_HAN) { if (tDongDe && now > tDongDe) hopLeThoiDiem = true; }
         else if (td && td.startsWith("HEN_GIO|")) { if (now > new Date(td.split("|")[1])) hopLeThoiDiem = true; }
 
-        const choPhepXemDapAn = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.DAPAN_DIEM || congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
-        const choPhepXemLoiGiai = hopLeThoiDiem && (congBo.muc_do === CFG_NV.MUC_DO.FULL_LOIGIAI);
+        const choPhepXemDapAn = hopLeThoiDiem && (congBo.muc_do === CFG_NV_TN.MUC_DO.DAPAN_DIEM || congBo.muc_do === CFG_NV_TN.MUC_DO.FULL_LOIGIAI);
+        const choPhepXemLoiGiai = hopLeThoiDiem && (congBo.muc_do === CFG_NV_TN.MUC_DO.FULL_LOIGIAI);
 
         // ==============================================================
         // 2. TẢI FILE ĐỀ THI TỪ GITHUB (Luôn được tải để hiện nội dung câu hỏi)
