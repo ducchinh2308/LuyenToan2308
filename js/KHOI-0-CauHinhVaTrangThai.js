@@ -40,8 +40,28 @@ window.CFG_HE_THONG = {
     LINK_GITHUB_GOC: "https://ducchinh2308.github.io/LuyenToan2308",
     KHO_GIAI_LE_URL: "https://ducchinh2308.github.io/LuyenToan2308/Ngan_Hang_Loi_Giai",
 
-    URL_APPS_SCRIPT_XOA_DRIVE: "https://script.google.com/macros/s/AKfycbys7lFGJmssgxCvAKyFzbwzhGzr4eI4Zstq-IELVq9RqfZ0NPW8gQzd-N6zLEMOlhrRyA/exec",
-    URL_APPS_SCRIPT_TU_LUAN: "https://script.google.com/macros/s/AKfycbznLMAX7a72I1w-rJ9ZeIKhIVOFFGfUiD7tyXvxbnhLlROGbBLz1lwFY7VKCKabpq08/exec"
+    // URL_APPS_SCRIPT_XOA_DRIVE: "https://script.google.com/macros/s/AKfycbys7lFGJmssgxCvAKyFzbwzhGzr4eI4Zstq-IELVq9RqfZ0NPW8gQzd-N6zLEMOlhrRyA/exec",
+    // URL_APPS_SCRIPT_TU_LUAN: "https://script.google.com/macros/s/AKfycbznLMAX7a72I1w-rJ9ZeIKhIVOFFGfUiD7tyXvxbnhLlROGbBLz1lwFY7VKCKabpq08/exec",
+    // URL_APPS_SCRIPT_LAY_CAY_THU_MUC: 'https://script.google.com/macros/s/AKfycbzj7zj3E_pwWYtL3IIOymF5r4QpG3VCBo6Ms9ylxIQiaoYMR-hVTKEos78CAKZwPVqS/exec',
+    // //URL_APPS_SCRIPT_API_NHAN_FILE_CSHARP: 'https://script.google.com/macros/s/AKfycbxxgiNtbA_AlK8iU9paaOG19r-fzRA0TMZFfYsk5Kbxj8ymgMVQHhBAz8xIkUILqt7d/exec',
+
+
+    //gmail botoc
+    URL_APPS_SCRIPT_API_TONG_HOP: 'https://script.google.com/macros/s/AKfycbwV1GtOrkSwWCYT6VzhJ7q02j9dpw5PybuiomOdAkkLWzWkD3h-ETxaFHi9xgRyPV7T/exec',
+    
+    
+    URL_APPS_SCRIPT_XOA_DRIVE = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_TU_LUAN = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_LAY_CAY_THU_MUC = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_API_NHAN_FILE_CSHARP = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_LAY_CAY_THU_MUC_BOTOC = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_API_NHAN_FILE_CSHARP_BOTOC = URL_APPS_SCRIPT_API_TONG_HOP,
+    URL_APPS_SCRIPT_TAI_ANH_NOP_BAI_TU_LUAN_BOTOC = URL_APPS_SCRIPT_API_TONG_HOP
+
+    // URL_APPS_SCRIPT_API_NHAN_FILE_CSHARP_BOTOC: 'https://script.google.com/macros/s/AKfycbynazdz4oDef5qy3sr4sfxceA_VQXoDL0U4_ykTInfPfRsCfKkA0HD3Zmapl0Y6xnH6/exec',
+    // URL_APPS_SCRIPT_LAY_CAY_THU_MUC_BOTOC: 'https://script.google.com/macros/s/AKfycbz4EeMX01uIXHJewfBUSmzzmAAGZThc74DBp5nDifNkH_yhiJVP6xr1cYSOPct4jjjn/exec',
+
+    // URL_APPS_SCRIPT_TAI_ANH_NOP_BAI_TU_LUAN_BOTOC: 'https://script.google.com/macros/s/AKfycbxjm7SbhGCVmVMkTPMjNVs4mJHIac5cGL4pAOl8MEx_Vo9mzOm2Q7_CPVsmsdVLfOeS/exec' 
     // Thầy có thể thêm các cấu hình khác vào đây sau này...
 };
 

@@ -123,7 +123,7 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
                 
-                <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 Mục lục SGK</button>
+                <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
             </div>
 
             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
@@ -479,65 +479,283 @@ window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
     }
 };
 
-// Hàm mở danh sách ảnh Mục Lục SGK (Tự động lấy tất cả ảnh từ Supabase)
+// =====================================================================
+// 1. Hàm vẽ giao diện và quét cây thư mục từ Drive (ĐÃ THÊM KÉO THẢ)
+// =====================================================================
 window.ham_3_6_xem_muc_luc_sgk = async function () {
-    // Hiện thông báo đang tải (loading) để người dùng khỏi bỡ ngỡ khi chờ máy chủ quét file
-    Swal.fire({
-        title: 'Đang tải dữ liệu...',
-        text: 'Đang kết nối kho ảnh Mục lục SGK',
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    });
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
+    if (!vungLamViec) return;
+
+    vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#fd7e14;">⏳ Đang quét dữ liệu từ Google Drive...</h3></div>`;
 
     try {
-        // 1. Quét danh sách file trong bucket 'system_images', thư mục 'sgk'
-        // Lưu ý: biến _supabase phải đang hoạt động bình thường trong ứng dụng của bạn
-        const { data: danhSachFiles, error } = await _supabase
-            .storage
-            .from('system_images')
-            .list('sgk', {
-                limit: 100, // Lấy tối đa 100 ảnh (bạn có thể tăng lên nếu cần)
-                offset: 0,
-                sortBy: { column: 'name', order: 'asc' }, // Sắp xếp theo chữ cái tên file (A-Z)
-            });
+        const URL_GAS = CFG_HE_THONG.URL_APPS_SCRIPT_LAY_CAY_THU_MUC;
+        const response = await fetch(URL_GAS);
+        const result = await response.json();
 
-        if (error) throw error;
+        if (result.status === 'error') throw new Error(result.message);
 
-        // 2. Lọc ra danh sách tên file hợp lệ (chỉ lấy file ảnh, bỏ qua file ẩn của hệ thống)
-        const mangTenFile = danhSachFiles
-            .filter(file => file.name && file.name.match(/\.(png|jpg|jpeg|webp)$/i))
-            .map(file => file.name);
-
-        if (mangTenFile.length === 0) {
-            Swal.fire('Thông báo', 'Hiện chưa có ảnh mục lục nào được đăng lên hệ thống.', 'info');
-            return;
+        // Hàm đệ quy đếm TỔNG SỐ FILE
+        function demTongSoFile(node) {
+            if (node.type === 'file') return 1;
+            let count = 0;
+            if (node.children) {
+                for (let i = 0; i < node.children.length; i++) {
+                    count += demTongSoFile(node.children[i]);
+                }
+            }
+            return count;
         }
 
-        // 3. Đường dẫn gốc tới thư mục sgk
-        const baseUrl = 'https://ffjrjgujzhkjetqyuska.supabase.co/storage/v1/object/public/system_images/sgk';
+        // Hàm đệ quy vẽ HTML sơ đồ cây
+        function veCayHTML(node) {
+            if (node.type === 'file') {
+                let icon = '📄';
+                let fileMime = node.mimeType || '';
+                if (fileMime.includes('image')) icon = '🖼️';
+                else if (fileMime.includes('pdf')) icon = '📕';
+                else if (fileMime.includes('word') || fileMime.includes('document')) icon = '📝';
 
-        // 4. Nối HTML hiển thị các ảnh
-        const htmlHienThiAnh = mangTenFile.map(tenFile => {
-            return `<img src="${baseUrl}/${tenFile}" alt="Mục lục" style="width: 100%; height: auto; margin-bottom: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: block;">`;
-        }).join('');
+                return `<div class="tree-file-item" onclick="ham_xem_file_drive('${node.id}', '${node.name}', '${fileMime}')">${icon} ${node.name}</div>`;
+            }
 
-        // 5. Mở Popup hiển thị ảnh lên
-        Swal.fire({
-            title: '<h3 style="margin: 0; color: #fd7e14;">📚 MỤC LỤC SÁCH GIÁO KHOA</h3>',
-            html: `<div style="max-height: 70vh; overflow-y: auto; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                        ${htmlHienThiAnh}
-                   </div>`,
-            width: '800px',
-            showCloseButton: true,
-            showConfirmButton: true,
-            confirmButtonText: 'Đóng lại',
-            confirmButtonColor: '#6c757d'
-        });
+            let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
+            let tongSoFile = demTongSoFile(node);
+            let textSoFile = tongSoFile > 0 ? ` <span style="font-size: 11px; color: #888; font-weight: normal;">(${tongSoFile} tệp)</span>` : '';
+
+            return `
+                <details>
+                    <summary>${node.name}${textSoFile}</summary>
+                    <div style="padding-left: 10px; margin-top: 5px;">
+                        ${htmlChildren}
+                    </div>
+                </details>
+            `;
+        }
+
+        const htmlCayThuMuc = veCayHTML(result.data);
+
+        // THÊM CSS HOVER CHO THANH KÉO (SPLITTER)
+        const styleCSS = `
+            <style>
+                .tree-container details { margin-bottom: 8px; }
+                .tree-container summary { font-weight: bold; cursor: pointer; padding: 10px; background: #f1f3f5; border-radius: 6px; list-style: none; font-size: 15px; border: 1px solid #e9ecef;}
+                .tree-container summary:hover { background: #e2e6ea; }
+                .tree-container summary::before { content: '📁 '; }
+                .tree-container details[open] > summary::before { content: '📂 '; }
+                .tree-container details[open] > summary { color: #fd7e14; }
+                
+                .tree-file-item { padding: 8px 10px 8px 25px; cursor: pointer; color: #0056b3; font-size: 14px; border-radius: 4px; margin-top: 3px; border-left: 2px dashed #ced4da; margin-left: 12px; transition: 0.2s;}
+                .tree-file-item:hover { background: #e8f0fe; color: #004494; font-weight: 500; border-left-color: #0056b3; }
+
+                /* CSS cho Thanh Kéo 9 chấm */
+                #drag-splitter:hover .splitter-icon { background: #ced4da !important; color: #343a40 !important; }
+            </style>
+        `;
+
+        vungLamViec.innerHTML = `
+            ${styleCSS}
+            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+                <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="padding: 8px 15px; cursor:pointer; border-radius: 6px; border: 1px solid #ccc; background: white;">⬅️ Quay lại</button>
+                <h3 style="color: #fd7e14; margin: 0;">📚 KHO TÀI LIỆU SÁCH GIÁO KHOA (DRIVE)</h3>
+            </div>
+            
+            <div style="display: flex; align-items: stretch; gap: 10px; width: 100%;">
+                
+                <div id="tree-panel" class="tree-container" style="width: 320px; flex-shrink: 0; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-height: 750px; overflow-y: auto;">
+                    ${htmlCayThuMuc}
+                </div>
+
+                <div id="drag-splitter" style="width: 15px; display: flex; align-items: center; justify-content: center; cursor: col-resize; flex-shrink: 0;" title="Kéo để thay đổi độ rộng">
+                    <div class="splitter-icon" style="padding: 15px 4px; background: #e9ecef; border-radius: 4px; color: #6c757d; transition: 0.2s; display: flex; align-items: center;">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <circle cx="2" cy="2" r="1.5"/><circle cx="6" cy="2" r="1.5"/><circle cx="10" cy="2" r="1.5"/>
+                            <circle cx="2" cy="6" r="1.5"/><circle cx="6" cy="6" r="1.5"/><circle cx="10" cy="6" r="1.5"/>
+                            <circle cx="2" cy="10" r="1.5"/><circle cx="6" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div id="content-panel" style="flex: 1; min-width: 300px; border: 1px solid #dee2e6; border-radius: 8px; padding: 25px; background: #f8f9fa; min-height: 600px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+                    <h4 id="tieu-de-anh-sgk" style="margin-top: 0; color: #495057; border-bottom: 2px dashed #dee2e6; padding-bottom: 15px;">
+                        👈 Bấm vào một Tệp tin bên trái để xem nội dung
+                    </h4>
+                    <div id="khung-hien-thi-anh-sgk" style="text-align: center; margin-top: 20px;"></div>
+                </div>
+            </div>
+        `;
+
+        // ==================================================
+        // KÍCH HOẠT SỰ KIỆN KÉO THẢ (DRAG TO RESIZE)
+        // ==================================================
+        const splitter = document.getElementById('drag-splitter');
+        const treePanel = document.getElementById('tree-panel');
+        let isResizing = false;
+
+        const startResize = (e) => {
+            isResizing = true;
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none'; // Ngăn bôi đen chữ khi đang kéo
+
+            document.addEventListener('mousemove', doResize);
+            document.addEventListener('mouseup', stopResize);
+        };
+
+        const doResize = (e) => {
+            if (!isResizing) return;
+            // Tính toán chiều rộng mới dựa trên vị trí chuột
+            const containerLeft = treePanel.parentElement.getBoundingClientRect().left;
+            let newWidth = e.clientX - containerLeft;
+
+            // Giới hạn thu phóng: Cột trái tối thiểu 200px, tối đa 800px
+            if (newWidth >= 200 && newWidth <= 800) {
+                treePanel.style.width = newWidth + 'px';
+            }
+        };
+
+        const stopResize = () => {
+            isResizing = false;
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+
+            document.removeEventListener('mousemove', doResize);
+            document.removeEventListener('mouseup', stopResize);
+        };
+
+        splitter.addEventListener('mousedown', startResize);
 
     } catch (error) {
-        console.error("Lỗi khi tải danh sách ảnh:", error);
-        Swal.fire('Lỗi kết nối', 'Không thể lấy dữ liệu ảnh từ máy chủ. Vui lòng thử lại sau!', 'error');
+        console.error("Lỗi:", error);
+        vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#dc3545;">❌ Lỗi kết nối tới Google Drive! Hãy kiểm tra lại link Apps Script.</h3></div>`;
     }
+};
+// =====================================================================
+// 2. Hàm nhúng file Drive sang bên phải 
+// (ẢNH: Dùng Zoom tuỳ chỉnh | PDF/WORD: Dùng Trình xem mặc định Google Drive)
+// =====================================================================
+window.ham_xem_file_drive = function (fileId, fileName, mimeType) {
+    document.getElementById('tieu-de-anh-sgk').innerHTML = `<span style="color: #fd7e14;">Đang xem:</span> ${fileName}`;
+    const khungAnh = document.getElementById('khung-hien-thi-anh-sgk');
+
+    khungAnh.innerHTML = '<p style="color: #0056b3; font-weight: bold;">⏳ Đang tải tài liệu...</p>';
+
+    setTimeout(() => {
+        // TRƯỜNG HỢP 1: NẾU LÀ ẢNH -> DÙNG BỘ CÔNG CỤ ZOOM/PAN THỦ CÔNG
+        if (mimeType.includes('image')) {
+            khungAnh.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 13px; color: #6c757d; font-style: italic;">
+                        💡 Lăn chuột để Thu/Phóng - Nhấn giữ chuột để kéo ảnh
+                    </span>
+                    <div>
+                        <button onclick="ham_zoom_anh(0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➕ Lớn</button>
+                        <button onclick="ham_zoom_anh(-0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➖ Nhỏ</button>
+                        <button onclick="ham_zoom_anh(0, true)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white;">🔄 Đặt lại</button>
+                    </div>
+                </div>
+                
+                <div id="khung-chua-anh" style="width: 100%; height: 650px; overflow: hidden; border: 1px solid #dee2e6; border-radius: 8px; background: #e9ecef; position: relative; cursor: grab; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img id="anh-sgk-zoom" src="https://drive.google.com/thumbnail?id=${fileId}&sz=w2000" 
+                         alt="${fileName}" 
+                         style="max-width: 100%; max-height: 100%; transform: scale(1) translate(0px, 0px); transition: transform 0.1s ease-out; transform-origin: center center; object-fit: contain;"
+                         draggable="false">
+                </div>
+            `;
+
+            // Kích hoạt lại tính năng lăn và kéo chuột cho ảnh
+            window.kichHoatZoomKeoAnh();
+        }
+
+        // TRƯỜNG HỢP 2: NẾU LÀ PDF / WORD -> TRỞ VỀ TRÌNH XEM MẶC ĐỊNH CỦA DRIVE
+        else {
+            khungAnh.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: #e8f0fe; padding: 10px 15px; border-radius: 6px; border-left: 4px solid #4285f4;">
+                    <span style="font-size: 13px; color: #1a73e8;">
+                        💡 Nếu tài liệu không hiển thị, hãy đảm bảo bạn đã cấu hình thư mục Drive ở chế độ "Bất kỳ ai có đường liên kết".
+                    </span>
+                    <a href="https://drive.google.com/file/d/${fileId}/view" target="_blank" 
+                       style="padding: 6px 15px; background: #0056b3; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: 0.2s; white-space: nowrap;">
+                       🚀 Mở to ở Tab mới
+                    </a>
+                </div>
+                
+                <iframe 
+                    src="https://drive.google.com/file/d/${fileId}/preview" 
+                    width="100%" 
+                    height="700px" 
+                    allow="fullscreen"
+                    style="border: none; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #fff;">
+                </iframe>
+            `;
+        }
+    }, 100);
+};
+
+// =====================================================================
+// BỘ HÀM HỖ TRỢ XỬ LÝ ZOOM VÀ KÉO ẢNH (PAN & ZOOM)
+// =====================================================================
+
+window.anhScale = 1;
+window.anhTranslateX = 0;
+window.anhTranslateY = 0;
+
+window.ham_zoom_anh = function (step, reset = false) {
+    const img = document.getElementById('anh-sgk-zoom');
+    if (!img) return;
+
+    if (reset) {
+        window.anhScale = 1;
+        window.anhTranslateX = 0;
+        window.anhTranslateY = 0;
+        img.style.transition = 'transform 0.3s ease-out'; // Trả về mượt mà
+    } else {
+        window.anhScale += step;
+        if (window.anhScale < 0.2) window.anhScale = 0.2; // Không cho thu nhỏ quá mức
+        if (window.anhScale > 6) window.anhScale = 6;     // Không cho phóng to quá mức
+        img.style.transition = 'transform 0.1s ease-out';
+    }
+    img.style.transform = `scale(${window.anhScale}) translate(${window.anhTranslateX}px, ${window.anhTranslateY}px)`;
+};
+
+window.kichHoatZoomKeoAnh = function () {
+    const img = document.getElementById('anh-sgk-zoom');
+    const container = document.getElementById('khung-chua-anh');
+    if (!img || !container) return;
+
+    window.anhScale = 1; window.anhTranslateX = 0; window.anhTranslateY = 0;
+    let isDragging = false;
+    let startX, startY;
+
+    // 1. Bắt sự kiện LĂN CHUỘT (WHEEL) để Zoom
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault(); // Ngăn trang web cuộn lên/xuống khi đang lăn ảnh
+        const step = e.deltaY > 0 ? -0.15 : 0.15;
+        window.ham_zoom_anh(step);
+    }, { passive: false });
+
+    // 2. Bắt sự kiện KÉO THẢ CHUỘT (DRAG) để di chuyển ảnh
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - window.anhTranslateX * window.anhScale;
+        startY = e.clientY - window.anhTranslateY * window.anhScale;
+        container.style.cursor = 'grabbing';
+        img.style.transition = 'none'; // Tắt hiệu ứng mượt để ảnh bám sát tay lập tức
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        window.anhTranslateX = (e.clientX - startX) / window.anhScale;
+        window.anhTranslateY = (e.clientY - startY) / window.anhScale;
+        img.style.transform = `scale(${window.anhScale}) translate(${window.anhTranslateX}px, ${window.anhTranslateY}px)`;
+    });
+
+    const stopDrag = () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+        img.style.transition = 'transform 0.1s ease-out';
+    };
+
+    container.addEventListener('mouseup', stopDrag);
+    container.addEventListener('mouseleave', stopDrag);
 };

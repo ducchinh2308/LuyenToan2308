@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_05f6f5de8a",
+  "dapAn": "B",
+  "loiGiai": "Dựa vào đồ thị, trên đoạn $[1;3]$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Giá trị lớn nhất $M = \\max_{[1;3]} f(x) = f(2) = 0$.\r\n\t\t\t\\item Giá trị nhỏ nhất $m = \\min_{[1;3]} f(x) = f(3) = -4$.\r\n\t\t\\end{itemize}\r\n\t\tSuy ra: $M + m = 0 + (-4) = -4$."
+}
