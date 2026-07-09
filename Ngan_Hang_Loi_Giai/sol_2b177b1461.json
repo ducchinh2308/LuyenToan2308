@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2b177b1461",
+  "dapAn": "C",
+  "loiGiai": "Để tứ giác $ABCD$ là hình bình hành thì $\\vec{AB} = \\vec{DC}$.\\\\\r\n\t\tTa có $\\vec{AB} = (-3 - 1; 0 - 2; 3 - 1) = (-4; -2; 2)$.\\\\\r\n\t\tGọi $D(x_D; y_D; z_D)$, ta có $\\vec{DC} = (2 - x_D; 4 - y_D; -1 - z_D)$.\\\\\r\n\t\tTừ điều kiện $\\vec{AB} = \\vec{DC}$, ta có hệ phương trình:\\\\\r\n\t\t$\\begin{cases} 2 - x_D = -4 \\\\ 4 - y_D = -2 \\\\ -1 - z_D = 2 \\end{cases} \\Leftrightarrow \\begin{cases} x_D = 6 \\\\ y_D = 6 \\\\ z_D = -3 \\end{cases} \\Rightarrow D(6; 6; -3)$.\\\\\r\n\t\tChọn đáp án C."
+}

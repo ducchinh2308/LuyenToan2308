@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_60a6e92a54",
+  "dapAn": "A",
+  "loiGiai": "Gọi $I(x_I; y_I; z_I)$ là trung điểm của đoạn thẳng $AB$.\\\\\r\n\t\tKhi đó, ta có tọa độ điểm $I$ được tính theo công thức:\\\\\r\n\t\t$\\begin{cases} x_I = \\dfrac{x_A + x_B}{2} = \\dfrac{1 + 5}{2} = 3 \\\\ y_I = \\dfrac{y_A + y_B}{2} = \\dfrac{3 + (-3)}{2} = 0 \\\\ z_I = \\dfrac{z_A + z_B}{2} = \\dfrac{5 + 1}{2} = 3 \\end{cases}$.\\\\\r\n\t\tVậy tọa độ trung điểm $I(3; 0; 3)$."
+}

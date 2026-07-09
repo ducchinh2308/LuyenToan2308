@@ -1,0 +1,217 @@
+{
+  "maDe": "K12-HH1-TOADOVECTO-21TN-DE5",
+  "tenDe": "ĐỀ K12-HH1-TOADOVECTO-21TN-DE5",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_4b55d91c02",
+      "ma_goc": "2603-536",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hình bình hành $ABCD$ có $A(-3; 1; 2)$, $B(-2; 4; -1)$, $C(1; -3; 3)$. Tọa độ điểm $D$ là:",
+      "paA": "$(0; -6; 6)$",
+      "paB": "$(2; 0; 0)$",
+      "paC": "$(-6; 7; -2)$",
+      "paD": "$(-4; 2; 5)$"
+    },
+    {
+      "maCau": "q_8549387d54",
+      "ma_goc": "2603-559",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho tam giác $ABC$ với $A(1; 2; 1)$, $B(-3; 0; 3)$, $C(2; 4; -1)$. Tìm tọa độ điểm $D$ sao cho tứ giác $ABCD$ là hình bình hành.",
+      "paA": "$D(6; -6; -3)$",
+      "paB": "$D(6; 6; 3)$",
+      "paC": "$D(6; 6; -3)$",
+      "paD": "$D(6; -6; 3)$"
+    },
+    {
+      "maCau": "q_45df87501c",
+      "ma_goc": "2603-581",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho tam giác $ABC$ biết $A(1; 4; -3)$ và trọng tâm $G(-1; 2; 5)$. Xác định tọa độ của $\\vec{AB} + \\vec{AC}$",
+      "paA": "$\\vec{AB} + \\vec{AC} = (-6; 6; -24)$",
+      "paB": "$\\vec{AB} + \\vec{AC} = (-6; 6; 24)$",
+      "paC": "$\\vec{AB} + \\vec{AC} = (-6; -6; 24)$",
+      "paD": "$\\vec{AB} + \\vec{AC} = (-6; -6; -24)$"
+    },
+    {
+      "maCau": "q_96b7a261e2",
+      "ma_goc": "2603-774",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai véc-tơ $\\vec{u} = (2; 0; -1)$ và $\\vec{v} = (1; -1; 2)$. Độ dài của véc-tơ $\\vec{w} = \\vec{u} + 2\\vec{v}$ bằng",
+      "paA": "$29$",
+      "paB": "$\\sqrt{29}$",
+      "paC": "$\\sqrt{5} + 2\\sqrt{6}$",
+      "paD": "$5$"
+    },
+    {
+      "maCau": "q_e151e24a24",
+      "ma_goc": "2603-882",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho $2$ điểm $A(2;2;3),B(0;-4;1)$. Tọa độ trung điểm của đoạn thẳng $AB$ là",
+      "paA": "$(-1;-3;-1)$",
+      "paB": "$(1;-1;2)$",
+      "paC": "$(2;-2;4)$",
+      "paD": "$(-2;-6;-2)$"
+    },
+    {
+      "maCau": "q_453c992d80",
+      "ma_goc": "2603-988",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(1; 3; 5)$ và $B(5; -3; 1)$. Tọa độ trung điểm của đoạn thẳng $AB$ là",
+      "paA": "$(3; 0; 3)$",
+      "paB": "$(6; 0; 6)$",
+      "paC": "$(-2; 3; 2)$",
+      "paD": "$(-4; 6; 4)$"
+    },
+    {
+      "maCau": "q_8af3f4854b",
+      "ma_goc": "2603-1078",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a} = (2; -1; 3), \\vec{b} = (0; 3; 5)$. Tính tích vô hướng $\\vec{a} \\cdot \\vec{b}$.",
+      "paA": "$12$",
+      "paB": "$6$",
+      "paC": "$9$",
+      "paD": "$7$"
+    },
+    {
+      "maCau": "q_dd482624c2",
+      "ma_goc": "2603-1152",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2; -2; 1)$ trên mặt phẳng $(Oxy)$ có tọa độ là",
+      "paA": "$(2; -2; 0)$",
+      "paB": "$(0; 0; 1)$",
+      "paC": "$(0; -2; 1)$",
+      "paD": "$(2; 0; 1)$"
+    },
+    {
+      "maCau": "q_5790497bef",
+      "ma_goc": "2603-1234",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho ba vectơ $\\vec{a} = (3; 0; 1)$, $\\vec{b} = (1; -1; -2)$ và $\\vec{c} = (2; 1; -1)$. Tích vô hướng $\\vec{a} \\cdot (\\vec{b} + \\vec{c})$ bằng",
+      "paA": "$0$",
+      "paB": "$3$",
+      "paC": "$6$",
+      "paD": "$9$"
+    },
+    {
+      "maCau": "q_89c39942a6",
+      "ma_goc": "2603-2770",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai điểm $A(2;1;4)$; $B(4;5;-2)$. Vectơ $\\overrightarrow{AB}$ có tọa độ là:",
+      "paA": "$\\overrightarrow{AB} = (2;4;-6)$",
+      "paB": "$\\overrightarrow{AB} = (1;2;-3)$",
+      "paC": "$\\overrightarrow{AB} = (3;3;1)$",
+      "paD": "$\\overrightarrow{AB} = (6;6;2)$"
+    },
+    {
+      "maCau": "q_a35fe5224c",
+      "ma_goc": "2603-3075",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho $\\vec{a} = (2;-2;6)$. Khi đó độ dài của vectơ $\\vec{a}$ là",
+      "paA": "$\\left|\\vec{a}\\right| = 44$",
+      "paB": "$\\left|\\vec{a}\\right| = \\sqrt{11}$",
+      "paC": "$\\left|\\vec{a}\\right| = 6$",
+      "paD": "$\\left|\\vec{a}\\right| = 2\\sqrt{11}$"
+    },
+    {
+      "maCau": "q_5a5c7e5726",
+      "ma_goc": "2603-3248",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(3;2;-1)$ trên mặt phẳng $(Oxz)$ là",
+      "paA": "$(3;0;-1)$",
+      "paB": "$(3;2;0)$",
+      "paC": "$(0;2;0)$",
+      "paD": "$(0;2;-1)$"
+    },
+    {
+      "maCau": "q_1c6d6be26e",
+      "ma_goc": "2604-240",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho vectơ $\\vec{u} = (2; -1; 3)$. Tìm tọa độ của vectơ $3\\vec{u}$.",
+      "paA": "$3\\vec{u} = (6; -1; 3)$",
+      "paB": "$3\\vec{u} = (5; -3; 6)$",
+      "paC": "$3\\vec{u} = (2; -1; 9)$",
+      "paD": "$3\\vec{u} = (6; -3; 9)$"
+    },
+    {
+      "maCau": "q_93993e04f0",
+      "ma_goc": "2604-1575",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho $\\vec{a} = -3\\vec{i} + 5\\vec{j} - \\vec{k}$. Độ dài của $\\vec{a}$ là",
+      "paA": "$\\sqrt{17}$",
+      "paB": "$35$",
+      "paC": "$17$",
+      "paD": "$\\sqrt{35}$"
+    },
+    {
+      "maCau": "q_d568b0b8d9",
+      "ma_goc": "2605-313",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, điểm đối xứng với điểm $A(1;2;3)$ qua mặt phẳng $(Oxy)$ có tọa độ là",
+      "paA": "$(1;2;0)$",
+      "paB": "$(0;0;3)$",
+      "paC": "$(1;2;-3)$",
+      "paD": "$(-1;-2;3)$"
+    },
+    {
+      "maCau": "q_fe5b7a0ee8",
+      "ma_goc": "2605-698",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(1; -2; 1)$ và $B(2; 3; -4)$. Tọa độ trung điểm $I$ của đoạn thẳng $AB$ là",
+      "paA": "$I(3; 1; -3)$",
+      "paB": "$I\\left(\\displaystyle \\frac{1}{2}; \\displaystyle \\frac{5}{2}; -\\displaystyle \\frac{5}{2}\\right)$",
+      "paC": "$I\\left(\\displaystyle \\frac{3}{2}; \\displaystyle \\frac{1}{2}; -\\displaystyle \\frac{3}{2}\\right)$",
+      "paD": "$I\\left(-\\displaystyle \\frac{1}{2}; -\\displaystyle \\frac{5}{2}; \\displaystyle \\frac{5}{2}\\right)$"
+    },
+    {
+      "maCau": "q_f7cf05dfa2",
+      "ma_goc": "2605-924",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(3;-1;1)$. Hình chiếu vuông góc của điểm $A$ trên mặt phẳng $(Oyz)$ là điểm nào dưới đây?",
+      "paA": "$P(0;-1;0)$",
+      "paB": "$N(0;-1;1)$",
+      "paC": "$Q(0;1;1)$",
+      "paD": "$M(3;0;0)$"
+    },
+    {
+      "maCau": "q_15e78aaf6b",
+      "ma_goc": "2605-1126",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho ba điểm $A(1;3;5), B(2;0;1), C(0;9;0)$. Tìm trọng tâm $G$ của tam giác $ABC$.",
+      "paA": "$G(1;5;2)$",
+      "paB": "$G(1;0;5)$",
+      "paC": "$G(1;4;2)$",
+      "paD": "$G(3;12;6)$"
+    },
+    {
+      "maCau": "q_219d605717",
+      "ma_goc": "2605-1288",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho véctơ $\\vec{a}=(2;-1;3)$. Toạ độ của véctơ $3\\vec{a}$ là:",
+      "paA": "$(6;-3;9)$",
+      "paB": "$(-6;3;-9)$",
+      "paC": "$(5;2;6)$",
+      "paD": "$(6;-1;3)$"
+    },
+    {
+      "maCau": "q_e2630d5614",
+      "ma_goc": "2605-1571",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(-1;2;5)$ và $B(3;-6;1)$. Vectơ $\\vec{AB}$ cùng phương với vectơ nào dưới đây?",
+      "paA": "$\\vec{b}=(-1;2;1)$",
+      "paB": "$\\vec{c}=(1;2;-1)$",
+      "paC": "$\\vec{a}=(1;2;1)$",
+      "paD": "$\\vec{d}=(-1;1;2)$"
+    },
+    {
+      "maCau": "q_f0387058b8",
+      "ma_goc": "2606-1",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1; -2; 3)$. Tìm tọa độ điểm $M'$ đối xứng với điểm $M$ qua mặt phẳng $(Oxy)$ là",
+      "paA": "$M'(-1; 2; -3)$.",
+      "paB": "$M'(1; -2; 0)$.",
+      "paC": "$M'(-1; 2; 3)$.",
+      "paD": "$M'(1; -2; -3)$."
+    }
+  ]
+}

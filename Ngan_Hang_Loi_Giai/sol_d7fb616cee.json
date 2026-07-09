@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d7fb616cee",
+  "dapAn": "C",
+  "loiGiai": "Vì $I$ là trung điểm của $AB$ nên ta có $\\begin{cases} x_I = \\displaystyle \\frac{x_A + x_B}{2} \\\\ y_I = \\displaystyle \\frac{y_A + y_B}{2} \\\\ z_I = \\displaystyle \\frac{z_A + z_B}{2} \\end{cases} \\Leftrightarrow \\begin{cases} x_I = \\displaystyle \\frac{1 + 2}{2} = \\displaystyle \\frac{3}{2} \\\\ y_I = \\displaystyle \\frac{-2 + 3}{2} = \\displaystyle \\frac{1}{2} \\\\ z_I = \\displaystyle \\frac{1 - 4}{2} = -\\displaystyle \\frac{3}{2} \\end{cases}$.\\\\\r\n\t\tVậy $I\\left(\\displaystyle \\frac{3}{2}; \\displaystyle \\frac{1}{2}; -\\displaystyle \\frac{3}{2}\\right)$.\\\\"
+}

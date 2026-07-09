@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3908b7eb4f",
+  "dapAn": "D",
+  "loiGiai": "Độ dài của vectơ $\\vec{a} = (x;y;z)$ được tính bằng công thức $\\left|\\vec{a}\\right| = \\sqrt{x^2+y^2+z^2}$.\\\\\r\n\t\tVới $\\vec{a} = (2;-2;6)$, ta có:\\\\\r\n\t\t$\\left|\\vec{a}\\right| = \\sqrt{2^2 + (-2)^2 + 6^2} = \\sqrt{4 + 4 + 36} = \\sqrt{44} = \\sqrt{4 \\cdot 11} = 2\\sqrt{11}$."
+}
