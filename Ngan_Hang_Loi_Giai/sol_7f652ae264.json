@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7f652ae264",
+  "dapAn": "B",
+  "loiGiai": "Vì $B$ đối xứng với $A(-5;2;3)$ qua trục $Oy$ nên toạ độ điểm $B$ là $(5;2;-3)$ (giữ nguyên $y$, đổi dấu $x, z$).\\\\\r\n\t\tKhi đó độ dài đoạn thẳng $AB$ là:\\\\\r\n\t\t$AB = \\sqrt{(5 - (-5))^2 + (2-2)^2 + (-3-3)^2} = \\sqrt{10^2 + 0^2 + (-6)^2} = \\sqrt{100 + 36} = \\sqrt{136} = 2\\sqrt{34}$."
+}

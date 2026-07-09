@@ -1,0 +1,217 @@
+{
+  "maDe": "K12-HH1-TOADOVECTO-21TN-DE4",
+  "tenDe": "ĐỀ K12-HH1-TOADOVECTO-21TN-DE4",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_ce8e48e14c",
+      "ma_goc": "2603-529",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho các điểm $A(1; 1; -2)$ và $B(3; -1; 2)$. Tọa độ của vectơ $\\vec{BA}$ là",
+      "paA": "$(1; -1; 2)$",
+      "paB": "$(2; 0; 0)$",
+      "paC": "$(2; -2; 4)$",
+      "paD": "$(2; -2; 4)$"
+    },
+    {
+      "maCau": "q_90830151bb",
+      "ma_goc": "2603-555",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a} = (2; 3; 2)$ và $\\vec{b} = (1; 1; -1)$. Khi đó vectơ $\\vec{a} + \\vec{b}$ có tọa độ là",
+      "paA": "$(1; 2; 3)$",
+      "paB": "$(3; 4; 1)$",
+      "paC": "$(3; 5; 1)$",
+      "paD": "$(-1; -2; 3)$"
+    },
+    {
+      "maCau": "q_a42db79893",
+      "ma_goc": "2603-578",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(2; -3; 5)$. Khẳng định nào sau đây là \\textbf{sai}?",
+      "paA": "$\\cos(\\vec{OA}; \\vec{i} - \\vec{j}) = \\displaystyle \\frac{-1}{\\sqrt{76}}$",
+      "paB": "$\\cos(\\vec{OA}; \\vec{i}) = \\displaystyle \\frac{2}{\\sqrt{38}}$",
+      "paC": "$\\cos(\\vec{OA}; \\vec{k}) = \\displaystyle \\frac{5}{\\sqrt{38}}$",
+      "paD": "$\\cos(\\vec{OA}; \\vec{j}) = \\displaystyle \\frac{-3}{\\sqrt{38}}$"
+    },
+    {
+      "maCau": "q_005ca6e8ab",
+      "ma_goc": "2603-773",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai véc-tơ $\\vec{u} = (-2; 3; 0)$ và $\\vec{v} = (1; 2; 1)$. Tích vô hướng của hai véc-tơ $\\vec{u}$ và $\\vec{v}$ bằng",
+      "paA": "$5$",
+      "paB": "$-8$",
+      "paC": "$3$",
+      "paD": "$4$"
+    },
+    {
+      "maCau": "q_46653f4b4f",
+      "ma_goc": "2603-868",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho tam giác $ABC$ có $\\vec{AB} = (-3; 0; 4)$ và gọi $M$ là trung điểm $BC$. Biết rằng $\\vec{AM} = (1; -1; 4)$. Tính độ dài đoạn $AC$.",
+      "paA": "$5$",
+      "paB": "$3\\sqrt{2}$",
+      "paC": "$3\\sqrt{5}$",
+      "paD": "$\\dfrac{5\\sqrt{3}}{2}$"
+    },
+    {
+      "maCau": "q_c358e15737",
+      "ma_goc": "2603-971",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $(Oxyz)$, côsin của góc giữa hai véc tơ $\\vec{u} = (10;10;20)$ và $\\vec{v} = (10;-20;10)$ là",
+      "paA": "$\\displaystyle \\frac{1}{6}$",
+      "paB": "$\\displaystyle -\\frac{1}{6}$",
+      "paC": "$\\displaystyle \\frac{1}{2}$",
+      "paD": "$\\displaystyle -\\frac{1}{2}$"
+    },
+    {
+      "maCau": "q_31e00ead76",
+      "ma_goc": "2603-1042",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(0;3;1)$, $\\vec{b}=(3;0;-1)$. Tính $\\cos(\\vec{a},\\vec{b})$.",
+      "paA": "$\\cos(\\vec{a},\\vec{b})=\\frac{1}{100}$",
+      "paB": "$\\cos(\\vec{a},\\vec{b})=\\frac{1}{100}$",
+      "paC": "$\\cos(\\vec{a},\\vec{b})=-\\frac{1}{10}$",
+      "paD": "$\\cos(\\vec{a},\\vec{b})=\\frac{1}{10}$"
+    },
+    {
+      "maCau": "q_4b301b36dc",
+      "ma_goc": "2603-1145",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(-5;2;3)$ và điểm $B$ là điểm đối xứng với $A$ qua $Oy$. Độ dài đoạn thẳng $AB$ bằng",
+      "paA": "$2\\sqrt{38}$",
+      "paB": "$2\\sqrt{34}$",
+      "paC": "$\\sqrt{34}$",
+      "paD": "$\\sqrt{38}$"
+    },
+    {
+      "maCau": "q_a41e10acc4",
+      "ma_goc": "2603-1214",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M$ thỏa mãn $\\vec{OM} = -2\\vec{i} + \\vec{j} + 3\\vec{k}$. Tọa độ điểm $M$ là",
+      "paA": "$(2; -1; -3)$",
+      "paB": "$(2; 1; 3)$",
+      "paC": "$(-2; 1; 3)$",
+      "paD": "$(-2; -1; 3)$"
+    },
+    {
+      "maCau": "q_a7db568fb5",
+      "ma_goc": "2603-1322",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vecto $\\vec{a} = (1;-2;1)$, $\\vec{b} = (-2;1;1)$. Góc giữa hai vecto $\\vec{a}$ và $\\vec{b}$ là",
+      "paA": "$30^\\circ$",
+      "paB": "$120^\\circ$",
+      "paC": "$60^\\circ$",
+      "paD": "$150^\\circ$"
+    },
+    {
+      "maCau": "q_1d01980fd3",
+      "ma_goc": "2603-3074",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M(2;1;-3)$. Hình chiếu vuông góc của điểm $M(2;1;-3)$ trên trục $Ox$ có tọa độ là",
+      "paA": "$(0;1;0)$",
+      "paB": "$(0;1;-3)$",
+      "paC": "$(2;0;0)$",
+      "paD": "$(0;0;-3)$"
+    },
+    {
+      "maCau": "q_9598a86e25",
+      "ma_goc": "2603-3233",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho các vectơ $\\vec{u}=(1;-2;2)$ và $\\vec{v}=(1;3;-5)$. Tọa độ của vectơ $\\vec{w}=\\vec{u}-\\vec{v}$ là",
+      "paA": "$(2;1;-3)$",
+      "paB": "$(0;1;-3)$",
+      "paC": "$(0;-5;7)$",
+      "paD": "$(0;5;-7)$"
+    },
+    {
+      "maCau": "q_96e1cb714d",
+      "ma_goc": "2604-171",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, khoảng cách giữa hai điểm $A(-2;-3;9)$ và $B(-2;3;1)$ bằng:",
+      "paA": "$10$",
+      "paB": "$8$",
+      "paC": "$100$",
+      "paD": "$6$"
+    },
+    {
+      "maCau": "q_01373c7bf6",
+      "ma_goc": "2604-1567",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M(1;2;3)$. Tìm tọa độ hình chiếu vuông góc của $M$ lên trục $Ox$.",
+      "paA": "$(2;0;0)$",
+      "paB": "$(3;0;0)$",
+      "paC": "$(1;0;0)$",
+      "paD": "$(1;0;3)$"
+    },
+    {
+      "maCau": "q_94221056b1",
+      "ma_goc": "2605-200",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, tam giác $ABC$ có $\\vec{AB}=(-2;-5;0)$; $\\vec{AC}=(2;-2;0)$. Độ dài đoạn thẳng $BC$ bằng",
+      "paA": "$7$",
+      "paB": "$5$",
+      "paC": "$3$",
+      "paD": "$\\sqrt{10}$"
+    },
+    {
+      "maCau": "q_d8529f55c8",
+      "ma_goc": "2605-679",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho vectơ $\\vec{w} = (-9;-7;7)$. Tọa độ điểm $D$ thỏa mãn $\\vec{OD} = \\vec{w}$ là",
+      "paA": "$(0;-9;7)$",
+      "paB": "$(9;7;7)$",
+      "paC": "$(-9;7;-7)$",
+      "paD": "$(-9;-7;7)$"
+    },
+    {
+      "maCau": "q_0a5acaa300",
+      "ma_goc": "2605-902",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai véc-tơ $\\vec{a} = (1; 1; 0), \\vec{b} = (3; -1; 0)$. Tọa độ véc-tơ $\\vec{u} = 2\\vec{a} - \\vec{b}$ là",
+      "paA": "$\\vec{u}(4; 0; 0)$",
+      "paB": "$\\vec{u}(7; -1; 0)$",
+      "paC": "$\\vec{u}(1; -3; 0)$",
+      "paD": "$\\vec{u}(-1; 3; 0)$"
+    },
+    {
+      "maCau": "q_a3d1e1443d",
+      "ma_goc": "2605-1125",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho $\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là:",
+      "paA": "$(-3;2;-1)$",
+      "paB": "$(-1;2;-3)$",
+      "paC": "$(2;-1;-3)$",
+      "paD": "$(2;-3;-1)$"
+    },
+    {
+      "maCau": "q_3d68e162b8",
+      "ma_goc": "2605-1266",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(3;1;-2)$, $B(2;-3;5)$. Điểm $M$ thuộc đoạn $AB$ sao cho $MA = 2MB$, tọa độ điểm $M$ là",
+      "paA": "$\\left(\\displaystyle \\frac{3}{2}; -5; \\displaystyle \\frac{17}{2}\\right)$",
+      "paB": "$\\left(\\displaystyle \\frac{7}{3}; -\\displaystyle \\frac{5}{3}; \\displaystyle \\frac{8}{3}\\right)$",
+      "paC": "$(1;-7;12)$",
+      "paD": "$(4;5;-9)$"
+    },
+    {
+      "maCau": "q_ca57d53f58",
+      "ma_goc": "2605-1511",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a} = (3; -2; -6)$, $\\vec{b} = (5; -2; 3)$. Tìm tọa độ của vectơ $\\vec{a} + \\vec{b}$.",
+      "paA": "$\\vec{a} + \\vec{b} = (-2; 0; -9)$",
+      "paB": "$\\vec{a} + \\vec{b} = (8; -4; 3)$",
+      "paC": "$\\vec{a} + \\vec{b} = (-8; 4; 3)$",
+      "paD": "$\\vec{a} + \\vec{b} = (8; -4; -3)$"
+    },
+    {
+      "maCau": "q_fe881c99c4",
+      "ma_goc": "2605-1691",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho $\\vec{a} = (-1; 0; 2)$ và $\\vec{b} = (2; 3; 2)$. Giá trị của $\\vec{a} \\cdot \\vec{b}$ bằng",
+      "paA": "$2$",
+      "paB": "$-6$",
+      "paC": "$-3$",
+      "paD": "$4$"
+    }
+  ]
+}

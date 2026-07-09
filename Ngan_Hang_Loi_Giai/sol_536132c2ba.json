@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_536132c2ba",
+  "dapAn": "C",
+  "loiGiai": "Ta có: $\\cos(\\vec{a},\\vec{b}) = \\frac{\\vec{a}.\\vec{b}}{\\left|\\vec{a}\\right|.\\left|\\vec{b}\\right|} = \\frac{0.3+3.0+1.(-1)}{\\sqrt{0^2+3^2+1^2}.\\sqrt{3^2+0^2+(-1)^2}} = -\\frac{1}{10}$."
+}

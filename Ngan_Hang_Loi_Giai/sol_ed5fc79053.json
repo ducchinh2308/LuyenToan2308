@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ed5fc79053",
+  "dapAn": "A",
+  "loiGiai": "Khoảng cách giữa hai điểm $A(x_A;y_A;z_A)$ và $B(x_B;y_B;z_B)$ được tính bằng công thức:\\\\\r\n\t\t$AB = \\sqrt{(x_B-x_A)^2 + (y_B-y_A)^2 + (z_B-z_A)^2}$.\\\\\r\n\t\tThay tọa độ điểm $A(-2;-3;9)$ và $B(-2;3;1)$ vào công thức, ta có:\\\\\r\n\t\t$AB = \\sqrt{(-2-(-2))^2 + (3-(-3))^2 + (1-9)^2} \\Rightarrow AB=10$.\\\\\r\n\t\tVậy khoảng cách giữa hai điểm $A$ và $B$ là $10$."
+}

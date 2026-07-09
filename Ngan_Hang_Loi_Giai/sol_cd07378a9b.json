@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cd07378a9b",
+  "dapAn": "B",
+  "loiGiai": "Ta có: $\\displaystyle \\cos(\\vec{a},\\vec{b}) = \\frac{\\vec{a} \\cdot \\vec{b}}{\\left|\\vec{a}\\right| \\cdot \\left|\\vec{b}\\right|} = \\frac{1 \\cdot (-2) + (-2) \\cdot 1 + 1 \\cdot 1}{\\sqrt{1^2 + (-2)^2 + 1^2} \\cdot \\sqrt{(-2)^2 + 1^2 + 1^2}} = -\\frac{1}{2}$. \\\\\r\n\t\t$\\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$."
+}

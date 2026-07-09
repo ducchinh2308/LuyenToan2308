@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ec36cd2e4f",
+  "dapAn": "A",
+  "loiGiai": "Ta có $\\cos(\\vec{u},\\vec{v}) = \\displaystyle \\frac{\\vec{u} \\cdot \\vec{v}}{\\left|\\vec{u}\\right| \\cdot \\left|\\vec{v}\\right|} = \\frac{10 \\cdot 10 + 10 \\cdot (-20) + 20 \\cdot 10}{\\sqrt{10^2+10^2+20^2} \\cdot \\sqrt{10^2+(-20)^2+10^2}}$.\\\\\r\n\t\t$= \\displaystyle \\frac{100 - 200 + 200}{\\sqrt{600} \\cdot \\sqrt{600}} = \\frac{100}{600} = \\frac{1}{6}$."
+}

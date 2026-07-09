@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5bdc2f95dc",
+  "dapAn": "A",
+  "loiGiai": "Ta có: $\\vec{OA} = (2; -3; 5) \\Rightarrow \\left|\\vec{OA}\\right| = \\sqrt{38}$.\\\\\r\n\t\t$\\vec{i} - \\vec{j} = (1; -1; 0) \\Rightarrow |\\vec{i} - \\vec{j}| = \\sqrt{2}$.\\\\\r\n\t\t$\\cos(\\vec{OA}; \\vec{i} - \\vec{j}) = \\displaystyle \\frac{\\vec{OA} \\cdot (\\vec{i} - \\vec{j})}{\\left|\\vec{OA}\\right| \\cdot |\\vec{i} - \\vec{j}|} = \\frac{2 \\cdot 1 + (-3)(-1) + 5 \\cdot 0}{\\sqrt{38} \\cdot \\sqrt{2}} = \\frac{5}{\\sqrt{76}}$.\\\\\r\n\t\tVậy khẳng định ở phương án A là sai."
+}

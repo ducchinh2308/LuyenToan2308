@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_566da53834",
+  "dapAn": "C",
+  "loiGiai": "Ta có tọa độ vectơ $\\vec{BA} = (x_A - x_B; y_A - y_B; z_A - z_B)$.\\\\\r\n\t\t$\\vec{BA} = (1 - 3; 1 - (-1); -2 - 2) = (-2; 2; -4)$.\\\\\r\n\t\t(Lưu ý: Tọa độ tính được là $(-2; 2; -4)$, trong ảnh chọn phương án C là $(2; -2; 4)$ có thể do nhầm lẫn thứ tự vectơ $\\vec{AB}$ và $\\vec{BA}$ hoặc lỗi in ấn đề gốc. Tôi giữ nguyên đáp án theo ảnh là C)."
+}
