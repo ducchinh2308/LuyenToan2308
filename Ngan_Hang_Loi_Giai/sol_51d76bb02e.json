@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_51d76bb02e",
+  "dapAn": "D",
+  "loiGiai": "Ta có $M(a;b;0) \\in (Oxy)$.\\\\\r\n\t\t$MA^2 + MB^2 = (a-1)^2 + (b-2)^2 + (0-1)^2 + (a-2)^2 + (b+1)^2 + (0-3)^2$\\\\\r\n\t\t$= a^2 - 2a + 1 + b^2 - 4b + 4 + 1 + a^2 - 4a + 4 + b^2 + 2b + 1 + 9$\\\\\r\n\t\t$= 2a^2 - 6a + 2b^2 - 2b + 20$\\\\\r\n\t\t$= 2\\left(a^2 - 3a + \\dfrac{9}{4}\\right) + 2\\left(b^2 - b + \\dfrac{1}{4}\\right) + 20 - \\dfrac{9}{2} - \\dfrac{1}{2}$\\\\\r\n\t\t$= 2\\left(a - \\dfrac{3}{2}\\right)^2 + 2\\left(b - \\dfrac{1}{2}\\right)^2 + 15 \\ge 15$.\\\\\r\n\t\tDấu \"=\" xảy ra khi $\\begin{cases} a - \\frac{3}{2} = 0 \\\\ b - \\frac{1}{2} = 0 \\end{cases} \\Leftrightarrow \\begin{cases} a = \\frac{3}{2} \\\\ b = \\frac{1}{2} \\end{cases}$.\\\\\r\n\t\tVậy $a+b = \\dfrac{3}{2} + \\dfrac{1}{2} = 2$."
+}

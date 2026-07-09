@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_519703f134",
+  "dapAn": "C",
+  "loiGiai": "Ta tính toán lần lượt các thành phần tuyến tính của vectơ:\\\\\r\n\t\t$2\\vec{a} = (2 \\cdot 1; 2 \\cdot (-2); 2 \\cdot 0) = (2;-4;0)$.\\\\\r\n\t\tSuy ra tọa độ hiệu: $\\vec{x} = 2\\vec{a} - \\vec{b} = (2 - (-5); -4 - 4; 0 - (-1)) = (7;-8;1)$."
+}

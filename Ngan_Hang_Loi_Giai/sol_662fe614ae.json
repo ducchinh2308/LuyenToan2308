@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_662fe614ae",
+  "dapAn": "C",
+  "loiGiai": "Ta có: $\\cos(\\vec{a}, \\vec{b}) = \\displaystyle \\frac{1(-2) + (-2) \\cdot 1 + 1 \\cdot 1}{\\sqrt{1^2 + (-2)^2 + 1^2} \\cdot \\sqrt{(-2)^2 + 1^2 + 1^2}} = \\frac{-3}{\\sqrt{6} \\cdot \\sqrt{6}} = -\\frac{1}{2}$.\\\\\r\n\t\tSuy ra $(\\vec{a}, \\vec{b}) = 120^\\circ$.\\\\\r\n\t\tChọn đáp án C."
+}

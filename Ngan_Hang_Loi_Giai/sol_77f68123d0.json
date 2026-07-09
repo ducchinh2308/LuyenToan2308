@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_77f68123d0",
+  "dapAn": "B",
+  "loiGiai": "Có ba điểm $A(-1;-2;3), B(0;3;1), C(4;2;2)$.\\\\\r\n\t\tTa có $\\vec{AB} = (1;5;-2)$, $\\vec{AC} = (5;4;-1)$.\\\\\r\n\t\t$\\cos \\widehat{BAC} = \\cos (\\vec{AB}, \\vec{AC}) = \\displaystyle \\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|}$\\\\\r\n\t\t$= \\displaystyle \\frac{1 \\cdot 5 + 5 \\cdot 4 - 2 \\cdot (-1)}{\\sqrt{1^2+5^2+(-2)^2} \\cdot \\sqrt{5^2+4^2+(-1)^2}} = \\frac{27}{\\sqrt{30} \\cdot \\sqrt{42}} = \\frac{9}{2\\sqrt{35}}$."
+}
