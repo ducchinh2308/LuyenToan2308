@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bfd6da4e17",
+  "dapAn": "A",
+  "loiGiai": "Gọi $H(0;2;-1)$ là hình chiếu của $A$ lên mặt phẳng $(Oyz)$.\\\\\r\n\t\tGọi $A'$ là điểm đối xứng với $A$ qua mặt phẳng $(Oyz)$, khi đó $H$ là trung điểm của $AA'$.\\\\\r\n\t\tKhi đó\r\n\t\t\\[\\begin{cases}\nx_{A'} = 2x_H - x_A = 2 \\cdot 0 - 1 = -1 \\\\  y_{A'} = 2y_H - y_A = 2 \\cdot 2 - 2 = 2 \\\\  z_{A'} = 2z_H - z_A = 2 \\cdot (-1) - (-1) = -1.\n\\end{cases}\\]\r\n\t\tVậy $A'(-1; 2; -1)$."
+}

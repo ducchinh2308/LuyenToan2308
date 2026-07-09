@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f9fa907d59",
+  "dapAn": "D",
+  "loiGiai": "Gọi $B(x; y; z)$.\\\\\r\n\t\tKhi đó $\\vec{AB} = \\vec{u} \\Leftrightarrow \\begin{cases} x - 0 = 3 \\\\ y + 1 = -1 \\\\ z - 1 = 2 \\end{cases} \\Leftrightarrow \\begin{cases} x = 3 \\\\ y = -2 \\\\ z = 3 \\end{cases}$.\\\\\r\n\t\tVậy $B(3; -2; 3)$.\\\\"
+}

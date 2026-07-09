@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_908031584f",
+  "dapAn": "A",
+  "loiGiai": "Ta có: $\\vec{MA} + 3\\vec{MB} = \\vec{0} \\Leftrightarrow \\vec{MA} + 3(\\vec{MA} + \\vec{AB}) = \\vec{0}$.\\\\\r\n\t\t$\\Leftrightarrow \\displaystyle \\vec{MA} = -\\frac{3}{4}\\vec{AB}$.\\\\\r\n\t\tGọi $M(x;y;z)$.\\\\ \r\n\t\tTa có: $\\vec{MA} = (2-x; 2-y; 3-z)$; $\\vec{AB} = (0; -4; -4)$.\\\\\r\n\t\tTừ $\\displaystyle \\vec{MA} = -\\frac{3}{4}\\vec{AB} \\Leftrightarrow \\displaystyle \\begin{cases} 2-x = -\\frac{3}{4}.0 \\\\ 2-y = -\\frac{3}{4}.(-4) \\\\ 3-z = -\\frac{3}{4}.(-4) \\end{cases} \\Leftrightarrow \\displaystyle \\begin{cases} x=2 \\\\ y=-1 \\\\ z=0 \\end{cases}$.\\\\\r\n\t\tVậy $M(2;-1;0)$.\\\\"
+}

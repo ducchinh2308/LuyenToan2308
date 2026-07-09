@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a70b2fd3ef",
+  "dapAn": "C",
+  "loiGiai": "Tọa độ trung điểm $M$ của đoạn thẳng $AB$ được tính theo công thức:\\\\\r\n\t\t$x_M = \\displaystyle \\frac{x_A + x_B}{2} = \\frac{1 + 5}{2} = 3$.\\\\\r\n\t\t$y_M = \\displaystyle \\frac{y_A + y_B}{2} = \\frac{2 - 12}{2} = -5$.\\\\\r\n\t\t$z_M = \\displaystyle \\frac{z_A + z_B}{2} = \\frac{-3 + 17}{2} = 7$.\\\\\r\n\t\tVậy trung điểm là $M(3; -5; 7)$.\\\\\r\n\t\tChọn đáp án C."
+}

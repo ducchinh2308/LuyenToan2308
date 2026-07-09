@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6a5cf19ce6",
+  "dapAn": "D",
+  "loiGiai": "Gọi tọa độ điểm $M$ cần tìm là $(x;y;z)$.\\\\\r\n\t\tTa có: $\\vec{AM} = (x-1; y-4; z+3)$; $\\vec{AB} = (0;-3;6)$.\\\\\r\n\t\tLại có: $M \\in AB$ và $MA=2MB \\Rightarrow \\vec{AM} = \\displaystyle \\frac{2}{3}\\vec{AB}$.\\\\\r\n\t\t$\\Leftrightarrow (x-1; y-4; z+3) = \\displaystyle \\frac{2}{3}(0;-3;6) = (0;-2;4)$.\\\\\r\n\t\t$\\Leftrightarrow \\begin{cases} x-1=0 \\\\ y-4=-2 \\\\ z+3=4 \\end{cases} \\Leftrightarrow \\begin{cases} x=1 \\\\ y=2 \\\\ z=1 \\end{cases}$.\\\\\r\n\t\tVậy tọa độ điểm $M$ cần tìm là $(1;2;1)$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9a3c085730",
+  "dapAn": "B",
+  "loiGiai": "Ta có $|\\vec{u}+\\vec{v}|^{2} = (\\vec{u}+\\vec{v})^{2} = \\vec{u}^{2}+2\\vec{u}\\vec{v}+\\vec{v}^{2} = \\left|\\vec{u}\\right|^{2}+2\\left|\\vec{u}\\right|\\left|\\vec{v}\\right|\\cos(\\vec{u},\\vec{v})+\\left|\\vec{v}\\right|^{2}$.\\\\\r\n\t\t$\\displaystyle = 3^{2} + 2 \\cdot 3 \\cdot 5 \\cdot \\cos 120^{\\circ} + 5^{2} = 9 - 15 + 25 = 19$.\\\\\r\n\t\tKhi đó $|\\vec{u}+\\vec{v}|=\\sqrt{19}$."
+}

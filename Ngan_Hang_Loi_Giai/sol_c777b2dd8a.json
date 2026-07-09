@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c777b2dd8a",
+  "dapAn": "D",
+  "loiGiai": "Gọi tọa độ của điểm $K(x; y; z)$.\\\\\r\n\t\t$\\vec{KA} = 2\\vec{KB} \\Leftrightarrow \\begin{cases} 3 - x = 2(1 - x) \\\\ 2 - y = 2(-4 - y) \\\\ -4 - z = 2(5 - z) \\end{cases} \\Leftrightarrow \\begin{cases} x = -1 \\\\ y = -10 \\\\ z = 14 \\end{cases}$.\\\\\r\n\t\tVậy $K(-1; -10; 14)$."
+}

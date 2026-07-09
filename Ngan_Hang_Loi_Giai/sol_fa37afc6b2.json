@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fa37afc6b2",
+  "dapAn": "B",
+  "loiGiai": "Trong 10 phút đầu, máy bay đi từ $A$ đến $B$, nên vectơ chuyển động là:\\\\\r\n\t\t$\\vec{v} = \\vec{AB} = (950-750; 550-450; 9-7) = (200; 100; 2)$.\\\\\r\n\t\tDo máy bay giữ nguyên vận tốc và hướng bay, nên trong 10 phút tiếp theo, máy bay di chuyển thêm một vectơ đúng bằng $\\vec{AB}$.\\\\\r\n\t\tTọa độ điểm $C$: $\\begin{cases} x = 950 + 200 = 1150 \\\\ y = 550 + 100 = 650 \\\\ z = 9 + 2 = 11 \\end{cases}$.\\\\\r\n\t\tKhi đó $x+y+z = 1150 + 650 + 11 = 1811$."
+}
