@@ -1,0 +1,110 @@
+{
+  "thoiGianGhep": "2026-07-09T06:41:57.266Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_77f68123d0",
+      "dapAn": "B",
+      "loiGiaiHtml": "Có ba điểm $A(-1;-2;3), B(0;3;1), C(4;2;2)$.\\\\\r\n\t\tTa có $\\vec{AB} = (1;5;-2)$, $\\vec{AC} = (5;4;-1)$.\\\\\r\n\t\t$\\cos \\widehat{BAC} = \\cos (\\vec{AB}, \\vec{AC}) = \\displaystyle \\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|}$\\\\\r\n\t\t$= \\displaystyle \\frac{1 \\cdot 5 + 5 \\cdot 4 - 2 \\cdot (-1)}{\\sqrt{1^2+5^2+(-2)^2} \\cdot \\sqrt{5^2+4^2+(-1)^2}} = \\frac{27}{\\sqrt{30} \\cdot \\sqrt{42}} = \\frac{9}{2\\sqrt{35}}$."
+    },
+    {
+      "maBaoMat": "sol_662fe614ae",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\cos(\\vec{a}, \\vec{b}) = \\displaystyle \\frac{1(-2) + (-2) \\cdot 1 + 1 \\cdot 1}{\\sqrt{1^2 + (-2)^2 + 1^2} \\cdot \\sqrt{(-2)^2 + 1^2 + 1^2}} = \\frac{-3}{\\sqrt{6} \\cdot \\sqrt{6}} = -\\frac{1}{2}$.\\\\\r\n\t\tSuy ra $(\\vec{a}, \\vec{b}) = 120^\\circ$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_f95308798c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{a} + \\vec{b} = (1 - 2; -2 + 1; 3 + 2) = (-1; -1; 5)$.\\\\\r\n\t\tTích vô hướng $(\\vec{a} + \\vec{b}) \\cdot \\vec{b} = (-1) \\cdot (-2) + (-1) \\cdot 1 + 5 \\cdot 2 = 2 - 1 + 10 = 11$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_cca8ee7891",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $\\vec{OM}=-2\\vec{i}+\\vec{j}+5\\vec{k}$ nên $M(-2;1;5)$."
+    },
+    {
+      "maBaoMat": "sol_c01205f057",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{BA}=(1-3;1-(-1);-2-2)=(-2;2;-4)$."
+    },
+    {
+      "maBaoMat": "sol_f6a3140fed",
+      "dapAn": "B",
+      "loiGiaiHtml": "$2\\vec a-\\vec b=(2;5;5)\\Rightarrow |2\\vec a-\\vec b|=\\sqrt{4+25+25}=\\sqrt{54}$."
+    },
+    {
+      "maBaoMat": "sol_51425aedfe",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{u} \\cdot \\vec{v} = 2 \\cdot 1 + (-1) \\cdot 1 + (-2) \\cdot 3 = 2 - 1 - 6 = -5$."
+    },
+    {
+      "maBaoMat": "sol_51d76bb02e",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $M(a;b;0) \\in (Oxy)$.\\\\\r\n\t\t$MA^2 + MB^2 = (a-1)^2 + (b-2)^2 + (0-1)^2 + (a-2)^2 + (b+1)^2 + (0-3)^2$\\\\\r\n\t\t$= a^2 - 2a + 1 + b^2 - 4b + 4 + 1 + a^2 - 4a + 4 + b^2 + 2b + 1 + 9$\\\\\r\n\t\t$= 2a^2 - 6a + 2b^2 - 2b + 20$\\\\\r\n\t\t$= 2\\left(a^2 - 3a + \\dfrac{9}{4}\\right) + 2\\left(b^2 - b + \\dfrac{1}{4}\\right) + 20 - \\dfrac{9}{2} - \\dfrac{1}{2}$\\\\\r\n\t\t$= 2\\left(a - \\dfrac{3}{2}\\right)^2 + 2\\left(b - \\dfrac{1}{2}\\right)^2 + 15 \\ge 15$.\\\\\r\n\t\tDấu \"=\" xảy ra khi $\\begin{cases} a - \\frac{3}{2} = 0 \\\\ b - \\frac{1}{2} = 0 \\end{cases} \\Leftrightarrow \\begin{cases} a = \\frac{3}{2} \\\\ b = \\frac{1}{2} \\end{cases}$.\\\\\r\n\t\tVậy $a+b = \\dfrac{3}{2} + \\dfrac{1}{2} = 2$."
+    },
+    {
+      "maBaoMat": "sol_c665300edb",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{BA} = (1 - 3; 1 - (-1); -2 - 2) = (-2; 2; -4)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_1fd0b0fee0",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tọa độ của $\\vec{a}$ là $(1; -2; 3)$."
+    },
+    {
+      "maBaoMat": "sol_1e019c80fe",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $3\\vec{u} + \\vec{v} = (3+2; -3+(-1); 6+(-3))$\\\\\r\n\t\t$3\\vec{u} + \\vec{v} = (5;-4;3)$\\\\\r\n\t\t$\\Rightarrow |3\\vec{u} + \\vec{v}| = \\sqrt{5^2 + (-4)^2 + 3^2} = 5\\sqrt{2}$."
+    },
+    {
+      "maBaoMat": "sol_b3b2707846",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tích vô hướng của hai vectơ $\\vec{a} = (x_1; y_1; z_1)$ và $\\vec{b} = (x_2; y_2; z_2)$ được tính bằng công thức $\\vec{a} \\cdot \\vec{b} = x_1x_2 + y_1y_2 + z_1z_2$.\\\\\r\n\t\tVới $\\vec{a} = (2;3;3)$ và $\\vec{b} = (3;2;-1)$, ta có: $\\vec{a} \\cdot \\vec{b} = (2)(3) + (3)(2) + (3)(-1) = 6 + 6 - 3 = 12 - 3 = 9$."
+    },
+    {
+      "maBaoMat": "sol_1dff8c48e9",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có: $\\displaystyle -\\vec{a} = (-2;1;3)$; $\\displaystyle 3\\vec{b} = (3;-9;-6)$.\\\\\r\n\t\tDo đó: $\\displaystyle \\vec{c} = -\\vec{a} + 3\\vec{b} = (-2+3; 1+(-9); 3+(-6)) = (1;-8;-3)$."
+    },
+    {
+      "maBaoMat": "sol_ca0740fd0c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Do $\\vec{AB}=(1;-2;2) \\Rightarrow AB=3$."
+    },
+    {
+      "maBaoMat": "sol_d00ca7b1b2",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tọa độ hình chiếu $H$ của $A(2;-3;5)$ trên $(Oxy)$ là: $H(2;-3;0)$."
+    },
+    {
+      "maBaoMat": "sol_bbd74c6ac0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\vec{u}-\\vec{v}=(-1;2;-1)$."
+    },
+    {
+      "maBaoMat": "sol_bf8144cf68",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\vec{a}+\\vec{b} = (-1;-1;5)$.\\\\\r\n\t\tVậy $(\\vec{a}+\\vec{b})\\cdot\\vec{b} = -1\\cdot(-2) + (-1)\\cdot 1 + 5\\cdot 2 = 11$."
+    },
+    {
+      "maBaoMat": "sol_2c12be0196",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} = (2 - 1; 2 - 1; 1 - (-2)) = (1; 1; 3)$."
+    },
+    {
+      "maBaoMat": "sol_519703f134",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta tính toán lần lượt các thành phần tuyến tính của vectơ:\\\\\r\n\t\t$2\\vec{a} = (2 \\cdot 1; 2 \\cdot (-2); 2 \\cdot 0) = (2;-4;0)$.\\\\\r\n\t\tSuy ra tọa độ hiệu: $\\vec{x} = 2\\vec{a} - \\vec{b} = (2 - (-5); -4 - 4; 0 - (-1)) = (7;-8;1)$."
+    },
+    {
+      "maBaoMat": "sol_a595c4dc82",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $\\vec{b} = 2\\vec{i} + 3\\vec{k} - \\vec{j}$ suy ra $\\vec{b} = (2; -1; 3)$.\\\\\r\n\t\tVậy $\\vec{u} = 2\\vec{a} + 3\\vec{b} = (16; 3; 5)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_e381d46e55",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ giả thiết $\\vec{OM} = -2\\vec{i} + 1\\vec{j} + 3\\vec{k}$, ta suy ra ngay tọa độ của điểm $M$ là $(-2; 1; 3)$."
+    }
+  ]
+}
