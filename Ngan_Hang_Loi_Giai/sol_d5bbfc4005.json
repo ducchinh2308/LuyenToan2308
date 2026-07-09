@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d5bbfc4005",
+  "dapAn": "B",
+  "loiGiai": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.EFGH$ với các đỉnh tương ứng ($E$ tương ứng $A$, $F$ tương ứng $B$, $G$ tương ứng $C$, $H$ tương ứng $D$):\\\\\r\n\t\tTổng của ba vectơ chung gốc $A$ là:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AE} = \\vec{AG}$."
+}

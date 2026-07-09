@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dd0dafbd6a",
+  "dapAn": "TTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Áp dụng quy tắc hình bình hành cho hình bình hành $ABCD$ ta có $\\vec{AC} = \\vec{AB} + \\vec{AD}$.\r\n\t\t\t\\itemch Áp dụng quy tắc hình hộp vào hình lập phương $ABCD.A'B'C'D'$ ta có $\\vec{AC'} = \\vec{AD} + \\vec{AB} + \\vec{AA'}$.\r\n\t\t\t\\itemch Vì $ABCD.A'B'C'D'$ là hình lập phương nên $\\vec{B'C'} = \\vec{AD}$.\\\\ Ta có: $(\\vec{AC}, \\vec{B'C'}) = (\\vec{AC}, \\vec{AD}) = \\widehat{CAD} = 45^\\circ$.\r\n\t\t\t\\itemch Ta có: $\\left|\\vec{AC}\\right| = a\\sqrt{2}, \\left|\\vec{B'C'}\\right| = a$.\\\\ $\\vec{AC} \\cdot \\vec{B'C'} = \\left|\\vec{AC}\\right| \\cdot \\left|\\vec{B'C'}\\right| \\cdot \\cos(\\vec{AC}, \\vec{B'C'}) = (a\\sqrt{2}) \\cdot a \\cdot \\cos 45^\\circ = a^2$.\r\n\t\t\\end{itemchoice}"
+}

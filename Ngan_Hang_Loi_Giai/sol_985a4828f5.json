@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_985a4828f5",
+  "dapAn": "90",
+  "loiGiai": "Ta chọn hệ tọa độ $Oxyz$ sao cho $A'=O$; $A'D' \\equiv Ox$; $A'B' \\equiv Oy$; $A'A \\equiv Oz$.\\\\\r\n\t\tTa chọn cạnh hình lập phương bằng $1$ đơn vị, khi đó tọa độ điểm $A'(0;0;0)$; $B(0;1;1)$; $A(0;0;1)$; $C'(1;1;0)$.\\\\\r\n\t\tTa có $\\displaystyle \\vec{MN} = \\frac{1}{2} \\vec{A'C'}$ nên góc giữa hai vec tơ $\\vec{A'B}$ và $\\vec{A'C'}$ bằng $\\varphi$.\\\\\r\n\t\tTa có $\\vec{A'B} = (0;1;1)$; $\\vec{A'C'} = (1;1;-1)$ nên $\\displaystyle \\cos \\varphi = \\frac{\\vec{A'B} \\cdot \\vec{A'C'}}{\\left|\\vec{A'B}\\right| \\cdot \\left|\\vec{A'C'}\\right|} = 0 \\Rightarrow \\varphi = 90^\\circ$."
+}
