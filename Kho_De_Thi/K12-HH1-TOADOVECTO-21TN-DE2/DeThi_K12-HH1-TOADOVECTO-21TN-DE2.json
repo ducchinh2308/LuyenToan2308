@@ -1,0 +1,217 @@
+{
+  "maDe": "K12-HH1-TOADOVECTO-21TN-DE2",
+  "tenDe": "ĐỀ K12-HH1-TOADOVECTO-21TN-DE2",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_00ae8f2240",
+      "ma_goc": "2603-508",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1;-2;3)$. Tìm điểm $M' \\in Ox$ sao cho độ dài đoạn thẳng $MM'$ ngắn nhất.",
+      "paA": "$M'(1;0;3)$",
+      "paB": "$M'(1;-2;0)$",
+      "paC": "$M'(1;0;0)$",
+      "paD": "$M'(-1;0;0)$"
+    },
+    {
+      "maCau": "q_b7fe95e6c6",
+      "ma_goc": "2603-540",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho điểm $M(-2; 5; 1)$. Tọa độ hình chiếu của điểm $M$ trên mặt phẳng $(Oxz)$ là",
+      "paA": "$(0; 5; 0)$",
+      "paB": "$(2; 5; 1)$",
+      "paC": "$(-2; 0; 1)$",
+      "paD": "$(-2; -5; 1)$"
+    },
+    {
+      "maCau": "q_5a6c29e26e",
+      "ma_goc": "2603-574",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho $\\vec{u} = \\vec{i} + 2\\vec{k}$. Tọa độ của $\\vec{u} + \\vec{j}$ là",
+      "paA": "$\\vec{u} = (2; 1; 0)$",
+      "paB": "$\\vec{u} = (1; 1; 2)$",
+      "paC": "$\\vec{u} = (1; 2; 1)$",
+      "paD": "$\\vec{u} = (0; 2; 1)$"
+    },
+    {
+      "maCau": "q_d8da709ddd",
+      "ma_goc": "2603-603",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(-2;1;-3)$ và $\\vec{b}=(3;-1;5)$. Tìm tọa độ của vectơ $\\vec{u}=3\\vec{a}+\\vec{b}$.",
+      "paA": "$\\vec{u}=(1;0;2)$",
+      "paB": "$\\vec{u}=(-3;2;-4)$",
+      "paC": "$\\vec{u}=(-5;2;-8)$",
+      "paD": "$\\vec{u}=(-3;2;4)$"
+    },
+    {
+      "maCau": "q_8085960fd4",
+      "ma_goc": "2603-857",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho ba điểm $A(3; 2; 1)$, $B(1; -1; 2)$ và $C(1; 2; -1)$. Nếu tọa độ điểm $M(a; b; c)$ thoả mãn $\\vec{OM} = 2\\vec{AB} - \\vec{AC}$ thì $a + b + c$ bằng",
+      "paA": "$-4$",
+      "paB": "$8$",
+      "paC": "$0$",
+      "paD": "$-12$"
+    },
+    {
+      "maCau": "q_56d78e3bef",
+      "ma_goc": "2603-946",
+      "kieuCau": "TN",
+      "cauDan": "Một điểm $M$ được đặt trong hệ trục tọa độ $Oxyz$ cách gốc tọa độ một khoảng bằng $\\sqrt{10}$ thì có thể có tọa độ nào dưới đây?",
+      "paA": "$M(1;-1;2)$",
+      "paB": "$M(1;-2;2)$",
+      "paC": "$M(3;-1;0)$",
+      "paD": "$M(2;-1;3)$"
+    },
+    {
+      "maCau": "q_7b8b8721c4",
+      "ma_goc": "2603-992",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2; -1; 3)$ trên trục $Oy$ là điểm có tọa độ",
+      "paA": "$(0; 0; 3)$",
+      "paB": "$(0; -1; 0)$",
+      "paC": "$(2; 0; 0)$",
+      "paD": "$(2; 0; 3)$"
+    },
+    {
+      "maCau": "q_38d3c3dd42",
+      "ma_goc": "2603-1127",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai điểm $A(-3;4;5), B(-1;0;1)$. Tìm tọa độ điểm $M$ thỏa mãn $\\vec{MA} + \\vec{MB} = \\vec{0}$.",
+      "paA": "$M(-4;-4;-4)$",
+      "paB": "$M(4;4;4)$",
+      "paC": "$M(-2;2;3)$",
+      "paD": "$M(1;2;3)$"
+    },
+    {
+      "maCau": "q_c62b3cb85d",
+      "ma_goc": "2603-1194",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho hai véc-tơ $\\vec{m} = (1;1;4)$, $\\vec{n} = (4;1;1)$. Véc-tơ nào dưới đây vuông góc với cả hai véc-tơ $\\vec{m}, \\vec{n}$?",
+      "paA": "$\\vec{a} = (1;5;1)$",
+      "paB": "$\\vec{b} = (1;-5;1)$",
+      "paC": "$\\vec{c} = (1;5;-1)$",
+      "paD": "$\\vec{d} = (-1;5;1)$"
+    },
+    {
+      "maCau": "q_774a49c355",
+      "ma_goc": "2603-1276",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai véc-tơ $\\vec{u} = (1; 2; -2)$ và $\\vec{v} = (2; -2; 3)$. Tọa độ của véc-tơ $\\vec{u} - \\vec{v}$ là",
+      "paA": "$(-5; 4; -1)$",
+      "paB": "$(1; -4; 5)$",
+      "paC": "$(3; 0; 1)$",
+      "paD": "$(-1; 4; -5)$"
+    },
+    {
+      "maCau": "q_822dd4bd2b",
+      "ma_goc": "2603-2795",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}(a_{1};a_{2};a_{3})$ và $\\vec{b}(b_{1};b_{2};b_{3})$ khác $\\vec{0}$. Tích có hướng của $\\vec{a}$ và $\\vec{b}$ là $\\vec{c}$. Khẳng định nào sau đây đúng?",
+      "paA": "$c=(a_{1}b_{3}-a_{3}b_{1};a_{2}b_{2}-a_{1}b_{2};a_{3}b_{2}-a_{2}b_{3})$",
+      "paB": "$c=(a_{1}b_{3}-a_{2}b_{1};a_{2}b_{3}-a_{3}b_{2};a_{1}b_{3}-a_{3}b_{1})$",
+      "paC": "$c=(a_{2}b_{3}-a_{3}b_{2};a_{3}b_{1}-a_{1}b_{3};a_{1}b_{2}-a_{2}b_{1})$",
+      "paD": "$c=(a_{3}b_{1}-a_{1}b_{3};a_{1}b_{2}-a_{2}b_{1};a_{2}b_{3}-a_{3}b_{1})$"
+    },
+    {
+      "maCau": "q_d0db4a58fc",
+      "ma_goc": "2603-3120",
+      "kieuCau": "TN",
+      "cauDan": "Khoảng cách giữa hai điểm $I(1; 4; -3)$ và $K(6; 4; 5)$ là",
+      "paA": "$\\sqrt{89}$",
+      "paB": "$\\sqrt{114}$",
+      "paC": "$\\sqrt{103}$",
+      "paD": "$95$"
+    },
+    {
+      "maCau": "q_0067e418c8",
+      "ma_goc": "2604-71",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, điểm đối xứng với điểm $A(3;2;1)$ qua trục $Ox$ có toạ độ là",
+      "paA": "$(3;0;0)$",
+      "paB": "$(0;2;1)$",
+      "paC": "$(-3;2;1)$",
+      "paD": "$(3;-2;-1)$"
+    },
+    {
+      "maCau": "q_c3513011dd",
+      "ma_goc": "2604-1227",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$ cho hai vector $\\vec{a}(1;2;-1)$ và $\\vec{b}(2;-1;3)$. Tọa độ của vector $4\\vec{a}-\\vec{b}$ là",
+      "paA": "$(2;9;-7)$",
+      "paB": "$(2;9;7)$",
+      "paC": "$(-2;9;7)$",
+      "paD": "$(-2;-9;7)$"
+    },
+    {
+      "maCau": "q_a29536602f",
+      "ma_goc": "2604-2096",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho điểm $A(2;1;-2)$ và điểm $B(-4;3;4)$. Tọa độ trung điểm $M$ của đoạn $AB$ là",
+      "paA": "$(-1;2;1)$",
+      "paB": "$(-2;2;2)$",
+      "paC": "$(3;2;3)$",
+      "paD": "$(-2;-2;2)$"
+    },
+    {
+      "maCau": "q_22d7399041",
+      "ma_goc": "2605-355",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho vectơ $\\vec{u} = 2\\vec{i} - 5\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "paA": "$(2;-5;0)$",
+      "paB": "$(0;2;-5)$",
+      "paC": "$(2;0;5)$",
+      "paD": "$(2;0;-5)$"
+    },
+    {
+      "maCau": "q_fbcccf0d22",
+      "ma_goc": "2605-881",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm đối xứng với điểm $M(2;2;-1)$ qua mặt phẳng $(Oyz)$ là",
+      "paA": "$M'(-2;-2;1)$",
+      "paB": "$M'(-2;2;-1)$",
+      "paC": "$M'(-2;0;0)$",
+      "paD": "$M'(2;-2;1)$"
+    },
+    {
+      "maCau": "q_2487befdee",
+      "ma_goc": "2605-966",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho vec tơ $\\vec{u} = 2\\vec{i} + 3\\vec{j} - 4\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "paA": "$(-2;-3;4)$",
+      "paB": "$(2;-3;4)$",
+      "paC": "$(2;3;-4)$",
+      "paD": "$(2;3;4)$"
+    },
+    {
+      "maCau": "q_d21a7b9ee4",
+      "ma_goc": "2605-1136",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(2;3;5)$. Tìm tọa độ điểm $A'$ là hình chiếu vuông góc của $A$ lên trục $Oy$.",
+      "paA": "$A'(2;0;0)$",
+      "paB": "$A'(0;3;0)$",
+      "paC": "$A'(0;3;5)$",
+      "paD": "$A'(2;0;5)$"
+    },
+    {
+      "maCau": "q_7b0c4a55d6",
+      "ma_goc": "2605-1378",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho véctơ $\\vec{u} = -3\\vec{i} + 5\\vec{j} + 2\\vec{k}$. Tọa độ của véctơ $\\vec{u}$ là",
+      "paA": "$(-3;5;2)$",
+      "paB": "$(3;5;2)$",
+      "paC": "$(5;-3;2)$",
+      "paD": "$(-3;5;-2)$"
+    },
+    {
+      "maCau": "q_c4ea2ed641",
+      "ma_goc": "2605-1624",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho vectơ $\\vec{u} = (-3; -2; 4)$. Tọa độ của vectơ $-2\\vec{u}$ là",
+      "paA": "$(6; -4; 8)$",
+      "paB": "$(3; 2; -4)$",
+      "paC": "$(-6; -4; 8)$",
+      "paD": "$(6; 4; -8)$"
+    }
+  ]
+}

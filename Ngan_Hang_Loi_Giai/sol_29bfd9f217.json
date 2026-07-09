@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_29bfd9f217",
+  "dapAn": "C",
+  "loiGiai": "Do $\\vec{MA} + \\vec{MB} = \\vec{0}$ nên $M$ là trung điểm đoạn thẳng $AB$.\\\\\r\n\t\tTọa độ điểm $M$: $\\begin{cases} x_M = \\dfrac{-3-1}{2} = -2 \\\\ y_M = \\dfrac{4+0}{2} = 2 \\\\ z_M = \\dfrac{5+1}{2} = 3 \\end{cases} \\Rightarrow M(-2;2;3)$."
+}

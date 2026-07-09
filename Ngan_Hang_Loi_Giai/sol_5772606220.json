@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5772606220",
+  "dapAn": "B",
+  "loiGiai": "Theo quy tắc chiếu điểm trong không gian, khi chiếu một điểm bất kì lên trục tọa độ nào thì thành phần tọa độ theo trục đó được giữ nguyên, còn tất cả các thành phần tọa độ trên các trục khác đều bằng $0$.\\\\\r\n\t\tChiếu điểm $A(2;3;5)$ vuông góc lên trục $Oy$, ta thu được tọa độ điểm hình chiếu tương ứng là $A'(0;3;0)$."
+}
