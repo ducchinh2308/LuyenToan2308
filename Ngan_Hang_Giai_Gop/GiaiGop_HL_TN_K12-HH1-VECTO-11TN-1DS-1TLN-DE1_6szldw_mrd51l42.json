@@ -1,0 +1,75 @@
+{
+  "thoiGianGhep": "2026-07-09T06:41:05.568Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_dfc18f3a25",
+      "dapAn": "A",
+      "loiGiaiHtml": "Theo quy tắc hình hộp, ta có $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_6c3fab2fae",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $ABCD$ là hình bình hành và $O$ là giao điểm hai đường chéo nên $O$ là trung điểm của $AC$ và $BD$.\\\\\r\n\t\tTheo quy tắc trung điểm, với điểm $S$ bất kỳ ta có:\\\\\r\n\t\t$\\vec{SA}+\\vec{SC} = 2\\vec{SO}$;\\\\\r\n\t\t$\\vec{SB}+\\vec{SD} = 2\\vec{SO}$.\\\\\r\n\t\tDo đó, $\\vec{SA}+\\vec{SC} = \\vec{SB}+\\vec{SD}$."
+    },
+    {
+      "maBaoMat": "sol_360a5c43e0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\overrightarrow{AB} - \\overrightarrow{A'C'} = \\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB} = \\overrightarrow{C'B'}$."
+    },
+    {
+      "maBaoMat": "sol_bd146fdfd6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $G$ là trọng tâm của tứ diện $ABCD$ nên $\\vec{GA} + \\vec{GB} + \\vec{GC} + \\vec{GD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow \\vec{GA} + \\vec{GA} + \\vec{AB} + \\vec{GA} + \\vec{AC} + \\vec{GA} + \\vec{AD} = \\vec{0}$\\\\\r\n\t\t$\\Leftrightarrow 4\\vec{GA} + \\vec{AB} + \\vec{AC} + \\vec{AD} = \\vec{0} \\Leftrightarrow \\vec{AG} = \\displaystyle \\frac{1}{4}(\\vec{AB} + \\vec{AC} + \\vec{AD})$.\\\\\r\n\t\tDo đó mệnh đề $\\vec{AG} = \\displaystyle \\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$ là sai."
+    },
+    {
+      "maBaoMat": "sol_e1bcb769b2",
+      "dapAn": "C",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_e1bcb769b2_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\t\tTa có $\\vec{AB'} + \\vec{CB} = \\vec{DA} + \\vec{AB'} = \\vec{DB'}$.\\\\\r\n\t\tPhát biểu sai là $\\vec{AB'} + \\vec{CB} = \\vec{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_75ab94ee70",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tích vô hướng hai vectơ: $\\displaystyle \\vec{u} \\cdot \\vec{v} = \\left|\\vec{u}\\right| \\cdot \\left|\\vec{v}\\right| \\cdot \\cos(\\vec{u}; \\vec{v}) = 5 \\cdot 8 \\cdot \\left( -\\frac{1}{2} \\right) = -20$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_8c1183e901",
+      "dapAn": "C",
+      "loiGiaiHtml": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.A_1B_1C_1D_1$ (xét từ đỉnh $A_1$):\\\\\r\n\t\tTa có tổng ba vectơ các cạnh xuất phát từ đỉnh $A_1$ bằng vectơ đường chéo xuất phát từ đỉnh đó.\\\\\r\n\t\tDo đó: $\\overrightarrow{A_1A} + \\overrightarrow{A_1B_1} + \\overrightarrow{A_1D_1} = \\overrightarrow{A_1C}$."
+    },
+    {
+      "maBaoMat": "sol_e9b3803e13",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo quy tắc hình hộp xuất phát từ đỉnh $A$, tổng ba vectơ thành phần tương ứng dọc theo ba cạnh chung đỉnh sẽ bằng vectơ đường chéo chính xuất phát từ $A$:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$."
+    },
+    {
+      "maBaoMat": "sol_ab30f0fa07",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo quy tắc hình hộp ta có $\\displaystyle \\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$; $\\displaystyle \\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DC} + \\overrightarrow{DD'}$; $\\displaystyle \\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_d5bbfc4005",
+      "dapAn": "B",
+      "loiGiaiHtml": "Áp dụng quy tắc hình hộp cho hình hộp $ABCD.EFGH$ với các đỉnh tương ứng ($E$ tương ứng $A$, $F$ tương ứng $B$, $G$ tương ứng $C$, $H$ tương ứng $D$):\\\\\r\n\t\tTổng của ba vectơ chung gốc $A$ là:\\\\\r\n\t\t$\\displaystyle \\vec{AB} + \\vec{AD} + \\vec{AE} = \\vec{AG}$."
+    },
+    {
+      "maBaoMat": "sol_6ba3182e75",
+      "dapAn": "A",
+      "loiGiaiHtml": "Áp dụng quy tắc hình hộp cho vectơ xuất phát chung đỉnh $D$ trong không gian:\\\\\r\n\t\tTa có tổng của ba vectơ chung cạnh từ một đỉnh bằng vectơ đường chéo chính đối diện xuất phát từ đỉnh đó:\\\\\r\n\t\t$\\displaystyle \\vec{DA} + \\vec{DC} + \\vec{DD'} = \\vec{DB'}$."
+    },
+    {
+      "maBaoMat": "sol_efef7c4d29",
+      "dapAn": "B",
+      "loiGiaiHtml": "$\\overrightarrow{CC'} \\cdot \\overrightarrow{A'A} = \\left|\\overrightarrow{CC'}\\right| \\cdot \\left|\\overrightarrow{A'A}\\right| \\cos 180^\\circ = -1$."
+    },
+    {
+      "maBaoMat": "sol_985a4828f5",
+      "dapAn": "90",
+      "loiGiaiHtml": "Ta chọn hệ tọa độ $Oxyz$ sao cho $A'=O$; $A'D' \\equiv Ox$; $A'B' \\equiv Oy$; $A'A \\equiv Oz$.\\\\\r\n\t\tTa chọn cạnh hình lập phương bằng $1$ đơn vị, khi đó tọa độ điểm $A'(0;0;0)$; $B(0;1;1)$; $A(0;0;1)$; $C'(1;1;0)$.\\\\\r\n\t\tTa có $\\displaystyle \\vec{MN} = \\frac{1}{2} \\vec{A'C'}$ nên góc giữa hai vec tơ $\\vec{A'B}$ và $\\vec{A'C'}$ bằng $\\varphi$.\\\\\r\n\t\tTa có $\\vec{A'B} = (0;1;1)$; $\\vec{A'C'} = (1;1;-1)$ nên $\\displaystyle \\cos \\varphi = \\frac{\\vec{A'B} \\cdot \\vec{A'C'}}{\\left|\\vec{A'B}\\right| \\cdot \\left|\\vec{A'C'}\\right|} = 0 \\Rightarrow \\varphi = 90^\\circ$."
+    },
+    {
+      "maBaoMat": "sol_dd0dafbd6a",
+      "dapAn": "TTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Áp dụng quy tắc hình bình hành cho hình bình hành $ABCD$ ta có $\\vec{AC} = \\vec{AB} + \\vec{AD}$.\r\n\t\t\t\\itemch Áp dụng quy tắc hình hộp vào hình lập phương $ABCD.A'B'C'D'$ ta có $\\vec{AC'} = \\vec{AD} + \\vec{AB} + \\vec{AA'}$.\r\n\t\t\t\\itemch Vì $ABCD.A'B'C'D'$ là hình lập phương nên $\\vec{B'C'} = \\vec{AD}$.\\\\ Ta có: $(\\vec{AC}, \\vec{B'C'}) = (\\vec{AC}, \\vec{AD}) = \\widehat{CAD} = 45^\\circ$.\r\n\t\t\t\\itemch Ta có: $\\left|\\vec{AC}\\right| = a\\sqrt{2}, \\left|\\vec{B'C'}\\right| = a$.\\\\ $\\vec{AC} \\cdot \\vec{B'C'} = \\left|\\vec{AC}\\right| \\cdot \\left|\\vec{B'C'}\\right| \\cdot \\cos(\\vec{AC}, \\vec{B'C'}) = (a\\sqrt{2}) \\cdot a \\cdot \\cos 45^\\circ = a^2$.\r\n\t\t\\end{itemchoice}"
+    }
+  ]
+}
