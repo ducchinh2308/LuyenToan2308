@@ -1,0 +1,143 @@
+{
+  "maDe": "K12-HH1-VECTO-11TN-1DS-1TLN-DE2",
+  "tenDe": "ĐỀ K12-HH1-VECTO-11TN-1DS-1TLN-DE2",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_db7cea592c",
+      "ma_goc": "2606-29",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi $G$ là trọng tâm của tam giác $BCD$. Khẳng định nào sau đây là sai?",
+      "paA": "$\\overrightarrow{BC} + \\overrightarrow{BD} = 3\\overrightarrow{BG}$.",
+      "paB": "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+      "paC": "$\\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG} = \\vec{0}$.",
+      "paD": "$\\overrightarrow{GA} + \\overrightarrow{GB} - \\overrightarrow{GD} = \\vec{0}$."
+    },
+    {
+      "maCau": "q_c5c67b1353",
+      "ma_goc": "2605-1404",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$. Khẳng định nào dưới đây là đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c5c67b1353_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\vec{AD} = \\vec{BC}$",
+      "paB": "$\\vec{AD} = \\vec{A'C}$",
+      "paC": "$\\vec{AD} = \\vec{CB}$",
+      "paD": "$\\vec{AD} = \\vec{A'B'}$"
+    },
+    {
+      "maCau": "q_42f32158e7",
+      "ma_goc": "2605-1625",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$ có $\\overrightarrow{AB} = \\vec{a}$, $\\overrightarrow{AD} = \\vec{b}$, $\\overrightarrow{AA'} = \\vec{c}$. Gọi $I$ là trung điểm của đoạn $BC'$. Phân tích vectơ $\\overrightarrow{AI}$ qua ba vectơ $\\vec{a}, \\vec{b}, \\vec{c}$.",
+      "paA": "$\\overrightarrow{AI} = 2\\vec{a} + \\displaystyle\\frac{1}{4}\\vec{b} + \\displaystyle\\frac{1}{3}\\vec{c}$",
+      "paB": "$\\overrightarrow{AI} = \\displaystyle\\frac{1}{2}\\vec{a} + \\vec{b} + \\displaystyle\\frac{1}{2}\\vec{c}$",
+      "paC": "$\\overrightarrow{AI} = \\vec{a} + \\displaystyle\\frac{1}{2}\\vec{b} + \\displaystyle\\frac{1}{2}\\vec{c}$",
+      "paD": "$\\overrightarrow{AI} = \\displaystyle\\frac{1}{2}\\vec{a} + \\displaystyle\\frac{1}{2}\\vec{b} + \\vec{c}$"
+    },
+    {
+      "maCau": "q_d223900ea9",
+      "ma_goc": "2605-1550",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$, gọi $G$ là trọng tâm của tam giác $BCD$. Phát biểu nào sau đây là đúng?",
+      "paA": "$\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CD} = \\overrightarrow{DA}$",
+      "paB": "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$",
+      "paC": "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$",
+      "paD": "$\\overrightarrow{AB} + \\overrightarrow{DC} - \\overrightarrow{DB} = \\overrightarrow{CA}$"
+    },
+    {
+      "maCau": "q_ca18bf95be",
+      "ma_goc": "2605-1493",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = 2, BC = 4, CC' = 5$. Độ dài vectơ $\\vec{u} = \\overrightarrow{AB} - \\overrightarrow{DA} + \\overrightarrow{DD'}$ bằng",
+      "paA": "$\\sqrt{41}$",
+      "paB": "$2\\sqrt{5}$",
+      "paC": "$\\sqrt{29}$",
+      "paD": "$3\\sqrt{5}$"
+    },
+    {
+      "maCau": "q_3683b77a30",
+      "ma_goc": "2605-1442",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện $ABCD$. Gọi điểm $G$ là trọng tâm tam giác $BCD$. Mệnh đề nào dưới đây đúng?",
+      "paA": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} - \\vec{AD})$",
+      "paB": "$\\vec{AG} = \\displaystyle\\frac{1}{3}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paC": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC} + \\vec{AD})$",
+      "paD": "$\\vec{AG} = \\displaystyle\\frac{1}{2}(\\vec{AB} + \\vec{AC})$"
+    },
+    {
+      "maCau": "q_e104d90e76",
+      "ma_goc": "2605-1421",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$.\r\n\tVéctơ $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$ bằng véctơ nào dưới đây?",
+      "paA": "$\\overrightarrow{BD'}$",
+      "paB": "$\\overrightarrow{BC'}$",
+      "paC": "$\\overrightarrow{BA'}$",
+      "paD": "$\\overrightarrow{BD}$"
+    },
+    {
+      "maCau": "q_e0a1c3473b",
+      "ma_goc": "2605-1362",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Độ dài của vectơ $\\vec{u} = \\vec{A'C'} - \\vec{A'A}$ bằng",
+      "paA": "$a\\sqrt{3}$",
+      "paB": "$a\\sqrt{2}$",
+      "paC": "$\\dfrac{a\\sqrt{3}}{2}$",
+      "paD": "$a\\sqrt{6}$"
+    },
+    {
+      "maCau": "q_ea7ba1b5c8",
+      "ma_goc": "2605-1100",
+      "kieuCau": "TN",
+      "cauDan": "Tìm mệnh đề đúng?",
+      "paA": "$\\vec{AB} + \\vec{BB'} + \\vec{B'A'} = \\vec{AC'} $",
+      "paB": "$\\vec{AB} + \\vec{BC'} + \\vec{C'D'} = \\vec{AC'} $",
+      "paC": "$\\vec{AB} + \\vec{AC} + \\vec{AA'} = \\vec{AC'} $",
+      "paD": "$\\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'} $"
+    },
+    {
+      "maCau": "q_4e153e79ab",
+      "ma_goc": "2606-5",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Đặt $\\vec{a} = \\overrightarrow{AB}, \\vec{b} = \\overrightarrow{AD}, \\vec{c} = \\overrightarrow{AA'}$. Khẳng định nào sau đây đúng?",
+      "paA": "$\\overrightarrow{B'D} = \\vec{a} - \\vec{b} - \\vec{c}$.",
+      "paB": "$\\overrightarrow{B'D} = \\vec{a} - \\vec{b} + \\vec{c}$.",
+      "paC": "$\\overrightarrow{B'D} = \\vec{a} + \\vec{b} + \\vec{c}$.",
+      "paD": "$\\overrightarrow{B'D} = -\\vec{a} + \\vec{b} - \\vec{c}$."
+    },
+    {
+      "maCau": "q_d6535cfe98",
+      "ma_goc": "2605-1056",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lăng trụ tam giác $ABC.A'B'C'$. Vectơ $\\vec{AA'} - \\vec{AB} + \\vec{AC}$ bằng vectơ nào sau đây?",
+      "paA": "$\\vec{B'C}$",
+      "paB": "$\\vec{C'B}$",
+      "paC": "$\\vec{BC'}$",
+      "paD": "$\\vec{B'C'}$"
+    },
+    {
+      "maCau": "q_40877c2d80",
+      "ma_goc": "2605-1035",
+      "kieuCau": "TN",
+      "cauDan": "Cho tứ diện đều $ABCD$ có cạnh bằng $a$. Tích vô hướng $\\vec{AB} \\cdot \\vec{AC}$ bằng",
+      "paA": "$\\displaystyle \\frac{\\sqrt{3}}{2}a^2$",
+      "paB": "$a^2$",
+      "paC": "$\\displaystyle \\frac{1}{2}a^2$",
+      "paD": "$-a^2$"
+    },
+    {
+      "maCau": "q_db88be64fb",
+      "ma_goc": "2605-85",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$ có $AB=3$, $AD=4$, $AA'=5$. Biết $\\widehat{BAD} = 90^\\circ$, $\\widehat{BAA'} = \\widehat{DAA'} = 60^\\circ$. Số đo góc giữa vectơ $\\vec{AC'}$ và vectơ $\\vec{D'C}$ bằng bao nhiêu độ? (Không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng đơn vị)."
+    },
+    {
+      "maCau": "q_ed4459fc99",
+      "ma_goc": "2603-893",
+      "kieuCau": "DS",
+      "cauDan": "Cho hình lăng trụ $ABC.A'B'C'$ có tất cả các cạnh bằng $a$, $\\widehat{A'AB}=120^\\circ$, $\\widehat{A'AC}=60^\\circ$.\\\\\r\n\tGọi $M$ là trung điểm của $BC$, $N$ là điểm thỏa mãn $\\overrightarrow{BN}=\\dfrac{2}{3}\\overrightarrow{BB'}$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ed4459fc99_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Giả sử $\\overrightarrow{A'M}=x\\overrightarrow{AB}+y\\overrightarrow{AC}+z\\overrightarrow{AA'}$ thì $x+y=z$.",
+      "paB": "$\\overrightarrow{NB}=-\\overrightarrow{NB'}$.",
+      "paC": "$\\overrightarrow{AB}+\\overrightarrow{CC'}=\\overrightarrow{AB'}$.",
+      "paD": "$\\overrightarrow{A'M}\\cdot\\overrightarrow{C'N}=\\dfrac{4a^2}{3}$."
+    }
+  ]
+}

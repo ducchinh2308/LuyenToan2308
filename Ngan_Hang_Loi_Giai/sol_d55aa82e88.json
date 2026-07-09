@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d55aa82e88",
+  "dapAn": "C",
+  "loiGiai": "Vì $ABCD$ là tứ diện đều cạnh $a$ nên tam giác $ABC$ là tam giác đều cạnh $a$. Suy ra $\\widehat{BAC} = 60^\\circ$.\\\\\r\n\t\tTa có $\\displaystyle \\vec{AB} \\cdot \\vec{AC} = AB \\cdot AC \\cdot \\cos(\\vec{AB}, \\vec{AC}) = AB \\cdot AC \\cdot \\cos \\widehat{BAC} = a \\cdot a \\cdot \\cos 60^\\circ = \\frac{a^2}{2}$.\\\\"
+}

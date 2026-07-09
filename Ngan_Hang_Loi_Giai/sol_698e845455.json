@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_698e845455",
+  "dapAn": "A",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_698e845455_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có phép biến đổi vectơ dựa vào tính chất hình hộp dời thế chân vectơ như sau:\\\\\r\n\t\t$\\vec{u} = \\vec{A'C'} - \\vec{A'A} = \\vec{A'C'} + \\vec{AA'}$.\\\\\r\n\t\tVì $ABCD.A'B'C'D'$ là hình lập phương nên $\\vec{AA'} = \\vec{CC'}$. Thay vào hệ thức ta được:\\\\\r\n\t\t$\\vec{u} = \\vec{A'C'} + \\vec{CC'} = \\vec{C'C} + \\vec{A'C'} = \\vec{A'C}$.\\\\\r\n\t\tĐộ dài của vectơ $\\left|\\vec{u}\\right| = \\left| \\vec{A'C} \\right| = A'C$.\\\\\r\n\t\tĐoạn thẳng $A'C$ chính là đường chéo của hình lập phương có độ dài cạnh bằng $a$.\\\\\r\n\t\tSuy ra: $A'C = \\sqrt{a^2+a^2+a^2} = a\\sqrt{3}$.\\\\\r\n\t\tVậy độ dài của vectơ đã cho bằng $a\\sqrt{3}$."
+}

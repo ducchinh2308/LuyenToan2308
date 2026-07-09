@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9d1e63a62c",
+  "dapAn": "D",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_9d1e63a62c_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVì $G$ là trọng tâm của tam giác $BCD$ nên ta có $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.\\\\\r\n\t\tSuy ra $-(\\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG}) = \\vec{0} \\Leftrightarrow \\overrightarrow{BG} + \\overrightarrow{CG} + \\overrightarrow{DG} = \\vec{0}$. Vậy khẳng định C đúng.\\\\\r\n\t\tMặt khác, $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$ chứ không phải $\\overrightarrow{GA} + \\overrightarrow{GB} - \\overrightarrow{GD} = \\vec{0}$. Nên khẳng định D sai."
+}
