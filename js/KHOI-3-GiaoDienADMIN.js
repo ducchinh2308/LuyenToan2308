@@ -1085,6 +1085,10 @@ window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType
                 if (noiDungGoc.includes("\\choice")) {
                     window.ham_3_7_render_ui_cau_hoi_TN(jsonObj, divRender); // Hàm TN cũ của thầy
                 }
+                else
+                    if (noiDungGoc.includes("\\shortans")) {
+                        window.ham_3_7_render_ui_cau_hoi_TLN(jsonObj, divRender); // Hàm TLN của thầy
+                    }
 
 
 
@@ -1131,9 +1135,56 @@ window.lay4KhoiNgoacNhon = function (tex, macroName) {
 };
 
 
+
+// Hàm tiền xử lý (Sửa lỗi Drive chặn ảnh, môi trường center, và itemchoice của MathJax)
+window.tienXuLyLaTeX = function (texContent) {
+    if (!texContent) return "";
+    let processed = texContent;
+
+    // 1. Khử môi trường center
+    processed = processed.replace(/\\begin\{center\}/g, '<div style="text-align: center; margin: 15px 0;">');
+    processed = processed.replace(/\\end\{center\}/g, '</div>');
+
+    // 2. Chuyển đổi mã [IMG:id_anh] thành thẻ <img> (Dùng API Thumbnail để Google không chặn)
+    processed = processed.replace(/\[IMG:([^\]]+)\]/g, function (match, imageId) {
+        const id = imageId.trim();
+        return `<img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 10px 0;">`;
+    });
+
+    // 3. Khử môi trường itemchoice của phần Lời giải câu Đúng/Sai
+    processed = processed.replace(/\\begin\{itemchoice\}([\s\S]*?)\\end\{itemchoice\}/g, function (match, content) {
+        let charCode = 97; // Bắt đầu mã ASCII từ chữ 'a'
+
+        let parsedContent = content.replace(/\\itemch/g, function () {
+            let label = String.fromCharCode(charCode) + ')'; // Tạo nhãn a), b), c), d)
+            charCode++;
+
+            // Đóng thẻ <li> của ý trước đó (nếu không phải là ý đầu tiên)
+            let prefix = (charCode > 98) ? '</li>' : '';
+
+            return `${prefix}<li style="margin-bottom: 10px; list-style-type: none; border-bottom: 1px dashed #eee; padding-bottom: 10px;">
+                        <b style="color: #d35400; background: #fff3cd; padding: 2px 6px; border-radius: 4px; margin-right: 5px;">${label}</b> `;
+        });
+
+        // Đóng thẻ <li> của ý cuối cùng
+        if (charCode > 97) parsedContent += '</li>';
+
+        // Bọc toàn bộ trong thẻ danh sách <ul>
+        return `<ul style="margin-top: 15px; padding: 15px; background: #fdfdfe; border-left: 4px solid #ffc107; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">${parsedContent}</ul>`;
+    });
+
+    return processed;
+};
+
+
+
+
 window.phanTichCauHoiTexTN = function (texContent) {
     let result = { cauDan: "", paA: "", paB: "", paC: "", paD: "", loiGiai: "", dapAnDung: null };
     if (!texContent || texContent.trim() === "") return result;
+
+    // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
+    texContent = window.tienXuLyLaTeX(texContent);
 
     // 1. Tách lời giải
     let idxLoiGiai = texContent.indexOf("\\loigiai");
@@ -1157,6 +1208,8 @@ window.phanTichCauHoiTexTN = function (texContent) {
         });
         result.paA = blocks[0]; result.paB = blocks[1]; result.paC = blocks[2]; result.paD = blocks[3];
         result.cauDan = texContent.substring(0, texContent.indexOf("\\choice")).trim();
+    } else {
+        result.cauDan = texContent.trim();
     }
     return result;
 };
@@ -1166,6 +1219,10 @@ window.phanTichCauHoiTexDS = function (texContent) {
     let result = { cauDan: "", options: [], loiGiai: "" };
     if (!texContent || texContent.trim() === "") return result;
 
+    // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
+    texContent = window.tienXuLyLaTeX(texContent);
+
+    //console.log("Nội dung LaTeX sau khi tiền xử lý:", texContent);
     // 1. Tách lời giải
     let idxLoiGiai = texContent.indexOf("\\loigiai");
     if (idxLoiGiai !== -1) {
@@ -1178,10 +1235,8 @@ window.phanTichCauHoiTexDS = function (texContent) {
     // 2. Dọn rác
     texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
 
-    // 3. Tách phương án (choiceTF) & Phát hiện đáp án đúng
-    // Giả định thầy vẫn dùng hàm window.lay4KhoiNgoacNhon
+    // 3. Tách phương án (choiceTF)
     let blocks = window.lay4KhoiNgoacNhon(texContent, "choiceTF");
-
     if (blocks && blocks.length >= 1) {
         result.options = blocks.map(b => {
             return {
@@ -1189,13 +1244,52 @@ window.phanTichCauHoiTexDS = function (texContent) {
                 content: b.replace(/\\True/g, "").trim()
             };
         });
-
-        // Lấy câu dẫn
         let idxChoice = texContent.indexOf("\\choiceTF");
         result.cauDan = texContent.substring(0, idxChoice).trim();
+    } else {
+        result.cauDan = texContent.trim();
     }
     return result;
 };
+
+
+window.phanTichCauHoiTexTLN = function (texContent) {
+    let result = { cauDan: "", loiGiai: "", dapAnDung: "" };
+    if (!texContent || texContent.trim() === "") return result;
+
+    // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
+    texContent = window.tienXuLyLaTeX(texContent);
+
+    // 1. Tách lời giải
+    let idxLoiGiai = texContent.indexOf("\\loigiai");
+    if (idxLoiGiai !== -1) {
+        let start = texContent.indexOf('{', idxLoiGiai) + 1;
+        let end = texContent.lastIndexOf('}', texContent.indexOf("\\end{ex}"));
+        result.loiGiai = texContent.substring(start, end).trim();
+        texContent = texContent.substring(0, idxLoiGiai);
+    }
+
+    // 2. Tách đáp án ngắn (\shortans)
+    let idxShortans = texContent.indexOf("\\shortans");
+    if (idxShortans !== -1) {
+        let startAns = texContent.indexOf('{', idxShortans) + 1;
+        let endAns = texContent.indexOf('}', startAns);
+        if (endAns !== -1) {
+            let rawAns = texContent.substring(startAns, endAns).trim();
+            // Lọc bỏ dấu $ của đáp án (nếu có)
+            result.dapAnDung = rawAns.replace(/\$/g, "");
+        }
+        // Xóa lệnh \shortans khỏi nội dung câu dẫn
+        texContent = texContent.substring(0, idxShortans);
+    }
+
+    // 3. Dọn rác
+    texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
+
+    result.cauDan = texContent.trim();
+    return result;
+};
+
 
 
 
@@ -1303,5 +1397,41 @@ window.ham_3_7_render_ui_cau_hoi_DS = async function (data, containerElement) {
         </div>
     `;
 
+    if (window.MathJax) await MathJax.typesetPromise([containerElement]);
+};
+
+
+
+window.ham_3_7_render_ui_cau_hoi_TLN = async function (data, containerElement) {
+    if (!data || !data.noi_dung) return;
+
+    // Gọi hàm phân tích vừa viết ở trên
+    const parsed = window.phanTichCauHoiTexTLN(data.noi_dung);
+
+    containerElement.innerHTML = `
+        <div style="padding: 20px; background: #ffffff; border: 1px solid #dee2e6; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <!-- Câu dẫn và Hình ảnh sẽ hiện trọn vẹn ở đây -->
+            <div style="background: #fff8e1; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107; margin-bottom: 20px; font-size: 16px;">
+                ${parsed.cauDan}
+            </div>
+
+            <!-- Ô đáp án -->
+            <div style="margin-bottom: 20px; padding: 15px; background: #e8f4f8; border: 1px dashed #1a73e8; border-radius: 8px; text-align: center;">
+                <b style="color: #1a73e8; font-size: 14px;">🎯 Đáp án chuẩn:</b>
+                <div style="font-size: 24px; font-weight: 900; color: #dc3545; margin-top: 5px;">
+                    ${parsed.dapAnDung || "Chưa thiết lập"}
+                </div>
+            </div>
+
+            <!-- Lời giải -->
+            ${parsed.loiGiai ? `
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; font-size: 14px;">
+                    <b style="color: #495057;">💡 Lời giải chi tiết:</b><br>
+                    ${parsed.loiGiai}
+                </div>` : ""}
+        </div>
+    `;
+
+    // Gọi lại MathJax để render công thức
     if (window.MathJax) await MathJax.typesetPromise([containerElement]);
 };

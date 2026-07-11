@@ -1657,18 +1657,82 @@ window.ham_6a_20_xoa_sach_github_va_supabase = async function (maHL, btnNode) {
 // =====================================================================
 window.DanhSachCauHoiDrive = []; // Mảng RAM chứa giỏ hàng
 
+// window.ham_6a_fetch_cay_thu_muc_drive = async function () {
+//     const treeDiv = document.getElementById('tree-ngan-hang-drive');
+//     treeDiv.innerHTML = `<div style="text-align:center; color:#d35400; padding: 20px;">⏳ Đang đồng bộ từ Drive...</div>`;
+
+//     try {
+//         // ⚠️ Dùng chung API của hệ thống (Nhớ đảm bảo API này trả về cây thư mục KHO_CAU_HOI)
+//         const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
+//         const result = await response.json();
+
+//         if (result.status === 'error') throw new Error(result.message);
+
+//         // Hàm đệ quy vẽ cây thư mục (CSS mượn từ Khối 3 SGK)
+//         function veCayCauHoi(node) {
+//             if (node.type === 'file' && node.name.endsWith('.json')) {
+//                 // Phân tích tên file: [2D1H1-1]_TN_1234-567.json
+//                 let parts = node.name.replace('.json', '').split('_');
+//                 let maID = parts[0] || '';
+//                 let kieu = parts[1] || 'TN';
+//                 let maCau = parts[2] || '';
+
+//                 let mauKieu = kieu === 'TN' ? '#1a73e8' : (kieu === 'DS' ? '#d35400' : '#28a745');
+
+//                 return `
+//                     <div class="tree-file-item" style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px dashed #eee; padding: 5px 0;">
+//                         <div style="font-size: 13px; color: #333;">
+//                             <span style="color:${mauKieu}; font-weight:bold; font-size:11px;">[${kieu}]</span> 
+//                             ${node.name}
+//                         </div>
+//                         <button onclick="ham_6a_chon_cau_drive('${node.id}', '${node.name}', '${kieu}')" 
+//                                 style="padding: 2px 8px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;">
+//                                 ➕ Thêm
+//                         </button>
+//                     </div>`;
+//             }
+
+//             if (node.type === 'folder' && node.name !== "PICTURES") {
+//                 let htmlChildren = node.children.map(child => veCayCauHoi(child)).join('');
+//                 if (!htmlChildren.trim()) return ''; // Ẩn thư mục rỗng
+//                 return `
+//                     <details style="margin-bottom: 5px;">
+//                         <summary style="font-weight:bold; cursor:pointer; padding:5px; background:#f8f9fa; border:1px solid #eee; border-radius:4px; font-size:14px; list-style:none;">
+//                             📂 ${node.name}
+//                         </summary>
+//                         <div style="padding-left:15px; margin-top:5px; border-left:2px solid #dee2e6;">
+//                             ${htmlChildren}
+//                         </div>
+//                     </details>`;
+//             }
+//             return '';
+//         }
+
+//         treeDiv.innerHTML = veCayCauHoi(result.data) || '<p style="color:red;text-align:center;">Kho trống!</p>';
+
+//     } catch (error) {
+//         treeDiv.innerHTML = `<div style="color:red; text-align:center;">❌ Lỗi tải Drive: ${error.message}</div>`;
+//     }
+// };
+
 window.ham_6a_fetch_cay_thu_muc_drive = async function () {
     const treeDiv = document.getElementById('tree-ngan-hang-drive');
     treeDiv.innerHTML = `<div style="text-align:center; color:#d35400; padding: 20px;">⏳ Đang đồng bộ từ Drive...</div>`;
 
     try {
-        // ⚠️ Dùng chung API của hệ thống (Nhớ đảm bảo API này trả về cây thư mục KHO_CAU_HOI)
-        const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
+        // 🌟 SỬA LỖI CORS: Quay về method GET mặc định và gắn biến action thẳng vào đuôi URL
+        let apiLink = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+
+        // Tự động thêm ? hoặc & tùy thuộc vào link API gốc của thầy đã có tham số nào chưa
+        apiLink += (apiLink.includes('?') ? '&' : '?') + 'action=layCayThuMucKhoCauHoi';
+
+        // Gọi fetch bằng phương thức GET mặc định (Tránh hoàn toàn lỗi preflight CORS)
+        const response = await fetch(apiLink);
         const result = await response.json();
 
         if (result.status === 'error') throw new Error(result.message);
 
-        // Hàm đệ quy vẽ cây thư mục (CSS mượn từ Khối 3 SGK)
+        // Hàm đệ quy vẽ cây thư mục
         function veCayCauHoi(node) {
             if (node.type === 'file' && node.name.endsWith('.json')) {
                 // Phân tích tên file: [2D1H1-1]_TN_1234-567.json
@@ -1714,6 +1778,8 @@ window.ham_6a_fetch_cay_thu_muc_drive = async function () {
         treeDiv.innerHTML = `<div style="color:red; text-align:center;">❌ Lỗi tải Drive: ${error.message}</div>`;
     }
 };
+
+
 
 window.ham_6a_chon_cau_drive = function (fileId, fileName, kieuCau) {
     // Kiểm tra trùng
