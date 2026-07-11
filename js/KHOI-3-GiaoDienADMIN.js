@@ -124,6 +124,8 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
                 
                 <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
+
+                <button onclick="ham_3_7_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
             </div>
 
             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
@@ -489,12 +491,19 @@ window.ham_3_6_xem_muc_luc_sgk = async function () {
     vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#fd7e14;">⏳ Đang quét dữ liệu từ Google Drive...</h3></div>`;
 
     try {
-        const URL_GAS = CFG_HE_THONG.URL_APPS_SCRIPT_LAY_CAY_THU_MUC;
+        // ==============================================================
+        // 🌟 CHỈNH SỬA ĐOẠN NÀY: GỌI API TỔNG HỢP VÀ KÈM ACTION
+        // ==============================================================
+        const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+        if (!API_GOC) throw new Error("Chưa cấu hình URL_APPS_SCRIPT_API_TONG_HOP trong CFG_HE_THONG!");
+
+        const URL_GAS = API_GOC + "?action=layCayThuMucHocLieuTuLuan"; // Nối thêm lệnh để Google Script hiểu
+
         const response = await fetch(URL_GAS);
         const result = await response.json();
+        // ==============================================================
 
         if (result.status === 'error') throw new Error(result.message);
-
         // Hàm đệ quy đếm TỔNG SỐ FILE
         function demTongSoFile(node) {
             if (node.type === 'file') return 1;
@@ -758,4 +767,541 @@ window.kichHoatZoomKeoAnh = function () {
 
     container.addEventListener('mouseup', stopDrag);
     container.addEventListener('mouseleave', stopDrag);
+};
+
+
+// // =====================================================================
+// // [Khối 3] HÀM 3.7: XEM KHO CÂU HỎI DRIVE (VIEW CODE & RENDER)
+// // =====================================================================
+// window.ham_3_7_xem_kho_cau_hoi = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
+//     if (!vungLamViec) return;
+
+//     vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#fd7e14;">⏳ Đang đồng bộ Cây thư mục Kho câu hỏi...</h3></div>`;
+
+//     try {
+//         const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+//         const URL_GAS = API_GOC + "?action=layCayThuMucKhoCauHoi";
+
+//         const response = await fetch(URL_GAS);
+//         const result = await response.json();
+
+//         if (result.status === 'error') throw new Error(result.message);
+
+//         // Hàm đệ quy vẽ HTML sơ đồ cây
+//         function veCayHTML(node) {
+//             if (node.type === 'file') {
+//                 if (!node.name.endsWith('.json')) return ''; // Chỉ hiện file câu hỏi JSON
+//                 return `<div class="tree-file-item" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}')">📄 ${node.name}</div>`;
+//             }
+
+//             let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
+//             if (!htmlChildren.trim()) return ''; // Ẩn thư mục rỗng
+
+//             return `
+//                 <details>
+//                     <summary>${node.name}</summary>
+//                     <div style="padding-left: 10px; margin-top: 5px;">
+//                         ${htmlChildren}
+//                     </div>
+//                 </details>
+//             `;
+//         }
+
+//         const htmlCayThuMuc = veCayHTML(result.data);
+
+//         // Giao diện: Chia cột Trái (Tree) và Phải (Trên Code - Dưới Render)
+//         vungLamViec.innerHTML = `
+//             <style>
+//                 .tree-container details { margin-bottom: 8px; }
+//                 .tree-container summary { font-weight: bold; cursor: pointer; padding: 10px; background: #f1f3f5; border-radius: 6px; list-style: none; font-size: 14px; border: 1px solid #e9ecef;}
+//                 .tree-container summary:hover { background: #e2e6ea; }
+//                 .tree-container summary::before { content: '📁 '; }
+//                 .tree-container details[open] > summary::before { content: '📂 '; }
+//                 .tree-container details[open] > summary { color: #fd7e14; }
+                
+//                 .tree-file-item { padding: 6px 10px 6px 25px; cursor: pointer; color: #0056b3; font-size: 13px; border-radius: 4px; margin-top: 3px; border-left: 2px dashed #ced4da; margin-left: 12px; transition: 0.2s;}
+//                 .tree-file-item:hover { background: #e8f0fe; color: #004494; font-weight: bold; border-left-color: #0056b3; }
+//             </style>
+            
+//             <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+//                 <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 8px 15px; cursor:pointer; border-radius: 6px; border: 1px solid #ccc; background: white;">⬅️ Quay lại</button>
+//                 <h3 style="color: #fd7e14; margin: 0;">📚 KHÁM PHÁ KHO CÂU HỎI TRÊN MÂY</h3>
+//             </div>
+            
+//             <div style="display: flex; gap: 15px; height: 750px;">
+//                 <div id="tree-panel" class="tree-container" style="width: 320px; flex-shrink: 0; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-y: auto;">
+//                     ${htmlCayThuMuc}
+//                 </div>
+
+//                 <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+                    
+//                     <div style="flex: 3; border: 1px solid #dee2e6; border-radius: 8px; background: #282c34; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+//                         <div style="background: #21252b; padding: 10px 15px; color: #abb2bf; font-weight: bold; font-size: 13px; border-bottom: 1px solid #181a1f; display:flex; justify-content:space-between;">
+//                             <span id="lbl-ten-file-code">💻 Dữ liệu thô (JSON/LaTeX)</span>
+//                         </div>
+//                         <textarea id="khung-code-json" readonly style="flex:1; width:100%; background:transparent; color:#98c379; border:none; padding:15px; font-family: Consolas, monospace; font-size: 14px; outline:none; resize:none; overflow-y:auto; line-height: 1.5;"></textarea>
+//                     </div>
+
+//                     <div style="flex: 7; border: 1px solid #dee2e6; border-radius: 8px; background: white; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+//                         <div style="background: #f8f9fa; padding: 10px 15px; color: #333; font-weight: bold; font-size: 13px; border-bottom: 1px solid #dee2e6;">
+//                             👁️ Hiển thị thực tế
+//                         </div>
+//                         <div id="khung-render-cau-hoi" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 15px; line-height: 1.6; color: #333;">
+//                             <div style="color:#999; text-align:center; margin-top:50px;">👈 Bấm vào một file JSON bên trái để xem nội dung</div>
+//                         </div>
+//                     </div>
+
+//                 </div>
+//             </div>
+//         `;
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#dc3545;">❌ Lỗi kết nối API: ${error.message}</h3></div>`;
+//     }
+// };
+
+
+// =====================================================================
+// [Khối 3] HÀM 3.7: XEM KHO CÂU HỎI DRIVE (VIEW CODE & RENDER) - CÓ KÉO THẢ
+// =====================================================================
+window.ham_3_7_xem_kho_cau_hoi = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
+    if (!vungLamViec) return;
+
+    vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#fd7e14;">⏳ Đang đồng bộ Cây thư mục Kho câu hỏi...</h3></div>`;
+
+    try {
+        const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+        const URL_GAS = API_GOC + "?action=layCayThuMucKhoCauHoi";
+
+        const response = await fetch(URL_GAS);
+        const result = await response.json();
+
+        if (result.status === 'error') throw new Error(result.message);
+
+        // Hàm đệ quy vẽ HTML sơ đồ cây
+        function veCayHTML(node) {
+            if (node.type === 'file') {
+                // Hiển thị file JSON
+                if (node.name.endsWith('.json')) {
+                    return `<div class="tree-file-item" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'json')">📄 ${node.name}</div>`;
+                }
+                // Hiển thị file Ảnh
+                else if (node.name.toLowerCase().endsWith('.png') || node.name.toLowerCase().endsWith('.jpg') || node.name.toLowerCase().endsWith('.jpeg')) {
+                    // Đổi màu xanh lá cho icon ảnh để dễ phân biệt
+                    return `<div class="tree-file-item" style="color: #28a745; border-left-color: #28a745;" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'image')">🖼️ ${node.name}</div>`;
+                }
+                // Ẩn các định dạng khác không liên quan
+                return '';
+            }
+
+            let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
+            if (!htmlChildren.trim()) return ''; // Ẩn thư mục rỗng
+
+            // Đổi icon thư mục PICTURES cho đẹp mắt
+            let tenThuMuc = node.name === 'PICTURES' ? '🌄 PICTURES (Ảnh gốc)' : node.name;
+
+            return `
+                <details>
+                    <summary>${tenThuMuc}</summary>
+                    <div style="padding-left: 10px; margin-top: 5px;">
+                        ${htmlChildren}
+                    </div>
+                </details>
+            `;
+        }
+
+        const htmlCayThuMuc = veCayHTML(result.data);
+
+        // Giao diện: Chia cột Trái (Tree) | Thanh Kéo | Phải (Trên Code - Dưới Render)
+        vungLamViec.innerHTML = `
+            <style>
+                .tree-container details { margin-bottom: 8px; }
+                .tree-container summary { font-weight: bold; cursor: pointer; padding: 10px; background: #f1f3f5; border-radius: 6px; list-style: none; font-size: 14px; border: 1px solid #e9ecef;}
+                .tree-container summary:hover { background: #e2e6ea; }
+                .tree-container summary::before { content: '📁 '; }
+                .tree-container details[open] > summary::before { content: '📂 '; }
+                .tree-container details[open] > summary { color: #fd7e14; }
+                
+                .tree-file-item { padding: 6px 10px 6px 25px; cursor: pointer; color: #0056b3; font-size: 13px; border-radius: 4px; margin-top: 3px; border-left: 2px dashed #ced4da; margin-left: 12px; transition: 0.2s;}
+                .tree-file-item:hover { background: #e8f0fe; color: #004494; font-weight: bold; border-left-color: #0056b3; }
+
+                /* CSS hover cho thanh kéo */
+                #drag-splitter-cau-hoi:hover .splitter-icon { background: #ced4da !important; color: #343a40 !important; }
+            </style>
+            
+            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+                <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 8px 15px; cursor:pointer; border-radius: 6px; border: 1px solid #ccc; background: white;">⬅️ Quay lại</button>
+                <h3 style="color: #fd7e14; margin: 0;">📚 KHÁM PHÁ KHO CÂU HỎI TRÊN MÂY</h3>
+            </div>
+            
+            <div style="display: flex; align-items: stretch; gap: 10px; height: 750px; width: 100%;">
+                
+                <div id="tree-panel-cau-hoi" class="tree-container" style="width: 320px; flex-shrink: 0; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-y: auto;">
+                    ${htmlCayThuMuc}
+                </div>
+
+                <div id="drag-splitter-cau-hoi" style="width: 15px; display: flex; align-items: center; justify-content: center; cursor: col-resize; flex-shrink: 0;" title="Kéo để thay đổi độ rộng">
+                    <div class="splitter-icon" style="padding: 15px 4px; background: #e9ecef; border-radius: 4px; color: #6c757d; transition: 0.2s; display: flex; align-items: center;">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <circle cx="2" cy="2" r="1.5"/><circle cx="6" cy="2" r="1.5"/><circle cx="10" cy="2" r="1.5"/>
+                            <circle cx="2" cy="6" r="1.5"/><circle cx="6" cy="6" r="1.5"/><circle cx="10" cy="6" r="1.5"/>
+                            <circle cx="2" cy="10" r="1.5"/><circle cx="6" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
+                    
+                    <div id="panel-code-json" style="flex: 3; border: 1px solid #dee2e6; border-radius: 8px; background: #282c34; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div style="background: #21252b; padding: 10px 15px; color: #abb2bf; font-weight: bold; font-size: 13px; border-bottom: 1px solid #181a1f; display:flex; justify-content:space-between;">
+                            <span id="lbl-ten-file-code">💻 Dữ liệu thô (JSON/LaTeX)</span>
+                        </div>
+                        <textarea id="khung-code-json" readonly style="flex:1; width:100%; background:transparent; color:#98c379; border:none; padding:15px; font-family: Consolas, monospace; font-size: 14px; outline:none; resize:none; overflow-y:auto; line-height: 1.5;"></textarea>
+                    </div>
+
+                    <div id="panel-render-ui" style="flex: 7; border: 1px solid #dee2e6; border-radius: 8px; background: white; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <div style="background: #f8f9fa; padding: 10px 15px; color: #333; font-weight: bold; font-size: 13px; border-bottom: 1px solid #dee2e6;">
+                            👁️ Hiển thị thực tế
+                        </div>
+                        <div id="khung-render-cau-hoi" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 15px; line-height: 1.6; color: #333;">
+                            <div style="color:#999; text-align:center; margin-top:50px;">👈 Bấm vào một file JSON hoặc Ảnh bên trái để xem nội dung</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        `;
+
+        // ==================================================
+        // KÍCH HOẠT SỰ KIỆN KÉO THẢ (DRAG TO RESIZE)
+        // ==================================================
+        const splitter = document.getElementById('drag-splitter-cau-hoi');
+        const treePanel = document.getElementById('tree-panel-cau-hoi');
+        let isResizing = false;
+
+        const startResize = (e) => {
+            isResizing = true;
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none'; // Ngăn bôi đen chữ khi đang kéo
+
+            document.addEventListener('mousemove', doResize);
+            document.addEventListener('mouseup', stopResize);
+        };
+
+        const doResize = (e) => {
+            if (!isResizing) return;
+            // Tính toán chiều rộng mới dựa trên vị trí chuột và vị trí gốc của khung bên trái
+            const containerLeft = treePanel.parentElement.getBoundingClientRect().left;
+            let newWidth = e.clientX - containerLeft;
+
+            // Giới hạn thu phóng: Cột trái tối thiểu 200px, tối đa 800px
+            if (newWidth >= 200 && newWidth <= 800) {
+                treePanel.style.width = newWidth + 'px';
+            }
+        };
+
+        const stopResize = () => {
+            isResizing = false;
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+
+            document.removeEventListener('mousemove', doResize);
+            document.removeEventListener('mouseup', stopResize);
+        };
+
+        if (splitter) {
+            splitter.addEventListener('mousedown', startResize);
+        }
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#dc3545;">❌ Lỗi kết nối API: ${error.message}</h3></div>`;
+    }
+};
+
+
+
+// =====================================================================
+// Hàm 3.7.1: Xử lý khi click vào file (JSON hoặc Ảnh)
+// =====================================================================
+window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType = 'json') {
+    const txtCode = document.getElementById('khung-code-json');
+    const divRender = document.getElementById('khung-render-cau-hoi');
+
+    // Lấy 2 khung container để bật tắt
+    const panelCode = document.getElementById('panel-code-json');
+    const panelRender = document.getElementById('panel-render-ui');
+
+    document.getElementById('lbl-ten-file-code').innerText = `💻 Đang xem: ${fileName}`;
+
+    // 🌟 TRƯỜNG HỢP 1: NẾU THẦY BẤM VÀO FILE ẢNH
+    if (fileType === 'image') {
+        // Ẩn hoàn toàn khung Code đi
+        if (panelCode) panelCode.style.display = 'none';
+
+        // Cho khung Render chiếm trọn 100% diện tích
+        if (panelRender) panelRender.style.flex = '1';
+
+        divRender.innerHTML = `
+            <div style="text-align:center; padding: 20px;">
+                <div style="margin-bottom:15px; color:#28a745; font-weight:bold; font-size: 16px;">🖼️ ${fileName}</div>
+                <img src="https://drive.google.com/thumbnail?id=${fileId}&sz=w1000" style="max-width:100%; max-height: 700px; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd;" alt="${fileName}" />
+            </div>
+        `;
+        return; // Dừng hàm lại
+    }
+
+    // 🌟 TRƯỜNG HỢP 2: NẾU THẦY BẤM VÀO FILE JSON
+    // Bật lại khung Code và trả lại tỷ lệ 30-70
+    if (panelCode) {
+        panelCode.style.display = 'flex';
+        panelRender.style.flex = '7';
+    }
+
+    txtCode.value = "⏳ Đang tải nội dung từ Google Drive...";
+    divRender.innerHTML = "<div style='color:#fd7e14; text-align:center; margin-top:50px;'>⏳ Đang biên dịch hiển thị...</div>";
+
+    try {
+        const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+        const res = await fetch(`${API_GOC}?action=readFile&id=${fileId}&t=${Date.now()}`);
+        const result = await res.json();
+
+        if (result.status !== 'success') throw new Error(result.message);
+
+        const noiDungGoc = result.content;
+
+        try {
+            const jsonObj = JSON.parse(noiDungGoc);
+            txtCode.value = JSON.stringify(jsonObj, null, 4);
+            //ham_3_7_render_ui_cau_hoi(jsonObj, divRender);
+
+
+
+            // Ví dụ trong hàm render chung của thầy
+            if (noiDungGoc.includes("\\choiceTF")) {
+                window.ham_3_7_render_ui_cau_hoi_DS(jsonObj, divRender);
+            } 
+            else 
+                if (noiDungGoc.includes("\\choice")) {
+                    window.ham_3_7_render_ui_cau_hoi_TN(jsonObj, divRender); // Hàm TN cũ của thầy
+                }
+
+
+
+
+
+
+        } catch (e) {
+            txtCode.value = noiDungGoc;
+            divRender.innerHTML = `<div style="color:red;">Lỗi định dạng JSON: ${e.message}</div><pre>${noiDungGoc}</pre>`;
+        }
+
+    } catch (error) {
+        txtCode.value = `Lỗi: ${error.message}`;
+        divRender.innerHTML = `<div style="color:red;">❌ Không thể đọc file: ${error.message}</div>`;
+    }
+};
+
+window.lay4KhoiNgoacNhon = function (tex, macroName) {
+    const regex = new RegExp("\\\\" + macroName + "\\b");
+    const match = tex.match(regex);
+    if (!match) return null;
+
+    let pos = match.index + match[0].length;
+    let blocks = [];
+
+    for (let i = 0; i < 4; i++) {
+        while (pos < tex.length && /\s/.test(tex[pos])) pos++; // Bỏ qua khoảng trắng
+        if (pos >= tex.length || tex[pos] !== '{') return null;
+
+        let start = pos, depth = 0;
+        for (; pos < tex.length; pos++) {
+            if (tex[pos] === '{') depth++;
+            else if (tex[pos] === '}') {
+                depth--;
+                if (depth === 0) {
+                    blocks.push(tex.substring(start + 1, pos));
+                    pos++;
+                    break;
+                }
+            }
+        }
+    }
+    return blocks;
+};
+
+
+window.phanTichCauHoiTexTN = function (texContent) {
+    let result = { cauDan: "", paA: "", paB: "", paC: "", paD: "", loiGiai: "", dapAnDung: null };
+    if (!texContent || texContent.trim() === "") return result;
+
+    // 1. Tách lời giải
+    let idxLoiGiai = texContent.indexOf("\\loigiai");
+    if (idxLoiGiai !== -1) {
+        let start = texContent.indexOf('{', idxLoiGiai) + 1;
+        let end = texContent.lastIndexOf('}', texContent.indexOf("\\end{ex}"));
+        result.loiGiai = texContent.substring(start, end).trim();
+        texContent = texContent.substring(0, idxLoiGiai);
+    }
+
+    // 2. Dọn rác
+    texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
+
+    // 3. Tách phương án & Phát hiện đáp án đúng
+    let blocks = window.lay4KhoiNgoacNhon(texContent, "choice");
+    if (blocks && blocks.length === 4) {
+        const optionLabels = ['A', 'B', 'C', 'D'];
+        blocks.forEach((b, i) => {
+            if (b.includes('\\True')) result.dapAnDung = optionLabels[i];
+            blocks[i] = b.replace(/\\True/g, "").trim();
+        });
+        result.paA = blocks[0]; result.paB = blocks[1]; result.paC = blocks[2]; result.paD = blocks[3];
+        result.cauDan = texContent.substring(0, texContent.indexOf("\\choice")).trim();
+    }
+    return result;
+};
+
+
+window.phanTichCauHoiTexDS = function (texContent) {
+    let result = { cauDan: "", options: [], loiGiai: "" };
+    if (!texContent || texContent.trim() === "") return result;
+
+    // 1. Tách lời giải
+    let idxLoiGiai = texContent.indexOf("\\loigiai");
+    if (idxLoiGiai !== -1) {
+        let start = texContent.indexOf('{', idxLoiGiai) + 1;
+        let end = texContent.lastIndexOf('}', texContent.indexOf("\\end{ex}"));
+        result.loiGiai = texContent.substring(start, end).trim();
+        texContent = texContent.substring(0, idxLoiGiai);
+    }
+
+    // 2. Dọn rác
+    texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
+
+    // 3. Tách phương án (choiceTF) & Phát hiện đáp án đúng
+    // Giả định thầy vẫn dùng hàm window.lay4KhoiNgoacNhon
+    let blocks = window.lay4KhoiNgoacNhon(texContent, "choiceTF");
+
+    if (blocks && blocks.length >= 1) {
+        result.options = blocks.map(b => {
+            return {
+                isTrue: b.includes('\\True'),
+                content: b.replace(/\\True/g, "").trim()
+            };
+        });
+
+        // Lấy câu dẫn
+        let idxChoice = texContent.indexOf("\\choiceTF");
+        result.cauDan = texContent.substring(0, idxChoice).trim();
+    }
+    return result;
+};
+
+
+
+
+
+
+window.ham_3_7_render_ui_cau_hoi_TN = async function (data, containerElement) {
+    if (!data || !data.noi_dung) return;
+
+    const parsed = window.phanTichCauHoiTexTN(data.noi_dung);
+
+    // Tạo 4 thẻ phương án
+    const options = [
+        { label: 'A', content: parsed.paA },
+        { label: 'B', content: parsed.paB },
+        { label: 'C', content: parsed.paC },
+        { label: 'D', content: parsed.paD }
+    ];
+
+    let htmlOptions = "";
+    options.forEach(opt => {
+        const isCorrect = (parsed.dapAnDung === opt.label);
+        // Style thẻ: Màu nổi nếu đúng, màu trung tính nếu sai
+        const bgColor = isCorrect ? "#d4edda" : "#f8f9fa";
+        const borderColor = isCorrect ? "#28a745" : "#ddd";
+        const textColor = isCorrect ? "#155724" : "#495057";
+        const fontWeight = isCorrect ? "bold" : "normal";
+
+        htmlOptions += `
+            <div style="padding: 12px; border: 2px solid ${borderColor}; border-radius: 8px; background: ${bgColor}; color: ${textColor}; font-weight: ${fontWeight};">
+                <b style="margin-right: 5px;">${opt.label}.</b> ${opt.content}
+                ${isCorrect ? ' <span style="font-size:12px;">✅</span>' : ''}
+            </div>
+        `;
+    });
+
+    containerElement.innerHTML = `
+        <div style="padding: 20px; background: #ffffff; border: 1px solid #dee2e6; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <!-- Câu dẫn nổi bật -->
+            <div style="background: #fff8e1; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107; margin-bottom: 20px; font-size: 16px;">
+                ${parsed.cauDan}
+            </div>
+
+            <!-- 4 Thẻ phương án -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                ${htmlOptions}
+            </div>
+
+            <!-- Lời giải -->
+            ${parsed.loiGiai ? `
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; font-size: 14px;">
+                    <b style="color: #495057;">💡 Lời giải:</b><br>
+                    ${parsed.loiGiai}
+                </div>` : ""}
+        </div>
+    `;
+
+    if (window.MathJax) await MathJax.typesetPromise([containerElement]);
+};
+
+window.ham_3_7_render_ui_cau_hoi_DS = async function (data, containerElement) {
+    if (!data || !data.noi_dung) return;
+
+    // Phân tích câu hỏi (dùng hàm phanTichCauHoiTexDS đã viết ở bước trước)
+    const parsed = window.phanTichCauHoiTexDS(data.noi_dung);
+
+    let htmlOptions = "";
+    const nhanY = ['a)', 'b)', 'c)', 'd)'];
+
+    parsed.options.forEach((opt, index) => {
+        // Logic màu sắc: Ý Đúng (True) -> Xanh, Ý Sai (False) -> Đỏ
+        const bgColor = opt.isTrue ? "#d4edda" : "#f8d7da";
+        const borderColor = opt.isTrue ? "#28a745" : "#dc3545";
+        const textColor = opt.isTrue ? "#155724" : "#721c24";
+
+        htmlOptions += `
+            <div style="padding: 12px; margin-bottom: 8px; border: 2px solid ${borderColor}; border-radius: 8px; background: ${bgColor}; color: ${textColor}; display: flex; align-items: flex-start; font-weight: bold;">
+                <div style="width: 30px;">${nhanY[index]}</div>
+                <div style="flex: 1; font-weight: normal;">${opt.content}</div>
+                <div style="margin-left: 10px; font-weight: 900; font-size: 13px; text-transform: uppercase;">
+                    ${opt.isTrue ? "ĐÚNG" : "SAI"}
+                </div>
+            </div>
+        `;
+    });
+
+    containerElement.innerHTML = `
+        <div style="padding: 20px; background: #ffffff; border: 1px solid #dee2e6; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <!-- Câu dẫn (Đồng bộ style với câu TN) -->
+            <div style="background: #fff8e1; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107; margin-bottom: 20px; font-size: 16px;">
+                ${parsed.cauDan}
+            </div>
+
+            <!-- Các ý Đúng/Sai -->
+            <div style="margin-bottom: 20px;">
+                ${htmlOptions}
+            </div>
+
+            <!-- Lời giải (Đồng bộ style với câu TN) -->
+            ${parsed.loiGiai ? `
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; font-size: 14px;">
+                    <b style="color: #495057;">💡 Lời giải:</b><br>
+                    ${parsed.loiGiai}
+                </div>` : ""}
+        </div>
+    `;
+
+    if (window.MathJax) await MathJax.typesetPromise([containerElement]);
 };

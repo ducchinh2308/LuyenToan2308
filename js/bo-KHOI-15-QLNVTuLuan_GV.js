@@ -552,7 +552,7 @@
 //         });
 
 //         // // Gọi API lên Apps Script
-//         // const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, { 
+//         // const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, { 
 //         //     method: "POST",
 //         //     body: JSON.stringify({ 
 //         //         action: "upload_hoc_lieu", 
@@ -563,7 +563,7 @@
 //         // });
         
 
-//         const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+//         const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
 //     method: "POST",
 //     body: JSON.stringify({ 
 //         action: "upload_hoc_lieu", 
@@ -787,7 +787,7 @@
 //                 reader.readAsDataURL(fileUpload);
 //             });
 
-//             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+//             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
 //                 method: "POST",
 //                 body: JSON.stringify({ 
 //                     action: "upload_hoc_lieu", 
@@ -1311,7 +1311,7 @@
 //         return false;
 //     }
 
-//     const urlAppScript = CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN; // Dùng chung link URL_APPS_SCRIPT_TU_LUAN cho thống nhất
+//     const urlAppScript = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP; // Dùng chung link URL_APPS_SCRIPT_API_TONG_HOP cho thống nhất
     
 //     try {
 //         // Gửi lệnh xóa theo phương thức POST

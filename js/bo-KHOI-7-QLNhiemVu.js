@@ -1493,7 +1493,7 @@
 //         if (mangTenThuMucCanTao.length > 0) {
 //             btnNode.innerText = "⏳ Đang tạo kho Drive chờ học sinh nộp bài...";
             
-//             const resDrive = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, { 
+//             const resDrive = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, { 
 //                 method: "POST",
 //                 body: JSON.stringify({ action: "create_class_folders", folders: mangTenThuMucCanTao })
 //             });

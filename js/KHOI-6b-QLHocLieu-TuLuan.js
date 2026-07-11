@@ -532,7 +532,7 @@ window.ham_6b_7_luu_sua_hoc_lieu_tu_luan = async function (maHL, btn) {
             if (!url) return;
             const match = url.match(/\/d\/(.*?)\//);
             if (match && match[1]) {
-                await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+                await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
                     method: "POST",
                     body: JSON.stringify({ action: "delete_file", fileId: match[1] })
                 }).catch(e => console.log("Lỗi xóa file ẩn:", e));
@@ -552,7 +552,7 @@ window.ham_6b_7_luu_sua_hoc_lieu_tu_luan = async function (maHL, btn) {
                 reader.onload = (e) => resolve(e.target.result.split(',')[1]);
                 reader.readAsDataURL(fileObj);
             });
-            const res = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+            const res = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
                 method: "POST",
                 body: JSON.stringify({ action: "upload_hoc_lieu", fileName: tenFileMoi, mimeType: fileObj.type, base64Data: base64Data })
             });
@@ -730,7 +730,7 @@ window.ham_6b_8_mo_popup_upload_tu_luan = function () {
 //                 reader.onerror = () => reject("Lỗi đọc file");
 //                 reader.readAsDataURL(fileToUp);
 //             });
-//             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+//             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
 //                 method: "POST",
 //                 body: JSON.stringify({ action: "upload_hoc_lieu", fileName: customName, mimeType: fileToUp.type, base64Data: base64Data })
 //             });
@@ -897,7 +897,7 @@ window.ham_6b_9_thuc_thi_upload_drive = async function (btnNode) {
                 reader.onerror = () => reject("Lỗi đọc file");
                 reader.readAsDataURL(fileToUp);
             });
-            const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+            const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
                 method: "POST",
                 body: JSON.stringify({ action: "upload_hoc_lieu", fileName: customName, mimeType: fileToUp.type, base64Data: base64Data })
             });
@@ -1290,7 +1290,7 @@ window.ham_6b_20_xoa_hoc_lieu_tu_luan = async function (maHL, btnNode) {
                 if (!url) return;
                 const match = url.match(/\/d\/(.*?)\//);
                 if (match && match[1]) {
-                    await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+                    await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
                         method: "POST",
                         body: JSON.stringify({ action: "delete_file", fileId: match[1] })
                     }).catch(e => console.log("Lỗi xóa file ẩn:", e));
@@ -1319,5 +1319,24 @@ window.ham_6b_20_xoa_hoc_lieu_tu_luan = async function (maHL, btnNode) {
         alert("❌ Lỗi khi xóa: " + error.message);
         btnNode.innerText = btnOldText;
         btnNode.disabled = false;
+    }
+};// =====================================================================
+// Hàm Bổ trợ: Cập nhật Text hiển thị tên file khi người dùng chọn file
+// =====================================================================
+window.ham_6b_cap_nhat_text_file = function (inputNode, labelId) {
+    const labelNode = document.getElementById(labelId);
+    if (!labelNode) return;
+
+    if (inputNode.files && inputNode.files.length > 0) {
+        if (inputNode.files.length === 1) {
+            // Trường hợp chọn 1 file duy nhất
+            labelNode.innerHTML = `<b style="color: #0056b3;">✅ Đã chọn: ${inputNode.files[0].name}</b>`;
+        } else {
+            // Trường hợp chọn nhiều file (Ảnh) để hệ thống tự ghép thành PDF
+            labelNode.innerHTML = `<b style="color: #d35400;">📚 Đã chọn ${inputNode.files.length} tệp (Hệ thống sẽ tự động ghép thành 1 file PDF)</b>`;
+        }
+    } else {
+        // Trường hợp người dùng bấm Cancel (Hủy chọn)
+        labelNode.innerHTML = `<span style="color: #6c757d; font-style: italic;">Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để ghép PDF)</span>`;
     }
 };

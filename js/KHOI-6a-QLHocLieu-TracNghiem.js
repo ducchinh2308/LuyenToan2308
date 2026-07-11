@@ -1663,7 +1663,7 @@ window.ham_6a_fetch_cay_thu_muc_drive = async function () {
 
     try {
         // ⚠️ Dùng chung API của hệ thống (Nhớ đảm bảo API này trả về cây thư mục KHO_CAU_HOI)
-        const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_LAY_CAY_THU_MUC);
+        const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
         const result = await response.json();
 
         if (result.status === 'error') throw new Error(result.message);

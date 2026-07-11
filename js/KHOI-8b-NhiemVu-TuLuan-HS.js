@@ -637,7 +637,7 @@ window.ham_8b_9_nop_bai_ve_supabase = async function () {
         for (let i = 0; i < TuLuanHS_State.linkAnhDaUpload.length; i++) {
             const img = TuLuanHS_State.linkAnhDaUpload[i];
 
-            const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+            const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
                 method: "POST",
                 body: JSON.stringify({
                     action: "upload_bai_nop",

@@ -484,7 +484,7 @@ window.ham_7b_5_luu_nhiem_vu_moi_tu_luan = async function (btnNode) {
         });
 
         // 4. Gọi Apps Script tạo folder
-        const resDrive = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_TU_LUAN, {
+        const resDrive = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
             method: "POST",
             body: JSON.stringify({ action: "create_class_folders", folders: mangTenThuMucCanTao })
         });
