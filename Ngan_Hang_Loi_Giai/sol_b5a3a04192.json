@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b5a3a04192",
+  "dapAn": "D",
+  "loiGiai": "Ta có $\\displaystyle f'(x) = 0 \\Leftrightarrow \\begin{bmatrix} x = \\frac{1}{2} \\\\ x = -1 \\end{bmatrix}$.\\\\\r\n\t\tBảng xét dấu đạo hàm trên đoạn $[-2; 0]$:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b5a3a04192_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-2; 0]$ bằng $f(-1)$."
+}

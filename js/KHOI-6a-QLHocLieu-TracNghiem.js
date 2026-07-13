@@ -18,7 +18,7 @@ function ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem() {
             <div style="display: flex; gap: 15px; align-items: center;">
                 <input type="text" id="input-tim-kiem-qlhl" placeholder="Tìm tên, mã đề..." oninput="ham_6a_11_tim_kiem_live(this.value)" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px; width: 250px;">
                 <button onclick="ham_6a_2_tai_danh_sach_hoc_lieu_trac_nghiem()" style="padding: 10px 15px;">🔄</button>
-                <button onclick="ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold;">+ Tạo mới</button>
+                <button onclick="ham_6a_7_hien_form_them_hoc_lieu_trac_nghiem()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold;">+ Tạo mới</button>
             </div>
         </div>
         <div id="danh-sach-hl-render"><p>Đang tải dữ liệu...</p></div>
@@ -52,7 +52,7 @@ async function ham_6a_2_tai_danh_sach_hoc_lieu_trac_nghiem() {
             ten_gv_tao: tuDienTenGv[hl.uid_gv_tao] || 'Không xác định'
         }));
 
-        ham_6a_10_ve_bang_hoc_lieu_trac_nghiem();
+        ham_6a_3_ve_bang_hoc_lieu_trac_nghiem();
 
     } catch (error) {
         renderArea.innerHTML = `<p style="color: red;">Lỗi tải dữ liệu: ${error.message}</p>`;
@@ -60,7 +60,7 @@ async function ham_6a_2_tai_danh_sach_hoc_lieu_trac_nghiem() {
 }
 
 // Hàm 6.10: Vẽ Bảng Học Liệu (Cập nhật hiển thị Quy mô & Cấu trúc)
-function ham_6a_10_ve_bang_hoc_lieu_trac_nghiem() {
+function ham_6a_3_ve_bang_hoc_lieu_trac_nghiem() {
     const renderArea = document.getElementById('danh-sach-hl-render');
     let dsHL = [...BangHocLieuState.duLieu];
 
@@ -92,15 +92,15 @@ function ham_6a_10_ve_bang_hoc_lieu_trac_nghiem() {
                     <tr style="background: #f8f9fa; text-align: left; border-bottom: 2px solid #dee2e6; white-space: nowrap; cursor: pointer;">
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center; width: 40px;">STT</th>
                         <th style="padding: 10px; border: 1px solid #eee; text-align: center;">Thao tác</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_11_thay_doi_sort('ma_hoc_lieu')">Mã HL ${getIcon('ma_hoc_lieu')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_11_thay_doi_sort('ten_hoc_lieu')">Tên Học Liệu / Đề Thi ${getIcon('ten_hoc_lieu')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_11_thay_doi_sort('loai_kiem_tra')">Phân loại ${getIcon('loai_kiem_tra')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_11_thay_doi_sort('khoi_lop')">Khối ${getIcon('khoi_lop')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_4_thay_doi_sort('ma_hoc_lieu')">Mã HL ${getIcon('ma_hoc_lieu')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_4_thay_doi_sort('ten_hoc_lieu')">Tên Học Liệu / Đề Thi ${getIcon('ten_hoc_lieu')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee;" onclick="ham_6a_4_thay_doi_sort('loai_kiem_tra')">Phân loại ${getIcon('loai_kiem_tra')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_4_thay_doi_sort('khoi_lop')">Khối ${getIcon('khoi_lop')}</th>
                         
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_11_thay_doi_sort('quy_mo_cau_hoi')">Quy mô / Cấu trúc ${getIcon('quy_mo_cau_hoi')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_4_thay_doi_sort('quy_mo_cau_hoi')">Quy mô / Cấu trúc ${getIcon('quy_mo_cau_hoi')}</th>
                         
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_11_thay_doi_sort('thoi_gian_lam_bai')">Thời gian ${getIcon('thoi_gian_lam_bai')}</th>
-                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_11_thay_doi_sort('trang_thai')">Trạng thái ${getIcon('trang_thai')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_4_thay_doi_sort('thoi_gian_lam_bai')">Thời gian ${getIcon('thoi_gian_lam_bai')}</th>
+                        <th style="padding: 10px; border: 1px solid #eee; text-align: center;" onclick="ham_6a_4_thay_doi_sort('trang_thai')">Trạng thái ${getIcon('trang_thai')}</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Giáo viên</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Ngày tạo</th>
                         <th style="padding: 10px; border: 1px solid #eee;">Mã câu hỏi</th>
@@ -129,7 +129,7 @@ function ham_6a_10_ve_bang_hoc_lieu_trac_nghiem() {
             : `<span style="background: #f1f3f4; color: #666; padding: 4px 8px; border-radius: 12px; font-weight: bold; font-size: 11px;">Nội bộ</span>`;
 
         htmlTable += `
-            <tr onclick="ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem('${hl.ma_hoc_lieu}', false)" 
+            <tr onclick="ham_6a_14_mo_form_sua_hoc_lieu_trac_nghiem('${hl.ma_hoc_lieu}', false)" 
                 style="border-bottom: 1px solid #eee; transition: 0.2s; cursor: pointer;" 
                 onmouseover="this.style.background='#f1f8ff'" 
                 onmouseout="this.style.background='white'">
@@ -137,8 +137,8 @@ function ham_6a_10_ve_bang_hoc_lieu_trac_nghiem() {
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; font-weight: bold;">${index + 1}</td>
                 
                 <td style="padding: 10px; border: 1px solid #eee; text-align: center; white-space: nowrap;">
-                    <button onclick="event.stopPropagation(); ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem('${hl.ma_hoc_lieu}', true)" style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
-                    <button onclick="event.stopPropagation(); window.ham_6a_20_xoa_sach_github_va_supabase('${hl.ma_hoc_lieu}', this)" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
+                    <button onclick="event.stopPropagation(); ham_6a_14_mo_form_sua_hoc_lieu_trac_nghiem('${hl.ma_hoc_lieu}', true)" style="padding: 5px 10px; background: #f39c12; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px;">Sửa</button>
+                    <button onclick="event.stopPropagation(); window.ham_6a_21_xoa_sach_github_va_supabase('${hl.ma_hoc_lieu}', this)" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Xóa</button>
                 </td>
                 
                 <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; color: #d35400;">${hl.ma_hoc_lieu}</td>
@@ -162,20 +162,20 @@ function ham_6a_10_ve_bang_hoc_lieu_trac_nghiem() {
 }
 
 // Hàm 6.11: Xử lý thay đổi cột Sắp xếp
-function ham_6a_11_thay_doi_sort(cotMoi) {
+function ham_6a_4_thay_doi_sort(cotMoi) {
     if (BangHocLieuState.cotDangSort === cotMoi) {
         BangHocLieuState.tangDan = !BangHocLieuState.tangDan;
     } else {
         BangHocLieuState.cotDangSort = cotMoi;
         BangHocLieuState.tangDan = true;
     }
-    ham_6a_10_ve_bang_hoc_lieu_trac_nghiem();
+    ham_6a_3_ve_bang_hoc_lieu_trac_nghiem();
 }
 
 // =====================================================================
 // Hàm 6.11: Tìm kiếm trực tiếp (Live Search) học liệu trên bảng
 // =====================================================================
-window.ham_6a_11_tim_kiem_live_hoc_lieu_trac_nghiem = function (tuKhoa) {
+window.ham_6a_5_tim_kiem_live_hoc_lieu_trac_nghiem = function (tuKhoa) {
     const filter = tuKhoa.toLowerCase().trim();
 
     // Tìm tất cả các dòng <tr> nằm trong phần <tbody> của bảng học liệu
@@ -198,7 +198,7 @@ window.ham_6a_11_tim_kiem_live_hoc_lieu_trac_nghiem = function (tuKhoa) {
 
 
 // Hàm 6.0: Sinh mã định danh ngẫu nhiên theo loại
-function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
+function ham_6a_6_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
     let randomPart = '';
     for (let i = 0; i < 6; i++) {
@@ -214,9 +214,9 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 // ==============================================================
 // Hàm 6.3: Vẽ Form thêm mới Học Liệu / Đề Thi (Phiên bản đồng bộ Khối 15)
 // ==============================================================
-// window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
+// window.ham_6a_7_hien_form_them_hoc_lieu_trac_nghiem = function () {
 //     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//     const maHLBanDau = ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem('TN_GK1');
+//     const maHLBanDau = ham_6a_6_sinh_ma_hoc_lieu_trac_nghiem('TN_GK1');
 
 //     vungLamViec.innerHTML = `
 //         <div style="max-width: 950px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
@@ -229,7 +229,7 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 //                 </div>
 //                 <div>
 //                     <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">Phân loại Học Liệu:</label>
-//                     <select id="selPhanLoaiHL" onchange="ham_6a_3_b_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 8px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
+//                     <select id="selPhanLoaiHL" onchange="ham_6a_8_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 8px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
 //                             <option value="TN_GK1" selected>Trắc nghiệm - Giữa kỳ 1</option>
 //                             <option value="TN_CK1">Trắc nghiệm - Cuối kỳ 1</option>
 //                             <option value="TN_GK2">Trắc nghiệm - Giữa kỳ 2</option>
@@ -274,22 +274,22 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 //                 <div id="khu_vuc_nhap_trac_nghiem" style="display: block;">
 //                     <div style="margin-bottom: 20px; text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6;">
 //                         <label style="font-weight: bold; font-size: 15px; margin-right: 30px; cursor: pointer; color: #17a2b8;">
-//                             <input type="radio" name="radCachNhap" value="1" checked onchange="ham_6a_3_c_chuyen_doi_cach_nhap(1)" style="transform: scale(1.3); margin-right: 8px;">
+//                             <input type="radio" name="radCachNhap" value="1" checked onchange="ham_6a_9_chuyen_doi_cach_nhap(1)" style="transform: scale(1.3); margin-right: 8px;">
 //                             📤 CÁCH 1: UPLOAD TỪ FILE (.TEX)
 //                         </label>
 //                         <label style="font-weight: bold; font-size: 15px; cursor: pointer; color: #d35400;">
-//                             <input type="radio" name="radCachNhap" value="2" onchange="ham_6a_3_c_chuyen_doi_cach_nhap(2)" style="transform: scale(1.3); margin-right: 8px;">
+//                             <input type="radio" name="radCachNhap" value="2" onchange="ham_6a_9_chuyen_doi_cach_nhap(2)" style="transform: scale(1.3); margin-right: 8px;">
 //                             ✍️ CÁCH 2: NHẬP MÃ CÂU THỦ CÔNG
 //                         </label>
 //                     </div>
 
 //                     <div id="khu_vuc_cach_1" style="display: block; margin-bottom: 20px; padding: 15px; border: 1px solid #17a2b8; border-radius: 8px; background: #e8f4fd;">
 //                         <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-//                             <button onclick="ham_6a_15_tai_file_mau()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📄 Tải File Mẫu</button>
+//                             <button onclick="ham_6a_13_tai_file_mau()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📄 Tải File Mẫu</button>
 //                             <div style="flex: 1; min-width: 250px;">
-//                                 <input type="file" id="upload_file_input" accept=".tex,.txt" onchange="ham_6a_16_xu_ly_thay_doi_file(this)" style="display: block; width: 100%; padding: 8px; border: 2px dashed #17a2b8; border-radius: 6px; background: #fff; cursor: pointer;">
+//                                 <input type="file" id="upload_file_input" accept=".tex,.txt" onchange="ham_6a_20_xu_ly_thay_doi_file(this)" style="display: block; width: 100%; padding: 8px; border: 2px dashed #17a2b8; border-radius: 6px; background: #fff; cursor: pointer;">
 //                             </div>
-//                             <button id="btn_check_file" onclick="ham_6a_13_kiem_tra_file_upload()" style="padding: 10px 15px; background: #ffc107; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: none;">🔍 Kiểm tra</button>
+//                             <button id="btn_check_file" onclick="ham_6a_19_kiem_tra_file_upload()" style="padding: 10px 15px; background: #ffc107; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: none;">🔍 Kiểm tra</button>
 //                         </div>
 //                         <div id="khu_vuc_bao_loi_file" style="margin-top: 10px; display: none; padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; font-size: 13px;"></div>
 //                     </div>
@@ -302,15 +302,15 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 //                         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
 //                             <div>
 //                                 <label style="font-size: 11px; font-weight: bold; color: #1a73e8; display: block;">PHẦN 1: TRẮC NGHIỆM (<span id="demTN">0</span>)</label>
-//                                 <textarea id="txtID_TN" oninput="ham_6a_5_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #1a73e8; border-radius: 4px;"></textarea>
+//                                 <textarea id="txtID_TN" oninput="ham_6a_12_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #1a73e8; border-radius: 4px;"></textarea>
 //                             </div>
 //                             <div>
 //                                 <label style="font-size: 11px; font-weight: bold; color: #d35400; display: block;">PHẦN 2: ĐÚNG / SAI (<span id="demDS">0</span>)</label>
-//                                 <textarea id="txtID_DS" oninput="ham_6a_5_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;"></textarea>
+//                                 <textarea id="txtID_DS" oninput="ham_6a_12_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #d35400; border-radius: 4px;"></textarea>
 //                             </div>
 //                             <div>
 //                                 <label style="font-size: 11px; font-weight: bold; color: #28a745; display: block;">PHẦN 3: TRẢ LỜI NGẮN (<span id="demTLN">0</span>)</label>
-//                                 <textarea id="txtID_TLN" oninput="ham_6a_5_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px;"></textarea>
+//                                 <textarea id="txtID_TLN" oninput="ham_6a_12_tinh_toan_cau_truc()" rows="7" style="width: 100%; padding: 8px; border: 1px solid #28a745; border-radius: 4px;"></textarea>
 //                             </div>
 //                         </div>
 //                     </div>
@@ -320,7 +320,7 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 //             </div>
 
 //             <div style="display: flex; gap: 12px; margin-top: 20px;">
-//                 <button id="btnLuuHocLieu" onclick="ham_6a_4_luu_hoc_lieu_trac_nghiem_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
+//                 <button id="btnLuuHocLieu" onclick="ham_6a_10_luu_hoc_lieu_trac_nghiem_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
 //                     💾 LƯU HỌC LIỆU
 //                 </button>
 //                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px;">
@@ -331,14 +331,14 @@ function ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiPrefix) {
 //     `;
     
 //     // Gọi định tuyến ban đầu
-//     setTimeout(() => ham_6a_3_b_cap_nhat_ma_theo_loai(), 50);
+//     setTimeout(() => ham_6a_8_cap_nhat_ma_theo_loai(), 50);
 // };
-window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
+window.ham_6a_7_hien_form_them_hoc_lieu_trac_nghiem = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    const maHLBanDau = ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem('TN_GK1');
+    const maHLBanDau = ham_6a_6_sinh_ma_hoc_lieu_trac_nghiem('TN_GK1');
 
     vungLamViec.innerHTML = `
-        <div style="max-width: 950px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <div style="width: 100%; box-sizing: border-box; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h3 style="color: #28a745; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">TẠO HỌC LIỆU MỚI</h3>
             
             <div style="display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px; margin-bottom: 20px;">
@@ -348,7 +348,7 @@ window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
                 </div>
                 <div>
                     <label style="font-weight: bold; font-size: 13px; color: #1a73e8;">Phân loại Học Liệu:</label>
-                    <select id="selPhanLoaiHL" onchange="ham_6a_3_b_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 8px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
+                    <select id="selPhanLoaiHL" onchange="ham_6a_8_cap_nhat_ma_theo_loai()" style="width: 100%; padding: 8px; border: 2px solid #1a73e8; border-radius: 6px; cursor: pointer; font-weight: bold;">
                             <option value="TN_GK1" selected>Trắc nghiệm - Giữa kỳ 1</option>
                             <option value="TN_CK1">Trắc nghiệm - Cuối kỳ 1</option>
                             <option value="TN_GK2">Trắc nghiệm - Giữa kỳ 2</option>
@@ -394,22 +394,26 @@ window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
                     
                     <div style="margin-bottom: 20px; text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6;">
                         <label style="font-weight: bold; font-size: 15px; margin-right: 30px; cursor: pointer; color: #17a2b8;">
-                            <input type="radio" name="radCachNhap" value="1" checked onchange="ham_6a_3_c_chuyen_doi_cach_nhap(1)" style="transform: scale(1.3); margin-right: 8px;">
+                            <input type="radio" name="radCachNhap" value="1" checked onchange="ham_6a_9_chuyen_doi_cach_nhap(1)" style="transform: scale(1.3); margin-right: 8px;">
                             📤 CÁCH 1: UPLOAD TỪ FILE MÁY TÍNH (.TEX)
                         </label>
                         <label style="font-weight: bold; font-size: 15px; cursor: pointer; color: #d35400;">
-                            <input type="radio" name="radCachNhap" value="2" onchange="ham_6a_3_c_chuyen_doi_cach_nhap(2)" style="transform: scale(1.3); margin-right: 8px;">
+                            <input type="radio" name="radCachNhap" value="2" onchange="ham_6a_9_chuyen_doi_cach_nhap(2)" style="transform: scale(1.3); margin-right: 8px;">
                             ☁️ CÁCH 2: CHỌN TỪ NGÂN HÀNG (DRIVE)
+                        </label>
+                        <label style="font-weight: bold; font-size: 14px; cursor: pointer; color: #6f42c1;">
+                            <input type="radio" name="radCachNhap" value="3" onchange="ham_6a_9_chuyen_doi_cach_nhap(3)" style="transform: scale(1.3); margin-right: 5px;">
+                            🎯 CÁCH 3: BỐC TỪ KHO MA TRẬN
                         </label>
                     </div>
 
                     <div id="khu_vuc_cach_1" style="display: block; margin-bottom: 20px; padding: 15px; border: 1px solid #17a2b8; border-radius: 8px; background: #e8f4fd;">
                         <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-                            <button onclick="ham_6a_15_tai_file_mau()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📄 Tải File Mẫu</button>
+                            <button onclick="ham_6a_13_tai_file_mau()" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">📄 Tải File Mẫu</button>
                             <div style="flex: 1; min-width: 250px;">
-                                <input type="file" id="upload_file_input" accept=".tex,.txt" onchange="ham_6a_16_xu_ly_thay_doi_file(this)" style="display: block; width: 100%; padding: 8px; border: 2px dashed #17a2b8; border-radius: 6px; background: #fff; cursor: pointer;">
+                                <input type="file" id="upload_file_input" accept=".tex,.txt" onchange="ham_6a_20_xu_ly_thay_doi_file(this)" style="display: block; width: 100%; padding: 8px; border: 2px dashed #17a2b8; border-radius: 6px; background: #fff; cursor: pointer;">
                             </div>
-                            <button id="btn_check_file" onclick="ham_6a_13_kiem_tra_file_upload()" style="padding: 10px 15px; background: #ffc107; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: none;">🔍 Kiểm tra</button>
+                            <button id="btn_check_file" onclick="ham_6a_19_kiem_tra_file_upload()" style="padding: 10px 15px; background: #ffc107; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: none;">🔍 Kiểm tra</button>
                         </div>
                         <div id="khu_vuc_bao_loi_file" style="margin-top: 10px; display: none; padding: 10px; background: #fff3cd; border-left: 4px solid #ffc107; font-size: 13px;"></div>
                     </div>
@@ -420,7 +424,7 @@ window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
                             <div style="flex: 1.2; border: 1px solid #dee2e6; border-radius: 6px; background: white; display: flex; flex-direction: column;">
                                 <div style="background: #f1f3f4; padding: 10px; border-bottom: 1px solid #dee2e6; font-weight: bold; color: #333; display: flex; justify-content: space-between; align-items: center;">
                                     <span>📁 Cấu trúc Ngân hàng</span>
-                                    <button onclick="ham_6a_fetch_cay_thu_muc_drive()" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">🔄 Tải lại</button>
+                                    <button onclick="ham_6a_22_fetch_cay_thu_muc_drive()" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">🔄 Tải lại</button>
                                 </div>
                                 <div id="tree-ngan-hang-drive" style="flex: 1; overflow-y: auto; padding: 10px;">
                                     <span style="color: #666; font-style: italic;">Đang đợi kết nối...</span>
@@ -438,13 +442,16 @@ window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
                             
                         </div>
                     </div>
+                    <div id="khu_vuc_cach_3" style="display: none; margin-bottom: 20px; padding: 15px; border: 1px solid #6f42c1; border-radius: 8px; background: #fdfaf6;">
+                        <div id="vung-render-ma-tran-k17"></div>
+                    </div>
                 </div>
 
                 <div id="vung_nhung_khoi_15" style="display: none;"></div>
             </div>
 
             <div style="display: flex; gap: 12px; margin-top: 20px;">
-                <button id="btnLuuHocLieu" onclick="ham_6a_4_luu_hoc_lieu_trac_nghiem_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
+                <button id="btnLuuHocLieu" onclick="ham_6a_10_luu_hoc_lieu_trac_nghiem_moi(this)" style="flex: 2; padding: 12px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px;">
                     💾 LƯU HỌC LIỆU
                 </button>
                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="flex: 1; padding: 12px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px;">
@@ -455,11 +462,11 @@ window.ham_6a_3_hien_form_them_hoc_lieu_trac_nghiem = function () {
     `;
 
     // Gọi định tuyến ban đầu
-    setTimeout(() => ham_6a_3_b_cap_nhat_ma_theo_loai(), 50);
+    setTimeout(() => ham_6a_8_cap_nhat_ma_theo_loai(), 50);
 };
 
 
-window.ham_6a_3_b_cap_nhat_ma_theo_loai = function () {
+window.ham_6a_8_cap_nhat_ma_theo_loai = function () {
     const selPhanLoai = document.getElementById('selPhanLoaiHL');
     const loaiChon = selPhanLoai.value; 
     const txtMa = document.getElementById('txtMaHocLieu');
@@ -467,7 +474,7 @@ window.ham_6a_3_b_cap_nhat_ma_theo_loai = function () {
     const kvTracNghiem = document.getElementById('khu_vuc_nhap_trac_nghiem');
 
     // 1. Cập nhật mã
-    txtMa.value = ham_6a_0_sinh_ma_hoc_lieu_trac_nghiem(loaiChon);
+    txtMa.value = ham_6a_6_sinh_ma_hoc_lieu_trac_nghiem(loaiChon);
       // --- LUỒNG TRẮC NGHIỆM ---
         kvTracNghiem.style.display = 'block';
         vungNhungK15.style.display = 'none';
@@ -478,7 +485,7 @@ window.ham_6a_3_b_cap_nhat_ma_theo_loai = function () {
 // ==============================================================
 // Hàm 6.3.c: Xử lý hiệu ứng khi chuyển đổi Cách 1 (File) và Cách 2 (Tay)
 // ==============================================================
-// window.ham_6a_3_c_chuyen_doi_cach_nhap = function (cach) {
+// window.ham_6a_9_chuyen_doi_cach_nhap = function (cach) {
 //     const kv1 = document.getElementById('khu_vuc_cach_1');
 //     const kv2 = document.getElementById('khu_vuc_cach_2');
 //     const btnLuu = document.getElementById('btnLuuHocLieu');
@@ -522,17 +529,23 @@ window.ham_6a_3_b_cap_nhat_ma_theo_loai = function () {
 //         btnLuu.innerText = "💾 LƯU HỌC LIỆU (NHẬP TAY)";
 
 //         // Kích hoạt tính toán lại cấu trúc cho các ô nhập tay
-//         if (typeof ham_6a_5_tinh_toan_cau_truc === 'function') {
-//             ham_6a_5_tinh_toan_cau_truc();
+//         if (typeof ham_6a_12_tinh_toan_cau_truc === 'function') {
+//             ham_6a_12_tinh_toan_cau_truc();
 //         }
 //     }
 // };
 
 
-window.ham_6a_3_c_chuyen_doi_cach_nhap = function (cach) {
+window.ham_6a_9_chuyen_doi_cach_nhap = function (cach) {
     const kv1 = document.getElementById('khu_vuc_cach_1');
     const kv2 = document.getElementById('khu_vuc_cach_2');
+    const kv3 = document.getElementById('khu_vuc_cach_3');
     const btnLuu = document.getElementById('btnLuuHocLieu');
+
+    // Ẩn tất cả trước
+    kv1.style.display = 'none';
+    kv2.style.display = 'none';
+    kv3.style.display = 'none';
 
     if (cach === 1) {
         kv1.style.display = 'block';
@@ -550,7 +563,7 @@ window.ham_6a_3_c_chuyen_doi_cach_nhap = function (cach) {
             btnLuu.style.background = "#28a745";
             btnLuu.innerText = "💾 LƯU HỌC LIỆU VÀ ĐẨY LÊN GITHUB";
         }
-    } else {
+    } else if (cach === 2) {
         kv1.style.display = 'none';
         kv2.style.display = 'block';
 
@@ -561,45 +574,62 @@ window.ham_6a_3_c_chuyen_doi_cach_nhap = function (cach) {
         // 🌟 TỰ ĐỘNG TẢI CÂY THƯ MỤC NẾU CHƯA CÓ
         const treeDiv = document.getElementById('tree-ngan-hang-drive');
         if (treeDiv && treeDiv.innerHTML.includes('Đang đợi')) {
-            ham_6a_fetch_cay_thu_muc_drive();
+            ham_6a_22_fetch_cay_thu_muc_drive();
         }
-        ham_6a_cap_nhat_giao_dien_cau_da_chon();
+        ham_6a_25_cap_nhat_giao_dien_cau_da_chon();
+    } else if (cach === 3) {
+        kv3.style.display = 'block';
+        btnLuu.style.display = 'none'; // 🌟 Ẩn nút lưu mặc định vì Khối 17 có thanh Giỏ Hàng riêng
+
+        // KÍCH HOẠT KHỐI 17 VẼ VÀO TRONG FORM NÀY
+        if (typeof ham_17_1_ve_giao_dien_ma_tran === 'function') {
+            ham_17_1_ve_giao_dien_ma_tran('vung-render-ma-tran-k17');
+        } else {
+            document.getElementById('vung-render-ma-tran-k17').innerHTML = "❌ Lỗi: Chưa nạp script Khối 17!";
+        }
     }
+
+    if (cach !== 3) {
+        btnLuu.style.display = 'block'; // Hiện lại nút lưu nếu không phải Cách 3
+        const thanhGioHang = document.getElementById('thanh-gio-hang-17');
+        if (thanhGioHang) thanhGioHang.style.display = 'none';
+    }
+
 };
 
 
 
 
 
-// Hàm 6.5: Tính toán cấu trúc 2025 và đếm số lượng câu hỏi thời gian thực
-function ham_6a_5_tinh_toan_cau_truc() {
-    const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
+// // Hàm 6.5: Tính toán cấu trúc 2025 và đếm số lượng câu hỏi thời gian thực
+// function ham_6a_12_tinh_toan_cau_truc() {
+//     const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
 
-    const arrTN = bocTach(document.getElementById('txtID_TN').value);
-    const arrDS = bocTach(document.getElementById('txtID_DS').value);
-    const arrTLN = bocTach(document.getElementById('txtID_TLN').value);
+//     const arrTN = bocTach(document.getElementById('txtID_TN').value);
+//     const arrDS = bocTach(document.getElementById('txtID_DS').value);
+//     const arrTLN = bocTach(document.getElementById('txtID_TLN').value);
 
-    // Cập nhật số lượng hiển thị trên từng ô
-    document.getElementById('demTN').innerText = arrTN.length;
-    document.getElementById('demDS').innerText = arrDS.length;
-    document.getElementById('demTLN').innerText = arrTLN.length;
+//     // Cập nhật số lượng hiển thị trên từng ô
+//     document.getElementById('demTN').innerText = arrTN.length;
+//     document.getElementById('demDS').innerText = arrDS.length;
+//     document.getElementById('demTLN').innerText = arrTLN.length;
 
-    const tong = arrTN.length + arrDS.length + arrTLN.length;
-    document.getElementById('lblTongCauHoi').innerText = `Tổng: ${tong} câu`;
+//     const tong = arrTN.length + arrDS.length + arrTLN.length;
+//     document.getElementById('lblTongCauHoi').innerText = `Tổng: ${tong} câu`;
 
-    // Tự động tạo chuỗi cấu trúc ví dụ: 12TN-4DS-6TLN
-    let mangMôTả = [];
-    if (arrTN.length > 0) mangMôTả.push(`${arrTN.length}TN`);
-    if (arrDS.length > 0) mangMôTả.push(`${arrDS.length}DS`);
-    if (arrTLN.length > 0) mangMôTả.push(`${arrTLN.length}TLN`);
+//     // Tự động tạo chuỗi cấu trúc ví dụ: 12TN-4DS-6TLN
+//     let mangMôTả = [];
+//     if (arrTN.length > 0) mangMôTả.push(`${arrTN.length}TN`);
+//     if (arrDS.length > 0) mangMôTả.push(`${arrDS.length}DS`);
+//     if (arrTLN.length > 0) mangMôTả.push(`${arrTLN.length}TLN`);
 
-    document.getElementById('txtCauTruc').value = mangMôTả.join(' - ');
-}
-
-
+//     document.getElementById('txtCauTruc').value = mangMôTả.join(' - ');
+// }
 
 
-window.ham_6a_4_luu_hoc_lieu_trac_nghiem_moi = async function (btn) {
+
+
+window.ham_6a_10_luu_hoc_lieu_trac_nghiem_moi = async function (btn) {
     const maHL = document.getElementById('txtMaHocLieu').value;
     const tenHL = document.getElementById('txtTenHocLieu').value.trim();
     
@@ -673,7 +703,7 @@ window.ham_6a_4_luu_hoc_lieu_trac_nghiem_moi = async function (btn) {
             let urlDeGithub = null;
             if (dangChonCach1) {
                 btn.innerText = "⏳ ĐANG CHUẨN HÓA VÀ ĐẨY FILE ĐỀ LÊN GITHUB...";
-                urlDeGithub = await window.ham_6a_4_b_day_file_de_trac_nghiem_len_github(maHL, tenHL, danhSachKhoBau);
+                urlDeGithub = await window.ham_6a_11_day_file_de_trac_nghiem_len_github(maHL, tenHL, danhSachKhoBau);
             }
 
             const metadataObj = {
@@ -713,7 +743,7 @@ window.ham_6a_4_luu_hoc_lieu_trac_nghiem_moi = async function (btn) {
 // ==============================================================
 // Hàm 6.4.b: Đẩy TOÀN BỘ Đề + Giải bằng Tree Commit (Bản chuẩn hóa cấu trúc C#)
 // ==============================================================
-window.ham_6a_4_b_day_file_de_trac_nghiem_len_github = async function (maHL, tenHL, dsKhoBau) {
+window.ham_6a_11_day_file_de_trac_nghiem_len_github = async function (maHL, tenHL, dsKhoBau) {
     if (typeof CFG_HE_THONG === 'undefined') {
         throw new Error("Lỗi: Không tìm thấy cấu hình CFG_HE_THONG chứa Token Github.");
     }
@@ -859,7 +889,7 @@ window.ham_6a_4_b_day_file_de_trac_nghiem_len_github = async function (maHL, ten
 };
 
 // Hàm 6.5: Lấy ID từ 3 ô, đếm và tự động tạo chuỗi cấu trúc
-function ham_6a_5_tinh_toan_cau_truc() {
+function ham_6a_12_tinh_toan_cau_truc() {
     const bocTach = (chuoi) => [...new Set(chuoi.split(/[\s,;]+/).filter(id => id.trim() !== ''))];
 
     const arrTN = bocTach(document.getElementById('txtID_TN').value);
@@ -888,7 +918,7 @@ function ham_6a_5_tinh_toan_cau_truc() {
 // ==============================================================
 // Hàm 6.15: Tự động sinh và tải File Mẫu cấu trúc LaTeX (ex_test)
 // ==============================================================
-window.ham_6a_15_tai_file_mau = function () {
+window.ham_6a_13_tai_file_mau = function () {
     // 1. Soạn sẵn nội dung chuẩn của file mẫu
     const noiDungMau = `% ==============================================
 % FILE MẪU UPLOAD HỌC LIỆU (ĐỀ THI / CÂU HỎI)
@@ -969,7 +999,7 @@ Nội dung câu hỏi trả lời ngắn nằm ở đây.
 // ==============================================================
 // Hàm 6.6: Vẽ Form Sửa Học Liệu (Dò điều kiện KHẲNG ĐỊNH theo loại học liệu)
 // ==============================================================
-window.ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem = async function (maHocLieu, choPhepSua = true) {
+window.ham_6a_14_mo_form_sua_hoc_lieu_trac_nghiem = async function (maHocLieu, choPhepSua = true) {
     const data = BangHocLieuState.duLieu.find(hl => hl.ma_hoc_lieu === maHocLieu);
     if (!data) return alert("Dữ liệu không tồn tại!");
 
@@ -1056,7 +1086,7 @@ window.ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem = async function (maHocLieu, ch
                         <div>
                             <span style="font-weight:bold; color:#d32f2f; margin-right:10px;">ĐÁP ÁN:</span>
                             <input type="text" class="edit-dapan" value="${dapAnDB}" ${disabledAttr} placeholder="${kieuCau === 'DS' ? 'TFTF' : 'A'}" style="width:80px; padding:4px; text-align:center; font-weight:bold; border:2px solid #d32f2f; border-radius:4px; text-transform:uppercase;">
-                            ${choPhepSua ? `<button onclick="ham_6a_xoa_cau_truc_tiep(this)" style="margin-left:10px; padding:4px 8px; background:#dc3545; color:white; border:none; border-radius:4px; cursor:pointer;" title="Xóa câu này">🗑️</button>` : ''}
+                            ${choPhepSua ? `<button onclick="ham_6a_16_xoa_cau_truc_tiep(this)" style="margin-left:10px; padding:4px 8px; background:#dc3545; color:white; border:none; border-radius:4px; cursor:pointer;" title="Xóa câu này">🗑️</button>` : ''}
                         </div>
                     </div>
                     <div>
@@ -1105,7 +1135,7 @@ window.ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem = async function (maHocLieu, ch
             ${htmlTaoFileGiai}
 
             <div style="display: flex; gap: 10px;">
-                ${choPhepSua ? `<button onclick="ham_6a_7_luu_cap_nhat_hoc_lieu_trac_nghiem('${maHocLieu}', this)" 
+                ${choPhepSua ? `<button onclick="ham_6a_17_luu_cap_nhat_hoc_lieu_trac_nghiem('${maHocLieu}', this)" 
                 style="padding:15px; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; flex:2;">
                 💾 LƯU THAY ĐỔI VÀ ĐỒNG BỘ GITHUB</button>` : ''}
                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="padding:15px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; flex:1;">⬅️ QUAY LẠI</button>
@@ -1119,7 +1149,7 @@ window.ham_6a_6_mo_form_sua_hoc_lieu_trac_nghiem = async function (maHocLieu, ch
 
 
 // Cờ đánh dấu câu bị xóa tạm thời trên giao diện
-function ham_6a_xoa_cau_hoi_tam_thoi(index) {
+function ham_6a_15_xoa_cau_hoi_tam_thoi(index) {
     const row = document.getElementById(`row_cau_${index}`);
     const input = document.getElementById(`dapan_${index}`);
 
@@ -1135,7 +1165,7 @@ function ham_6a_xoa_cau_hoi_tam_thoi(index) {
 }
 
 // Hàm 6.6.b: Xóa dòng và cập nhật lại toàn bộ STT + Tổng số câu
-function ham_6a_xoa_cau_truc_tiep(btn) {
+function ham_6a_16_xoa_cau_truc_tiep(btn) {
     if (!confirm("Thầy có chắc chắn muốn loại bỏ câu hỏi này khỏi đề không?")) return;
 
     // 1. Tìm dòng tr chứa nút bấm và xóa nó đi
@@ -1156,7 +1186,7 @@ function ham_6a_xoa_cau_truc_tiep(btn) {
 // ==============================================================
 // Hàm 6.7: Lưu Cập Nhật Học Liệu (Định tuyến phân nhánh & Cập nhật nội dung Text)
 // ==============================================================
-window.ham_6a_7_luu_cap_nhat_hoc_lieu_trac_nghiem = async function (maHocLieu, btnNode) {
+window.ham_6a_17_luu_cap_nhat_hoc_lieu_trac_nghiem = async function (maHocLieu, btnNode) {
     // 1. Lấy thông tin cơ bản
     const elTen = document.getElementById('sua_tenHocLieu');
     const elThoiGian = document.getElementById('sua_thoiGian');
@@ -1216,7 +1246,7 @@ window.ham_6a_7_luu_cap_nhat_hoc_lieu_trac_nghiem = async function (maHocLieu, b
             // Đồng bộ file lên GitHub nếu người dùng chọn
             const chkGopFile = document.getElementById('sua_hl_tu_dong_gom_file');
             if (chkGopFile && chkGopFile.checked) {
-                await window.ham_6a_7_b_cap_nhat_file_github(maHocLieu, tenMoi, thoiGianMoi, dsCauHoiGithubMoi, danhSachGiaiCapNhat, urlDeCu);
+                await window.ham_6a_18_cap_nhat_file_github(maHocLieu, tenMoi, thoiGianMoi, dsCauHoiGithubMoi, danhSachGiaiCapNhat, urlDeCu);
             }
 
             // Cập nhật cấu trúc bảng đồ vào Supabase
@@ -1263,7 +1293,7 @@ window.ham_6a_7_luu_cap_nhat_hoc_lieu_trac_nghiem = async function (maHocLieu, b
 // ==============================================================
 // [ĐÃ GỘP VÀ TỐI ƯU] - Hàm 6.7.b: Cập nhật File Đề lên GitHub (Tree Commit)
 // ==============================================================
-window.ham_6a_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
+window.ham_6a_18_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, dsCauHoiGithubMoi, dsGiai, urlDeCu) {
     if (typeof CFG_HE_THONG === 'undefined') throw new Error("Lỗi cấu hình GITHUB.");
 
     const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
@@ -1353,7 +1383,7 @@ window.ham_6a_7_b_cap_nhat_file_github = async function (maHL, tenHL, thoiGian, 
 // ==============================================================
 // Hàm 6.13: Kiểm tra file upload (Đã fix lỗi chặn nhầm dòng comment %)
 // ==============================================================
-window.ham_6a_13_kiem_tra_file_upload = function () {
+window.ham_6a_19_kiem_tra_file_upload = function () {
     const fileInput = document.getElementById('upload_file_input');
     const file = fileInput.files[0];
     const btnLuu = document.getElementById('btnLuuHocLieu');
@@ -1475,7 +1505,7 @@ window.ham_6a_13_kiem_tra_file_upload = function () {
 };
 
 
-window.ham_6a_16_xu_ly_thay_doi_file = function(input) {
+window.ham_6a_20_xu_ly_thay_doi_file = function(input) {
     const file = input.files[0];
     const btnCheck = document.getElementById('btn_check_file');
     const btnLuu = document.getElementById('btnLuuHocLieu');
@@ -1503,7 +1533,7 @@ window.ham_6a_16_xu_ly_thay_doi_file = function(input) {
 // =====================================================================
 // Hàm 6.20: Dọn sạch dấu vết Học Liệu (Tự động phân luồng GitHub / Khối 15)
 // =====================================================================
-window.ham_6a_20_xoa_sach_github_va_supabase = async function (maHL, btnNode) {
+window.ham_6a_21_xoa_sach_github_va_supabase = async function (maHL, btnNode) {
     if (!confirm(`🚀 Thầy chắc chắn muốn XOÁ HOÀN TOÀN học liệu [${maHL}]?\n\nHệ thống sẽ dọn sạch toàn bộ file gốc và dữ liệu liên quan trước khi hủy bản ghi.`)) return;
 
     if (typeof CFG_HE_THONG === 'undefined') {
@@ -1657,7 +1687,7 @@ window.ham_6a_20_xoa_sach_github_va_supabase = async function (maHL, btnNode) {
 // =====================================================================
 window.DanhSachCauHoiDrive = []; // Mảng RAM chứa giỏ hàng
 
-// window.ham_6a_fetch_cay_thu_muc_drive = async function () {
+// window.ham_6a_22_fetch_cay_thu_muc_drive = async function () {
 //     const treeDiv = document.getElementById('tree-ngan-hang-drive');
 //     treeDiv.innerHTML = `<div style="text-align:center; color:#d35400; padding: 20px;">⏳ Đang đồng bộ từ Drive...</div>`;
 
@@ -1685,7 +1715,7 @@ window.DanhSachCauHoiDrive = []; // Mảng RAM chứa giỏ hàng
 //                             <span style="color:${mauKieu}; font-weight:bold; font-size:11px;">[${kieu}]</span> 
 //                             ${node.name}
 //                         </div>
-//                         <button onclick="ham_6a_chon_cau_drive('${node.id}', '${node.name}', '${kieu}')" 
+//                         <button onclick="ham_6a_23_chon_cau_drive('${node.id}', '${node.name}', '${kieu}')" 
 //                                 style="padding: 2px 8px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;">
 //                                 ➕ Thêm
 //                         </button>
@@ -1715,7 +1745,7 @@ window.DanhSachCauHoiDrive = []; // Mảng RAM chứa giỏ hàng
 //     }
 // };
 
-window.ham_6a_fetch_cay_thu_muc_drive = async function () {
+window.ham_6a_22_fetch_cay_thu_muc_drive = async function () {
     const treeDiv = document.getElementById('tree-ngan-hang-drive');
     treeDiv.innerHTML = `<div style="text-align:center; color:#d35400; padding: 20px;">⏳ Đang đồng bộ từ Drive...</div>`;
 
@@ -1749,7 +1779,7 @@ window.ham_6a_fetch_cay_thu_muc_drive = async function () {
                             <span style="color:${mauKieu}; font-weight:bold; font-size:11px;">[${kieu}]</span> 
                             ${node.name}
                         </div>
-                        <button onclick="ham_6a_chon_cau_drive('${node.id}', '${node.name}', '${kieu}')" 
+                        <button onclick="ham_6a_23_chon_cau_drive('${node.id}', '${node.name}', '${kieu}')" 
                                 style="padding: 2px 8px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;">
                                 ➕ Thêm
                         </button>
@@ -1781,7 +1811,7 @@ window.ham_6a_fetch_cay_thu_muc_drive = async function () {
 
 
 
-window.ham_6a_chon_cau_drive = function (fileId, fileName, kieuCau) {
+window.ham_6a_23_chon_cau_drive = function (fileId, fileName, kieuCau) {
     // Kiểm tra trùng
     let tonTai = window.DanhSachCauHoiDrive.find(c => c.fileId === fileId);
     if (tonTai) return alert("⚠️ Câu này đã có trong giỏ hàng rồi!");
@@ -1791,15 +1821,15 @@ window.ham_6a_chon_cau_drive = function (fileId, fileName, kieuCau) {
         fileName: fileName,
         kieuCau: kieuCau
     });
-    ham_6a_cap_nhat_giao_dien_cau_da_chon();
+    ham_6a_25_cap_nhat_giao_dien_cau_da_chon();
 };
 
-window.ham_6a_bo_chon_cau_drive = function (fileId) {
+window.ham_6a_24_bo_chon_cau_drive = function (fileId) {
     window.DanhSachCauHoiDrive = window.DanhSachCauHoiDrive.filter(c => c.fileId !== fileId);
-    ham_6a_cap_nhat_giao_dien_cau_da_chon();
+    ham_6a_25_cap_nhat_giao_dien_cau_da_chon();
 };
 
-window.ham_6a_cap_nhat_giao_dien_cau_da_chon = function () {
+window.ham_6a_25_cap_nhat_giao_dien_cau_da_chon = function () {
     const listDiv = document.getElementById('list-cau-da-chon');
     const lblTong = document.getElementById('lblTongCauChonDrive');
     const txtCauTruc = document.getElementById('txtCauTruc');
@@ -1826,7 +1856,7 @@ window.ham_6a_cap_nhat_giao_dien_cau_da_chon = function () {
                 <div style="font-size:12px; color:#333; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:85%;">
                     <b>${index + 1}.</b> [${cau.kieuCau}] ${cau.fileName}
                 </div>
-                <button onclick="ham_6a_bo_chon_cau_drive('${cau.fileId}')" style="background:#dc3545; color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-weight:bold; line-height:10px;">×</button>
+                <button onclick="ham_6a_24_bo_chon_cau_drive('${cau.fileId}')" style="background:#dc3545; color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-weight:bold; line-height:10px;">×</button>
             </div>
         `;
     });

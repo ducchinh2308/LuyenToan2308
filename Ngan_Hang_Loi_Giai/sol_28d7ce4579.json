@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_28d7ce4579",
+  "dapAn": "C",
+  "loiGiai": "Ta có $\\displaystyle f'(x)=\\frac{3}{(x-1)^{2}} > 0, \\forall x \\in [2;5]$.\\\\\r\n\t\tDo đó hàm số đồng biến trên đoạn $[2;5]$.\\\\\r\n\t\tVậy $\\displaystyle \\max_{[2;5]} f(x) = f(5) = \\frac{5}{4}$."
+}

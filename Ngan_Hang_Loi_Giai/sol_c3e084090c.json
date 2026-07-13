@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c3e084090c",
+  "dapAn": "C",
+  "loiGiai": "Tập xác định $D = \\mathbb{R} \\setminus \\{-1\\} \\Rightarrow$ hàm số liên tục trên đoạn $[0;3]$.\\\\\r\n\t\tTa có: $y' = \\displaystyle \\frac{3(x+1)-(3x+7)}{(x+1)^2} = \\frac{-4}{(x+1)^2} < 0, \\forall x \\in [0;3]$ nên hàm số luôn nghịch biến trên $[0;3]$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y = \\displaystyle \\frac{3x+7}{x+1}$ trên đoạn $[0;3]$ là $y(0) = \\displaystyle \\frac{3 \\cdot 0 + 7}{0 + 1} = 7$."
+}

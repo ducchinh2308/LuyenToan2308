@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_44ad4cdf5b",
+  "dapAn": "A",
+  "loiGiai": "Ta có $y'=3x^2-6x$.\\\\\r\n\t\tKhi đó $y'=0 \\Leftrightarrow \\left[\\begin{array}{l} x=0 \\\\ x=2 \\end{array}\\right. $.\\\\\r\n\t\tXét $y(-2)=-18$, $y(0)=2$, $y(2)=-2$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số là $M=2$, giá trị nhỏ nhất của hàm số là $m=-18$.\\\\\r\n\t\tVậy $M-m=2-(-18)=20$."
+}

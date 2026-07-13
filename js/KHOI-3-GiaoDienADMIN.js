@@ -125,7 +125,7 @@ function ham_3_1_ve_dashboard_admin() {
                 
                 <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
 
-                <button onclick="ham_3_7_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
+                <button onclick="ham_3_12_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
             </div>
 
             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
@@ -145,7 +145,7 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
                 
-                <button onclick="ham_3_4_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt HT</button>
+                <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
             </div>
 
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
@@ -204,7 +204,7 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
         let chuoiNoiDung = data.map(row => {
             let diemDb = row.tong_diem !== null ? row.tong_diem : 0;
             let diemHienThi = Number(diemDb).toFixed(2).replace(/\.00$/, '');
-            let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+            let thoiGianHienThi = ham_3_7_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
 
             let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
             // SỬA CHỖ NÀY: Dùng row.nhiem_vu_trac_nghiem thay vì row.nhiem_vu
@@ -239,7 +239,7 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
             `;
         }).join("");
 
-        ve_khung_html_thanh_chay(chuoiNoiDung);
+        ham_3_3_ve_khung_html_thanh_chay(chuoiNoiDung);
 
     } catch (error) {
         console.warn("⚠️ [Thanh chạy Live Admin bị gián đoạn]:", error.message);
@@ -249,7 +249,7 @@ async function ham_3_2_ve_thanh_chay_nop_bai() {
 //// =====================================================================
 //// [Nhãn thời gian: 17:00 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung chứa thanh chạy Admin (Dưới đáy - Font 10px)
 //// =====================================================================
-function ve_khung_html_thanh_chay(chuoiHienThi) {
+function ham_3_3_ve_khung_html_thanh_chay(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-admin')) {
         document.getElementById('thanh-chay-nop-bai-admin').remove();
     }
@@ -293,37 +293,16 @@ function ve_khung_html_thanh_chay(chuoiHienThi) {
     }, 100);
 }
 
-function ve_giao_dien_thanh_chay_ao() {
+function ham_3_4_ve_giao_dien_thanh_chay_ao() {
     let noiDungAo = `
         <span style="margin-right: 70px; font-family: Arial, sans-serif; font-size: 14px; display: inline-block;">
             <i style="color: #ffd700;">🔥</i> 
             Học sinh <b>Dữ liệu Đang lỗi</b> (<span style="color: #38bdf8;">--</span>) vừa nộp <b>--</b> - Điểm: <span style="color: #4ade80; font-weight: bold; font-size: 16px;">0.0</span> <span style="color: #94a3b8; font-size: 12px; margin-left: 6px; background: #334155; padding: 2px 6px; border-radius: 4px;">⏱️ Vừa xong</span>
         </span>`;
-    ve_khung_html_thanh_chay(noiDungAo);
+    ham_3_3_ve_khung_html_thanh_chay(noiDungAo);
 }
 
 
-//// =====================================================================
-//// [Nhãn thời gian: 11:47 - Ngày 10/06/2026] - Hàm 3.3: Tiện ích tính thời gian (Time Ago)
-//// =====================================================================
-function ham_3_3_tinh_thoi_gian_truoc_day(thoiGianISO) {
-    if (!thoiGianISO) return "Không rõ";
-
-    const thoiGianNop = new Date(thoiGianISO);
-    const hienTai = new Date();
-    const giay = Math.floor((hienTai - thoiGianNop) / 1000);
-
-    if (giay < 60) return "Vừa xong";
-
-    const phut = Math.floor(giay / 60);
-    if (phut < 60) return `${phut} phút trước`;
-
-    const gio = Math.floor(phut / 60);
-    if (gio < 24) return `${gio} giờ trước`;
-
-    const ngay = Math.floor(gio / 24);
-    return `${ngay} ngày trước`;
-}
 
 // 🌟 THIẾT LẬP AUTO-REFRESH (Tự động cập nhật sau mỗi 30 giây)
 // Thầy có thể chèn đoạn này vào cuối hàm ham_3_1_ve_dashboard_admin() để kích hoạt:
@@ -349,86 +328,8 @@ window.onload = function () {
 
 window.AppConfig = {}; // Lưu trữ cấu hình toàn cục
 window.dsCaiDatGoc = [];
-//// =====================================================================
-//// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã sửa lỗi nút Lưu)
-//// =====================================================================
-window.ham_3_4_ve_cai_dat_he_thong = async function () {
-    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
 
-    try {
-        const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
-        if (error) throw error;
 
-        window.dsCaiDatGoc = data || [];
-
-        window.dsCaiDatGoc.forEach(item => {
-            window.AppConfig[item.ma_cai_dat] = item.gia_tri;
-        });
-
-        let htmlDanhSachCaiDat = '';
-        window.dsCaiDatGoc.forEach(item => {
-            let mauNhom = '#6c757d';
-            if (item.nhom === 'THI_CU') mauNhom = '#dc3545';
-            if (item.nhom === 'CHAM_DIEM') mauNhom = '#28a745';
-            if (item.nhom === 'GIAO_DIEN') mauNhom = '#007bff';
-            if (item.nhom === 'TAI_KHOAN') mauNhom = '#6f42c1';
-
-            let phanNhapLieu = '';
-
-            if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
-                phanNhapLieu = `
-                    <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
-                        <option value="CHO_DUYET" ${item.gia_tri === 'CHO_DUYET' ? 'selected' : ''}>⏳ Chờ GV Duyệt</option>
-                        <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
-                    </select>
-                `;
-            } else {
-                phanNhapLieu = `
-                    <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
-                `;
-            }
-
-            htmlDanhSachCaiDat += `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold; color: #333; font-size: 16px; margin-bottom: 4px;">
-                            ${item.mo_ta}
-                        </div>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <span style="font-size: 11px; background: ${mauNhom}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${item.nhom}</span>
-                            <span style="font-size: 12px; color: #888; font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${item.ma_cai_dat}</span>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        ${phanNhapLieu}
-                        
-                        <button onclick="ham_3_5_luu_mot_cai_dat('${item.ma_cai_dat}', this)" style="padding: 10px 20px; background: #34495e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
-                            💾 LƯU
-                        </button>
-                    </div>
-                </div>
-            `;
-        });
-
-        vungLamViec.innerHTML = `
-            <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; animation: fadein 0.4s;">
-                <div style="background: #34495e; padding: 20px; text-align: center; border-bottom: 4px solid #2c3e50;">
-                    <h2 style="margin: 0; color: white; font-size: 22px;">⚙️ BẢNG ĐIỀU KHIỂN HỆ THỐNG</h2>
-                    <div style="color: #bdc3c7; font-size: 13px; margin-top: 5px;">Điều chỉnh các tham số cốt lõi (Có tác dụng ngay lập tức trên toàn hệ thống)</div>
-                </div>
-                
-                <div style="padding: 10px 20px 30px 20px;">
-                    ${htmlDanhSachCaiDat}
-                </div>
-            </div>
-        `;
-
-    } catch (error) {
-        vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
-    }
-};
 
 //// =====================================================================
 //// Hàm 3.5: Lưu một thông số cài đặt lên Database (Đã bẫy lỗi triệt để)
@@ -525,7 +426,7 @@ window.ham_3_6_xem_muc_luc_sgk = async function () {
                 else if (fileMime.includes('pdf')) icon = '📕';
                 else if (fileMime.includes('word') || fileMime.includes('document')) icon = '📝';
 
-                return `<div class="tree-file-item" onclick="ham_xem_file_drive('${node.id}', '${node.name}', '${fileMime}')">${icon} ${node.name}</div>`;
+                return `<div class="tree-file-item" onclick="ham_3_9_xem_file_drive('${node.id}', '${node.name}', '${fileMime}')">${icon} ${node.name}</div>`;
             }
 
             let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
@@ -638,11 +539,201 @@ window.ham_3_6_xem_muc_luc_sgk = async function () {
         vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#dc3545;">❌ Lỗi kết nối tới Google Drive! Hãy kiểm tra lại link Apps Script.</h3></div>`;
     }
 };
+
+
+
+//// =====================================================================
+//// [Nhãn thời gian: 11:47 - Ngày 10/06/2026] - Hàm 3.3: Tiện ích tính thời gian (Time Ago)
+//// =====================================================================
+function ham_3_7_tinh_thoi_gian_truoc_day(thoiGianISO) {
+    if (!thoiGianISO) return "Không rõ";
+
+    const thoiGianNop = new Date(thoiGianISO);
+    const hienTai = new Date();
+    const giay = Math.floor((hienTai - thoiGianNop) / 1000);
+
+    if (giay < 60) return "Vừa xong";
+
+    const phut = Math.floor(giay / 60);
+    if (phut < 60) return `${phut} phút trước`;
+
+    const gio = Math.floor(phut / 60);
+    if (gio < 24) return `${gio} giờ trước`;
+
+    const ngay = Math.floor(gio / 24);
+    return `${ngay} ngày trước`;
+}
+
+//// =====================================================================
+//// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã sửa lỗi nút Lưu)
+//// =====================================================================
+// window.ham_3_8_ve_cai_dat_he_thong = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
+
+//     try {
+//         const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
+//         if (error) throw error;
+
+//         window.dsCaiDatGoc = data || [];
+
+//         window.dsCaiDatGoc.forEach(item => {
+//             window.AppConfig[item.ma_cai_dat] = item.gia_tri;
+//         });
+
+//         let htmlDanhSachCaiDat = '';
+//         window.dsCaiDatGoc.forEach(item => {
+//             let mauNhom = '#6c757d';
+//             if (item.nhom === 'THI_CU') mauNhom = '#dc3545';
+//             if (item.nhom === 'CHAM_DIEM') mauNhom = '#28a745';
+//             if (item.nhom === 'GIAO_DIEN') mauNhom = '#007bff';
+//             if (item.nhom === 'TAI_KHOAN') mauNhom = '#6f42c1';
+
+//             let phanNhapLieu = '';
+
+//             if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
+//                 phanNhapLieu = `
+//                     <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
+//                         <option value="CHO_DUYET" ${item.gia_tri === 'CHO_DUYET' ? 'selected' : ''}>⏳ Chờ GV Duyệt</option>
+//                         <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
+//                     </select>
+//                 `;
+//             } else {
+//                 phanNhapLieu = `
+//                     <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 200px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
+//                 `;
+//             }
+
+//             htmlDanhSachCaiDat += `
+//                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+//                     <div style="flex: 1;">
+//                         <div style="font-weight: bold; color: #333; font-size: 16px; margin-bottom: 4px;">
+//                             ${item.mo_ta}
+//                         </div>
+//                         <div style="display: flex; gap: 10px; align-items: center;">
+//                             <span style="font-size: 11px; background: ${mauNhom}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${item.nhom}</span>
+//                             <span style="font-size: 12px; color: #888; font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${item.ma_cai_dat}</span>
+//                         </div>
+//                     </div>
+
+//                     <div style="display: flex; gap: 10px; align-items: center;">
+//                         ${phanNhapLieu}
+
+//                         <button onclick="ham_3_5_luu_mot_cai_dat('${item.ma_cai_dat}', this)" style="padding: 10px 20px; background: #34495e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+//                             💾 LƯU
+//                         </button>
+//                     </div>
+//                 </div>
+//             `;
+//         });
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; animation: fadein 0.4s;">
+//                 <div style="background: #34495e; padding: 20px; text-align: center; border-bottom: 4px solid #2c3e50;">
+//                     <h2 style="margin: 0; color: white; font-size: 22px;">⚙️ BẢNG ĐIỀU KHIỂN HỆ THỐNG</h2>
+//                     <div style="color: #bdc3c7; font-size: 13px; margin-top: 5px;">Điều chỉnh các tham số cốt lõi (Có tác dụng ngay lập tức trên toàn hệ thống)</div>
+//                 </div>
+
+//                 <div style="padding: 10px 20px 30px 20px;">
+//                     ${htmlDanhSachCaiDat}
+//                 </div>
+//             </div>
+//         `;
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
+//     }
+// };
+
+
+//// =====================================================================
+//// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã làm Responsive Mobile)
+//// =====================================================================
+window.ham_3_8_ve_cai_dat_he_thong = async function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
+
+    try {
+        const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
+        if (error) throw error;
+
+        window.dsCaiDatGoc = data || [];
+
+        window.dsCaiDatGoc.forEach(item => {
+            window.AppConfig[item.ma_cai_dat] = item.gia_tri;
+        });
+
+        let htmlDanhSachCaiDat = '';
+        window.dsCaiDatGoc.forEach(item => {
+            let mauNhom = '#6c757d';
+            if (item.nhom === 'THI_CU') mauNhom = '#dc3545';
+            if (item.nhom === 'CHAM_DIEM') mauNhom = '#28a745';
+            if (item.nhom === 'GIAO_DIEN') mauNhom = '#007bff';
+            if (item.nhom === 'TAI_KHOAN') mauNhom = '#6f42c1';
+
+            let phanNhapLieu = '';
+
+            // 🌟 ĐÃ SỬA: Thay width: 200px thành width: 100%; max-width: 200px; min-width: 150px;
+            if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
+                phanNhapLieu = `
+                    <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
+                        <option value="CHO_DUYET" ${item.gia_tri === 'CHO_DUYET' ? 'selected' : ''}>⏳ Chờ GV Duyệt</option>
+                        <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
+                    </select>
+                `;
+            } else {
+                phanNhapLieu = `
+                    <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
+                `;
+            }
+
+            // 🌟 ĐÃ SỬA: Thêm flex-wrap: wrap và flex: 1 1 250px để khung chữ và nút tự rớt dòng trên màn hẹp
+            htmlDanhSachCaiDat += `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+                    <div style="flex: 1 1 250px; min-width: 200px;">
+                        <div style="font-weight: bold; color: #333; font-size: 16px; margin-bottom: 4px;">
+                            ${item.mo_ta}
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                            <span style="font-size: 11px; background: ${mauNhom}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${item.nhom}</span>
+                            <span style="font-size: 12px; color: #888; font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${item.ma_cai_dat}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; flex: 1 1 auto; justify-content: flex-start;">
+                        ${phanNhapLieu}
+                        
+                        <button onclick="ham_3_5_luu_mot_cai_dat('${item.ma_cai_dat}', this)" style="padding: 10px 20px; background: #34495e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s; white-space: nowrap;" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+                            💾 LƯU
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        vungLamViec.innerHTML = `
+            <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; animation: fadein 0.4s;">
+                <div style="background: #34495e; padding: 20px; text-align: center; border-bottom: 4px solid #2c3e50;">
+                    <h2 style="margin: 0; color: white; font-size: 22px;">⚙️ BẢNG ĐIỀU KHIỂN HỆ THỐNG</h2>
+                    <div style="color: #bdc3c7; font-size: 13px; margin-top: 5px;">Điều chỉnh các tham số cốt lõi (Có tác dụng ngay lập tức trên toàn hệ thống)</div>
+                </div>
+                
+                <div style="padding: 10px 20px 30px 20px; overflow-x: auto;">
+                    ${htmlDanhSachCaiDat}
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
+    }
+};
+
 // =====================================================================
 // 2. Hàm nhúng file Drive sang bên phải 
 // (ẢNH: Dùng Zoom tuỳ chỉnh | PDF/WORD: Dùng Trình xem mặc định Google Drive)
 // =====================================================================
-window.ham_xem_file_drive = function (fileId, fileName, mimeType) {
+window.ham_3_9_xem_file_drive = function (fileId, fileName, mimeType) {
     document.getElementById('tieu-de-anh-sgk').innerHTML = `<span style="color: #fd7e14;">Đang xem:</span> ${fileName}`;
     const khungAnh = document.getElementById('khung-hien-thi-anh-sgk');
 
@@ -657,9 +748,9 @@ window.ham_xem_file_drive = function (fileId, fileName, mimeType) {
                         💡 Lăn chuột để Thu/Phóng - Nhấn giữ chuột để kéo ảnh
                     </span>
                     <div>
-                        <button onclick="ham_zoom_anh(0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➕ Lớn</button>
-                        <button onclick="ham_zoom_anh(-0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➖ Nhỏ</button>
-                        <button onclick="ham_zoom_anh(0, true)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white;">🔄 Đặt lại</button>
+                        <button onclick="ham_3_10_zoom_anh(0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➕ Lớn</button>
+                        <button onclick="ham_3_10_zoom_anh(-0.2)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white; margin-right: 5px;">➖ Nhỏ</button>
+                        <button onclick="ham_3_10_zoom_anh(0, true)" style="padding: 4px 10px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: white;">🔄 Đặt lại</button>
                     </div>
                 </div>
                 
@@ -672,7 +763,7 @@ window.ham_xem_file_drive = function (fileId, fileName, mimeType) {
             `;
 
             // Kích hoạt lại tính năng lăn và kéo chuột cho ảnh
-            window.kichHoatZoomKeoAnh();
+            window.ham_3_11_kichHoatZoomKeoAnh();
         }
 
         // TRƯỜNG HỢP 2: NẾU LÀ PDF / WORD -> TRỞ VỀ TRÌNH XEM MẶC ĐỊNH CỦA DRIVE
@@ -708,7 +799,7 @@ window.anhScale = 1;
 window.anhTranslateX = 0;
 window.anhTranslateY = 0;
 
-window.ham_zoom_anh = function (step, reset = false) {
+window.ham_3_10_zoom_anh = function (step, reset = false) {
     const img = document.getElementById('anh-sgk-zoom');
     if (!img) return;
 
@@ -726,7 +817,7 @@ window.ham_zoom_anh = function (step, reset = false) {
     img.style.transform = `scale(${window.anhScale}) translate(${window.anhTranslateX}px, ${window.anhTranslateY}px)`;
 };
 
-window.kichHoatZoomKeoAnh = function () {
+window.ham_3_11_kichHoatZoomKeoAnh = function () {
     const img = document.getElementById('anh-sgk-zoom');
     const container = document.getElementById('khung-chua-anh');
     if (!img || !container) return;
@@ -739,7 +830,7 @@ window.kichHoatZoomKeoAnh = function () {
     container.addEventListener('wheel', (e) => {
         e.preventDefault(); // Ngăn trang web cuộn lên/xuống khi đang lăn ảnh
         const step = e.deltaY > 0 ? -0.15 : 0.15;
-        window.ham_zoom_anh(step);
+        window.ham_3_10_zoom_anh(step);
     }, { passive: false });
 
     // 2. Bắt sự kiện KÉO THẢ CHUỘT (DRAG) để di chuyển ảnh
@@ -773,7 +864,7 @@ window.kichHoatZoomKeoAnh = function () {
 // // =====================================================================
 // // [Khối 3] HÀM 3.7: XEM KHO CÂU HỎI DRIVE (VIEW CODE & RENDER)
 // // =====================================================================
-// window.ham_3_7_xem_kho_cau_hoi = async function () {
+// window.ham_3_12_xem_kho_cau_hoi = async function () {
 //     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
 //     if (!vungLamViec) return;
 
@@ -792,7 +883,7 @@ window.kichHoatZoomKeoAnh = function () {
 //         function veCayHTML(node) {
 //             if (node.type === 'file') {
 //                 if (!node.name.endsWith('.json')) return ''; // Chỉ hiện file câu hỏi JSON
-//                 return `<div class="tree-file-item" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}')">📄 ${node.name}</div>`;
+//                 return `<div class="tree-file-item" onclick="ham_3_13_tai_noi_dung_cau_hoi('${node.id}', '${node.name}')">📄 ${node.name}</div>`;
 //             }
 
 //             let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
@@ -864,7 +955,162 @@ window.kichHoatZoomKeoAnh = function () {
 // =====================================================================
 // [Khối 3] HÀM 3.7: XEM KHO CÂU HỎI DRIVE (VIEW CODE & RENDER) - CÓ KÉO THẢ
 // =====================================================================
-window.ham_3_7_xem_kho_cau_hoi = async function () {
+// window.ham_3_12_xem_kho_cau_hoi = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
+//     if (!vungLamViec) return;
+
+//     vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#fd7e14;">⏳ Đang đồng bộ Cây thư mục Kho câu hỏi...</h3></div>`;
+
+//     try {
+//         const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+//         const URL_GAS = API_GOC + "?action=layCayThuMucKhoCauHoi";
+
+//         const response = await fetch(URL_GAS);
+//         const result = await response.json();
+
+//         if (result.status === 'error') throw new Error(result.message);
+
+//         // Hàm đệ quy vẽ HTML sơ đồ cây
+//         function veCayHTML(node) {
+//             if (node.type === 'file') {
+//                 // Hiển thị file JSON
+//                 if (node.name.endsWith('.json')) {
+//                     return `<div class="tree-file-item" onclick="ham_3_13_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'json')">📄 ${node.name}</div>`;
+//                 }
+//                 // Hiển thị file Ảnh
+//                 else if (node.name.toLowerCase().endsWith('.png') || node.name.toLowerCase().endsWith('.jpg') || node.name.toLowerCase().endsWith('.jpeg')) {
+//                     // Đổi màu xanh lá cho icon ảnh để dễ phân biệt
+//                     return `<div class="tree-file-item" style="color: #28a745; border-left-color: #28a745;" onclick="ham_3_13_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'image')">🖼️ ${node.name}</div>`;
+//                 }
+//                 // Ẩn các định dạng khác không liên quan
+//                 return '';
+//             }
+
+//             let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
+//             if (!htmlChildren.trim()) return ''; // Ẩn thư mục rỗng
+
+//             // Đổi icon thư mục PICTURES cho đẹp mắt
+//             let tenThuMuc = node.name === 'PICTURES' ? '🌄 PICTURES (Ảnh gốc)' : node.name;
+
+//             return `
+//                 <details>
+//                     <summary>${tenThuMuc}</summary>
+//                     <div style="padding-left: 10px; margin-top: 5px;">
+//                         ${htmlChildren}
+//                     </div>
+//                 </details>
+//             `;
+//         }
+
+//         const htmlCayThuMuc = veCayHTML(result.data);
+
+//         // Giao diện: Chia cột Trái (Tree) | Thanh Kéo | Phải (Trên Code - Dưới Render)
+//         vungLamViec.innerHTML = `
+//             <style>
+//                 .tree-container details { margin-bottom: 8px; }
+//                 .tree-container summary { font-weight: bold; cursor: pointer; padding: 10px; background: #f1f3f5; border-radius: 6px; list-style: none; font-size: 14px; border: 1px solid #e9ecef;}
+//                 .tree-container summary:hover { background: #e2e6ea; }
+//                 .tree-container summary::before { content: '📁 '; }
+//                 .tree-container details[open] > summary::before { content: '📂 '; }
+//                 .tree-container details[open] > summary { color: #fd7e14; }
+                
+//                 .tree-file-item { padding: 6px 10px 6px 25px; cursor: pointer; color: #0056b3; font-size: 13px; border-radius: 4px; margin-top: 3px; border-left: 2px dashed #ced4da; margin-left: 12px; transition: 0.2s;}
+//                 .tree-file-item:hover { background: #e8f0fe; color: #004494; font-weight: bold; border-left-color: #0056b3; }
+
+//                 /* CSS hover cho thanh kéo */
+//                 #drag-splitter-cau-hoi:hover .splitter-icon { background: #ced4da !important; color: #343a40 !important; }
+//             </style>
+            
+//             <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+//                 <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 8px 15px; cursor:pointer; border-radius: 6px; border: 1px solid #ccc; background: white;">⬅️ Quay lại</button>
+//                 <h3 style="color: #fd7e14; margin: 0;">📚 KHÁM PHÁ KHO CÂU HỎI TRÊN MÂY</h3>
+//             </div>
+            
+//             <div style="display: flex; align-items: stretch; gap: 10px; height: 750px; width: 100%;">
+                
+//                 <div id="tree-panel-cau-hoi" class="tree-container" style="width: 320px; flex-shrink: 0; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-y: auto;">
+//                     ${htmlCayThuMuc}
+//                 </div>
+
+//                 <div id="drag-splitter-cau-hoi" style="width: 15px; display: flex; align-items: center; justify-content: center; cursor: col-resize; flex-shrink: 0;" title="Kéo để thay đổi độ rộng">
+//                     <div class="splitter-icon" style="padding: 15px 4px; background: #e9ecef; border-radius: 4px; color: #6c757d; transition: 0.2s; display: flex; align-items: center;">
+//                         <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+//                             <circle cx="2" cy="2" r="1.5"/><circle cx="6" cy="2" r="1.5"/><circle cx="10" cy="2" r="1.5"/>
+//                             <circle cx="2" cy="6" r="1.5"/><circle cx="6" cy="6" r="1.5"/><circle cx="10" cy="6" r="1.5"/>
+//                             <circle cx="2" cy="10" r="1.5"/><circle cx="6" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/>
+//                         </svg>
+//                     </div>
+//                 </div>
+
+//                 <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
+                    
+//                     <div id="panel-code-json" style="flex: 3; border: 1px solid #dee2e6; border-radius: 8px; background: #282c34; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+//                         <div style="background: #21252b; padding: 10px 15px; color: #abb2bf; font-weight: bold; font-size: 13px; border-bottom: 1px solid #181a1f; display:flex; justify-content:space-between;">
+//                             <span id="lbl-ten-file-code">💻 Dữ liệu thô (JSON/LaTeX)</span>
+//                         </div>
+//                         <textarea id="khung-code-json" readonly style="flex:1; width:100%; background:transparent; color:#98c379; border:none; padding:15px; font-family: Consolas, monospace; font-size: 14px; outline:none; resize:none; overflow-y:auto; line-height: 1.5;"></textarea>
+//                     </div>
+
+//                     <div id="panel-render-ui" style="flex: 7; border: 1px solid #dee2e6; border-radius: 8px; background: white; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+//                         <div style="background: #f8f9fa; padding: 10px 15px; color: #333; font-weight: bold; font-size: 13px; border-bottom: 1px solid #dee2e6;">
+//                             👁️ Hiển thị thực tế
+//                         </div>
+//                         <div id="khung-render-cau-hoi" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 15px; line-height: 1.6; color: #333;">
+//                             <div style="color:#999; text-align:center; margin-top:50px;">👈 Bấm vào một file JSON hoặc Ảnh bên trái để xem nội dung</div>
+//                         </div>
+//                     </div>
+
+//                 </div>
+//             </div>
+//         `;
+
+//         // ==================================================
+//         // KÍCH HOẠT SỰ KIỆN KÉO THẢ (DRAG TO RESIZE)
+//         // ==================================================
+//         const splitter = document.getElementById('drag-splitter-cau-hoi');
+//         const treePanel = document.getElementById('tree-panel-cau-hoi');
+//         let isResizing = false;
+
+//         const startResize = (e) => {
+//             isResizing = true;
+//             document.body.style.cursor = 'col-resize';
+//             document.body.style.userSelect = 'none'; // Ngăn bôi đen chữ khi đang kéo
+
+//             document.addEventListener('mousemove', doResize);
+//             document.addEventListener('mouseup', stopResize);
+//         };
+
+//         const doResize = (e) => {
+//             if (!isResizing) return;
+//             // Tính toán chiều rộng mới dựa trên vị trí chuột và vị trí gốc của khung bên trái
+//             const containerLeft = treePanel.parentElement.getBoundingClientRect().left;
+//             let newWidth = e.clientX - containerLeft;
+
+//             // Giới hạn thu phóng: Cột trái tối thiểu 200px, tối đa 800px
+//             if (newWidth >= 200 && newWidth <= 800) {
+//                 treePanel.style.width = newWidth + 'px';
+//             }
+//         };
+
+//         const stopResize = () => {
+//             isResizing = false;
+//             document.body.style.cursor = '';
+//             document.body.style.userSelect = '';
+
+//             document.removeEventListener('mousemove', doResize);
+//             document.removeEventListener('mouseup', stopResize);
+//         };
+
+//         if (splitter) {
+//             splitter.addEventListener('mousedown', startResize);
+//         }
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="text-align:center; padding:50px;"><h3 style="color:#dc3545;">❌ Lỗi kết nối API: ${error.message}</h3></div>`;
+//     }
+// };
+
+window.ham_3_12_xem_kho_cau_hoi = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet') || document.getElementById('vung-lam-viec-hoc-sinh');
     if (!vungLamViec) return;
 
@@ -882,23 +1128,20 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
         // Hàm đệ quy vẽ HTML sơ đồ cây
         function veCayHTML(node) {
             if (node.type === 'file') {
-                // Hiển thị file JSON
+                // Hiển thị file JSON (TRUYỀN THÊM 'this' VÀO ĐẦU)
                 if (node.name.endsWith('.json')) {
-                    return `<div class="tree-file-item" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'json')">📄 ${node.name}</div>`;
+                    return `<div class="tree-file-item" onclick="ham_3_13_tai_noi_dung_cau_hoi(this, '${node.id}', '${node.name}', 'json')">📄 ${node.name}</div>`;
                 }
-                // Hiển thị file Ảnh
+                // Hiển thị file Ảnh (TRUYỀN THÊM 'this' VÀO ĐẦU)
                 else if (node.name.toLowerCase().endsWith('.png') || node.name.toLowerCase().endsWith('.jpg') || node.name.toLowerCase().endsWith('.jpeg')) {
-                    // Đổi màu xanh lá cho icon ảnh để dễ phân biệt
-                    return `<div class="tree-file-item" style="color: #28a745; border-left-color: #28a745;" onclick="ham_3_7_tai_noi_dung_cau_hoi('${node.id}', '${node.name}', 'image')">🖼️ ${node.name}</div>`;
+                    return `<div class="tree-file-item" style="color: #28a745; border-left-color: #28a745;" onclick="ham_3_13_tai_noi_dung_cau_hoi(this, '${node.id}', '${node.name}', 'image')">🖼️ ${node.name}</div>`;
                 }
-                // Ẩn các định dạng khác không liên quan
                 return '';
             }
 
             let htmlChildren = node.children.map(child => veCayHTML(child)).join('');
             if (!htmlChildren.trim()) return ''; // Ẩn thư mục rỗng
 
-            // Đổi icon thư mục PICTURES cho đẹp mắt
             let tenThuMuc = node.name === 'PICTURES' ? '🌄 PICTURES (Ảnh gốc)' : node.name;
 
             return `
@@ -925,8 +1168,16 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
                 
                 .tree-file-item { padding: 6px 10px 6px 25px; cursor: pointer; color: #0056b3; font-size: 13px; border-radius: 4px; margin-top: 3px; border-left: 2px dashed #ced4da; margin-left: 12px; transition: 0.2s;}
                 .tree-file-item:hover { background: #e8f0fe; color: #004494; font-weight: bold; border-left-color: #0056b3; }
+                
+                /* 🌟 LỚP CSS MỚI CHO ITEM ĐANG ĐƯỢC CHỌN */
+                .tree-file-item.active-file { 
+                    background: #1a73e8 !important;
+                    color: #ffffff !important;
+                    font-weight: bold !important;
+                    border-left-color: #004494 !important;
+                    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.3) !important;
+                }
 
-                /* CSS hover cho thanh kéo */
                 #drag-splitter-cau-hoi:hover .splitter-icon { background: #ced4da !important; color: #343a40 !important; }
             </style>
             
@@ -973,9 +1224,7 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
             </div>
         `;
 
-        // ==================================================
-        // KÍCH HOẠT SỰ KIỆN KÉO THẢ (DRAG TO RESIZE)
-        // ==================================================
+        // Sự kiện kéo thả...
         const splitter = document.getElementById('drag-splitter-cau-hoi');
         const treePanel = document.getElementById('tree-panel-cau-hoi');
         let isResizing = false;
@@ -983,19 +1232,15 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
         const startResize = (e) => {
             isResizing = true;
             document.body.style.cursor = 'col-resize';
-            document.body.style.userSelect = 'none'; // Ngăn bôi đen chữ khi đang kéo
-
+            document.body.style.userSelect = 'none';
             document.addEventListener('mousemove', doResize);
             document.addEventListener('mouseup', stopResize);
         };
 
         const doResize = (e) => {
             if (!isResizing) return;
-            // Tính toán chiều rộng mới dựa trên vị trí chuột và vị trí gốc của khung bên trái
             const containerLeft = treePanel.parentElement.getBoundingClientRect().left;
             let newWidth = e.clientX - containerLeft;
-
-            // Giới hạn thu phóng: Cột trái tối thiểu 200px, tối đa 800px
             if (newWidth >= 200 && newWidth <= 800) {
                 treePanel.style.width = newWidth + 'px';
             }
@@ -1005,7 +1250,6 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
             isResizing = false;
             document.body.style.cursor = '';
             document.body.style.userSelect = '';
-
             document.removeEventListener('mousemove', doResize);
             document.removeEventListener('mouseup', stopResize);
         };
@@ -1024,22 +1268,105 @@ window.ham_3_7_xem_kho_cau_hoi = async function () {
 // =====================================================================
 // Hàm 3.7.1: Xử lý khi click vào file (JSON hoặc Ảnh)
 // =====================================================================
-window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType = 'json') {
+// window.ham_3_13_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType = 'json') {
+//     const txtCode = document.getElementById('khung-code-json');
+//     const divRender = document.getElementById('khung-render-cau-hoi');
+
+//     // Lấy 2 khung container để bật tắt
+//     const panelCode = document.getElementById('panel-code-json');
+//     const panelRender = document.getElementById('panel-render-ui');
+
+//     document.getElementById('lbl-ten-file-code').innerText = `💻 Đang xem: ${fileName}`;
+
+//     // 🌟 TRƯỜNG HỢP 1: NẾU THẦY BẤM VÀO FILE ẢNH
+//     if (fileType === 'image') {
+//         // Ẩn hoàn toàn khung Code đi
+//         if (panelCode) panelCode.style.display = 'none';
+
+//         // Cho khung Render chiếm trọn 100% diện tích
+//         if (panelRender) panelRender.style.flex = '1';
+
+//         divRender.innerHTML = `
+//             <div style="text-align:center; padding: 20px;">
+//                 <div style="margin-bottom:15px; color:#28a745; font-weight:bold; font-size: 16px;">🖼️ ${fileName}</div>
+//                 <img src="https://drive.google.com/thumbnail?id=${fileId}&sz=w1000" style="max-width:100%; max-height: 700px; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd;" alt="${fileName}" />
+//             </div>
+//         `;
+//         return; // Dừng hàm lại
+//     }
+
+//     // 🌟 TRƯỜNG HỢP 2: NẾU THẦY BẤM VÀO FILE JSON
+//     // Bật lại khung Code và trả lại tỷ lệ 30-70
+//     if (panelCode) {
+//         panelCode.style.display = 'flex';
+//         panelRender.style.flex = '7';
+//     }
+
+//     txtCode.value = "⏳ Đang tải nội dung từ Google Drive...";
+//     divRender.innerHTML = "<div style='color:#fd7e14; text-align:center; margin-top:50px;'>⏳ Đang biên dịch hiển thị...</div>";
+
+//     try {
+//         const API_GOC = CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP;
+//         const res = await fetch(`${API_GOC}?action=readFile&id=${fileId}&t=${Date.now()}`);
+//         const result = await res.json();
+
+//         if (result.status !== 'success') throw new Error(result.message);
+
+//         const noiDungGoc = result.content;
+
+//         try {
+//             const jsonObj = JSON.parse(noiDungGoc);
+//             txtCode.value = JSON.stringify(jsonObj, null, 4);
+//             //ham_3_7_render_ui_cau_hoi(jsonObj, divRender);
+
+
+
+//             // Ví dụ trong hàm render chung của thầy
+//             if (noiDungGoc.includes("\\choiceTF")) {
+//                 window.ham_3_20_render_ui_cau_hoi_DS(jsonObj, divRender);
+//             } 
+//             else 
+//                 if (noiDungGoc.includes("\\choice")) {
+//                     window.ham_3_19_render_ui_cau_hoi_TN(jsonObj, divRender); // Hàm TN cũ của thầy
+//                 }
+//                 else
+//                     if (noiDungGoc.includes("\\shortans")) {
+//                         window.ham_3_21_render_ui_cau_hoi_TLN(jsonObj, divRender); // Hàm TLN của thầy
+//                     }
+
+
+
+
+
+
+//         } catch (e) {
+//             txtCode.value = noiDungGoc;
+//             divRender.innerHTML = `<div style="color:red;">Lỗi định dạng JSON: ${e.message}</div><pre>${noiDungGoc}</pre>`;
+//         }
+
+//     } catch (error) {
+//         txtCode.value = `Lỗi: ${error.message}`;
+//         divRender.innerHTML = `<div style="color:red;">❌ Không thể đọc file: ${error.message}</div>`;
+//     }
+// };
+
+window.ham_3_13_tai_noi_dung_cau_hoi = async function (element, fileId, fileName, fileType = 'json') {
+
+    // 🌟 XỬ LÝ HIGHLIGHT MÀU DÒNG ĐANG CHỌN
+    // Tẩy màu tất cả các dòng cũ trước
+    document.querySelectorAll('.tree-file-item').forEach(el => el.classList.remove('active-file'));
+    // Tô màu dòng vừa click
+    if (element) element.classList.add('active-file');
+
     const txtCode = document.getElementById('khung-code-json');
     const divRender = document.getElementById('khung-render-cau-hoi');
-
-    // Lấy 2 khung container để bật tắt
     const panelCode = document.getElementById('panel-code-json');
     const panelRender = document.getElementById('panel-render-ui');
 
     document.getElementById('lbl-ten-file-code').innerText = `💻 Đang xem: ${fileName}`;
 
-    // 🌟 TRƯỜNG HỢP 1: NẾU THẦY BẤM VÀO FILE ẢNH
     if (fileType === 'image') {
-        // Ẩn hoàn toàn khung Code đi
         if (panelCode) panelCode.style.display = 'none';
-
-        // Cho khung Render chiếm trọn 100% diện tích
         if (panelRender) panelRender.style.flex = '1';
 
         divRender.innerHTML = `
@@ -1048,11 +1375,9 @@ window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType
                 <img src="https://drive.google.com/thumbnail?id=${fileId}&sz=w1000" style="max-width:100%; max-height: 700px; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd;" alt="${fileName}" />
             </div>
         `;
-        return; // Dừng hàm lại
+        return;
     }
 
-    // 🌟 TRƯỜNG HỢP 2: NẾU THẦY BẤM VÀO FILE JSON
-    // Bật lại khung Code và trả lại tỷ lệ 30-70
     if (panelCode) {
         panelCode.style.display = 'flex';
         panelRender.style.flex = '7';
@@ -1073,28 +1398,16 @@ window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType
         try {
             const jsonObj = JSON.parse(noiDungGoc);
             txtCode.value = JSON.stringify(jsonObj, null, 4);
-            //ham_3_7_render_ui_cau_hoi(jsonObj, divRender);
 
-
-
-            // Ví dụ trong hàm render chung của thầy
             if (noiDungGoc.includes("\\choiceTF")) {
-                window.ham_3_7_render_ui_cau_hoi_DS(jsonObj, divRender);
-            } 
-            else 
-                if (noiDungGoc.includes("\\choice")) {
-                    window.ham_3_7_render_ui_cau_hoi_TN(jsonObj, divRender); // Hàm TN cũ của thầy
-                }
-                else
-                    if (noiDungGoc.includes("\\shortans")) {
-                        window.ham_3_7_render_ui_cau_hoi_TLN(jsonObj, divRender); // Hàm TLN của thầy
-                    }
-
-
-
-
-
-
+                window.ham_3_20_render_ui_cau_hoi_DS(jsonObj, divRender);
+            }
+            else if (noiDungGoc.includes("\\choice")) {
+                window.ham_3_19_render_ui_cau_hoi_TN(jsonObj, divRender);
+            }
+            else if (noiDungGoc.includes("\\shortans")) {
+                window.ham_3_21_render_ui_cau_hoi_TLN(jsonObj, divRender);
+            }
         } catch (e) {
             txtCode.value = noiDungGoc;
             divRender.innerHTML = `<div style="color:red;">Lỗi định dạng JSON: ${e.message}</div><pre>${noiDungGoc}</pre>`;
@@ -1106,7 +1419,10 @@ window.ham_3_7_tai_noi_dung_cau_hoi = async function (fileId, fileName, fileType
     }
 };
 
-window.lay4KhoiNgoacNhon = function (tex, macroName) {
+
+
+
+window.ham_3_14_lay4KhoiNgoacNhon = function (tex, macroName) {
     const regex = new RegExp("\\\\" + macroName + "\\b");
     const match = tex.match(regex);
     if (!match) return null;
@@ -1137,7 +1453,7 @@ window.lay4KhoiNgoacNhon = function (tex, macroName) {
 
 
 // Hàm tiền xử lý (Sửa lỗi Drive chặn ảnh, môi trường center, và itemchoice của MathJax)
-window.tienXuLyLaTeX = function (texContent) {
+window.ham_3_15_tienXuLyLaTeX = function (texContent) {
     if (!texContent) return "";
     let processed = texContent;
 
@@ -1179,12 +1495,12 @@ window.tienXuLyLaTeX = function (texContent) {
 
 
 
-window.phanTichCauHoiTexTN = function (texContent) {
+window.ham_3_16_phanTichCauHoiTexTN = function (texContent) {
     let result = { cauDan: "", paA: "", paB: "", paC: "", paD: "", loiGiai: "", dapAnDung: null };
     if (!texContent || texContent.trim() === "") return result;
 
     // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
-    texContent = window.tienXuLyLaTeX(texContent);
+    texContent = window.ham_3_15_tienXuLyLaTeX(texContent);
 
     // 1. Tách lời giải
     let idxLoiGiai = texContent.indexOf("\\loigiai");
@@ -1199,7 +1515,7 @@ window.phanTichCauHoiTexTN = function (texContent) {
     texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
 
     // 3. Tách phương án & Phát hiện đáp án đúng
-    let blocks = window.lay4KhoiNgoacNhon(texContent, "choice");
+    let blocks = window.ham_3_14_lay4KhoiNgoacNhon(texContent, "choice");
     if (blocks && blocks.length === 4) {
         const optionLabels = ['A', 'B', 'C', 'D'];
         blocks.forEach((b, i) => {
@@ -1215,12 +1531,12 @@ window.phanTichCauHoiTexTN = function (texContent) {
 };
 
 
-window.phanTichCauHoiTexDS = function (texContent) {
+window.ham_3_17_phanTichCauHoiTexDS = function (texContent) {
     let result = { cauDan: "", options: [], loiGiai: "" };
     if (!texContent || texContent.trim() === "") return result;
 
     // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
-    texContent = window.tienXuLyLaTeX(texContent);
+    texContent = window.ham_3_15_tienXuLyLaTeX(texContent);
 
     //console.log("Nội dung LaTeX sau khi tiền xử lý:", texContent);
     // 1. Tách lời giải
@@ -1236,7 +1552,7 @@ window.phanTichCauHoiTexDS = function (texContent) {
     texContent = texContent.replace(/\\begin\{(ex|bt|vd|cau)\}[^\r\n]*/g, "").replace(/\\end\{(ex|bt|vd|cau)\}[^\r\n]*/g, "");
 
     // 3. Tách phương án (choiceTF)
-    let blocks = window.lay4KhoiNgoacNhon(texContent, "choiceTF");
+    let blocks = window.ham_3_14_lay4KhoiNgoacNhon(texContent, "choiceTF");
     if (blocks && blocks.length >= 1) {
         result.options = blocks.map(b => {
             return {
@@ -1253,12 +1569,12 @@ window.phanTichCauHoiTexDS = function (texContent) {
 };
 
 
-window.phanTichCauHoiTexTLN = function (texContent) {
+window.ham_3_18_phanTichCauHoiTexTLN = function (texContent) {
     let result = { cauDan: "", loiGiai: "", dapAnDung: "" };
     if (!texContent || texContent.trim() === "") return result;
 
     // Kích hoạt Tiền xử lý (Xử lý Ảnh và Center)
-    texContent = window.tienXuLyLaTeX(texContent);
+    texContent = window.ham_3_15_tienXuLyLaTeX(texContent);
 
     // 1. Tách lời giải
     let idxLoiGiai = texContent.indexOf("\\loigiai");
@@ -1296,10 +1612,10 @@ window.phanTichCauHoiTexTLN = function (texContent) {
 
 
 
-window.ham_3_7_render_ui_cau_hoi_TN = async function (data, containerElement) {
+window.ham_3_19_render_ui_cau_hoi_TN = async function (data, containerElement) {
     if (!data || !data.noi_dung) return;
 
-    const parsed = window.phanTichCauHoiTexTN(data.noi_dung);
+    const parsed = window.ham_3_16_phanTichCauHoiTexTN(data.noi_dung);
 
     // Tạo 4 thẻ phương án
     const options = [
@@ -1350,11 +1666,11 @@ window.ham_3_7_render_ui_cau_hoi_TN = async function (data, containerElement) {
     if (window.MathJax) await MathJax.typesetPromise([containerElement]);
 };
 
-window.ham_3_7_render_ui_cau_hoi_DS = async function (data, containerElement) {
+window.ham_3_20_render_ui_cau_hoi_DS = async function (data, containerElement) {
     if (!data || !data.noi_dung) return;
 
-    // Phân tích câu hỏi (dùng hàm phanTichCauHoiTexDS đã viết ở bước trước)
-    const parsed = window.phanTichCauHoiTexDS(data.noi_dung);
+    // Phân tích câu hỏi (dùng hàm ham_3_17_phanTichCauHoiTexDS đã viết ở bước trước)
+    const parsed = window.ham_3_17_phanTichCauHoiTexDS(data.noi_dung);
 
     let htmlOptions = "";
     const nhanY = ['a)', 'b)', 'c)', 'd)'];
@@ -1402,11 +1718,11 @@ window.ham_3_7_render_ui_cau_hoi_DS = async function (data, containerElement) {
 
 
 
-window.ham_3_7_render_ui_cau_hoi_TLN = async function (data, containerElement) {
+window.ham_3_21_render_ui_cau_hoi_TLN = async function (data, containerElement) {
     if (!data || !data.noi_dung) return;
 
     // Gọi hàm phân tích vừa viết ở trên
-    const parsed = window.phanTichCauHoiTexTLN(data.noi_dung);
+    const parsed = window.ham_3_18_phanTichCauHoiTexTLN(data.noi_dung);
 
     containerElement.innerHTML = `
         <div style="padding: 20px; background: #ffffff; border: 1px solid #dee2e6; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">

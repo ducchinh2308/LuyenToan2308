@@ -218,7 +218,7 @@ async function ham_3b_2_tai_nhiem_vu_cua_toi() {
             chuoiNoiDung = `<span style="margin-right: 50px; font-family: Arial, sans-serif; color: #fbbf24; font-weight: bold; display: inline-block;">🏆 Bảng vàng trống. Hãy là người đầu tiên trong lớp hoàn thành nhiệm vụ để ghi danh! 🚀</span>`;
         } else {
             chuoiNoiDung = top10LopMinh.map(row => {
-                let thoiGianHienThi = ham_3_3_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
+                let thoiGianHienThi = ham_3_7_tinh_thoi_gian_truoc_day(row.thoi_gian_nop);
                 let tenHS = (row.hoc_sinh && row.hoc_sinh.ten) ? row.hoc_sinh.ten : "Ẩn danh";
                 let laChinhMinh = (AppState.user && AppState.user.ten && tenHS.toUpperCase() === AppState.user.ten.toUpperCase());
                 let mauTen = laChinhMinh ? "#f97316" : "#ffffff";
@@ -235,7 +235,7 @@ async function ham_3b_2_tai_nhiem_vu_cua_toi() {
             }).join("");
         }
 
-        ham_3b_5_ve_khung_html_thanh_chay_hs(chuoiNoiDung);
+        ham_3b_5_ham_3_3_ve_khung_html_thanh_chay_hs(chuoiNoiDung);
 
     } catch (error) {
         console.warn("⚠️ [Thanh chạy Lớp mình bị gián đoạn]:", error.message);
@@ -297,12 +297,12 @@ async function ham_3b_3_ve_thanh_chay_nhiem_vu_chua_lam() {
         } else {
             chuoiNoiDung = `<span style="margin-right: 30px; font-family: Arial, sans-serif; color: #f87171; font-weight: bold; display: inline-block; background: #450a0a; padding: 0 5px; border-radius: 2px;">⚠️ CÒN ${danhSachChuaLam.length} NHIỆM VỤ CHƯA LÀM: </span>`;
             chuoiNoiDung += danhSachChuaLam.map(nv => {
-                let thoiGianGiao = ham_3_3_tinh_thoi_gian_truoc_day(nv.thoi_gian_mo);
+                let thoiGianGiao = ham_3_7_tinh_thoi_gian_truoc_day(nv.thoi_gian_mo);
                 return `<span style="margin-right: 50px; font-family: Arial, sans-serif; display: inline-block;">🎯 <b style="color: #60a5fa;">${nv.ten_nhiem_vu}</b> <span style="color: #94a3b8; margin-left: 4px;">(${thoiGianGiao})</span></span>`;
             }).join("");
         }
 
-        ham_3b_6_ve_khung_html_thanh_chay_nhiem_vu(chuoiNoiDung);
+        ham_3b_6_ham_3_3_ve_khung_html_thanh_chay_nhiem_vu(chuoiNoiDung);
 
     } catch (error) {
         console.warn("⚠️ [Thanh chạy Nhắc việc]:", error.message);
@@ -396,7 +396,7 @@ async function ham_3b_4_ve_thanh_thong_bao_tu_gv() {
 //// =====================================================================
 //// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung chứa điểm học sinh (Giờ đã dời xuống ĐÁY, nằm TRÊN thanh đòi nợ)
 //// =====================================================================
-function ham_3b_5_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
+function ham_3b_5_ham_3_3_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nop-bai-hs')) {
         document.getElementById('thanh-chay-nop-bai-hs').remove();
     }
@@ -448,7 +448,7 @@ function ham_3b_5_ve_khung_html_thanh_chay_hs(chuoiHienThi) {
 //// =====================================================================
 //// [Nhãn thời gian: 17:15 - Ngày 10/06/2026] - Hàm phụ trợ: Vẽ khung nhắc việc chưa làm (Nằm SÁT ĐÁY)
 //// =====================================================================
-function ham_3b_6_ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
+function ham_3b_6_ham_3_3_ve_khung_html_thanh_chay_nhiem_vu(chuoiHienThi) {
     if (document.getElementById('thanh-chay-nhiem-vu-hs')) {
         document.getElementById('thanh-chay-nhiem-vu-hs').remove();
     }

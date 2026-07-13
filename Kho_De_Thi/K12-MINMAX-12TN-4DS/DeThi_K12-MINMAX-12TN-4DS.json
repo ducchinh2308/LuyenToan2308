@@ -1,0 +1,167 @@
+{
+  "maDe": "K12-MINMAX-12TN-4DS",
+  "tenDe": "ĐỀ K12-MINMAX-12TN-4DS",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "maCau": "q_866fd7ed0a",
+      "ma_goc": "2603-464",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $f(x) = x^3 - 8x^2 + 16x - 9$ trên đoạn $[1;3]$ là",
+      "paA": "$\\max_{[1;3]} f(x) = 0$",
+      "paB": "$\\max_{[1;3]} f(x) = \\displaystyle \\frac{13}{27}$",
+      "paC": "$\\max_{[1;3]} f(x) = -6$",
+      "paD": "$\\max_{[1;3]} f(x) = 5$"
+    },
+    {
+      "maCau": "q_4449f7f7c9",
+      "ma_goc": "2603-486",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ xác định và liên tục trên $\\mathbb{R}$ có đồ thị như hình bên dưới. Gọi $M$, $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số trên đoạn $[1;3]$. Giá trị của $M+m$ bằng bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4449f7f7c9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$M+m=2$",
+      "paB": "$M+m=-4$",
+      "paC": "$M+m=-3$",
+      "paD": "$M+m=1$"
+    },
+    {
+      "maCau": "q_334baecfca",
+      "ma_goc": "2605-1717",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{2x^2-2x+2}{-x+1}$.",
+      "paA": "Hàm số nghịch biến trên khoảng $(-\\infty;0) \\cup (2;+\\infty)$.",
+      "paB": "Hàm số đạt cực tiểu tại $x=0$.",
+      "paC": "Giá trị nhỏ nhất của hàm số trên đoạn $\\left[\\frac{3}{2}; \\frac{7}{2}\\right]$ bằng $-7$.",
+      "paD": "Gọi $A, B$ là hai điểm cực trị của đồ thị hàm số. Cho điểm $M(-1;0)$, gọi $D(a;b)$ là chân đường phân giác trong góc $M$ của tam giác $MAB$. Khi đó $a+b=\\frac{1}{2}$."
+    },
+    {
+      "maCau": "q_3b8c13513f",
+      "ma_goc": "2606-15",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = e^x(\\sin x - \\cos x)$.",
+      "paA": "Giá trị lớn nhất của hàm số trên đoạn $[0; \\pi]$ bằng $e^\\pi$.",
+      "paB": "Đạo hàm của hàm số đã cho là $y' = 2e^x \\sin x$.",
+      "paC": "Hàm số đạt cực tiểu tại điểm $x = 0$.",
+      "paD": "Các nghiệm của phương trình $y' = 0$ là $x = \\displaystyle\\frac{\\pi}{2} + k\\pi$ với $k \\in \\mathbb{Z}$."
+    },
+    {
+      "maCau": "q_14d6ea9791",
+      "ma_goc": "2605-1671",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^4 - 8x^2 + 3$.",
+      "paA": "Hàm số đã cho có đạo hàm là $f'(x) = 4x^3 - 16x$",
+      "paB": "Hàm số $f(x)$ đồng biến trên các khoảng $(-2; 0)$ và $(2; +\\infty)$",
+      "paC": "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[1; 3]$ bằng $12$",
+      "paD": "Gọi $A, B, C$ là ba điểm cực trị của đồ thị hàm số đã cho. Diện tích tam giác $ABC$ bằng $16$ (đvdt)"
+    },
+    {
+      "maCau": "q_756389b172",
+      "ma_goc": "2605-1696",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = \\displaystyle \\frac{4}{x} + x + 1$ với $x \\ne 0$.",
+      "paA": "$f'(-4) = 2$",
+      "paB": "Đạo hàm của hàm số đã cho là $f'(x) = \\displaystyle \\frac{x^2 - 4}{x^2}$ với $x \\ne 0$.",
+      "paC": "Hàm số $y = f(x)$ có giá trị lớn nhất và giá trị nhỏ nhất trên đoạn $[1;3]$ lần lượt bằng $M, m$. Khi đó, $M-m=1$.",
+      "paD": "Tổng các nghiệm của phương trình $f'(x) = 0$ bằng $4$."
+    },
+    {
+      "maCau": "q_1910b70bce",
+      "ma_goc": "2603-3203",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $\\displaystyle f(x)=\\frac{2x-5}{x-1}$ trên đoạn $[2;5]$ là",
+      "paA": "$-1$",
+      "paB": "$\\displaystyle \\frac{1}{2}$",
+      "paC": "$\\displaystyle \\frac{5}{4}$",
+      "paD": "$1$"
+    },
+    {
+      "maCau": "q_cba55e03ed",
+      "ma_goc": "2603-802",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=f(x)$ liên tục và có bảng biến thiên trong đoạn $\\left[-1;3\\right]$ cho trong hình bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_cba55e03ed_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $M$ là giá trị lớn nhất của hàm số $y=f(x)$ trên đoạn $\\left[-1;3\\right]$. Tìm mệnh đề đúng?",
+      "paA": "$M=f(0)$",
+      "paB": "$M=f(3)$",
+      "paC": "$M=f\\left(-1\\right)$",
+      "paD": "$M=f(2)$"
+    },
+    {
+      "maCau": "q_f3369f5a11",
+      "ma_goc": "2603-3135",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục và có đồ thị trên đoạn $[-4;3]$ như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f3369f5a11_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[0;3]$ là",
+      "paA": "$-4$",
+      "paB": "$-2$",
+      "paC": "$1$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_2558ba5a38",
+      "ma_goc": "2603-3114",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = (2x - 1)(x + 1)$. Hàm số $y = f(x)$ có giá trị lớn nhất trên đoạn $[-2; 0]$ bằng",
+      "paA": "$f(-2)$",
+      "paB": "$\\displaystyle f\\left(-\\frac{1}{2}\\right)$",
+      "paC": "$f(0)$",
+      "paD": "$f(-1)$"
+    },
+    {
+      "maCau": "q_04a6e2ce90",
+      "ma_goc": "2603-1255",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục và có đồ thị trên đoạn $[-4;3]$ như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_04a6e2ce90_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[0;3]$ là",
+      "paA": "$-4$",
+      "paB": "$-2$",
+      "paC": "$1$",
+      "paD": "$-3$"
+    },
+    {
+      "maCau": "q_10f36e55f1",
+      "ma_goc": "2605-310",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=x^3-3x^2+2$. Gọi $M,m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số trên đoạn $[-2;2]$. Khi đó $M-m$ bằng",
+      "paA": "$20$",
+      "paB": "$4$",
+      "paC": "$2$",
+      "paD": "$16$"
+    },
+    {
+      "maCau": "q_f92fa2f8ca",
+      "ma_goc": "2603-1307",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $y = x^3 - 3x + 5$ trên đoạn $[2; 4]$ là",
+      "paA": "$\\min_{[2;4]} y = 5$",
+      "paB": "$\\min_{[2;4]} y = 0$",
+      "paC": "$\\min_{[2;4]} y = 3$",
+      "paD": "$\\min_{[2;4]} y = 7$"
+    },
+    {
+      "maCau": "q_29ba140c71",
+      "ma_goc": "2605-338",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\displaystyle \\frac{3x+7}{x+1}$. Giá trị lớn nhất của hàm số đã cho trên đoạn $[0;3]$ bằng",
+      "paA": "$4$",
+      "paB": "$3$",
+      "paC": "$7$",
+      "paD": "$0$"
+    },
+    {
+      "maCau": "q_017f87c26c",
+      "ma_goc": "2603-1275",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $y = x^4 - 2x^2 + 3$ trên đoạn $[0; 2]$ bằng",
+      "paA": "$2$",
+      "paB": "$-2$",
+      "paC": "$4$",
+      "paD": "$3$"
+    },
+    {
+      "maCau": "q_c45d68412d",
+      "ma_goc": "2605-141",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $f(x) = x^4 - 2x^2 + 5$ trên đoạn $[-2;2]$ là",
+      "paA": "$\\displaystyle \\max_{[-2;2]} f(x) = 13$",
+      "paB": "$\\displaystyle \\max_{[-2;2]} f(x) = 14$",
+      "paC": "$\\displaystyle \\max_{[-2;2]} f(x) = -4$",
+      "paD": "$\\displaystyle \\max_{[-2;2]} f(x) = 23$"
+    }
+  ]
+}

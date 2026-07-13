@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9b37542720",
+  "dapAn": "TTTF",
+  "loiGiai": "$y = e^x(\\sin x - \\cos x) \\Rightarrow y' = e^x(\\sin x - \\cos x) + e^x(\\cos x + \\sin x) = 2\\sin x \\cdot e^x$.\r\n\t\t$y' = 0 \\Leftrightarrow \\sin x = 0 \\Leftrightarrow x = k\\pi, k \\in \\mathbb{Z}$.\\\\\r\n\t\tXét bảng biến thiên trên đoạn $[-\\pi; 2\\pi]$.\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_9b37542720_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Vậy giá trị lớn nhất của hàm số trên đoạn $[0; \\pi]$ bằng $e^\\pi$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Đạo hàm của hàm số đã cho là $y' = 2\\sin x \\cdot e^x$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số đạt cực tiểu tại điểm $x = 0$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Các nghiệm của phương trình $y' = 0$ là $x = k\\pi, k \\in \\mathbb{Z}$. $\\Rightarrow$ Chọn SAI.\r\n\t\t\\end{itemchoice}"
+}
