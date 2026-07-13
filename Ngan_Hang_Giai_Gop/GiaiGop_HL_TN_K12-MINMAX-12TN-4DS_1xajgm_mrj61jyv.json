@@ -1,0 +1,85 @@
+{
+  "thoiGianGhep": "2026-07-13T11:55:40.755Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_67dc67a006",
+      "dapAn": "B",
+      "loiGiaiHtml": "Xét hàm số $f(x) = x^3 - 8x^2 + 16x - 9$ trên $[1;3]$.\\\\\r\n\t\tTa có $f'(x) = 3x^2 - 16x + 16$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x = 4 \\notin [1;3] \\\\ &x = \\frac{4}{3} \\in [1;3] \\end{aligned} \\right.$.\\\\\r\n\t\tTính các giá trị:\r\n\t\t$f(1) = 0$; $f\\left(\\frac{4}{3}\\right) = \\displaystyle \\frac{13}{27}$; $f(3) = -6$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số trên đoạn $[1;3]$ là $\\displaystyle \\frac{13}{27}$ khi $x = 1$."
+    },
+    {
+      "maBaoMat": "sol_f010a8fb3f",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị, trên đoạn $[1;3]$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Giá trị lớn nhất $M = \\max_{[1;3]} f(x) = f(2) = 0$.\r\n\t\t\t\\item Giá trị nhỏ nhất $m = \\min_{[1;3]} f(x) = f(3) = -4$.\r\n\t\t\\end{itemize}\r\n\t\tSuy ra: $M + m = 0 + (-4) = -4$."
+    },
+    {
+      "maBaoMat": "sol_f21df7ee5e",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tập xác định $D=\\mathbb{R} \\setminus \\{1\\}$. Đạo hàm $y' = \\frac{-2x^2+4x}{(-x+1)^2}$. $y'=0 \\Leftrightarrow x \\in \\{0, 2\\}$. Hàm số nghịch biến trên $(-\\infty;0)$ và $(2;+\\infty)$, không dùng dấu $\\cup$. (Sai)\r\n\t\t\t\\itemch Tại $x=0$, $y'$ đổi dấu từ âm sang dương nên $x=0$ là cực tiểu. (Đúng)\r\n\t\t\t\\itemch Trên đoạn $\\left[\\frac{3}{2}; \\frac{7}{2}\\right]$, $y\\left(\\frac{3}{2}\\right)=-7, y(2)=-6, y\\left(\\frac{7}{2}\\right)=-7,8$. Giá trị nhỏ nhất là $-7,8$. (Sai)\r\n\t\t\t\\itemch Tìm tọa độ các điểm cực trị:\\\\\r\n\t\t\tVới $x = 0 \\Rightarrow y = 2 \\Rightarrow A(0;2)$\\\\\r\n\t\t\tVới $x = 2 \\Rightarrow y = -6 \\Rightarrow B(2;-6)$\\\\\r\n\t\t\tTính độ dài các cạnh $MA$ và $MB$:\\\\\r\n\t\t\t$MA = \\sqrt{(0+1)^2 + (2-0)^2} = \\sqrt{5}$\\\\\r\n\t\t\t$MB = \\sqrt{(2+1)^2 + (-6-0)^2} = \\sqrt{45} = 3\\sqrt{5}$\\\\\r\n\t\t\tVì $D$ là chân đường phân giác trong góc $M$ của tam giác $MAB$, theo tính chất đường phân giác, điểm $D$ chia đoạn $AB$ theo tỉ số:\\\\\r\n\t\t\t$\\displaystyle\\frac{DA}{DB} = \\displaystyle\\frac{MA}{MB} = \\displaystyle\\frac{\\sqrt{5}}{3\\sqrt{5}} = \\displaystyle\\frac{1}{3}$\\\\\r\n\t\t\tSuy ra hệ thức dưới dạng vectơ:\\\\\r\n\t\t\t$3\\overrightarrow{DA} + \\overrightarrow{DB} = \\vec{0}$\\\\\r\n\t\t\tTọa độ điểm $D(a;b)$ được tính như sau:\\\\\r\n\t\t\t$a = \\displaystyle\\frac{3x_A + x_B}{4} = \\displaystyle\\frac{3 \\cdot 0 + 2}{4} = \\displaystyle\\frac{1}{2}$\\\\\r\n\t\t\t$b = \\displaystyle\\frac{3y_A + y_B}{4} = \\displaystyle\\frac{3 \\cdot 2 + (-6)}{4} = 0$\\\\\r\n\t\t\tVậy $D\\left(\\displaystyle\\frac{1}{2}; 0\\right)$.\\\\\r\n\t\t\tTính tổng $a+b$:\\\\\r\n\t\t\t$a+b = \\displaystyle\\frac{1}{2} + 0 = \\displaystyle\\frac{1}{2}$\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_9b37542720",
+      "dapAn": "TTTF",
+      "loiGiaiHtml": "$y = e^x(\\sin x - \\cos x) \\Rightarrow y' = e^x(\\sin x - \\cos x) + e^x(\\cos x + \\sin x) = 2\\sin x \\cdot e^x$.\r\n\t\t$y' = 0 \\Leftrightarrow \\sin x = 0 \\Leftrightarrow x = k\\pi, k \\in \\mathbb{Z}$.\\\\\r\n\t\tXét bảng biến thiên trên đoạn $[-\\pi; 2\\pi]$.\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_9b37542720_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Vậy giá trị lớn nhất của hàm số trên đoạn $[0; \\pi]$ bằng $e^\\pi$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Đạo hàm của hàm số đã cho là $y' = 2\\sin x \\cdot e^x$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số đạt cực tiểu tại điểm $x = 0$. $\\Rightarrow$ Chọn ĐÚNG.\r\n\t\t\t\\itemch Các nghiệm của phương trình $y' = 0$ là $x = k\\pi, k \\in \\mathbb{Z}$. $\\Rightarrow$ Chọn SAI.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_ea51801a85",
+      "dapAn": "TTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số đã cho có đạo hàm là $f'(x) = 4x^3 - 16x$.\r\n\t\t\t\\itemch Hàm số $f(x) = x^4 - 8x^2 + 3$.\\\\\r\n\t\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\t\tTa có $f'(x) = 4x^3 - 16x = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x = 0 \\\\ x = 2 \\\\ x = -2 \\end{array} \\right.$.\\\\\r\n\t\t\tBảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_ea51801a85_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tVậy hàm số $f(x)$ đồng biến trên các khoảng $(-2; 0)$ và $(2; +\\infty)$.\r\n\t\t\t\\itemch Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[1; 3]$ bằng $12$.\\\\\r\n\t\t\tHàm số $f(x) = x^4 - 8x^2 + 3$.\\\\\r\n\t\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\t\tTa có $f'(x) = 4x^3 - 16x = 0 \\Leftrightarrow \\left[ \\begin{array}{l} x = 0 \\notin [1; 3] \\\\ x = 2 \\in [1; 3] \\\\ x = -2 \\notin [1; 3] \\end{array} \\right.$.\\\\\r\n\t\t\tTa có $f(1) = -4$; $f(2) = -13$; $f(3) = 12$.\\\\\r\n\t\t\tVậy giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[1; 3]$ bằng $12$.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên của hàm số.\\\\\r\n\t\t\tGiả sử 3 cực trị của đồ thị hàm số là $A(-2; -13)$, $B(0; 3)$, $C(2; -13)$ là ba điểm cực trị của đồ thị hàm số đã cho.\\\\\r\n\t\t\t$\\overrightarrow{AB} = (2; 16)$; $\\overrightarrow{AC} = (4; 0)$.\\\\\r\n\t\t\tDiện tích tam giác $ABC \\colon S = \\displaystyle\\frac{1}{2}\\big|2 \\cdot 0 - 16 \\cdot 4\\big| = 32$.\\\\\r\n\t\t\tVậy mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_bb2df318f9",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = -\\displaystyle \\frac{4}{x^2} + 1$. Tại $x=-4$: $f'(-4) = -\\displaystyle \\frac{4}{16} + 1 = 0,75 = \\displaystyle \\frac{3}{4}$. Vậy ý a) Sai.\r\n\t\t\t\\itemch $f'(x) = -\\displaystyle \\frac{4}{x^2} + 1 = \\displaystyle \\frac{x^2 - 4}{x^2}$. Vậy ý b) Đúng.\r\n\t\t\t\\itemch $f'(x) = 0 \\Leftrightarrow x^2=4 \\Leftrightarrow x=\\pm 2$. Trên đoạn $[1;3]$, ta xét tại $x=1, x=2, x=3$: $f(1)=6, f(2)=5, f(3)=16/3$. Do đó $M=6, m=5$. $M-m=1$. Vậy ý c) Đúng.\r\n\t\t\t\\itemch Phương trình $f'(x)=0$ có hai nghiệm là $x=2$ và $x=-2$, tổng là $0 \\ne 4$. Vậy ý d) Sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_28d7ce4579",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\displaystyle f'(x)=\\frac{3}{(x-1)^{2}} > 0, \\forall x \\in [2;5]$.\\\\\r\n\t\tDo đó hàm số đồng biến trên đoạn $[2;5]$.\\\\\r\n\t\tVậy $\\displaystyle \\max_{[2;5]} f(x) = f(5) = \\frac{5}{4}$."
+    },
+    {
+      "maBaoMat": "sol_9f3a8a0fc1",
+      "dapAn": "A",
+      "loiGiaiHtml": "$f(0)=5;f(2)=1;f(3)=4;f\\left(-1\\right)=0$\\\\\r\n\tVậy $\\max\\limits_{\\left[-1;3\\right]}f(x)=f(0)=5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_b28dbb00b4",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị ta thấy: Giá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[0;3]$ là $-2$ (đạt được tại $x=1$)."
+    },
+    {
+      "maBaoMat": "sol_b5a3a04192",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\displaystyle f'(x) = 0 \\Leftrightarrow \\begin{bmatrix} x = \\frac{1}{2} \\\\ x = -1 \\end{bmatrix}$.\\\\\r\n\t\tBảng xét dấu đạo hàm trên đoạn $[-2; 0]$:\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b5a3a04192_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-2; 0]$ bằng $f(-1)$."
+    },
+    {
+      "maBaoMat": "sol_63f700a47a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị ta thấy: Giá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[0;3]$ là $-2$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_44ad4cdf5b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $y'=3x^2-6x$.\\\\\r\n\t\tKhi đó $y'=0 \\Leftrightarrow \\left[\\begin{array}{l} x=0 \\\\ x=2 \\end{array}\\right. $.\\\\\r\n\t\tXét $y(-2)=-18$, $y(0)=2$, $y(2)=-2$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số là $M=2$, giá trị nhỏ nhất của hàm số là $m=-18$.\\\\\r\n\t\tVậy $M-m=2-(-18)=20$."
+    },
+    {
+      "maBaoMat": "sol_f6ec6c97dc",
+      "dapAn": "D",
+      "loiGiaiHtml": "$y = x^3 - 3x + 5 \\Rightarrow y' = 3x^2 - 3 = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x = -1 \\notin (2; 4) \\\\ &x = 1 \\notin (2; 4) \\end{aligned} \\right.$\\\\\r\n\t\tTa có: $y(2) = 7$.\\\\\r\n\t\t$y(4) = 57$.\\\\\r\n\t\tVậy $\\min_{[2;4]} y = 7$."
+    },
+    {
+      "maBaoMat": "sol_c3e084090c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R} \\setminus \\{-1\\} \\Rightarrow$ hàm số liên tục trên đoạn $[0;3]$.\\\\\r\n\t\tTa có: $y' = \\displaystyle \\frac{3(x+1)-(3x+7)}{(x+1)^2} = \\frac{-4}{(x+1)^2} < 0, \\forall x \\in [0;3]$ nên hàm số luôn nghịch biến trên $[0;3]$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y = \\displaystyle \\frac{3x+7}{x+1}$ trên đoạn $[0;3]$ là $y(0) = \\displaystyle \\frac{3 \\cdot 0 + 7}{0 + 1} = 7$."
+    },
+    {
+      "maBaoMat": "sol_e09f30e680",
+      "dapAn": "A",
+      "loiGiaiHtml": "Đặt $f(x) = x^4 - 2x^2 + 3$.\\\\\r\n\t\tTa có $f'(x) = 4x^3 - 4x = 4x(x^2 - 1)$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow 4x(x^2 - 1) = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\in [0; 2] \\\\ x = 1 \\in [0; 2] \\\\ x = -1 \\notin [0; 2] \\end{array}\\right.$\\\\\r\n\t\t$f(0) = 0^4 - 2 \\cdot 0^2 + 3 = 3$.\\\\\r\n\t\t$f(2) = 2^4 - 2 \\cdot 2^2 + 3 = 11$.\\\\\r\n\t\t$f(1) = 1^4 - 2 \\cdot 1^2 + 3 = 2$.\\\\\r\n\t\tVậy giá trị nhỏ nhất của hàm số $f(x) = x^4 - 2x^2 + 3$ trên đoạn $[0; 2]$ bằng $2$."
+    },
+    {
+      "maBaoMat": "sol_16ecf334f9",
+      "dapAn": "A",
+      "loiGiaiHtml": "$f'(x) = 4x^3 - 4x = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\\\ x = 1 \\\\ x = -1 \\end{array}\\right.$.\\\\\r\n\t\tCả $3$ nghiệm $x=0, x=1, x=-1$ đều thuộc đoạn $[-2;2]$.\\\\\r\n\t\t$f(-2) = 13$, $f(-1) = 4$, $f(0) = 5$, $f(1) = 4$, $f(2) = 13$.\\\\\r\n\t\tSo sánh các kết quả trên, ta thấy giá trị lớn nhất là $13$."
+    }
+  ]
+}
