@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f0059f30fd",
+  "dapAn": "61",
+  "loiGiai": "Số phần tử của không gian mẫu là: $n(\\Omega) = 36$.\\\\\r\n\t\tTập xác định: $D = \\mathbb{R} \\setminus \\{b\\}$.\\\\\r\n\t\tTa có: $f'(x) = \\displaystyle\\frac{x^2-2bx-ab-3}{(x-b)^2}$\\\\\r\n\t\tĐể hàm số $f(x)$ nghịch biến trên khoảng $(1;3)$ là:\\\\\r\n\t\tMà $a, b \\in \\{1, 2, 3, 4, 5, 6\\}$ nên ta có $\\begin{cases} b \\in \\{1, 3, 4, 5, 6\\} \\\\ g(1) \\le 0 \\text{ (lđ)} \\\\ g(3) \\le 0 \\text{ (lđ)} \\end{cases}$\\\\\r\n\t\tVậy $b$ có $5$ cách chọn và $a$ có $6$ cách chọn; do đó\\\\\r\n\t\tSố kết quả thỏa mãn yêu cầu bài toán là: $5 \\cdot 6 = 30$.\\\\\r\n\t\tVậy xác suất cần tìm là $P = \\displaystyle\\frac{30}{36} = \\displaystyle\\frac{5}{6}$\\\\\r\n\t\tSuy ra: $m^2+n^2 = 5^2+6^2 = 61$."
+}

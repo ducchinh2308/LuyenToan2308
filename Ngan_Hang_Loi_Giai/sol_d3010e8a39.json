@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d3010e8a39",
+  "dapAn": "TTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đúng. Ta có đạo hàm $y' = 3x^2 - 6x = 3x(x - 2); y' = 0 \\Leftrightarrow x=0$ hoặc $x=2$.\\\\\r\n\t\t\tTrong khoảng $(0;2)$, ta có $y'<0$ nên hàm số nghịch biến trên khoảng này.\r\n\t\t\t\\itemch Đúng. Đạo hàm $y'$ là đa thức bậc hai có hai nghiệm phân biệt và đổi dấu qua hai nghiệm đó, nên hàm số có hai điểm cực trị.\r\n\t\t\t\\itemch Sai. Xét trên khoảng $(0;+\\infty)$, dựa vào bảng biến thiên, hàm số đạt giá trị nhỏ nhất tại $x=2$. Giá trị đó là $y(2) = 2^3 - 3 \\cdot 2^2 + 5 = 1 \\ne 2$.\r\n\t\t\t\\itemch Sai. Với $x_0 = 1 \\Rightarrow y_0 = 1^3 - 3 \\cdot 1^2 + 5 = 3$.\\\\\r\n\t\t\tHệ số góc của tiếp tuyến tại $x=1$ là $k = y'(1) = 3 \\cdot 1^2 - 6 \\cdot 1 = -3$.\\\\\r\n\t\t\tPhương trình tiếp tuyến là: $y = -3(x-1)+3 \\Leftrightarrow y = -3x+6$. (Khác với $y=-3x+3$).\r\n\t\t\\end{itemchoice}"
+}

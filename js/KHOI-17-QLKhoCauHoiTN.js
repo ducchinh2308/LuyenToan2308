@@ -657,15 +657,15 @@ function taoBangMaTranHTML(loaiCau, tieuDe, mauSac) {
                 ${tieuDe}
             </div>
             <div style="overflow-x: auto; padding: 10px;">
-                <table style="width: 100%; border-collapse: collapse; min-width: 1100px; text-align: left;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 800px; text-align: left;">
                     <thead style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                         <tr>
                             <th style="padding: 10px 4px; width: 40px; text-align: center; color: #495057; font-size: 12px;">STT</th>
-                            <th style="padding: 10px 4px; width: 80px; color: #495057; font-size: 12px;">Lớp</th>
-                            <th style="padding: 10px 4px; width: 100px; color: #495057; font-size: 12px;">Phân môn</th>
-                            <th style="padding: 10px 4px; width: 120px; color: #495057; font-size: 12px;">Chương</th>
-                            <th style="padding: 10px 4px; width: 180px; color: #495057; font-size: 12px;">Bài</th>
-                            <th style="padding: 10px 4px; color: #d35400; font-size: 12px;">Dạng bài chi tiết</th>
+                            <th style="padding: 10px 4px; width: 60px; color: #495057; font-size: 12px;">Lớp</th>
+                            <th style="padding: 10px 4px; width: 60px; color: #495057; font-size: 12px;">Phân môn</th>
+                            <th style="padding: 10px 4px; width: 60px; color: #495057; font-size: 12px;">Chương</th>
+                            <th style="padding: 10px 4px; width: 120px; color: #495057; font-size: 12px;">Bài</th>
+                            <th style="padding: 10px 4px; width: 150px; color: #d35400; font-size: 12px;">Dạng bài chi tiết</th>
                             <th style="padding: 10px 4px; width: 60px; text-align: center; color: #28a745; font-size: 12px;" title="Nhận biết">NB</th>
                             <th style="padding: 10px 4px; width: 60px; text-align: center; color: #17a2b8; font-size: 12px;" title="Thông hiểu">TH</th>
                             <th style="padding: 10px 4px; width: 60px; text-align: center; color: #f39c12; font-size: 12px;" title="Vận dụng">VD</th>
@@ -714,6 +714,49 @@ window.ham_17_3_ve_giao_dien_chon_dang = function (cayMaTran, idVungChua) {
 // CÁC HÀM XỬ LÝ THÊM/XÓA DÒNG BẢNG (ĐA PHÂN HỆ)
 // =====================================================================
 
+// window.ham_17_3_them_dong_ma_tran = function (loaiCau) {
+//     window.MaTran_SoDongHienTai++;
+//     let rowId = window.MaTran_SoDongHienTai;
+//     const tbody = document.getElementById(`tbody_matran_${loaiCau}`);
+//     if (!tbody) return;
+
+//     let tr = document.createElement('tr');
+//     tr.id = `row_matran_${rowId}`;
+//     tr.className = `dong_matran_${loaiCau}`;
+//     tr.style.borderBottom = "1px dashed #dee2e6";
+//     tr.style.transition = "background 0.2s";
+//     tr.onmouseover = function () { this.style.background = '#f1f8ff'; };
+//     tr.onmouseout = function () { this.style.background = 'transparent'; };
+
+//     // CSS ô Select ép nhỏ padding và chữ để tiết kiệm không gian
+//     const selStyle = "width: 100%; padding: 6px 2px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; outline: none; cursor: pointer; box-sizing: border-box;";
+//     // CSS ô Input số lượng
+//     const inpStyle = "width: 100%; padding: 6px 0; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; text-align: center; font-weight: bold; box-sizing: border-box; outline: none;";
+
+//     tr.innerHTML = `
+//         <td style="padding: 8px 4px; text-align: center; font-weight: bold; color: #6c757d;" class="stt_dong_${loaiCau}"></td>
+//         <td style="padding: 8px 4px;"><select id="sel_lop_${rowId}" onchange="ham_17_3_change_lop(${rowId})" style="${selStyle}"></select></td>
+//         <td style="padding: 8px 4px;"><select id="sel_mon_${rowId}" onchange="ham_17_3_change_mon(${rowId})" style="${selStyle}"></select></td>
+//         <td style="padding: 8px 4px;"><select id="sel_chuong_${rowId}" onchange="ham_17_3_change_chuong(${rowId})" style="${selStyle}"></select></td>
+//         <td style="padding: 8px 4px;"><select id="sel_bai_${rowId}" onchange="ham_17_3_change_bai(${rowId})" style="${selStyle}"></select></td>
+//         <td style="padding: 8px 4px;"><select id="sel_dang_${rowId}" onchange="ham_17_3_change_dang('${loaiCau}', ${rowId})" style="${selStyle} border: 1px solid #f39c12; background: #fffdf5; color: #d35400; font-weight: bold;"></select></td>
+        
+//         <td style="padding: 8px 4px;"><input type="number" id="sl_nb_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #28a745; background: #f0fff4; border-color: #c3e6cb;" onfocus="this.style.background='#fff'" onblur="this.style.background='#f0fff4'"></td>
+//         <td style="padding: 8px 4px;"><input type="number" id="sl_th_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #17a2b8; background: #e0f7fa; border-color: #b8daff;" onfocus="this.style.background='#fff'" onblur="this.style.background='#e0f7fa'"></td>
+//         <td style="padding: 8px 4px;"><input type="number" id="sl_vd_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #f39c12; background: #fff8e1; border-color: #ffeeba;" onfocus="this.style.background='#fff'" onblur="this.style.background='#fff8e1'"></td>
+//         <td style="padding: 8px 4px;"><input type="number" id="sl_vdc_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #e74c3c; background: #ffebee; border-color: #f5c6cb;" onfocus="this.style.background='#fff'" onblur="this.style.background='#ffebee'"></td>
+        
+//         <td style="padding: 8px 4px; text-align: center;">
+//             <button onclick="ham_17_3_xoa_dong_ma_tran('${loaiCau}', ${rowId})" style="background: none; border: none; cursor: pointer; color: #dc3545; font-size: 16px; transition: 0.2s;" onmouseover="this.style.transform='scale(1.3)'" onmouseout="this.style.transform='scale(1)'" title="Xóa">🗑️</button>
+//         </td>
+//     `;
+
+//     tbody.appendChild(tr);
+
+//     ham_17_3_load_lop(rowId);
+//     ham_17_3_cap_nhat_stt(loaiCau);
+// };
+
 window.ham_17_3_them_dong_ma_tran = function (loaiCau) {
     window.MaTran_SoDongHienTai++;
     let rowId = window.MaTran_SoDongHienTai;
@@ -730,8 +773,27 @@ window.ham_17_3_them_dong_ma_tran = function (loaiCau) {
 
     // CSS ô Select ép nhỏ padding và chữ để tiết kiệm không gian
     const selStyle = "width: 100%; padding: 6px 2px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; outline: none; cursor: pointer; box-sizing: border-box;";
-    // CSS ô Input số lượng
-    const inpStyle = "width: 100%; padding: 6px 0; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; text-align: center; font-weight: bold; box-sizing: border-box; outline: none;";
+
+    // CSS ô Input nhập số (Rộng 32px, bỏ nút tăng giảm, chỉ cho nhập 2 số)
+    const inpStyle = "width: 32px; padding: 4px 2px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; text-align: center; font-weight: bold; outline: none;";
+
+    // CSS ô Hiện số tối đa (Khóa, xám, chữ nhỏ hơn, rộng 28px)
+    const maxStyle = "width: 28px; padding: 4px 2px; border: 1px solid #ddd; border-radius: 4px; font-size: 11px; text-align: center; font-weight: bold; background: #e9ecef; color: #6c757d; cursor: not-allowed; outline: none;";
+
+    // Hàm thu nhỏ code tạo khối [Ô Nhập] / [Ô Khóa]
+    const taoKhoiNhapSo = (idInput, idMax, color, bgColor, borderColor) => `
+        <div style="display: flex; align-items: center; justify-content: center; gap: 3px;">
+            <input type="text" id="${idInput}" maxlength="2" placeholder="0" 
+                style="${inpStyle} color: ${color}; background: ${bgColor}; border-color: ${borderColor};" 
+                onfocus="this.style.background='#fff'" 
+                onblur="this.style.background='${bgColor}'" 
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')"> 
+            
+            <span style="color: #adb5bd; font-size: 14px; font-weight: bold;">/</span>
+            
+            <input type="text" id="${idMax}" value="-" readonly tabindex="-1" style="${maxStyle}">
+        </div>
+    `;
 
     tr.innerHTML = `
         <td style="padding: 8px 4px; text-align: center; font-weight: bold; color: #6c757d;" class="stt_dong_${loaiCau}"></td>
@@ -741,10 +803,10 @@ window.ham_17_3_them_dong_ma_tran = function (loaiCau) {
         <td style="padding: 8px 4px;"><select id="sel_bai_${rowId}" onchange="ham_17_3_change_bai(${rowId})" style="${selStyle}"></select></td>
         <td style="padding: 8px 4px;"><select id="sel_dang_${rowId}" onchange="ham_17_3_change_dang('${loaiCau}', ${rowId})" style="${selStyle} border: 1px solid #f39c12; background: #fffdf5; color: #d35400; font-weight: bold;"></select></td>
         
-        <td style="padding: 8px 4px;"><input type="number" id="sl_nb_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #28a745; background: #f0fff4; border-color: #c3e6cb;" onfocus="this.style.background='#fff'" onblur="this.style.background='#f0fff4'"></td>
-        <td style="padding: 8px 4px;"><input type="number" id="sl_th_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #17a2b8; background: #e0f7fa; border-color: #b8daff;" onfocus="this.style.background='#fff'" onblur="this.style.background='#e0f7fa'"></td>
-        <td style="padding: 8px 4px;"><input type="number" id="sl_vd_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #f39c12; background: #fff8e1; border-color: #ffeeba;" onfocus="this.style.background='#fff'" onblur="this.style.background='#fff8e1'"></td>
-        <td style="padding: 8px 4px;"><input type="number" id="sl_vdc_${rowId}" min="0" placeholder="-" style="${inpStyle} color: #e74c3c; background: #ffebee; border-color: #f5c6cb;" onfocus="this.style.background='#fff'" onblur="this.style.background='#ffebee'"></td>
+        <td style="padding: 8px 4px;">${taoKhoiNhapSo(`sl_nb_${rowId}`, `max_nb_${rowId}`, '#28a745', '#f0fff4', '#c3e6cb')}</td>
+        <td style="padding: 8px 4px;">${taoKhoiNhapSo(`sl_th_${rowId}`, `max_th_${rowId}`, '#17a2b8', '#e0f7fa', '#b8daff')}</td>
+        <td style="padding: 8px 4px;">${taoKhoiNhapSo(`sl_vd_${rowId}`, `max_vd_${rowId}`, '#f39c12', '#fff8e1', '#ffeeba')}</td>
+        <td style="padding: 8px 4px;">${taoKhoiNhapSo(`sl_vdc_${rowId}`, `max_vdc_${rowId}`, '#e74c3c', '#ffebee', '#f5c6cb')}</td>
         
         <td style="padding: 8px 4px; text-align: center;">
             <button onclick="ham_17_3_xoa_dong_ma_tran('${loaiCau}', ${rowId})" style="background: none; border: none; cursor: pointer; color: #dc3545; font-size: 16px; transition: 0.2s;" onmouseover="this.style.transform='scale(1.3)'" onmouseout="this.style.transform='scale(1)'" title="Xóa">🗑️</button>
@@ -757,6 +819,36 @@ window.ham_17_3_them_dong_ma_tran = function (loaiCau) {
     ham_17_3_cap_nhat_stt(loaiCau);
 };
 
+
+window.ham_17_3_cap_nhat_max_cau = function (rowId, maxNB, maxTH, maxVD, maxVDC) {
+    // Gán placeholder dạng "/4", "/3", v.v.
+    document.getElementById(`sl_nb_${rowId}`).placeholder = `/${maxNB}`;
+    document.getElementById(`sl_th_${rowId}`).placeholder = `/${maxTH}`;
+    document.getElementById(`sl_vd_${rowId}`).placeholder = `/${maxVD}`;
+    document.getElementById(`sl_vdc_${rowId}`).placeholder = `/${maxVDC}`;
+};
+
+
+// Thêm hàm này vào file JS của thầy
+window.ham_format_so_cau = function (input) {
+    const placeholder = input.getAttribute('placeholder'); // Lấy cái "/4"
+    let val = input.value.replace(/[^0-9]/g, ''); // Chỉ lấy số
+
+    if (val !== "") {
+        // Nếu giá trị nhập vào vượt quá max thì chặn lại
+        const max = parseInt(placeholder.replace('/', ''));
+        if (parseInt(val) > max) val = max;
+
+        input.value = val + placeholder;
+    }
+};
+
+// Khi focus vào thì xóa sạch "/4" để thầy/cô gõ số bình thường
+window.ham_focus_so_cau = function (input) {
+    input.value = input.value.replace(input.getAttribute('placeholder'), '');
+};
+
+
 window.ham_17_3_xoa_dong_ma_tran = function (loaiCau, rowId) {
     const tr = document.getElementById(`row_matran_${rowId}`);
     if (tr) {
@@ -764,6 +856,8 @@ window.ham_17_3_xoa_dong_ma_tran = function (loaiCau, rowId) {
         ham_17_3_cap_nhat_stt(loaiCau);
     }
 };
+
+
 
 window.ham_17_3_cap_nhat_stt = function (loaiCau) {
     const tbody = document.getElementById(`tbody_matran_${loaiCau}`);
@@ -848,6 +942,7 @@ window.ham_17_3_change_chuong = function (rowId) {
     ham_17_3_change_bai(rowId);
 };
 
+
 window.ham_17_3_change_bai = function (rowId) {
     const selLop = document.getElementById(`sel_lop_${rowId}`);
     const selMon = document.getElementById(`sel_mon_${rowId}`);
@@ -865,7 +960,7 @@ window.ham_17_3_change_bai = function (rowId) {
     if (idxLop !== "" && idxMon !== "" && idxChuong !== "" && idxBai !== "") {
         let dsDang = window.DuLieuMaTranToanCuc[idxLop].mon[idxMon].chuong[idxChuong].bai[idxBai].dang || [];
         dsDang.forEach((dang, index) => {
-            selDang.innerHTML += `<option value="${index}">[ID: ${dang.maID}] ${dang.tenDang}</option>`;
+            selDang.innerHTML += `<option value="${index}">[${dang.maID}] ${dang.tenDang}</option>`;
         });
     }
     // Khi chọn xong bài, code tự động kích hoạt tra cứu kho cho Dạng bài
@@ -875,11 +970,21 @@ window.ham_17_3_change_bai = function (rowId) {
 
 };
 
+
+window.ham_17_17_lay_chuoi_trong_ngoac_vuong = function (chuoi) {
+    if (!chuoi) return ""; // Bẫy lỗi nếu chuỗi bị undefined hoặc rỗng
+
+    // Tìm dấu [ đầu tiên, lấy mọi thứ bên trong miễn không phải dấu ], và dừng ở dấu ] đầu tiên
+    const match = chuoi.match(/\[([^\]]*)\]/);
+
+    return match ? match[1] : "";
+}
+
+
+
+
 window.ham_17_3_change_dang = async function (loaiCau, rowId) {
     console.log("--- Đang bắt đầu hàm ---");
-    //const selDang = document.getElementById(`sel_dang_${rowId}`);
-
-    // Kiểm tra biến cấu hình xem nó có tồn tại không
     console.log("URL API:", CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
 
     if (!CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP) {
@@ -887,10 +992,39 @@ window.ham_17_3_change_dang = async function (loaiCau, rowId) {
         return;
     }
 
-    const selDang = document.getElementById(`sel_dang_${rowId}`);
-    const maDang = selDang ? selDang.value : ""; // Giả sử đây là ID ma trận, ví dụ: [2D1x2-7]
+    // Helper để lấy text từ một ID select
+    const getText = (id) => {
+        const el = document.getElementById(id);
+        return el ? el.options[el.selectedIndex].text : "";
+    };
+
+    // Đọc nội dung hiển thị từ các combobox
+    const textLop = getText(`sel_lop_${rowId}`);
+    const textMon = getText(`sel_mon_${rowId}`);
+    const textChuong = getText(`sel_chuong_${rowId}`);
+    const textBai = getText(`sel_bai_${rowId}`);
+    const textDang = getText(`sel_dang_${rowId}`);
+
+    console.log("Nội dung đã chọn:", { textLop, textMon, textChuong, textBai, textDang });
+
+    // Sau đó thầy dùng hàm window.ham_17_17_lay_chuoi_trong_ngoac_vuong
+    // để bóc tách ID từ cái text vừa lấy được (ví dụ: [2D1N1-1]...)
+    
+    const maLop = window.ham_17_17_lay_chuoi_trong_ngoac_vuong(textLop);
+    const maMon = window.ham_17_17_lay_chuoi_trong_ngoac_vuong(textMon);
+    const maChuong = window.ham_17_17_lay_chuoi_trong_ngoac_vuong(textChuong);
+    const maBai = window.ham_17_17_lay_chuoi_trong_ngoac_vuong(textBai);
+    const maDang = window.ham_17_17_lay_chuoi_trong_ngoac_vuong(textDang);
+
+    const idCauchuaX = "["+maLop+maMon+maChuong+"x"+maBai+"-"+maDang+"]";
+    console.log("Các mã ID đã bóc tách:", { maLop, maMon, maChuong, maBai, maDang, idCauchuaX });
+
+    // 2. Kiểm tra và ghép chuỗi tạo thành mã ID hoàn chỉnh
+    
+    
+    
     const cacMuc = ['nb', 'th', 'vd', 'vdc'];
-    console.log("Đang quét kho câu hỏi cho maDang:", maDang, "loaiCau:", loaiCau, "rowId:", rowId);
+    //console.log("Đang quét kho câu hỏi cho maDang:", maDang, "loaiCau:", loaiCau, "rowId:", rowId);
     // 1. Reset UI
     cacMuc.forEach(muc => {
         const lbl = document.getElementById(`max_${muc}_${rowId}`);
@@ -899,17 +1033,8 @@ window.ham_17_3_change_dang = async function (loaiCau, rowId) {
         if (inp) { inp.disabled = true; inp.style.background = '#e9ecef'; }
     });
 
-    if (!maDang) return;
-
     try {
-        console.log("Gọi API đếm số lượng câu hỏi từ Drive cho maDang:", maDang, "loaiCau:", loaiCau);
-
-        const maDang1 = "[2D1x1-1]";
-        const loaiCau1 = "TN";
-        console.log("Giả lập maDang:", maDang1);
-        console.log("Giả lập loaiCau:", loaiCau1);
-
-        const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
             method: "POST",
             headers: {
                 // Bắt buộc text/plain để không bị Google chặn preflight
@@ -918,11 +1043,10 @@ window.ham_17_3_change_dang = async function (loaiCau, rowId) {
             redirect: "follow",
             body: JSON.stringify({
                 action: "dem_cau_hoi_ID_theo_4_muc_do",
-                idChuaX: maDang1,
-                loaiCau: loaiCau1
+                idChuaX: idCauchuaX,
+                loaiCau: loaiCau
             })
         });
-
         // 1. ĐỌC DỮ LIỆU THÔ TRƯỚC THAY VÌ PARSE JSON NGAY
         const textResponse = await response.text();
 
@@ -931,34 +1055,38 @@ window.ham_17_3_change_dang = async function (loaiCau, rowId) {
         try {
             result = JSON.parse(textResponse);
         } catch (parseError) {
-            // Nếu parse lỗi, tức là Google trả về trang HTML báo lỗi Apps Script
-            console.error("⛔ DỮ LIỆU TRẢ VỀ KHÔNG PHẢI JSON. ĐÂY LÀ LỖI BÊN APPS SCRIPT:");
-            console.log(textResponse); // Thầy mở F12 xem dòng này, nó sẽ chỉ ra lỗi code dòng số mấy bên Apps Script
             throw new Error("Apps Script bị lỗi nội bộ hoặc chưa Deploy đúng cách. Hãy xem Console (F12) để biết chi tiết.");
         }
 
         console.log("✅ Kết quả trả về từ API:", result);
         if (result.status !== "success") throw new Error(result.message);
 
-        // --- PHẦN MAP UI CỦA THẦY GIỮ NGUYÊN ---
-        const dem = result.data;
+        // --- PHẦN MAP UI CẬP NHẬT ---
+        const dem = result.data; // Dữ liệu dạng {N: 5, H: 3, V: 0, C: 0}
         const cacMuc = ['nb', 'th', 'vd', 'vdc'];
         const mapMuc = { 'nb': 'N', 'th': 'H', 'vd': 'V', 'vdc': 'C' };
 
         cacMuc.forEach(muc => {
-            const lbl = document.getElementById(`max_${muc}_${rowId}`);
-            const inp = document.getElementById(`sl_${muc}_${rowId}`);
+            const oMax = document.getElementById(`max_${muc}_${rowId}`);
+            const oNhap = document.getElementById(`sl_${muc}_${rowId}`);
             const soLuong = dem[mapMuc[muc]] || 0;
 
-            if (lbl) {
-                lbl.innerText = `Kho: ${soLuong}`;
-                lbl.style.color = soLuong > 0 ? '#28a745' : '#dc3545';
+            // Nạp số liệu vào ô Khóa (chỉ hiển thị con số)
+            if (oMax) {
+                oMax.value = soLuong; // Dùng .value vì đây là thẻ <input>
+                oMax.style.color = soLuong > 0 ? '#495057' : '#dc3545'; // Đổi chữ đỏ nếu hết câu
             }
-            if (inp) {
-                inp.setAttribute('data-max', soLuong);
+
+            // Xử lý logic cho ô Nhập
+            if (oNhap) {
+                oNhap.setAttribute('data-max', soLuong);
                 if (soLuong > 0) {
-                    inp.disabled = false;
-                    inp.style.background = '#fff';
+                    oNhap.disabled = false;
+                    oNhap.style.background = '#fff';
+                } else {
+                    oNhap.disabled = true; // Khóa luôn ô nhập nếu kho = 0
+                    oNhap.style.background = '#e9ecef';
+                    oNhap.value = '';
                 }
             }
         });
