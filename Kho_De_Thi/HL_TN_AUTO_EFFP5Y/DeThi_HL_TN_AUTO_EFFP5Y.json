@@ -1,0 +1,47 @@
+{
+    "maDe": "HL_TN_AUTO_EFFP5Y",
+    "tenDe": "TEST HL KHO 3",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_04f547808e",
+            "ma_goc": "2603-507",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_d23073a77a",
+            "ma_goc": "2603-792",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_778463c3a1",
+            "ma_goc": "2603-492",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_d5e43fcd91",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        }
+    ]
+}
