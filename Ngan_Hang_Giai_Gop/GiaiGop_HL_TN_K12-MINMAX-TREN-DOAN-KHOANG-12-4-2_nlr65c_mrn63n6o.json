@@ -1,0 +1,95 @@
+{
+  "thoiGianGhep": "2026-07-16T07:08:22.941Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_bebbee4f84",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $f(x) = \\displaystyle \\frac{2x+3}{x-1} \\Rightarrow f'(x) = \\displaystyle \\frac{-5}{(x-1)^2} < 0, \\forall x \\in [2;5]$.\\\\\r\n\t\tVì hàm số nghịch biến trên $[2;5]$ nên $\\max\\limits_{[2;5]} f(x) = f(2) = 7$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_c0cbddaeac",
+      "dapAn": "C",
+      "loiGiaiHtml": "Với $f(x)=x+\\dfrac{4}{x}$ suy ra $f'(x)=1-\\dfrac{4}{x^2}$, $\\forall x\\ne 0$.\\\\\r\n\tXét $f'(x)=0\\Leftrightarrow x=\\pm 2$. Xét trên $\\left[1;3\\right]$ ta có\r\n\t$f(1)=5$, $f(2)=4$, $f(3)=3+\\dfrac{4}{3}=\\dfrac{13}{3}$.\\\\\r\n\tVậy $\\max\\limits_{\\left[1;3\\right]}f(x)=5$ và $\\min\\limits_{\\left[1;3\\right]}f(x)=4$.\\\\\r\n\tNên tích của giá trị nhỏ nhất và giá trị lớn nhất của hàm số $f(x)=x+\\dfrac{4}{x}$ trên đoạn $\\left[1;3\\right]$ là $20$."
+    },
+    {
+      "maBaoMat": "sol_7d370d4354",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $y'=3 x^{2}+6 x-9$.\\\\ Khi đó $y'=0 \\Leftrightarrow 3 x^{2}+6 x-9=0 \\Leftrightarrow\\left[ \\begin{array}{l}\nx=1 \\\\ x=-3.\n\\end{array} \\right.$\\\\\r\n\t\tTa có $y(1)=3$, $ y(-2)=30$ và $y(2)=10$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$ là $30$."
+    },
+    {
+      "maBaoMat": "sol_26b7076ffc",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số ta thấy $m = -3$; $M = 4 \\Rightarrow 2m - 3M = -18$."
+    },
+    {
+      "maBaoMat": "sol_6561305386",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $y'=3x^2 - 3$.\\\\\r\n\t\tKhi đó $y'= 0 \\Leftrightarrow 3x^2 - 3 = 0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx=1 \\notin [2; 4] \\\\  x = -1 \\notin [2; 4].\n\\end{array} \\right.$\\\\\r\n\t\tVới $y(2) = 7$; $y(4) = 57 \\Rightarrow \\min\\limits_{[2; 4]} y = 7$."
+    },
+    {
+      "maBaoMat": "sol_fdc82eb754",
+      "dapAn": "D",
+      "loiGiaiHtml": "Quan sát đồ thị ta có $M = 3$ khi $x = 4$, $m = -2$ khi $x = -1$ hoặc $x = 2$.\\\\\r\n\t\tVậy $M - m = 5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_229af758d2",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ bảng biến thiên suy ra $\\displaystyle \\begin{cases} M=2 \\\\ m=-1 \\end{cases}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_66d8be05cb",
+      "dapAn": "B",
+      "loiGiaiHtml": "Hàm số liên tục và xác định trên đoạn $[-1;3]$ do điểm gián đoạn $\\displaystyle x = -\\frac{7}{3} \\notin [-1;3]$.\\\\\r\n\t\tĐạo hàm của hàm số: $\\displaystyle y' = \\frac{-3}{(3x+7)^2} < 0, \\,\\forall x \\in [-1;3]$.\\\\\r\n\t\tDo đạo hàm luôn âm, hàm số nghịch biến đơn điệu giảm trên toàn đoạn $[-1;3]$.\\\\\r\n\t\t- Giá trị lớn nhất đạt được tại đầu mút cận trái: $\\displaystyle M = y(-1) = \\frac{1}{3(-1)+7} = \\frac{1}{4}$.\\\\\r\n\t\t- Giá trị nhỏ nhất đạt được tại đầu mút cận phải: $\\displaystyle m = y(3) = \\frac{1}{3(3)+7} = \\frac{1}{16}$.\\\\\r\n\t\tHiệu số giữa hai giá trị cực biên bằng:\\\\\r\n\t\t$\\displaystyle M - m = \\frac{1}{4} - \\frac{1}{16} = \\frac{4-1}{16} = \\frac{3}{16}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_3e3e934dd9",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có: $\\displaystyle y = \\frac{2x - 1}{x + 1}$.\\\\\r\n\t\tTập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\t$\\displaystyle y' = \\frac{3}{(x + 1)^2} > 0, \\forall x \\in D$.\\\\\r\n\t\tSuy ra hàm số đồng biến trên từng khoảng xác định nên đồng biến trên $[1; 2]$.\\\\\r\n\t\t$\\displaystyle \\max_{[1; 2]} y = y(2) = 1$."
+    },
+    {
+      "maBaoMat": "sol_8b483bcf90",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có $y' = \\frac{3}{(x+1)^2} > 0$ với $\\forall x \\ne -1$.\\\\\r\n\t\tDo đó $\\max_{[1;2]} y = y(2) = 1$."
+    },
+    {
+      "maBaoMat": "sol_dceba3b478",
+      "dapAn": "C",
+      "loiGiaiHtml": "$y'=3x^2-14x+11$.\\\\\r\n\t\t$y'=0 \\Leftrightarrow \\left[\\begin{array}{l} x=1 \\in [0;3] \\\\ x=\\frac{11}{3} \\notin [0;3] \\end{array}\\right.$\\\\\r\n\t\t$y(0)=-2$; $y(1)=3$; $y(3)=-5$.\\\\\r\n\t\t$\\Rightarrow \\max\\limits_{[0;3]} y = y(1) = 3$."
+    },
+    {
+      "maBaoMat": "sol_f6f91b62f9",
+      "dapAn": "C",
+      "loiGiaiHtml": "Đạo hàm $y' = \\displaystyle\\frac{-8}{(x-3)^2} < 0$. Hàm số nghịch biến trên $[0;2]$.\\\\\r\n\t\tGiá trị lớn nhất $M = y(0) = \\displaystyle\\frac{-1}{-3} = \\displaystyle\\frac{1}{3}$. \r\n\t\t%Lỗi đề: Đáp án đúng là 1/3, nhưng đáp án được chọn trong file ảnh là -5 (sai logic). Theo quy tắc, cần thông báo lỗi và sửa.\r\n\t\t%Trong quá trình giải, đã phát hiện lỗi sai trong file ảnh. Giá trị lớn nhất phải là y(0)=1/3, nhưng đề khoanh B (M=-5).\r\n\t\t%Tạm thời xuất theo kết quả đúng."
+    },
+    {
+      "maBaoMat": "sol_320532ada3",
+      "dapAn": "-4",
+      "loiGiaiHtml": "Ta có tập xác định của hàm số là $D = [0; +\\infty)$.\\\\\r\n\t\tĐạo hàm $y' = 1 - \\displaystyle \\frac{2}{\\sqrt{x}}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow x = 4 \\in (0; 9)$.\\\\\r\n\t\tCó:\\\\\r\n\t\t$y(0) = 0$\\\\\r\n\t\t$y(4) = -4$\\\\\r\n\t\t$y(9) = -3$\\\\\r\n\t\tVậy $\\displaystyle \\min_{[0; 9]} y = y(4) = -4$."
+    },
+    {
+      "maBaoMat": "sol_95c3e3c4e6",
+      "dapAn": "3,7",
+      "loiGiaiHtml": "Ta có $y' = (2x + 1)e^{-x} - (x^2 + x + 1)e^{-x} = (x - x^2)e^{-x}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow (x - x^2)e^{-x} = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\\\ x = 1 \\notin [-1; 0] \\end{array}\\right.$\\\\\r\n\t\t$y(0) = 1$; $y(-1) = e \\Rightarrow \\min\\limits_{[-1; 0]} y = 1; \\max\\limits_{[-1; 0]} y = e \\Rightarrow \\min\\limits_{[-1; 0]} y + \\max\\limits_{[-1; 0]} y = 1 + e \\approx 3,7$."
+    },
+    {
+      "maBaoMat": "sol_a1aa358799",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 2\\cos 2x - 2 = 2(\\cos 2x - 1)$.\r\n\t\t\t\\itemch Vì $\\cos 2x \\le 1$ với mọi $x$, nên $f'(x) = 2(\\cos 2x - 1) \\le 0 \\; \\forall x \\in \\mathbb{R}$. Dấu \"$=$\" xảy ra khi $x = k\\pi$. Suy ra hàm số nghịch biến trên $\\mathbb{R}$.\r\n\t\t\t\\itemch $f'(x) + 1 = 0 \\Leftrightarrow 2\\cos 2x - 2 + 1 = 0 \\Leftrightarrow \\displaystyle \\cos 2x = \\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k\\pi$.\\\\\r\n\t\t\tCác nghiệm thuộc $(-\\pi; \\pi)$ là $\\displaystyle -\\frac{5\\pi}{6}; -\\frac{\\pi}{6}; \\frac{\\pi}{6}; \\frac{5\\pi}{6}$.\\\\\r\n\t\t\tNghiệm dương lớn nhất là $\\displaystyle \\frac{5\\pi}{6}$.\r\n\t\t\t\\itemch Vì hàm số nghịch biến trên $\\mathbb{R}$ nên trên đoạn $\\displaystyle \\left[0; \\frac{\\pi}{6}\\right]$, giá trị nhỏ nhất của hàm số đạt tại $x = \\displaystyle \\frac{\\pi}{6}$.\\\\\r\n\t\t\t$\\displaystyle f\\left(\\frac{\\pi}{6}\\right) = \\sin\\frac{\\pi}{3} - 2\\frac{\\pi}{6} = \\frac{\\sqrt{3}}{2} - \\frac{\\pi}{3}$. \r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_b12f992a55",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "Hàm số $f(x)=x^3-3x$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Tập xác định của hàm số đã cho là $\\mathbb{R}$.\r\n\t\t\t\\itemch Hàm số $f(x)$ có đạo hàm là $f'(x)=3x^2-3$.\r\n\t\t\t\\itemch Hàm số $f(x)$ đồng biến trên khoảng $(-1;1)$.\\\\\r\n\t\t\t$f'(x)=3x^2-3$\\\\\r\n\t\t\t$f'(x)=0 \\Leftrightarrow 3x^2-3=0 \\Leftrightarrow x = \\pm 1$.\\\\\r\n\t\t\t$f(-1)=(-1)^3-3 \\cdot (-1)=2$.\\\\\r\n\t\t\t$f(1)=1^3-3 \\cdot 1=-2$\\\\\r\n\t\t\tBBT của $f(x)$:\\\\\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_b12f992a55_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tHàm số $f(x)$ nghịch biến trên khoảng $(-1;1)$.\r\n\t\t\t\\itemch Hàm số $f(x)$ đạt giá trị nhỏ nhất trên đoạn $[-3;2]$ tại $x=1$.\\\\\r\n\t\t\tTrên đoạn $[-3;2]$ ta có:\\\\\r\n\t\t\t$f(-3)=(-3)^3-3 \\cdot (-3)=-18$\\\\\r\n\t\t\t$f(-1)=(-1)^3-3 \\cdot (-1)=2$\\\\\r\n\t\t\t$f(1)=1^3-3 \\cdot 1=-2$\\\\\r\n\t\t\t$f(2)=2^3-3 \\cdot 2=2$\\\\\r\n\t\t\tHàm số $f(x)$ đạt giá trị nhỏ nhất trên đoạn $[-3;2]$ tại $x=-3$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_478165957c",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Sai. Hàm số có tập xác định là $\\mathcal{D} = [0;32]$.\r\n\t\t\t\\itemch Đúng. Ta có $f'(x) = \\displaystyle\\frac{1}{2\\sqrt{x}} - \\displaystyle\\frac{1}{2\\sqrt{32-x}}$.\r\n\t\t\t\\itemch Sai. Ta có $f'(x)=0 \\Leftrightarrow \\sqrt{32-x} = \\sqrt{x} \\Leftrightarrow x=16$.\r\n\t\t\t\\itemch Đúng. Bảng biến thiên\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_478165957c_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ bảng biến thiên, ta có $\\max\\limits_{x \\in \\mathcal{D}} f(x) = 8, \\min\\limits_{x \\in \\mathcal{D}} f(x) = 4\\sqrt{2}$. Vậy $\\displaystyle\\frac{m}{M} = \\displaystyle\\frac{4\\sqrt{2}}{8} = \\displaystyle\\frac{\\sqrt{2}}{2}$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_caeda09933",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $f\\left(\\displaystyle\\frac{1}{e^2}\\right) = \\displaystyle\\frac{1}{e^2} \\ln\\left(e^{-2}\\right) = -\\frac{2}{e^2}$. Và $f(e) = e \\ln e = e$.\r\n\t\t\t\\itemch Ta có: $f'(x) = (x \\ln x)' = \\ln x + x \\cdot \\displaystyle\\frac{1}{x} = \\ln x + 1$.\r\n\t\t\t\\itemch Ta có $f'(x) = 0 \\Leftrightarrow \\ln x + 1 = 0 \\Leftrightarrow x = \\displaystyle\\frac{1}{e} \\in \\left[e^{-2}; e\\right]$.\r\n\t\t\t\\itemch Ta có: $f(e^{-2}) = -\\displaystyle\\frac{2}{e^2}$; $f(e^{-1}) = -\\displaystyle\\frac{1}{e}$; $f(e) = e$.\\\\ Vậy giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[e^{-2}; e\\right]$ là $-\\displaystyle\\frac{1}{e}$.\r\n\t\t\\end{itemchoice}"
+    }
+  ]
+}
