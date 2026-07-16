@@ -1,0 +1,73 @@
+{
+    "maDe": "HL_TN_AUTO_HLWNL4",
+    "tenDe": "TEST HL TỪ KHO 2",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_3c62bad43d",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_97899b5b2b",
+            "ma_goc": "2603-511",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_bceab4fbe9",
+            "ma_goc": "2603-792",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_32529711e4",
+            "ma_goc": "2603-507",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_25e826c83a",
+            "ma_goc": "2605-570",
+            "kieuCau": "DS",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_9085733875",
+            "ma_goc": "2605-639",
+            "kieuCau": "DS",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_620b3e85ba",
+            "ma_goc": "2603-809",
+            "kieuCau": "TLN",
+            "cauDan": ""
+        }
+    ]
+}
