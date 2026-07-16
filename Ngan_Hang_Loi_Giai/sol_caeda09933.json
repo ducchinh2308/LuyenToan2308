@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_caeda09933",
+  "dapAn": "TFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $f\\left(\\displaystyle\\frac{1}{e^2}\\right) = \\displaystyle\\frac{1}{e^2} \\ln\\left(e^{-2}\\right) = -\\frac{2}{e^2}$. Và $f(e) = e \\ln e = e$.\r\n\t\t\t\\itemch Ta có: $f'(x) = (x \\ln x)' = \\ln x + x \\cdot \\displaystyle\\frac{1}{x} = \\ln x + 1$.\r\n\t\t\t\\itemch Ta có $f'(x) = 0 \\Leftrightarrow \\ln x + 1 = 0 \\Leftrightarrow x = \\displaystyle\\frac{1}{e} \\in \\left[e^{-2}; e\\right]$.\r\n\t\t\t\\itemch Ta có: $f(e^{-2}) = -\\displaystyle\\frac{2}{e^2}$; $f(e^{-1}) = -\\displaystyle\\frac{1}{e}$; $f(e) = e$.\\\\ Vậy giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[e^{-2}; e\\right]$ là $-\\displaystyle\\frac{1}{e}$.\r\n\t\t\\end{itemchoice}"
+}

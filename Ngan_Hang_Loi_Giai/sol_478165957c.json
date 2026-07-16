@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_478165957c",
+  "dapAn": "FTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Sai. Hàm số có tập xác định là $\\mathcal{D} = [0;32]$.\r\n\t\t\t\\itemch Đúng. Ta có $f'(x) = \\displaystyle\\frac{1}{2\\sqrt{x}} - \\displaystyle\\frac{1}{2\\sqrt{32-x}}$.\r\n\t\t\t\\itemch Sai. Ta có $f'(x)=0 \\Leftrightarrow \\sqrt{32-x} = \\sqrt{x} \\Leftrightarrow x=16$.\r\n\t\t\t\\itemch Đúng. Bảng biến thiên\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_478165957c_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ bảng biến thiên, ta có $\\max\\limits_{x \\in \\mathcal{D}} f(x) = 8, \\min\\limits_{x \\in \\mathcal{D}} f(x) = 4\\sqrt{2}$. Vậy $\\displaystyle\\frac{m}{M} = \\displaystyle\\frac{4\\sqrt{2}}{8} = \\displaystyle\\frac{\\sqrt{2}}{2}$.\r\n\t\t\\end{itemchoice}"
+}

@@ -1,0 +1,197 @@
+{
+  "maDe": "K12-MINMAX-TREN-DOAN-KHOANG-12-4-2",
+  "tenDe": "ĐỀ K12-MINMAX-TREN-DOAN-KHOANG-12-4-2",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_afff7f6366",
+      "ma_goc": "2605-76",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $f(x) = \\displaystyle \\frac{2x+3}{x-1}$ trên đoạn $[2;5]$ bằng",
+      "paA": "$\\displaystyle \\frac{13}{4}$",
+      "paB": "$5$",
+      "paC": "$7$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_87b6982701",
+      "ma_goc": "2603-795",
+      "kieuCau": "TN",
+      "cauDan": "Tích của giá trị nhỏ nhất và giá trị lớn nhất của hàm số $f(x)=x+\\dfrac{4}{x}$ trên đoạn $\\left[1;3\\right]$ bằng",
+      "paA": "$\\dfrac{65}{3}$",
+      "paB": "$\\dfrac{52}{3}$",
+      "paC": "$20$",
+      "paD": "$6$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_9bf6ebb5ed",
+      "ma_goc": "2603-815",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$.",
+      "paA": "$\\displaystyle\\max_{[-2 ; 2]} y=3$",
+      "paB": "$\\displaystyle\\max_{[-2 ; 2]} y=34$",
+      "paC": "$\\displaystyle\\max_{[-2 ; 2]} y=10$",
+      "paD": "$\\displaystyle\\max_{[-2 ; 2]} y=30$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_654d8348f4",
+      "ma_goc": "2603-865",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên đoạn $[-2; 3]$ có đồ thị như hình vẽ dưới đây. Gọi $m$, $M$ lần lượt là giá trị nhỏ nhất và giá trị lớn nhất của hàm số trên đoạn $[-2; 3]$. Giá trị của $2m - 3M$ bằng\r\n\t\t\\begin{center}\n<img src='HinhAnh/q_654d8348f4_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$-13$",
+      "paB": "$-18$",
+      "paC": "$-16$",
+      "paD": "$-15$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_69265ade0e",
+      "ma_goc": "2603-866",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $y = x^3 - 3x + 5$ trên đoạn $[2; 4]$ là",
+      "paA": "$\\min\\limits_{[2; 4]} y = 5$",
+      "paB": "$\\min\\limits_{[2; 4]} y = 0$",
+      "paC": "$\\min\\limits_{[2; 4]} y = 3$",
+      "paD": "$\\min\\limits_{[2; 4]} y = 7$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_bfd59ca9a5",
+      "ma_goc": "2605-1334",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[-1; 5]$ và có đồ thị như hình vẽ. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên $[-1; 5]$. Giá trị của $M - m$ bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bfd59ca9a5_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$4$",
+      "paC": "$6$",
+      "paD": "$5$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_1f2114a612",
+      "ma_goc": "2605-1221",
+      "kieuCau": "TN",
+      "cauDan": "Cho bảng biến thiên của hàm số $\\displaystyle y=f(x)$ như hình vẽ. Gọi $\\displaystyle M = \\max_{[-2;3]} y$ và $\\displaystyle m = \\min_{[-2;3]} y$. Tính giá trị $M$ và $m$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1f2114a612_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\displaystyle \\begin{cases} M=3 \\\\ m=-1 \\end{cases}$",
+      "paB": "$\\displaystyle \\begin{cases} M=0 \\\\ m=3 \\end{cases}$",
+      "paC": "$\\displaystyle \\begin{cases} M=2 \\\\ m=-1 \\end{cases}$",
+      "paD": "$\\displaystyle \\begin{cases} M=1 \\\\ m=-1 \\end{cases}$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_26dcdaa575",
+      "ma_goc": "2605-1206",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $\\displaystyle y=\\frac{1}{3x+7}$ trên đoạn $[-1;3]$. Giá trị của $M-m$ bằng",
+      "paA": "$\\displaystyle \\frac{8}{33}$",
+      "paB": "$\\displaystyle \\frac{3}{16}$",
+      "paC": "$\\displaystyle \\frac{3}{32}$",
+      "paD": "$7$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_adec18b1e6",
+      "ma_goc": "2605-942",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất của hàm số $\\displaystyle y = \\frac{2x - 1}{x + 1}$ trên đoạn $[1; 2]$.",
+      "paA": "$\\displaystyle \\max_{[1; 2]} y = \\frac{1}{3}$",
+      "paB": "$\\displaystyle \\max_{[1; 2]} y = 1$",
+      "paC": "$\\displaystyle \\max_{[1; 2]} y = -\\frac{1}{2}$",
+      "paD": "$\\displaystyle \\max_{[1; 2]} y = \\frac{1}{2}$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_31acd8e4ec",
+      "ma_goc": "2603-1038",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất của hàm số $y=\\frac{2x-1}{x+1}$ trên đoạn $[1;2]$.",
+      "paA": "$\\max_{[1;2]} y = \\frac{1}{2}$",
+      "paB": "$\\max_{[1;2]} y = -\\frac{1}{2}$",
+      "paC": "$\\max_{[1;2]} y = -\\frac{1}{3}$",
+      "paD": "$\\max_{[1;2]} y = 1$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_b8c0ad35f7",
+      "ma_goc": "2605-546",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y=x^3-7x^2+11x-2$ trên đoạn $[0;3]$ là",
+      "paA": "$-5$",
+      "paB": "$-2$",
+      "paC": "$3$",
+      "paD": "$5$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_13f0dca444",
+      "ma_goc": "2605-442",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất $M$ của hàm số $y = \\displaystyle\\frac{3x-1}{x-3}$ trên đoạn $[0;2]$.",
+      "paA": "$M = 5$",
+      "paB": "$M = -5$",
+      "paC": "$M = \\displaystyle\\frac{1}{3}$",
+      "paD": "$M = -\\displaystyle\\frac{1}{3}$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_f9d46d3bd4",
+      "ma_goc": "2605-1261",
+      "kieuCau": "TLN",
+      "cauDan": "Giá trị nhỏ nhất của hàm số $y = x - 4\\sqrt{x}$ trên đoạn $[0; 9]$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_b309da2dc1",
+      "ma_goc": "2603-1293",
+      "kieuCau": "TLN",
+      "cauDan": "Tổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = (x^2 + x + 1)e^{-x}$ trên đoạn $[-1; 0]$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_3cf8a756fa",
+      "ma_goc": "2603-3101",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = \\sin 2x - 2x$.",
+      "paA": "Đạo hàm của hàm số đã cho là $f'(x) = \\cos 2x - 2$",
+      "paB": "Hàm số nghịch biến trên tập xác định",
+      "paC": "Nghiệm dương lớn nhất của phương trình $f'(x) + 1 = 0$ trên đoạn $(-\\pi; \\pi)$ là $\\displaystyle \\frac{5\\pi}{6}$",
+      "paD": "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\displaystyle \\left[0; \\frac{\\pi}{6}\\right]$ là $\\displaystyle -\\frac{\\pi}{3} + \\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_06dcf89cd9",
+      "ma_goc": "2605-593",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x)=x^3-3x$.",
+      "paA": "Tập xác định của hàm số đã cho là $\\mathbb{R}$",
+      "paB": "Hàm số $f(x)$ có đạo hàm là $f'(x)=3x^2-3$",
+      "paC": "Hàm số $f(x)$ đồng biến trên khoảng $(-1;1)$",
+      "paD": "Hàm số $f(x)$ đạt giá trị nhỏ nhất trên đoạn $[-3;2]$ tại $x=1$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_ee984bb9a6",
+      "ma_goc": "2605-433",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=f(x)=\\sqrt{x} + \\sqrt{32-x}$.",
+      "paA": "Hàm số có tập xác định là $(0;32)$",
+      "paB": "$f'(x) = \\displaystyle\\frac{1}{2\\sqrt{x}} - \\displaystyle\\frac{1}{2\\sqrt{32-x}}$",
+      "paC": "Phương trình $f'(x)=0$ có hai nghiệm phân biệt",
+      "paD": "Hàm số đạt giá trị lớn nhất là $M$ và giá trị nhỏ nhất là $m$ thì $\\displaystyle\\frac{m}{M} = \\displaystyle\\frac{\\sqrt{2}}{2}$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_760c58b3b8",
+      "ma_goc": "2605-1650",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x \\ln x$.",
+      "paA": "$f\\left(\\displaystyle\\frac{1}{e^2}\\right) = -\\displaystyle\\frac{2}{e^2}$; $f(e) = e$",
+      "paB": "$f'(x) = \\ln x + \\displaystyle\\frac{1}{x}$",
+      "paC": "Phương trình $f'(x) = 0$ không có nghiệm trên đoạn $\\left[e^{-2}; e\\right]$",
+      "paD": "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[e^{-2}; e\\right]$ là $-\\displaystyle\\frac{1}{e}$"
+    }
+  ]
+}

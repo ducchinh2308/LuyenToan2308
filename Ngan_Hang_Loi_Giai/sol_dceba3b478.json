@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dceba3b478",
+  "dapAn": "C",
+  "loiGiai": "$y'=3x^2-14x+11$.\\\\\r\n\t\t$y'=0 \\Leftrightarrow \\left[\\begin{array}{l} x=1 \\in [0;3] \\\\ x=\\frac{11}{3} \\notin [0;3] \\end{array}\\right.$\\\\\r\n\t\t$y(0)=-2$; $y(1)=3$; $y(3)=-5$.\\\\\r\n\t\t$\\Rightarrow \\max\\limits_{[0;3]} y = y(1) = 3$."
+}

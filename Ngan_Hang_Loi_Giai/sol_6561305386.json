@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6561305386",
+  "dapAn": "D",
+  "loiGiai": "Ta có $y'=3x^2 - 3$.\\\\\r\n\t\tKhi đó $y'= 0 \\Leftrightarrow 3x^2 - 3 = 0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx=1 \\notin [2; 4] \\\\  x = -1 \\notin [2; 4].\n\\end{array} \\right.$\\\\\r\n\t\tVới $y(2) = 7$; $y(4) = 57 \\Rightarrow \\min\\limits_{[2; 4]} y = 7$."
+}

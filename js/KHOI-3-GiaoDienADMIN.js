@@ -311,7 +311,7 @@ function ham_3_4_ve_giao_dien_thanh_chay_ao() {
 
 // Đảm bảo mọi thứ được vẽ ra khi trang web load xong
 window.onload = function () {
-    console.log("Hệ thống bắt đầu khởi chạy...");
+    //console.log("Hệ thống bắt đầu khởi chạy...");
     ham_1_1_nhung_css();
     ham_1_2_dung_khung_html();
 

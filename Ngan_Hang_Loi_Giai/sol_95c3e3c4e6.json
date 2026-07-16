@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_95c3e3c4e6",
+  "dapAn": "3,7",
+  "loiGiai": "Ta có $y' = (2x + 1)e^{-x} - (x^2 + x + 1)e^{-x} = (x - x^2)e^{-x}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow (x - x^2)e^{-x} = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\\\ x = 1 \\notin [-1; 0] \\end{array}\\right.$\\\\\r\n\t\t$y(0) = 1$; $y(-1) = e \\Rightarrow \\min\\limits_{[-1; 0]} y = 1; \\max\\limits_{[-1; 0]} y = e \\Rightarrow \\min\\limits_{[-1; 0]} y + \\max\\limits_{[-1; 0]} y = 1 + e \\approx 3,7$."
+}

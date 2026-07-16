@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f6f91b62f9",
+  "dapAn": "C",
+  "loiGiai": "Đạo hàm $y' = \\displaystyle\\frac{-8}{(x-3)^2} < 0$. Hàm số nghịch biến trên $[0;2]$.\\\\\r\n\t\tGiá trị lớn nhất $M = y(0) = \\displaystyle\\frac{-1}{-3} = \\displaystyle\\frac{1}{3}$. \r\n\t\t%Lỗi đề: Đáp án đúng là 1/3, nhưng đáp án được chọn trong file ảnh là -5 (sai logic). Theo quy tắc, cần thông báo lỗi và sửa.\r\n\t\t%Trong quá trình giải, đã phát hiện lỗi sai trong file ảnh. Giá trị lớn nhất phải là y(0)=1/3, nhưng đề khoanh B (M=-5).\r\n\t\t%Tạm thời xuất theo kết quả đúng."
+}

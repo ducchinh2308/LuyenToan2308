@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8b483bcf90",
+  "dapAn": "D",
+  "loiGiai": "Tập xác định $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có $y' = \\frac{3}{(x+1)^2} > 0$ với $\\forall x \\ne -1$.\\\\\r\n\t\tDo đó $\\max_{[1;2]} y = y(2) = 1$."
+}

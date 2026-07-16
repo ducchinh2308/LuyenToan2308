@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3e3e934dd9",
+  "dapAn": "B",
+  "loiGiai": "Ta có: $\\displaystyle y = \\frac{2x - 1}{x + 1}$.\\\\\r\n\t\tTập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\t$\\displaystyle y' = \\frac{3}{(x + 1)^2} > 0, \\forall x \\in D$.\\\\\r\n\t\tSuy ra hàm số đồng biến trên từng khoảng xác định nên đồng biến trên $[1; 2]$.\\\\\r\n\t\t$\\displaystyle \\max_{[1; 2]} y = y(2) = 1$."
+}

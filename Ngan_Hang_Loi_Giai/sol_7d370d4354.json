@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7d370d4354",
+  "dapAn": "D",
+  "loiGiai": "Ta có $y'=3 x^{2}+6 x-9$.\\\\ Khi đó $y'=0 \\Leftrightarrow 3 x^{2}+6 x-9=0 \\Leftrightarrow\\left[ \\begin{array}{l}\nx=1 \\\\ x=-3.\n\\end{array} \\right.$\\\\\r\n\t\tTa có $y(1)=3$, $ y(-2)=30$ và $y(2)=10$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$ là $30$."
+}

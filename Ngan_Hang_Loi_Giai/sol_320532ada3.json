@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_320532ada3",
+  "dapAn": "-4",
+  "loiGiai": "Ta có tập xác định của hàm số là $D = [0; +\\infty)$.\\\\\r\n\t\tĐạo hàm $y' = 1 - \\displaystyle \\frac{2}{\\sqrt{x}}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow x = 4 \\in (0; 9)$.\\\\\r\n\t\tCó:\\\\\r\n\t\t$y(0) = 0$\\\\\r\n\t\t$y(4) = -4$\\\\\r\n\t\t$y(9) = -3$\\\\\r\n\t\tVậy $\\displaystyle \\min_{[0; 9]} y = y(4) = -4$."
+}

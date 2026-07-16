@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a1aa358799",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 2\\cos 2x - 2 = 2(\\cos 2x - 1)$.\r\n\t\t\t\\itemch Vì $\\cos 2x \\le 1$ với mọi $x$, nên $f'(x) = 2(\\cos 2x - 1) \\le 0 \\; \\forall x \\in \\mathbb{R}$. Dấu \"$=$\" xảy ra khi $x = k\\pi$. Suy ra hàm số nghịch biến trên $\\mathbb{R}$.\r\n\t\t\t\\itemch $f'(x) + 1 = 0 \\Leftrightarrow 2\\cos 2x - 2 + 1 = 0 \\Leftrightarrow \\displaystyle \\cos 2x = \\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k\\pi$.\\\\\r\n\t\t\tCác nghiệm thuộc $(-\\pi; \\pi)$ là $\\displaystyle -\\frac{5\\pi}{6}; -\\frac{\\pi}{6}; \\frac{\\pi}{6}; \\frac{5\\pi}{6}$.\\\\\r\n\t\t\tNghiệm dương lớn nhất là $\\displaystyle \\frac{5\\pi}{6}$.\r\n\t\t\t\\itemch Vì hàm số nghịch biến trên $\\mathbb{R}$ nên trên đoạn $\\displaystyle \\left[0; \\frac{\\pi}{6}\\right]$, giá trị nhỏ nhất của hàm số đạt tại $x = \\displaystyle \\frac{\\pi}{6}$.\\\\\r\n\t\t\t$\\displaystyle f\\left(\\frac{\\pi}{6}\\right) = \\sin\\frac{\\pi}{3} - 2\\frac{\\pi}{6} = \\frac{\\sqrt{3}}{2} - \\frac{\\pi}{3}$. \r\n\t\t\\end{itemchoice}"
+}

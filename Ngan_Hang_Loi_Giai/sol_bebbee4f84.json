@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bebbee4f84",
+  "dapAn": "C",
+  "loiGiai": "Ta có $f(x) = \\displaystyle \\frac{2x+3}{x-1} \\Rightarrow f'(x) = \\displaystyle \\frac{-5}{(x-1)^2} < 0, \\forall x \\in [2;5]$.\\\\\r\n\t\tVì hàm số nghịch biến trên $[2;5]$ nên $\\max\\limits_{[2;5]} f(x) = f(2) = 7$.\\\\"
+}
