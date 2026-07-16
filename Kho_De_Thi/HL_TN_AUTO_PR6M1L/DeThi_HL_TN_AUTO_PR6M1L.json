@@ -1,0 +1,53 @@
+{
+    "maDe": "HL_TN_AUTO_PR6M1L",
+    "tenDe": "TEST HL TỪ KHO 3",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_ed459c48c8",
+            "ma_goc": "2603-511",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_8aea2e8a35",
+            "ma_goc": "2603-507",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_d5ceb887c7",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_c057c51f73",
+            "ma_goc": "2603-497",
+            "kieuCau": "DS",
+            "cauDan": "",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_169178e7ec",
+            "ma_goc": "2603-809",
+            "kieuCau": "TLN",
+            "cauDan": ""
+        }
+    ]
+}
