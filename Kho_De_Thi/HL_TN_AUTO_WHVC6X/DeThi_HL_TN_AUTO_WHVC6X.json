@@ -1,0 +1,34 @@
+{
+    "maDe": "HL_TN_AUTO_WHVC6X",
+    "tenDe": "hk",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_39926e1193",
+            "ma_goc": "2603-511",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_dfdd2c8185",
+            "ma_goc": "2603-537",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_6c73f6fa9e",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        }
+    ]
+}
