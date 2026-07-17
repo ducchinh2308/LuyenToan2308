@@ -1,0 +1,34 @@
+{
+    "maDe": "HL_TN_AUTO_9HSPCV",
+    "tenDe": "yop",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_2b18b9bc04",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_b0c82c88f1",
+            "ma_goc": "2603-537",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        },
+        {
+            "maCau": "q_a8511f6fac",
+            "ma_goc": "2603-463",
+            "kieuCau": "TN",
+            "paA": "",
+            "paB": "",
+            "paC": "",
+            "paD": ""
+        }
+    ]
+}
