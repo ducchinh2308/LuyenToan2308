@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_c4734e0c77",
+    "dapAn": "C",
+    "loiGiai": "Ta có $\\displaystyle y = \\frac{-2x+5}{x+3} \\Rightarrow y' = \\frac{-2 \\cdot 3 - 5 \\cdot 1}{(x+3)^2} = \\frac{-11}{(x+3)^2}$.\\\\\r\n\t\t$\\Rightarrow y' < 0, \\forall x \\neq -3$.\\\\\r\n\t\tSuy ra hàm số nghịch biến trên khoảng $(-\\infty; -3)$ và $(-3; +\\infty)$."
+}
