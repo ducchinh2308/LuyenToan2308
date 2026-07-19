@@ -1,0 +1,17 @@
+{
+    "maDe": "HL_TN_AUTO_3577SD",
+    "tenDe": "t",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_569981bca3",
+            "ma_goc": "2603-507",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm trên $\\mathbb{R}$. Đồ thị hàm số $y=f'(x)$ như hình vẽ.\r\n\t\\begin{center}\r\n\t\t[IMG:1edLzk8UaE8b-1LoZDu2z4mu7RQNXqLmf]\r\n\t\\end{center}\r\n\tHàm số $y=f(x)$ nghịch biến trên khoảng nào dưới đây?",
+            "paA": "$(-\\infty;0)$",
+            "paB": "$(0;5)$",
+            "paC": "$(-3;-2)$",
+            "paD": "$(5;+\\infty)$"
+        }
+    ]
+}
