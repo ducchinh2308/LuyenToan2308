@@ -1,0 +1,17 @@
+{
+    "maDe": "HL_TN_AUTO_AJ5X2G",
+    "tenDe": "rt",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_8a809ddc59",
+            "ma_goc": "2603-511",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t[IMG:1uVaIV3ih4O20Zieip9sZAjE1kcrXzJ4P]\r\n\t\\end{center}\r\n\tHàm số nghịch biến trong khoảng nào dưới đây?",
+            "paA": "$(0;2)$",
+            "paB": "$(3;+\\infty)$",
+            "paC": "$(1;3)$",
+            "paD": "$(-\\infty;1)$"
+        }
+    ]
+}
