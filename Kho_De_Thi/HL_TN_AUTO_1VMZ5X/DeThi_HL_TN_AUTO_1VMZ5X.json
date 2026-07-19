@@ -1,0 +1,47 @@
+{
+    "maDe": "HL_TN_AUTO_1VMZ5X",
+    "tenDe": "qa",
+    "thoiGian": 45,
+    "danhSachCauHoi": [
+        {
+            "maCau": "q_da9813cc92",
+            "ma_goc": "2603-792",
+            "kieuCau": "TN",
+            "cauDan": "Hàm số $y=x^3-3x+1$ nghịch biến trên khoảng nào sau đây ?",
+            "paA": "$\\left(-\\infty;1\\right)$",
+            "paB": "$\\left(-1;1\\right)$",
+            "paC": "$\\left(-2;2\\right)$",
+            "paD": "$\\left(1;+\\infty\\right)$"
+        },
+        {
+            "maCau": "q_053d3e310c",
+            "ma_goc": "2605-1580",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t[IMG:1GM2A_YlQhuh_48W7p8ZVzr2tOEsUZYXv]\r\n\t\\end{center}",
+            "paA": "$(-\\infty;1)$",
+            "paB": "$(1;+\\infty)$",
+            "paC": "$(0;1)$",
+            "paD": "$(-1;1)$"
+        },
+        {
+            "maCau": "q_b72e35c3f3",
+            "ma_goc": "2603-537",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t[IMG:1ZNFKYmBXUs3n0HxRQEWljaIfVSalApIl]\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+            "paA": "$(2; +\\infty)$",
+            "paB": "$(-\\infty; -2)$",
+            "paC": "$(-2; 2)$",
+            "paD": "$(-2; +\\infty)$"
+        },
+        {
+            "maCau": "q_ace84c615a",
+            "ma_goc": "2603-507",
+            "kieuCau": "TN",
+            "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm trên $\\mathbb{R}$. Đồ thị hàm số $y=f'(x)$ như hình vẽ.\r\n\t\\begin{center}\r\n\t\t[IMG:1edLzk8UaE8b-1LoZDu2z4mu7RQNXqLmf]\r\n\t\\end{center}\r\n\tHàm số $y=f(x)$ nghịch biến trên khoảng nào dưới đây?",
+            "paA": "$(-\\infty;0)$",
+            "paB": "$(0;5)$",
+            "paC": "$(-3;-2)$",
+            "paD": "$(5;+\\infty)$"
+        }
+    ]
+}
