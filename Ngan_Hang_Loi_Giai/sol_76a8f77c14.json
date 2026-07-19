@@ -1,0 +1,5 @@
+{
+    "maBaoMat": "sol_76a8f77c14",
+    "dapAn": "C",
+    "loiGiai": "Dựa vào đồ thị hàm số $y=f'(x)$, ta thấy $f'(x) < 0$ khi $x \\in (-\\infty;-2)$ hoặc $x \\in (2;5)$.\\\\\r\n\t\tVì khoảng $(-3;-2) \\subset (-\\infty;-2)$ nên hàm số nghịch biến trên khoảng $(-3;-2)$."
+}
