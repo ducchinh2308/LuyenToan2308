@@ -1,5 +1,0 @@
-{
-    "maBaoMat": "sol_c5168bc856",
-    "dapAn": "B",
-    "loiGiai": "Xét $y=x^3-3x+1$ có $y'=3x^2-3$.\\\\\r\n\tVới $y'=0 \r\n\t\\Leftrightarrow \\left[ \\begin{array}{l}\nx=1\\\\x=-1.\n\\end{array} \\right.$\r\n\tBảng biến thiên\r\n\t\\begin{center}\r\n\t\t[IMG:1yVT46Q0i4A8m6uTqt1uEHfU-WmFKfIZb]\r\n\t\\end{center}\r\n\tVới $y' < 0,\\forall x\\in\\left(-1;1\\right)$ nên hàm số nghịch biến trên $\\left(-1;1\\right)$."
-}
