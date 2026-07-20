@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8a88faa035",
+  "dapAn": "293",
+  "loiGiai": "Do chi phí trung bình cho một bộ đồ chơi là $\\bar{C}(x) = 1,5x + 1800 + \\displaystyle\\frac{5000000}{x}$ nên tổng chi phí cho $x$ bộ đồ chơi là:\\\\\r\n\t\t$C(x) = x \\cdot \\bar{C}(x) = x \\cdot \\left( 1,5x + 1800 + \\displaystyle\\frac{5000000}{x} \\right) = 1,5x^{2} + 1800x + 5000000$.\\\\\r\n\t\tKhi đó hàm lợi nhuận là: $R(x) = F(x) - C(x) = 2x^{3} - 6001,5x^{2} + 2998200x + 3000000$.\\\\\r\n\t\tXét hàm số $R(x)$ trên đoạn $[0; 1000]$, ta có:\\\\\r\n\t\t$R'(x) = 6x^{2} - 12003x + 2998200$.\\\\\r\n\t\t$R'(x) = 0 \\Leftrightarrow 6x^{2} - 12003x + 2998200 = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x \\approx 1708 \\notin [0; 1000] \\\\ &x \\approx 293 \\in [0; 1000] \\end{aligned} \\right.$.\\\\\r\n\t\tBảng biến thiên cho thấy $R(x)$ đạt cực đại tại $x \\approx 293$.\\\\\r\n\t\tVậy công ty phải sản xuất $293$ bộ đồ chơi để lợi nhuận lớn nhất."
+}

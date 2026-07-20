@@ -340,7 +340,7 @@ window.ham_6a_7_hien_form_them_hoc_lieu_trac_nghiem = function () {
     vungLamViec.innerHTML = `
         <div style="width: 100%; box-sizing: border-box; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h3 style="color: #28a745; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-top: 0;">TẠO HỌC LIỆU MỚI</h3>
-            
+
             <div style="display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px; margin-bottom: 20px;">
                 <div>
                     <label style="font-weight: bold; font-size: 13px; color: #d35400;">Mã định danh:</label>
@@ -670,7 +670,7 @@ window.ham_6a_10_luu_hoc_lieu_trac_nghiem_moi = async function (btn) {
             if (dsFile.length === 0) return Swal.fire('Lỗi', 'Chưa có dữ liệu từ file upload!', 'error');
 
             dsFile.forEach(cau => {
-                let dapAn = window.ham_6_18_trich_xuat_dap_an(cau.noi_dung, cau.loai);
+                let dapAn = window.ham_99_3_trich_xuat_dap_an(cau.noi_dung, cau.loai);
                 if (cau.loai === "TN") so_tn++;
                 else if (cau.loai === "DS") so_ds++;
                 else if (cau.loai === "TLN" || cau.loai === "NGAN") so_tln++;
@@ -767,15 +767,15 @@ window.ham_6a_11_day_file_de_trac_nghiem_len_github = async function (maHL, tenH
         if (!khoBau) return;
 
         // Băm file TeX
-        let phanTich = window.ham_6_17_phan_tich_cau_hoi_tex(cau.noi_dung);
+        let phanTich = window.ham_99_2_phan_tich_cau_hoi_tex(cau.noi_dung);
 
         // Lọc dọn rác toán học (Hàm 6.19)
-        let cauDanXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
-        let paAXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
-        let paBXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
-        let paCXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
-        let paDXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
-        let loiGiaiXuly = window.ham_6_19_xu_ly_du_lieu_truoc_khi_push(phanTich.loiGiai);
+        let cauDanXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
+        let paAXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
+        let paBXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
+        let paCXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
+        let paDXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+        let loiGiaiXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.loiGiai);
 
         // Khớp kiểu câu tương thích C#
         let kieuNhanDien = "TN";

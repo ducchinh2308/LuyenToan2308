@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_be085c8e27",
+  "dapAn": "B",
+  "loiGiai": "Đạo hàm $C'(v)=-\\dfrac{5400}{v^2}+\\dfrac{3}{2}$.\\\\\r\n\t$C'(v)=0\r\n\t\\Rightarrow \\left[ \\begin{array}{l}\nx=-60\\text{ (loại)}\\\\v=60\\text{ (nhận)}.\n\\end{array} \\right.$\\\\\r\n\t$C(v)=\\dfrac{5400}{v}+\\dfrac{3}{2}v$ ($0 < v\\le 120$).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/sol_be085c8e27_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTừ bảng biến thiên suy ra tài xế nên lái xe với tốc độ $60$ (km/h) trung bình tiết kiệm tiền xăng nhất."
+}

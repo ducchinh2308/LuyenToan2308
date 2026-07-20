@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_792ad65243",
+  "dapAn": "C",
+  "loiGiai": "Cạnh hình vuông nhỏ có độ dài là $x$ (cm), với $0 < x < 20$. \\\\\r\n\t\tHình hộp chữ nhật có cạnh đáy là: $(40-2x)$ (cm) và chiều cao là $x$ (cm). \\\\\r\n\t\tThể tích của khối hộp là: $V(x) = x(40-2x)^2 = 4x^3 - 160x^2 + 1600x$. \\\\\r\n\t\tTa có: $V'(x) = 12x^2 - 320x + 1600$. \\\\\r\n\t\t$V'(x) = 0 \\Leftrightarrow \\displaystyle \\begin{bmatrix} x_1 = 20 \\\\ x_2 = \\frac{20}{3} \\end{bmatrix}$. \\\\\r\n\t\tTa có bảng biến thiên sau đây: \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_792ad65243_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy: $\\displaystyle \\max_{(0;20)} V(x) = V\\left(\\frac{20}{3}\\right) = \\frac{128000}{27}$."
+}

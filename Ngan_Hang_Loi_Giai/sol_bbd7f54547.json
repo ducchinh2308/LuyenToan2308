@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bbd7f54547",
+  "dapAn": "D",
+  "loiGiai": "Vận tốc $v=s'=-6t^2+48t+9$.\\\\\r\n\t$v'=12t+48$.\\\\\r\n\t$v'=0\\Leftrightarrow t=4$.\\\\\r\n\t$v(0)=9$; $v(4)=105$; $v(8)=9$.\\\\\r\n\tVậy trong khoảng thời gian $8$ giây, kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng $105$ (m/s)."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_296a11ff81",
+  "dapAn": "C",
+  "loiGiai": "Vận tốc tức thời của xe là $v(t) = x' = 12t - 6t^2$.\\\\\r\n\t\tXét $v'(t) = 12 - 12t$; $v'(t) = 0 \\Leftrightarrow t = 1$.\\\\\r\n\t\tXét hàm số $v(t) = 12t - 6t^2$ trên đoạn $[0; 2]$, ta thấy hàm số đạt giá trị lớn nhất tại $t = 1$.\\\\\r\n\t\tChọn đáp án C."
+}

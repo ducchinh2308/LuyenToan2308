@@ -1,0 +1,98 @@
+{
+  "maDe": "K12-MINMAX-THUCTE-5-2-2",
+  "tenDe": "ĐỀ K12-MINMAX-THUCTE-5-2-2",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_e360cf172e",
+      "ma_goc": "2603-561",
+      "kieuCau": "TN",
+      "cauDan": "Một nhà phân tích thị trường làm việc cho một công ty sản xuất thiết bị gia dụng cho rằng nếu công ty sản xuất và bán $x$ chiếc máy xay sinh tố hàng tháng thì lợi nhuận thu được (nghìn đồng) có thể được tính bằng công thức $P(x) = -0,3x^3 + 36x^2 + 1800x - 48000$. Để có lợi nhuận lớn nhất, công ty cần sản xuất bao nhiêu chiếc máy xay sinh tố mỗi tháng?",
+      "paA": "$110$",
+      "paB": "$90$",
+      "paC": "$120$",
+      "paD": "$100$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_546aeff317",
+      "ma_goc": "2603-799",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động thẳng với phương trình chuyển động là $s=-2t^3+24t^2+9t-3$ với $t$ tính bằng giây và $s$ tính bằng mét. Hỏi trong khoảng thời gian $8$ giây, kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng bao nhiêu?",
+      "paA": "$289$ (m/s)",
+      "paB": "$487$ (m/s)",
+      "paC": "$111$ (m/s)",
+      "paD": "$105$ (m/s)"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_087e8fb0a3",
+      "ma_goc": "2603-798",
+      "kieuCau": "TN",
+      "cauDan": "Giả sử chi phí tiền xăng $C$ (đồng) phụ thuộc tốc độ trung bình $v$ (km/h) được biểu diễn theo công thức $C(v)=\\dfrac{5400}{v}+\\dfrac{3}{2}v$ ($0 < v\\le 120$). Tài xế nên lái xe với tốc độ (km/h) trung bình là bao nhiêu để tiết kiệm tiền xăng nhất?",
+      "paA": "$30$",
+      "paB": "$60$",
+      "paC": "$120$",
+      "paD": "$120$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_8f03c93ed6",
+      "ma_goc": "2603-533",
+      "kieuCau": "TN",
+      "cauDan": "Trong một nhà kho thông minh, kỹ sư đang lập trình cho một xe tự hành (AGV) di chuyển theo một đường thẳng để vận chuyển hàng hóa từ kệ $A$ sang kệ $B$. Phương trình tọa độ của xe được thiết lập theo công thức $x = 6t^2 - 2t^3$ ($x$ tính bằng mét, $t$ tính bằng giây, $0 \\le t \\le 2$). Vận tốc tức thời của xe đạt giá trị lớn nhất tại thời điểm nào?",
+      "paA": "$t = 5$",
+      "paB": "$t = 3$",
+      "paC": "$t = 1$",
+      "paD": "$t = 2$"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_c490ad3b27",
+      "ma_goc": "2603-1323",
+      "kieuCau": "TN",
+      "cauDan": "Bạn Hải có một tấm bìa hình vuông cạnh $40$ (cm). Bạn muốn cắt bỏ ở bốn góc bốn hình vuông nhỏ bằng nhau để gấp và dán lại thành một hình hộp chữ nhật không có nắp (tham khảo hình vẽ).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c490ad3b27_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐể hộp có thể tích lớn nhất thì độ dài cạnh của hình vuông nhỏ bị cắt là",
+      "paA": "$6$ (cm)",
+      "paB": "$5$ (cm)",
+      "paC": "$\\displaystyle \\frac{20}{3}$ (cm)",
+      "paD": "$\\displaystyle \\frac{10}{3}$ (cm)"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_961a7bb7b4",
+      "ma_goc": "2603-978",
+      "kieuCau": "DS",
+      "cauDan": "Nhà máy $A$ chuyên sản xuất một loại sản phẩm cho nhà máy $B$. Hai nhà máy thỏa thuận rằng, hàng tháng nhà máy $A$ cung cấp cho nhà máy $B$ số lượng sản phẩm theo đơn đặt hàng của nhà máy $B$ (tối đa $100$ tấn sản phẩm). Biết rằng, nếu số lượng đặt hàng là $x$ (tấn) sản phẩm thì giá bán cho mỗi tấn sản phẩm là $P(x) = 45 - 0,001x^2$ (triệu đồng) và chi phí để nhà máy $A$ sản xuất được $x$ (tấn) sản phẩm trong một tháng là $C(x) = 100 + 30x$ (triệu đồng, gồm $100$ triệu đồng chi phí cố định và $30$ triệu đồng cho mỗi tấn sản phẩm).",
+      "paA": "Số tiền nhà máy $A$ thu được khi bán $10$ tấn sản phẩm cho nhà máy $B$ là $500$ triệu đồng",
+      "paB": "Nhà máy $A$ bán cho nhà máy $B$ là $70$ tấn sản phẩm mỗi tháng thì thu được lợi nhuận lớn nhất",
+      "paC": "Chi phí để nhà máy $A$ sản xuất $10$ tấn sản phẩm trong một tháng là $400$ triệu đồng",
+      "paD": "Lợi nhuận mà nhà máy $A$ thu được khi bán $x$ (tấn) sản phẩm ($0 \\le x \\le 100$) cho nhà máy $B$ là $H(x) = -0,001x^3 + 15x - 100$ (triệu đồng)"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_8aa49ef9f0",
+      "ma_goc": "2605-885",
+      "kieuCau": "DS",
+      "cauDan": "Một công ty công nghệ GigaCloud chuẩn bị ra mắt dịch vụ lưu trữ đám mây cao cấp dành riêng cho các doanh nghiệp lớn. Qua phân tích dữ liệu lớn (Big Data), các chuyên gia kinh tế của công ty xác lập được mô hình cầu như sau: Nếu định giá gói cước hàng tháng là $x$ (triệu đồng) thì số lượng doanh nghiệp đăng ký sử dụng $S$ (nghìn doanh nghiệp) sẽ là $S(x) = \\sqrt{45-x}$ (Với điều kiện mức giá $x$ phải nhỏ hơn $45$ triệu đồng). Chi phí vận hành hệ thống của GigaCloud bao gồm hai khoản: Chi phí cố định là $10$ tỷ đồng mỗi tháng (cho cơ sở hạ tầng, nhân sự cốt lõi) và chi phí biến đổi. Do đặc thù bảo mật dữ liệu, khi số lượng khách hàng tăng lên thì chi phí băng thông và bảo trì tăng theo cấp số nhân. Cụ thể, chi phí biến đổi tỷ lệ thuận với bình phương số lượng khách hàng: $C_v = 3S^2$ (tỷ đồng). Các khẳng định sau đúng hay sai?",
+      "paA": "Giá cước $20$ (triệu đồng/tháng) thì công ty GigaCloud đạt lợi nhuận ròng hàng tháng cao nhất",
+      "paB": "Doanh thu của công ty GigaCloud là $R(x) = x.S(x) = x\\sqrt{45-x}$ (tỷ đồng)",
+      "paC": "Chi phí cố định của công ty là $C_v = 3S^2$ (tỷ đồng)",
+      "paD": "Lợi nhuận của công ty khi bán với mức giá $x$ được biểu diễn theo hàm số $L(x) = x\\sqrt{45-x} + 3x - 145$"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_094bc27886",
+      "ma_goc": "2603-528",
+      "kieuCau": "TLN",
+      "cauDan": "Đường ray của tàu lượn siêu tốc là một dạng đường cong Spline được thiết kế với độ cong thay đổi linh hoạt, thú vị và đáp ứng được một số tiêu chí về an toàn. Một phần đường ray tàu lượn siêu tốc có dạng đồ thị hàm số bậc ba: $y = f(x) = ax^3 + bx^2 + cx + d, (a \\neq 0)$.\r\n\tTrục $Ox$ mô tả quãng đường tàu di chuyển theo chiều ngang (tính bằng mét), trục $Oy$ mô tả chiều cao của đường ray (tính bằng mét) tại mỗi vị trí $x$. Chiều cao xuất phát là $50\\,(\\text{m})$. Tàu xuống dưới mặt đất lần thứ nhất từ vị trí $x = 20\\,(\\text{m})$, tàu lên khỏi mặt đất ở vị trí $x = 50\\,(\\text{m})$ và sau đó xuống dưới mặt đất lần thứ hai ở vị trí $x = 100\\,(\\text{m})$. Xét đồ thị của hàm số đã cho khi $x \\in [0;100]$ như hình vẽ bên dưới:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_094bc27886_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiết điểm cao nhất của đường ray khi tàu lên khỏi mặt đất và toạ độ điểm thấp nhất của đường ray khi tàu xuống dưới mặt đất lần lượt có hoành độ là $p$ và $q$. Tính $3q + p$."
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_213117d756",
+      "ma_goc": "2603-785",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty sản xuất đồ chơi dự kiến sản xuất không quá $1000$ bộ đồ chơi mỗi tháng để đáp ứng nhu cầu thị trường. Nếu sản xuất $x$ bộ đồ chơi, doanh thu có thể đạt khi bán hết là $F(x) = 2x^{3} - 6000x^{2} + 3000000x + 8000000$ (đồng). Chi phí trung bình cho mỗi bộ đồ chơi là $\\bar{C}(x) = 1,5x + 1800 + \\displaystyle\\frac{5000000}{x}$ (đồng). Hỏi công ty cần sản xuất bao nhiêu bộ đồ chơi để thu được lợi nhuận lớn nhất?"
+    }
+  ]
+}

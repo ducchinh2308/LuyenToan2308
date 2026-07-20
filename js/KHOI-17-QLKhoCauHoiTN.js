@@ -588,135 +588,6 @@ window.ham_17_14_lay_chuoi_trong_ngoac_vuong = function (chuoi) {
 
 
 
-// window.ham_17_15_change_dang = async function (loaiCau, rowId) {
-//     console.log("--- Đang bắt đầu hàm ---");
-//     console.log("URL API:", CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
-
-//     if (!CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP) {
-//         alert("Lỗi: Không tìm thấy URL API trong cấu hình!");
-//         return;
-//     }
-
-//     // Helper để lấy text từ một ID select
-//     const getText = (id) => {
-//         const el = document.getElementById(id);
-//         return el ? el.options[el.selectedIndex].text : "";
-//     };
-
-//     // Đọc nội dung hiển thị từ các combobox
-//     const textLop = getText(`sel_lop_${rowId}`);
-//     const textMon = getText(`sel_mon_${rowId}`);
-//     const textChuong = getText(`sel_chuong_${rowId}`);
-//     const textBai = getText(`sel_bai_${rowId}`);
-//     const textDang = getText(`sel_dang_${rowId}`);
-
-//     console.log("Nội dung đã chọn:", { textLop, textMon, textChuong, textBai, textDang });
-
-//     // Sau đó thầy dùng hàm window.ham_17_14_lay_chuoi_trong_ngoac_vuong
-//     // để bóc tách ID từ cái text vừa lấy được (ví dụ: [2D1N1-1]...)
-    
-//     const maLop = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textLop);
-//     const maMon = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textMon);
-//     const maChuong = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textChuong);
-//     const maBai = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textBai);
-//     const maDang = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textDang);
-
-//     const idCauchuaX = "["+maLop+maMon+maChuong+"x"+maBai+"-"+maDang+"]";
-//     console.log("Các mã ID đã bóc tách:", { maLop, maMon, maChuong, maBai, maDang, idCauchuaX });
-
-//     // 2. Kiểm tra và ghép chuỗi tạo thành mã ID hoàn chỉnh
-    
-    
-    
-//     const cacMuc = ['nb', 'th', 'vd', 'vdc'];
-//     //console.log("Đang quét kho câu hỏi cho maDang:", maDang, "loaiCau:", loaiCau, "rowId:", rowId);
-//     // 1. Reset UI
-//     cacMuc.forEach(muc => {
-//         const lbl = document.getElementById(`max_${muc}_${rowId}`);
-//         const inp = document.getElementById(`sl_${muc}_${rowId}`);
-//         if (lbl) { lbl.innerText = 'Kho: ⏳'; lbl.style.color = '#f39c12'; }
-//         if (inp) { inp.disabled = true; inp.style.background = '#e9ecef'; }
-//     });
-
-//     // 1. Hiển thị thông báo chờ (Loading)
-//     // Swal.fire({
-//     //     title: 'Đang tải dữ liệu...',
-//     //     text: 'Hệ thống đang quét file trên Google Drive, vui lòng chờ trong giây lát...',
-//     //     allowOutsideClick: false,
-//     //     didOpen: () => { Swal.showLoading(); }
-//     // });
-
-//     try {
-//              const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//             method: "POST",
-//             headers: {
-//                 // Bắt buộc text/plain để không bị Google chặn preflight
-//                 "Content-Type": "text/plain;charset=utf-8"
-//             },
-//             redirect: "follow",
-//             body: JSON.stringify({
-//                 action: "dem_cau_hoi_ID_theo_4_muc_do",
-//                 idChuaX: idCauchuaX,
-//                 loaiCau: loaiCau
-//             })
-//         });
-//         // 1. ĐỌC DỮ LIỆU THÔ TRƯỚC THAY VÌ PARSE JSON NGAY
-//         const textResponse = await response.text();
-
-//         // 2. CỐ GẮNG PARSE JSON
-//         let result;
-//         try {
-//             result = JSON.parse(textResponse);
-//         } catch (parseError) {
-//             throw new Error("Apps Script bị lỗi nội bộ hoặc chưa Deploy đúng cách. Hãy xem Console (F12) để biết chi tiết.");
-//         }
-
-//         console.log("idCauchuaX: " + idCauchuaX + " | loaiCau: " + loaiCau + " ✅ Kết quả trả về từ API:", result);
-//         if (result.status !== "success") throw new Error(result.message);
-
-//         // --- PHẦN MAP UI CẬP NHẬT ---
-//         const dem = result.data; // Dữ liệu dạng {N: 5, H: 3, V: 0, C: 0}
-//         const cacMuc = ['nb', 'th', 'vd', 'vdc'];
-//         const mapMuc = { 'nb': 'N', 'th': 'H', 'vd': 'V', 'vdc': 'C' };
-
-//         cacMuc.forEach(muc => {
-//             const oMax = document.getElementById(`max_${muc}_${rowId}`);
-//             const oNhap = document.getElementById(`sl_${muc}_${rowId}`);
-//             const soLuong = dem[mapMuc[muc]] || 0;
-
-//             // Nạp số liệu vào ô Khóa (chỉ hiển thị con số)
-//             if (oMax) {
-//                 oMax.value = soLuong; // Dùng .value vì đây là thẻ <input>
-//                 oMax.style.color = soLuong > 0 ? '#495057' : '#dc3545'; // Đổi chữ đỏ nếu hết câu
-//             }
-
-//             // Xử lý logic cho ô Nhập
-//             if (oNhap) {
-//                 oNhap.setAttribute('data-max', soLuong);
-//                 if (soLuong > 0) {
-//                     oNhap.disabled = false;
-//                     oNhap.style.background = '#fff';
-//                 } else {
-//                     oNhap.disabled = true; // Khóa luôn ô nhập nếu kho = 0
-//                     oNhap.style.background = '#e9ecef';
-//                     oNhap.value = '';
-//                 }
-//             }
-//         });
-//         //Swal.close(); // Đóng thông báo chờ
-
-//     } catch (e) {
-//         console.error("❌ Lỗi đếm số lượng từ Drive:", e);
-//         // Báo lỗi lên UI
-//         //Swal.fire('Lỗi Kết Nối API', e.message, 'error'); // Hoặc dùng alert(e.message)
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Lỗi',
-//             text: 'Có lỗi xảy ra trong quá trình load: ' + e.message
-//         });
-//     }
-// };
-
 window.ham_17_15_change_dang = async function (loaiCau, rowId) {
     //console.log("--- Đang bắt đầu hàm ---");
     //console.log("URL API:", CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP);
@@ -864,10 +735,10 @@ window.ham_17_16_cap_nhat_thong_ke = function (loaiCau) {
         const valVd = parseInt(row.querySelector('.input-vd')?.value) || 0;
         const valVdc = parseInt(row.querySelector('.input-vdc')?.value) || 0;
 
-        console.log(`Dòng ${index} - Số NB:`, valNb); // Kiểm tra xem có lấy được giá trị không
-        console.log(`Dòng ${index} - Số TH:`, valTh);
-        console.log(`Dòng ${index} - Số VD:`, valVd);
-        console.log(`Dòng ${index} - Số VDC:`, valVdc);
+        //console.log(`Dòng ${index} - Số NB:`, valNb); // Kiểm tra xem có lấy được giá trị không
+        //console.log(`Dòng ${index} - Số TH:`, valTh);
+        //console.log(`Dòng ${index} - Số VD:`, valVd);
+        //console.log(`Dòng ${index} - Số VDC:`, valVdc);
 
         nB += valNb;
         tH += valTh;
@@ -930,263 +801,6 @@ window.ham_17_17_cap_nhat_tong_toan_bo = function () {
         }
     }
 };
-
-
-// // Hàm gọi API đếm số câu và đổ dữ liệu vào đúng dòng trên Ma trận
-// window.ham_17_18_dem_so_cau_theo_ma_tran = async function (inputElement, loaiCau, sttDong) {
-//     const maIdMaTran = inputElement.value.trim(); // Lấy giá trị "[2D1x2-7]"
-
-//     // Nếu ô ID trống thì không làm gì cả
-//     if (!maIdMaTran) return;
-
-//     // Hiện trạng thái Loading (Tùy chọn: đổi màu chữ hoặc hiện icon xoay)
-//     inputElement.style.color = '#ffc107';
-
-//     try {
-//         const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//             method: "POST",
-//             body: JSON.stringify({
-//                 action: "dem_so_cau_toi_uu",
-//                 idChuaX: maIdMaTran,
-//                 loaiCau: loaiCau
-//             })
-//         });
-
-//         const data = await response.json();
-
-//         if (data.error) throw new Error(data.error);
-
-//         // Đổ dữ liệu vào 4 ô của đúng cái dòng (sttDong) đang thao tác
-//         document.getElementById(`sl_N_${sttDong}`).value = data.N;
-//         document.getElementById(`sl_H_${sttDong}`).value = data.H;
-//         document.getElementById(`sl_V_${sttDong}`).value = data.V;
-//         document.getElementById(`sl_C_${sttDong}`).value = data.C;
-
-//         // Trả lại màu chữ bình thường báo hiệu thành công
-//         inputElement.style.color = '#28a745';
-
-//     } catch (error) {
-//         console.error("Lỗi khi đếm câu hỏi:", error);
-//         inputElement.style.color = '#dc3545'; // Đỏ nếu lỗi
-//         alert("Lỗi đếm số lượng câu hỏi: " + error.message);
-//     }
-// };
-
-
-// // =====================================================================
-// // Hàm 17.6: Thực thi bốc câu hỏi ngẫu nhiên và đổ sang Cách 2
-// // =====================================================================
-// window.ham_17_18_thuc_thi_tao_de = function () {
-//     // 1. Chuẩn bị "Giỏ hàng" chứa ID câu hỏi sau khi bốc
-//     let gioHang = {
-//         'TN': [],
-//         'DS': [],
-//         'TLN': []
-//     };
-//     // 1. Khai báo map ánh xạ (đặt ở ngoài hoặc trên đầu hàm)
-//     const mapMucDoUI = {
-//         'nb': 'N',
-//         'th': 'H',
-//         'vd': 'V',
-//         'vdc': 'C'
-//     };
-
-
-//     let coLoi = false;
-//     let dsLoi = [];
-
-//     // Khai báo ngay trong hàm này
-//     //const mapMucDoUI = { 'nb': 'N', 'th': 'H', 'vd': 'V', 'vdc': 'C' };
-
-//     const danhSachBang = ['TN', 'DS', 'TLN'];
-
-//     // Helper để lấy text từ một ID select
-//     const getText = (id) => {
-//         const el = document.getElementById(id);
-//         return el ? el.options[el.selectedIndex].text : "";
-//     };
-
-//     // Hàm hiển thị tổng quan kho trước khi bốc
-//     const debugKho = () => {
-//         console.group("🔍 [DEBUG] Tổng quan kho câu hỏi hiện tại");
-//         if (!window.KhoCauHoiTamThoi) {
-//             console.warn("Kho dữ liệu đang rỗng!");
-//         } else {
-//             Object.keys(window.KhoCauHoiTamThoi).forEach(muc => {
-//                 let mucDoData = window.KhoCauHoiTamThoi[muc];
-//                 console.group(`Mức độ: ${muc}`);
-//                 Object.keys(mucDoData).forEach(maDang => {
-//                     let loaiCauData = mucDoData[maDang];
-//                     let summary = Object.keys(loaiCauData).map(loai => `${loai}: ${loaiCauData[loai].length} câu`).join(" | ");
-//                     console.log(`Dạng: ${maDang} -> ${summary}`);
-//                 });
-//                 console.groupEnd();
-//             });
-//         }
-//         console.groupEnd();
-//     };
-
-
-//     const bocNgauNhien = (mucDo, idCauChuaX, loaiCau, soLuongCan) => {
-//         // 1. Kiểm tra input truyền vào
-//         console.log("Đang bốc:", mucDo, idCauChuaX, loaiCau);
-
-//         // 2. Truy xuất trực tiếp bằng idCauChuaX (vì nó chính là key trong object)
-//         // Lưu ý: Key trong kho của thầy đang có dấu ngoặc vuông [ ], 
-//         // thầy cần đảm bảo idCauChuaX truyền vào cũng có dấu ngoặc này.
-//         const khoDung = window.KhoCauHoiTamThoi?.[mucDo]?.[idCauChuaX];
-
-//         if (!khoDung) {
-//             console.error(`⚠️ Không tìm thấy kho cho: ${mucDo} -> ${idCauChuaX}`);
-//             return [];
-//         }
-
-//         const khoHienTai = khoDung[loaiCau] || [];
-
-//         // 3. Logic bốc ngẫu nhiên (Fisher-Yates)
-//         let ketQua = [];
-//         let khoTam = [...khoHienTai]; // Copy để không làm hỏng kho gốc
-
-//         if (khoTam.length < soLuongCan) {
-//             console.warn(`⚠️ Kho [${idCauChuaX}][${loaiCau}] chỉ còn ${khoTam.length} câu, không đủ ${soLuongCan}`);
-//         }
-
-//         for (let i = 0; i < Math.min(soLuongCan, khoTam.length); i++) {
-//             let index = Math.floor(Math.random() * khoTam.length);
-//             ketQua.push(khoTam.splice(index, 1)[0]);
-//         }
-
-//         return ketQua;
-//     };
-
-    
-//     // Nếu thầy muốn xem chi tiết cấu trúc:
-//     // console.table(window.KhoCauHoiTamThoi);
-//     // --- KẾT THÚC DEBUG ---
-
-//     debugKho();
-//     danhSachBang.forEach(loaiCau => {
-//         const tbody = document.getElementById(`tbody_matran_${loaiCau}`);
-//         if (!tbody) return;
-
-//         const cacDong = tbody.querySelectorAll('tr');
-
-//         cacDong.forEach(row => {
-//             // ID của thầy là "row_matran_1", "row_matran_2"...
-//             // Dùng replace để lấy phần số đằng sau
-//             const rowId = row.id.replace('row_matran_', '');
-
-//             // Kiểm tra xem rowId có hợp lệ không trước khi chạy tiếp
-//             if (!rowId) return;
-
-//             // 1. Lấy dữ liệu combobox bằng hàm getText (giả sử thầy đã có hàm này)
-//             const textLop = getText(`sel_lop_${rowId}`);
-//             const textMon = getText(`sel_mon_${rowId}`);
-//             const textChuong = getText(`sel_chuong_${rowId}`);
-//             const textBai = getText(`sel_bai_${rowId}`);
-//             const textDang = getText(`sel_dang_${rowId}`);
-
-//             console.log(`Row ${rowId} - Lớp: ${textLop}, Môn: ${textMon}, Chương: ${textChuong}, Bài: ${textBai}, Dạng: ${textDang}`);
-//             // 2. Bóc tách ID trong ngoặc vuông
-//             const maLop = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textLop) || "";
-//             const maMon = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textMon) || "";
-//             const maChuong = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textChuong) || "";
-//             const maBai = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textBai) || "";
-//             const maDang = window.ham_17_14_lay_chuoi_trong_ngoac_vuong(textDang) || "";
-
-//             // 3. Tạo idCauchuaX chuẩn
-//             const idCauchuaX = `[${maLop}${maMon}${maChuong}x${maBai}-${maDang}]`;
-//             console.log(`Row ${rowId} - idCauchuaX:`, idCauchuaX);
-            
-//             // 4. Duyệt qua mapMucDoUI để bốc câu hỏi theo mức độ
-//             for (let keyUI in mapMucDoUI) {
-//                 const keyDuLieu = mapMucDoUI[keyUI]; // 'N', 'H', 'V', 'C'
-//                 const inputSl = row.querySelector(`.input-${keyUI}`);
-//                 const sl = parseInt(inputSl?.value || 0);
-//                 console.log(`Row ${rowId} - Mức ${keyDuLieu} - Số lượng yêu cầu:`, sl);
-//                 if (sl > 0) {
-//                     // Gọi hàm bốc với idCauchuaX vừa tạo
-//                     const ketQuaBoc = bocNgauNhien(keyDuLieu, idCauchuaX, loaiCau, sl);
-
-//                     // --- DEBUG: In ra kết quả nhận được ---
-//                     if (ketQuaBoc && ketQuaBoc.length > 0) {
-//                         console.log(`✅ Thành công: Lấy được ${ketQuaBoc.length} câu.`, ketQuaBoc);
-//                         gioHang[loaiCau].push(...ketQuaBoc);
-//                     } else {
-//                         console.warn(`⚠️ Cảnh báo: Không bốc được câu nào cho dạng ${maDang} - Mức ${keyDuLieu}`);
-//                     }
-
-//                     if (ketQuaBoc && ketQuaBoc.length > 0) {
-//                         gioHang[loaiCau].push(...ketQuaBoc);
-//                     } else {
-//                         console.warn(`Kho không đủ câu hỏi cho: ${idCauchuaX} tại mức ${keyDuLieu}`);
-//                     }
-//                 }
-//             }
-//         });
-//     });
-
-//     // Kiểm tra giỏ hàng sau khi xong
-//     console.log("%c 🛒 TỔNG GIỎ HÀNG SAU KHI BỐC XONG:", "background: #28a745; color: white; font-size: 14px;", gioHang);
-//     // ---------------------------------------------------------
-//     // 3. XỬ LÝ KẾT QUẢ VÀ CHUYỂN TAB
-//     // ---------------------------------------------------------
-//     if (coLoi) {
-//         Swal.fire({
-//             icon: 'warning',
-//             title: 'Kho không đủ câu hỏi!',
-//             html: `<div style="text-align:left; font-size:14px; max-height:250px; overflow-y:auto; color:#d35400;">
-//                     ${dsLoi.join('<br><br>')}
-//                    </div>`,
-//             confirmButtonText: 'Để tôi sửa lại Ma trận',
-//             confirmButtonColor: '#1a73e8'
-//         });
-//         return; // Dừng lại không xuất ID
-//     }
-
-//     // Nếu bốc thành công, đổ toàn bộ ID đã bốc vào Form Nhập Tay (Cách 2)
-//     const txtTN = document.getElementById('txtID_TN');
-//     const txtDS = document.getElementById('txtID_DS');
-//     const txtTLN = document.getElementById('txtID_TLN');
-
-//     if (txtTN) txtTN.value = gioHang['TN'].join('\n');
-//     if (txtDS) txtDS.value = gioHang['DS'].join('\n');
-//     if (txtTLN) txtTLN.value = gioHang['TLN'].join('\n');
-
-//     // Cập nhật lại chuỗi Cấu trúc (VD: 12TN - 4DS - 6TLN) bằng hàm đã có sẵn
-//     if (typeof ham_6a_5_tinh_toan_cau_truc === 'function') {
-//         ham_6a_5_tinh_toan_cau_truc();
-//     }
-
-//     // Báo thành công và tự động Switch giao diện sang Cách 2
-//     Swal.fire({
-//         icon: 'success',
-//         title: 'Bốc câu hỏi thành công!',
-//         text: 'Hệ thống đã chọn đủ ID và chuyển sang "CÁCH 2: NHẬP TAY". Thầy có thể soát lại ID trước khi bấm LƯU HỌC LIỆU.',
-//         timer: 3000,
-//         showConfirmButton: false
-//     }).then(() => {
-//         // Tích chọn Radio button của Cách 2
-//         const radioCach2 = document.querySelector('input[name="radCachNhap"][value="2"]');
-//         if (radioCach2) {
-//             radioCach2.checked = true;
-//             // Kích hoạt hàm đổi UI
-//             if (typeof ham_6a_3_c_chuyen_doi_cach_nhap === 'function') {
-//                 ham_6a_3_c_chuyen_doi_cach_nhap(2);
-//             }
-//         }
-
-//         // Cuộn màn hình mượt mà lên khu vực chứa textareas ID để thầy nhìn thấy ngay
-//         const vungCach2 = document.getElementById('khu_vuc_cach_2');
-//         if (vungCach2) {
-//             vungCach2.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//             vungCach2.style.transition = "all 0.5s";
-//             vungCach2.style.boxShadow = "0 0 15px rgba(40,167,69,0.5)"; // Nháy sáng màu xanh
-//             setTimeout(() => { vungCach2.style.boxShadow = "none"; }, 1500);
-//         }
-//     });
-// };
-
 
 
 // =====================================================================
@@ -1373,7 +987,7 @@ window.ham_17_20_hien_thi_popup_duyet_cau = function (ketQuaTraVe) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Khi thầy bấm Chốt, ta tiến hành Pha 4 (Tải ruột toàn bộ và xuất)
-            ham_17_22_tien_hanh_tai_ruot_va_xuat_de(ketQuaTraVe);
+            ham_17_22_kich_hoat_xuat_hoc_lieu(ketQuaTraVe);
         }
     });
 };
@@ -1469,3 +1083,987 @@ window.ham_17_21_xem_noi_dung_cau_popup = async function (fileId, fileName, elNo
     }
 };
 
+// =====================================================================
+// KHỐI 17: XUẤT HỌC LIỆU TRẮC NGHIỆM TỪ DANH SÁCH BỐC TỰ ĐỘNG
+// =====================================================================
+
+/**
+ * Hàm kích hoạt Popup yêu cầu nhập tên Đề thi trước khi xuất
+ * @param {Array} danhSachTrave - Mảng kết quả bốc từ Server [{idCau, loai, sl, danhsachfilelay: [...]}, ...]
+ */
+// window.ham_17_22_kich_hoat_xuat_hoc_lieu = function (danhSachTrave) {
+//     if (!danhSachTrave || danhSachTrave.length === 0) {
+//         return Swal.fire('Lỗi', 'Danh sách bốc câu hỏi trống!', 'error');
+//     }
+
+//     // Sinh mã Học Liệu tự động
+//     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+//     let randomPart = '';
+//     for (let i = 0; i < 6; i++) randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+//     const maHocLieuMoi = `HL_TN_AUTO_${randomPart}`;
+
+//     Swal.fire({
+//         title: '🚀 XUẤT HỌC LIỆU TRẮC NGHIỆM',
+//         html: `
+//             <div style="text-align: left; font-size: 14px;">
+//                 <label style="font-weight: bold; color: #1a73e8; display: block; margin-bottom: 5px;">Mã Học Liệu:</label>
+//                 <input type="text" id="swal_xuat_ma" value="${maHocLieuMoi}" readonly style="width: 100%; padding: 10px; margin-bottom: 15px; background: #e9ecef; border: 1px solid #ccc; border-radius: 6px; font-weight: bold;">
+                
+//                 <label style="font-weight: bold; color: #d35400; display: block; margin-bottom: 5px;">Tên Học Liệu / Đề Thi (*):</label>
+//                 <input type="text" id="swal_xuat_ten" placeholder="VD: Đề Ôn Tập Chương 1..." style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #d35400; border-radius: 6px; font-weight: bold;">
+                
+//                 <div style="display: flex; gap: 15px;">
+//                     <div style="flex: 1;">
+//                         <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Thời gian (Phút):</label>
+//                         <input type="number" id="swal_xuat_thoigian" value="45" min="1" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+//                     </div>
+//                     <div style="flex: 1;">
+//                         <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Khối lớp:</label>
+//                         <select id="swal_xuat_khoi" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+//                             <option value="12">Khối 12</option>
+//                             <option value="11">Khối 11</option>
+//                             <option value="10">Khối 10</option>
+//                             <option value="Khác">Khác</option>
+//                         </select>
+//                     </div>
+//                 </div>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonText: 'Tạo & Đẩy Lên Hệ Thống',
+//         cancelButtonText: 'Hủy',
+//         confirmButtonColor: '#28a745',
+//         preConfirm: () => {
+//             const tenHL = document.getElementById('swal_xuat_ten').value.trim();
+//             if (!tenHL) {
+//                 Swal.showValidationMessage('Vui lòng nhập Tên Học Liệu!');
+//                 return false;
+//             }
+//             return {
+//                 maHL: document.getElementById('swal_xuat_ma').value,
+//                 tenHL: tenHL,
+//                 thoiGian: parseInt(document.getElementById('swal_xuat_thoigian').value) || 45,
+//                 khoiLop: document.getElementById('swal_xuat_khoi').value
+//             };
+//         }
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             ham_17_23_thuc_thi_day_hoc_lieu(result.value, danhSachTrave);
+//         }
+//     });
+// };
+
+// /**
+//  * Hàm thực thi: Tải Ruột -> Ráp Đề -> Đẩy Github -> Lưu Supabase
+//  */
+// window.ham_17_23_thuc_thi_day_hoc_lieu = async function (thongTinForm, danhSachTrave) {
+//     const { maHL, tenHL, thoiGian, khoiLop } = thongTinForm;
+
+//     try {
+//         // --- BƯỚC 1: GOM ID FILE ĐỂ TẢI RUỘT TỪ DRIVE ---
+//         Swal.fire({ title: '⏳ Đang tải nội dung câu hỏi từ Drive...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         let dsFileIdCanTai = [];
+//         danhSachTrave.forEach(nhom => {
+//             if (nhom.danhsachfilelay) {
+//                 nhom.danhsachfilelay.forEach(file => dsFileIdCanTai.push(file.fileId));
+//             }
+//         });
+
+//         const resRuot = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//             method: "POST",
+//             body: JSON.stringify({ action: "tai_ruot_file_json_da_boc", danhSachFileId: [...new Set(dsFileIdCanTai)] })
+//         });
+
+//         const resultRuot = await resRuot.json();
+//         if (resultRuot.status !== "success") throw new Error("Lỗi đọc Drive: " + resultRuot.message);
+//         const khoRuotJSON = resultRuot.data;
+
+//         // --- BƯỚC 2: ĐÓNG GÓI CHUẨN CẤU TRÚC ĐỀ THI ---
+//         Swal.fire({ title: '⚙️ Đang đóng gói dữ liệu và mã hóa...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         let dsCauHoiGithub = [];
+//         let banDoSupabase = [];
+//         let filesToCommit = [];
+//         let so_tn = 0, so_ds = 0, so_tln = 0;
+
+//         const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+
+//         danhSachTrave.forEach(nhom => {
+//             if (!nhom.danhsachfilelay) return;
+
+//             nhom.danhsachfilelay.forEach(voFile => {
+//                 const noiDung = khoRuotJSON[voFile.fileId];
+//                 if (!noiDung || noiDung.error) return; // Bỏ qua file lỗi
+
+//                 // Đếm cấu trúc
+//                 if (nhom.loai === "TN") so_tn++;
+//                 else if (nhom.loai === "DS") so_ds++;
+//                 else so_tln++;
+
+//                 // Sinh mã bảo mật độc lập
+//                 const maCauHoi = "q_" + randomHex(10);
+//                 const maLoiGiai = "sol_" + randomHex(10);
+//                 const maGoc = noiDung.ma_goc || noiDung.maGoc || nhom.idCau;
+//                 const dapAn = noiDung.dap_an || noiDung.dapAn || "";
+
+//                 // 2.1: Ghi vào Bản đồ Kho Báu (Supabase)
+//                 banDoSupabase.push({
+//                     ma_goc: maGoc,
+//                     ma_cau_hoi: maCauHoi,
+//                     ma_loi_giai: maLoiGiai,
+//                     dap_an: dapAn
+//                 });
+
+//                 // 2.2: Lọc rác và Ghi vào File Đề (GitHub)
+//                 let cauHoiDeThi = {
+//                     maCau: maCauHoi,
+//                     ma_goc: maGoc,
+//                     kieuCau: nhom.loai,
+//                     cauDan: noiDung.cauDan || noiDung.noiDungHtml || noiDung.cauHoi || ""
+//                 };
+
+//                 if (nhom.loai !== 'TLN') {
+//                     cauHoiDeThi.paA = noiDung.paA || "";
+//                     cauHoiDeThi.paB = noiDung.paB || "";
+//                     cauHoiDeThi.paC = noiDung.paC || "";
+//                     cauHoiDeThi.paD = noiDung.paD || "";
+//                 }
+//                 dsCauHoiGithub.push(cauHoiDeThi);
+
+//                 // 2.3: Băm nhỏ File Lời Giải (GitHub)
+//                 let objLoiGiai = {
+//                     maBaoMat: maLoiGiai,
+//                     dapAn: dapAn,
+//                     loiGiai: noiDung.loiGiai || noiDung.loiGiaiHtml || "Chưa cập nhật lời giải"
+//                 };
+
+//                 filesToCommit.push({
+//                     path: `Ngan_Hang_Loi_Giai/${maLoiGiai}.json`,
+//                     mode: "100644",
+//                     type: "blob",
+//                     content: JSON.stringify(objLoiGiai, null, 4)
+//                 });
+//             });
+//         });
+
+//         if (banDoSupabase.length === 0) throw new Error("Thất bại: Không có dữ liệu câu hỏi nào được tải thành công.");
+
+//         // Đóng gói vỏ Đề thi (GitHub)
+//         let objDeThiGoc = {
+//             maDe: maHL,
+//             tenDe: tenHL,
+//             thoiGian: thoiGian,
+//             danhSachCauHoi: dsCauHoiGithub
+//         };
+
+//         const pathFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+//         filesToCommit.push({
+//             path: pathFileDe,
+//             mode: "100644",
+//             type: "blob",
+//             content: JSON.stringify(objDeThiGoc, null, 4)
+//         });
+
+//         // --- BƯỚC 3: ĐẨY LÊN GITHUB BẰNG TREE COMMIT ---
+//         Swal.fire({ title: '☁️ Đang đẩy dữ liệu lên GitHub...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+//         const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+//         const BRANCH = "main";
+//         const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+//         const headers = { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github.v3+json", "Content-Type": "application/json" };
+
+//         let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+//         let data = await res.json();
+//         let baseCommitSha = data.object.sha;
+
+//         res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+//         data = await res.json();
+//         let baseTreeSha = data.tree.sha;
+
+//         res = await fetch(`${baseURL}/git/trees`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+//         });
+//         if (!res.ok) throw new Error("Lỗi tạo cấu trúc thư mục trên GitHub.");
+//         data = await res.json();
+//         let newTreeSha = data.sha;
+
+//         res = await fetch(`${baseURL}/git/commits`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({
+//                 message: `Tự động tạo Đề ${maHL} từ kho Drive với ${banDoSupabase.length} câu`,
+//                 tree: newTreeSha,
+//                 parents: [baseCommitSha]
+//             })
+//         });
+//         data = await res.json();
+//         let newCommitSha = data.sha;
+
+//         res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+//             method: "PATCH", headers,
+//             body: JSON.stringify({ sha: newCommitSha })
+//         });
+//         if (!res.ok) throw new Error("Lỗi chốt nhánh GitHub.");
+
+//         const repoParts = GITHUB_REPO.split('/');
+//         const urlGithubFinal = `https://${repoParts[0]}.github.io/${repoParts[1]}/${pathFileDe}`;
+
+//         // --- BƯỚC 4: LƯU BẢN ĐỒ VÀO SUPABASE ---
+//         Swal.fire({ title: '💾 Đang khóa két sắt Supabase...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         const payloadSupabase = {
+//             ma_hoc_lieu: maHL,
+//             ten_hoc_lieu: tenHL,
+//             loai_kiem_tra: "Tự Động Bốc",
+//             khoi_lop: khoiLop,
+//             thoi_gian_lam_bai: thoiGian,
+//             trang_thai: "noi_bo",
+//             quy_mo_cau_hoi: banDoSupabase.length,
+//             metadata: {
+//                 so_tn: so_tn, so_ds: so_ds, so_tln: so_tln,
+//                 cau_truc: `${so_tn}TN | ${so_ds}DS | ${so_tln}TLN`,
+//                 nguon_tao: "Web_Auto_Kho_Drive"
+//             },
+//             danh_sach_cau_hoi: banDoSupabase,
+//             url_github: urlGithubFinal,
+//             uid_gv_tao: AppState.user?.uid || null,
+//             ngay_tao: new Date().toISOString()
+//         };
+
+//         const { error: errDB } = await _supabase.from('hoc_lieu_trac_nghiem').insert([payloadSupabase]);
+//         if (errDB) throw errDB;
+
+//         // --- HOÀN TẤT ---
+//         Swal.fire({
+//             icon: 'success',
+//             title: 'TẠO HỌC LIỆU THÀNH CÔNG!',
+//             html: `Đã tạo Đề thi <b>${maHL}</b> gồm ${banDoSupabase.length} câu hỏi.<br>Hệ thống đã lưu cấu trúc lên Supabase và đẩy đề lên GitHub.`,
+//             confirmButtonText: 'Quay về Quản lý'
+//         }).then(() => {
+//             // Chuyển về màn hình Quản lý học liệu
+//             if (typeof ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem === 'function') {
+//                 ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem();
+//             }
+//         });
+
+//     } catch (e) {
+//         Swal.fire('Thất bại', e.message, 'error');
+//         console.error("Lỗi quy trình xuất học liệu:", e);
+//     }
+// };
+
+
+
+// =====================================================================
+// KHỐI 17: XUẤT HỌC LIỆU TRẮC NGHIỆM TỪ DANH SÁCH BỐC TỰ ĐỘNG
+// =====================================================================
+
+/**
+ * Hàm kích hoạt Popup yêu cầu nhập tên Đề thi trước khi xuất
+ */
+window.ham_17_22_kich_hoat_xuat_hoc_lieu = function (danhSachTrave) {
+    if (!danhSachTrave || danhSachTrave.length === 0) {
+        return Swal.fire('Lỗi', 'Danh sách bốc câu hỏi trống!', 'error');
+    }
+
+    // Sinh mã Học Liệu tự động
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+    let randomPart = '';
+    for (let i = 0; i < 6; i++) randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+    const maHocLieuMoi = `HL_TN_AUTO_${randomPart}`;
+
+    Swal.fire({
+        title: '🚀 XUẤT HỌC LIỆU TRẮC NGHIỆM',
+        html: `
+            <div style="text-align: left; font-size: 14px;">
+                <label style="font-weight: bold; color: #1a73e8; display: block; margin-bottom: 5px;">Mã Học Liệu:</label>
+                <input type="text" id="swal_xuat_ma" value="${maHocLieuMoi}" readonly style="width: 100%; padding: 10px; margin-bottom: 15px; background: #e9ecef; border: 1px solid #ccc; border-radius: 6px; font-weight: bold;">
+                
+                <label style="font-weight: bold; color: #d35400; display: block; margin-bottom: 5px;">Tên Học Liệu / Đề Thi (*):</label>
+                <input type="text" id="swal_xuat_ten" placeholder="VD: Đề Ôn Tập Chương 1..." style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #d35400; border-radius: 6px; font-weight: bold;">
+                
+                <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                    <div style="flex: 1;">
+                        <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Thời gian (Phút):</label>
+                        <input type="number" id="swal_xuat_thoigian" value="45" min="1" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Khối lớp:</label>
+                        <select id="swal_xuat_khoi" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                            <option value="12">Khối 12</option>
+                            <option value="11">Khối 11</option>
+                            <option value="10">Khối 10</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 🌟 BỔ SUNG LOẠI KIỂM TRA ĐỂ KHỚP VỚI C# -->
+                <label style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Loại kiểm tra / Phân loại:</label>
+                <select id="swal_xuat_loai_kt" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    <option value="TN">Trắc nghiệm chung (TN)</option>
+                    <option value="GK1">Giữa kỳ 1 (GK1)</option>
+                    <option value="CK1">Cuối kỳ 1 (CK1)</option>
+                    <option value="GK2">Giữa kỳ 2 (GK2)</option>
+                    <option value="CK2">Cuối kỳ 2 (CK2)</option>
+                    <option value="KS">Khảo sát / Thi thử (KS)</option>
+                </select>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Tạo & Đẩy Lên Hệ Thống',
+        cancelButtonText: 'Hủy',
+        confirmButtonColor: '#28a745',
+        preConfirm: () => {
+            const tenHL = document.getElementById('swal_xuat_ten').value.trim();
+            if (!tenHL) {
+                Swal.showValidationMessage('Vui lòng nhập Tên Học Liệu!');
+                return false;
+            }
+            return {
+                maHL: document.getElementById('swal_xuat_ma').value,
+                tenHL: tenHL,
+                thoiGian: parseInt(document.getElementById('swal_xuat_thoigian').value) || 45,
+                khoiLop: document.getElementById('swal_xuat_khoi').value,
+                loaiKiemTra: document.getElementById('swal_xuat_loai_kt').value // Lấy giá trị loại kiểm tra
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            ham_17_23_thuc_thi_day_hoc_lieu(result.value, danhSachTrave);
+        }
+    });
+};
+
+/**
+ * Hàm thực thi: Tải Ruột -> Ráp Đề -> Đẩy Github -> Lưu Supabase (ĐỒNG BỘ CẤU TRÚC C#)
+ */
+// =====================================================================
+// KHỐI 17: XUẤT HỌC LIỆU TRẮC NGHIỆM TỪ DANH SÁCH BỐC TỰ ĐỘNG
+// =====================================================================
+
+// window.ham_17_23_thuc_thi_day_hoc_lieu = async function (thongTinForm, danhSachTrave) {
+//     const { maHL, tenHL, thoiGian, khoiLop, loaiKiemTra } = thongTinForm;
+
+//     try {
+//         // --- BƯỚC 1: GOM ID FILE ĐỂ TẢI RUỘT TỪ DRIVE ---
+//         Swal.fire({ title: '⏳ Đang tải nội dung câu hỏi từ Drive...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         //console.log(`[DEBUG 17.23] Bắt đầu tải ruột cho ${danhSachTrave.length} nhóm câu hỏi...`);
+//         let dsFileIdCanTai = [];
+//         danhSachTrave.forEach(nhom => {
+//             if (nhom.danhsachfilelay) {
+//                 nhom.danhsachfilelay.forEach(file => dsFileIdCanTai.push(file.fileId));
+//             }
+//         });
+
+//         const resRuot = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//             method: "POST",
+//             body: JSON.stringify({ action: "tai_ruot_file_json_da_boc", danhSachFileId: [...new Set(dsFileIdCanTai)] })
+//         });
+
+//         const resultRuot = await resRuot.json();
+        
+
+//         console.log(`[DEBUG 17.23] Kết quả tải ruột:`, resultRuot);
+//         if (resultRuot.status !== "success") throw new Error("Lỗi đọc Drive: " + resultRuot.message);
+//         const khoRuotJSON = resultRuot.data;
+
+
+
+//         // --- BƯỚC 2: ĐÓNG GÓI CHUẨN CẤU TRÚC ĐỀ THI ---
+//         Swal.fire({ title: '⚙️ Đang đóng gói dữ liệu và mã hóa...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         let dsCauHoiGithub = [];
+//         let banDoSupabase = [];
+//         let filesToCommit = [];
+//         let so_tn = 0, so_ds = 0, so_tln = 0;
+
+//         const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+
+//         danhSachTrave.forEach(nhom => {
+//             if (!nhom.danhsachfilelay) return;
+
+//             nhom.danhsachfilelay.forEach(voFile => {
+//                 const noiDung = khoRuotJSON[voFile.fileId];
+//                 if (!noiDung || noiDung.error) return;
+
+//                 // 🌟 GỌI HÀM BÓC TÁCH THÔNG MINH
+//                 const dapAnChuan = window.ham_17_24_trich_xuat_dap_an_chuan(noiDung, nhom.loai);
+//                 console.log(`[DEBUG 17.23] Kết quả trích xuất đáp án chuẩn:`, dapAnChuan);
+
+//                 // Đếm cấu trúc
+//                 if (nhom.loai === "TN") so_tn++;
+//                 else if (nhom.loai === "DS") so_ds++;
+//                 else so_tln++;
+
+//                 // 🌟 BÓC TÁCH CHÍNH XÁC id_Cau VÀ ma_goc TỪ TÊN FILE
+//                 // Giả định tên file có dạng: "[2D1H3-1] Cau 1_TN_2605-76.json"
+//                 let idCauChinhXac = nhom.idCau;
+//                 let maGocChinhXac = nhom.idCau;
+
+//                 if (voFile.fileName) {
+//                     // 1. Cắt id_Cau (Lấy nội dung trong ngoặc vuông) -> [2D1H3-1]
+//                     const matchId = voFile.fileName.match(/\[.*?\]/);
+//                     if (matchId && matchId[0]) {
+//                         idCauChinhXac = matchId[0];
+//                     }
+
+//                     // 2. Cắt ma_goc (Lấy cụm sau cùng phân cách bởi dấu _) -> 2605-76
+//                     const parts = voFile.fileName.split('_');
+//                     if (parts.length >= 3) {
+//                         maGocChinhXac = parts[2].replace('.json', '').trim();
+//                     }
+//                 }
+
+//                 // Sinh mã bảo mật
+//                 const maCauHoi = "q_" + randomHex(10);
+//                 const maLoiGiai = "sol_" + randomHex(10);
+
+//                 // Ưu tiên lấy từ ruột JSON, nếu không có thì lấy chuỗi vừa cắt từ tên file
+//                 const maGoc = noiDung.ma_goc || noiDung.maGoc || maGocChinhXac;
+//                 //const dapAn = noiDung.dap_an || noiDung.dapAn || "";
+
+//                 // Băm file TeX
+//                 console.log(`[DEBUG 17.23] Băm TeX cho file [${voFile.fileId}]:`, noiDung);
+//                 let phanTich = window.ham_99_2_phan_tich_cau_hoi_tex(noiDung.noi_dung);
+//                 console.log(`[DEBUG 17.23] Phân tích TeX cho file [${voFile.fileId}]:`, noiDung + "phân tích: " + phanTich);
+//                 // Lọc dọn rác toán học (Hàm 6.19)
+//                 let cauDanXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.cauDan);
+//                 let paAXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paA);
+//                 let paBXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paB);
+//                 let paCXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paC);
+//                 let paDXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.paD);
+//                 let loiGiaiXuly = window.ham_99_4_xu_ly_du_lieu_truoc_khi_push(phanTich.loiGiai);
+
+//                 console.log(`[DEBUG 17.23] Kết quả xử lý dữ liệu trước khi push cho file [${voFile.fileId}]:`, {
+//                     cauDanXuly, paAXuly, paBXuly, paCXuly, paDXuly, loiGiaiXuly
+//                 });
+
+
+//                 // 🌟 2.1: Ghi vào Bản đồ Kho Báu (CHUẨN 100% CẤU TRÚC C#)
+//                 banDoSupabase.push({
+//                     dap_an: dapAnChuan, 
+//                     id_Cau: idCauChinhXac, // VD: [2D1H3-1]
+//                     ma_goc: maGoc,         // VD: 2605-76
+//                     ma_cau_hoi: maCauHoi,
+//                     ma_loi_giai: maLoiGiai
+//                 });
+
+
+
+
+//                 // 2.2: Đóng gói JSON Đề thi (GitHub)
+//                 let cauHoiDeThi = {
+//                     maCau: maCauHoi,
+//                     ma_goc: maGoc,
+//                     kieuCau: nhom.loai,
+//                     cauDan: cauDanXuly
+//                 };
+
+//                 if (nhom.loai !== 'TLN') {
+//                     cauHoiDeThi.paA = paAXuly || "";
+//                     cauHoiDeThi.paB = paBXuly || "";
+//                     cauHoiDeThi.paC = paCXuly || "";
+//                     cauHoiDeThi.paD = paDXuly || "";
+//                 }
+//                 dsCauHoiGithub.push(cauHoiDeThi);
+
+//                 // 2.3: Băm nhỏ File Lời Giải (GitHub)
+//                 let objLoiGiai = {
+//                     maBaoMat: maLoiGiai,
+//                     dapAn: dapAnChuan,
+//                     loiGiai: loiGiaiXuly || "Chưa cập nhật lời giải"
+//                 };
+
+//                 filesToCommit.push({
+//                     path: `Ngan_Hang_Loi_Giai/${maLoiGiai}.json`,
+//                     mode: "100644",
+//                     type: "blob",
+//                     content: JSON.stringify(objLoiGiai, null, 4)
+//                 });
+//             });
+//         });
+
+//         if (banDoSupabase.length === 0) throw new Error("Thất bại: Không có dữ liệu câu hỏi nào được tải thành công.");
+
+//         let objDeThiGoc = {
+//             maDe: maHL,
+//             tenDe: tenHL,
+//             thoiGian: thoiGian,
+//             danhSachCauHoi: dsCauHoiGithub
+//         };
+
+//         const pathFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+//         filesToCommit.push({
+//             path: pathFileDe,
+//             mode: "100644",
+//             type: "blob",
+//             content: JSON.stringify(objDeThiGoc, null, 4)
+//         });
+
+//         // --- BƯỚC 3: ĐẨY LÊN GITHUB BẰNG TREE COMMIT ---
+//         Swal.fire({ title: '☁️ Đang đẩy dữ liệu lên GitHub...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+//         const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+//         const BRANCH = "main";
+//         const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+//         const headers = { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github.v3+json", "Content-Type": "application/json" };
+
+//         let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+//         let data = await res.json();
+//         let baseCommitSha = data.object.sha;
+
+//         res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+//         data = await res.json();
+//         let baseTreeSha = data.tree.sha;
+
+//         res = await fetch(`${baseURL}/git/trees`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+//         });
+//         if (!res.ok) throw new Error("Lỗi tạo cấu trúc thư mục trên GitHub.");
+//         data = await res.json();
+//         let newTreeSha = data.sha;
+
+//         res = await fetch(`${baseURL}/git/commits`, {
+//             method: "POST", headers,
+//             body: JSON.stringify({
+//                 message: `Tự động bốc đề ${maHL} từ kho Drive với ${banDoSupabase.length} câu`,
+//                 tree: newTreeSha,
+//                 parents: [baseCommitSha]
+//             })
+//         });
+//         data = await res.json();
+//         let newCommitSha = data.sha;
+
+//         res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+//             method: "PATCH", headers,
+//             body: JSON.stringify({ sha: newCommitSha })
+//         });
+//         if (!res.ok) throw new Error("Lỗi chốt nhánh GitHub.");
+
+//         const repoParts = GITHUB_REPO.split('/');
+//         const urlGithubFinal = `https://${repoParts[0]}.github.io/${repoParts[1]}/${pathFileDe}`;
+
+//         // --- BƯỚC 4: LƯU VÀO SUPABASE (CHUẨN METADATA C#) ---
+//         Swal.fire({ title: '💾 Đang khóa két sắt Supabase...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//         const metadataObj = {
+//             so_ds: so_ds,
+//             so_tn: so_tn,
+//             so_tln: so_tln,
+//             cau_truc: `${so_tn}TN - ${so_ds}DS - ${so_tln}TLN`,
+//             nguon_tao: "Web_Auto_Kho_Drive",
+//             phan_loai_goc: loaiKiemTra
+//         };
+
+//         const payloadSupabase = {
+//             ma_hoc_lieu: maHL,
+//             ten_hoc_lieu: tenHL,
+//             loai_kiem_tra: loaiKiemTra,
+//             khoi_lop: khoiLop,
+//             thoi_gian_lam_bai: thoiGian,
+//             trang_thai: "noi_bo",
+//             quy_mo_cau_hoi: banDoSupabase.length,
+//             metadata: metadataObj,
+//             danh_sach_cau_hoi: banDoSupabase,
+//             url_github: urlGithubFinal,
+//             uid_gv_tao: AppState.user?.uid || null,
+//             ngay_tao: new Date().toISOString()
+//         };
+
+//         const { error: errDB } = await _supabase.from('hoc_lieu_trac_nghiem').insert([payloadSupabase]);
+//         if (errDB) throw errDB;
+
+//         // --- HOÀN TẤT ---
+//         Swal.fire({
+//             icon: 'success',
+//             title: 'TẠO HỌC LIỆU THÀNH CÔNG!',
+//             html: `Đã tạo Đề thi <b>${maHL}</b> gồm ${banDoSupabase.length} câu hỏi.<br>Hệ thống đã lưu cấu trúc lên Supabase và đẩy đề lên GitHub.`,
+//             confirmButtonText: 'Quay về Quản lý'
+//         }).then(() => {
+//             if (typeof ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem === 'function') {
+//                 ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem();
+//             }
+//         });
+
+//     } catch (e) {
+//         Swal.fire('Thất bại', e.message, 'error');
+//         console.error("Lỗi quy trình xuất học liệu:", e);
+//     }
+// };
+
+
+
+window.ham_17_23_thuc_thi_day_hoc_lieu = async function (thongTinForm, danhSachTrave) {
+    const { maHL, tenHL, thoiGian, khoiLop, loaiKiemTra } = thongTinForm;
+
+    try {
+        // --- BƯỚC 1: GOM ID FILE ĐỂ TẢI RUỘT TỪ DRIVE ---
+        Swal.fire({ title: '⏳ Đang tải nội dung câu hỏi từ Drive...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        //console.log(`[DEBUG 17.23] Bắt đầu tải ruột cho ${danhSachTrave.length} nhóm câu hỏi...`);
+        let dsFileIdCanTai = [];
+        danhSachTrave.forEach(nhom => {
+            if (nhom.danhsachfilelay) {
+                nhom.danhsachfilelay.forEach(file => dsFileIdCanTai.push(file.fileId));
+            }
+        });
+
+        const resRuot = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+            method: "POST",
+            body: JSON.stringify({ action: "tai_ruot_file_json_da_boc", danhSachFileId: [...new Set(dsFileIdCanTai)] })
+        });
+
+        const resultRuot = await resRuot.json();
+
+
+        console.log(`[DEBUG 17.23] Kết quả tải ruột:`, resultRuot);
+        if (resultRuot.status !== "success") throw new Error("Lỗi đọc Drive: " + resultRuot.message);
+        const khoRuotJSON = resultRuot.data;
+
+
+
+        // --- BƯỚC 2: ĐÓNG GÓI CHUẨN CẤU TRÚC ĐỀ THI ---
+        Swal.fire({ title: '⚙️ Đang đóng gói dữ liệu và mã hóa...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        let dsCauHoiGithub = [];
+        let banDoSupabase = [];
+        let filesToCommit = [];
+        let so_tn = 0, so_ds = 0, so_tln = 0;
+
+        const randomHex = (len) => Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+
+        // Thay vì danhSachTrave.forEach(nhom => { ...
+        for (let nhom of danhSachTrave) {
+            if (!nhom.danhsachfilelay) return;
+
+            // Thay vì nhom.danhsachfilelay.forEach(voFile => { ...
+            for (let voFile of nhom.danhsachfilelay) {
+                const noiDung = khoRuotJSON[voFile.fileId];
+                if (!noiDung || noiDung.error) return;
+
+                // 🌟 GỌI HÀM BÓC TÁCH THÔNG MINH
+                const dapAnChuan = window.ham_17_24_trich_xuat_dap_an_chuan(noiDung, nhom.loai);
+                console.log(`[DEBUG 17.23] Kết quả trích xuất đáp án chuẩn:`, dapAnChuan);
+
+                // Đếm cấu trúc
+                if (nhom.loai === "TN") so_tn++;
+                else if (nhom.loai === "DS") so_ds++;
+                else so_tln++;
+
+                // 🌟 BÓC TÁCH CHÍNH XÁC id_Cau VÀ ma_goc TỪ TÊN FILE
+                // Giả định tên file có dạng: "[2D1H3-1] Cau 1_TN_2605-76.json"
+                let idCauChinhXac = nhom.idCau;
+                let maGocChinhXac = nhom.idCau;
+
+                if (voFile.fileName) {
+                    // 1. Cắt id_Cau (Lấy nội dung trong ngoặc vuông) -> [2D1H3-1]
+                    const matchId = voFile.fileName.match(/\[.*?\]/);
+                    if (matchId && matchId[0]) {
+                        idCauChinhXac = matchId[0];
+                    }
+
+                    // 2. Cắt ma_goc (Lấy cụm sau cùng phân cách bởi dấu _) -> 2605-76
+                    const parts = voFile.fileName.split('_');
+                    if (parts.length >= 3) {
+                        maGocChinhXac = parts[2].replace('.json', '').trim();
+                    }
+                }
+
+                // Sinh mã bảo mật
+                const maCauHoi = "q_" + randomHex(10);
+                const maLoiGiai = "sol_" + randomHex(10);
+
+                // Ưu tiên lấy từ ruột JSON, nếu không có thì lấy chuỗi vừa cắt từ tên file
+                const maGoc = noiDung.ma_goc || noiDung.maGoc || maGocChinhXac;
+                //const dapAn = noiDung.dap_an || noiDung.dapAn || "";
+
+                // Băm file TeX
+                console.log(`[DEBUG 17.23] Băm TeX cho file [${voFile.fileId}]:`, noiDung);
+                let phanTich = window.ham_99_2_phan_tich_cau_hoi_tex(noiDung.noi_dung);
+                console.log(`[DEBUG 17.23] Phân tích TeX cho file [${voFile.fileId}]:`, noiDung + "phân tích: " + phanTich);
+                // Lưu ý: maGoc hoặc idCauChinhXac là mã đề tương ứng để GitHub biết lưu vào thư mục nào
+                let cauDanXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL,idCauChinhXac,phanTich.cauDan);
+                let paAXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL, idCauChinhXac,phanTich.paA);
+                let paBXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL, idCauChinhXac,phanTich.paB);
+                let paCXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL, idCauChinhXac,phanTich.paC);
+                let paDXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL, idCauChinhXac,phanTich.paD);
+                let loiGiaiXuly = await window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github(maHL, idCauChinhXac,phanTich.loiGiai);
+
+
+
+                console.log(`[DEBUG 17.23] Kết quả xử lý dữ liệu trước khi push cho file [${voFile.fileId}]:`, {
+                    cauDanXuly, paAXuly, paBXuly, paCXuly, paDXuly, loiGiaiXuly
+                });
+
+
+                // 🌟 2.1: Ghi vào Bản đồ Kho Báu (CHUẨN 100% CẤU TRÚC C#)
+                banDoSupabase.push({
+                    dap_an: dapAnChuan,
+                    id_Cau: idCauChinhXac, // VD: [2D1H3-1]
+                    ma_goc: maGoc,         // VD: 2605-76
+                    ma_cau_hoi: maCauHoi,
+                    ma_loi_giai: maLoiGiai
+                });
+
+
+
+
+                // 2.2: Đóng gói JSON Đề thi (GitHub)
+                let cauHoiDeThi = {
+                    maCau: maCauHoi,
+                    ma_goc: maGoc,
+                    kieuCau: nhom.loai,
+                    cauDan: cauDanXuly
+                };
+
+                if (nhom.loai !== 'TLN') {
+                    cauHoiDeThi.paA = paAXuly || "";
+                    cauHoiDeThi.paB = paBXuly || "";
+                    cauHoiDeThi.paC = paCXuly || "";
+                    cauHoiDeThi.paD = paDXuly || "";
+                }
+                dsCauHoiGithub.push(cauHoiDeThi);
+
+                // 2.3: Băm nhỏ File Lời Giải (GitHub)
+                let objLoiGiai = {
+                    maBaoMat: maLoiGiai,
+                    dapAn: dapAnChuan,
+                    loiGiai: loiGiaiXuly || "Chưa cập nhật lời giải"
+                };
+
+                filesToCommit.push({
+                    path: `Ngan_Hang_Loi_Giai/${maLoiGiai}.json`,
+                    mode: "100644",
+                    type: "blob",
+                    content: JSON.stringify(objLoiGiai, null, 4)
+                });
+            };
+        };
+
+        if (banDoSupabase.length === 0) throw new Error("Thất bại: Không có dữ liệu câu hỏi nào được tải thành công.");
+
+        let objDeThiGoc = {
+            maDe: maHL,
+            tenDe: tenHL,
+            thoiGian: thoiGian,
+            danhSachCauHoi: dsCauHoiGithub
+        };
+
+        const pathFileDe = `Kho_De_Thi/${maHL}/DeThi_${maHL}.json`;
+        filesToCommit.push({
+            path: pathFileDe,
+            mode: "100644",
+            type: "blob",
+            content: JSON.stringify(objDeThiGoc, null, 4)
+        });
+
+        // --- BƯỚC 3: ĐẨY LÊN GITHUB BẰNG TREE COMMIT ---
+        Swal.fire({ title: '☁️ Đang đẩy dữ liệu lên GitHub...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        const GITHUB_TOKEN = CFG_HE_THONG.GITHUB_TOKEN;
+        const GITHUB_REPO = CFG_HE_THONG.GITHUB_REPO;
+        const BRANCH = "main";
+        const baseURL = `https://api.github.com/repos/${GITHUB_REPO}`;
+        const headers = { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github.v3+json", "Content-Type": "application/json" };
+
+        let res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, { headers });
+        let data = await res.json();
+        let baseCommitSha = data.object.sha;
+
+        res = await fetch(`${baseURL}/git/commits/${baseCommitSha}`, { headers });
+        data = await res.json();
+        let baseTreeSha = data.tree.sha;
+
+        res = await fetch(`${baseURL}/git/trees`, {
+            method: "POST", headers,
+            body: JSON.stringify({ base_tree: baseTreeSha, tree: filesToCommit })
+        });
+        if (!res.ok) throw new Error("Lỗi tạo cấu trúc thư mục trên GitHub.");
+        data = await res.json();
+        let newTreeSha = data.sha;
+
+        res = await fetch(`${baseURL}/git/commits`, {
+            method: "POST", headers,
+            body: JSON.stringify({
+                message: `Tự động bốc đề ${maHL} từ kho Drive với ${banDoSupabase.length} câu`,
+                tree: newTreeSha,
+                parents: [baseCommitSha]
+            })
+        });
+        data = await res.json();
+        let newCommitSha = data.sha;
+
+        res = await fetch(`${baseURL}/git/refs/heads/${BRANCH}`, {
+            method: "PATCH", headers,
+            body: JSON.stringify({ sha: newCommitSha })
+        });
+        if (!res.ok) throw new Error("Lỗi chốt nhánh GitHub.");
+
+        const repoParts = GITHUB_REPO.split('/');
+        const urlGithubFinal = `https://${repoParts[0]}.github.io/${repoParts[1]}/${pathFileDe}`;
+
+        // --- BƯỚC 4: LƯU VÀO SUPABASE (CHUẨN METADATA C#) ---
+        Swal.fire({ title: '💾 Đang khóa két sắt Supabase...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        const metadataObj = {
+            so_ds: so_ds,
+            so_tn: so_tn,
+            so_tln: so_tln,
+            cau_truc: `${so_tn}TN - ${so_ds}DS - ${so_tln}TLN`,
+            nguon_tao: "Web_Auto_Kho_Drive",
+            phan_loai_goc: loaiKiemTra
+        };
+
+        const payloadSupabase = {
+            ma_hoc_lieu: maHL,
+            ten_hoc_lieu: tenHL,
+            loai_kiem_tra: loaiKiemTra,
+            khoi_lop: khoiLop,
+            thoi_gian_lam_bai: thoiGian,
+            trang_thai: "noi_bo",
+            quy_mo_cau_hoi: banDoSupabase.length,
+            metadata: metadataObj,
+            danh_sach_cau_hoi: banDoSupabase,
+            url_github: urlGithubFinal,
+            uid_gv_tao: AppState.user?.uid || null,
+            ngay_tao: new Date().toISOString()
+        };
+
+        const { error: errDB } = await _supabase.from('hoc_lieu_trac_nghiem').insert([payloadSupabase]);
+        if (errDB) throw errDB;
+
+        // --- HOÀN TẤT ---
+        Swal.fire({
+            icon: 'success',
+            title: 'TẠO HỌC LIỆU THÀNH CÔNG!',
+            html: `Đã tạo Đề thi <b>${maHL}</b> gồm ${banDoSupabase.length} câu hỏi.<br>Hệ thống đã lưu cấu trúc lên Supabase và đẩy đề lên GitHub.`,
+            confirmButtonText: 'Quay về Quản lý'
+        }).then(() => {
+            if (typeof ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem === 'function') {
+                ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem();
+            }
+        });
+
+    } catch (e) {
+        Swal.fire('Thất bại', e.message, 'error');
+        console.error("Lỗi quy trình xuất học liệu:", e);
+    }
+};
+
+
+window.ham_17_24_trich_xuat_dap_an_chuan = function (noiDungObj, loaiCau) {
+    // 1. Lấy nội dung gốc từ Object (Thầy cần xem biến trong JSON là noiDungHtml hay noi_dung)
+    let tex = noiDungObj.noiDungHtml || noiDungObj.noi_dung || "";
+    if (!tex) return "";
+
+    // 2. Logic bóc tách đáp án (Mô phỏng lại logic C# của thầy)
+    if (loaiCau === "TN") {
+        // Tìm 4 khối choice
+        const match = tex.match(/\\choice\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}/);
+        if (match) {
+            for (let i = 1; i <= 4; i++) {
+                if (match[i].includes("\\True")) return String.fromCharCode(64 + i);
+            }
+        }
+        return "A"; // Mặc định
+    }
+    else if (loaiCau === "DS") {
+        const match = tex.match(/\\choiceTF\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}\s*\{([\s\S]*?)\}/);
+        if (match) {
+            let ans = "";
+            for (let i = 1; i <= 4; i++) {
+                ans += match[i].includes("\\True") ? "T" : "F";
+            }
+            return ans; // Trả về "TFFT"
+        }
+        return "TFFF";
+    }
+    else if (loaiCau === "TLN" || loaiCau === "NGAN") {
+        // Regex lấy trong \shortans{...}
+        const match = tex.match(/\\shortans(?:\[[^\]]*\])?\s*\{([^}]+)\}/);
+        if (match) {
+            let inner = match[1].replace(/\{,\}/g, ",");
+            return inner.replace(/[^0-9\-\.,]/g, ""); // "Quét rác" giống C#
+        }
+        return "123";
+    }
+
+    return "";
+};
+
+
+window.ham_17_25_boc_tach_id_anh_tu_cau_hoi = function (cauHoi) {
+    let noiDung = cauHoi.noi_dung || "";
+    let maCau = cauHoi.maCau || cauHoi.ma_cau_hoi || cauHoi.id || "Unknown";
+
+    // ==========================================
+    // BƯỚC 1: PHÂN TÁCH PHẦN ĐỀ VÀ PHẦN GIẢI
+    // ==========================================
+    let phanDe = noiDung;
+    let phanGiai = "";
+
+    // Tìm vị trí bắt đầu của \loigiai{
+    const chiMucLoiGiai = noiDung.indexOf("\\loigiai");
+
+    if (chiMucLoiGiai !== -1) {
+        // Phần đề là từ đầu cho đến trước chữ \loigiai
+        phanDe = noiDung.substring(0, chiMucLoiGiai);
+        // Phần giải là từ \loigiai cho đến hết
+        phanGiai = noiDung.substring(chiMucLoiGiai);
+    }
+
+    // ==========================================
+    // BƯỚC 2: HÀM PHỤ TRỢ QUÉT ẢNH (BẮT REGEX)
+    // ==========================================
+    const quetIdAnh = (text) => {
+        if (!text) return [];
+        let danhSachId = new Set(); // Dùng Set để tự động lọc các ảnh trùng lặp
+
+        // 1. Quét cú pháp LaTeX: \includegraphics[...]{id_hoac_ten_file}
+        const texRegex = /\\includegraphics(?:\[.*?\])?\{(.+?)\}/g;
+        let matchTex;
+        while ((matchTex = texRegex.exec(text)) !== null) {
+            // Lấy nội dung trong ngoặc nhọn. Nếu là đường dẫn (VD: folder/hinh1.png), chỉ lấy hinh1.png
+            let idAnh = matchTex[1].split('/').pop().trim();
+            danhSachId.add(idAnh);
+        }
+
+        // 2. Quét cú pháp HTML: <img src="url_hoac_id"> (Đề phòng câu hỏi được soạn bằng Rich Text)
+        const htmlRegex = /<img[^>]+src=['"]([^'"]+)['"]/g;
+        let matchHtml;
+        while ((matchHtml = htmlRegex.exec(text)) !== null) {
+            let url = matchHtml[1];
+
+            // Nếu là dạng Base64 thì bỏ qua
+            if (url.startsWith('data:image')) continue;
+
+            // Nếu là link Google Drive, bóc lấy ID (VD: drive.google.com/uc?id=1A2B...)
+            let gdriveMatch = url.match(/(?:id=|\/d\/)([a-zA-Z0-9_-]+)/);
+            if (gdriveMatch && gdriveMatch[1]) {
+                danhSachId.add(gdriveMatch[1]);
+            } else {
+                // Nếu là link bình thường, lấy tên file cuối cùng
+                let idAnh = url.split('/').pop().trim();
+                danhSachId.add(idAnh);
+            }
+        }
+
+        return Array.from(danhSachId); // Trả về mảng
+    };
+
+    // ==========================================
+    // BƯỚC 3: THỰC THI VÀ TRẢ KẾT QUẢ
+    // ==========================================
+    return {
+        id: cauHoi.id,
+        maCau: maCau,
+        anhDe: quetIdAnh(phanDe),    // Mảng chứa ID/Tên ảnh của phần Đề
+        anhGiai: quetIdAnh(phanGiai) // Mảng chứa ID/Tên ảnh của phần Giải
+    };
+};
