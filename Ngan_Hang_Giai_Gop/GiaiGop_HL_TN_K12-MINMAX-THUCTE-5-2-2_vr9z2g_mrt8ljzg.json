@@ -1,0 +1,50 @@
+{
+  "thoiGianGhep": "2026-07-20T13:04:54.890Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_fae4cd1351",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $P'(x) = -0,9x^2 + 72x + 1800$.\\\\\r\n\t\tGiải phương trình $P'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 100 \\\\ x &= -20 \\text{ (loại)} \\end{aligned} \\right.$\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_fae4cd1351_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, lợi nhuận đạt giá trị lớn nhất khi công ty sản xuất $100$ máy xay sinh tố.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_bbd7f54547",
+      "dapAn": "D",
+      "loiGiaiHtml": "Vận tốc $v=s'=-6t^2+48t+9$.\\\\\r\n\t$v'=12t+48$.\\\\\r\n\t$v'=0\\Leftrightarrow t=4$.\\\\\r\n\t$v(0)=9$; $v(4)=105$; $v(8)=9$.\\\\\r\n\tVậy trong khoảng thời gian $8$ giây, kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng $105$ (m/s)."
+    },
+    {
+      "maBaoMat": "sol_be085c8e27",
+      "dapAn": "B",
+      "loiGiaiHtml": "Đạo hàm $C'(v)=-\\dfrac{5400}{v^2}+\\dfrac{3}{2}$.\\\\\r\n\t$C'(v)=0\r\n\t\\Rightarrow \\left[ \\begin{array}{l}\nx=-60\\text{ (loại)}\\\\v=60\\text{ (nhận)}.\n\\end{array} \\right.$\\\\\r\n\t$C(v)=\\dfrac{5400}{v}+\\dfrac{3}{2}v$ ($0 < v\\le 120$).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/sol_be085c8e27_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTừ bảng biến thiên suy ra tài xế nên lái xe với tốc độ $60$ (km/h) trung bình tiết kiệm tiền xăng nhất."
+    },
+    {
+      "maBaoMat": "sol_296a11ff81",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vận tốc tức thời của xe là $v(t) = x' = 12t - 6t^2$.\\\\\r\n\t\tXét $v'(t) = 12 - 12t$; $v'(t) = 0 \\Leftrightarrow t = 1$.\\\\\r\n\t\tXét hàm số $v(t) = 12t - 6t^2$ trên đoạn $[0; 2]$, ta thấy hàm số đạt giá trị lớn nhất tại $t = 1$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_792ad65243",
+      "dapAn": "C",
+      "loiGiaiHtml": "Cạnh hình vuông nhỏ có độ dài là $x$ (cm), với $0 < x < 20$. \\\\\r\n\t\tHình hộp chữ nhật có cạnh đáy là: $(40-2x)$ (cm) và chiều cao là $x$ (cm). \\\\\r\n\t\tThể tích của khối hộp là: $V(x) = x(40-2x)^2 = 4x^3 - 160x^2 + 1600x$. \\\\\r\n\t\tTa có: $V'(x) = 12x^2 - 320x + 1600$. \\\\\r\n\t\t$V'(x) = 0 \\Leftrightarrow \\displaystyle \\begin{bmatrix} x_1 = 20 \\\\ x_2 = \\frac{20}{3} \\end{bmatrix}$. \\\\\r\n\t\tTa có bảng biến thiên sau đây: \\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_792ad65243_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy: $\\displaystyle \\max_{(0;20)} V(x) = V\\left(\\frac{20}{3}\\right) = \\frac{128000}{27}$."
+    },
+    {
+      "maBaoMat": "sol_885f292c68",
+      "dapAn": "FFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số tiền nhà máy $A$ thu được khi bán $x$ (tấn) sản phẩm là $R(x) = xP(x) = 45x - 0,001x^3$.\\\\\r\n\t\t\tSố tiền nhà máy $A$ thu được khi bán $10$ tấn sản phẩm cho nhà máy $B$ là $R(10) = 449$ (triệu đồng).\r\n\t\t\t\\itemch Lợi nhuận mà nhà máy $A$ thu được khi bán $x$ (tấn) sản phẩm ($0 \\le x \\le 100$) cho nhà máy $B$ là: $H(x) = R(x) - C(x) = -0,001x^3 + 15x - 100$.\\\\\r\n\t\t\t$H'(x) = -0,003x^2 + 15$. $H'(x) = 0 \\Rightarrow \\displaystyle \\left[ \\begin{aligned} &x \\approx 70,7 \\in [0; 100] \\\\ &x \\approx -70,7 \\notin [0; 100] \\end{aligned} \\right.$.\\\\\r\n\t\t\tTa có: $H(0) = -100$; $H(70,7) \\approx 607,1$; $H(100) = 400$.\\\\\r\n\t\t\t$\\Rightarrow \\max\\limits_{[0; 100]} H(x) = H(70,7) = 607,1$.\\\\\r\n\t\t\tVậy nhà máy $A$ bán cho nhà máy $B$ là $70,7$ tấn sản phẩm mỗi tháng thì thu được lợi nhuận lớn nhất.\r\n\t\t\t\\itemch Chi phí để nhà máy $A$ sản xuất $10$ tấn sản phẩm trong một tháng là $C(10) = 400$ (triệu đồng).\r\n\t\t\t\\itemch Lợi nhuận mà nhà máy $A$ thu được khi bán $x$ (tấn) sản phẩm ($0 \\le x \\le 100$) cho nhà máy $B$ là: $H(x) = R(x) - C(x) = -0,001x^3 + 15x - 100$ (triệu đồng).\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_dec51191f1",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Doanh thu của công ty là $R(x) = x \\cdot S(x) = x\\sqrt{45-x}$ (tỷ đồng).\\\\\r\n\t\t\tTheo đề bài, chi phí cố định là $10$ tỷ đồng, chi phí biến đổi là $C_v = 3S^2$.\\\\\r\n\t\t\tLợi nhuận của công ty khi bán với mức giá $x$ là $L(x) = R(x) - C_v - 10 = x\\sqrt{45-x} - 3\\left(\\sqrt{45-x}\\right)^2 - 10 = x\\sqrt{45-x} + 3x - 145$.\\\\\r\n\t\t\tXét hàm lợi nhuận $L(x) = x\\sqrt{45-x} + 3x - 145$ trên đoạn $[0;45)$, ta có:\r\n\t\t\t$L'(x) = \\sqrt{45-x} - \\displaystyle\\frac{x}{2\\sqrt{45-x}} + 3 = \\displaystyle\\frac{90-3x+6\\sqrt{45-x}}{2\\sqrt{45-x}}$.\\\\\r\n\t\t\t$L'(x) = 0 \\Leftrightarrow 2\\sqrt{45-x} = x - 30 \\Leftrightarrow \\begin{cases} x \\ge 30 \\\\ x^2 - 56x + 720 = 0 \\end{cases} \\Leftrightarrow x = 36$.\\\\\r\n\t\t\tTa có $L(0) = -145$, $L(36) = 71$. Vậy lợi nhuận của công ty cao nhất khi bán với mức giá cước $36$ triệu đồng/tháng. Do đó ý này sai.\r\n\t\t\t\\itemch Theo phân tích ở trên, doanh thu của công ty là $R(x) = x\\sqrt{45-x}$ (tỷ đồng). Do đó ý này đúng.\r\n\t\t\t\\itemch Theo đề bài, chi phí cố định của công ty là $10$ tỷ đồng (đại lượng $C_v$ là chi phí biến đổi). Do đó ý này sai.\r\n\t\t\t\\itemch Theo phân tích ở trên, lợi nhuận của công ty là $L(x) = x\\sqrt{45-x} + 3x - 145$. Do đó ý này đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_7c5aa8935d",
+      "dapAn": "180",
+      "loiGiaiHtml": "Hàm số: $y = f(x) = ax^3 + bx^2 + cx + d$.\\\\\r\n\t\tTa có $f(0) = 50 \\Rightarrow d = 50$.\\\\\r\n\t\tMặt khác:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $f(20) = 0$ nên $8000a + 400b + 20c + 50 = 0 \\quad (1)$.\r\n\t\t\t\\item $f(50) = 0$ nên $125\\,000a + 2500b + 50c + 50 = 0 \\Leftrightarrow 2500a + 50b + c + 1 = 0 \\quad (2)$.\r\n\t\t\t\\item $f(100) = 0$ nên $1\\,000\\,000a + 10\\,000b + 100c + 50 = 0 \\Leftrightarrow 20\\,000a + 200b + 2c + 1 = 0 \\quad (3)$.\r\n\t\t\\end{itemize}\r\n\t\tGiải hệ phương trình $(1), (2), (3)$ ta được $a = -\\frac{1}{2000}; b = \\frac{17}{200}; c = -4$.\\\\\r\n\t\tVậy hàm số $f(x) = -\\frac{1}{2000}x^3 + \\frac{17}{200}x^2 - 4x + 50$.\\\\\r\n\t\t$f'(x) = -\\frac{3}{2000}x^2 + \\frac{17}{100}x - 4$.\\\\\r\n\t\tGiải $f'(x) = 0 \\Leftrightarrow 3x^2 - 340x + 8000 = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x_1 = \\frac{100}{3} \\\\ &x_2 = 80. \\end{aligned} \\right.$\\\\\r\n\t\tDựa vào đồ thị ta thấy:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Điểm cao nhất (cực đại) khi tàu lên khỏi mặt đất (vùng $x > 50$) ứng với $x = 80 \\Rightarrow p = 80$.\r\n\t\t\t\\item Điểm thấp nhất (cực tiểu) khi tàu xuống dưới mặt đất (vùng $20 < x < 50$) ứng với $x = \\frac{100}{3} \\Rightarrow q = \\frac{100}{3}$.\r\n\t\t\\end{itemize}\r\n\t\tTính $3q + p = 3 \\cdot \\frac{100}{3} + 80 = 100 + 80 = 180$."
+    },
+    {
+      "maBaoMat": "sol_8a88faa035",
+      "dapAn": "293",
+      "loiGiaiHtml": "Do chi phí trung bình cho một bộ đồ chơi là $\\bar{C}(x) = 1,5x + 1800 + \\displaystyle\\frac{5000000}{x}$ nên tổng chi phí cho $x$ bộ đồ chơi là:\\\\\r\n\t\t$C(x) = x \\cdot \\bar{C}(x) = x \\cdot \\left( 1,5x + 1800 + \\displaystyle\\frac{5000000}{x} \\right) = 1,5x^{2} + 1800x + 5000000$.\\\\\r\n\t\tKhi đó hàm lợi nhuận là: $R(x) = F(x) - C(x) = 2x^{3} - 6001,5x^{2} + 2998200x + 3000000$.\\\\\r\n\t\tXét hàm số $R(x)$ trên đoạn $[0; 1000]$, ta có:\\\\\r\n\t\t$R'(x) = 6x^{2} - 12003x + 2998200$.\\\\\r\n\t\t$R'(x) = 0 \\Leftrightarrow 6x^{2} - 12003x + 2998200 = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x \\approx 1708 \\notin [0; 1000] \\\\ &x \\approx 293 \\in [0; 1000] \\end{aligned} \\right.$.\\\\\r\n\t\tBảng biến thiên cho thấy $R(x)$ đạt cực đại tại $x \\approx 293$.\\\\\r\n\t\tVậy công ty phải sản xuất $293$ bộ đồ chơi để lợi nhuận lớn nhất."
+    }
+  ]
+}
