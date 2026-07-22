@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1f9677144c",
+  "dapAn": "C",
+  "loiGiai": "Ta có $\\sin\\left(x+\\dfrac{\\pi}{3}\\right)=-\\dfrac{1}{2} \\Leftrightarrow \\sin\\left(x+\\dfrac{\\pi}{3}\\right)=\\sin\\left(-\\dfrac{\\pi}{6}\\right)$.\\\\\r\n\t\t$\\Leftrightarrow \\left[ \\begin{array}{l} x+\\dfrac{\\pi}{3}=-\\dfrac{\\pi}{6}+k2\\pi \\\\ x+\\dfrac{\\pi}{3}=\\pi+\\dfrac{\\pi}{6}+k2\\pi \\end{array} \\right., k\\in\\mathbb{Z}$.\\\\\r\n\t\t$\\Leftrightarrow \\left[ \\begin{array}{l} x=-\\dfrac{\\pi}{2}+k2\\pi \\\\ x=\\dfrac{5\\pi}{6}+k2\\pi \\end{array} \\right., k\\in\\mathbb{Z}$."
+}

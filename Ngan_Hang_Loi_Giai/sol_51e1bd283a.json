@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_51e1bd283a",
+  "dapAn": "60",
+  "loiGiai": "Theo đề $v_0 = 10$; $d = 5$ nên ta có phương trình\r\n\t\t\\allowdisplaybreaks\r\n\t\t\\begin{eqnarray*}\r\n\t\t\t5 = \\dfrac{10^2 \\sin 2\\alpha}{10} &\\Leftrightarrow& 5 = \\dfrac{100 \\sin 2\\alpha}{10} \\Leftrightarrow 5 = 10 \\sin 2\\alpha \\Leftrightarrow \\sin 2\\alpha = \\dfrac{1}{2}\\\\\r\n\t\t\t&\\Leftrightarrow& \\left[ \\begin{array}{l}\n2\\alpha = 30^\\circ + k360^\\circ \\\\ 2\\alpha = 150^\\circ + k360^\\circ\n\\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l}\n\\alpha = 15^\\circ + k180^\\circ \\\\ \\alpha = 75^\\circ + k180^\\circ.\n\\end{array} \\right.\r\n\t\t\\end{eqnarray*}\r\n\t\tDo $0^\\circ < \\alpha < 90^\\circ$ nên có hai góc ném là $\\alpha_1 = 75^\\circ$ và $\\alpha_2 = 15^\\circ$.\\\\\r\n\t\tVậy $\\alpha_1 - \\alpha_2 = 75^\\circ - 15^\\circ = 60^\\circ$."
+}

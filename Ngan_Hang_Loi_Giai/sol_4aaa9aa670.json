@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4aaa9aa670",
+  "dapAn": "6",
+  "loiGiai": "Chất điểm đi qua gốc tọa độ $O$ khi $x=0 \\Rightarrow \\sin^{2}(\\pi t)-1=0 \\Leftrightarrow \\sin^{2}(\\pi t)=1 \\Leftrightarrow \\begin{bmatrix} \\sin(\\pi t)=1 \\\\ \\sin(\\pi t)=-1 \\end{bmatrix}$.\\\\\r\n\t\tTrường hợp 1: $\\displaystyle \\sin(\\pi t)=1 \\Leftrightarrow \\pi t = \\frac{\\pi}{2}+k2\\pi \\Leftrightarrow t = \\frac{1}{2}+2k, k \\in \\mathbb{Z}$.\\\\\r\n\t\tDo $0 \\le t \\le 6 \\Rightarrow 0 \\le \\displaystyle \\frac{1}{2}+2k \\le 6 \\Leftrightarrow -\\frac{1}{4} \\le k \\le \\frac{11}{4} \\Rightarrow k \\in \\{0; 1; 2\\}$. Từ đây có $3$ lần.\\\\\r\n\t\tTrường hợp 2: $\\displaystyle \\sin(\\pi t)=-1 \\Leftrightarrow \\pi t = -\\frac{\\pi}{2}+k'2\\pi \\Leftrightarrow t = -\\frac{1}{2}+2k', k' \\in \\mathbb{Z}$.\\\\\r\n\t\tDo $0 \\le t \\le 6 \\Rightarrow 0 \\le \\displaystyle -\\frac{1}{2}+2k' \\le 6 \\Leftrightarrow \\frac{1}{4} \\le k' \\le \\frac{13}{4} \\Rightarrow k' \\in \\{1; 2; 3\\}$. Từ đây có $3$ lần.\\\\\r\n\t\tVậy trong khoảng thời gian từ $0$ đến $6$ giây, chất điểm đó đi qua gốc tọa độ $O$ $3 + 3 = 6$ lần."
+}

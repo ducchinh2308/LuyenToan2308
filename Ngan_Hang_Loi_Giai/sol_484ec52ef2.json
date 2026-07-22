@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_484ec52ef2",
+  "dapAn": "A",
+  "loiGiai": "Với mọi $x\\in\\mathbb{R}$, ta có\r\n\t\t\\[-1\\le\\sin x\\le 1\\Leftrightarrow-1\\le-\\sin x\\le 1\\Leftrightarrow 1\\le 2-\\sin x\\le 3\\Leftrightarrow 1\\le y\\le 3.\\]\r\n\t\tVậy giá trị lớn nhất và nhỏ nhất của hàm số là $y=2-\\sin x$ lần lượt là $3$ và $1$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5190dcfd10",
+  "dapAn": "FFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Chu kì tuần hoàn của hàm số $y = 2\\cos 2x - 1$ là $T = \\displaystyle \\frac{2\\pi}{2} = \\pi$. Do đó ý này sai.\r\n\t\t\t\\itemch Ta có $2\\cos 2x - 1 = 0 \\Leftrightarrow \\cos 2x = \\displaystyle \\frac{1}{2} \\Leftrightarrow 2x = \\pm \\displaystyle \\frac{\\pi}{3} + k2\\pi \\Leftrightarrow x = \\pm \\displaystyle \\frac{\\pi}{6} + k\\pi, (k \\in \\mathbb{Z})$. Do đó ý này sai.\r\n\t\t\t\\itemch Tập xác định của hàm số $y = 2\\cos 2x - 1$ là $D = \\mathbb{R}$. Do đó ý này sai.\r\n\t\t\t\\itemch Với mọi $x \\in \\left[-\\displaystyle \\frac{\\pi}{4}; 0\\right]$, ta có $2x \\in \\left[-\\displaystyle \\frac{\\pi}{2}; 0\\right] \\Leftrightarrow 0 \\le \\cos 2x \\le 1 \\Leftrightarrow 0 \\le 2\\cos 2x \\le 2 \\Leftrightarrow -1 \\le 2\\cos 2x - 1 \\le 1$.\\\\\r\n\t\t\tVậy giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = 2\\cos 2x - 1$ trên đoạn $\\left[-\\displaystyle \\frac{\\pi}{4}; 0\\right]$ lần lượt là $1$ và $-1$. Do đó ý này đúng.\r\n\t\t\\end{itemchoice}"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bf66021c8a",
+  "dapAn": "B",
+  "loiGiai": "Hàm số $y=\\dfrac{1-\\cos x}{\\sin x}$ xác định khi $\\sin x\\ne 0\\Leftrightarrow x\\ne k\\pi$, $k\\in\\mathbb{Z}$.\\\\\r\n\t\tTập xác định của hàm số $y=\\dfrac{1-\\cos x}{\\sin x}$ là $\\mathscr{D}=\\mathbb{R}\\setminus\\left\\lbrace k\\pi\\mid k\\in\\mathbb{Z}\\right\\rbrace$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bb60db7087",
+  "dapAn": "8",
+  "loiGiai": "Từ giả thiết ta có:\\\\\r\n\t\t$\\sin x + \\cos x = \\displaystyle\\frac{1}{2} \\Leftrightarrow (\\sin x + \\cos x)^2 = \\displaystyle\\frac{1}{4} \\Leftrightarrow 1 + 2\\sin x \\cos x = \\displaystyle\\frac{1}{4} \\Leftrightarrow 2\\sin x \\cos x = -\\displaystyle\\frac{3}{4} \\Leftrightarrow \\sin 2x = -\\displaystyle\\frac{3}{4}$.\\\\\r\n\t\tSuy ra $A = \\displaystyle\\frac{1 + \\sin 2x}{1 - \\sin 2x} = \\displaystyle\\frac{1 - \\displaystyle\\frac{3}{4}}{1 + \\displaystyle\\frac{3}{4}} = \\displaystyle\\frac{\\displaystyle\\frac{1}{4}}{\\displaystyle\\frac{7}{4}} = \\displaystyle\\frac{1}{7}$.\\\\\r\n\t\tVậy $a+b=8$."
+}

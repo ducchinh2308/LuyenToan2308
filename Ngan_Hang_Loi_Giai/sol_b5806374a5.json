@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b5806374a5",
+  "dapAn": "123",
+  "loiGiai": "Ta có\r\n\t\t\\begin{eqnarray*}\r\n\t\t\t&&(2\\cos2x+5)(\\sin^2x-\\cos^2x)=0\\\\\r\n\t\t\t&\\Leftrightarrow&\\left[ \\begin{array}{l}\n2\\cos2x+5=0\\\\\\sin^2x-\\cos^2x=0\n\\end{array} \\right.\\\\\r\n\t\t\t&\\Leftrightarrow&\\left[ \\begin{array}{l}\n\\cos2x=-\\dfrac{5}{2}\\text{(vô nghiệm)}\\\\-\\cos2x=0\n\\end{array} \\right.\\\\\r\n\t\t\t&\\Leftrightarrow&\\left[ \\begin{array}{l}\n\\cos2x=-\\dfrac{5}{2}\\\\\\cos2x=0\n\\end{array} \\right.\\\\\r\n\t\t\t&\\Leftrightarrow&\\cos2x=0\\\\\r\n\t\t\t&\\Leftrightarrow& 2x=\\dfrac{\\pi}{2}+k\\pi\\\\\r\n\t\t\t&\\Leftrightarrow& x=\\dfrac{\\pi}{4}+\\dfrac{k\\pi}{2}\\,(k\\in\\mathbb{Z}).\r\n\t\t\\end{eqnarray*}\r\n\t\tTrong khoảng $(0;2\\pi)$ phương trình đã cho có $4$ nghiệm $x=\\dfrac{\\pi}{4}$, $x=\\dfrac{3\\pi}{4}$, $x=\\dfrac{5\\pi}{4}$, $x=\\dfrac{7\\pi}{4}$.\\\\\r\n\t\tDo đó tổng các nghiệm là $S=\\dfrac{\\pi}{4}+\\dfrac{3\\pi}{4}+\\dfrac{5\\pi}{4}+\\dfrac{7\\pi}{4}=4\\pi$.\\\\\r\n\t\tSuy ra $a=4$.\\\\\r\n\t\tVậy $P=25a+23=123$."
+}

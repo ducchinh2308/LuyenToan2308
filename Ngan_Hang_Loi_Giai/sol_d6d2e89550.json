@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d6d2e89550",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\sin x = \\displaystyle\\frac{\\sqrt{3}}{2} \\Leftrightarrow \\sin x = \\sin \\displaystyle\\frac{\\pi}{3} \\Leftrightarrow \\left[\\begin{aligned} &x = \\displaystyle\\frac{\\pi}{3} + k2\\pi \\\\ &x = \\pi - \\displaystyle\\frac{\\pi}{3} + k2\\pi \\end{aligned}\\right. \\Leftrightarrow \\left[\\begin{aligned} &x = \\displaystyle\\frac{\\pi}{3} + k2\\pi \\\\ &x = \\displaystyle\\frac{2\\pi}{3} + k2\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$.\\\\\r\n\t\tVậy phương trình có tập nghiệm là $S = \\displaystyle\\left\\{\\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$."
+}

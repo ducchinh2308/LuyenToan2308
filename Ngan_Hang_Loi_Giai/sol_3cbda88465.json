@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3cbda88465",
+  "dapAn": "FTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch $\\cos\\alpha=\\cos\\left(\\dfrac{\\pi}{3}+k2\\pi\\right)=\\cos\\left(\\dfrac{\\pi}{3}\\right)=\\dfrac{1}{2}$.\r\n\t\t\t\\itemch $\\tan\\alpha=\\tan\\left(\\dfrac{\\pi}{3}+k2\\pi\\right)=\\tan\\left(\\dfrac{\\pi}{3}\\right)=\\sqrt{3}$.\r\n\t\t\t\\itemch $\\sin\\alpha=\\sin\\left(\\dfrac{\\pi}{3}+k2\\pi\\right)=\\sin\\left(\\dfrac{\\pi}{3}\\right)=\\dfrac{\\sqrt{3}}{2}$.\r\n\t\t\t\\itemch $\\cot\\alpha=\\cot\\left(\\dfrac{\\pi}{3}+k2\\pi\\right)=\\cot\\left(\\dfrac{\\pi}{3}\\right)=\\dfrac{\\sqrt{3}}{3}$.\r\n\t\t\\end{itemchoice}"
+}

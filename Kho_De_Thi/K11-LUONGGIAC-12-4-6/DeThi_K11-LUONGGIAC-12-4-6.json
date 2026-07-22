@@ -1,0 +1,225 @@
+{
+  "maDe": "K11-LUONGGIAC-12-4-6",
+  "tenDe": "ĐỀ K11-LUONGGIAC-12-4-6",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[1D1N1-2]",
+      "maCau": "q_d9b16294ad",
+      "ma_goc": "2603-294",
+      "kieuCau": "TN",
+      "cauDan": "Góc lượng giác có số đo $\\dfrac{5\\pi}{3}$ rad thì có số đo theo đơn vị độ là",
+      "paA": "$150^\\circ$",
+      "paB": "$600^\\circ$",
+      "paC": "$300^\\circ$",
+      "paD": "$210^\\circ$"
+    },
+    {
+      "id_Cau": "[1D1N1-2]",
+      "maCau": "q_8854c16af6",
+      "ma_goc": "2604-443",
+      "kieuCau": "TN",
+      "cauDan": "Số đo của góc $\\displaystyle \\frac{11\\pi}{18}$ ra độ là",
+      "paA": "$110^\\circ$",
+      "paB": "$198^\\circ$",
+      "paC": "$80^\\circ$",
+      "paD": "$130^\\circ$"
+    },
+    {
+      "id_Cau": "[1D1N2-2]",
+      "maCau": "q_bae5de016f",
+      "ma_goc": "2603-313",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\displaystyle \\frac{\\pi}{2} < \\alpha < \\pi$. Khẳng định nào sau đây đúng?",
+      "paA": "$\\cot \\alpha > 0$",
+      "paB": "$\\sin \\alpha < 0$",
+      "paC": "$\\tan \\alpha > 0$",
+      "paD": "$\\cos \\alpha < 0$"
+    },
+    {
+      "id_Cau": "[1D1N2-2]",
+      "maCau": "q_ecdb1693da",
+      "ma_goc": "2603-326",
+      "kieuCau": "TN",
+      "cauDan": "Cho góc lượng giác $\\alpha$ thỏa mãn $90^\\circ < \\alpha < 180^\\circ$. Trong các khẳng định sau khẳng định nào \\textbf{đúng}?",
+      "paA": "$\\tan \\alpha < 0$",
+      "paB": "$\\cos \\alpha > 0$",
+      "paC": "$\\sin \\alpha < 0$",
+      "paD": "$\\cot \\alpha > 0$"
+    },
+    {
+      "id_Cau": "[1D1H2-2]",
+      "maCau": "q_be36352e59",
+      "ma_goc": "2603-370",
+      "kieuCau": "DS",
+      "cauDan": "Tính được các giá trị lượng giác của góc $\\alpha=-\\dfrac{\\pi}{3}+k2\\pi$ biết $k\\in\\mathbb{Z}$. Khi đó",
+      "paA": "$\\cos\\alpha=-\\dfrac{1}{2}$",
+      "paB": "$\\tan\\alpha=\\sqrt{3}$",
+      "paC": "$\\sin\\alpha=-\\dfrac{\\sqrt{3}}{2}$",
+      "paD": "$\\cot\\alpha=-\\dfrac{\\sqrt{3}}{3}$"
+    },
+    {
+      "id_Cau": "[1D1H3-3]",
+      "maCau": "q_4c6ab20db1",
+      "ma_goc": "2603-271",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\sin \\alpha = \\dfrac{2}{3}$. Tính $\\cos 2\\alpha$.",
+      "paA": "$-\\dfrac{1}{9}$",
+      "paB": "$\\dfrac{1}{3}$",
+      "paC": "$-\\dfrac{1}{3}$",
+      "paD": "$\\dfrac{1}{9}$"
+    },
+    {
+      "id_Cau": "[1D1N3-3]",
+      "maCau": "q_28ae45c72b",
+      "ma_goc": "2604-48",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\cos x = \\displaystyle \\frac{1}{3}$. Tính giá trị của $\\cos 2x$.",
+      "paA": "$-\\displaystyle \\frac{8}{9}$",
+      "paB": "$\\displaystyle \\frac{7}{9}$",
+      "paC": "$\\displaystyle \\frac{8}{9}$",
+      "paD": "$-\\displaystyle \\frac{7}{9}$"
+    },
+    {
+      "id_Cau": "[1D1H3-3]",
+      "maCau": "q_cfc89c0c9a",
+      "ma_goc": "2604-459",
+      "kieuCau": "TLN",
+      "cauDan": "Cho $\\sin x + \\cos x = \\displaystyle\\frac{1}{2}$. Biết giá trị biểu thức $A = \\displaystyle\\frac{1 + \\sin 2x}{1 - \\sin 2x}$ bằng $\\displaystyle\\frac{a}{b}$. Tổng $a+b$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[1D1H4-6]",
+      "maCau": "q_bdaa08c51f",
+      "ma_goc": "2603-357",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất và nhỏ nhất của hàm số là $y=2-\\sin x$ lần lượt là",
+      "paA": "$3$ và $1$",
+      "paB": "$1$ và $3$",
+      "paC": "$4$ và $-4$",
+      "paD": "$2$ và $4$"
+    },
+    {
+      "id_Cau": "[1D1H4-2]",
+      "maCau": "q_a72dd151a1",
+      "ma_goc": "2603-362",
+      "kieuCau": "TN",
+      "cauDan": "Tập xác định của hàm số $y=\\dfrac{1-\\cos x}{\\sin x}$ là",
+      "paA": "$\\mathscr{D}=\\mathbb{R}\\setminus\\left\\lbrace k2\\pi\\mid k\\in\\mathbb{Z}\\right\\rbrace$",
+      "paB": "$\\mathscr{D}=\\mathbb{R}\\setminus\\left\\lbrace k\\pi|\\mid k\\in\\mathbb{Z}\\right\\rbrace$",
+      "paC": "$\\mathscr{D}=\\mathbb{R}\\setminus\\left\\lbrace\\dfrac{\\pi}{2}+k2\\pi\\mid k\\in\\mathbb{Z}\\right\\rbrace$",
+      "paD": "$\\mathscr{D}=\\mathbb{R}\\setminus\\left\\lbrace\\dfrac{\\pi}{2}+k\\pi\\mid k\\in\\mathbb{Z}\\right\\rbrace$"
+    },
+    {
+      "id_Cau": "[1D1V4-7]",
+      "maCau": "q_4c30cdb259",
+      "ma_goc": "2604-456",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y = 2\\cos 2x - 1$. Xét tính đúng sai của các mệnh đề sau:",
+      "paA": "Chu kì tuần hoàn của hàm số $y = 2\\cos 2x - 1$ là $2\\pi$",
+      "paB": "Phương trình $2\\cos 2x - 1 = 0$ có một họ nghiệm là $x = \\pm \\displaystyle \\frac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z}$",
+      "paC": "Tập xác định của hàm số $y = 2\\cos 2x - 1$ là $D = \\mathbb{R} \\setminus \\left\\{\\pm \\displaystyle \\frac{\\pi}{6} + k\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "Giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = 2\\cos 2x - 1$ trên đoạn $\\left[-\\displaystyle \\frac{\\pi}{4}; 0\\right]$ lần lượt là $1$ và $-1$"
+    },
+    {
+      "id_Cau": "[1D1V5-6]",
+      "maCau": "q_312c18f21f",
+      "ma_goc": "2603-3260",
+      "kieuCau": "DS",
+      "cauDan": "Trong hình vẽ sau đây, khi kéo ra khỏi vị trí cân bằng ở điểm $O$ và buông tay, lực đàn hồi của lò xo khiến vật $A$ gắn ở đầu của lò xo dao động quanh $O$. Tọa độ $s$ (centimét) của $A$ trên trục $Ox$ vào thời điểm $t$ (giây) sau khi buông tay được xác định bởi công thức $\\displaystyle s=8\\sin\\left(10t-\\dfrac{\\pi}{2}\\right)$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_312c18f21f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Thời điểm đầu tiên tọa độ của vật $A$ trên trục bằng $4$ là $t=\\displaystyle\\dfrac{2\\pi}{15}$ (giây).",
+      "paB": "Tập xác định của hàm số $\\displaystyle s=8\\sin\\left(10t-\\dfrac{\\pi}{2}\\right)$ là $\\mathbb{R}$.",
+      "paC": "Giá trị lớn nhất của hàm số $\\displaystyle s=8\\sin\\left(10t-\\dfrac{\\pi}{2}\\right)$ bằng $1$.",
+      "paD": "Trong $2$ giây đầu tiên vật đi qua vị trí cân bằng $6$ lần."
+    },
+    {
+      "id_Cau": "[1D1H5-3]",
+      "maCau": "q_a2a517ce4f",
+      "ma_goc": "2603-372",
+      "kieuCau": "DS",
+      "cauDan": "Cho phương trình lượng giác $\\sin x=-\\dfrac{1}{2}$. Khi đó",
+      "paA": "Phương trình tương đương $\\sin x=\\sin\\left(-\\dfrac{\\pi}{6}\\right)$",
+      "paB": "Phương trình có nghiệm là $x=-\\dfrac{\\pi}{6}+k2\\pi$; $x=\\dfrac{7\\pi}{6}+k2\\pi$ ($k\\in\\mathbb{Z}$)",
+      "paC": "Số nghiệm của phương trình trong khoảng $(-\\pi;\\pi)$ là ba nghiệm",
+      "paD": "Phương trình có nghiệm âm lớn nhất là $-\\dfrac{\\pi}{3}$"
+    },
+    {
+      "id_Cau": "[1D1V5-3]",
+      "maCau": "q_1b7cf4f5c2",
+      "ma_goc": "2603-376",
+      "kieuCau": "TLN",
+      "cauDan": "Tổng tất cả các nghiệm trong khoảng $(0;2\\pi)$ của phương trình\\break $(2\\cos2x+5)(\\sin^2x-\\cos^2x)=0$ là $S=a\\pi$ (với $a$ là số nguyên). Giá trị của $P=25a+23$ bằng bao nhiêu?\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[1D1V5-6]",
+      "maCau": "q_8f7ffde5ff",
+      "ma_goc": "2605-195",
+      "kieuCau": "TLN",
+      "cauDan": "Một chiếc đu quay có bán kính $R = 10\\text{ m}$. Tâm của vòng quay ở độ cao $13\\text{ m}$ so với mặt đất. Vòng quay quay đều với tốc độ một vòng hết $20\\text{ phút}$. Khi vòng quay hoạt động, quan sát một cabin ban đầu ở vị trí thấp nhất, sau $t\\text{ (phút)}$, chiều cao $h\\text{ (đơn vị m)}$ của cabin đó so với mặt đất được tính theo công thức: $\\displaystyle h(t) = -10 \\cos\\left(\\frac{\\pi t}{10}\\right) + 13$.\\\\\r\n\tSau $\\displaystyle \\frac{b}{a}\\text{ phút } (a, b \\in \\mathbb{N}; \\frac{b}{a} \\text{ là phân số tối giản})$ kể từ khi bắt đầu quay, cabin sẽ ở độ cao $18\\text{ m}$ lần đầu tiên. Tính $a+b$."
+    },
+    {
+      "id_Cau": "[1D1V5-6]",
+      "maCau": "q_7357e26acf",
+      "ma_goc": "2604-105",
+      "kieuCau": "TLN",
+      "cauDan": "Giả sử một chất điểm chuyển động trên trục $Ox$ theo phương trình $x=\\sin^{2}(\\pi t)-1$, trong đó thời gian $t$ tính theo đơn vị giây và quãng đường $x$ tính bằng centimét. Trong khoảng thời gian từ $0$ đến $6$ giây, chất điểm đó đi qua gốc tọa độ $O$ bao nhiêu lần?"
+    },
+    {
+      "id_Cau": "[1D1H5-3]",
+      "maCau": "q_3cfa4dc053",
+      "ma_goc": "2603-890",
+      "kieuCau": "TN",
+      "cauDan": "Nghiệm của phương trình $\\sin\\left(x+\\dfrac{\\pi}{3}\\right)=-\\dfrac{1}{2}$ là",
+      "paA": "$\\left[ \\begin{array}{l} x=-\\dfrac{\\pi}{2}+k\\pi \\\\ x=\\dfrac{5\\pi}{6}+k\\pi \\end{array} \\right., k\\in\\mathbb{Z}$",
+      "paB": "$\\left[ \\begin{array}{l} x=-\\dfrac{\\pi}{6}+k2\\pi \\\\ x=\\dfrac{\\pi}{2}+k2\\pi \\end{array} \\right., k\\in\\mathbb{Z}$",
+      "paC": "$\\left[ \\begin{array}{l} x=-\\dfrac{\\pi}{2}+k2\\pi \\\\ x=\\dfrac{5\\pi}{6}+k2\\pi \\end{array} \\right., k\\in\\mathbb{Z}$",
+      "paD": "$\\left[ \\begin{array}{l} x=-\\dfrac{\\pi}{6}+k\\pi \\\\ x=-\\dfrac{\\pi}{2}+k\\pi \\end{array} \\right., k\\in\\mathbb{Z}$"
+    },
+    {
+      "id_Cau": "[1D1H5-3]",
+      "maCau": "q_001efc23ba",
+      "ma_goc": "2603-1346",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\cot x = \\sqrt{3}$ là",
+      "paA": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{3} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paB": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{6} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paC": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{6} + k2\\pi \\mid k \\in \\mathbb{Z} \\right\\}$",
+      "paD": "$\\displaystyle S = \\left\\{ \\frac{\\pi}{3} + k\\pi \\mid k \\in \\mathbb{Z} \\right\\}$"
+    },
+    {
+      "id_Cau": "[1D1N5-3]",
+      "maCau": "q_1121b3d71a",
+      "ma_goc": "2604-447",
+      "kieuCau": "TN",
+      "cauDan": "Phương trình $\\sin x = \\displaystyle\\frac{\\sqrt{3}}{2}$ có tập nghiệm là",
+      "paA": "$S = \\displaystyle\\left\\{\\frac{\\pi}{6} + k2\\pi; \\frac{5\\pi}{6} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paB": "$S = \\displaystyle\\left\\{\\frac{\\pi}{3} + k2\\pi; \\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$S = \\displaystyle\\left\\{\\frac{\\pi}{3} + k2\\pi; -\\frac{\\pi}{3} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$S = \\displaystyle\\left\\{\\frac{\\pi}{3} + k2\\pi; -\\frac{2\\pi}{3} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$"
+    },
+    {
+      "id_Cau": "[1D1N5-3]",
+      "maCau": "q_893a9c1e61",
+      "ma_goc": "2605-314",
+      "kieuCau": "TN",
+      "cauDan": "Tập nghiệm của phương trình $\\sin x = -1$ là",
+      "paA": "$S=\\{k\\pi, k \\in \\mathbb{Z}\\}$",
+      "paB": "$\\displaystyle S=\\left\\{\\frac{\\pi}{2} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paC": "$\\displaystyle S=\\left\\{-\\frac{\\pi}{2} + k2\\pi, k \\in \\mathbb{Z}\\right\\}$",
+      "paD": "$\\displaystyle S=\\left\\{-\\frac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z}\\right\\}$"
+    },
+    {
+      "id_Cau": "[1D1V5-6]",
+      "maCau": "q_e63a4817e4",
+      "ma_goc": "2603-280",
+      "kieuCau": "TLN",
+      "cauDan": "Một quả bóng được ném xiên một góc $\\alpha$ ($0^\\circ < \\alpha < 90^\\circ$) từ mặt đất với tốc độ $v_0$ (m/s). Khoảng cách theo phương ngang từ vị trí ban đầu của quả bóng đến vị trí bóng chạm đất được tính theo công thức $d = \\dfrac{v_0^2 \\sin 2\\alpha}{10}$. Nếu tốc độ ban đầu của quả bóng là $10$\\,m/s thì tồn tại hai góc ném $\\alpha_1$, $\\alpha_2$ ($\\alpha_1 > \\alpha_2$) để khoảng cách $d$ là $5$\\,m. Hiệu số đo hai góc ném $\\alpha_1 - \\alpha_2$ bằng bao nhiêu độ?\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[1D1V5-6]",
+      "maCau": "q_262a91c16c",
+      "ma_goc": "2603-1137",
+      "kieuCau": "TLN",
+      "cauDan": "Một cây cầu có dạng cung $OA$ của đồ thị hàm số $y=4{,}8\\sin\\dfrac{x}{9}$ và được mô tả trong hệ trục tọa độ với đơn vị trục là mét như ở hình dưới đây.\r\n\tMột xà lan chở khối hàng hóa được xếp thành hình hộp chữ nhật với chiều rộng của khối hàng hóa đó là $9$m sao cho xà lan có thể đi qua được gầm cầu (trục $Ox$ nằm trên mặt sàn của xà lan), để đảm bảo an toàn thì vị trí cao nhất của thùng hàng cách mép dưới cầu $70$cm. Tính chiều cao tối đa của khối hàng hóa đó để xà lan có thể đi qua được gầm cầu (làm tròn đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_262a91c16c_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\t<img src='HinhAnh/q_262a91c16c_cd_img_2.png' style='max-width: 100%; display: block; margin: 10px auto;' />\\\\\\end{center}"
+    }
+  ]
+}
