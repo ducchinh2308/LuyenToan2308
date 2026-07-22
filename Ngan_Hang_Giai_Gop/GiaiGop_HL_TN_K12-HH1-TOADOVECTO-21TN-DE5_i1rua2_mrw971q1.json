@@ -1,0 +1,110 @@
+{
+  "thoiGianGhep": "2026-07-22T15:44:56.183Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_ae1187b1f0",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tứ giác $ABCD$ là hình bình hành nên $\\vec{AD} = \\vec{BC}$.\\\\\r\n\t\tTa có $\\vec{BC} = (1 - (-2); -3 - 4; 3 - (-1)) = (3; -7; 4)$.\\\\\r\n\t\tGọi $D(x_D; y_D; z_D)$, ta có $\\vec{AD} = (x_D + 3; y_D - 1; z_D - 2)$.\\\\\r\n\t\t$\\vec{AD} = \\vec{BC} \\Leftrightarrow \\begin{cases} x_D + 3 = 3 \\\\ y_D - 1 = -7 \\\\ z_D - 2 = 4 \\end{cases} \\Leftrightarrow \\begin{cases} x_D = 0 \\\\ y_D = -6 \\\\ z_D = 6 \\end{cases} \\Rightarrow D(0; -6; 6)$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_2b177b1461",
+      "dapAn": "C",
+      "loiGiaiHtml": "Để tứ giác $ABCD$ là hình bình hành thì $\\vec{AB} = \\vec{DC}$.\\\\\r\n\t\tTa có $\\vec{AB} = (-3 - 1; 0 - 2; 3 - 1) = (-4; -2; 2)$.\\\\\r\n\t\tGọi $D(x_D; y_D; z_D)$, ta có $\\vec{DC} = (2 - x_D; 4 - y_D; -1 - z_D)$.\\\\\r\n\t\tTừ điều kiện $\\vec{AB} = \\vec{DC}$, ta có hệ phương trình:\\\\\r\n\t\t$\\begin{cases} 2 - x_D = -4 \\\\ 4 - y_D = -2 \\\\ -1 - z_D = 2 \\end{cases} \\Leftrightarrow \\begin{cases} x_D = 6 \\\\ y_D = 6 \\\\ z_D = -3 \\end{cases} \\Rightarrow D(6; 6; -3)$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_8b96cbf880",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\vec{AG} = (-2; -2; 8)$.\\\\\r\n\t\tGọi $M$ là trung điểm của $BC$.\\\\\r\n\t\t$\\vec{AB} + \\vec{AC} = 2\\vec{AM} = 2 \\cdot \\displaystyle \\frac{3}{2} \\vec{AG} = (-6; -6; 24)$."
+    },
+    {
+      "maBaoMat": "sol_51fa46a85a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có: $\\vec{w} = (4; -2; 3) \\Rightarrow \\left|\\vec{w}\\right| = \\sqrt{4^2 + (-2)^2 + 3^2} = \\sqrt{29}$."
+    },
+    {
+      "maBaoMat": "sol_1c356bc45b",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tọa độ trung điểm của đoạn thẳng $AB$ là $\\left(\\dfrac{2+0}{2};\\dfrac{2-4}{2};\\dfrac{3+1}{2}\\right)=(1;-1;2)$."
+    },
+    {
+      "maBaoMat": "sol_60a6e92a54",
+      "dapAn": "A",
+      "loiGiaiHtml": "Gọi $I(x_I; y_I; z_I)$ là trung điểm của đoạn thẳng $AB$.\\\\\r\n\t\tKhi đó, ta có tọa độ điểm $I$ được tính theo công thức:\\\\\r\n\t\t$\\begin{cases} x_I = \\dfrac{x_A + x_B}{2} = \\dfrac{1 + 5}{2} = 3 \\\\ y_I = \\dfrac{y_A + y_B}{2} = \\dfrac{3 + (-3)}{2} = 0 \\\\ z_I = \\dfrac{z_A + z_B}{2} = \\dfrac{5 + 1}{2} = 3 \\end{cases}$.\\\\\r\n\t\tVậy tọa độ trung điểm $I(3; 0; 3)$."
+    },
+    {
+      "maBaoMat": "sol_a259c38cd9",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\vec{a} \\cdot \\vec{b} = 2 \\cdot 0 + (-1) \\cdot 3 + 3 \\cdot 5 = 0 - 3 + 15 = 12$."
+    },
+    {
+      "maBaoMat": "sol_c8c6c47cda",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hình chiếu vuông góc của điểm $M(2; -2; 1)$ trên mặt phẳng $(Oxy)$ (giữ hoành độ, tung độ; cao độ bằng 0) có tọa độ là $(2; -2; 0)$."
+    },
+    {
+      "maBaoMat": "sol_c722f2220b",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{b} + \\vec{c} = (3; 0; -3)$.\\\\\r\n\t\tVậy $\\vec{a} \\cdot (\\vec{b} + \\vec{c}) = 3 \\cdot 3 + 0 \\cdot 0 + 1 \\cdot (-3) = 6$."
+    },
+    {
+      "maBaoMat": "sol_a403b6982b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A)$\\\\\r\n\t\t$\\overrightarrow{AB} = (4-2; 5-1; -2-4)$\\\\\r\n\t\t$\\overrightarrow{AB} = (2;4;-6)$."
+    },
+    {
+      "maBaoMat": "sol_3908b7eb4f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Độ dài của vectơ $\\vec{a} = (x;y;z)$ được tính bằng công thức $\\left|\\vec{a}\\right| = \\sqrt{x^2+y^2+z^2}$.\\\\\r\n\t\tVới $\\vec{a} = (2;-2;6)$, ta có:\\\\\r\n\t\t$\\left|\\vec{a}\\right| = \\sqrt{2^2 + (-2)^2 + 6^2} = \\sqrt{4 + 4 + 36} = \\sqrt{44} = \\sqrt{4 \\cdot 11} = 2\\sqrt{11}$."
+    },
+    {
+      "maBaoMat": "sol_0076bd5925",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có hình chiếu vuông góc của điểm $M(3;2;-1)$ trên mặt phẳng $(Oxz)$ là $(3;0;-1)$."
+    },
+    {
+      "maBaoMat": "sol_f083d55ce2",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{u} = (2; -1; 3) \\Rightarrow 3\\vec{u} = (6; -3; 9)$."
+    },
+    {
+      "maBaoMat": "sol_e003c814ea",
+      "dapAn": "D",
+      "loiGiaiHtml": "$\\vec{a} = -3\\vec{i} + 5\\vec{j} - \\vec{k} \\Rightarrow \\vec{a} = (-3;5;-1) \\Rightarrow \\left|\\vec{a}\\right| = \\sqrt{9+25+1} = \\sqrt{35}$."
+    },
+    {
+      "maBaoMat": "sol_e5a2bd937c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Điểm đối xứng với điểm $A(1;2;3)$ qua mặt phẳng $(Oxy)$ có tọa độ là $(1;2;-3)$."
+    },
+    {
+      "maBaoMat": "sol_d7fb616cee",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vì $I$ là trung điểm của $AB$ nên ta có $\\begin{cases} x_I = \\displaystyle \\frac{x_A + x_B}{2} \\\\ y_I = \\displaystyle \\frac{y_A + y_B}{2} \\\\ z_I = \\displaystyle \\frac{z_A + z_B}{2} \\end{cases} \\Leftrightarrow \\begin{cases} x_I = \\displaystyle \\frac{1 + 2}{2} = \\displaystyle \\frac{3}{2} \\\\ y_I = \\displaystyle \\frac{-2 + 3}{2} = \\displaystyle \\frac{1}{2} \\\\ z_I = \\displaystyle \\frac{1 - 4}{2} = -\\displaystyle \\frac{3}{2} \\end{cases}$.\\\\\r\n\t\tVậy $I\\left(\\displaystyle \\frac{3}{2}; \\displaystyle \\frac{1}{2}; -\\displaystyle \\frac{3}{2}\\right)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_67f0f164a4",
+      "dapAn": "B",
+      "loiGiaiHtml": "Hình chiếu vuông góc của điểm $A(3;-1;1)$ trên mặt phẳng $(Oyz)$ là điểm $N(0;-1;1)$."
+    },
+    {
+      "maBaoMat": "sol_828f95757d",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tọa độ trọng tâm $G$ của tam giác $ABC$ được xác định theo công thức trung bình cộng tọa độ các đỉnh:\\\\\r\n\t\t$\\displaystyle x_G = \\frac{x_A+x_B+x_C}{3} = \\frac{1+2+0}{3} = 1$.\\\\\r\n\t\t$\\displaystyle y_G = \\frac{y_A+y_B+y_C}{3} = \\frac{3+0+9}{3} = 4$.\\\\\r\n\t\t$\\displaystyle z_G = \\frac{z_A+z_B+z_C}{3} = \\frac{5+1+0}{3} = 2$.\\\\\r\n\t\tVậy tọa độ trọng tâm tam giác là $G(1;4;2)$."
+    },
+    {
+      "maBaoMat": "sol_c3f75cc3ea",
+      "dapAn": "A",
+      "loiGiaiHtml": "Do $\\vec{a}=(2;-1;3) \\Rightarrow 3\\vec{a}=(6;-3;9)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_7b20796e29",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\vec{AB}=(4;-8;-4)$.\\\\\r\n\t\tTa thấy vectơ $\\vec{b}=(-1;2;1)$ cùng phương với $\\vec{AB}$ (vì $\\vec{AB} = -4\\vec{b}$)."
+    },
+    {
+      "maBaoMat": "sol_b1f5e84343",
+      "dapAn": "B",
+      "loiGiaiHtml": "\\textbf{Chọn B}"
+    }
+  ]
+}
