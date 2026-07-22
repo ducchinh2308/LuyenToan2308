@@ -1,0 +1,110 @@
+{
+  "thoiGianGhep": "2026-07-22T15:44:00.169Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_566da53834",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có tọa độ vectơ $\\vec{BA} = (x_A - x_B; y_A - y_B; z_A - z_B)$.\\\\\r\n\t\t$\\vec{BA} = (1 - 3; 1 - (-1); -2 - 2) = (-2; 2; -4)$.\\\\\r\n\t\t(Lưu ý: Tọa độ tính được là $(-2; 2; -4)$, trong ảnh chọn phương án C là $(2; -2; 4)$ có thể do nhầm lẫn thứ tự vectơ $\\vec{AB}$ và $\\vec{BA}$ hoặc lỗi in ấn đề gốc. Tôi giữ nguyên đáp án theo ảnh là C)."
+    },
+    {
+      "maBaoMat": "sol_7d959da5d7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\vec{a} + \\vec{b} = (x_a + x_b; y_a + y_b; z_a + z_b)$.\\\\\r\n\t\t$\\vec{a} + \\vec{b} = (2 + 1; 3 + 1; 2 - 1) = (3; 4; 1)$.\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_5bdc2f95dc",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $\\vec{OA} = (2; -3; 5) \\Rightarrow \\left|\\vec{OA}\\right| = \\sqrt{38}$.\\\\\r\n\t\t$\\vec{i} - \\vec{j} = (1; -1; 0) \\Rightarrow |\\vec{i} - \\vec{j}| = \\sqrt{2}$.\\\\\r\n\t\t$\\cos(\\vec{OA}; \\vec{i} - \\vec{j}) = \\displaystyle \\frac{\\vec{OA} \\cdot (\\vec{i} - \\vec{j})}{\\left|\\vec{OA}\\right| \\cdot |\\vec{i} - \\vec{j}|} = \\frac{2 \\cdot 1 + (-3)(-1) + 5 \\cdot 0}{\\sqrt{38} \\cdot \\sqrt{2}} = \\frac{5}{\\sqrt{76}}$.\\\\\r\n\t\tVậy khẳng định ở phương án A là sai."
+    },
+    {
+      "maBaoMat": "sol_a73ac21e90",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có: $\\vec{u} \\cdot \\vec{v} = (-2) \\cdot 1 + 3 \\cdot 2 + 0 \\cdot 1 = 4$."
+    },
+    {
+      "maBaoMat": "sol_deb424edac",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{AM} = \\dfrac{1}{2}(\\vec{AB} + \\vec{AC}) \\Rightarrow \\vec{AC} = 2\\vec{AM} - \\vec{AB} = (5; -2; 4)$.\\\\\r\n\t\t\tSuy ra $AC = 3\\sqrt{5}$.\\\\\\begin{center}\n<img src='HinhAnh/sol_deb424edac_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}"
+    },
+    {
+      "maBaoMat": "sol_ec36cd2e4f",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\cos(\\vec{u},\\vec{v}) = \\displaystyle \\frac{\\vec{u} \\cdot \\vec{v}}{\\left|\\vec{u}\\right| \\cdot \\left|\\vec{v}\\right|} = \\frac{10 \\cdot 10 + 10 \\cdot (-20) + 20 \\cdot 10}{\\sqrt{10^2+10^2+20^2} \\cdot \\sqrt{10^2+(-20)^2+10^2}}$.\\\\\r\n\t\t$= \\displaystyle \\frac{100 - 200 + 200}{\\sqrt{600} \\cdot \\sqrt{600}} = \\frac{100}{600} = \\frac{1}{6}$."
+    },
+    {
+      "maBaoMat": "sol_536132c2ba",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\cos(\\vec{a},\\vec{b}) = \\frac{\\vec{a}.\\vec{b}}{\\left|\\vec{a}\\right|.\\left|\\vec{b}\\right|} = \\frac{0.3+3.0+1.(-1)}{\\sqrt{0^2+3^2+1^2}.\\sqrt{3^2+0^2+(-1)^2}} = -\\frac{1}{10}$."
+    },
+    {
+      "maBaoMat": "sol_7f652ae264",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì $B$ đối xứng với $A(-5;2;3)$ qua trục $Oy$ nên toạ độ điểm $B$ là $(5;2;-3)$ (giữ nguyên $y$, đổi dấu $x, z$).\\\\\r\n\t\tKhi đó độ dài đoạn thẳng $AB$ là:\\\\\r\n\t\t$AB = \\sqrt{(5 - (-5))^2 + (2-2)^2 + (-3-3)^2} = \\sqrt{10^2 + 0^2 + (-6)^2} = \\sqrt{100 + 36} = \\sqrt{136} = 2\\sqrt{34}$."
+    },
+    {
+      "maBaoMat": "sol_81da99947c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\vec{OM} = -2\\vec{i} + \\vec{j} + 3\\vec{k} \\Rightarrow M(-2; 1; 3)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_cd07378a9b",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có: $\\displaystyle \\cos(\\vec{a},\\vec{b}) = \\frac{\\vec{a} \\cdot \\vec{b}}{\\left|\\vec{a}\\right| \\cdot \\left|\\vec{b}\\right|} = \\frac{1 \\cdot (-2) + (-2) \\cdot 1 + 1 \\cdot 1}{\\sqrt{1^2 + (-2)^2 + 1^2} \\cdot \\sqrt{(-2)^2 + 1^2 + 1^2}} = -\\frac{1}{2}$. \\\\\r\n\t\t$\\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$."
+    },
+    {
+      "maBaoMat": "sol_6fc52590e3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hình chiếu vuông góc của điểm $M(x_0; y_0; z_0)$ trên trục $Ox$ là điểm $M'(x_0;0;0)$.\\\\\r\n\t\tDo đó, hình chiếu vuông góc của điểm $M(2;1;-3)$ trên trục $Ox$ có tọa độ là $(2;0;0)$."
+    },
+    {
+      "maBaoMat": "sol_08d4941067",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{w} = \\vec{u}-\\vec{v} = (1-1; -2-3; 2-(-5)) = (0;-5;7)$."
+    },
+    {
+      "maBaoMat": "sol_ed5fc79053",
+      "dapAn": "A",
+      "loiGiaiHtml": "Khoảng cách giữa hai điểm $A(x_A;y_A;z_A)$ và $B(x_B;y_B;z_B)$ được tính bằng công thức:\\\\\r\n\t\t$AB = \\sqrt{(x_B-x_A)^2 + (y_B-y_A)^2 + (z_B-z_A)^2}$.\\\\\r\n\t\tThay tọa độ điểm $A(-2;-3;9)$ và $B(-2;3;1)$ vào công thức, ta có:\\\\\r\n\t\t$AB = \\sqrt{(-2-(-2))^2 + (3-(-3))^2 + (1-9)^2} \\Rightarrow AB=10$.\\\\\r\n\t\tVậy khoảng cách giữa hai điểm $A$ và $B$ là $10$."
+    },
+    {
+      "maBaoMat": "sol_127dd8c7e3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tọa độ hình chiếu vuông góc của $M(1;2;3)$ lên trục $Ox$ là $(1;0;0)$."
+    },
+    {
+      "maBaoMat": "sol_4da8d50259",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\vec{AC} - \\vec{AB} = \\vec{BC} = (4;3;0) \\Rightarrow \\left|\\vec{BC}\\right| = \\sqrt{4^2+3^2+0^2} = 5$."
+    },
+    {
+      "maBaoMat": "sol_4365ed1661",
+      "dapAn": "D",
+      "loiGiaiHtml": "Vì $\\vec{OD} = \\vec{w} = (-9;-7;7)$ nên điểm $D$ có tọa độ là $(-9;-7;7)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_acecdc1d1c",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{u} = 2\\vec{a} - \\vec{b} = (2 \\cdot 1 - 3; 2 \\cdot 1 - (-1); 2 \\cdot 0 - 0) = (-1; 3; 0)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_e808ade539",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo định nghĩa biểu diễn vectơ qua hệ vectơ đơn vị $\\vec{i}, \\vec{j}, \\vec{k}$:\\\\\r\n\t\t$\\vec{a} = x\\vec{i} + y\\vec{j} + z\\vec{k} \\Rightarrow \\vec{a} = (x;y;z)$.\\\\\r\n\t\tĐối chiếu với giả thiết $\\vec{a}=-1\\vec{i}+2\\vec{j}-3\\vec{k}$, ta thu được tọa độ $\\vec{a} = (-1;2;-3)$."
+    },
+    {
+      "maBaoMat": "sol_c0793abf4e",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì điểm $M$ thuộc đoạn thẳng $AB$ nên hai vectơ $\\overrightarrow{MA}$ và $\\overrightarrow{MB}$ ngược hướng.\\\r\n\t\tMà $MA = 2MB \\Rightarrow \\overrightarrow{MA} = -2\\overrightarrow{MB}$.\\\r\n\t\tGọi $M(x;y;z)$.\\\r\n\t\tTa có: $\\overrightarrow{MA} = (3-x; 1-y; -2-z)$.\\\r\n\t\t$\\overrightarrow{MB} = (2-x; -3-y; 5-z) \\Rightarrow -2\\overrightarrow{MB} = (-4+2x; 6+2y; -10+2z)$.\\\r\n\t\tTừ $\\overrightarrow{MA} = -2\\overrightarrow{MB}$ ta có:\r\n\t\t$\\begin{cases} 3-x = -4+2x \\\\ 1-y = 6+2y \\\\ -2-z = -10+2z \\end{cases} \\Leftrightarrow \\begin{cases} x = \\displaystyle \\frac{7}{3} \\\\ y = -\\displaystyle \\frac{5}{3} \\\\ z = \\displaystyle \\frac{8}{3} \\end{cases}$.\\\r\n\t\tVậy tọa độ điểm $M$ là $\\left(\\displaystyle \\frac{7}{3}; -\\displaystyle \\frac{5}{3}; \\displaystyle \\frac{8}{3}\\right)$."
+    },
+    {
+      "maBaoMat": "sol_645fc96fd7",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có công thức cộng hai vectơ theo tọa độ: $\\vec{a} + \\vec{b} = (a_1 + b_1; a_2 + b_2; a_3 + b_3)$. \\\\\r\n\t\tThay số ta được: $\\vec{a} + \\vec{b} = (3 + 5; -2 + (-2); -6 + 3) = (8; -4; -3)$. \\\\"
+    },
+    {
+      "maBaoMat": "sol_89c3aab3e6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\vec{a} \\cdot \\vec{b} = (-1) \\cdot 2 + 0 \\cdot 3 + 2 \\cdot 2 = 2$."
+    }
+  ]
+}
