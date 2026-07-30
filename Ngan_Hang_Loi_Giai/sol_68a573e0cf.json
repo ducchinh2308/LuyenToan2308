@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_68a573e0cf",
+  "dapAn": "B",
+  "loiGiai": "Xét hàm số $y = \\displaystyle \\frac{3x+2}{x+1}$ trên $[0; 2]$.\\\\\r\n\t\tĐạo hàm $y' = \\displaystyle \\frac{1}{(x+1)^2} > 0, \\forall x \\neq -1$.\\\\\r\n\t\tHàm số đồng biến và liên tục trên $[0; 2]$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số trên $[0; 2]$ là $y(2) = \\displaystyle \\frac{3(2)+2}{2+1} = \\frac{8}{3}$.\\\\\r\n\t\tChọn đáp án B."
+}

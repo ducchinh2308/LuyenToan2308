@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e4b29e92c1",
+  "dapAn": "D",
+  "loiGiai": "Ta có $P'(x) = -0,9x^2 + 72x + 1800$.\\\\\r\n\t\tGiải phương trình $P'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 100 \\\\ x &= -20 \\text{ (loại)} \\end{aligned} \\right.$\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_e4b29e92c1_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, lợi nhuận đạt giá trị lớn nhất khi công ty sản xuất $100$ máy xay sinh tố.\\\\\r\n\t\tChọn đáp án D."
+}

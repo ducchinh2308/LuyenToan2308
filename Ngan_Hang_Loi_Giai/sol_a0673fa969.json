@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a0673fa969",
+  "dapAn": "-102",
+  "loiGiai": "Tập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm $y' = 3x^2 + 18x = 3x(x+6)$; $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = -6$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_a0673fa969_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tĐiểm cực đại của đồ thị hàm số là $M(-6; 96)$, suy ra $a = -6, b = 96$.\\\\\r\n\t\tGiá trị của $a - b = -6 - 96 = -102$."
+}

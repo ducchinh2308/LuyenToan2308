@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c512aaa4db",
+  "dapAn": "B",
+  "loiGiai": "Dựa vào đồ thị hàm số trên đoạn $[0;5]$, ta thấy:\\\\\r\n\t\tGiá trị lớn nhất $\\max_{[0;5]} f(x) = 3$ tại $x=5$.\\\\\r\n\t\tGiá trị nhỏ nhất $\\min_{[0;5]} f(x) = -2$ tại $x=2$.\\\\\r\n\t\tVậy tổng cần tìm là $3 + (-2) = 1$."
+}

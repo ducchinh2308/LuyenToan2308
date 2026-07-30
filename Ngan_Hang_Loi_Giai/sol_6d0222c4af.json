@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6d0222c4af",
+  "dapAn": "A",
+  "loiGiai": "Ta có: $f'(x) = 0 \\Leftrightarrow 4 - x^2 = 0 \\Leftrightarrow x = 2$ hoặc $x = -2$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_6d0222c4af_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, ta có hàm số $y = f(x)$ đồng biến trên khoảng $(-2; 2)$."
+}
