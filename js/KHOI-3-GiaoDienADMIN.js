@@ -195,7 +195,7 @@ function ham_3_1_ve_dashboard_admin() {
             <!-- 🌟 MỤC TIỆN ÍCH MỚI THÊM -->
             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button onclick="ham_9_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📍 Tạo Sơ Đồ Lớp</button>
+                <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📍 Tạo Sơ Đồ Lớp</button>
             </div>
 
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
@@ -204,7 +204,7 @@ function ham_3_1_ve_dashboard_admin() {
         </div>
     `;
 
-    
+
 
     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
     ham_3_2_ve_thanh_chay_nop_bai();
