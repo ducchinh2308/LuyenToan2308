@@ -69,7 +69,7 @@ function ham_1_2_dung_khung_html() {
             <h2 id="form-title">ĐĂNG NHẬP</h2>
             <p id="form-subtitle">Chào mừng bạn trở lại phòng thi</p>
 
-            <input type="text" id="txtPhone" placeholder="Số điện thoại của bạn">
+            <input type="text" id="txtPhone" placeholder="Số điện thoại hoặc Tên của bạn">
             <input type="text" id="txtHoTen" placeholder="Họ và tên" style="display: none;">
 
             <div id="group-chon-vai-tro">

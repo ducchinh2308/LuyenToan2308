@@ -512,8 +512,105 @@ function ham_5_11_thay_doi_sort(cotMoi) {
     ham_5_10_ve_bang_hoc_sinh();
 }
 
+// // =====================================================================
+// // HÀM 5.12: XÓA VINH VIỄN HỌC SINH KHỎI HỆ THỐNG (BẢN LIÊN THÔNG 4 TABLE)
+// // =====================================================================
+// window.ham_5_12_xoa_hoc_sinh = async function (uidHocSinh) {
+//     // A. Tìm vị trí và thông tin học sinh trong mảng dữ liệu gốc bằng UID
+//     const indexTrongRam = BangHocSinhState.duLieu.findIndex(item => item.uid === uidHocSinh);
+//     if (indexTrongRam === -1) return alert("Lỗi: Không tìm thấy học sinh trên RAM bộ nhớ!");
+
+//     const hs = BangHocSinhState.duLieu[indexTrongRam];
+
+//     // B. Hiện cảnh báo xác nhận tâm lý cho Giáo viên
+//     Swal.fire({
+//         title: `⚠️ CẢNH BÁO XÓA TOÀN DIỆN!`,
+//         html: `Thầy sắp xóa vĩnh viễn học sinh <b style="color:#dc3545;">${hs.ten.toUpperCase()}</b>.<br><br>` +
+//             `Hệ thống sẽ chạy tiến trình dọn dẹp sạch sẽ qua 4 bước:<br>` +
+//             `1. Xóa lịch sử điểm thi tại bảng <b>ket_qua_thi</b><br>` +
+//             `2. Xóa đơn từ xin cứu trợ tại bảng <b>yeu_cau_hoc_sinh</b><br>` +
+//             `3. Rút tên UID học sinh khỏi mảng <b>hoc_sinh_ids</b> ở bảng <b>lop_hoc</b><br>` +
+//             `4. Tiêu hủy tài khoản gốc tại bảng <b>hoc_sinh</b>.<br><br>` +
+//             `<span style="color:#e67e22; font-weight:bold;">Hành động này không thể hoàn tác. Xác nhận xóa?</span>`,
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#dc3545',
+//         cancelButtonColor: '#6c757d',
+//         confirmButtonText: '🗑️ Xác nhận Xóa sạch',
+//         cancelButtonText: 'Hủy',
+//         showLoaderOnConfirm: true,
+//         preConfirm: async () => {
+//             try {
+//                 // 🌟 BƯỚC 1: Xóa bài làm trong bảng ket_qua_thi
+//                 const { error: err1 } = await _supabase
+//                     .from('ket_qua_thi')
+//                     .delete()
+//                     .eq('uid_hoc_sinh', uidHocSinh);
+//                 if (err1) throw new Error(`Lỗi két sắt điểm thi: ${err1.message}`);
+
+//                 // 🌟 BƯỚC 2: Xóa hòm thư yêu cầu trong bảng yeu_cau_hoc_sinh
+//                 const { error: err2 } = await _supabase
+//                     .from('yeu_cau_hoc_sinh')
+//                     .delete()
+//                     .eq('uid_hoc_sinh', uidHocSinh);
+//                 if (err2) throw new Error(`Lỗi hòm thư xin lượt: ${err2.message}`);
+
+//                 // 🌟 BƯỚC 3: Rút mã UID khỏi cột mảng hoc_sinh_ids của bảng lop_hoc
+//                 let dsMaLopCuaEm = [];
+//                 try {
+//                     dsMaLopCuaEm = Array.isArray(hs.danh_sach_ma_lop) ? hs.danh_sach_ma_lop : JSON.parse(hs.danh_sach_ma_lop || '[]');
+//                 } catch (e) { }
+
+//                 if (dsMaLopCuaEm && dsMaLopCuaEm.length > 0) {
+//                     for (const maLop of dsMaLopCuaEm) {
+//                         // Đọc mảng hoc_sinh_ids hiện tại của lớp đó về
+//                         const { data: dataLop } = await _supabase
+//                             .from('lop_hoc')
+//                             .select('hoc_sinh_ids')
+//                             .eq('ma_lop', maLop)
+//                             .single();
+
+//                         if (dataLop && Array.isArray(dataLop.hoc_sinh_ids)) {
+//                             // Lọc bỏ UID học sinh này ra khỏi mảng text[] của Postgres
+//                             const mangIdsMoi = dataLop.hoc_sinh_ids.filter(id => id !== uidHocSinh);
+
+//                             // Cập nhật ngược lại vào table lop_hoc
+//                             await _supabase
+//                                 .from('lop_hoc')
+//                                 .update({ hoc_sinh_ids: mangIdsMoi })
+//                                 .eq('ma_lop', maLop);
+//                         }
+//                     }
+//                 }
+
+//                 // 🌟 BƯỚC 4: Xóa tài khoản gốc trong bảng hoc_sinh
+//                 const { error: err4 } = await _supabase
+//                     .from('hoc_sinh')
+//                     .delete()
+//                     .eq('uid', uidHocSinh);
+//                 if (err4) throw err4;
+
+//                 return true;
+
+//             } catch (error) {
+//                 Swal.showValidationMessage(`Lỗi hệ thống khi quét xóa: ${error.message}`);
+//                 return false;
+//             }
+//         }
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             Swal.fire({ icon: 'success', title: 'Đã xóa hoàn tất!', text: `Dữ liệu của học sinh ${hs.ten} đã bốc hơi hoàn toàn sạch sẽ.`, timer: 1800, showConfirmButton: false });
+
+//             // Xóa phần tử khỏi RAM để bảng tự động co dòng lại mà không cần tải lại trang
+//             BangHocSinhState.duLieu.splice(indexTrongRam, 1);
+//             ham_5_10_ve_bang_hoc_sinh();
+//         }
+//     });
+// };
+
+
 // =====================================================================
-// HÀM 5.12: XÓA VINH VIỄN HỌC SINH KHỎI HỆ THỐNG (BẢN LIÊN THÔNG 4 TABLE)
+// HÀM 5.12: XÓA VĨNH VIỄN HỌC SINH KHỎI HỆ THỐNG (BẢN LIÊN THÔNG ĐA TABLE)
 // =====================================================================
 window.ham_5_12_xoa_hoc_sinh = async function (uidHocSinh) {
     // A. Tìm vị trí và thông tin học sinh trong mảng dữ liệu gốc bằng UID
@@ -527,7 +624,7 @@ window.ham_5_12_xoa_hoc_sinh = async function (uidHocSinh) {
         title: `⚠️ CẢNH BÁO XÓA TOÀN DIỆN!`,
         html: `Thầy sắp xóa vĩnh viễn học sinh <b style="color:#dc3545;">${hs.ten.toUpperCase()}</b>.<br><br>` +
             `Hệ thống sẽ chạy tiến trình dọn dẹp sạch sẽ qua 4 bước:<br>` +
-            `1. Xóa lịch sử điểm thi tại bảng <b>ket_qua_thi</b><br>` +
+            `1. Xóa lịch sử điểm thi tại 4 bảng <b>ket_qua (trắc nghiệm, tự luận, khảo sát, đọc bài)</b><br>` +
             `2. Xóa đơn từ xin cứu trợ tại bảng <b>yeu_cau_hoc_sinh</b><br>` +
             `3. Rút tên UID học sinh khỏi mảng <b>hoc_sinh_ids</b> ở bảng <b>lop_hoc</b><br>` +
             `4. Tiêu hủy tài khoản gốc tại bảng <b>hoc_sinh</b>.<br><br>` +
@@ -541,12 +638,21 @@ window.ham_5_12_xoa_hoc_sinh = async function (uidHocSinh) {
         showLoaderOnConfirm: true,
         preConfirm: async () => {
             try {
-                // 🌟 BƯỚC 1: Xóa bài làm trong bảng ket_qua_thi
-                const { error: err1 } = await _supabase
-                    .from('ket_qua_thi')
-                    .delete()
-                    .eq('uid_hoc_sinh', uidHocSinh);
-                if (err1) throw new Error(`Lỗi két sắt điểm thi: ${err1.message}`);
+                // 🌟 BƯỚC 1: Quét và xóa bài làm trong 4 bảng kết quả mới
+                const danhSachBangKetQua = [
+                    'ket_qua_trac_nghiem',
+                    'ket_qua_tu_luan',
+                    'ket_qua_khao_sat',
+                    'ket_qua_doc_bai'
+                ];
+
+                for (const bang of danhSachBangKetQua) {
+                    const { error: err1 } = await _supabase
+                        .from(bang)
+                        .delete()
+                        .eq('uid_hoc_sinh', uidHocSinh);
+                    if (err1) throw new Error(`Lỗi két sắt điểm thi (${bang}): ${err1.message}`);
+                }
 
                 // 🌟 BƯỚC 2: Xóa hòm thư yêu cầu trong bảng yeu_cau_hoc_sinh
                 const { error: err2 } = await _supabase
@@ -607,6 +713,7 @@ window.ham_5_12_xoa_hoc_sinh = async function (uidHocSinh) {
         }
     });
 };
+
 
 
 // Hàm 5.3: Thực hiện Khóa hoặc Mở khóa tài khoản học sinh
