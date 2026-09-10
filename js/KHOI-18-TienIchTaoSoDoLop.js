@@ -17,12 +17,113 @@ if (typeof mammoth === 'undefined') {
 // Biến toàn cục lưu danh sách tạm thời
 window.DanhSachHSSoDoTam = [];
 
-// 18.1. HÀM MỞ GIAO DIỆN
+// // 18.1. HÀM MỞ GIAO DIỆN
+// window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     window.DanhSachHSSoDoTam = []; // Reset dữ liệu
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+//             <h3 style="color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-top: 0; text-transform: uppercase;">
+//                 📍 Tiện ích: Tạo sơ đồ lớp học
+//             </h3>
+
+//             <!-- Bước 1: Nạp dữ liệu (3 Kiểu) -->
+//             <div style="margin-top: 20px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+//                 <h4 style="margin-top: 0; color: #d35400;">BƯỚC 1: NẠP DANH SÁCH LỚP</h4>
+//                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    
+//                     <!-- Kiểu 1: File Excel -->
+//                     <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #28a745;">
+//                         <label style="font-weight: bold; color: #28a745; display: block; margin-bottom: 10px;">📊 Tải File Excel (.xlsx)</label>
+//                         <input type="file" id="file-excel-danh-sach" accept=".xlsx, .xls" style="margin-bottom: 10px; width: 100%; font-size: 13px;">
+//                         <button onclick="ham_18_3_doc_file_excel()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
+//                             📥 Đọc Excel
+//                         </button>
+//                     </div>
+
+//                     <!-- Kiểu 2: File Word -->
+//                     <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #0056b3;">
+//                         <label style="font-weight: bold; color: #0056b3; display: block; margin-bottom: 10px;">📝 Tải File Word (.docx)</label>
+//                         <input type="file" id="file-word-danh-sach" accept=".docx" style="margin-bottom: 10px; width: 100%; font-size: 13px;">
+//                         <button onclick="ham_18_8_doc_file_word()" style="padding: 6px 15px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
+//                             📥 Đọc Word
+//                         </button>
+//                     </div>
+
+//                     <!-- Kiểu 3: Copy/Paste -->
+//                     <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #17a2b8;">
+//                         <label style="font-weight: bold; color: #17a2b8; display: block; margin-bottom: 10px;">✂️ Copy & Dán Nội Dung</label>
+//                         <textarea id="text-paste-danh-sach" rows="2" placeholder="Dán bảng/danh sách vào đây..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; font-family: inherit; font-size: 13px;"></textarea>
+//                         <button onclick="ham_18_4_doc_text_paste()" style="padding: 6px 15px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
+//                             ⚡ Xử Lý Dữ Liệu
+//                         </button>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <!-- Bước 2: Chỉnh sửa tên & Số thứ tự tự động -->
+//             <div id="khu-vuc-chinh-sua" style="display: none; margin-top: 20px; padding: 20px; background: #fffdf5; border-radius: 8px; border: 1px solid #ffeeba; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+//                     <h4 style="margin: 0; color: #856404;">BƯỚC 2: CHỈNH SỬA & CHỐT SƠ ĐỒ</h4>
+//                     <div style="display: flex; gap: 10px; align-items: center;">
+                        
+//                         <!-- Nút xuất Excel (File chuẩn) -->
+//                         <button onclick="ham_18_9_xuat_excel_sau_sua()" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                             💾 Tải file chuẩn (Excel)
+//                         </button>
+
+//                         <label style="font-weight: bold; color: #495057; margin-left: 10px;">Số dãy bàn (Cột):</label>
+//                         <input type="number" id="input-so-cot" value="4" min="2" max="10" style="padding: 6px; width: 60px; border-radius: 4px; border: 1px solid #ccc; text-align: center;">
+//                         <button onclick="ham_18_6_ve_so_do_tu_bang()" style="padding: 8px 20px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+//                             🎨 TẠO SƠ ĐỒ
+//                         </button>
+//                     </div>
+//                 </div>
+                
+//                 <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 6px;">
+//                     <table style="width: 100%; border-collapse: collapse; text-align: left; background: white;">
+//                         <thead style="background: #f4f6f9; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+//                             <tr>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #ccc; width: 60px; text-align: center;">STT</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #ccc;">Họ và Tên (Có thể sửa trực tiếp)</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #ccc; width: 80px; text-align: center;">Thao tác</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody id="tbody-danh-sach-edit">
+//                             <!-- Dữ liệu render vào đây -->
+//                         </tbody>
+//                     </table>
+//                 </div>
+//             </div>
+
+//             <!-- Bước 3: Khung Sơ đồ -->
+//             <div id="khu-vuc-hien-thi-so-do" style="display: none; margin-top: 30px;">
+//                 <div style="text-align: right; margin-bottom: 15px;">
+//                     <button onclick="window.print()" style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+//                         🖨️ In sơ đồ
+//                     </button>
+//                 </div>
+//                 <div style="text-align: center; margin-bottom: 40px;">
+//                     <div style="display: inline-block; padding: 12px 80px; background: #343a40; color: white; font-weight: bold; border-radius: 6px; letter-spacing: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border-bottom: 4px solid #23272b;">
+//                         BẢNG GIÁO VIÊN
+//                     </div>
+//                 </div>
+//                 <div id="khung-so-do-grid" style="display: grid; gap: 20px; justify-content: center; padding-bottom: 40px;"></div>
+//             </div>
+//         </div>
+//     `;
+// };
+
+// =====================================================================
+// KHỐI 18: TIỆN ÍCH - TẠO SƠ ĐỒ LỚP HỌC (CHỈ GIAO DIỆN UI)
+// =====================================================================
+
 window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     if (!vungLamViec) return;
-
-    window.DanhSachHSSoDoTam = []; // Reset dữ liệu
 
     vungLamViec.innerHTML = `
         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
@@ -30,89 +131,82 @@ window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
                 📍 Tiện ích: Tạo sơ đồ lớp học
             </h3>
 
-            <!-- Bước 1: Nạp dữ liệu (3 Kiểu) -->
+            <!-- BƯỚC 1: NẠP DỮ LIỆU ĐẦU VÀO -->
             <div style="margin-top: 20px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <h4 style="margin-top: 0; color: #d35400;">BƯỚC 1: NẠP DANH SÁCH LỚP</h4>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    
-                    <!-- Kiểu 1: File Excel -->
-                    <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #28a745;">
-                        <label style="font-weight: bold; color: #28a745; display: block; margin-bottom: 10px;">📊 Tải File Excel (.xlsx)</label>
-                        <input type="file" id="file-excel-danh-sach" accept=".xlsx, .xls" style="margin-bottom: 10px; width: 100%; font-size: 13px;">
-                        <button onclick="ham_18_3_doc_file_excel()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
-                            📥 Đọc Excel
-                        </button>
-                    </div>
-
-                    <!-- Kiểu 2: File Word -->
-                    <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #0056b3;">
-                        <label style="font-weight: bold; color: #0056b3; display: block; margin-bottom: 10px;">📝 Tải File Word (.docx)</label>
-                        <input type="file" id="file-word-danh-sach" accept=".docx" style="margin-bottom: 10px; width: 100%; font-size: 13px;">
-                        <button onclick="ham_18_8_doc_file_word()" style="padding: 6px 15px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
-                            📥 Đọc Word
-                        </button>
-                    </div>
-
-                    <!-- Kiểu 3: Copy/Paste -->
-                    <div style="flex: 1; min-width: 250px; padding: 15px; background: #f8f9fa; border-radius: 6px; border: 1px dashed #17a2b8;">
-                        <label style="font-weight: bold; color: #17a2b8; display: block; margin-bottom: 10px;">✂️ Copy & Dán Nội Dung</label>
-                        <textarea id="text-paste-danh-sach" rows="2" placeholder="Dán bảng/danh sách vào đây..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; font-family: inherit; font-size: 13px;"></textarea>
-                        <button onclick="ham_18_4_doc_text_paste()" style="padding: 6px 15px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">
-                            ⚡ Xử Lý Dữ Liệu
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bước 2: Chỉnh sửa tên & Số thứ tự tự động -->
-            <div id="khu-vuc-chinh-sua" style="display: none; margin-top: 20px; padding: 20px; background: #fffdf5; border-radius: 8px; border: 1px solid #ffeeba; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-                    <h4 style="margin: 0; color: #856404;">BƯỚC 2: CHỈNH SỬA & CHỐT SƠ ĐỒ</h4>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        
-                        <!-- Nút xuất Excel (File chuẩn) -->
-                        <button onclick="ham_18_9_xuat_excel_sau_sua()" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                            💾 Tải file chuẩn (Excel)
-                        </button>
-
-                        <label style="font-weight: bold; color: #495057; margin-left: 10px;">Số dãy bàn (Cột):</label>
-                        <input type="number" id="input-so-cot" value="4" min="2" max="10" style="padding: 6px; width: 60px; border-radius: 4px; border: 1px solid #ccc; text-align: center;">
-                        <button onclick="ham_18_6_ve_so_do_tu_bang()" style="padding: 8px 20px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            🎨 TẠO SƠ ĐỒ
-                        </button>
-                    </div>
-                </div>
+                <h4 style="margin-top: 0; color: #d35400; margin-bottom: 20px;">BƯỚC 1: CUNG CẤP DỮ LIỆU SƠ ĐỒ</h4>
                 
-                <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 6px;">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left; background: white;">
-                        <thead style="background: #f4f6f9; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-                            <tr>
-                                <th style="padding: 10px; border-bottom: 2px solid #ccc; width: 60px; text-align: center;">STT</th>
-                                <th style="padding: 10px; border-bottom: 2px solid #ccc;">Họ và Tên (Có thể sửa trực tiếp)</th>
-                                <th style="padding: 10px; border-bottom: 2px solid #ccc; width: 80px; text-align: center;">Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-danh-sach-edit">
-                            <!-- Dữ liệu render vào đây -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    
+                    <!-- 1. Chọn file hình thẻ -->
+                    <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #17a2b8; display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; color: #17a2b8; font-size: 15px; margin-bottom: 8px;">
+                            🖼️ 1. Hình thẻ học sinh
+                        </label>
+                        <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+                            Chọn nhiều ảnh cùng lúc hoặc tải lên cả thư mục chứa ảnh thẻ. Tên file ảnh nên đặt theo mã hoặc tên học sinh để hệ thống dễ nhận diện.
+                        </div>
+                        <input type="file" id="input-anh-hoc-sinh" accept="image/*" multiple style="width: 100%; font-size: 14px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; background: #fff; cursor: pointer;">
+                    </div>
 
-            <!-- Bước 3: Khung Sơ đồ -->
-            <div id="khu-vuc-hien-thi-so-do" style="display: none; margin-top: 30px;">
-                <div style="text-align: right; margin-bottom: 15px;">
-                    <button onclick="window.print()" style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-                        🖨️ In sơ đồ
+                    <!-- 2. Chọn file danh sách -->
+                    <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #28a745; display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; color: #28a745; font-size: 15px; margin-bottom: 8px;">
+                            📋 2. Danh sách học sinh
+                        </label>
+                        <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+                            Tải lên file Excel (.xlsx, .xls) hoặc file Word (.docx) chứa danh sách lớp. Bảng cần có cột Họ Tên rõ ràng.
+                        </div>
+                        <input type="file" id="input-danh-sach-lop" accept=".xlsx, .xls, .docx" style="width: 100%; font-size: 14px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; background: #fff; cursor: pointer;">
+                    </div>
+
+                    <!-- 3. Chọn file sơ đồ (hình ảnh) -->
+                    <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #6f42c1; display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; color: #6f42c1; font-size: 15px; margin-bottom: 8px;">
+                            🗺️ 3. Ảnh mẫu sơ đồ lớp
+                        </label>
+                        <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+                            Tải lên file ảnh sơ đồ không gian lớp học (ảnh chụp hoặc bản vẽ layout bàn ghế). Ảnh này sẽ được dùng làm phông nền để xếp chỗ.
+                        </div>
+                        <input type="file" id="input-anh-so-do" accept="image/*" style="width: 100%; font-size: 14px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; background: #fff; cursor: pointer;">
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right;">
+                    <button id="btn-xu-ly-du-lieu-so-do" style="padding: 12px 30px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.2s;">
+                        🚀 TIẾP TỤC: XỬ LÝ DỮ LIỆU
                     </button>
                 </div>
-                <div style="text-align: center; margin-bottom: 40px;">
-                    <div style="display: inline-block; padding: 12px 80px; background: #343a40; color: white; font-weight: bold; border-radius: 6px; letter-spacing: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border-bottom: 4px solid #23272b;">
-                        BẢNG GIÁO VIÊN
+            </div>
+
+            <!-- BƯỚC 2: KHU VỰC THAO TÁC XẾP SƠ ĐỒ (Đang ẩn chờ nạp dữ liệu xong) -->
+            <div id="khu-vuc-thao-tac-so-do" style="display: none; margin-top: 30px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h4 style="margin: 0; color: #856404;">BƯỚC 2: KÉO THẢ & CHỐT SƠ ĐỒ</h4>
+                    <div>
+                        <button style="padding: 8px 20px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-right: 10px;">💾 Lưu sơ đồ</button>
+                        <button style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🖨️ Xuất In</button>
                     </div>
                 </div>
-                <div id="khung-so-do-grid" style="display: grid; gap: 20px; justify-content: center; padding-bottom: 40px;"></div>
+
+                <div style="display: flex; gap: 20px; min-height: 500px;">
+                    <!-- Cột trái: Danh sách học sinh chưa xếp -->
+                    <div style="width: 250px; background: #f4f6f9; border-radius: 6px; border: 1px solid #ddd; padding: 10px; display: flex; flex-direction: column;">
+                        <h5 style="margin-top: 0; text-align: center; color: #495057;">Học sinh chờ xếp</h5>
+                        <div id="danh-sach-hs-cho" style="flex-grow: 1; overflow-y: auto; background: #fff; border: 1px dashed #ccc; border-radius: 4px; padding: 10px;">
+                            <!-- Danh sách thẻ học sinh sẽ đổ vào đây -->
+                        </div>
+                    </div>
+
+                    <!-- Cột phải: Bản đồ không gian lớp -->
+                    <div style="flex-grow: 1; background: #e9ecef; border-radius: 6px; border: 2px dashed #adb5bd; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <span style="color: #6c757d; font-weight: bold;">Ảnh sơ đồ lớp sẽ hiển thị ở đây...</span>
+                        <div id="vung-ban-do-nen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none;"></div>
+                        <!-- Thẻ học sinh sẽ được kéo thả vào khu vực này -->
+                    </div>
+                </div>
             </div>
+
         </div>
     `;
 };
