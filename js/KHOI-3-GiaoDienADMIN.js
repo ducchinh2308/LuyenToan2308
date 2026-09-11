@@ -85,6 +85,231 @@
 //// [Nhãn thời gian: 13:05 - Ngày 10/06/2026] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin
 //// =====================================================================
 
+// function ham_3_1_ve_dashboard_admin() {
+//     document.getElementById('khung-dang-nhap').style.display = 'none';
+//     document.getElementById('btnLogout').style.display = 'inline-block';
+
+//     let tenVaiTro = '';
+//     if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//     else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//     else tenVaiTro = 'Học sinh';
+
+//     let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//     let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//     const lblStatus = document.getElementById('status');
+//     if (lblStatus) {
+//         lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//         lblStatus.style.color = '#1a73e8';
+//         lblStatus.style.fontWeight = 'bold';
+//     }
+
+//     const dashboard = document.getElementById('dashboard-container');
+//     dashboard.style.display = 'block';
+//     document.body.style.paddingBottom = '60px';
+
+//     const btnStyle = "padding: 15px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; color: white;";
+
+//     // dashboard.innerHTML = `
+//     //     <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+//     //         <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+//     //         <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
+//     //         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+//     //         <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
+//     //         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//     //             <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
+//     //             <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
+//     //             <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
+//     //             <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
+                
+//     //             <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
+
+//     //             <button onclick="ham_3_12_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
+//     //         </div>
+
+//     //         <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
+//     //         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//     //             <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
+//     //             <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
+//     //             <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
+//     //             <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
+//     //         </div>
+
+//     //         <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG KHÁC</h4>
+//     //         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+//     //             <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
+//     //             <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
+//     //             <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
+//     //             <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
+//     //             <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
+//     //             <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
+                
+//     //             <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
+//     //         </div>
+
+//     //         <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+//     //             <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+//     //         </div>
+//     //     </div>
+//     // `;
+
+//     dashboard.innerHTML = `
+//         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+//             <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+//             <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
+//             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+//             <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
+//                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
+//                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
+//                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
+                
+//                 <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
+
+//                 <button onclick="ham_3_12_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
+//             </div>
+
+//             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
+//                 <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
+//                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
+//                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
+//             </div>
+
+//             <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG KHÁC</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
+//                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
+//                 <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
+//                 <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
+//                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
+//                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
+                
+//                 <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
+//             </div>
+
+//             <!-- 🌟 MỤC TIỆN ÍCH MỚI THÊM -->
+//             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+//                 <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📍 Tạo Sơ Đồ Lớp</button>
+//             </div>
+
+//             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+//                 <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+//             </div>
+//         </div>
+//     `;
+
+
+
+//     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
+//     ham_3_2_ve_thanh_chay_nop_bai();
+//     window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000);
+// }
+
+//// =====================================================================
+//// [ĐÃ SỬA] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin (Phân quyền giao diện)
+//// =====================================================================
+
+// function ham_3_1_ve_dashboard_admin() {
+//     document.getElementById('khung-dang-nhap').style.display = 'none';
+//     document.getElementById('btnLogout').style.display = 'inline-block';
+
+//     let tenVaiTro = '';
+//     if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//     else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//     else tenVaiTro = 'Học sinh';
+
+//     let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//     let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//     const lblStatus = document.getElementById('status');
+//     if (lblStatus) {
+//         lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//         lblStatus.style.color = '#1a73e8';
+//         lblStatus.style.fontWeight = 'bold';
+//     }
+
+//     const dashboard = document.getElementById('dashboard-container');
+//     dashboard.style.display = 'block';
+//     document.body.style.paddingBottom = '60px';
+
+//     const btnStyle = "padding: 15px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; color: white;";
+
+//     // 🌟 KHỞI TẠO BIẾN HTML CƠ BẢN (Dành cho cả Admin và Giáo viên)
+//     let htmlContent = `
+//         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+//             <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+//             <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
+//             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+//             <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
+//                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
+//                 <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
+//                 <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
+                
+//                 <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
+
+//                 <button onclick="ham_3_12_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
+//             </div>
+
+//             <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
+//                 <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
+//                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
+//                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
+//             </div>
+//     `;
+
+//     // 🌟 PHẦN QUYỀN: CHỈ HIỂN THỊ CHỨC NĂNG HỆ THỐNG NẾU LÀ ADMIN
+//     if (AppState.role === 'admin') {
+//         htmlContent += `
+//             <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG HỆ THỐNG (ADMIN)</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+//                 <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
+//                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
+//                 <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
+//                 <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
+//                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
+//                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
+                
+//                 <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
+//             </div>
+//         `;
+//     }
+
+//     // 🌟 PHẦN TIỆN ÍCH CHUNG VÀ VÙNG LÀM VIỆC CHI TIẾT
+//     htmlContent += `
+//             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
+//             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+//                 <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📍 Tạo Sơ Đồ Lớp</button>
+//             </div>
+
+//             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
+//                 <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
+//             </div>
+//         </div>
+//     `;
+
+//     // Nhúng toàn bộ mã HTML đã tổng hợp vào dashboard
+//     dashboard.innerHTML = htmlContent;
+
+//     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
+//     ham_3_2_ve_thanh_chay_nop_bai();
+//     window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000);
+// }
+
+//// =====================================================================
+//// [ĐÃ SỬA] - Hàm 3.1: Vẽ màn hình làm việc của Giáo viên / Admin (Che toàn bộ Kho học liệu, Nhiệm vụ)
+//// =====================================================================
+
 function ham_3_1_ve_dashboard_admin() {
     document.getElementById('khung-dang-nhap').style.display = 'none';
     document.getElementById('btnLogout').style.display = 'inline-block';
@@ -110,56 +335,17 @@ function ham_3_1_ve_dashboard_admin() {
 
     const btnStyle = "padding: 15px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s; color: white;";
 
-    // dashboard.innerHTML = `
-    //     <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-    //         <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
-    //         <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
-    //         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-
-    //         <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
-    //         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
-    //             <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
-    //             <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="${btnStyle} background: #28a745;">📝 Tự Luận</button>
-    //             <button onclick="" style="${btnStyle} background: #0056b3;">📖 Đọc Bài</button>
-    //             <button onclick="" style="${btnStyle} background: #6f42c1;">📊 Khảo Sát</button>
-                
-    //             <button onclick="ham_3_6_xem_muc_luc_sgk()" style="${btnStyle} background: #fd7e14;">📚 SGK</button>
-
-    //             <button onclick="ham_3_12_xem_kho_cau_hoi()" style="${btnStyle} background: #fd7e14;">📚 Kho câu hỏi</button>
-    //         </div>
-
-    //         <h4 style="color: #555; margin-bottom: 15px;">🚀 QUẢN LÝ NHIỆM VỤ</h4>
-    //         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
-    //             <button onclick="ham_7a_1_ve_quan_ly_nhiem_vu_trac_nghiem()" style="${btnStyle} background: #ca6f1e;">✅ NV Trắc Nghiệm</button>
-    //             <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
-    //             <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
-    //             <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
-    //         </div>
-
-    //         <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG KHÁC</h4>
-    //         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-    //             <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
-    //             <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
-    //             <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
-    //             <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
-    //             <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
-    //             <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
-                
-    //             <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
-    //         </div>
-
-    //         <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
-    //             <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
-    //         </div>
-    //     </div>
-    // `;
-
-    dashboard.innerHTML = `
+    // 🌟 KHỞI TẠO BIẾN HTML CƠ BẢN (Lời chào dùng chung)
+    let htmlContent = `
         <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+            <h2 style="color: #0056b3; margin-top: 0;">BẢNG ĐIỀU KHIỂN</h2>
             <p style="font-size: 16px; color: #495057;">Chào mừng quay trở lại, hệ thống đã sẵn sàng làm việc!</p>
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    `;
 
+    // 🌟 PHẦN QUYỀN: CHỈ HIỂN THỊ HỌC LIỆU, NHIỆM VỤ & HỆ THỐNG NẾU LÀ ADMIN
+    if (AppState.role === 'admin') {
+        htmlContent += `
             <h4 style="color: #555; margin-bottom: 15px;">📚 QUẢN LÝ KHO HỌC LIỆU</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_6a_1_ve_quan_ly_hoc_lieu_trac_nghiem()" style="${btnStyle} background: #20c997;">✅ Trắc Nghiệm</button>
@@ -180,7 +366,7 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
             </div>
 
-            <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG KHÁC</h4>
+            <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG HỆ THỐNG (ADMIN)</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
                 <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
@@ -189,10 +375,13 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
                 
-                <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
+                <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Hệ Thống</button>
             </div>
+        `;
+    }
 
-            <!-- 🌟 MỤC TIỆN ÍCH MỚI THÊM -->
+    // 🌟 PHẦN TIỆN ÍCH CHUNG VÀ VÙNG LÀM VIỆC CHI TIẾT (Giáo viên chỉ thấy phần này)
+    htmlContent += `
             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📍 Tạo Sơ Đồ Lớp</button>
@@ -204,7 +393,8 @@ function ham_3_1_ve_dashboard_admin() {
         </div>
     `;
 
-
+    // Nhúng toàn bộ mã HTML đã tổng hợp vào dashboard
+    dashboard.innerHTML = htmlContent;
 
     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
     ham_3_2_ve_thanh_chay_nop_bai();

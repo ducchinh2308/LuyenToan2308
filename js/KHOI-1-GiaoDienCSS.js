@@ -36,26 +36,111 @@ function ham_1_1_nhung_css() {
     document.head.appendChild(styleSheet);
 }
 
+// // Hàm 1.2: Dựng bộ khung HTML lõi vào thẻ <div id="app">
+// function ham_1_2_dung_khung_html() {
+//     //console.log("Đang vào hàm 1_2");
+//     const htmlContent = `
+//         <div class="header-container" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 15px 20px; gap: 20px; width: 100%; box-sizing: border-box;">
+
+//             <div class="header-left"></div>
+
+//             <div class="header-center" style="text-align: center; white-space: nowrap;">
+
+//                 <div class="header-section">
+//                     <h1>ÔN LUYỆN TOÁN</h1>
+//                     <h3>THẦY CHÍNH - THPT GIA ĐỊNH - 0987979648</h3>
+//                 </div>
+
+//                 <div class="status-bar" style="margin-top: 8px;">
+//                     <span id="status">Đang kết nối hệ thống...</span>
+//                     <button id="btnLogout" onclick="ham_2_5_xu_ly_dang_xuat()">Đăng xuất</button>
+//                 </div>
+
+//             </div>
+
+//             <div class="header-right" style="text-align: right;">
+//                 <img src="https://ffjrjgujzhkjetqyuska.supabase.co/storage/v1/object/public/system_images/qrcodes/qrcode.png"
+//                      alt="QR Code"
+//                      style="height: 115px; width: auto; border-radius: 6px; object-fit: contain; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: inline-block; vertical-align: middle;">
+//             </div>
+
+//         </div>
+//         <div id="khung-dang-nhap">
+//             <h2 id="form-title">ĐĂNG NHẬP</h2>
+//             <p id="form-subtitle">Chào mừng bạn trở lại phòng thi</p>
+
+//             <input type="text" id="txtPhone" placeholder="Tên đăng nhập (số điện thoại) của bạn">
+//             <input type="text" id="txtHoTen" placeholder="Họ và tên" style="display: none;">
+
+//             <div id="group-chon-vai-tro">
+//                 <label class="role-label">Bạn đăng ký với vai trò:</label>
+//                 <div class="role-options">
+//                     <label class="role-option">
+//                         <input type="radio" name="radVaiTro" value="hocsinh" checked onchange="ham_2_2_thay_doi_vai_tro(this.value)"> 👨‍🎓 Học sinh
+//                     </label>
+//                     <label class="role-option">
+//                         <input type="radio" name="radVaiTro" value="giaovien" onchange="ham_2_2_thay_doi_vai_tro(this.value)"> 👨‍🏫 Giáo viên
+//                     </label>
+//                 </div>
+//                 <div id="msg-gv-warning" style="display: none; color: #d35400; font-size: 11px; margin-top: 8px; font-style: italic; border-top: 1px dashed #eee; padding-top: 6px;">
+//                     ⚠️ Tài khoản Giáo viên cần quản trị viên phê duyệt.
+//                 </div>
+//             </div>
+
+//             <div id="group-thong-tin-truong" style="display: none; gap: 10px; margin-bottom: 10px;">
+//                 <input type="text" id="txtLop" placeholder="Khối (VD: 12)" style="flex: 1;">
+//                 <input type="text" id="txtTruong" placeholder="Trường học" style="flex: 2;">
+//                 <input type="text" id="txtTinh" placeholder="Tỉnh/TP" style="flex: 1.5;">
+//             </div>
+
+//             <div id="group-ma-lop" style="display: none; margin-bottom: 15px;">
+//                 <input type="text" id="txtMaLop" placeholder="Nhập Mã Lớp (5 ký tự) do Giáo viên cấp để vào" style="width: 100%; border: 2px solid #28a745; background: #e6f4ea;">
+//             </div>
+
+//             <input type="email" id="txtRealEmail" placeholder="Email nhận kết quả bài thi" style="display: none;">
+
+//             <div style="position: relative; width: 100%; margin-bottom: 10px;">
+//                 <input type="password" id="txtPassword" placeholder="Mật khẩu (tối thiểu 6 ký tự)" style="margin-bottom: 0;">
+//                 <span id="btnTogglePassword" class="eye-toggle" onclick="ham_2_3_an_hien_mat_khau('txtPassword')">👁️</span>
+//             </div>
+
+//             <div id="group-confirm-password" style="position: relative; width: 100%; margin-bottom: 12px; display: none;">
+//                 <input type="password" id="txtConfirmPassword" placeholder="Xác nhận lại mật khẩu" style="margin-bottom: 0;">
+//                 <span id="btnToggleConfirmPassword" class="eye-toggle" onclick="ham_2_3_an_hien_mat_khau('txtConfirmPassword')">👁️</span>
+//             </div>
+
+//             <button id="btnSubmitAuth" onclick="ham_2_4_xu_ly_submit()">VÀO PHÒNG THI</button>
+
+//             <p id="login-error" style="color: #dc3545; font-size: 13px; text-align: center; display: none; margin-top: 10px; font-weight: bold;"></p>
+
+//             <div class="auth-toggle">
+//                 <a href="#" id="link-toggle-auth" onclick="ham_2_1_chuyen_doi_che_do(); return false;">Chưa có tài khoản? Đăng ký ngay</a>
+//             </div>
+//         </div>
+
+//         <div id="dashboard-container" style="display: none; width: 100%; max-width: 1400px; margin: 20px auto;"></div>
+//         <div id="khung-de-thi" style="max-width: 900px; margin: 0 auto; display: none;"></div>
+//     `;
+
+//     document.getElementById('app').innerHTML = htmlContent;
+// }
+
 // Hàm 1.2: Dựng bộ khung HTML lõi vào thẻ <div id="app">
 function ham_1_2_dung_khung_html() {
-    //console.log("Đang vào hàm 1_2");
     const htmlContent = `
         <div class="header-container" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 15px 20px; gap: 20px; width: 100%; box-sizing: border-box;">
 
             <div class="header-left"></div>
 
             <div class="header-center" style="text-align: center; white-space: nowrap;">
-
                 <div class="header-section">
                     <h1>ÔN LUYỆN TOÁN</h1>
                     <h3>THẦY CHÍNH - THPT GIA ĐỊNH - 0987979648</h3>
                 </div>
-
                 <div class="status-bar" style="margin-top: 8px;">
                     <span id="status">Đang kết nối hệ thống...</span>
                     <button id="btnLogout" onclick="ham_2_5_xu_ly_dang_xuat()">Đăng xuất</button>
                 </div>
-
             </div>
 
             <div class="header-right" style="text-align: right;">
@@ -72,7 +157,7 @@ function ham_1_2_dung_khung_html() {
             <input type="text" id="txtPhone" placeholder="Tên đăng nhập (số điện thoại) của bạn">
             <input type="text" id="txtHoTen" placeholder="Họ và tên" style="display: none;">
 
-            <div id="group-chon-vai-tro">
+            <div id="group-chon-vai-tro" style="display: none; margin-bottom: 10px; text-align: left; background: #ffffff; padding: 10px 12px; border-radius: 6px; border: 1px solid #ddd;">
                 <label class="role-label">Bạn đăng ký với vai trò:</label>
                 <div class="role-options">
                     <label class="role-option">
@@ -81,9 +166,12 @@ function ham_1_2_dung_khung_html() {
                     <label class="role-option">
                         <input type="radio" name="radVaiTro" value="giaovien" onchange="ham_2_2_thay_doi_vai_tro(this.value)"> 👨‍🏫 Giáo viên
                     </label>
+                    <label class="role-option">
+                        <input type="radio" name="radVaiTro" value="admin" onchange="ham_2_2_thay_doi_vai_tro(this.value)"> 👑 Admin
+                    </label>
                 </div>
                 <div id="msg-gv-warning" style="display: none; color: #d35400; font-size: 11px; margin-top: 8px; font-style: italic; border-top: 1px dashed #eee; padding-top: 6px;">
-                    ⚠️ Tài khoản Giáo viên cần quản trị viên phê duyệt.
+                    ⚠️ Tài khoản Giáo viên/Admin cần quản trị viên cấp cao phê duyệt.
                 </div>
             </div>
 

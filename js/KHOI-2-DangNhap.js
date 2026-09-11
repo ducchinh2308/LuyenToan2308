@@ -318,9 +318,1014 @@ function ham_2_3_an_hien_mat_khau(inputId) {
 // }
 
 
+// // =====================================================================
+// // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
+// // (BẢN FINAL: KẾT NỐI ĐỒNG BỘ CỘT hoc_sinh_ids VÀ XỬ LÝ CHỜ DUYỆT)
+// // =====================================================================
+// async function ham_2_4_xu_ly_submit(btnElement) {
+//     const sdt = document.getElementById('txtPhone').value.trim();
+//     const pass = document.getElementById('txtPassword').value;
+//     const errorMsg = document.getElementById('login-error');
+
+//     errorMsg.style.display = 'none';
+
+//     if (!sdt || !pass) {
+//         errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+//         errorMsg.style.display = 'block';
+//         return;
+//     }
+
+//     if (AppState.isLoginMode) {
+//         // ====================================================
+//         // LUỒNG 1: ĐĂNG NHẬP
+//         // ====================================================
+//         document.getElementById('status').innerText = `Đang xác thực...`;
+//         try {
+//             const { data: userFound, error } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('*')
+//                 .eq('sdt', sdt)
+//                 .eq('mat_khau', pass)
+//                 .maybeSingle();
+
+//             if (error) throw error;
+//             if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+
+//             // 🌟 CHẶN ĐĂNG NHẬP NẾU TÀI KHOẢN BỊ KHÓA HOẶC CHỜ DUYỆT
+//             if (userFound.trang_thai === 0) throw new Error("Tài khoản của bạn đã bị khóa!");
+//             if (userFound.trang_thai === 2) throw new Error("Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!");
+
+//             AppState.user = userFound;
+//             AppState.role = userFound.vai_tro;
+
+//             let tenVaiTro = '';
+//             if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//             else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//             else tenVaiTro = 'Học sinh';
+
+//             let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//             let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//             let lblStatus = document.getElementById('status');
+//             if (lblStatus) {
+//                 lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//                 lblStatus.style.color = '#1a73e8';
+//                 lblStatus.style.fontWeight = 'bold';
+//             }
+
+//             await _supabase
+//                 .from('hoc_sinh')
+//                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+//                 .eq('uid', userFound.uid);
+
+//             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
+//                 ham_3_1_ve_dashboard_admin();
+//             } else {
+//                 document.getElementById('khung-dang-nhap').style.display = 'none';
+//                 document.getElementById('btnLogout').style.display = 'inline-block';
+//                 document.getElementById('dashboard-container').style.display = 'block';
+
+//                 let dsMaLopHocSinh = [];
+//                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+//                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
+//                 }
+//                 window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+//             }
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Lỗi đăng nhập`;
+//         }
+
+//     } else {
+//         // ====================================================
+//         // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (ĐỒNG BỘ 2 CHIỀU)
+//         // ====================================================
+//         console.log("App: Đang xử lý đăng ký tài khoản");
+
+//         const hoTen = document.getElementById('txtHoTen').value.trim();
+//         const passConfirm = document.getElementById('txtConfirmPassword').value;
+//         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
+//         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
+//         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
+//         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+
+//         let vaiTroDangKy = 'hocsinh';
+//         const radioHS = document.getElementById('roleHS');
+//         const radioGV = document.getElementById('roleGV');
+
+//         if (radioGV && radioGV.checked) vaiTroDangKy = 'giaovien';
+//         else if (radioHS && radioHS.checked) vaiTroDangKy = 'hocsinh';
+
+//         if (!hoTen || !tinh || !truong) {
+//             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         if (vaiTroDangKy === 'hocsinh' && !maLopVao) {
+//             errorMsg.innerText = "Học sinh đăng ký bắt buộc phải nhập MÃ LỚP do giáo viên cung cấp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         if (pass !== passConfirm) {
+//             errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+//         if (sdt.length < 9) {
+//             errorMsg.innerText = "Số điện thoại không hợp lệ!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         document.getElementById('status').innerText = `Đang kết nối hệ thống...`;
+//         if (btnElement) btnElement.disabled = true;
+
+//         try {
+//             // 2. Kiểm tra trùng số điện thoại
+//             const { data: checkSdt, error: checkError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('sdt')
+//                 .eq('sdt', sdt)
+//                 .maybeSingle();
+
+//             if (checkSdt) {
+//                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang tab Đăng nhập.");
+//             }
+
+//             let checkLop = null;
+
+//             // =========================================================
+//             // 3. XÁC THỰC MÃ LỚP VÀ KÉO MẢNG hoc_sinh_ids VỀ
+//             // =========================================================
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 document.getElementById('status').innerText = `Đang kiểm tra mã lớp...`;
+
+//                 const { data: dataLop, error: loiCheckLop } = await _supabase
+//                     .from('lop_hoc')
+//                     .select('ma_lop, hoc_sinh_ids')
+//                     .eq('ma_lop', maLopVao)
+//                     .maybeSingle();
+
+//                 if (loiCheckLop) {
+//                     throw new Error("Lỗi kết nối khi kiểm tra mã lớp. Vui lòng thử lại!");
+//                 }
+
+//                 if (!dataLop) {
+//                     throw new Error(`Mã lớp [ ${maLopVao} ] KHÔNG TỒN TẠI. Em hãy hỏi lại Giáo viên để lấy đúng mã nhé!`);
+//                 }
+//                 checkLop = dataLop;
+//             }
+
+//             // 4. Tạo sẵn 1 mã UID duy nhất
+//             const taoUidHocSinh = crypto.randomUUID();
+//             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
+
+//             // 🌟 KIỂM TRA CÀI ĐẶT HỆ THỐNG ĐỂ QUYẾT ĐỊNH TRẠNG THÁI (1 = Tự động, 2 = Chờ duyệt)
+//             // (Chỉ áp dụng chờ duyệt cho học sinh, giáo viên đăng ký nội bộ thường cấp 1)
+//             const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
+//             const maTrangThai = (cheDoDuyet === 'CHO_DUYET' && vaiTroDangKy === 'hocsinh') ? 2 : 1;
+
+//             // 5. Lưu vào bảng hoc_sinh
+//             const { error: insertError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .insert([{
+//                     uid: taoUidHocSinh,
+//                     sdt: sdt,
+//                     mat_khau: pass,
+//                     ten: hoTen,
+//                     vai_tro: vaiTroDangKy,
+//                     trang_thai: maTrangThai, // 🌟 Gắn trạng thái vào đây
+//                     khoi_lop: khoi,
+//                     tinh: tinh,
+//                     truong: truong,
+//                     danh_sach_ma_lop: (vaiTroDangKy === 'hocsinh') ? [maLopVao] : [],
+//                     ngay_tham_gia: new Date().toISOString()
+//                 }]);
+
+//             if (insertError) throw insertError;
+
+//             // =========================================================
+//             // 6. BƠM UID VÀO CỘT hoc_sinh_ids CỦA BẢNG LỚP HỌC
+//             // =========================================================
+//             if (vaiTroDangKy === 'hocsinh' && checkLop) {
+//                 let dsHsHienTai = Array.isArray(checkLop.hoc_sinh_ids) ? checkLop.hoc_sinh_ids : [];
+
+//                 if (!dsHsHienTai.includes(taoUidHocSinh)) {
+//                     dsHsHienTai.push(taoUidHocSinh);
+
+//                     const { error: errUpdateLop } = await _supabase
+//                         .from('lop_hoc')
+//                         .update({ hoc_sinh_ids: dsHsHienTai })
+//                         .eq('ma_lop', maLopVao);
+
+//                     if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+//                 }
+//             }
+
+//             // 7. Hoàn tất (Hiện thông báo tùy theo trạng thái được gán)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 if (maTrangThai === 2) {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen}. Tài khoản của em đang chờ Giáo viên phê duyệt mới có thể đăng nhập.`);
+//                 } else {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen} gia nhập lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
+//                 }
+//             } else {
+//                 alert(`Đăng ký thành công tài khoản GIÁO VIÊN cho thầy/cô: ${hoTen}.`);
+//             }
+
+//             ham_2_1_chuyen_doi_che_do();
+//             document.getElementById('txtPassword').value = '';
+//             document.getElementById('status').innerText = `Vui lòng đăng nhập để tiếp tục`;
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Đăng ký thất bại`;
+//         } finally {
+//             if (btnElement) btnElement.disabled = false;
+//         }
+//     }
+// }
+
+// // =====================================================================
+// // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
+// // (BẢN UPDATE: ĐỌC VAI TRÒ TỪ RADIO GROUP VÀ ÉP CHỜ DUYỆT CHO GV/ADMIN)
+// // =====================================================================
+// async function ham_2_4_xu_ly_submit(btnElement) {
+//     const sdt = document.getElementById('txtPhone').value.trim();
+//     const pass = document.getElementById('txtPassword').value;
+//     const errorMsg = document.getElementById('login-error');
+
+//     errorMsg.style.display = 'none';
+
+//     if (!sdt || !pass) {
+//         errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+//         errorMsg.style.display = 'block';
+//         return;
+//     }
+
+//     if (AppState.isLoginMode) {
+//         // ====================================================
+//         // LUỒNG 1: ĐĂNG NHẬP
+//         // ====================================================
+//         document.getElementById('status').innerText = `Đang xác thực...`;
+//         try {
+//             const { data: userFound, error } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('*')
+//                 .eq('sdt', sdt)
+//                 .eq('mat_khau', pass)
+//                 .maybeSingle();
+
+//             if (error) throw error;
+//             if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+
+//             // 🌟 CHẶN ĐĂNG NHẬP NẾU TÀI KHOẢN BỊ KHÓA HOẶC CHỜ DUYỆT
+//             if (userFound.trang_thai === 0) throw new Error("Tài khoản của bạn đã bị khóa!");
+//             if (userFound.trang_thai === 2) {
+//                 let msgChoDuyet = userFound.vai_tro === 'hocsinh'
+//                     ? "Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!"
+//                     : "Tài khoản đang chờ Admin phê duyệt. Vui lòng quay lại sau!";
+//                 throw new Error(msgChoDuyet);
+//             }
+
+//             AppState.user = userFound;
+//             AppState.role = userFound.vai_tro;
+
+//             let tenVaiTro = '';
+//             if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//             else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//             else tenVaiTro = 'Học sinh';
+
+//             let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//             let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//             let lblStatus = document.getElementById('status');
+//             if (lblStatus) {
+//                 lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//                 lblStatus.style.color = '#1a73e8';
+//                 lblStatus.style.fontWeight = 'bold';
+//             }
+
+//             await _supabase
+//                 .from('hoc_sinh')
+//                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+//                 .eq('uid', userFound.uid);
+
+//             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
+//                 ham_3_1_ve_dashboard_admin();
+//             } else {
+//                 document.getElementById('khung-dang-nhap').style.display = 'none';
+//                 document.getElementById('btnLogout').style.display = 'inline-block';
+//                 document.getElementById('dashboard-container').style.display = 'block';
+
+//                 let dsMaLopHocSinh = [];
+//                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+//                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
+//                 }
+//                 window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+//             }
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Lỗi đăng nhập`;
+//         }
+
+//     } else {
+//         // ====================================================
+//         // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (ĐỒNG BỘ 2 CHIỀU)
+//         // ====================================================
+//         console.log("App: Đang xử lý đăng ký tài khoản");
+
+//         const hoTen = document.getElementById('txtHoTen').value.trim();
+//         const passConfirm = document.getElementById('txtConfirmPassword').value;
+//         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
+//         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
+//         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
+//         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+
+//         // Đọc giá trị radio đang được check
+//         let vaiTroDangKy = 'hocsinh';
+//         const selectedRole = document.querySelector('input[name="radVaiTro"]:checked');
+//         if (selectedRole) {
+//             vaiTroDangKy = selectedRole.value;
+//         }
+
+//         if (!hoTen || !tinh || !truong) {
+//             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         // Bỏ qua kiểm tra mã lớp nếu là giáo viên hoặc admin
+//         if (vaiTroDangKy === 'hocsinh' && !maLopVao) {
+//             errorMsg.innerText = "Học sinh đăng ký bắt buộc phải nhập MÃ LỚP do giáo viên cung cấp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         if (pass !== passConfirm) {
+//             errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+//         if (sdt.length < 9) {
+//             errorMsg.innerText = "Số điện thoại không hợp lệ!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         document.getElementById('status').innerText = `Đang kết nối hệ thống...`;
+//         if (btnElement) btnElement.disabled = true;
+
+//         try {
+//             // 2. Kiểm tra trùng số điện thoại
+//             const { data: checkSdt, error: checkError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('sdt')
+//                 .eq('sdt', sdt)
+//                 .maybeSingle();
+
+//             if (checkSdt) {
+//                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang tab Đăng nhập.");
+//             }
+
+//             let checkLop = null;
+
+//             // =========================================================
+//             // 3. XÁC THỰC MÃ LỚP VÀ KÉO MẢNG hoc_sinh_ids VỀ (CHỈ CHO HỌC SINH)
+//             // =========================================================
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 document.getElementById('status').innerText = `Đang kiểm tra mã lớp...`;
+
+//                 const { data: dataLop, error: loiCheckLop } = await _supabase
+//                     .from('lop_hoc')
+//                     .select('ma_lop, hoc_sinh_ids')
+//                     .eq('ma_lop', maLopVao)
+//                     .maybeSingle();
+
+//                 if (loiCheckLop) {
+//                     throw new Error("Lỗi kết nối khi kiểm tra mã lớp. Vui lòng thử lại!");
+//                 }
+
+//                 if (!dataLop) {
+//                     throw new Error(`Mã lớp [ ${maLopVao} ] KHÔNG TỒN TẠI. Em hãy hỏi lại Giáo viên để lấy đúng mã nhé!`);
+//                 }
+//                 checkLop = dataLop;
+//             }
+
+//             // 4. Tạo sẵn 1 mã UID duy nhất
+//             const taoUidHocSinh = crypto.randomUUID();
+//             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
+
+//             // 🌟 XÁC ĐỊNH TRẠNG THÁI TÀI KHOẢN
+//             let maTrangThai = 1;
+//             if (vaiTroDangKy === 'giaovien' || vaiTroDangKy === 'admin') {
+//                 maTrangThai = 2; // Giáo viên/Admin mặc định luôn chờ duyệt
+//             } else {
+//                 const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
+//                 maTrangThai = (cheDoDuyet === 'CHO_DUYET') ? 2 : 1;
+//             }
+
+//             // 5. Lưu vào bảng hoc_sinh
+//             const { error: insertError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .insert([{
+//                     uid: taoUidHocSinh,
+//                     sdt: sdt,
+//                     mat_khau: pass,
+//                     ten: hoTen,
+//                     vai_tro: vaiTroDangKy,
+//                     trang_thai: maTrangThai,
+//                     khoi_lop: khoi,
+//                     tinh: tinh,
+//                     truong: truong,
+//                     danh_sach_ma_lop: (vaiTroDangKy === 'hocsinh') ? [maLopVao] : [],
+//                     ngay_tham_gia: new Date().toISOString()
+//                 }]);
+
+//             if (insertError) throw insertError;
+
+//             // =========================================================
+//             // 6. BƠM UID VÀO CỘT hoc_sinh_ids CỦA BẢNG LỚP HỌC
+//             // =========================================================
+//             if (vaiTroDangKy === 'hocsinh' && checkLop) {
+//                 let dsHsHienTai = Array.isArray(checkLop.hoc_sinh_ids) ? checkLop.hoc_sinh_ids : [];
+
+//                 if (!dsHsHienTai.includes(taoUidHocSinh)) {
+//                     dsHsHienTai.push(taoUidHocSinh);
+
+//                     const { error: errUpdateLop } = await _supabase
+//                         .from('lop_hoc')
+//                         .update({ hoc_sinh_ids: dsHsHienTai })
+//                         .eq('ma_lop', maLopVao);
+
+//                     if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+//                 }
+//             }
+
+//             // 7. Hoàn tất (Hiện thông báo chờ duyệt cho GV/Admin)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 if (maTrangThai === 2) {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen}. Tài khoản của em đang chờ Giáo viên phê duyệt mới có thể đăng nhập.`);
+//                 } else {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen} gia nhập lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
+//                 }
+//             } else {
+//                 let tenHienThi = vaiTroDangKy === 'admin' ? 'ADMIN' : 'GIÁO VIÊN';
+//                 alert(`Đăng ký thành công tài khoản ${tenHienThi} cho thầy/cô: ${hoTen}.\nTài khoản đang ở trạng thái chờ Admin phê duyệt để có thể đăng nhập!`);
+//             }
+
+//             ham_2_1_chuyen_doi_che_do();
+//             document.getElementById('txtPassword').value = '';
+//             document.getElementById('status').innerText = `Vui lòng đăng nhập để tiếp tục`;
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Đăng ký thất bại`;
+//         } finally {
+//             if (btnElement) btnElement.disabled = false;
+//         }
+//     }
+// }
+
+// // =====================================================================
+// // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
+// // (BẢN UPDATE: PHÂN LUỒNG XỬ LÝ RIÊNG CHO ADMIN, GIÁO VIÊN VÀ HỌC SINH)
+// // =====================================================================
+// async function ham_2_4_xu_ly_submit(btnElement) {
+//     const sdt = document.getElementById('txtPhone').value.trim();
+//     const pass = document.getElementById('txtPassword').value;
+//     const errorMsg = document.getElementById('login-error');
+
+//     errorMsg.style.display = 'none';
+
+//     if (!sdt || !pass) {
+//         errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+//         errorMsg.style.display = 'block';
+//         return;
+//     }
+
+//     if (AppState.isLoginMode) {
+//         // ====================================================
+//         // LUỒNG 1: ĐĂNG NHẬP
+//         // ====================================================
+//         document.getElementById('status').innerText = `Đang xác thực...`;
+//         try {
+//             const { data: userFound, error } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('*')
+//                 .eq('sdt', sdt)
+//                 .eq('mat_khau', pass)
+//                 .maybeSingle();
+
+//             if (error) throw error;
+//             if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+
+//             // KIỂM TRA TRẠNG THÁI KHÓA HOẶC CHỜ DUYỆT
+//             if (userFound.trang_thai === 0) throw new Error("Tài khoản của bạn đã bị khóa!");
+//             if (userFound.trang_thai === 2) {
+//                 let msgChoDuyet = userFound.vai_tro === 'hocsinh'
+//                     ? "Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!"
+//                     : "Tài khoản đang chờ Admin phê duyệt. Vui lòng quay lại sau!";
+//                 throw new Error(msgChoDuyet);
+//             }
+
+//             AppState.user = userFound;
+//             AppState.role = userFound.vai_tro;
+
+//             let tenVaiTro = '';
+//             if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//             else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//             else tenVaiTro = 'Học sinh';
+
+//             let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//             let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//             let lblStatus = document.getElementById('status');
+//             if (lblStatus) {
+//                 lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//                 lblStatus.style.color = '#1a73e8';
+//                 lblStatus.style.fontWeight = 'bold';
+//             }
+
+//             // Cập nhật thời gian đăng nhập cuối
+//             await _supabase
+//                 .from('hoc_sinh')
+//                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+//                 .eq('uid', userFound.uid);
+
+//             // ====================================================
+//             // 🌟 ĐIỀU HƯỚNG GIAO DIỆN THEO LOẠI TÀI KHOẢN
+//             // ====================================================
+//             if (AppState.role === 'admin') {
+//                 console.log("Đăng nhập thành công với quyền Admin");
+//                 // Gọi hàm load giao diện dành riêng cho Admin (ví dụ: quản lý toàn trường)
+//                 if (typeof ham_3_1_ve_dashboard_admin === 'function') {
+//                     ham_3_1_ve_dashboard_admin();
+//                 }
+//             }
+//             else if (AppState.role === 'giaovien') {
+//                 console.log("Đăng nhập thành công với quyền Giáo viên");
+//                 // Gọi hàm load giao diện dành riêng cho Giáo viên (ví dụ: quản lý lớp mình)
+//                 // Tạm thời dùng chung hàm với admin, sau này thầy có thể viết hàm riêng như ham_ve_dashboard_giaovien()
+//                 if (typeof ham_3_1_ve_dashboard_admin === 'function') {
+//                     ham_3_1_ve_dashboard_admin();
+//                 }
+//             }
+//             else if (AppState.role === 'hocsinh') {
+//                 console.log("Đăng nhập thành công với quyền Học sinh");
+//                 // Xử lý giao diện cho học sinh vào làm bài
+//                 document.getElementById('khung-dang-nhap').style.display = 'none';
+//                 document.getElementById('btnLogout').style.display = 'inline-block';
+//                 document.getElementById('dashboard-container').style.display = 'block';
+
+//                 let dsMaLopHocSinh = [];
+//                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+//                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
+//                 }
+
+//                 if (typeof window.ham_3b_1_tai_nhiem_vu_cua_toi === 'function') {
+//                     window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+//                 }
+//             }
+//             else {
+//                 throw new Error("Vai trò tài khoản không hợp lệ trên hệ thống!");
+//             }
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Lỗi đăng nhập`;
+//         }
+
+//     } else {
+//         // ====================================================
+//         // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (ĐỒNG BỘ 2 CHIỀU)
+//         // ====================================================
+//         console.log("App: Đang xử lý đăng ký tài khoản");
+
+//         const hoTen = document.getElementById('txtHoTen').value.trim();
+//         const passConfirm = document.getElementById('txtConfirmPassword').value;
+//         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
+//         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
+//         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
+//         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+
+//         // Đọc giá trị radio đang được check
+//         let vaiTroDangKy = 'hocsinh';
+//         const selectedRole = document.querySelector('input[name="radVaiTro"]:checked');
+//         if (selectedRole) {
+//             vaiTroDangKy = selectedRole.value;
+//         }
+
+//         if (!hoTen || !tinh || !truong) {
+//             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         // Bỏ qua kiểm tra mã lớp nếu là giáo viên hoặc admin
+//         if (vaiTroDangKy === 'hocsinh' && !maLopVao) {
+//             errorMsg.innerText = "Học sinh đăng ký bắt buộc phải nhập MÃ LỚP do giáo viên cung cấp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         if (pass !== passConfirm) {
+//             errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+//         if (sdt.length < 9) {
+//             errorMsg.innerText = "Số điện thoại không hợp lệ!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         document.getElementById('status').innerText = `Đang kết nối hệ thống...`;
+//         if (btnElement) btnElement.disabled = true;
+
+//         try {
+//             // Kiểm tra trùng số điện thoại
+//             const { data: checkSdt, error: checkError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('sdt')
+//                 .eq('sdt', sdt)
+//                 .maybeSingle();
+
+//             if (checkSdt) {
+//                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang tab Đăng nhập.");
+//             }
+
+//             let checkLop = null;
+
+//             // XÁC THỰC MÃ LỚP VÀ KÉO MẢNG hoc_sinh_ids VỀ (CHỈ CHO HỌC SINH)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 document.getElementById('status').innerText = `Đang kiểm tra mã lớp...`;
+
+//                 const { data: dataLop, error: loiCheckLop } = await _supabase
+//                     .from('lop_hoc')
+//                     .select('ma_lop, hoc_sinh_ids')
+//                     .eq('ma_lop', maLopVao)
+//                     .maybeSingle();
+
+//                 if (loiCheckLop) {
+//                     throw new Error("Lỗi kết nối khi kiểm tra mã lớp. Vui lòng thử lại!");
+//                 }
+
+//                 if (!dataLop) {
+//                     throw new Error(`Mã lớp [ ${maLopVao} ] KHÔNG TỒN TẠI. Em hãy hỏi lại Giáo viên để lấy đúng mã nhé!`);
+//                 }
+//                 checkLop = dataLop;
+//             }
+
+//             // Tạo sẵn 1 mã UID duy nhất
+//             const taoUidHocSinh = crypto.randomUUID();
+//             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
+
+//             // XÁC ĐỊNH TRẠNG THÁI TÀI KHOẢN
+//             let maTrangThai = 1;
+//             if (vaiTroDangKy === 'giaovien' || vaiTroDangKy === 'admin') {
+//                 maTrangThai = 2; // Giáo viên/Admin mặc định luôn chờ duyệt
+//             } else {
+//                 const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
+//                 maTrangThai = (cheDoDuyet === 'CHO_DUYET') ? 2 : 1;
+//             }
+
+//             // Lưu vào bảng hoc_sinh
+//             const { error: insertError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .insert([{
+//                     uid: taoUidHocSinh,
+//                     sdt: sdt,
+//                     mat_khau: pass,
+//                     ten: hoTen,
+//                     vai_tro: vaiTroDangKy,
+//                     trang_thai: maTrangThai,
+//                     khoi_lop: khoi,
+//                     tinh: tinh,
+//                     truong: truong,
+//                     danh_sach_ma_lop: (vaiTroDangKy === 'hocsinh') ? [maLopVao] : [],
+//                     ngay_tham_gia: new Date().toISOString()
+//                 }]);
+
+//             if (insertError) throw insertError;
+
+//             // BƠM UID VÀO CỘT hoc_sinh_ids CỦA BẢNG LỚP HỌC
+//             if (vaiTroDangKy === 'hocsinh' && checkLop) {
+//                 let dsHsHienTai = Array.isArray(checkLop.hoc_sinh_ids) ? checkLop.hoc_sinh_ids : [];
+
+//                 if (!dsHsHienTai.includes(taoUidHocSinh)) {
+//                     dsHsHienTai.push(taoUidHocSinh);
+
+//                     const { error: errUpdateLop } = await _supabase
+//                         .from('lop_hoc')
+//                         .update({ hoc_sinh_ids: dsHsHienTai })
+//                         .eq('ma_lop', maLopVao);
+
+//                     if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+//                 }
+//             }
+
+//             // Hoàn tất (Hiện thông báo chờ duyệt cho GV/Admin)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 if (maTrangThai === 2) {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen}. Tài khoản của em đang chờ Giáo viên phê duyệt mới có thể đăng nhập.`);
+//                 } else {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen} gia nhập lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
+//                 }
+//             } else {
+//                 let tenHienThi = vaiTroDangKy === 'admin' ? 'ADMIN' : 'GIÁO VIÊN';
+//                 alert(`Đăng ký thành công tài khoản ${tenHienThi} cho thầy/cô: ${hoTen}.\nTài khoản đang ở trạng thái chờ Admin phê duyệt để có thể đăng nhập!`);
+//             }
+
+//             ham_2_1_chuyen_doi_che_do();
+//             document.getElementById('txtPassword').value = '';
+//             document.getElementById('status').innerText = `Vui lòng đăng nhập để tiếp tục`;
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Đăng ký thất bại`;
+//         } finally {
+//             if (btnElement) btnElement.disabled = false;
+//         }
+//     }
+// }
+
+
+// // =====================================================================
+// // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
+// // (BẢN UPDATE: ĐIỀU HƯỚNG GIÁO VIÊN SANG GIAO DIỆN TIỆN ÍCH RIÊNG)
+// // =====================================================================
+// async function ham_2_4_xu_ly_submit(btnElement) {
+//     const sdt = document.getElementById('txtPhone').value.trim();
+//     const pass = document.getElementById('txtPassword').value;
+//     const errorMsg = document.getElementById('login-error');
+
+//     errorMsg.style.display = 'none';
+
+//     if (!sdt || !pass) {
+//         errorMsg.innerText = "Vui lòng nhập Số điện thoại và Mật khẩu!";
+//         errorMsg.style.display = 'block';
+//         return;
+//     }
+
+//     if (AppState.isLoginMode) {
+//         // ====================================================
+//         // LUỒNG 1: ĐĂNG NHẬP
+//         // ====================================================
+//         document.getElementById('status').innerText = `Đang xác thực...`;
+//         try {
+//             const { data: userFound, error } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('*')
+//                 .eq('sdt', sdt)
+//                 .eq('mat_khau', pass)
+//                 .maybeSingle();
+
+//             if (error) throw error;
+//             if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
+
+//             // KIỂM TRA TRẠNG THÁI KHÓA HOẶC CHỜ DUYỆT
+//             if (userFound.trang_thai === 0) throw new Error("Tài khoản của bạn đã bị khóa!");
+//             if (userFound.trang_thai === 2) {
+//                 let msgChoDuyet = userFound.vai_tro === 'hocsinh'
+//                     ? "Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!"
+//                     : "Tài khoản đang chờ Admin phê duyệt. Vui lòng quay lại sau!";
+//                 throw new Error(msgChoDuyet);
+//             }
+
+//             AppState.user = userFound;
+//             AppState.role = userFound.vai_tro;
+
+//             let tenVaiTro = '';
+//             if (AppState.role === 'admin') tenVaiTro = 'Admin';
+//             else if (AppState.role === 'giaovien') tenVaiTro = 'Giáo viên';
+//             else tenVaiTro = 'Học sinh';
+
+//             let tenInHoa = AppState.user.ten ? AppState.user.ten.toUpperCase() : 'CHƯA CẬP NHẬT TÊN';
+//             let chuoiHienThi = `${tenVaiTro}: ${tenInHoa} (${AppState.user.sdt})`;
+
+//             let lblStatus = document.getElementById('status');
+//             if (lblStatus) {
+//                 lblStatus.innerText = `👤 ${chuoiHienThi}`;
+//                 lblStatus.style.color = '#1a73e8';
+//                 lblStatus.style.fontWeight = 'bold';
+//             }
+
+//             // Cập nhật thời gian đăng nhập cuối
+//             await _supabase
+//                 .from('hoc_sinh')
+//                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
+//                 .eq('uid', userFound.uid);
+
+//             // ====================================================
+//             // 🌟 ĐIỀU HƯỚNG GIAO DIỆN THEO LOẠI TÀI KHOẢN
+//             // ====================================================
+//             if (AppState.role === 'admin') {
+//                 console.log("Đăng nhập thành công với quyền Admin");
+//                 if (typeof ham_3_1_ve_dashboard_admin === 'function') {
+//                     ham_3_1_ve_dashboard_admin();
+//                 }
+//             }
+//             else if (AppState.role === 'giaovien') {
+//                 console.log("Đăng nhập thành công với quyền Giáo viên");
+//                 // Tách biệt: Gọi hàm load giao diện dành riêng cho Giáo viên
+//                 if (typeof ham_3_2_ve_dashboard_giaovien === 'function') {
+//                     ham_3_2_ve_dashboard_giaovien();
+//                 } else {
+//                     console.warn("Hàm ham_3_2_ve_dashboard_giaovien() chưa được định nghĩa.");
+//                 }
+//             }
+//             else if (AppState.role === 'hocsinh') {
+//                 console.log("Đăng nhập thành công với quyền Học sinh");
+//                 document.getElementById('khung-dang-nhap').style.display = 'none';
+//                 document.getElementById('btnLogout').style.display = 'inline-block';
+//                 document.getElementById('dashboard-container').style.display = 'block';
+
+//                 let dsMaLopHocSinh = [];
+//                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
+//                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
+//                 }
+
+//                 if (typeof window.ham_3b_1_tai_nhiem_vu_cua_toi === 'function') {
+//                     window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+//                 }
+//             }
+//             else {
+//                 throw new Error("Vai trò tài khoản không hợp lệ trên hệ thống!");
+//             }
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Lỗi đăng nhập`;
+//         }
+
+//     } else {
+//         // ====================================================
+//         // LUỒNG 2: ĐĂNG KÝ TÀI KHOẢN (ĐỒNG BỘ 2 CHIỀU)
+//         // ====================================================
+//         console.log("App: Đang xử lý đăng ký tài khoản");
+
+//         const hoTen = document.getElementById('txtHoTen').value.trim();
+//         const passConfirm = document.getElementById('txtConfirmPassword').value;
+//         const khoi = document.getElementById('txtLop') ? document.getElementById('txtLop').value : '';
+//         const tinh = document.getElementById('txtTinh') ? document.getElementById('txtTinh').value.trim() : '';
+//         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
+//         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
+
+//         // Đọc giá trị radio đang được check
+//         let vaiTroDangKy = 'hocsinh';
+//         const selectedRole = document.querySelector('input[name="radVaiTro"]:checked');
+//         if (selectedRole) {
+//             vaiTroDangKy = selectedRole.value;
+//         }
+
+//         if (!hoTen || !tinh || !truong) {
+//             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         // Bỏ qua kiểm tra mã lớp nếu là giáo viên hoặc admin
+//         if (vaiTroDangKy === 'hocsinh' && !maLopVao) {
+//             errorMsg.innerText = "Học sinh đăng ký bắt buộc phải nhập MÃ LỚP do giáo viên cung cấp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         if (pass !== passConfirm) {
+//             errorMsg.innerText = "Mật khẩu xác nhận không khớp!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+//         if (sdt.length < 9) {
+//             errorMsg.innerText = "Số điện thoại không hợp lệ!";
+//             errorMsg.style.display = 'block';
+//             return;
+//         }
+
+//         document.getElementById('status').innerText = `Đang kết nối hệ thống...`;
+//         if (btnElement) btnElement.disabled = true;
+
+//         try {
+//             // Kiểm tra trùng số điện thoại
+//             const { data: checkSdt, error: checkError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .select('sdt')
+//                 .eq('sdt', sdt)
+//                 .maybeSingle();
+
+//             if (checkSdt) {
+//                 throw new Error("Số điện thoại này đã được đăng ký! Vui lòng chuyển sang tab Đăng nhập.");
+//             }
+
+//             let checkLop = null;
+
+//             // XÁC THỰC MÃ LỚP VÀ KÉO MẢNG hoc_sinh_ids VỀ (CHỈ CHO HỌC SINH)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 document.getElementById('status').innerText = `Đang kiểm tra mã lớp...`;
+
+//                 const { data: dataLop, error: loiCheckLop } = await _supabase
+//                     .from('lop_hoc')
+//                     .select('ma_lop, hoc_sinh_ids')
+//                     .eq('ma_lop', maLopVao)
+//                     .maybeSingle();
+
+//                 if (loiCheckLop) {
+//                     throw new Error("Lỗi kết nối khi kiểm tra mã lớp. Vui lòng thử lại!");
+//                 }
+
+//                 if (!dataLop) {
+//                     throw new Error(`Mã lớp [ ${maLopVao} ] KHÔNG TỒN TẠI. Em hãy hỏi lại Giáo viên để lấy đúng mã nhé!`);
+//                 }
+//                 checkLop = dataLop;
+//             }
+
+//             // Tạo sẵn 1 mã UID duy nhất
+//             const taoUidHocSinh = crypto.randomUUID();
+//             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
+
+//             // XÁC ĐỊNH TRẠNG THÁI TÀI KHOẢN
+//             let maTrangThai = 1;
+//             if (vaiTroDangKy === 'giaovien' || vaiTroDangKy === 'admin') {
+//                 maTrangThai = 2; // Giáo viên/Admin mặc định luôn chờ duyệt
+//             } else {
+//                 const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
+//                 maTrangThai = (cheDoDuyet === 'CHO_DUYET') ? 2 : 1;
+//             }
+
+//             // Lưu vào bảng hoc_sinh
+//             const { error: insertError } = await _supabase
+//                 .from('hoc_sinh')
+//                 .insert([{
+//                     uid: taoUidHocSinh,
+//                     sdt: sdt,
+//                     mat_khau: pass,
+//                     ten: hoTen,
+//                     vai_tro: vaiTroDangKy,
+//                     trang_thai: maTrangThai,
+//                     khoi_lop: khoi,
+//                     tinh: tinh,
+//                     truong: truong,
+//                     danh_sach_ma_lop: (vaiTroDangKy === 'hocsinh') ? [maLopVao] : [],
+//                     ngay_tham_gia: new Date().toISOString()
+//                 }]);
+
+//             if (insertError) throw insertError;
+
+//             // BƠM UID VÀO CỘT hoc_sinh_ids CỦA BẢNG LỚP HỌC
+//             if (vaiTroDangKy === 'hocsinh' && checkLop) {
+//                 let dsHsHienTai = Array.isArray(checkLop.hoc_sinh_ids) ? checkLop.hoc_sinh_ids : [];
+
+//                 if (!dsHsHienTai.includes(taoUidHocSinh)) {
+//                     dsHsHienTai.push(taoUidHocSinh);
+
+//                     const { error: errUpdateLop } = await _supabase
+//                         .from('lop_hoc')
+//                         .update({ hoc_sinh_ids: dsHsHienTai })
+//                         .eq('ma_lop', maLopVao);
+
+//                     if (errUpdateLop) console.error("Lỗi đồng bộ vào lớp học:", errUpdateLop);
+//                 }
+//             }
+
+//             // Hoàn tất (Hiện thông báo chờ duyệt cho GV/Admin)
+//             if (vaiTroDangKy === 'hocsinh') {
+//                 if (maTrangThai === 2) {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen}. Tài khoản của em đang chờ Giáo viên phê duyệt mới có thể đăng nhập.`);
+//                 } else {
+//                     alert(`Đăng ký thành công! Chào mừng ${hoTen} gia nhập lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
+//                 }
+//             } else {
+//                 let tenHienThi = vaiTroDangKy === 'admin' ? 'ADMIN' : 'GIÁO VIÊN';
+//                 alert(`Đăng ký thành công tài khoản ${tenHienThi} cho thầy/cô: ${hoTen}.\nTài khoản đang ở trạng thái chờ Admin phê duyệt để có thể đăng nhập!`);
+//             }
+
+//             ham_2_1_chuyen_doi_che_do();
+//             document.getElementById('txtPassword').value = '';
+//             document.getElementById('status').innerText = `Vui lòng đăng nhập để tiếp tục`;
+
+//         } catch (error) {
+//             errorMsg.innerText = error.message;
+//             errorMsg.style.display = 'block';
+//             document.getElementById('status').innerText = `Đăng ký thất bại`;
+//         } finally {
+//             if (btnElement) btnElement.disabled = false;
+//         }
+//     }
+// }
+
 // =====================================================================
 // Hàm 2.4: Bắt sự kiện bấm nút Đăng nhập / Đăng ký chính 
-// (BẢN FINAL: KẾT NỐI ĐỒNG BỘ CỘT hoc_sinh_ids VÀ XỬ LÝ CHỜ DUYỆT)
+// (BẢN UPDATE: DÙNG CHUNG DASHBOARD NHƯNG ẨN CHỨC NĂNG THEO QUYỀN)
 // =====================================================================
 async function ham_2_4_xu_ly_submit(btnElement) {
     const sdt = document.getElementById('txtPhone').value.trim();
@@ -351,9 +1356,14 @@ async function ham_2_4_xu_ly_submit(btnElement) {
             if (error) throw error;
             if (!userFound) throw new Error("Số điện thoại hoặc mật khẩu không đúng!");
 
-            // 🌟 CHẶN ĐĂNG NHẬP NẾU TÀI KHOẢN BỊ KHÓA HOẶC CHỜ DUYỆT
+            // KIỂM TRA TRẠNG THÁI KHÓA HOẶC CHỜ DUYỆT
             if (userFound.trang_thai === 0) throw new Error("Tài khoản của bạn đã bị khóa!");
-            if (userFound.trang_thai === 2) throw new Error("Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!");
+            if (userFound.trang_thai === 2) {
+                let msgChoDuyet = userFound.vai_tro === 'hocsinh'
+                    ? "Tài khoản đang chờ Giáo viên phê duyệt. Vui lòng quay lại sau!"
+                    : "Tài khoản đang chờ Admin phê duyệt. Vui lòng quay lại sau!";
+                throw new Error(msgChoDuyet);
+            }
 
             AppState.user = userFound;
             AppState.role = userFound.vai_tro;
@@ -373,14 +1383,38 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 lblStatus.style.fontWeight = 'bold';
             }
 
+            // Cập nhật thời gian đăng nhập cuối
             await _supabase
                 .from('hoc_sinh')
                 .update({ lan_dang_nhap_cuoi: new Date().toISOString() })
                 .eq('uid', userFound.uid);
 
+            // ====================================================
+            // 🌟 ĐIỀU HƯỚNG GIAO DIỆN THEO LOẠI TÀI KHOẢN
+            // ====================================================
             if (AppState.role === 'admin' || AppState.role === 'giaovien') {
-                ham_3_1_ve_dashboard_admin();
-            } else {
+                console.log(`Đăng nhập thành công với quyền ${AppState.role}`);
+
+                // Gọi chung hàm vẽ giao diện gốc
+                if (typeof ham_3_1_ve_dashboard_admin === 'function') {
+                    ham_3_1_ve_dashboard_admin();
+
+                    // 🌟 LƯỢC BỚT GIAO DIỆN NẾU LÀ GIÁO VIÊN
+                    if (AppState.role === 'giaovien') {
+                        setTimeout(() => {
+                            // Quét và ẩn toàn bộ các phần tử HTML có class "quyen-admin"
+                            const adminElements = document.querySelectorAll('.quyen-admin');
+                            adminElements.forEach(el => el.style.display = 'none');
+
+                            // (Tùy chọn) Thầy có thể ẩn thêm bằng ID nếu lười thêm class
+                            // const tabHeThong = document.getElementById('id_cua_tab_he_thong');
+                            // if (tabHeThong) tabHeThong.style.display = 'none';
+                        }, 100); // Đợi 100ms để đảm bảo HTML đã render xong
+                    }
+                }
+            }
+            else if (AppState.role === 'hocsinh') {
+                console.log("Đăng nhập thành công với quyền Học sinh");
                 document.getElementById('khung-dang-nhap').style.display = 'none';
                 document.getElementById('btnLogout').style.display = 'inline-block';
                 document.getElementById('dashboard-container').style.display = 'block';
@@ -389,8 +1423,15 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 if (AppState.user.danh_sach_ma_lop && Array.isArray(AppState.user.danh_sach_ma_lop)) {
                     dsMaLopHocSinh = AppState.user.danh_sach_ma_lop;
                 }
-                window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+
+                if (typeof window.ham_3b_1_tai_nhiem_vu_cua_toi === 'function') {
+                    window.ham_3b_1_tai_nhiem_vu_cua_toi(AppState.user.uid, dsMaLopHocSinh, AppState.user.ten);
+                }
             }
+            else {
+                throw new Error("Vai trò tài khoản không hợp lệ trên hệ thống!");
+            }
+
         } catch (error) {
             errorMsg.innerText = error.message;
             errorMsg.style.display = 'block';
@@ -410,12 +1451,12 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         const truong = document.getElementById('txtTruong') ? document.getElementById('txtTruong').value.trim() : '';
         const maLopVao = document.getElementById('txtMaLop') ? document.getElementById('txtMaLop').value.trim().toUpperCase() : '';
 
+        // Đọc giá trị radio đang được check
         let vaiTroDangKy = 'hocsinh';
-        const radioHS = document.getElementById('roleHS');
-        const radioGV = document.getElementById('roleGV');
-
-        if (radioGV && radioGV.checked) vaiTroDangKy = 'giaovien';
-        else if (radioHS && radioHS.checked) vaiTroDangKy = 'hocsinh';
+        const selectedRole = document.querySelector('input[name="radVaiTro"]:checked');
+        if (selectedRole) {
+            vaiTroDangKy = selectedRole.value;
+        }
 
         if (!hoTen || !tinh || !truong) {
             errorMsg.innerText = "Vui lòng nhập đầy đủ Họ tên, Tỉnh/Thành phố và Trường học!";
@@ -444,7 +1485,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         if (btnElement) btnElement.disabled = true;
 
         try {
-            // 2. Kiểm tra trùng số điện thoại
             const { data: checkSdt, error: checkError } = await _supabase
                 .from('hoc_sinh')
                 .select('sdt')
@@ -457,9 +1497,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
             let checkLop = null;
 
-            // =========================================================
-            // 3. XÁC THỰC MÃ LỚP VÀ KÉO MẢNG hoc_sinh_ids VỀ
-            // =========================================================
             if (vaiTroDangKy === 'hocsinh') {
                 document.getElementById('status').innerText = `Đang kiểm tra mã lớp...`;
 
@@ -479,16 +1516,17 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 checkLop = dataLop;
             }
 
-            // 4. Tạo sẵn 1 mã UID duy nhất
             const taoUidHocSinh = crypto.randomUUID();
             document.getElementById('status').innerText = `Đang khởi tạo tài khoản...`;
 
-            // 🌟 KIỂM TRA CÀI ĐẶT HỆ THỐNG ĐỂ QUYẾT ĐỊNH TRẠNG THÁI (1 = Tự động, 2 = Chờ duyệt)
-            // (Chỉ áp dụng chờ duyệt cho học sinh, giáo viên đăng ký nội bộ thường cấp 1)
-            const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
-            const maTrangThai = (cheDoDuyet === 'CHO_DUYET' && vaiTroDangKy === 'hocsinh') ? 2 : 1;
+            let maTrangThai = 1;
+            if (vaiTroDangKy === 'giaovien' || vaiTroDangKy === 'admin') {
+                maTrangThai = 2;
+            } else {
+                const cheDoDuyet = (window.AppConfig && window.AppConfig.DUYET_TAI_KHOAN_MOI) ? window.AppConfig.DUYET_TAI_KHOAN_MOI : 'TU_DONG';
+                maTrangThai = (cheDoDuyet === 'CHO_DUYET') ? 2 : 1;
+            }
 
-            // 5. Lưu vào bảng hoc_sinh
             const { error: insertError } = await _supabase
                 .from('hoc_sinh')
                 .insert([{
@@ -497,7 +1535,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     mat_khau: pass,
                     ten: hoTen,
                     vai_tro: vaiTroDangKy,
-                    trang_thai: maTrangThai, // 🌟 Gắn trạng thái vào đây
+                    trang_thai: maTrangThai,
                     khoi_lop: khoi,
                     tinh: tinh,
                     truong: truong,
@@ -507,9 +1545,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
 
             if (insertError) throw insertError;
 
-            // =========================================================
-            // 6. BƠM UID VÀO CỘT hoc_sinh_ids CỦA BẢNG LỚP HỌC
-            // =========================================================
             if (vaiTroDangKy === 'hocsinh' && checkLop) {
                 let dsHsHienTai = Array.isArray(checkLop.hoc_sinh_ids) ? checkLop.hoc_sinh_ids : [];
 
@@ -525,7 +1560,6 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                 }
             }
 
-            // 7. Hoàn tất (Hiện thông báo tùy theo trạng thái được gán)
             if (vaiTroDangKy === 'hocsinh') {
                 if (maTrangThai === 2) {
                     alert(`Đăng ký thành công! Chào mừng ${hoTen}. Tài khoản của em đang chờ Giáo viên phê duyệt mới có thể đăng nhập.`);
@@ -533,7 +1567,8 @@ async function ham_2_4_xu_ly_submit(btnElement) {
                     alert(`Đăng ký thành công! Chào mừng ${hoTen} gia nhập lớp ${maLopVao}. Hệ thống chuyển về Đăng nhập.`);
                 }
             } else {
-                alert(`Đăng ký thành công tài khoản GIÁO VIÊN cho thầy/cô: ${hoTen}.`);
+                let tenHienThi = vaiTroDangKy === 'admin' ? 'ADMIN' : 'GIÁO VIÊN';
+                alert(`Đăng ký thành công tài khoản ${tenHienThi} cho thầy/cô: ${hoTen}.\nTài khoản đang ở trạng thái chờ Admin phê duyệt để có thể đăng nhập!`);
             }
 
             ham_2_1_chuyen_doi_che_do();
@@ -549,6 +1584,7 @@ async function ham_2_4_xu_ly_submit(btnElement) {
         }
     }
 }
+
 
 
 
