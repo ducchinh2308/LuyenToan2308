@@ -255,8 +255,213 @@ window.ham_18_them_ten_hs = async function (index) {
 
 
 
+// // =====================================================================
+// // KHỐI 18.1: MỞ GIAO DIỆN (ĐÃ CẬP NHẬT VỊ TRÍ KHUNG HIỂN THỊ ẢNH)
+// // =====================================================================
+// window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+//             <h3 style="color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-top: 0; text-transform: uppercase;">
+//                 📍 Tiện ích: Tạo sơ đồ lớp học
+//             </h3>
+
+//             <!-- BƯỚC 1: NẠP DỮ LIỆU ĐẦU VÀO -->
+//             <div style="margin-top: 20px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+//                 <h4 style="margin-top: 0; color: #d35400; margin-bottom: 20px;">BƯỚC 1: CUNG CẤP DỮ LIỆU SƠ ĐỒ</h4>
+                
+//                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    
+//                     <!-- 1. Chọn file hình thẻ -->
+//                     <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #17a2b8; display: flex; flex-direction: column;">
+//                         <label style="font-weight: bold; color: #17a2b8; font-size: 15px; margin-bottom: 8px;">
+//                             🖼️ 1. Hình thẻ học sinh
+//                         </label>
+//                         <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+//                             Chọn ảnh từ máy tính hoặc nạp hàng loạt từ thư mục Google Drive. Tên file nên đặt theo mã hoặc tên học sinh.
+//                         </div>
+                        
+//                         <!-- Thanh nút nạp ảnh -->
+//                         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+//                             <button onclick="document.getElementById('input-anh-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #17a2b8; color: #17a2b8; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+//                                 💻 Từ máy tính
+//                             </button>
+//                             <input type="file" id="input-anh-local" accept="image/*" multiple style="display: none;" onchange="ham_18_a1_xu_ly_anh_local(event)">
+                            
+//                             <button onclick="ham_18_a2_mo_google_picker()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                                 ☁️ Từ G.Drive
+//                             </button>
+//                         </div>
+
+//                         <!-- Nút lưu lên Drive (Ẩn mặc định, hiện khi chọn ảnh Local) -->
+//                         <button id="btn-up-drive" onclick="ham_18_a3_up_anh_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
+//                             ⬆️ Sao lưu ảnh lên Drive
+//                         </button>
+//                     </div>
+
+//                     <!-- 2. Chọn file danh sách -->
+// <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #28a745; display: flex; flex-direction: column;">
+//     <label style="font-weight: bold; color: #28a745; font-size: 15px; margin-bottom: 8px;">
+//         📋 2. Danh sách học sinh
+//     </label>
+//     <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+//         Tải lên file Excel (.xlsx) hoặc Word (.docx) chứa cột STT và Họ Tên.
+//     </div>
+
+//     <!-- Thanh 2 nút nạp Danh sách (Local & Drive) -->
+//     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+//         <button onclick="document.getElementById('input-ds-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #28a745; color: #28a745; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+//             💻 Từ máy tính
+//         </button>
+//         <!-- Thẻ input ẩn để gọi hộp thoại chọn file ổ cứng -->
+//         <input type="file" id="input-ds-local" accept=".xlsx, .xls, .docx" style="display: none;" onchange="ham_18_b1_xu_ly_danh_sach_local(event)">
+
+//         <button onclick="ham_18_b2_mo_google_picker_danh_sach()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//             ☁️ Từ G.Drive
+//         </button>
+//     </div>
+
+//     <!-- Hiển thị tên file đang được chọn -->
+//     <div id="ten-file-ds-hien-tai" style="font-size: 13px; font-weight: bold; color: #0056b3; margin-bottom: 10px; text-align: center; word-break: break-all; min-height: 20px;">
+//         Chưa có danh sách
+//     </div>
+
+//     <!-- Nút lưu lên Drive (Ẩn mặc định, chỉ hiện ra khi giáo viên nạp file từ máy tính) -->
+//     <button id="btn-up-drive-ds" onclick="ham_18_b3_up_file_danh_sach_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
+//         ⬆️ Sao lưu Danh sách lên Drive
+//     </button>
+// </div>
+
+//                     <!-- 3. Chọn file sơ đồ (Mới: Hỗ trợ máy tính, Drive & Sao lưu) -->
+//                     <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #6f42c1; display: flex; flex-direction: column;">
+//                         <label style="font-weight: bold; color: #6f42c1; font-size: 15px; margin-bottom: 8px;">
+//                             🗺️ 3. Chọn file sơ đồ lớp
+//                         </label>
+
+//                         <!-- KHU VỰC TẢI FILE MẪU -->
+// <div style="margin-bottom: 15px; padding: 12px; background: #e0f7fa; border-radius: 6px; border: 1px dashed #00acc1;">
+//     <p style="margin: 0 0 10px 0; font-weight: bold; color: #00838f;">📥 Tải file sơ đồ mẫu (Dành cho GV chưa có file):</p>
+//     <div style="display: flex; gap: 10px;">
+//         <button type="button" onclick="ham_18_tao_file_mau_word_so_do()" style="padding: 8px 15px; background: #2b579a; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//             📄 Tải mẫu Word
+//         </button>
+//         <button type="button" onclick="ham_18_tao_file_mau_excel_so_do()" style="padding: 8px 15px; background: #217346; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//             📊 Tải mẫu Excel
+//         </button>
+//     </div>
+//     <p style="margin: 8px 0 0 0; font-size: 12px; color: #555; font-style: italic;">
+//         * Thầy cô tải file về, điền các số thứ tự 1, 2, 3... vào vị trí chỗ ngồi mong muốn rồi nạp lên hệ thống.
+//     </p>
+// </div>
+
+
+//                         <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+//                             Tải lên file sơ đồ (Excel hoặc Word) để lấy thông tin xếp chỗ.
+//                         </div>
+
+//                         <!-- Thanh 2 nút nạp Sơ đồ (Local & Drive) -->
+//                         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+//                             <button onclick="document.getElementById('input-so-do-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #6f42c1; color: #6f42c1; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+//                                 💻 Từ máy tính
+//                             </button>
+//                             <!-- Thẻ input ẩn cho phép chọn cả Ảnh, Excel, Word -->
+//                             <input type="file" id="input-so-do-local" accept="image/*, .xlsx, .xls, .docx" style="display: none;" onchange="ham_18_c1_xu_ly_so_do_local(event)">
+
+//                             <button onclick="ham_18_c2_mo_google_picker_so_do()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                                 ☁️ Từ G.Drive
+//                             </button>
+//                         </div>
+
+//                         <!-- Hiển thị tên file sơ đồ đang chọn -->
+//                         <div id="ten-file-so-do-hien-tai" style="font-size: 13px; font-weight: bold; color: #6f42c1; margin-bottom: 10px; text-align: center; word-break: break-all; min-height: 20px;">
+//                             Chưa có sơ đồ
+//                         </div>
+
+//                         <!-- Nút lưu sơ đồ lên Drive (Ẩn mặc định, chỉ hiện khi chọn từ máy tính) -->
+//                         <button id="btn-up-drive-so-do" onclick="ham_18_c3_up_file_so_do_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
+//                             ⬆️ Sao lưu Sơ đồ lên Drive
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- 🌟 KHU VỰC HIỂN THỊ SƠ ĐỒ LỚP HỌC (TO RÕ Ở TRUNG TÂM) -->
+//                 <div id="khu-vuc-preview-so-do" style="display: none; margin-top: 25px; padding: 15px; background: #fff5f8; border: 1px solid #f3e8ff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+//                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 2px solid #e9d5ff; padding-bottom: 8px;">
+//                         <div style="font-weight: bold; color: #6b21a8; font-size: 15px;">
+//                             🗺️ Sơ đồ chỗ ngồi đã nạp (Cấu trúc phòng học)
+//                         </div>
+//                         <div style="font-size: 12px; color: #7c3aed; font-style: italic;">
+//                             Hiển thị trực quan từ file sơ đồ
+//                         </div>
+//                     </div>
+
+//                     <div id="noi-dung-chi-tiet-so-do" style="max-height: 300px; overflow-y: auto; background: white; border: 1px solid #e9d5ff; border-radius: 6px; padding: 10px;">
+//                         <!-- Bảng sơ đồ lớp sẽ tự động bung to ở đây -->
+//                     </div>
+//                 </div>
+
+
+//                 <!-- 🌟 KHU VỰC HIỂN THỊ ẢNH THẺ RỘNG RÃI BÊN DƯỚI -->
+//                 <div id="khu-vuc-hien-thi-anh-duoi" style="display: none; margin-top: 25px; padding: 15px; background: #f4f6f9; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+//                         <div style="font-weight: bold; color: #17a2b8; font-size: 15px;">
+//                             📸 Hình thẻ đã nạp (<span id="so-luong-anh-da-nap" style="color: #dc3545; font-size: 16px;">0</span>)
+//                         </div>
+//                         <div id="nguon-anh-hien-tai" style="font-size: 12px; font-weight: bold; color: #6c757d; font-style: italic;">
+//                             Nguồn: -
+//                         </div>
+//                     </div>
+                    
+//                     <div id="vung-preview-anh-tong" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); gap: 12px; max-height: 250px; overflow-y: auto; padding-right: 5px;">
+//                         <!-- Các ảnh thẻ sẽ được nạp trải dài vào đây -->
+//                     </div>
+//                 </div>
+
+//                 <!-- NÚT TIẾP TỤC TRÊN CÙNG -->
+//                 <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right;">
+//                     <button id="btn-xu-ly-du-lieu-so-do" onclick="ham_18_xuat_so_do_word()" style="padding: 12px 30px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.2s;">
+//                         🚀 TIẾP TỤC: XUẤT SƠ ĐỒ RA WORD
+//                     </button>
+//                 </div>
+
+
+
+//             </div>
+
+//             <!-- BƯỚC 2: KHU VỰC THAO TÁC XẾP SƠ ĐỒ (Đang ẩn chờ nạp dữ liệu xong) -->
+//             <div id="khu-vuc-thao-tac-so-do" style="display: none; margin-top: 30px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px; margin-bottom: 20px;">
+//                     <h4 style="margin: 0; color: #856404;">BƯỚC 2: KÉO THẢ & CHỐT SƠ ĐỒ</h4>
+//                     <div>
+//                         <button style="padding: 8px 20px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-right: 10px;">💾 Lưu sơ đồ</button>
+//                         <button style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🖨️ Xuất In</button>
+//                     </div>
+//                 </div>
+
+//                 <div style="display: flex; gap: 20px; min-height: 500px;">
+//                     <!-- Cột trái: Danh sách học sinh chưa xếp -->
+//                     <div style="width: 250px; background: #f4f6f9; border-radius: 6px; border: 1px solid #ddd; padding: 10px; display: flex; flex-direction: column;">
+//                         <h5 style="margin-top: 0; text-align: center; color: #495057;">Học sinh chờ xếp</h5>
+//                         <div id="danh-sach-hs-cho" style="flex-grow: 1; overflow-y: auto; background: #fff; border: 1px dashed #ccc; border-radius: 4px; padding: 10px;">
+//                         </div>
+//                     </div>
+
+//                     <!-- Cột phải: Bản đồ không gian lớp -->
+//                     <div style="flex-grow: 1; background: #e9ecef; border-radius: 6px; border: 2px dashed #adb5bd; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+//                         <span style="color: #6c757d; font-weight: bold;">Ảnh sơ đồ lớp sẽ hiển thị ở đây...</span>
+//                         <div id="vung-ban-do-nen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none;"></div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+// };
+
+
 // =====================================================================
-// KHỐI 18.1: MỞ GIAO DIỆN (ĐÃ CẬP NHẬT VỊ TRÍ KHUNG HIỂN THỊ ẢNH)
+// KHỐI 18.1: MỞ GIAO DIỆN (ĐÃ BỔ SUNG NÚT ĐẢO NGƯỢC ẢNH)
 // =====================================================================
 window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -295,78 +500,75 @@ window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
                             </button>
                         </div>
 
-                        <!-- Nút lưu lên Drive (Ẩn mặc định, hiện khi chọn ảnh Local) -->
+                        <!-- Nút lưu lên Drive -->
                         <button id="btn-up-drive" onclick="ham_18_a3_up_anh_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
                             ⬆️ Sao lưu ảnh lên Drive
                         </button>
                     </div>
 
                     <!-- 2. Chọn file danh sách -->
-<div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #28a745; display: flex; flex-direction: column;">
-    <label style="font-weight: bold; color: #28a745; font-size: 15px; margin-bottom: 8px;">
-        📋 2. Danh sách học sinh
-    </label>
-    <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
-        Tải lên file Excel (.xlsx) hoặc Word (.docx) chứa cột STT và Họ Tên.
-    </div>
+                    <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #28a745; display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; color: #28a745; font-size: 15px; margin-bottom: 8px;">
+                            📋 2. Danh sách học sinh
+                        </label>
+                        <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
+                            Tải lên file Excel (.xlsx) hoặc Word (.docx) chứa cột STT và Họ Tên.
+                        </div>
 
-    <!-- Thanh 2 nút nạp Danh sách (Local & Drive) -->
-    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-        <button onclick="document.getElementById('input-ds-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #28a745; color: #28a745; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
-            💻 Từ máy tính
-        </button>
-        <!-- Thẻ input ẩn để gọi hộp thoại chọn file ổ cứng -->
-        <input type="file" id="input-ds-local" accept=".xlsx, .xls, .docx" style="display: none;" onchange="ham_18_b1_xu_ly_danh_sach_local(event)">
+                        <!-- Thanh 2 nút nạp Danh sách -->
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <button onclick="document.getElementById('input-ds-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #28a745; color: #28a745; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
+                                💻 Từ máy tính
+                            </button>
+                            <input type="file" id="input-ds-local" accept=".xlsx, .xls, .docx" style="display: none;" onchange="ham_18_b1_xu_ly_danh_sach_local(event)">
 
-        <button onclick="ham_18_b2_mo_google_picker_danh_sach()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            ☁️ Từ G.Drive
-        </button>
-    </div>
+                            <button onclick="ham_18_b2_mo_google_picker_danh_sach()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                ☁️ Từ G.Drive
+                            </button>
+                        </div>
 
-    <!-- Hiển thị tên file đang được chọn -->
-    <div id="ten-file-ds-hien-tai" style="font-size: 13px; font-weight: bold; color: #0056b3; margin-bottom: 10px; text-align: center; word-break: break-all; min-height: 20px;">
-        Chưa có danh sách
-    </div>
+                        <!-- Hiển thị tên file đang được chọn -->
+                        <div id="ten-file-ds-hien-tai" style="font-size: 13px; font-weight: bold; color: #0056b3; margin-bottom: 10px; text-align: center; word-break: break-all; min-height: 20px;">
+                            Chưa có danh sách
+                        </div>
 
-    <!-- Nút lưu lên Drive (Ẩn mặc định, chỉ hiện ra khi giáo viên nạp file từ máy tính) -->
-    <button id="btn-up-drive-ds" onclick="ham_18_b3_up_file_danh_sach_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
-        ⬆️ Sao lưu Danh sách lên Drive
-    </button>
-</div>
+                        <!-- Nút lưu lên Drive -->
+                        <button id="btn-up-drive-ds" onclick="ham_18_b3_up_file_danh_sach_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
+                            ⬆️ Sao lưu Danh sách lên Drive
+                        </button>
+                    </div>
 
-                    <!-- 3. Chọn file sơ đồ (Mới: Hỗ trợ máy tính, Drive & Sao lưu) -->
+                    <!-- 3. Chọn file sơ đồ -->
                     <div style="flex: 1; min-width: 280px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #6f42c1; display: flex; flex-direction: column;">
                         <label style="font-weight: bold; color: #6f42c1; font-size: 15px; margin-bottom: 8px;">
                             🗺️ 3. Chọn file sơ đồ lớp
                         </label>
 
                         <!-- KHU VỰC TẢI FILE MẪU -->
-<div style="margin-bottom: 15px; padding: 12px; background: #e0f7fa; border-radius: 6px; border: 1px dashed #00acc1;">
-    <p style="margin: 0 0 10px 0; font-weight: bold; color: #00838f;">📥 Tải file sơ đồ mẫu (Dành cho GV chưa có file):</p>
-    <div style="display: flex; gap: 10px;">
-        <button type="button" onclick="ham_18_tao_file_mau_word_so_do()" style="padding: 8px 15px; background: #2b579a; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            📄 Tải mẫu Word
-        </button>
-        <button type="button" onclick="ham_18_tao_file_mau_excel_so_do()" style="padding: 8px 15px; background: #217346; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            📊 Tải mẫu Excel
-        </button>
-    </div>
-    <p style="margin: 8px 0 0 0; font-size: 12px; color: #555; font-style: italic;">
-        * Thầy cô tải file về, điền các số thứ tự 1, 2, 3... vào vị trí chỗ ngồi mong muốn rồi nạp lên hệ thống.
-    </p>
-</div>
-
+                        <div style="margin-bottom: 15px; padding: 12px; background: #e0f7fa; border-radius: 6px; border: 1px dashed #00acc1;">
+                            <p style="margin: 0 0 10px 0; font-weight: bold; color: #00838f;">📥 Tải file sơ đồ mẫu (Dành cho GV chưa có file):</p>
+                            <div style="display: flex; gap: 10px;">
+                                <button type="button" onclick="ham_18_tao_file_mau_word_so_do()" style="padding: 8px 15px; background: #2b579a; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    📄 Tải mẫu Word
+                                </button>
+                                <button type="button" onclick="ham_18_tao_file_mau_excel_so_do()" style="padding: 8px 15px; background: #217346; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    📊 Tải mẫu Excel
+                                </button>
+                            </div>
+                            <p style="margin: 8px 0 0 0; font-size: 12px; color: #555; font-style: italic;">
+                                * Thầy cô tải file về, điền các số thứ tự 1, 2, 3... vào vị trí chỗ ngồi mong muốn rồi nạp lên hệ thống.
+                            </p>
+                        </div>
 
                         <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; flex-grow: 1;">
                             Tải lên file sơ đồ (Excel hoặc Word) để lấy thông tin xếp chỗ.
                         </div>
 
-                        <!-- Thanh 2 nút nạp Sơ đồ (Local & Drive) -->
+                        <!-- Thanh 2 nút nạp Sơ đồ -->
                         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                             <button onclick="document.getElementById('input-so-do-local').click()" style="flex: 1; padding: 8px; background: #fff; border: 2px solid #6f42c1; color: #6f42c1; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">
                                 💻 Từ máy tính
                             </button>
-                            <!-- Thẻ input ẩn cho phép chọn cả Ảnh, Excel, Word -->
                             <input type="file" id="input-so-do-local" accept="image/*, .xlsx, .xls, .docx" style="display: none;" onchange="ham_18_c1_xu_ly_so_do_local(event)">
 
                             <button onclick="ham_18_c2_mo_google_picker_so_do()" style="flex: 1; padding: 8px; background: #ea4335; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -379,7 +581,7 @@ window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
                             Chưa có sơ đồ
                         </div>
 
-                        <!-- Nút lưu sơ đồ lên Drive (Ẩn mặc định, chỉ hiện khi chọn từ máy tính) -->
+                        <!-- Nút lưu sơ đồ lên Drive -->
                         <button id="btn-up-drive-so-do" onclick="ham_18_c3_up_file_so_do_len_drive()" style="display: none; width: 100%; padding: 10px; background: #fbbc05; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: auto;">
                             ⬆️ Sao lưu Sơ đồ lên Drive
                         </button>
@@ -402,13 +604,20 @@ window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
                     </div>
                 </div>
 
-
                 <!-- 🌟 KHU VỰC HIỂN THỊ ẢNH THẺ RỘNG RÃI BÊN DƯỚI -->
                 <div id="khu-vuc-hien-thi-anh-duoi" style="display: none; margin-top: 25px; padding: 15px; background: #f4f6f9; border: 1px solid #dee2e6; border-radius: 8px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                    
+                    <!-- TIÊU ĐỀ KHU VỰC VÀ NÚT ĐẢO NGƯỢC -->
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
-                        <div style="font-weight: bold; color: #17a2b8; font-size: 15px;">
-                            📸 Hình thẻ đã nạp (<span id="so-luong-anh-da-nap" style="color: #dc3545; font-size: 16px;">0</span>)
+                        <div style="font-weight: bold; color: #17a2b8; font-size: 15px; display: flex; align-items: center; gap: 15px;">
+                            <span>📸 Hình thẻ đã nạp (<span id="so-luong-anh-da-nap" style="color: #dc3545; font-size: 16px;">0</span>)</span>
+                            
+                            <!-- 🌟 NÚT ĐẢO NGƯỢC NẰM Ở ĐÂY -->
+                            <button onclick="ham_dao_nguoc_thu_tu_anh()" style="padding: 4px 12px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#e0a800'" onmouseout="this.style.background='#ffc107'">
+                                🔃 Đảo thứ tự ảnh (Sửa lỗi ĐT)
+                            </button>
                         </div>
+                        
                         <div id="nguon-anh-hien-tai" style="font-size: 12px; font-weight: bold; color: #6c757d; font-style: italic;">
                             Nguồn: -
                         </div>
@@ -422,43 +631,13 @@ window.ham_18_1_mo_giao_dien_so_do_lop = async function () {
                 <!-- NÚT TIẾP TỤC TRÊN CÙNG -->
                 <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right;">
                     <button id="btn-xu-ly-du-lieu-so-do" onclick="ham_18_xuat_so_do_word()" style="padding: 12px 30px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.2s;">
-                        🚀 TIẾP TỤC: XUẤT SƠ ĐỒ RA WORD
+                        🚀 TIẾP TỤC: XUẤT SƠ ĐỒ RA FILE WORD/PDF
                     </button>
-                </div>
-
-
-
-            </div>
-
-            <!-- BƯỚC 2: KHU VỰC THAO TÁC XẾP SƠ ĐỒ (Đang ẩn chờ nạp dữ liệu xong) -->
-            <div id="khu-vuc-thao-tac-so-do" style="display: none; margin-top: 30px; padding: 20px; background: #fff; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f8f9fa; padding-bottom: 15px; margin-bottom: 20px;">
-                    <h4 style="margin: 0; color: #856404;">BƯỚC 2: KÉO THẢ & CHỐT SƠ ĐỒ</h4>
-                    <div>
-                        <button style="padding: 8px 20px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-right: 10px;">💾 Lưu sơ đồ</button>
-                        <button style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">🖨️ Xuất In</button>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 20px; min-height: 500px;">
-                    <!-- Cột trái: Danh sách học sinh chưa xếp -->
-                    <div style="width: 250px; background: #f4f6f9; border-radius: 6px; border: 1px solid #ddd; padding: 10px; display: flex; flex-direction: column;">
-                        <h5 style="margin-top: 0; text-align: center; color: #495057;">Học sinh chờ xếp</h5>
-                        <div id="danh-sach-hs-cho" style="flex-grow: 1; overflow-y: auto; background: #fff; border: 1px dashed #ccc; border-radius: 4px; padding: 10px;">
-                        </div>
-                    </div>
-
-                    <!-- Cột phải: Bản đồ không gian lớp -->
-                    <div style="flex-grow: 1; background: #e9ecef; border-radius: 6px; border: 2px dashed #adb5bd; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
-                        <span style="color: #6c757d; font-weight: bold;">Ảnh sơ đồ lớp sẽ hiển thị ở đây...</span>
-                        <div id="vung-ban-do-nen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none;"></div>
-                    </div>
                 </div>
             </div>
         </div>
     `;
 };
-
 
 // =======================================================
 // HÀM 18.A1: XỬ LÝ ẢNH CHỌN TỪ MÁY TÍNH (ĐÃ FIX LỖI GIAO DIỆN)
@@ -2140,8 +2319,237 @@ window.ham_18_c3_up_file_so_do_len_drive = async function () {
 //     });
 // };
 
+// // =======================================================
+// // HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE WORD (CĂN LỀ 1CM & THỜI GIAN TẠO)
+// // =======================================================
+// window.ham_18_xuat_so_do_word = async function () {
+//     const matrix = window.DuLieuSoDoTam || [];
+//     const arrTen = window.DanhSachHocSinhTam || [];
+//     const arrAnh = window.DanhSachAnhSoDoTam || [];
+
+//     if (matrix.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp file Sơ đồ chỗ ngồi!', 'warning');
+//     if (arrTen.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp Danh sách học sinh!', 'warning');
+
+//     const { value: config } = await Swal.fire({
+//         title: '⚙️ Tùy chỉnh xuất Sơ đồ Word',
+//         width: 500,
+//         html: `
+//             <div style="text-align: left; font-size: 14px;">
+//                 <label style="font-weight: bold; color: #0056b3;">1. Tiêu đề sơ đồ (Tên lớp):</label>
+//                 <input id="swal-ten-lop" class="swal2-input" placeholder="VD: LỚP 12A1" value="SƠ ĐỒ LỚP HỌC" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+//                 <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh học sinh (cm):</label>
+//                 <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; width: 100%; box-sizing: border-box;">
+//                 <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 5px;">* Chiều rộng sẽ được hệ thống tự động nội suy để giữ đúng tỷ lệ khuôn mặt gốc.</p>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonColor: '#28a745',
+//         confirmButtonText: '🚀 Xuất File Word',
+//         cancelButtonText: 'Hủy',
+//         preConfirm: () => {
+//             return {
+//                 tenLop: document.getElementById('swal-ten-lop').value.trim() || 'SƠ ĐỒ LỚP HỌC',
+//                 h: parseFloat(document.getElementById('swal-img-h').value) || 3
+//             }
+//         }
+//     });
+
+//     if (!config) return;
+
+//     Swal.fire({
+//         title: 'Đang tạo file Word...',
+//         html: 'Đang thiết lập lề giấy và header/footer 1cm...',
+//         allowOutsideClick: false,
+//         didOpen: () => Swal.showLoading()
+//     });
+
+//     const getImgData = (anh) => new Promise((resolve) => {
+//         const defaultSrc = 'https://placehold.co/90x120/e9ecef/a3a3a3?text=Trong';
+//         if (!anh) return resolve({ src: defaultSrc, ratio: 0.75 });
+
+//         const img = new Image();
+//         img.onload = () => resolve({ src: img.src, ratio: img.width / img.height });
+//         img.onerror = () => resolve({ src: anh.url || defaultSrc, ratio: 0.75 });
+
+//         if (anh.source === 'local' && anh.fileObj) {
+//             const reader = new FileReader();
+//             reader.onload = (e) => img.src = e.target.result;
+//             reader.readAsDataURL(anh.fileObj);
+//         } else {
+//             img.src = anh.url;
+//         }
+//     });
+
+//     const maxLen = Math.max(arrTen.length, arrAnh.length);
+//     const maxCols = Math.max(...matrix.map(row => Array.isArray(row) ? row.length : 1), 1);
+//     const maxRows = matrix.length;
+
+//     // ---------------------------------------------------------
+//     // BƯỚC 2: QUY ĐỔI KÍCH THƯỚC VÀ XÁC ĐỊNH LỐI ĐI
+//     // ---------------------------------------------------------
+//     const cmToPt = 28.35; // 1 cm = 28.35 pt
+//     const paddingPt = 1.4;
+//     const aisleSizePt = 28.35;
+
+//     // Kích thước lề 1cm
+//     const margin1cmPt = 28.35;
+//     const marginLR = 36.0; // Giữ nguyên lề trái/phải khoảng 0.5 inch (36pt) để dàn ngang thoải mái
+
+//     const imgHeightPt = config.h * cmToPt;
+//     const imgHeightPx = Math.round(imgHeightPt * 1.3333);
+
+//     const rowHeightStudentPt = imgHeightPt + 28;
+
+//     const colIsAisle = new Array(maxCols).fill(true);
+//     const rowIsAisle = new Array(maxRows).fill(true);
+
+//     for (let r = 0; r < maxRows; r++) {
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(matrix[r]) && matrix[r][c] !== undefined && matrix[r][c] !== null) ? String(matrix[r][c]).trim() : '';
+//             if (/^\d+$/.test(cellVal)) {
+//                 colIsAisle[c] = false;
+//                 rowIsAisle[r] = false;
+//             }
+//         }
+//     }
+
+//     let totalRowHeightPt = 0;
+//     for (let r = 0; r < maxRows; r++) {
+//         totalRowHeightPt += rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//     }
+
+//     // 🌟 Tính lại tổng chiều cao giấy = Các hàng + (Lề trên 1cm + Lề dưới 1cm) + Tiêu đề + Footer bản quyền
+//     const dynamicPageHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
+
+//     const pageWidthPt = 842.0;
+//     const usableWidthPt = pageWidthPt - (marginLR * 2);
+
+//     const numAislesCols = colIsAisle.filter(v => v).length;
+//     const numStudentCols = maxCols - numAislesCols;
+//     const remainingWidth = usableWidthPt - (numAislesCols * aisleSizePt);
+//     const studentColWidthPt = numStudentCols > 0 ? (remainingWidth / numStudentCols) : (usableWidthPt / maxCols);
+
+//     // ---------------------------------------------------------
+//     // BƯỚC 3: VẼ BẢNG WORD
+//     // ---------------------------------------------------------
+//     let htmlTable = `<table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
+
+//     for (let r = 0; r < maxRows; r++) {
+//         const currentRowHeightPt = rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//         htmlTable += `<tr style="height: ${currentRowHeightPt}pt; mso-height-rule: exactly;">`;
+
+//         const row = matrix[r];
+
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(row) && row[c] !== undefined && row[c] !== null) ? String(row[c]).trim() : '';
+//             const isSTT = /^\d+$/.test(cellVal);
+//             let stt = parseInt(cellVal, 10);
+
+//             const currentWidthPt = colIsAisle[c] ? aisleSizePt : studentColWidthPt;
+//             const borderStyle = (isSTT || cellVal.length > 0) ? '1px solid black' : 'none';
+
+//             if (isSTT && stt > 0 && stt <= maxLen) {
+//                 let idx = stt - 1;
+//                 let tenHS = arrTen[idx] || 'Chưa có tên';
+
+//                 let anhData = await getImgData(arrAnh[idx]);
+//                 let imgWidthPt = imgHeightPt * anhData.ratio;
+//                 let imgWidthPx = Math.round(imgWidthPt * 1.3333);
+
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: top; border: ${borderStyle}; text-align: center;">
+//                         <div style="text-align: center; margin-bottom: 2pt;">
+//                             <img src="${anhData.src}" width="${imgWidthPx}" height="${imgHeightPx}" style="width: ${imgWidthPt}pt; height: ${imgHeightPt}pt; display: block; margin: 0 auto;">
+//                         </div>
+//                         <div style="font-size: 11pt; font-family: 'Times New Roman', serif; line-height: 1.2; word-wrap: break-word; color: #000000;">
+//                             <b>${stt}. ${tenHS}</b>
+//                         </div>
+//                     </td>
+//                 `;
+//             }
+//             else {
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: middle; border: ${borderStyle}; font-size: 14pt; font-family: 'Times New Roman', serif; color: #000000; word-wrap: break-word; text-align: center;">
+//                         <b>${cellVal}</b>
+//                     </td>
+//                 `;
+//             }
+//         }
+//         htmlTable += `</tr>`;
+//     }
+//     htmlTable += `</table>`;
+
+//     // ---------------------------------------------------------
+//     // BƯỚC 4: LẤY THỜI GIAN THỰC TẾ
+//     // ---------------------------------------------------------
+//     const now = new Date();
+//     const pad = (n) => n.toString().padStart(2, '0');
+//     // Định dạng: 14:58 ngày 10/09/2026
+//     const thoiGianTao = `${pad(now.getHours())}:${pad(now.getMinutes())} ngày ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+
+//     // ---------------------------------------------------------
+//     // BƯỚC 5: ĐÓNG GÓI XUẤT FILE VỚI CSS MỚI
+//     // ---------------------------------------------------------
+//     const docHTML = `
+//         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+//         <head>
+//             <meta charset='utf-8'>
+//             <title>Sơ đồ lớp</title>
+//             <style>
+//                 @page WordSection1 {
+//                     size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt; 
+//                     mso-page-orientation: landscape;
+//                     /* 🌟 Ép Top và Bottom 1cm (28.35pt) */
+//                     margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
+//                     /* 🌟 Ép Header và Footer 1cm (28.35pt) */
+//                     mso-header-margin: 28.35pt;
+//                     mso-footer-margin: 28.35pt;
+//                 }
+//                 div.WordSection1 { page: WordSection1; }
+//                 table { border-collapse: collapse; width: 100%; }
+//                 p, div { margin: 0; padding: 0; }
+//             </style>
+//         </head>
+//         <body>
+//             <div class='WordSection1'>
+//                 <h2 style="text-align: center; font-family: 'Times New Roman', serif; margin: 0 0 10px 0; font-size: 16pt; text-transform: uppercase;">
+//                     <b>${config.tenLop}</b>
+//                 </h2>
+//                 ${htmlTable}
+                
+//                 <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
+//                     © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+//                 </p>
+
+//                 <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
+//             </div>
+//         </body>
+//         </html>
+//     `;
+
+//     const blob = new Blob(['\ufeff', docHTML], { type: 'application/msword' });
+//     const url = URL.createObjectURL(blob);
+//     const link = document.createElement('a');
+//     link.href = url;
+//     link.download = `So_Do_${config.tenLop.replace(/\s+/g, '_')}.doc`;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+//     URL.revokeObjectURL(url);
+
+//     Swal.fire({
+//         icon: 'success',
+//         title: 'Hoàn tất!',
+//         text: `Đã thiết lập lề trang giấy và thêm thông báo bản quyền kèm ngày giờ xuất file!`,
+//         timer: 3000,
+//         showConfirmButton: false
+//     });
+// };
+
+
 // =======================================================
-// HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE WORD (CĂN LỀ 1CM & THỜI GIAN TẠO)
+// HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE SƠ ĐỒ (WORD & PDF CUSTOM SIZE)
 // =======================================================
 window.ham_18_xuat_so_do_word = async function () {
     const matrix = window.DuLieuSoDoTam || [];
@@ -2152,7 +2560,7 @@ window.ham_18_xuat_so_do_word = async function () {
     if (arrTen.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp Danh sách học sinh!', 'warning');
 
     const { value: config } = await Swal.fire({
-        title: '⚙️ Tùy chỉnh xuất Sơ đồ Word',
+        title: '⚙️ Tùy chỉnh xuất Sơ đồ',
         width: 500,
         html: `
             <div style="text-align: left; font-size: 14px;">
@@ -2160,18 +2568,38 @@ window.ham_18_xuat_so_do_word = async function () {
                 <input id="swal-ten-lop" class="swal2-input" placeholder="VD: LỚP 12A1" value="SƠ ĐỒ LỚP HỌC" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
                 
                 <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh học sinh (cm):</label>
-                <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; width: 100%; box-sizing: border-box;">
-                <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 5px;">* Chiều rộng sẽ được hệ thống tự động nội suy để giữ đúng tỷ lệ khuôn mặt gốc.</p>
+                <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+                <label style="font-weight: bold; color: #28a745;">3. Định dạng xuất:</label>
+                <div style="display: flex; gap: 20px; margin-top: 8px; background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px solid #dee2e6;">
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #0056b3;">
+                        <input type="checkbox" id="swal-export-word" checked style="width: 18px; height: 18px; cursor: pointer;"> 📄 File Word (.doc)
+                    </label>
+                    <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
+                        <input type="checkbox" id="swal-export-pdf" style="width: 18px; height: 18px; cursor: pointer;"> 📕 File PDF / Bản In
+                    </label>
+                </div>
+                <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 8px;">* PDF sẽ tự động căn chỉnh khổ giấy linh hoạt theo chiều cao sơ đồ để không bị mất nội dung.</p>
             </div>
         `,
         showCancelButton: true,
-        confirmButtonColor: '#28a745',
-        confirmButtonText: '🚀 Xuất File Word',
+        confirmButtonColor: '#007bff',
+        confirmButtonText: '🚀 Xuất File',
         cancelButtonText: 'Hủy',
         preConfirm: () => {
+            const isWord = document.getElementById('swal-export-word').checked;
+            const isPdf = document.getElementById('swal-export-pdf').checked;
+
+            if (!isWord && !isPdf) {
+                Swal.showValidationMessage('Vui lòng chọn ít nhất 1 định dạng xuất (Word hoặc PDF)!');
+                return false;
+            }
+
             return {
                 tenLop: document.getElementById('swal-ten-lop').value.trim() || 'SƠ ĐỒ LỚP HỌC',
-                h: parseFloat(document.getElementById('swal-img-h').value) || 3
+                h: parseFloat(document.getElementById('swal-img-h').value) || 3,
+                isWord: isWord,
+                isPdf: isPdf
             }
         }
     });
@@ -2179,8 +2607,8 @@ window.ham_18_xuat_so_do_word = async function () {
     if (!config) return;
 
     Swal.fire({
-        title: 'Đang tạo file Word...',
-        html: 'Đang thiết lập lề giấy và header/footer 1cm...',
+        title: 'Đang khởi tạo...',
+        html: 'Đang ráp ảnh và định dạng sơ đồ...',
         allowOutsideClick: false,
         didOpen: () => Swal.showLoading()
     });
@@ -2206,20 +2634,15 @@ window.ham_18_xuat_so_do_word = async function () {
     const maxCols = Math.max(...matrix.map(row => Array.isArray(row) ? row.length : 1), 1);
     const maxRows = matrix.length;
 
-    // ---------------------------------------------------------
-    // BƯỚC 2: QUY ĐỔI KÍCH THƯỚC VÀ XÁC ĐỊNH LỐI ĐI
-    // ---------------------------------------------------------
-    const cmToPt = 28.35; // 1 cm = 28.35 pt
+    // QUY ĐỔI KÍCH THƯỚC (PT - Điểm ảnh)
+    const cmToPt = 28.35;
     const paddingPt = 1.4;
     const aisleSizePt = 28.35;
-
-    // Kích thước lề 1cm
     const margin1cmPt = 28.35;
-    const marginLR = 36.0; // Giữ nguyên lề trái/phải khoảng 0.5 inch (36pt) để dàn ngang thoải mái
+    const marginLR = 36.0;
 
     const imgHeightPt = config.h * cmToPt;
     const imgHeightPx = Math.round(imgHeightPt * 1.3333);
-
     const rowHeightStudentPt = imgHeightPt + 28;
 
     const colIsAisle = new Array(maxCols).fill(true);
@@ -2240,9 +2663,8 @@ window.ham_18_xuat_so_do_word = async function () {
         totalRowHeightPt += rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
     }
 
-    // 🌟 Tính lại tổng chiều cao giấy = Các hàng + (Lề trên 1cm + Lề dưới 1cm) + Tiêu đề + Footer bản quyền
+    // TÍNH TOÁN KÍCH THƯỚC KHỔ GIẤY ĐỘNG (Custom Size)
     const dynamicPageHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
-
     const pageWidthPt = 842.0;
     const usableWidthPt = pageWidthPt - (marginLR * 2);
 
@@ -2251,9 +2673,7 @@ window.ham_18_xuat_so_do_word = async function () {
     const remainingWidth = usableWidthPt - (numAislesCols * aisleSizePt);
     const studentColWidthPt = numStudentCols > 0 ? (remainingWidth / numStudentCols) : (usableWidthPt / maxCols);
 
-    // ---------------------------------------------------------
-    // BƯỚC 3: VẼ BẢNG WORD
-    // ---------------------------------------------------------
+    // VẼ BẢNG HTML DÙNG CHUNG CHO CẢ WORD & PDF
     let htmlTable = `<table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
 
     for (let r = 0; r < maxRows; r++) {
@@ -2301,189 +2721,362 @@ window.ham_18_xuat_so_do_word = async function () {
     }
     htmlTable += `</table>`;
 
-    // ---------------------------------------------------------
-    // BƯỚC 4: LẤY THỜI GIAN THỰC TẾ
-    // ---------------------------------------------------------
     const now = new Date();
     const pad = (n) => n.toString().padStart(2, '0');
-    // Định dạng: 14:58 ngày 10/09/2026
     const thoiGianTao = `${pad(now.getHours())}:${pad(now.getMinutes())} ngày ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
 
-    // ---------------------------------------------------------
-    // BƯỚC 5: ĐÓNG GÓI XUẤT FILE VỚI CSS MỚI
-    // ---------------------------------------------------------
-    const docHTML = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head>
-            <meta charset='utf-8'>
-            <title>Sơ đồ lớp</title>
-            <style>
-                @page WordSection1 {
-                    size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt; 
-                    mso-page-orientation: landscape;
-                    /* 🌟 Ép Top và Bottom 1cm (28.35pt) */
-                    margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
-                    /* 🌟 Ép Header và Footer 1cm (28.35pt) */
-                    mso-header-margin: 28.35pt;
-                    mso-footer-margin: 28.35pt;
-                }
-                div.WordSection1 { page: WordSection1; }
-                table { border-collapse: collapse; width: 100%; }
-                p, div { margin: 0; padding: 0; }
-            </style>
-        </head>
-        <body>
-            <div class='WordSection1'>
-                <h2 style="text-align: center; font-family: 'Times New Roman', serif; margin: 0 0 10px 0; font-size: 16pt; text-transform: uppercase;">
-                    <b>${config.tenLop}</b>
-                </h2>
-                ${htmlTable}
-                
-                <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
-                    © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
-                </p>
+    // ==========================================
+    // 🌟 LUỒNG 1: XUẤT FILE WORD (.DOC)
+    // ==========================================
+    if (config.isWord) {
+        const docHTML = `
+            <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head>
+                <meta charset='utf-8'>
+                <title>Sơ đồ lớp</title>
+                <style>
+                    @page WordSection1 {
+                        size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt; 
+                        mso-page-orientation: landscape;
+                        margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
+                        mso-header-margin: 28.35pt;
+                        mso-footer-margin: 28.35pt;
+                    }
+                    div.WordSection1 { page: WordSection1; }
+                    table { border-collapse: collapse; width: 100%; }
+                    p, div { margin: 0; padding: 0; }
+                </style>
+            </head>
+            <body>
+                <div class='WordSection1'>
+                    <h2 style="text-align: center; font-family: 'Times New Roman', serif; margin: 0 0 10px 0; font-size: 16pt; text-transform: uppercase;">
+                        <b>${config.tenLop}</b>
+                    </h2>
+                    ${htmlTable}
+                    <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
+                        © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+                    </p>
+                    <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
+                </div>
+            </body>
+            </html>
+        `;
 
-                <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
-            </div>
-        </body>
-        </html>
-    `;
+        const blob = new Blob(['\ufeff', docHTML], { type: 'application/msword' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `So_Do_${config.tenLop.replace(/\s+/g, '_')}.doc`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
 
-    const blob = new Blob(['\ufeff', docHTML], { type: 'application/msword' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `So_Do_${config.tenLop.replace(/\s+/g, '_')}.doc`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    // ==========================================
+    // 🌟 LUỒNG 2: XUẤT FILE PDF / BẢN IN NATIVE (CUSTOM SIZE)
+    // ==========================================
+    if (config.isPdf) {
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="vi">
+                <head>
+                    <meta charset="utf-8">
+                    <title>Sơ Đồ - ${config.tenLop}</title>
+                    <style>
+                        /* 🌟 ÉP KÍCH THƯỚC TRANG IN CHUẨN XÁC VỚI KÍCH THƯỚC ĐỘNG CỦA FILE WORD */
+                        @page {
+                            size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt;
+                            margin: 28.35pt ${marginLR}pt; /* Lề trên/dưới 1cm, trái phải giữ nguyên */
+                        }
+                        body {
+                            font-family: 'Times New Roman', serif;
+                            margin: 0;
+                            padding: 0;
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
+                        /* Reset lại một số thông số để phù hợp với trình duyệt HTML */
+                        table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+                        td { border: 1px solid black; }
+                        h2 { text-align: center; margin: 0 0 15px 0; font-size: 22pt; text-transform: uppercase; }
+                        .footer { margin-top: 15px; font-size: 11pt; text-align: right; color: #555; font-style: italic; }
+                    </style>
+                </head>
+                <body>
+                    <h2><b>${config.tenLop}</b></h2>
+                    
+                    ${htmlTable}
+                    
+                    <div class="footer">
+                        © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+                    </div>
+                    
+                    <script>
+                        // Đợi ảnh Load xong (500ms) mới gọi lệnh in để đảm bảo ảnh không bị mất
+                        window.onload = function() {
+                            setTimeout(() => {
+                                window.print();
+                            }, 500);
+                        };
+                    </script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        } else {
+            Swal.fire('Bị chặn Popup!', 'Trình duyệt của thầy đang chặn mở tab mới. Vui lòng cấp quyền mở Popup cho trang web này ở thanh địa chỉ để in PDF!', 'warning');
+        }
+    }
 
     Swal.fire({
         icon: 'success',
         title: 'Hoàn tất!',
-        text: `Đã thiết lập lề trang giấy và thêm thông báo bản quyền kèm ngày giờ xuất file!`,
+        text: `Đã xuất dữ liệu theo định dạng đã chọn.`,
         timer: 3000,
         showConfirmButton: false
     });
 };
 
 
+// // =======================================================
+// // HÀM TẠO VÀ TẢI FILE MẪU SƠ ĐỒ LỚP (SINH TRỰC TIẾP BẰNG CODE JS)
+// // =======================================================
+// window.ham_18_tao_file_mau_word_so_do = function () {
+//     // Kích thước A4 ngang
+//     const pageWidthPt = 842.0;
+//     const pageHeightPt = 595.0;
+//     const marginPt = 28.35; // Lề 1cm
+
+//     // Chiều rộng các cột
+//     const aisleWidthPt = 28.35; // Lối đi 1cm
+//     const totalAisleWidth = aisleWidthPt * 3;
+//     const usableForDesks = (pageWidthPt - (marginPt * 2)) - totalAisleWidth;
+//     const deskColWidthPt = (usableForDesks / 8).toFixed(1); // 8 cột bàn học
+
+//     // Ma trận 11 cột x 7 dòng
+//     let matrixData = [];
+//     let stt = 1;
+
+//     for (let r = 1; r <= 6; r++) {
+//         let row = [];
+//         row.push(stt++); row.push(stt++); // Dãy 1 (Cột 1, 2)
+//         row.push('');                     // Lối đi 1 (Cột 3)
+//         row.push(stt++); row.push(stt++); // Dãy 2 (Cột 4, 5)
+//         row.push('');                     // Lối đi 2 (Cột 6)
+//         row.push(stt++); row.push(stt++); // Dãy 3 (Cột 7, 8)
+//         row.push('');                     // Lối đi 3 (Cột 9)
+//         row.push(stt++); row.push(stt++); // Dãy 4 (Cột 10, 11)
+//         matrixData.push(row);
+//     }
+
+//     // Dòng 7: Bàn GV, Bảng, Cửa...
+//     const row7 = [
+//         '', 'BÀN GV',
+//         '',
+//         '', 'BẢNG', '', 'BẢNG', '',
+//         '',
+//         '', 'CỬA LỚP'
+//     ];
+//     matrixData.push(row7);
+
+//     // Vẽ Bảng HTML
+//     let tableHtml = `<table border="1" style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
+
+//     matrixData.forEach((row, rIdx) => {
+//         const isRowGV = (rIdx === 6);
+//         const rowHeight = isRowGV ? '28.35pt' : '50pt';
+
+//         tableHtml += `<tr style="height: ${rowHeight}; mso-height-rule: exactly;">`;
+//         row.forEach((cellVal, cIdx) => {
+//             const isAisle = (cIdx === 2 || cIdx === 5 || cIdx === 8);
+//             const colWidth = isAisle ? `${aisleWidthPt}pt` : `${deskColWidthPt}pt`;
+//             const bgColor = isAisle ? '#f9f9f9' : (isRowGV ? '#fff3cd' : '#ffffff');
+//             const fontBold = (cellVal !== '' && !isAisle) ? 'bold' : 'normal';
+//             const fontSize = isRowGV ? '13pt' : '12pt';
+
+//             tableHtml += `
+//                 <td style="width: ${colWidth}; height: ${rowHeight}; padding: 3px; vertical-align: middle; background-color: ${bgColor}; font-size: ${fontSize}; font-family: 'Times New Roman', serif; font-weight: ${fontBold};">
+//                     ${cellVal}
+//                 </td>
+//             `;
+//         });
+//         tableHtml += `</tr>`;
+//     });
+//     tableHtml += `</table>`;
+
+//     // 🌟 CHÈN GHI CHÚ MÀU ĐỎ YÊU CẦU LƯU THÀNH .DOCX
+//     const docContent = `
+//         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+//         <head>
+//             <meta charset='utf-8'>
+//             <title>File Mẫu Sơ Đồ Lớp Học</title>
+//             <style>
+//                 @page WordSection1 {
+//                     size: ${pageWidthPt}pt ${pageHeightPt}pt;
+//                     mso-page-orientation: landscape;
+//                     margin: ${marginPt}pt ${marginPt}pt ${marginPt}pt ${marginPt}pt;
+//                 }
+//                 div.WordSection1 { page: WordSection1; }
+//                 table { border-collapse: collapse; width: 100%; }
+//                 td { border: 1px solid black; }
+//                 p, h3 { margin: 0; padding: 0; }
+//             </style>
+//         </head>
+//         <body>
+//             <div class='WordSection1'>
+//                 <h3 style="text-align: center; font-family: 'Times New Roman', serif; margin-bottom: 10px; font-size: 16pt;">
+//                     FILE MẪU SƠ ĐỒ LỚP HỌC (11 CỘT x 7 DÒNG)
+//                 </h3>
+                
+//                 <p style="text-align: center; font-family: 'Times New Roman', serif; font-size: 11pt; color: red; font-weight: bold; margin-bottom: 5px;">
+//                     LƯU Ý QUAN TRỌNG: SAU KHI CHỈNH SỬA XONG VỊ TRÍ, THẦY/CÔ VUI LÒNG BẤM "FILE" -> "SAVE AS"<br>VÀ CHỌN ĐỊNH DẠNG "Word Document (*.docx)" ĐỂ HỆ THỐNG CÓ THỂ ĐỌC ĐƯỢC!
+//                 </p>
+                
+//                 <p style="text-align: center; font-family: 'Times New Roman', serif; font-size: 10pt; color: #555; margin-bottom: 15px; font-style: italic;">
+//                     (Thầy/cô có thể hoán đổi các con số thứ tự bên dưới để thay đổi chỗ ngồi học sinh. Các cột xám là lối đi)
+//                 </p>
+
+//                 ${tableHtml}
+//             </div>
+//         </body>
+//         </html>
+//     `;
+
+//     // Tạo file và tải về dưới đuôi .doc
+//     const blob = new Blob(['\ufeff', docContent], { type: 'application/msword' });
+//     const url = URL.createObjectURL(blob);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = 'Mau_So_Do_Lop.doc';
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+//     URL.revokeObjectURL(url);
+// };
+
+
 // =======================================================
-// HÀM TẠO VÀ TẢI FILE MẪU SƠ ĐỒ LỚP (SINH TRỰC TIẾP BẰNG CODE JS)
+// HÀM TẠO VÀ TẢI FILE MẪU SƠ ĐỒ LỚP (.DOCX THẬT BẰNG DOCX.JS)
 // =======================================================
-window.ham_18_tao_file_mau_word_so_do = function () {
-    // Kích thước A4 ngang
-    const pageWidthPt = 842.0;
-    const pageHeightPt = 595.0;
-    const marginPt = 28.35; // Lề 1cm
+window.ham_18_tao_file_mau_word_so_do = async function () {
+    // 1. Tự động nạp thư viện docx.js nếu chưa có
+    if (typeof window.docx === 'undefined') {
+        Swal.fire({
+            title: 'Đang chuẩn bị...',
+            text: 'Đang nạp bộ công cụ tạo file Word (.docx), vui lòng đợi giây lát...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
 
-    // Chiều rộng các cột
-    const aisleWidthPt = 28.35; // Lối đi 1cm
-    const totalAisleWidth = aisleWidthPt * 3;
-    const usableForDesks = (pageWidthPt - (marginPt * 2)) - totalAisleWidth;
-    const deskColWidthPt = (usableForDesks / 8).toFixed(1); // 8 cột bàn học
-
-    // Ma trận 11 cột x 7 dòng
-    let matrixData = [];
-    let stt = 1;
-
-    for (let r = 1; r <= 6; r++) {
-        let row = [];
-        row.push(stt++); row.push(stt++); // Dãy 1 (Cột 1, 2)
-        row.push('');                     // Lối đi 1 (Cột 3)
-        row.push(stt++); row.push(stt++); // Dãy 2 (Cột 4, 5)
-        row.push('');                     // Lối đi 2 (Cột 6)
-        row.push(stt++); row.push(stt++); // Dãy 3 (Cột 7, 8)
-        row.push('');                     // Lối đi 3 (Cột 9)
-        row.push(stt++); row.push(stt++); // Dãy 4 (Cột 10, 11)
-        matrixData.push(row);
+        let script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/docx@7.8.2/build/index.js';
+        script.onload = () => {
+            Swal.close();
+            window.ham_18_tao_file_mau_word_so_do(); // Gọi lại sau khi nạp xong thư viện
+        };
+        document.head.appendChild(script);
+        return;
     }
 
-    // Dòng 7: Bàn GV, Bảng, Cửa...
-    const row7 = [
-        '', 'BÀN GV',
-        '',
-        '', 'BẢNG', '', 'BẢNG', '',
-        '',
-        '', 'CỬA LỚP'
-    ];
-    matrixData.push(row7);
+    const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, VerticalAlign } = window.docx;
 
-    // Vẽ Bảng HTML
-    let tableHtml = `<table border="1" style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
+    let stt = 1;
+    const tableRows = [];
 
-    matrixData.forEach((row, rIdx) => {
-        const isRowGV = (rIdx === 6);
-        const rowHeight = isRowGV ? '28.35pt' : '50pt';
+    // Tạo 6 dòng bàn học
+    for (let r = 1; r <= 6; r++) {
+        let rowCells = [];
+        for (let c = 0; c < 11; c++) {
+            let isAisle = (c === 2 || c === 5 || c === 8);
+            let text = isAisle ? "" : (stt++).toString();
+            let shading = isAisle ? { fill: "F9F9F9" } : { fill: "FFFFFF" };
 
-        tableHtml += `<tr style="height: ${rowHeight}; mso-height-rule: exactly;">`;
-        row.forEach((cellVal, cIdx) => {
-            const isAisle = (cIdx === 2 || cIdx === 5 || cIdx === 8);
-            const colWidth = isAisle ? `${aisleWidthPt}pt` : `${deskColWidthPt}pt`;
-            const bgColor = isAisle ? '#f9f9f9' : (isRowGV ? '#fff3cd' : '#ffffff');
-            const fontBold = (cellVal !== '' && !isAisle) ? 'bold' : 'normal';
-            const fontSize = isRowGV ? '13pt' : '12pt';
+            rowCells.push(new TableCell({
+                children: [
+                    new Paragraph({
+                        children: [new TextRun({ text: text, bold: !isAisle, size: 24 })], // size 24 = 12pt
+                        alignment: AlignmentType.CENTER
+                    })
+                ],
+                width: { size: isAisle ? 3 : 11, type: WidthType.PERCENTAGE },
+                verticalAlign: VerticalAlign.CENTER,
+                shading: shading
+            }));
+        }
+        tableRows.push(new TableRow({ children: rowCells, height: { value: 1000, rule: "exact" } })); // Chiều cao khoảng 50pt
+    }
 
-            tableHtml += `
-                <td style="width: ${colWidth}; height: ${rowHeight}; padding: 3px; vertical-align: middle; background-color: ${bgColor}; font-size: ${fontSize}; font-family: 'Times New Roman', serif; font-weight: ${fontBold};">
-                    ${cellVal}
-                </td>
-            `;
-        });
-        tableHtml += `</tr>`;
-    });
-    tableHtml += `</table>`;
+    // Tạo dòng 7 (Bàn GV, Bảng, Cửa lớp)
+    const row7Texts = ["", "BÀN GV", "", "", "BẢNG", "", "BẢNG", "", "", "CỬA LỚP", ""];
+    let row7Cells = [];
+    for (let c = 0; c < 11; c++) {
+        let isAisle = (c === 2 || c === 5 || c === 8);
+        let text = row7Texts[c];
+        let shading = { fill: isAisle ? "F9F9F9" : "FFF3CD" };
 
-    // 🌟 CHÈN GHI CHÚ MÀU ĐỎ YÊU CẦU LƯU THÀNH .DOCX
-    const docContent = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head>
-            <meta charset='utf-8'>
-            <title>File Mẫu Sơ Đồ Lớp Học</title>
-            <style>
-                @page WordSection1 {
-                    size: ${pageWidthPt}pt ${pageHeightPt}pt;
-                    mso-page-orientation: landscape;
-                    margin: ${marginPt}pt ${marginPt}pt ${marginPt}pt ${marginPt}pt;
+        row7Cells.push(new TableCell({
+            children: [
+                new Paragraph({
+                    children: [new TextRun({ text: text, bold: true, size: 26 })], // size 26 = 13pt
+                    alignment: AlignmentType.CENTER
+                })
+            ],
+            width: { size: isAisle ? 3 : 11, type: WidthType.PERCENTAGE },
+            verticalAlign: VerticalAlign.CENTER,
+            shading: shading
+        }));
+    }
+    tableRows.push(new TableRow({ children: row7Cells, height: { value: 567, rule: "exact" } })); // Chiều cao khoảng 28.35pt (1cm)
+
+    // Đóng gói Document
+    const doc = new Document({
+        sections: [{
+            properties: {
+                page: {
+                    margin: { top: 567, right: 567, bottom: 567, left: 567 }, // Căn lề 1cm (~567 twips)
+                    size: { orientation: "landscape" } // In ngang
                 }
-                div.WordSection1 { page: WordSection1; }
-                table { border-collapse: collapse; width: 100%; }
-                td { border: 1px solid black; }
-                p, h3 { margin: 0; padding: 0; }
-            </style>
-        </head>
-        <body>
-            <div class='WordSection1'>
-                <h3 style="text-align: center; font-family: 'Times New Roman', serif; margin-bottom: 10px; font-size: 16pt;">
-                    FILE MẪU SƠ ĐỒ LỚP HỌC (11 CỘT x 7 DÒNG)
-                </h3>
-                
-                <p style="text-align: center; font-family: 'Times New Roman', serif; font-size: 11pt; color: red; font-weight: bold; margin-bottom: 5px;">
-                    LƯU Ý QUAN TRỌNG: SAU KHI CHỈNH SỬA XONG VỊ TRÍ, THẦY/CÔ VUI LÒNG BẤM "FILE" -> "SAVE AS"<br>VÀ CHỌN ĐỊNH DẠNG "Word Document (*.docx)" ĐỂ HỆ THỐNG CÓ THỂ ĐỌC ĐƯỢC!
-                </p>
-                
-                <p style="text-align: center; font-family: 'Times New Roman', serif; font-size: 10pt; color: #555; margin-bottom: 15px; font-style: italic;">
-                    (Thầy/cô có thể hoán đổi các con số thứ tự bên dưới để thay đổi chỗ ngồi học sinh. Các cột xám là lối đi)
-                </p>
+            },
+            children: [
+                new Paragraph({
+                    children: [new TextRun({ text: "FILE MẪU SƠ ĐỒ LỚP HỌC (11 CỘT x 7 DÒNG)", bold: true, size: 32 })],
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 200 }
+                }),
+                new Paragraph({
+                    children: [
+                        new TextRun({
+                            text: "(Thầy/cô có thể hoán đổi các con số thứ tự bên dưới để thay đổi chỗ ngồi học sinh. Các cột xám là lối đi)",
+                            italics: true, color: "555555", size: 20
+                        })
+                    ],
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 300 }
+                }),
+                new Table({
+                    rows: tableRows,
+                    width: { size: 100, type: WidthType.PERCENTAGE }
+                })
+            ]
+        }]
+    });
 
-                ${tableHtml}
-            </div>
-        </body>
-        </html>
-    `;
-
-    // Tạo file và tải về dưới đuôi .doc
-    const blob = new Blob(['\ufeff', docContent], { type: 'application/msword' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Mau_So_Do_Lop.doc';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    // Xuất file chuẩn .docx
+    Packer.toBlob(doc).then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Mau_So_Do_Lop.docx'; // Lưu với đuôi .docx
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
 };
+
 
 // =======================================================
 // HÀM TẠO VÀ TẢI FILE MẪU SƠ ĐỒ LỚP (EXCEL - CĂN GIỮA, CÓ KHUNG VIỀN)
@@ -2581,3 +3174,149 @@ window.ham_18_tao_file_mau_excel_so_do = function () {
         Swal.fire('Lỗi', 'Không xuất được file. Thầy kiểm tra lại đã nạp đúng thư viện xlsx-js-style chưa nhé.', 'error');
     }
 };
+
+// =======================================================
+// CÁC HÀM XỬ LÝ ĐẢO NGƯỢC & DI CHUYỂN ẢNH TẠI CHỖ
+// =======================================================
+
+// 1. Nút Đảo ngược: Chống lại cơ chế tự đảo file của hệ điều hành di động
+window.ham_dao_nguoc_thu_tu_anh = function () {
+    if (!window.DanhSachAnhSoDoTam || window.DanhSachAnhSoDoTam.length === 0) {
+        return Swal.fire('Thông báo', 'Chưa có ảnh nào để đảo ngược!', 'info');
+    }
+
+    // Lật ngược mảng ảnh
+    window.DanhSachAnhSoDoTam.reverse();
+
+    // Render lại giao diện
+    window.ham_18_render_preview_tong_hop();
+};
+
+// 2. Nút Di chuyển LÊN
+window.ham_di_chuyen_anh_len = function (index) {
+    if (index <= 0) return; // Đã ở trên cùng, không thể lên
+
+    const arr = window.DanhSachAnhSoDoTam;
+
+    // Nếu mảng ảnh ngắn hơn mảng tên, bù tự động các ô rỗng (null) để mảng đủ độ dài
+    while (arr.length <= index) arr.push(null);
+
+    // Hoán đổi vị trí với ảnh phía trước
+    [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
+
+    window.ham_18_render_preview_tong_hop();
+};
+
+// 3. Nút Di chuyển XUỐNG
+window.ham_di_chuyen_anh_xuong = function (index) {
+    const arr = window.DanhSachAnhSoDoTam;
+    const maxLen = Math.max(window.DanhSachHocSinhTam.length, arr.length);
+
+    if (index >= maxLen - 1) return; // Đã ở dưới cùng
+
+    // Bù tự động các ô rỗng
+    while (arr.length <= index + 1) arr.push(null);
+
+    // Hoán đổi vị trí với ảnh phía sau
+    [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+
+    window.ham_18_render_preview_tong_hop();
+};
+
+
+// =======================================================
+// HÀM TỔNG HỢP: RÁP NỐI VÀ RENDER ẢNH + TÊN (GIAO DIỆN ẢNH TO)
+// =======================================================
+window.ham_18_render_preview_tong_hop = function () {
+    const vungPreview = document.getElementById('vung-preview-anh-tong');
+    const labelSoLuong = document.getElementById('so-luong-anh-da-nap');
+    const khuVucHienThi = document.getElementById('khu-vuc-hien-thi-anh-duoi');
+
+    // Tăng max-height để bảng hiển thị được nhiều hàng cao hơn
+    vungPreview.style = "max-height: 550px; overflow-y: auto; padding-right: 5px; display: block;";
+    vungPreview.innerHTML = '';
+
+    const arrAnh = window.DanhSachAnhSoDoTam || [];
+    const arrTen = window.DanhSachHocSinhTam || [];
+    const maxLen = Math.max(arrAnh.length, arrTen.length);
+
+    if (maxLen === 0) {
+        khuVucHienThi.style.display = 'none';
+        return;
+    }
+
+    khuVucHienThi.style.display = 'block';
+    labelSoLuong.innerText = maxLen;
+
+    let htmlTable = `
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <thead style="position: sticky; top: 0; background: #e9ecef; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <tr>
+                    <th style="padding: 12px 8px; border-bottom: 2px solid #dee2e6; width: 50px; text-align: center; color: #495057;">STT</th>
+                    
+                    <th style="padding: 12px 8px; border-bottom: 2px solid #dee2e6; width: 25%; color: #0056b3; text-align: left;">👤 HỌ VÀ TÊN</th>
+                    
+                    <th style="padding: 12px 8px; border-bottom: 2px solid #dee2e6; width: 130px; text-align: center; color: #17a2b8;">📸 ẢNH THẺ</th>
+                    
+                    <th style="padding: 12px 8px; border-bottom: 2px solid #dee2e6; color: #6c757d; text-align: left;">📄 TÊN FILE ẢNH</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    for (let i = 0; i < maxLen; i++) {
+        // Nếu thiếu ảnh, dùng ảnh xám thay thế tạm
+        const anhUrl = arrAnh[i] ? arrAnh[i].url : 'https://placehold.co/120x160/e9ecef/a3a3a3?text=Trong';
+        const tenFile = arrAnh[i] ? arrAnh[i].name : '<span style="color:#dc3545; font-weight:bold;">❌ Đang thiếu file ảnh</span>';
+
+        let tenHS = '';
+        if (arrTen[i]) {
+            tenHS = `<span style="font-size: 16px;">${arrTen[i]}</span>`;
+        } else {
+            tenHS = `<span style="color:#dc3545; font-weight:bold; font-style: italic;">❌ Thiếu tên</span>`;
+        }
+
+        const mauNen = (i % 2 === 0) ? 'background: #ffffff;' : 'background: #f8f9fa;';
+
+        htmlTable += `
+            <tr style="${mauNen} border-bottom: 1px solid #ddd; transition: 0.2s;" onmouseover="this.style.background='#e3f2fd'" onmouseout="this.style.background='${i % 2 === 0 ? '#ffffff' : '#f8f9fa'}'">
+                
+                <!-- CỘT 1: STT -->
+                <td style="padding: 10px 8px; text-align: center; font-weight: bold; color: #495057; font-size: 16px;">
+                    ${i + 1}
+                </td>
+                
+                <!-- CỘT 2: TÊN HỌC SINH VÀ NÚT CHỨC NĂNG -->
+                <td style="padding: 10px 8px; font-weight: bold; color: #0056b3; vertical-align: middle;">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        ${tenHS}
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="ham_18_them_ten_hs(${i})" title="Chèn thêm 1 tên vào vị trí này" style="padding: 5px 10px; font-size: 11px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">➕ Thêm</button>
+                            <button onclick="ham_18_xoa_ten_hs(${i})" title="Xóa tên này đi" style="padding: 5px 10px; font-size: 11px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1); ${!arrTen[i] ? 'opacity: 0.5; pointer-events: none;' : ''}">❌ Xóa</button>
+                        </div>
+                    </div>
+                </td>
+                
+                <!-- CỘT 3: HÌNH ẢNH & NÚT DI CHUYỂN ẢNH LÊN XUỐNG -->
+                <td style="padding: 10px 8px; text-align: center; vertical-align: middle;">
+                    <img src="${anhUrl}" style="height: 120px; width: 90px; object-fit: cover; border-radius: 6px; border: 2px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+                    
+                    <div style="display: flex; justify-content: center; gap: 5px; margin-top: 8px;">
+                        <button onclick="ham_di_chuyen_anh_len(${i})" title="Đẩy ảnh này lên trên" style="padding: 4px 8px; font-size: 11px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 4px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;">🔼 Lên</button>
+                        <button onclick="ham_di_chuyen_anh_xuong(${i})" title="Kéo ảnh này xuống dưới" style="padding: 4px 8px; font-size: 11px; background: #e9ecef; color: #495057; border: 1px solid #ced4da; border-radius: 4px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;">🔽 Xuống</button>
+                    </div>
+                </td>
+                
+                <!-- CỘT 4: TÊN FILE ẢNH -->
+                <td style="padding: 10px 8px; font-size: 14px; color: #6c757d; vertical-align: middle;">
+                    ${tenFile}
+                </td>
+            </tr>
+        `;
+    }
+
+    htmlTable += `</tbody></table>`;
+    vungPreview.innerHTML = htmlTable;
+};
+
+
