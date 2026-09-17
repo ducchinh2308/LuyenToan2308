@@ -2547,9 +2547,8 @@ window.ham_18_c3_up_file_so_do_len_drive = async function () {
 //     });
 // };
 
-
 // =======================================================
-// HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE SƠ ĐỒ (WORD & PDF CUSTOM SIZE)
+// HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE SƠ ĐỒ (TỰ ĐỘNG CHỌN A4 NGANG / A3 DỌC / A3 NGANG)
 // =======================================================
 window.ham_18_xuat_so_do_word = async function () {
     const matrix = window.DuLieuSoDoTam || [];
@@ -2561,25 +2560,30 @@ window.ham_18_xuat_so_do_word = async function () {
 
     const { value: config } = await Swal.fire({
         title: '⚙️ Tùy chỉnh xuất Sơ đồ',
-        width: 500,
+        width: 550,
         html: `
             <div style="text-align: left; font-size: 14px;">
                 <label style="font-weight: bold; color: #0056b3;">1. Tiêu đề sơ đồ (Tên lớp):</label>
                 <input id="swal-ten-lop" class="swal2-input" placeholder="VD: LỚP 12A1" value="SƠ ĐỒ LỚP HỌC" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
                 
-                <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh học sinh (cm):</label>
+                <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh thẻ (cm):</label>
                 <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
                 
-                <label style="font-weight: bold; color: #28a745;">3. Định dạng xuất:</label>
+                <label style="font-weight: bold; color: #6f42c1;">3. Nếu sơ đồ vượt khổ A4 Ngang, chuyển sang:</label>
+                <select id="swal-oversize-paper" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ced4da; margin-top: 5px; margin-bottom: 15px; font-weight: bold; color: #495057;">
+                    <option value="A3_DOC">📄 Khổ A3 Dọc (Rộng 29.7cm x Cao 42cm)</option>
+                    <option value="A3_NGANG">📜 Khổ A3 Ngang (Rộng 42cm x Cao 29.7cm)</option>
+                </select>
+
+                <label style="font-weight: bold; color: #28a745;">4. Định dạng xuất file:</label>
                 <div style="display: flex; gap: 20px; margin-top: 8px; background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px solid #dee2e6;">
                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #0056b3;">
-                        <input type="checkbox" id="swal-export-word" checked style="width: 18px; height: 18px; cursor: pointer;"> 📄 File Word (.doc)
+                        <input type="checkbox" id="swal-export-word" checked style="width: 18px; height: 18px; cursor: pointer;"> 📄 Word (.doc)
                     </label>
                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
-                        <input type="checkbox" id="swal-export-pdf" style="width: 18px; height: 18px; cursor: pointer;"> 📕 File PDF / Bản In
+                        <input type="checkbox" id="swal-export-pdf" style="width: 18px; height: 18px; cursor: pointer;"> 📕 PDF / Bản In
                     </label>
                 </div>
-                <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 8px;">* PDF sẽ tự động căn chỉnh khổ giấy linh hoạt theo chiều cao sơ đồ để không bị mất nội dung.</p>
             </div>
         `,
         showCancelButton: true,
@@ -2591,13 +2595,14 @@ window.ham_18_xuat_so_do_word = async function () {
             const isPdf = document.getElementById('swal-export-pdf').checked;
 
             if (!isWord && !isPdf) {
-                Swal.showValidationMessage('Vui lòng chọn ít nhất 1 định dạng xuất (Word hoặc PDF)!');
+                Swal.showValidationMessage('Vui lòng chọn ít nhất 1 định dạng xuất!');
                 return false;
             }
 
             return {
                 tenLop: document.getElementById('swal-ten-lop').value.trim() || 'SƠ ĐỒ LỚP HỌC',
                 h: parseFloat(document.getElementById('swal-img-h').value) || 3,
+                oversizePaper: document.getElementById('swal-oversize-paper').value,
                 isWord: isWord,
                 isPdf: isPdf
             }
@@ -2608,7 +2613,7 @@ window.ham_18_xuat_so_do_word = async function () {
 
     Swal.fire({
         title: 'Đang khởi tạo...',
-        html: 'Đang ráp ảnh và định dạng sơ đồ...',
+        html: 'Đang ráp ảnh và nội suy kích thước giấy...',
         allowOutsideClick: false,
         didOpen: () => Swal.showLoading()
     });
@@ -2634,7 +2639,7 @@ window.ham_18_xuat_so_do_word = async function () {
     const maxCols = Math.max(...matrix.map(row => Array.isArray(row) ? row.length : 1), 1);
     const maxRows = matrix.length;
 
-    // QUY ĐỔI KÍCH THƯỚC (PT - Điểm ảnh)
+    // QUY ĐỔI KÍCH THƯỚC CHIỀU CAO (KHÔNG ĐỔI THEO KHỔ GIẤY)
     const cmToPt = 28.35;
     const paddingPt = 1.4;
     const aisleSizePt = 28.35;
@@ -2663,17 +2668,37 @@ window.ham_18_xuat_so_do_word = async function () {
         totalRowHeightPt += rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
     }
 
-    // TÍNH TOÁN KÍCH THƯỚC KHỔ GIẤY ĐỘNG (Custom Size)
-    const dynamicPageHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
-    const pageWidthPt = 842.0;
-    const usableWidthPt = pageWidthPt - (marginLR * 2);
+    // TÍNH TOÁN KÍCH THƯỚC KHỔ GIẤY THỰC TẾ
+    const requiredHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
 
+    // 🌟 THUẬT TOÁN ĐỊNH CỠ GIẤY MỚI (A4 Ngang -> A3 Dọc / A3 Ngang)
+    let pageWidthPt = 842.0;  // Mặc định bề ngang A4 Ngang
+    let pageHeightPt = 595.0; // Mặc định bề cao A4 Ngang
+    let pageOrientation = "landscape";
+    let kieuGiay = "A4 Ngang";
+
+    if (requiredHeightPt > 595.0) {
+        if (config.oversizePaper === "A3_NGANG") {
+            pageWidthPt = 1190.0;  // A3 Ngang mở rộng bề ngang lên 42cm
+            pageHeightPt = 842.0;  // Chiều cao là 29.7cm
+            pageOrientation = "landscape";
+            kieuGiay = "A3 Ngang";
+        } else {
+            pageWidthPt = 842.0;   // A3 Dọc giữ bề ngang 29.7cm
+            pageHeightPt = 1190.0; // Chiều cao bung lên 42cm
+            pageOrientation = "portrait";
+            kieuGiay = "A3 Dọc";
+        }
+    }
+
+    // 🌟 SAU KHI CHỐT BỀ NGANG (pageWidthPt), NỘI SUY CHIỀU RỘNG TỪNG CỘT
+    const usableWidthPt = pageWidthPt - (marginLR * 2);
     const numAislesCols = colIsAisle.filter(v => v).length;
     const numStudentCols = maxCols - numAislesCols;
     const remainingWidth = usableWidthPt - (numAislesCols * aisleSizePt);
     const studentColWidthPt = numStudentCols > 0 ? (remainingWidth / numStudentCols) : (usableWidthPt / maxCols);
 
-    // VẼ BẢNG HTML DÙNG CHUNG CHO CẢ WORD & PDF
+    // VẼ BẢNG HTML
     let htmlTable = `<table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
 
     for (let r = 0; r < maxRows; r++) {
@@ -2736,8 +2761,8 @@ window.ham_18_xuat_so_do_word = async function () {
                 <title>Sơ đồ lớp</title>
                 <style>
                     @page WordSection1 {
-                        size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt; 
-                        mso-page-orientation: landscape;
+                        size: ${pageWidthPt}pt ${pageHeightPt}pt; 
+                        mso-page-orientation: ${pageOrientation};
                         margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
                         mso-header-margin: 28.35pt;
                         mso-footer-margin: 28.35pt;
@@ -2754,7 +2779,7 @@ window.ham_18_xuat_so_do_word = async function () {
                     </h2>
                     ${htmlTable}
                     <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
-                        © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+                        © File xuất tự động. Sản phẩm từ SKKN "Xây dựng và ứng dụng tiện ích tự động tạo sơ đồ lớp tích hợp ảnh thẻ hỗ trợ quản lý học sinh" của nhóm tác giả Huỳnh Đức Chính-THPT Gia Định, Lê Duy Nhật-THPT Gia Định,.... Thời gian tạo: ${thoiGianTao}
                     </p>
                     <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
                 </div>
@@ -2774,7 +2799,7 @@ window.ham_18_xuat_so_do_word = async function () {
     }
 
     // ==========================================
-    // 🌟 LUỒNG 2: XUẤT FILE PDF / BẢN IN NATIVE (CUSTOM SIZE)
+    // 🌟 LUỒNG 2: XUẤT FILE PDF / BẢN IN NATIVE
     // ==========================================
     if (config.isPdf) {
         const printWindow = window.open('', '_blank');
@@ -2786,10 +2811,9 @@ window.ham_18_xuat_so_do_word = async function () {
                     <meta charset="utf-8">
                     <title>Sơ Đồ - ${config.tenLop}</title>
                     <style>
-                        /* 🌟 ÉP KÍCH THƯỚC TRANG IN CHUẨN XÁC VỚI KÍCH THƯỚC ĐỘNG CỦA FILE WORD */
                         @page {
-                            size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt;
-                            margin: 28.35pt ${marginLR}pt; /* Lề trên/dưới 1cm, trái phải giữ nguyên */
+                            size: ${pageWidthPt}pt ${pageHeightPt}pt;
+                            margin: 28.35pt ${marginLR}pt; 
                         }
                         body {
                             font-family: 'Times New Roman', serif;
@@ -2798,7 +2822,6 @@ window.ham_18_xuat_so_do_word = async function () {
                             -webkit-print-color-adjust: exact;
                             print-color-adjust: exact;
                         }
-                        /* Reset lại một số thông số để phù hợp với trình duyệt HTML */
                         table { border-collapse: collapse; width: 100%; table-layout: fixed; }
                         td { border: 1px solid black; }
                         h2 { text-align: center; margin: 0 0 15px 0; font-size: 22pt; text-transform: uppercase; }
@@ -2811,15 +2834,12 @@ window.ham_18_xuat_so_do_word = async function () {
                     ${htmlTable}
                     
                     <div class="footer">
-                        © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+                        © File xuất tự động. Sản phẩm từ SKKN "Xây dựng và ứng dụng tiện ích tự động tạo sơ đồ lớp tích hợp ảnh thẻ hỗ trợ quản lý học sinh" của nhóm tác giả Huỳnh Đức Chính-THPT Gia Định, Lê Duy Nhật-THPT Gia Định,.... Thời gian tạo: ${thoiGianTao}
                     </div>
                     
                     <script>
-                        // Đợi ảnh Load xong (500ms) mới gọi lệnh in để đảm bảo ảnh không bị mất
                         window.onload = function() {
-                            setTimeout(() => {
-                                window.print();
-                            }, 500);
+                            setTimeout(() => { window.print(); }, 500);
                         };
                     </script>
                 </body>
@@ -2834,11 +2854,607 @@ window.ham_18_xuat_so_do_word = async function () {
     Swal.fire({
         icon: 'success',
         title: 'Hoàn tất!',
-        text: `Đã xuất dữ liệu theo định dạng đã chọn.`,
+        text: `Đã xuất dữ liệu với khổ giấy tối ưu: ${kieuGiay}.`,
         timer: 3000,
         showConfirmButton: false
     });
 };
+
+
+// // =======================================================
+// // HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE SƠ ĐỒ (TỰ ĐỘNG CHỌN A4 NGANG / A3 DỌC)
+// // =======================================================
+// window.ham_18_xuat_so_do_word = async function () {
+//     const matrix = window.DuLieuSoDoTam || [];
+//     const arrTen = window.DanhSachHocSinhTam || [];
+//     const arrAnh = window.DanhSachAnhSoDoTam || [];
+
+//     if (matrix.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp file Sơ đồ chỗ ngồi!', 'warning');
+//     if (arrTen.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp Danh sách học sinh!', 'warning');
+
+//     const { value: config } = await Swal.fire({
+//         title: '⚙️ Tùy chỉnh xuất Sơ đồ',
+//         width: 500,
+//         html: `
+//             <div style="text-align: left; font-size: 14px;">
+//                 <label style="font-weight: bold; color: #0056b3;">1. Tiêu đề sơ đồ (Tên lớp):</label>
+//                 <input id="swal-ten-lop" class="swal2-input" placeholder="VD: LỚP 12A1" value="SƠ ĐỒ LỚP HỌC" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+//                 <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh học sinh (cm):</label>
+//                 <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+//                 <label style="font-weight: bold; color: #28a745;">3. Định dạng xuất:</label>
+//                 <div style="display: flex; gap: 20px; margin-top: 8px; background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px solid #dee2e6;">
+//                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #0056b3;">
+//                         <input type="checkbox" id="swal-export-word" checked style="width: 18px; height: 18px; cursor: pointer;"> 📄 File Word (.doc)
+//                     </label>
+//                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
+//                         <input type="checkbox" id="swal-export-pdf" style="width: 18px; height: 18px; cursor: pointer;"> 📕 File PDF / Bản In
+//                     </label>
+//                 </div>
+//                 <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 8px;">* Khổ giấy sẽ tự động chuyển từ A4 Ngang sang A3 Dọc nếu danh sách quá dài.</p>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonColor: '#007bff',
+//         confirmButtonText: '🚀 Xuất File',
+//         cancelButtonText: 'Hủy',
+//         preConfirm: () => {
+//             const isWord = document.getElementById('swal-export-word').checked;
+//             const isPdf = document.getElementById('swal-export-pdf').checked;
+
+//             if (!isWord && !isPdf) {
+//                 Swal.showValidationMessage('Vui lòng chọn ít nhất 1 định dạng xuất (Word hoặc PDF)!');
+//                 return false;
+//             }
+
+//             return {
+//                 tenLop: document.getElementById('swal-ten-lop').value.trim() || 'SƠ ĐỒ LỚP HỌC',
+//                 h: parseFloat(document.getElementById('swal-img-h').value) || 3,
+//                 isWord: isWord,
+//                 isPdf: isPdf
+//             }
+//         }
+//     });
+
+//     if (!config) return;
+
+//     Swal.fire({
+//         title: 'Đang khởi tạo...',
+//         html: 'Đang ráp ảnh và định dạng sơ đồ...',
+//         allowOutsideClick: false,
+//         didOpen: () => Swal.showLoading()
+//     });
+
+//     const getImgData = (anh) => new Promise((resolve) => {
+//         const defaultSrc = 'https://placehold.co/90x120/e9ecef/a3a3a3?text=Trong';
+//         if (!anh) return resolve({ src: defaultSrc, ratio: 0.75 });
+
+//         const img = new Image();
+//         img.onload = () => resolve({ src: img.src, ratio: img.width / img.height });
+//         img.onerror = () => resolve({ src: anh.url || defaultSrc, ratio: 0.75 });
+
+//         if (anh.source === 'local' && anh.fileObj) {
+//             const reader = new FileReader();
+//             reader.onload = (e) => img.src = e.target.result;
+//             reader.readAsDataURL(anh.fileObj);
+//         } else {
+//             img.src = anh.url;
+//         }
+//     });
+
+//     const maxLen = Math.max(arrTen.length, arrAnh.length);
+//     const maxCols = Math.max(...matrix.map(row => Array.isArray(row) ? row.length : 1), 1);
+//     const maxRows = matrix.length;
+
+//     // QUY ĐỔI KÍCH THƯỚC (PT - Điểm ảnh)
+//     const cmToPt = 28.35;
+//     const paddingPt = 1.4;
+//     const aisleSizePt = 28.35;
+//     const margin1cmPt = 28.35;
+//     const marginLR = 36.0;
+
+//     const imgHeightPt = config.h * cmToPt;
+//     const imgHeightPx = Math.round(imgHeightPt * 1.3333);
+//     const rowHeightStudentPt = imgHeightPt + 28;
+
+//     const colIsAisle = new Array(maxCols).fill(true);
+//     const rowIsAisle = new Array(maxRows).fill(true);
+
+//     for (let r = 0; r < maxRows; r++) {
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(matrix[r]) && matrix[r][c] !== undefined && matrix[r][c] !== null) ? String(matrix[r][c]).trim() : '';
+//             if (/^\d+$/.test(cellVal)) {
+//                 colIsAisle[c] = false;
+//                 rowIsAisle[r] = false;
+//             }
+//         }
+//     }
+
+//     let totalRowHeightPt = 0;
+//     for (let r = 0; r < maxRows; r++) {
+//         totalRowHeightPt += rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//     }
+
+//     // TÍNH TOÁN KÍCH THƯỚC KHỔ GIẤY THỰC TẾ YÊU CẦU
+//     const requiredHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
+
+//     // XÁC ĐỊNH KHỔ GIẤY CHUẨN (A4 Ngang hoặc A3 Dọc)
+//     const pageWidthPt = 842.0; // Bề ngang của A4 Ngang và A3 Dọc đều là 842pt
+//     let pageHeightPt = 595.0;  // Mặc định A4 Ngang
+//     let pageOrientation = "landscape";
+
+//     if (requiredHeightPt > 595.0) {
+//         pageHeightPt = 1190.0; // Chuyển sang khổ A3 Dọc nếu nội dung tràn trang A4
+//         pageOrientation = "portrait";
+//     }
+
+//     const usableWidthPt = pageWidthPt - (marginLR * 2);
+
+//     const numAislesCols = colIsAisle.filter(v => v).length;
+//     const numStudentCols = maxCols - numAislesCols;
+//     const remainingWidth = usableWidthPt - (numAislesCols * aisleSizePt);
+//     const studentColWidthPt = numStudentCols > 0 ? (remainingWidth / numStudentCols) : (usableWidthPt / maxCols);
+
+//     // VẼ BẢNG HTML DÙNG CHUNG CHO CẢ WORD & PDF
+//     let htmlTable = `<table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
+
+//     for (let r = 0; r < maxRows; r++) {
+//         const currentRowHeightPt = rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//         htmlTable += `<tr style="height: ${currentRowHeightPt}pt; mso-height-rule: exactly;">`;
+
+//         const row = matrix[r];
+
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(row) && row[c] !== undefined && row[c] !== null) ? String(row[c]).trim() : '';
+//             const isSTT = /^\d+$/.test(cellVal);
+//             let stt = parseInt(cellVal, 10);
+
+//             const currentWidthPt = colIsAisle[c] ? aisleSizePt : studentColWidthPt;
+//             const borderStyle = (isSTT || cellVal.length > 0) ? '1px solid black' : 'none';
+
+//             if (isSTT && stt > 0 && stt <= maxLen) {
+//                 let idx = stt - 1;
+//                 let tenHS = arrTen[idx] || 'Chưa có tên';
+
+//                 let anhData = await getImgData(arrAnh[idx]);
+//                 let imgWidthPt = imgHeightPt * anhData.ratio;
+//                 let imgWidthPx = Math.round(imgWidthPt * 1.3333);
+
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: top; border: ${borderStyle}; text-align: center;">
+//                         <div style="text-align: center; margin-bottom: 2pt;">
+//                             <img src="${anhData.src}" width="${imgWidthPx}" height="${imgHeightPx}" style="width: ${imgWidthPt}pt; height: ${imgHeightPt}pt; display: block; margin: 0 auto;">
+//                         </div>
+//                         <div style="font-size: 11pt; font-family: 'Times New Roman', serif; line-height: 1.2; word-wrap: break-word; color: #000000;">
+//                             <b>${stt}. ${tenHS}</b>
+//                         </div>
+//                     </td>
+//                 `;
+//             }
+//             else {
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: middle; border: ${borderStyle}; font-size: 14pt; font-family: 'Times New Roman', serif; color: #000000; word-wrap: break-word; text-align: center;">
+//                         <b>${cellVal}</b>
+//                     </td>
+//                 `;
+//             }
+//         }
+//         htmlTable += `</tr>`;
+//     }
+//     htmlTable += `</table>`;
+
+//     const now = new Date();
+//     const pad = (n) => n.toString().padStart(2, '0');
+//     const thoiGianTao = `${pad(now.getHours())}:${pad(now.getMinutes())} ngày ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+
+//     // ==========================================
+//     // 🌟 LUỒNG 1: XUẤT FILE WORD (.DOC)
+//     // ==========================================
+//     if (config.isWord) {
+//         const docHTML = `
+//             <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+//             <head>
+//                 <meta charset='utf-8'>
+//                 <title>Sơ đồ lớp</title>
+//                 <style>
+//                     @page WordSection1 {
+//                         size: ${pageWidthPt}pt ${pageHeightPt}pt; 
+//                         mso-page-orientation: ${pageOrientation};
+//                         margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
+//                         mso-header-margin: 28.35pt;
+//                         mso-footer-margin: 28.35pt;
+//                     }
+//                     div.WordSection1 { page: WordSection1; }
+//                     table { border-collapse: collapse; width: 100%; }
+//                     p, div { margin: 0; padding: 0; }
+//                 </style>
+//             </head>
+//             <body>
+//                 <div class='WordSection1'>
+//                     <h2 style="text-align: center; font-family: 'Times New Roman', serif; margin: 0 0 10px 0; font-size: 16pt; text-transform: uppercase;">
+//                         <b>${config.tenLop}</b>
+//                     </h2>
+//                     ${htmlTable}
+//                     <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
+//                         © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+//                     </p>
+//                     <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
+//                 </div>
+//             </body>
+//             </html>
+//         `;
+
+//         const blob = new Blob(['\ufeff', docHTML], { type: 'application/msword' });
+//         const url = URL.createObjectURL(blob);
+//         const link = document.createElement('a');
+//         link.href = url;
+//         link.download = `So_Do_${config.tenLop.replace(/\s+/g, '_')}.doc`;
+//         document.body.appendChild(link);
+//         link.click();
+//         document.body.removeChild(link);
+//         URL.revokeObjectURL(url);
+//     }
+
+//     // ==========================================
+//     // 🌟 LUỒNG 2: XUẤT FILE PDF / BẢN IN NATIVE
+//     // ==========================================
+//     if (config.isPdf) {
+//         const printWindow = window.open('', '_blank');
+//         if (printWindow) {
+//             printWindow.document.write(`
+//                 <!DOCTYPE html>
+//                 <html lang="vi">
+//                 <head>
+//                     <meta charset="utf-8">
+//                     <title>Sơ Đồ - ${config.tenLop}</title>
+//                     <style>
+//                         /* 🌟 ÉP KÍCH THƯỚC TRANG IN THEO A4 NGANG HOẶC A3 DỌC */
+//                         @page {
+//                             size: ${pageWidthPt}pt ${pageHeightPt}pt;
+//                             margin: 28.35pt ${marginLR}pt; 
+//                         }
+//                         body {
+//                             font-family: 'Times New Roman', serif;
+//                             margin: 0;
+//                             padding: 0;
+//                             -webkit-print-color-adjust: exact;
+//                             print-color-adjust: exact;
+//                         }
+//                         table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+//                         td { border: 1px solid black; }
+//                         h2 { text-align: center; margin: 0 0 15px 0; font-size: 22pt; text-transform: uppercase; }
+//                         .footer { margin-top: 15px; font-size: 11pt; text-align: right; color: #555; font-style: italic; }
+//                     </style>
+//                 </head>
+//                 <body>
+//                     <h2><b>${config.tenLop}</b></h2>
+                    
+//                     ${htmlTable}
+                    
+//                     <div class="footer">
+//                         © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+//                     </div>
+                    
+//                     <script>
+//                         // Đợi ảnh Load xong mới gọi lệnh in
+//                         window.onload = function() {
+//                             setTimeout(() => {
+//                                 window.print();
+//                             }, 500);
+//                         };
+//                     </script>
+//                 </body>
+//                 </html>
+//             `);
+//             printWindow.document.close();
+//         } else {
+//             Swal.fire('Bị chặn Popup!', 'Trình duyệt của thầy đang chặn mở tab mới. Vui lòng cấp quyền mở Popup cho trang web này ở thanh địa chỉ để in PDF!', 'warning');
+//         }
+//     }
+
+//     let kieuGiay = pageHeightPt > 595.0 ? "A3 Dọc" : "A4 Ngang";
+
+//     Swal.fire({
+//         icon: 'success',
+//         title: 'Hoàn tất!',
+//         text: `Đã xuất dữ liệu với khổ giấy tối ưu tự động: ${kieuGiay}.`,
+//         timer: 3000,
+//         showConfirmButton: false
+//     });
+// };
+
+// // =======================================================
+// // HÀM 18: RÁP DỮ LIỆU VÀ XUẤT FILE SƠ ĐỒ (WORD & PDF CUSTOM SIZE)
+// // =======================================================
+// window.ham_18_xuat_so_do_word = async function () {
+//     const matrix = window.DuLieuSoDoTam || [];
+//     const arrTen = window.DanhSachHocSinhTam || [];
+//     const arrAnh = window.DanhSachAnhSoDoTam || [];
+
+//     if (matrix.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp file Sơ đồ chỗ ngồi!', 'warning');
+//     if (arrTen.length === 0) return Swal.fire('Thiếu dữ liệu', 'Thầy chưa nạp Danh sách học sinh!', 'warning');
+
+//     const { value: config } = await Swal.fire({
+//         title: '⚙️ Tùy chỉnh xuất Sơ đồ',
+//         width: 500,
+//         html: `
+//             <div style="text-align: left; font-size: 14px;">
+//                 <label style="font-weight: bold; color: #0056b3;">1. Tiêu đề sơ đồ (Tên lớp):</label>
+//                 <input id="swal-ten-lop" class="swal2-input" placeholder="VD: LỚP 12A1" value="SƠ ĐỒ LỚP HỌC" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+//                 <label style="font-weight: bold; color: #d35400;">2. Chiều cao ảnh học sinh (cm):</label>
+//                 <input id="swal-img-h" type="number" step="0.1" class="swal2-input" value="3" style="margin-top: 5px; margin-bottom: 15px; width: 100%; box-sizing: border-box;">
+                
+//                 <label style="font-weight: bold; color: #28a745;">3. Định dạng xuất:</label>
+//                 <div style="display: flex; gap: 20px; margin-top: 8px; background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px solid #dee2e6;">
+//                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #0056b3;">
+//                         <input type="checkbox" id="swal-export-word" checked style="width: 18px; height: 18px; cursor: pointer;"> 📄 File Word (.doc)
+//                     </label>
+//                     <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
+//                         <input type="checkbox" id="swal-export-pdf" style="width: 18px; height: 18px; cursor: pointer;"> 📕 File PDF / Bản In
+//                     </label>
+//                 </div>
+//                 <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 8px;">* PDF sẽ tự động căn chỉnh khổ giấy linh hoạt theo chiều cao sơ đồ để không bị mất nội dung.</p>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonColor: '#007bff',
+//         confirmButtonText: '🚀 Xuất File',
+//         cancelButtonText: 'Hủy',
+//         preConfirm: () => {
+//             const isWord = document.getElementById('swal-export-word').checked;
+//             const isPdf = document.getElementById('swal-export-pdf').checked;
+
+//             if (!isWord && !isPdf) {
+//                 Swal.showValidationMessage('Vui lòng chọn ít nhất 1 định dạng xuất (Word hoặc PDF)!');
+//                 return false;
+//             }
+
+//             return {
+//                 tenLop: document.getElementById('swal-ten-lop').value.trim() || 'SƠ ĐỒ LỚP HỌC',
+//                 h: parseFloat(document.getElementById('swal-img-h').value) || 3,
+//                 isWord: isWord,
+//                 isPdf: isPdf
+//             }
+//         }
+//     });
+
+//     if (!config) return;
+
+//     Swal.fire({
+//         title: 'Đang khởi tạo...',
+//         html: 'Đang ráp ảnh và định dạng sơ đồ...',
+//         allowOutsideClick: false,
+//         didOpen: () => Swal.showLoading()
+//     });
+
+//     const getImgData = (anh) => new Promise((resolve) => {
+//         const defaultSrc = 'https://placehold.co/90x120/e9ecef/a3a3a3?text=Trong';
+//         if (!anh) return resolve({ src: defaultSrc, ratio: 0.75 });
+
+//         const img = new Image();
+//         img.onload = () => resolve({ src: img.src, ratio: img.width / img.height });
+//         img.onerror = () => resolve({ src: anh.url || defaultSrc, ratio: 0.75 });
+
+//         if (anh.source === 'local' && anh.fileObj) {
+//             const reader = new FileReader();
+//             reader.onload = (e) => img.src = e.target.result;
+//             reader.readAsDataURL(anh.fileObj);
+//         } else {
+//             img.src = anh.url;
+//         }
+//     });
+
+//     const maxLen = Math.max(arrTen.length, arrAnh.length);
+//     const maxCols = Math.max(...matrix.map(row => Array.isArray(row) ? row.length : 1), 1);
+//     const maxRows = matrix.length;
+
+//     // QUY ĐỔI KÍCH THƯỚC (PT - Điểm ảnh)
+//     const cmToPt = 28.35;
+//     const paddingPt = 1.4;
+//     const aisleSizePt = 28.35;
+//     const margin1cmPt = 28.35;
+//     const marginLR = 36.0;
+
+//     const imgHeightPt = config.h * cmToPt;
+//     const imgHeightPx = Math.round(imgHeightPt * 1.3333);
+//     const rowHeightStudentPt = imgHeightPt + 28;
+
+//     const colIsAisle = new Array(maxCols).fill(true);
+//     const rowIsAisle = new Array(maxRows).fill(true);
+
+//     for (let r = 0; r < maxRows; r++) {
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(matrix[r]) && matrix[r][c] !== undefined && matrix[r][c] !== null) ? String(matrix[r][c]).trim() : '';
+//             if (/^\d+$/.test(cellVal)) {
+//                 colIsAisle[c] = false;
+//                 rowIsAisle[r] = false;
+//             }
+//         }
+//     }
+
+//     let totalRowHeightPt = 0;
+//     for (let r = 0; r < maxRows; r++) {
+//         totalRowHeightPt += rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//     }
+
+//     // TÍNH TOÁN KÍCH THƯỚC KHỔ GIẤY ĐỘNG (Custom Size)
+//     const dynamicPageHeightPt = totalRowHeightPt + (margin1cmPt * 2) + 40 + 40;
+//     const pageWidthPt = 842.0;
+//     const usableWidthPt = pageWidthPt - (marginLR * 2);
+
+//     const numAislesCols = colIsAisle.filter(v => v).length;
+//     const numStudentCols = maxCols - numAislesCols;
+//     const remainingWidth = usableWidthPt - (numAislesCols * aisleSizePt);
+//     const studentColWidthPt = numStudentCols > 0 ? (remainingWidth / numStudentCols) : (usableWidthPt / maxCols);
+
+//     // VẼ BẢNG HTML DÙNG CHUNG CHO CẢ WORD & PDF
+//     let htmlTable = `<table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">`;
+
+//     for (let r = 0; r < maxRows; r++) {
+//         const currentRowHeightPt = rowIsAisle[r] ? aisleSizePt : rowHeightStudentPt;
+//         htmlTable += `<tr style="height: ${currentRowHeightPt}pt; mso-height-rule: exactly;">`;
+
+//         const row = matrix[r];
+
+//         for (let c = 0; c < maxCols; c++) {
+//             let cellVal = (Array.isArray(row) && row[c] !== undefined && row[c] !== null) ? String(row[c]).trim() : '';
+//             const isSTT = /^\d+$/.test(cellVal);
+//             let stt = parseInt(cellVal, 10);
+
+//             const currentWidthPt = colIsAisle[c] ? aisleSizePt : studentColWidthPt;
+//             const borderStyle = (isSTT || cellVal.length > 0) ? '1px solid black' : 'none';
+
+//             if (isSTT && stt > 0 && stt <= maxLen) {
+//                 let idx = stt - 1;
+//                 let tenHS = arrTen[idx] || 'Chưa có tên';
+
+//                 let anhData = await getImgData(arrAnh[idx]);
+//                 let imgWidthPt = imgHeightPt * anhData.ratio;
+//                 let imgWidthPx = Math.round(imgWidthPt * 1.3333);
+
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: top; border: ${borderStyle}; text-align: center;">
+//                         <div style="text-align: center; margin-bottom: 2pt;">
+//                             <img src="${anhData.src}" width="${imgWidthPx}" height="${imgHeightPx}" style="width: ${imgWidthPt}pt; height: ${imgHeightPt}pt; display: block; margin: 0 auto;">
+//                         </div>
+//                         <div style="font-size: 11pt; font-family: 'Times New Roman', serif; line-height: 1.2; word-wrap: break-word; color: #000000;">
+//                             <b>${stt}. ${tenHS}</b>
+//                         </div>
+//                     </td>
+//                 `;
+//             }
+//             else {
+//                 htmlTable += `
+//                     <td style="width: ${currentWidthPt}pt; height: ${currentRowHeightPt}pt; padding: ${paddingPt}pt; vertical-align: middle; border: ${borderStyle}; font-size: 14pt; font-family: 'Times New Roman', serif; color: #000000; word-wrap: break-word; text-align: center;">
+//                         <b>${cellVal}</b>
+//                     </td>
+//                 `;
+//             }
+//         }
+//         htmlTable += `</tr>`;
+//     }
+//     htmlTable += `</table>`;
+
+//     const now = new Date();
+//     const pad = (n) => n.toString().padStart(2, '0');
+//     const thoiGianTao = `${pad(now.getHours())}:${pad(now.getMinutes())} ngày ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+
+//     // ==========================================
+//     // 🌟 LUỒNG 1: XUẤT FILE WORD (.DOC)
+//     // ==========================================
+//     if (config.isWord) {
+//         const docHTML = `
+//             <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+//             <head>
+//                 <meta charset='utf-8'>
+//                 <title>Sơ đồ lớp</title>
+//                 <style>
+//                     @page WordSection1 {
+//                         size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt; 
+//                         mso-page-orientation: landscape;
+//                         margin: 28.35pt ${marginLR}pt 28.35pt ${marginLR}pt; 
+//                         mso-header-margin: 28.35pt;
+//                         mso-footer-margin: 28.35pt;
+//                     }
+//                     div.WordSection1 { page: WordSection1; }
+//                     table { border-collapse: collapse; width: 100%; }
+//                     p, div { margin: 0; padding: 0; }
+//                 </style>
+//             </head>
+//             <body>
+//                 <div class='WordSection1'>
+//                     <h2 style="text-align: center; font-family: 'Times New Roman', serif; margin: 0 0 10px 0; font-size: 16pt; text-transform: uppercase;">
+//                         <b>${config.tenLop}</b>
+//                     </h2>
+//                     ${htmlTable}
+//                     <p style="margin: 8pt 0 0 0; padding: 0; font-size: 7pt; text-align: right; font-family: 'Times New Roman', serif; color: #555555; font-style: italic;">
+//                         © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+//                     </p>
+//                     <p style="margin: 0; padding: 0; font-size: 1pt; line-height: 1pt;">&nbsp;</p>
+//                 </div>
+//             </body>
+//             </html>
+//         `;
+
+//         const blob = new Blob(['\ufeff', docHTML], { type: 'application/msword' });
+//         const url = URL.createObjectURL(blob);
+//         const link = document.createElement('a');
+//         link.href = url;
+//         link.download = `So_Do_${config.tenLop.replace(/\s+/g, '_')}.doc`;
+//         document.body.appendChild(link);
+//         link.click();
+//         document.body.removeChild(link);
+//         URL.revokeObjectURL(url);
+//     }
+
+//     // ==========================================
+//     // 🌟 LUỒNG 2: XUẤT FILE PDF / BẢN IN NATIVE (CUSTOM SIZE)
+//     // ==========================================
+//     if (config.isPdf) {
+//         const printWindow = window.open('', '_blank');
+//         if (printWindow) {
+//             printWindow.document.write(`
+//                 <!DOCTYPE html>
+//                 <html lang="vi">
+//                 <head>
+//                     <meta charset="utf-8">
+//                     <title>Sơ Đồ - ${config.tenLop}</title>
+//                     <style>
+//                         /* 🌟 ÉP KÍCH THƯỚC TRANG IN CHUẨN XÁC VỚI KÍCH THƯỚC ĐỘNG CỦA FILE WORD */
+//                         @page {
+//                             size: ${pageWidthPt}pt ${dynamicPageHeightPt}pt;
+//                             margin: 28.35pt ${marginLR}pt; /* Lề trên/dưới 1cm, trái phải giữ nguyên */
+//                         }
+//                         body {
+//                             font-family: 'Times New Roman', serif;
+//                             margin: 0;
+//                             padding: 0;
+//                             -webkit-print-color-adjust: exact;
+//                             print-color-adjust: exact;
+//                         }
+//                         /* Reset lại một số thông số để phù hợp với trình duyệt HTML */
+//                         table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+//                         td { border: 1px solid black; }
+//                         h2 { text-align: center; margin: 0 0 15px 0; font-size: 22pt; text-transform: uppercase; }
+//                         .footer { margin-top: 15px; font-size: 11pt; text-align: right; color: #555; font-style: italic; }
+//                     </style>
+//                 </head>
+//                 <body>
+//                     <h2><b>${config.tenLop}</b></h2>
+                    
+//                     ${htmlTable}
+                    
+//                     <div class="footer">
+//                         © File sơ đồ lớp được xuất tự động từ trang web của Thầy Huỳnh Đức Chính - THPT Gia Định. Thời gian tạo: ${thoiGianTao}
+//                     </div>
+                    
+//                     <script>
+//                         // Đợi ảnh Load xong (500ms) mới gọi lệnh in để đảm bảo ảnh không bị mất
+//                         window.onload = function() {
+//                             setTimeout(() => {
+//                                 window.print();
+//                             }, 500);
+//                         };
+//                     </script>
+//                 </body>
+//                 </html>
+//             `);
+//             printWindow.document.close();
+//         } else {
+//             Swal.fire('Bị chặn Popup!', 'Trình duyệt của thầy đang chặn mở tab mới. Vui lòng cấp quyền mở Popup cho trang web này ở thanh địa chỉ để in PDF!', 'warning');
+//         }
+//     }
+
+//     Swal.fire({
+//         icon: 'success',
+//         title: 'Hoàn tất!',
+//         text: `Đã xuất dữ liệu theo định dạng đã chọn.`,
+//         timer: 3000,
+//         showConfirmButton: false
+//     });
+// };
 
 
 // // =======================================================
