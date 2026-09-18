@@ -1781,90 +1781,62 @@ window.ham_20_10_quan_ly_tag = async function (idThe, tenHienTai) {
     }
 };
 
+// Khởi tạo mảng toàn cục chứa ảnh bài giảng
+window.danhSachAnhBaiGiangTam = [];
+
 // =======================================================
-// HÀM 20.11: HIỂN THỊ ẢNH PREVIEW CẢ BÀI GIẢNG & MINH CHỨNG
+// HÀM 20.11: XỬ LÝ GOM ẢNH BÀI GIẢNG CHỤP NHIỀU LẦN
 // =======================================================
 window.ham_20_11_kich_hoat_preview_anh = function () {
-
-    // --- 1. XỬ LÝ PREVIEW: ẢNH BÀI GIẢNG ---
-    const inputAnhBaiGiang = document.getElementById('nk-input-anh-bai-giang');
+    const inputAnhBG = document.getElementById('nk-input-anh-bai-giang');
     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
-    const btnTaiAnh = document.getElementById('btn-tai-anh-bai-giang');
 
-    if (inputAnhBaiGiang && vungHienThiBG) {
-        const newInputBG = inputAnhBaiGiang.cloneNode(true);
-        inputAnhBaiGiang.parentNode.replaceChild(newInputBG, inputAnhBaiGiang);
+    if (inputAnhBG && vungHienThiBG) {
+        inputAnhBG.addEventListener('change', function (e) {
+            const files = Array.from(e.target.files);
+            if (files.length === 0) return;
 
-        newInputBG.addEventListener('change', function (event) {
-            const files = event.target.files;
-            if (files.length > 0) {
-                vungHienThiBG.innerHTML = '';
-                if (btnTaiAnh) {
-                    btnTaiAnh.innerHTML = `<span style="font-size: 24px;">📸</span><span>Đã chọn ${files.length} ảnh</span>`;
-                    btnTaiAnh.style.background = '#e8f5e9';
-                    btnTaiAnh.style.color = '#2e7d32';
-                    btnTaiAnh.style.borderColor = '#4caf50';
-                }
+            // 1. Đưa ảnh vừa chụp vào mảng tạm
+            window.danhSachAnhBaiGiangTam.push(...files);
 
-                Array.from(files).forEach(file => {
-                    let reader = new FileReader();
-                    reader.onload = function (e) {
-                        let img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.style.height = '60px';
-                        img.style.width = '60px';
-                        img.style.objectFit = 'cover';
-                        img.style.borderRadius = '4px';
-                        img.style.border = '1px solid #00acc1';
-                        vungHienThiBG.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                });
-            } else {
-                vungHienThiBG.innerHTML = '<span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>';
-                if (btnTaiAnh) {
-                    btnTaiAnh.innerHTML = `<span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>`;
-                    btnTaiAnh.style.background = '#e0f7fa';
-                    btnTaiAnh.style.color = '#00838f';
-                    btnTaiAnh.style.borderColor = '#00acc1';
-                }
-            }
-        });
-    }
+            // 2. Cập nhật lại giao diện
+            ham_20_11_render_anh_bai_giang();
 
-    // --- 2. XỬ LÝ PREVIEW: ẢNH MINH CHỨNG ---
-    const inputAnhMinhChung = document.getElementById('nk-input-anh-minh-chung');
-    const vungHienThiMC = document.getElementById('vung-preview-anh-minh-chung');
-
-    if (inputAnhMinhChung && vungHienThiMC) {
-        const newInputMC = inputAnhMinhChung.cloneNode(true);
-        inputAnhMinhChung.parentNode.replaceChild(newInputMC, inputAnhMinhChung);
-
-        newInputMC.addEventListener('change', function (event) {
-            const files = event.target.files;
-
-            // Xóa ảnh cũ (nếu có) mỗi khi chọn lại
-            vungHienThiMC.innerHTML = '';
-
-            if (files.length > 0) {
-                Array.from(files).forEach(file => {
-                    let reader = new FileReader();
-                    reader.onload = function (e) {
-                        let img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.style.height = '50px'; // Làm nhỏ hơn ảnh bài giảng 1 chút
-                        img.style.width = '50px';
-                        img.style.objectFit = 'cover';
-                        img.style.borderRadius = '4px';
-                        img.style.border = '1px solid #fd7e14'; // Viền cam đồng bộ với khu vực này
-                        vungHienThiMC.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                });
-            }
+            // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được
+            inputAnhBG.value = '';
         });
     }
 };
+
+// Hàm vẽ lại danh sách ảnh đang có trong mảng
+window.ham_20_11_render_anh_bai_giang = function () {
+    const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
+
+    if (window.danhSachAnhBaiGiangTam.length === 0) {
+        vungHienThiBG.innerHTML = '<span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>';
+        return;
+    }
+
+    let html = '';
+    window.danhSachAnhBaiGiangTam.forEach((file, index) => {
+        let url = URL.createObjectURL(file);
+        html += `
+            <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
+                <img src="${url}" style="height: 60px; width: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <button type="button" onclick="ham_20_11_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
+            </div>
+        `;
+    });
+    vungHienThiBG.innerHTML = html;
+};
+
+// Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
+window.ham_20_11_xoa_anh_tam = function (index) {
+    window.danhSachAnhBaiGiangTam.splice(index, 1);
+    ham_20_11_render_anh_bai_giang();
+};
+
+
 
 
 // =======================================================
@@ -3084,8 +3056,107 @@ const layGioPhutGiay = () => {
 //     }
 // };
 
+// // =======================================================
+// // HÀM 20.6A: CHỈ LƯU NỘI DUNG BÀI GIẢNG & ẢNH BẢNG
+// // =======================================================
+// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     let rawLop = document.getElementById('nk-input-lop').value.trim();
+//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+//     // 🌟 Lấy dữ liệu Tên bài và TextAreas
+//     const tenBai = document.getElementById('nk-input-ten-bai') ? document.getElementById('nk-input-ten-bai').value.trim() : '';
+//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
+//     const lyThuyet = textAreas[0].value.trim();
+//     const baiTap = textAreas[1].value.trim();
+//     const danDo = textAreas[2].value.trim();
+
+//     const filesBaiGiang = window.mangAnhBaiGiangTam || (document.getElementById('nk-input-anh-bai-giang') ? document.getElementById('nk-input-anh-bai-giang').files : []);
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp!");
+//         return;
+//     }
+
+//     const textGoc = btnLuu.innerHTML;
+//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
+//     btnLuu.disabled = true;
+
+//     try {
+//         // 🌟 Kéo thêm trường ten_bai về để kiểm tra nối đuôi (nếu lưu nhiều lần)
+//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh, ten_bai, ly_thuyet, bai_tap, dan_do').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+
+//         let isUpdate = false, idNhatKy = null, mangLinkAnhCu = [];
+//         let oldTenBai = '', oldLyThuyet = '', oldBaiTap = '', oldDanDo = '';
+
+//         if (checkData && checkData.length > 0) {
+//             isUpdate = true;
+//             idNhatKy = checkData[0].id;
+//             oldTenBai = checkData[0].ten_bai || '';
+//             oldLyThuyet = checkData[0].ly_thuyet || '';
+//             oldBaiTap = checkData[0].bai_tap || '';
+//             oldDanDo = checkData[0].dan_do || '';
+
+//             let rawAnh = checkData[0].danh_sach_anh;
+//             if (Array.isArray(rawAnh)) mangLinkAnhCu = rawAnh;
+//             else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
+//                 try { mangLinkAnhCu = JSON.parse(rawAnh); } catch (e) { mangLinkAnhCu = rawAnh.split(',').filter(l => l.trim()); }
+//             }
+//         }
+
+//         let mangLinkAnhBaiGiang = [];
+//         if (filesBaiGiang.length > 0) {
+//             for (let j = 0; j < filesBaiGiang.length; j++) {
+//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${j + 1}/${filesBaiGiang.length})...`;
+//                 let fileBg = filesBaiGiang[j];
+//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
+//                 let duoiFile = fileBg.name.includes('.') ? fileBg.name.substring(fileBg.name.lastIndexOf('.')) : '.jpg';
+
+//                 let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${taoTenAnToan(phanMon, 15)}]_Anh[${j + 1}]${duoiFile}`;
+
+//                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//                     method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileBg.type, fileName: tenFileBg, maLop: maLopLuu, loaiAnh: "ANH_BAI_GIANG" })
+//                 })).json();
+//                 if (result.status === 'success') mangLinkAnhBaiGiang.push(result.url);
+//             }
+//         }
+
+//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
+
+//         let payloadDB = {
+//             ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
+//             ten_bai: (isUpdate && oldTenBai && tenBai) ? oldTenBai + '\n' + tenBai : (tenBai || oldTenBai),
+//             ly_thuyet: (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet),
+//             bai_tap: (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap),
+//             dan_do: (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo),
+//             danh_sach_anh: danhSachAnhLuu
+//         };
+
+//         if (isUpdate) await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
+//         else await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]);
+
+//         alert("✅ Đã lưu xong NỘI DUNG BÀI GIẢNG!");
+
+//         if (document.getElementById('nk-input-ten-bai')) document.getElementById('nk-input-ten-bai').value = '';
+//         textAreas[0].value = ''; textAreas[1].value = ''; textAreas[2].value = '';
+//         if (document.getElementById('nk-input-anh-bai-giang')) document.getElementById('nk-input-anh-bai-giang').value = '';
+//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
+//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+
+//     } catch (err) {
+//         console.error("Lỗi:", err);
+//         alert("❌ Lỗi lưu bài giảng! Vui lòng kiểm tra xem cột 'ten_bai' đã được tạo trong bảng nhat_ky_day_hoc chưa.");
+//     } finally {
+//         btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
+//     }
+// };
+
+
 // =======================================================
-// HÀM 20.6A: CHỈ LƯU NỘI DUNG BÀI GIẢNG & ẢNH BẢNG
+// HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD
 // =======================================================
 window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
     const ngayDay = document.querySelector('input[type="date"]').value;
@@ -3095,17 +3166,21 @@ window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
     const tiet = document.getElementById('nk-input-tiet').value.trim();
     const phanMon = document.getElementById('nk-input-mon').value.trim();
 
-    // 🌟 Lấy dữ liệu Tên bài và TextAreas
-    const tenBai = document.getElementById('nk-input-ten-bai') ? document.getElementById('nk-input-ten-bai').value.trim() : '';
-    const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-    const lyThuyet = textAreas[0].value.trim();
-    const baiTap = textAreas[1].value.trim();
-    const danDo = textAreas[2].value.trim();
-
-    const filesBaiGiang = window.mangAnhBaiGiangTam || (document.getElementById('nk-input-anh-bai-giang') ? document.getElementById('nk-input-anh-bai-giang').files : []);
-
     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp!");
+        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
+        return;
+    }
+
+    const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
+    const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
+    const baiTap = document.querySelectorAll('textarea')[1].value.trim();
+    const danDo = document.querySelectorAll('textarea')[2].value.trim();
+
+    // LẤY DANH SÁCH ẢNH TỪ MẢNG TẠM THAY VÌ TỪ INPUT
+    const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
+
+    if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
+        alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chụp ảnh nào!");
         return;
     }
 
@@ -3114,73 +3189,81 @@ window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
     btnLuu.disabled = true;
 
     try {
-        // 🌟 Kéo thêm trường ten_bai về để kiểm tra nối đuôi (nếu lưu nhiều lần)
-        const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh, ten_bai, ly_thuyet, bai_tap, dan_do').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+        let mangLinkAnhDrive = [];
 
-        let isUpdate = false, idNhatKy = null, mangLinkAnhCu = [];
-        let oldTenBai = '', oldLyThuyet = '', oldBaiTap = '', oldDanDo = '';
+        // Nếu có ảnh trong mảng tạm thì tải lên Google Drive
+        if (danhSachFileAnh.length > 0) {
+            for (let k = 0; k < danhSachFileAnh.length; k++) {
+                btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
+                let file = danhSachFileAnh[k];
 
-        if (checkData && checkData.length > 0) {
-            isUpdate = true;
-            idNhatKy = checkData[0].id;
-            oldTenBai = checkData[0].ten_bai || '';
-            oldLyThuyet = checkData[0].ly_thuyet || '';
-            oldBaiTap = checkData[0].bai_tap || '';
-            oldDanDo = checkData[0].dan_do || '';
-
-            let rawAnh = checkData[0].danh_sach_anh;
-            if (Array.isArray(rawAnh)) mangLinkAnhCu = rawAnh;
-            else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-                try { mangLinkAnhCu = JSON.parse(rawAnh); } catch (e) { mangLinkAnhCu = rawAnh.split(',').filter(l => l.trim()); }
-            }
-        }
-
-        let mangLinkAnhBaiGiang = [];
-        if (filesBaiGiang.length > 0) {
-            for (let j = 0; j < filesBaiGiang.length; j++) {
-                btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${j + 1}/${filesBaiGiang.length})...`;
-                let fileBg = filesBaiGiang[j];
-                let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-                let duoiFile = fileBg.name.includes('.') ? fileBg.name.substring(fileBg.name.lastIndexOf('.')) : '.jpg';
-
-                let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${taoTenAnToan(phanMon, 15)}]_Anh[${j + 1}]${duoiFile}`;
+                let base64String = await ham_ho_tro_doc_anh_base64(file);
+                let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
+                let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
 
                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-                    method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileBg.type, fileName: tenFileBg, maLop: maLopLuu, loaiAnh: "ANH_BAI_GIANG" })
+                    method: 'POST',
+                    body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" })
                 })).json();
-                if (result.status === 'success') mangLinkAnhBaiGiang.push(result.url);
+
+                if (result.status === 'success') {
+                    mangLinkAnhDrive.push(result.url);
+                }
             }
         }
 
-        let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
+        btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
 
-        let payloadDB = {
-            ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-            ten_bai: (isUpdate && oldTenBai && tenBai) ? oldTenBai + '\n' + tenBai : (tenBai || oldTenBai),
-            ly_thuyet: (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet),
-            bai_tap: (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap),
-            dan_do: (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo),
-            danh_sach_anh: danhSachAnhLuu
-        };
+        // Kiểm tra xem tiết này đã tạo trong DB chưa (do Lưu điểm danh hoặc Lưu bài giảng chạy trước)
+        const { data: checkData } = await _supabase.from('nhat_ky_day_hoc')
+            .select('id, danh_sach_anh')
+            .eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
 
-        if (isUpdate) await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-        else await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]);
+        if (checkData && checkData.length > 0) {
+            // Đã có tiết -> Nối thêm ảnh mới vào mảng ảnh cũ (nếu có)
+            let mangAnhCu = [];
+            if (checkData[0].danh_sach_anh) {
+                try { mangAnhCu = JSON.parse(checkData[0].danh_sach_anh); }
+                catch (e) { mangAnhCu = checkData[0].danh_sach_anh.split(',').filter(l => l.trim()); }
+            }
+            let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
 
-        alert("✅ Đã lưu xong NỘI DUNG BÀI GIẢNG!");
+            await _supabase.from('nhat_ky_day_hoc').update({
+                phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo,
+                danh_sach_anh: mangAnhMoi
+            }).eq('id', checkData[0].id);
+        } else {
+            // Chưa có tiết -> Insert mới
+            await _supabase.from('nhat_ky_day_hoc').insert([{
+                ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
+                ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo,
+                danh_sach_anh: mangLinkAnhDrive
+            }]);
+        }
 
-        if (document.getElementById('nk-input-ten-bai')) document.getElementById('nk-input-ten-bai').value = '';
-        textAreas[0].value = ''; textAreas[1].value = ''; textAreas[2].value = '';
-        if (document.getElementById('nk-input-anh-bai-giang')) document.getElementById('nk-input-anh-bai-giang').value = '';
-        if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-        if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+        alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
+
+        // Reset form sau khi lưu thành công
+        document.getElementById('nk-input-ten-bai').value = '';
+        document.querySelectorAll('textarea')[0].value = '';
+        document.querySelectorAll('textarea')[1].value = '';
+        document.querySelectorAll('textarea')[2].value = '';
+
+        // Dọn dẹp mảng ảnh tạm và giao diện
+        window.danhSachAnhBaiGiangTam = [];
+        ham_20_11_render_anh_bai_giang();
 
     } catch (err) {
         console.error("Lỗi:", err);
-        alert("❌ Lỗi lưu bài giảng! Vui lòng kiểm tra xem cột 'ten_bai' đã được tạo trong bảng nhat_ky_day_hoc chưa.");
+        alert("❌ Lỗi lưu dữ liệu bài giảng!");
     } finally {
-        btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
+        btnLuu.innerHTML = textGoc;
+        btnLuu.disabled = false;
     }
 };
+
+
+
 // // =======================================================
 // // HÀM 20.6B: CHỈ LƯU SỰ KIỆN & ĐIỂM DANH (CÓ CHỐNG TRÙNG)
 // // =======================================================
