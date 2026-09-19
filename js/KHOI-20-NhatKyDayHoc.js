@@ -4544,8 +4544,159 @@ window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
 // };
 
 
+// // =======================================================
+// // HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH)
+// // =======================================================
+// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     let rawLop = document.getElementById('nk-input-lop').value.trim();
+//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
+//         return;
+//     }
+
+//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
+//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
+
+//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
+//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
+//         return;
+//     }
+
+//     const textGoc = btnLuu.innerHTML;
+//     const bgGoc = btnLuu.style.background; // Lưu lại nền gốc để khôi phục
+//     btnLuu.disabled = true;
+
+//     try {
+//         let idNhatKy = null;
+//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+
+//         if (checkData && checkData.length > 0) {
+//             idNhatKy = checkData[0].id;
+//         } else {
+//             const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
+//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
+//             }]).select();
+//             idNhatKy = nhatKyData[0].id;
+//         }
+
+//         let mangSuKienDB = [];
+//         let uidsDaVangDB = new Set();
+//         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
+//         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
+
+//         let uidsTrongGiaoDien = new Set();
+//         let tenCacHSDaTrung = [];
+
+//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
+//         cacOVan.forEach(oVang => {
+//             let thongTinHS = oVang.value.trim();
+//             if (thongTinHS) {
+//                 let uidTimDuoc = null;
+//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
+//                 let parts = thongTinHS.split(' - ');
+//                 let tenHienThi = parts[0].trim();
+
+//                 if (uidTimDuoc) {
+//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
+//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
+//                     } else {
+//                         uidsTrongGiaoDien.add(uidTimDuoc);
+//                         mangSuKienDB.push({
+//                             id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc, ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
+//                             ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học', thong_tin_mo_rong: { mau_sac: '#343a40' }
+//                         });
+//                     }
+//                 }
+//             }
+//         });
+
+//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
+//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
+//                 let sk = danhSachSuKienTam[i];
+//                 let mangLinkAnhDrive = [];
+
+//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
+//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
+//                         let fileMC = sk.mang_file_minh_chung[k];
+//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
+//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
+//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
+
+//                         btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})...`;
+
+//                         let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
+
+//                         // Đẩy lên qua XHR với thanh tiến trình
+//                         let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                             CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                             payload,
+//                             function (phanTram, daTai, tongSo) {
+//                                 let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+//                                 let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+
+//                                 // Đổi màu nền chạy tiến trình
+//                                 btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
+//                                 btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+//                             }
+//                         );
+
+//                         if (result.status === 'success') {
+//                             mangLinkAnhDrive.push(result.url);
+//                         } else {
+//                             throw new Error(result.message || "Lỗi tải ảnh minh chứng từ Apps Script.");
+//                         }
+//                     }
+//                 }
+
+//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
+//                 if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
+//                 if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
+
+//                 mangSuKienDB.push({
+//                     id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
+//                     ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
+//                 });
+//             }
+//         }
+
+//         // Khôi phục lại nền sau khi tải ảnh xong
+//         btnLuu.style.background = bgGoc;
+
+//         if (mangSuKienDB.length > 0) {
+//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
+//             await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
+//         }
+
+//         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
+
+//         danhSachSuKienTam = [];
+//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+
+//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
+//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
+//             </div>`;
+
+//     } catch (err) {
+//         console.error("Lỗi:", err);
+//         alert("❌ Lỗi: " + err.message);
+//     } finally {
+//         btnLuu.style.background = bgGoc;
+//         btnLuu.innerHTML = textGoc;
+//         btnLuu.disabled = false;
+//     }
+// };
+
+
 // =======================================================
-// HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH)
+// HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH & SỬA LỖI NOT NULL)
 // =======================================================
 window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
     const ngayDay = document.querySelector('input[type="date"]').value;
@@ -4569,31 +4720,41 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
     }
 
     const textGoc = btnLuu.innerHTML;
-    const bgGoc = btnLuu.style.background; // Lưu lại nền gốc để khôi phục
+    const bgGoc = btnLuu.style.background;
     btnLuu.disabled = true;
 
     try {
         let idNhatKy = null;
-        const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+
+        // 1. KIỂM TRA XEM TIẾT HỌC ĐÃ CÓ TRONG CSDL CHƯA
+        const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+        if (errCheck) throw errCheck;
 
         if (checkData && checkData.length > 0) {
             idNhatKy = checkData[0].id;
         } else {
-            const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
+            // TẠO TIẾT MỚI & LẤY ID TRẢ VỀ
+            const { data: nhatKyData, error: errInsertNK } = await _supabase.from('nhat_ky_day_hoc').insert([{
                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
             }]).select();
+
+            if (errInsertNK) throw errInsertNK;
+            if (!nhatKyData || nhatKyData.length === 0) throw new Error("Không tạo được ID Nhật ký gốc.");
             idNhatKy = nhatKyData[0].id;
         }
 
         let mangSuKienDB = [];
         let uidsDaVangDB = new Set();
+
+        // Lấy danh sách HS đã vắng mặt trước đó để tránh lưu trùng
         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
 
         let uidsTrongGiaoDien = new Set();
         let tenCacHSDaTrung = [];
-
         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
+
+        // 2. GOM DỮ LIỆU ĐIỂM DANH (VẮNG MẶT)
         cacOVan.forEach(oVang => {
             let thongTinHS = oVang.value.trim();
             if (thongTinHS) {
@@ -4602,20 +4763,29 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
                 let parts = thongTinHS.split(' - ');
                 let tenHienThi = parts[0].trim();
 
+                // 🌟 FIX LỖI NOT NULL: Luôn đảm bảo có giá trị (không được để null)
+                let tenDangNhap = parts[1] ? parts[1].trim() : 'Không rõ';
+
                 if (uidTimDuoc) {
                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
                     } else {
                         uidsTrongGiaoDien.add(uidTimDuoc);
                         mangSuKienDB.push({
-                            id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc, ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
-                            ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học', thong_tin_mo_rong: { mau_sac: '#343a40' }
+                            id_nhat_ky: idNhatKy,
+                            uid_hoc_sinh: uidTimDuoc,
+                            ten_dang_nhap_hoc_sinh: tenDangNhap, // Đã khôi phục và bảo vệ
+                            ten_hoc_sinh: tenHienThi,
+                            loai_the: 'Vắng mặt',
+                            ghi_chu: 'Vắng mặt trong tiết học',
+                            thong_tin_mo_rong: { mau_sac: '#dc3545' }
                         });
                     }
                 }
             }
         });
 
+        // 3. GOM DỮ LIỆU SỰ KIỆN & XỬ LÝ ẢNH MINH CHỨNG
         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
             for (let i = 0; i < danhSachSuKienTam.length; i++) {
                 let sk = danhSachSuKienTam[i];
@@ -4632,15 +4802,12 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
 
                         let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
 
-                        // Đẩy lên qua XHR với thanh tiến trình
                         let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
                             CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
                             payload,
                             function (phanTram, daTai, tongSo) {
                                 let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
                                 let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
-
-                                // Đổi màu nền chạy tiến trình
                                 btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
                                 btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
                             }
@@ -4659,8 +4826,14 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
                 if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
 
                 mangSuKienDB.push({
-                    id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-                    ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
+                    id_nhat_ky: idNhatKy,
+                    uid_hoc_sinh: sk.uid_hoc_sinh,
+                    // 🌟 FIX LỖI NOT NULL: Nếu sk.sdt_hoc_sinh bị rỗng thì điền 'Không rõ'
+                    ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh || 'Không rõ',
+                    ten_hoc_sinh: sk.ten_hoc_sinh,
+                    loai_the: sk.loai_the,
+                    ghi_chu: sk.ghi_chu,
+                    thong_tin_mo_rong: thongTinMoRong
                 });
             }
         }
@@ -4669,8 +4842,9 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
         btnLuu.style.background = bgGoc;
 
         if (mangSuKienDB.length > 0) {
-            btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
-            await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
+            btnLuu.innerHTML = "⏳ ĐANG LƯU VÀO CƠ SỞ DỮ LIỆU...";
+            const { error: errInsertSK } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
+            if (errInsertSK) throw errInsertSK;
         }
 
         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
@@ -4686,15 +4860,13 @@ window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
 
     } catch (err) {
         console.error("Lỗi:", err);
-        alert("❌ Lỗi: " + err.message);
+        alert("❌ Lỗi: " + (err.message || err.details || "Không xác định"));
     } finally {
         btnLuu.style.background = bgGoc;
         btnLuu.innerHTML = textGoc;
         btnLuu.disabled = false;
     }
 };
-
-
 
 
 // =======================================================
