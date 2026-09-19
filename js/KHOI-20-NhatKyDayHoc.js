@@ -2254,33 +2254,84 @@ window.ham_20_10_quan_ly_tag = async function (idThe, tenHienTai) {
 // Khởi tạo mảng toàn cục chứa ảnh bài giảng
 window.danhSachAnhBaiGiangTam = [];
 
+// // =======================================================
+// // HÀM 20.11: XỬ LÝ GOM ẢNH BÀI GIẢNG CHỤP NHIỀU LẦN
+// // =======================================================
+// window.ham_20_11_kich_hoat_preview_anh = function () {
+//     const inputAnhBG = document.getElementById('nk-input-anh-bai-giang');
+//     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
+
+//     if (inputAnhBG && vungHienThiBG) {
+//         inputAnhBG.addEventListener('change', function (e) {
+//             const files = Array.from(e.target.files);
+//             if (files.length === 0) return;
+
+//             // 1. Đưa ảnh vừa chụp vào mảng tạm
+//             window.danhSachAnhBaiGiangTam.push(...files);
+
+//             // 2. Cập nhật lại giao diện
+//             ham_20_11_render_anh_bai_giang();
+
+//             // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được
+//             inputAnhBG.value = '';
+//         });
+//     }
+// };
+
+// // Hàm vẽ lại danh sách ảnh đang có trong mảng
+// window.ham_20_11_render_anh_bai_giang = function () {
+//     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
+
+//     if (window.danhSachAnhBaiGiangTam.length === 0) {
+//         vungHienThiBG.innerHTML = '<span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>';
+//         return;
+//     }
+
+//     let html = '';
+//     window.danhSachAnhBaiGiangTam.forEach((file, index) => {
+//         let url = URL.createObjectURL(file);
+//         html += `
+//             <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
+//                 <img src="${url}" style="height: 60px; width: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                 <button type="button" onclick="ham_20_11_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
+//             </div>
+//         `;
+//     });
+//     vungHienThiBG.innerHTML = html;
+// };
+
+// // Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
+// window.ham_20_11_xoa_anh_tam = function (index) {
+//     window.danhSachAnhBaiGiangTam.splice(index, 1);
+//     ham_20_11_render_anh_bai_giang();
+// };
+
 // =======================================================
-// HÀM 20.11: XỬ LÝ GOM ẢNH BÀI GIẢNG CHỤP NHIỀU LẦN
+// HÀM 20.11: XỬ LÝ ẢNH BÀI GIẢNG (CÓ CẮT & NÉN)
 // =======================================================
 window.ham_20_11_kich_hoat_preview_anh = function () {
     const inputAnhBG = document.getElementById('nk-input-anh-bai-giang');
-    const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
-
-    if (inputAnhBG && vungHienThiBG) {
-        inputAnhBG.addEventListener('change', function (e) {
+    if (inputAnhBG) {
+        inputAnhBG.addEventListener('change', async function (e) {
             const files = Array.from(e.target.files);
             if (files.length === 0) return;
 
-            // 1. Đưa ảnh vừa chụp vào mảng tạm
-            window.danhSachAnhBaiGiangTam.push(...files);
+            // Xử lý cắt & nén tuần tự
+            let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
 
-            // 2. Cập nhật lại giao diện
+            // Đưa ảnh đã cắt/nén vào mảng tạm
+            window.danhSachAnhBaiGiangTam.push(...processedFiles);
             ham_20_11_render_anh_bai_giang();
 
-            // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được
-            inputAnhBG.value = '';
+            // Xóa rỗng input để lần sau chụp tiếp
+            e.target.value = '';
         });
     }
 };
 
-// Hàm vẽ lại danh sách ảnh đang có trong mảng
 window.ham_20_11_render_anh_bai_giang = function () {
     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
+    if (!vungHienThiBG) return;
 
     if (window.danhSachAnhBaiGiangTam.length === 0) {
         vungHienThiBG.innerHTML = '<span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>';
@@ -2290,9 +2341,12 @@ window.ham_20_11_render_anh_bai_giang = function () {
     let html = '';
     window.danhSachAnhBaiGiangTam.forEach((file, index) => {
         let url = URL.createObjectURL(file);
+        // Lấy dung lượng sau khi nén để hiển thị
+        let sizeKB = (file.size / 1024).toFixed(1);
         html += `
-            <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
+            <div style="position: relative; display: inline-flex; flex-direction: column; align-items: center; animation: fadeIn 0.3s; gap: 3px;">
                 <img src="${url}" style="height: 60px; width: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <span style="font-size: 9px; color: #666; font-weight: bold;">${sizeKB} KB</span>
                 <button type="button" onclick="ham_20_11_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
             </div>
         `;
@@ -2300,11 +2354,13 @@ window.ham_20_11_render_anh_bai_giang = function () {
     vungHienThiBG.innerHTML = html;
 };
 
-// Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
 window.ham_20_11_xoa_anh_tam = function (index) {
     window.danhSachAnhBaiGiangTam.splice(index, 1);
     ham_20_11_render_anh_bai_giang();
 };
+
+
+
 
 
 
@@ -8059,30 +8115,81 @@ window.ham_20_21_sap_xep_bang = function (n, tableId) {
 // Khởi tạo mảng toàn cục chứa ảnh minh chứng đang chuẩn bị gắn
 window.danhSachAnhMinhChungTam = [];
 
+// // =======================================================
+// // HÀM 20.22: XỬ LÝ GOM ẢNH MINH CHỨNG HS CHỤP NHIỀU LẦN
+// // =======================================================
+// window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
+//     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
+
+//     if (inputAnhMC) {
+//         inputAnhMC.addEventListener('change', function (e) {
+//             const files = Array.from(e.target.files);
+//             if (files.length === 0) return;
+
+//             // 1. Đưa ảnh vừa chụp vào mảng tạm
+//             window.danhSachAnhMinhChungTam.push(...files);
+
+//             // 2. Cập nhật lại giao diện
+//             ham_20_22_render_anh_minh_chung();
+
+//             // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được và chèn thêm thay vì đè lên
+//             inputAnhMC.value = '';
+//         });
+//     }
+// };
+
+// // Hàm vẽ lại danh sách ảnh đang có trong mảng tạm của Học sinh
+// window.ham_20_22_render_anh_minh_chung = function () {
+//     const vungHienThiMC = document.getElementById('vung-preview-anh-minh-chung');
+//     if (!vungHienThiMC) return;
+
+//     if (window.danhSachAnhMinhChungTam.length === 0) {
+//         vungHienThiMC.innerHTML = '<span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>';
+//         return;
+//     }
+
+//     let html = '';
+//     window.danhSachAnhMinhChungTam.forEach((file, index) => {
+//         let url = URL.createObjectURL(file);
+//         html += `
+//             <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
+//                 <img src="${url}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+//                 <button type="button" onclick="ham_20_22_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
+//             </div>
+//         `;
+//     });
+//     vungHienThiMC.innerHTML = html;
+// };
+
+// // Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
+// window.ham_20_22_xoa_anh_tam = function (index) {
+//     window.danhSachAnhMinhChungTam.splice(index, 1);
+//     ham_20_22_render_anh_minh_chung();
+// };
+
 // =======================================================
-// HÀM 20.22: XỬ LÝ GOM ẢNH MINH CHỨNG HS CHỤP NHIỀU LẦN
+// HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (CÓ CẮT & NÉN)
 // =======================================================
 window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
-
     if (inputAnhMC) {
-        inputAnhMC.addEventListener('change', function (e) {
+        inputAnhMC.addEventListener('change', async function (e) {
             const files = Array.from(e.target.files);
             if (files.length === 0) return;
 
-            // 1. Đưa ảnh vừa chụp vào mảng tạm
-            window.danhSachAnhMinhChungTam.push(...files);
+            // Xử lý cắt & nén tuần tự
+            let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
 
-            // 2. Cập nhật lại giao diện
+            // Đưa ảnh đã cắt/nén vào mảng tạm
+            window.danhSachAnhMinhChungTam.push(...processedFiles);
             ham_20_22_render_anh_minh_chung();
 
-            // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được và chèn thêm thay vì đè lên
-            inputAnhMC.value = '';
+            // Xóa rỗng input
+            e.target.value = '';
         });
     }
 };
 
-// Hàm vẽ lại danh sách ảnh đang có trong mảng tạm của Học sinh
 window.ham_20_22_render_anh_minh_chung = function () {
     const vungHienThiMC = document.getElementById('vung-preview-anh-minh-chung');
     if (!vungHienThiMC) return;
@@ -8095,9 +8202,11 @@ window.ham_20_22_render_anh_minh_chung = function () {
     let html = '';
     window.danhSachAnhMinhChungTam.forEach((file, index) => {
         let url = URL.createObjectURL(file);
+        let sizeKB = (file.size / 1024).toFixed(1);
         html += `
-            <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
+            <div style="position: relative; display: inline-flex; flex-direction: column; align-items: center; animation: fadeIn 0.3s; gap: 3px;">
                 <img src="${url}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                <span style="font-size: 9px; color: #666; font-weight: bold;">${sizeKB} KB</span>
                 <button type="button" onclick="ham_20_22_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
             </div>
         `;
@@ -8105,12 +8214,10 @@ window.ham_20_22_render_anh_minh_chung = function () {
     vungHienThiMC.innerHTML = html;
 };
 
-// Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
 window.ham_20_22_xoa_anh_tam = function (index) {
     window.danhSachAnhMinhChungTam.splice(index, 1);
     ham_20_22_render_anh_minh_chung();
 };
-
 
 // =======================================================
 // HÀM HỖ TRỢ: ĐỊNH DẠNG DUNG LƯỢNG (BYTES -> KB/MB)
@@ -8270,3 +8377,353 @@ window.ham_ho_tro_upload_anh_co_tien_trinh = async function (url, payload, callb
         }
     });
 };
+
+// =======================================================
+// KHỐI HỖ TRỢ: TỰ ĐỘNG TẢI THƯ VIỆN CẮT ẢNH CROPPER.JS
+// =======================================================
+window.ham_20_26_tai_thu_vien_cropper = function () {
+    return new Promise((resolve) => {
+        if (window.Cropper) { resolve(); return; }
+
+        let css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css';
+        document.head.appendChild(css);
+
+        let script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js';
+        script.onload = () => resolve();
+        document.head.appendChild(script);
+    });
+};
+
+// =======================================================
+// HÀM HỖ TRỢ: NÉN ẢNH TỰ ĐỘNG BẰNG CANVAS (NẾU KHÔNG CẮT)
+// =======================================================
+window.ham_20_24_nen_anh_canvas = function (file, quality = 0.7, maxWidth = 1600) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (event) {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = function () {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob((blob) => {
+                    const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+                        type: 'image/jpeg',
+                        lastModified: Date.now()
+                    });
+                    resolve(newFile);
+                }, 'image/jpeg', quality);
+            }
+        }
+    });
+};
+
+// // =======================================================
+// // HÀM HỖ TRỢ: HIỂN THỊ MÀN HÌNH CẮT ẢNH (CROP MODAL)
+// // =======================================================
+// window.ham_20_23_hien_thi_modal_crop = function (file) {
+//     return new Promise((resolve) => {
+//         let modal = document.getElementById('modal-crop-anh-global');
+//         if (!modal) {
+//             modal = document.createElement('div');
+//             modal.id = 'modal-crop-anh-global';
+//             modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; flex-direction:column; align-items:center; justify-content:center; padding: 15px; box-sizing: border-box;';
+//             modal.innerHTML = `
+//                 <div style="width: 100%; max-width: 800px; height: 65vh; background: #000; position: relative; display: flex; align-items: center; justify-content: center;">
+//                     <img id="img-crop-target" style="display: block; max-width: 100%; max-height: 100%;">
+//                 </div>
+//                 <div style="margin-top: 25px; display: flex; gap: 10px; width: 100%; max-width: 800px; justify-content: center; flex-wrap: wrap;">
+//                     <button id="btn-crop-huy" style="padding: 10px 15px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">❌ Hủy tấm này</button>
+//                     <button id="btn-crop-skip" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⏭️ Không cắt (Chỉ nén)</button>
+//                     <button id="btn-crop-ok" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">✂️ CẮT & NÉN ẢNH</button>
+//                 </div>
+//             `;
+//             document.body.appendChild(modal);
+//         }
+
+//         const imgTarget = document.getElementById('img-crop-target');
+//         const btnHuy = document.getElementById('btn-crop-huy');
+//         const btnSkip = document.getElementById('btn-crop-skip');
+//         const btnOk = document.getElementById('btn-crop-ok');
+
+//         const reader = new FileReader();
+//         reader.readAsDataURL(file);
+//         reader.onload = (e) => {
+//             imgTarget.src = e.target.result;
+//             modal.style.display = 'flex';
+
+//             let cropper = null;
+
+//             imgTarget.onload = () => {
+//                 if (cropper) cropper.destroy();
+//                 cropper = new Cropper(imgTarget, {
+//                     viewMode: 2,
+//                     autoCropArea: 0.9,
+//                     responsive: true,
+//                     background: false
+//                 });
+//             };
+
+//             const cleanup = () => {
+//                 if (cropper) cropper.destroy();
+//                 modal.style.display = 'none';
+//                 btnHuy.onclick = null;
+//                 btnSkip.onclick = null;
+//                 btnOk.onclick = null;
+//             };
+
+//             btnHuy.onclick = () => { cleanup(); resolve(null); }; // Trả về null nếu hủy
+
+//             btnSkip.onclick = () => {
+//                 cleanup();
+//                 window.ham_20_24_nen_anh_canvas(file).then(resolve);
+//             };
+
+//             btnOk.onclick = () => {
+//                 btnOk.innerHTML = "⏳ Đang nén...";
+//                 setTimeout(() => {
+//                     let canvas = cropper.getCroppedCanvas({
+//                         maxWidth: 1600,
+//                         maxHeight: 1600
+//                     });
+//                     cleanup();
+//                     btnOk.innerHTML = "✂️ CẮT & NÉN ẢNH";
+
+//                     canvas.toBlob((blob) => {
+//                         const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
+//                         resolve(newFile);
+//                     }, 'image/jpeg', 0.7); // Quality 70%
+//                 }, 50);
+//             };
+//         };
+//     });
+// };
+
+
+// =======================================================
+// HÀM HỖ TRỢ: HIỂN THỊ MÀN HÌNH CẮT ẢNH (TÍNH TOÁN DUNG LƯỢNG THỰC TẾ)
+// =======================================================
+window.ham_20_23_hien_thi_modal_crop = function (file) {
+    return new Promise((resolve) => {
+        let modal = document.getElementById('modal-crop-anh-global');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'modal-crop-anh-global';
+            modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; flex-direction:column; align-items:center; justify-content:center; padding: 15px; box-sizing: border-box; font-family: sans-serif;';
+
+            modal.innerHTML = `
+                <div style="width: 100%; max-width: 800px; height: 50vh; background: #000; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid #444; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                    <img id="img-crop-target" style="display: block; max-width: 100%; max-height: 100%;">
+                </div>
+                
+                <div style="width: 100%; max-width: 800px; background: #222; padding: 15px; border-radius: 0 0 8px 8px; display: flex; flex-direction: column; gap: 15px; border: 1px solid #444; border-top: none;">
+                    
+                    <!-- 🌟 BẢNG THEO DÕI DUNG LƯỢNG TRỰC TIẾP -->
+                    <div style="display: flex; justify-content: center; gap: 25px; background: #111; padding: 12px; border-radius: 6px; border: 1px dashed #555;">
+                        <div style="text-align: center;">
+                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">📦 Dung lượng gốc</div>
+                            <div style="color: #ffc107; font-size: 16px; font-weight: bold;" id="crop-size-goc">Đang đọc...</div>
+                        </div>
+                        <div style="width: 1px; background: #444;"></div>
+                        <div style="text-align: center;">
+                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">✨ Sau khi cắt & nén</div>
+                            <div style="color: #28a745; font-size: 18px; font-weight: bold;" id="crop-size-du-kien">⏳ Đang tính...</div>
+                        </div>
+                    </div>
+
+                    <!-- KHU VỰC CHỌN ĐỘ PHÂN GIẢI -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px;">
+                        <span style="color: #aaa; font-size: 13px; font-weight: bold; margin-right: 5px;">Mức nén ảnh:</span>
+                        
+                        <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                            <input type="radio" name="crop_res" value="1920" style="margin:0; accent-color: #007bff;"> 
+                            <div><b>📸 Nét (1920px)</b></div>
+                        </label>
+                        
+                        <label style="background: #007bff; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #0056b3; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                            <input type="radio" name="crop_res" value="1280" checked style="margin:0; accent-color: #fff;"> 
+                            <div><b>⚖️ Chuẩn (1280px)</b></div>
+                        </label>
+                        
+                        <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                            <input type="radio" name="crop_res" value="800" style="margin:0; accent-color: #007bff;"> 
+                            <div><b>⚡ Tốc độ (800px)</b></div>
+                        </label>
+                    </div>
+
+                    <!-- KHU VỰC NÚT HÀNH ĐỘNG -->
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button id="btn-crop-huy" style="padding: 10px 15px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">❌ Hủy</button>
+                        <button id="btn-crop-skip" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⏭️ Chỉ Nén (Không cắt)</button>
+                        <button id="btn-crop-ok" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">✂️ LƯU TẤM NÀY</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Hiệu ứng đổi màu radio
+            const radios = modal.querySelectorAll('input[name="crop_res"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    radios.forEach(r => {
+                        r.parentElement.style.background = '#333';
+                        r.parentElement.style.borderColor = '#555';
+                    });
+                    this.parentElement.style.background = '#007bff';
+                    this.parentElement.style.borderColor = '#0056b3';
+                });
+            });
+        }
+
+        const imgTarget = document.getElementById('img-crop-target');
+        const txtSizeGoc = document.getElementById('crop-size-goc');
+        const txtSizeDuKien = document.getElementById('crop-size-du-kien');
+        const btnHuy = document.getElementById('btn-crop-huy');
+        const btnSkip = document.getElementById('btn-crop-skip');
+        const btnOk = document.getElementById('btn-crop-ok');
+        let timeoutTinhToan = null;
+        let cropper = null;
+
+        // Định dạng KB/MB nội bộ cho an toàn
+        const formatSize = (bytes) => {
+            if (bytes === 0) return '0 B';
+            const k = 1024, i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + ['B', 'KB', 'MB'][i];
+        };
+
+        const getSelectedRes = () => {
+            const selected = document.querySelector('input[name="crop_res"]:checked');
+            return selected ? parseInt(selected.value) : 1280;
+        };
+
+        // Thuật toán: Vẽ ngầm hình ảnh thu nhỏ ra một file tạm để cân đo dung lượng
+        const tinhToanDungLuongDuKien = () => {
+            if (!cropper) return;
+            txtSizeDuKien.innerHTML = "⏳ Đang tính...";
+            txtSizeDuKien.style.color = "#adb5bd";
+
+            clearTimeout(timeoutTinhToan);
+
+            // Dùng setTimeout 250ms (Debounce) để chống giật khi đang thao tác liên tục
+            timeoutTinhToan = setTimeout(() => {
+                let maxWidth = getSelectedRes();
+                let canvas = cropper.getCroppedCanvas({
+                    maxWidth: maxWidth,
+                    maxHeight: maxWidth
+                });
+
+                if (canvas) {
+                    canvas.toBlob((blob) => {
+                        if (blob) {
+                            txtSizeDuKien.innerHTML = formatSize(blob.size);
+                            txtSizeDuKien.style.color = "#28a745";
+                        }
+                    }, 'image/jpeg', 0.7);
+                }
+            }, 250);
+        };
+
+        // Gắn sự kiện: Khi đổi độ phân giải thì tự động tính lại dung lượng
+        document.querySelectorAll('input[name="crop_res"]').forEach(radio => {
+            radio.addEventListener('change', tinhToanDungLuongDuKien);
+        });
+
+        // Đọc ảnh và khởi tạo
+        txtSizeGoc.innerHTML = formatSize(file.size);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = (e) => {
+            imgTarget.src = e.target.result;
+            modal.style.display = 'flex';
+
+            imgTarget.onload = () => {
+                if (cropper) cropper.destroy();
+                cropper = new Cropper(imgTarget, {
+                    viewMode: 2,
+                    autoCropArea: 0.9,
+                    responsive: true,
+                    background: false,
+                    ready: function () {
+                        // Tính toán dung lượng lần đầu khi vừa mở lên
+                        tinhToanDungLuongDuKien();
+                    },
+                    cropend: function () {
+                        // Tính toán lại dung lượng mỗi khi thả ngón tay ra khỏi khung cắt
+                        tinhToanDungLuongDuKien();
+                    }
+                });
+            };
+
+            const cleanup = () => {
+                if (cropper) cropper.destroy();
+                modal.style.display = 'none';
+                btnHuy.onclick = null;
+                btnSkip.onclick = null;
+                btnOk.onclick = null;
+                clearTimeout(timeoutTinhToan);
+            };
+
+            btnHuy.onclick = () => { cleanup(); resolve(null); };
+
+            btnSkip.onclick = () => {
+                let maxWidth = getSelectedRes();
+                cleanup();
+                window.ham_20_24_nen_anh_canvas(file, 0.7, maxWidth).then(resolve);
+            };
+
+            btnOk.onclick = () => {
+                let maxWidth = getSelectedRes();
+                btnOk.innerHTML = "⏳ Đang lưu...";
+                setTimeout(() => {
+                    let canvas = cropper.getCroppedCanvas({
+                        maxWidth: maxWidth,
+                        maxHeight: maxWidth
+                    });
+                    cleanup();
+                    btnOk.innerHTML = "✂️ LƯU TẤM NÀY";
+
+                    canvas.toBlob((blob) => {
+                        const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
+                        resolve(newFile);
+                    }, 'image/jpeg', 0.7);
+                }, 50);
+            };
+        };
+    });
+};
+
+
+// =======================================================
+// HÀM HỖ TRỢ: DUYỆT QUA MẢNG ẢNH ĐỂ CẮT/NÉN TỪNG TẤM
+// =======================================================
+window.ham_20_25_xu_ly_mang_anh_dau_vao = async function (files) {
+    await window.ham_20_26_tai_thu_vien_cropper();
+
+    let processedFiles = [];
+    for (let i = 0; i < files.length; i++) {
+        let processedFile = await window.ham_20_23_hien_thi_modal_crop(files[i]);
+        if (processedFile) {
+            processedFiles.push(processedFile);
+        }
+    }
+    return processedFiles;
+};
+
+
