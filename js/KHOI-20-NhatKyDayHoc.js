@@ -1,757 +1,4 @@
-﻿// // =====================================================================
-// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (UI HOÀN CHỈNH ĐẦY ĐỦ)
-// // =====================================================================
-
-// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
-//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//     if (!vungLamViec) return;
-
-//     const today = new Date().toISOString().split('T')[0];
-
-//     vungLamViec.innerHTML = `
-//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
-            
-//             <!-- HEADER & THANH CÔNG CỤ -->
-//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
-//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
-//                     📔 Nhật Ký Dạy Học
-//                 </h3>
-                
-//                 <div style="display: flex; gap: 10px;">
-//                     <button onclick="alert('Giao diện tra cứu và xem lại nhật ký theo Lớp/Ngày đang được xây dựng...')" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
-//                         🔍 Tìm lại Nhật ký
-//                     </button>
-                    
-//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-//                         ⬅️ Quay lại
-//                     </button>
-//                 </div>
-//             </div>
-
-//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
-//                 <!-- CỘT TRÁI: THÔNG TIN CHUNG & NỘI DUNG BÀI -->
-//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px;">
-                    
-//                     <!-- 1. THÔNG TIN TIẾT HỌC -->
-//                     <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-//                         <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin tiết học</h4>
-                        
-//                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px;">
-//                             <!-- Ngày dạy -->
-//                             <div>
-//                                 <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-//                                 <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                             </div>
-                            
-//                             <!-- Buổi -->
-//                             <div>
-//                                 <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-//                                 <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                                 <datalist id="dl-buoi">
-//                                     <option value="Sáng"></option>
-//                                     <option value="Chiều"></option>
-//                                     <option value="Tối"></option>
-//                                 </datalist>
-//                             </div>
-                            
-//                             <!-- Tiết -->
-//                             <div>
-//                                 <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-//                                 <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                                 <datalist id="dl-tiet">
-//                                     <option value="Tiết 1"></option>
-//                                     <option value="Tiết 2"></option>
-//                                     <option value="Tiết 3"></option>
-//                                     <option value="Tiết 4"></option>
-//                                     <option value="Tiết 5"></option>
-//                                 </datalist>
-//                             </div>
-
-//                             <!-- Lớp -->
-//                             <div>
-//                                 <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-//                                 <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                                 <datalist id="dl-lop"></datalist>
-//                             </div>
-
-//                             <!-- Phân môn -->
-//                             <div>
-//                                 <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
-//                                 <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                                 <datalist id="dl-mon">
-//                                     <option value="Đại số"></option>
-//                                     <option value="Hình học"></option>
-//                                     <option value="Thống kê xác suất"></option>
-//                                     <option value="Vật lý"></option>
-//                                     <option value="Hóa học"></option>
-//                                     <option value="Hoạt động trải nghiệm"></option>
-//                                 </datalist>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     <!-- 2. NỘI DUNG & ẢNH BẢNG -->
-//                     <div style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
-                        
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Chủ đề / Lý thuyết:</label>
-//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
-//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
-//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
-//     <!-- Nút bấm gọi Input -->
-//     <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
-//         <span style="font-size: 24px;">📷</span>
-//         <span>Tải ảnh lên</span>
-//     </button>
-    
-//     <!-- Input ẨN làm nhiệm vụ bật Camera/Thư viện (ID này khớp với Hàm 20.6) -->
-//     <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
-
-//     <!-- Vùng hiển thị ảnh thu nhỏ -->
-//     <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-//         <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
-//     </div>
-// </div>
-//                     </div>
-
-//                     <!-- 3. GHI CHÚ NHẮC VIỆC TIẾT SAU -->
-//                     <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border: 1px solid #ffeeba; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
-//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút, nhắc hs mang máy tính..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
-//                     </div>
-//                 </div>
-
-//                 <!-- CỘT PHẢI: ĐIỂM DANH & SỰ KIỆN HỌC SINH -->
-//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px;">
-                    
-//                     <!-- 📋 4. ĐIỂM DANH HỌC SINH VẮNG -->
-//                     <div style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
-                        
-//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
-//                             <!-- Dòng nhập liệu đầu tiên -->
-//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                             </div>
-//                         </div>
-                        
-//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
-//                             ➕ Thêm học sinh vắng
-//                         </button>
-//                     </div>
-
-//                     <!-- 🎯 5. GHI NHẬN SỰ KIỆN HỌC SINH -->
-//                     <div style="flex: 1; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
-                        
-//                         <div style="margin-bottom: 15px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh:</label>
-//                             <!-- Datalist nk-dl-hs được tái sử dụng cho cả điểm danh và sự kiện -->
-//                             <input id="nk-input-hs" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="width: 100%; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none; margin-top: 5px;">
-//                             <datalist id="nk-dl-hs"></datalist>
-//                         </div>
-
-//                         <div style="margin-bottom: 10px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập lỗi tự do):</label>
-//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
-//                         </div>
-
-//                         <!-- 🌟 KHU VỰC ẢNH MINH CHỨNG -->
-//                         <div style="margin-bottom: 15px; padding: 8px; background: #e9ecef; border-radius: 4px; border: 1px dashed #adb5bd;">
-//                             <label style="font-weight: bold; font-size: 12px; color: #495057; display: block; margin-bottom: 5px;">📸 Ảnh minh chứng (Nếu có):</label>
-//                             <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="font-size: 11px; width: 100%; outline: none; margin-bottom: 8px;">
-//                             <div id="vung-preview-anh-minh-chung" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px;"></div>
-//                             <i style="font-size: 10px; color: #6c757d;">*Có thể chọn ảnh từ máy hoặc chụp trực tiếp bằng điện thoại</i>
-//                         </div>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057; margin-bottom: 8px;">Bấm chọn để gắn thẻ nhanh:</label>
-                        
-//                         <!-- KHU VỰC TAG ĐỘNG -->
-//                         <div id="nk-khu-vuc-tags">
-//                             <span style="font-size: 12px; color: #999;">⏳ Đang tải danh sách thẻ...</span>
-//                         </div>
-
-//                         <!-- Danh sách sự kiện chờ lưu -->
-//                         <div style="flex: 1; margin-top: 10px; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
-//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
-//                             <div id="nk-danh-sach-cho-luu">
-//                                 <i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-
-//             <!-- CỤM 2 NÚT LƯU ĐỘC LẬP -->
-//             <div style="margin-top: 25px; display: flex; justify-content: flex-end; gap: 15px; border-top: 1px solid #dee2e6; padding-top: 20px;">
-//                 <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
-//                     💾 1. LƯU NỘI DUNG BÀI GIẢNG
-//                 </button>
-
-//                 <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                     🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
-//                 </button>
-//             </div>
-
-//         </div>
-//     `;
-
-//     // Gọi hàm tự động tải danh sách lớp và danh sách thẻ ngay khi vẽ xong giao diện
-//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
-//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-//     // 🌟 GỌI HÀM KÍCH HOẠT PREVIEW ẢNH NGAY SAU KHI VẼ HTML XONG
-//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-// };
-// // =====================================================================
-// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (UI BỐ CỤC CHUẨN)
-// // =====================================================================
-
-// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
-//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//     if (!vungLamViec) return;
-
-//     const today = new Date().toISOString().split('T')[0];
-
-//     vungLamViec.innerHTML = `
-//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
-            
-//             <!-- HEADER & THANH CÔNG CỤ -->
-//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
-//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
-//                     📔 Nhật Ký Dạy Học
-//                 </h3>
-                
-//                 <div style="display: flex; gap: 10px;">
-//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
-//     🔍 Tìm lại Nhật ký
-// </button>
-                    
-//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-//                         ⬅️ Quay lại
-//                     </button>
-//                 </div>
-//             </div>
-
-//             <!-- KHỐI 1: THÔNG TIN CHUNG CỦA TIẾT HỌC (DÙNG CHUNG) -->
-//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
-//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
-                
-//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
-//                     <!-- Ngày dạy -->
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-//                         <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                     </div>
-                    
-//                     <!-- Buổi -->
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-//                         <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-buoi">
-//                             <option value="Sáng"></option>
-//                             <option value="Chiều"></option>
-//                             <option value="Tối"></option>
-//                         </datalist>
-//                     </div>
-                    
-//                     <!-- Tiết -->
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-//                         <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-tiet">
-//                             <option value="Tiết 1"></option><option value="Tiết 2"></option>
-//                             <option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option>
-//                         </datalist>
-//                     </div>
-
-//                     <!-- Lớp -->
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                         <datalist id="dl-lop"></datalist>
-//                         <!-- 🌟 BỔ SUNG LẠI KHO CHỨA DANH SÁCH HỌC SINH VÀO ĐÂY -->
-//                         <datalist id="nk-dl-hs"></datalist>
-
-//                     </div>
-
-//                     <!-- Phân môn -->
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
-//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-mon">
-//                             <option value="Đại số"></option><option value="Hình học"></option>
-//                             <option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option>
-//                         </datalist>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <!-- KHU VỰC CHIA CỘT -->
-//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
-//                 <!-- ============================================== -->
-//                 <!-- CỘT TRÁI: BÀI GIẢNG & NÚT LƯU BÀI GIẢNG -->
-//                 <!-- ============================================== -->
-//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
-                        
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Chủ đề / Lý thuyết:</label>
-//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
-//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
-//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
-//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
-//                                 <span style="font-size: 24px;">📷</span>
-//                                 <span>Tải ảnh lên</span>
-//                             </button>
-//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
-//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-//                                 <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
-//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
-//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
-//                     </div>
-
-//                     <!-- NÚT LƯU CỘT TRÁI -->
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
-//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
-//                         </button>
-//                     </div>
-//                 </div>
-
-//                 <!-- ============================================== -->
-//                 <!-- CỘT PHẢI: ĐIỂM DANH, SỰ KIỆN & NÚT LƯU HỌC SINH-->
-//                 <!-- ============================================== -->
-//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
-//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
-//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                             </div>
-//                         </div>
-//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
-//                             ➕ Thêm học sinh vắng
-//                         </button>
-//                     </div>
-
-//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
-//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
-                        
-//                         <div style="margin-bottom: 15px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
-                            
-//                             <!-- Khu vực chứa các ô nhập liệu động -->
-//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
-//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
-//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
-//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                                 </div>
-//                             </div>
-                            
-//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
-//                                 ➕ Thêm học sinh cùng sự kiện
-//                             </button>
-//                         </div>
-
-//                         <div style="margin-bottom: 10px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
-//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
-//                         </div>
-
-//                         <div style="margin-bottom: 15px; padding: 8px; background: #e9ecef; border-radius: 4px; border: 1px dashed #adb5bd;">
-//                             <label style="font-weight: bold; font-size: 12px; color: #495057; display: block; margin-bottom: 5px;">📸 Ảnh minh chứng (Nếu có):</label>
-//                             <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="font-size: 11px; width: 100%; outline: none; margin-bottom: 8px;">
-//                             <div id="vung-preview-anh-minh-chung" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px;"></div>
-//                         </div>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057; margin-bottom: 8px;">Bấm chọn để gắn thẻ nhanh:</label>
-//                         <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải danh sách thẻ...</span></div>
-
-//                         <div style="flex: 1; margin-top: 10px; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
-//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
-//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
-//                         </div>
-//                     </div>
-
-//                     <!-- NÚT LƯU CỘT PHẢI -->
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
-//                         </button>
-//                     </div>
-//                 </div>
-
-//             </div>
-//         </div>
-//     `;
-
-//     // Khởi chạy các hàm đi kèm ngay sau khi vẽ xong
-//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
-//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-// };
-
-
-// // =====================================================================
-// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN)
-// // =====================================================================
-// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
-//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//     if (!vungLamViec) return;
-
-//     const today = new Date().toISOString().split('T')[0];
-
-//     vungLamViec.innerHTML = `
-//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
-            
-//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
-//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
-//                     📔 Nhật Ký Dạy Học
-//                 </h3>
-                
-//                 <div style="display: flex; gap: 10px;">
-//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
-//                         🔍 Tìm lại Nhật ký
-//                     </button>
-                    
-//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-//                         ⬅️ Quay lại
-//                     </button>
-//                 </div>
-//             </div>
-
-//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
-//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
-                
-//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-//                         <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-//                         <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-//                         <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                         <datalist id="dl-lop"></datalist>
-//                         <datalist id="nk-dl-hs"></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
-//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
-//                 <!-- ============================================== -->
-//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
-//                 <!-- ============================================== -->
-//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
-                        
-//                         <!-- 🌟 Ô MỚI: Tên bài / Chủ đề -->
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
-//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
-//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
-//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
-//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
-//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
-//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
-//                             </button>
-//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
-//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-//                                 <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
-//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
-//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
-//                     </div>
-
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
-//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
-//                         </button>
-//                     </div>
-//                 </div>
-
-//                 <!-- ============================================== -->
-//                 <!-- CỘT PHẢI: HỌC SINH -->
-//                 <!-- ============================================== -->
-//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
-//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
-//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                             </div>
-//                         </div>
-//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
-//                             ➕ Thêm học sinh vắng
-//                         </button>
-//                     </div>
-
-//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
-//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
-//                         <div style="margin-bottom: 15px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
-//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
-//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
-//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
-//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                                 </div>
-//                             </div>
-//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
-//                                 ➕ Thêm học sinh cùng sự kiện
-//                             </button>
-//                         </div>
-//                         <div style="margin-bottom: 10px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
-//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
-//                         </div>
-//                         <div style="margin-bottom: 15px; padding: 8px; background: #e9ecef; border-radius: 4px; border: 1px dashed #adb5bd;">
-//                             <label style="font-weight: bold; font-size: 12px; color: #495057; display: block; margin-bottom: 5px;">📸 Ảnh minh chứng (Nếu có):</label>
-//                             <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="font-size: 11px; width: 100%; outline: none; margin-bottom: 8px;">
-//                             <div id="vung-preview-anh-minh-chung" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px;"></div>
-//                         </div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057; margin-bottom: 8px;">Bấm chọn để gắn thẻ nhanh:</label>
-//                         <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
-//                         <div style="flex: 1; margin-top: 10px; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
-//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
-//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
-//                         </button>
-//                     </div>
-//                 </div>
-
-//             </div>
-//         </div>
-//     `;
-
-//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
-//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-// };
-
-
-// // =====================================================================
-// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN)
-// // =====================================================================
-// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
-//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-//     if (!vungLamViec) return;
-
-//     const today = new Date().toISOString().split('T')[0];
-
-//     vungLamViec.innerHTML = `
-//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
-            
-//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
-//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
-//                     📔 Nhật Ký Dạy Học
-//                 </h3>
-                
-//                 <div style="display: flex; gap: 10px;">
-//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
-//                         🔍 Tìm lại Nhật ký
-//                     </button>
-                    
-//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-//                         ⬅️ Quay lại
-//                     </button>
-//                 </div>
-//             </div>
-
-//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
-//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
-                
-//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-//                         <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-//                         <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-//                         <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
-//                         <datalist id="dl-lop"></datalist>
-//                         <datalist id="nk-dl-hs"></datalist>
-//                     </div>
-//                     <div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
-//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
-//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
-//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
-//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
-                        
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
-//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
-//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
-//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
-
-//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
-//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
-//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
-//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
-//                             </button>
-//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
-//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-//                                 <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
-//                             </div>
-//                         </div>
-//                     </div>
-
-//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
-//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
-//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
-//                     </div>
-
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
-//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
-//                         </button>
-//                     </div>
-//                 </div>
-
-//                 <!-- CỘT PHẢI: HỌC SINH -->
-//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    
-//                     <div>
-//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
-//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
-//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                             </div>
-//                         </div>
-//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
-//                             ➕ Thêm học sinh vắng
-//                         </button>
-//                     </div>
-
-//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
-//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
-//                         <div style="margin-bottom: 15px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
-//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
-//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
-//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
-//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                                 </div>
-//                             </div>
-//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
-//                                 ➕ Thêm học sinh cùng sự kiện
-//                             </button>
-//                         </div>
-                        
-//                         <div style="margin-bottom: 10px;">
-//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
-//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
-                            
-//                             <!-- 🌟 NÚT ĐƯỢC CHUYỂN LÊN ĐÂY -->
-//                             <button onclick="ham_20_3_gan_the('Khác', '#000')" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 12px; background: #343a40; border: none; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#23272b'" onmouseout="this.style.background='#343a40'">
-//                                 ➕ Ghi nhận sự kiện từ ô ghi chú này
-//                             </button>
-//                         </div>
-
-//                         <div style="margin-bottom: 15px; padding: 8px; background: #e9ecef; border-radius: 4px; border: 1px dashed #adb5bd;">
-//                             <label style="font-weight: bold; font-size: 12px; color: #495057; display: block; margin-bottom: 5px;">📸 Ảnh minh chứng (Nếu có):</label>
-//                             <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="font-size: 11px; width: 100%; outline: none; margin-bottom: 8px;">
-//                             <div id="vung-preview-anh-minh-chung" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px;"></div>
-//                         </div>
-//                         <label style="font-weight: bold; font-size: 13px; color: #495057; margin-bottom: 8px;">Bấm chọn để gắn thẻ nhanh:</label>
-//                         <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
-//                         <div style="flex: 1; margin-top: 10px; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
-//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
-//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
-//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
-//                         </button>
-//                     </div>
-//                 </div>
-
-//             </div>
-//         </div>
-//     `;
-
-//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
-//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-// };
-
+﻿
 
 // // =====================================================================
 // // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN CHÍNH)
@@ -815,9 +62,7 @@
 
 //             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 
-//                 <!-- ============================================== -->
 //                 <!-- CỘT TRÁI: BÀI GIẢNG -->
-//                 <!-- ============================================== -->
 //                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
 //                     <div>
 //                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
@@ -835,7 +80,8 @@
 //                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
 //                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
 //                             </button>
-//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
+//                             <!-- Đã bỏ thuộc tính capture="environment" để cho phép chọn ảnh từ thư viện -->
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
 //                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
 //                                 <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
 //                             </div>
@@ -854,12 +100,9 @@
 //                     </div>
 //                 </div>
 
-//                 <!-- ============================================== -->
 //                 <!-- CỘT PHẢI: HỌC SINH -->
-//                 <!-- ============================================== -->
 //                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                     
-//                     <!-- Khối Điểm Danh Vắng -->
 //                     <div>
 //                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
 //                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
@@ -873,11 +116,9 @@
 //                         </button>
 //                     </div>
 
-//                     <!-- Khối Sự Kiện Học Sinh -->
 //                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
 //                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
                         
-//                         <!-- 1. Chọn học sinh -->
 //                         <div style="margin-bottom: 15px;">
 //                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
 //                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
@@ -891,7 +132,6 @@
 //                             </button>
 //                         </div>
                         
-//                         <!-- 2. Ghi chú -->
 //                         <div style="margin-bottom: 15px;">
 //                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
 //                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
@@ -901,20 +141,26 @@
 //                             </button>
 //                         </div>
 
-//                         <!-- 3. Khu vực chọn Thẻ (Tags) -->
 //                         <div style="margin-bottom: 15px;">
 //                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Bấm chọn để gắn thẻ nhanh:</label>
 //                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
 //                         </div>
 
-//                         <!-- 4. Ảnh minh chứng -->
-//                         <div style="margin-bottom: 15px; padding: 10px; background: #e9ecef; border-radius: 6px; border: 1px dashed #adb5bd;">
-//                             <label style="font-weight: bold; font-size: 12px; color: #495057; display: block; margin-bottom: 5px;">📸 Ảnh minh chứng (Nếu có):</label>
-//                             <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="font-size: 11px; width: 100%; outline: none; margin-bottom: 8px;">
-//                             <div id="vung-preview-anh-minh-chung" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+//                         <!-- 🌟 NÚT TẢI ẢNH MINH CHỨNG HS -->
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
+//                             <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
+//                                 </button>
+//                                 <!-- Đã bỏ thuộc tính capture="environment" để cho phép chọn ảnh từ thư viện -->
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
+//                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
+//                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
+//                                 </div>
+//                             </div>
 //                         </div>
 
-//                         <!-- 5. Khu vực Nhập điểm -->
 //                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
 //                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
 //                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
@@ -928,7 +174,6 @@
 //                             </button>
 //                         </div>
 
-//                         <!-- 6. Danh sách sự kiện chờ lưu -->
 //                         <div style="flex: 1; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
 //                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
 //                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
@@ -948,12 +193,13 @@
 
 //     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
 //     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+//     if (typeof ham_20_11b_kich_hoat_preview_anh === 'function') ham_20_11b_kich_hoat_preview_anh();
+//     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
 // };
 
 
 // // =====================================================================
-// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN CHÍNH)
+// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN CHÍNH ĐÃ CẬP NHẬT)
 // // =====================================================================
 // window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 //     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -980,26 +226,27 @@
 //                 </div>
 //             </div>
 
+//             <!-- THÔNG TIN CHUNG (Thêm sự kiện Onchange) -->
 //             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
 //                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
 //                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
 //                     <div>
 //                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-//                         <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <input type="date" value="${today}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
 //                     </div>
 //                     <div>
 //                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-//                         <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <input id="nk-input-buoi" list="dl-buoi" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
 //                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
 //                     </div>
 //                     <div>
 //                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-//                         <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <input id="nk-input-tiet" list="dl-tiet" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
 //                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
 //                     </div>
 //                     <div>
 //                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
 //                         <datalist id="dl-lop"></datalist>
 //                         <datalist id="nk-dl-hs"></datalist>
 //                     </div>
@@ -1027,13 +274,17 @@
 //                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
 
 //                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+//                         <!-- 🌟 KHU VỰC HIỂN THỊ ẢNH ĐÃ LƯU TRƯỚC ĐÓ -->
+//                         <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
 //                         <div style="display: flex; gap: 15px; align-items: flex-start;">
 //                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
 //                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
 //                             </button>
-//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" capture="environment" multiple style="display: none;">
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
 //                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-//                                 <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
+//                                 <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
 //                             </div>
 //                         </div>
 //                     </div>
@@ -1096,14 +347,215 @@
 //                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
 //                         </div>
 
-//                         <!-- 🌟 NÚT CHỤP ẢNH MINH CHỨNG MỚI (Làm giống hệt ảnh Bài giảng) -->
 //                         <div style="margin-bottom: 15px;">
 //                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
 //                             <div style="display: flex; gap: 15px; align-items: flex-start;">
 //                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
 //                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
 //                                 </button>
-//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" capture="environment" multiple style="display: none;">
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
+//                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
+//                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
+//                                 </div>
+//                             </div>
+//                         </div>
+
+//                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
+//                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
+//                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
+//                                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
+//                                 style="flex: 1; min-width: 80px; padding: 8px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 13px;">
+//                             <button id="btn-ghi-diem" 
+//                                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
+//                                 style="padding: 8px 12px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap;" 
+//                                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                                 Nhập điểm chờ lưu
+//                             </button>
+//                         </div>
+
+//                         <div style="flex: 1; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
+//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
+//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
+//                         </button>
+//                     </div>
+//                 </div>
+
+//             </div>
+//         </div>
+//     `;
+
+//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
+//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
+//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+//     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
+// };
+
+
+// // =====================================================================
+// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN CHÍNH ĐÃ CẬP NHẬT)
+// // =====================================================================
+// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     const today = new Date().toISOString().split('T')[0];
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+            
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
+//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
+//                     📔 Nhật Ký Dạy Học
+//                 </h3>
+                
+//                 <div style="display: flex; gap: 10px;">
+//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
+//                         🔍 Tìm lại Nhật ký
+//                     </button>
+                    
+//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅️ Quay lại
+//                     </button>
+//                 </div>
+//             </div>
+
+//             <!-- THÔNG TIN CHUNG (Thêm sự kiện Onchange) -->
+//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
+//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
+//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
+//                         <input type="date" value="${today}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
+//                         <input id="nk-input-buoi" list="dl-buoi" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
+//                         <input id="nk-input-tiet" list="dl-tiet" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
+//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <datalist id="dl-lop"></datalist>
+//                         <datalist id="nk-dl-hs"></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
+//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
+//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
+//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
+//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
+//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+//                         <!-- 🌟 KHU VỰC HIỂN THỊ ẢNH ĐÃ LƯU TRƯỚC ĐÓ -->
+//                         <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
+//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
+//                             </button>
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
+//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
+//                                 <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
+//                             </div>
+//                         </div>
+//                     </div>
+
+//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
+//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
+//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- CỘT PHẢI: HỌC SINH -->
+//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    
+//                     <!-- 🌟 KHU VỰC HIỂN THỊ SỰ KIỆN & VẮNG MẶT ĐÃ LƯU TRƯỚC ĐÓ -->
+//                     <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
+//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                             </div>
+//                         </div>
+//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
+//                             ➕ Thêm học sinh vắng
+//                         </button>
+//                     </div>
+
+//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
+//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
+//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
+//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
+//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                                 </div>
+//                             </div>
+//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
+//                                 ➕ Thêm học sinh cùng sự kiện
+//                             </button>
+//                         </div>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
+//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
+                            
+//                             <button onclick="ham_20_3_gan_the('Khác', '#000')" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 12px; background: #343a40; border: none; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#23272b'" onmouseout="this.style.background='#343a40'">
+//                                 ➕ Ghi nhận sự kiện từ ô ghi chú này
+//                             </button>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Bấm chọn để gắn thẻ nhanh:</label>
+//                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
+//                             <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
+//                                 </button>
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
 //                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
 //                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
 //                                 </div>
@@ -1148,8 +600,430 @@
 
 
 
+// // =====================================================================
+// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (TỰ ĐỘNG NHỚ TIẾT VỪA NHẬP)
+// // =====================================================================
+// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     const today = new Date().toISOString().split('T')[0];
+
+//     // 🌟 LÔI DỮ LIỆU TỪ TRÍ NHỚ (Nếu chưa có thì dùng mặc định)
+//     const lastNgayDay = localStorage.getItem('nk_last_ngayDay') || today;
+//     const lastBuoi = localStorage.getItem('nk_last_buoi') || '';
+//     const lastTiet = localStorage.getItem('nk_last_tiet') || '';
+//     const lastLop = localStorage.getItem('nk_last_lop') || '';
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+            
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
+//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
+//                     📔 Nhật Ký Dạy Học
+//                 </h3>
+                
+//                 <div style="display: flex; gap: 10px;">
+//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
+//                         🔍 Tìm lại Nhật ký
+//                     </button>
+                    
+//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅️ Quay lại
+//                     </button>
+//                 </div>
+//             </div>
+
+//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
+//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
+//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
+//                         <input type="date" value="${lastNgayDay}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
+//                         <input id="nk-input-buoi" list="dl-buoi" value="${lastBuoi}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
+//                         <input id="nk-input-tiet" list="dl-tiet" value="${lastTiet}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
+//                         <input id="nk-input-lop" list="dl-lop" value="${lastLop}" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <datalist id="dl-lop"></datalist>
+//                         <datalist id="nk-dl-hs"></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
+//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
+//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
+//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
+//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
+//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+//                         <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
+//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
+//                             </button>
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
+//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
+//                                 <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
+//                             </div>
+//                         </div>
+//                     </div>
+
+//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
+//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
+//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- CỘT PHẢI: HỌC SINH -->
+//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    
+//                     <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
+//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                             </div>
+//                         </div>
+//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
+//                             ➕ Thêm học sinh vắng
+//                         </button>
+//                     </div>
+
+//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
+//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
+//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
+//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
+//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                                 </div>
+//                             </div>
+//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
+//                                 ➕ Thêm học sinh cùng sự kiện
+//                             </button>
+//                         </div>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
+//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
+                            
+//                             <button onclick="ham_20_3_gan_the('Khác', '#000')" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 12px; background: #343a40; border: none; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#23272b'" onmouseout="this.style.background='#343a40'">
+//                                 ➕ Ghi nhận sự kiện từ ô ghi chú này
+//                             </button>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Bấm chọn để gắn thẻ nhanh:</label>
+//                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
+//                             <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
+//                                 </button>
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
+//                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
+//                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
+//                                 </div>
+//                             </div>
+//                         </div>
+
+//                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
+//                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
+//                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
+//                                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
+//                                 style="flex: 1; min-width: 80px; padding: 8px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 13px;">
+//                             <button id="btn-ghi-diem" 
+//                                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
+//                                 style="padding: 8px 12px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap;" 
+//                                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                                 Nhập điểm chờ lưu
+//                             </button>
+//                         </div>
+
+//                         <div style="flex: 1; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
+//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
+//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
+//                         </button>
+//                     </div>
+//                 </div>
+
+//             </div>
+//         </div>
+//     `;
+
+//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
+//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
+//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+//     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
+
+//     // 🌟 KÍCH HOẠT TẢI DỮ LIỆU TỰ ĐỘNG NẾU ĐÃ LƯU TỪ TRƯỚC
+//     setTimeout(() => {
+//         if (lastLop && typeof ham_20_2_tai_danh_sach_hs_theo_lop === 'function') {
+//             ham_20_2_tai_danh_sach_hs_theo_lop();
+//         }
+//         if (lastNgayDay && lastBuoi && lastTiet && lastLop && typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+//             ham_20_27_kiem_tra_tiet_da_luu();
+//         }
+//     }, 300);
+// };
+
+
+
+// // =====================================================================
+// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN TRỐNG MẶC ĐỊNH)
+// // =====================================================================
+// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     // Mặc định chỉ lấy ngày hôm nay, các ô khác để trống
+//     const today = new Date().toISOString().split('T')[0];
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+            
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
+//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
+//                     📔 Nhật Ký Dạy Học
+//                 </h3>
+                
+//                 <div style="display: flex; gap: 10px;">
+//                     <!-- 🌟 NÚT MỚI: GỌI LẠI TIẾT GẦN NHẤT -->
+//                     <button onclick="ham_20_28_tai_tiet_gan_nhat()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                         🔄 Tiết gần nhất
+//                     </button>
+
+//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
+//                         🔍 Tìm lại Nhật ký
+//                     </button>
+                    
+//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅️ Quay lại
+//                     </button>
+//                 </div>
+//             </div>
+
+//             <!-- THÔNG TIN CHUNG -->
+//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
+//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
+//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
+//                         <input type="date" value="${today}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
+//                         <input id="nk-input-buoi" list="dl-buoi" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
+//                         <input id="nk-input-tiet" list="dl-tiet" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
+//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <datalist id="dl-lop"></datalist>
+//                         <datalist id="nk-dl-hs"></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
+//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
+//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
+//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
+//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
+//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+//                         <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
+//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
+//                             </button>
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
+//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
+//                                 <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
+//                             </div>
+//                         </div>
+//                     </div>
+
+//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
+//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
+//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- CỘT PHẢI: HỌC SINH -->
+//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    
+//                     <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
+//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                             </div>
+//                         </div>
+//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
+//                             ➕ Thêm học sinh vắng
+//                         </button>
+//                     </div>
+
+//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
+//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Chọn học sinh (Có thể thêm nhóm):</label>
+//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
+//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
+//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                                 </div>
+//                             </div>
+//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
+//                                 ➕ Thêm học sinh cùng sự kiện
+//                             </button>
+//                         </div>
+                        
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">Ghi chú thêm (hoặc nhập tự do):</label>
+//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
+                            
+//                             <button onclick="ham_20_3_gan_the('Khác', '#000')" style="margin-top: 8px; width: 100%; padding: 8px; font-size: 12px; background: #343a40; border: none; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#23272b'" onmouseout="this.style.background='#343a40'">
+//                                 ➕ Ghi nhận sự kiện từ ô ghi chú này
+//                             </button>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 5px;">Bấm chọn để gắn thẻ nhanh:</label>
+//                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
+//                         </div>
+
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
+//                             <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
+//                                 </button>
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
+//                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
+//                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
+//                                 </div>
+//                             </div>
+//                         </div>
+
+//                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
+//                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
+//                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
+//                                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
+//                                 style="flex: 1; min-width: 80px; padding: 8px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 13px;">
+//                             <button id="btn-ghi-diem" 
+//                                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
+//                                 style="padding: 8px 12px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap;" 
+//                                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                                 Nhập điểm chờ lưu
+//                             </button>
+//                         </div>
+
+//                         <div style="flex: 1; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
+//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
+//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
+//                         </button>
+//                     </div>
+//                 </div>
+
+//             </div>
+//         </div>
+//     `;
+
+//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
+//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
+//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+//     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
+// };
+
+
 // =====================================================================
-// KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN CHÍNH)
+// KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (GIAO DIỆN TRỐNG MẶC ĐỊNH)
 // =====================================================================
 window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -1166,8 +1040,18 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                 </h3>
                 
                 <div style="display: flex; gap: 10px;">
+                    <!-- 🌟 NÚT MỚI: DỌN DẸP LÀM TIẾT MỚI -->
+                    <button onclick="ham_20_29_lam_moi_tiet_hoc()" style="padding: 6px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+                        🆕 Tiết mới
+                    </button>
+
+                    <!-- NÚT GỌI LẠI TIẾT GẦN NHẤT -->
+                    <button onclick="ham_20_28_tai_tiet_gan_nhat()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                        🔄 Tiết gần nhất
+                    </button>
+
                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
-                        🔍 Tìm lại Nhật ký
+                        🔍 Tìm lại
                     </button>
                     
                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -1182,21 +1066,21 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
                     <div>
                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
-                        <input type="date" value="${today}" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+                        <input type="date" value="${today}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
                     </div>
                     <div>
                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
-                        <input id="nk-input-buoi" list="dl-buoi" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+                        <input id="nk-input-buoi" list="dl-buoi" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
                     </div>
                     <div>
                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
-                        <input id="nk-input-tiet" list="dl-tiet" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+                        <input id="nk-input-tiet" list="dl-tiet" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
                     </div>
                     <div>
                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
-                        <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop()" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+                        <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
                         <datalist id="dl-lop"></datalist>
                         <datalist id="nk-dl-hs"></datalist>
                     </div>
@@ -1224,14 +1108,16 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
 
                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+                        <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
                         <div style="display: flex; gap: 15px; align-items: flex-start;">
                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
                             </button>
-                            <!-- Đã bỏ thuộc tính capture="environment" để cho phép chọn ảnh từ thư viện -->
                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
-                                <span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>
+                                <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
                             </div>
                         </div>
                     </div>
@@ -1251,6 +1137,8 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                 <!-- CỘT PHẢI: HỌC SINH -->
                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                     
+                    <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
                     <div>
                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
@@ -1294,14 +1182,12 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
                         </div>
 
-                        <!-- 🌟 NÚT TẢI ẢNH MINH CHỨNG HS -->
                         <div style="margin-bottom: 15px;">
                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng (Nếu có):</label>
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
                                 </button>
-                                <!-- Đã bỏ thuộc tính capture="environment" để cho phép chọn ảnh từ thư viện -->
                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
@@ -1344,6 +1230,9 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
 };
+
+
+
 
 
 
@@ -1538,162 +1427,6 @@ window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
 };
 
 
-
-
-// Biến lưu trữ tạm các sự kiện trên RAM trước khi bấm LƯU vào DB
-window.danhSachSuKienTam = [];
-
-
-
-// Hàm nhỏ gọn hỗ trợ xóa nếu thầy lỡ tay bấm nhầm tag
-window.ham_20_5_xoa_su_kien_tam = function (idTam) {
-    danhSachSuKienTam = danhSachSuKienTam.filter(sk => sk.id_tam !== idTam);
-    ham_20_4_ve_danh_sach_cho();
-};
-// // =======================================================
-// // HÀM 20.3: XỬ LÝ GẮN THẺ NHANH (HỖ TRỢ ĐA ẢNH)
-// // =======================================================
-// window.ham_20_3_gan_the = function (tenTag, mauSac) {
-//     const inputHS = document.getElementById('nk-input-hs');
-//     const inputGhiChu = document.getElementById('nk-input-ghi-chu');
-//     const inputAnh = document.getElementById('nk-input-anh-minh-chung');
-
-//     let thongTinHS = inputHS.value.trim();
-//     let ghiChu = inputGhiChu.value.trim();
-
-//     // 🌟 Gom toàn bộ ảnh đã chọn vào một mảng
-//     let mangFileMinhChung = (inputAnh && inputAnh.files.length > 0) ? Array.from(inputAnh.files) : [];
-
-//     if (!thongTinHS) {
-//         alert("Thầy ơi, chọn học sinh trước đã nhé!");
-//         inputHS.focus();
-//         return;
-//     }
-
-//     if (tenTag === 'Khác' && !ghiChu) {
-//         alert("Thầy hãy nhập sự kiện vào ô 'Ghi chú thêm' trước khi bấm Thêm tự do ạ!");
-//         inputGhiChu.focus();
-//         return;
-//     }
-
-//     let uidTimDuoc = null;
-//     const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//     danhSachOptions.forEach(opt => {
-//         if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid;
-//     });
-
-//     let parts = thongTinHS.split(' - ');
-//     let tenHienThi = parts[0].trim();
-//     let tenDangNhap = parts.length > 1 ? parts[1].trim() : '';
-
-//     let loaiTheLuu = tenTag;
-//     if (tenTag === 'Khác') {
-//         loaiTheLuu = ghiChu;
-//         ghiChu = '';
-//     }
-
-//     danhSachSuKienTam.push({
-//         uid_hoc_sinh: uidTimDuoc,
-//         sdt_hoc_sinh: tenDangNhap,
-//         ten_hoc_sinh: tenHienThi,
-//         loai_the: loaiTheLuu,
-//         ghi_chu: ghiChu,
-//         mau_sac: mauSac || '#dc3545',
-//         mang_file_minh_chung: mangFileMinhChung, // Lưu mảng file
-//         id_tam: Date.now()
-//     });
-
-//     // Reset lại giao diện sau khi gắn
-//     inputHS.value = '';
-//     inputGhiChu.value = '';
-//     if (inputAnh) inputAnh.value = '';
-
-//     // Dọn sạch ảnh preview cũ
-//     const vungPreviewMC = document.getElementById('vung-preview-anh-minh-chung');
-//     if (vungPreviewMC) vungPreviewMC.innerHTML = '';
-
-//     ham_20_4_ve_danh_sach_cho();
-// };
-
-// // =======================================================
-// // HÀM 20.3: XỬ LÝ GẮN THẺ NHANH (HỖ TRỢ NHÓM HỌC SINH)
-// // =======================================================
-// window.ham_20_3_gan_the = function (tenTag, mauSac) {
-//     const cacOHsSuKien = document.querySelectorAll('.nk-input-hs-su-kien');
-//     const inputGhiChu = document.getElementById('nk-input-ghi-chu');
-//     const inputAnh = document.getElementById('nk-input-anh-minh-chung');
-
-//     let ghiChu = inputGhiChu.value.trim();
-//     let mangFileMinhChung = (inputAnh && inputAnh.files.length > 0) ? Array.from(inputAnh.files) : [];
-
-//     // Gom danh sách tất cả học sinh được nhập vào mảng
-//     let danhSachHSThem = [];
-//     cacOHsSuKien.forEach(oHS => {
-//         if (oHS.value.trim()) danhSachHSThem.push(oHS.value.trim());
-//     });
-
-//     if (danhSachHSThem.length === 0) {
-//         alert("Thầy ơi, hãy chọn ít nhất 1 học sinh trước nhé!");
-//         if (cacOHsSuKien.length > 0) cacOHsSuKien[0].focus();
-//         return;
-//     }
-
-//     if (tenTag === 'Khác' && !ghiChu) {
-//         alert("Thầy hãy nhập sự kiện vào ô 'Ghi chú thêm' trước khi bấm Thêm tự do ạ!");
-//         inputGhiChu.focus();
-//         return;
-//     }
-
-//     const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//     let loaiTheLuu = tenTag === 'Khác' ? ghiChu : tenTag;
-//     let ghiChuLuu = tenTag === 'Khác' ? '' : ghiChu;
-
-//     // Duyệt qua từng học sinh để đẩy vào Danh sách chờ lưu
-//     danhSachHSThem.forEach((thongTinHS, index) => {
-//         let uidTimDuoc = null;
-//         danhSachOptions.forEach(opt => {
-//             if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid;
-//         });
-
-//         let parts = thongTinHS.split(' - ');
-//         let tenHienThi = parts[0].trim();
-//         let tenDangNhap = parts.length > 1 ? parts[1].trim() : '';
-
-//         danhSachSuKienTam.push({
-//             uid_hoc_sinh: uidTimDuoc,
-//             sdt_hoc_sinh: tenDangNhap,
-//             ten_hoc_sinh: tenHienThi,
-//             loai_the: loaiTheLuu,
-//             ghi_chu: ghiChuLuu,
-//             mau_sac: mauSac || '#dc3545',
-//             mang_file_minh_chung: mangFileMinhChung, // Dùng chung mảng ảnh minh chứng
-//             // Sinh ID tạm duy nhất (Tránh lỗi trùng ID khi xóa trong Danh sách chờ)
-//             id_tam: Date.now() + index + Math.floor(Math.random() * 1000)
-//         });
-//     });
-
-//     // 🌟 RESET UI SAU KHI GẮN THẺ THÀNH CÔNG
-//     inputGhiChu.value = '';
-//     if (inputAnh) inputAnh.value = '';
-
-//     const vungPreviewMC = document.getElementById('vung-preview-anh-minh-chung');
-//     if (vungPreviewMC) vungPreviewMC.innerHTML = '';
-
-//     const khuVucHS = document.getElementById('nk-khu-vuc-hs-su-kien');
-//     if (khuVucHS) {
-//         khuVucHS.innerHTML = `
-//             <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
-//                 <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
-//                 <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//             </div>
-//         `;
-//     }
-
-//     // Vẽ lại danh sách chờ
-//     ham_20_4_ve_danh_sach_cho();
-// };
-
-
 // =======================================================
 // HÀM 20.3: XỬ LÝ KHI BẤM NÚT "GẮN THẺ" HOẶC "NHẬP ĐIỂM"
 // =======================================================
@@ -1768,42 +1501,688 @@ window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
 
 
 
+
+
+// Biến lưu trữ tạm các sự kiện trên RAM trước khi bấm LƯU vào DB
+window.danhSachSuKienTam = [];
+
 // =======================================================
-// HÀM 20.4: VẼ LẠI DANH SÁCH CHỜ 
+// HÀM 20.4: VẼ LẠI DANH SÁCH SỰ KIỆN CHỜ LƯU
 // =======================================================
 window.ham_20_4_ve_danh_sach_cho = function () {
     const vungHienThi = document.getElementById('nk-danh-sach-cho-luu');
-    const demSoLuong = document.getElementById('nk-dem-su-kien');
+    const boDem = document.getElementById('nk-dem-su-kien');
+    if (!vungHienThi) return;
 
-    demSoLuong.innerText = danhSachSuKienTam.length;
+    // Đảm bảo biến toàn cục tồn tại
+    if (!window.danhSachSuKienTam) window.danhSachSuKienTam = [];
 
-    if (danhSachSuKienTam.length === 0) {
+    if (window.danhSachSuKienTam.length > 0) {
+        if (boDem) boDem.innerText = window.danhSachSuKienTam.length;
+
+        let html = '';
+        window.danhSachSuKienTam.forEach((sk, index) => {
+            // Xử lý hiển thị thông tin phụ an toàn
+            let diemStr = sk.diem_so ? ` <span style="background:#28a745; color:white; padding:2px 5px; border-radius:3px; font-size:10px; margin-left:5px;">⭐ ${sk.diem_so}đ</span>` : '';
+            let noteStr = sk.ghi_chu ? `<div style="font-size: 11px; color: #666; margin-top: 2px;"><i>📝 ${sk.ghi_chu}</i></div>` : '';
+            let anhMCStr = (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) ? `<span style="font-size: 10px; color: #17a2b8; margin-left: 5px;">📸 ${sk.mang_file_minh_chung.length} ảnh</span>` : '';
+
+            // Truyền cứng biến index (số nguyên) vào onclick, không bao giờ bị lỗi nháy
+            html += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px dashed #eee; background: #fff; border-radius: 4px; margin-bottom: 5px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+                    <div style="flex: 1;">
+                        <div style="font-size: 13px;">
+                            <b>${sk.ten_hoc_sinh}</b> 
+                            <span style="color: ${sk.mau_sac || '#000'}; font-weight: bold; margin-left: 5px;">[${sk.loai_the}]</span>
+                            ${diemStr}
+                            ${anhMCStr}
+                        </div>
+                        ${noteStr}
+                    </div>
+                    <button type="button" onclick="ham_20_5_xoa_su_kien_tam(${index})" style="padding: 5px 10px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8d7da'" title="Xóa sự kiện này">✖</button>
+                </div>
+            `;
+        });
+        vungHienThi.innerHTML = html;
+
+    } else {
+        if (boDem) boDem.innerText = '0';
         vungHienThi.innerHTML = '<i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i>';
+    }
+};
+
+// =======================================================
+// HÀM 20.5: XÓA BỚT 1 SỰ KIỆN TẠM RA KHỎI DANH SÁCH
+// =======================================================
+window.ham_20_5_xoa_su_kien_tam = function (index) {
+    if (window.danhSachSuKienTam && window.danhSachSuKienTam.length > index) {
+        // Cắt bỏ 1 phần tử tại vị trí index
+        window.danhSachSuKienTam.splice(index, 1);
+        // Vẽ lại giao diện
+        ham_20_4_ve_danh_sach_cho();
+    }
+};
+
+// // Hàm nhỏ gọn hỗ trợ xóa nếu thầy lỡ tay bấm nhầm tag
+// window.ham_20_5_xoa_su_kien_tam = function (idTam) {
+//     danhSachSuKienTam = danhSachSuKienTam.filter(sk => sk.id_tam !== idTam);
+//     ham_20_4_ve_danh_sach_cho();
+// };
+
+
+// // =======================================================
+// // HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD (CÓ THANH TIẾN TRÌNH)
+// // =======================================================
+// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     let rawLop = document.getElementById('nk-input-lop').value.trim();
+//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
+//         return;
+//     }
+
+//     const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
+//     const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
+//     const baiTap = document.querySelectorAll('textarea')[1].value.trim();
+//     const danDo = document.querySelectorAll('textarea')[2].value.trim();
+//     const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
+
+//     if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
+//         alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chọn ảnh nào!");
+//         return;
+//     }
+
+//     const textGoc = btnLuu.innerHTML;
+//     const bgGoc = btnLuu.style.background; // Lưu lại nền gốc để khôi phục
+//     btnLuu.disabled = true;
+
+//     try {
+//         let mangLinkAnhDrive = [];
+
+//         // 1. TẢI ẢNH LÊN GOOGLE DRIVE (ĐO TIẾN TRÌNH CHI TIẾT)
+//         if (danhSachFileAnh.length > 0) {
+//             for (let k = 0; k < danhSachFileAnh.length; k++) {
+//                 let file = danhSachFileAnh[k];
+//                 let base64String = await ham_ho_tro_doc_anh_base64(file);
+//                 let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
+//                 let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
+
+//                 btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
+
+//                 let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" };
+
+//                 // Đẩy lên qua XHR với thanh tiến trình màu xanh lấp đầy
+//                 let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                     CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                     payload,
+//                     function (phanTram, daTai, tongSo) {
+//                         let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+//                         let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+
+//                         // Hiệu ứng thanh tiến trình chạy trên nền nút
+//                         btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
+//                         btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+//                     }
+//                 );
+
+//                 if (result.status === 'success') {
+//                     mangLinkAnhDrive.push(result.url);
+//                 } else {
+//                     throw new Error(result.message || "Lỗi tải ảnh từ Apps Script.");
+//                 }
+//             }
+//         }
+
+//         // Khôi phục lại nền sau khi tải ảnh xong
+//         btnLuu.style.background = bgGoc;
+//         btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
+
+//         // 2. KIỂM TRA & LƯU VÀO DB
+//         const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+//         if (errCheck) throw errCheck;
+
+//         if (checkData && checkData.length > 0) {
+//             let mangAnhCu = [];
+//             let dbAnh = checkData[0].danh_sach_anh;
+//             if (dbAnh) {
+//                 if (Array.isArray(dbAnh)) mangAnhCu = dbAnh;
+//                 else if (typeof dbAnh === 'string') {
+//                     try { mangAnhCu = JSON.parse(dbAnh); } catch (e) { mangAnhCu = dbAnh.split(',').filter(l => l.trim()); }
+//                 }
+//             }
+//             let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
+
+//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update({
+//                 phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangAnhMoi
+//             }).eq('id', checkData[0].id);
+//             if (errUpdate) throw errUpdate;
+//         } else {
+//             const { error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([{
+//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
+//                 ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangLinkAnhDrive
+//             }]);
+//             if (errInsert) throw errInsert;
+//         }
+
+//         alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
+
+//         // 3. RESET FORM
+//         document.getElementById('nk-input-ten-bai').value = '';
+//         document.querySelectorAll('textarea')[0].value = '';
+//         document.querySelectorAll('textarea')[1].value = '';
+//         document.querySelectorAll('textarea')[2].value = '';
+
+//         window.danhSachAnhBaiGiangTam = [];
+//         if (typeof ham_20_11_render_anh_bai_giang === 'function') ham_20_11_render_anh_bai_giang();
+
+//     } catch (err) {
+//         console.error("Lỗi lưu bài giảng:", err);
+//         alert("❌ Lỗi: " + err.message);
+//     } finally {
+//         btnLuu.style.background = bgGoc;
+//         btnLuu.innerHTML = textGoc;
+//         btnLuu.disabled = false;
+//     }
+// };
+
+
+// =======================================================
+// HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD
+// =======================================================
+window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
+    const ngayDay = document.querySelector('input[type="date"]').value;
+    let rawLop = document.getElementById('nk-input-lop').value.trim();
+    let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+    const buoi = document.getElementById('nk-input-buoi').value.trim();
+    const tiet = document.getElementById('nk-input-tiet').value.trim();
+    const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+    if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
         return;
     }
 
-    let html = '';
-    danhSachSuKienTam.forEach(sk => {
-        let textGhiChu = sk.ghi_chu ? `<br><i style="font-size: 11px; color: #666;">📝 ${sk.ghi_chu}</i>` : '';
-        // 🌟 Cập nhật dòng báo số lượng ảnh
-        let textAnh = (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0)
-            ? `<br><span style="font-size: 11px; color: #fd7e14; font-weight: bold;">📸 Đã đính kèm ${sk.mang_file_minh_chung.length} ảnh</span>`
-            : '';
+    const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
+    const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
+    const baiTap = document.querySelectorAll('textarea')[1].value.trim();
+    const danDo = document.querySelectorAll('textarea')[2].value.trim();
+    const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
 
-        html += `
-            <div style="background: #fff; padding: 8px 10px; border-radius: 4px; border-left: 4px solid ${sk.mau_sac}; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start;">
-                <div>
-                    <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b> 
-                    <span style="color: ${sk.mau_sac}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-                    ${textGhiChu}
-                    ${textAnh}
-                </div>
-                <button onclick="ham_20_5_xoa_su_kien_tam(${sk.id_tam})" style="background: none; border: none; color: #dc3545; cursor: pointer; font-size: 14px;" title="Xóa">🗑️</button>
-            </div>
-        `;
-    });
-    vungHienThi.innerHTML = html;
+    if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
+        alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chọn ảnh nào!");
+        return;
+    }
+
+    const textGoc = btnLuu.innerHTML;
+    const bgGoc = btnLuu.style.background;
+    btnLuu.disabled = true;
+
+    try {
+        let mangLinkAnhDrive = [];
+
+        if (danhSachFileAnh.length > 0) {
+            for (let k = 0; k < danhSachFileAnh.length; k++) {
+                let file = danhSachFileAnh[k];
+                let base64String = await ham_ho_tro_doc_anh_base64(file);
+                let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
+                let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
+
+                btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
+
+                let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" };
+
+                let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+                    payload,
+                    function (phanTram, daTai, tongSo) {
+                        let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+                        let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+                        btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
+                        btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                    }
+                );
+
+                if (result.status === 'success') {
+                    mangLinkAnhDrive.push(result.url);
+                } else {
+                    throw new Error(result.message || "Lỗi tải ảnh từ Apps Script.");
+                }
+            }
+        }
+
+        btnLuu.style.background = bgGoc;
+        btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
+
+        const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+        if (errCheck) throw errCheck;
+
+        if (checkData && checkData.length > 0) {
+            let mangAnhCu = [];
+            let dbAnh = checkData[0].danh_sach_anh;
+            if (dbAnh) {
+                if (Array.isArray(dbAnh)) mangAnhCu = dbAnh;
+                else if (typeof dbAnh === 'string') {
+                    try { mangAnhCu = JSON.parse(dbAnh); } catch (e) { mangAnhCu = dbAnh.split(',').filter(l => l.trim()); }
+                }
+            }
+            let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
+
+            const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update({
+                phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangAnhMoi
+            }).eq('id', checkData[0].id);
+            if (errUpdate) throw errUpdate;
+        } else {
+            const { error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([{
+                ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
+                ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangLinkAnhDrive
+            }]);
+            if (errInsert) throw errInsert;
+        }
+
+        // 🌟 GHI NHỚ LẠI LỊCH SỬ ĐỂ TỰ ĐỘNG LOAD KHI MỞ LẠI TAB
+        localStorage.setItem('nk_last_ngayDay', ngayDay);
+        localStorage.setItem('nk_last_buoi', buoi);
+        localStorage.setItem('nk_last_tiet', tiet);
+        localStorage.setItem('nk_last_lop', rawLop);
+
+        alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
+
+        document.getElementById('nk-input-ten-bai').value = '';
+        document.querySelectorAll('textarea')[0].value = '';
+        document.querySelectorAll('textarea')[1].value = '';
+        document.querySelectorAll('textarea')[2].value = '';
+
+        window.danhSachAnhBaiGiangTam = [];
+        if (typeof ham_20_11_render_anh_bai_giang === 'function') ham_20_11_render_anh_bai_giang();
+        if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu(); // Load lại ngay để hiện ảnh vừa chụp xuống dưới
+
+    } catch (err) {
+        console.error("Lỗi lưu bài giảng:", err);
+        alert("❌ Lỗi: " + err.message);
+    } finally {
+        btnLuu.style.background = bgGoc;
+        btnLuu.innerHTML = textGoc;
+        btnLuu.disabled = false;
+    }
 };
+
+
+
+
+// // =======================================================
+// // HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH & SỬA LỖI NOT NULL)
+// // =======================================================
+// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     let rawLop = document.getElementById('nk-input-lop').value.trim();
+//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
+//         return;
+//     }
+
+//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
+//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
+
+//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
+//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
+//         return;
+//     }
+
+//     const textGoc = btnLuu.innerHTML;
+//     const bgGoc = btnLuu.style.background;
+//     btnLuu.disabled = true;
+
+//     try {
+//         let idNhatKy = null;
+
+//         // 1. KIỂM TRA XEM TIẾT HỌC ĐÃ CÓ TRONG CSDL CHƯA
+//         const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+//         if (errCheck) throw errCheck;
+
+//         if (checkData && checkData.length > 0) {
+//             idNhatKy = checkData[0].id;
+//         } else {
+//             // TẠO TIẾT MỚI & LẤY ID TRẢ VỀ
+//             const { data: nhatKyData, error: errInsertNK } = await _supabase.from('nhat_ky_day_hoc').insert([{
+//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
+//             }]).select();
+
+//             if (errInsertNK) throw errInsertNK;
+//             if (!nhatKyData || nhatKyData.length === 0) throw new Error("Không tạo được ID Nhật ký gốc.");
+//             idNhatKy = nhatKyData[0].id;
+//         }
+
+//         let mangSuKienDB = [];
+//         let uidsDaVangDB = new Set();
+
+//         // Lấy danh sách HS đã vắng mặt trước đó để tránh lưu trùng
+//         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
+//         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
+
+//         let uidsTrongGiaoDien = new Set();
+//         let tenCacHSDaTrung = [];
+//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
+
+//         // 2. GOM DỮ LIỆU ĐIỂM DANH (VẮNG MẶT)
+//         cacOVan.forEach(oVang => {
+//             let thongTinHS = oVang.value.trim();
+//             if (thongTinHS) {
+//                 let uidTimDuoc = null;
+//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
+//                 let parts = thongTinHS.split(' - ');
+//                 let tenHienThi = parts[0].trim();
+
+//                 // 🌟 FIX LỖI NOT NULL: Luôn đảm bảo có giá trị (không được để null)
+//                 let tenDangNhap = parts[1] ? parts[1].trim() : 'Không rõ';
+
+//                 if (uidTimDuoc) {
+//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
+//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
+//                     } else {
+//                         uidsTrongGiaoDien.add(uidTimDuoc);
+//                         mangSuKienDB.push({
+//                             id_nhat_ky: idNhatKy,
+//                             uid_hoc_sinh: uidTimDuoc,
+//                             ten_dang_nhap_hoc_sinh: tenDangNhap, // Đã khôi phục và bảo vệ
+//                             ten_hoc_sinh: tenHienThi,
+//                             loai_the: 'Vắng mặt',
+//                             ghi_chu: 'Vắng mặt trong tiết học',
+//                             thong_tin_mo_rong: { mau_sac: '#dc3545' }
+//                         });
+//                     }
+//                 }
+//             }
+//         });
+
+//         // 3. GOM DỮ LIỆU SỰ KIỆN & XỬ LÝ ẢNH MINH CHỨNG
+//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
+//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
+//                 let sk = danhSachSuKienTam[i];
+//                 let mangLinkAnhDrive = [];
+
+//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
+//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
+//                         let fileMC = sk.mang_file_minh_chung[k];
+//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
+//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
+//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
+
+//                         btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})...`;
+
+//                         let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
+
+//                         let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                             CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                             payload,
+//                             function (phanTram, daTai, tongSo) {
+//                                 let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+//                                 let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+//                                 btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
+//                                 btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+//                             }
+//                         );
+
+//                         if (result.status === 'success') {
+//                             mangLinkAnhDrive.push(result.url);
+//                         } else {
+//                             throw new Error(result.message || "Lỗi tải ảnh minh chứng từ Apps Script.");
+//                         }
+//                     }
+//                 }
+
+//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
+//                 if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
+//                 if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
+
+//                 mangSuKienDB.push({
+//                     id_nhat_ky: idNhatKy,
+//                     uid_hoc_sinh: sk.uid_hoc_sinh,
+//                     // 🌟 FIX LỖI NOT NULL: Nếu sk.sdt_hoc_sinh bị rỗng thì điền 'Không rõ'
+//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh || 'Không rõ',
+//                     ten_hoc_sinh: sk.ten_hoc_sinh,
+//                     loai_the: sk.loai_the,
+//                     ghi_chu: sk.ghi_chu,
+//                     thong_tin_mo_rong: thongTinMoRong
+//                 });
+//             }
+//         }
+
+//         // Khôi phục lại nền sau khi tải ảnh xong
+//         btnLuu.style.background = bgGoc;
+
+//         if (mangSuKienDB.length > 0) {
+//             btnLuu.innerHTML = "⏳ ĐANG LƯU VÀO CƠ SỞ DỮ LIỆU...";
+//             const { error: errInsertSK } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
+//             if (errInsertSK) throw errInsertSK;
+//         }
+
+//         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
+
+//         danhSachSuKienTam = [];
+//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+
+//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
+//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
+//             </div>`;
+
+//     } catch (err) {
+//         console.error("Lỗi:", err);
+//         alert("❌ Lỗi: " + (err.message || err.details || "Không xác định"));
+//     } finally {
+//         btnLuu.style.background = bgGoc;
+//         btnLuu.innerHTML = textGoc;
+//         btnLuu.disabled = false;
+//     }
+// };
+
+
+
+// =======================================================
+// HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH
+// =======================================================
+window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
+    const ngayDay = document.querySelector('input[type="date"]').value;
+    let rawLop = document.getElementById('nk-input-lop').value.trim();
+    let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+    const buoi = document.getElementById('nk-input-buoi').value.trim();
+    const tiet = document.getElementById('nk-input-tiet').value.trim();
+    const phanMon = document.getElementById('nk-input-mon').value.trim();
+
+    if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
+        return;
+    }
+
+    const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
+    let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
+
+    if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
+        alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
+        return;
+    }
+
+    const textGoc = btnLuu.innerHTML;
+    const bgGoc = btnLuu.style.background;
+    btnLuu.disabled = true;
+
+    try {
+        let idNhatKy = null;
+        const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
+        if (errCheck) throw errCheck;
+
+        if (checkData && checkData.length > 0) {
+            idNhatKy = checkData[0].id;
+        } else {
+            const { data: nhatKyData, error: errInsertNK } = await _supabase.from('nhat_ky_day_hoc').insert([{
+                ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
+            }]).select();
+            if (errInsertNK) throw errInsertNK;
+            idNhatKy = nhatKyData[0].id;
+        }
+
+        let mangSuKienDB = [];
+        let uidsDaVangDB = new Set();
+        const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
+        if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
+
+        let uidsTrongGiaoDien = new Set();
+        let tenCacHSDaTrung = [];
+        const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
+
+        cacOVan.forEach(oVang => {
+            let thongTinHS = oVang.value.trim();
+            if (thongTinHS) {
+                let uidTimDuoc = null;
+                danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
+                let parts = thongTinHS.split(' - ');
+                let tenHienThi = parts[0].trim();
+                let tenDangNhap = parts[1] ? parts[1].trim() : 'Không rõ';
+
+                if (uidTimDuoc) {
+                    if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
+                        if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
+                    } else {
+                        uidsTrongGiaoDien.add(uidTimDuoc);
+                        mangSuKienDB.push({
+                            id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc, ten_dang_nhap_hoc_sinh: tenDangNhap,
+                            ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học', thong_tin_mo_rong: { mau_sac: '#dc3545' }
+                        });
+                    }
+                }
+            }
+        });
+
+        if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
+            for (let i = 0; i < danhSachSuKienTam.length; i++) {
+                let sk = danhSachSuKienTam[i];
+                let mangLinkAnhDrive = [];
+
+                if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
+                    for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
+                        let fileMC = sk.mang_file_minh_chung[k];
+                        let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
+                        let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
+                        let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
+
+                        let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
+
+                        let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                            CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+                            payload,
+                            function (phanTram, daTai, tongSo) {
+                                let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+                                let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+                                btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
+                                btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                            }
+                        );
+
+                        if (result.status === 'success') {
+                            mangLinkAnhDrive.push(result.url);
+                        } else {
+                            throw new Error(result.message || "Lỗi tải ảnh minh chứng từ Apps Script.");
+                        }
+                    }
+                }
+
+                let thongTinMoRong = { mau_sac: sk.mau_sac };
+                if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
+                if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
+
+                mangSuKienDB.push({
+                    id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh || 'Không rõ',
+                    ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
+                });
+            }
+        }
+
+        btnLuu.style.background = bgGoc;
+
+        if (mangSuKienDB.length > 0) {
+            btnLuu.innerHTML = "⏳ ĐANG LƯU VÀO CƠ SỞ DỮ LIỆU...";
+            const { error: errInsertSK } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
+            if (errInsertSK) throw errInsertSK;
+        }
+
+        // 🌟 GHI NHỚ LẠI LỊCH SỬ
+        localStorage.setItem('nk_last_ngayDay', ngayDay);
+        localStorage.setItem('nk_last_buoi', buoi);
+        localStorage.setItem('nk_last_tiet', tiet);
+        localStorage.setItem('nk_last_lop', rawLop);
+
+        alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
+
+        danhSachSuKienTam = [];
+        if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+
+        if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
+            <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+                <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+                <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
+            </div>`;
+
+        if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();
+
+    } catch (err) {
+        console.error("Lỗi:", err);
+        alert("❌ Lỗi: " + (err.message || err.details || "Không xác định"));
+    } finally {
+        btnLuu.style.background = bgGoc;
+        btnLuu.innerHTML = textGoc;
+        btnLuu.disabled = false;
+    }
+};
+
+
+
+// // =======================================================
+// // HÀM 20.4: VẼ LẠI DANH SÁCH CHỜ 
+// // =======================================================
+// window.ham_20_4_ve_danh_sach_cho = function () {
+//     const vungHienThi = document.getElementById('nk-danh-sach-cho-luu');
+//     const demSoLuong = document.getElementById('nk-dem-su-kien');
+
+//     demSoLuong.innerText = danhSachSuKienTam.length;
+
+//     if (danhSachSuKienTam.length === 0) {
+//         vungHienThi.innerHTML = '<i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i>';
+//         return;
+//     }
+
+//     let html = '';
+//     danhSachSuKienTam.forEach(sk => {
+//         let textGhiChu = sk.ghi_chu ? `<br><i style="font-size: 11px; color: #666;">📝 ${sk.ghi_chu}</i>` : '';
+//         // 🌟 Cập nhật dòng báo số lượng ảnh
+//         let textAnh = (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0)
+//             ? `<br><span style="font-size: 11px; color: #fd7e14; font-weight: bold;">📸 Đã đính kèm ${sk.mang_file_minh_chung.length} ảnh</span>`
+//             : '';
+
+//         html += `
+//             <div style="background: #fff; padding: 8px 10px; border-radius: 4px; border-left: 4px solid ${sk.mau_sac}; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start;">
+//                 <div>
+//                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b> 
+//                     <span style="color: ${sk.mau_sac}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
+//                     ${textGhiChu}
+//                     ${textAnh}
+//                 </div>
+//                 <button onclick="ham_20_5_xoa_su_kien_tam(${sk.id_tam})" style="background: none; border: none; color: #dc3545; cursor: pointer; font-size: 14px;" title="Xóa">🗑️</button>
+//             </div>
+//         `;
+//     });
+//     vungHienThi.innerHTML = html;
+// };
 
 
 // =======================================================
@@ -1897,220 +2276,6 @@ window.ham_20_7_tai_danh_sach_lop = async function () {
     }
 };
 
-// // =======================================================
-// // HÀM 20.8: TẢI DANH SÁCH THẺ TỪ DB VÀ VẼ RA GIAO DIỆN
-// // =======================================================
-// window.ham_20_8_tai_danh_sach_the = async function () {
-//     const khuVucTags = document.getElementById('nk-khu-vuc-tags');
-//     if (!khuVucTags) return;
-
-//     try {
-//         const { data: theData, error } = await _supabase
-//             .from('cai_dat_the_su_kien')
-//             .select('*')
-//             .order('ngay_tao', { ascending: true });
-
-//         if (error) throw error;
-
-//         const nhomCauHinh = [
-//             { id: 'bai_ve_nha', ten: '🏠 Bài về nhà', mau: '#fd7e14' },
-//             { id: 'hoc_bai', ten: '🧠 Học bài ở nhà', mau: '#dc3545' },
-//             { id: 'tai_lop', ten: '✍️ Làm bài tại lớp', mau: '#007bff' },
-//             { id: 'thai_do', ten: '🎭 Thái độ học tập', mau: '#6f42c1' }
-//         ];
-
-//         let html = '<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;">';
-
-//         nhomCauHinh.forEach(nhom => {
-//             html += `<div style="width: 100%; font-size: 11px; font-weight: bold; color: ${nhom.mau}; border-bottom: 1px dashed ${nhom.mau}; padding-bottom: 2px; margin-top: 5px; text-transform: uppercase;">${nhom.ten}</div>`;
-
-//             let theCuaNhom = theData ? theData.filter(t => t.nhom_the === nhom.id) : [];
-//             theCuaNhom.forEach(the => {
-//                 // Xử lý an toàn nếu tên thẻ có chứa dấu nháy đơn
-//                 let tenTheAnToan = the.ten_the.replace(/'/g, "\\'");
-
-//                 // 🌟 Vẽ 1 cụm gồm: [ Nút Tên Thẻ | Nút ✏️ ]
-//                 html += `
-//                 <div style="display: inline-flex; border: 1px solid ${the.mau_sac}; border-radius: 4px; overflow: hidden; background: #fff;">
-//                     <button onclick="ham_20_3_gan_the('${tenTheAnToan}', '${the.mau_sac}')" style="padding: 5px 8px; font-size: 11px; background: transparent; border: none; color: ${the.mau_sac}; cursor: pointer; font-weight: bold;" title="Bấm để gắn thẻ">${the.ten_the}</button>
-//                     <button onclick="ham_20_10_quan_ly_tag('${the.id}', '${tenTheAnToan}')" style="padding: 3px 6px; font-size: 10px; background: #f8f9fa; border: none; border-left: 1px dashed ${the.mau_sac}; color: #6c757d; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="Sửa hoặc Xóa thẻ này">✏️</button>
-//                 </div>
-//                 `;
-//             });
-
-//             html += `<button onclick="ham_20_9_them_tag_moi('${nhom.id}', '${nhom.mau}')" style="padding: 5px 10px; font-size: 11px; background: #f8f9fa; border: 1px dashed ${nhom.mau}; color: ${nhom.mau}; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#e2e6ea'" onmouseout="this.style.background='#f8f9fa'">➕ Thêm tag</button>`;
-//         });
-
-//         // ==========================================================
-//         // 🌟 TÍNH NĂNG MỚI: KHU VỰC NHẬP ĐIỂM SỐ TRỰC TIẾP
-//         // ==========================================================
-//         html += `
-//         <div style="width: 100%; margin-top: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
-//             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
-//             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
-//                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
-//                 style="flex: 1; max-width: 120px; padding: 6px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 12px;">
-//             <button id="btn-ghi-diem" 
-//                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
-//                 style="padding: 6px 15px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" 
-//                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                 Ghi điểm
-//             </button>
-//         </div>`;
-
-//         html += `<div style="width: 100%; margin-top: 8px; display: flex; gap: 6px;">
-//                     <button onclick="ham_20_3_gan_the('Cộng điểm', '#28a745')" style="padding: 5px 10px; font-size: 11px; background: #fff; border: 1px solid #28a745; color: #28a745; border-radius: 4px; cursor: pointer; font-weight: bold;">🌟 Cộng điểm</button>
-//                     <button onclick="ham_20_3_gan_the('Khác', '#000')" style="flex: 1; padding: 5px 10px; font-size: 11px; background: #000; border: 1px solid #000; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold;">➕ Ghi nhận từ ô ghi chú</button>
-//                 </div>`;
-//         html += '</div>';
-
-//         khuVucTags.innerHTML = html;
-
-//     } catch (err) {
-//         console.error("Lỗi tải thẻ:", err);
-//         khuVucTags.innerHTML = '<span style="color:red">❌ Lỗi tải danh sách thẻ!</span>';
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.8: TẢI DANH SÁCH THẺ TỪ DB VÀ VẼ RA GIAO DIỆN
-// // =======================================================
-// window.ham_20_8_tai_danh_sach_the = async function () {
-//     const khuVucTags = document.getElementById('nk-khu-vuc-tags');
-//     if (!khuVucTags) return;
-
-//     try {
-//         const { data: theData, error } = await _supabase
-//             .from('cai_dat_the_su_kien')
-//             .select('*')
-//             .order('ngay_tao', { ascending: true });
-
-//         if (error) throw error;
-
-//         const nhomCauHinh = [
-//             { id: 'bai_ve_nha', ten: '🏠 Bài về nhà', mau: '#fd7e14' },
-//             { id: 'hoc_bai', ten: '🧠 Học bài ở nhà', mau: '#dc3545' },
-//             { id: 'tai_lop', ten: '✍️ Làm bài tại lớp', mau: '#007bff' },
-//             { id: 'thai_do', ten: '🎭 Thái độ học tập', mau: '#6f42c1' }
-//         ];
-
-//         let html = '<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;">';
-
-//         nhomCauHinh.forEach(nhom => {
-//             html += `<div style="width: 100%; font-size: 11px; font-weight: bold; color: ${nhom.mau}; border-bottom: 1px dashed ${nhom.mau}; padding-bottom: 2px; margin-top: 5px; text-transform: uppercase;">${nhom.ten}</div>`;
-
-//             let theCuaNhom = theData ? theData.filter(t => t.nhom_the === nhom.id) : [];
-//             theCuaNhom.forEach(the => {
-//                 let tenTheAnToan = the.ten_the.replace(/'/g, "\\'");
-
-//                 html += `
-//                 <div style="display: inline-flex; border: 1px solid ${the.mau_sac}; border-radius: 4px; overflow: hidden; background: #fff;">
-//                     <button onclick="ham_20_3_gan_the('${tenTheAnToan}', '${the.mau_sac}')" style="padding: 5px 8px; font-size: 11px; background: transparent; border: none; color: ${the.mau_sac}; cursor: pointer; font-weight: bold;" title="Bấm để gắn thẻ">${the.ten_the}</button>
-//                     <button onclick="ham_20_10_quan_ly_tag('${the.id}', '${tenTheAnToan}')" style="padding: 3px 6px; font-size: 10px; background: #f8f9fa; border: none; border-left: 1px dashed ${the.mau_sac}; color: #6c757d; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="Sửa hoặc Xóa thẻ này">✏️</button>
-//                 </div>
-//                 `;
-//             });
-
-//             html += `<button onclick="ham_20_9_them_tag_moi('${nhom.id}', '${nhom.mau}')" style="padding: 5px 10px; font-size: 11px; background: #f8f9fa; border: 1px dashed ${nhom.mau}; color: ${nhom.mau}; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#e2e6ea'" onmouseout="this.style.background='#f8f9fa'">➕ Thêm tag</button>`;
-//         });
-
-//         // KHU VỰC NHẬP ĐIỂM SỐ TRỰC TIẾP
-//         html += `
-//         <div style="width: 100%; margin-top: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
-//             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
-//             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
-//                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
-//                 style="flex: 1; max-width: 120px; padding: 6px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 12px;">
-//             <button id="btn-ghi-diem" 
-//                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
-//                 style="padding: 6px 15px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" 
-//                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                 Nạp điểm xuống khung và chờ lưu sự kiện
-//             </button>
-//         </div>`;
-
-//         html += `<div style="width: 100%; margin-top: 8px; display: flex; gap: 6px;">
-//                     <button onclick="ham_20_3_gan_the('Cộng điểm', '#28a745')" style="padding: 5px 10px; font-size: 11px; background: #fff; border: 1px solid #28a745; color: #28a745; border-radius: 4px; cursor: pointer; font-weight: bold;">🌟 Cộng điểm</button>
-//                     <button onclick="ham_20_3_gan_the('Khác', '#000')" style="flex: 1; padding: 5px 10px; font-size: 11px; background: #000; border: 1px solid #000; color: #fff; border-radius: 4px; cursor: pointer; font-weight: bold;">➕ Ghi nhận từ ô ghi chú</button>
-//                 </div>`;
-//         html += '</div>';
-
-//         khuVucTags.innerHTML = html;
-
-//     } catch (err) {
-//         console.error("Lỗi tải thẻ:", err);
-//         khuVucTags.innerHTML = '<span style="color:red">❌ Lỗi tải danh sách thẻ!</span>';
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.8: TẢI DANH SÁCH THẺ TỪ DB VÀ VẼ RA GIAO DIỆN
-// // =======================================================
-// window.ham_20_8_tai_danh_sach_the = async function () {
-//     const khuVucTags = document.getElementById('nk-khu-vuc-tags');
-//     if (!khuVucTags) return;
-
-//     try {
-//         const { data: theData, error } = await _supabase
-//             .from('cai_dat_the_su_kien')
-//             .select('*')
-//             .order('ngay_tao', { ascending: true });
-
-//         if (error) throw error;
-
-//         const nhomCauHinh = [
-//             { id: 'bai_ve_nha', ten: '🏠 Bài về nhà', mau: '#fd7e14' },
-//             { id: 'hoc_bai', ten: '🧠 Học bài ở nhà', mau: '#dc3545' },
-//             { id: 'tai_lop', ten: '✍️ Làm bài tại lớp', mau: '#007bff' },
-//             { id: 'thai_do', ten: '🎭 Thái độ học tập', mau: '#6f42c1' }
-//         ];
-
-//         let html = '<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;">';
-
-//         nhomCauHinh.forEach(nhom => {
-//             html += `<div style="width: 100%; font-size: 11px; font-weight: bold; color: ${nhom.mau}; border-bottom: 1px dashed ${nhom.mau}; padding-bottom: 2px; margin-top: 5px; text-transform: uppercase;">${nhom.ten}</div>`;
-
-//             let theCuaNhom = theData ? theData.filter(t => t.nhom_the === nhom.id) : [];
-//             theCuaNhom.forEach(the => {
-//                 let tenTheAnToan = the.ten_the.replace(/'/g, "\\'");
-
-//                 html += `
-//                 <div style="display: inline-flex; border: 1px solid ${the.mau_sac}; border-radius: 4px; overflow: hidden; background: #fff;">
-//                     <button onclick="ham_20_3_gan_the('${tenTheAnToan}', '${the.mau_sac}')" style="padding: 5px 8px; font-size: 11px; background: transparent; border: none; color: ${the.mau_sac}; cursor: pointer; font-weight: bold;" title="Bấm để gắn thẻ">${the.ten_the}</button>
-//                     <button onclick="ham_20_10_quan_ly_tag('${the.id}', '${tenTheAnToan}')" style="padding: 3px 6px; font-size: 10px; background: #f8f9fa; border: none; border-left: 1px dashed ${the.mau_sac}; color: #6c757d; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="Sửa hoặc Xóa thẻ này">✏️</button>
-//                 </div>
-//                 `;
-//             });
-
-//             html += `<button onclick="ham_20_9_them_tag_moi('${nhom.id}', '${nhom.mau}')" style="padding: 5px 10px; font-size: 11px; background: #f8f9fa; border: 1px dashed ${nhom.mau}; color: ${nhom.mau}; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#e2e6ea'" onmouseout="this.style.background='#f8f9fa'">➕ Thêm tag</button>`;
-//         });
-
-//         // KHU VỰC NHẬP ĐIỂM SỐ TRỰC TIẾP
-//         html += `
-//         <div style="width: 100%; margin-top: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
-//             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
-//             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
-//                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
-//                 style="flex: 1; max-width: 120px; padding: 6px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 12px;">
-//             <button id="btn-ghi-diem" 
-//                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
-//                 style="padding: 6px 15px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" 
-//                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
-//                 Nhập điểm chờ lưu sự kiện
-//             </button>
-//         </div>`;
-
-//         html += '</div>';
-
-//         khuVucTags.innerHTML = html;
-
-//     } catch (err) {
-//         console.error("Lỗi tải thẻ:", err);
-//         khuVucTags.innerHTML = '<span style="color:red">❌ Lỗi tải danh sách thẻ!</span>';
-//     }
-// };
 
 
 // =======================================================
@@ -2254,62 +2419,10 @@ window.ham_20_10_quan_ly_tag = async function (idThe, tenHienTai) {
 // Khởi tạo mảng toàn cục chứa ảnh bài giảng
 window.danhSachAnhBaiGiangTam = [];
 
-// // =======================================================
-// // HÀM 20.11: XỬ LÝ GOM ẢNH BÀI GIẢNG CHỤP NHIỀU LẦN
-// // =======================================================
-// window.ham_20_11_kich_hoat_preview_anh = function () {
-//     const inputAnhBG = document.getElementById('nk-input-anh-bai-giang');
-//     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
-
-//     if (inputAnhBG && vungHienThiBG) {
-//         inputAnhBG.addEventListener('change', function (e) {
-//             const files = Array.from(e.target.files);
-//             if (files.length === 0) return;
-
-//             // 1. Đưa ảnh vừa chụp vào mảng tạm
-//             window.danhSachAnhBaiGiangTam.push(...files);
-
-//             // 2. Cập nhật lại giao diện
-//             ham_20_11_render_anh_bai_giang();
-
-//             // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được
-//             inputAnhBG.value = '';
-//         });
-//     }
-// };
-
-// // Hàm vẽ lại danh sách ảnh đang có trong mảng
-// window.ham_20_11_render_anh_bai_giang = function () {
-//     const vungHienThiBG = document.getElementById('vung-hien-thi-anh-bang');
-
-//     if (window.danhSachAnhBaiGiangTam.length === 0) {
-//         vungHienThiBG.innerHTML = '<span id="text-cho-anh">(Ảnh chụp bảng bài dạy sẽ xuất hiện tại đây...)</span>';
-//         return;
-//     }
-
-//     let html = '';
-//     window.danhSachAnhBaiGiangTam.forEach((file, index) => {
-//         let url = URL.createObjectURL(file);
-//         html += `
-//             <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
-//                 <img src="${url}" style="height: 60px; width: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-//                 <button type="button" onclick="ham_20_11_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
-//             </div>
-//         `;
-//     });
-//     vungHienThiBG.innerHTML = html;
-// };
-
-// // Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
-// window.ham_20_11_xoa_anh_tam = function (index) {
-//     window.danhSachAnhBaiGiangTam.splice(index, 1);
-//     ham_20_11_render_anh_bai_giang();
-// };
-
 // =======================================================
 // HÀM 20.11: XỬ LÝ ẢNH BÀI GIẢNG (CÓ CẮT & NÉN)
 // =======================================================
-window.ham_20_11_kich_hoat_preview_anh = function () {
+window.ham_20_11b_kich_hoat_preview_anh = function () {
     const inputAnhBG = document.getElementById('nk-input-anh-bai-giang');
     if (inputAnhBG) {
         inputAnhBG.addEventListener('change', async function (e) {
@@ -2345,7 +2458,7 @@ window.ham_20_11_render_anh_bai_giang = function () {
         let sizeKB = (file.size / 1024).toFixed(1);
         html += `
             <div style="position: relative; display: inline-flex; flex-direction: column; align-items: center; animation: fadeIn 0.3s; gap: 3px;">
-                <img src="${url}" style="height: 60px; width: 60px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <img src="${url}" style="height: 120px; width: 120px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                 <span style="font-size: 9px; color: #666; font-weight: bold;">${sizeKB} KB</span>
                 <button type="button" onclick="ham_20_11_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
             </div>
@@ -2401,1080 +2514,6 @@ window.ham_20_13_them_dong_hs_su_kien = function () {
     khuVuc.appendChild(dongMoi);
 };
 
-// // =======================================================
-// // HÀM 20.6: LƯU NHẬT KÝ (UP ẢNH BÀI GIẢNG + ẢNH MINH CHỨNG)
-// // =======================================================
-// window.ham_20_6_luu_nhat_ky = async function () {
-//     // 1. Thu thập dữ liệu thông tin chung
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop;
-//     let match = rawLop.match(/\(([^)]+)\)$/);
-//     if (match) maLopLuu = match[1].trim();
-
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     // Thu thập nội dung text
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     // 🌟 THU THẬP FILE ẢNH BÀI GIẢNG (Từ thẻ input)
-//     // Chú ý: Cần đảm bảo ID này khớp với HTML thẻ input chọn ảnh bài giảng của thầy
-//     const inputAnhBaiGiang = document.getElementById('nk-input-anh-bai-giang');
-//     const filesBaiGiang = inputAnhBaiGiang ? inputAnhBaiGiang.files : [];
-
-//     // 🌟 CHỐT CHẶN BẢO VỆ DỮ LIỆU
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Thầy cần chọn/nhập đầy đủ 5 thông tin: Ngày dạy, Buổi, Tiết, Lớp và Phân môn trước khi lưu nhé!");
-//         return;
-//     }
-
-//     const btnLuu = event.currentTarget;
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ DỮ LIỆU...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         // Hàm hỗ trợ lọc tên file dùng chung
-//         const taoTenAnToan = (chuoi, maxLen = 30) => {
-//             if (!chuoi) return "KhongCo";
-//             let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-//             str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
-//             if (str.length > maxLen) str = str.substring(0, maxLen);
-//             return str.replace(/_$/, '');
-//         };
-
-//         // ==========================================================
-//         // BƯỚC 1: UPLOAD ẢNH BÀI GIẢNG LÊN DRIVE (NẾU CÓ)
-//         // ==========================================================
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH BÀI GIẢNG (${j + 1}/${filesBaiGiang.length})...`;
-
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-
-//                 let tenGoc = fileBg.name;
-//                 let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-//                 let monLuu = taoTenAnToan(phanMon, 15);
-
-//                 // Cấu trúc tên ảnh bài giảng: Ngay[2026-09-17]_Lop[12TN6]_Buoi[Sang]_Tiet[1]_Mon[DaiSo]_Anh[1].jpg
-//                 let tenFileBg = `Ngay[${ngayDay}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${monLuu}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let payload = {
-//                     action: "upload_anh_nhat_ky",
-//                     base64: base64String,
-//                     mimeType: fileBg.type,
-//                     fileName: tenFileBg,
-//                     maLop: maLopLuu,
-//                     loaiAnh: "ANH_BAI_GIANG" // Drive sẽ tự sinh thư mục ANH_BAI_GIANG
-//                 };
-
-//                 let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify(payload)
-//                 });
-//                 let result = await response.json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhBaiGiang.push(result.url);
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 2: LƯU THÔNG TIN NHẬT KÝ VÀO BẢNG 1 (nhat_ky_day_hoc)
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU NHẬT KÝ...";
-//         const { data: nhatKyData, error: err1 } = await _supabase
-//             .from('nhat_ky_day_hoc')
-//             .insert([{
-//                 ngay_day: ngayDay,
-//                 buoi: buoi,
-//                 tiet: tiet,
-//                 ma_lop: maLopLuu,
-//                 phan_mon: phanMon,
-//                 ly_thuyet: lyThuyet,
-//                 bai_tap: baiTap,
-//                 dan_do: danDo,
-//                 danh_sach_anh: mangLinkAnhBaiGiang // Bơm trực tiếp mảng link ảnh vào Supabase
-//             }])
-//             .select();
-
-//         if (err1) throw err1;
-//         const idNhatKy = nhatKyData[0].id;
-
-//         // ==========================================================
-//         // BƯỚC 3: XỬ LÝ ẢNH MINH CHỨNG & SỰ KIỆN HỌC SINH (BẢNG 2)
-//         // ==========================================================
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             let mangSuKienDB = [];
-
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = []; // 🌟 Khai báo mảng chứa các link ảnh trả về từ Drive
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH MINH CHỨNG HS ${i + 1} (Ảnh ${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-//                         try {
-//                             let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                             let tenGoc = fileMC.name;
-//                             let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-
-//                             let tenHsLuu = taoTenAnToan(sk.ten_hoc_sinh, 25);
-//                             let theLuu = taoTenAnToan(sk.loai_the, 15);
-//                             let tenLoiLuu = taoTenAnToan(sk.ghi_chu, 40);
-
-//                             // Bổ sung thêm _Anh[k+1] để tránh trùng tên khi 1 sự kiện có nhiều ảnh
-//                             let tenFileChuan = `Ngay[${ngayDay}]_Lop[${maLopLuu}]_HS[${tenHsLuu}]_The[${theLuu}]_Loi[${tenLoiLuu}]_Anh[${k + 1}]${duoiFile}`;
-
-//                             let payload = {
-//                                 action: "upload_anh_nhat_ky",
-//                                 base64: base64String,
-//                                 mimeType: fileMC.type,
-//                                 fileName: tenFileChuan,
-//                                 maLop: maLopLuu,
-//                                 loaiAnh: "MINH_CHUNG_LOI"
-//                             };
-
-//                             let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                                 method: 'POST',
-//                                 body: JSON.stringify(payload)
-//                             });
-//                             let result = await response.json();
-
-//                             if (result.status === 'success') {
-//                                 mangLinkAnhDrive.push(result.url);
-//                             }
-//                         } catch (e) {
-//                             console.error("Lỗi upload ảnh minh chứng:", e);
-//                         }
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-
-//                 // 🌟 Nhét nguyên mảng link ảnh vào thông tin mở rộng của DB
-//                 if (mangLinkAnhDrive.length > 0) {
-//                     thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
-//                 }
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: sk.uid_hoc_sinh,
-//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh,
-//                     loai_the: sk.loai_the,
-//                     ghi_chu: sk.ghi_chu,
-//                     thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU SỰ KIỆN...";
-//             const { error: err2 } = await _supabase
-//                 .from('nhat_ky_su_kien_hs')
-//                 .insert(mangSuKienDB);
-
-//             if (err2) throw err2;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 4: THÀNH CÔNG -> DỌN DẸP GIAO DIỆN
-//         // ==========================================================
-//         alert("🎉 Đã lưu Nhật ký tiết dạy và Upload ảnh thành công!");
-
-//         textAreas[0].value = '';
-//         textAreas[1].value = '';
-//         textAreas[2].value = '';
-
-//         document.getElementById('nk-input-buoi').value = '';
-//         document.getElementById('nk-input-tiet').value = '';
-//         document.getElementById('nk-input-lop').value = '';
-//         document.getElementById('nk-input-mon').value = '';
-//         document.getElementById('nk-input-hs').value = '';
-
-//         // Xóa ảnh bài giảng và ảnh minh chứng
-//         if (inputAnhBaiGiang) inputAnhBaiGiang.value = '';
-//         const inputAnhMinhChung = document.getElementById('nk-input-anh-minh-chung');
-//         if (inputAnhMinhChung) inputAnhMinhChung.value = '';
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') {
-//             ham_20_4_ve_danh_sach_cho();
-//         }
-
-//     } catch (err) {
-//         console.error("Lỗi khi lưu Nhật ký:", err);
-//         alert("❌ Có lỗi xảy ra, vui lòng thử lại!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-// // =======================================================
-// // HÀM 20.6: LƯU NHẬT KÝ (NỐI MẢNG SUPABASE & TIMESTAMP TÊN FILE)
-// // =======================================================
-// window.ham_20_6_luu_nhat_ky = async function () {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop;
-//     let match = rawLop.match(/\(([^)]+)\)$/);
-//     if (match) maLopLuu = match[1].trim();
-
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     const inputAnhBaiGiang = document.getElementById('nk-input-anh-bai-giang');
-//     const filesBaiGiang = inputAnhBaiGiang ? inputAnhBaiGiang.files : [];
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Thầy cần chọn/nhập đầy đủ 5 thông tin: Ngày dạy, Buổi, Tiết, Lớp và Phân môn trước khi lưu nhé!");
-//         return;
-//     }
-
-//     const btnLuu = event.currentTarget;
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ DỮ LIỆU...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         const taoTenAnToan = (chuoi, maxLen = 30) => {
-//             if (!chuoi) return "KhongCo";
-//             let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-//             str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
-//             if (str.length > maxLen) str = str.substring(0, maxLen);
-//             return str.replace(/_$/, '');
-//         };
-
-//         // 🌟 TẠO TIMESTAMP GIỜ PHÚT GIÂY ĐỂ CHỐNG TRÙNG FILE
-//         const now = new Date();
-//         const gio = String(now.getHours()).padStart(2, '0');
-//         const phut = String(now.getMinutes()).padStart(2, '0');
-//         const giay = String(now.getSeconds()).padStart(2, '0');
-//         const thoiGianLuu = `${gio}h${phut}m${giay}s`;
-
-//         // ==========================================================
-//         // BƯỚC 0: KIỂM TRA LỊCH SỬ LƯU ĐỂ GỘP MẢNG DỮ LIỆU DB
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG KIỂM TRA DỮ LIỆU CŨ...";
-//         const { data: checkData, error: checkErr } = await _supabase
-//             .from('nhat_ky_day_hoc')
-//             .select('id, danh_sach_anh')
-//             .eq('ngay_day', ngayDay)
-//             .eq('ma_lop', maLopLuu)
-//             .eq('tiet', tiet);
-
-//         if (checkErr) throw checkErr;
-
-//         let isUpdate = false;
-//         let idNhatKy = null;
-//         let mangLinkAnhCu = [];
-
-//         if (checkData && checkData.length > 0) {
-//             isUpdate = true;
-//             idNhatKy = checkData[0].id;
-
-//             let rawAnh = checkData[0].danh_sach_anh;
-//             if (Array.isArray(rawAnh)) {
-//                 mangLinkAnhCu = rawAnh;
-//             } else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-//                 try {
-//                     mangLinkAnhCu = JSON.parse(rawAnh);
-//                 } catch (e) {
-//                     mangLinkAnhCu = rawAnh.split(',').filter(link => link.trim() !== '');
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 1: UPLOAD ẢNH BÀI GIẢNG
-//         // ==========================================================
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH BÀI GIẢNG (${j + 1}/${filesBaiGiang.length})...`;
-
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-
-//                 let tenGoc = fileBg.name;
-//                 let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-//                 let monLuu = taoTenAnToan(phanMon, 15);
-
-//                 // 🌟 Tên file chèn thêm giờ phút giây. VD: Ngay[2026-09-17_14h30m15s]_...
-//                 let tenFileBg = `Ngay[${ngayDay}_${thoiGianLuu}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${monLuu}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let payload = {
-//                     action: "upload_anh_nhat_ky",
-//                     base64: base64String,
-//                     mimeType: fileBg.type,
-//                     fileName: tenFileBg,
-//                     maLop: maLopLuu,
-//                     loaiAnh: "ANH_BAI_GIANG"
-//                 };
-
-//                 let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify(payload)
-//                 });
-//                 let result = await response.json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhBaiGiang.push(result.url);
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 2: LƯU / CẬP NHẬT BẢNG 1
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU NHẬT KÝ...";
-//         // Nối mảng ảnh cũ từ Supabase với mảng ảnh vừa đẩy lên thành công
-//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
-
-//         let payloadDB = {
-//             ngay_day: ngayDay,
-//             buoi: buoi,
-//             tiet: tiet,
-//             ma_lop: maLopLuu,
-//             phan_mon: phanMon,
-//             ly_thuyet: lyThuyet,
-//             bai_tap: baiTap,
-//             dan_do: danDo,
-//             danh_sach_anh: danhSachAnhLuu
-//         };
-
-//         if (isUpdate) {
-//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-//             if (errUpdate) throw errUpdate;
-//         } else {
-//             const { data: nhatKyData, error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]).select();
-//             if (errInsert) throw errInsert;
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 3: XỬ LÝ ẢNH MINH CHỨNG
-//         // ==========================================================
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             let mangSuKienDB = [];
-
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-
-//                 // Trích xuất số lượng/link ảnh cũ của học sinh này để gộp (nếu có update)
-//                 let mangAnhMcCu = [];
-//                 if (isUpdate) {
-//                     const { data: mcData } = await _supabase
-//                         .from('nhat_ky_su_kien_hs')
-//                         .select('thong_tin_mo_rong')
-//                         .eq('id_nhat_ky', idNhatKy)
-//                         .eq('uid_hoc_sinh', sk.uid_hoc_sinh)
-//                         .eq('loai_the', sk.loai_the); // Kiểm tra chính xác loại lỗi đã mắc
-
-//                     if (mcData && mcData.length > 0) {
-//                         let dsAnhMC = mcData[0].thong_tin_mo_rong?.danh_sach_anh_minh_chung;
-//                         if (Array.isArray(dsAnhMC)) mangAnhMcCu = dsAnhMC;
-//                     }
-//                 }
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH MINH CHỨNG HS ${i + 1} (Ảnh ${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-//                         try {
-//                             let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                             let tenGoc = fileMC.name;
-//                             let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-
-//                             let tenHsLuu = taoTenAnToan(sk.ten_hoc_sinh, 25);
-//                             let theLuu = taoTenAnToan(sk.loai_the, 15);
-//                             let tenLoiLuu = taoTenAnToan(sk.ghi_chu, 40);
-
-//                             // 🌟 Chèn Timestamp chống trùng cho ảnh minh chứng
-//                             let tenFileChuan = `Ngay[${ngayDay}_${thoiGianLuu}]_Lop[${maLopLuu}]_HS[${tenHsLuu}]_The[${theLuu}]_Loi[${tenLoiLuu}]_Anh[${k + 1}]${duoiFile}`;
-
-//                             let payload = {
-//                                 action: "upload_anh_nhat_ky",
-//                                 base64: base64String,
-//                                 mimeType: fileMC.type,
-//                                 fileName: tenFileChuan,
-//                                 maLop: maLopLuu,
-//                                 loaiAnh: "MINH_CHUNG_LOI"
-//                             };
-
-//                             let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                                 method: 'POST',
-//                                 body: JSON.stringify(payload)
-//                             });
-//                             let result = await response.json();
-
-//                             if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                         } catch (e) {
-//                             console.error("Lỗi upload ảnh minh chứng:", e);
-//                         }
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-
-//                 // Trộn ảnh cũ của học sinh này (nếu có) với ảnh mới
-//                 let tongHopAnhMC = mangAnhMcCu.concat(mangLinkAnhDrive);
-//                 if (tongHopAnhMC.length > 0) {
-//                     thongTinMoRong.danh_sach_anh_minh_chung = tongHopAnhMC;
-//                 }
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: sk.uid_hoc_sinh,
-//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh,
-//                     loai_the: sk.loai_the,
-//                     ghi_chu: sk.ghi_chu,
-//                     thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU SỰ KIỆN...";
-//             const { error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//             if (err2) throw err2;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 4: THÀNH CÔNG -> DỌN DẸP GIAO DIỆN
-//         // ==========================================================
-//         alert("🎉 Đã lưu Nhật ký tiết dạy và Upload ảnh thành công!");
-
-//         textAreas[0].value = '';
-//         textAreas[1].value = '';
-//         textAreas[2].value = '';
-
-//         if (inputAnhBaiGiang) inputAnhBaiGiang.value = '';
-//         const inputAnhMinhChung = document.getElementById('nk-input-anh-minh-chung');
-//         if (inputAnhMinhChung) inputAnhMinhChung.value = '';
-
-//         // Reset lại mảng tạm và preview ảnh bài giảng nếu thầy có dùng
-//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//     } catch (err) {
-//         console.error("Lỗi khi lưu Nhật ký:", err);
-//         alert("❌ Có lỗi xảy ra, vui lòng thử lại!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-// // =======================================================
-// // HÀM 20.6: LƯU NHẬT KÝ (NỐI TEXT & TIMESTAMP TỪNG FILE)
-// // =======================================================
-// window.ham_20_6_luu_nhat_ky = async function () {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop;
-//     let match = rawLop.match(/\(([^)]+)\)$/);
-//     if (match) maLopLuu = match[1].trim();
-
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     const inputAnhBaiGiang = document.getElementById('nk-input-anh-bai-giang');
-//     const filesBaiGiang = inputAnhBaiGiang ? inputAnhBaiGiang.files : [];
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Thầy cần chọn/nhập đầy đủ 5 thông tin: Ngày dạy, Buổi, Tiết, Lớp và Phân môn trước khi lưu nhé!");
-//         return;
-//     }
-
-//     const btnLuu = event.currentTarget;
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ DỮ LIỆU...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         const taoTenAnToan = (chuoi, maxLen = 30) => {
-//             if (!chuoi) return "KhongCo";
-//             let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-//             str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
-//             if (str.length > maxLen) str = str.substring(0, maxLen);
-//             return str.replace(/_$/, '');
-//         };
-
-//         // 🌟 Hàm tạo Timestamp gọi liên tục để lấy thời gian hiện tại cho từng ảnh
-//         const layGioPhutGiay = () => {
-//             const now = new Date();
-//             return `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m${String(now.getSeconds()).padStart(2, '0')}s`;
-//         };
-
-//         // ==========================================================
-//         // BƯỚC 0: KIỂM TRA LỊCH SỬ LƯU & LẤY NỘI DUNG CŨ ĐỂ NỐI
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG KIỂM TRA DỮ LIỆU CŨ...";
-//         const { data: checkData, error: checkErr } = await _supabase
-//             .from('nhat_ky_day_hoc')
-//             .select('id, danh_sach_anh, ly_thuyet, bai_tap, dan_do') // Lấy thêm các trường Text
-//             .eq('ngay_day', ngayDay)
-//             .eq('ma_lop', maLopLuu)
-//             .eq('tiet', tiet);
-
-//         if (checkErr) throw checkErr;
-
-//         let isUpdate = false;
-//         let idNhatKy = null;
-//         let mangLinkAnhCu = [];
-
-//         let oldLyThuyet = '';
-//         let oldBaiTap = '';
-//         let oldDanDo = '';
-
-//         if (checkData && checkData.length > 0) {
-//             isUpdate = true;
-//             idNhatKy = checkData[0].id;
-
-//             // Lấy Text cũ
-//             oldLyThuyet = checkData[0].ly_thuyet || '';
-//             oldBaiTap = checkData[0].bai_tap || '';
-//             oldDanDo = checkData[0].dan_do || '';
-
-//             let rawAnh = checkData[0].danh_sach_anh;
-//             if (Array.isArray(rawAnh)) {
-//                 mangLinkAnhCu = rawAnh;
-//             } else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-//                 try {
-//                     mangLinkAnhCu = JSON.parse(rawAnh);
-//                 } catch (e) {
-//                     mangLinkAnhCu = rawAnh.split(',').filter(link => link.trim() !== '');
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 1: UPLOAD ẢNH BÀI GIẢNG (TẠO TIMESTAMP ĐỘNG)
-//         // ==========================================================
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH BÀI GIẢNG (${j + 1}/${filesBaiGiang.length})...`;
-
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-
-//                 let tenGoc = fileBg.name;
-//                 let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-//                 let monLuu = taoTenAnToan(phanMon, 15);
-
-//                 // 🌟 Gọi hàm lấy thời gian cho từng ảnh
-//                 let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${monLuu}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let payload = {
-//                     action: "upload_anh_nhat_ky",
-//                     base64: base64String,
-//                     mimeType: fileBg.type,
-//                     fileName: tenFileBg,
-//                     maLop: maLopLuu,
-//                     loaiAnh: "ANH_BAI_GIANG"
-//                 };
-
-//                 let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify(payload)
-//                 });
-//                 let result = await response.json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhBaiGiang.push(result.url);
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 2: LƯU / CẬP NHẬT BẢNG 1 (NỐI VĂN BẢN)
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU NHẬT KÝ...";
-//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
-
-//         // 🌟 Logic xử lý nối Text: Nếu có bài cũ và có gõ thêm bài mới -> Xuống dòng nối thêm. Nếu không thì giữ nguyên.
-//         let lyThuyetLuu = (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet);
-//         let baiTapLuu = (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap);
-//         let danDoLuu = (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo);
-
-//         let payloadDB = {
-//             ngay_day: ngayDay,
-//             buoi: buoi,
-//             tiet: tiet,
-//             ma_lop: maLopLuu,
-//             phan_mon: phanMon,
-//             ly_thuyet: lyThuyetLuu,
-//             bai_tap: baiTapLuu,
-//             dan_do: danDoLuu,
-//             danh_sach_anh: danhSachAnhLuu
-//         };
-
-//         if (isUpdate) {
-//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-//             if (errUpdate) throw errUpdate;
-//         } else {
-//             const { data: nhatKyData, error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]).select();
-//             if (errInsert) throw errInsert;
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 3: XỬ LÝ ẢNH MINH CHỨNG (TẠO TIMESTAMP ĐỘNG)
-//         // ==========================================================
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             let mangSuKienDB = [];
-
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-
-//                 let mangAnhMcCu = [];
-//                 if (isUpdate) {
-//                     const { data: mcData } = await _supabase
-//                         .from('nhat_ky_su_kien_hs')
-//                         .select('thong_tin_mo_rong')
-//                         .eq('id_nhat_ky', idNhatKy)
-//                         .eq('uid_hoc_sinh', sk.uid_hoc_sinh)
-//                         .eq('loai_the', sk.loai_the);
-
-//                     if (mcData && mcData.length > 0) {
-//                         let dsAnhMC = mcData[0].thong_tin_mo_rong?.danh_sach_anh_minh_chung;
-//                         if (Array.isArray(dsAnhMC)) mangAnhMcCu = dsAnhMC;
-//                     }
-//                 }
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH MINH CHỨNG HS ${i + 1} (Ảnh ${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-//                         try {
-//                             let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                             let tenGoc = fileMC.name;
-//                             let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-
-//                             let tenHsLuu = taoTenAnToan(sk.ten_hoc_sinh, 25);
-//                             let theLuu = taoTenAnToan(sk.loai_the, 15);
-//                             let tenLoiLuu = taoTenAnToan(sk.ghi_chu, 40);
-
-//                             // 🌟 Gọi hàm lấy thời gian cho từng ảnh minh chứng
-//                             let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${tenHsLuu}]_The[${theLuu}]_Loi[${tenLoiLuu}]_Anh[${k + 1}]${duoiFile}`;
-
-//                             let payload = {
-//                                 action: "upload_anh_nhat_ky",
-//                                 base64: base64String,
-//                                 mimeType: fileMC.type,
-//                                 fileName: tenFileChuan,
-//                                 maLop: maLopLuu,
-//                                 loaiAnh: "MINH_CHUNG_LOI"
-//                             };
-
-//                             let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                                 method: 'POST',
-//                                 body: JSON.stringify(payload)
-//                             });
-//                             let result = await response.json();
-
-//                             if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                         } catch (e) {
-//                             console.error("Lỗi upload ảnh minh chứng:", e);
-//                         }
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-
-//                 let tongHopAnhMC = mangAnhMcCu.concat(mangLinkAnhDrive);
-//                 if (tongHopAnhMC.length > 0) {
-//                     thongTinMoRong.danh_sach_anh_minh_chung = tongHopAnhMC;
-//                 }
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: sk.uid_hoc_sinh,
-//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh,
-//                     loai_the: sk.loai_the,
-//                     ghi_chu: sk.ghi_chu,
-//                     thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU SỰ KIỆN...";
-//             const { error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//             if (err2) throw err2;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 4: THÀNH CÔNG -> DỌN DẸP GIAO DIỆN
-//         // ==========================================================
-//         alert("🎉 Đã lưu Nhật ký tiết dạy và Upload ảnh thành công!");
-
-//         textAreas[0].value = '';
-//         textAreas[1].value = '';
-//         textAreas[2].value = '';
-
-//         if (inputAnhBaiGiang) inputAnhBaiGiang.value = '';
-//         const inputAnhMinhChung = document.getElementById('nk-input-anh-minh-chung');
-//         if (inputAnhMinhChung) inputAnhMinhChung.value = '';
-
-//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//     } catch (err) {
-//         console.error("Lỗi khi lưu Nhật ký:", err);
-//         alert("❌ Có lỗi xảy ra, vui lòng thử lại!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-// // =======================================================
-// // HÀM 20.6: LƯU NHẬT KÝ (KẾT HỢP ĐIỂM DANH & SỰ KIỆN)
-// // =======================================================
-// window.ham_20_6_luu_nhat_ky = async function () {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop;
-//     let match = rawLop.match(/\(([^)]+)\)$/);
-//     if (match) maLopLuu = match[1].trim();
-
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     const inputAnhBaiGiang = document.getElementById('nk-input-anh-bai-giang');
-//     const filesBaiGiang = inputAnhBaiGiang ? inputAnhBaiGiang.files : [];
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Thầy cần chọn/nhập đầy đủ 5 thông tin: Ngày dạy, Buổi, Tiết, Lớp và Phân môn trước khi lưu nhé!");
-//         return;
-//     }
-
-//     const btnLuu = event.currentTarget;
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ DỮ LIỆU...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         const taoTenAnToan = (chuoi, maxLen = 30) => {
-//             if (!chuoi) return "KhongCo";
-//             let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-//             str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
-//             if (str.length > maxLen) str = str.substring(0, maxLen);
-//             return str.replace(/_$/, '');
-//         };
-
-//         const layGioPhutGiay = () => {
-//             const now = new Date();
-//             return `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m${String(now.getSeconds()).padStart(2, '0')}s`;
-//         };
-
-//         // ==========================================================
-//         // BƯỚC 0: KIỂM TRA LỊCH SỬ LƯU & LẤY NỘI DUNG CŨ ĐỂ NỐI
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG KIỂM TRA DỮ LIỆU CŨ...";
-//         const { data: checkData, error: checkErr } = await _supabase
-//             .from('nhat_ky_day_hoc')
-//             .select('id, danh_sach_anh, ly_thuyet, bai_tap, dan_do')
-//             .eq('ngay_day', ngayDay)
-//             .eq('ma_lop', maLopLuu)
-//             .eq('tiet', tiet);
-
-//         if (checkErr) throw checkErr;
-
-//         let isUpdate = false;
-//         let idNhatKy = null;
-//         let mangLinkAnhCu = [];
-
-//         let oldLyThuyet = '';
-//         let oldBaiTap = '';
-//         let oldDanDo = '';
-
-//         if (checkData && checkData.length > 0) {
-//             isUpdate = true;
-//             idNhatKy = checkData[0].id;
-
-//             oldLyThuyet = checkData[0].ly_thuyet || '';
-//             oldBaiTap = checkData[0].bai_tap || '';
-//             oldDanDo = checkData[0].dan_do || '';
-
-//             let rawAnh = checkData[0].danh_sach_anh;
-//             if (Array.isArray(rawAnh)) {
-//                 mangLinkAnhCu = rawAnh;
-//             } else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-//                 try {
-//                     mangLinkAnhCu = JSON.parse(rawAnh);
-//                 } catch (e) {
-//                     mangLinkAnhCu = rawAnh.split(',').filter(link => link.trim() !== '');
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 1: UPLOAD ẢNH BÀI GIẢNG 
-//         // ==========================================================
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH BÀI GIẢNG (${j + 1}/${filesBaiGiang.length})...`;
-
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-//                 let tenGoc = fileBg.name;
-//                 let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-//                 let monLuu = taoTenAnToan(phanMon, 15);
-
-//                 let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${monLuu}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let payload = {
-//                     action: "upload_anh_nhat_ky",
-//                     base64: base64String,
-//                     mimeType: fileBg.type,
-//                     fileName: tenFileBg,
-//                     maLop: maLopLuu,
-//                     loaiAnh: "ANH_BAI_GIANG"
-//                 };
-
-//                 let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify(payload)
-//                 });
-//                 let result = await response.json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhBaiGiang.push(result.url);
-//                 }
-//             }
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 2: LƯU / CẬP NHẬT BẢNG 1 (NHẬT KÝ CHUNG)
-//         // ==========================================================
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU NHẬT KÝ...";
-//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
-
-//         let lyThuyetLuu = (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet);
-//         let baiTapLuu = (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap);
-//         let danDoLuu = (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo);
-
-//         let payloadDB = {
-//             ngay_day: ngayDay,
-//             buoi: buoi,
-//             tiet: tiet,
-//             ma_lop: maLopLuu,
-//             phan_mon: phanMon,
-//             ly_thuyet: lyThuyetLuu,
-//             bai_tap: baiTapLuu,
-//             dan_do: danDoLuu,
-//             danh_sach_anh: danhSachAnhLuu
-//         };
-
-//         if (isUpdate) {
-//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-//             if (errUpdate) throw errUpdate;
-//         } else {
-//             const { data: nhatKyData, error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]).select();
-//             if (errInsert) throw errInsert;
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 3: XỬ LÝ SỰ KIỆN HỌC SINH & ĐIỂM DANH
-//         // ==========================================================
-//         let mangSuKienDB = [];
-
-//         // 3.1 GOM SỰ KIỆN TỪ DANH SÁCH LỖI / GHI CHÚ
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-//                 let mangAnhMcCu = [];
-
-//                 if (isUpdate) {
-//                     const { data: mcData } = await _supabase
-//                         .from('nhat_ky_su_kien_hs')
-//                         .select('thong_tin_mo_rong')
-//                         .eq('id_nhat_ky', idNhatKy)
-//                         .eq('uid_hoc_sinh', sk.uid_hoc_sinh)
-//                         .eq('loai_the', sk.loai_the);
-
-//                     if (mcData && mcData.length > 0) {
-//                         let dsAnhMC = mcData[0].thong_tin_mo_rong?.danh_sach_anh_minh_chung;
-//                         if (Array.isArray(dsAnhMC)) mangAnhMcCu = dsAnhMC;
-//                     }
-//                 }
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH MINH CHỨNG HS ${i + 1} (Ảnh ${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-//                         try {
-//                             let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                             let tenGoc = fileMC.name;
-//                             let duoiFile = tenGoc.includes('.') ? tenGoc.substring(tenGoc.lastIndexOf('.')) : '.jpg';
-//                             let tenHsLuu = taoTenAnToan(sk.ten_hoc_sinh, 25);
-//                             let theLuu = taoTenAnToan(sk.loai_the, 15);
-//                             let tenLoiLuu = taoTenAnToan(sk.ghi_chu, 40);
-
-//                             let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${tenHsLuu}]_The[${theLuu}]_Loi[${tenLoiLuu}]_Anh[${k + 1}]${duoiFile}`;
-
-//                             let payload = {
-//                                 action: "upload_anh_nhat_ky",
-//                                 base64: base64String,
-//                                 mimeType: fileMC.type,
-//                                 fileName: tenFileChuan,
-//                                 maLop: maLopLuu,
-//                                 loaiAnh: "MINH_CHUNG_LOI"
-//                             };
-
-//                             let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                                 method: 'POST',
-//                                 body: JSON.stringify(payload)
-//                             });
-//                             let result = await response.json();
-
-//                             if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                         } catch (e) {
-//                             console.error("Lỗi upload ảnh minh chứng:", e);
-//                         }
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-//                 let tongHopAnhMC = mangAnhMcCu.concat(mangLinkAnhDrive);
-//                 if (tongHopAnhMC.length > 0) {
-//                     thongTinMoRong.danh_sach_anh_minh_chung = tongHopAnhMC;
-//                 }
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: sk.uid_hoc_sinh,
-//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh,
-//                     loai_the: sk.loai_the,
-//                     ghi_chu: sk.ghi_chu,
-//                     thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-//         }
-
-//         // 3.2 🌟 GOM DỮ LIỆU ĐIỂM DANH (HỌC SINH VẮNG)
-//         const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-
-//         cacOVan.forEach(oVang => {
-//             let thongTinHS = oVang.value.trim();
-//             if (thongTinHS) {
-//                 // Dò tìm UID dựa trên danh sách sổ xuống
-//                 let uidTimDuoc = null;
-//                 danhSachOptions.forEach(opt => {
-//                     if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid;
-//                 });
-
-//                 let parts = thongTinHS.split(' - ');
-//                 let tenHienThi = parts[0].trim();
-//                 let tenDangNhap = parts.length > 1 ? parts[1].trim() : '';
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: uidTimDuoc,
-//                     ten_dang_nhap_hoc_sinh: tenDangNhap,
-//                     ten_hoc_sinh: tenHienThi,
-//                     loai_the: 'Vắng mặt', // Mã định danh cố định cho thẻ điểm danh
-//                     ghi_chu: 'Vắng mặt trong tiết học',
-//                     thong_tin_mo_rong: { mau_sac: '#343a40' } // Nhãn màu đen/xám tối cho học sinh vắng
-//                 });
-//             }
-//         });
-
-//         // 3.3 ĐẨY TOÀN BỘ LÊN SUPABASE
-//         if (mangSuKienDB.length > 0) {
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU SỰ KIỆN & ĐIỂM DANH...";
-//             const { error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//             if (err2) throw err2;
-//         }
-
-//         // ==========================================================
-//         // BƯỚC 4: THÀNH CÔNG -> DỌN DẸP GIAO DIỆN
-//         // ==========================================================
-//         alert("🎉 Đã lưu Nhật ký tiết dạy và Upload ảnh thành công!");
-
-//         textAreas[0].value = '';
-//         textAreas[1].value = '';
-//         textAreas[2].value = '';
-
-//         if (inputAnhBaiGiang) inputAnhBaiGiang.value = '';
-//         const inputAnhMinhChung = document.getElementById('nk-input-anh-minh-chung');
-//         if (inputAnhMinhChung) inputAnhMinhChung.value = '';
-
-//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//         // 🌟 Dọn dẹp khu vực điểm danh, khôi phục 1 dòng trống
-//         const khuVucDiemDanh = document.getElementById('nk-khu-vuc-diem-danh');
-//         if (khuVucDiemDanh) {
-//             khuVucDiemDanh.innerHTML = `
-//                 <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                     <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                     <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//                 </div>
-//             `;
-//         }
-
-//     } catch (err) {
-//         console.error("Lỗi khi lưu Nhật ký:", err);
-//         alert("❌ Có lỗi xảy ra, vui lòng thử lại!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
 
 // =======================================================
 // HÀM HỖ TRỢ CHUNG DÙNG CHO CẢ 2 NÚT LƯU
@@ -3490,1438 +2529,6 @@ const taoTenAnToan = (chuoi, maxLen = 30) => {
 const layGioPhutGiay = () => {
     const now = new Date();
     return `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m${String(now.getSeconds()).padStart(2, '0')}s`;
-};
-
-// // =======================================================
-// // HÀM 20.6A: CHỈ LƯU NỘI DUNG BÀI GIẢNG & ẢNH BẢNG
-// // =======================================================
-// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     const filesBaiGiang = window.mangAnhBaiGiangTam || (document.getElementById('nk-input-anh-bai-giang') ? document.getElementById('nk-input-anh-bai-giang').files : []);
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Vui lòng điền đủ: Ngày, Buổi, Tiết, Lớp, Phân môn!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         // 1. Kiểm tra lịch sử
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh, ly_thuyet, bai_tap, dan_do').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         let isUpdate = false, idNhatKy = null, mangLinkAnhCu = [], oldLyThuyet = '', oldBaiTap = '', oldDanDo = '';
-//         if (checkData && checkData.length > 0) {
-//             isUpdate = true;
-//             idNhatKy = checkData[0].id;
-//             oldLyThuyet = checkData[0].ly_thuyet || '';
-//             oldBaiTap = checkData[0].bai_tap || '';
-//             oldDanDo = checkData[0].dan_do || '';
-
-//             let rawAnh = checkData[0].danh_sach_anh;
-//             if (Array.isArray(rawAnh)) mangLinkAnhCu = rawAnh;
-//             else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-//                 try { mangLinkAnhCu = JSON.parse(rawAnh); } catch (e) { mangLinkAnhCu = rawAnh.split(',').filter(l => l.trim()); }
-//             }
-//         }
-
-//         // 2. Upload ảnh
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${j + 1}/${filesBaiGiang.length})...`;
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-//                 let duoiFile = fileBg.name.includes('.') ? fileBg.name.substring(fileBg.name.lastIndexOf('.')) : '.jpg';
-
-//                 let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${taoTenAnToan(phanMon, 15)}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileBg.type, fileName: tenFileBg, maLop: maLopLuu, loaiAnh: "ANH_BAI_GIANG" })
-//                 })).json();
-//                 if (result.status === 'success') mangLinkAnhBaiGiang.push(result.url);
-//             }
-//         }
-
-//         // 3. Cập nhật Text nối đuôi
-//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
-//         let payloadDB = {
-//             ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-//             ly_thuyet: (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet),
-//             bai_tap: (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap),
-//             dan_do: (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo),
-//             danh_sach_anh: danhSachAnhLuu
-//         };
-
-//         if (isUpdate) await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-//         else await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]);
-
-//         alert("✅ Đã lưu xong NỘI DUNG BÀI GIẢNG!");
-//         textAreas[0].value = ''; textAreas[1].value = ''; textAreas[2].value = '';
-//         if (document.getElementById('nk-input-anh-bai-giang')) document.getElementById('nk-input-anh-bai-giang').value = '';
-//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-//     } catch (err) {
-//         console.error("Lỗi:", err); alert("❌ Lỗi lưu bài giảng!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
-//     }
-// };
-
-// // =======================================================
-// // HÀM 20.6A: CHỈ LƯU NỘI DUNG BÀI GIẢNG & ẢNH BẢNG
-// // =======================================================
-// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     // 🌟 Lấy dữ liệu Tên bài và TextAreas
-//     const tenBai = document.getElementById('nk-input-ten-bai') ? document.getElementById('nk-input-ten-bai').value.trim() : '';
-//     const textAreas = document.querySelectorAll('#vung-lam-viec-chi-tiet textarea');
-//     const lyThuyet = textAreas[0].value.trim();
-//     const baiTap = textAreas[1].value.trim();
-//     const danDo = textAreas[2].value.trim();
-
-//     const filesBaiGiang = window.mangAnhBaiGiangTam || (document.getElementById('nk-input-anh-bai-giang') ? document.getElementById('nk-input-anh-bai-giang').files : []);
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         // 🌟 Kéo thêm trường ten_bai về để kiểm tra nối đuôi (nếu lưu nhiều lần)
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh, ten_bai, ly_thuyet, bai_tap, dan_do').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         let isUpdate = false, idNhatKy = null, mangLinkAnhCu = [];
-//         let oldTenBai = '', oldLyThuyet = '', oldBaiTap = '', oldDanDo = '';
-
-//         if (checkData && checkData.length > 0) {
-//             isUpdate = true;
-//             idNhatKy = checkData[0].id;
-//             oldTenBai = checkData[0].ten_bai || '';
-//             oldLyThuyet = checkData[0].ly_thuyet || '';
-//             oldBaiTap = checkData[0].bai_tap || '';
-//             oldDanDo = checkData[0].dan_do || '';
-
-//             let rawAnh = checkData[0].danh_sach_anh;
-//             if (Array.isArray(rawAnh)) mangLinkAnhCu = rawAnh;
-//             else if (typeof rawAnh === 'string' && rawAnh.length > 5) {
-//                 try { mangLinkAnhCu = JSON.parse(rawAnh); } catch (e) { mangLinkAnhCu = rawAnh.split(',').filter(l => l.trim()); }
-//             }
-//         }
-
-//         let mangLinkAnhBaiGiang = [];
-//         if (filesBaiGiang.length > 0) {
-//             for (let j = 0; j < filesBaiGiang.length; j++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${j + 1}/${filesBaiGiang.length})...`;
-//                 let fileBg = filesBaiGiang[j];
-//                 let base64String = await ham_ho_tro_doc_anh_base64(fileBg);
-//                 let duoiFile = fileBg.name.includes('.') ? fileBg.name.substring(fileBg.name.lastIndexOf('.')) : '.jpg';
-
-//                 let tenFileBg = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Buoi[${taoTenAnToan(buoi, 10)}]_Tiet[${taoTenAnToan(tiet, 10)}]_Mon[${taoTenAnToan(phanMon, 15)}]_Anh[${j + 1}]${duoiFile}`;
-
-//                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileBg.type, fileName: tenFileBg, maLop: maLopLuu, loaiAnh: "ANH_BAI_GIANG" })
-//                 })).json();
-//                 if (result.status === 'success') mangLinkAnhBaiGiang.push(result.url);
-//             }
-//         }
-
-//         let danhSachAnhLuu = mangLinkAnhCu.concat(mangLinkAnhBaiGiang);
-
-//         let payloadDB = {
-//             ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-//             ten_bai: (isUpdate && oldTenBai && tenBai) ? oldTenBai + '\n' + tenBai : (tenBai || oldTenBai),
-//             ly_thuyet: (isUpdate && oldLyThuyet && lyThuyet) ? oldLyThuyet + '\n' + lyThuyet : (lyThuyet || oldLyThuyet),
-//             bai_tap: (isUpdate && oldBaiTap && baiTap) ? oldBaiTap + '\n' + baiTap : (baiTap || oldBaiTap),
-//             dan_do: (isUpdate && oldDanDo && danDo) ? oldDanDo + '\n' + danDo : (danDo || oldDanDo),
-//             danh_sach_anh: danhSachAnhLuu
-//         };
-
-//         if (isUpdate) await _supabase.from('nhat_ky_day_hoc').update(payloadDB).eq('id', idNhatKy);
-//         else await _supabase.from('nhat_ky_day_hoc').insert([payloadDB]);
-
-//         alert("✅ Đã lưu xong NỘI DUNG BÀI GIẢNG!");
-
-//         if (document.getElementById('nk-input-ten-bai')) document.getElementById('nk-input-ten-bai').value = '';
-//         textAreas[0].value = ''; textAreas[1].value = ''; textAreas[2].value = '';
-//         if (document.getElementById('nk-input-anh-bai-giang')) document.getElementById('nk-input-anh-bai-giang').value = '';
-//         if (typeof window.mangAnhBaiGiangTam !== 'undefined') window.mangAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-
-//     } catch (err) {
-//         console.error("Lỗi:", err);
-//         alert("❌ Lỗi lưu bài giảng! Vui lòng kiểm tra xem cột 'ten_bai' đã được tạo trong bảng nhat_ky_day_hoc chưa.");
-//     } finally {
-//         btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD
-// // =======================================================
-// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
-//         return;
-//     }
-
-//     const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
-//     const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
-//     const baiTap = document.querySelectorAll('textarea')[1].value.trim();
-//     const danDo = document.querySelectorAll('textarea')[2].value.trim();
-
-//     // LẤY DANH SÁCH ẢNH TỪ MẢNG TẠM THAY VÌ TỪ INPUT
-//     const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
-
-//     if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
-//         alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chụp ảnh nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         let mangLinkAnhDrive = [];
-
-//         // Nếu có ảnh trong mảng tạm thì tải lên Google Drive
-//         if (danhSachFileAnh.length > 0) {
-//             for (let k = 0; k < danhSachFileAnh.length; k++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
-//                 let file = danhSachFileAnh[k];
-
-//                 let base64String = await ham_ho_tro_doc_anh_base64(file);
-//                 let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
-//                 let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
-
-//                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" })
-//                 })).json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhDrive.push(result.url);
-//                 }
-//             }
-//         }
-
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
-
-//         // Kiểm tra xem tiết này đã tạo trong DB chưa (do Lưu điểm danh hoặc Lưu bài giảng chạy trước)
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc')
-//             .select('id, danh_sach_anh')
-//             .eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (checkData && checkData.length > 0) {
-//             // Đã có tiết -> Nối thêm ảnh mới vào mảng ảnh cũ (nếu có)
-//             let mangAnhCu = [];
-//             if (checkData[0].danh_sach_anh) {
-//                 try { mangAnhCu = JSON.parse(checkData[0].danh_sach_anh); }
-//                 catch (e) { mangAnhCu = checkData[0].danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-//             let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
-
-//             await _supabase.from('nhat_ky_day_hoc').update({
-//                 phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo,
-//                 danh_sach_anh: mangAnhMoi
-//             }).eq('id', checkData[0].id);
-//         } else {
-//             // Chưa có tiết -> Insert mới
-//             await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-//                 ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo,
-//                 danh_sach_anh: mangLinkAnhDrive
-//             }]);
-//         }
-
-//         alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
-
-//         // Reset form sau khi lưu thành công
-//         document.getElementById('nk-input-ten-bai').value = '';
-//         document.querySelectorAll('textarea')[0].value = '';
-//         document.querySelectorAll('textarea')[1].value = '';
-//         document.querySelectorAll('textarea')[2].value = '';
-
-//         // Dọn dẹp mảng ảnh tạm và giao diện
-//         window.danhSachAnhBaiGiangTam = [];
-//         ham_20_11_render_anh_bai_giang();
-
-//     } catch (err) {
-//         console.error("Lỗi:", err);
-//         alert("❌ Lỗi lưu dữ liệu bài giảng!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD
-// // =======================================================
-// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
-//         return;
-//     }
-
-//     const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
-//     const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
-//     const baiTap = document.querySelectorAll('textarea')[1].value.trim();
-//     const danDo = document.querySelectorAll('textarea')[2].value.trim();
-
-//     // LẤY DANH SÁCH ẢNH TỪ MẢNG TẠM
-//     const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
-
-//     if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
-//         alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chọn ảnh nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         let mangLinkAnhDrive = [];
-
-//         // 1. TẢI ẢNH LÊN GOOGLE DRIVE (NẾU CÓ)
-//         if (danhSachFileAnh.length > 0) {
-//             for (let k = 0; k < danhSachFileAnh.length; k++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
-//                 let file = danhSachFileAnh[k];
-
-//                 let base64String = await ham_ho_tro_doc_anh_base64(file);
-//                 let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
-//                 let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
-
-//                 let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" })
-//                 })).json();
-
-//                 if (result.status === 'success') {
-//                     mangLinkAnhDrive.push(result.url);
-//                 }
-//             }
-//         }
-
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
-
-//         // 2. KIỂM TRA XEM TIẾT NÀY ĐÃ TỒN TẠI CHƯA
-//         const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc')
-//             .select('id, danh_sach_anh')
-//             .eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (errCheck) throw errCheck;
-
-//         if (checkData && checkData.length > 0) {
-//             // Đã có tiết -> Lấy mảng ảnh cũ chuẩn bị nối thêm
-//             let mangAnhCu = [];
-//             let dbAnh = checkData[0].danh_sach_anh;
-
-//             if (dbAnh) {
-//                 // Xử lý thông minh tránh lỗi "split is not a function"
-//                 if (Array.isArray(dbAnh)) {
-//                     mangAnhCu = dbAnh;
-//                 } else if (typeof dbAnh === 'string') {
-//                     try { mangAnhCu = JSON.parse(dbAnh); }
-//                     catch (e) { mangAnhCu = dbAnh.split(',').filter(l => l.trim()); }
-//                 }
-//             }
-
-//             let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
-
-//             // Cập nhật lại tiết học
-//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update({
-//                 phan_mon: phanMon,
-//                 ten_bai: tenBai,
-//                 ly_thuyet: lyThuyet,
-//                 bai_tap: baiTap,
-//                 dan_do: danDo,
-//                 danh_sach_anh: mangAnhMoi
-//             }).eq('id', checkData[0].id);
-
-//             if (errUpdate) throw errUpdate;
-
-//         } else {
-//             // Chưa có tiết -> Tạo tiết mới hoàn toàn
-//             const { error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay,
-//                 buoi: buoi,
-//                 tiet: tiet,
-//                 ma_lop: maLopLuu,
-//                 phan_mon: phanMon,
-//                 ten_bai: tenBai,
-//                 ly_thuyet: lyThuyet,
-//                 bai_tap: baiTap,
-//                 dan_do: danDo,
-//                 danh_sach_anh: mangLinkAnhDrive
-//             }]);
-
-//             if (errInsert) throw errInsert;
-//         }
-
-//         alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
-
-//         // 3. RESET FORM SAU KHI LƯU
-//         document.getElementById('nk-input-ten-bai').value = '';
-//         document.querySelectorAll('textarea')[0].value = '';
-//         document.querySelectorAll('textarea')[1].value = '';
-//         document.querySelectorAll('textarea')[2].value = '';
-
-//         // Dọn dẹp mảng ảnh tạm và xóa trắng khung Preview
-//         window.danhSachAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_render_anh_bai_giang === 'function') {
-//             ham_20_11_render_anh_bai_giang();
-//         }
-
-//     } catch (err) {
-//         console.error("Lỗi chi tiết khi lưu bài giảng:", err);
-//         alert("❌ Lỗi lưu dữ liệu bài giảng! Thầy vui lòng nhấn F12 chuyển sang tab Console để xem nguyên nhân cụ thể nhé.");
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-
-
-// // =======================================================
-// // HÀM 20.6B: CHỈ LƯU SỰ KIỆN & ĐIỂM DANH (CÓ CHỐNG TRÙNG)
-// // =======================================================
-// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu || !phanMon) {
-//         alert("⚠️ Vui lòng điền đủ: Ngày, Buổi, Tiết, Lớp, Phân môn trước khi lưu sự kiện!");
-//         return;
-//     }
-
-//     // Lấy dữ liệu điểm danh
-//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
-
-//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
-//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         // 1. Tạo Gốc Bám (Nếu tiết này chưa từng được lưu bài giảng)
-//         let idNhatKy = null;
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (checkData && checkData.length > 0) {
-//             idNhatKy = checkData[0].id;
-//         } else {
-//             const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
-//             }]).select();
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         let mangSuKienDB = [];
-
-//         // 🌟 BỘ LỌC KÉP CHỐNG TRÙNG LẶP HỌC SINH VẮNG
-//         // A. Kéo danh sách UID "đã vắng mặt" trên DB của tiết này về
-//         let uidsDaVangDB = new Set();
-//         const { data: vangData } = await _supabase
-//             .from('nhat_ky_su_kien_hs')
-//             .select('uid_hoc_sinh')
-//             .eq('id_nhat_ky', idNhatKy)
-//             .eq('loai_the', 'Vắng mặt');
-
-//         if (vangData) {
-//             vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
-//         }
-
-//         let uidsTrongGiaoDien = new Set(); // Chống trùng khi thầy gõ 2 ô giống nhau
-//         let tenCacHSDaTrung = []; // Danh sách tên để hiển thị cảnh báo cho thầy
-
-//         // 2. Gom sự kiện Điểm Danh
-//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//         cacOVan.forEach(oVang => {
-//             let thongTinHS = oVang.value.trim();
-//             if (thongTinHS) {
-//                 let uidTimDuoc = null;
-//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
-
-//                 let parts = thongTinHS.split(' - ');
-//                 let tenHienThi = parts[0].trim();
-
-//                 if (uidTimDuoc) {
-//                     // Kiểm tra xem em này đã bị điểm danh trùng chưa
-//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
-//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
-//                     } else {
-//                         // Nếu chưa trùng thì đưa vào mảng lưu & đánh dấu đã xử lý
-//                         uidsTrongGiaoDien.add(uidTimDuoc);
-//                         mangSuKienDB.push({
-//                             id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc,
-//                             ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
-//                             ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học',
-//                             thong_tin_mo_rong: { mau_sac: '#343a40' }
-//                         });
-//                     }
-//                 }
-//             }
-//         });
-
-//         // 3. Gom Sự kiện Lỗi & Upload Ảnh Minh Chứng (Giữ nguyên)
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-//                 let mangAnhMcCu = [];
-
-//                 const { data: mcData } = await _supabase.from('nhat_ky_su_kien_hs').select('thong_tin_mo_rong').eq('id_nhat_ky', idNhatKy).eq('uid_hoc_sinh', sk.uid_hoc_sinh).eq('loai_the', sk.loai_the);
-//                 if (mcData && mcData.length > 0 && Array.isArray(mcData[0].thong_tin_mo_rong?.danh_sach_anh_minh_chung)) {
-//                     mangAnhMcCu = mcData[0].thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                 }
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH HS (${k + 1}/${sk.mang_file_minh_chung.length})...`;
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
-
-//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
-
-//                         let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                             method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" })
-//                         })).json();
-//                         if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-//                 let tongHopAnhMC = mangAnhMcCu.concat(mangLinkAnhDrive);
-//                 if (tongHopAnhMC.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = tongHopAnhMC;
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-//         }
-
-//         // 4. Đẩy toàn bộ lên Supabase
-//         if (mangSuKienDB.length > 0) {
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU SỰ KIỆN...";
-//             await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//         }
-
-//         // 🌟 Tùy biến thông báo thành công
-//         let msg = "✅ Đã lưu xong ĐIỂM DANH & SỰ KIỆN!";
-//         if (tenCacHSDaTrung.length > 0) {
-//             msg += `\n\n⚠️ Hệ thống đã TỰ ĐỘNG BỎ QUA đăng ký trùng cho các em:\n👉 ${tenCacHSDaTrung.join(', ')}\n(Các em này đã được điểm danh vắng từ trước).`;
-//         }
-//         alert(msg);
-
-//         // Dọn dẹp Cột Phải
-//         if (document.getElementById('nk-input-anh-minh-chung')) document.getElementById('nk-input-anh-minh-chung').value = '';
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
-//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
-//             </div>`;
-
-//     } catch (err) {
-//         console.error("Lỗi:", err); alert("❌ Lỗi lưu Sự kiện!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
-//     }
-// };
-
-// // =======================================================
-// // HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH
-// // =======================================================
-// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
-//         return;
-//     }
-
-//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
-
-//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
-//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         let idNhatKy = null;
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (checkData && checkData.length > 0) {
-//             idNhatKy = checkData[0].id;
-//         } else {
-//             const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
-//             }]).select();
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         let mangSuKienDB = [];
-//         let uidsDaVangDB = new Set();
-//         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
-//         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
-
-//         let uidsTrongGiaoDien = new Set();
-//         let tenCacHSDaTrung = [];
-
-//         // Gom Điểm Danh
-//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//         cacOVan.forEach(oVang => {
-//             let thongTinHS = oVang.value.trim();
-//             if (thongTinHS) {
-//                 let uidTimDuoc = null;
-//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
-
-//                 let parts = thongTinHS.split(' - ');
-//                 let tenHienThi = parts[0].trim();
-
-//                 if (uidTimDuoc) {
-//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
-//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
-//                     } else {
-//                         uidsTrongGiaoDien.add(uidTimDuoc);
-//                         mangSuKienDB.push({
-//                             id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc,
-//                             ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
-//                             ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học',
-//                             thong_tin_mo_rong: { mau_sac: '#343a40' }
-//                         });
-//                     }
-//                 }
-//             }
-//         });
-
-//         // Gom Sự kiện & Cho điểm
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-//                 let mangAnhMcCu = [];
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${k + 1}/${sk.mang_file_minh_chung.length})...`;
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
-
-//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
-
-//                         let result = await (await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                             method: 'POST', body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" })
-//                         })).json();
-//                         if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-//                 if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so; // 🌟 Lưu điểm số vào JSON mở rộng
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy,
-//                     uid_hoc_sinh: sk.uid_hoc_sinh,
-//                     ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh,
-//                     loai_the: sk.loai_the,
-//                     ghi_chu: sk.ghi_chu,
-//                     thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-//         }
-
-//         if (mangSuKienDB.length > 0) {
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
-//             await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//         }
-
-//         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
-
-//         if (document.getElementById('nk-input-anh-minh-chung')) document.getElementById('nk-input-anh-minh-chung').value = '';
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//         // Reset form
-//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
-//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
-//             </div>`;
-
-//     } catch (err) {
-//         console.error("Lỗi:", err); alert("❌ Lỗi lưu dữ liệu!");
-//     } finally {
-//         btnLuu.innerHTML = textGoc; btnLuu.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD
-// // =======================================================
-// window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
-//         return;
-//     }
-
-//     const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
-//     const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
-//     const baiTap = document.querySelectorAll('textarea')[1].value.trim();
-//     const danDo = document.querySelectorAll('textarea')[2].value.trim();
-//     const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
-
-//     if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
-//         alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chọn ảnh nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         let mangLinkAnhDrive = [];
-
-//         // 1. TẢI ẢNH LÊN GOOGLE DRIVE (NẾU CÓ)
-//         if (danhSachFileAnh.length > 0) {
-//             for (let k = 0; k < danhSachFileAnh.length; k++) {
-//                 btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
-//                 let file = danhSachFileAnh[k];
-
-//                 let base64String = await ham_ho_tro_doc_anh_base64(file);
-//                 let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
-//                 let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
-
-//                 // NÂNG CẤP BẮT LỖI FETCH CHUẨN XÁC
-//                 let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                     method: 'POST',
-//                     headers: { "Content-Type": "text/plain;charset=utf-8" },
-//                     body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" })
-//                 });
-
-//                 let textRes = await response.text();
-//                 if (!textRes.trim().startsWith('{')) {
-//                     console.error("Lỗi từ Apps Script:", textRes);
-//                     throw new Error("Lỗi kết nối Apps Script (404/500). Vui lòng kiểm tra lại link Deploy!");
-//                 }
-
-//                 let result = JSON.parse(textRes);
-//                 if (result.status === 'success') {
-//                     mangLinkAnhDrive.push(result.url);
-//                 }
-//             }
-//         }
-
-//         btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
-
-//         // 2. KIỂM TRA & LƯU VÀO DB
-//         const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-//         if (errCheck) throw errCheck;
-
-//         if (checkData && checkData.length > 0) {
-//             let mangAnhCu = [];
-//             let dbAnh = checkData[0].danh_sach_anh;
-//             if (dbAnh) {
-//                 if (Array.isArray(dbAnh)) mangAnhCu = dbAnh;
-//                 else if (typeof dbAnh === 'string') {
-//                     try { mangAnhCu = JSON.parse(dbAnh); } catch (e) { mangAnhCu = dbAnh.split(',').filter(l => l.trim()); }
-//                 }
-//             }
-//             let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
-
-//             const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update({
-//                 phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangAnhMoi
-//             }).eq('id', checkData[0].id);
-//             if (errUpdate) throw errUpdate;
-//         } else {
-//             const { error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-//                 ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangLinkAnhDrive
-//             }]);
-//             if (errInsert) throw errInsert;
-//         }
-
-//         alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
-
-//         // 3. RESET FORM
-//         document.getElementById('nk-input-ten-bai').value = '';
-//         document.querySelectorAll('textarea')[0].value = '';
-//         document.querySelectorAll('textarea')[1].value = '';
-//         document.querySelectorAll('textarea')[2].value = '';
-
-//         window.danhSachAnhBaiGiangTam = [];
-//         if (typeof ham_20_11_render_anh_bai_giang === 'function') ham_20_11_render_anh_bai_giang();
-
-//     } catch (err) {
-//         console.error("Lỗi lưu bài giảng:", err);
-//         alert("❌ Lỗi: " + err.message);
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-// =======================================================
-// HÀM 20.6A: LƯU NỘI DUNG BÀI GIẢNG VÀ ẢNH CHỤP LÊN CLOUD (CÓ THANH TIẾN TRÌNH)
-// =======================================================
-window.ham_20_6a_luu_bai_giang = async function (btnLuu) {
-    const ngayDay = document.querySelector('input[type="date"]').value;
-    let rawLop = document.getElementById('nk-input-lop').value.trim();
-    let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-    const buoi = document.getElementById('nk-input-buoi').value.trim();
-    const tiet = document.getElementById('nk-input-tiet').value.trim();
-    const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-    if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp ở phần Thông tin chung!");
-        return;
-    }
-
-    const tenBai = document.getElementById('nk-input-ten-bai').value.trim();
-    const lyThuyet = document.querySelectorAll('textarea')[0].value.trim();
-    const baiTap = document.querySelectorAll('textarea')[1].value.trim();
-    const danDo = document.querySelectorAll('textarea')[2].value.trim();
-    const danhSachFileAnh = window.danhSachAnhBaiGiangTam || [];
-
-    if (!tenBai && !lyThuyet && !baiTap && !danDo && danhSachFileAnh.length === 0) {
-        alert("⚠️ Thầy chưa nhập nội dung bài giảng hay chọn ảnh nào!");
-        return;
-    }
-
-    const textGoc = btnLuu.innerHTML;
-    const bgGoc = btnLuu.style.background; // Lưu lại nền gốc để khôi phục
-    btnLuu.disabled = true;
-
-    try {
-        let mangLinkAnhDrive = [];
-
-        // 1. TẢI ẢNH LÊN GOOGLE DRIVE (ĐO TIẾN TRÌNH CHI TIẾT)
-        if (danhSachFileAnh.length > 0) {
-            for (let k = 0; k < danhSachFileAnh.length; k++) {
-                let file = danhSachFileAnh[k];
-                let base64String = await ham_ho_tro_doc_anh_base64(file);
-                let duoiFile = file.name.includes('.') ? file.name.substring(file.name.lastIndexOf('.')) : '.jpg';
-                let tenFileChuan = `BaiGiang_[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_Tiet[${tiet}]_Anh[${k + 1}]${duoiFile}`;
-
-                btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH (${k + 1}/${danhSachFileAnh.length})...`;
-
-                let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: file.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "BAI_GIANG" };
-
-                // Đẩy lên qua XHR với thanh tiến trình màu xanh lấp đầy
-                let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
-                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
-                    payload,
-                    function (phanTram, daTai, tongSo) {
-                        let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
-                        let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
-
-                        // Hiệu ứng thanh tiến trình chạy trên nền nút
-                        btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
-                        btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH (${k + 1}/${danhSachFileAnh.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
-                    }
-                );
-
-                if (result.status === 'success') {
-                    mangLinkAnhDrive.push(result.url);
-                } else {
-                    throw new Error(result.message || "Lỗi tải ảnh từ Apps Script.");
-                }
-            }
-        }
-
-        // Khôi phục lại nền sau khi tải ảnh xong
-        btnLuu.style.background = bgGoc;
-        btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
-
-        // 2. KIỂM TRA & LƯU VÀO DB
-        const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id, danh_sach_anh').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-        if (errCheck) throw errCheck;
-
-        if (checkData && checkData.length > 0) {
-            let mangAnhCu = [];
-            let dbAnh = checkData[0].danh_sach_anh;
-            if (dbAnh) {
-                if (Array.isArray(dbAnh)) mangAnhCu = dbAnh;
-                else if (typeof dbAnh === 'string') {
-                    try { mangAnhCu = JSON.parse(dbAnh); } catch (e) { mangAnhCu = dbAnh.split(',').filter(l => l.trim()); }
-                }
-            }
-            let mangAnhMoi = mangAnhCu.concat(mangLinkAnhDrive);
-
-            const { error: errUpdate } = await _supabase.from('nhat_ky_day_hoc').update({
-                phan_mon: phanMon, ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangAnhMoi
-            }).eq('id', checkData[0].id);
-            if (errUpdate) throw errUpdate;
-        } else {
-            const { error: errInsert } = await _supabase.from('nhat_ky_day_hoc').insert([{
-                ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon,
-                ten_bai: tenBai, ly_thuyet: lyThuyet, bai_tap: baiTap, dan_do: danDo, danh_sach_anh: mangLinkAnhDrive
-            }]);
-            if (errInsert) throw errInsert;
-        }
-
-        alert("✅ Đã lưu NỘI DUNG BÀI GIẢNG thành công!");
-
-        // 3. RESET FORM
-        document.getElementById('nk-input-ten-bai').value = '';
-        document.querySelectorAll('textarea')[0].value = '';
-        document.querySelectorAll('textarea')[1].value = '';
-        document.querySelectorAll('textarea')[2].value = '';
-
-        window.danhSachAnhBaiGiangTam = [];
-        if (typeof ham_20_11_render_anh_bai_giang === 'function') ham_20_11_render_anh_bai_giang();
-
-    } catch (err) {
-        console.error("Lỗi lưu bài giảng:", err);
-        alert("❌ Lỗi: " + err.message);
-    } finally {
-        btnLuu.style.background = bgGoc;
-        btnLuu.innerHTML = textGoc;
-        btnLuu.disabled = false;
-    }
-};
-
-
-// // =======================================================
-// // HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH
-// // =======================================================
-// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
-//         return;
-//     }
-
-//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
-
-//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
-//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
-//     btnLuu.disabled = true;
-
-//     try {
-//         let idNhatKy = null;
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (checkData && checkData.length > 0) {
-//             idNhatKy = checkData[0].id;
-//         } else {
-//             const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
-//             }]).select();
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         let mangSuKienDB = [];
-//         let uidsDaVangDB = new Set();
-//         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
-//         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
-
-//         let uidsTrongGiaoDien = new Set();
-//         let tenCacHSDaTrung = [];
-
-//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//         cacOVan.forEach(oVang => {
-//             let thongTinHS = oVang.value.trim();
-//             if (thongTinHS) {
-//                 let uidTimDuoc = null;
-//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
-//                 let parts = thongTinHS.split(' - ');
-//                 let tenHienThi = parts[0].trim();
-
-//                 if (uidTimDuoc) {
-//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
-//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
-//                     } else {
-//                         uidsTrongGiaoDien.add(uidTimDuoc);
-//                         mangSuKienDB.push({
-//                             id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc, ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
-//                             ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học', thong_tin_mo_rong: { mau_sac: '#343a40' }
-//                         });
-//                     }
-//                 }
-//             }
-//         });
-
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         btnLuu.innerHTML = `⏳ ĐANG TẢI ẢNH MINH CHỨNG (${k + 1}/${sk.mang_file_minh_chung.length})...`;
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
-//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
-
-//                         // NÂNG CẤP BẮT LỖI FETCH CHUẨN XÁC
-//                         let response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-//                             method: 'POST',
-//                             headers: { "Content-Type": "text/plain;charset=utf-8" },
-//                             body: JSON.stringify({ action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" })
-//                         });
-
-//                         let textRes = await response.text();
-//                         if (!textRes.trim().startsWith('{')) {
-//                             console.error("Lỗi từ Apps Script:", textRes);
-//                             throw new Error("Lỗi kết nối Apps Script tải ảnh (404/500).");
-//                         }
-
-//                         let result = JSON.parse(textRes);
-//                         if (result.status === 'success') mangLinkAnhDrive.push(result.url);
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-//                 if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
-//                 if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-//         }
-
-//         if (mangSuKienDB.length > 0) {
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU...";
-//             await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//         }
-
-//         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
-//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
-//             </div>`;
-
-//     } catch (err) {
-//         console.error("Lỗi:", err);
-//         alert("❌ Lỗi: " + err.message);
-//     } finally {
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH)
-// // =======================================================
-// window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
-//     const ngayDay = document.querySelector('input[type="date"]').value;
-//     let rawLop = document.getElementById('nk-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-//     const buoi = document.getElementById('nk-input-buoi').value.trim();
-//     const tiet = document.getElementById('nk-input-tiet').value.trim();
-//     const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-//         alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
-//         return;
-//     }
-
-//     const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-//     let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
-
-//     if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
-//         alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
-//         return;
-//     }
-
-//     const textGoc = btnLuu.innerHTML;
-//     const bgGoc = btnLuu.style.background; // Lưu lại nền gốc để khôi phục
-//     btnLuu.disabled = true;
-
-//     try {
-//         let idNhatKy = null;
-//         const { data: checkData } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-
-//         if (checkData && checkData.length > 0) {
-//             idNhatKy = checkData[0].id;
-//         } else {
-//             const { data: nhatKyData } = await _supabase.from('nhat_ky_day_hoc').insert([{
-//                 ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
-//             }]).select();
-//             idNhatKy = nhatKyData[0].id;
-//         }
-
-//         let mangSuKienDB = [];
-//         let uidsDaVangDB = new Set();
-//         const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
-//         if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
-
-//         let uidsTrongGiaoDien = new Set();
-//         let tenCacHSDaTrung = [];
-
-//         const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-//         cacOVan.forEach(oVang => {
-//             let thongTinHS = oVang.value.trim();
-//             if (thongTinHS) {
-//                 let uidTimDuoc = null;
-//                 danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
-//                 let parts = thongTinHS.split(' - ');
-//                 let tenHienThi = parts[0].trim();
-
-//                 if (uidTimDuoc) {
-//                     if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
-//                         if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
-//                     } else {
-//                         uidsTrongGiaoDien.add(uidTimDuoc);
-//                         mangSuKienDB.push({
-//                             id_nhat_ky: idNhatKy, uid_hoc_sinh: uidTimDuoc, ten_dang_nhap_hoc_sinh: parts[1] ? parts[1].trim() : '',
-//                             ten_hoc_sinh: tenHienThi, loai_the: 'Vắng mặt', ghi_chu: 'Vắng mặt trong tiết học', thong_tin_mo_rong: { mau_sac: '#343a40' }
-//                         });
-//                     }
-//                 }
-//             }
-//         });
-
-//         if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-//             for (let i = 0; i < danhSachSuKienTam.length; i++) {
-//                 let sk = danhSachSuKienTam[i];
-//                 let mangLinkAnhDrive = [];
-
-//                 if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-//                     for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-//                         let fileMC = sk.mang_file_minh_chung[k];
-//                         let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-//                         let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
-//                         let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
-
-//                         btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-//                         let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
-
-//                         // Đẩy lên qua XHR với thanh tiến trình
-//                         let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
-//                             CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
-//                             payload,
-//                             function (phanTram, daTai, tongSo) {
-//                                 let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
-//                                 let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
-
-//                                 // Đổi màu nền chạy tiến trình
-//                                 btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
-//                                 btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
-//                             }
-//                         );
-
-//                         if (result.status === 'success') {
-//                             mangLinkAnhDrive.push(result.url);
-//                         } else {
-//                             throw new Error(result.message || "Lỗi tải ảnh minh chứng từ Apps Script.");
-//                         }
-//                     }
-//                 }
-
-//                 let thongTinMoRong = { mau_sac: sk.mau_sac };
-//                 if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
-//                 if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
-
-//                 mangSuKienDB.push({
-//                     id_nhat_ky: idNhatKy, uid_hoc_sinh: sk.uid_hoc_sinh, ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh,
-//                     ten_hoc_sinh: sk.ten_hoc_sinh, loai_the: sk.loai_the, ghi_chu: sk.ghi_chu, thong_tin_mo_rong: thongTinMoRong
-//                 });
-//             }
-//         }
-
-//         // Khôi phục lại nền sau khi tải ảnh xong
-//         btnLuu.style.background = bgGoc;
-
-//         if (mangSuKienDB.length > 0) {
-//             btnLuu.innerHTML = "⏳ ĐANG LƯU DỮ LIỆU DB...";
-//             await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-//         }
-
-//         alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
-
-//         danhSachSuKienTam = [];
-//         if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-//         if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
-//             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-//                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-//                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
-//             </div>`;
-
-//     } catch (err) {
-//         console.error("Lỗi:", err);
-//         alert("❌ Lỗi: " + err.message);
-//     } finally {
-//         btnLuu.style.background = bgGoc;
-//         btnLuu.innerHTML = textGoc;
-//         btnLuu.disabled = false;
-//     }
-// };
-
-
-// =======================================================
-// HÀM 20.6B: LƯU SỰ KIỆN, ĐIỂM DANH & CHO ĐIỂM HỌC SINH (CÓ THANH TIẾN TRÌNH & SỬA LỖI NOT NULL)
-// =======================================================
-window.ham_20_6b_luu_su_kien_diem_danh = async function (btnLuu) {
-    const ngayDay = document.querySelector('input[type="date"]').value;
-    let rawLop = document.getElementById('nk-input-lop').value.trim();
-    let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-    const buoi = document.getElementById('nk-input-buoi').value.trim();
-    const tiet = document.getElementById('nk-input-tiet').value.trim();
-    const phanMon = document.getElementById('nk-input-mon').value.trim();
-
-    if (!ngayDay || !buoi || !tiet || !maLopLuu) {
-        alert("⚠️ Vui lòng điền đủ 4 thông tin: Ngày, Buổi, Tiết, Lớp trước khi lưu sự kiện!");
-        return;
-    }
-
-    const cacOVan = document.querySelectorAll('.nk-input-hs-vang');
-    let coDuLieuDiemDanh = Array.from(cacOVan).some(o => o.value.trim() !== '');
-
-    if ((!danhSachSuKienTam || danhSachSuKienTam.length === 0) && !coDuLieuDiemDanh) {
-        alert("⚠️ Thầy chưa chọn học sinh vắng hoặc nhập sự kiện/cho điểm nào!");
-        return;
-    }
-
-    const textGoc = btnLuu.innerHTML;
-    const bgGoc = btnLuu.style.background;
-    btnLuu.disabled = true;
-
-    try {
-        let idNhatKy = null;
-
-        // 1. KIỂM TRA XEM TIẾT HỌC ĐÃ CÓ TRONG CSDL CHƯA
-        const { data: checkData, error: errCheck } = await _supabase.from('nhat_ky_day_hoc').select('id').eq('ngay_day', ngayDay).eq('ma_lop', maLopLuu).eq('tiet', tiet);
-        if (errCheck) throw errCheck;
-
-        if (checkData && checkData.length > 0) {
-            idNhatKy = checkData[0].id;
-        } else {
-            // TẠO TIẾT MỚI & LẤY ID TRẢ VỀ
-            const { data: nhatKyData, error: errInsertNK } = await _supabase.from('nhat_ky_day_hoc').insert([{
-                ngay_day: ngayDay, buoi: buoi, tiet: tiet, ma_lop: maLopLuu, phan_mon: phanMon
-            }]).select();
-
-            if (errInsertNK) throw errInsertNK;
-            if (!nhatKyData || nhatKyData.length === 0) throw new Error("Không tạo được ID Nhật ký gốc.");
-            idNhatKy = nhatKyData[0].id;
-        }
-
-        let mangSuKienDB = [];
-        let uidsDaVangDB = new Set();
-
-        // Lấy danh sách HS đã vắng mặt trước đó để tránh lưu trùng
-        const { data: vangData } = await _supabase.from('nhat_ky_su_kien_hs').select('uid_hoc_sinh').eq('id_nhat_ky', idNhatKy).eq('loai_the', 'Vắng mặt');
-        if (vangData) vangData.forEach(row => uidsDaVangDB.add(row.uid_hoc_sinh));
-
-        let uidsTrongGiaoDien = new Set();
-        let tenCacHSDaTrung = [];
-        const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
-
-        // 2. GOM DỮ LIỆU ĐIỂM DANH (VẮNG MẶT)
-        cacOVan.forEach(oVang => {
-            let thongTinHS = oVang.value.trim();
-            if (thongTinHS) {
-                let uidTimDuoc = null;
-                danhSachOptions.forEach(opt => { if (opt.value === thongTinHS) uidTimDuoc = opt.dataset.uid; });
-                let parts = thongTinHS.split(' - ');
-                let tenHienThi = parts[0].trim();
-
-                // 🌟 FIX LỖI NOT NULL: Luôn đảm bảo có giá trị (không được để null)
-                let tenDangNhap = parts[1] ? parts[1].trim() : 'Không rõ';
-
-                if (uidTimDuoc) {
-                    if (uidsTrongGiaoDien.has(uidTimDuoc) || uidsDaVangDB.has(uidTimDuoc)) {
-                        if (!tenCacHSDaTrung.includes(tenHienThi)) tenCacHSDaTrung.push(tenHienThi);
-                    } else {
-                        uidsTrongGiaoDien.add(uidTimDuoc);
-                        mangSuKienDB.push({
-                            id_nhat_ky: idNhatKy,
-                            uid_hoc_sinh: uidTimDuoc,
-                            ten_dang_nhap_hoc_sinh: tenDangNhap, // Đã khôi phục và bảo vệ
-                            ten_hoc_sinh: tenHienThi,
-                            loai_the: 'Vắng mặt',
-                            ghi_chu: 'Vắng mặt trong tiết học',
-                            thong_tin_mo_rong: { mau_sac: '#dc3545' }
-                        });
-                    }
-                }
-            }
-        });
-
-        // 3. GOM DỮ LIỆU SỰ KIỆN & XỬ LÝ ẢNH MINH CHỨNG
-        if (danhSachSuKienTam && danhSachSuKienTam.length > 0) {
-            for (let i = 0; i < danhSachSuKienTam.length; i++) {
-                let sk = danhSachSuKienTam[i];
-                let mangLinkAnhDrive = [];
-
-                if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
-                    for (let k = 0; k < sk.mang_file_minh_chung.length; k++) {
-                        let fileMC = sk.mang_file_minh_chung[k];
-                        let base64String = await ham_ho_tro_doc_anh_base64(fileMC);
-                        let duoiFile = fileMC.name.includes('.') ? fileMC.name.substring(fileMC.name.lastIndexOf('.')) : '.jpg';
-                        let tenFileChuan = `Ngay[${ngayDay}_${layGioPhutGiay()}]_Lop[${maLopLuu}]_HS[${taoTenAnToan(sk.ten_hoc_sinh, 25)}]_The[${taoTenAnToan(sk.loai_the, 15)}]_Anh[${k + 1}]${duoiFile}`;
-
-                        btnLuu.innerHTML = `⏳ CHUẨN BỊ ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})...`;
-
-                        let payload = { action: "upload_anh_nhat_ky", base64: base64String, mimeType: fileMC.type, fileName: tenFileChuan, maLop: maLopLuu, loaiAnh: "MINH_CHUNG_LOI" };
-
-                        let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
-                            CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
-                            payload,
-                            function (phanTram, daTai, tongSo) {
-                                let strDaTai = window.ham_dinh_dang_dung_luong(daTai);
-                                let strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
-                                btnLuu.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #6c757d ${phanTram}%)`;
-                                btnLuu.innerHTML = `🚀 ĐANG TẢI ẢNH MC (${k + 1}/${sk.mang_file_minh_chung.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
-                            }
-                        );
-
-                        if (result.status === 'success') {
-                            mangLinkAnhDrive.push(result.url);
-                        } else {
-                            throw new Error(result.message || "Lỗi tải ảnh minh chứng từ Apps Script.");
-                        }
-                    }
-                }
-
-                let thongTinMoRong = { mau_sac: sk.mau_sac };
-                if (sk.diem_so) thongTinMoRong.diem_so = sk.diem_so;
-                if (mangLinkAnhDrive.length > 0) thongTinMoRong.danh_sach_anh_minh_chung = mangLinkAnhDrive;
-
-                mangSuKienDB.push({
-                    id_nhat_ky: idNhatKy,
-                    uid_hoc_sinh: sk.uid_hoc_sinh,
-                    // 🌟 FIX LỖI NOT NULL: Nếu sk.sdt_hoc_sinh bị rỗng thì điền 'Không rõ'
-                    ten_dang_nhap_hoc_sinh: sk.sdt_hoc_sinh || 'Không rõ',
-                    ten_hoc_sinh: sk.ten_hoc_sinh,
-                    loai_the: sk.loai_the,
-                    ghi_chu: sk.ghi_chu,
-                    thong_tin_mo_rong: thongTinMoRong
-                });
-            }
-        }
-
-        // Khôi phục lại nền sau khi tải ảnh xong
-        btnLuu.style.background = bgGoc;
-
-        if (mangSuKienDB.length > 0) {
-            btnLuu.innerHTML = "⏳ ĐANG LƯU VÀO CƠ SỞ DỮ LIỆU...";
-            const { error: errInsertSK } = await _supabase.from('nhat_ky_su_kien_hs').insert(mangSuKienDB);
-            if (errInsertSK) throw errInsertSK;
-        }
-
-        alert("✅ Đã lưu xong ĐIỂM DANH, CHO ĐIỂM & SỰ KIỆN!");
-
-        danhSachSuKienTam = [];
-        if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
-
-        if (document.getElementById('nk-khu-vuc-diem-danh')) document.getElementById('nk-khu-vuc-diem-danh').innerHTML = `
-            <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-                <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-                <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
-            </div>`;
-
-    } catch (err) {
-        console.error("Lỗi:", err);
-        alert("❌ Lỗi: " + (err.message || err.details || "Không xác định"));
-    } finally {
-        btnLuu.style.background = bgGoc;
-        btnLuu.innerHTML = textGoc;
-        btnLuu.disabled = false;
-    }
 };
 
 
@@ -5009,2502 +2616,6 @@ window.ham_20_14_giao_dien_tra_cuu = function () {
     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
 };
 
-
-// // =======================================================
-// // HÀM 20.15: THỰC HIỆN TRUY VẤN VÀ VẼ TIMELINE NHẬT KÝ
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         // 1. KÉO DỮ LIỆU NHẬT KÝ
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-
-//         // 2. KÉO DỮ LIỆU SỰ KIỆN
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         // 3. XỬ LÝ CHẾ ĐỘ TÌM HỌC SINH & VẼ BẢNG TỔNG QUAN
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 TỔNG QUAN HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         // 🌟 TẠO TỪ ĐIỂN MAP TÊN LỚP TỪ DATALIST (Để đổi Mã Lớp -> Tên Lớp)
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value; // Dạng: 12 Toán (12TN6)
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) {
-//                 mapLop[match[2].trim()] = val; // Key là 12TN6, Value là 12 Toán (12TN6)
-//             } else {
-//                 mapLop[val] = val;
-//             }
-//         });
-
-//         // 4. VẼ GIAO DIỆN TIMELINE
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-
-//             // Lấy tên hiển thị của lớp (Nếu không tìm thấy trong map thì dùng mã lớp)
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             // --- HTML BÀI GIẢNG ---
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach(link => {
-//                     htmlAnhBG += `<a href="${link}" target="_blank" title="Bấm để xem ảnh gốc"><img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: zoom-in; background: #fff;"></a>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             // (Tên bài đã được dời lên Header, nên ở đây chỉ còn Nội dung/Lý thuyết)
-//             let htmlBaiGiang = `
-//                 <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-bottom: 5px;"><b>📘 Nội dung / Lý thuyết:</b><br>${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                 <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-bottom: 5px;"><b>✏️ Bài tập:</b><br>${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                 <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; background: #fff3cd; padding: 8px; border-radius: 4px; border-left: 4px solid #ffeeba;"><b>📌 Dặn dò:</b><br>${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                 ${htmlAnhBG}
-//             `;
-
-//             // --- HTML SỰ KIỆN ---
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `<span style="padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">${v.ten_hoc_sinh}</span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 5px; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach(link => {
-//                                     htmlAnhMC += `<a href="${link}" target="_blank"><img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; cursor: zoom-in; background: #fff;"></a>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                 <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                 <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                 ${htmlAnhMC}
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             // --- LẮP RÁP THẺ VỚI HEADER MỚI ---
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <!-- 🌟 HEADER TIẾT HỌC MỚI (Lớp, Môn, Thời gian, Tên bài) -->
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold; margin-left: auto;">🕒 ${nk.tiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-//                         </div>
-//                         ${nk.ten_bai ? `<div style="font-size: 16px; font-weight: bold; color: #0056b3; margin-top: 8px;">📖 Bài học: ${nk.ten_bai}</div>` : ''}
-//                     </div>
-
-//                     <!-- Khu vực Bài giảng (Có Toggle) -->
-//                     <div style="margin-bottom: 15px;">
-//                         <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                             ${labelBaiGiang}
-//                         </div>
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     <!-- Khu vực Sự kiện (Có Toggle) -->
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.15: THỰC HIỆN TRUY VẤN VẼ TIMELINE & SỬA NỘI DUNG TRỰC TIẾP
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 TỔNG QUAN HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach(link => {
-//                     htmlAnhBG += `<a href="${link}" target="_blank" title="Bấm để xem ảnh gốc"><img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: zoom-in; background: #fff;"></a>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             // 🌟 KHU VỰC NỘI DUNG BÀI GIẢNG (CHẾ ĐỘ XEM & CHẾ ĐỘ SỬA TRỰC TIẾP)
-//             let htmlBaiGiang = `
-//                 <div id="view-mode-${nk.id}">
-//                     <div style="font-size: 16px; font-weight: bold; color: #0056b3; margin-bottom: 8px;">📖 Bài học: <span id="txt-tenbai-${nk.id}">${nk.ten_bai || '(Chưa có tên bài)'}</span></div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-bottom: 5px;"><b>📘 Lý thuyết:</b><br><span id="txt-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</span></div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-bottom: 5px;"><b>✏️ Bài tập:</b><br><span id="txt-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</span></div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; background: #fff3cd; padding: 8px; border-radius: 4px; border-left: 4px solid #ffeeba; margin-top: 8px;"><b>📌 Dặn dò:</b><br><span id="txt-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</span></div>
-//                     ${htmlAnhBG}
-//                 </div>
-
-//                 <!-- FORM SỬA ẨN (HIỆN KHI BẤM NÚT SỬA) -->
-//                 <div id="edit-mode-${nk.id}" style="display: none; background: #fdfefe; padding: 12px; border: 2px dashed #007bff; border-radius: 6px;">
-//                     <label style="font-weight: bold; font-size: 12px; color: #0056b3;">Tên bài / Chủ đề:</label>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 8px; font-weight: bold;">
-                    
-//                     <label style="font-weight: bold; font-size: 12px; color: #495057;">Lý thuyết:</label>
-//                     <textarea id="input-lythuyet-${nk.id}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 8px; min-height: 50px;">${nk.ly_thuyet || ''}</textarea>
-                    
-//                     <label style="font-weight: bold; font-size: 12px; color: #495057;">Bài tập:</label>
-//                     <textarea id="input-baitap-${nk.id}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 8px; min-height: 50px;">${nk.bai_tap || ''}</textarea>
-                    
-//                     <label style="font-weight: bold; font-size: 12px; color: #856404;">Dặn dò:</label>
-//                     <textarea id="input-dando-${nk.id}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; min-height: 40px;">${nk.dan_do || ''}</textarea>
-                    
-//                     <div style="display: flex; gap: 8px; justify-content: flex-end;">
-//                         <button onclick="document.getElementById('edit-mode-${nk.id}').style.display='none'; document.getElementById('view-mode-${nk.id}').style.display='block';" style="background: #6c757d; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;">❌ Hủy</button>
-//                         <button class="btn-luu-sua-truc-tiep" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;">💾 Lưu lại</button>
-//                     </div>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 5px; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach(link => {
-//                                     htmlAnhMC += `<a href="${link}" target="_blank"><img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; cursor: zoom-in; background: #fff;"></a>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${nk.tiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <!-- NÚT XÓA NGUYÊN TIẾT -->
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <!-- Khung Nội dung Bài giảng (Có nút Sửa ngay bên cạnh) -->
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                             <button onclick="document.getElementById('view-mode-${nk.id}').style.display='none'; document.getElementById('edit-mode-${nk.id}').style.display='block';" style="background: #ffc107; color: #000; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Sửa nội dung bài giảng này">✏️ Sửa bài giảng</button>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         // 🌟 LẮNG NGHE SỰ KIỆN LƯU KHI SỬA TRỰC TIẾP TRÊN THẺ
-//         document.querySelectorAll('.btn-luu-sua-truc-tiep').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({
-//                             ten_bai: tenBaiMoi,
-//                             ly_thuyet: lyThuyetMoi,
-//                             bai_tap: baiTapMoi,
-//                             dan_do: danDoMoi
-//                         })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     // Cập nhật lại giao diện tĩnh ngay lập tức không cần F5
-//                     document.getElementById(`txt-tenbai-${id}`).innerText = tenBaiMoi || '(Chưa có tên bài)';
-//                     document.getElementById(`txt-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`txt-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`txt-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     document.getElementById(`edit-mode-${id}`).style.display = 'none';
-//                     document.getElementById(`view-mode-${id}`).style.display = 'block';
-
-//                     alert("✅ Đã cập nhật nội dung bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu lại";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-// // =======================================================
-// // HÀM 20.15: TRA CỨU & SỬA TỪNG PHẦN BÀI GIẢNG (CÓ NÚT LƯU ĐỘNG)
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 TỔNG QUAN HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             // --- XỬ LÝ ẢNH BÀI GIẢNG (CÓ NÚT XÓA) ---
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach((link, idx) => {
-//                     htmlAnhBG += `
-//                         <div style="position: relative; display: inline-block;">
-//                             <a href="${link}" target="_blank" title="Bấm để xem ảnh gốc">
-//                                 <img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; display: block;">
-//                             </a>
-//                             <button onclick="ham_20_19_xoa_anh_bai_giang('${nk.id}', ${idx})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);" title="Xóa ảnh này">×</button>
-//                         </div>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             // --- NỘI DUNG BÀI GIẢNG VỚI NÚT SỬA TỪNG PHẦN & INPUT ẨN ---
-//             let htmlBaiGiang = `
-//                 <div style="margin-bottom: 10px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <span style="font-size: 16px; font-weight: bold; color: #0056b3;" id="label-tenbai-${nk.id}">📖 Bài học: ${nk.ten_bai || '(Chưa có tên bài)'}</span>
-//                         <button onclick="let v=document.getElementById('input-tenbai-${nk.id}'); v.style.display=v.style.display==='none'?'block':'none'; document.getElementById('btn-luu-card-${nk.id}').style.display='block';" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" oninput="document.getElementById('btn-luu-card-${nk.id}').style.display='block'" style="display:none; width:100%; margin-top:5px; padding:6px; border:1px solid #007bff; border-radius:4px; font-weight:bold;">
-//                 </div>
-
-//                 <div style="margin-bottom: 10px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">📘 Nội dung chủ đề / Lý thuyết:</b>
-//                         <button onclick="let v=document.getElementById('input-lythuyet-${nk.id}'); v.style.display=v.style.display==='none'?'block':'none'; document.getElementById('btn-luu-card-${nk.id}').style.display='block';" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 3px;" id="label-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-lythuyet-${nk.id}" oninput="document.getElementById('btn-luu-card-${nk.id}').style.display='block'" style="display:none; width:100%; margin-top:5px; padding:6px; border:1px solid #007bff; border-radius:4px; min-height:50px;">${nk.ly_thuyet || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 10px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">✏️ Bài tập đã giải & Bài tập về nhà:</b>
-//                         <button onclick="let v=document.getElementById('input-baitap-${nk.id}'); v.style.display=v.style.display==='none'?'block':'none'; document.getElementById('btn-luu-card-${nk.id}').style.display='block';" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 3px;" id="label-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-baitap-${nk.id}" oninput="document.getElementById('btn-luu-card-${nk.id}').style.display='block'" style="display:none; width:100%; margin-top:5px; padding:6px; border:1px solid #007bff; border-radius:4px; min-height:50px;">${nk.bai_tap || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 10px; background: #fff3cd; padding: 8px; border-radius: 4px; border-left: 4px solid #ffeeba;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #856404;">📌 Dặn dò:</b>
-//                         <button onclick="let v=document.getElementById('input-dando-${nk.id}'); v.style.display=v.style.display==='none'?'block':'none'; document.getElementById('btn-luu-card-${nk.id}').style.display='block';" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; margin-top: 3px;" id="label-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                     <textarea id="input-dando-${nk.id}" oninput="document.getElementById('btn-luu-card-${nk.id}').style.display='block'" style="display:none; width:100%; margin-top:5px; padding:6px; border:1px solid #007bff; border-radius:4px; min-height:40px;">${nk.dan_do || ''}</textarea>
-//                 </div>
-
-//                 ${htmlAnhBG}
-
-//                 <!-- NÚT LƯU BÀI GIẢNG (ẨN MẶC ĐỊNH, CHỈ HIỆN KHI CÓ THAY ĐỔI) -->
-//                 <div id="btn-luu-card-${nk.id}" style="display: none; margin-top: 15px; text-align: right; border-top: 1px dashed #007bff; padding-top: 10px;">
-//                     <button class="btn-luu-bai-giang-moi" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">💾 Lưu bài giảng</button>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach((linkMC, idxMC) => {
-//                                     htmlAnhMC += `
-//                                         <div style="position: relative; display: inline-block;">
-//                                             <a href="${linkMC}" target="_blank">
-//                                                 <img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; display: block;">
-//                                             </a>
-//                                             <button onclick="ham_20_20_xoa_anh_minh_chung('${sk.id}', ${idxMC})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Xóa ảnh minh chứng này">×</button>
-//                                         </div>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${nk.tiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         // 🌟 LẮNG NGHE SỰ KIỆN LƯU KHI BẤM NÚT LƯU BÀI GIẢNG XUẤT HIỆN TRÊN THẺ
-//         document.querySelectorAll('.btn-luu-bai-giang-moi').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({ ten_bai: tenBaiMoi, ly_thuyet: lyThuyetMoi, bai_tap: baiTapMoi, dan_do: danDoMoi })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     // Cập nhật lại giao diện tĩnh ngay lập tức
-//                     document.getElementById(`label-tenbai-${id}`).innerText = `📖 Bài học: ${tenBaiMoi || '(Chưa có tên bài)'}`;
-//                     document.getElementById(`label-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     // Ẩn các ô input và ẩn nút Lưu
-//                     document.getElementById(`input-tenbai-${id}`).style.display = 'none';
-//                     document.getElementById(`input-lythuyet-${id}`).style.display = 'none';
-//                     document.getElementById(`input-baitap-${id}`).style.display = 'none';
-//                     document.getElementById(`input-dando-${id}`).style.display = 'none';
-//                     document.getElementById(`btn-luu-card-${id}`).style.display = 'none';
-
-//                     alert("✅ Đã cập nhật bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu bài giảng";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.15: TRA CỨU & SỬA TỪNG PHẦN BÀI GIẢNG (CÓ NÚT LƯU ĐỘNG)
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 TỔNG QUAN HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             // --- XỬ LÝ ẢNH BÀI GIẢNG (CÓ NÚT XÓA) ---
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach((link, idx) => {
-//                     htmlAnhBG += `
-//                         <div style="position: relative; display: inline-block;">
-//                             <a href="${link}" target="_blank" title="Bấm để xem ảnh gốc">
-//                                 <img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; display: block;">
-//                             </a>
-//                             <button onclick="ham_20_19_xoa_anh_bai_giang('${nk.id}', ${idx})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);" title="Xóa ảnh này">×</button>
-//                         </div>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             // --- NỘI DUNG BÀI GIẢNG VỚI NÚT SỬA TỪNG PHẦN & INPUT ẨN HIỆN LOGIC MỚI ---
-//             // Quy tắc: Khi bấm nút Sửa -> Ẩn thẻ div chứa text -> Hiện thẻ input/textarea -> Hiện nút Lưu tổng
-//             let htmlBaiGiang = `
-//                 <!-- KHỐI TÊN BÀI -->
-//                 <div style="margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <span style="font-size: 16px; font-weight: bold; color: #0056b3;" id="label-tenbai-${nk.id}">📖 Bài học: ${nk.ten_bai || '(Chưa có tên bài)'}</span>
-//                         <button onclick="document.getElementById('label-tenbai-${nk.id}').style.display='none'; document.getElementById('input-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-tenbai-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; font-weight:bold; font-size: 15px;">
-//                 </div>
-
-//                 <!-- KHỐI LÝ THUYẾT -->
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">📘 Nội dung chủ đề / Lý thuyết:</b>
-//                         <button onclick="document.getElementById('label-lythuyet-${nk.id}').style.display='none'; document.getElementById('input-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-lythuyet-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-lythuyet-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.ly_thuyet || ''}</textarea>
-//                 </div>
-
-//                 <!-- KHỐI BÀI TẬP -->
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">✏️ Bài tập đã giải & Bài tập về nhà:</b>
-//                         <button onclick="document.getElementById('label-baitap-${nk.id}').style.display='none'; document.getElementById('input-baitap-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-baitap-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-baitap-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.bai_tap || ''}</textarea>
-//                 </div>
-
-//                 <!-- KHỐI DẶN DÒ -->
-//                 <div style="margin-bottom: 10px; background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffeeba;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #856404;">📌 Dặn dò:</b>
-//                         <button onclick="document.getElementById('label-dando-${nk.id}').style.display='none'; document.getElementById('input-dando-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-dando-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                     <textarea id="input-dando-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:40px; font-family: inherit;">${nk.dan_do || ''}</textarea>
-//                 </div>
-
-//                 ${htmlAnhBG}
-
-//                 <!-- NÚT LƯU TỔNG (CHỈ HIỆN KHI BẤM ÍT NHẤT 1 NÚT SỬA) -->
-//                 <div id="btn-luu-card-${nk.id}" style="display: none; margin-top: 15px; text-align: right; border-top: 1px dashed #007bff; padding-top: 12px;">
-//                     <!-- Nút Hủy để khôi phục lại trạng thái Xem ban đầu -->
-//                     <button onclick="
-//                         document.getElementById('input-tenbai-${nk.id}').style.display='none'; document.getElementById('label-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-sua-tenbai-${nk.id}').style.display='block';
-//                         document.getElementById('input-lythuyet-${nk.id}').style.display='none'; document.getElementById('label-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-sua-lythuyet-${nk.id}').style.display='block';
-//                         document.getElementById('input-baitap-${nk.id}').style.display='none'; document.getElementById('label-baitap-${nk.id}').style.display='block'; document.getElementById('btn-sua-baitap-${nk.id}').style.display='block';
-//                         document.getElementById('input-dando-${nk.id}').style.display='none'; document.getElementById('label-dando-${nk.id}').style.display='block'; document.getElementById('btn-sua-dando-${nk.id}').style.display='block';
-//                         document.getElementById('btn-luu-card-${nk.id}').style.display='none';
-//                     " style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px;">❌ Hủy sửa</button>
-                    
-//                     <button class="btn-luu-bai-giang-moi" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 8px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15);">💾 Lưu thay đổi</button>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let badgeDiem = '';
-//                         if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                             badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} điểm</span>`;
-//                         }
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach((linkMC, idxMC) => {
-//                                     htmlAnhMC += `
-//                                         <div style="position: relative; display: inline-block;">
-//                                             <a href="${linkMC}" target="_blank">
-//                                                 <img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; display: block;">
-//                                             </a>
-//                                             <button onclick="ham_20_20_xoa_anh_minh_chung('${sk.id}', ${idxMC})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Xóa ảnh minh chứng này">×</button>
-//                                         </div>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     ${badgeDiem}
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${nk.tiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         // 🌟 LẮNG NGHE SỰ KIỆN LƯU KHI BẤM NÚT LƯU BÀI GIẢNG
-//         document.querySelectorAll('.btn-luu-bai-giang-moi').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({ ten_bai: tenBaiMoi, ly_thuyet: lyThuyetMoi, bai_tap: baiTapMoi, dan_do: danDoMoi })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     // Cập nhật lại Text tĩnh
-//                     document.getElementById(`label-tenbai-${id}`).innerText = `📖 Bài học: ${tenBaiMoi || '(Chưa có tên bài)'}`;
-//                     document.getElementById(`label-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     // Ẩn Input, Hiện lại Text
-//                     document.getElementById(`input-tenbai-${id}`).style.display = 'none'; document.getElementById(`label-tenbai-${id}`).style.display = 'block'; document.getElementById(`btn-sua-tenbai-${id}`).style.display = 'block';
-//                     document.getElementById(`input-lythuyet-${id}`).style.display = 'none'; document.getElementById(`label-lythuyet-${id}`).style.display = 'block'; document.getElementById(`btn-sua-lythuyet-${id}`).style.display = 'block';
-//                     document.getElementById(`input-baitap-${id}`).style.display = 'none'; document.getElementById(`label-baitap-${id}`).style.display = 'block'; document.getElementById(`btn-sua-baitap-${id}`).style.display = 'block';
-//                     document.getElementById(`input-dando-${id}`).style.display = 'none'; document.getElementById(`label-dando-${id}`).style.display = 'block'; document.getElementById(`btn-sua-dando-${id}`).style.display = 'block';
-
-//                     // Ẩn nút lưu
-//                     document.getElementById(`btn-luu-card-${id}`).style.display = 'none';
-
-//                     alert("✅ Đã cập nhật bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu thay đổi";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.15: TRA CỨU & SỬA TỪNG PHẦN BÀI GIẢNG (CÓ CHUẨN HÓA CHỮ TIẾT)
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 TỔNG QUAN HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             // 🌟 CHUẨN HÓA CHỮ "TIẾT" ĐỂ HIỂN THỊ ĐẸP MẮT
-//             let hienThiTiet = String(nk.tiet || '').trim();
-//             if (!hienThiTiet.toLowerCase().startsWith('tiết')) {
-//                 hienThiTiet = 'Tiết ' + hienThiTiet;
-//             }
-
-//             // --- XỬ LÝ ẢNH BÀI GIẢNG (CÓ NÚT XÓA) ---
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach((link, idx) => {
-//                     htmlAnhBG += `
-//                         <div style="position: relative; display: inline-block;">
-//                             <a href="${link}" target="_blank" title="Bấm để xem ảnh gốc">
-//                                 <img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; display: block;">
-//                             </a>
-//                             <button onclick="ham_20_19_xoa_anh_bai_giang('${nk.id}', ${idx})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);" title="Xóa ảnh này">×</button>
-//                         </div>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             // --- NỘI DUNG BÀI GIẢNG VỚI NÚT SỬA TỪNG PHẦN ---
-//             let htmlBaiGiang = `
-//                 <!-- KHỐI TÊN BÀI -->
-//                 <div style="margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <span style="font-size: 16px; font-weight: bold; color: #0056b3;" id="label-tenbai-${nk.id}">📖 Bài học: ${nk.ten_bai || '(Chưa có tên bài)'}</span>
-//                         <button onclick="document.getElementById('label-tenbai-${nk.id}').style.display='none'; document.getElementById('input-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-tenbai-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; font-weight:bold; font-size: 15px;">
-//                 </div>
-
-//                 <!-- KHỐI LÝ THUYẾT -->
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">📘 Nội dung chủ đề / Lý thuyết:</b>
-//                         <button onclick="document.getElementById('label-lythuyet-${nk.id}').style.display='none'; document.getElementById('input-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-lythuyet-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-lythuyet-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.ly_thuyet || ''}</textarea>
-//                 </div>
-
-//                 <!-- KHỐI BÀI TẬP -->
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">✏️ Bài tập đã giải & Bài tập về nhà:</b>
-//                         <button onclick="document.getElementById('label-baitap-${nk.id}').style.display='none'; document.getElementById('input-baitap-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-baitap-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-baitap-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.bai_tap || ''}</textarea>
-//                 </div>
-
-//                 <!-- KHỐI DẶN DÒ -->
-//                 <div style="margin-bottom: 10px; background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffeeba;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #856404;">📌 Dặn dò:</b>
-//                         <button onclick="document.getElementById('label-dando-${nk.id}').style.display='none'; document.getElementById('input-dando-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-dando-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                     <textarea id="input-dando-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:40px; font-family: inherit;">${nk.dan_do || ''}</textarea>
-//                 </div>
-
-//                 ${htmlAnhBG}
-
-//                 <!-- NÚT LƯU TỔNG -->
-//                 <div id="btn-luu-card-${nk.id}" style="display: none; margin-top: 15px; text-align: right; border-top: 1px dashed #007bff; padding-top: 12px;">
-//                     <button onclick="
-//                         document.getElementById('input-tenbai-${nk.id}').style.display='none'; document.getElementById('label-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-sua-tenbai-${nk.id}').style.display='block';
-//                         document.getElementById('input-lythuyet-${nk.id}').style.display='none'; document.getElementById('label-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-sua-lythuyet-${nk.id}').style.display='block';
-//                         document.getElementById('input-baitap-${nk.id}').style.display='none'; document.getElementById('label-baitap-${nk.id}').style.display='block'; document.getElementById('btn-sua-baitap-${nk.id}').style.display='block';
-//                         document.getElementById('input-dando-${nk.id}').style.display='none'; document.getElementById('label-dando-${nk.id}').style.display='block'; document.getElementById('btn-sua-dando-${nk.id}').style.display='block';
-//                         document.getElementById('btn-luu-card-${nk.id}').style.display='none';
-//                     " style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px;">❌ Hủy sửa</button>
-                    
-//                     <button class="btn-luu-bai-giang-moi" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 8px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15);">💾 Lưu thay đổi</button>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let badgeDiem = '';
-//                         if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                             badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} điểm</span>`;
-//                         }
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach((linkMC, idxMC) => {
-//                                     htmlAnhMC += `
-//                                         <div style="position: relative; display: inline-block;">
-//                                             <a href="${linkMC}" target="_blank">
-//                                                 <img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; display: block;">
-//                                             </a>
-//                                             <button onclick="ham_20_20_xoa_anh_minh_chung('${sk.id}', ${idxMC})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Xóa ảnh minh chứng này">×</button>
-//                                         </div>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     ${badgeDiem}
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-                            
-//                             <!-- BỔ SUNG BIẾN hienThiTiet VÀO ĐÂY ĐỂ HIỂN THỊ CHỮ "TIẾT" -->
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${hienThiTiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         document.querySelectorAll('.btn-luu-bai-giang-moi').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({ ten_bai: tenBaiMoi, ly_thuyet: lyThuyetMoi, bai_tap: baiTapMoi, dan_do: danDoMoi })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     document.getElementById(`label-tenbai-${id}`).innerText = `📖 Bài học: ${tenBaiMoi || '(Chưa có tên bài)'}`;
-//                     document.getElementById(`label-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     document.getElementById(`input-tenbai-${id}`).style.display = 'none'; document.getElementById(`label-tenbai-${id}`).style.display = 'block'; document.getElementById(`btn-sua-tenbai-${id}`).style.display = 'block';
-//                     document.getElementById(`input-lythuyet-${id}`).style.display = 'none'; document.getElementById(`label-lythuyet-${id}`).style.display = 'block'; document.getElementById(`btn-sua-lythuyet-${id}`).style.display = 'block';
-//                     document.getElementById(`input-baitap-${id}`).style.display = 'none'; document.getElementById(`label-baitap-${id}`).style.display = 'block'; document.getElementById(`btn-sua-baitap-${id}`).style.display = 'block';
-//                     document.getElementById(`input-dando-${id}`).style.display = 'none'; document.getElementById(`label-dando-${id}`).style.display = 'block'; document.getElementById(`btn-sua-dando-${id}`).style.display = 'block';
-
-//                     document.getElementById(`btn-luu-card-${id}`).style.display = 'none';
-
-//                     alert("✅ Đã cập nhật bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu thay đổi";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-
-// // =======================================================
-// // HÀM 20.15: TRA CỨU, SỬA BÀI GIẢNG & LẬP BẢNG THỐNG KÊ HỌC SINH
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         // =========================================================
-//         // 🌟 TÍNH NĂNG MỚI: BẢNG THỐNG KÊ NHANH CHO 1 HỌC SINH
-//         // =========================================================
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             const tenCacThuHSHelper = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-//             let tableRows = '';
-
-//             // Duyệt qua từng tiết học chứa sự kiện của em đó để lập bảng
-//             dsNhatKy.forEach(nk => {
-//                 let dateObj = new Date(nk.ngay_day);
-//                 let strNgay = String(dateObj.getDate()).padStart(2, '0') + '/' + String(dateObj.getMonth() + 1).padStart(2, '0') + '/' + dateObj.getFullYear();
-//                 let thuHienTai = tenCacThuHSHelper[dateObj.getDay()];
-
-//                 let hienThiTiet = String(nk.tiet || '').trim();
-//                 if (!hienThiTiet.toLowerCase().startsWith('tiết')) hienThiTiet = 'Tiết ' + hienThiTiet;
-
-//                 let thoiGianStr = `<b>${hienThiTiet} - ${nk.buoi}</b><br><span style="color: #666; font-size: 11px;">${thuHienTai}, ${strNgay}</span>`;
-
-//                 let cacSK = dsSuKien.filter(sk => sk.id_nhat_ky === nk.id);
-
-//                 cacSK.forEach(sk => {
-//                     let textGC = sk.ghi_chu ? `<div style="color: #666; font-size: 11px; margin-top: 3px;"><i>${sk.ghi_chu}</i></div>` : '';
-//                     let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                     let badgeDiem = '';
-//                     if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                         badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 5px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} đ</span>`;
-//                     }
-//                     let suKienStr = `<span style="color: ${mauThe}; font-weight: bold;">[${sk.loai_the}]</span> ${badgeDiem}${textGC}`;
-
-//                     let htmlAnhMC = '';
-//                     if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                         let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                         let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                         if (mangMC.length > 0) {
-//                             htmlAnhMC = `<div style="display: flex; gap: 4px; flex-wrap: wrap;">`;
-//                             mangMC.forEach((linkMC) => {
-//                                 htmlAnhMC += `<a href="${linkMC}" target="_blank"><img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 35px; width: 35px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; cursor: zoom-in;" title="Xem ảnh"></a>`;
-//                             });
-//                             htmlAnhMC += `</div>`;
-//                         }
-//                     }
-
-//                     tableRows += `
-//                         <tr style="transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='transparent'">
-//                             <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${thoiGianStr}</td>
-//                             <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top; font-weight: bold; color: #17a2b8;">${nk.phan_mon || ''}</td>
-//                             <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top; font-size: 12px; color: #0056b3;">${nk.ten_bai || ''}</td>
-//                             <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${suKienStr}</td>
-//                             <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${htmlAnhMC}</td>
-//                         </tr>
-//                     `;
-//                 });
-//             });
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 BẢNG THEO DÕI HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-                    
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác / Điểm: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-
-//                     <div style="overflow-x: auto; background: #fff; border-radius: 6px; border: 1px solid #b8daff;">
-//                         <table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px;">
-//                             <thead>
-//                                 <tr style="background: #007bff; color: white; text-align: left;">
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3; min-width: 120px;">Thời gian</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3;">Môn</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3; width: 30%;">Tên bài</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3; min-width: 150px;">Sự kiện / Điểm số</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3;">Ảnh MC</th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 ${tableRows}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         // =========================================================
-//         // HIỂN THỊ DẠNG TIMELINE (NHƯ CŨ)
-//         // =========================================================
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             let hienThiTiet = String(nk.tiet || '').trim();
-//             if (!hienThiTiet.toLowerCase().startsWith('tiết')) {
-//                 hienThiTiet = 'Tiết ' + hienThiTiet;
-//             }
-
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach((link, idx) => {
-//                     htmlAnhBG += `
-//                         <div style="position: relative; display: inline-block;">
-//                             <a href="${link}" target="_blank" title="Bấm để xem ảnh gốc">
-//                                 <img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; display: block;">
-//                             </a>
-//                             <button onclick="ham_20_19_xoa_anh_bai_giang('${nk.id}', ${idx})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);" title="Xóa ảnh này">×</button>
-//                         </div>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             let htmlBaiGiang = `
-//                 <div style="margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <span style="font-size: 16px; font-weight: bold; color: #0056b3;" id="label-tenbai-${nk.id}">📖 Bài học: ${nk.ten_bai || '(Chưa có tên bài)'}</span>
-//                         <button onclick="document.getElementById('label-tenbai-${nk.id}').style.display='none'; document.getElementById('input-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-tenbai-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; font-weight:bold; font-size: 15px;">
-//                 </div>
-
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">📘 Nội dung chủ đề / Lý thuyết:</b>
-//                         <button onclick="document.getElementById('label-lythuyet-${nk.id}').style.display='none'; document.getElementById('input-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-lythuyet-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-lythuyet-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.ly_thuyet || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">✏️ Bài tập đã giải & Bài tập về nhà:</b>
-//                         <button onclick="document.getElementById('label-baitap-${nk.id}').style.display='none'; document.getElementById('input-baitap-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-baitap-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-baitap-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.bai_tap || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 10px; background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffeeba;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #856404;">📌 Dặn dò:</b>
-//                         <button onclick="document.getElementById('label-dando-${nk.id}').style.display='none'; document.getElementById('input-dando-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-dando-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                     <textarea id="input-dando-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:40px; font-family: inherit;">${nk.dan_do || ''}</textarea>
-//                 </div>
-
-//                 ${htmlAnhBG}
-
-//                 <div id="btn-luu-card-${nk.id}" style="display: none; margin-top: 15px; text-align: right; border-top: 1px dashed #007bff; padding-top: 12px;">
-//                     <button onclick="
-//                         document.getElementById('input-tenbai-${nk.id}').style.display='none'; document.getElementById('label-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-sua-tenbai-${nk.id}').style.display='block';
-//                         document.getElementById('input-lythuyet-${nk.id}').style.display='none'; document.getElementById('label-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-sua-lythuyet-${nk.id}').style.display='block';
-//                         document.getElementById('input-baitap-${nk.id}').style.display='none'; document.getElementById('label-baitap-${nk.id}').style.display='block'; document.getElementById('btn-sua-baitap-${nk.id}').style.display='block';
-//                         document.getElementById('input-dando-${nk.id}').style.display='none'; document.getElementById('label-dando-${nk.id}').style.display='block'; document.getElementById('btn-sua-dando-${nk.id}').style.display='block';
-//                         document.getElementById('btn-luu-card-${nk.id}').style.display='none';
-//                     " style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px;">❌ Hủy sửa</button>
-                    
-//                     <button class="btn-luu-bai-giang-moi" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 8px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15);">💾 Lưu thay đổi</button>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let badgeDiem = '';
-//                         if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                             badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} điểm</span>`;
-//                         }
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach((linkMC, idxMC) => {
-//                                     htmlAnhMC += `
-//                                         <div style="position: relative; display: inline-block;">
-//                                             <a href="${linkMC}" target="_blank">
-//                                                 <img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; display: block;">
-//                                             </a>
-//                                             <button onclick="ham_20_20_xoa_anh_minh_chung('${sk.id}', ${idxMC})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Xóa ảnh minh chứng này">×</button>
-//                                         </div>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     ${badgeDiem}
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${hienThiTiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         document.querySelectorAll('.btn-luu-bai-giang-moi').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({ ten_bai: tenBaiMoi, ly_thuyet: lyThuyetMoi, bai_tap: baiTapMoi, dan_do: danDoMoi })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     document.getElementById(`label-tenbai-${id}`).innerText = `📖 Bài học: ${tenBaiMoi || '(Chưa có tên bài)'}`;
-//                     document.getElementById(`label-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     document.getElementById(`input-tenbai-${id}`).style.display = 'none'; document.getElementById(`label-tenbai-${id}`).style.display = 'block'; document.getElementById(`btn-sua-tenbai-${id}`).style.display = 'block';
-//                     document.getElementById(`input-lythuyet-${id}`).style.display = 'none'; document.getElementById(`label-lythuyet-${id}`).style.display = 'block'; document.getElementById(`btn-sua-lythuyet-${id}`).style.display = 'block';
-//                     document.getElementById(`input-baitap-${id}`).style.display = 'none'; document.getElementById(`label-baitap-${id}`).style.display = 'block'; document.getElementById(`btn-sua-baitap-${id}`).style.display = 'block';
-//                     document.getElementById(`input-dando-${id}`).style.display = 'none'; document.getElementById(`label-dando-${id}`).style.display = 'block'; document.getElementById(`btn-sua-dando-${id}`).style.display = 'block';
-
-//                     document.getElementById(`btn-luu-card-${id}`).style.display = 'none';
-
-//                     alert("✅ Đã cập nhật bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu thay đổi";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
-
-
-
-// // =======================================================
-// // HÀM 20.15: TRA CỨU, SỬA BÀI GIẢNG & LẬP BẢNG THỐNG KÊ (CÓ SORT)
-// // =======================================================
-// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
-//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
-
-//     let tuNgay = document.getElementById('tc-tu-ngay').value;
-//     let denNgay = document.getElementById('tc-den-ngay').value;
-
-//     let rawMon = document.getElementById('tc-input-mon').value.trim();
-//     let rawLop = document.getElementById('tc-input-lop').value.trim();
-//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
-
-//     let rawHS = document.getElementById('tc-input-hs').value.trim();
-//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
-
-//     let isTimHocSinh = tenHsTimKiem !== '';
-
-//     if (!tuNgay || !denNgay) {
-//         alert("⚠️ Vui lòng chọn đủ mốc thời gian Từ ngày - Đến ngày!");
-//         return;
-//     }
-
-//     const textGoc = btnLoc.innerHTML;
-//     btnLoc.innerHTML = "⏳ ĐANG TÌM KIẾM...";
-//     btnLoc.disabled = true;
-//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 20px;"><b>⏳ Đang tải dữ liệu từ máy chủ...</b></div>`;
-
-//     try {
-//         const taoLinkAnhPreview = (url) => {
-//             if (!url) return '';
-//             let fileId = '';
-//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
-//             if (matchD) fileId = matchD[1];
-//             else if (matchId) fileId = matchId[1];
-//             else if (matchOpen) fileId = matchOpen[1];
-//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
-//         };
-
-//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
-//         if (maLopLuu) queryNhatKy = queryNhatKy.eq('ma_lop', maLopLuu);
-//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
-
-//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
-//         if (err1) throw err1;
-
-//         if (!dsNhatKy || dsNhatKy.length === 0) {
-//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
-//             return;
-//         }
-
-//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
-//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
-//         if (err2) throw err2;
-
-//         let htmlRender = '';
-
-//         // =========================================================
-//         // 🌟 BẢNG THỐNG KÊ (GOM NHÓM THEO TIẾT & SẮP XẾP)
-//         // =========================================================
-//         if (isTimHocSinh) {
-//             dsSuKien = dsSuKien ? dsSuKien.filter(sk => sk.ten_hoc_sinh && sk.ten_hoc_sinh.toLowerCase().includes(tenHsTimKiem)) : [];
-//             if (dsSuKien.length === 0) {
-//                 vungKetQua.innerHTML = `<div style="text-align: center; color: #28a745; padding: 20px; font-size: 16px;"><b>🎉 Tuyệt vời! Học sinh này không có vi phạm hay vắng mặt nào trong thời gian này!</b></div>`;
-//                 return;
-//             }
-//             let idNhatKyCoHS = new Set(dsSuKien.map(sk => sk.id_nhat_ky));
-//             dsNhatKy = dsNhatKy.filter(nk => idNhatKyCoHS.has(nk.id));
-
-//             let tongVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt').length;
-//             let tongViPham = dsSuKien.length - tongVang;
-//             let tenThat = dsSuKien[0].ten_hoc_sinh;
-
-//             const tenCacThuHSHelper = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-//             let tableRows = '';
-
-//             // Lặp theo Tiết Học (để gom các sự kiện vào 1 dòng)
-//             dsNhatKy.forEach(nk => {
-//                 let dateObj = new Date(nk.ngay_day);
-//                 let strNgay = String(dateObj.getDate()).padStart(2, '0') + '/' + String(dateObj.getMonth() + 1).padStart(2, '0') + '/' + dateObj.getFullYear();
-//                 let thuHienTai = tenCacThuHSHelper[dateObj.getDay()];
-
-//                 let hienThiTiet = String(nk.tiet || '').trim();
-//                 if (!hienThiTiet.toLowerCase().startsWith('tiết')) hienThiTiet = 'Tiết ' + hienThiTiet;
-
-//                 // Chuỗi ẩn để sort chính xác theo Ngày_Buổi_Tiết
-//                 let sortTimeStr = `${nk.ngay_day}_${nk.buoi}_${hienThiTiet}`;
-//                 let thoiGianStr = `<b>${hienThiTiet} - ${nk.buoi}</b><br><span style="color: #666; font-size: 11px;">${thuHienTai}, ${strNgay}</span>`;
-
-//                 // Lấy tất cả sự kiện của HS trong tiết này
-//                 let cacSK = dsSuKien.filter(sk => sk.id_nhat_ky === nk.id);
-
-//                 let htmlGomSuKien = '';
-//                 let htmlGomAnh = '<div style="display: flex; gap: 4px; flex-wrap: wrap;">';
-//                 let coAnh = false;
-
-//                 cacSK.forEach(sk => {
-//                     let textGC = sk.ghi_chu ? `<span style="color: #666; font-size: 11px;"> - <i>${sk.ghi_chu}</i></span>` : '';
-//                     let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                     let badgeDiem = '';
-//                     if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                         badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 5px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} đ</span>`;
-//                     }
-
-//                     // Gom từng sự kiện thành 1 dòng nhỏ
-//                     htmlGomSuKien += `<div style="margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px dashed #eee;"><span style="color: ${mauThe}; font-weight: bold;">[${sk.loai_the}]</span> ${badgeDiem}${textGC}</div>`;
-
-//                     // Gom tất cả ảnh minh chứng của các sự kiện
-//                     if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                         let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                         let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                         if (mangMC.length > 0) {
-//                             mangMC.forEach((linkMC) => {
-//                                 coAnh = true;
-//                                 htmlGomAnh += `<a href="${linkMC}" target="_blank"><img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 35px; width: 35px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; cursor: zoom-in;" title="Xem ảnh"></a>`;
-//                             });
-//                         }
-//                     }
-//                 });
-//                 htmlGomAnh += `</div>`;
-//                 if (!coAnh) htmlGomAnh = '';
-
-//                 // Vẽ 1 dòng duy nhất cho tiết học đó
-//                 tableRows += `
-//                     <tr style="transition: 0.2s;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='transparent'">
-//                         <td data-sort="${sortTimeStr}" style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${thoiGianStr}</td>
-//                         <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top; font-weight: bold; color: #17a2b8;">${nk.phan_mon || ''}</td>
-//                         <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top; font-size: 12px; color: #0056b3;">${nk.ten_bai || ''}</td>
-//                         <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${htmlGomSuKien}</td>
-//                         <td style="padding: 8px 10px; border-bottom: 1px solid #dee2e6; vertical-align: top;">${htmlGomAnh}</td>
-//                     </tr>
-//                 `;
-//             });
-
-//             htmlRender += `
-//                 <div style="background: #e0f3ff; border: 1px solid #b8daff; border-left: 5px solid #007bff; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-//                     <h4 style="margin: 0 0 12px 0; color: #0056b3; font-size: 16px;">📊 BẢNG THEO DÕI HỌC SINH: <span style="text-transform: uppercase;">${tenThat}</span></h4>
-                    
-//                     <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
-//                         <span style="background: #fff; border: 1px solid #f5c6cb; color: #721c24; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             ❌ Tổng vắng mặt: <span style="font-size: 16px; color: red;">${tongVang}</span> tiết
-//                         </span>
-//                         <span style="background: #fff; border: 1px solid #ffeeba; color: #d35400; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 14px;">
-//                             🎯 Tổng sự kiện khác / Điểm: <span style="font-size: 16px; color: #d35400;">${tongViPham}</span> lần
-//                         </span>
-//                     </div>
-
-//                     <div style="overflow-x: auto; background: #fff; border-radius: 6px; border: 1px solid #b8daff;">
-//                         <table id="bang-thong-ke-hs" style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px;">
-//                             <thead>
-//                                 <tr style="background: #007bff; color: white; text-align: left;">
-//                                     <th onclick="ham_20_21_sap_xep_bang(0, 'bang-thong-ke-hs')" style="padding: 10px; border-bottom: 2px solid #0056b3; min-width: 120px; cursor: pointer;" title="Bấm để sắp xếp">Thời gian ↕️</th>
-//                                     <th onclick="ham_20_21_sap_xep_bang(1, 'bang-thong-ke-hs')" style="padding: 10px; border-bottom: 2px solid #0056b3; cursor: pointer;" title="Bấm để sắp xếp">Môn ↕️</th>
-//                                     <th onclick="ham_20_21_sap_xep_bang(2, 'bang-thong-ke-hs')" style="padding: 10px; border-bottom: 2px solid #0056b3; width: 30%; cursor: pointer;" title="Bấm để sắp xếp">Tên bài ↕️</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3; min-width: 150px;">Sự kiện / Điểm số</th>
-//                                     <th style="padding: 10px; border-bottom: 2px solid #0056b3;">Ảnh MC</th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 ${tableRows}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
-//             `;
-//         }
-
-//         let mapLop = {};
-//         const cacOptionLop = document.querySelectorAll('#dl-lop option');
-//         cacOptionLop.forEach(opt => {
-//             let val = opt.value;
-//             let match = val.match(/^(.*?)\s*\(([^)]+)\)$/);
-//             if (match) mapLop[match[2].trim()] = val;
-//             else mapLop[val] = val;
-//         });
-
-//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-
-//         // =========================================================
-//         // HIỂN THỊ DẠNG TIMELINE
-//         // =========================================================
-//         dsNhatKy.forEach(nk => {
-//             let dateObj = new Date(nk.ngay_day);
-//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
-//             let thuHienTai = tenCacThu[dateObj.getDay()];
-//             let tenLopHienThi = mapLop[nk.ma_lop] || `Lớp ${nk.ma_lop}`;
-
-//             let hienThiTiet = String(nk.tiet || '').trim();
-//             if (!hienThiTiet.toLowerCase().startsWith('tiết')) hienThiTiet = 'Tiết ' + hienThiTiet;
-
-//             let mangAnhBG = [];
-//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
-//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
-//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); }
-//                 catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
-//             }
-
-//             let htmlAnhBG = '';
-//             if (mangAnhBG.length > 0) {
-//                 htmlAnhBG = `<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
-//                 mangAnhBG.forEach((link, idx) => {
-//                     htmlAnhBG += `
-//                         <div style="position: relative; display: inline-block;">
-//                             <a href="${link}" target="_blank" title="Bấm để xem ảnh gốc">
-//                                 <img src="${taoLinkAnhPreview(link)}" loading="lazy" style="height: 80px; width: 80px; object-fit: cover; border-radius: 4px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; display: block;">
-//                             </a>
-//                             <button onclick="ham_20_19_xoa_anh_bai_giang('${nk.id}', ${idx})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);" title="Xóa ảnh này">×</button>
-//                         </div>`;
-//                 });
-//                 htmlAnhBG += `</div>`;
-//             }
-
-//             let htmlBaiGiang = `
-//                 <div style="margin-bottom: 12px; border-bottom: 1px dashed #eee; padding-bottom: 8px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <span style="font-size: 16px; font-weight: bold; color: #0056b3;" id="label-tenbai-${nk.id}">📖 Bài học: ${nk.ten_bai || '(Chưa có tên bài)'}</span>
-//                         <button onclick="document.getElementById('label-tenbai-${nk.id}').style.display='none'; document.getElementById('input-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-tenbai-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <input id="input-tenbai-${nk.id}" type="text" value="${nk.ten_bai || ''}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; font-weight:bold; font-size: 15px;">
-//                 </div>
-
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">📘 Nội dung chủ đề / Lý thuyết:</b>
-//                         <button onclick="document.getElementById('label-lythuyet-${nk.id}').style.display='none'; document.getElementById('input-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-lythuyet-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-lythuyet-${nk.id}">${nk.ly_thuyet || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-lythuyet-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.ly_thuyet || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 12px;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #333;">✏️ Bài tập đã giải & Bài tập về nhà:</b>
-//                         <button onclick="document.getElementById('label-baitap-${nk.id}').style.display='none'; document.getElementById('input-baitap-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-baitap-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #212529; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-baitap-${nk.id}">${nk.bai_tap || '<i>(Không ghi chú)</i>'}</div>
-//                     <textarea id="input-baitap-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:60px; font-family: inherit;">${nk.bai_tap || ''}</textarea>
-//                 </div>
-
-//                 <div style="margin-bottom: 10px; background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffeeba;">
-//                     <div style="display: flex; justify-content: space-between; align-items: center;">
-//                         <b style="color: #856404;">📌 Dặn dò:</b>
-//                         <button onclick="document.getElementById('label-dando-${nk.id}').style.display='none'; document.getElementById('input-dando-${nk.id}').style.display='block'; document.getElementById('btn-luu-card-${nk.id}').style.display='block'; this.style.display='none';" id="btn-sua-dando-${nk.id}" style="background: #ffc107; border: none; padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ Sửa</button>
-//                     </div>
-//                     <div style="font-size: 14px; color: #856404; line-height: 1.5; white-space: pre-wrap; margin-top: 5px; padding-left: 5px;" id="label-dando-${nk.id}">${nk.dan_do || '<i>(Không có)</i>'}</div>
-//                     <textarea id="input-dando-${nk.id}" style="display:none; width:100%; margin-top:5px; padding:8px; border:2px solid #007bff; border-radius:4px; min-height:40px; font-family: inherit;">${nk.dan_do || ''}</textarea>
-//                 </div>
-
-//                 ${htmlAnhBG}
-
-//                 <div id="btn-luu-card-${nk.id}" style="display: none; margin-top: 15px; text-align: right; border-top: 1px dashed #007bff; padding-top: 12px;">
-//                     <button onclick="
-//                         document.getElementById('input-tenbai-${nk.id}').style.display='none'; document.getElementById('label-tenbai-${nk.id}').style.display='block'; document.getElementById('btn-sua-tenbai-${nk.id}').style.display='block';
-//                         document.getElementById('input-lythuyet-${nk.id}').style.display='none'; document.getElementById('label-lythuyet-${nk.id}').style.display='block'; document.getElementById('btn-sua-lythuyet-${nk.id}').style.display='block';
-//                         document.getElementById('input-baitap-${nk.id}').style.display='none'; document.getElementById('label-baitap-${nk.id}').style.display='block'; document.getElementById('btn-sua-baitap-${nk.id}').style.display='block';
-//                         document.getElementById('input-dando-${nk.id}').style.display='none'; document.getElementById('label-dando-${nk.id}').style.display='block'; document.getElementById('btn-sua-dando-${nk.id}').style.display='block';
-//                         document.getElementById('btn-luu-card-${nk.id}').style.display='none';
-//                     " style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 8px;">❌ Hủy sửa</button>
-                    
-//                     <button class="btn-luu-bai-giang-moi" data-id="${nk.id}" style="background: #28a745; color: white; border: none; padding: 8px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 3px 6px rgba(0,0,0,0.15);">💾 Lưu thay đổi</button>
-//                 </div>
-//             `;
-
-//             let cacSuKienCuaTiet = dsSuKien ? dsSuKien.filter(sk => sk.id_nhat_ky === nk.id) : [];
-//             let vangMat = cacSuKienCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
-//             let suKienKhac = cacSuKienCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
-//             let tongSoSuKienTiet = vangMat.length + suKienKhac.length;
-
-//             let htmlSuKien = '';
-//             if (tongSoSuKienTiet > 0) {
-//                 if (vangMat.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 10px;">
-//                                     <strong style="color: #dc3545; font-size: 13px;">❌ Vắng mặt (${vangMat.length}):</strong>
-//                                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px;">`;
-//                     vangMat.forEach(v => {
-//                         htmlSuKien += `
-//                             <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #f8d7da; color: #721c24; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #f5c6cb;">
-//                                 ${v.ten_hoc_sinh} 
-//                                 <span onclick="ham_20_17_xoa_su_kien_chi_tiet('${v.id}')" style="cursor: pointer; font-size: 11px; color: #dc3545;" title="Xóa học sinh này">✖</span>
-//                             </span>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-
-//                 if (suKienKhac.length > 0) {
-//                     htmlSuKien += `<div style="margin-top: 15px;">
-//                                     <strong style="color: #d35400; font-size: 13px;">🎯 Sự kiện ghi nhận (${suKienKhac.length}):</strong>
-//                                     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">`;
-//                     suKienKhac.forEach(sk => {
-//                         let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
-//                         let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#fd7e14';
-
-//                         let badgeDiem = '';
-//                         if (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) {
-//                             badgeDiem = `<span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-right: 5px;">⭐ ${sk.thong_tin_mo_rong.diem_so} điểm</span>`;
-//                         }
-
-//                         let htmlAnhMC = '';
-//                         if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung) {
-//                             let dsMC = sk.thong_tin_mo_rong.danh_sach_anh_minh_chung;
-//                             let mangMC = Array.isArray(dsMC) ? dsMC : dsMC.split(',').filter(l => l.trim());
-//                             if (mangMC.length > 0) {
-//                                 htmlAnhMC = `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; padding-left: 10px; border-left: 2px solid ${mauThe};">`;
-//                                 mangMC.forEach((linkMC, idxMC) => {
-//                                     htmlAnhMC += `
-//                                         <div style="position: relative; display: inline-block;">
-//                                             <a href="${linkMC}" target="_blank">
-//                                                 <img src="${taoLinkAnhPreview(linkMC)}" loading="lazy" style="height: 40px; width: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; background: #fff; display: block;">
-//                                             </a>
-//                                             <button onclick="ham_20_20_xoa_anh_minh_chung('${sk.id}', ${idxMC})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Xóa ảnh minh chứng này">×</button>
-//                                         </div>`;
-//                                 });
-//                                 htmlAnhMC += `</div>`;
-//                             }
-//                         }
-
-//                         htmlSuKien += `
-//                             <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 8px 12px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 4px solid ${mauThe};">
-//                                 <div>
-//                                     <b style="font-size: 13px;">${sk.ten_hoc_sinh}</b>: 
-//                                     ${badgeDiem}
-//                                     <span style="color: ${mauThe}; font-weight: bold; font-size: 12px;">[${sk.loai_the}]</span>
-//                                     <span style="font-size: 12px; color: #555;">${textGC}</span>
-//                                     ${htmlAnhMC}
-//                                 </div>
-//                                 <button onclick="ham_20_17_xoa_su_kien_chi_tiet('${sk.id}')" style="background: #f8d7da; color: #721c24; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold;" title="Xóa sự kiện này">🗑️ Xóa</button>
-//                             </div>`;
-//                     });
-//                     htmlSuKien += `</div></div>`;
-//                 }
-//             }
-
-//             let styleBaiGiang = isTimHocSinh ? 'display: none;' : 'display: block;';
-//             let labelBaiGiang = isTimHocSinh ? '👁️ Xem chi tiết bài giảng' : '🔽 Thu gọn bài giảng';
-//             let styleSuKien = isTimHocSinh ? 'display: block;' : 'display: none;';
-//             let labelSuKien = isTimHocSinh ? `🔽 Thu gọn sự kiện (${tongSoSuKienTiet})` : `👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})`;
-
-//             htmlRender += `
-//                 <div style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 20px; animation: slideUp 0.4s ease-out;">
-                    
-//                     <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
-//                         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-//                             <span style="background: #007bff; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏫 ${tenLopHienThi}</span>
-//                             <span style="background: #17a2b8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 13px;">🏷️ ${nk.phan_mon || 'Không rõ môn'}</span>
-//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${hienThiTiet} - ${nk.buoi} - ${thuHienTai}, Ngày ${strNgay}</span>
-                            
-//                             <button onclick="ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="margin-left: auto; background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px;" title="Xóa toàn bộ tiết học">🗑️ Xóa tiết</button>
-//                         </div>
-//                     </div>
-
-//                     <div style="margin-bottom: 15px;">
-//                         <div style="margin-bottom: 8px;">
-//                             <div onclick="let c = document.getElementById('bg-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn bài giảng'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem chi tiết bài giảng'; }" style="color: #007bff; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none;">
-//                                 ${labelBaiGiang}
-//                             </div>
-//                         </div>
-
-//                         <div id="bg-${nk.id}" style="${styleBaiGiang} padding-left: 10px; border-left: 3px solid #e9ecef;">
-//                             ${htmlBaiGiang}
-//                         </div>
-//                     </div>
-                    
-//                     ${tongSoSuKienTiet > 0 ? `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px;">
-//                             <div onclick="let c = document.getElementById('sk-${nk.id}'); if(c.style.display === 'none') { c.style.display = 'block'; this.innerHTML = '🔽 Thu gọn sự kiện (${tongSoSuKienTiet})'; } else { c.style.display = 'none'; this.innerHTML = '👁️ Xem sự kiện & điểm danh (${tongSoSuKienTiet})'; }" style="color: #d35400; font-size: 13px; font-weight: bold; cursor: pointer; display: inline-block; user-select: none; margin-bottom: 8px;">
-//                                 ${labelSuKien}
-//                             </div>
-//                             <div id="sk-${nk.id}" style="${styleSuKien} padding-left: 10px; border-left: 3px solid #ffeeba; background: #fafafa; padding: 10px; border-radius: 4px;">
-//                                 ${htmlSuKien}
-//                             </div>
-//                         </div>
-//                     ` : `
-//                         <div style="border-top: 1px dashed #ccc; padding-top: 10px; font-size: 12px; color: #28a745; font-style: italic;">
-//                             ✅ Lớp học ngoan, không có học sinh vắng hoặc vi phạm trong tiết này.
-//                         </div>
-//                     `}
-//                 </div>
-//             `;
-//         });
-
-//         vungKetQua.innerHTML = htmlRender;
-
-//         document.querySelectorAll('.btn-luu-bai-giang-moi').forEach(btn => {
-//             btn.addEventListener('click', async function () {
-//                 let id = this.dataset.id;
-//                 let tenBaiMoi = document.getElementById(`input-tenbai-${id}`).value.trim();
-//                 let lyThuyetMoi = document.getElementById(`input-lythuyet-${id}`).value.trim();
-//                 let baiTapMoi = document.getElementById(`input-baitap-${id}`).value.trim();
-//                 let danDoMoi = document.getElementById(`input-dando-${id}`).value.trim();
-
-//                 this.innerText = "⏳ Đang lưu...";
-//                 this.disabled = true;
-
-//                 try {
-//                     const { error } = await _supabase
-//                         .from('nhat_ky_day_hoc')
-//                         .update({ ten_bai: tenBaiMoi, ly_thuyet: lyThuyetMoi, bai_tap: baiTapMoi, dan_do: danDoMoi })
-//                         .eq('id', id);
-
-//                     if (error) throw error;
-
-//                     document.getElementById(`label-tenbai-${id}`).innerText = `📖 Bài học: ${tenBaiMoi || '(Chưa có tên bài)'}`;
-//                     document.getElementById(`label-lythuyet-${id}`).innerHTML = lyThuyetMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-baitap-${id}`).innerHTML = baiTapMoi || '<i>(Không ghi chú)</i>';
-//                     document.getElementById(`label-dando-${id}`).innerHTML = danDoMoi || '<i>(Không có)</i>';
-
-//                     document.getElementById(`input-tenbai-${id}`).style.display = 'none'; document.getElementById(`label-tenbai-${id}`).style.display = 'block'; document.getElementById(`btn-sua-tenbai-${id}`).style.display = 'block';
-//                     document.getElementById(`input-lythuyet-${id}`).style.display = 'none'; document.getElementById(`label-lythuyet-${id}`).style.display = 'block'; document.getElementById(`btn-sua-lythuyet-${id}`).style.display = 'block';
-//                     document.getElementById(`input-baitap-${id}`).style.display = 'none'; document.getElementById(`label-baitap-${id}`).style.display = 'block'; document.getElementById(`btn-sua-baitap-${id}`).style.display = 'block';
-//                     document.getElementById(`input-dando-${id}`).style.display = 'none'; document.getElementById(`label-dando-${id}`).style.display = 'block'; document.getElementById(`btn-sua-dando-${id}`).style.display = 'block';
-
-//                     document.getElementById(`btn-luu-card-${id}`).style.display = 'none';
-
-//                     alert("✅ Đã cập nhật bài giảng thành công!");
-//                 } catch (err) {
-//                     console.error("Lỗi cập nhật:", err);
-//                     alert("❌ Không thể lưu thay đổi!");
-//                 } finally {
-//                     this.innerText = "💾 Lưu thay đổi";
-//                     this.disabled = false;
-//                 }
-//             });
-//         });
-
-//     } catch (err) {
-//         console.error("Lỗi tra cứu:", err);
-//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại.</b></div>`;
-//     } finally {
-//         btnLoc.innerHTML = textGoc;
-//         btnLoc.disabled = false;
-//     }
-// };
 
 
 // =======================================================
@@ -8115,58 +3226,6 @@ window.ham_20_21_sap_xep_bang = function (n, tableId) {
 // Khởi tạo mảng toàn cục chứa ảnh minh chứng đang chuẩn bị gắn
 window.danhSachAnhMinhChungTam = [];
 
-// // =======================================================
-// // HÀM 20.22: XỬ LÝ GOM ẢNH MINH CHỨNG HS CHỤP NHIỀU LẦN
-// // =======================================================
-// window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
-//     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
-
-//     if (inputAnhMC) {
-//         inputAnhMC.addEventListener('change', function (e) {
-//             const files = Array.from(e.target.files);
-//             if (files.length === 0) return;
-
-//             // 1. Đưa ảnh vừa chụp vào mảng tạm
-//             window.danhSachAnhMinhChungTam.push(...files);
-
-//             // 2. Cập nhật lại giao diện
-//             ham_20_22_render_anh_minh_chung();
-
-//             // 3. Xóa rỗng input để lần sau bấm nút vẫn mở camera được và chèn thêm thay vì đè lên
-//             inputAnhMC.value = '';
-//         });
-//     }
-// };
-
-// // Hàm vẽ lại danh sách ảnh đang có trong mảng tạm của Học sinh
-// window.ham_20_22_render_anh_minh_chung = function () {
-//     const vungHienThiMC = document.getElementById('vung-preview-anh-minh-chung');
-//     if (!vungHienThiMC) return;
-
-//     if (window.danhSachAnhMinhChungTam.length === 0) {
-//         vungHienThiMC.innerHTML = '<span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>';
-//         return;
-//     }
-
-//     let html = '';
-//     window.danhSachAnhMinhChungTam.forEach((file, index) => {
-//         let url = URL.createObjectURL(file);
-//         html += `
-//             <div style="position: relative; display: inline-block; animation: fadeIn 0.3s;">
-//                 <img src="${url}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-//                 <button type="button" onclick="ham_20_22_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
-//             </div>
-//         `;
-//     });
-//     vungHienThiMC.innerHTML = html;
-// };
-
-// // Hàm xóa 1 bức ảnh chụp lỗi ra khỏi mảng
-// window.ham_20_22_xoa_anh_tam = function (index) {
-//     window.danhSachAnhMinhChungTam.splice(index, 1);
-//     ham_20_22_render_anh_minh_chung();
-// };
-
 // =======================================================
 // HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (CÓ CẮT & NÉN)
 // =======================================================
@@ -8205,7 +3264,7 @@ window.ham_20_22_render_anh_minh_chung = function () {
         let sizeKB = (file.size / 1024).toFixed(1);
         html += `
             <div style="position: relative; display: inline-flex; flex-direction: column; align-items: center; animation: fadeIn 0.3s; gap: 3px;">
-                <img src="${url}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+                <img src="${url}" style="height: 120px; width: 120px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
                 <span style="font-size: 9px; color: #666; font-weight: bold;">${sizeKB} KB</span>
                 <button type="button" onclick="ham_20_22_xoa_anh_tam(${index})" style="position: absolute; top: -5px; right: -5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3);">×</button>
             </div>
@@ -8231,293 +3290,104 @@ window.ham_dinh_dang_dung_luong = function (bytes) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-// =======================================================
-// HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER VÀ ĐO TIẾN TRÌNH % CHI TIẾT
-// =======================================================
-window.ham_ho_tro_upload_anh_co_tien_trinh = function (url, payload, callbackTienTrinh) {
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
-
-        // Lắng nghe sự kiện đẩy dữ liệu lên mạng (Upload progress)
-        xhr.upload.onprogress = function (event) {
-            if (event.lengthComputable) {
-                const percentComplete = Math.round((event.loaded / event.total) * 100);
-                // Trả về cả phần trăm, số byte đã tải và tổng byte
-                if (callbackTienTrinh) callbackTienTrinh(percentComplete, event.loaded, event.total);
-            }
-        };
-
-        xhr.onload = function () {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    resolve(response);
-                } catch (e) {
-                    console.error("Lỗi parse JSON:", xhr.responseText);
-                    reject(new Error("Lỗi phản hồi từ server (Không phải JSON chuẩn)."));
-                }
-            } else {
-                reject(new Error("Lỗi mạng HTTP " + xhr.status));
-            }
-        };
-
-        xhr.onerror = function () {
-            reject(new Error("Mất kết nối mạng khi đang tải ảnh."));
-        };
-
-        xhr.send(JSON.stringify(payload));
-    });
-};
-
-
-// =======================================================
-// HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER (CHỐNG LỖI CORS + THANH TIẾN TRÌNH THÔNG MINH)
-// =======================================================
-window.ham_ho_tro_upload_anh_co_tien_trinh = async function (url, payload, callbackTienTrinh) {
-    return new Promise(async (resolve, reject) => {
-
-        // 1. Tính toán dung lượng thực tế của tấm ảnh (Base64 -> Bytes)
-        const dungLuongBytes = Math.round(payload.base64.length * 0.75);
-        let phanTram = 0;
-
-        // 2. Chạy thanh tiến trình mượt mà lên mức 90% trong lúc chờ Google xử lý
-        const interval = setInterval(() => {
-            if (phanTram < 90) {
-                // Tốc độ tăng ngẫu nhiên tạo cảm giác chân thực
-                phanTram += Math.floor(Math.random() * 5) + 2;
-                if (phanTram > 90) phanTram = 90;
-
-                let daTaiBytes = (phanTram / 100) * dungLuongBytes;
-                if (callbackTienTrinh) callbackTienTrinh(phanTram, daTaiBytes, dungLuongBytes);
-            }
-        }, 200); // Cứ 0.2 giây cập nhật giao diện 1 lần
-
-        try {
-            // 3. Sử dụng fetch() để xuyên qua lớp chặn CORS của Google
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(payload)
-            });
-
-            let textRes = await response.text();
-
-            // Dừng thanh tiến trình chạy tự động
-            clearInterval(interval);
-
-            // 4. Nếu Google báo lỗi (Sập server 404/500)
-            if (!textRes.trim().startsWith('{')) {
-                throw new Error("Lỗi kết nối máy chủ Google Apps Script.");
-            }
-
-            // 5. Nếu thành công -> Bơm tiến trình vọt lên 100% ngay lập tức
-            if (callbackTienTrinh) callbackTienTrinh(100, dungLuongBytes, dungLuongBytes);
-
-            resolve(JSON.parse(textRes));
-
-        } catch (err) {
-            clearInterval(interval);
-            console.error("Lỗi Upload Fetch:", err);
-            reject(new Error("Mất kết nối mạng hoặc lỗi CORS server."));
-        }
-    });
-};
-
-// =======================================================
-// HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER (CHỐNG LỖI CORS + THANH TIẾN TRÌNH THÔNG MINH)
-// =======================================================
-window.ham_ho_tro_upload_anh_co_tien_trinh = async function (url, payload, callbackTienTrinh) {
-    return new Promise(async (resolve, reject) => {
-
-        // 1. Tính toán dung lượng thực tế của tấm ảnh (Base64 -> Bytes)
-        const dungLuongBytes = Math.round(payload.base64.length * 0.75);
-        let phanTram = 0;
-
-        // 2. Chạy thanh tiến trình mượt mà lên mức 90% trong lúc chờ Google xử lý
-        const interval = setInterval(() => {
-            if (phanTram < 90) {
-                // Tốc độ tăng ngẫu nhiên tạo cảm giác chân thực
-                phanTram += Math.floor(Math.random() * 5) + 2;
-                if (phanTram > 90) phanTram = 90;
-
-                let daTaiBytes = (phanTram / 100) * dungLuongBytes;
-                if (callbackTienTrinh) callbackTienTrinh(phanTram, daTaiBytes, dungLuongBytes);
-            }
-        }, 200); // Cứ 0.2 giây cập nhật giao diện 1 lần
-
-        try {
-            // 3. Sử dụng fetch() để xuyên qua lớp chặn CORS của Google
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(payload)
-            });
-
-            let textRes = await response.text();
-
-            // Dừng thanh tiến trình chạy tự động
-            clearInterval(interval);
-
-            // 4. Nếu Google báo lỗi (Sập server 404/500)
-            if (!textRes.trim().startsWith('{')) {
-                throw new Error("Lỗi kết nối máy chủ Google Apps Script.");
-            }
-
-            // 5. Nếu thành công -> Bơm tiến trình vọt lên 100% ngay lập tức
-            if (callbackTienTrinh) callbackTienTrinh(100, dungLuongBytes, dungLuongBytes);
-
-            resolve(JSON.parse(textRes));
-
-        } catch (err) {
-            clearInterval(interval);
-            console.error("Lỗi Upload Fetch:", err);
-            reject(new Error("Mất kết nối mạng hoặc lỗi CORS server."));
-        }
-    });
-};
-
-// =======================================================
-// KHỐI HỖ TRỢ: TỰ ĐỘNG TẢI THƯ VIỆN CẮT ẢNH CROPPER.JS
-// =======================================================
-window.ham_20_26_tai_thu_vien_cropper = function () {
-    return new Promise((resolve) => {
-        if (window.Cropper) { resolve(); return; }
-
-        let css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css';
-        document.head.appendChild(css);
-
-        let script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js';
-        script.onload = () => resolve();
-        document.head.appendChild(script);
-    });
-};
-
-// =======================================================
-// HÀM HỖ TRỢ: NÉN ẢNH TỰ ĐỘNG BẰNG CANVAS (NẾU KHÔNG CẮT)
-// =======================================================
-window.ham_20_24_nen_anh_canvas = function (file, quality = 0.7, maxWidth = 1600) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (event) {
-            const img = new Image();
-            img.src = event.target.result;
-            img.onload = function () {
-                let width = img.width;
-                let height = img.height;
-
-                if (width > maxWidth) {
-                    height = Math.round((height * maxWidth) / width);
-                    width = maxWidth;
-                }
-
-                const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
-
-                canvas.toBlob((blob) => {
-                    const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
-                        type: 'image/jpeg',
-                        lastModified: Date.now()
-                    });
-                    resolve(newFile);
-                }, 'image/jpeg', quality);
-            }
-        }
-    });
-};
-
 // // =======================================================
-// // HÀM HỖ TRỢ: HIỂN THỊ MÀN HÌNH CẮT ẢNH (CROP MODAL)
+// // HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER VÀ ĐO TIẾN TRÌNH % CHI TIẾT
 // // =======================================================
-// window.ham_20_23_hien_thi_modal_crop = function (file) {
-//     return new Promise((resolve) => {
-//         let modal = document.getElementById('modal-crop-anh-global');
-//         if (!modal) {
-//             modal = document.createElement('div');
-//             modal.id = 'modal-crop-anh-global';
-//             modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; flex-direction:column; align-items:center; justify-content:center; padding: 15px; box-sizing: border-box;';
-//             modal.innerHTML = `
-//                 <div style="width: 100%; max-width: 800px; height: 65vh; background: #000; position: relative; display: flex; align-items: center; justify-content: center;">
-//                     <img id="img-crop-target" style="display: block; max-width: 100%; max-height: 100%;">
-//                 </div>
-//                 <div style="margin-top: 25px; display: flex; gap: 10px; width: 100%; max-width: 800px; justify-content: center; flex-wrap: wrap;">
-//                     <button id="btn-crop-huy" style="padding: 10px 15px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">❌ Hủy tấm này</button>
-//                     <button id="btn-crop-skip" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⏭️ Không cắt (Chỉ nén)</button>
-//                     <button id="btn-crop-ok" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">✂️ CẮT & NÉN ẢNH</button>
-//                 </div>
-//             `;
-//             document.body.appendChild(modal);
-//         }
+// window.ham_ho_tro_upload_anh_co_tien_trinh = function (url, payload, callbackTienTrinh) {
+//     return new Promise((resolve, reject) => {
+//         const xhr = new XMLHttpRequest();
+//         xhr.open('POST', url, true);
+//         xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
 
-//         const imgTarget = document.getElementById('img-crop-target');
-//         const btnHuy = document.getElementById('btn-crop-huy');
-//         const btnSkip = document.getElementById('btn-crop-skip');
-//         const btnOk = document.getElementById('btn-crop-ok');
-
-//         const reader = new FileReader();
-//         reader.readAsDataURL(file);
-//         reader.onload = (e) => {
-//             imgTarget.src = e.target.result;
-//             modal.style.display = 'flex';
-
-//             let cropper = null;
-
-//             imgTarget.onload = () => {
-//                 if (cropper) cropper.destroy();
-//                 cropper = new Cropper(imgTarget, {
-//                     viewMode: 2,
-//                     autoCropArea: 0.9,
-//                     responsive: true,
-//                     background: false
-//                 });
-//             };
-
-//             const cleanup = () => {
-//                 if (cropper) cropper.destroy();
-//                 modal.style.display = 'none';
-//                 btnHuy.onclick = null;
-//                 btnSkip.onclick = null;
-//                 btnOk.onclick = null;
-//             };
-
-//             btnHuy.onclick = () => { cleanup(); resolve(null); }; // Trả về null nếu hủy
-
-//             btnSkip.onclick = () => {
-//                 cleanup();
-//                 window.ham_20_24_nen_anh_canvas(file).then(resolve);
-//             };
-
-//             btnOk.onclick = () => {
-//                 btnOk.innerHTML = "⏳ Đang nén...";
-//                 setTimeout(() => {
-//                     let canvas = cropper.getCroppedCanvas({
-//                         maxWidth: 1600,
-//                         maxHeight: 1600
-//                     });
-//                     cleanup();
-//                     btnOk.innerHTML = "✂️ CẮT & NÉN ẢNH";
-
-//                     canvas.toBlob((blob) => {
-//                         const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
-//                         resolve(newFile);
-//                     }, 'image/jpeg', 0.7); // Quality 70%
-//                 }, 50);
-//             };
+//         // Lắng nghe sự kiện đẩy dữ liệu lên mạng (Upload progress)
+//         xhr.upload.onprogress = function (event) {
+//             if (event.lengthComputable) {
+//                 const percentComplete = Math.round((event.loaded / event.total) * 100);
+//                 // Trả về cả phần trăm, số byte đã tải và tổng byte
+//                 if (callbackTienTrinh) callbackTienTrinh(percentComplete, event.loaded, event.total);
+//             }
 //         };
+
+//         xhr.onload = function () {
+//             if (xhr.status >= 200 && xhr.status < 300) {
+//                 try {
+//                     const response = JSON.parse(xhr.responseText);
+//                     resolve(response);
+//                 } catch (e) {
+//                     console.error("Lỗi parse JSON:", xhr.responseText);
+//                     reject(new Error("Lỗi phản hồi từ server (Không phải JSON chuẩn)."));
+//                 }
+//             } else {
+//                 reject(new Error("Lỗi mạng HTTP " + xhr.status));
+//             }
+//         };
+
+//         xhr.onerror = function () {
+//             reject(new Error("Mất kết nối mạng khi đang tải ảnh."));
+//         };
+
+//         xhr.send(JSON.stringify(payload));
 //     });
 // };
 
 
+// // =======================================================
+// // HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER (CHỐNG LỖI CORS + THANH TIẾN TRÌNH THÔNG MINH)
+// // =======================================================
+// window.ham_ho_tro_upload_anh_co_tien_trinh = async function (url, payload, callbackTienTrinh) {
+//     return new Promise(async (resolve, reject) => {
+
+//         // 1. Tính toán dung lượng thực tế của tấm ảnh (Base64 -> Bytes)
+//         const dungLuongBytes = Math.round(payload.base64.length * 0.75);
+//         let phanTram = 0;
+
+//         // 2. Chạy thanh tiến trình mượt mà lên mức 90% trong lúc chờ Google xử lý
+//         const interval = setInterval(() => {
+//             if (phanTram < 90) {
+//                 // Tốc độ tăng ngẫu nhiên tạo cảm giác chân thực
+//                 phanTram += Math.floor(Math.random() * 5) + 2;
+//                 if (phanTram > 90) phanTram = 90;
+
+//                 let daTaiBytes = (phanTram / 100) * dungLuongBytes;
+//                 if (callbackTienTrinh) callbackTienTrinh(phanTram, daTaiBytes, dungLuongBytes);
+//             }
+//         }, 200); // Cứ 0.2 giây cập nhật giao diện 1 lần
+
+//         try {
+//             // 3. Sử dụng fetch() để xuyên qua lớp chặn CORS của Google
+//             let response = await fetch(url, {
+//                 method: 'POST',
+//                 headers: { "Content-Type": "text/plain;charset=utf-8" },
+//                 body: JSON.stringify(payload)
+//             });
+
+//             let textRes = await response.text();
+
+//             // Dừng thanh tiến trình chạy tự động
+//             clearInterval(interval);
+
+//             // 4. Nếu Google báo lỗi (Sập server 404/500)
+//             if (!textRes.trim().startsWith('{')) {
+//                 throw new Error("Lỗi kết nối máy chủ Google Apps Script.");
+//             }
+
+//             // 5. Nếu thành công -> Bơm tiến trình vọt lên 100% ngay lập tức
+//             if (callbackTienTrinh) callbackTienTrinh(100, dungLuongBytes, dungLuongBytes);
+
+//             resolve(JSON.parse(textRes));
+
+//         } catch (err) {
+//             clearInterval(interval);
+//             console.error("Lỗi Upload Fetch:", err);
+//             reject(new Error("Mất kết nối mạng hoặc lỗi CORS server."));
+//         }
+//     });
+// };
+
+
+
 // =======================================================
-// HÀM HỖ TRỢ: HIỂN THỊ MÀN HÌNH CẮT ẢNH (TÍNH TOÁN DUNG LƯỢNG THỰC TẾ)
+// HÀM HỖ TRỢ 20.23: HIỂN THỊ MÀN HÌNH CẮT ẢNH (NHIỀU ĐỘ PHÂN GIẢI)
 // =======================================================
 window.ham_20_23_hien_thi_modal_crop = function (file) {
     return new Promise((resolve) => {
@@ -8534,40 +3404,47 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
                 
                 <div style="width: 100%; max-width: 800px; background: #222; padding: 15px; border-radius: 0 0 8px 8px; display: flex; flex-direction: column; gap: 15px; border: 1px solid #444; border-top: none;">
                     
-                    <!-- 🌟 BẢNG THEO DÕI DUNG LƯỢNG TRỰC TIẾP -->
                     <div style="display: flex; justify-content: center; gap: 25px; background: #111; padding: 12px; border-radius: 6px; border: 1px dashed #555;">
                         <div style="text-align: center;">
-                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">📦 Dung lượng gốc</div>
+                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">📦 Gốc</div>
                             <div style="color: #ffc107; font-size: 16px; font-weight: bold;" id="crop-size-goc">Đang đọc...</div>
                         </div>
                         <div style="width: 1px; background: #444;"></div>
                         <div style="text-align: center;">
-                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">✨ Sau khi cắt & nén</div>
+                            <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">✨ Sau cắt & nén</div>
                             <div style="color: #28a745; font-size: 18px; font-weight: bold;" id="crop-size-du-kien">⏳ Đang tính...</div>
                         </div>
                     </div>
 
-                    <!-- KHU VỰC CHỌN ĐỘ PHÂN GIẢI -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px;">
-                        <span style="color: #aaa; font-size: 13px; font-weight: bold; margin-right: 5px;">Mức nén ảnh:</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px;">
+                        <span style="color: #aaa; font-size: 13px; font-weight: bold; margin-right: 5px;">Cỡ ảnh:</span>
                         
-                        <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                        <label style="background: #333; color: white; padding: 6px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 4px; transition: 0.2s;">
+                            <input type="radio" name="crop_res" value="original" style="margin:0; accent-color: #007bff;"> 
+                            <div><b>🌟 Gốc</b></div>
+                        </label>
+                        
+                        <label style="background: #333; color: white; padding: 6px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 4px; transition: 0.2s;">
+                            <input type="radio" name="crop_res" value="2560" style="margin:0; accent-color: #007bff;"> 
+                            <div><b>🎬 2K (2560)</b></div>
+                        </label>
+
+                        <label style="background: #333; color: white; padding: 6px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 4px; transition: 0.2s;">
                             <input type="radio" name="crop_res" value="1920" style="margin:0; accent-color: #007bff;"> 
-                            <div><b>📸 Nét (1920px)</b></div>
+                            <div><b>📺 FHD (1920)</b></div>
                         </label>
                         
-                        <label style="background: #007bff; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #0056b3; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                        <label style="background: #007bff; color: white; padding: 6px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #0056b3; display: flex; align-items: center; gap: 4px; transition: 0.2s;">
                             <input type="radio" name="crop_res" value="1280" checked style="margin:0; accent-color: #fff;"> 
-                            <div><b>⚖️ Chuẩn (1280px)</b></div>
+                            <div><b>💻 HD (1280)</b></div>
                         </label>
                         
-                        <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                        <label style="background: #333; color: white; padding: 6px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 4px; transition: 0.2s;">
                             <input type="radio" name="crop_res" value="800" style="margin:0; accent-color: #007bff;"> 
-                            <div><b>⚡ Tốc độ (800px)</b></div>
+                            <div><b>⚡ Nhẹ (800)</b></div>
                         </label>
                     </div>
 
-                    <!-- KHU VỰC NÚT HÀNH ĐỘNG -->
                     <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                         <button id="btn-crop-huy" style="padding: 10px 15px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">❌ Hủy</button>
                         <button id="btn-crop-skip" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⏭️ Chỉ Nén (Không cắt)</button>
@@ -8577,7 +3454,6 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
             `;
             document.body.appendChild(modal);
 
-            // Hiệu ứng đổi màu radio
             const radios = modal.querySelectorAll('input[name="crop_res"]');
             radios.forEach(radio => {
                 radio.addEventListener('change', function () {
@@ -8600,7 +3476,6 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
         let timeoutTinhToan = null;
         let cropper = null;
 
-        // Định dạng KB/MB nội bộ cho an toàn
         const formatSize = (bytes) => {
             if (bytes === 0) return '0 B';
             const k = 1024, i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -8609,10 +3484,9 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
 
         const getSelectedRes = () => {
             const selected = document.querySelector('input[name="crop_res"]:checked');
-            return selected ? parseInt(selected.value) : 1280;
+            return selected ? selected.value : '1280';
         };
 
-        // Thuật toán: Vẽ ngầm hình ảnh thu nhỏ ra một file tạm để cân đo dung lượng
         const tinhToanDungLuongDuKien = () => {
             if (!cropper) return;
             txtSizeDuKien.innerHTML = "⏳ Đang tính...";
@@ -8620,13 +3494,17 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
 
             clearTimeout(timeoutTinhToan);
 
-            // Dùng setTimeout 250ms (Debounce) để chống giật khi đang thao tác liên tục
             timeoutTinhToan = setTimeout(() => {
-                let maxWidth = getSelectedRes();
-                let canvas = cropper.getCroppedCanvas({
-                    maxWidth: maxWidth,
-                    maxHeight: maxWidth
-                });
+                let res = getSelectedRes();
+                let quality = res === 'original' ? 0.95 : 0.7;
+                let canvasOptions = {};
+
+                if (res !== 'original') {
+                    canvasOptions.maxWidth = parseInt(res);
+                    canvasOptions.maxHeight = parseInt(res);
+                }
+
+                let canvas = cropper.getCroppedCanvas(canvasOptions);
 
                 if (canvas) {
                     canvas.toBlob((blob) => {
@@ -8634,17 +3512,15 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
                             txtSizeDuKien.innerHTML = formatSize(blob.size);
                             txtSizeDuKien.style.color = "#28a745";
                         }
-                    }, 'image/jpeg', 0.7);
+                    }, 'image/jpeg', quality);
                 }
             }, 250);
         };
 
-        // Gắn sự kiện: Khi đổi độ phân giải thì tự động tính lại dung lượng
         document.querySelectorAll('input[name="crop_res"]').forEach(radio => {
             radio.addEventListener('change', tinhToanDungLuongDuKien);
         });
 
-        // Đọc ảnh và khởi tạo
         txtSizeGoc.innerHTML = formatSize(file.size);
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -8660,14 +3536,8 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
                     autoCropArea: 0.9,
                     responsive: true,
                     background: false,
-                    ready: function () {
-                        // Tính toán dung lượng lần đầu khi vừa mở lên
-                        tinhToanDungLuongDuKien();
-                    },
-                    cropend: function () {
-                        // Tính toán lại dung lượng mỗi khi thả ngón tay ra khỏi khung cắt
-                        tinhToanDungLuongDuKien();
-                    }
+                    ready: function () { tinhToanDungLuongDuKien(); },
+                    cropend: function () { tinhToanDungLuongDuKien(); }
                 });
             };
 
@@ -8683,29 +3553,363 @@ window.ham_20_23_hien_thi_modal_crop = function (file) {
             btnHuy.onclick = () => { cleanup(); resolve(null); };
 
             btnSkip.onclick = () => {
-                let maxWidth = getSelectedRes();
+                let res = getSelectedRes();
+                let maxWidth = res === 'original' ? 'original' : parseInt(res);
                 cleanup();
                 window.ham_20_24_nen_anh_canvas(file, 0.7, maxWidth).then(resolve);
             };
 
             btnOk.onclick = () => {
-                let maxWidth = getSelectedRes();
+                let res = getSelectedRes();
+                let quality = res === 'original' ? 0.95 : 0.7;
+                let canvasOptions = {};
+                if (res !== 'original') {
+                    canvasOptions.maxWidth = parseInt(res);
+                    canvasOptions.maxHeight = parseInt(res);
+                }
+
                 btnOk.innerHTML = "⏳ Đang lưu...";
                 setTimeout(() => {
-                    let canvas = cropper.getCroppedCanvas({
-                        maxWidth: maxWidth,
-                        maxHeight: maxWidth
-                    });
+                    let canvas = cropper.getCroppedCanvas(canvasOptions);
                     cleanup();
                     btnOk.innerHTML = "✂️ LƯU TẤM NÀY";
 
                     canvas.toBlob((blob) => {
                         const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
                         resolve(newFile);
-                    }, 'image/jpeg', 0.7);
+                    }, 'image/jpeg', quality);
                 }, 50);
             };
         };
+    });
+};
+
+
+
+
+// // =======================================================
+// // HÀM HỖ TRỢ: HIỂN THỊ MÀN HÌNH CẮT ẢNH (TÍNH TOÁN DUNG LƯỢNG THỰC TẾ)
+// // =======================================================
+// window.ham_20_23_hien_thi_modal_crop = function (file) {
+//     return new Promise((resolve) => {
+//         let modal = document.getElementById('modal-crop-anh-global');
+//         if (!modal) {
+//             modal = document.createElement('div');
+//             modal.id = 'modal-crop-anh-global';
+//             modal.style.cssText = 'display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; flex-direction:column; align-items:center; justify-content:center; padding: 15px; box-sizing: border-box; font-family: sans-serif;';
+
+//             modal.innerHTML = `
+//                 <div style="width: 100%; max-width: 800px; height: 50vh; background: #000; position: relative; display: flex; align-items: center; justify-content: center; border: 1px solid #444; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+//                     <img id="img-crop-target" style="display: block; max-width: 100%; max-height: 100%;">
+//                 </div>
+                
+//                 <div style="width: 100%; max-width: 800px; background: #222; padding: 15px; border-radius: 0 0 8px 8px; display: flex; flex-direction: column; gap: 15px; border: 1px solid #444; border-top: none;">
+                    
+//                     <!-- 🌟 BẢNG THEO DÕI DUNG LƯỢNG TRỰC TIẾP -->
+//                     <div style="display: flex; justify-content: center; gap: 25px; background: #111; padding: 12px; border-radius: 6px; border: 1px dashed #555;">
+//                         <div style="text-align: center;">
+//                             <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">📦 Dung lượng gốc</div>
+//                             <div style="color: #ffc107; font-size: 16px; font-weight: bold;" id="crop-size-goc">Đang đọc...</div>
+//                         </div>
+//                         <div style="width: 1px; background: #444;"></div>
+//                         <div style="text-align: center;">
+//                             <div style="color: #aaa; font-size: 11px; margin-bottom: 3px; text-transform: uppercase;">✨ Sau khi cắt & nén</div>
+//                             <div style="color: #28a745; font-size: 18px; font-weight: bold;" id="crop-size-du-kien">⏳ Đang tính...</div>
+//                         </div>
+//                     </div>
+
+//                     <!-- KHU VỰC CHỌN ĐỘ PHÂN GIẢI -->
+//                     <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px;">
+//                         <span style="color: #aaa; font-size: 13px; font-weight: bold; margin-right: 5px;">Mức nén ảnh:</span>
+                        
+//                         <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+//                             <input type="radio" name="crop_res" value="1920" style="margin:0; accent-color: #007bff;"> 
+//                             <div><b>📸 Nét (1920px)</b></div>
+//                         </label>
+                        
+//                         <label style="background: #007bff; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #0056b3; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+//                             <input type="radio" name="crop_res" value="1280" checked style="margin:0; accent-color: #fff;"> 
+//                             <div><b>⚖️ Chuẩn (1280px)</b></div>
+//                         </label>
+                        
+//                         <label style="background: #333; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid #555; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+//                             <input type="radio" name="crop_res" value="800" style="margin:0; accent-color: #007bff;"> 
+//                             <div><b>⚡ Tốc độ (800px)</b></div>
+//                         </label>
+//                     </div>
+
+//                     <!-- KHU VỰC NÚT HÀNH ĐỘNG -->
+//                     <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+//                         <button id="btn-crop-huy" style="padding: 10px 15px; background: #dc3545; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">❌ Hủy</button>
+//                         <button id="btn-crop-skip" style="padding: 10px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">⏭️ Chỉ Nén (Không cắt)</button>
+//                         <button id="btn-crop-ok" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">✂️ LƯU TẤM NÀY</button>
+//                     </div>
+//                 </div>
+//             `;
+//             document.body.appendChild(modal);
+
+//             // Hiệu ứng đổi màu radio
+//             const radios = modal.querySelectorAll('input[name="crop_res"]');
+//             radios.forEach(radio => {
+//                 radio.addEventListener('change', function () {
+//                     radios.forEach(r => {
+//                         r.parentElement.style.background = '#333';
+//                         r.parentElement.style.borderColor = '#555';
+//                     });
+//                     this.parentElement.style.background = '#007bff';
+//                     this.parentElement.style.borderColor = '#0056b3';
+//                 });
+//             });
+//         }
+
+//         const imgTarget = document.getElementById('img-crop-target');
+//         const txtSizeGoc = document.getElementById('crop-size-goc');
+//         const txtSizeDuKien = document.getElementById('crop-size-du-kien');
+//         const btnHuy = document.getElementById('btn-crop-huy');
+//         const btnSkip = document.getElementById('btn-crop-skip');
+//         const btnOk = document.getElementById('btn-crop-ok');
+//         let timeoutTinhToan = null;
+//         let cropper = null;
+
+//         // Định dạng KB/MB nội bộ cho an toàn
+//         const formatSize = (bytes) => {
+//             if (bytes === 0) return '0 B';
+//             const k = 1024, i = Math.floor(Math.log(bytes) / Math.log(k));
+//             return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + ['B', 'KB', 'MB'][i];
+//         };
+
+//         const getSelectedRes = () => {
+//             const selected = document.querySelector('input[name="crop_res"]:checked');
+//             return selected ? parseInt(selected.value) : 1280;
+//         };
+
+//         // Thuật toán: Vẽ ngầm hình ảnh thu nhỏ ra một file tạm để cân đo dung lượng
+//         const tinhToanDungLuongDuKien = () => {
+//             if (!cropper) return;
+//             txtSizeDuKien.innerHTML = "⏳ Đang tính...";
+//             txtSizeDuKien.style.color = "#adb5bd";
+
+//             clearTimeout(timeoutTinhToan);
+
+//             // Dùng setTimeout 250ms (Debounce) để chống giật khi đang thao tác liên tục
+//             timeoutTinhToan = setTimeout(() => {
+//                 let maxWidth = getSelectedRes();
+//                 let canvas = cropper.getCroppedCanvas({
+//                     maxWidth: maxWidth,
+//                     maxHeight: maxWidth
+//                 });
+
+//                 if (canvas) {
+//                     canvas.toBlob((blob) => {
+//                         if (blob) {
+//                             txtSizeDuKien.innerHTML = formatSize(blob.size);
+//                             txtSizeDuKien.style.color = "#28a745";
+//                         }
+//                     }, 'image/jpeg', 0.7);
+//                 }
+//             }, 250);
+//         };
+
+//         // Gắn sự kiện: Khi đổi độ phân giải thì tự động tính lại dung lượng
+//         document.querySelectorAll('input[name="crop_res"]').forEach(radio => {
+//             radio.addEventListener('change', tinhToanDungLuongDuKien);
+//         });
+
+//         // Đọc ảnh và khởi tạo
+//         txtSizeGoc.innerHTML = formatSize(file.size);
+//         const reader = new FileReader();
+//         reader.readAsDataURL(file);
+
+//         reader.onload = (e) => {
+//             imgTarget.src = e.target.result;
+//             modal.style.display = 'flex';
+
+//             imgTarget.onload = () => {
+//                 if (cropper) cropper.destroy();
+//                 cropper = new Cropper(imgTarget, {
+//                     viewMode: 2,
+//                     autoCropArea: 0.9,
+//                     responsive: true,
+//                     background: false,
+//                     ready: function () {
+//                         // Tính toán dung lượng lần đầu khi vừa mở lên
+//                         tinhToanDungLuongDuKien();
+//                     },
+//                     cropend: function () {
+//                         // Tính toán lại dung lượng mỗi khi thả ngón tay ra khỏi khung cắt
+//                         tinhToanDungLuongDuKien();
+//                     }
+//                 });
+//             };
+
+//             const cleanup = () => {
+//                 if (cropper) cropper.destroy();
+//                 modal.style.display = 'none';
+//                 btnHuy.onclick = null;
+//                 btnSkip.onclick = null;
+//                 btnOk.onclick = null;
+//                 clearTimeout(timeoutTinhToan);
+//             };
+
+//             btnHuy.onclick = () => { cleanup(); resolve(null); };
+
+//             btnSkip.onclick = () => {
+//                 let maxWidth = getSelectedRes();
+//                 cleanup();
+//                 window.ham_20_24_nen_anh_canvas(file, 0.7, maxWidth).then(resolve);
+//             };
+
+//             btnOk.onclick = () => {
+//                 let maxWidth = getSelectedRes();
+//                 btnOk.innerHTML = "⏳ Đang lưu...";
+//                 setTimeout(() => {
+//                     let canvas = cropper.getCroppedCanvas({
+//                         maxWidth: maxWidth,
+//                         maxHeight: maxWidth
+//                     });
+//                     cleanup();
+//                     btnOk.innerHTML = "✂️ LƯU TẤM NÀY";
+
+//                     canvas.toBlob((blob) => {
+//                         const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
+//                         resolve(newFile);
+//                     }, 'image/jpeg', 0.7);
+//                 }, 50);
+//             };
+//         };
+//     });
+// };
+
+
+
+
+// =======================================================
+// HÀM HỖ TRỢ: ĐẨY ẢNH LÊN SERVER (CHỐNG LỖI CORS + THANH TIẾN TRÌNH THÔNG MINH)
+// =======================================================
+window.ham_ho_tro_upload_anh_co_tien_trinh = async function (url, payload, callbackTienTrinh) {
+    return new Promise(async (resolve, reject) => {
+
+        // 1. Tính toán dung lượng thực tế của tấm ảnh (Base64 -> Bytes)
+        const dungLuongBytes = Math.round(payload.base64.length * 0.75);
+        let phanTram = 0;
+
+        // 2. Chạy thanh tiến trình mượt mà lên mức 90% trong lúc chờ Google xử lý
+        const interval = setInterval(() => {
+            if (phanTram < 90) {
+                // Tốc độ tăng ngẫu nhiên tạo cảm giác chân thực
+                phanTram += Math.floor(Math.random() * 5) + 2;
+                if (phanTram > 90) phanTram = 90;
+
+                let daTaiBytes = (phanTram / 100) * dungLuongBytes;
+                if (callbackTienTrinh) callbackTienTrinh(phanTram, daTaiBytes, dungLuongBytes);
+            }
+        }, 200); // Cứ 0.2 giây cập nhật giao diện 1 lần
+
+        try {
+            // 3. Sử dụng fetch() để xuyên qua lớp chặn CORS của Google
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(payload)
+            });
+
+            let textRes = await response.text();
+
+            // Dừng thanh tiến trình chạy tự động
+            clearInterval(interval);
+
+            // 4. Nếu Google báo lỗi (Sập server 404/500)
+            if (!textRes.trim().startsWith('{')) {
+                throw new Error("Lỗi kết nối máy chủ Google Apps Script.");
+            }
+
+            // 5. Nếu thành công -> Bơm tiến trình vọt lên 100% ngay lập tức
+            if (callbackTienTrinh) callbackTienTrinh(100, dungLuongBytes, dungLuongBytes);
+
+            resolve(JSON.parse(textRes));
+
+        } catch (err) {
+            clearInterval(interval);
+            console.error("Lỗi Upload Fetch:", err);
+            reject(new Error("Mất kết nối mạng hoặc lỗi CORS server."));
+        }
+    });
+};
+
+// // =======================================================
+// // HÀM HỖ TRỢ: NÉN ẢNH TỰ ĐỘNG BẰNG CANVAS (NẾU KHÔNG CẮT)
+// // =======================================================
+// window.ham_20_24_nen_anh_canvas = function (file, quality = 0.7, maxWidth = 1600) {
+//     return new Promise((resolve) => {
+//         const reader = new FileReader();
+//         reader.readAsDataURL(file);
+//         reader.onload = function (event) {
+//             const img = new Image();
+//             img.src = event.target.result;
+//             img.onload = function () {
+//                 let width = img.width;
+//                 let height = img.height;
+
+//                 if (width > maxWidth) {
+//                     height = Math.round((height * maxWidth) / width);
+//                     width = maxWidth;
+//                 }
+
+//                 const canvas = document.createElement('canvas');
+//                 canvas.width = width;
+//                 canvas.height = height;
+//                 const ctx = canvas.getContext('2d');
+//                 ctx.drawImage(img, 0, 0, width, height);
+
+//                 canvas.toBlob((blob) => {
+//                     const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+//                         type: 'image/jpeg',
+//                         lastModified: Date.now()
+//                     });
+//                     resolve(newFile);
+//                 }, 'image/jpeg', quality);
+//             }
+//         }
+//     });
+// };
+
+
+// =======================================================
+// HÀM HỖ TRỢ 20.24: NÉN ẢNH TỰ ĐỘNG BẰNG CANVAS
+// =======================================================
+window.ham_20_24_nen_anh_canvas = function (file, quality = 0.7, maxWidth = 1280) {
+    return new Promise((resolve) => {
+        if (maxWidth === 'original') {
+            resolve(file); // Giữ nguyên file gốc không can thiệp
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (event) {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = function () {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob((blob) => {
+                    const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: 'image/jpeg', lastModified: Date.now() });
+                    resolve(newFile);
+                }, 'image/jpeg', quality);
+            }
+        }
     });
 };
 
@@ -8727,3 +3931,300 @@ window.ham_20_25_xu_ly_mang_anh_dau_vao = async function (files) {
 };
 
 
+// // =======================================================
+// // HÀM 20.27: TỰ ĐỘNG TẢI NỘI DUNG TIẾT HỌC NẾU ĐÃ CÓ DỮ LIỆU
+// // =======================================================
+// window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const rawLop = document.getElementById('nk-input-lop').value.trim();
+
+//     let maLopLuu = rawLop;
+//     if (rawLop.match(/\(([^)]+)\)$/)) {
+//         maLopLuu = rawLop.match(/\(([^)]+)\)$/)[1].trim();
+//     }
+
+//     const vungAnhDaLuu = document.getElementById('vung-anh-bai-giang-da-luu');
+//     const btnLuuBG = document.querySelector('button[onclick="ham_20_6a_luu_bai_giang(this)"]');
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+//         return;
+//     }
+
+//     try {
+//         const { data, error } = await _supabase.from('nhat_ky_day_hoc')
+//             .select('*')
+//             .eq('ngay_day', ngayDay).eq('buoi', buoi).eq('tiet', tiet).eq('ma_lop', maLopLuu);
+
+//         if (error) throw error;
+
+//         if (data && data.length > 0) {
+//             const nk = data[0];
+
+//             // 1. Tự động điền Text
+//             if (nk.phan_mon) document.getElementById('nk-input-mon').value = nk.phan_mon;
+//             if (nk.ten_bai) document.getElementById('nk-input-ten-bai').value = nk.ten_bai;
+//             const cacTextArea = document.querySelectorAll('textarea');
+//             if (nk.ly_thuyet && cacTextArea[0]) cacTextArea[0].value = nk.ly_thuyet;
+//             if (nk.bai_tap && cacTextArea[1]) cacTextArea[1].value = nk.bai_tap;
+//             if (nk.dan_do && cacTextArea[2]) cacTextArea[2].value = nk.dan_do;
+
+//             // 2. Hiển thị ảnh đã lưu
+//             let mangAnh = [];
+//             if (nk.danh_sach_anh) {
+//                 if (Array.isArray(nk.danh_sach_anh)) mangAnh = nk.danh_sach_anh;
+//                 else if (typeof nk.danh_sach_anh === 'string') {
+//                     try { mangAnh = JSON.parse(nk.danh_sach_anh); } catch (e) { mangAnh = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
+//                 }
+//             }
+
+//             if (mangAnh.length > 0 && vungAnhDaLuu) {
+//                 let htmlAnh = '<div style="font-size:13px; font-weight:bold; color:#155724; margin-bottom:8px;">✅ Tiết này đã lưu nội dung và các ảnh sau:</div><div style="display:flex; gap:10px; flex-wrap:wrap;">';
+//                 mangAnh.forEach(link => {
+//                     let previewLink = link;
+//                     let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+//                     if (matchD) previewLink = `https://lh3.googleusercontent.com/d/${matchD[1]}`;
+//                     htmlAnh += `<a href="${link}" target="_blank" title="Bấm để xem ảnh gốc"><img src="${previewLink}" style="height: 65px; width: 65px; object-fit: cover; border-radius: 6px; border: 2px solid #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.15);"></a>`;
+//                 });
+//                 htmlAnh += '</div>';
+//                 vungAnhDaLuu.innerHTML = htmlAnh;
+//                 vungAnhDaLuu.style.display = 'block';
+//             } else if (vungAnhDaLuu) {
+//                 vungAnhDaLuu.style.display = 'none';
+//                 vungAnhDaLuu.innerHTML = '';
+//             }
+
+//             // Đổi nhãn nút bấm
+//             if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. CẬP NHẬT (THÊM ẢNH) BÀI GIẢNG';
+
+//         } else {
+//             // Tiết trống hoàn toàn
+//             if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+//             if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. LƯU NỘI DUNG BÀI GIẢNG';
+//         }
+//     } catch (e) {
+//         console.error("Lỗi kiểm tra tiết đã lưu:", e);
+//     }
+// };
+
+
+// =======================================================
+// KHỐI HỖ TRỢ: TỰ ĐỘNG TẢI THƯ VIỆN CẮT ẢNH CROPPER.JS
+// =======================================================
+window.ham_20_26_tai_thu_vien_cropper = function () {
+    return new Promise((resolve) => {
+        if (window.Cropper) { resolve(); return; }
+
+        let css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css';
+        document.head.appendChild(css);
+
+        let script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js';
+        script.onload = () => resolve();
+        document.head.appendChild(script);
+    });
+};
+
+// =======================================================
+// HÀM 20.27: TỰ ĐỘNG TẢI NỘI DUNG & SỰ KIỆN TIẾT HỌC
+// =======================================================
+window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
+    const ngayDay = document.querySelector('input[type="date"]').value;
+    const buoi = document.getElementById('nk-input-buoi').value.trim();
+    const tiet = document.getElementById('nk-input-tiet').value.trim();
+    const rawLop = document.getElementById('nk-input-lop').value.trim();
+
+    let maLopLuu = rawLop;
+    if (rawLop.match(/\(([^)]+)\)$/)) {
+        maLopLuu = rawLop.match(/\(([^)]+)\)$/)[1].trim();
+    }
+
+    const vungAnhDaLuu = document.getElementById('vung-anh-bai-giang-da-luu');
+    const vungSuKienDaLuu = document.getElementById('vung-su-kien-da-luu');
+    const btnLuuBG = document.querySelector('button[onclick="ham_20_6a_luu_bai_giang(this)"]');
+
+    if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+        if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+        if (vungSuKienDaLuu) vungSuKienDaLuu.style.display = 'none';
+        return;
+    }
+
+    try {
+        const { data, error } = await _supabase.from('nhat_ky_day_hoc')
+            .select('*')
+            .eq('ngay_day', ngayDay).eq('buoi', buoi).eq('tiet', tiet).eq('ma_lop', maLopLuu);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+            const nk = data[0];
+
+            // 1. TỰ ĐỘNG ĐIỀN NỘI DUNG BÀI GIẢNG
+            if (nk.phan_mon) document.getElementById('nk-input-mon').value = nk.phan_mon;
+            if (nk.ten_bai) document.getElementById('nk-input-ten-bai').value = nk.ten_bai;
+            const cacTextArea = document.querySelectorAll('textarea');
+            if (nk.ly_thuyet && cacTextArea[0]) cacTextArea[0].value = nk.ly_thuyet;
+            if (nk.bai_tap && cacTextArea[1]) cacTextArea[1].value = nk.bai_tap;
+            if (nk.dan_do && cacTextArea[2]) cacTextArea[2].value = nk.dan_do;
+
+            // 2. HIỂN THỊ ẢNH BÀI GIẢNG (KÍCH THƯỚC X2 = 130px)
+            let mangAnh = [];
+            if (nk.danh_sach_anh) {
+                if (Array.isArray(nk.danh_sach_anh)) mangAnh = nk.danh_sach_anh;
+                else if (typeof nk.danh_sach_anh === 'string') {
+                    try { mangAnh = JSON.parse(nk.danh_sach_anh); } catch (e) { mangAnh = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
+                }
+            }
+
+            if (mangAnh.length > 0 && vungAnhDaLuu) {
+                let htmlAnh = '<div style="font-size:13px; font-weight:bold; color:#155724; margin-bottom:10px;">✅ Tiết này đã lưu nội dung và các ảnh sau:</div><div style="display:flex; gap:10px; flex-wrap:wrap;">';
+                mangAnh.forEach(link => {
+                    let previewLink = link;
+                    let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                    if (matchD) previewLink = `https://lh3.googleusercontent.com/d/${matchD[1]}`;
+
+                    // 🌟 Thay đổi kích thước ảnh từ 65px -> 130px 🌟
+                    htmlAnh += `<a href="${link}" target="_blank" title="Bấm để xem ảnh gốc"><img src="${previewLink}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 6px; border: 2px solid #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.15);"></a>`;
+                });
+                htmlAnh += '</div>';
+                vungAnhDaLuu.innerHTML = htmlAnh;
+                vungAnhDaLuu.style.display = 'block';
+            } else if (vungAnhDaLuu) {
+                vungAnhDaLuu.style.display = 'none';
+                vungAnhDaLuu.innerHTML = '';
+            }
+
+            // 3. TỰ ĐỘNG KIỂM TRA SỰ KIỆN & VẮNG MẶT CỦA TIẾT ĐÓ
+            if (vungSuKienDaLuu) {
+                const { data: dsSuKien, error: errSK } = await _supabase.from('nhat_ky_su_kien_hs')
+                    .select('*')
+                    .eq('id_nhat_ky', nk.id);
+
+                if (!errSK && dsSuKien && dsSuKien.length > 0) {
+                    let htmlSK = '<div style="font-size:13px; font-weight:bold; color:#856404; margin-bottom:8px;">✅ Tiết này ĐÃ LƯU học sinh sau:</div>';
+                    htmlSK += '<div style="display:flex; flex-direction:column; gap:8px;">';
+
+                    let hsVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt');
+                    let hsKhac = dsSuKien.filter(sk => sk.loai_the !== 'Vắng mặt');
+
+                    if (hsVang.length > 0) {
+                        htmlSK += `<div style="font-size:13px;"><b style="color:#dc3545;">❌ Vắng mặt:</b> ${hsVang.map(v => v.ten_hoc_sinh).join(', ')}</div>`;
+                    }
+
+                    if (hsKhac.length > 0) {
+                        htmlSK += `<div style="font-size:13px;"><b style="color:#d35400;">🎯 Sự kiện/Điểm:</b></div>`;
+                        hsKhac.forEach(sk => {
+                            let diemStr = (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.diem_so) ? ` <span style="background:#28a745; color:white; padding:1px 5px; border-radius:3px; font-size:11px;">⭐ ${sk.thong_tin_mo_rong.diem_so}đ</span>` : '';
+                            let noteStr = sk.ghi_chu ? ` - <i style="color:#555;">${sk.ghi_chu}</i>` : '';
+                            htmlSK += `
+                                <div style="font-size:13px; margin-left: 10px; border-left: 3px solid ${sk.thong_tin_mo_rong?.mau_sac || '#000'}; padding-left: 8px; background:#fff; padding-top:4px; padding-bottom:4px; border-radius:0 4px 4px 0;">
+                                    <b>${sk.ten_hoc_sinh}</b>: <span style="color:${sk.thong_tin_mo_rong?.mau_sac || '#000'}; font-weight:bold;">[${sk.loai_the}]</span>${diemStr}${noteStr}
+                                </div>
+                            `;
+                        });
+                    }
+                    htmlSK += '</div>';
+                    vungSuKienDaLuu.innerHTML = htmlSK;
+                    vungSuKienDaLuu.style.display = 'block';
+                } else {
+                    vungSuKienDaLuu.style.display = 'none';
+                    vungSuKienDaLuu.innerHTML = '';
+                }
+            }
+
+            if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. CẬP NHẬT (THÊM ẢNH) BÀI GIẢNG';
+
+        } else {
+            // Tiết trống hoàn toàn
+            if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+            if (vungSuKienDaLuu) vungSuKienDaLuu.style.display = 'none';
+            if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. LƯU NỘI DUNG BÀI GIẢNG';
+        }
+    } catch (e) {
+        console.error("Lỗi kiểm tra tiết đã lưu:", e);
+    }
+};
+
+
+
+
+
+// =====================================================================
+// HÀM 20.28: TẢI THÔNG TIN CỦA TIẾT HỌC GẦN NHẤT VỪA LƯU
+// =====================================================================
+window.ham_20_28_tai_tiet_gan_nhat = function () {
+    const lastNgayDay = localStorage.getItem('nk_last_ngayDay');
+    const lastBuoi = localStorage.getItem('nk_last_buoi');
+    const lastTiet = localStorage.getItem('nk_last_tiet');
+    const lastLop = localStorage.getItem('nk_last_lop');
+
+    if (!lastNgayDay && !lastBuoi && !lastTiet && !lastLop) {
+        alert("⚠️ Hệ thống chưa ghi nhận tiết học nào được lưu gần đây trên trình duyệt này!");
+        return;
+    }
+
+    // Đổ dữ liệu vào giao diện
+    if (lastNgayDay) document.querySelector('input[type="date"]').value = lastNgayDay;
+    if (lastBuoi) document.getElementById('nk-input-buoi').value = lastBuoi;
+    if (lastTiet) document.getElementById('nk-input-tiet').value = lastTiet;
+    if (lastLop) document.getElementById('nk-input-lop').value = lastLop;
+
+    // Kích hoạt nạp danh sách học sinh và kiểm tra dữ liệu tiết học tự động
+    if (lastLop && typeof ham_20_2_tai_danh_sach_hs_theo_lop === 'function') {
+        ham_20_2_tai_danh_sach_hs_theo_lop();
+    }
+
+    if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+        ham_20_27_kiem_tra_tiet_da_luu();
+    }
+};
+
+
+// =====================================================================
+// HÀM 20.29: DỌN DẸP LÀM TIẾT MỚI (RESET GIAO DIỆN)
+// =====================================================================
+window.ham_20_29_lam_moi_tiet_hoc = function () {
+    // 1. Reset Thông tin chung
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelector('input[type="date"]').value = today;
+    document.getElementById('nk-input-buoi').value = '';
+    document.getElementById('nk-input-tiet').value = '';
+    document.getElementById('nk-input-lop').value = '';
+    document.getElementById('nk-input-mon').value = '';
+
+    // 2. Reset Nội dung bài giảng
+    document.getElementById('nk-input-ten-bai').value = '';
+    const cacTextArea = document.querySelectorAll('textarea');
+    if (cacTextArea[0]) cacTextArea[0].value = '';
+    if (cacTextArea[1]) cacTextArea[1].value = '';
+    if (cacTextArea[2]) cacTextArea[2].value = '';
+
+    // 3. Xóa trắng danh sách mảng tạm
+    window.danhSachAnhBaiGiangTam = [];
+    window.danhSachAnhMinhChungTam = [];
+    window.danhSachSuKienTam = [];
+
+    // 4. Render lại giao diện các khu vực (để xóa ảnh/sự kiện đang hiển thị)
+    if (typeof ham_20_11_render_anh_bai_giang === 'function') ham_20_11_render_anh_bai_giang();
+    if (typeof ham_20_22_render_anh_minh_chung === 'function') ham_20_22_render_anh_minh_chung();
+    if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+
+    // 5. Reset khu vực điểm danh
+    const khuVucDiemDanh = document.getElementById('nk-khu-vuc-diem-danh');
+    if (khuVucDiemDanh) {
+        khuVucDiemDanh.innerHTML = `
+            <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+                <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+                <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
+            </div>`;
+    }
+
+    // 6. Xóa danh sách học sinh cũ và ẩn các khối "Đã lưu"
+    const dlHs = document.getElementById('nk-dl-hs');
+    if (dlHs) dlHs.innerHTML = '';
+    if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();
+};
