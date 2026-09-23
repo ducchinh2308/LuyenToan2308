@@ -1,7 +1,227 @@
 ﻿
 
+// // =====================================================================
+// // KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (ẢNH MINH CHỨNG DÙNG CHUNG)
+// // =====================================================================
+// window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     const today = new Date().toISOString().split('T')[0];
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+            
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 10px; margin-bottom: 20px;">
+//                 <h3 style="color: #17a2b8; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px;">
+//                     📔 Nhật Ký Dạy Học
+//                 </h3>
+                
+//                 <div style="display: flex; gap: 10px;">
+//                     <button onclick="ham_20_29_lam_moi_tiet_hoc()" style="padding: 6px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+//                         🆕 Tiết mới
+//                     </button>
+
+//                     <button onclick="ham_20_28_tai_tiet_gan_nhat()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                         🔄 Tiết gần nhất
+//                     </button>
+
+//                     <button onclick="ham_20_14_giao_dien_tra_cuu()" style="padding: 6px 15px; background: #ffc107; color: #000; border: 1px solid #d39e00; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;">
+//                         🔍 Tìm lại
+//                     </button>
+                    
+//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅️ Quay lại
+//                     </button>
+//                 </div>
+//             </div>
+
+//             <!-- THÔNG TIN CHUNG -->
+//             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ced4da; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 20px;">
+//                 <h4 style="margin: 0 0 15px 0; color: #495057;">🕒 1. Thông tin chung của tiết học</h4>
+//                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;">
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Ngày dạy:</label>
+//                         <input type="date" value="${today}" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Buổi:</label>
+//                         <input id="nk-input-buoi" list="dl-buoi" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-buoi"><option value="Sáng"></option><option value="Chiều"></option><option value="Tối"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Tiết:</label>
+//                         <input id="nk-input-tiet" list="dl-tiet" onchange="if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-tiet"><option value="Tiết 1"></option><option value="Tiết 2"></option><option value="Tiết 3"></option><option value="Tiết 4"></option><option value="Tiết 5"></option></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Lớp:</label>
+//                         <input id="nk-input-lop" list="dl-lop" onchange="ham_20_2_tai_danh_sach_hs_theo_lop(); if(typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();" placeholder="VD: 12TN6..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; font-weight: bold; color: #0056b3; outline: none;">
+//                         <datalist id="dl-lop"></datalist>
+//                         <datalist id="nk-dl-hs"></datalist>
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 13px; color: #6c757d;">Phân môn:</label>
+//                         <input id="nk-input-mon" list="dl-mon" onfocus="this.dataset.old = this.value; this.value='';" onblur="if(!this.value) this.value = this.dataset.old;" placeholder="Chọn / Gõ..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; outline: none;">
+//                         <datalist id="dl-mon"><option value="Đại số"></option><option value="Hình học"></option><option value="Thống kê xác suất"></option><option value="Hoạt động trải nghiệm"></option></datalist>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+//                 <!-- CỘT TRÁI: BÀI GIẢNG -->
+//                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #0056b3;">📝 2. Nội dung bài giảng</h4>
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Tên bài / Chủ đề:</label>
+//                         <input id="nk-input-ten-bai" type="text" placeholder="Nhập tên bài học / chủ đề..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; font-weight: bold; color: #0056b3; outline: none;">
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Nội dung chủ đề / Lý thuyết:</label>
+//                         <textarea placeholder="Ghi chú nhanh lý thuyết đã dạy..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">Bài tập đã giải & Bài tập về nhà:</label>
+//                         <textarea placeholder="VD: Giải BT 1,2 SGK. BTVN: Trắc nghiệm trang 45." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px; resize: vertical; min-height: 60px; font-family: inherit; outline: none;"></textarea>
+
+//                         <label style="font-weight: bold; font-size: 13px; color: #17a2b8; display: block; margin-bottom: 8px;">📸 Lưu ảnh bảng giảng dạy:</label>
+                        
+//                         <div id="vung-anh-bai-giang-da-luu" style="display: none; padding: 12px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; margin-bottom: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                         <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                             <button type="button" id="btn-tai-anh-bai-giang" onclick="document.getElementById('nk-input-anh-bai-giang').click()" style="padding: 12px 20px; background: #e0f7fa; color: #00838f; border: 1px dashed #00acc1; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;">
+//                                 <span style="font-size: 24px;">📷</span><span>Tải ảnh lên</span>
+//                             </button>
+//                             <input type="file" id="nk-input-anh-bai-giang" accept="image/*" multiple style="display: none;">
+//                             <div id="vung-hien-thi-anh-bang" style="flex: 1; min-height: 70px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 13px; font-style: italic; background: #fafafa; padding: 8px; gap: 10px; overflow-x: auto;">
+//                                 <span id="text-cho-anh">(Ảnh bảng bổ sung sẽ xuất hiện tại đây...)</span>
+//                             </div>
+//                         </div>
+//                     </div>
+
+//                     <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba;">
+//                         <h4 style="margin: 0 0 10px 0; color: #856404;">📌 3. Dặn dò / Nhắc việc tiết sau</h4>
+//                         <textarea placeholder="VD: Tiết sau kiểm tra 15 phút..." style="width: 100%; padding: 10px; border: 1px solid #f5c6cb; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 60px; font-family: inherit; background: #fffcf8; color: #856404; font-weight: bold; outline: none;"></textarea>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6a_luu_bai_giang(this)" style="padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
+//                             💾 1. LƯU NỘI DUNG BÀI GIẢNG
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- CỘT PHẢI: HỌC SINH -->
+//                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    
+//                     <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
+
+//                     <div>
+//                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
+//                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+//                             <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
+//                                 <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
+//                                 <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                             </div>
+//                         </div>
+//                         <button onclick="ham_20_12_them_dong_vang()" style="width: 100%; padding: 8px; background: #f8f9fa; border: 1px dashed #dc3545; color: #dc3545; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8f9fa'">
+//                             ➕ Thêm học sinh vắng
+//                         </button>
+//                     </div>
+
+//                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
+//                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
+                        
+//                         <!-- BƯỚC 1: CHỌN HỌC SINH -->
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">B1. Chọn học sinh (Có thể thêm nhóm):</label>
+//                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+//                                 <div class="dong-hs-su-kien" style="display: flex; gap: 8px; align-items: center;">
+//                                     <input class="nk-input-hs-su-kien" list="nk-dl-hs" placeholder="Gõ tên để tìm nhanh..." style="flex: 1; padding: 10px; border: 2px solid #fd7e14; border-radius: 6px; box-sizing: border-box; font-weight: bold; outline: none;">
+//                                     <button onclick="this.parentElement.remove()" style="padding: 10px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 6px; cursor: pointer;" title="Xóa dòng này">✖</button>
+//                                 </div>
+//                             </div>
+//                             <button onclick="ham_20_13_them_dong_hs_su_kien()" style="margin-top: 8px; width: 100%; padding: 8px; background: #fff; border: 1px dashed #fd7e14; color: #fd7e14; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#ffe8d6'" onmouseout="this.style.background='#fff'">
+//                                 ➕ Thêm học sinh cùng sự kiện
+//                             </button>
+//                         </div>
+                        
+//                         <!-- BƯỚC 2: GHI CHÚ -->
+//                         <div style="margin-bottom: 15px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Ghi chú thêm (Nếu cần):</label>
+//                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
+//                         </div>
+
+//                         <!-- BƯỚC 3: ẢNH MINH CHỨNG (DÙNG CHUNG) -->
+//                         <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #ccc;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">B3. 📸 Ảnh minh chứng (Dùng chung cho cả Thẻ & Điểm):</label>
+//                             <div style="display: flex; gap: 15px; align-items: flex-start;">
+//                                 <button type="button" onclick="document.getElementById('nk-input-anh-minh-chung').click()" style="padding: 10px 15px; background: #f8f9fa; color: #495057; border: 1px dashed #adb5bd; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                                     <span style="font-size: 20px;">📷</span><span>Tải ảnh lên</span>
+//                                 </button>
+//                                 <input type="file" id="nk-input-anh-minh-chung" accept="image/*" multiple style="display: none;">
+//                                 <div id="vung-preview-anh-minh-chung" style="flex: 1; min-height: 65px; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: flex-start; color: #adb5bd; font-size: 12px; font-style: italic; background: #fafafa; padding: 8px; gap: 8px; overflow-x: auto;">
+//                                     <span id="text-cho-anh-mc">(Ảnh minh chứng xuất hiện tại đây...)</span>
+//                                 </div>
+//                             </div>
+//                         </div>
+
+//                         <!-- BƯỚC 4: CHỐT SỰ KIỆN -->
+//                         <div style="margin-bottom: 5px;">
+//                             <label style="font-weight: bold; font-size: 13px; color: #0056b3; display: block; margin-bottom: 8px;">B4. BẤM CHỌN LOẠI SỰ KIỆN ĐỂ GHI NHẬN:</label>
+//                         </div>
+
+//                         <!-- 🌟 KHU VỰC THẺ VI PHẠM CŨ (TRÊN) -->
+//                         <div style="margin-bottom: 15px; background: #fffcf8; padding: 10px; border-radius: 6px; border: 1px dashed #ffc107;">
+//                             <label style="font-weight: bold; font-size: 12px; color: #dc3545; display: block; margin-bottom: 5px;">⚠️ Vi phạm / Nhắc nhở:</label>
+//                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
+//                         </div>
+
+//                         <!-- 🌟 KHU VỰC THẺ TÍCH CỰC (ĐẶT TRÊN Ô NHẬP ĐIỂM) -->
+//                         <div style="margin-bottom: 15px; background: #f0fdf4; padding: 10px; border-radius: 6px; border: 1px dashed #28a745;">
+//                             <label style="font-weight: bold; font-size: 12px; color: #28a745; display: block; margin-bottom: 5px;">🌟 Ghi nhận Tích cực (Khen thưởng):</label>
+//                             <div id="nk-khu-vuc-tags-tich-cuc"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
+//                         </div>
+
+//                         <!-- 🌟 Ô NHẬP ĐIỂM -->
+//                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
+//                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
+//                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
+//                                 onkeydown="if(event.key === 'Enter') document.getElementById('btn-ghi-diem').click()" 
+//                                 style="flex: 1; min-width: 80px; padding: 8px 10px; border: 1px solid #28a745; border-radius: 4px; outline: none; font-weight: bold; color: #155724; font-size: 13px;">
+//                             <button id="btn-ghi-diem" 
+//                                 onclick="let diem = document.getElementById('nk-input-diem-so').value; if(!diem){alert('Vui lòng nhập điểm!'); return;} ham_20_3_gan_the('Cho điểm: ' + diem + ' đ', '#28a745'); document.getElementById('nk-input-diem-so').value='';" 
+//                                 style="padding: 8px 12px; font-size: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap;" 
+//                                 onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                                 Ghi nhận Điểm
+//                             </button>
+//                         </div>
+
+//                         <div style="flex: 1; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 6px; padding: 10px; overflow-y: auto; max-height: 200px;">
+//                             <div style="font-size: 12px; font-weight: bold; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sự kiện chờ lưu (<span id="nk-dem-su-kien">0</span>):</div>
+//                             <div id="nk-danh-sach-cho-luu"><i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i></div>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-top: auto; padding-top: 20px; border-top: 1px dashed #dee2e6; text-align: right;">
+//                         <button onclick="ham_20_6b_luu_su_kien_diem_danh(this)" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                             🎯 2. LƯU ĐIỂM DANH & SỰ KIỆN
+//                         </button>
+//                     </div>
+//                 </div>
+
+//             </div>
+//         </div>
+//     `;
+
+//     if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
+//     if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
+//     if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
+//     if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
+// };
+
+
 // =====================================================================
-// KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (ẢNH MINH CHỨNG DÙNG CHUNG)
+// KHỐI 20: TIỆN ÍCH - NHẬT KÝ DẠY HỌC (THÊM NÚT XEM BÀI CŨ LỚP NÀY)
 // =====================================================================
 window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -17,9 +237,14 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                     📔 Nhật Ký Dạy Học
                 </h3>
                 
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <button onclick="ham_20_29_lam_moi_tiet_hoc()" style="padding: 6px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'">
                         🆕 Tiết mới
+                    </button>
+
+                    <!-- 🌟 NÚT XEM BÀI CŨ Ở ĐÂY -->
+                    <button onclick="ham_20_37_xem_bai_cu_lop_nay()" style="padding: 6px 15px; background: #6f42c1; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'" title="Xem lại hôm trước dừng ở đâu">
+                        ⏮️ Xem bài cũ lớp này
                     </button>
 
                     <button onclick="ham_20_28_tai_tiet_gan_nhat()" style="padding: 6px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
@@ -69,7 +294,6 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
             </div>
 
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                
                 <!-- CỘT TRÁI: BÀI GIẢNG -->
                 <div style="flex: 1.5; min-width: 400px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                     <div>
@@ -112,9 +336,7 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 
                 <!-- CỘT PHẢI: HỌC SINH -->
                 <div style="flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 20px; background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    
                     <div id="vung-su-kien-da-luu" style="display: none; padding: 15px; background: #fff3cd; border: 1px dashed #856404; border-radius: 6px; margin-bottom: 5px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);"></div>
-
                     <div>
                         <h4 style="margin: 0 0 15px 0; color: #dc3545;">📋 4. Điểm danh (Học sinh vắng)</h4>
                         <div id="nk-khu-vuc-diem-danh" style="display: flex; flex-direction: column; margin-bottom: 15px;">
@@ -130,8 +352,6 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 
                     <div style="flex: 1; display: flex; flex-direction: column; padding-top: 15px; border-top: 1px dashed #eee;">
                         <h4 style="margin: 0 0 15px 0; color: #d35400;">🎯 5. Ghi nhận sự kiện học sinh</h4>
-                        
-                        <!-- BƯỚC 1: CHỌN HỌC SINH -->
                         <div style="margin-bottom: 15px;">
                             <label style="font-weight: bold; font-size: 13px; color: #495057;">B1. Chọn học sinh (Có thể thêm nhóm):</label>
                             <div id="nk-khu-vuc-hs-su-kien" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
@@ -145,13 +365,11 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                             </button>
                         </div>
                         
-                        <!-- BƯỚC 2: GHI CHÚ -->
                         <div style="margin-bottom: 15px;">
                             <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Ghi chú thêm (Nếu cần):</label>
                             <input id="nk-input-ghi-chu" type="text" placeholder="VD: Bấm điện thoại dưới hộc bàn..." onkeydown="if(event.key === 'Enter') ham_20_3_gan_the('Khác', '#000')" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; margin-top: 5px; outline: none;">
                         </div>
 
-                        <!-- BƯỚC 3: ẢNH MINH CHỨNG (DÙNG CHUNG) -->
                         <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #ccc;">
                             <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">B3. 📸 Ảnh minh chứng (Dùng chung cho cả Thẻ & Điểm):</label>
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
@@ -165,24 +383,20 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
                             </div>
                         </div>
 
-                        <!-- BƯỚC 4: CHỐT SỰ KIỆN -->
                         <div style="margin-bottom: 5px;">
                             <label style="font-weight: bold; font-size: 13px; color: #0056b3; display: block; margin-bottom: 8px;">B4. BẤM CHỌN LOẠI SỰ KIỆN ĐỂ GHI NHẬN:</label>
                         </div>
 
-                        <!-- 🌟 KHU VỰC THẺ VI PHẠM CŨ (TRÊN) -->
                         <div style="margin-bottom: 15px; background: #fffcf8; padding: 10px; border-radius: 6px; border: 1px dashed #ffc107;">
                             <label style="font-weight: bold; font-size: 12px; color: #dc3545; display: block; margin-bottom: 5px;">⚠️ Vi phạm / Nhắc nhở:</label>
                             <div id="nk-khu-vuc-tags"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
                         </div>
 
-                        <!-- 🌟 KHU VỰC THẺ TÍCH CỰC (ĐẶT TRÊN Ô NHẬP ĐIỂM) -->
                         <div style="margin-bottom: 15px; background: #f0fdf4; padding: 10px; border-radius: 6px; border: 1px dashed #28a745;">
                             <label style="font-weight: bold; font-size: 12px; color: #28a745; display: block; margin-bottom: 5px;">🌟 Ghi nhận Tích cực (Khen thưởng):</label>
                             <div id="nk-khu-vuc-tags-tich-cuc"><span style="font-size: 12px; color: #999;">⏳ Đang tải...</span></div>
                         </div>
 
-                        <!-- 🌟 Ô NHẬP ĐIỂM -->
                         <div style="width: 100%; margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px dashed #28a745; border-radius: 6px; display: flex; gap: 8px; align-items: center; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
                             <span style="font-size: 16px;" title="Cho điểm học sinh">💯</span>
                             <input type="number" id="nk-input-diem-so" placeholder="Nhập điểm..." step="0.25" min="0" max="10" 
@@ -213,11 +427,14 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
         </div>
     `;
 
-    if (typeof ham_20_7_tai_danh_sach_lop === 'function') ham_20_7_tai_danh_sach_lop();
-    if (typeof ham_20_8_tai_danh_sach_the === 'function') ham_20_8_tai_danh_sach_the();
-    if (typeof ham_20_11_kich_hoat_preview_anh === 'function') ham_20_11_kich_hoat_preview_anh();
-    if (typeof ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') ham_20_22_kich_hoat_preview_anh_minh_chung();
+    if (typeof window.ham_20_7_tai_danh_sach_lop === 'function') window.ham_20_7_tai_danh_sach_lop();
+    if (typeof window.ham_20_8_tai_danh_sach_the === 'function') window.ham_20_8_tai_danh_sach_the();
+    if (typeof window.ham_20_11_kich_hoat_preview_anh === 'function') window.ham_20_11_kich_hoat_preview_anh();
+    if (typeof window.ham_20_22_kich_hoat_preview_anh_minh_chung === 'function') window.ham_20_22_kich_hoat_preview_anh_minh_chung();
 };
+
+
+
 
 
 
@@ -4450,3 +4667,124 @@ window.ham_20_36_xem_anh_toan_man_hinh = function (linkGoc) {
 };
 
 
+
+
+
+// =====================================================================
+// HÀM 20.37: TÌM VÀ HIỂN THỊ BÀI HỌC CŨ CỦA LỚP (TỐI GIẢN CHỈ TÌM LỚP & MÔN)
+// =====================================================================
+window.ham_20_37_xem_bai_cu_lop_nay = async function () {
+    let rawLop = document.getElementById('nk-input-lop').value.trim();
+    let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+    let phanMon = document.getElementById('nk-input-mon').value.trim();
+
+    // 1. KIỂM TRA ĐIỀU KIỆN TỐI THIỂU (Chỉ cần Lớp)
+    if (!maLopLuu) {
+        alert("⚠️ Thầy chưa chọn Lớp. Vui lòng chọn lớp để hệ thống tìm lại bài dạy trước đó!");
+        return;
+    }
+
+    // 2. TẠO MÀN HÌNH CHỜ (LOADING)
+    let modal = document.getElementById('modal-xem-bai-cu');
+    if (modal) document.body.removeChild(modal); // Xóa cái cũ nếu đang kẹt
+
+    modal = document.createElement('div');
+    modal.id = 'modal-xem-bai-cu';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; justify-content:center; align-items:center; padding:20px; animation: fadeIn 0.2s;';
+    modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:8px; text-align:center; font-weight:bold; color:#6f42c1; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">⏳ Đang lục tìm hồ sơ tiết học cũ của lớp ${maLopLuu}...</div>`;
+    document.body.appendChild(modal);
+
+    try {
+        // 3. TRUY VẤN TỐI GIẢN (Chỉ dò theo Lớp và Phân môn, lấy đúng 1 tiết mới nhất)
+        let query = _supabase.from('nhat_ky_day_hoc').select('*')
+            .eq('ma_lop', maLopLuu)
+            .order('ngay_day', { ascending: false }) // Lấy ngày gần nhất
+            .order('id', { ascending: false })       // Ưu tiên dòng lưu sau cùng nếu trùng ngày
+            .limit(1);
+
+        if (phanMon) {
+            query = query.ilike('phan_mon', `%${phanMon}%`);
+        }
+
+        const { data, error } = await query;
+        if (error) throw error;
+
+        let baiCu = (data && data.length > 0) ? data[0] : null;
+
+        // 4. NẾU KHÔNG CÓ DỮ LIỆU
+        if (!baiCu) {
+            let strMon = phanMon ? `<br>(Phân môn: ${phanMon})` : '';
+            modal.innerHTML = `
+                <div style="background:#fff; width:100%; max-width:450px; padding:30px; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.3); text-align:center;">
+                    <h3 style="color:#dc3545; margin-top:0;">Trống Dữ Liệu!</h3>
+                    <p style="color:#555; line-height: 1.5;">Hệ thống không tìm thấy bài dạy nào của lớp <b>${maLopLuu}</b> ${strMon}.<br>Đây có thể là tiết đầu tiên thầy dạy lớp này!</p>
+                    <button onclick="document.body.removeChild(document.getElementById('modal-xem-bai-cu'))" style="margin-top:20px; padding:10px 30px; background:#6c757d; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; transition: 0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">Đã hiểu & Đóng</button>
+                </div>
+            `;
+            return;
+        }
+
+        // 5. XỬ LÝ DỮ LIỆU ĐỂ HIỂN THỊ
+        let dateObj = new Date(baiCu.ngay_day);
+        let strNgay = String(dateObj.getDate()).padStart(2, '0') + '/' + String(dateObj.getMonth() + 1).padStart(2, '0') + '/' + dateObj.getFullYear();
+        const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+        let thuHienTai = tenCacThu[dateObj.getDay()];
+
+        // Mã hóa tên bài để đưa vào nút Copy an toàn
+        let tenBaiSafe = baiCu.ten_bai ? baiCu.ten_bai.replace(/'/g, "\\'") : '';
+
+        // 6. VẼ GIAO DIỆN HIỂN THỊ POPUP
+        modal.innerHTML = `
+            <div style="background:#fff; width:100%; max-width:650px; padding:20px; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display:flex; flex-direction:column; gap:15px; position:relative;">
+                
+                <h3 style="margin:0; color:#6f42c1; border-bottom:2px solid #eee; padding-bottom:10px; display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:20px;">⏮️</span> NHẮC LẠI BÀI DẠY TRƯỚC ĐÓ
+                </h3>
+                
+                <!-- Thanh Badge thông tin -->
+                <div style="display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:#333;">
+                    <span style="background:#e0e0e0; padding:6px 12px; border-radius:20px; font-weight:bold; box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);">🏫 Lớp: <span style="color:#0056b3;">${maLopLuu}</span></span>
+                    <span style="background:#e0e0e0; padding:6px 12px; border-radius:20px; font-weight:bold; box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);">🕒 ${thuHienTai}, ${strNgay} (Tiết ${baiCu.tiet} - ${baiCu.buoi})</span>
+                    <span style="background:#e0e0e0; padding:6px 12px; border-radius:20px; font-weight:bold; box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);">📚 Môn: <span style="color:#d35400;">${baiCu.phan_mon || 'Không rõ'}</span></span>
+                </div>
+
+                <!-- Khung Nội dung chính -->
+                <div style="background:#f8f9fa; border:1px solid #ced4da; border-radius:6px; padding:15px; font-size:14px; display:flex; flex-direction:column; gap:10px;">
+                    <div><b style="color:#0056b3;">📖 Tên bài đã dạy:</b> <span style="font-weight:bold; color:#333;">${baiCu.ten_bai || '<i style="color:#999; font-weight:normal;">Chưa nhập tên bài</i>'}</span></div>
+                    
+                    <div><b style="color:#495057;">Lý thuyết:</b> <span style="white-space:pre-wrap; color:#333;">${baiCu.ly_thuyet || '<i style="color:#999;">Không có ghi chú</i>'}</span></div>
+                    
+                    <div><b style="color:#495057;">Bài tập đã giải:</b> <span style="white-space:pre-wrap; color:#333;">${baiCu.bai_tap || '<i style="color:#999;">Không có ghi chú</i>'}</span></div>
+                    
+                    <div style="color:#856404; background:#fffcf8; padding:10px; border-radius:4px; border-left:4px solid #ffc107; margin-top:5px; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                        <b style="font-size:13px; text-transform:uppercase;">📌 Dặn dò / BTVN:</b><br>
+                        <span style="white-space:pre-wrap; font-weight:bold; font-size:14px;">${baiCu.dan_do || '<i style="color:#ccc; font-weight:normal;">Tiết trước thầy không dặn dò gì thêm!</i>'}</span>
+                    </div>
+                </div>
+
+                <!-- Nút thao tác -->
+                <div style="display:flex; justify-content:space-between; margin-top:5px; border-top:1px solid #eee; padding-top:15px; flex-wrap:wrap; gap:10px;">
+                    <button onclick="document.getElementById('nk-input-ten-bai').value = '${tenBaiSafe} (Tiếp theo)'; document.body.removeChild(document.getElementById('modal-xem-bai-cu'));" style="padding:10px 20px; background:#007bff; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; box-shadow:0 2px 4px rgba(0,0,0,0.15); transition:0.2s; display:flex; align-items:center; gap:5px;" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'" title="Tự động copy tên bài này xuống ô Tên Bài của tiết mới">
+                        📋 Copy tên bài (Tiếp theo)
+                    </button>
+                    
+                    <button onclick="document.body.removeChild(document.getElementById('modal-xem-bai-cu'))" style="padding:10px 30px; background:#6c757d; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; box-shadow:0 2px 4px rgba(0,0,0,0.15); transition:0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">
+                        ❌ Đóng
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Bấm ra ngoài vùng tối để tự đóng Popup
+        modal.onclick = (e) => { if (e.target === modal) document.body.removeChild(modal); };
+
+    } catch (err) {
+        console.error("Lỗi lấy bài cũ:", err);
+        modal.innerHTML = `
+            <div style="background:#fff; padding:25px; border-radius:8px; color:#dc3545; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
+                <b>❌ Lỗi truy xuất dữ liệu Database!</b><br><span style="font-size:12px; color:#666;">Vui lòng kiểm tra lại kết nối mạng.</span><br><br>
+                <button onclick="document.body.removeChild(document.getElementById('modal-xem-bai-cu'))" style="padding:8px 25px; background:#6c757d; color:#fff; border:none; border-radius:4px; cursor:pointer;">Đóng</button>
+            </div>
+        `;
+    }
+};
