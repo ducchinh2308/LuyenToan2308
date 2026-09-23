@@ -1,17 +1,156 @@
 {
-    "maDe": "HL_DE_TEST1",
-    "tenDe": "ĐỀ TEST 1",
-    "thoiGian": 90,
-    "danhSachCauHoi": [
-        {
-            "maCau": "q_d17189ddd0",
-            "ma_goc": "2606-1",
-            "kieuCau": "TN",
-            "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1; -2; 3)$. Tọa độ điểm $M'$ đối xứng với điểm $M$ qua mặt phẳng $(Oxy)$ là",
-            "paA": "$M'(-1; 2; 3)$.",
-            "paB": "$M'(1; -2; 0)$.",
-            "paC": "$M'(-1; 2; 3)$.",
-            "paD": "$M'(1; -2; -3)$."
-        }
-    ]
+  "maDe": "TEST1",
+  "tenDe": "test1",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0H9N3-1]",
+      "maCau": "q_3ff1b9d57c",
+      "ma_goc": "2603-78",
+      "kieuCau": "TN",
+      "cauDan": "Cho đường thẳng $(d)$ có phương trình $2x+y-15=0$. Khi đó, đường thẳng $(d)$ có một vectơ pháp tuyến là",
+      "paA": "$\\overrightarrow{n}=(-1;2)$",
+      "paB": "$\\overrightarrow{n}=(1;2)$",
+      "paC": "$\\overrightarrow{n}=(2;1)$",
+      "paD": "$\\overrightarrow{n}=(2;-1)$"
+    },
+    {
+      "id_Cau": "[0H9N3-1]",
+      "maCau": "q_129de2eaf4",
+      "ma_goc": "2603-79",
+      "kieuCau": "TN",
+      "cauDan": "Vectơ nào dưới đây là một vectơ chỉ phương của đường thẳng \\break $\\Delta\\colon \\begin{cases}\nx=4-t \\\\ y=-3+3t\n\\end{cases} (t \\in \\mathbb{R})$?",
+      "paA": "$\\overrightarrow{u}=(-1;3)$",
+      "paB": "$\\overrightarrow{u}=\\left(\\frac{1}{2}; 3\\right)$",
+      "paC": "$\\overrightarrow{u}=\\left(-\\frac{1}{2}; 3\\right)$",
+      "paD": "$\\overrightarrow{u}=(-1;-6)$"
+    },
+    {
+      "id_Cau": "[0H9N5-1]",
+      "maCau": "q_53d412bc1e",
+      "ma_goc": "2603-80",
+      "kieuCau": "TN",
+      "cauDan": "Trong mặt phẳng $Oxy$, cho elip có phương trình $\\frac{x^2}{26} + \\frac{y^2}{22} = 1$. Tiêu cự của elip bằng",
+      "paA": "$2$",
+      "paB": "$10$",
+      "paC": "$2\\sqrt{21}$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[0H9N5-7]",
+      "maCau": "q_6b43c27f1e",
+      "ma_goc": "2603-81",
+      "kieuCau": "TN",
+      "cauDan": "Cho parabol $(P)\\colon y^2=8x$. Tiêu điểm của $(P)$ là",
+      "paA": "$F(0;2)$",
+      "paB": "$F(0;-2)$",
+      "paC": "$F(2;0)$",
+      "paD": "$F(-2;0)$"
+    },
+    {
+      "id_Cau": "[0H9N5-4]",
+      "maCau": "q_d8137641ff",
+      "ma_goc": "2603-82",
+      "kieuCau": "TN",
+      "cauDan": "Cho hypebol có phương trình: $\\frac{x^2}{16} - \\frac{y^2}{3} = 1$. Độ dài trục ảo của hypebol bằng",
+      "paA": "$8$",
+      "paB": "$4\\sqrt{3}$",
+      "paC": "$2\\sqrt{3}$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[0H9H3-5]",
+      "maCau": "q_ebe3345e80",
+      "ma_goc": "2603-83",
+      "kieuCau": "TN",
+      "cauDan": "Một trạm viễn thông $S$ được đặt tại điểm có tọa độ $(2;1)$. Một người đang ngồi trên chiếc xe khách chạy trên đoạn cao tốc có dạng một đường thẳng $\\Delta$ có phương trình $3x+4y-5=0$. Tính khoảng cách ngắn nhất giữa người đó và trạm viễn thông $S$ (\\textit{biết rằng mỗi đơn vị độ dài tương ứng với $1$ km}).",
+      "paA": "$3$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[0H9H4-4]",
+      "maCau": "q_c21e1f032f",
+      "ma_goc": "2603-84",
+      "kieuCau": "DS",
+      "cauDan": "Cho đường tròn $(C)\\colon x^2+y^2-4x-2y-20=0$",
+      "paA": "Đường tròn có tâm là điểm có tọa độ $(2;1)$ và bán kính $R=3$",
+      "paB": "Đường tròn $(C)$ đi qua điểm $(5;3)$",
+      "paC": "Phương trình tiếp tuyến của $(C)$ tại điểm $M(5;-3)$ là $3x-4y-27=0$",
+      "paD": "Đường thẳng $(d)\\colon 3x+4y-35=0$ tiếp xúc với đường tròn $(C)$"
+    },
+    {
+      "id_Cau": "[0H9H3-5]",
+      "maCau": "q_ddfffb6c90",
+      "ma_goc": "2603-85",
+      "kieuCau": "DS",
+      "cauDan": "Cho đường thẳng $(d)\\colon  \\begin{cases}\nx=1-t \\\\ y=-5+3t\n\\end{cases} (t \\in \\mathbb{R})$ và $(d')\\colon  3x+2y-1=0$",
+      "paA": "Đường thẳng $(d)$ đi qua điểm $A(1;-5)$",
+      "paB": "Đường thẳng $(d)$ có một vectơ chỉ phương $\\overrightarrow{u}=(-1;3)$",
+      "paC": "Đường thẳng $(d')$ song song với đường thẳng $(\\Delta)\\colon 3x+2y-5=0$",
+      "paD": "Khoảng cách từ điểm $B(-1;-1)$ đến đường thẳng $(d')$ bằng $3$"
+    },
+    {
+      "id_Cau": "[0D0H2-4]",
+      "maCau": "q_c93d409a62",
+      "ma_goc": "2603-86",
+      "kieuCau": "TLN",
+      "cauDan": "Một nhóm học sinh gồm có $8$ nam, $3$ nữ. Chọn ngẫu nhiên $5$ học sinh, tính xác suất để chọn được $2$ học sinh nam.\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[0H9N3-5]",
+      "maCau": "q_2759976da0",
+      "ma_goc": "2603-87",
+      "kieuCau": "TLN",
+      "cauDan": "Khoảng cách từ điểm $M(2;-3)$ đến đường thẳng $d\\colon 2x+y+2=0$ là bao nhiêu?\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[0H9H3-4]",
+      "maCau": "q_7026c1da70",
+      "ma_goc": "2603-88",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hai đường thẳng $d_1\\colon 3x+y-2=0$ và $d_2\\colon 2x-y+39=0$. Số đo góc giữa $d_1$ và $d_2$ bằng bao nhiêu độ (\\textit{làm tròn đến hàng đơn vị}).\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[0H9N1-1]",
+      "maCau": "q_12ed3ecf0a",
+      "ma_goc": "2603-89",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tọa độ hai điểm $A(1;-5), B(9;1)$, tính độ dài đoạn thẳng $AB$.\r\n\t\\par"
+    },
+    {
+      "id_Cau": "[0H9N3-2]",
+      "maCau": "q_f3d6d3b30e",
+      "ma_goc": "2603-90",
+      "kieuCau": "TN",
+      "cauDan": "Viết phương trình tổng quát của đường thẳng $(\\Delta)$ đi qua điểm $M(-3;2)$ và có vectơ chỉ phương $\\overrightarrow{u}=(1;-4)$.",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "id_Cau": "[0H9N4-2]",
+      "maCau": "q_f604895c95",
+      "ma_goc": "2603-91",
+      "kieuCau": "TN",
+      "cauDan": "Viết phương trình đường tròn $(C)$ có tâm $I(3;2)$ và đi qua điểm $M(7;2)$.",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    },
+    {
+      "id_Cau": "[0D0H2-5]",
+      "maCau": "q_cda38a34d4",
+      "ma_goc": "2603-92",
+      "kieuCau": "TN",
+      "cauDan": "\\begin{enumerate}\r\n\t\t\\item Lớp 10A gồm $15$ nam và $18$ nữ, chọn ngẫu nhiên một nhóm gồm $4$ bạn hát biểu diễn văn nghệ. Tính xác suất để trong $4$ bạn được chọn đều là nữ.\r\n\t\t\\item Cho tập hợp $A=\\{1;2;3;4;5\\}$. Gọi $S$ là tập hợp các số tự nhiên có $5$ chữ số, trong đó chữ số $3$ có mặt đúng $3$ lần, các chữ số còn lại có mặt không quá một lần. Chọn ngẫu nhiên một số từ $S$, tính xác suất để số được chọn chia hết cho $3$.\t\r\n\t\\end{enumerate}",
+      "paA": "",
+      "paB": "",
+      "paC": "",
+      "paD": ""
+    }
+  ]
 }

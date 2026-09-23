@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fbc71e616c",
+  "dapAn": "45",
+  "loiGiai": "Ta có $\\overrightarrow{n}_1=(3;1)$; $\\overrightarrow{n}_2=(2;-1)$.\\\\\r\n\t\tTa có $$\\cos(d_1;d_2) = \\frac{|\\overrightarrow{n}_1\\cdot \\overrightarrow{n}_2|}{|\\overrightarrow{n}_1|\\cdot |\\overrightarrow{n}_2|} = \\frac{|3\\cdot 2+1\\cdot (-1)|}{\\sqrt{3^2+1^2}\\cdot \\sqrt{2^2+(-1)^2}} = \\frac{5}{\\sqrt{10}\\cdot \\sqrt{5}} = \\frac{5}{5\\sqrt{2}} = \\frac{\\sqrt{2}}{2}.$$\r\n\t\tSố đo góc giữa $d_1$ và $d_2$ là $45^\\circ$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bd2e097a44",
+  "dapAn": "",
+  "loiGiai": "Đường thẳng $(\\Delta)$ có vectơ chỉ phương $\\overrightarrow{u}=(1;-4)$ nên $(\\Delta)$ có một vectơ pháp tuyến là $\\overrightarrow{n}=(4;1)$.\\\\\r\n\t\tMà $(\\Delta)$ đi qua điểm $M(-3;2)$ nên $(\\Delta)$ có phương trình\r\n\t\t$$4(x+3)+1(y-2)=0 \\Leftrightarrow 4x+y+10=0.$$\r\n\t\tVậy $(\\Delta)$ có phương trình tổng quát là $4x+y+10=0$."
+}
