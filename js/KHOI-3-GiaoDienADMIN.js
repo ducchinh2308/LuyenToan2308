@@ -75,7 +75,11 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
                 
                 <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Hệ Thống</button>
-            </div>
+            
+                <!-- 🌟 NÚT BẬT/TẮT QUYỀN ĐỔI AVATAR HỌC SINH -->
+                <button onclick="window.ham_admin_mo_popup_cai_dat_avatar(this)" style="padding: 12px 20px; background: #8e44ad; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">👤 Khóa/Mở Đổi Avatar HS</button>
+
+                </div>
         `;
     }
     // 🌟 PHẦN TIỆN ÍCH CHUNG VÀ VÙNG LÀM VIỆC CHI TIẾT (Giáo viên chỉ thấy phần này)
@@ -1368,3 +1372,80 @@ window.ham_3_21_render_ui_cau_hoi_TLN = async function (data, containerElement) 
     // Gọi lại MathJax để render công thức
     if (window.MathJax) await MathJax.typesetPromise([containerElement]);
 };
+
+
+// =====================================================================
+// HÀM 3.22: QUẢN TRỊ QUYỀN ĐỔI AVATAR CỦA HỌC SINH (MỞ/KHÓA)
+// =====================================================================
+window.ham_3_22_mo_popup_cai_dat_avatar = async function () {
+    try {
+        // 1. Kiểm tra trạng thái hiện tại từ bảng cai_dat_he_thong
+        const { data, error } = await _supabase
+            .from('cai_dat_he_thong')
+            .select('gia_tri')
+            .eq('ma_cai_dat', 'cho_phep_doi_avatar')
+            .maybeSingle();
+
+        let trangThaiHienTai = data ? data.gia_tri : '1'; // Mặc định là '1' (Cho phép) nếu chưa có dữ liệu
+        let isChecked = trangThaiHienTai === '1' ? 'checked' : '';
+
+        // 2. Bật Popup hỏi ý kiến
+        Swal.fire({
+            title: '⚙️ CÀI ĐẶT ĐỔI AVATAR HỌC SINH',
+            html: `
+                <div style="text-align: left; padding: 10px 20px;">
+                    <p style="color: #555; font-size: 14px; line-height: 1.5;">
+                        Khi tính năng này bị <b>Khóa</b>, học sinh sẽ không thể bấm vào biểu tượng máy ảnh để thay đổi ảnh đại diện trong phần Hồ sơ cá nhân.
+                    </p>
+                    <label style="display: flex; align-items: center; gap: 10px; margin-top: 20px; cursor: pointer; font-weight: bold; color: #1a73e8; font-size: 16px;">
+                        <input type="checkbox" id="sw_cho_phep_avatar" ${isChecked} style="width: 20px; height: 20px; cursor: pointer;">
+                        Cho phép học sinh tự đổi Avatar
+                    </label>
+                </div>
+            `,
+            showCancelButton: true,
+            confirmButtonText: '💾 Lưu thay đổi',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#6c757d',
+            showLoaderOnConfirm: true,
+            preConfirm: async () => {
+                const isChoPhep = document.getElementById('sw_cho_phep_avatar').checked;
+                const giaTriMoi = isChoPhep ? '1' : '0';
+
+                try {
+                    const { error: errUp } = await _supabase
+                        .from('cai_dat_he_thong')
+                        .upsert({
+                            ma_cai_dat: 'cho_phep_doi_avatar',
+                            khoa: 'cho_phep_doi_avatar',
+                            gia_tri: giaTriMoi,
+                            nhom: 'GIAO_DIEN',
+                            mo_ta: 'Cho phép học sinh tự thay đổi Avatar'
+                        }, { onConflict: 'ma_cai_dat' });
+
+                    if (errUp) throw errUp;
+                    return giaTriMoi;
+                } catch (e) {
+                    Swal.showValidationMessage(`Lỗi lưu dữ liệu: ${e.message}`);
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let trangThai = result.value === '1' ? '🔓 ĐÃ MỞ' : '🔒 ĐÃ KHÓA';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `${trangThai} quyền thay đổi Avatar cho toàn bộ học sinh.`,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        });
+
+    } catch (err) {
+        Swal.fire({ icon: 'error', title: 'Lỗi', text: err.message });
+    }
+};
+
+
