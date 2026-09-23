@@ -867,195 +867,351 @@ async function ham_4_14_xoa_lop(maLop) {
     }
 }
 
-// Hàm 4.12: Hiện Form Chỉnh sửa lớp học
-async function ham_4_12_hien_form_sua_lop(maLop) {
+// // Hàm 4.12: Hiện Form Chỉnh sửa lớp học
+// async function ham_4_12_hien_form_sua_lop(maLop) {
+//     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+//     if (!lop) return;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<p style="text-align: center;">Đang tải dữ liệu lớp và học sinh...</p>`;
+
+//     try {
+//         // Tải danh sách học sinh mới nhất đổ vào biến _dsHocSinhGoc
+//         const { data } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, truong')
+//             .eq('vai_tro', 'hocsinh')
+//             .order('ten', { ascending: true });
+
+//         _dsHocSinhGoc = data || []; // Gán vào biến toàn cục đã khai báo ở Bước 1
+
+//         // Chuẩn bị mảng ID học sinh cũ để nạp vào hàm Search
+//         const mảngIdCũ = JSON.stringify(lop.hoc_sinh_ids || []);
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 750px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
+//                 <h3 style="color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px;">CHỈNH SỬA LỚP HỌC: ${lop.ten_lop} (${maLop})</h3>
+                
+//                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 14px;">Mã lớp (Cố định):</label>
+//                         <input type="text" value="${maLop}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border-radius: 6px; color: #666; font-weight: bold; box-sizing: border-box; border: 1px solid #ddd;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 14px;">Trạng thái lớp:</label>
+//                         <select id="selTrangThaiLopSua" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+//                             <option value="1" ${lop.trang_thai == 1 ? 'selected' : ''}>1 - Đang mở</option>
+//                             <option value="0" ${lop.trang_thai == 0 ? 'selected' : ''}>0 - Đóng lớp</option>
+//                         </select>
+//                     </div>
+//                     <div style="grid-column: span 2;">
+//                         <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên lớp học (*):</label>
+//                         <input type="text" id="txtTenLopSua" value="${lop.ten_lop}" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
+//                     </div>
+//                 </div>
+
+//                 <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #1a73e8; border-radius: 8px; background: #f8fbff;">
+//                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 10px;">Danh sách học sinh (Tích chọn để thay đổi):</label>
+                    
+//                     <input type="text" oninput="ham_4_15_loc_hoc_sinh_sua_lop(this.value, '${mảngIdCũ}')" 
+//                            placeholder="🔍 Tìm tên hoặc SĐT..." 
+//                            style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box;">
+
+//                     <div id="vung-chon-hs-sua" style="max-height: 250px; overflow-y: auto; border: 1px solid #eee; padding: 10px; border-radius: 4px; background: white;">
+//                         ${ham_4_12_b_tao_list_hs_sua(_dsHocSinhGoc, lop.hoc_sinh_ids || [])}
+//                     </div>
+//                 </div>
+
+//                 <div style="display: flex; gap: 12px;">
+//                     <button onclick="ham_4_13_luu_cap_nhat_lop('${maLop}', this)" style="flex: 2; padding: 12px; background: #f39c12; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+//                         LƯU THAY ĐỔI
+//                     </button>
+//                     <button onclick="ham_4_1_ve_quan_ly_lop()" style="flex: 1; padding: 12px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; cursor: pointer;">
+//                         HỦY BỎ
+//                     </button>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color: red;">Lỗi: ${error.message}</p>`;
+//     }
+// }
+
+// // Hàm 4.15: Lọc tìm kiếm học sinh ngay tại chỗ cho Form Sửa Lớp
+// function ham_4_15_loc_hoc_sinh_sua_lop(keyword, chuoiIdsDaCo) {
+//     const idsDaCo = JSON.parse(chuoiIdsDaCo || '[]');
+//     const key = keyword.toLowerCase().trim();
+//     const vungList = document.getElementById('vung-chon-hs-sua');
+
+//     // Lọc từ biến gốc
+//     const dsLoc = _dsHocSinhGoc.filter(hs =>
+//         hs.ten.toLowerCase().includes(key) ||
+//         (hs.sdt && hs.sdt.includes(key))
+//     );
+
+//     // Vẽ lại danh sách đã lọc (vẫn truyền idsDaCo để giữ dấu tick)
+//     vungList.innerHTML = ham_4_12_b_tao_list_hs_sua(dsLoc, idsDaCo);
+// }
+
+// // Hàm 4.12.b: Tạo HTML danh sách checkbox
+// function ham_4_12_b_tao_list_hs_sua(danhSach, idsDaCo) {
+//     if (danhSach.length === 0) return '<p style="font-size: 12px; color: #999;">Không có dữ liệu...</p>';
+
+//     return danhSach.map(hs => {
+//         // Kiểm tra xem ID của học sinh này có nằm trong mảng của lớp không
+//         const isChecked = idsDaCo.includes(hs.uid) ? 'checked' : '';
+//         return `
+//             <div style="padding: 6px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center;">
+//                 <input type="checkbox" class="chk-hs-sua-lop" value="${hs.uid}" id="sua_hs_${hs.uid}" ${isChecked} style="margin-right: 10px; transform: scale(1.2);">
+//                 <label for="sua_hs_${hs.uid}" style="cursor: pointer; font-size: 14px;">
+//                     <span style="font-weight: bold;">${hs.ten}</span> 
+//                     <span style="color: #666; font-size: 12px;"> - SĐT: ${hs.sdt}</span>
+//                 </label>
+//             </div>
+//         `;
+//     }).join('');
+// }
+
+
+
+// // ==============================================================
+// // Hàm 4.13: Lưu cập nhật toàn diện lớp học (CÓ ĐỒNG BỘ HỌC SINH)
+// // ==============================================================
+// async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
+//     const tenMoi = document.getElementById('txtTenLopSua').value.trim();
+//     const trangThaiMoi = parseInt(document.getElementById('selTrangThaiLopSua').value);
+
+//     // Lấy danh sách UID học sinh mới sau khi thầy tích/bỏ tích
+//     const nodes = document.querySelectorAll('.chk-hs-sua-lop:checked');
+//     const mangUidMoi = Array.from(nodes).map(node => node.value);
+
+//     if (!tenMoi) return alert("Thầy vui lòng không để trống Tên lớp!");
+
+//     btn.disabled = true;
+//     btn.innerText = "⏳ ĐANG ĐỒNG BỘ...";
+
+//     try {
+//         // BƯỚC 1: LẤY DỮ LIỆU LỚP CŨ ĐỂ TÌM SỰ THAY ĐỔI (AI VÀO, AI RA)
+//         const { data: lopCu } = await _supabase
+//             .from('lop_hoc')
+//             .select('hoc_sinh_ids')
+//             .eq('ma_lop', maLop)
+//             .single();
+
+//         const mangUidCu = lopCu?.hoc_sinh_ids || [];
+
+//         // BƯỚC 2: CẬP NHẬT THÔNG TIN VÀO BẢNG 'lop_hoc'
+//         const { error: errLop } = await _supabase
+//             .from('lop_hoc')
+//             .update({
+//                 ten_lop: tenMoi,
+//                 trang_thai: trangThaiMoi,
+//                 hoc_sinh_ids: mangUidMoi // Truyền mảng trực tiếp
+//             })
+//             .eq('ma_lop', maLop);
+
+//         if (errLop) throw errLop;
+
+//         // BƯỚC 3: ĐỒNG BỘ HỒ SƠ CHO TỪNG HỌC SINH (Tìm ai thêm, ai bị loại)
+//         const dsThem = mangUidMoi.filter(id => !mangUidCu.includes(id));
+//         const dsLoai = mangUidCu.filter(id => !mangUidMoi.includes(id));
+//         const tatCaHsAnhHuong = [...new Set([...dsThem, ...dsLoai])];
+
+//         if (tatCaHsAnhHuong.length > 0) {
+//             for (const uid of tatCaHsAnhHuong) {
+//                 // Lấy mảng mã lớp hiện tại của học sinh
+//                 const { data: hsData } = await _supabase
+//                     .from('hoc_sinh')
+//                     .select('danh_sach_ma_lop')
+//                     .eq('uid', uid)
+//                     .single();
+
+//                 let dsLopCuaHS = hsData?.danh_sach_ma_lop || [];
+//                 if (!Array.isArray(dsLopCuaHS)) dsLopCuaHS = [];
+
+//                 if (dsThem.includes(uid)) {
+//                     // Nếu là học sinh mới được tích: Ghi danh
+//                     if (!dsLopCuaHS.includes(maLop)) dsLopCuaHS.push(maLop);
+//                 } else if (dsLoai.includes(uid)) {
+//                     // Nếu là học sinh bị bỏ tích: Xóa mã lớp này đi
+//                     dsLopCuaHS = dsLopCuaHS.filter(m => m !== maLop);
+//                 }
+
+//                 // Cập nhật lại vào Database
+//                 await _supabase
+//                     .from('hoc_sinh')
+//                     .update({ danh_sach_ma_lop: dsLopCuaHS })
+//                     .eq('uid', uid);
+//             }
+//         }
+
+//         alert(`✅ Đã cập nhật thành công lớp ${maLop} và đồng bộ học sinh!`);
+
+//         // BƯỚC 4: VỀ GIAO DIỆN CHÍNH RỒI MỚI TẢI LẠI (Fix dứt điểm lỗi null)
+//         ham_4_1_ve_quan_ly_lop(); // Dựng lại HTML chứa id 'danh-sach-lop-render'
+//         ham_4_4_tai_danh_sach_lop(); // Lúc này gọi load dữ liệu là an toàn 100%
+
+//     } catch (error) {
+//         alert("Lỗi cập nhật: " + error.message);
+//     } finally {
+//         btn.disabled = false;
+//         btn.innerText = "LƯU THAY ĐỔI";
+//     }
+// }
+
+
+// =====================================================================
+// HÀM 4.12: HIỆN FORM CHỈNH SỬA LỚP HỌC (ĐỒNG BỘ GIAO DIỆN 2 CỘT)
+// =====================================================================
+window.ham_4_12_hien_form_sua_lop = async function (maLop) {
     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
     if (!lop) return;
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
-    vungLamViec.innerHTML = `<p style="text-align: center;">Đang tải dữ liệu lớp và học sinh...</p>`;
+    vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #f39c12; font-size: 16px;"><b>⏳ Đang tải thông tin lớp và toàn bộ học sinh...</b></div>`;
 
     try {
-        // Tải danh sách học sinh mới nhất đổ vào biến _dsHocSinhGoc
-        const { data } = await _supabase
+        // 1. TẢI TẤT CẢ HỌC SINH TỪ DATABASE
+        const { data: dsHS, error } = await _supabase
             .from('hoc_sinh')
-            .select('uid, ten, sdt, truong')
+            .select('uid, ten, sdt, truong, danh_sach_ma_lop')
             .eq('vai_tro', 'hocsinh')
             .order('ten', { ascending: true });
 
-        _dsHocSinhGoc = data || []; // Gán vào biến toàn cục đã khai báo ở Bước 1
+        if (error) throw error;
 
-        // Chuẩn bị mảng ID học sinh cũ để nạp vào hàm Search
-        const mảngIdCũ = JSON.stringify(lop.hoc_sinh_ids || []);
+        let dsTrong = [];
+        let dsNgoai = [];
 
+        // 2. PHÂN LOẠI HỌC SINH VÀO 2 NHÓM
+        if (dsHS) {
+            dsHS.forEach(hs => {
+                let dLop = hs.danh_sach_ma_lop || [];
+                let isTrongLop = false;
+                if (Array.isArray(dLop)) isTrongLop = dLop.includes(maLop);
+                else if (typeof dLop === 'string') isTrongLop = dLop.includes(maLop);
+
+                if (isTrongLop) dsTrong.push(hs);
+                else dsNgoai.push(hs);
+            });
+        }
+
+        // Tái sử dụng State của Chi tiết lớp để kích hoạt tính năng Thêm/Rút Live
+        window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+
+        // 3. VẼ GIAO DIỆN SỬA LỚP
         vungLamViec.innerHTML = `
-            <div style="max-width: 750px; background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; margin: 0 auto;">
-                <h3 style="color: #f39c12; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px;">CHỈNH SỬA LỚP HỌC: ${lop.ten_lop} (${maLop})</h3>
+            <div style="background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #f39c12; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        ✏️ CHỈNH SỬA LỚP: ${lop.ten_lop} (${maLop})
+                    </h3>
+                    <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        ⬅ Quay Lại Bảng
+                    </button>
+                </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                    <div>
-                        <label style="font-weight: bold; font-size: 14px;">Mã lớp (Cố định):</label>
-                        <input type="text" value="${maLop}" readonly style="width: 100%; padding: 10px; background: #f1f3f4; border-radius: 6px; color: #666; font-weight: bold; box-sizing: border-box; border: 1px solid #ddd;">
+                <!-- KHU VỰC 1: SỬA TÊN VÀ TRẠNG THÁI -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; background: #fffaf0; padding: 20px; border-radius: 8px; border: 1px dashed #f39c12;">
+                    <div style="grid-column: span 2;">
+                        <label style="font-weight: bold; font-size: 14px; color: #d35400;">Tên lớp học (*):</label>
+                        <input type="text" id="txtTenLopSua" value="${lop.ten_lop}" style="width: 100%; padding: 10px; border: 2px solid #f39c12; border-radius: 6px; box-sizing: border-box; outline: none; font-weight: bold; font-size: 15px; color: #333; margin-top: 5px;">
                     </div>
                     <div>
-                        <label style="font-weight: bold; font-size: 14px;">Trạng thái lớp:</label>
-                        <select id="selTrangThaiLopSua" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
-                            <option value="1" ${lop.trang_thai == 1 ? 'selected' : ''}>1 - Đang mở</option>
-                            <option value="0" ${lop.trang_thai == 0 ? 'selected' : ''}>0 - Đóng lớp</option>
+                        <label style="font-weight: bold; font-size: 14px; color: #d35400;">Trạng thái lớp:</label>
+                        <select id="selTrangThaiLopSua" style="width: 100%; padding: 10px; border: 1px solid #f39c12; border-radius: 6px; outline: none; margin-top: 5px; background: white;">
+                            <option value="1" ${lop.trang_thai == 1 ? 'selected' : ''}>1 - Đang mở (Hoạt động)</option>
+                            <option value="0" ${lop.trang_thai == 0 ? 'selected' : ''}>0 - Đóng (Tạm dừng)</option>
                         </select>
                     </div>
-                    <div style="grid-column: span 2;">
-                        <label style="font-weight: bold; font-size: 14px; color: #1a73e8;">Tên lớp học (*):</label>
-                        <input type="text" id="txtTenLopSua" value="${lop.ten_lop}" style="width: 100%; padding: 10px; border: 2px solid #1a73e8; border-radius: 6px; box-sizing: border-box;">
+                    <div style="display: flex; align-items: flex-end;">
+                        <button onclick="ham_4_13_luu_cap_nhat_lop('${maLop}', this)" style="width: 100%; padding: 10px; background: #f39c12; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3); transition: 0.2s;" onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#f39c12'">
+                            💾 LƯU TÊN & TRẠNG THÁI LỚP
+                        </button>
                     </div>
                 </div>
 
-                <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #1a73e8; border-radius: 8px; background: #f8fbff;">
-                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 10px;">Danh sách học sinh (Tích chọn để thay đổi):</label>
-                    
-                    <input type="text" oninput="ham_4_15_loc_hoc_sinh_sua_lop(this.value, '${mảngIdCũ}')" 
-                           placeholder="🔍 Tìm tên hoặc SĐT..." 
-                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; box-sizing: border-box;">
-
-                    <div id="vung-chon-hs-sua" style="max-height: 250px; overflow-y: auto; border: 1px solid #eee; padding: 10px; border-radius: 4px; background: white;">
-                        ${ham_4_12_b_tao_list_hs_sua(_dsHocSinhGoc, lop.hoc_sinh_ids || [])}
-                    </div>
+                <!-- KHU VỰC 2: ĐIỀU PHỐI HỌC SINH -->
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 8px;">👥 Điều phối học sinh (Hệ thống tự động lưu khi bấm nút Thêm/Rút tên):</label>
+                    <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
                 </div>
 
-                <div style="display: flex; gap: 12px;">
-                    <button onclick="ham_4_13_luu_cap_nhat_lop('${maLop}', this)" style="flex: 2; padding: 12px; background: #f39c12; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-                        LƯU THAY ĐỔI
-                    </button>
-                    <button onclick="ham_4_1_ve_quan_ly_lop()" style="flex: 1; padding: 12px; background: #f1f3f4; border: 1px solid #dadce0; border-radius: 6px; cursor: pointer;">
-                        HỦY BỎ
-                    </button>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <!-- Cột Trái -->
+                    <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+                        <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
+                            <span>🎓 ĐÃ TRONG LỚP</span>
+                            <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+                        </h4>
+                        <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
+                    </div>
+
+                    <!-- Cột Phải -->
+                    <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+                        <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
+                            <span>🌍 HỌC SINH BÊN NGOÀI</span>
+                            <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+                        </h4>
+                        <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
+                    </div>
                 </div>
             </div>
         `;
+
+        // 4. KÍCH HOẠT VẼ DANH SÁCH HỌC SINH 2 CỘT
+        window.ham_4_9_1_render_danh_sach();
+
     } catch (error) {
-        vungLamViec.innerHTML = `<p style="color: red;">Lỗi: ${error.message}</p>`;
+        vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải dữ liệu: ${error.message}</p>
+                                 <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
     }
-}
+};
 
-// Hàm 4.15: Lọc tìm kiếm học sinh ngay tại chỗ cho Form Sửa Lớp
-function ham_4_15_loc_hoc_sinh_sua_lop(keyword, chuoiIdsDaCo) {
-    const idsDaCo = JSON.parse(chuoiIdsDaCo || '[]');
-    const key = keyword.toLowerCase().trim();
-    const vungList = document.getElementById('vung-chon-hs-sua');
-
-    // Lọc từ biến gốc
-    const dsLoc = _dsHocSinhGoc.filter(hs =>
-        hs.ten.toLowerCase().includes(key) ||
-        (hs.sdt && hs.sdt.includes(key))
-    );
-
-    // Vẽ lại danh sách đã lọc (vẫn truyền idsDaCo để giữ dấu tick)
-    vungList.innerHTML = ham_4_12_b_tao_list_hs_sua(dsLoc, idsDaCo);
-}
-
-// Hàm 4.12.b: Tạo HTML danh sách checkbox
-function ham_4_12_b_tao_list_hs_sua(danhSach, idsDaCo) {
-    if (danhSach.length === 0) return '<p style="font-size: 12px; color: #999;">Không có dữ liệu...</p>';
-
-    return danhSach.map(hs => {
-        // Kiểm tra xem ID của học sinh này có nằm trong mảng của lớp không
-        const isChecked = idsDaCo.includes(hs.uid) ? 'checked' : '';
-        return `
-            <div style="padding: 6px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center;">
-                <input type="checkbox" class="chk-hs-sua-lop" value="${hs.uid}" id="sua_hs_${hs.uid}" ${isChecked} style="margin-right: 10px; transform: scale(1.2);">
-                <label for="sua_hs_${hs.uid}" style="cursor: pointer; font-size: 14px;">
-                    <span style="font-weight: bold;">${hs.ten}</span> 
-                    <span style="color: #666; font-size: 12px;"> - SĐT: ${hs.sdt}</span>
-                </label>
-            </div>
-        `;
-    }).join('');
-}
-
-
-
-// ==============================================================
-// Hàm 4.13: Lưu cập nhật toàn diện lớp học (CÓ ĐỒNG BỘ HỌC SINH)
-// ==============================================================
-async function ham_4_13_luu_cap_nhat_lop(maLop, btn) {
+// =====================================================================
+// HÀM 4.13: LƯU TÊN VÀ TRẠNG THÁI LỚP (TỐI GIẢN VÌ HỌC SINH ĐÃ LƯU LIVE)
+// =====================================================================
+window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
     const tenMoi = document.getElementById('txtTenLopSua').value.trim();
     const trangThaiMoi = parseInt(document.getElementById('selTrangThaiLopSua').value);
 
-    // Lấy danh sách UID học sinh mới sau khi thầy tích/bỏ tích
-    const nodes = document.querySelectorAll('.chk-hs-sua-lop:checked');
-    const mangUidMoi = Array.from(nodes).map(node => node.value);
-
-    if (!tenMoi) return alert("Thầy vui lòng không để trống Tên lớp!");
+    if (!tenMoi) {
+        alert("Thầy vui lòng không để trống Tên lớp!");
+        return;
+    }
 
     btn.disabled = true;
-    btn.innerText = "⏳ ĐANG ĐỒNG BỘ...";
+    const textGoc = btn.innerHTML;
+    btn.innerHTML = "⏳ ĐANG LƯU...";
 
     try {
-        // BƯỚC 1: LẤY DỮ LIỆU LỚP CŨ ĐỂ TÌM SỰ THAY ĐỔI (AI VÀO, AI RA)
-        const { data: lopCu } = await _supabase
-            .from('lop_hoc')
-            .select('hoc_sinh_ids')
-            .eq('ma_lop', maLop)
-            .single();
-
-        const mangUidCu = lopCu?.hoc_sinh_ids || [];
-
-        // BƯỚC 2: CẬP NHẬT THÔNG TIN VÀO BẢNG 'lop_hoc'
         const { error: errLop } = await _supabase
             .from('lop_hoc')
             .update({
                 ten_lop: tenMoi,
-                trang_thai: trangThaiMoi,
-                hoc_sinh_ids: mangUidMoi // Truyền mảng trực tiếp
+                trang_thai: trangThaiMoi
             })
             .eq('ma_lop', maLop);
 
-        if (errLop) throw errLop;
+        if (error) throw errLop;
 
-        // BƯỚC 3: ĐỒNG BỘ HỒ SƠ CHO TỪNG HỌC SINH (Tìm ai thêm, ai bị loại)
-        const dsThem = mangUidMoi.filter(id => !mangUidCu.includes(id));
-        const dsLoai = mangUidCu.filter(id => !mangUidMoi.includes(id));
-        const tatCaHsAnhHuong = [...new Set([...dsThem, ...dsLoai])];
+        // Báo hiệu lưu thành công trên nút
+        btn.style.background = "#28a745";
+        btn.innerHTML = "✅ ĐÃ LƯU THÀNH CÔNG";
 
-        if (tatCaHsAnhHuong.length > 0) {
-            for (const uid of tatCaHsAnhHuong) {
-                // Lấy mảng mã lớp hiện tại của học sinh
-                const { data: hsData } = await _supabase
-                    .from('hoc_sinh')
-                    .select('danh_sach_ma_lop')
-                    .eq('uid', uid)
-                    .single();
-
-                let dsLopCuaHS = hsData?.danh_sach_ma_lop || [];
-                if (!Array.isArray(dsLopCuaHS)) dsLopCuaHS = [];
-
-                if (dsThem.includes(uid)) {
-                    // Nếu là học sinh mới được tích: Ghi danh
-                    if (!dsLopCuaHS.includes(maLop)) dsLopCuaHS.push(maLop);
-                } else if (dsLoai.includes(uid)) {
-                    // Nếu là học sinh bị bỏ tích: Xóa mã lớp này đi
-                    dsLopCuaHS = dsLopCuaHS.filter(m => m !== maLop);
-                }
-
-                // Cập nhật lại vào Database
-                await _supabase
-                    .from('hoc_sinh')
-                    .update({ danh_sach_ma_lop: dsLopCuaHS })
-                    .eq('uid', uid);
-            }
-        }
-
-        alert(`✅ Đã cập nhật thành công lớp ${maLop} và đồng bộ học sinh!`);
-
-        // BƯỚC 4: VỀ GIAO DIỆN CHÍNH RỒI MỚI TẢI LẠI (Fix dứt điểm lỗi null)
-        ham_4_1_ve_quan_ly_lop(); // Dựng lại HTML chứa id 'danh-sach-lop-render'
-        ham_4_4_tai_danh_sach_lop(); // Lúc này gọi load dữ liệu là an toàn 100%
+        setTimeout(() => {
+            btn.style.background = "#f39c12";
+            btn.innerHTML = textGoc;
+            btn.disabled = false;
+        }, 2000);
 
     } catch (error) {
         alert("Lỗi cập nhật: " + error.message);
-    } finally {
         btn.disabled = false;
-        btn.innerText = "LƯU THAY ĐỔI";
+        btn.innerHTML = textGoc;
     }
-}
+};
+
+
+
 
