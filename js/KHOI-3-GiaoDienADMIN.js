@@ -89,7 +89,8 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_20_1_mo_giao_dien_nhat_ky_day_hoc()" style="padding: 12px 20px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">📔 Nhật Ký Dạy Học</button>
                 
                 <!-- NÚT 2: NHẬT KÝ GVCN (Đang chờ thiết kế Khối 21) -->
-                <button onclick="alert('Giao diện Nhật ký GVCN đang được thiết kế...')" style="padding: 12px 20px; background: #e83e8c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">🛡️ Nhật Ký GVCN</button>
+                <!-- NÚT 2: NHẬT KÝ GVCN (Đã kết nối Khối 21) -->
+                <button onclick="ham_21_1_mo_giao_dien_nhat_ky_gvcn()" style="padding: 12px 20px; background: #e83e8c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">🛡️ Nhật Ký GVCN</button>
             </div>
 
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
