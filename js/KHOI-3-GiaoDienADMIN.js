@@ -74,12 +74,9 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
                 
-                <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Hệ Thống</button>
+                <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
             
-                <!-- 🌟 NÚT BẬT/TẮT QUYỀN ĐỔI AVATAR HỌC SINH -->
-                <button onclick="window.ham_admin_mo_popup_cai_dat_avatar(this)" style="padding: 12px 20px; background: #8e44ad; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">👤 Khóa/Mở Đổi Avatar HS</button>
-
-                </div>
+                  </div>
         `;
     }
     // 🌟 PHẦN TIỆN ÍCH CHUNG VÀ VÙNG LÀM VIỆC CHI TIẾT (Giáo viên chỉ thấy phần này)
@@ -281,18 +278,67 @@ window.dsCaiDatGoc = [];
 
 
 
-//// =====================================================================
-//// Hàm 3.5: Lưu một thông số cài đặt lên Database (Đã bẫy lỗi triệt để)
-//// =====================================================================
-window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
-    // 1. Đọc giá trị mới nhất từ ô input/select
-    const inputEl = document.getElementById('input_setting_' + maCaiDat);
-    const giaTriMoi = inputEl.value.trim();
+// //// =====================================================================
+// //// Hàm 3.5: Lưu một thông số cài đặt lên Database (Đã bẫy lỗi triệt để)
+// //// =====================================================================
+// window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
+//     // 1. Đọc giá trị mới nhất từ ô input/select
+//     const inputEl = document.getElementById('input_setting_' + maCaiDat);
+//     const giaTriMoi = inputEl.value.trim();
 
-    if (giaTriMoi === '') {
-        inputEl.focus();
-        return alert("❌ Giá trị không được để trống!");
-    }
+//     if (giaTriMoi === '') {
+//         inputEl.focus();
+//         return alert("❌ Giá trị không được để trống!");
+//     }
+
+//     // 2. Khóa nút bấm để chống click đúp
+//     const oldText = btnElement.innerHTML;
+//     btnElement.innerHTML = "⏳...";
+//     btnElement.disabled = true;
+
+//     try {
+//         // 3. Đẩy dữ liệu mới lên Supabase
+//         const { error } = await _supabase.from('cai_dat_he_thong')
+//             .update({ gia_tri: giaTriMoi })
+//             .eq('ma_cai_dat', maCaiDat);
+
+//         if (error) throw error;
+
+//         // 🌟 4. CẬP NHẬT ĐỒNG BỘ TRÊN BỘ NHỚ TRÌNH DUYỆT
+//         window.AppConfig[maCaiDat] = giaTriMoi; // Dùng cho hệ thống
+
+//         // Tìm và cập nhật cả ở mảng gốc để vẽ lại không bị lỗi
+//         const itemGoc = window.dsCaiDatGoc.find(x => x.ma_cai_dat === maCaiDat);
+//         if (itemGoc) {
+//             itemGoc.gia_tri = giaTriMoi;
+//         }
+
+//         // 5. Hiện thông báo
+//         const thongBao = document.createElement('div');
+//         thongBao.innerHTML = `✅ Đã cập nhật tham số <b>${maCaiDat}</b> thành công!`;
+//         thongBao.style.cssText = "position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#28a745; color:white; padding:15px 30px; border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:9999; animation: fadeup 0.3s;";
+//         document.body.appendChild(thongBao);
+//         setTimeout(() => document.body.removeChild(thongBao), 2500);
+
+//     } catch (error) {
+//         alert("❌ Lỗi khi lưu cài đặt: " + error.message);
+//     } finally {
+//         // 6. Trả lại nút bấm như cũ
+//         btnElement.innerHTML = oldText;
+//         btnElement.disabled = false;
+//     }
+// };
+
+
+// =====================================================================
+// Hàm 3.5: Lưu một thông số cài đặt lên Database (Đã nâng cấp dùng upsert chống lỗi)
+// =====================================================================
+window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
+    // 1. Đọc giá trị mới nhất từ ô input hoặc select
+    const inputEl = document.getElementById('input_setting_' + maCaiDat);
+    if (!inputEl) return;
+
+    const giaTriMoi = inputEl.value.trim();
 
     // 2. Khóa nút bấm để chống click đúp
     const oldText = btnElement.innerHTML;
@@ -300,25 +346,32 @@ window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
     btnElement.disabled = true;
 
     try {
-        // 3. Đẩy dữ liệu mới lên Supabase
+        // Tìm lại mô tả và nhóm gốc của tham số này để upsert không bị thiếu dữ liệu
+        let itemGoc = window.dsCaiDatGoc ? window.dsCaiDatGoc.find(x => x.ma_cai_dat === maCaiDat) : null;
+        let moTa = itemGoc ? itemGoc.mo_ta : 'Cài đặt hệ thống';
+        let nhom = itemGoc ? itemGoc.nhom : 'GIAO_DIEN';
+
+        // 3. Đẩy dữ liệu mới lên Supabase bằng UPSERT (Cực kỳ an toàn, khớp tuyệt đối với bảng cấu trúc của thầy)
         const { error } = await _supabase.from('cai_dat_he_thong')
-            .update({ gia_tri: giaTriMoi })
-            .eq('ma_cai_dat', maCaiDat);
+            .upsert({
+                ma_cai_dat: maCaiDat,
+                gia_tri: giaTriMoi,
+                mo_ta: moTa,
+                nhom: nhom
+            }, { onConflict: 'ma_cai_dat' });
 
         if (error) throw error;
 
-        // 🌟 4. CẬP NHẬT ĐỒNG BỘ TRÊN BỘ NHỚ TRÌNH DUYỆT
-        window.AppConfig[maCaiDat] = giaTriMoi; // Dùng cho hệ thống
+        // 4. CẬP NHẬT ĐỒNG BỘ TRÊN BỘ NHỚ TRÌNH DUYỆT
+        window.AppConfig[maCaiDat] = giaTriMoi;
 
-        // Tìm và cập nhật cả ở mảng gốc để vẽ lại không bị lỗi
-        const itemGoc = window.dsCaiDatGoc.find(x => x.ma_cai_dat === maCaiDat);
         if (itemGoc) {
             itemGoc.gia_tri = giaTriMoi;
         }
 
-        // 5. Hiện thông báo
+        // 5. Hiện thông báo thành công
         const thongBao = document.createElement('div');
-        thongBao.innerHTML = `✅ Đã cập nhật tham số <b>${maCaiDat}</b> thành công!`;
+        thongBao.innerHTML = `✅ Đã lưu tham số <b>${maCaiDat}</b> thành công!`;
         thongBao.style.cssText = "position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#28a745; color:white; padding:15px 30px; border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:9999; animation: fadeup 0.3s;";
         document.body.appendChild(thongBao);
         setTimeout(() => document.body.removeChild(thongBao), 2500);
@@ -331,6 +384,7 @@ window.ham_3_5_luu_mot_cai_dat = async function (maCaiDat, btnElement) {
         btnElement.disabled = false;
     }
 };
+
 
 // =====================================================================
 // 1. Hàm vẽ giao diện và quét cây thư mục từ Drive (ĐÃ THÊM KÉO THẢ)
@@ -515,9 +569,95 @@ function ham_3_7_tinh_thoi_gian_truoc_day(thoiGianISO) {
 }
 
 
-//// =====================================================================
-//// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã làm Responsive Mobile)
-//// =====================================================================
+// //// =====================================================================
+// //// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã làm Responsive Mobile)
+// //// =====================================================================
+// window.ham_3_8_ve_cai_dat_he_thong = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
+
+//     try {
+//         const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
+//         if (error) throw error;
+
+//         window.dsCaiDatGoc = data || [];
+
+//         window.dsCaiDatGoc.forEach(item => {
+//             window.AppConfig[item.ma_cai_dat] = item.gia_tri;
+//         });
+
+//         let htmlDanhSachCaiDat = '';
+//         window.dsCaiDatGoc.forEach(item => {
+//             let mauNhom = '#6c757d';
+//             if (item.nhom === 'THI_CU') mauNhom = '#dc3545';
+//             if (item.nhom === 'CHAM_DIEM') mauNhom = '#28a745';
+//             if (item.nhom === 'GIAO_DIEN') mauNhom = '#007bff';
+//             if (item.nhom === 'TAI_KHOAN') mauNhom = '#6f42c1';
+
+//             let phanNhapLieu = '';
+
+//             // 🌟 ĐÃ SỬA: Thay width: 200px thành width: 100%; max-width: 200px; min-width: 150px;
+//             if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
+//                 phanNhapLieu = `
+//                     <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
+//                         <option value="CHO_DUYET" ${item.gia_tri === 'CHO_DUYET' ? 'selected' : ''}>⏳ Chờ GV Duyệt</option>
+//                         <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
+//                     </select>
+//                 `;
+//             } else {
+//                 phanNhapLieu = `
+//                     <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
+//                 `;
+//             }
+
+//             // 🌟 ĐÃ SỬA: Thêm flex-wrap: wrap và flex: 1 1 250px để khung chữ và nút tự rớt dòng trên màn hẹp
+//             htmlDanhSachCaiDat += `
+//                 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+//                     <div style="flex: 1 1 250px; min-width: 200px;">
+//                         <div style="font-weight: bold; color: #333; font-size: 16px; margin-bottom: 4px;">
+//                             ${item.mo_ta}
+//                         </div>
+//                         <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+//                             <span style="font-size: 11px; background: ${mauNhom}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${item.nhom}</span>
+//                             <span style="font-size: 12px; color: #888; font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">${item.ma_cai_dat}</span>
+//                         </div>
+//                     </div>
+                    
+//                     <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; flex: 1 1 auto; justify-content: flex-start;">
+//                         ${phanNhapLieu}
+                        
+//                         <button onclick="ham_3_5_luu_mot_cai_dat('${item.ma_cai_dat}', this)" style="padding: 10px 20px; background: #34495e; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s; white-space: nowrap;" onmouseover="this.style.background='#2c3e50'" onmouseout="this.style.background='#34495e'">
+//                             💾 LƯU
+//                         </button>
+//                     </div>
+//                 </div>
+//             `;
+//         });
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; animation: fadein 0.4s;">
+//                 <div style="background: #34495e; padding: 20px; text-align: center; border-bottom: 4px solid #2c3e50;">
+//                     <h2 style="margin: 0; color: white; font-size: 22px;">⚙️ BẢNG ĐIỀU KHIỂN HỆ THỐNG</h2>
+//                     <div style="color: #bdc3c7; font-size: 13px; margin-top: 5px;">Điều chỉnh các tham số cốt lõi (Có tác dụng ngay lập tức trên toàn hệ thống)</div>
+//                 </div>
+                
+//                 <div style="padding: 10px 20px 30px 20px; overflow-x: auto;">
+//                     ${htmlDanhSachCaiDat}
+//                 </div>
+//             </div>
+//         `;
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
+//     }
+// };
+
+
+
+
+// =====================================================================
+// Hàm 3.4: Vẽ màn hình giao diện Cài đặt hệ thống (Đã chuẩn hóa không bị lặp dòng)
+// =====================================================================
 window.ham_3_8_ve_cai_dat_he_thong = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     vungLamViec.innerHTML = `<h3 style="text-align:center; color:#555; margin-top:50px;">⏳ Đang tải thông số hệ thống...</h3>`;
@@ -526,6 +666,7 @@ window.ham_3_8_ve_cai_dat_he_thong = async function () {
         const { data, error } = await _supabase.from('cai_dat_he_thong').select('*').order('nhom');
         if (error) throw error;
 
+        // 🌟 Lấy trực tiếp dữ liệu từ Database, không tự chèn dòng thừa nữa
         window.dsCaiDatGoc = data || [];
 
         window.dsCaiDatGoc.forEach(item => {
@@ -542,7 +683,6 @@ window.ham_3_8_ve_cai_dat_he_thong = async function () {
 
             let phanNhapLieu = '';
 
-            // 🌟 ĐÃ SỬA: Thay width: 200px thành width: 100%; max-width: 200px; min-width: 150px;
             if (item.ma_cai_dat === 'DUYET_TAI_KHOAN_MOI') {
                 phanNhapLieu = `
                     <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
@@ -550,13 +690,22 @@ window.ham_3_8_ve_cai_dat_he_thong = async function () {
                         <option value="TU_DONG" ${item.gia_tri === 'TU_DONG' ? 'selected' : ''}>✅ Tự động duyệt</option>
                     </select>
                 `;
-            } else {
+            }
+            // 🌟 Nhận diện đúng mã viết hoa CHO_PHEP_DOI_AVATAR để hiện Dropdown Khóa/Mở
+            else if (item.ma_cai_dat === 'CHO_PHEP_DOI_AVATAR') {
+                phanNhapLieu = `
+                    <select id="input_setting_${item.ma_cai_dat}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; cursor: pointer;">
+                        <option value="1" ${item.gia_tri === '1' ? 'selected' : ''}>🔓 Cho phép đổi</option>
+                        <option value="0" ${item.gia_tri === '0' ? 'selected' : ''}>🔒 Khóa đổi ảnh</option>
+                    </select>
+                `;
+            }
+            else {
                 phanNhapLieu = `
                     <input type="text" id="input_setting_${item.ma_cai_dat}" value="${item.gia_tri}" style="padding: 10px; border: 2px solid #ced4da; border-radius: 6px; width: 100%; max-width: 200px; min-width: 150px; font-weight: bold; font-size: 15px; color: #495057; outline: none; transition: 0.2s;" onfocus="this.style.borderColor='#34495e'" onblur="this.style.borderColor='#ced4da'">
                 `;
             }
 
-            // 🌟 ĐÃ SỬA: Thêm flex-wrap: wrap và flex: 1 1 250px để khung chữ và nút tự rớt dòng trên màn hẹp
             htmlDanhSachCaiDat += `
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px dashed #ccc; transition: 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
                     <div style="flex: 1 1 250px; min-width: 200px;">
@@ -597,6 +746,10 @@ window.ham_3_8_ve_cai_dat_he_thong = async function () {
         vungLamViec.innerHTML = `<div style="color:red; text-align:center; padding:50px;">❌ Lỗi kết nối CSDL: ${error.message}</div>`;
     }
 };
+
+
+
+
 
 // =====================================================================
 // 2. Hàm nhúng file Drive sang bên phải 
@@ -1375,15 +1528,15 @@ window.ham_3_21_render_ui_cau_hoi_TLN = async function (data, containerElement) 
 
 
 // =====================================================================
-// HÀM 3.22: QUẢN TRỊ QUYỀN ĐỔI AVATAR CỦA HỌC SINH (MỞ/KHÓA)
+// HÀM 3.22: QUẢN TRỊ QUYỀN ĐỔI AVATAR CỦA HỌC SINH (CHUẨN KEY CHO_PHEP_DOI_AVATAR)
 // =====================================================================
 window.ham_3_22_mo_popup_cai_dat_avatar = async function () {
     try {
-        // 1. Kiểm tra trạng thái hiện tại từ bảng cai_dat_he_thong
+        // 1. Kiểm tra trạng thái hiện tại từ bảng cai_dat_he_thong với Key viết hoa chuẩn
         const { data, error } = await _supabase
             .from('cai_dat_he_thong')
             .select('gia_tri')
-            .eq('ma_cai_dat', 'cho_phep_doi_avatar')
+            .eq('ma_cai_dat', 'CHO_PHEP_DOI_AVATAR')
             .maybeSingle();
 
         let trangThaiHienTai = data ? data.gia_tri : '1'; // Mặc định là '1' (Cho phép) nếu chưa có dữ liệu
@@ -1417,11 +1570,11 @@ window.ham_3_22_mo_popup_cai_dat_avatar = async function () {
                     const { error: errUp } = await _supabase
                         .from('cai_dat_he_thong')
                         .upsert({
-                            ma_cai_dat: 'cho_phep_doi_avatar',
-                            khoa: 'cho_phep_doi_avatar',
+                            ma_cai_dat: 'CHO_PHEP_DOI_AVATAR',
+                            khoa: 'CHO_PHEP_DOI_AVATAR',
                             gia_tri: giaTriMoi,
                             nhom: 'GIAO_DIEN',
-                            mo_ta: 'Cho phép học sinh tự thay đổi Avatar'
+                            mo_ta: 'Cho phép học sinh tự thay đổi Avatar cá nhân'
                         }, { onConflict: 'ma_cai_dat' });
 
                     if (errUp) throw errUp;

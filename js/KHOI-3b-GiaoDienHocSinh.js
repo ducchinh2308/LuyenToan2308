@@ -1017,8 +1017,193 @@ async function ham_3b_11_tab_ket_qua_trac_nghiem() {
 //     }
 // }
 
+// // =====================================================================
+// // Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (CÓ TÍNH NĂNG THAY AVATAR)
+// // =====================================================================
+// async function ham_3b_12_tab_ho_so() {
+//     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+//     vungLamViec.innerHTML = `
+//         <div style="text-align: center; padding: 60px;">
+//             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #6c757d; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+//             <h3 style="color:#6c757d; margin-top:20px;">⏳ Đang tải thông tin cá nhân...</h3>
+//         </div>
+//     `;
+
+//     try {
+//         const { data: hs, error } = await _supabase
+//             .from('hoc_sinh')
+//             .select('*')
+//             .eq('uid', GocHocSinhState.uid)
+//             .single();
+
+//         if (error) throw error;
+
+//         let mangLop = GocHocSinhState.danh_sach_ma_lop || [];
+//         if (mangLop.length === 0) {
+//             try { mangLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//         }
+
+//         let tenLopHienThi = "Chưa tham gia lớp nào";
+//         if (mangLop.length > 0) {
+//             const { data: dsLop } = await _supabase.from('lop_hoc').select('ten_lop').in('ma_lop', mangLop);
+//             if (dsLop) tenLopHienThi = dsLop.map(l => l.ten_lop).join(', ');
+//         }
+
+//         const mkHienTai = hs.mat_khau || hs.matKhau || "";
+//         const soKimCuong = GocHocSinhState.kim_cuong || 0;
+
+//         // 🌟 Lấy Avatar hiện tại từ cột anh_dai_dien hoặc dùng Avatar chữ mặc định
+//         let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=150`;
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
+               
+//                <div style="background: linear-gradient(135deg, #1a73e8, #00b4d8); padding: 35px 20px; text-align: center; color: white; position: relative;">
+                    
+//                     <!-- 🌟 KHU VỰC AVATAR ĐỘNG -->
+//                     <div style="position: relative; width: 110px; height: 110px; margin: 0 auto 15px auto;">
+//                         <img id="hs_avatar_preview" src="${avatarUrl}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.8); box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: #fff;">
+                        
+//                         <!-- Nút Máy ảnh để mở File Picker / Camera -->
+//                         <label for="hs_input_avatar" style="position: absolute; bottom: 0; right: 0; background: #ffc107; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Đổi ảnh đại diện">
+//                             📷
+//                         </label>
+//                         <!-- Thẻ input type="file" hỗ trợ bật Camera trên mobile (capture="user") -->
+//                         <input type="file" id="hs_input_avatar" accept="image/*" capture="user" style="display: none;" onchange="ham_3b_22_xu_ly_anh_avatar(this)">
+//                     </div>
+
+//                     <h2 style="margin: 0; font-size: 24px; font-weight: 900;">${hs.ten || "Học sinh"}</h2>
+//                     <div style="font-size: 14px; opacity: 0.9; margin-top: 5px; background: rgba(255,255,255,0.25); display: inline-block; padding: 4px 12px; border-radius: 20px;">
+//                         ID Đăng nhập: <b>${hs.uid}</b>
+//                     </div>
+//                 </div>
+
+//                 <div style="background: rgba(255,255,255,0.9); border-radius: 12px; padding: 10px 15px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 2px solid #ffc107; margin-top: -25px; position: relative; z-index: 10; left: 50%; transform: translateX(-50%);">
+//                     <span style="font-size: 24px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));">💎</span>
+//                     <div style="text-align: left; color: #333;">
+//                         <div style="font-size: 11px; font-weight: bold; color: #666; text-transform: uppercase;">Tài sản hiện có</div>
+//                         <div style="font-size: 20px; font-weight: 900; color: #00838f; line-height: 1;">${soKimCuong} Kim Cương</div>
+//                     </div>
+//                 </div>
+
+//                 <div style="padding: 20px 30px 30px 30px;">
+//                     <div style="margin-bottom: 20px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">👤 Tên hiển thị của em:</label>
+//                         <input type="text" id="hs_edit_ten" value="${hs.ten || ''}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+//                     </div>
+
+//                     <div style="margin-bottom: 20px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🏫 Lớp học đang tham gia:</label>
+//                         <div style="width: 100%; padding: 12px 15px; border: 1px dashed #adb5bd; border-radius: 6px; font-size: 15px; background: #f8f9fa; color: #1a73e8; font-weight: bold; box-sizing: border-box; line-height: 1.4;">
+//                             ${tenLopHienThi}
+//                         </div>
+//                         <button onclick="ham_3b_14_xin_vao_lop_moi()" style="margin-top: 8px; padding: 6px 12px; background: white; color: #1a73e8; border: 1px solid #1a73e8; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#1a73e8'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#1a73e8'">
+//                             ➕ Xin gia nhập lớp mới
+//                         </button>
+//                     </div>
+
+//                     <div style="margin-bottom: 15px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔑 Mật khẩu mới:</label>
+//                         <input type="password" id="hs_edit_mk" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+//                     </div>
+
+//                     <div style="margin-bottom: 25px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057; display: block; margin-bottom: 8px;">🔁 Xác nhận lại mật khẩu mới:</label>
+//                         <input type="password" id="hs_edit_mk_2" value="${mkHienTai}" style="width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 6px; font-size: 15px; background: #fff; box-sizing: border-box; transition: 0.2s;" onfocus="this.style.borderColor='#1a73e8'; this.style.boxShadow='0 0 0 3px rgba(26,115,232,0.1)'" onblur="this.style.borderColor='#ced4da'; this.style.boxShadow='none'">
+//                         <div style="font-size: 11px; color: #dc3545; margin-top: 6px;">* Gõ mật khẩu mới vào cả 2 ô trên để thay đổi. Tuyệt đối không chia sẻ mật khẩu cho người khác.</div>
+//                     </div>
+
+//                     <hr style="border: 0; border-top: 1px solid #e9ecef; margin: 25px 0;">
+
+//                     <div style="display: flex; gap: 15px;">
+//                         <button onclick="ham_3b_13_luu_ho_so(this)" style="flex: 2; padding: 14px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 6px rgba(40,167,69,0.2);" onmouseover="this.style.background='#218838'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#28a745'; this.style.transform='translateY(0)'">
+//                             💾 CẬP NHẬT HỒ SƠ
+//                         </button>
+//                         <button onclick="ham_3b_16_dang_xuat()" style="flex: 1; padding: 14px; background: #fff; color: #dc3545; border: 2px solid #dc3545; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#dc3545'; this.style.color='white'" onmouseout="this.style.background='#fff'; this.style.color='#dc3545'">
+//                             🚪 THOÁT
+//                         </button>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight: bold;">❌ Lỗi tải hồ sơ: ${error.message}</div>`;
+//     }
+// }
+
+
+// async function ham_3b_12_tab_ho_so() {
+//     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
+//     vungLamViec.innerHTML = `
+//         <div style="text-align: center; padding: 60px;">
+//             <div style="border: 4px solid #f3f3f3; border-top: 4px solid #6c757d; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+//             <h3 style="color:#6c757d; margin-top:20px;">⏳ Đang tải thông tin cá nhân...</h3>
+//         </div>
+//     `;
+
+//     try {
+//         // 🌟 Truy vấn đúng mã viết hoa CHO_PHEP_DOI_AVATAR
+//         const [resHS, resCaiDat] = await Promise.all([
+//             _supabase.from('hoc_sinh').select('*').eq('uid', GocHocSinhState.uid).single(),
+//             _supabase.from('cai_dat_he_thong').select('gia_tri').eq('ma_cai_dat', 'CHO_PHEP_DOI_AVATAR').maybeSingle()
+//         ]);
+
+//         if (resHS.error) throw resHS.error;
+//         const hs = resHS.data;
+
+//         let choPhepDoiAvatar = true;
+//         if (resCaiDat.data && resCaiDat.data.gia_tri === '0') choPhepDoiAvatar = false;
+
+//         let mangLop = GocHocSinhState.danh_sach_ma_lop || [];
+//         if (mangLop.length === 0) {
+//             try { mangLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//         }
+
+//         let tenLopHienThi = "Chưa tham gia lớp nào";
+//         if (mangLop.length > 0) {
+//             const { data: dsLop } = await _supabase.from('lop_hoc').select('ten_lop').in('ma_lop', mangLop);
+//             if (dsLop) tenLopHienThi = dsLop.map(l => l.ten_lop).join(', ');
+//         }
+
+//         const mkHienTai = hs.mat_khau || hs.matKhau || "";
+//         const soKimCuong = GocHocSinhState.kim_cuong || 0;
+//         let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
+
+//         let htmlNutAvatar = choPhepDoiAvatar ? `
+//             <label for="hs_input_avatar" style="position: absolute; bottom: 0; right: 0; background: #ffc107; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Đổi ảnh đại diện">
+//                 📷
+//             </label>
+//             <input type="file" id="hs_input_avatar" accept="image/*" capture="user" style="display: none;" onchange="ham_3b_22_xu_ly_anh_avatar(this)">
+//         ` : `
+//             <div style="position: absolute; bottom: 0; right: 0; background: #6c757d; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);" title="Giáo viên đã tạm khóa tính năng đổi ảnh">
+//                 🔒
+//             </div>
+//         `;
+
+//         vungLamViec.innerHTML = `
+//             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
+//                <div style="background: linear-gradient(135deg, #1a73e8, #00b4d8); padding: 35px 20px; text-align: center; color: white; position: relative;">
+//                     <div style="position: relative; width: 110px; height: 110px; margin: 0 auto 15px auto;">
+//                         <img id="hs_avatar_preview" src="${avatarUrl}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.8); box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: #fff;">
+//                         ${htmlNutAvatar}
+//                     </div>
+//                     <h2 style="margin: 0; font-size: 24px; font-weight: 900;">${hs.ten || "Học sinh"}</h2>
+//                     <div style="font-size: 14px; opacity: 0.9; margin-top: 5px; background: rgba(255,255,255,0.25); display: inline-block; padding: 4px 12px; border-radius: 20px;">
+//                         ID Đăng nhập: <b>${hs.uid}</b>
+//                     </div>
+//                 </div>
+//                 <!-- Các phần thông tin khác giữ nguyên -->
+//             </div>
+//         `;
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight: bold;">❌ Lỗi tải hồ sơ: ${error.message}</div>`;
+//     }
+// }
+
+
+
 // =====================================================================
-// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (CÓ TÍNH NĂNG THAY AVATAR)
+// Hàm 8.5: Xử lý Tab "HỒ SƠ CÁ NHÂN" (CÓ TÍNH NĂNG KIỂM TRA KHÓA/MỞ ĐỔI AVATAR)
 // =====================================================================
 async function ham_3b_12_tab_ho_so() {
     const vungLamViec = document.getElementById('vung-lam-viec-hoc-sinh');
@@ -1030,13 +1215,18 @@ async function ham_3b_12_tab_ho_so() {
     `;
 
     try {
-        const { data: hs, error } = await _supabase
-            .from('hoc_sinh')
-            .select('*')
-            .eq('uid', GocHocSinhState.uid)
-            .single();
+        // 🌟 Truy vấn đồng thời thông tin học sinh và trạng thái cài đặt khóa/mở avatar từ hệ thống
+        const [resHS, resCaiDat] = await Promise.all([
+            _supabase.from('hoc_sinh').select('*').eq('uid', GocHocSinhState.uid).single(),
+            _supabase.from('cai_dat_he_thong').select('gia_tri').eq('ma_cai_dat', 'CHO_PHEP_DOI_AVATAR').maybeSingle()
+        ]);
 
-        if (error) throw error;
+        if (resHS.error) throw resHS.error;
+        const hs = resHS.data;
+
+        // Kiểm tra quyền: Mặc định cho phép (true), nếu giá trị là '0' thì chuyển thành khóa (false)
+        let choPhepDoiAvatar = true;
+        if (resCaiDat.data && resCaiDat.data.gia_tri === '0') choPhepDoiAvatar = false;
 
         let mangLop = GocHocSinhState.danh_sach_ma_lop || [];
         if (mangLop.length === 0) {
@@ -1052,24 +1242,28 @@ async function ham_3b_12_tab_ho_so() {
         const mkHienTai = hs.mat_khau || hs.matKhau || "";
         const soKimCuong = GocHocSinhState.kim_cuong || 0;
 
-        // 🌟 Lấy Avatar hiện tại từ cột anh_dai_dien hoặc dùng Avatar chữ mặc định
         let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=150`;
+
+        // 🌟 Xử lý hiển thị nút máy ảnh hoặc biểu tượng khóa tùy theo cấu hình của Admin
+        let htmlNutAvatar = choPhepDoiAvatar ? `
+            <label for="hs_input_avatar" style="position: absolute; bottom: 0; right: 0; background: #ffc107; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Đổi ảnh đại diện">
+                📷
+            </label>
+            <input type="file" id="hs_input_avatar" accept="image/*" capture="user" style="display: none;" onchange="ham_3b_22_xu_ly_anh_avatar(this)">
+        ` : `
+            <div style="position: absolute; bottom: 0; right: 0; background: #6c757d; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);" title="Giáo viên đã tạm khóa tính năng đổi ảnh đại diện">
+                🔒
+            </div>
+        `;
 
         vungLamViec.innerHTML = `
             <div style="max-width: 550px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e0e0e0;">
                
                <div style="background: linear-gradient(135deg, #1a73e8, #00b4d8); padding: 35px 20px; text-align: center; color: white; position: relative;">
                     
-                    <!-- 🌟 KHU VỰC AVATAR ĐỘNG -->
                     <div style="position: relative; width: 110px; height: 110px; margin: 0 auto 15px auto;">
                         <img id="hs_avatar_preview" src="${avatarUrl}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.8); box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: #fff;">
-                        
-                        <!-- Nút Máy ảnh để mở File Picker / Camera -->
-                        <label for="hs_input_avatar" style="position: absolute; bottom: 0; right: 0; background: #ffc107; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 2px solid white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Đổi ảnh đại diện">
-                            📷
-                        </label>
-                        <!-- Thẻ input type="file" hỗ trợ bật Camera trên mobile (capture="user") -->
-                        <input type="file" id="hs_input_avatar" accept="image/*" capture="user" style="display: none;" onchange="ham_3b_22_xu_ly_anh_avatar(this)">
+                        ${htmlNutAvatar}
                     </div>
 
                     <h2 style="margin: 0; font-size: 24px; font-weight: 900;">${hs.ten || "Học sinh"}</h2>
@@ -1600,34 +1794,149 @@ window.ham_3b_21_vao_lam_bai_khao_sat = function(maNhiemVu) {
 
 
 
+// // =====================================================================
+// // Hàm bổ trợ: Bắt sự kiện chọn ảnh/Chụp ảnh từ Camera
+// // =====================================================================
+// window.ham_3b_22_xu_ly_anh_avatar = async function (inputElement) {
+//     if (!inputElement.files || inputElement.files.length === 0) return;
+//     let file = inputElement.files[0];
+
+//     // Tải thư viện cắt ảnh CropperJS nếu chưa có
+//     if (!window.Cropper) {
+//         if (typeof window.ham_20_26_tai_thu_vien_cropper === 'function') {
+//             await window.ham_20_26_tai_thu_vien_cropper();
+//         } else {
+//             await new Promise((resolve) => {
+//                 let css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(css);
+//                 let script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+//             });
+//         }
+//     }
+
+//     const reader = new FileReader();
+//     reader.onload = (e) => {
+//         ham_3b_23_hien_modal_crop_avatar(e.target.result);
+//     };
+//     reader.readAsDataURL(file);
+
+//     // Reset input để có thể chọn lại tấm ảnh đó
+//     inputElement.value = '';
+// };
+
+// // =====================================================================
+// // Hàm bổ trợ: Bắt sự kiện chọn ảnh/Chụp ảnh từ Camera (Đã thêm chốt chặn Khóa hệ thống)
+// // =====================================================================
+// window.ham_3b_22_xu_ly_anh_avatar = async function (inputElement) {
+//     // 🌟 CHỐT CHẶN BẢO MẬT: Kiểm tra lại cài đặt hệ thống từ Supabase trước khi cho phép xử lý ảnh
+//     try {
+//         const { data: caiDat } = await _supabase
+//             .from('cai_dat_he_thong')
+//             .select('gia_tri')
+//             .eq('ma_cai_dat', 'cho_phep_doi_avatar')
+//             .maybeSingle();
+
+//         // Nếu hệ thống cấu hình là '0' (Khóa) thì lập tức hủy thao tác và báo lỗi
+//         if (caiDat && caiDat.gia_tri === '0') {
+//             inputElement.value = ''; // Reset input file
+//             Swal.fire({
+//                 icon: 'error',
+//                 title: 'Tính năng bị khóa!',
+//                 text: 'Giáo viên đã tạm khóa quyền thay đổi Ảnh đại diện. Vui lòng thử lại sau!',
+//                 confirmButtonColor: '#dc3545'
+//             });
+//             return;
+//         }
+//     } catch (e) {
+//         console.warn("Không thể kiểm tra trạng thái khóa avatar:", e);
+//     }
+
+//     if (!inputElement.files || inputElement.files.length === 0) return;
+//     let file = inputElement.files[0];
+
+//     // Tải thư viện cắt ảnh CropperJS nếu chưa có
+//     if (!window.Cropper) {
+//         if (typeof window.ham_20_26_tai_thu_vien_cropper === 'function') {
+//             await window.ham_20_26_tai_thu_vien_cropper();
+//         } else {
+//             await new Promise((resolve) => {
+//                 let css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(css);
+//                 let script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+//             });
+//         }
+//     }
+
+//     const reader = new FileReader();
+//     reader.onload = (e) => {
+//         ham_3b_23_hien_modal_crop_avatar(e.target.result);
+//     };
+//     reader.readAsDataURL(file);
+
+//     // Reset input để có thể chọn lại tấm ảnh đó
+//     inputElement.value = '';
+// };
+
+
 // =====================================================================
-// Hàm bổ trợ: Bắt sự kiện chọn ảnh/Chụp ảnh từ Camera
+// HÀM 3b.22: XỬ LÝ KHI HỌC SINH BẤM ĐỔI AVATAR (CÓ KIỂM TRA KHÓA TỪ HỆ THỐNG)
 // =====================================================================
 window.ham_3b_22_xu_ly_anh_avatar = async function (inputElement) {
-    if (!inputElement.files || inputElement.files.length === 0) return;
-    let file = inputElement.files[0];
+    try {
+        // 1. Kiểm tra trạng thái mới nhất từ bảng cai_dat_he_thong
+        const { data: caiDat, error } = await _supabase
+            .from('cai_dat_he_thong')
+            .select('gia_tri')
+            .eq('ma_cai_dat', 'CHO_PHEP_DOI_AVATAR')
+            .maybeSingle();
 
-    // Tải thư viện cắt ảnh CropperJS nếu chưa có
-    if (!window.Cropper) {
-        if (typeof window.ham_20_26_tai_thu_vien_cropper === 'function') {
-            await window.ham_20_26_tai_thu_vien_cropper();
-        } else {
-            await new Promise((resolve) => {
-                let css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(css);
-                let script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
-            });
+        // 2. Nếu cấu hình là '0' (Đang khóa) thì chặn ngay lập tức và báo cảnh báo
+        if (caiDat && caiDat.gia_tri === '0') {
+            inputElement.value = ''; // Reset input
+
+            // Hiển thị cảnh báo đẹp mắt (Dùng Swal nếu có, hoặc dùng alert thông thường)
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Tính năng đang bị khóa!',
+                    text: '⚠️ Giáo viên đã tạm khóa quyền thay đổi Ảnh đại diện. Em không thể thay đổi lúc này!',
+                    confirmButtonColor: '#dc3545',
+                    confirmButtonText: 'Đã hiểu'
+                });
+            } else {
+                alert("⚠️ Giáo viên đã tạm khóa quyền thay đổi Ảnh đại diện. Em không thể thay đổi lúc này!");
+            }
+            return;
         }
+
+        // 3. Nếu đang mở (1) thì tiếp tục cho phép chọn file và cắt ảnh như bình thường
+        if (!inputElement.files || inputElement.files.length === 0) return;
+        let file = inputElement.files[0];
+
+        if (!window.Cropper) {
+            if (typeof window.ham_20_26_tai_thu_vien_cropper === 'function') {
+                await window.ham_20_26_tai_thu_vien_cropper();
+            } else {
+                await new Promise((resolve) => {
+                    let css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(css);
+                    let script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+                });
+            }
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            if (typeof ham_3b_23_hien_modal_crop_avatar === 'function') {
+                ham_3b_23_hien_modal_crop_avatar(e.target.result);
+            }
+        };
+        reader.readAsDataURL(file);
+
+        inputElement.value = '';
+
+    } catch (err) {
+        console.error("Lỗi kiểm tra quyền đổi avatar:", err);
     }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        ham_3b_23_hien_modal_crop_avatar(e.target.result);
-    };
-    reader.readAsDataURL(file);
-
-    // Reset input để có thể chọn lại tấm ảnh đó
-    inputElement.value = '';
 };
+
 
 // =====================================================================
 // Hàm bổ trợ: Hiển thị Popup Cắt ảnh Tỷ lệ Vuông (1:1)
