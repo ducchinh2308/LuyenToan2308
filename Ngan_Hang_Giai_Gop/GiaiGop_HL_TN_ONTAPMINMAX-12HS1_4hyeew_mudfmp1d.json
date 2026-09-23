@@ -1,0 +1,85 @@
+{
+  "thoiGianGhep": "2026-09-23T01:36:33.600Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_73253bcbb7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số ta thấy $\\displaystyle \\min_{[-1;1]} f(x) = f(-1) = -4$."
+    },
+    {
+      "maBaoMat": "sol_a54da14599",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số ta thấy $m = -3$; $M = 4 \\Rightarrow 2m - 3M = -18$."
+    },
+    {
+      "maBaoMat": "sol_981d98f826",
+      "dapAn": "B",
+      "loiGiaiHtml": "$y = \\displaystyle \\frac{3x+2}{x+1} \\Rightarrow y' = \\frac{1}{(x+1)^2} > 0, \\forall x \\in [0;2] \\Rightarrow \\max_{[0;2]} y = y(2) = \\frac{8}{3}$."
+    },
+    {
+      "maBaoMat": "sol_f753f059d6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $y'=3x^2-6x$.\\\\\r\n\t\tKhi đó $y'=0 \\Leftrightarrow \\left[\\begin{array}{l} x=0 \\\\ x=2 \\end{array}\\right. $.\\\\\r\n\t\tXét $y(-2)=-18$, $y(0)=2$, $y(2)=-2$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số là $M=2$, giá trị nhỏ nhất của hàm số là $m=-18$.\\\\\r\n\t\tVậy $M-m=2-(-18)=20$."
+    },
+    {
+      "maBaoMat": "sol_06574b92af",
+      "dapAn": "A",
+      "loiGiaiHtml": "$f'(x) = 4x^3 - 4x = 0 \\Leftrightarrow \\left[\\begin{array}{l} x = 0 \\\\ x = 1 \\\\ x = -1 \\end{array}\\right.$.\\\\\r\n\t\tCả $3$ nghiệm $x=0, x=1, x=-1$ đều thuộc đoạn $[-2;2]$.\\\\\r\n\t\t$f(-2) = 13$, $f(-1) = 4$, $f(0) = 5$, $f(1) = 4$, $f(2) = 13$.\\\\\r\n\t\tSo sánh các kết quả trên, ta thấy giá trị lớn nhất là $13$."
+    },
+    {
+      "maBaoMat": "sol_2e66d9d0fa",
+      "dapAn": "A",
+      "loiGiaiHtml": "$f(0)=5;f(2)=1;f(3)=4;f\\left(-1\\right)=0$\\\\\r\n\tVậy $\\max\\limits_{\\left[-1;3\\right]}f(x)=f(0)=5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_f38f774a5b",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số trên đoạn $[0;5]$, ta thấy:\\\\\r\n\t\tGiá trị lớn nhất $\\max_{[0;5]} f(x) = 3$ tại $x=5$.\\\\\r\n\t\tGiá trị nhỏ nhất $\\min_{[0;5]} f(x) = -2$ tại $x=2$.\\\\\r\n\t\tVậy tổng cần tìm là $3 + (-2) = 1$."
+    },
+    {
+      "maBaoMat": "sol_4cca35727c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào đồ thị, ta có giá trị lớn nhất của hàm số đã cho trên đoạn $[-1 ; 3]$ là $3$."
+    },
+    {
+      "maBaoMat": "sol_3ebd7d1b10",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm lợi nhuận $P(x)$ thu được từ việc loại bỏ chất ô nhiễm chính là doanh thu tăng thêm trừ đi chi phí bỏ ra là:\\\\\r\n\t\t\t$P(x) = R(x) - C(x) = 12x - 240 - \\displaystyle \\frac{2x+1}{1-0{,}01x}$.\\\\\r\n\t\t\tTa có: $P'(x) = 12 - \\displaystyle \\frac{2(1-0{,}01x) - (2x+1)(-0{,}01)}{(1-0{,}01x)^2} = 12 - \\displaystyle \\frac{2{,}01}{(1-0{,}01x)^2}$.\\\\\r\n\t\t\tXét $P'(x) = 0 \\Leftrightarrow 12 = \\displaystyle \\frac{2{,}01}{(1-0{,}01x)^2} \\Leftrightarrow (1-0{,}01x)^2 = \\displaystyle \\frac{67}{400} \\Rightarrow 1-0{,}01x = \\displaystyle \\frac{\\sqrt{67}}{20} \\Rightarrow x = 100 - 5\\sqrt{67}$.\\\\\r\n\t\t\tVậy ta có: $P_{\\max} = P\\left(100-5\\sqrt{67}\\right) = 12\\left(100-5\\sqrt{67}\\right) - 240 - \\displaystyle \\frac{2\\left(100-5\\sqrt{67}\\right)+1}{1-0{,}01\\left(100-5\\sqrt{67}\\right)} \\approx 177{,}8 > 177$.\\\\\r\n\t\t\tVậy lợi nhuận hoàn toàn có thể đạt mức hơn $177$ triệu đồng.\r\n\t\t\t\\itemch Ta xét: $\\displaystyle \\lim_{x \\to 100} C(x) = \\lim_{x \\to 100} \\frac{2x+1}{1-0{,}01x} = +\\infty$.\\\\\r\n\t\t\tĐiều này có nghĩa là khi muốn xử lý triệt để $100\\%$ chất ô nhiễm, chi phí sẽ tăng lên vô hạn. Do đó, việc loại bỏ hoàn toàn $100\\%$ là điều không thể thực hiện được.\r\n\t\t\t\\itemch Chi phí loại bỏ $20\\%$ chất ô nhiễm là: $C(20) = \\displaystyle \\frac{2 \\cdot 20 + 1}{1 - 0{,}01 \\cdot 20} = 51{,}25$ (triệu đồng).\r\n\t\t\t\\itemch Để chi phí không vượt quá $200$ triệu đồng, ta có:\\\\\r\n\t\t\t$C(x) \\le 200 \\Leftrightarrow \\displaystyle \\frac{2x+1}{1-0{,}01x} \\le 200 \\Rightarrow 2x+1 \\le 200(1-0{,}01x) \\Leftrightarrow 2x+1 \\le 200 - 2x \\Leftrightarrow 4x \\le 199 \\Leftrightarrow x \\le 49{,}75$.\\\\\r\n\t\t\tVậy nhà máy chỉ có thể xử lý tối đa $49{,}75\\%$ lượng chất ô nhiễm.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_e0766a0f71",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hàm số lợi nhuận là: $L(x) = R(x) - C(x) = (x^2 + 100x) - (x^2 + 30x + 100) = 70x - 100$.\r\n\t\t\t\\itemch Để lợi nhuận đạt $250$ triệu đồng: $L(x) = 250 \\Leftrightarrow 70x - 100 = 250 \\Leftrightarrow 70x - 350 = 0 \\Leftrightarrow x = 5$.\\\\\r\n\t\t\tHTX muốn đạt mức lợi nhuận là $250$ triệu đồng cho một vụ thì diện tích canh tác cần thiết là $5$ nghìn $\\text{m}^2$.\r\n\t\t\t\\itemch Chi phí trung bình: $P(x) = \\displaystyle \\frac{x^2 + 30x + 100}{x} = x + 30 + \\displaystyle \\frac{100}{x}$.\\\\\r\n\t\t\tXét đạo hàm: $P'(x) = 1 - \\displaystyle \\frac{100}{x^2} = \\displaystyle \\frac{x^2 - 100}{x^2}$.\\\\\r\n\t\t\tCho $P'(x) = 0 \\Leftrightarrow x^2 = 100 \\Leftrightarrow x = 10$ (do $x \\ge 1$).\\\\\r\n\t\t\tBảng biến thiên của $P(x)$ trên $[1; 11]$:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_e0766a0f71_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tTừ bảng biến thiên ta thấy chi phí trung bình luôn giảm khi $x \\in (1; 10)$ và luôn tăng khi $x \\in (10; 11)$. Chi phí trung bình đạt cực tiểu tại $x = 10$.\r\n\t\t\t\\itemch Từ bảng biến thiên ở ý c) ta thấy $\\min\\limits_{[1; +\\infty)} P(x) = 50$ tại $x = 10$.\\\\\r\n\t\t\tXét hàm tỉ lệ lợi nhuận: $Q(x) = \\displaystyle \\frac{L(x)}{C(x)} = \\displaystyle \\frac{70x - 100}{x^2 + 30x + 100}$.\\\\\r\n\t\t\tĐạo hàm: $Q'(x) = \\displaystyle \\frac{70(x^2 + 30x + 100) - (70x - 100)(2x + 30)}{(x^2 + 30x + 100)^2} = \\displaystyle \\frac{-70x^2 + 200x + 10000}{(x^2 + 30x + 100)^2}$.\\\\\r\n\t\t\tCho $Q'(x) = 0 \\Leftrightarrow -7x^2 + 20x + 1000 = 0 \\Leftrightarrow x = \\displaystyle \\frac{10 + 10\\sqrt{71}}{7} \\approx 13{,}46$ (do $x \\ge 1$).\\\\\r\n\t\t\tVì giá trị $x$ để $Q(x)$ đạt cực đại ($x \\approx 13{,}46$) khác với giá trị $x$ để $P(x)$ đạt cực tiểu ($x = 10$) nên HTX không thể đồng thời làm thỏa mãn cả hai tiêu chí này tại cùng một mức diện tích.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a91a1b6118",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đúng. Điều kiện xác định của hàm số logarit $\\ln x$ là $x > 0$. Vậy tập xác định $D = (0;+\\infty)$.\r\n\t\t\t\\itemch Sai. Ta có đạo hàm của hàm số là: $f'(x) = (x)' - (\\ln x)' = 1 - \\displaystyle \\frac{1}{x}$.\r\n\t\t\t\\itemch Đúng. Xét phương trình $f'(x) = 0 \\Leftrightarrow 1 - \\displaystyle \\frac{1}{x} = 0 \\Leftrightarrow x = 1$. Vì $1 \\in D$ nên $x = 1$ là nghiệm duy nhất.\r\n\t\t\t\\itemch Đúng. Xét hàm số $f(x)$ trên đoạn $\\left[\\displaystyle \\frac{1}{3}; 2\\right]$.\\\\\r\n\t\t\tĐạo hàm $f'(x) = 0 \\Leftrightarrow x = 1 \\in \\left[\\displaystyle \\frac{1}{3}; 2\\right]$.\\\\\r\n\t\t\tTính giá trị tại các điểm đầu mút và điểm cực trị:\\\\\r\n\t\t\t- $f\\left(\\displaystyle \\frac{1}{3}\\right) = \\displaystyle \\frac{1}{3} - \\ln\\left(\\displaystyle \\frac{1}{3}\\right) = \\displaystyle \\frac{1}{3} + \\ln 3 \\approx 1{,}43$.\\\\\r\n\t\t\t- $f(1) = 1 - \\ln 1 = 1$.\\\\\r\n\t\t\t- $f(2) = 2 - \\ln 2 \\approx 1{,}31$.\\\\\r\n\t\t\tSo sánh các giá trị trên, ta thấy giá trị lớn nhất là $f\\left(\\displaystyle \\frac{1}{3}\\right) = \\displaystyle \\frac{1}{3} + \\ln 3$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_eea134abfc",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $g'(x) = -x^2 + 16$.\\\\\r\n\t\t\t\\itemch Ta có: $g'(x) = 0 \\Leftrightarrow -x^2 + 16 = 0 \\Leftrightarrow x = \\pm 4$.\\\\ Phương trình $g'(x)$ có tập nghiệm là $S=\\{-4;4\\}$.\\\\\r\n\t\t\t\\itemch Ta có: $\\displaystyle g(4) = -\\frac{4^3}{3} + 16 \\cdot 4 + 2 = \\frac{134}{3}$.\\\\\r\n\t\t\t\\itemch Ta có: $\\displaystyle g(-5) = -\\frac{109}{3}$; $\\displaystyle g(-4) = -\\frac{122}{3}$; $\\displaystyle g(4) = \\frac{134}{3}$; $\\displaystyle g(5) = \\frac{121}{3}$.\\\\ Vậy $\\displaystyle \\max_{[-5;5]} g(x) = \\frac{134}{3}$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_7718392b8e",
+      "dapAn": "7",
+      "loiGiaiHtml": "Số sản phẩm xuất khẩu là $K(x) = R(x) - Q(x) = 40x - 3200$, điều kiện: $40x - 3200 > 0 \\Leftrightarrow x > 80$.\\\\\r\n\t\tThuế nhà nước thu được từ xuất khẩu $K(x)$ sản phẩm là $T = a(40x - 3200)$.\\\\\r\n\t\tLợi nhuận của doanh nghiệp từ xuất khẩu là $L = (40x - 3200)(150 - x - a)$.\\\\\r\n\t\tTỉ lệ giữa lợi nhuận từ việc xuất khẩu của doanh nghiệp và thuế thu được của nhà nước tương ứng là $4:1$ ta có: $(40x - 3200)(150 - x - a) = 4a(40x - 3200) \\Leftrightarrow a = \\dfrac{150 - x}{5}$.\\\\\r\n\t\tTừ đó ta có: $L(x) = (40x - 3200)\\left(150 - x - \\dfrac{150 - x}{5}\\right)$.\\\\\r\n\t\t$= 32(x - 80)(150 - x) \\le 32 \\cdot \\dfrac{(x - 80 + 150 - x)^2}{4} = 39200$.\\\\\r\n\t\tDấu bằng xảy ra khi $x - 80 = 150 - x \\Leftrightarrow x = 115$ suy ra $a = 7$ (USD)."
+    },
+    {
+      "maBaoMat": "sol_73c14e207c",
+      "dapAn": "111",
+      "loiGiaiHtml": "Xét hàm số $f(x) = \\displaystyle \\frac{-x^2+5x-4}{x}$ có $f'(x) = \\displaystyle \\frac{-x^2+4}{x^2}$.\\\\\r\n\t\t$f'(x) = \\displaystyle \\frac{-x^2+4}{x^2} = 0 \\Rightarrow x=2 \\in (1;4)$.\\\\\r\n\t\tTừ đó ta tìm được giá trị lớn nhất của hàm số trên khoảng $(1;4)$ bằng $1$.\\\\\r\n\t\tGiả sử phương trình đường thẳng $AB$ là $y = m \\in (0;1)$.\\\\\r\n\t\tHoành độ của $A$ và $B$ là nghiệm phương trình $\\displaystyle \\frac{-x^2+5x-4}{x} = m \\Leftrightarrow x^2 + (m-5)x + 4 = 0$.\\\\\r\n\t\tPhương trình luôn có 2 nghiệm thỏa mãn $x_B - x_A = x_C - x_D = \\displaystyle \\frac{\\sqrt{\\Delta}}{a} = \\sqrt{m^2-10m+9}$.\\\\\r\n\t\tDiện tích hình chữ nhật $ABCD$ là $S_{ABCD} = 10^2 \\cdot m \\sqrt{m^2-10m+9} = 10^2 \\sqrt{m^4-10m^3+9m^2}$.\\\\\r\n\t\tXét hàm số $f(m) = m^4-10m^3+9m^2 \\Rightarrow f'(m) = 4m^3-30m^2+18m$.\\\\\r\n\t\t$f'(m) = 0 \\Rightarrow m = \\displaystyle \\frac{15-\\sqrt{153}}{4} \\in (0;1) \\Rightarrow \\max f(m) = f\\left(\\displaystyle \\frac{15-\\sqrt{153}}{4}\\right)$.\\\\\r\n\t\tVậy diện tích lớn nhất của hình chữ nhật $ABCD$ là $S_{ABCD} = 10^2 \\cdot \\sqrt{f\\left(\\displaystyle \\frac{15-\\sqrt{153}}{4}\\right)} \\approx 111\\text{m}^2$."
+    },
+    {
+      "maBaoMat": "sol_46e002e270",
+      "dapAn": "6375",
+      "loiGiaiHtml": "Chi phí mua 2 cây đào và 1 cây mai: $2 \\cdot 1000 + 1 \\cdot 2000 = 4000$ (nghìn đồng).\\\\\r\n\t\t\tChi phí mua thêm $x$ cây nhỏ: $50x$ (nghìn đồng).\\\\\r\n\t\t\tChi phí vận chuyển: $f(x) = x^2 - 100x + 3000$ (nghìn đồng).\\\\\r\n\t\t\tTổng chi phí: $T(x) = 4000 + 50x + x^2 - 100x + 3000$.\\\\\r\n\t\t\t$T(x) = x^2 - 50x + 7000$ (nghìn đồng).\\\\\r\n\t\t\t$T'(x) = 2x - 50$.\\\\\r\n\t\t\t$T'(x) = 0 \\Rightarrow x = 25$.\\\\\r\n\t\t\t$T(25) = 25^2 - 50 \\cdot 25 + 7000 = 6375$.\\\\\r\n\t\t\tTổng chi phí thấp nhất là $6375$ nghìn đồng.\\\\"
+    },
+    {
+      "maBaoMat": "sol_e2303621ab",
+      "dapAn": "50",
+      "loiGiaiHtml": "Doanh thu khi bán được $x$ chiếc áo là $R(x) = x \\cdot p(x) = x(200 - x)$ (nghìn đồng).\\\\\r\n\t\tChi phí sản xuất $x$ chiếc áo là $C(x) = 100x + 1200$ (nghìn đồng).\\\\\r\n\t\tLợi nhuận thu được là $P(x) = R(x) - C(x) = -x^2 + 200x - 100x - 1200 = -x^2 + 100x - 1200$.\\\\\r\n\t\tHàm lợi nhuận $P(x) = -(x - 50)^2 + 1300 \\le 1300$.\\\\\r\n\t\tLợi nhuận đạt giá trị lớn nhất khi $x = 50$.\\\\\r\n\t\tVậy nhóm học sinh cần bán được $50$ chiếc áo."
+    }
+  ]
+}
