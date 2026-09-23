@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_abc0a2f7d3",
+  "dapAn": "FFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $90^\\circ < \\alpha < 180^\\circ$ nên $\\cos \\alpha < 0$.\r\n\t\t\t\\itemch Ta có $\\cos \\alpha = -\\sqrt{1 - \\sin^2 \\alpha} = -\\sqrt{1 - m^2}$. \r\n\t\t\t\\itemch Ta có $\\sin(180^\\circ - \\alpha) = \\sin \\alpha = m$ (hai góc bù nhau).\r\n\t\t\t\\itemch Biến đổi biểu thức vế trái:\r\n\t\t\t\\begin{align*}\r\n\t\t\tVT &= \\tan^2 \\alpha (\\sin^2 \\alpha - 1) + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= \\tan^2 \\alpha \\cdot (-\\cos^2 \\alpha) + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= -\\sin^2 \\alpha + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= -m\r\n\t\t\t\\end{align*}\r\n\t\t\tVì $-m \\neq 1 - m$ nên đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

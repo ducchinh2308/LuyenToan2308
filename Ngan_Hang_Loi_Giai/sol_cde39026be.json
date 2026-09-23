@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cde39026be",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng định lý côsin trong tam giác $ABC$ ta có:\\\\\r\n\t\t$AB^2 = AC^2 + BC^2 - 2AC \\cdot BC \\cdot \\cos C = 8^2 + 5^2 - 2 \\cdot 8 \\cdot 5 \\cdot \\cos 60^\\circ = 49$.\\\\\r\n\t\tSuy ra $AB = \\sqrt{49} = 7$.\\\\\r\n\t\tChọn đáp án D."
+}

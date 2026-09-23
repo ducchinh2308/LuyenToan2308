@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1ae70a0776",
+  "dapAn": "TFTT",
+  "loiGiai": "Ta có $CD = EF = 20m$; $DE = CF = 1{,}5m$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch $AE$ là chiều cao toà nhà (tính từ mặt đất $E$ đến chân cột cờ $A$).\r\n\t\t\t$AE = AD + DE = AD + CF$. Mệnh đề \\textbf{Đúng}.\\\\\\itemch Trong $\\Delta ADC$ vuông tại $D$: $AC = \\dfrac{CD}{\\cos 40^\\circ} = \\dfrac{20}{\\cos 40^\\circ} \\approx 26{,}1m$.\\\\\r\n\t\t\tMệnh đề nói $26{,}2m$ là \\textbf{Sai}.\\\\\\itemch Ta có $AD = CD \\cdot \\tan 40^\\circ = 20 \\cdot \\tan 40^\\circ \\approx 16{,}78m$.\r\n\t\t\tChiều cao toà nhà $AE = 16{,}78 + 1{,}5 = 18{,}28 \\approx 18{,}3m$.\\\\\r\n\t\t\tMệnh đề \\textbf{Đúng}.\\\\\\itemch Trong $\\Delta BDC$ vuông tại $D$: $BD = CD \\cdot \\tan 50^\\circ = 20 \\cdot \\tan 50^\\circ \\approx 23{,}84m$.\r\n\t\t\tChiều cao cột cờ $AB = BD - AD = 23{,}84 - 16{,}78 = 7{,}06 \\approx 7{,}1m$.\\\\\r\n\t\t\tMệnh đề \\textbf{Đúng}.\r\n\t\t\\end{itemchoice}"
+}

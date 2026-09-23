@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_69715ee017",
+  "dapAn": "C",
+  "loiGiai": "Trong tam giác $ABC$, ta có $\\widehat{ABC} = 180^\\circ - (70^\\circ + 50^\\circ) = 60^\\circ$.\\\\\r\n\t\tÁp dụng định lý hàm số sin:\r\n\t\t\\[ \\dfrac{AB}{\\sin \\widehat{BCA}} = \\dfrac{AC}{\\sin \\widehat{ABC}} \\Rightarrow AB = \\dfrac{AC \\cdot \\sin 50^\\circ}{\\sin 60^\\circ} = \\dfrac{50 \\cdot \\sin 50^\\circ}{\\sin 60^\\circ} \\approx 44{,}23\\text{m}. \\]\r\n\t\tGiá trị này gần nhất với $45$m."
+}

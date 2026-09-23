@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_297d957a7f",
+  "dapAn": "23,8",
+  "loiGiai": "Áp dụng định lý côsin trong tam giác $ABC$:\r\n\t\t$AB^2 = BC^2 + AC^2 - 2 \\cdot BC \\cdot AC \\cdot \\cos C$.\\\\\r\n\t\t$AB^2 = 32^2 + 26^2 - 2 \\cdot 32 \\cdot 26 \\cdot \\cos 47^\\circ \\approx 1024 + 676 - 1664 \\cdot 0{,}682 \\approx 565{,}15$.\\\\\r\n\t\t$\\Rightarrow AB \\approx 23{,}77$. Làm tròn với độ chính xác 0,05 tức là làm tròn đến hàng phần mười: $AB \\approx 23{,}8$."
+}

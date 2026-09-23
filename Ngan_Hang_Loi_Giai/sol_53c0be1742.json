@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_53c0be1742",
+  "dapAn": "C",
+  "loiGiai": "$0^{\\circ} \\leq \\alpha < 90^{\\circ} \\Rightarrow \\cos \\alpha > 0$.\\\\\r\n\t$\\sin \\alpha=\\dfrac{4}{5} \\Rightarrow \\cos \\alpha=\\sqrt{1-\\sin ^2\\alpha}=\\sqrt{1-\\left(\\dfrac{4}{5}\\right)^2}=\\dfrac{3}{5}$.\\\\\r\n\t$\\Rightarrow \\tan \\alpha=\\dfrac{\\sin \\alpha}{\\cos \\alpha}=\\dfrac{\\dfrac{4}{5}}{\\dfrac{3}{5}}=\\dfrac{4}{3}$."
+}

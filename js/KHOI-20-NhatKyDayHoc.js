@@ -574,15 +574,60 @@ window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
 // Biến lưu trữ tạm các sự kiện trên RAM trước khi bấm LƯU vào DB
 window.danhSachSuKienTam = [];
 
+// // =======================================================
+// // HÀM 20.4: VẼ LẠI DANH SÁCH SỰ KIỆN CHỜ LƯU
+// // =======================================================
+// window.ham_20_4_ve_danh_sach_cho = function () {
+//     const vungHienThi = document.getElementById('nk-danh-sach-cho-luu');
+//     const boDem = document.getElementById('nk-dem-su-kien');
+//     if (!vungHienThi) return;
+
+//     // Đảm bảo biến toàn cục tồn tại
+//     if (!window.danhSachSuKienTam) window.danhSachSuKienTam = [];
+
+//     if (window.danhSachSuKienTam.length > 0) {
+//         if (boDem) boDem.innerText = window.danhSachSuKienTam.length;
+
+//         let html = '';
+//         window.danhSachSuKienTam.forEach((sk, index) => {
+//             // Xử lý hiển thị thông tin phụ an toàn
+//             let diemStr = sk.diem_so ? ` <span style="background:#28a745; color:white; padding:2px 5px; border-radius:3px; font-size:10px; margin-left:5px;">⭐ ${sk.diem_so}đ</span>` : '';
+//             let noteStr = sk.ghi_chu ? `<div style="font-size: 11px; color: #666; margin-top: 2px;"><i>📝 ${sk.ghi_chu}</i></div>` : '';
+//             let anhMCStr = (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) ? `<span style="font-size: 10px; color: #17a2b8; margin-left: 5px;">📸 ${sk.mang_file_minh_chung.length} ảnh</span>` : '';
+
+//             // Truyền cứng biến index (số nguyên) vào onclick, không bao giờ bị lỗi nháy
+//             html += `
+//                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px dashed #eee; background: #fff; border-radius: 4px; margin-bottom: 5px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+//                     <div style="flex: 1;">
+//                         <div style="font-size: 13px;">
+//                             <b>${sk.ten_hoc_sinh}</b> 
+//                             <span style="color: ${sk.mau_sac || '#000'}; font-weight: bold; margin-left: 5px;">[${sk.loai_the}]</span>
+//                             ${diemStr}
+//                             ${anhMCStr}
+//                         </div>
+//                         ${noteStr}
+//                     </div>
+//                     <button type="button" onclick="ham_20_5_xoa_su_kien_tam(${index})" style="padding: 5px 10px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8d7da'" title="Xóa sự kiện này">✖</button>
+//                 </div>
+//             `;
+//         });
+//         vungHienThi.innerHTML = html;
+
+//     } else {
+//         if (boDem) boDem.innerText = '0';
+//         vungHienThi.innerHTML = '<i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i>';
+//     }
+// };
+
+
 // =======================================================
-// HÀM 20.4: VẼ LẠI DANH SÁCH SỰ KIỆN CHỜ LƯU
+// HÀM 20.4: VẼ LẠI DANH SÁCH CHỜ (HIỂN THỊ CẢ ẢNH THU NHỎ)
 // =======================================================
 window.ham_20_4_ve_danh_sach_cho = function () {
     const vungHienThi = document.getElementById('nk-danh-sach-cho-luu');
     const boDem = document.getElementById('nk-dem-su-kien');
     if (!vungHienThi) return;
 
-    // Đảm bảo biến toàn cục tồn tại
     if (!window.danhSachSuKienTam) window.danhSachSuKienTam = [];
 
     if (window.danhSachSuKienTam.length > 0) {
@@ -590,24 +635,32 @@ window.ham_20_4_ve_danh_sach_cho = function () {
 
         let html = '';
         window.danhSachSuKienTam.forEach((sk, index) => {
-            // Xử lý hiển thị thông tin phụ an toàn
             let diemStr = sk.diem_so ? ` <span style="background:#28a745; color:white; padding:2px 5px; border-radius:3px; font-size:10px; margin-left:5px;">⭐ ${sk.diem_so}đ</span>` : '';
             let noteStr = sk.ghi_chu ? `<div style="font-size: 11px; color: #666; margin-top: 2px;"><i>📝 ${sk.ghi_chu}</i></div>` : '';
-            let anhMCStr = (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) ? `<span style="font-size: 10px; color: #17a2b8; margin-left: 5px;">📸 ${sk.mang_file_minh_chung.length} ảnh</span>` : '';
 
-            // Truyền cứng biến index (số nguyên) vào onclick, không bao giờ bị lỗi nháy
+            // 🌟 TẠO RA ẢNH MINI (THUMBNAIL) NGAY TRONG DÒNG SỰ KIỆN
+            let htmlThum = '';
+            if (sk.mang_file_minh_chung && sk.mang_file_minh_chung.length > 0) {
+                htmlThum = `<div style="display:flex; gap:5px; margin-top:5px; overflow-x:auto; padding-bottom:5px;">`;
+                sk.mang_file_minh_chung.forEach(f => {
+                    let url = URL.createObjectURL(f);
+                    htmlThum += `<img src="${url}" style="height:40px; width:40px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow:0 1px 2px rgba(0,0,0,0.1);" title="Ảnh minh chứng đính kèm">`;
+                });
+                htmlThum += `</div>`;
+            }
+
             html += `
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px dashed #eee; background: #fff; border-radius: 4px; margin-bottom: 5px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 8px; border-bottom: 1px dashed #eee; background: #fff; border-radius: 4px; margin-bottom: 5px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); border-left: 3px solid ${sk.mau_sac || '#000'};">
                     <div style="flex: 1;">
                         <div style="font-size: 13px;">
                             <b>${sk.ten_hoc_sinh}</b> 
                             <span style="color: ${sk.mau_sac || '#000'}; font-weight: bold; margin-left: 5px;">[${sk.loai_the}]</span>
                             ${diemStr}
-                            ${anhMCStr}
                         </div>
                         ${noteStr}
+                        ${htmlThum}
                     </div>
-                    <button type="button" onclick="ham_20_5_xoa_su_kien_tam(${index})" style="padding: 5px 10px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8d7da'" title="Xóa sự kiện này">✖</button>
+                    <button type="button" onclick="window.ham_20_5_xoa_su_kien_tam(${index})" style="padding: 5px 10px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; transition: 0.2s;" onmouseover="this.style.background='#f5c6cb'" onmouseout="this.style.background='#f8d7da'" title="Xóa sự kiện này">✖</button>
                 </div>
             `;
         });
@@ -618,6 +671,8 @@ window.ham_20_4_ve_danh_sach_cho = function () {
         vungHienThi.innerHTML = '<i style="color: #adb5bd; font-size: 12px;">Chưa có sự kiện nào...</i>';
     }
 };
+
+
 
 // =======================================================
 // HÀM 20.5: XÓA BỚT 1 SỰ KIỆN TẠM RA KHỎI DANH SÁCH
@@ -2910,6 +2965,52 @@ window.ham_20_21_sap_xep_bang = function (n, tableId) {
 window.danhSachAnhMinhChungTam = [];
 
 
+// // =======================================================
+// // HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (TỰ ĐỘNG GẮN NGƯỢC HOẶC LƯU TẠM)
+// // =======================================================
+// window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
+//     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
+//     if (inputAnhMC) {
+//         const new_input = inputAnhMC.cloneNode(true);
+//         inputAnhMC.parentNode.replaceChild(new_input, inputAnhMC);
+
+//         new_input.addEventListener('change', async function (e) {
+//             const files = Array.from(e.target.files);
+//             if (files.length === 0) return;
+
+//             // Xử lý nén/cắt ảnh
+//             let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+
+//             // 🌟 KIỂM TRA XEM THẦY ĐANG ĐỊNH LÀM GÌ?
+//             let coHocSinhDuocChon = false;
+//             document.querySelectorAll('.nk-input-hs-su-kien').forEach(o => {
+//                 if (o.value.trim() !== '') coHocSinhDuocChon = true;
+//             });
+
+//             // QUY TẮC: Nếu ô nhập tên đang TRỐNG + Đã có sự kiện ở dưới -> Tự nạp vào sự kiện cuối
+//             if (!coHocSinhDuocChon && window.danhSachSuKienTam && window.danhSachSuKienTam.length > 0) {
+//                 let indexCuoi = window.danhSachSuKienTam.length - 1;
+//                 let lastEvent = window.danhSachSuKienTam[indexCuoi];
+
+//                 if (!lastEvent.mang_file_minh_chung) lastEvent.mang_file_minh_chung = [];
+//                 lastEvent.mang_file_minh_chung.push(...processedFiles);
+
+//                 // Vẽ lại danh sách chờ ngay lập tức để thầy thấy ảnh đã được nhét vào
+//                 if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+//             }
+//             // QUY TẮC: Nếu đã nhập tên (chuẩn bị gắn thẻ) HOẶC chưa có sự kiện nào -> Để ở khung chờ
+//             else {
+//                 if (!window.danhSachAnhMinhChungTam) window.danhSachAnhMinhChungTam = [];
+//                 window.danhSachAnhMinhChungTam.push(...processedFiles);
+//                 ham_20_22_render_anh_minh_chung();
+//             }
+
+//             e.target.value = '';
+//         });
+//     }
+// };
+
+
 // =======================================================
 // HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (TỰ ĐỘNG GẮN NGƯỢC HOẶC LƯU TẠM)
 // =======================================================
@@ -2923,16 +3024,18 @@ window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
             const files = Array.from(e.target.files);
             if (files.length === 0) return;
 
-            // Xử lý nén/cắt ảnh
+            // Xử lý nén/cắt ảnh và lọc bỏ nếu thầy bấm Hủy
             let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+            processedFiles = processedFiles.filter(f => f !== null);
+            if (processedFiles.length === 0) return;
 
-            // 🌟 KIỂM TRA XEM THẦY ĐANG ĐỊNH LÀM GÌ?
+            // KIỂM TRA XEM Ô NHẬP TÊN CÓ ĐANG CHỨA TÊN HS NÀO KHÔNG?
             let coHocSinhDuocChon = false;
             document.querySelectorAll('.nk-input-hs-su-kien').forEach(o => {
                 if (o.value.trim() !== '') coHocSinhDuocChon = true;
             });
 
-            // QUY TẮC: Nếu ô nhập tên đang TRỐNG + Đã có sự kiện ở dưới -> Tự nạp vào sự kiện cuối
+            // 🌟 LUỒNG 1: THẦY LÀM NGƯỢC (Đã bấm nút Lỗi trước, tên HS đã bị xóa trắng, sự kiện đã chạy xuống dưới)
             if (!coHocSinhDuocChon && window.danhSachSuKienTam && window.danhSachSuKienTam.length > 0) {
                 let indexCuoi = window.danhSachSuKienTam.length - 1;
                 let lastEvent = window.danhSachSuKienTam[indexCuoi];
@@ -2940,20 +3043,27 @@ window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
                 if (!lastEvent.mang_file_minh_chung) lastEvent.mang_file_minh_chung = [];
                 lastEvent.mang_file_minh_chung.push(...processedFiles);
 
-                // Vẽ lại danh sách chờ ngay lập tức để thầy thấy ảnh đã được nhét vào
-                if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+                // Popup báo hiệu cho thầy biết đã gắn thành công
+                alert(`✅ Đã tự động đính kèm ảnh vào sự kiện [${lastEvent.loai_the}] của học sinh ${lastEvent.ten_hoc_sinh}!`);
+
+                // Vẽ lại Bảng chờ để hiện ảnh
+                if (typeof window.ham_20_4_ve_danh_sach_cho === 'function') window.ham_20_4_ve_danh_sach_cho();
             }
-            // QUY TẮC: Nếu đã nhập tên (chuẩn bị gắn thẻ) HOẶC chưa có sự kiện nào -> Để ở khung chờ
+            // 🌟 LUỒNG 2: THẦY LÀM ĐÚNG (Đang nhập dở tên HS hoặc chưa làm gì cả)
             else {
                 if (!window.danhSachAnhMinhChungTam) window.danhSachAnhMinhChungTam = [];
                 window.danhSachAnhMinhChungTam.push(...processedFiles);
-                ham_20_22_render_anh_minh_chung();
+                // Bỏ vào khung Preview
+                if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
             }
 
             e.target.value = '';
         });
     }
 };
+
+
+
 
 
 

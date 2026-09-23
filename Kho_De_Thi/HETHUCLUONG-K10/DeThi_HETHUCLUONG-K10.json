@@ -1,0 +1,145 @@
+{
+  "maDe": "HETHUCLUONG-K10",
+  "tenDe": "Hệ thức lượng - K10",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0H4N2-2]",
+      "maCau": "q_d24dba5667",
+      "ma_goc": "2603-69",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $BC = a, AC = b, AB = c$. Công thức tính diện tích $S$ của tam giác $ABC$ là",
+      "paA": "$S = \\displaystyle \\frac{abc}{4}$",
+      "paB": "$S = \\displaystyle \\frac{1}{2}ab \\sin B$",
+      "paC": "$S = \\displaystyle \\frac{1}{2}ab \\sin C$",
+      "paD": "$S = \\displaystyle \\frac{1}{2}ab \\sin A$"
+    },
+    {
+      "id_Cau": "[0H4N1-1]",
+      "maCau": "q_e090e0aceb",
+      "ma_goc": "2603-251",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\alpha$ là góc tù. Khẳng định nào sau đây là đúng?",
+      "paA": "$\\sin \\alpha < 0$",
+      "paB": "$\\cos \\alpha > 0$",
+      "paC": "$\\tan \\alpha < 0$",
+      "paD": "$\\cot \\alpha > 0$"
+    },
+    {
+      "id_Cau": "[0H4H1-2]",
+      "maCau": "q_26706608d6",
+      "ma_goc": "2603-248",
+      "kieuCau": "TN",
+      "cauDan": "Cho góc $\\alpha\\left(0^{\\circ} \\leq \\alpha < 90^{\\circ}\\right)$ thoả mãn $\\sin \\alpha=\\dfrac{4}{5}$, giá trị của $\\tan \\alpha$ là",
+      "paA": "$\\dfrac{3}{5}$",
+      "paB": "$\\dfrac{3}{4}$",
+      "paC": "$\\dfrac{4}{3}$",
+      "paD": "$\\dfrac{-4}{3}$"
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_d31cd88e20",
+      "ma_goc": "2605-157",
+      "kieuCau": "TN",
+      "cauDan": "Trong các đẳng thức sau đây, đẳng thức nào đúng?",
+      "paA": "$\\sin(180^\\circ - \\alpha) = -\\sin\\alpha$",
+      "paB": "$\\cot(180^\\circ - \\alpha) = -\\cot\\alpha$",
+      "paC": "$\\tan(180^\\circ - \\alpha) = \\tan\\alpha$",
+      "paD": "$\\cos(180^\\circ - \\alpha) = \\cos\\alpha$"
+    },
+    {
+      "id_Cau": "[0H4H3-2]",
+      "maCau": "q_c66104e87a",
+      "ma_goc": "2603-25",
+      "kieuCau": "TN",
+      "cauDan": "Một công viên có dạng hình tam giác $ABC$ với các kích thước như Hình bên dưới ($AB=500\\,\\text{m}, AC=700\\,\\text{m}, BC=800\\,\\text{m}$).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c66104e87a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính số đo góc $B$ của tam giác đó.",
+      "paA": "$\\widehat{B} = 60^\\circ$",
+      "paB": "$\\widehat{B} = 30^\\circ$",
+      "paC": "$\\widehat{B} = 45^\\circ$",
+      "paD": "$\\widehat{B} = 75^\\circ$"
+    },
+    {
+      "id_Cau": "[0H4H3-2]",
+      "maCau": "q_84f0be5534",
+      "ma_goc": "2603-97",
+      "kieuCau": "TN",
+      "cauDan": "Để đo khoảng cách từ vị trí $A$ trên bờ sông đến vị trí $B$ của con tàu bị mắc cạn gần một cù lao giữa sông, người ta sử dụng giác kế. Chọn một vị trí $C$ cùng nằm trên bờ sông với điểm $A$, cách điểm $A$ một khoảng bằng $50$m và đo được các góc $\\widehat{BAC} = 70^\\circ, \\widehat{BCA} = 50^\\circ$. Khoảng cách $AB$ gần nhất với giá trị nào sau đây?\r\n\t\\begin{center}\n<img src='HinhAnh/q_84f0be5534_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$40$m",
+      "paB": "$43$m",
+      "paC": "$45$m",
+      "paD": "$42$m"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_adf7c6ba7a",
+      "ma_goc": "2603-65",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $BC = 5, AC = 8$ và $\\widehat{C} = 60^\\circ$. Độ dài cạnh $AB$ bằng",
+      "paA": "$\\sqrt{129}$",
+      "paB": "$129$",
+      "paC": "$49$",
+      "paD": "$7$"
+    },
+    {
+      "id_Cau": "[0H4H2-2]",
+      "maCau": "q_e6c92e00a7",
+      "ma_goc": "2603-51",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $AB = 3, AC = 4, \\widehat{BAC} = 30^\\circ$. Khi đó diện tích tam giác $ABC$ bằng",
+      "paA": "$3$",
+      "paB": "$12$",
+      "paC": "$6$",
+      "paD": "Đáp số khác"
+    },
+    {
+      "id_Cau": "[0H4V1-3]",
+      "maCau": "q_09e9ceda62",
+      "ma_goc": "2603-105",
+      "kieuCau": "DS",
+      "cauDan": "Cho góc $\\alpha$ ($90^\\circ < \\alpha < 180^\\circ$) thỏa mãn $\\sin \\alpha = m$ ($0 < m < 1$). Khi đó:",
+      "paA": "$\\cos \\alpha > 0$",
+      "paB": "$\\cos \\alpha = \\sqrt{1-m^2}$",
+      "paC": "$\\sin(180^\\circ - \\alpha) = m$",
+      "paD": "$\\tan^2 \\alpha \\cdot \\sin^2 \\alpha - \\tan^2 \\alpha + \\sin^2 \\alpha - \\sin \\alpha = 1 - m$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_56087d98b2",
+      "ma_goc": "2603-36",
+      "kieuCau": "DS",
+      "cauDan": "Để đo chiều cao $AB$ của một cột cờ trên đỉnh một tòa nhà (hình vẽ minh hoạ dưới đây), bạn An đứng trên mặt đất có tầm quan sát ở vị trí $C$ cao $1{,}5m$ so với mặt đất, khi quan sát An đo được góc tạo bởi $AC$ và $BC$ so với phương nằm ngang $CD$ lần lượt là $40^\\circ$ và $50^\\circ$. Biết khoảng cách từ chân toà nhà $E$ đến chân vị trí quan sát $F$ là $20m$. Các mệnh đề sau đúng hay sai?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_56087d98b2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Chiều cao của toà nhà được xác định bởi: $AE = AD + DE = AD + CF$",
+      "paB": "Khoảng cách từ chân cột cờ đến vị trí quan sát là $AC \\approx 26{,}2m$",
+      "paC": "Chiều cao của toà nhà là $AE \\approx 18{,}3m$",
+      "paD": "Chiều cao của cột cờ là $AB \\approx 7{,}1m$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_990a62c32f",
+      "ma_goc": "2604-2106",
+      "kieuCau": "TLN",
+      "cauDan": "Dòng Hương hiền hòa trong xanh, lững lờ trôi giữa thành phố Huế cổ kính và mộng mơ. Nhìn từ trên cao, hai bờ sông trải dài như hai đường thẳng song song. Cột cờ Phu Văn Lâu sừng sững cao $54{,}5 \\text{m}$ như là một chiếc hào hùng của lịch sử. Biết rằng hai bờ sông cách nhau $400 \\text{m}$ và chân cột cờ (hình chiếu vuông góc của đỉnh cột cờ xuống đất) nằm cách mép sông gần nhất một khoảng $200 \\text{m}$. Có hai bạn học sinh đứng ở hai bờ sông, bạn học sinh A ở cùng bờ với cột cờ nhìn đỉnh cột cờ so với mặt đất một góc $\\alpha$ với $\\tan \\alpha = 0{,}1$ và bạn học sinh B đứng ở bờ bên kia nhìn đỉnh cột cờ so với mặt đất một góc $\\beta$ với $\\tan \\beta = 0{,}07$. Hỏi hai bạn học sinh cách nhau xa nhất là bao nhiêu mét? (Giả sử rằng mặt đất là bằng phẳng và tầm mắt của hai bạn học sinh ngang với mặt đất, kết quả làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_990a62c32f_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_63f51f0fbc",
+      "ma_goc": "2603-3037",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$ có cạnh $BC=10$, góc $\\widehat{ABC}$ bằng $60^\\circ$. Trên cạnh $AB$ ta lấy điểm $M$ sao cho $AM=3$ (như hình vẽ). Tính độ dài đoạn thẳng $BM$ biết rằng $CM = \\frac{8}{9}CA$ (làm tròn kết quả đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_63f51f0fbc_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_bfbaa24d53",
+      "ma_goc": "2603-480",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, đơn vị $50\\,\\text{km}$, một con tàu vũ trụ bay thẳng từ $A(-3;1;2)$ đến $B(2;7;-4)$ mất $45$ phút. Sau đó tàu điều chỉnh nhỏ hướng bay sao cho chiều chuyển động thẳng lúc này hợp với phương $AB$ một góc $15^\\circ$, vẫn giữ nguyên tốc độ ban đầu và bay thêm $30$ phút thì đến vị trí $C$. Hỏi khoảng cách thực tế của hai vị trí $A; C$ bằng bao nhiêu km (làm tròn đến hàng đơn vị)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bfbaa24d53_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4C2-1]",
+      "maCau": "q_2aebd58e3e",
+      "ma_goc": "2603-42",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$ với $BC=32\\text{cm}; AC=26\\text{cm}; \\widehat{ACB}=47^\\circ$. Tính độ dài cạnh $AB$ (làm tròn với độ chính xác $d=0{,}05$)."
+    }
+  ]
+}
