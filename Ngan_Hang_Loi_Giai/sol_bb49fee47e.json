@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bb49fee47e",
+  "dapAn": "FFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Chi phí sản xuất $100$ kg thực phẩm là $C(100) = 200 + 15 \\cdot 100 = 1700 \\neq 350$.\r\n\t\t\t\\itemch Số tiền thu được khi bán $x$ kg thực phẩm cho nhà hàng ông B là: $\\displaystyle T(x) = x \\cdot P(x) = 30x - \\frac{1}{1000}x^3$. Khi đó số tiền thu được khi bán $100$ kg là $\\displaystyle T(100) = 30 \\cdot 100 - \\frac{1}{1000} \\cdot 100^3 = 2000 \\neq 200$.\r\n\t\t\t\\itemch Lợi nhuận ông A thu được khi bán $x$ kg thực phẩm cho ông B, $x \\in (0; 100)$ là $L(x) = xP(x) - C(x)$.\r\n\t\t\t\\itemch Ta có $\\displaystyle L(x) = -\\frac{1}{1000}x^3 + 15x - 200$.\\\\ Xét $\\displaystyle L'(x) = -\\frac{3}{1000}x^2 + 15$.\\\\ $L'(x) = 0 \\Leftrightarrow x = 50\\sqrt{2} \\in (0; 100)$.\\\\ Vậy $\\displaystyle L(50\\sqrt{2}) = -\\frac{1}{1000}(50\\sqrt{2})^3 + 15 \\cdot 50\\sqrt{2} - 200 = 507,107 \\approx 507$.\r\n\t\t\\end{itemchoice}"
+}

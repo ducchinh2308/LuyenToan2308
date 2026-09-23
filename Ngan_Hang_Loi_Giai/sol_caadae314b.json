@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_caadae314b",
+  "dapAn": "FTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{AB}=(x_B-x_A; y_B-y_A; z_B-z_A)=(-4;5;-1)$, $\\vec{AC}=(x_C-x_A; y_C-y_A; z_C-z_A)=(0;-1;1)$.\\\\\r\n\t\t\tMệnh đề sai.\r\n\t\t\t\\itemch Tứ giác $ABCD$ là hình bình hành nên $\\vec{AB}=\\vec{DC} \\Leftrightarrow \\begin{cases} -4=5-a \\\\ 5=0-b \\\\ -1=4-c \\end{cases} \\Leftrightarrow \\begin{cases} a=9 \\\\ b=-5 \\\\ c=5 \\end{cases} \\Rightarrow a+b+c=9$.\\\\\r\n\t\t\tMệnh đề đúng.\r\n\t\t\t\\itemch Ta có: $\\vec{AB}.\\vec{AC}=(-4).0+5.(-1)+(-1).1=-6$.\\\\\r\n\t\t\tMệnh đề sai.\r\n\t\t\t\\itemch Ta có: $\\left|\\vec{AB}\\right|=\\sqrt{(-4)^2+5^2+(-1)^2}=\\sqrt{42}$, $\\left|\\vec{AC}\\right|=\\sqrt{2}$.\\\\\r\n\t\t\tVậy: $\\cos \\alpha = \\cos \\widehat{BAC} = \\frac{\\vec{AB}.\\vec{AC}}{\\left|\\vec{AB}\\right|.\\left|\\vec{AC}\\right|} = \\frac{-6}{\\sqrt{42}.\\sqrt{2}} = \\frac{-\\sqrt{21}}{7}$.\\\\\r\n\t\t\tMệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

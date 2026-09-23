@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_84371e3e00",
+  "dapAn": "240",
+  "loiGiai": "Gọi $H$ là chân đường vuông góc hạ từ $A$ vào bờ. Khi đó $AH = 3\\text{km}$.\\\\\r\n\t\tTa có $HB = \\sqrt{AB^{2} - AH^{2}} = \\sqrt{5^{2} - 3^{2}} = 4\\text{km}$.\\\\\r\n\t\tGọi $HC = x$ ($0 \\le x \\le 4$). Khi đó $BC = 4 - x$, $AC = \\sqrt{AH^{2} + HC^{2}} = \\sqrt{x^{2} + 9}$.\\\\\r\n\t\tTổng chi phí được tính bởi hàm số $f(x) = 50AC + 30BC = 50\\sqrt{x^{2}+9} + 30(4-x)$.\\\\\r\n\t\t$f'(x) = 50\\displaystyle \\frac{x}{\\sqrt{x^{2}+9}} - 30 = \\frac{50x - 30\\sqrt{x^{2}+9}}{\\sqrt{x^{2}+9}}$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow 50x = 30\\sqrt{x^{2}+9} \\Leftrightarrow 25x^{2} = 9(x^{2}+9) \\Leftrightarrow 16x^{2} = 81 \\Rightarrow x = \\displaystyle \\frac{9}{4} = 2{,}25\\text{ (km)}$.\\\\\r\n\t\tTính các giá trị: $f(0) = 270$, $f\\left(\\displaystyle \\frac{9}{4}\\right) = 240$, $f(4) = 250$.\\\\\r\n\t\tVậy chi phí ít nhất để hoàn thành đường điện là $240$ triệu đồng."
+}

@@ -1,0 +1,145 @@
+{
+  "maDe": "ONLUYENMINMAX-6-4-4",
+  "tenDe": "ôn luyện minmax-6-4-4",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_e34c4e0039",
+      "ma_goc": "2605-1207",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y=x^{3}-3x^{2}+25$ trên đoạn $[-1;1]$ là",
+      "paA": "$25$",
+      "paB": "$22$",
+      "paC": "$20$",
+      "paD": "$23$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_b7d7580fa5",
+      "ma_goc": "2603-799",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động thẳng với phương trình chuyển động là $s=-2t^3+24t^2+9t-3$ với $t$ tính bằng giây và $s$ tính bằng mét. Hỏi trong khoảng thời gian $8$ giây, kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng bao nhiêu?",
+      "paA": "$289$ (m/s)",
+      "paB": "$487$ (m/s)",
+      "paC": "$111$ (m/s)",
+      "paD": "$105$ (m/s)"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_922d4cb640",
+      "ma_goc": "2604-26",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên $[-1; +\\infty)$ và có đồ thị như hình vẽ. Tìm giá trị lớn nhất của hàm số $y = f(x)$ trên $[1; 4]$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_922d4cb640_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$0$",
+      "paB": "$1$",
+      "paC": "$4$",
+      "paD": "$3$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_6b445e5587",
+      "ma_goc": "2605-942",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất của hàm số $\\displaystyle y = \\frac{2x - 1}{x + 1}$ trên đoạn $[1; 2]$.",
+      "paA": "$\\displaystyle \\max_{[1; 2]} y = \\frac{1}{3}$",
+      "paB": "$\\displaystyle \\max_{[1; 2]} y = 1$",
+      "paC": "$\\displaystyle \\max_{[1; 2]} y = -\\frac{1}{2}$",
+      "paD": "$\\displaystyle \\max_{[1; 2]} y = \\frac{1}{2}$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_7089e22fdc",
+      "ma_goc": "2605-1400",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[-4; 6]$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7089e22fdc_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[-4; 6]$ bằng",
+      "paA": "$-4$",
+      "paB": "$-48$",
+      "paC": "$-146$",
+      "paD": "$114$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_af401b9afb",
+      "ma_goc": "2605-1334",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ liên tục trên đoạn $[-1; 5]$ và có đồ thị như hình vẽ. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên $[-1; 5]$. Giá trị của $M - m$ bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_af401b9afb_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$4$",
+      "paC": "$6$",
+      "paD": "$5$"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_5d7a6e1fad",
+      "ma_goc": "2603-1286",
+      "kieuCau": "DS",
+      "cauDan": "Trang trại nhà ông A chuyên sản xuất các loại thực phẩm cho nhà hàng của ông B. Hai ông thoả thuận rằng, hằng ngày ông A cung cấp cho ông B số lượng thực phẩm theo đơn đặt hàng của ông B (tối đa $100$ kg thực phẩm). Nếu số lượng đặt hàng là $x$ kg thực phẩm thì giá bán cho mỗi kg được biểu diễn bởi công thức $\\displaystyle P(x) = 30 - \\frac{1}{1000}x^2$ (ngàn đồng). Chi phí để ông A sản xuất $x$ kg sản phẩm là $C(x) = 200 + 15x$ (ngàn đồng). Khi đó:",
+      "paA": "Chi phí sản xuất $100$ kg thực phẩm là $350$ ngàn đồng",
+      "paB": "Số tiền thu được khi bán $100$ kg thực phẩm cho nhà hàng ông B là $200$ ngàn đồng",
+      "paC": "Lợi nhuận ông A thu được khi bán $x$ kg thực phẩm cho ông B, $x \\in (0; 100)$ là $L(x) = xP(x) - C(x)$",
+      "paD": "Lợi nhuận lớn nhất mà ông A có được trong $1$ ngày là $507$ ngàn đồng (làm tròn đến hàng đơn vị)"
+    },
+    {
+      "id_Cau": "[2D1V3-2]",
+      "maCau": "q_07011e17aa",
+      "ma_goc": "2605-1521",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = 2x - 4 + \\dfrac{2}{x+1}$ có tập xác định $D=(-\\infty;-1)\\cup(-1;+\\infty)$.",
+      "paA": "Hàm số đã cho liên tục trên các khoảng xác định",
+      "paB": "Hàm số đã cho có đạo hàm $f'(x) = \\dfrac{2(x^2+2x)}{(x+1)^2}$ với $x \\in D$",
+      "paC": "Điểm cực đại của đồ thị hàm số $y=f(x)$ có tọa độ $(0;-2)$",
+      "paD": "Giá trị nhỏ nhất của hàm số $y=f(x)$ trên khoảng $(-1;+\\infty)$ bằng $-2$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_58738fc7b7",
+      "ma_goc": "2603-1066",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho tam giác $ABC$, với $A(5;1;3)$, $B(1;6;2)$, $C(5;0;4)$.",
+      "paA": "$\\vec{AB}=(-4;5;-1)$, $\\vec{AC}=(0;-1;-1)$",
+      "paB": "Biết điểm $D(a;b;c)$ sao cho tứ giác $ABCD$ là hình bình hành, ta có $a+b+c=9$",
+      "paC": "$\\vec{AB}.\\vec{AC}=-10$",
+      "paD": "Gọi $\\alpha$ là số đo góc $A$ của tam giác $ABC$. Khi đó $\\cos \\alpha = \\frac{\\sqrt{21}}{7}$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_cc390dc963",
+      "ma_goc": "2603-847",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x)=4\\sin x\\cos x+2x$.",
+      "paA": "Đạo hàm của hàm số đã cho là $f'(x)=4\\sin 2x+2$",
+      "paB": "Hàm số $y=f(x)$ có $4$ điểm cực trị thuộc $[-\\pi ;\\pi]$",
+      "paC": "Hàm số $y=f(x)$ đồng biến trên khoảng $(-2;-1)$",
+      "paD": "Giá trị lớn nhất của $f(x)$ trên đoạn $\\left[0;\\dfrac{\\pi}{2}\\right]$ là $\\dfrac{2\\pi}{3}+\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_774c712016",
+      "ma_goc": "2603-1358",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty du lịch chuyên tổ chức các Tour Trải nghiệm – khám phá, đặt hàng cho một cơ sở sản xuất lều bạt một lô hàng gồm 10 chiếc lều bạt du lịch giống hệt nhau, hình chóp tứ giác đều mà thể tích trong mỗi chiếc lều là $18\\,\\text{m}^3$, đơn giá tính theo diện tích bạt sử dụng là 500 nghìn đồng/$\\text{m}^2$, (không tính đến đường viền, nếp gấp và lều không may bạt ở đáy). Hỏi số tiền ít nhất mà công ty du lịch phải trả cho cơ sở sản xuất lều bạt là bao nhiêu triệu đồng? (kết quả làm tròn đến hàng đơn vị)."
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_9cfe91f4ce",
+      "ma_goc": "2605-664",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp dự định sản xuất không quá $400$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 400$) thì doanh thu nhận được khi bán hết số sản phẩm là $F(x)=x^3-1990x^2+1001000x+250000$ (đồng). Trong đó, chi phí vận hành máy móc cho mỗi sản phẩm là $G(x)=\\displaystyle \\frac{100000x}{\\frac{3}{2}x+1}$ (đồng). Tổng chi phí mua nguyên vật liệu là $H(x)=2x^3+100000x-50000$ (đồng), nhưng do doanh nghiệp mua với số lượng lớn nên được ưu đãi giảm $1\\%$ cho $200$ sản phẩm đầu tiên và giảm $2\\%$ cho các sản phẩm tiếp theo. Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_4321158056",
+      "ma_goc": "2605-932",
+      "kieuCau": "TLN",
+      "cauDan": "Nhà máy A chuyên sản xuất một loại sản phẩm cho nhà máy B. Hai nhà máy thỏa thuận rằng, hàng tháng nhà máy A cung cấp cho nhà máy B số lượng sản phẩm theo đơn đặt hàng của nhà máy B (tối đa $68$ tấn sản phẩm). Nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm là $p(x) = 80 - 0{,}015x^2$ (đơn vị triệu đồng). Chi phí để nhà máy A sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = 100 + 7{,}2x$ (đơn vị triệu đồng), thuế giá trị gia tăng mà nhà máy A phải đóng cho nhà nước là $10\\%$ tổng doanh thu mỗi tháng. Hỏi mỗi tháng nhà máy A thu được lợi nhuận cao nhất là bao nhiêu triệu đồng (sau khi đã trừ thuế giá trị gia tăng) (kết quả làm tròn đến hàng đơn vị)?"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_312ff653d6",
+      "ma_goc": "2604-65",
+      "kieuCau": "TLN",
+      "cauDan": "Một hòn đảo $A$ cách bờ biển $3\\text{km}$ và cách trạm điện $B\\text{ 5km}$. Công ty điện lực dự định một tuyến điện từ trạm điện $B$ dọc theo bờ biển đến một điểm $C$, sau đó từ $C$ nối thẳng ra đảo $A$. Biết chi phí cho $1\\text{km}$ đường điện trên bờ là $30$ triệu đồng và trên biển là $50$ triệu đồng. Hỏi cần ít nhất bao nhiêu triệu đồng để hoàn thành kế hoạch trên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_312ff653d6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}
