@@ -1632,10 +1632,27 @@ window.ham_20_13_them_dong_hs_su_kien = function () {
 };
 
 
+// // =======================================================
+// // HÀM HỖ TRỢ CHUNG DÙNG CHO CẢ 2 NÚT LƯU
+// // =======================================================
+// const taoTenAnToan = (chuoi, maxLen = 30) => {
+//     if (!chuoi) return "KhongCo";
+//     let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+//     str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
+//     if (str.length > maxLen) str = str.substring(0, maxLen);
+//     return str.replace(/_$/, '');
+// };
+
+// const layGioPhutGiay = () => {
+//     const now = new Date();
+//     return `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m${String(now.getSeconds()).padStart(2, '0')}s`;
+// };
+
+
 // =======================================================
 // HÀM HỖ TRỢ CHUNG DÙNG CHO CẢ 2 NÚT LƯU
 // =======================================================
-const taoTenAnToan = (chuoi, maxLen = 30) => {
+window.taoTenAnToan = function (chuoi, maxLen = 30) {
     if (!chuoi) return "KhongCo";
     let str = chuoi.toString().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
     str = str.replace(/[\s/\\:*?"<>|]+/g, '_');
@@ -1643,11 +1660,10 @@ const taoTenAnToan = (chuoi, maxLen = 30) => {
     return str.replace(/_$/, '');
 };
 
-const layGioPhutGiay = () => {
+window.layGioPhutGiay = function () {
     const now = new Date();
     return `${String(now.getHours()).padStart(2, '0')}h${String(now.getMinutes()).padStart(2, '0')}m${String(now.getSeconds()).padStart(2, '0')}s`;
 };
-
 
 
 // =======================================================
