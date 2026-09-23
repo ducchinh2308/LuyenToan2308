@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c3c095a322",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng định lý Côsin trong tam giác $ABC$ ta được:\\\\\r\n\t\t$BC^2 = AB^2+AC^2-2 \\cdot AB \\cdot AC \\cdot \\cos \\widehat{BAC}$\\\\\r\n\t\t$BC^2 = x^2+(3x)^2-2 \\cdot x \\cdot 3x \\cdot \\cos(120^\\circ)$\\\\\r\n\t\t$\\displaystyle BC^2 = x^2+9x^2-2 \\cdot x \\cdot 3x \\cdot \\left(-\\frac{1}{2}\\right)$\\\\\r\n\t\t$BC^2 = x^2+9x^2+3x^2$\\\\\r\n\t\t$BC^2 = 13x^2$.\\\\\r\n\t\tKhi đó $BC=x\\sqrt{13}$."
+}

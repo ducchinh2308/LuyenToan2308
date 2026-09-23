@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_186502daf1",
+  "dapAn": "FFTT",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_186502daf1_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch $AB = \\sqrt{8^2 + 6^2 - 2 \\cdot 8 \\cdot 6 \\cdot \\cos 60^\\circ} = \\sqrt{52} = 2\\sqrt{13} \\approx 7{,}21$.\r\n\t\t\t\\itemch $\\cos A = \\dfrac{AB^2 + AC^2 - BC^2}{2 AB \\cdot AC} = \\dfrac{52 + 36 - 64}{2 \\cdot 2\\sqrt{13} \\cdot 6} > 0 \\Rightarrow A$ nhọn.\r\n\t\t\t\\itemch $S = \\dfrac{1}{2} BC \\cdot CA \\cdot \\sin 60^\\circ = 12\\sqrt{3}$. $p = \\dfrac{8+6+2\\sqrt{13}}{2} = 7 + \\sqrt{13}$. $r = \\dfrac{S}{p} \\approx 1{,}96$.\r\n\t\t\t\\itemch $S_{ABG} = \\dfrac{1}{3} S_{ABC} = \\dfrac{1}{3} \\cdot 12\\sqrt{3} = 4\\sqrt{3}$.\r\n\t\t\\end{itemchoice}"
+}

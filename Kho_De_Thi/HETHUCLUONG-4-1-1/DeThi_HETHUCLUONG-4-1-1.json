@@ -1,0 +1,69 @@
+{
+  "maDe": "HETHUCLUONG-4-1-1",
+  "tenDe": "hethucluong-4-1-1",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0H4V2-1]",
+      "maCau": "q_ee494e7177",
+      "ma_goc": "2603-1418",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ biết độ dài các cạnh $AB=x; AC=3x$ và $\\widehat{BAC}=120^\\circ$. Xác định công thức tính độ dài cạnh $BC$.",
+      "paA": "$BC=13x$",
+      "paB": "$BC=x\\sqrt{10}$",
+      "paC": "$BC=x\\sqrt{7}$",
+      "paD": "$BC=x\\sqrt{13}$"
+    },
+    {
+      "id_Cau": "[0H4H1-2]",
+      "maCau": "q_1e5663f8da",
+      "ma_goc": "2603-101",
+      "kieuCau": "TN",
+      "cauDan": "Cho góc $\\alpha$ ($0^\\circ < \\alpha < 180^\\circ$) thỏa mãn $\\cot \\alpha = -\\dfrac{1}{2}$. Giá trị $\\cos \\alpha$ bằng",
+      "paA": "$\\dfrac{\\sqrt{5}}{5}$",
+      "paB": "$-\\dfrac{\\sqrt{5}}{5}$",
+      "paC": "$\\pm\\dfrac{\\sqrt{5}}{5}$",
+      "paD": "$-\\dfrac{\\sqrt{5}}{2}$"
+    },
+    {
+      "id_Cau": "[0H4N1-1]",
+      "maCau": "q_d69cd264be",
+      "ma_goc": "2603-23",
+      "kieuCau": "TN",
+      "cauDan": "Cho góc $\\alpha, (0^\\circ < \\alpha < 180^\\circ)$. Khẳng định nào sau đây là khẳng định \\textbf{đúng}?",
+      "paA": "$\\cos\\alpha = -\\cos(180^\\circ - \\alpha)$",
+      "paB": "$\\sin\\alpha = -\\sin(180^\\circ - \\alpha)$",
+      "paC": "$\\cot\\alpha = \\cot(180^\\circ - \\alpha)$",
+      "paD": "$\\tan\\alpha = \\tan(180^\\circ - \\alpha)$"
+    },
+    {
+      "id_Cau": "[0H4N3-1]",
+      "maCau": "q_ca0afe247b",
+      "ma_goc": "2603-244",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $AB=2$, $AC=3$ và $A=60^{\\circ}$. Tính độ dài cạnh $BC$.",
+      "paA": "$BC=\\sqrt{5}$",
+      "paB": "$BC=\\sqrt{7}$",
+      "paC": "$BC=1$",
+      "paD": "$BC=\\sqrt{6}$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_85352d4a37",
+      "ma_goc": "2603-108",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ biết $BC=8, CA=6, \\widehat{C}=60^\\circ$. Gọi $G$ là trọng tâm tam giác. Khi đó:",
+      "paA": "$AB \\approx 7{,}20$",
+      "paB": "Góc $A$ là góc tù",
+      "paC": "Bán kính đường tròn nội tiếp $r \\approx 1{,}96$",
+      "paD": "Diện tích tam giác $ABG$ bằng $4\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[0H4C3-2]",
+      "maCau": "q_288e4150b6",
+      "ma_goc": "2603-39",
+      "kieuCau": "TLN",
+      "cauDan": "Để đo chiều cao $CD$ của một cây cổ thụ, bạn Bình chọn trên mặt đất 2 điểm $A, B$ có khoảng cách $AB=12m$ cùng thẳng hàng với chân $C$ của gốc cây để đặt giác kế. Chân của giác kế có chiều cao $h=1,3m$. Gọi hai điểm quan sát là $A_1, B_1$ cùng thẳng hàng với $C_1$ thuộc chiều cao $CD$ của cây cổ thụ. Bạn Bình đo được góc $\\widehat{DA_1C_1} = 49^\\circ$ và $\\widehat{DB_1C_1} = 35^\\circ$. Em hãy giúp bạn Bình tính chiều cao $CD$ của cây cổ thụ đó (kết quả làm tròn đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_288e4150b6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_190889af4b",
+  "dapAn": "22,8",
+  "loiGiai": "Ta có $\\widehat{DA_1B_1} = 180^\\circ - 49^\\circ = 131^\\circ$.\\\\\r\n\t\t$\\widehat{A_1DB_1} = 180^\\circ - 35^\\circ - 131^\\circ = 14^\\circ$.\\\\\r\n\t\tÁp dụng định lý sin cho $\\Delta DA_1B_1$, ta có:\r\n\t\t$DB_1 = \\dfrac{A_1B_1 \\cdot \\sin \\widehat{DA_1B_1}}{\\sin \\widehat{A_1DB_1}} = \\dfrac{12 \\cdot \\sin 131^\\circ}{\\sin 14^\\circ}$.\\\\\r\n\t\tTrong tam giác vuông $\\Delta DC_1B_1$:\r\n\t\t$DC_1 = DB_1 \\cdot \\sin 35^\\circ = \\dfrac{12 \\cdot \\sin 131^\\circ \\cdot \\sin 35^\\circ}{\\sin 14^\\circ} \\approx 21{,}5\\,\\text{m}$.\\\\\r\n\t\tChiều cao của cây là: $CD = CC_1 + C_1D \\approx 1{,}3 + 21{,}5 = 22{,}8\\,\\text{m}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e4899068ca",
+  "dapAn": "B",
+  "loiGiai": "Độ dài cạnh $BC$ là\\\\\r\n\t$BC^2=AB^2+AC^2-2\\cdot AB\\cdot AC\\cdot \\cos A$.\\\\\r\n\t$BC^2=2^2+3^2-2\\cdot 2\\cdot 3\\cdot \\cos 60^{\\circ}=7$.\\\\\r\n\t$BC=\\sqrt{7}$."
+}

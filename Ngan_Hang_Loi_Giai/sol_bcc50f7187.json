@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bcc50f7187",
+  "dapAn": "B",
+  "loiGiai": "Vì $\\cot \\alpha = -\\dfrac{1}{2} < 0$ và $0^\\circ < \\alpha < 180^\\circ$ nên $\\alpha$ là góc tù, suy ra $\\cos \\alpha < 0$.\\\\\r\n\t\tTa có: $1 + \\cot^2 \\alpha = \\dfrac{1}{\\sin^2 \\alpha} \\Rightarrow \\sin^2 \\alpha = \\dfrac{1}{1 + \\left(-\\dfrac{1}{2}\\right)^2} = \\dfrac{4}{5}$.\\\\\r\n\t\tMặt khác: $\\cos^2 \\alpha = 1 - \\sin^2 \\alpha = 1 - \\dfrac{4}{5} = \\dfrac{1}{5}$.\\\\\r\n\t\tDo $\\cos \\alpha < 0$ nên $\\cos \\alpha = -\\dfrac{1}{\\sqrt{5}} = -\\dfrac{\\sqrt{5}}{5}$."
+}
