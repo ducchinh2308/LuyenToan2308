@@ -1,0 +1,167 @@
+{
+  "maDe": "ONTAPMINMAX-12HS1",
+  "tenDe": "ôn tập min max",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_844ff3a844",
+      "ma_goc": "2604-2099",
+      "kieuCau": "TN",
+      "cauDan": "Xác định giá trị nhỏ nhất trên đoạn $[-1;1]$ của hàm số $y=f(x)$ có đồ thị như hình dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_844ff3a844_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$-1$",
+      "paB": "$-4$",
+      "paC": "$0$",
+      "paD": "$-2$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_e1b2a07969",
+      "ma_goc": "2603-865",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên đoạn $[-2; 3]$ có đồ thị như hình vẽ dưới đây. Gọi $m$, $M$ lần lượt là giá trị nhỏ nhất và giá trị lớn nhất của hàm số trên đoạn $[-2; 3]$. Giá trị của $2m - 3M$ bằng\r\n\t\t\\begin{center}\n<img src='HinhAnh/q_e1b2a07969_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$-13$",
+      "paB": "$-18$",
+      "paC": "$-16$",
+      "paD": "$-15$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_2a5859abc5",
+      "ma_goc": "2604-1553",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $\\displaystyle y = \\frac{3x+2}{x+1}$ trên đoạn $[0;2]$ bằng",
+      "paA": "$\\displaystyle \\frac{10}{3}$",
+      "paB": "$\\displaystyle \\frac{8}{3}$",
+      "paC": "$3$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_075cadd36e",
+      "ma_goc": "2605-310",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=x^3-3x^2+2$. Gọi $M,m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số trên đoạn $[-2;2]$. Khi đó $M-m$ bằng",
+      "paA": "$20$",
+      "paB": "$4$",
+      "paC": "$2$",
+      "paD": "$16$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_82785e8423",
+      "ma_goc": "2605-141",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $f(x) = x^4 - 2x^2 + 5$ trên đoạn $[-2;2]$ là",
+      "paA": "$\\displaystyle \\max_{[-2;2]} f(x) = 13$",
+      "paB": "$\\displaystyle \\max_{[-2;2]} f(x) = 14$",
+      "paC": "$\\displaystyle \\max_{[-2;2]} f(x) = -4$",
+      "paD": "$\\displaystyle \\max_{[-2;2]} f(x) = 23$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_73b720f0a1",
+      "ma_goc": "2603-802",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y=f(x)$ liên tục và có bảng biến thiên trong đoạn $\\left[-1;3\\right]$ cho trong hình bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_73b720f0a1_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $M$ là giá trị lớn nhất của hàm số $y=f(x)$ trên đoạn $\\left[-1;3\\right]$. Tìm mệnh đề đúng?",
+      "paA": "$M=f(0)$",
+      "paB": "$M=f(3)$",
+      "paC": "$M=f\\left(-1\\right)$",
+      "paD": "$M=f(2)$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_2e05d27f08",
+      "ma_goc": "2603-515",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $[-1;5]$ và có đồ thị trên đoạn $[-1;5]$ như hình vẽ bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2e05d27f08_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x)$ trên đoạn $[0;5]$ bằng",
+      "paA": "$-1$",
+      "paB": "$1$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_a63295410d",
+      "ma_goc": "2603-816",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên đoạn $[-1 ; 3]$ và có đồ thị như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a63295410d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị lớn nhất của hàm số đã cho trên đoạn $[-1 ; 3]$ bằng bao nhiêu?",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$-2$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_106a5716a9",
+      "ma_goc": "2605-345",
+      "kieuCau": "DS",
+      "cauDan": "Một nhà máy sản xuất thuốc nhuộm hoạt động tại khu vực gần một dòng sông lớn. Trong quá trình sản xuất, nhà máy này thải ra một lượng chất ô nhiễm đáng kể vào môi trường, gây ảnh hưởng nghiêm trọng đến chất lượng nước và sức khỏe cộng đồng. Để cải thiện tình hình và tuân thủ các quy định về bảo vệ môi trường, nhà máy đã quyết định đầu tư vào một hệ thống xử lý nước thải hiện đại. Chi phí để loại bỏ $x\\%$ chất ô nhiễm từ nguồn nước thải được mô hình hóa bởi hàm số phân thức sau: $C(x) = \\displaystyle \\frac{2x+1}{1-0{,}01x}$ (triệu đồng), $0 \\le x < 100$. Mệnh đề sau đúng hay sai?",
+      "paA": "Nếu nhà máy giảm từ $20\\%$ chất ô nhiễm trở lên thì doanh thu sẽ tăng lên (nhờ vào việc nâng cao uy tín và hình ảnh thương hiệu) được biểu diễn bởi hàm $R(x) = 12x - 240$ (triệu đồng). Khi đó lợi nhuận cho việc loại bỏ chất ô nhiễm có thể đạt hơn $177$ triệu đồng",
+      "paB": "Không thể loại bỏ $100\\%$ chất ô nhiễm",
+      "paC": "Chi phí để loại bỏ $20\\%$ chất ô nhiễm là $51{,}52$ triệu đồng",
+      "paD": "Để chi phí không quá $200$ triệu đồng thì nhà máy chỉ có thể xử lý tối đa $49{,}75\\%$ chất ô nhiễm"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_96ec69ea5b",
+      "ma_goc": "2604-1576",
+      "kieuCau": "DS",
+      "cauDan": "Một hợp tác xã (viết tắt là HTX) nông nghiệp tại Nghệ An đầu tư dự án trồng dưa lưới nhà màng VietGAP. Xét trong một vụ canh tác, với diện tích $x$ (nghìn $\\text{m}^2, x \\ge 1$), tổng chi phí là $C(x) = x^2 + 30x + 100$ (triệu đồng). Tổng doanh thu dự kiến là $R(x) = x^2 + 100x$ (triệu đồng).",
+      "paA": "Hàm số lợi nhuận của HTX sau một vụ canh tác là $L(x) = 70x - 100$ (triệu đồng)",
+      "paB": "Nếu HTX muốn đạt mức lợi nhuận là $250$ triệu đồng cho một vụ thì diện tích canh tác cần thiết là $5$ nghìn $\\text{m}^2$",
+      "paC": "Chi phí trung bình trên mỗi đơn vị diện tích được định nghĩa là $P(x) = \\displaystyle \\frac{C(x)}{x}$. Khi diện tích canh tác tăng từ $1$ nghìn $\\text{m}^2$ đến $11$ nghìn $\\text{m}^2$ thì chi phí trung bình luôn giảm",
+      "paD": "Để đồng vốn đầu tư đạt hiệu quả cao nhất (tỉ lệ lợi nhuận trên tổng chi phí $Q(x) = \\displaystyle \\frac{L(x)}{C(x)}$ đạt giá trị lớn nhất), HTX cần tính toán để chi phí trung bình trên mỗi đơn vị diện tích $P(x)$ đạt mức thấp nhất"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_cb674d0e8b",
+      "ma_goc": "2605-382",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x - \\ln x$. Các mệnh đề sau đúng hay sai?",
+      "paA": "Tập xác định của hàm số là: $D = (0;+\\infty)$",
+      "paB": "Đạo hàm $f'(x) = 1 + \\displaystyle \\frac{1}{x}$",
+      "paC": "Phương trình $f'(x) = 0$ có nghiệm duy nhất $x = 1$",
+      "paD": "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $\\left[\\displaystyle \\frac{1}{3}; 2\\right]$ bằng $\\displaystyle \\frac{1}{3} + \\ln 3$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_f5c153f15a",
+      "ma_goc": "2605-278",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $\\displaystyle g(x) = -\\frac{x^3}{3} + 16x + 2$.",
+      "paA": "Hàm số đã cho có đạo hàm là $g'(x) = -x^2 + 16$",
+      "paB": "Phương trình $g'(x)$ có tập nghiệm là $S=\\{4\\}$",
+      "paC": "$\\displaystyle g(4) = \\frac{134}{3}$",
+      "paD": "Giá trị lớn nhất của hàm số $g(x)$ trên đoạn $[-5;5]$ bằng $\\displaystyle \\frac{134}{3}$"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_aa7ab0a3a5",
+      "ma_goc": "2603-1094",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp kinh doanh một loại sản phẩm $T$ được sản xuất trong nước. Qua nghiên cứu thấy rằng chi phí sản xuất mỗi sản phẩm $T$ là $x$ (USD) thì số sản phẩm $T$ các nhà máy sản xuất sẽ là $R(x)=30x-200$ và số sản phẩm $T$ mà doanh nghiệp bán được trên thị trường trong nước là $Q(x)=3000-10x$.\\\\\r\n\tSố sản phẩm còn dư doanh nghiệp xuất khẩu ra thị trường quốc tế với giá bán mỗi sản phẩm ổn định trên thị trường quốc tế là $150$ (USD). Nhà nước đánh thuế trên mỗi sản phẩm xuất khẩu là $a$ (USD) và luôn đảm bảo tỉ lệ giữa lợi nhuận từ việc xuất khẩu của doanh nghiệp và thuế thu được của nhà nước tương ứng là $4:1$. Hãy tìm giá trị của $a$ biết lợi nhuận mà doanh nghiệp thu được từ việc xuất khẩu là nhiều nhất."
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_bfad52bda3",
+      "ma_goc": "2605-1066",
+      "kieuCau": "TLN",
+      "cauDan": "Gia đình anh Tuấn có mảnh đất, một phía giáp với đường (là một phần của đường thẳng), phần còn lại giáp với hồ nước là đường cong được mô hình hóa bởi một phần của đồ thị hàm số $f(x) = \\displaystyle \\frac{-x^2+5x-4}{x}$ như hình vẽ bên dưới, đơn vị trên mỗi trục tọa độ là $10\\text{ mét}$. Trong mảnh đất anh Tuấn muốn rào một khu vực hình chữ nhật $ABCD$ với hai đỉnh nằm trên đồ thị hàm số $f(x)$ (phần giáp hồ) và cạnh nằm trên trục hoành (phần giáp đường). Diện tích hình chữ nhật $ABCD$ đạt giá trị lớn nhất là bao nhiêu $\\text{m}^2$ (làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bfad52bda3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_cbfea7338c",
+      "ma_goc": "2603-2767",
+      "kieuCau": "TLN",
+      "cauDan": "Anh Trọng quyết định mua 2 cây đào và 1 cây mai tại một nhà vườn để trang trí nhà dịp Tết Nguyên Đán. Giá mỗi cây đào là $1\\,000\\,000$ đồng, giá mỗi cây mai là $2\\,000\\,000$ đồng. Để kích cầu, nhà vườn đưa ra chính sách: nếu khách hàng mua thêm $x$ cây cảnh nhỏ (với $x$ là số nguyên không âm), mỗi cây nhỏ có giá $50\\,000$ đồng thì chi phí vận chuyển toàn bộ đơn hàng được tính theo hàm số $f(x) = x^2 - 100x + 3000$ (đơn vị: nghìn đồng). Biết rằng số lượng cây mua thêm không vượt quá 40 cây để đảm bảo tải trọng xe ($0 \\le x \\le 40$). Tổng chi phí (tiền mua cây và tiền vận chuyển) thấp nhất mà Anh Trọng phải bỏ ra để trang trí nhà dịp Tết là bao nhiêu nghìn đồng?"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_145ab9aa2e",
+      "ma_goc": "2603-549",
+      "kieuCau": "TLN",
+      "cauDan": "Nhóm học sinh lớp 12A khởi nghiệp dự án bán áo thun in hình linh vật năm mới để gây quỹ từ thiện. Qua khảo sát, nhóm nhận thấy mối liên hệ giữa số lượng áo bán được (chiếc) và giá bán $p$ (nghìn đồng/chiếc) tuân theo công thức $p(x) = 200 - x$ ($10 \\le x \\le 100$). Biết rằng chi phí để sản xuất mỗi chiếc áo là $100$ nghìn đồng và chi phí cố định ban đầu là $1200$ nghìn đồng. Để thu được lợi nhuận cao nhất từ dự án này, nhóm học sinh cần bán được bao nhiêu chiếc áo?"
+    }
+  ]
+}

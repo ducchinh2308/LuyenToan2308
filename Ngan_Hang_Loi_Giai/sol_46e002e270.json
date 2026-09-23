@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_46e002e270",
+  "dapAn": "6375",
+  "loiGiai": "Chi phí mua 2 cây đào và 1 cây mai: $2 \\cdot 1000 + 1 \\cdot 2000 = 4000$ (nghìn đồng).\\\\\r\n\t\t\tChi phí mua thêm $x$ cây nhỏ: $50x$ (nghìn đồng).\\\\\r\n\t\t\tChi phí vận chuyển: $f(x) = x^2 - 100x + 3000$ (nghìn đồng).\\\\\r\n\t\t\tTổng chi phí: $T(x) = 4000 + 50x + x^2 - 100x + 3000$.\\\\\r\n\t\t\t$T(x) = x^2 - 50x + 7000$ (nghìn đồng).\\\\\r\n\t\t\t$T'(x) = 2x - 50$.\\\\\r\n\t\t\t$T'(x) = 0 \\Rightarrow x = 25$.\\\\\r\n\t\t\t$T(25) = 25^2 - 50 \\cdot 25 + 7000 = 6375$.\\\\\r\n\t\t\tTổng chi phí thấp nhất là $6375$ nghìn đồng.\\\\"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e2303621ab",
+  "dapAn": "50",
+  "loiGiai": "Doanh thu khi bán được $x$ chiếc áo là $R(x) = x \\cdot p(x) = x(200 - x)$ (nghìn đồng).\\\\\r\n\t\tChi phí sản xuất $x$ chiếc áo là $C(x) = 100x + 1200$ (nghìn đồng).\\\\\r\n\t\tLợi nhuận thu được là $P(x) = R(x) - C(x) = -x^2 + 200x - 100x - 1200 = -x^2 + 100x - 1200$.\\\\\r\n\t\tHàm lợi nhuận $P(x) = -(x - 50)^2 + 1300 \\le 1300$.\\\\\r\n\t\tLợi nhuận đạt giá trị lớn nhất khi $x = 50$.\\\\\r\n\t\tVậy nhóm học sinh cần bán được $50$ chiếc áo."
+}

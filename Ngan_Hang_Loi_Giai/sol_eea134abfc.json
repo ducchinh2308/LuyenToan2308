@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_eea134abfc",
+  "dapAn": "TFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có: $g'(x) = -x^2 + 16$.\\\\\r\n\t\t\t\\itemch Ta có: $g'(x) = 0 \\Leftrightarrow -x^2 + 16 = 0 \\Leftrightarrow x = \\pm 4$.\\\\ Phương trình $g'(x)$ có tập nghiệm là $S=\\{-4;4\\}$.\\\\\r\n\t\t\t\\itemch Ta có: $\\displaystyle g(4) = -\\frac{4^3}{3} + 16 \\cdot 4 + 2 = \\frac{134}{3}$.\\\\\r\n\t\t\t\\itemch Ta có: $\\displaystyle g(-5) = -\\frac{109}{3}$; $\\displaystyle g(-4) = -\\frac{122}{3}$; $\\displaystyle g(4) = \\frac{134}{3}$; $\\displaystyle g(5) = \\frac{121}{3}$.\\\\ Vậy $\\displaystyle \\max_{[-5;5]} g(x) = \\frac{134}{3}$.\\\\\r\n\t\t\\end{itemchoice}"
+}

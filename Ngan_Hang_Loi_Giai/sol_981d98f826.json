@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_981d98f826",
+  "dapAn": "B",
+  "loiGiai": "$y = \\displaystyle \\frac{3x+2}{x+1} \\Rightarrow y' = \\frac{1}{(x+1)^2} > 0, \\forall x \\in [0;2] \\Rightarrow \\max_{[0;2]} y = y(2) = \\frac{8}{3}$."
+}

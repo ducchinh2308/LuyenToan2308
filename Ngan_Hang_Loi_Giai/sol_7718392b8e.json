@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7718392b8e",
+  "dapAn": "7",
+  "loiGiai": "Số sản phẩm xuất khẩu là $K(x) = R(x) - Q(x) = 40x - 3200$, điều kiện: $40x - 3200 > 0 \\Leftrightarrow x > 80$.\\\\\r\n\t\tThuế nhà nước thu được từ xuất khẩu $K(x)$ sản phẩm là $T = a(40x - 3200)$.\\\\\r\n\t\tLợi nhuận của doanh nghiệp từ xuất khẩu là $L = (40x - 3200)(150 - x - a)$.\\\\\r\n\t\tTỉ lệ giữa lợi nhuận từ việc xuất khẩu của doanh nghiệp và thuế thu được của nhà nước tương ứng là $4:1$ ta có: $(40x - 3200)(150 - x - a) = 4a(40x - 3200) \\Leftrightarrow a = \\dfrac{150 - x}{5}$.\\\\\r\n\t\tTừ đó ta có: $L(x) = (40x - 3200)\\left(150 - x - \\dfrac{150 - x}{5}\\right)$.\\\\\r\n\t\t$= 32(x - 80)(150 - x) \\le 32 \\cdot \\dfrac{(x - 80 + 150 - x)^2}{4} = 39200$.\\\\\r\n\t\tDấu bằng xảy ra khi $x - 80 = 150 - x \\Leftrightarrow x = 115$ suy ra $a = 7$ (USD)."
+}
