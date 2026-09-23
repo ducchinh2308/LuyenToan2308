@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c81fb2e017",
+  "dapAn": "36",
+  "loiGiai": "Ta có: $0 < x < 45$.\\\\\r\n\t\tChi phí: $C(x) = 10 + C_v = 10 + 3S^2 = 10 + 3\\left(\\sqrt{45-x}\\right)^2 = 145 - 3x$ (tỷ đồng).\\\\\r\n\t\tDoanh thu: $D(x) = x\\sqrt{45-x}$.\\\\\r\n\t\tLợi nhuận: $L(x) = D(x) - C(x) = x\\sqrt{45-x} + 3x - 145$.\\\\\r\n\t\tTa có: $L'(x) = \\displaystyle\\frac{90 - 3x + 6\\sqrt{45-x}}{2\\sqrt{45-x}}$.\\\\\r\n\t\tCho $L'(x) = 0 \\Rightarrow \\displaystyle\\frac{90 - 3x + 6\\sqrt{45-x}}{2\\sqrt{45-x}} = 0 \\Rightarrow 90 - 3x + 6\\sqrt{45-x} = 0$\\\\\r\n\t\t$\\Rightarrow 3x - 90 = 6\\sqrt{45-x} \\Rightarrow \\left\\{\\begin{aligned}&x \\geq 30\\\\&x = 20 \\text{ (loại)} \\vee x = 36\\end{aligned}\\right. \\Leftrightarrow x = 36$."
+}

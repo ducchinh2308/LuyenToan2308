@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a6f6170737",
+  "dapAn": "0,06",
+  "loiGiai": "Ta có $n(\\Omega) = \\mathrm{C}_{11}^5 = 462$.\\\\\r\n\t\tGọi $A$ là biến cố \\lq\\lq Chọn ngẫu nhiên $5$ học sinh thì có $2$ đúng nam\\rq\\rq.\\\\\r\n\t\tKhi đó $n(A) = \\mathrm{C}_8^2 \\cdot \\mathrm{C}_3^3 = 28$.\\\\\r\n\t\tVậy $\\mathrm{P}(A) = \\frac{n(A)}{n(\\Omega)} = \\frac{28}{462} = \\frac{2}{33} \\approx 0,06$."
+}

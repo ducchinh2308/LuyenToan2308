@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_076a88aacf",
+  "dapAn": "FFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đường tròn $(C)$ có tâm $I(2;1)$ và bán kính $R=\\sqrt{2^2+1^2-(-20)}=5$.\r\n\t\t\t\\itemch Với điểm $N(5;3)$ ta có $5^2+3^2-4\\cdot 5-2\\cdot 3-20=-12 \\ne 0$.\r\n\t\t\t\\itemch Điểm $M(5;-3)$ thuộc đường tròn $(C)$. Ta có $\\overrightarrow{IM}=(3;-4)$.\\\\ \t\t\t\r\n\t\t\tPhương trình tiếp tuyến tại $M$ là \t\t\t\r\n\t\t\t$$3(x-5)-4(y+3)=0 \\Leftrightarrow 3x-4y-27=0.$$\r\n\t\t\t\\itemch Xét \t\t\t\r\n\t\t\t$$\\mathrm {d}(I,(d)) = \\frac{|3.2+4.1-35|}{\\sqrt{3^2+4^2}} = \\frac{25}{5} = 5 = R.$$ \t\t\t\r\n\t\t\tVậy đường thẳng $(d)$ tiếp xúc với đường tròn $(C)$.\r\n\t\t\\end{itemchoice}"
+}

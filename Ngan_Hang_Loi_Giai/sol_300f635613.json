@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_300f635613",
+  "dapAn": "A",
+  "loiGiai": "Hàm số $\\displaystyle y = \\frac{2x - 1}{x + 1}$ xác định và liên tục trên đoạn $[0; 2]$.\\\\\r\n\t\t$\\displaystyle y' = \\frac{2(x + 1) - 1(2x - 1)}{(x + 1)^2} = \\frac{3}{(x + 1)^2} > 0, \\forall x \\neq -1$.\\\\\r\n\t\tSuy ra: $\\displaystyle \\min_{[0; 2]} y = y(0) = -1$; $\\displaystyle \\max_{[0; 2]} y = y(2) = 1$.\\\\\r\n\t\tTổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số là: $1 - 1 = 0$."
+}

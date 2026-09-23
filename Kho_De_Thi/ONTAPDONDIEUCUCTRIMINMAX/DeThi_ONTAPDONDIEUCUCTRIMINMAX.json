@@ -1,0 +1,182 @@
+{
+  "maDe": "ONTAPDONDIEUCUCTRIMINMAX",
+  "tenDe": "ÔN TẬP ĐƠN ĐIỆU CỰC TRỊ MIN MAX",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N1-1]",
+      "maCau": "q_923430c43e",
+      "ma_goc": "2603-492",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = \\displaystyle \\frac{5-2x}{x+3}$ nghịch biến trên khoảng nào sau đây?",
+      "paA": "$\\mathbb{R} \\setminus \\{-3\\}$",
+      "paB": "$(-\\infty; -3) \\cup (-3; +\\infty)$",
+      "paC": "$(-\\infty; -3)$",
+      "paD": "$(3; +\\infty)$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_00616b692e",
+      "ma_goc": "2603-515",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $[-1;5]$ và có đồ thị trên đoạn $[-1;5]$ như hình vẽ bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_00616b692e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x)$ trên đoạn $[0;5]$ bằng",
+      "paA": "$-1$",
+      "paB": "$1$",
+      "paC": "$4$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_ea131c1390",
+      "ma_goc": "2603-464",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $f(x) = x^3 - 8x^2 + 16x - 9$ trên đoạn $[1;3]$ là",
+      "paA": "$\\max_{[1;3]} f(x) = 0$",
+      "paB": "$\\max_{[1;3]} f(x) = \\displaystyle \\frac{13}{27}$",
+      "paC": "$\\max_{[1;3]} f(x) = -6$",
+      "paD": "$\\max_{[1;3]} f(x) = 5$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_f5f943abce",
+      "ma_goc": "2603-865",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên đoạn $[-2; 3]$ có đồ thị như hình vẽ dưới đây. Gọi $m$, $M$ lần lượt là giá trị nhỏ nhất và giá trị lớn nhất của hàm số trên đoạn $[-2; 3]$. Giá trị của $2m - 3M$ bằng\r\n\t\t\\begin{center}\n<img src='HinhAnh/q_f5f943abce_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\n\\end{center}",
+      "paA": "$-13$",
+      "paB": "$-18$",
+      "paC": "$-16$",
+      "paD": "$-15$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_99d22fcd9d",
+      "ma_goc": "2603-770",
+      "kieuCau": "TN",
+      "cauDan": "Tổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $\\displaystyle y = \\frac{2x - 1}{x + 1}$ trên đoạn $[0; 2]$ bằng",
+      "paA": "$0$",
+      "paB": "$-1$",
+      "paC": "$2$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_0bf0100498",
+      "ma_goc": "2604-1252",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = f(x) = x^3 - 3x^2 - 9x + 7$ có cực đại là",
+      "paA": "$-1$",
+      "paB": "$12$",
+      "paC": "$3$",
+      "paD": "$-20$"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_45724385c9",
+      "ma_goc": "2603-1065",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Khẳng định nào đúng?",
+      "paA": "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC}$",
+      "paB": "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AB'}$",
+      "paC": "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AD'}$",
+      "paD": "$\\vec{AB} + \\vec{AD} + \\vec{AA'} = \\vec{AC'}$"
+    },
+    {
+      "id_Cau": "[2D1N2-1]",
+      "maCau": "q_54fbc1fff3",
+      "ma_goc": "2603-466",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $y = x^2 \\ln x$ đạt cực trị tại điểm",
+      "paA": "$x = \\sqrt{e}$",
+      "paB": "$x = 0; x = \\displaystyle \\frac{1}{\\sqrt{e}}$",
+      "paC": "$x = 0$",
+      "paD": "$x = \\displaystyle \\frac{1}{\\sqrt{e}}$"
+    },
+    {
+      "id_Cau": "[2D1N1-1]",
+      "maCau": "q_6b6357e208",
+      "ma_goc": "2605-482",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\displaystyle\\frac{2x - 2}{x + 2}$ có tập xác định là $D$. Hàm số đã cho có đạo hàm trên $D$ là",
+      "paA": "$y' = -\\displaystyle\\frac{2}{(x + 2)^2}$",
+      "paB": "$y' = \\displaystyle\\frac{6}{(x + 2)^2}$",
+      "paC": "$y' = \\displaystyle\\frac{2}{(x + 2)^2}$",
+      "paD": "$y' = -\\displaystyle\\frac{6}{(x + 2)^2}$"
+    },
+    {
+      "id_Cau": "[2D1H1-1]",
+      "maCau": "q_0a78e13f27",
+      "ma_goc": "2604-2111",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)=(x+1)(2x-5)^2$ với mọi $x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào?",
+      "paA": "$(-1;+\\infty)$",
+      "paB": "$(-3;1)$",
+      "paC": "$\\left(-1;\\displaystyle \\frac{5}{2}\\right)$",
+      "paD": "$(-\\infty;-1)$"
+    },
+    {
+      "id_Cau": "[2D1H1-1]",
+      "maCau": "q_797b86e40a",
+      "ma_goc": "2605-1196",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $\\displaystyle y = -\\frac{1}{3}x^{3} + \\frac{1}{2}x^{2} + 6x - 1$. Khẳng định nào dưới đây là \\textbf{ĐÚNG}?",
+      "paA": "Hàm số đồng biến trên khoảng $(0;3)$.",
+      "paB": "Hàm số đồng biến trên khoảng $(3;+\\infty)$.",
+      "paC": "Hàm số nghịch biến trên khoảng $(-2;3)$.",
+      "paD": "Hàm số nghịch biến trên khoảng $(-\\infty;0)$."
+    },
+    {
+      "id_Cau": "[2D1N2-1]",
+      "maCau": "q_ed90bb88d2",
+      "ma_goc": "2605-1204",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị cực tiểu của hàm số $y=-x^{3}+3x-1$ là",
+      "paA": "$y_{\\text{CT}}=1$",
+      "paB": "$y_{\\text{CT}}=-3$",
+      "paC": "$y_{\\text{CT}}=-1$",
+      "paD": "$y_{\\text{CT}}=3$"
+    },
+    {
+      "id_Cau": "[2D1V3-1]",
+      "maCau": "q_ae49914534",
+      "ma_goc": "2603-847",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x)=4\\sin x\\cos x+2x$.",
+      "paA": "Đạo hàm của hàm số đã cho là $f'(x)=4\\sin 2x+2$",
+      "paB": "Hàm số $y=f(x)$ có $4$ điểm cực trị thuộc $[-\\pi ;\\pi]$",
+      "paC": "Hàm số $y=f(x)$ đồng biến trên khoảng $(-2;-1)$",
+      "paD": "Giá trị lớn nhất của $f(x)$ trên đoạn $\\left[0;\\dfrac{\\pi}{2}\\right]$ là $\\dfrac{2\\pi}{3}+\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_62c3a87806",
+      "ma_goc": "2605-1410",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^3 - 3x + 1$.",
+      "paA": "Đạo hàm của hàm số đã cho là $f'(x) = 3x^2 - 2$",
+      "paB": "Phương trình $f'(x) = 0$ có tập nghiệm là $S = \\{-1; 1\\}$",
+      "paC": "Ta có $f(1) = -1$, $f(-1) = 3$",
+      "paD": "Gọi $f_{\\text{CĐ}}, f_{\\text{CT}}$ lần lượt là giá trị cực đại và giá trị cực tiểu của hàm số đã cho. Khi đó $f_{\\text{CĐ}} - f_{\\text{CT}} = 3$"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_7325fcda66",
+      "ma_goc": "2605-1021",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty công nghệ GigaCloud chuẩn bị ra mắt dịch vụ lưu trữ đám mây cao cấp dành riêng cho các doanh nghiệp lớn. Qua phân tích dữ liệu lớn (Big data), các chuyên gia kinh tế của công ty xác lập được mô hình cầu như sau: Nếu định giá gói cước hàng tháng là $x$ (triệu đồng) thì số lượng doanh nghiệp đăng ký sử dụng $S$ (nghìn doanh nghiệp) sẽ là $S(x) = \\sqrt{45 - x}$ (với điều kiện mức giá $x$ phải nhỏ hơn $45$ triệu đồng). Chi phí vận hành hệ thống của GigaCloud bao gồm hai khoản: chi phí cố định là $10$ tỷ đồng mỗi tháng (cho cơ sở hạ tầng, nhân sự cốt lõi) và chi phí vận hành. Do đặc thù bảo mật dữ liệu, khi số lượng khách hàng tăng lên thì chi phí băng thông và bảo trì tăng theo cấp số nhân. Cụ thể, chi phí này tỷ lệ thuận với bình phương số lượng khách hàng $C_v = 3S^2$ (tỷ đồng). Hãy xác định mức giá cước $x$ mà GigaCloud cần niêm yết để đạt lợi nhuận ròng hàng tháng cao nhất?"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_594430dabc",
+      "ma_goc": "2603-1027",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp vận tải muốn đóng các thùng gỗ để chứa hàng hóa trong quá trình vận chuyển. Mỗi thùng được thiết kế theo dạng hình hộp chữ nhật không có nắp đậy có thể tích $1(m^3)$. Để đảm bảo phù hợp với thiết bị xếp dỡ, thùng được thiết kế sao cho chiều dài của đáy gấp 1,5 lần chiều rộng. Biết chi phí vật liệu làm mặt đáy là 240000 đồng/$m^2$, chi phí vật liệu làm mặt bên là 180000 đồng/$m^2$ (bỏ qua các chi phí khác như công lắp ráp, vận chuyển, hao hụt vật liệu, ...). Hỏi với số tiền 200 triệu đồng, doanh nghiệp có thể sản xuất tối đa bao nhiêu thùng gỗ?"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_d6b1fc61f8",
+      "ma_goc": "2603-611",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm giá trị cực tiểu của hàm số $f(x)=\\dfrac{x^2+4}{x}$.\r\n\t\\par"
+    }
+  ]
+}
