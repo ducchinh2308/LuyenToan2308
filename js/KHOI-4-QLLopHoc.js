@@ -597,8 +597,271 @@ window.ChiTietLopState = {
     dsNgoai: []
 };
 
+// // =====================================================================
+// // HÀM 4.9: XEM CHI TIẾT LỚP VÀ ĐIỀU PHỐI HỌC SINH (GIAO DIỆN 2 CỘT)
+// // =====================================================================
+// window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
+//     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+//     if (!lop) return;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #007bff; font-size: 16px;"><b>⏳ Đang tải toàn bộ dữ liệu học sinh để đối chiếu...</b></div>`;
+
+//     try {
+//         // 1. LẤY TẤT CẢ HỌC SINH TỪ DATABASE
+//         const { data: dsHS, error } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, truong, danh_sach_ma_lop')
+//             .eq('vai_tro', 'hocsinh')
+//             .order('ten', { ascending: true });
+
+//         if (error) throw error;
+
+//         let dsTrong = [];
+//         let dsNgoai = [];
+
+//         // 2. PHÂN LOẠI HỌC SINH VÀO 2 NHÓM
+//         if (dsHS) {
+//             dsHS.forEach(hs => {
+//                 let dLop = hs.danh_sach_ma_lop || [];
+//                 let isTrongLop = false;
+
+//                 if (Array.isArray(dLop)) {
+//                     isTrongLop = dLop.includes(maLop);
+//                 } else if (typeof dLop === 'string') {
+//                     isTrongLop = dLop.includes(maLop);
+//                 }
+
+//                 if (isTrongLop) {
+//                     dsTrong.push(hs);
+//                 } else {
+//                     dsNgoai.push(hs);
+//                 }
+//             });
+//         }
+
+//         // Lưu vào State để dùng cho Live Search
+//         window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+
+//         // 3. VẼ KHUNG GIAO DIỆN CHÍNH
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+//                     <h3 style="color: #1a73e8; margin: 0; display: flex; align-items: center; gap: 10px;">
+//                         🏫 CHI TIẾT LỚP: ${lop.ten_lop} (${maLop})
+//                     </h3>
+//                     <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅ Quay Lại Bảng
+//                     </button>
+//                 </div>
+
+//                 <div style="margin-bottom: 15px;">
+//                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                 </div>
+
+//                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+//                     <!-- CỘT TRÁI: ĐÃ TRONG LỚP -->
+//                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
+//                             <span>🎓 ĐÃ TRONG LỚP</span>
+//                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+
+//                     <!-- CỘT PHẢI: CHƯA VÀO LỚP -->
+//                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
+//                             <span>🌍 HỌC SINH BÊN NGOÀI</span>
+//                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         // 4. GỌI HÀM VẼ DANH SÁCH 2 CỘT
+//         ham_4_9_1_render_danh_sach();
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải chi tiết: ${error.message}</p>
+//                                  <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
+//     }
+// };
+
+// // =====================================================================
+// // HÀM 4.9: XEM CHI TIẾT LỚP VÀ ĐIỀU PHỐI HỌC SINH (GIAO DIỆN 2 CỘT)
+// // =====================================================================
+// window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
+//     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+//     if (!lop) return;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #007bff; font-size: 16px;"><b>⏳ Đang tải toàn bộ dữ liệu học sinh để đối chiếu...</b></div>`;
+
+//     try {
+//         const { data: dsHS, error } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, truong, danh_sach_ma_lop')
+//             .eq('vai_tro', 'hocsinh')
+//             .order('ten', { ascending: true });
+
+//         if (error) throw error;
+
+//         let dsTrong = [];
+//         let dsNgoai = [];
+
+//         if (dsHS) {
+//             dsHS.forEach(hs => {
+//                 let dLop = hs.danh_sach_ma_lop || [];
+//                 let isTrongLop = false;
+//                 if (Array.isArray(dLop)) isTrongLop = dLop.includes(maLop);
+//                 else if (typeof dLop === 'string') isTrongLop = dLop.includes(maLop);
+
+//                 if (isTrongLop) dsTrong.push(hs);
+//                 else dsNgoai.push(hs);
+//             });
+//         }
+
+//         window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+//                     <h3 style="color: #1a73e8; margin: 0; display: flex; align-items: center; gap: 10px;">
+//                         🏫 CHI TIẾT LỚP: ${lop.ten_lop} (${maLop})
+//                     </h3>
+//                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        
+//                         <!-- 🌟 NÚT CẬP NHẬT AVATAR ĐỒNG LOẠT -->
+//                         <button onclick="window.ham_4_16_popup_cap_nhat_avatar_lop()" style="padding: 8px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+//                             📸 Cập nhật Avatar cả lớp
+//                         </button>
+                        
+//                         <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                             ⬅ Quay Lại Bảng
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <div style="margin-bottom: 15px;">
+//                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                 </div>
+
+//                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+//                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
+//                             <span>🎓 ĐÃ TRONG LỚP</span>
+//                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
+//                             <span>🌍 HỌC SINH BÊN NGOÀI</span>
+//                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         ham_4_9_1_render_danh_sach();
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải chi tiết: ${error.message}</p>
+//                                  <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
+//     }
+// };
+
+
+// // =====================================================================
+// // HÀM 4.9: XEM CHI TIẾT LỚP VÀ ĐIỀU PHỐI HỌC SINH (BỔ SUNG TRUY VẤN AVATAR)
+// // =====================================================================
+// window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
+//     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+//     if (!lop) return;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #007bff; font-size: 16px;"><b>⏳ Đang tải toàn bộ dữ liệu học sinh để đối chiếu...</b></div>`;
+
+//     try {
+//         // 🌟 Đã bổ sung thêm trường 'anh_dai_dien' vào câu truy vấn
+//         const { data: dsHS, error } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, truong, danh_sach_ma_lop, anh_dai_dien')
+//             .eq('vai_tro', 'hocsinh')
+//             .order('ten', { ascending: true });
+
+//         if (error) throw error;
+
+//         let dsTrong = [];
+//         let dsNgoai = [];
+
+//         if (dsHS) {
+//             dsHS.forEach(hs => {
+//                 let dLop = hs.danh_sach_ma_lop || [];
+//                 let isTrongLop = false;
+//                 if (Array.isArray(dLop)) isTrongLop = dLop.includes(maLop);
+//                 else if (typeof dLop === 'string') isTrongLop = dLop.includes(maLop);
+
+//                 if (isTrongLop) dsTrong.push(hs);
+//                 else dsNgoai.push(hs);
+//             });
+//         }
+
+//         window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+//                     <h3 style="color: #1a73e8; margin: 0; display: flex; align-items: center; gap: 10px;">
+//                         🏫 CHI TIẾT LỚP: ${lop.ten_lop} (${maLop})
+//                     </h3>
+//                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+//                         <button onclick="window.ham_4_16_popup_cap_nhat_avatar_lop()" style="padding: 8px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+//                             📸 Cập nhật Avatar cả lớp
+//                         </button>
+//                         <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                             ⬅ Quay Lại Bảng
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <div style="margin-bottom: 15px;">
+//                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                 </div>
+
+//                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+//                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
+//                             <span>🎓 ĐÃ TRONG LỚP</span>
+//                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
+//                             <span>🌍 HỌC SINH BÊN NGOÀI</span>
+//                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         ham_4_9_1_render_danh_sach();
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải chi tiết: ${error.message}</p>
+//                                  <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
+//     }
+// };
+
+
 // =====================================================================
-// HÀM 4.9: XEM CHI TIẾT LỚP VÀ ĐIỀU PHỐI HỌC SINH (GIAO DIỆN 2 CỘT)
+// HÀM 4.9: XEM CHI TIẾT LỚP (TÍCH HỢP BIẾN TRẠNG THÁI SORT)
 // =====================================================================
 window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
@@ -608,51 +871,52 @@ window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #007bff; font-size: 16px;"><b>⏳ Đang tải toàn bộ dữ liệu học sinh để đối chiếu...</b></div>`;
 
     try {
-        // 1. LẤY TẤT CẢ HỌC SINH TỪ DATABASE
         const { data: dsHS, error } = await _supabase
             .from('hoc_sinh')
-            .select('uid, ten, sdt, truong, danh_sach_ma_lop')
-            .eq('vai_tro', 'hocsinh')
-            .order('ten', { ascending: true });
+            .select('uid, ten, sdt, truong, danh_sach_ma_lop, anh_dai_dien')
+            .eq('vai_tro', 'hocsinh');
 
         if (error) throw error;
 
         let dsTrong = [];
         let dsNgoai = [];
 
-        // 2. PHÂN LOẠI HỌC SINH VÀO 2 NHÓM
         if (dsHS) {
             dsHS.forEach(hs => {
                 let dLop = hs.danh_sach_ma_lop || [];
                 let isTrongLop = false;
+                if (Array.isArray(dLop)) isTrongLop = dLop.includes(maLop);
+                else if (typeof dLop === 'string') isTrongLop = dLop.includes(maLop);
 
-                if (Array.isArray(dLop)) {
-                    isTrongLop = dLop.includes(maLop);
-                } else if (typeof dLop === 'string') {
-                    isTrongLop = dLop.includes(maLop);
-                }
-
-                if (isTrongLop) {
-                    dsTrong.push(hs);
-                } else {
-                    dsNgoai.push(hs);
-                }
+                if (isTrongLop) dsTrong.push(hs);
+                else dsNgoai.push(hs);
             });
         }
 
-        // Lưu vào State để dùng cho Live Search
-        window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+        // 🌟 Nạp biến trạng thái Sắp xếp Mặc định là A-Z
+        window.ChiTietLopState = {
+            maLop: maLop,
+            tenLop: lop.ten_lop,
+            dsTrong,
+            dsNgoai,
+            sortTrong: 'asc',
+            sortNgoai: 'asc'
+        };
 
-        // 3. VẼ KHUNG GIAO DIỆN CHÍNH
         vungLamViec.innerHTML = `
             <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
                     <h3 style="color: #1a73e8; margin: 0; display: flex; align-items: center; gap: 10px;">
                         🏫 CHI TIẾT LỚP: ${lop.ten_lop} (${maLop})
                     </h3>
-                    <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        ⬅ Quay Lại Bảng
-                    </button>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="window.ham_4_16_popup_cap_nhat_avatar_lop()" style="padding: 8px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+                            📸 Cập nhật Avatar cả lớp
+                        </button>
+                        <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            ⬅ Quay Lại Bảng
+                        </button>
+                    </div>
                 </div>
 
                 <div style="margin-bottom: 15px;">
@@ -660,19 +924,25 @@ window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
                 </div>
 
                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <!-- CỘT TRÁI: ĐÃ TRONG LỚP -->
+                    <!-- CỘT TRÁI -->
                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
-                            <span>🎓 ĐÃ TRONG LỚP</span>
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                🎓 ĐÃ TRONG LỚP
+                                <button id="btn-sort-trong" onclick="window.ham_4_9_4_dao_chieu_sort('trong')" style="background: #e8f5e9; border: 1px solid #28a745; color: #155724; border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#c3e6cb'" onmouseout="this.style.background='#e8f5e9'" title="Đảo chiều sắp xếp">⬇️ A-Z</button>
+                            </span>
                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
                         </h4>
                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
                     </div>
 
-                    <!-- CỘT PHẢI: CHƯA VÀO LỚP -->
+                    <!-- CỘT PHẢI -->
                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
-                            <span>🌍 HỌC SINH BÊN NGOÀI</span>
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                🌍 HS BÊN NGOÀI
+                                <button id="btn-sort-ngoai" onclick="window.ham_4_9_4_dao_chieu_sort('ngoai')" style="background: #e9ecef; border: 1px solid #adb5bd; color: #495057; border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#dee2e6'" onmouseout="this.style.background='#e9ecef'" title="Đảo chiều sắp xếp">⬇️ A-Z</button>
+                            </span>
                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
                         </h4>
                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 450px; padding-right: 5px; flex: 1;"></div>
@@ -681,26 +951,293 @@ window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
             </div>
         `;
 
-        // 4. GỌI HÀM VẼ DANH SÁCH 2 CỘT
         ham_4_9_1_render_danh_sach();
-
     } catch (error) {
         vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải chi tiết: ${error.message}</p>
                                  <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
     }
 };
 
+
+
+// // =====================================================================
+// // HÀM 4.9.1: RENDER DANH SÁCH 2 CỘT (CÓ HIỂN THỊ AVATAR MINI)
+// // =====================================================================
+// window.ham_4_9_1_render_danh_sach = function (keyword = '') {
+//     let key = keyword.toLowerCase().trim();
+//     const vungTrong = document.getElementById('vung-hs-trong-lop');
+//     const vungNgoai = document.getElementById('vung-hs-ngoai-lop');
+
+//     // Lọc danh sách theo từ khóa
+//     let locTrong = window.ChiTietLopState.dsTrong.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
+//     let locNgoai = window.ChiTietLopState.dsNgoai.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
+
+//     // Cập nhật con số sĩ số
+//     document.getElementById('count-trong').innerText = locTrong.length;
+//     document.getElementById('count-ngoai').innerText = locNgoai.length;
+
+//     // 🌟 RENDER CỘT TRONG LỚP
+//     let htmlTrong = '';
+//     if (locTrong.length === 0) {
+//         htmlTrong = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
+//     } else {
+//         locTrong.forEach((hs, idx) => {
+//             // Xác định Avatar hiện tại hoặc lấy ảnh Random chữa cháy
+//             let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
+
+//             htmlTrong += `
+//                 <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f8fff9'" onmouseout="this.style.background='white'">
+//                     <div style="display: flex; align-items: center; gap: 12px;">
+//                         <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #28a745; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         <div>
+//                             <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+//                             <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+//                         </div>
+//                     </div>
+//                     <button onclick="ham_4_9_3_xoa_hs_khoi_lop('${hs.uid}', this)" style="padding: 6px 10px; background: #fff; color: #dc3545; border: 1px dashed #dc3545; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f8d7da'" onmouseout="this.style.background='#fff'" title="Rút học sinh này ra khỏi lớp">
+//                         ✖ Rút tên
+//                     </button>
+//                 </div>
+//             `;
+//         });
+//     }
+//     vungTrong.innerHTML = htmlTrong;
+
+//     // 🌟 RENDER CỘT NGOÀI LỚP
+//     let htmlNgoai = '';
+//     if (locNgoai.length === 0) {
+//         htmlNgoai = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
+//     } else {
+//         locNgoai.forEach((hs, idx) => {
+//             // Xác định Avatar hiện tại hoặc lấy ảnh Random chữa cháy
+//             let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
+
+//             htmlNgoai += `
+//                 <div style="background: white; border: 1px solid #dee2e6; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f4f6f8'" onmouseout="this.style.background='white'">
+//                     <div style="display: flex; align-items: center; gap: 12px;">
+//                         <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #adb5bd; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); filter: grayscale(20%);">
+//                         <div>
+//                             <b style="color: #495057; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+//                             <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+//                         </div>
+//                     </div>
+//                     <button onclick="ham_4_9_2_them_hs_vao_lop('${hs.uid}', this)" style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'" title="Thêm học sinh này vào lớp">
+//                         ➕ Thêm
+//                     </button>
+//                 </div>
+//             `;
+//         });
+//     }
+//     vungNgoai.innerHTML = htmlNgoai;
+// };
+
+
+
+
+
+
+// // =====================================================================
+// // HÀM 4.9.1: RENDER DANH SÁCH 2 CỘT (CÓ HỖ TRỢ LIVE SEARCH)
+// // =====================================================================
+// window.ham_4_9_1_render_danh_sach = function (keyword = '') {
+//     let key = keyword.toLowerCase().trim();
+//     const vungTrong = document.getElementById('vung-hs-trong-lop');
+//     const vungNgoai = document.getElementById('vung-hs-ngoai-lop');
+
+//     // Lọc danh sách theo từ khóa
+//     let locTrong = window.ChiTietLopState.dsTrong.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
+//     let locNgoai = window.ChiTietLopState.dsNgoai.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
+
+//     // Cập nhật con số sĩ số
+//     document.getElementById('count-trong').innerText = locTrong.length;
+//     document.getElementById('count-ngoai').innerText = locNgoai.length;
+
+//     // RENDER CỘT TRONG LỚP
+//     let htmlTrong = '';
+//     if (locTrong.length === 0) {
+//         htmlTrong = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
+//     } else {
+//         locTrong.forEach((hs, idx) => {
+//             htmlTrong += `
+//                 <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f8fff9'" onmouseout="this.style.background='white'">
+//                     <div>
+//                         <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+//                         <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+//                     </div>
+//                     <button onclick="ham_4_9_3_xoa_hs_khoi_lop('${hs.uid}', this)" style="padding: 6px 10px; background: #fff; color: #dc3545; border: 1px dashed #dc3545; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f8d7da'" onmouseout="this.style.background='#fff'" title="Rút học sinh này ra khỏi lớp">
+//                         ✖ Rút tên
+//                     </button>
+//                 </div>
+//             `;
+//         });
+//     }
+//     vungTrong.innerHTML = htmlTrong;
+
+//     // RENDER CỘT NGOÀI LỚP
+//     let htmlNgoai = '';
+//     if (locNgoai.length === 0) {
+//         htmlNgoai = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
+//     } else {
+//         locNgoai.forEach((hs, idx) => {
+//             htmlNgoai += `
+//                 <div style="background: white; border: 1px solid #dee2e6; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f4f6f8'" onmouseout="this.style.background='white'">
+//                     <div>
+//                         <b style="color: #495057; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+//                         <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+//                     </div>
+//                     <button onclick="ham_4_9_2_them_hs_vao_lop('${hs.uid}', this)" style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'" title="Thêm học sinh này vào lớp">
+//                         ➕ Thêm
+//                     </button>
+//                 </div>
+//             `;
+//         });
+//     }
+//     vungNgoai.innerHTML = htmlNgoai;
+// };
+
 // =====================================================================
-// HÀM 4.9.1: RENDER DANH SÁCH 2 CỘT (CÓ HỖ TRỢ LIVE SEARCH)
+// HÀM HỖ TRỢ: SẮP XẾP TÊN TIẾNG VIỆT CHUẨN (Tên trước, Họ chữ lót sau)
+// =====================================================================
+window.ham_ho_tro_so_sanh_ten_vn = function (tenA, tenB) {
+    const bocTach = (chuoi) => {
+        let mang = (chuoi || '').trim().split(/\s+/);
+        let ten = mang.pop() || ''; // Lấy chữ cuối cùng làm Tên
+        let hoLot = mang.join(' '); // Phần còn lại là Họ và Lót
+        return { ten: ten.toLowerCase(), hoLot: hoLot.toLowerCase() };
+    };
+
+    let a = bocTach(tenA);
+    let b = bocTach(tenB);
+
+    // 1. So sánh Tên trước
+    let ssTen = a.ten.localeCompare(b.ten, 'vi');
+    if (ssTen !== 0) return ssTen;
+
+    // 2. Nếu Tên giống nhau (VD: Hân), quay lại so sánh Họ Lót (Huỳnh Gia < Nguyễn An)
+    return a.hoLot.localeCompare(b.hoLot, 'vi');
+};
+
+
+// // =====================================================================
+// // HÀM 4.9.2: XỬ LÝ BẤM NÚT "THÊM VÀO LỚP"
+// // =====================================================================
+// window.ham_4_9_2_them_hs_vao_lop = async function (uid, btn) {
+//     btn.disabled = true;
+//     btn.innerHTML = "⏳...";
+//     let maLop = window.ChiTietLopState.maLop;
+
+//     try {
+//         // 1. Lấy mảng lớp hiện tại trên Database của HS này
+//         const { data: hsData, error: errGet } = await _supabase.from('hoc_sinh').select('danh_sach_ma_lop').eq('uid', uid).single();
+//         if (errGet) throw errGet;
+
+//         let dsLop = hsData.danh_sach_ma_lop || [];
+//         if (typeof dsLop === 'string') {
+//             try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); }
+//         }
+//         if (!Array.isArray(dsLop)) dsLop = [];
+
+//         // 2. Thêm mã lớp mới vào và Update DB
+//         if (!dsLop.includes(maLop)) {
+//             dsLop.push(maLop);
+//             const { error: errUpdate } = await _supabase.from('hoc_sinh').update({ danh_sach_ma_lop: dsLop }).eq('uid', uid);
+//             if (errUpdate) throw errUpdate;
+//         }
+
+//         // 3. Di chuyển học sinh trong State (Bộ nhớ tạm của trình duyệt)
+//         let hsIndex = window.ChiTietLopState.dsNgoai.findIndex(h => h.uid === uid);
+//         if (hsIndex > -1) {
+//             let hs = window.ChiTietLopState.dsNgoai.splice(hsIndex, 1)[0];
+//             window.ChiTietLopState.dsTrong.push(hs);
+//             // Sắp xếp lại Cột Trái theo ABC
+//             window.ChiTietLopState.dsTrong.sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+//         }
+
+//         // 4. Vẽ lại giao diện (Bao gồm giữ lại chữ đang Search nếu có)
+//         let kw = document.getElementById('input-tim-hs-chi-tiet').value;
+//         ham_4_9_1_render_danh_sach(kw);
+
+//     } catch (e) {
+//         console.error(e);
+//         alert("Lỗi thêm: " + e.message);
+//         btn.disabled = false;
+//         btn.innerHTML = "➕ Thêm";
+//     }
+// };
+
+// // =====================================================================
+// // HÀM 4.9.3: XỬ LÝ BẤM NÚT "RÚT TÊN"
+// // =====================================================================
+// window.ham_4_9_3_xoa_hs_khoi_lop = async function (uid, btn) {
+//     if (!confirm("⚠️ Chắc chắn muốn rút học sinh này ra khỏi lớp?")) return;
+
+//     btn.disabled = true;
+//     btn.innerHTML = "⏳...";
+//     let maLop = window.ChiTietLopState.maLop;
+
+//     try {
+//         // 1. Lấy mảng lớp hiện tại trên Database của HS này
+//         const { data: hsData, error: errGet } = await _supabase.from('hoc_sinh').select('danh_sach_ma_lop').eq('uid', uid).single();
+//         if (errGet) throw errGet;
+
+//         let dsLop = hsData.danh_sach_ma_lop || [];
+//         if (typeof dsLop === 'string') {
+//             try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); }
+//         }
+//         if (!Array.isArray(dsLop)) dsLop = [];
+
+//         // 2. Lọc bỏ mã lớp này ra và Update DB
+//         dsLop = dsLop.filter(l => l !== maLop);
+
+//         const { error: errUpdate } = await _supabase.from('hoc_sinh').update({ danh_sach_ma_lop: dsLop }).eq('uid', uid);
+//         if (errUpdate) throw errUpdate;
+
+//         // 3. Di chuyển học sinh trong State
+//         let hsIndex = window.ChiTietLopState.dsTrong.findIndex(h => h.uid === uid);
+//         if (hsIndex > -1) {
+//             let hs = window.ChiTietLopState.dsTrong.splice(hsIndex, 1)[0];
+//             window.ChiTietLopState.dsNgoai.push(hs);
+//             // Sắp xếp lại Cột Phải theo ABC
+//             window.ChiTietLopState.dsNgoai.sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+//         }
+
+//         // 4. Vẽ lại giao diện
+//         let kw = document.getElementById('input-tim-hs-chi-tiet').value;
+//         ham_4_9_1_render_danh_sach(kw);
+
+//     } catch (e) {
+//         console.error(e);
+//         alert("Lỗi xóa: " + e.message);
+//         btn.disabled = false;
+//         btn.innerHTML = "✖ Rút tên";
+//     }
+// };
+
+// =====================================================================
+// HÀM 4.9.1: RENDER DANH SÁCH (TÍCH HỢP SẮP XẾP CHUẨN VIỆT NAM)
 // =====================================================================
 window.ham_4_9_1_render_danh_sach = function (keyword = '') {
     let key = keyword.toLowerCase().trim();
     const vungTrong = document.getElementById('vung-hs-trong-lop');
     const vungNgoai = document.getElementById('vung-hs-ngoai-lop');
 
-    // Lọc danh sách theo từ khóa
+    // 1. Lọc theo từ khóa tìm kiếm
     let locTrong = window.ChiTietLopState.dsTrong.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
     let locNgoai = window.ChiTietLopState.dsNgoai.filter(hs => hs.ten.toLowerCase().includes(key) || (hs.sdt && hs.sdt.includes(key)));
+
+    // 🌟 2. THỰC THI SẮP XẾP CHUẨN VIỆT NAM TRƯỚC KHI VẼ
+    let heSoTrong = window.ChiTietLopState.sortTrong === 'asc' ? 1 : -1;
+    locTrong.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten) * heSoTrong);
+
+    let heSoNgoai = window.ChiTietLopState.sortNgoai === 'asc' ? 1 : -1;
+    locNgoai.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten) * heSoNgoai);
+
+    // Cập nhật nhãn nút hiển thị ⬇️ A-Z hoặc ⬆️ Z-A
+    const btnSortTrong = document.getElementById('btn-sort-trong');
+    if (btnSortTrong) btnSortTrong.innerHTML = window.ChiTietLopState.sortTrong === 'asc' ? '⬇️ A-Z' : '⬆️ Z-A';
+
+    const btnSortNgoai = document.getElementById('btn-sort-ngoai');
+    if (btnSortNgoai) btnSortNgoai.innerHTML = window.ChiTietLopState.sortNgoai === 'asc' ? '⬇️ A-Z' : '⬆️ Z-A';
 
     // Cập nhật con số sĩ số
     document.getElementById('count-trong').innerText = locTrong.length;
@@ -712,11 +1249,15 @@ window.ham_4_9_1_render_danh_sach = function (keyword = '') {
         htmlTrong = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
     } else {
         locTrong.forEach((hs, idx) => {
+            let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
             htmlTrong += `
                 <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f8fff9'" onmouseout="this.style.background='white'">
-                    <div>
-                        <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
-                        <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #28a745; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div>
+                            <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+                        </div>
                     </div>
                     <button onclick="ham_4_9_3_xoa_hs_khoi_lop('${hs.uid}', this)" style="padding: 6px 10px; background: #fff; color: #dc3545; border: 1px dashed #dc3545; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f8d7da'" onmouseout="this.style.background='#fff'" title="Rút học sinh này ra khỏi lớp">
                         ✖ Rút tên
@@ -733,11 +1274,15 @@ window.ham_4_9_1_render_danh_sach = function (keyword = '') {
         htmlNgoai = `<div style="text-align: center; color: #6c757d; font-size: 13px; font-style: italic; padding: 20px;">Không có học sinh nào khớp</div>`;
     } else {
         locNgoai.forEach((hs, idx) => {
+            let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
             htmlNgoai += `
                 <div style="background: white; border: 1px solid #dee2e6; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f4f6f8'" onmouseout="this.style.background='white'">
-                    <div>
-                        <b style="color: #495057; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
-                        <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #adb5bd; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); filter: grayscale(20%);">
+                        <div>
+                            <b style="color: #495057; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+                            <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+                        </div>
                     </div>
                     <button onclick="ham_4_9_2_them_hs_vao_lop('${hs.uid}', this)" style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007bff'" title="Thêm học sinh này vào lớp">
                         ➕ Thêm
@@ -750,99 +1295,84 @@ window.ham_4_9_1_render_danh_sach = function (keyword = '') {
 };
 
 // =====================================================================
-// HÀM 4.9.2: XỬ LÝ BẤM NÚT "THÊM VÀO LỚP"
+// Cập nhật HÀM 4.9.2 (Đồng bộ sort sau khi THÊM vào lớp)
 // =====================================================================
 window.ham_4_9_2_them_hs_vao_lop = async function (uid, btn) {
-    btn.disabled = true;
-    btn.innerHTML = "⏳...";
+    btn.disabled = true; btn.innerHTML = "⏳...";
     let maLop = window.ChiTietLopState.maLop;
-
     try {
-        // 1. Lấy mảng lớp hiện tại trên Database của HS này
         const { data: hsData, error: errGet } = await _supabase.from('hoc_sinh').select('danh_sach_ma_lop').eq('uid', uid).single();
         if (errGet) throw errGet;
-
         let dsLop = hsData.danh_sach_ma_lop || [];
-        if (typeof dsLop === 'string') {
-            try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); }
-        }
+        if (typeof dsLop === 'string') { try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); } }
         if (!Array.isArray(dsLop)) dsLop = [];
 
-        // 2. Thêm mã lớp mới vào và Update DB
         if (!dsLop.includes(maLop)) {
             dsLop.push(maLop);
             const { error: errUpdate } = await _supabase.from('hoc_sinh').update({ danh_sach_ma_lop: dsLop }).eq('uid', uid);
             if (errUpdate) throw errUpdate;
         }
 
-        // 3. Di chuyển học sinh trong State (Bộ nhớ tạm của trình duyệt)
         let hsIndex = window.ChiTietLopState.dsNgoai.findIndex(h => h.uid === uid);
         if (hsIndex > -1) {
             let hs = window.ChiTietLopState.dsNgoai.splice(hsIndex, 1)[0];
             window.ChiTietLopState.dsTrong.push(hs);
-            // Sắp xếp lại Cột Trái theo ABC
-            window.ChiTietLopState.dsTrong.sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+            // Sắp xếp lại Mảng Gốc
+            window.ChiTietLopState.dsTrong.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten));
         }
 
-        // 4. Vẽ lại giao diện (Bao gồm giữ lại chữ đang Search nếu có)
         let kw = document.getElementById('input-tim-hs-chi-tiet').value;
         ham_4_9_1_render_danh_sach(kw);
-
-    } catch (e) {
-        console.error(e);
-        alert("Lỗi thêm: " + e.message);
-        btn.disabled = false;
-        btn.innerHTML = "➕ Thêm";
-    }
+    } catch (e) { console.error(e); alert("Lỗi thêm: " + e.message); btn.disabled = false; btn.innerHTML = "➕ Thêm"; }
 };
 
 // =====================================================================
-// HÀM 4.9.3: XỬ LÝ BẤM NÚT "RÚT TÊN"
+// Cập nhật HÀM 4.9.3 (Đồng bộ sort sau khi RÚT khỏi lớp)
 // =====================================================================
 window.ham_4_9_3_xoa_hs_khoi_lop = async function (uid, btn) {
     if (!confirm("⚠️ Chắc chắn muốn rút học sinh này ra khỏi lớp?")) return;
-
-    btn.disabled = true;
-    btn.innerHTML = "⏳...";
+    btn.disabled = true; btn.innerHTML = "⏳...";
     let maLop = window.ChiTietLopState.maLop;
-
     try {
-        // 1. Lấy mảng lớp hiện tại trên Database của HS này
         const { data: hsData, error: errGet } = await _supabase.from('hoc_sinh').select('danh_sach_ma_lop').eq('uid', uid).single();
         if (errGet) throw errGet;
-
         let dsLop = hsData.danh_sach_ma_lop || [];
-        if (typeof dsLop === 'string') {
-            try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); }
-        }
+        if (typeof dsLop === 'string') { try { dsLop = JSON.parse(dsLop); } catch (e) { dsLop = dsLop.split(',').filter(l => l.trim()); } }
         if (!Array.isArray(dsLop)) dsLop = [];
 
-        // 2. Lọc bỏ mã lớp này ra và Update DB
         dsLop = dsLop.filter(l => l !== maLop);
-
         const { error: errUpdate } = await _supabase.from('hoc_sinh').update({ danh_sach_ma_lop: dsLop }).eq('uid', uid);
         if (errUpdate) throw errUpdate;
 
-        // 3. Di chuyển học sinh trong State
         let hsIndex = window.ChiTietLopState.dsTrong.findIndex(h => h.uid === uid);
         if (hsIndex > -1) {
             let hs = window.ChiTietLopState.dsTrong.splice(hsIndex, 1)[0];
             window.ChiTietLopState.dsNgoai.push(hs);
-            // Sắp xếp lại Cột Phải theo ABC
-            window.ChiTietLopState.dsNgoai.sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+            // Sắp xếp lại Mảng Gốc
+            window.ChiTietLopState.dsNgoai.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten));
         }
 
-        // 4. Vẽ lại giao diện
         let kw = document.getElementById('input-tim-hs-chi-tiet').value;
         ham_4_9_1_render_danh_sach(kw);
-
-    } catch (e) {
-        console.error(e);
-        alert("Lỗi xóa: " + e.message);
-        btn.disabled = false;
-        btn.innerHTML = "✖ Rút tên";
-    }
+    } catch (e) { console.error(e); alert("Lỗi xóa: " + e.message); btn.disabled = false; btn.innerHTML = "✖ Rút tên"; }
 };
+
+// =====================================================================
+// HÀM 4.9.4: XỬ LÝ ĐẢO CHIỀU SẮP XẾP
+// =====================================================================
+window.ham_4_9_4_dao_chieu_sort = function (cot) {
+    if (cot === 'trong') {
+        window.ChiTietLopState.sortTrong = window.ChiTietLopState.sortTrong === 'asc' ? 'desc' : 'asc';
+    } else {
+        window.ChiTietLopState.sortNgoai = window.ChiTietLopState.sortNgoai === 'asc' ? 'desc' : 'asc';
+    }
+
+    // Giữ nguyên từ khóa tìm kiếm đang gõ nếu có
+    let kw = document.getElementById('input-tim-hs-chi-tiet').value;
+    window.ham_4_9_1_render_danh_sach(kw);
+};
+
+
 // ==============================================================================
 // PHẦN C: CHỈNH SỬA VÀ XÓA LỚP HỌC
 // ==============================================================================
@@ -1213,5 +1743,651 @@ window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
 };
 
 
+// =====================================================================
+// KHỐI HÀM CẬP NHẬT AVATAR ĐỒNG LOẠT (TỪ 4.16 ĐẾN 4.23)
+// =====================================================================
+window.BatchAvatarState = {
+    dsHocSinh: [], // Lưu trữ danh sách ghép nối: { uid, ten, sdt, file, previewBase64 }
+};
+
+// // HÀM 4.16: KHỞI TẠO POPUP
+// window.ham_4_16_popup_cap_nhat_avatar_lop = function () {
+//     if (!window.ChiTietLopState || !window.ChiTietLopState.dsTrong || window.ChiTietLopState.dsTrong.length === 0) {
+//         alert("⚠️ Lớp này hiện chưa có học sinh nào. Thầy vui lòng thêm học sinh vào lớp trước!");
+//         return;
+//     }
+
+//     // Lấy danh sách đang có trong lớp, SẮP XẾP CHUẨN ABC
+//     let danhSachLop = [...window.ChiTietLopState.dsTrong].sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+
+//     // Nạp vào bộ nhớ tạm
+//     window.BatchAvatarState.dsHocSinh = danhSachLop.map(hs => ({
+//         uid: hs.uid,
+//         ten: hs.ten,
+//         sdt: hs.sdt,
+//         file: null,
+//         previewBase64: null
+//     }));
+
+//     // Tạo Popup
+//     let modal = document.createElement('div');
+//     modal.id = 'modal-batch-avatar';
+//     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; justify-content:center; align-items:center; padding:15px; box-sizing: border-box; animation: fadeIn 0.2s;';
+
+//     modal.innerHTML = `
+//         <div style="background:#fff; width:100%; max-width:800px; height:90vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+            
+//             <!-- HEADER -->
+//             <div style="background:#1a73e8; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+//                 <h3 style="margin:0; font-size:18px; display:flex; align-items:center; gap:10px;">
+//                     📸 GẮN ẢNH ĐẠI DIỆN HÀNG LOẠT: ${window.ChiTietLopState.tenLop}
+//                 </h3>
+//                 <button onclick="document.body.removeChild(document.getElementById('modal-batch-avatar'))" style="background:#dc3545; color:white; border:none; padding:5px 12px; border-radius:4px; font-weight:bold; cursor:pointer;">❌ Đóng</button>
+//             </div>
+
+//             <!-- TOOLBAR -->
+//             <div style="background:#f8f9fa; padding:15px 20px; border-bottom:1px solid #dee2e6; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+//                 <label style="padding:10px 20px; background:#ffc107; color:#000; border:1px solid #d39e00; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#e0a800'" onmouseout="this.style.background='#ffc107'">
+//                     📂 Chọn khối ảnh từ máy tính (Tải 1 lúc nhiều ảnh)
+//                     <!-- GỌI HÀM 4.17 -->
+//                     <input type="file" multiple accept="image/*" style="display:none;" onchange="window.ham_4_17_xu_ly_chon_file(this)">
+//                 </label>
+                
+//                 <!-- GỌI HÀM 4.23 -->
+//                 <button id="btn-luu-batch-avatar" onclick="window.ham_4_23_luu_dong_loat_avatar(this)" style="padding:10px 25px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:15px; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                     💾 LƯU ĐỒNG LOẠT VÀO HỆ THỐNG
+//                 </button>
+//             </div>
+
+//             <!-- BẢNG GHÉP ẢNH -->
+//             <div style="flex:1; overflow-y:auto; padding:0 20px; background:#f4f6f8;">
+//                 <table style="width:100%; border-collapse:collapse; background:white; margin:15px 0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+//                     <thead style="background:#e9ecef; position:sticky; top:0; z-index:10;">
+//                         <tr>
+//                             <th style="padding:12px; text-align:center; width:40px; border-bottom:2px solid #dee2e6;">STT</th>
+//                             <th style="padding:12px; text-align:left; border-bottom:2px solid #dee2e6;">Danh sách Lớp chuẩn A-B-C</th>
+//                             <th style="padding:12px; text-align:center; width:120px; border-bottom:2px solid #dee2e6;">Ảnh nạp vào</th>
+//                             <th style="padding:12px; text-align:center; width:160px; border-bottom:2px solid #dee2e6;">Thao tác chỉnh sửa</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody id="tbody-batch-avatar">
+//                         <!-- Render JS -->
+//                     </tbody>
+//                 </table>
+//             </div>
+//         </div>
+//     `;
+
+//     document.body.appendChild(modal);
+//     window.ham_4_18_render_bang_avatar();
+// };
+// =====================================================================
+// // HÀM 4.16: KHỞI TẠO POPUP (CÓ TRUY VẤN LẤY AVATAR HIỆN TẠI TỪ DB)
+// // =====================================================================
+// window.ham_4_16_popup_cap_nhat_avatar_lop = async function () {
+//     if (!window.ChiTietLopState || !window.ChiTietLopState.dsTrong || window.ChiTietLopState.dsTrong.length === 0) {
+//         alert("⚠️ Lớp này hiện chưa có học sinh nào. Thầy vui lòng thêm học sinh vào lớp trước!");
+//         return;
+//     }
+
+//     // Mở ngay Popup Loading để thầy biết hệ thống đang xử lý
+//     let modal = document.getElementById('modal-batch-avatar');
+//     if (modal) document.body.removeChild(modal);
+
+//     modal = document.createElement('div');
+//     modal.id = 'modal-batch-avatar';
+//     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; justify-content:center; align-items:center; padding:15px; box-sizing: border-box; animation: fadeIn 0.2s;';
+//     modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:8px; text-align:center; font-weight:bold; color:#6f42c1; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">⏳ Đang truy xuất Avatar hiện tại của lớp...</div>`;
+//     document.body.appendChild(modal);
+
+//     // Lấy danh sách đang có trong lớp, SẮP XẾP CHUẨN ABC
+//     let danhSachLop = [...window.ChiTietLopState.dsTrong].sort((a, b) => a.ten.localeCompare(b.ten, 'vi'));
+//     let mangUid = danhSachLop.map(hs => hs.uid);
+//     let tuDienAvatar = {};
+
+//     try {
+//         // 🌟 Nạp Avatar hiện tại trực tiếp từ Database
+//         const { data: hsData, error } = await _supabase.from('hoc_sinh').select('uid, anh_dai_dien').in('uid', mangUid);
+//         if (hsData) {
+//             hsData.forEach(hs => tuDienAvatar[hs.uid] = hs.anh_dai_dien);
+//         }
+//     } catch (e) {
+//         console.error("Lỗi lấy avatar hiện tại:", e);
+//     }
+
+//     // Nạp vào bộ nhớ tạm (Có thêm trường anhHienTai)
+//     window.BatchAvatarState.dsHocSinh = danhSachLop.map(hs => ({
+//         uid: hs.uid,
+//         ten: hs.ten,
+//         sdt: hs.sdt,
+//         anhHienTai: tuDienAvatar[hs.uid] || null, // 🌟 Lưu lại ảnh đang có trên hệ thống
+//         file: null,
+//         previewBase64: null
+//     }));
+
+//     modal.innerHTML = `
+//         <div style="background:#fff; width:100%; max-width:950px; height:90vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+            
+//             <!-- HEADER -->
+//             <div style="background:#1a73e8; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+//                 <h3 style="margin:0; font-size:18px; display:flex; align-items:center; gap:10px;">
+//                     📸 GẮN ẢNH ĐẠI DIỆN HÀNG LOẠT: ${window.ChiTietLopState.tenLop}
+//                 </h3>
+//                 <button onclick="document.body.removeChild(document.getElementById('modal-batch-avatar'))" style="background:#dc3545; color:white; border:none; padding:5px 12px; border-radius:4px; font-weight:bold; cursor:pointer;">❌ Đóng</button>
+//             </div>
+
+//             <!-- TOOLBAR -->
+//             <div style="background:#f8f9fa; padding:15px 20px; border-bottom:1px solid #dee2e6; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+//                 <label style="padding:10px 20px; background:#ffc107; color:#000; border:1px solid #d39e00; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#e0a800'" onmouseout="this.style.background='#ffc107'">
+//                     📂 Chọn khối ảnh từ máy tính (Tải 1 lúc nhiều ảnh)
+//                     <input type="file" multiple accept="image/*" style="display:none;" onchange="window.ham_4_17_xu_ly_chon_file(this)">
+//                 </label>
+                
+//                 <button id="btn-luu-batch-avatar" onclick="window.ham_4_23_luu_dong_loat_avatar(this)" style="padding:10px 25px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:15px; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                     💾 LƯU ĐỒNG LOẠT VÀO HỆ THỐNG
+//                 </button>
+//             </div>
+
+//             <!-- BẢNG GHÉP ẢNH -->
+//             <div style="flex:1; overflow-y:auto; padding:0 20px; background:#f4f6f8;">
+//                 <table style="width:100%; border-collapse:collapse; background:white; margin:15px 0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+//                     <thead style="background:#e9ecef; position:sticky; top:0; z-index:10;">
+//                         <tr>
+//                             <th style="padding:12px; text-align:center; width:40px; border-bottom:2px solid #dee2e6;">STT</th>
+//                             <th style="padding:12px; text-align:left; border-bottom:2px solid #dee2e6;">Danh sách Lớp chuẩn A-B-C</th>
+//                             <th style="padding:12px; text-align:center; width:120px; border-bottom:2px solid #dee2e6;">Avatar hiện tại</th>
+//                             <th style="padding:12px; text-align:center; width:120px; border-bottom:2px solid #dee2e6; color:#28a745;">Ảnh mới nạp</th>
+//                             <th style="padding:12px; text-align:center; width:160px; border-bottom:2px solid #dee2e6;">Thao tác chỉnh sửa</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody id="tbody-batch-avatar">
+//                         <!-- Render JS -->
+//                     </tbody>
+//                 </table>
+//             </div>
+//         </div>
+//     `;
+//     window.ham_4_18_render_bang_avatar();
+// };
+
+
+// =====================================================================
+// HÀM 4.16: KHỞI TẠO POPUP AVATAR (TÍCH HỢP SORT CHUẨN VIỆT NAM)
+// =====================================================================
+window.ham_4_16_popup_cap_nhat_avatar_lop = async function () {
+    if (!window.ChiTietLopState || !window.ChiTietLopState.dsTrong || window.ChiTietLopState.dsTrong.length === 0) {
+        alert("⚠️ Lớp này hiện chưa có học sinh nào. Thầy vui lòng thêm học sinh vào lớp trước!");
+        return;
+    }
+
+    let modal = document.getElementById('modal-batch-avatar');
+    if (modal) document.body.removeChild(modal);
+
+    modal = document.createElement('div');
+    modal.id = 'modal-batch-avatar';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; display:flex; justify-content:center; align-items:center; padding:15px; box-sizing: border-box; animation: fadeIn 0.2s;';
+    modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:8px; text-align:center; font-weight:bold; color:#6f42c1; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">⏳ Đang truy xuất Avatar hiện tại của lớp...</div>`;
+    document.body.appendChild(modal);
+
+    // 🌟 Lấy danh sách lớp và Khởi tạo trạng thái Sort (Mặc định A-Z)
+    let danhSachLop = [...window.ChiTietLopState.dsTrong];
+    window.BatchAvatarState.sortDirection = 'asc';
+    danhSachLop.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten));
+
+    let mangUid = danhSachLop.map(hs => hs.uid);
+    let tuDienAvatar = {};
+
+    try {
+        const { data: hsData, error } = await _supabase.from('hoc_sinh').select('uid, anh_dai_dien').in('uid', mangUid);
+        if (hsData) hsData.forEach(hs => tuDienAvatar[hs.uid] = hs.anh_dai_dien);
+    } catch (e) {
+        console.error("Lỗi lấy avatar hiện tại:", e);
+    }
+
+    // Nạp vào bộ nhớ tạm
+    window.BatchAvatarState.dsHocSinh = danhSachLop.map(hs => ({
+        uid: hs.uid,
+        ten: hs.ten,
+        sdt: hs.sdt,
+        anhHienTai: tuDienAvatar[hs.uid] || null,
+        file: null,
+        previewBase64: null
+    }));
+
+    modal.innerHTML = `
+        <div style="background:#fff; width:100%; max-width:950px; height:90vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+            
+            <div style="background:#1a73e8; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+                <h3 style="margin:0; font-size:18px; display:flex; align-items:center; gap:10px;">
+                    📸 GẮN ẢNH ĐẠI DIỆN HÀNG LOẠT: ${window.ChiTietLopState.tenLop}
+                </h3>
+                <button onclick="document.body.removeChild(document.getElementById('modal-batch-avatar'))" style="background:#dc3545; color:white; border:none; padding:5px 12px; border-radius:4px; font-weight:bold; cursor:pointer;">❌ Đóng</button>
+            </div>
+
+            <div style="background:#f8f9fa; padding:15px 20px; border-bottom:1px solid #dee2e6; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+                <label style="padding:10px 20px; background:#ffc107; color:#000; border:1px solid #d39e00; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#e0a800'" onmouseout="this.style.background='#ffc107'">
+                    📂 Chọn khối ảnh từ máy tính (Tải 1 lúc nhiều ảnh)
+                    <input type="file" multiple accept="image/*" style="display:none;" onchange="window.ham_4_17_xu_ly_chon_file(this)">
+                </label>
+                
+                <button id="btn-luu-batch-avatar" onclick="window.ham_4_23_luu_dong_loat_avatar(this)" style="padding:10px 25px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:15px; box-shadow:0 2px 4px rgba(0,0,0,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                    💾 LƯU ĐỒNG LOẠT VÀO HỆ THỐNG
+                </button>
+            </div>
+
+            <div style="flex:1; overflow-y:auto; padding:0 20px; background:#f4f6f8;">
+                <table style="width:100%; border-collapse:collapse; background:white; margin:15px 0; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+                    <thead style="background:#e9ecef; position:sticky; top:0; z-index:10;">
+                        <tr>
+                            <th style="padding:12px; text-align:center; width:40px; border-bottom:2px solid #dee2e6;">STT</th>
+                            <!-- 🌟 BỔ SUNG NÚT ĐẢO CHIỀU A-Z VÀO TIÊU ĐỀ -->
+                            <th style="padding:12px; text-align:left; border-bottom:2px solid #dee2e6;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    Danh sách Lớp
+                                    <button id="btn-sort-batch-avatar" onclick="window.ham_4_25_dao_chieu_sort_avatar()" style="background: #fff; border: 1px solid #ced4da; color: #495057; border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#fff'" title="Đảo chiều sắp xếp">⬇️ A-Z</button>
+                                </span>
+                            </th>
+                            <th style="padding:12px; text-align:center; width:120px; border-bottom:2px solid #dee2e6;">Avatar hiện tại</th>
+                            <th style="padding:12px; text-align:center; width:120px; border-bottom:2px solid #dee2e6; color:#28a745;">Ảnh mới nạp</th>
+                            <th style="padding:12px; text-align:center; width:160px; border-bottom:2px solid #dee2e6;">Thao tác chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-batch-avatar">
+                        <!-- Render JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    window.ham_4_18_render_bang_avatar();
+};
+
+
+
+
+
+// // =====================================================================
+// // HÀM 4.18: VẼ BẢNG GHÉP ẢNH (BỔ SUNG CỘT AVATAR HIỆN TẠI)
+// // =====================================================================
+// window.ham_4_18_render_bang_avatar = function () {
+//     const tbody = document.getElementById('tbody-batch-avatar');
+//     if (!tbody) return;
+
+//     let html = '';
+//     window.BatchAvatarState.dsHocSinh.forEach((item, index) => {
+
+//         // 1. Xử lý hiển thị Avatar Hiện tại
+//         let currentAvatarHtml = item.anhHienTai
+//             ? `<img src="${item.anhHienTai}" style="width:50px; height:50px; object-fit:cover; border-radius:50%; border:2px solid #ccc; display:block; margin:0 auto; filter: grayscale(10%);">`
+//             : `<div style="width:50px; height:50px; border-radius:50%; border:2px dashed #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#bbb; font-size:10px;">Chưa có</div>`;
+
+//         // 2. Xử lý hiển thị Ảnh mới nạp vào
+//         let isCoAnhMoi = item.previewBase64 !== null;
+//         let newAvatarHtml = isCoAnhMoi
+//             ? `<img src="${item.previewBase64}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:3px solid #28a745; display:block; margin:0 auto; box-shadow:0 2px 5px rgba(0,0,0,0.2);">`
+//             : `<div style="width:60px; height:60px; border-radius:50%; border:2px dashed #ccc; background:#fafafa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#aaa; font-size:10px;">Chờ nạp...</div>`;
+
+//         // Tô màu nền xanh lá nhạt cho dòng nào đã có ảnh mới chuẩn bị Lưu
+//         let mauNen = isCoAnhMoi ? '#f0fdf4' : '#fff';
+
+//         html += `
+//             <tr style="border-bottom: 1px solid #eee; background: ${mauNen};">
+//                 <td style="padding:10px; text-align:center; font-weight:bold; color:#666;">${index + 1}</td>
+//                 <td style="padding:10px;">
+//                     <b style="color:#0056b3; font-size:15px;">${item.ten}</b><br>
+//                     <span style="font-size:12px; color:#888;">SĐT: ${item.sdt || '---'}</span>
+//                 </td>
+                
+//                 <!-- Cột Avatar Hiện Tại -->
+//                 <td style="padding:10px; text-align:center; border-right: 1px dashed #ddd; background: #fafafa;">
+//                     ${currentAvatarHtml}
+//                 </td>
+
+//                 <!-- Cột Ảnh Mới Nạp -->
+//                 <td style="padding:10px; text-align:center; position:relative;">
+//                     ${isCoAnhMoi ? `<span style="position:absolute; top:5px; right:15px; font-size:16px;">✨</span>` : ''}
+//                     ${newAvatarHtml}
+//                 </td>
+
+//                 <td style="padding:10px; text-align:center;">
+//                     <div style="display:flex; justify-content:center; gap:5px;">
+//                         <button onclick="window.ham_4_20_rut_anh_len(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở TRÊN">⬆️</button>
+//                         <button onclick="window.ham_4_19_don_anh_xuong(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở DƯỚI">⬇️</button>
+//                         <button onclick="window.ham_4_21_go_anh(${index})" style="padding:6px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:4px; cursor:pointer;" title="Gỡ bỏ ảnh mới nạp này">🗑️</button>
+//                     </div>
+//                 </td>
+//             </tr>
+//         `;
+//     });
+//     tbody.innerHTML = html;
+// };
+// HÀM 4.17: XỬ LÝ CHỌN FILE TỪ MÁY TÍNH
+window.ham_4_17_xu_ly_chon_file = function (input) {
+    const files = Array.from(input.files);
+    if (files.length === 0) return;
+
+    let fileIndex = 0;
+    // Rải ảnh tự động vào các dòng đang bị "Trống" từ trên xuống dưới
+    for (let i = 0; i < window.BatchAvatarState.dsHocSinh.length; i++) {
+        if (fileIndex >= files.length) break;
+        if (!window.BatchAvatarState.dsHocSinh[i].file) {
+            let f = files[fileIndex];
+            window.BatchAvatarState.dsHocSinh[i].file = f;
+            window.BatchAvatarState.dsHocSinh[i].previewBase64 = URL.createObjectURL(f);
+            fileIndex++;
+        }
+    }
+    input.value = ''; // Reset input để có thể chọn lại
+    window.ham_4_18_render_bang_avatar();
+};
+// // =====================================================================
+// // HÀM 4.18: VẼ BẢNG GHÉP ẢNH (CẬP NHẬT TOOLTIP ĐỔI CHỖ)
+// // =====================================================================
+// window.ham_4_18_render_bang_avatar = function () {
+//     const tbody = document.getElementById('tbody-batch-avatar');
+//     if (!tbody) return;
+
+//     let html = '';
+//     window.BatchAvatarState.dsHocSinh.forEach((item, index) => {
+//         let isCoAnh = item.previewBase64 !== null;
+//         let imgHtml = isCoAnh
+//             ? `<img src="${item.previewBase64}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:2px solid #28a745; display:block; margin:0 auto;">`
+//             : `<div style="width:60px; height:60px; border-radius:50%; border:2px dashed #ccc; background:#fafafa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#aaa; font-size:10px;">Trống</div>`;
+
+//         let mauNen = isCoAnh ? '#fff' : '#fffcf8';
+
+//         html += `
+//             <tr style="border-bottom: 1px solid #eee; background: ${mauNen};">
+//                 <td style="padding:10px; text-align:center; font-weight:bold; color:#666;">${index + 1}</td>
+//                 <td style="padding:10px;">
+//                     <b style="color:#0056b3; font-size:15px;">${item.ten}</b><br>
+//                     <span style="font-size:12px; color:#888;">SĐT: ${item.sdt || '---'}</span>
+//                 </td>
+//                 <td style="padding:10px; text-align:center;">
+//                     ${imgHtml}
+//                 </td>
+//                 <td style="padding:10px; text-align:center;">
+//                     <div style="display:flex; justify-content:center; gap:5px;">
+//                         <button onclick="window.ham_4_20_rut_anh_len(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở TRÊN">⬆️</button>
+//                         <button onclick="window.ham_4_19_don_anh_xuong(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở DƯỚI">⬇️</button>
+//                         <button onclick="window.ham_4_21_go_anh(${index})" style="padding:6px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:4px; cursor:pointer;" title="Gỡ bỏ ảnh này">🗑️</button>
+//                     </div>
+//                 </td>
+//             </tr>
+//         `;
+//     });
+//     tbody.innerHTML = html;
+// };
+
+// // =====================================================================
+// // HÀM 4.18: VẼ BẢNG GHÉP ẢNH (BỔ SUNG NÚT ẨN HỌC SINH)
+// // =====================================================================
+// window.ham_4_18_render_bang_avatar = function () {
+//     const tbody = document.getElementById('tbody-batch-avatar');
+//     if (!tbody) return;
+
+//     let html = '';
+//     window.BatchAvatarState.dsHocSinh.forEach((item, index) => {
+
+//         // 1. Xử lý hiển thị Avatar Hiện tại
+//         let currentAvatarHtml = item.anhHienTai
+//             ? `<img src="${item.anhHienTai}" style="width:50px; height:50px; object-fit:cover; border-radius:50%; border:2px solid #ccc; display:block; margin:0 auto; filter: grayscale(10%);">`
+//             : `<div style="width:50px; height:50px; border-radius:50%; border:2px dashed #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#bbb; font-size:10px;">Chưa có</div>`;
+
+//         // 2. Xử lý hiển thị Ảnh mới nạp vào
+//         let isCoAnhMoi = item.previewBase64 !== null;
+//         let newAvatarHtml = isCoAnhMoi
+//             ? `<img src="${item.previewBase64}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:3px solid #28a745; display:block; margin:0 auto; box-shadow:0 2px 5px rgba(0,0,0,0.2);">`
+//             : `<div style="width:60px; height:60px; border-radius:50%; border:2px dashed #ccc; background:#fafafa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#aaa; font-size:10px;">Chờ nạp...</div>`;
+
+//         let mauNen = isCoAnhMoi ? '#f0fdf4' : '#fff';
+
+//         html += `
+//             <tr style="border-bottom: 1px solid #eee; background: ${mauNen};">
+//                 <td style="padding:10px; text-align:center; font-weight:bold; color:#666;">${index + 1}</td>
+//                 <td style="padding:10px;">
+//                     <b style="color:#0056b3; font-size:15px;">${item.ten}</b><br>
+//                     <span style="font-size:12px; color:#888;">SĐT: ${item.sdt || '---'}</span>
+//                 </td>
+                
+//                 <td style="padding:10px; text-align:center; border-right: 1px dashed #ddd; background: #fafafa;">
+//                     ${currentAvatarHtml}
+//                 </td>
+
+//                 <td style="padding:10px; text-align:center; position:relative;">
+//                     ${isCoAnhMoi ? `<span style="position:absolute; top:5px; right:15px; font-size:16px;">✨</span>` : ''}
+//                     ${newAvatarHtml}
+//                 </td>
+
+//                 <td style="padding:10px; text-align:center;">
+//                     <div style="display:flex; justify-content:center; gap:5px;">
+//                         <button onclick="window.ham_4_20_rut_anh_len(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở TRÊN">⬆️</button>
+//                         <button onclick="window.ham_4_19_don_anh_xuong(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở DƯỚI">⬇️</button>
+//                         <button onclick="window.ham_4_21_go_anh(${index})" style="padding:6px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:4px; cursor:pointer;" title="Gỡ bỏ ảnh mới nạp này">🗑️</button>
+//                         <!-- 🌟 NÚT ẨN HỌC SINH -->
+//                         <button onclick="window.ham_4_24_loai_hoc_sinh(${index})" style="padding:6px 10px; background:#6c757d; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px;" title="Loại học sinh này khỏi danh sách nạp ảnh đợt này">🚫 Ẩn HS</button>
+//                     </div>
+//                 </td>
+//             </tr>
+//         `;
+//     });
+//     tbody.innerHTML = html;
+// };
+
+
+
+// =====================================================================
+// HÀM 4.18: VẼ BẢNG GHÉP ẢNH (TÍCH HỢP TỰ ĐỘNG SORT)
+// =====================================================================
+window.ham_4_18_render_bang_avatar = function () {
+    const tbody = document.getElementById('tbody-batch-avatar');
+    if (!tbody) return;
+
+    // 🌟 THỰC THI SẮP XẾP CHUẨN VIỆT NAM TRƯỚC KHI VẼ
+    let heSo = window.BatchAvatarState.sortDirection === 'asc' ? 1 : -1;
+    window.BatchAvatarState.dsHocSinh.sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten) * heSo);
+
+    // Cập nhật nhãn nút hiển thị
+    const btnSort = document.getElementById('btn-sort-batch-avatar');
+    if (btnSort) btnSort.innerHTML = window.BatchAvatarState.sortDirection === 'asc' ? '⬇️ A-Z' : '⬆️ Z-A';
+
+    let html = '';
+    window.BatchAvatarState.dsHocSinh.forEach((item, index) => {
+        let currentAvatarHtml = item.anhHienTai
+            ? `<img src="${item.anhHienTai}" style="width:50px; height:50px; object-fit:cover; border-radius:50%; border:2px solid #ccc; display:block; margin:0 auto; filter: grayscale(10%);">`
+            : `<div style="width:50px; height:50px; border-radius:50%; border:2px dashed #ddd; background:#f8f9fa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#bbb; font-size:10px;">Chưa có</div>`;
+
+        let isCoAnhMoi = item.previewBase64 !== null;
+        let newAvatarHtml = isCoAnhMoi
+            ? `<img src="${item.previewBase64}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:3px solid #28a745; display:block; margin:0 auto; box-shadow:0 2px 5px rgba(0,0,0,0.2);">`
+            : `<div style="width:60px; height:60px; border-radius:50%; border:2px dashed #ccc; background:#fafafa; display:flex; align-items:center; justify-content:center; margin:0 auto; color:#aaa; font-size:10px;">Chờ nạp...</div>`;
+
+        let mauNen = isCoAnhMoi ? '#f0fdf4' : '#fff';
+
+        html += `
+            <tr style="border-bottom: 1px solid #eee; background: ${mauNen};">
+                <td style="padding:10px; text-align:center; font-weight:bold; color:#666;">${index + 1}</td>
+                <td style="padding:10px;">
+                    <b style="color:#0056b3; font-size:15px;">${item.ten}</b><br>
+                    <span style="font-size:12px; color:#888;">SĐT: ${item.sdt || '---'}</span>
+                </td>
+                <td style="padding:10px; text-align:center; border-right: 1px dashed #ddd; background: #fafafa;">
+                    ${currentAvatarHtml}
+                </td>
+                <td style="padding:10px; text-align:center; position:relative;">
+                    ${isCoAnhMoi ? `<span style="position:absolute; top:5px; right:15px; font-size:16px;">✨</span>` : ''}
+                    ${newAvatarHtml}
+                </td>
+                <td style="padding:10px; text-align:center;">
+                    <div style="display:flex; justify-content:center; gap:5px;">
+                        <button onclick="window.ham_4_20_rut_anh_len(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở TRÊN">⬆️</button>
+                        <button onclick="window.ham_4_19_don_anh_xuong(${index})" style="padding:6px; background:#e0f3ff; border:1px solid #b8daff; border-radius:4px; cursor:pointer;" title="Đổi chỗ ảnh này với học sinh ở DƯỚI">⬇️</button>
+                        <button onclick="window.ham_4_21_go_anh(${index})" style="padding:6px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:4px; cursor:pointer;" title="Gỡ bỏ ảnh mới nạp này">🗑️</button>
+                        <button onclick="window.ham_4_24_loai_hoc_sinh(${index})" style="padding:6px 10px; background:#6c757d; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:12px;" title="Loại học sinh này khỏi danh sách nạp ảnh đợt này">🚫 Ẩn HS</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    tbody.innerHTML = html;
+};
+
+
+
+
+// =====================================================================
+// HÀM 4.19: ĐẨY ẢNH XUỐNG (HOÁN ĐỔI VỚI ẢNH BÊN DƯỚI)
+// =====================================================================
+window.ham_4_19_don_anh_xuong = function (index) {
+    let ds = window.BatchAvatarState.dsHocSinh;
+    if (index >= ds.length - 1) return; // Đang ở dòng cuối thì không đẩy xuống được nữa
+
+    // Lưu tạm ảnh hiện tại
+    let tempFile = ds[index].file;
+    let tempPreview = ds[index].previewBase64;
+
+    // Kéo ảnh dưới lên thay thế chỗ hiện tại
+    ds[index].file = ds[index + 1].file;
+    ds[index].previewBase64 = ds[index + 1].previewBase64;
+
+    // Đẩy ảnh hiện tại (từ biến tạm) xuống chỗ bên dưới
+    ds[index + 1].file = tempFile;
+    ds[index + 1].previewBase64 = tempPreview;
+
+    window.ham_4_18_render_bang_avatar(); // Vẽ lại giao diện
+};
+
+// =====================================================================
+// HÀM 4.20: RÚT ẢNH LÊN (HOÁN ĐỔI VỚI ẢNH BÊN TRÊN)
+// =====================================================================
+window.ham_4_20_rut_anh_len = function (index) {
+    let ds = window.BatchAvatarState.dsHocSinh;
+    if (index === 0) return; // Đang ở dòng đầu thì không rút lên được nữa
+
+    // Lưu tạm ảnh hiện tại
+    let tempFile = ds[index].file;
+    let tempPreview = ds[index].previewBase64;
+
+    // Kéo ảnh trên xuống thay thế chỗ hiện tại
+    ds[index].file = ds[index - 1].file;
+    ds[index].previewBase64 = ds[index - 1].previewBase64;
+
+    // Đẩy ảnh hiện tại (từ biến tạm) lên chỗ bên trên
+    ds[index - 1].file = tempFile;
+    ds[index - 1].previewBase64 = tempPreview;
+
+    window.ham_4_18_render_bang_avatar(); // Vẽ lại giao diện
+};
+
+// HÀM 4.21: GỠ BỎ 1 ẢNH 
+window.ham_4_21_go_anh = function (index) {
+    window.BatchAvatarState.dsHocSinh[index].file = null;
+    window.BatchAvatarState.dsHocSinh[index].previewBase64 = null;
+    window.ham_4_18_render_bang_avatar();
+};
+
+// HÀM 4.22: NÉN ẢNH CANVAS TỐC ĐỘ CAO
+window.ham_4_22_nen_anh_base64 = function (file) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Thuật toán Crop thành hình vuông ngay tâm ảnh
+                const size = Math.min(img.width, img.height);
+                const sx = (img.width - size) / 2;
+                const sy = (img.height - size) / 2;
+
+                canvas.width = 300;
+                canvas.height = 300;
+
+                ctx.drawImage(img, sx, sy, size, size, 0, 0, 300, 300);
+
+                // Trả ra Base64 định dạng JPEG chất lượng 80% (Dung lượng chỉ khoảng ~15KB/tấm)
+                resolve(canvas.toDataURL('image/jpeg', 0.8));
+            };
+        };
+    });
+};
+
+// HÀM 4.23: LƯU ĐỒNG LOẠT VÀO DATABASE
+window.ham_4_23_luu_dong_loat_avatar = async function (btnLuu) {
+    let dsCoAnh = window.BatchAvatarState.dsHocSinh.filter(item => item.file !== null);
+    if (dsCoAnh.length === 0) {
+        alert("⚠️ Bảng đang trống, thầy chưa nạp bức ảnh nào!");
+        return;
+    }
+
+    if (!confirm(`Thầy chuẩn bị lưu ${dsCoAnh.length} bức ảnh đại diện. Bắt đầu ngay?`)) return;
+
+    btnLuu.innerHTML = "⏳ ĐANG LƯU... (0%)";
+    btnLuu.disabled = true;
+
+    let thanhCong = 0;
+
+    try {
+        for (let i = 0; i < dsCoAnh.length; i++) {
+            let item = dsCoAnh[i];
+
+            // 1. Nén ảnh tức thì trên RAM
+            let base64SieuNhe = await window.ham_4_22_nen_anh_base64(item.file);
+
+            // 2. Bắn lên Supabase
+            const { error } = await _supabase.from('hoc_sinh')
+                .update({ anh_dai_dien: base64SieuNhe })
+                .eq('uid', item.uid);
+
+            if (!error) thanhCong++;
+
+            // Cập nhật giao diện thanh tiến trình
+            let phanTram = Math.round(((i + 1) / dsCoAnh.length) * 100);
+            btnLuu.innerHTML = `⏳ ĐANG LƯU... (${phanTram}%)`;
+            btnLuu.style.background = `linear-gradient(90deg, #28a745 ${phanTram}%, #6c757d ${phanTram}%)`;
+        }
+
+        alert(`✅ HOÀN TẤT! Đã cập nhật thành công Avatar cho ${thanhCong} học sinh.`);
+        document.body.removeChild(document.getElementById('modal-batch-avatar'));
+
+    } catch (e) {
+        alert("❌ Có lỗi hệ thống trong quá trình lưu: " + e.message);
+    } finally {
+        btnLuu.innerHTML = "💾 LƯU ĐỒNG LOẠT VÀO HỆ THỐNG";
+        btnLuu.style.background = "#28a745";
+        btnLuu.disabled = false;
+    }
+};
+
+
+// =====================================================================
+// HÀM 4.24: RÚT HỌC SINH KHỎI DANH SÁCH CHỜ CẬP NHẬT
+// =====================================================================
+window.ham_4_24_loai_hoc_sinh = function (index) {
+    let hs = window.BatchAvatarState.dsHocSinh[index];
+
+    // Nếu học sinh đã có ảnh chuẩn bị lưu, nhắc nhở trước khi gỡ
+    if (hs.file && !confirm(`Em "${hs.ten}" đang được gán ảnh mới. Thầy có chắc muốn loại em này khỏi đợt cập nhật không?`)) {
+        return;
+    }
+
+    // Rút em này khỏi mảng RAM
+    window.BatchAvatarState.dsHocSinh.splice(index, 1);
+
+    // Cập nhật lại giao diện ngay lập tức
+    window.ham_4_18_render_bang_avatar();
+};
+
+
+// =====================================================================
+// HÀM 4.25: XỬ LÝ ĐẢO CHIỀU SẮP XẾP BẢNG GHÉP ẢNH
+// =====================================================================
+window.ham_4_25_dao_chieu_sort_avatar = function () {
+    window.BatchAvatarState.sortDirection = window.BatchAvatarState.sortDirection === 'asc' ? 'desc' : 'asc';
+    window.ham_4_18_render_bang_avatar();
+};
 
 

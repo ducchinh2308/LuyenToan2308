@@ -451,30 +451,95 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 
 
 
+// // // // =======================================================
+// // // // HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HỌC SINH TỪ SUPABASE
+// // // // =======================================================
+// // // window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
+// // //     const inputLop = document.getElementById('nk-input-lop');
+// // //     const datalistHS = document.getElementById('nk-dl-hs');
+// // //     const inputHS = document.getElementById('nk-input-hs');
+
+// // //     if (!inputLop || !datalistHS || !inputHS) return;
+
+// // //     let rawLop = inputLop.value.trim();
+// // //     if (!rawLop) {
+// // //         datalistHS.innerHTML = '';
+// // //         inputHS.value = '';
+// // //         return;
+// // //     }
+
+// // //     let maLop = rawLop;
+// // //     let match = rawLop.match(/\(([^)]+)\)$/);
+// // //     if (match) maLop = match[1].trim();
+
+// // //     inputHS.value = '';
+// // //     inputHS.placeholder = "⏳ Đang tải danh sách...";
+// // //     inputHS.disabled = true;
+
+// // //     try {
+// // //         const { data: hsData, error } = await _supabase
+// // //             .from('hoc_sinh')
+// // //             .select('*')
+// // //             .contains('danh_sach_ma_lop', JSON.stringify([maLop]));
+
+// // //         if (error) throw error;
+
+// // //         datalistHS.innerHTML = '';
+
+// // //         if (hsData && hsData.length > 0) {
+// // //             hsData.forEach(hs => {
+// // //                 let uidHS = hs.uid || hs.id || '';
+// // //                 let tenDangNhap = hs.sdt || hs.ten_dang_nhap || hs.ma_hs || '';
+// // //                 let tenHienThi = hs.ten || hs.ho_ten || hs.ho_va_ten || 'Chưa có tên';
+
+// // //                 let option = document.createElement('option');
+// // //                 // 🌟 Giao diện hiển thị cực gọn: Tên học sinh - Tên đăng nhập
+// // //                 option.value = `${tenHienThi} - ${tenDangNhap}`;
+// // //                 // 🌟 Thủ thuật cất giấu UID ngầm để lát nữa dùng
+// // //                 option.dataset.uid = uidHS;
+
+// // //                 datalistHS.appendChild(option);
+// // //             });
+// // //             inputHS.placeholder = `Đã tải ${hsData.length} học sinh. Nhập để chọn...`;
+// // //         } else {
+// // //             inputHS.placeholder = `❌ Không tìm thấy HS lớp ${maLop}!`;
+// // //         }
+// // //     } catch (err) {
+// // //         console.error("Lỗi tải học sinh:", err);
+// // //         inputHS.placeholder = "❌ Lỗi dữ liệu! Bấm F12 xem Console.";
+// // //     } finally {
+// // //         inputHS.disabled = false;
+// // //     }
+// // // };
+
+
 // // // =======================================================
 // // // HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HỌC SINH TỪ SUPABASE
 // // // =======================================================
 // // window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
 // //     const inputLop = document.getElementById('nk-input-lop');
 // //     const datalistHS = document.getElementById('nk-dl-hs');
-// //     const inputHS = document.getElementById('nk-input-hs');
 
-// //     if (!inputLop || !datalistHS || !inputHS) return;
+// //     // Quét tất cả các ô nhập liệu học sinh (cả điểm danh lẫn sự kiện)
+// //     const cacOChonHS = document.querySelectorAll('.nk-input-hs-vang, .nk-input-hs-su-kien');
+
+// //     if (!inputLop || !datalistHS) return;
 
 // //     let rawLop = inputLop.value.trim();
 // //     if (!rawLop) {
 // //         datalistHS.innerHTML = '';
-// //         inputHS.value = '';
+// //         cacOChonHS.forEach(o => o.value = '');
 // //         return;
 // //     }
 
-// //     let maLop = rawLop;
-// //     let match = rawLop.match(/\(([^)]+)\)$/);
-// //     if (match) maLop = match[1].trim();
+// //     let maLop = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
 
-// //     inputHS.value = '';
-// //     inputHS.placeholder = "⏳ Đang tải danh sách...";
-// //     inputHS.disabled = true;
+// //     // Đổi placeholder báo hiệu đang tải
+// //     cacOChonHS.forEach(o => {
+// //         o.value = '';
+// //         o.placeholder = "⏳ Đang tải danh sách...";
+// //         o.disabled = true;
+// //     });
 
 // //     try {
 // //         const { data: hsData, error } = await _supabase
@@ -493,34 +558,33 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 // //                 let tenHienThi = hs.ten || hs.ho_ten || hs.ho_va_ten || 'Chưa có tên';
 
 // //                 let option = document.createElement('option');
-// //                 // 🌟 Giao diện hiển thị cực gọn: Tên học sinh - Tên đăng nhập
 // //                 option.value = `${tenHienThi} - ${tenDangNhap}`;
-// //                 // 🌟 Thủ thuật cất giấu UID ngầm để lát nữa dùng
 // //                 option.dataset.uid = uidHS;
 
 // //                 datalistHS.appendChild(option);
 // //             });
-// //             inputHS.placeholder = `Đã tải ${hsData.length} học sinh. Nhập để chọn...`;
+
+// //             // Cập nhật lại placeholder khi tải thành công
+// //             cacOChonHS.forEach(o => o.placeholder = `Đã tải ${hsData.length} học sinh. Nhập để chọn...`);
 // //         } else {
-// //             inputHS.placeholder = `❌ Không tìm thấy HS lớp ${maLop}!`;
+// //             cacOChonHS.forEach(o => o.placeholder = `❌ Không tìm thấy HS lớp ${maLop}!`);
 // //         }
 // //     } catch (err) {
 // //         console.error("Lỗi tải học sinh:", err);
-// //         inputHS.placeholder = "❌ Lỗi dữ liệu! Bấm F12 xem Console.";
+// //         cacOChonHS.forEach(o => o.placeholder = "❌ Lỗi dữ liệu! Bấm F12 xem Console.");
 // //     } finally {
-// //         inputHS.disabled = false;
+// //         cacOChonHS.forEach(o => o.disabled = false);
 // //     }
 // // };
 
 
 // // =======================================================
-// // HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HỌC SINH TỪ SUPABASE
+// // HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HS TỪ SUPABASE
 // // =======================================================
 // window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
-//     const inputLop = document.getElementById('nk-input-lop');
+//     // 🌟 Quét tìm ô Lớp ở CẢ 2 màn hình (Tra cứu: tc-input-lop, Ghi sổ: nk-input-lop)
+//     const inputLop = document.getElementById('tc-input-lop') || document.getElementById('nk-input-lop');
 //     const datalistHS = document.getElementById('nk-dl-hs');
-
-//     // Quét tất cả các ô nhập liệu học sinh (cả điểm danh lẫn sự kiện)
 //     const cacOChonHS = document.querySelectorAll('.nk-input-hs-vang, .nk-input-hs-su-kien');
 
 //     if (!inputLop || !datalistHS) return;
@@ -534,7 +598,6 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 
 //     let maLop = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
 
-//     // Đổi placeholder báo hiệu đang tải
 //     cacOChonHS.forEach(o => {
 //         o.value = '';
 //         o.placeholder = "⏳ Đang tải danh sách...";
@@ -548,7 +611,6 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 //             .contains('danh_sach_ma_lop', JSON.stringify([maLop]));
 
 //         if (error) throw error;
-
 //         datalistHS.innerHTML = '';
 
 //         if (hsData && hsData.length > 0) {
@@ -560,29 +622,23 @@ window.ham_20_1_mo_giao_dien_nhat_ky_day_hoc = function () {
 //                 let option = document.createElement('option');
 //                 option.value = `${tenHienThi} - ${tenDangNhap}`;
 //                 option.dataset.uid = uidHS;
-
 //                 datalistHS.appendChild(option);
 //             });
-
-//             // Cập nhật lại placeholder khi tải thành công
-//             cacOChonHS.forEach(o => o.placeholder = `Đã tải ${hsData.length} học sinh. Nhập để chọn...`);
+//             cacOChonHS.forEach(o => o.placeholder = `Đã tải ${hsData.length} HS. Nhập để chọn...`);
 //         } else {
 //             cacOChonHS.forEach(o => o.placeholder = `❌ Không tìm thấy HS lớp ${maLop}!`);
 //         }
 //     } catch (err) {
 //         console.error("Lỗi tải học sinh:", err);
-//         cacOChonHS.forEach(o => o.placeholder = "❌ Lỗi dữ liệu! Bấm F12 xem Console.");
+//         cacOChonHS.forEach(o => o.placeholder = "❌ Lỗi dữ liệu!");
 //     } finally {
 //         cacOChonHS.forEach(o => o.disabled = false);
 //     }
 // };
-
-
 // =======================================================
-// HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HS TỪ SUPABASE
+// HÀM 20.2: TỰ ĐỘNG TẢI DANH SÁCH HS (CHỈ LẤY CỘT SDT LÀM TÊN ĐĂNG NHẬP)
 // =======================================================
 window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
-    // 🌟 Quét tìm ô Lớp ở CẢ 2 màn hình (Tra cứu: tc-input-lop, Ghi sổ: nk-input-lop)
     const inputLop = document.getElementById('tc-input-lop') || document.getElementById('nk-input-lop');
     const datalistHS = document.getElementById('nk-dl-hs');
     const cacOChonHS = document.querySelectorAll('.nk-input-hs-vang, .nk-input-hs-su-kien');
@@ -593,6 +649,7 @@ window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
     if (!rawLop) {
         datalistHS.innerHTML = '';
         cacOChonHS.forEach(o => o.value = '');
+        window.DanhSachHocSinhLopHienTai = [];
         return;
     }
 
@@ -605,26 +662,47 @@ window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
     });
 
     try {
+        // 🌟 Lấy đúng 5 cột thiết yếu có thật trong CSDL
         const { data: hsData, error } = await _supabase
             .from('hoc_sinh')
-            .select('*')
+            .select('uid, sdt, ten, anh_dai_dien, danh_sach_ma_lop')
             .contains('danh_sach_ma_lop', JSON.stringify([maLop]));
 
         if (error) throw error;
+
         datalistHS.innerHTML = '';
+        window.DanhSachHocSinhLopHienTai = [];
 
         if (hsData && hsData.length > 0) {
             hsData.forEach(hs => {
-                let uidHS = hs.uid || hs.id || '';
-                let tenDangNhap = hs.sdt || hs.ten_dang_nhap || hs.ma_hs || '';
-                let tenHienThi = hs.ten || hs.ho_ten || hs.ho_va_ten || 'Chưa có tên';
+                let uidHS = hs.uid || '';
+                let tenHienThi = hs.ten || 'Chưa có tên';
+                let tenDangNhap = hs.sdt || 'Chưa có SĐT'; // 🌟 Dùng trực tiếp SĐT làm tên đăng nhập
+
+                let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(tenHienThi)}&background=random&color=fff&size=100`;
+
+                let chuoiGhep = `${tenHienThi} - ${tenDangNhap}`;
+
+                window.DanhSachHocSinhLopHienTai.push({
+                    uid: uidHS,
+                    tenHienThi: tenHienThi,
+                    tenDangNhap: tenDangNhap,
+                    avatarUrl: avatarUrl,
+                    chuoiGhep: chuoiGhep
+                });
 
                 let option = document.createElement('option');
-                option.value = `${tenHienThi} - ${tenDangNhap}`;
+                option.value = chuoiGhep;
                 option.dataset.uid = uidHS;
                 datalistHS.appendChild(option);
             });
-            cacOChonHS.forEach(o => o.placeholder = `Đã tải ${hsData.length} HS. Nhập để chọn...`);
+
+            cacOChonHS.forEach(o => {
+                o.placeholder = `Đã tải ${hsData.length} HS. Nhấn hoặc gõ tên để chọn...`;
+                o.removeAttribute('list');
+                o.setAttribute('autocomplete', 'off');
+            });
+
         } else {
             cacOChonHS.forEach(o => o.placeholder = `❌ Không tìm thấy HS lớp ${maLop}!`);
         }
@@ -635,6 +713,9 @@ window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
         cacOChonHS.forEach(o => o.disabled = false);
     }
 };
+
+
+
 
 
 // // =======================================================
@@ -709,15 +790,88 @@ window.ham_20_2_tai_danh_sach_hs_theo_lop = async function () {
 // };
 
 
+// // =======================================================
+// // HÀM 20.3: XỬ LÝ KHI BẤM NÚT "GẮN THẺ" HOẶC "NHẬP ĐIỂM"
+// // =======================================================
+// window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
+//     const cacOChonHS = document.querySelectorAll('.nk-input-hs-su-kien');
+//     const oGhiChu = document.getElementById('nk-input-ghi-chu');
+//     let noiDungGhiChu = oGhiChu.value.trim();
+
+//     // 1. KIỂM TRA QUY TẮC: KHÔNG CHO PHÉP NẠP THẺ NẾU CHƯA CHỌN HS
+//     let coHocSinhDuocChon = false;
+//     cacOChonHS.forEach(o => { if (o.value.trim() !== '') coHocSinhDuocChon = true; });
+
+//     if (!coHocSinhDuocChon) {
+//         alert("⚠️ Yêu cầu: Vui lòng nhập/chọn Tên học sinh trước khi bấm gắn Thẻ lỗi hoặc Sự kiện!");
+//         return;
+//     }
+
+//     // Lọc điểm số nếu là thẻ Cho điểm
+//     let diemSo = null;
+//     if (tenThe.startsWith('Cho điểm: ')) {
+//         diemSo = parseFloat(tenThe.split(': ')[1]);
+//         tenThe = 'Cho điểm';
+//     }
+
+//     // Lấy toàn bộ ảnh đang nạp sẵn ở khung chờ
+//     let mangFileAnhMC = [];
+//     if (window.danhSachAnhMinhChungTam && window.danhSachAnhMinhChungTam.length > 0) {
+//         mangFileAnhMC = [...window.danhSachAnhMinhChungTam];
+//     }
+
+//     // 2. GỘP (HỌC SINH + THẺ + ẢNH) THÀNH SỰ KIỆN MỚI
+//     cacOChonHS.forEach(oHS => {
+//         const hSInfo = oHS.value.trim();
+//         if (hSInfo) {
+//             const danhSachOptions = document.querySelectorAll('#nk-dl-hs option');
+//             let uidHS = null;
+//             let sdtHS = '';
+
+//             danhSachOptions.forEach(opt => {
+//                 if (opt.value === hSInfo) {
+//                     uidHS = opt.dataset.uid;
+//                     sdtHS = opt.dataset.sdt;
+//                 }
+//             });
+
+//             if (uidHS) {
+//                 let suKienMoi = {
+//                     id_tam: 'sk_' + Date.now() + Math.random(),
+//                     uid_hoc_sinh: uidHS,
+//                     ten_hoc_sinh: hSInfo.split(' - ')[0].trim(),
+//                     sdt_hoc_sinh: sdtHS,
+//                     loai_the: tenThe,
+//                     ghi_chu: noiDungGhiChu,
+//                     mau_sac: mauSac,
+//                     diem_so: diemSo,
+//                     // Copy mảng ảnh để dùng chung cho nhiều học sinh nếu thầy chọn 1 nhóm
+//                     mang_file_minh_chung: [...mangFileAnhMC]
+//                 };
+//                 window.danhSachSuKienTam.push(suKienMoi);
+//             }
+//         }
+//     });
+
+//     // 3. DỌN DẸP SẠCH SẼ ĐỂ CHUẨN BỊ CHO LƯỢT NHẬP TIẾP THEO
+//     cacOChonHS.forEach((o, i) => { if (i > 0) o.parentElement.remove(); else o.value = ''; });
+//     oGhiChu.value = '';
+
+//     window.danhSachAnhMinhChungTam = [];
+//     if (typeof ham_20_22_render_anh_minh_chung === 'function') ham_20_22_render_anh_minh_chung();
+//     if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+// };
+
+
 // =======================================================
-// HÀM 20.3: XỬ LÝ KHI BẤM NÚT "GẮN THẺ" HOẶC "NHẬP ĐIỂM"
+// HÀM 20.3: XỬ LÝ KHI BẤM NÚT "GẮN THẺ" HOẶC "NHẬP ĐIỂM" (FIX LỖI NHÓM)
 // =======================================================
 window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
     const cacOChonHS = document.querySelectorAll('.nk-input-hs-su-kien');
     const oGhiChu = document.getElementById('nk-input-ghi-chu');
     let noiDungGhiChu = oGhiChu.value.trim();
 
-    // 1. KIỂM TRA QUY TẮC: KHÔNG CHO PHÉP NẠP THẺ NẾU CHƯA CHỌN HS
+    // 1. KIỂM TRA QUY TẮC
     let coHocSinhDuocChon = false;
     cacOChonHS.forEach(o => { if (o.value.trim() !== '') coHocSinhDuocChon = true; });
 
@@ -726,20 +880,21 @@ window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
         return;
     }
 
-    // Lọc điểm số nếu là thẻ Cho điểm
     let diemSo = null;
     if (tenThe.startsWith('Cho điểm: ')) {
         diemSo = parseFloat(tenThe.split(': ')[1]);
         tenThe = 'Cho điểm';
     }
 
-    // Lấy toàn bộ ảnh đang nạp sẵn ở khung chờ
     let mangFileAnhMC = [];
     if (window.danhSachAnhMinhChungTam && window.danhSachAnhMinhChungTam.length > 0) {
         mangFileAnhMC = [...window.danhSachAnhMinhChungTam];
     }
 
-    // 2. GỘP (HỌC SINH + THẺ + ẢNH) THÀNH SỰ KIỆN MỚI
+    // 🌟 TẠO MÃ LÔ (BATCH ID) ĐỂ ĐÁNH DẤU NHỮNG HS ĐƯỢC CHỌN CÙNG 1 LÚC
+    let currentBatchId = 'batch_' + Date.now();
+
+    // 2. GỘP SỰ KIỆN VÀ ĐẨY XUỐNG BẢNG CHỜ
     cacOChonHS.forEach(oHS => {
         const hSInfo = oHS.value.trim();
         if (hSInfo) {
@@ -757,6 +912,7 @@ window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
             if (uidHS) {
                 let suKienMoi = {
                     id_tam: 'sk_' + Date.now() + Math.random(),
+                    batch_id: currentBatchId, // 🌟 Gắn mã lô chung vào đây
                     uid_hoc_sinh: uidHS,
                     ten_hoc_sinh: hSInfo.split(' - ')[0].trim(),
                     sdt_hoc_sinh: sdtHS,
@@ -764,22 +920,24 @@ window.ham_20_3_gan_the = function (tenThe, mauSac = '#000') {
                     ghi_chu: noiDungGhiChu,
                     mau_sac: mauSac,
                     diem_so: diemSo,
-                    // Copy mảng ảnh để dùng chung cho nhiều học sinh nếu thầy chọn 1 nhóm
                     mang_file_minh_chung: [...mangFileAnhMC]
                 };
+                if (!window.danhSachSuKienTam) window.danhSachSuKienTam = [];
                 window.danhSachSuKienTam.push(suKienMoi);
             }
         }
     });
 
-    // 3. DỌN DẸP SẠCH SẼ ĐỂ CHUẨN BỊ CHO LƯỢT NHẬP TIẾP THEO
+    // 3. DỌN DẸP SẠCH SẼ KHUNG NHẬP LIỆU
     cacOChonHS.forEach((o, i) => { if (i > 0) o.parentElement.remove(); else o.value = ''; });
     oGhiChu.value = '';
 
     window.danhSachAnhMinhChungTam = [];
-    if (typeof ham_20_22_render_anh_minh_chung === 'function') ham_20_22_render_anh_minh_chung();
-    if (typeof ham_20_4_ve_danh_sach_cho === 'function') ham_20_4_ve_danh_sach_cho();
+    if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
+    if (typeof window.ham_20_4_ve_danh_sach_cho === 'function') window.ham_20_4_ve_danh_sach_cho();
 };
+
+
 
 
 
@@ -3228,8 +3386,61 @@ window.danhSachAnhMinhChungTam = [];
 // };
 
 
+// // =======================================================
+// // HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (TỰ ĐỘNG GẮN NGƯỢC HOẶC LƯU TẠM)
+// // =======================================================
+// window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
+//     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
+//     if (inputAnhMC) {
+//         const new_input = inputAnhMC.cloneNode(true);
+//         inputAnhMC.parentNode.replaceChild(new_input, inputAnhMC);
+
+//         new_input.addEventListener('change', async function (e) {
+//             const files = Array.from(e.target.files);
+//             if (files.length === 0) return;
+
+//             // Xử lý nén/cắt ảnh và lọc bỏ nếu thầy bấm Hủy
+//             let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+//             processedFiles = processedFiles.filter(f => f !== null);
+//             if (processedFiles.length === 0) return;
+
+//             // KIỂM TRA XEM Ô NHẬP TÊN CÓ ĐANG CHỨA TÊN HS NÀO KHÔNG?
+//             let coHocSinhDuocChon = false;
+//             document.querySelectorAll('.nk-input-hs-su-kien').forEach(o => {
+//                 if (o.value.trim() !== '') coHocSinhDuocChon = true;
+//             });
+
+//             // 🌟 LUỒNG 1: THẦY LÀM NGƯỢC (Đã bấm nút Lỗi trước, tên HS đã bị xóa trắng, sự kiện đã chạy xuống dưới)
+//             if (!coHocSinhDuocChon && window.danhSachSuKienTam && window.danhSachSuKienTam.length > 0) {
+//                 let indexCuoi = window.danhSachSuKienTam.length - 1;
+//                 let lastEvent = window.danhSachSuKienTam[indexCuoi];
+
+//                 if (!lastEvent.mang_file_minh_chung) lastEvent.mang_file_minh_chung = [];
+//                 lastEvent.mang_file_minh_chung.push(...processedFiles);
+
+//                 // Popup báo hiệu cho thầy biết đã gắn thành công
+//                 alert(`✅ Đã tự động đính kèm ảnh vào sự kiện [${lastEvent.loai_the}] của học sinh ${lastEvent.ten_hoc_sinh}!`);
+
+//                 // Vẽ lại Bảng chờ để hiện ảnh
+//                 if (typeof window.ham_20_4_ve_danh_sach_cho === 'function') window.ham_20_4_ve_danh_sach_cho();
+//             }
+//             // 🌟 LUỒNG 2: THẦY LÀM ĐÚNG (Đang nhập dở tên HS hoặc chưa làm gì cả)
+//             else {
+//                 if (!window.danhSachAnhMinhChungTam) window.danhSachAnhMinhChungTam = [];
+//                 window.danhSachAnhMinhChungTam.push(...processedFiles);
+//                 // Bỏ vào khung Preview
+//                 if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
+//             }
+
+//             e.target.value = '';
+//         });
+//     }
+// };
+
+
+
 // =======================================================
-// HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (TỰ ĐỘNG GẮN NGƯỢC HOẶC LƯU TẠM)
+// HÀM 20.22: XỬ LÝ ẢNH MINH CHỨNG (FIX GẮN ẢNH THEO LÔ / NHÓM HS)
 // =======================================================
 window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
     const inputAnhMC = document.getElementById('nk-input-anh-minh-chung');
@@ -3241,36 +3452,45 @@ window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
             const files = Array.from(e.target.files);
             if (files.length === 0) return;
 
-            // Xử lý nén/cắt ảnh và lọc bỏ nếu thầy bấm Hủy
             let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
             processedFiles = processedFiles.filter(f => f !== null);
             if (processedFiles.length === 0) return;
 
-            // KIỂM TRA XEM Ô NHẬP TÊN CÓ ĐANG CHỨA TÊN HS NÀO KHÔNG?
             let coHocSinhDuocChon = false;
             document.querySelectorAll('.nk-input-hs-su-kien').forEach(o => {
                 if (o.value.trim() !== '') coHocSinhDuocChon = true;
             });
 
-            // 🌟 LUỒNG 1: THẦY LÀM NGƯỢC (Đã bấm nút Lỗi trước, tên HS đã bị xóa trắng, sự kiện đã chạy xuống dưới)
+            // 🌟 LUỒNG THẦY LÀM NGƯỢC: CHIA ĐỀU ẢNH CHO CẢ NHÓM BẰNG BATCH_ID
             if (!coHocSinhDuocChon && window.danhSachSuKienTam && window.danhSachSuKienTam.length > 0) {
                 let indexCuoi = window.danhSachSuKienTam.length - 1;
                 let lastEvent = window.danhSachSuKienTam[indexCuoi];
+                let currentBatchId = lastEvent.batch_id; // Lấy mã lô của sự kiện cuối cùng
 
-                if (!lastEvent.mang_file_minh_chung) lastEvent.mang_file_minh_chung = [];
-                lastEvent.mang_file_minh_chung.push(...processedFiles);
+                let dsHocSinhCungLo = [];
 
-                // Popup báo hiệu cho thầy biết đã gắn thành công
-                alert(`✅ Đã tự động đính kèm ảnh vào sự kiện [${lastEvent.loai_the}] của học sinh ${lastEvent.ten_hoc_sinh}!`);
+                // Lặp qua toàn bộ bảng chờ, ai chung mã lô thì bắn ảnh vào người đó
+                window.danhSachSuKienTam.forEach(sk => {
+                    if ((currentBatchId && sk.batch_id === currentBatchId) || (!currentBatchId && sk === lastEvent)) {
+                        if (!sk.mang_file_minh_chung) sk.mang_file_minh_chung = [];
+                        sk.mang_file_minh_chung.push(...processedFiles);
+                        dsHocSinhCungLo.push(sk.ten_hoc_sinh);
+                    }
+                });
 
-                // Vẽ lại Bảng chờ để hiện ảnh
+                // Thông báo popup thông minh
+                if (dsHocSinhCungLo.length > 1) {
+                    alert(`✅ Đã tự động đính kèm ảnh vào sự kiện [${lastEvent.loai_the}] cho nhóm ${dsHocSinhCungLo.length} học sinh:\n${dsHocSinhCungLo.join(', ')}`);
+                } else {
+                    alert(`✅ Đã tự động đính kèm ảnh vào sự kiện [${lastEvent.loai_the}] của học sinh ${lastEvent.ten_hoc_sinh}!`);
+                }
+
                 if (typeof window.ham_20_4_ve_danh_sach_cho === 'function') window.ham_20_4_ve_danh_sach_cho();
             }
-            // 🌟 LUỒNG 2: THẦY LÀM ĐÚNG (Đang nhập dở tên HS hoặc chưa làm gì cả)
+            // 🌟 LUỒNG CHUẨN: LƯU TẠM VÀO KHUNG PREVIEW
             else {
                 if (!window.danhSachAnhMinhChungTam) window.danhSachAnhMinhChungTam = [];
                 window.danhSachAnhMinhChungTam.push(...processedFiles);
-                // Bỏ vào khung Preview
                 if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
             }
 
@@ -3278,6 +3498,8 @@ window.ham_20_22_kich_hoat_preview_anh_minh_chung = function () {
         });
     }
 };
+
+
 
 
 
@@ -5050,3 +5272,114 @@ window.ham_20_37_xem_bai_cu_lop_nay = async function (offset = 0) {
         `;
     }
 };
+
+
+
+// =======================================================
+// HÀM 20.38: TẠO CUSTOM DROPDOWN HIỂN THỊ AVATAR HỌC SINH
+// =======================================================
+window.ham_20_38_hien_thi_dropdown_hs = function(inputElement) {
+    // Đóng ngay các dropdown đang mở để tránh trùng lặp
+    document.querySelectorAll('.custom-dropdown-hs').forEach(el => el.remove());
+
+    if (!window.DanhSachHocSinhLopHienTai || window.DanhSachHocSinhLopHienTai.length === 0) return;
+
+    let tuKhoa = inputElement.value.toLowerCase().trim();
+    
+    // Lọc danh sách theo từ khóa thầy đang gõ
+    let dsLoc = window.DanhSachHocSinhLopHienTai.filter(hs => 
+        hs.tenHienThi.toLowerCase().includes(tuKhoa) || 
+        hs.tenDangNhap.toLowerCase().includes(tuKhoa)
+    );
+
+    if (dsLoc.length === 0) return;
+
+    let parent = inputElement.parentElement;
+    parent.style.position = 'relative'; // Bắt buộc để Dropdown neo vị trí chính xác
+
+    // Khởi tạo khung nổi
+    let dropdown = document.createElement('div');
+    dropdown.className = 'custom-dropdown-hs';
+    
+    dropdown.style.cssText = `
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        max-height: 250px;
+        overflow-y: auto;
+        background: #fff;
+        border: 1px solid #1a73e8;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 0.2s ease-in-out;
+    `;
+
+    // Vẽ từng dòng học sinh
+    dsLoc.forEach(hs => {
+        let item = document.createElement('div');
+        item.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f3f4;
+            transition: background 0.2s;
+        `;
+        
+        // Hiệu ứng Hover mượt mà
+        item.onmouseover = () => item.style.background = '#e8f0fe';
+        item.onmouseout = () => item.style.background = '#fff';
+        
+        item.innerHTML = `
+            <img src="${hs.avatarUrl}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid #dee2e6; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+            <div style="flex: 1;">
+                <div style="font-weight: bold; color: #1a73e8; font-size: 14px;">${hs.tenHienThi}</div>
+                <div style="font-size: 11px; color: #6c757d;">Tài khoản: ${hs.tenDangNhap}</div>
+            </div>
+        `;
+
+        // Khi click chọn -> Điền văn bản vào ô input và Tự hủy Dropdown
+        item.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            inputElement.value = hs.chuoiGhep;
+            dropdown.remove();
+        };
+
+        dropdown.appendChild(item);
+    });
+
+    parent.appendChild(dropdown);
+
+    // Thuật toán: Bấm ra ngoài khoảng không thì tự tắt Dropdown
+    const closeDropdown = function(e) {
+        if (e.target !== inputElement && !dropdown.contains(e.target)) {
+            dropdown.remove();
+            document.removeEventListener('click', closeDropdown);
+        }
+    };
+    
+    setTimeout(() => document.addEventListener('click', closeDropdown), 10);
+};
+
+// 🌟 BỘ LẮNG NGHE TOÀN CỤC: Bắt mọi sự kiện Nhấn vào / Gõ phím trên các ô chọn học sinh
+document.addEventListener('focusin', function(e) {
+    if (e.target.classList.contains('nk-input-hs-vang') || e.target.classList.contains('nk-input-hs-su-kien')) {
+        e.target.removeAttribute('list');
+        e.target.setAttribute('autocomplete', 'off');
+        window.ham_20_38_hien_thi_dropdown_hs(e.target);
+    }
+});
+
+document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('nk-input-hs-vang') || e.target.classList.contains('nk-input-hs-su-kien')) {
+        window.ham_20_38_hien_thi_dropdown_hs(e.target);
+    }
+});
+
+
