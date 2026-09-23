@@ -1,0 +1,75 @@
+{
+  "thoiGianGhep": "2026-09-23T03:10:24.530Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_7294c9bd21",
+      "dapAn": "C",
+      "loiGiaiHtml": "Công thức tính diện tích tam giác theo hai cạnh và sin của góc xen giữa là $S = \\displaystyle \\frac{1}{2}ab \\sin C$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_a74ddb07b7",
+      "dapAn": "C",
+      "loiGiaiHtml": "$\\alpha$ là góc tù nên $\\sin \\alpha > 0$, $\\cos \\alpha < 0\\Rightarrow \\tan \\alpha < 0$."
+    },
+    {
+      "maBaoMat": "sol_53c0be1742",
+      "dapAn": "C",
+      "loiGiaiHtml": "$0^{\\circ} \\leq \\alpha < 90^{\\circ} \\Rightarrow \\cos \\alpha > 0$.\\\\\r\n\t$\\sin \\alpha=\\dfrac{4}{5} \\Rightarrow \\cos \\alpha=\\sqrt{1-\\sin ^2\\alpha}=\\sqrt{1-\\left(\\dfrac{4}{5}\\right)^2}=\\dfrac{3}{5}$.\\\\\r\n\t$\\Rightarrow \\tan \\alpha=\\dfrac{\\sin \\alpha}{\\cos \\alpha}=\\dfrac{\\dfrac{4}{5}}{\\dfrac{3}{5}}=\\dfrac{4}{3}$."
+    },
+    {
+      "maBaoMat": "sol_3390442462",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có vì $180^\\circ - \\alpha$ và $\\alpha$ là hai góc bù nhau nên $\\cot(180^\\circ - \\alpha) = -\\cot\\alpha$."
+    },
+    {
+      "maBaoMat": "sol_ff7010920e",
+      "dapAn": "A",
+      "loiGiaiHtml": "Áp dụng định lý côsin trong tam giác $ABC$:\r\n\t\t$$\\cos B = \\dfrac{AB^2 + BC^2 - AC^2}{2 \\cdot AB \\cdot BC} = \\dfrac{500^2 + 800^2 - 700^2}{2 \\cdot 500 \\cdot 800}$$\r\n\t\t$$\\cos B = \\dfrac{250000 + 640000 - 490000}{800000} = \\dfrac{400000}{800000} = \\dfrac{1}{2}.$$\r\n\t\tSuy ra $\\widehat{B} = 60^\\circ$."
+    },
+    {
+      "maBaoMat": "sol_69715ee017",
+      "dapAn": "C",
+      "loiGiaiHtml": "Trong tam giác $ABC$, ta có $\\widehat{ABC} = 180^\\circ - (70^\\circ + 50^\\circ) = 60^\\circ$.\\\\\r\n\t\tÁp dụng định lý hàm số sin:\r\n\t\t\\[ \\dfrac{AB}{\\sin \\widehat{BCA}} = \\dfrac{AC}{\\sin \\widehat{ABC}} \\Rightarrow AB = \\dfrac{AC \\cdot \\sin 50^\\circ}{\\sin 60^\\circ} = \\dfrac{50 \\cdot \\sin 50^\\circ}{\\sin 60^\\circ} \\approx 44{,}23\\text{m}. \\]\r\n\t\tGiá trị này gần nhất với $45$m."
+    },
+    {
+      "maBaoMat": "sol_cde39026be",
+      "dapAn": "D",
+      "loiGiaiHtml": "Áp dụng định lý côsin trong tam giác $ABC$ ta có:\\\\\r\n\t\t$AB^2 = AC^2 + BC^2 - 2AC \\cdot BC \\cdot \\cos C = 8^2 + 5^2 - 2 \\cdot 8 \\cdot 5 \\cdot \\cos 60^\\circ = 49$.\\\\\r\n\t\tSuy ra $AB = \\sqrt{49} = 7$.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_59c4386d6a",
+      "dapAn": "A",
+      "loiGiaiHtml": "Diện tích tam giác $ABC$ là: $S = \\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A$.\\\\\r\n\t\t$S = \\displaystyle \\frac{1}{2} \\cdot 3 \\cdot 4 \\cdot \\sin 30^\\circ = 6 \\cdot \\frac{1}{2} = 3$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_abc0a2f7d3",
+      "dapAn": "FFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $90^\\circ < \\alpha < 180^\\circ$ nên $\\cos \\alpha < 0$.\r\n\t\t\t\\itemch Ta có $\\cos \\alpha = -\\sqrt{1 - \\sin^2 \\alpha} = -\\sqrt{1 - m^2}$. \r\n\t\t\t\\itemch Ta có $\\sin(180^\\circ - \\alpha) = \\sin \\alpha = m$ (hai góc bù nhau).\r\n\t\t\t\\itemch Biến đổi biểu thức vế trái:\r\n\t\t\t\\begin{align*}\r\n\t\t\tVT &= \\tan^2 \\alpha (\\sin^2 \\alpha - 1) + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= \\tan^2 \\alpha \\cdot (-\\cos^2 \\alpha) + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= -\\sin^2 \\alpha + \\sin^2 \\alpha - \\sin \\alpha \\\\\r\n\t\t\t&= -m\r\n\t\t\t\\end{align*}\r\n\t\t\tVì $-m \\neq 1 - m$ nên đây là mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_1ae70a0776",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "Ta có $CD = EF = 20m$; $DE = CF = 1{,}5m$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch $AE$ là chiều cao toà nhà (tính từ mặt đất $E$ đến chân cột cờ $A$).\r\n\t\t\t$AE = AD + DE = AD + CF$. Mệnh đề \\textbf{Đúng}.\\\\\\itemch Trong $\\Delta ADC$ vuông tại $D$: $AC = \\dfrac{CD}{\\cos 40^\\circ} = \\dfrac{20}{\\cos 40^\\circ} \\approx 26{,}1m$.\\\\\r\n\t\t\tMệnh đề nói $26{,}2m$ là \\textbf{Sai}.\\\\\\itemch Ta có $AD = CD \\cdot \\tan 40^\\circ = 20 \\cdot \\tan 40^\\circ \\approx 16{,}78m$.\r\n\t\t\tChiều cao toà nhà $AE = 16{,}78 + 1{,}5 = 18{,}28 \\approx 18{,}3m$.\\\\\r\n\t\t\tMệnh đề \\textbf{Đúng}.\\\\\\itemch Trong $\\Delta BDC$ vuông tại $D$: $BD = CD \\cdot \\tan 50^\\circ = 20 \\cdot \\tan 50^\\circ \\approx 23{,}84m$.\r\n\t\t\tChiều cao cột cờ $AB = BD - AD = 23{,}84 - 16{,}78 = 7{,}06 \\approx 7{,}1m$.\\\\\r\n\t\t\tMệnh đề \\textbf{Đúng}.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_906e5ec4ed",
+      "dapAn": "1080",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_906e5ec4ed_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGọi $HK$ là khoảng cách gần nhất của chân cột cờ với mép sông, ta có $HK = 200 \\text{ (m)}$. Khoảng cách hai bờ sông là $KL = 400 \\text{ (m)}$.\\\\\r\n\t\tChiều cao của cột cờ là $SH = 54{,}5 \\text{ (m)}$.\\\\\r\n\t\tVì $\\tan \\alpha = 0{,}1$ suy ra $\\displaystyle HA = \\frac{SH}{0{,}1} = 545 \\text{ (m)}$.\\\\\r\n\t\t$\\tan \\beta = 0{,}07$ suy ra $\\displaystyle HB = \\frac{SH}{0{,}07} = \\frac{5450}{7} \\text{ (m)}$.\\\\\r\n\t\tTa có $HL = 200 + 400 = 600 \\text{ (m)}$.\\\\\r\n\t\tĐể khoảng cách $AB$ lớn nhất thì $B$ nằm khác phía với $A$ so với đường thẳng $HL$.\\\\\r\n\t\tTa có $LB = \\sqrt{HB^2 - HL^2} \\approx 496{,}16 \\text{ (m)}$; $AK = \\sqrt{HA^2 - HK^2} \\approx 506{,}98 \\text{ (m)}$.\\\\\r\n\t\tVậy $AB = \\sqrt{BE^2 + AE^2} = \\sqrt{(LB + AK)^2 + KL^2} \\approx 1080 \\text{ (m)}$."
+    },
+    {
+      "maBaoMat": "sol_0c4ca143c3",
+      "dapAn": "25,6",
+      "loiGiaiHtml": "Đặt $BM = x$ ($x > 0$). Khi đó $AB = AM + BM = x + 3$.\\\\\r\n\t\tÁp dụng định lý côsin trong $\\Delta ABC$, ta có:\\\\\r\n\t\t$\\displaystyle CA^2 = AB^2 + BC^2 - 2 \\cdot AB \\cdot BC \\cdot \\cos 60^\\circ$\\\\\r\n\t\t$\\displaystyle CA^2 = (x+3)^2 + 10^2 - 2(x+3) \\cdot 10 \\cdot \\frac{1}{2}$\\\\\r\n\t\t$\\displaystyle CA^2 = x^2 + 6x + 9 + 100 - 10x - 30 = x^2 - 4x + 79$.\\\\\r\n\t\tÁp dụng định lý côsin trong $\\Delta MBC$, ta có:\\\\\r\n\t\t$\\displaystyle CM^2 = BM^2 + BC^2 - 2 \\cdot BM \\cdot BC \\cdot \\cos 60^\\circ$\\\\\r\n\t\t$\\displaystyle CM^2 = x^2 + 10^2 - 2x \\cdot 10 \\cdot \\frac{1}{2} = x^2 - 10x + 100$.\\\\\r\n\t\tTheo giả thiết $\\displaystyle CM = \\frac{8}{9}CA \\Rightarrow CM^2 = \\frac{64}{81}CA^2$.\\\\\r\n\t\tSuy ra: $\\displaystyle x^2 - 10x + 100 = \\frac{64}{81}(x^2 - 4x + 79)$\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow 81x^2 - 810x + 8100 = 64x^2 - 256x + 5056$\\\\\r\n\t\t$\\displaystyle \\Leftrightarrow 17x^2 - 554x + 3044 = 0$.\\\\\r\n\t\tGiải phương trình bậc hai trên ta được hai nghiệm dương:\\\\\r\n\t\t$\\displaystyle x = \\frac{277 + \\sqrt{24981}}{17} \\approx 25{,}591$ hoặc $\\displaystyle x = \\frac{277 - \\sqrt{24981}}{17} \\approx 6{,}997$.\\\\\r\n\t\tVới điều kiện cấu hình của tam giác, cả hai giá trị đều có thể xảy ra. Tuy nhiên, lấy theo nghiệm lớn, làm tròn đến hàng phần mười, độ dài $BM$ xấp xỉ $25{,}6$."
+    },
+    {
+      "maBaoMat": "sol_817b9c37bf",
+      "dapAn": "814",
+      "loiGiaiHtml": "Ta có tọa độ $A(-3;1;2), B(2;7;-4)$.\\\\\r\n\t\tĐộ dài đoạn thẳng $AB$ trong hệ trục: $AB_{\\text{hệ}} = \\sqrt{(2-(-3))^2 + (7-1)^2 + (-4-2)^2} = \\sqrt{5^2 + 6^2 + (-6)^2} = \\sqrt{25+36+36} = \\sqrt{97}$.\\\\\r\n\t\tKhoảng cách thực tế $AB = 50\\sqrt{97}$ (km).\\\\\r\n\t\tThời gian bay từ $A$ đến $B$ là $45$ phút, từ $B$ đến $C$ là $30$ phút.\\\\\r\n\t\tVì vận tốc không đổi nên tỉ lệ quãng đường bằng tỉ lệ thời gian:\\\\\r\n\t\t$\\dfrac{BC}{AB} = \\dfrac{30}{45} = \\dfrac{2}{3} \\Rightarrow BC = \\dfrac{2}{3} AB = \\dfrac{2}{3} \\cdot 50\\sqrt{97} = \\dfrac{100\\sqrt{97}}{3}$ (km).\\\\\r\n\t\tGóc giữa hướng chuyển động mới và phương $AB$ là $15^\\circ$, tức là góc ngoài tại đỉnh $B$ của tam giác $ABC$ bằng $15^\\circ$.\\\\\r\n\t\tSuy ra $\\widehat{ABC} = 180^\\circ - 15^\\circ = 165^\\circ$.\\\\\r\n\t\tÁp dụng định lý côsin trong tam giác $ABC$:\\\\\r\n\t\t$AC^2 = AB^2 + BC^2 - 2AB \\cdot BC \\cdot \\cos 165^\\circ$.\\\\\r\n\t\t$AC = \\sqrt{\\left(50\\sqrt{97}\\right)^2 + \\left(\\dfrac{100\\sqrt{97}}{3}\\right)^2 - 2 \\cdot 50\\sqrt{97} \\cdot \\dfrac{100\\sqrt{97}}{3} \\cdot \\cos 165^\\circ} \\approx 814$ (km)."
+    },
+    {
+      "maBaoMat": "sol_297d957a7f",
+      "dapAn": "23,8",
+      "loiGiaiHtml": "Áp dụng định lý côsin trong tam giác $ABC$:\r\n\t\t$AB^2 = BC^2 + AC^2 - 2 \\cdot BC \\cdot AC \\cdot \\cos C$.\\\\\r\n\t\t$AB^2 = 32^2 + 26^2 - 2 \\cdot 32 \\cdot 26 \\cdot \\cos 47^\\circ \\approx 1024 + 676 - 1664 \\cdot 0{,}682 \\approx 565{,}15$.\\\\\r\n\t\t$\\Rightarrow AB \\approx 23{,}77$. Làm tròn với độ chính xác 0,05 tức là làm tròn đến hàng phần mười: $AB \\approx 23{,}8$."
+    }
+  ]
+}
