@@ -3063,9 +3063,156 @@ window.ham_20_26_tai_thu_vien_cropper = function () {
 
 
 
-// =======================================================
-// HÀM 20.27: TỰ ĐỘNG TẢI NỘI DUNG & SỰ KIỆN TIẾT HỌC (BỔ SUNG AVATAR HỌC SINH ĐÃ LƯU)
-// =======================================================
+// // =======================================================
+// // HÀM 20.27: TỰ ĐỘNG TẢI NỘI DUNG & SỰ KIỆN TIẾT HỌC (BỔ SUNG AVATAR HỌC SINH ĐÃ LƯU)
+// // =======================================================
+// window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
+//     const ngayDay = document.querySelector('input[type="date"]').value;
+//     const buoi = document.getElementById('nk-input-buoi').value.trim();
+//     const tiet = document.getElementById('nk-input-tiet').value.trim();
+//     const rawLop = document.getElementById('nk-input-lop').value.trim();
+
+//     let maLopLuu = rawLop;
+//     if (rawLop.match(/\(([^)]+)\)$/)) {
+//         maLopLuu = rawLop.match(/\(([^)]+)\)$/)[1].trim();
+//     }
+
+//     const vungAnhDaLuu = document.getElementById('vung-anh-bai-giang-da-luu');
+//     const vungSuKienDaLuu = document.getElementById('vung-su-kien-da-luu');
+//     const btnLuuBG = document.querySelector('button[onclick="ham_20_6a_luu_bai_giang(this)"]');
+
+//     if (!ngayDay || !buoi || !tiet || !maLopLuu) {
+//         if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+//         if (vungSuKienDaLuu) vungSuKienDaLuu.style.display = 'none';
+//         return;
+//     }
+
+//     try {
+//         const { data, error } = await _supabase.from('nhat_ky_day_hoc').select('*').eq('ngay_day', ngayDay).eq('buoi', buoi).eq('tiet', tiet).eq('ma_lop', maLopLuu);
+//         if (error) throw error;
+
+//         if (data && data.length > 0) {
+//             const nk = data[0];
+
+//             if (nk.phan_mon) document.getElementById('nk-input-mon').value = nk.phan_mon;
+//             if (nk.ten_bai) document.getElementById('nk-input-ten-bai').value = nk.ten_bai;
+//             const cacTextArea = document.querySelectorAll('textarea');
+//             if (nk.ly_thuyet && cacTextArea[0]) cacTextArea[0].value = nk.ly_thuyet;
+//             if (nk.bai_tap && cacTextArea[1]) cacTextArea[1].value = nk.bai_tap;
+//             if (nk.dan_do && cacTextArea[2]) cacTextArea[2].value = nk.dan_do;
+
+//             let mangAnh = [];
+//             if (nk.danh_sach_anh) {
+//                 if (Array.isArray(nk.danh_sach_anh)) mangAnh = nk.danh_sach_anh;
+//                 else if (typeof nk.danh_sach_anh === 'string') {
+//                     try { mangAnh = JSON.parse(nk.danh_sach_anh); } catch (e) { mangAnh = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
+//                 }
+//             }
+
+//             // 🌟 ẢNH BÀI GIẢNG ĐÃ LƯU (Hiển thị 100% chiều ngang)
+//             if (mangAnh.length > 0 && vungAnhDaLuu) {
+//                 let htmlAnh = '<div style="font-size:13px; font-weight:bold; color:#155724; margin-bottom:10px;">✅ Tiết này đã lưu nội dung và các ảnh sau:</div><div style="display:flex; flex-direction:column; gap:10px;">';
+//                 mangAnh.forEach(link => {
+//                     let previewLink = link;
+//                     let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+//                     if (matchD) previewLink = `https://lh3.googleusercontent.com/d/${matchD[1]}`;
+//                     htmlAnh += `<img onclick="window.ham_20_36_xem_anh_toan_man_hinh('${link}')" src="${previewLink}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #fff; border-radius: 6px; border: 2px solid #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.15); cursor: zoom-in;" title="Bấm để phóng to">`;
+//                 });
+//                 htmlAnh += '</div>';
+//                 vungAnhDaLuu.innerHTML = htmlAnh;
+//                 vungAnhDaLuu.style.display = 'block';
+//             } else if (vungAnhDaLuu) {
+//                 vungAnhDaLuu.style.display = 'none';
+//                 vungAnhDaLuu.innerHTML = '';
+//             }
+
+//             if (vungSuKienDaLuu) {
+//                 const { data: dsSuKien, error: errSK } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id_nhat_ky', nk.id);
+
+//                 if (!errSK && dsSuKien && dsSuKien.length > 0) {
+
+//                     // 🌟 TRUY VẤN LẤY AVATAR CỦA CÁC HỌC SINH CÓ SỰ KIỆN TRONG TIẾT NÀY
+//                     let mangUid = [...new Set(dsSuKien.map(sk => sk.uid_hoc_sinh))];
+//                     let tuDienAvatar = {};
+//                     if (mangUid.length > 0) {
+//                         const { data: hsData } = await _supabase.from('hoc_sinh').select('uid, anh_dai_dien').in('uid', mangUid);
+//                         if (hsData) hsData.forEach(h => tuDienAvatar[h.uid] = h.anh_dai_dien);
+//                     }
+
+//                     let htmlSK = '<div style="font-size:13px; font-weight:bold; color:#856404; margin-bottom:8px;">✅ Tiết này ĐÃ LƯU học sinh sau:</div><div style="display:flex; flex-direction:column; gap:8px;">';
+//                     let hsVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt');
+//                     let hsKhac = dsSuKien.filter(sk => sk.loai_the !== 'Vắng mặt');
+
+//                     // 1. HIỂN THỊ HỌC SINH VẮNG MẶT (CÓ AVATAR)
+//                     if (hsVang.length > 0) {
+//                         let htmlVang = hsVang.map(v => {
+//                             let hsAvatar = tuDienAvatar[v.uid_hoc_sinh] || `https://ui-avatars.com/api/?name=${encodeURIComponent(v.ten_hoc_sinh)}&background=random&color=fff&size=100`;
+//                             return `<span style="display:inline-flex; align-items:center; gap:6px; background:#f8d7da; color:#721c24; padding:4px 8px; border-radius:20px; font-size:12px; font-weight:bold; border:1px solid #f5c6cb; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"><img src="${hsAvatar}" style="width:20px; height:20px; border-radius:50%; object-fit: cover; border: 1px solid #fff;"> ${v.ten_hoc_sinh}</span>`;
+//                         }).join(' ');
+
+//                         htmlSK += `<div style="margin-bottom:5px;"><strong style="color: #dc3545; font-size: 13px; display:block; margin-bottom:5px;">❌ Vắng mặt:</strong> <div style="display:flex; flex-wrap:wrap; gap:8px;">${htmlVang}</div></div>`;
+//                     }
+
+//                     // 2. HIỂN THỊ SỰ KIỆN / ĐIỂM SỐ (CÓ AVATAR)
+//                     if (hsKhac.length > 0) {
+//                         htmlSK += `<div style="font-size:13px; margin-top: 8px;"><b style="color:#d35400;">🎯 Sự kiện/Điểm:</b></div>`;
+//                         hsKhac.forEach(sk => {
+//                             let diemStr = (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.diem_so) ? ` <span style="background:#28a745; color:white; padding:1px 5px; border-radius:3px; font-size:11px; margin-right:4px;">⭐ ${sk.thong_tin_mo_rong.diem_so}đ</span>` : '';
+//                             let noteStr = sk.ghi_chu ? ` - <i style="color:#555;">${sk.ghi_chu}</i>` : '';
+
+//                             // ẢNH MINH CHỨNG
+//                             let anhMCStr = '';
+//                             if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung.length > 0) {
+//                                 anhMCStr += '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">';
+//                                 sk.thong_tin_mo_rong.danh_sach_anh_minh_chung.forEach(link => {
+//                                     let previewLink = link;
+//                                     let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+//                                     if (matchD) previewLink = `https://lh3.googleusercontent.com/d/${matchD[1]}`;
+//                                     anhMCStr += `<img onclick="window.ham_20_36_xem_anh_toan_man_hinh('${link}')" src="${previewLink}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #fff; border-radius: 6px; border: 1px solid #adb5bd; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: zoom-in;" title="Bấm để phóng to">`;
+//                                 });
+//                                 anhMCStr += '</div>';
+//                             }
+
+//                             let hsAvatar = tuDienAvatar[sk.uid_hoc_sinh] || `https://ui-avatars.com/api/?name=${encodeURIComponent(sk.ten_hoc_sinh)}&background=random&color=fff&size=100`;
+//                             let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#000';
+
+//                             htmlSK += `
+//                                 <div style="margin-bottom: 5px; border-left: 3px solid ${mauThe}; padding-left: 10px; background:#fff; padding-top:8px; padding-bottom:8px; font-size:13px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-radius: 0 6px 6px 0;">
+//                                     <div style="display:flex; align-items:center; gap:8px;">
+//                                         <img src="${hsAvatar}" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #dee2e6;">
+//                                         <div style="line-height: 1.4;"><b>${sk.ten_hoc_sinh}</b>: ${diemStr}<span style="color:${mauThe}; font-weight:bold;">[${sk.loai_the}]</span><span style="color:#555;">${noteStr}</span></div>
+//                                     </div>
+//                                     ${anhMCStr}
+//                                 </div>
+//                             `;
+//                         });
+//                     }
+//                     htmlSK += '</div>';
+//                     vungSuKienDaLuu.innerHTML = htmlSK;
+//                     vungSuKienDaLuu.style.display = 'block';
+//                 } else {
+//                     vungSuKienDaLuu.style.display = 'none';
+//                     vungSuKienDaLuu.innerHTML = '';
+//                 }
+//             }
+
+//             if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. CẬP NHẬT (THÊM ẢNH) BÀI GIẢNG';
+
+//         } else {
+//             if (vungAnhDaLuu) vungAnhDaLuu.style.display = 'none';
+//             if (vungSuKienDaLuu) vungSuKienDaLuu.style.display = 'none';
+//             if (btnLuuBG) btnLuuBG.innerHTML = '💾 1. LƯU NỘI DUNG BÀI GIẢNG';
+//         }
+//     } catch (e) {
+//         console.error("Lỗi kiểm tra tiết đã lưu:", e);
+//     }
+// };
+
+
+
+// =====================================================================
+// HÀM 20.27: TỰ ĐỘNG TẢI NỘI DUNG & SỰ KIỆN TIẾT HỌC (BỔ SUNG NÚT ẨN/HIỆN, THU/MỞ)
+// =====================================================================
 window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
     const ngayDay = document.querySelector('input[type="date"]').value;
     const buoi = document.getElementById('nk-input-buoi').value.trim();
@@ -3109,7 +3256,6 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
                 }
             }
 
-            // 🌟 ẢNH BÀI GIẢNG ĐÃ LƯU (Hiển thị 100% chiều ngang)
             if (mangAnh.length > 0 && vungAnhDaLuu) {
                 let htmlAnh = '<div style="font-size:13px; font-weight:bold; color:#155724; margin-bottom:10px;">✅ Tiết này đã lưu nội dung và các ảnh sau:</div><div style="display:flex; flex-direction:column; gap:10px;">';
                 mangAnh.forEach(link => {
@@ -3131,7 +3277,6 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
 
                 if (!errSK && dsSuKien && dsSuKien.length > 0) {
 
-                    // 🌟 TRUY VẤN LẤY AVATAR CỦA CÁC HỌC SINH CÓ SỰ KIỆN TRONG TIẾT NÀY
                     let mangUid = [...new Set(dsSuKien.map(sk => sk.uid_hoc_sinh))];
                     let tuDienAvatar = {};
                     if (mangUid.length > 0) {
@@ -3139,11 +3284,21 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
                         if (hsData) hsData.forEach(h => tuDienAvatar[h.uid] = h.anh_dai_dien);
                     }
 
-                    let htmlSK = '<div style="font-size:13px; font-weight:bold; color:#856404; margin-bottom:8px;">✅ Tiết này ĐÃ LƯU học sinh sau:</div><div style="display:flex; flex-direction:column; gap:8px;">';
+                    // 🌟 GIAO DIỆN HEADER CÓ 2 NÚT THAO TÁC MỚI
+                    let htmlSK = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div style="font-size:13px; font-weight:bold; color:#856404;">✅ Tiết này ĐÃ LƯU học sinh sau:</div>
+                            <div style="display: flex; gap: 8px;">
+                                <button type="button" onclick="window.ham_20_toggle_anh_class('vung-anh-mc-da-luu', this)" style="background: #fffcf8; border: 1px solid #f5c6cb; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; color: #856404;">🖼️ Ẩn ảnh</button>
+                                <button type="button" onclick="window.ham_20_toggle_muc('body-muc-sk-da-luu', this)" style="background: #fffcf8; border: 1px solid #f5c6cb; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; color: #856404;">➖ Thu hẹp</button>
+                            </div>
+                        </div>
+                        <div id="body-muc-sk-da-luu" style="display:flex; flex-direction:column; gap:8px;">
+                    `;
+
                     let hsVang = dsSuKien.filter(sk => sk.loai_the === 'Vắng mặt');
                     let hsKhac = dsSuKien.filter(sk => sk.loai_the !== 'Vắng mặt');
 
-                    // 1. HIỂN THỊ HỌC SINH VẮNG MẶT (CÓ AVATAR)
                     if (hsVang.length > 0) {
                         let htmlVang = hsVang.map(v => {
                             let hsAvatar = tuDienAvatar[v.uid_hoc_sinh] || `https://ui-avatars.com/api/?name=${encodeURIComponent(v.ten_hoc_sinh)}&background=random&color=fff&size=100`;
@@ -3153,17 +3308,16 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
                         htmlSK += `<div style="margin-bottom:5px;"><strong style="color: #dc3545; font-size: 13px; display:block; margin-bottom:5px;">❌ Vắng mặt:</strong> <div style="display:flex; flex-wrap:wrap; gap:8px;">${htmlVang}</div></div>`;
                     }
 
-                    // 2. HIỂN THỊ SỰ KIỆN / ĐIỂM SỐ (CÓ AVATAR)
                     if (hsKhac.length > 0) {
                         htmlSK += `<div style="font-size:13px; margin-top: 8px;"><b style="color:#d35400;">🎯 Sự kiện/Điểm:</b></div>`;
                         hsKhac.forEach(sk => {
                             let diemStr = (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.diem_so) ? ` <span style="background:#28a745; color:white; padding:1px 5px; border-radius:3px; font-size:11px; margin-right:4px;">⭐ ${sk.thong_tin_mo_rong.diem_so}đ</span>` : '';
                             let noteStr = sk.ghi_chu ? ` - <i style="color:#555;">${sk.ghi_chu}</i>` : '';
 
-                            // ẢNH MINH CHỨNG
+                            // ẢNH MINH CHỨNG (GẮN THÊM CLASS 'vung-anh-mc-da-luu' ĐỂ ĐIỀU KHIỂN)
                             let anhMCStr = '';
                             if (sk.thong_tin_mo_rong && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung && sk.thong_tin_mo_rong.danh_sach_anh_minh_chung.length > 0) {
-                                anhMCStr += '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">';
+                                anhMCStr += '<div class="vung-anh-mc-da-luu" style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">';
                                 sk.thong_tin_mo_rong.danh_sach_anh_minh_chung.forEach(link => {
                                     let previewLink = link;
                                     let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
@@ -3187,7 +3341,7 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
                             `;
                         });
                     }
-                    htmlSK += '</div>';
+                    htmlSK += '</div>'; // Đóng thẻ body-muc-sk-da-luu
                     vungSuKienDaLuu.innerHTML = htmlSK;
                     vungSuKienDaLuu.style.display = 'block';
                 } else {
@@ -3208,6 +3362,35 @@ window.ham_20_27_kiem_tra_tiet_da_luu = async function () {
     }
 };
 
+// =====================================================================
+// HÀM TIỆN ÍCH: ẨN / HIỆN HÀNG LOẠT ẢNH THEO CLASS
+// =====================================================================
+window.ham_20_toggle_anh_class = function (className, btn) {
+    let isHidden = btn.dataset.hidden === 'true';
+    let els = document.querySelectorAll('.' + className);
+
+    els.forEach(el => {
+        if (isHidden) {
+            // Khôi phục hiển thị (thường là flex theo thiết kế gốc)
+            el.style.display = el.dataset.display || 'flex';
+        } else {
+            // Ẩn đi và nhớ trạng thái cũ
+            let currDisplay = window.getComputedStyle(el).display;
+            if (currDisplay !== 'none' && !el.dataset.display) {
+                el.dataset.display = currDisplay;
+            }
+            el.style.display = 'none';
+        }
+    });
+
+    if (isHidden) {
+        btn.dataset.hidden = 'false';
+        btn.innerHTML = '🖼️ Ẩn ảnh';
+    } else {
+        btn.dataset.hidden = 'true';
+        btn.innerHTML = '🖼️ Hiện ảnh';
+    }
+};
 
 
 
