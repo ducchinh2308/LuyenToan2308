@@ -6626,134 +6626,264 @@ window.ham_21_50_dinh_dang_tuan_hien_thi = function (soTuan, tuNgayStr, denNgayS
 
 
 
+// // =====================================================================
+// // HÀM 21.51: POPUP CẬP NHẬT TRẠNG THÁI "CHÉP PHẠT / LÀM LẠI BÀI" CỦA GVCN
+// // =====================================================================
+// window.ham_21_51_mo_popup_cap_nhat_xu_ly = async function (idSuKien) {
+//     let modalId = 'modal-xu-ly-gvcn-' + idSuKien;
+//     let modal = document.getElementById(modalId);
+//     if (!modal) {
+//         modal = document.createElement('div');
+//         modal.id = modalId;
+//         modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; justify-content:center; align-items:center; padding:15px; animation: fadeIn 0.2s; box-sizing: border-box;';
+//         document.body.appendChild(modal);
+//     }
+
+//     modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#007bff; text-align:center;">⏳ Đang tải dữ liệu yêu cầu xử lý...</div>`;
+
+//     try {
+//         const { data: skData, error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
+//         if (error || !skData) throw error || new Error('Không tìm thấy sự kiện');
+
+//         let ttMoRong = skData.thong_tin_mo_rong || {};
+//         let xlObj = ttMoRong.xu_ly;
+//         if (!xlObj) { alert("⚠️ Sự kiện này không có yêu cầu xử lý đính kèm."); document.body.removeChild(modal); return; }
+
+//         window.danhSachAnhPhatGVCN = [];
+
+//         let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+//         let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
+//         let isNotDone = !isDone && !isPartial;
+
+//         let htmlAnhDaCo = '';
+//         if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
+//             htmlAnhDaCo = `<div style="margin-top:10px; font-size:12px; font-weight:bold; color:#28a745;">✅ Ảnh minh chứng đã nộp:</div><div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:5px; border:1px dashed #28a745; padding:10px; border-radius:6px; background:#f0fdf4;">`;
+//             xlObj.anh_minh_chung.forEach(link => {
+//                 let pL = link; let mD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/); if (mD) pL = `https://lh3.googleusercontent.com/d/${mD[1]}`;
+//                 htmlAnhDaCo += `<img onclick="window.open('${link}', '_blank')" src="${pL}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745; cursor: zoom-in; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">`;
+//             });
+//             htmlAnhDaCo += `</div>`;
+//         }
+
+//         modal.innerHTML = `
+//             <div style="background:#fff; width:100%; max-width:550px; border-radius:8px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+//                 <div style="background:#e83e8c; color:#fff; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
+//                     <h3 style="margin:0; font-size:16px;">🔄 CẬP NHẬT TRẠNG THÁI KHẮC PHỤC VI PHẠM</h3>
+//                     <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="background:transparent; color:#fff; border:none; font-size:18px; cursor:pointer;" title="Đóng">✖</button>
+//                 </div>
+                
+//                 <div style="padding:20px; background:#f8f9fa;">
+//                     <div style="background:#fffcf8; border:1px solid #ffeeba; border-radius:6px; padding:15px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+//                         <div style="font-size:13px; color:#555; margin-bottom:5px;">👤 Học sinh: <b style="color:#0056b3; font-size:14px;">${skData.ten_hoc_sinh}</b></div>
+//                         <div style="font-size:13px; color:#555; margin-bottom:5px;">🚨 Vi phạm: <b style="color:#dc3545;">[${skData.nhom_su_kien}]</b></div>
+//                         <div style="border-top:1px dashed #ffeeba; margin:10px 0;"></div>
+//                         <div style="font-size:13px; color:#d35400;"><b>🛠️ Hình thức xử lý:</b> <span style="font-size:14px; font-weight:bold;">${xlObj.hinh_thuc}</span></div>
+//                         <div style="font-size:13px; color:#d35400; margin-top:5px;"><b>📝 Nội dung yêu cầu:</b> <i>${xlObj.noi_dung}</i></div>
+//                     </div>
+
+//                     <div style="margin-bottom:20px;">
+//                         <label style="font-weight:bold; font-size:14px; color:#495057; display:block; margin-bottom:10px;">Thay đổi trạng thái tiến độ:</label>
+//                         <div style="display:flex; gap:10px;">
+//                             <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isNotDone ? '#dc3545' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#dc3545'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="nhan-vien-box">
+//                                 <input type="radio" name="trang_thai_phat" value="Chưa hoàn thành" ${isNotDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#dc3545;">
+//                                 <span style="font-weight:bold; color:#dc3545; font-size:12px;">⏳ Chưa xong</span>
+//                             </label>
+//                             <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isPartial ? '#007bff' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#007bff'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="mot-phan-box">
+//                                 <input type="radio" name="trang_thai_phat" value="Đã nộp 1 phần" ${isPartial ? 'checked' : ''} style="width:16px; height:16px; accent-color:#007bff;">
+//                                 <span style="font-weight:bold; color:#007bff; font-size:12px;">🔄 Nộp 1 phần</span>
+//                             </label>
+//                             <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isDone ? '#28a745' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#28a745';" id="da-xong-box">
+//                                 <input type="radio" name="trang_thai_phat" value="Đã hoàn thành" ${isDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#28a745;">
+//                                 <span style="font-weight:bold; color:#28a745; font-size:12px;">✅ Xong toàn bộ</span>
+//                             </label>
+//                         </div>
+//                     </div>
+
+//                     <div style="margin-bottom:10px;">
+//                         <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:8px;">📸 Bổ sung ảnh minh chứng (Vở chép phạt, Bảng tường trình...):</label>
+//                         <div style="display:flex; gap:15px; align-items:flex-start;">
+//                             <button type="button" onclick="document.getElementById('input-anh-phat-gvcn').click()" style="padding:10px 15px; background:#e0f7fa; color:#00838f; border:1px dashed #00acc1; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; transition:0.2s; flex-shrink:0;">
+//                                 <span style="font-size:20px;">📷</span><span style="font-size:11px;">Chụp ảnh nộp</span>
+//                             </button>
+//                             <input type="file" id="input-anh-phat-gvcn" accept="image/*" multiple style="display:none;" onchange="window.ham_21_52_chon_anh_phat_gvcn(this)">
+//                             <div id="vung-preview-anh-phat-gvcn" style="flex:1; min-height:65px; border:1px dashed #ccc; border-radius:6px; display:flex; align-items:center; justify-content:flex-start; background:#fafafa; padding:8px; gap:8px; overflow-x:auto;">
+//                                 <span style="color:#adb5bd; font-size:11px; font-style:italic;">(Ảnh chụp mới bổ sung sẽ hiện tại đây)</span>
+//                             </div>
+//                         </div>
+//                         ${htmlAnhDaCo}
+//                     </div>
+//                 </div>
+                
+//                 <div style="padding:15px 20px; background:#fff; border-top:1px solid #dee2e6; display:flex; justify-content:flex-end; gap:10px;">
+//                     <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="padding:10px 20px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px;">Hủy</button>
+//                     <button onclick="window.ham_21_53_luu_trang_thai_xu_ly('${idSuKien}', this)" style="padding:10px 30px; background:#e83e8c; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Cập Nhật Tiến Độ</button>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (e) {
+//         modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:red; text-align:center;">❌ Lỗi: ${e.message}<br><button onclick="document.body.removeChild(this.closest('div[style*=\\'position:fixed\\']'))" style="margin-top:15px; padding:5px 15px; cursor:pointer;">Đóng</button></div>`;
+//     }
+// };
+
+
+
 // =====================================================================
-// HÀM 21.51: POPUP CẬP NHẬT TRẠNG THÁI "CHÉP PHẠT / LÀM LẠI BÀI" CỦA GVCN
+// HÀM 21.51: MỞ POPUP CẬP NHẬT TIẾN ĐỘ KHẮC PHỤC (CÓ CẮT NÉN ẢNH)
 // =====================================================================
 window.ham_21_51_mo_popup_cap_nhat_xu_ly = async function (idSuKien) {
-    let modalId = 'modal-xu-ly-gvcn-' + idSuKien;
-    let modal = document.getElementById(modalId);
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = modalId;
-        modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; justify-content:center; align-items:center; padding:15px; animation: fadeIn 0.2s; box-sizing: border-box;';
-        document.body.appendChild(modal);
-    }
+    // Xóa modal cũ nếu đang mở
+    let modalCu = document.getElementById('modal-xu-ly-gvcn-' + idSuKien);
+    if (modalCu) document.body.removeChild(modalCu);
 
-    modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#007bff; text-align:center;">⏳ Đang tải dữ liệu yêu cầu xử lý...</div>`;
+    // Reset lại mảng ảnh tạm
+    window.danhSachAnhPhatGVCN = [];
 
-    try {
-        const { data: skData, error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
-        if (error || !skData) throw error || new Error('Không tìm thấy sự kiện');
+    // Lấy dữ liệu sự kiện hiện tại từ DB
+    const { data: skData, error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
+    if (error || !skData) { alert("Không tìm thấy dữ liệu!"); return; }
 
-        let ttMoRong = skData.thong_tin_mo_rong || {};
-        let xlObj = ttMoRong.xu_ly;
-        if (!xlObj) { alert("⚠️ Sự kiện này không có yêu cầu xử lý đính kèm."); document.body.removeChild(modal); return; }
+    let xlObj = skData.thong_tin_mo_rong?.xu_ly || {};
+    let ttHienTai = xlObj.trang_thai || 'Chưa hoàn thành';
 
-        window.danhSachAnhPhatGVCN = [];
+    let modal = document.createElement('div');
+    modal.id = 'modal-xu-ly-gvcn-' + idSuKien;
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); animation:fadeIn 0.2s;';
 
-        let isDone = xlObj.trang_thai === 'Đã hoàn thành';
-        let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
-        let isNotDone = !isDone && !isPartial;
+    modal.innerHTML = `
+        <div style="background:#fff; width:90%; max-width:400px; padding:20px; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0; color:#d35400; border-bottom:1px dashed #eee; padding-bottom:10px;">🛠️ Cập nhật tiến độ khắc phục</h3>
+            
+            <div style="font-size:13px; margin-bottom:15px; color:#333; background:#fffcf8; padding:10px; border-radius:6px; border:1px solid #ffeeba;">
+                <b>Học sinh:</b> <span style="color:#0056b3;">${skData.ten_hoc_sinh}</span><br>
+                <b>Yêu cầu:</b> <span style="color:#dc3545;">${xlObj.hinh_thuc}</span><br>
+                <b>Nội dung:</b> ${xlObj.noi_dung}
+            </div>
 
-        let htmlAnhDaCo = '';
-        if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
-            htmlAnhDaCo = `<div style="margin-top:10px; font-size:12px; font-weight:bold; color:#28a745;">✅ Ảnh minh chứng đã nộp:</div><div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:5px; border:1px dashed #28a745; padding:10px; border-radius:6px; background:#f0fdf4;">`;
-            xlObj.anh_minh_chung.forEach(link => {
-                let pL = link; let mD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/); if (mD) pL = `https://lh3.googleusercontent.com/d/${mD[1]}`;
-                htmlAnhDaCo += `<img onclick="window.open('${link}', '_blank')" src="${pL}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745; cursor: zoom-in; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">`;
-            });
-            htmlAnhDaCo += `</div>`;
-        }
-
-        modal.innerHTML = `
-            <div style="background:#fff; width:100%; max-width:550px; border-radius:8px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-                <div style="background:#e83e8c; color:#fff; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
-                    <h3 style="margin:0; font-size:16px;">🔄 CẬP NHẬT TRẠNG THÁI KHẮC PHỤC VI PHẠM</h3>
-                    <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="background:transparent; color:#fff; border:none; font-size:18px; cursor:pointer;" title="Đóng">✖</button>
-                </div>
-                
-                <div style="padding:20px; background:#f8f9fa;">
-                    <div style="background:#fffcf8; border:1px solid #ffeeba; border-radius:6px; padding:15px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
-                        <div style="font-size:13px; color:#555; margin-bottom:5px;">👤 Học sinh: <b style="color:#0056b3; font-size:14px;">${skData.ten_hoc_sinh}</b></div>
-                        <div style="font-size:13px; color:#555; margin-bottom:5px;">🚨 Vi phạm: <b style="color:#dc3545;">[${skData.nhom_su_kien}]</b></div>
-                        <div style="border-top:1px dashed #ffeeba; margin:10px 0;"></div>
-                        <div style="font-size:13px; color:#d35400;"><b>🛠️ Hình thức xử lý:</b> <span style="font-size:14px; font-weight:bold;">${xlObj.hinh_thuc}</span></div>
-                        <div style="font-size:13px; color:#d35400; margin-top:5px;"><b>📝 Nội dung yêu cầu:</b> <i>${xlObj.noi_dung}</i></div>
-                    </div>
-
-                    <div style="margin-bottom:20px;">
-                        <label style="font-weight:bold; font-size:14px; color:#495057; display:block; margin-bottom:10px;">Thay đổi trạng thái tiến độ:</label>
-                        <div style="display:flex; gap:10px;">
-                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isNotDone ? '#dc3545' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#dc3545'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="nhan-vien-box">
-                                <input type="radio" name="trang_thai_phat" value="Chưa hoàn thành" ${isNotDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#dc3545;">
-                                <span style="font-weight:bold; color:#dc3545; font-size:12px;">⏳ Chưa xong</span>
-                            </label>
-                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isPartial ? '#007bff' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#007bff'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="mot-phan-box">
-                                <input type="radio" name="trang_thai_phat" value="Đã nộp 1 phần" ${isPartial ? 'checked' : ''} style="width:16px; height:16px; accent-color:#007bff;">
-                                <span style="font-weight:bold; color:#007bff; font-size:12px;">🔄 Nộp 1 phần</span>
-                            </label>
-                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isDone ? '#28a745' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#28a745';" id="da-xong-box">
-                                <input type="radio" name="trang_thai_phat" value="Đã hoàn thành" ${isDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#28a745;">
-                                <span style="font-weight:bold; color:#28a745; font-size:12px;">✅ Xong toàn bộ</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom:10px;">
-                        <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:8px;">📸 Bổ sung ảnh minh chứng (Vở chép phạt, Bảng tường trình...):</label>
-                        <div style="display:flex; gap:15px; align-items:flex-start;">
-                            <button type="button" onclick="document.getElementById('input-anh-phat-gvcn').click()" style="padding:10px 15px; background:#e0f7fa; color:#00838f; border:1px dashed #00acc1; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; transition:0.2s; flex-shrink:0;">
-                                <span style="font-size:20px;">📷</span><span style="font-size:11px;">Chụp ảnh nộp</span>
-                            </button>
-                            <input type="file" id="input-anh-phat-gvcn" accept="image/*" multiple style="display:none;" onchange="window.ham_21_52_chon_anh_phat_gvcn(this)">
-                            <div id="vung-preview-anh-phat-gvcn" style="flex:1; min-height:65px; border:1px dashed #ccc; border-radius:6px; display:flex; align-items:center; justify-content:flex-start; background:#fafafa; padding:8px; gap:8px; overflow-x:auto;">
-                                <span style="color:#adb5bd; font-size:11px; font-style:italic;">(Ảnh chụp mới bổ sung sẽ hiện tại đây)</span>
-                            </div>
-                        </div>
-                        ${htmlAnhDaCo}
-                    </div>
-                </div>
-                
-                <div style="padding:15px 20px; background:#fff; border-top:1px solid #dee2e6; display:flex; justify-content:flex-end; gap:10px;">
-                    <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="padding:10px 20px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px;">Hủy</button>
-                    <button onclick="window.ham_21_53_luu_trang_thai_xu_ly('${idSuKien}', this)" style="padding:10px 30px; background:#e83e8c; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Cập Nhật Tiến Độ</button>
+            <div style="margin-bottom:15px;">
+                <label style="font-weight:bold; font-size:13px; color:#495057;">Trạng thái:</label>
+                <div style="display:flex; gap:10px; margin-top:5px;">
+                    <label style="font-size:13px; cursor:pointer;"><input type="radio" name="trang_thai_phat" value="Chưa hoàn thành" ${ttHienTai === 'Chưa hoàn thành' ? 'checked' : ''}> Chưa xong</label>
+                    <label style="font-size:13px; cursor:pointer;"><input type="radio" name="trang_thai_phat" value="Đã nộp 1 phần" ${ttHienTai === 'Đã nộp 1 phần' ? 'checked' : ''}> Nộp 1 phần</label>
+                    <label style="font-size:13px; cursor:pointer;"><input type="radio" name="trang_thai_phat" value="Đã hoàn thành" ${ttHienTai === 'Đã hoàn thành' ? 'checked' : ''}> Hoàn thành</label>
                 </div>
             </div>
-        `;
-    } catch (e) {
-        modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:red; text-align:center;">❌ Lỗi: ${e.message}<br><button onclick="document.body.removeChild(this.closest('div[style*=\\'position:fixed\\']'))" style="margin-top:15px; padding:5px 15px; cursor:pointer;">Đóng</button></div>`;
-    }
+
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:bold; font-size:13px; color:#28a745;">📸 Ảnh minh chứng (Nộp phạt):</label>
+                <div style="display:flex; gap:10px; margin-top:5px; align-items:flex-start;">
+                    
+                    <!-- 🌟 NÚT TẢI ẢNH GỌI HÀM CẮT ẢNH TRUNG GIAN -->
+                    <button type="button" onclick="document.getElementById('gvcn-input-anh-phat-${idSuKien}').click()" style="padding:8px 12px; background:#e0f7fa; border:1px dashed #00acc1; color:#00838f; border-radius:4px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center;">
+                        <span style="font-size:20px;">📷</span> Thêm ảnh
+                    </button>
+                    <input type="file" id="gvcn-input-anh-phat-${idSuKien}" accept="image/*" multiple style="display:none;" onchange="window.ham_21_52_chon_anh_phat_gvcn(this)">
+                    
+                    <div id="gvcn-vung-preview-anh-phat" style="flex:1; display:flex; gap:5px; flex-wrap:wrap; min-height:55px; border:1px dashed #ccc; padding:5px; border-radius:4px; align-items:center; background:#f8f9fa;">
+                        <span style="color:#adb5bd; font-size:12px; font-style:italic;">(Chưa có ảnh nộp phạt)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #eee; padding-top:15px;">
+                <button onclick="document.body.removeChild(this.closest('div[id^=\\'modal-xu-ly\\']'))" style="padding:8px 15px; background:#6c757d; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">Đóng</button>
+                <button onclick="window.ham_21_53_luu_trang_thai_xu_ly('${idSuKien}', this)" style="padding:8px 20px; background:#28a745; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">💾 Lưu tiến độ</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
 };
 
+
+
+
+// window.ham_21_52_chon_anh_phat_gvcn = async function (inputElem) {
+//     if (inputElem.files && inputElem.files.length > 0) {
+//         let btnNut = inputElem.previousElementSibling;
+//         let oldHtml = btnNut.innerHTML;
+//         btnNut.innerHTML = '<span style="font-size:20px;">⏳</span><span style="font-size:11px;">Đang nén...</span>';
+
+//         // 🌟 Bơm mượn hàm nén của Khối 20 (vì xài chung logic nén)
+//         let processedFiles = [];
+//         for (let f of Array.from(inputElem.files)) {
+//             let compressed = window.ham_20_24_nen_anh_canvas ? await window.ham_20_24_nen_anh_canvas(f, 0.8, 1280) : f;
+//             if (compressed) processedFiles.push(compressed);
+//         }
+
+//         if (!window.danhSachAnhPhatGVCN) window.danhSachAnhPhatGVCN = [];
+//         window.danhSachAnhPhatGVCN.push(...processedFiles);
+
+//         const vungPreview = document.getElementById('vung-preview-anh-phat-gvcn');
+//         if (vungPreview) {
+//             vungPreview.style.flexDirection = 'column'; vungPreview.style.alignItems = 'flex-start';
+//             let html = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
+//             window.danhSachAnhPhatGVCN.forEach((f, idx) => {
+//                 let url = URL.createObjectURL(f);
+//                 html += `<div style="position:relative; width:60px; display:flex; flex-direction:column; align-items:center; animation: fadeIn 0.2s;"><img src="${url}" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><button type="button" onclick="window.danhSachAnhPhatGVCN.splice(${idx}, 1); this.parentElement.remove();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:white; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.3);">✖</button></div>`;
+//             });
+//             html += '</div>'; vungPreview.innerHTML = html;
+//         }
+//         btnNut.innerHTML = oldHtml; inputElem.value = '';
+//     }
+// };
+
+
+// =====================================================================
+// HÀM 21.52: XỬ LÝ ẢNH NỘP PHẠT TRONG POPUP (KÍCH HOẠT CẮT / NÉN ẢNH)
+// =====================================================================
 window.ham_21_52_chon_anh_phat_gvcn = async function (inputElem) {
-    if (inputElem.files && inputElem.files.length > 0) {
-        let btnNut = inputElem.previousElementSibling;
-        let oldHtml = btnNut.innerHTML;
-        btnNut.innerHTML = '<span style="font-size:20px;">⏳</span><span style="font-size:11px;">Đang nén...</span>';
+    const files = Array.from(inputElem.files);
+    if (files.length === 0) return;
 
-        // 🌟 Bơm mượn hàm nén của Khối 20 (vì xài chung logic nén)
-        let processedFiles = [];
-        for (let f of Array.from(inputElem.files)) {
-            let compressed = window.ham_20_24_nen_anh_canvas ? await window.ham_20_24_nen_anh_canvas(f, 0.8, 1280) : f;
-            if (compressed) processedFiles.push(compressed);
-        }
+    // 🌟 CHUYỂN HƯỚNG ẢNH QUA HỆ THỐNG CẮT/NÉN CHUNG TRƯỚC KHI LƯU
+    let processedFiles = files;
 
-        if (!window.danhSachAnhPhatGVCN) window.danhSachAnhPhatGVCN = [];
-        window.danhSachAnhPhatGVCN.push(...processedFiles);
-
-        const vungPreview = document.getElementById('vung-preview-anh-phat-gvcn');
-        if (vungPreview) {
-            vungPreview.style.flexDirection = 'column'; vungPreview.style.alignItems = 'flex-start';
-            let html = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
-            window.danhSachAnhPhatGVCN.forEach((f, idx) => {
-                let url = URL.createObjectURL(f);
-                html += `<div style="position:relative; width:60px; display:flex; flex-direction:column; align-items:center; animation: fadeIn 0.2s;"><img src="${url}" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><button type="button" onclick="window.danhSachAnhPhatGVCN.splice(${idx}, 1); this.parentElement.remove();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:white; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.3);">✖</button></div>`;
-            });
-            html += '</div>'; vungPreview.innerHTML = html;
-        }
-        btnNut.innerHTML = oldHtml; inputElem.value = '';
+    // Tìm hàm cắt ảnh đang chạy trong hệ thống của thầy (Khối 21, Khối 20 hoặc Hàm Hỗ trợ)
+    if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
+        processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
+    } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+        processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+    } else if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+        processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
     }
+
+    // Nạp ảnh đã cắt/nén vào mảng RAM
+    if (!window.danhSachAnhPhatGVCN) window.danhSachAnhPhatGVCN = [];
+    window.danhSachAnhPhatGVCN.push(...processedFiles);
+
+    // Vẽ lại ảnh lên popup
+    if (typeof window.ham_21_52b_render_anh_phat_gvcn === 'function') {
+        window.ham_21_52b_render_anh_phat_gvcn();
+    }
+
+    // Reset input file để chọn lại ảnh đó không bị kẹt
+    inputElem.value = '';
 };
+
+// =====================================================================
+// HÀM 21.52B: VẼ DANH SÁCH ẢNH NỘP PHẠT ĐÃ CHỌN LÊN POPUP
+// =====================================================================
+window.ham_21_52b_render_anh_phat_gvcn = function () {
+    const vungHienThi = document.getElementById('gvcn-vung-preview-anh-phat');
+    if (!vungHienThi) return;
+
+    if (!window.danhSachAnhPhatGVCN || window.danhSachAnhPhatGVCN.length === 0) {
+        vungHienThi.innerHTML = '<span style="color:#adb5bd; font-size:12px; font-style:italic;">(Chưa có ảnh nộp phạt)</span>';
+        return;
+    }
+
+    let html = '';
+    window.danhSachAnhPhatGVCN.forEach((file, index) => {
+        let url = URL.createObjectURL(file);
+        html += `
+        <div style="position:relative; display:inline-block; margin-right:8px; margin-bottom:8px; animation: fadeIn 0.3s;">
+            <img src="${url}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" title="Ảnh minh chứng">
+            <button type="button" onclick="window.danhSachAnhPhatGVCN.splice(${index}, 1); window.ham_21_52b_render_anh_phat_gvcn();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:20px; height:20px; font-size:12px; cursor:pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;" title="Xóa ảnh">✖</button>
+        </div>`;
+    });
+    vungHienThi.innerHTML = html;
+};
+
+
 
 // window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
 //     let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;

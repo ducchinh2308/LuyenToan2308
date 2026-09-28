@@ -84,14 +84,10 @@ function ham_3_1_ve_dashboard_admin() {
             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">📍 Tạo Sơ Đồ Lớp</button>
-                
-                <!-- NÚT 1: NHẬT KÝ DẠY HỌC (Gọi Khối 20) -->
                 <button onclick="ham_20_1_mo_giao_dien_nhat_ky_day_hoc()" style="padding: 12px 20px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">📔 Nhật Ký Dạy Học</button>
-                
-                <!-- NÚT 2: NHẬT KÝ GVCN (Đang chờ thiết kế Khối 21) -->
-                <!-- NÚT 2: NHẬT KÝ GVCN (Đã kết nối Khối 21) -->
                 <button onclick="ham_21_1_mo_giao_dien_nhat_ky_gvcn()" style="padding: 12px 20px; background: #e83e8c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">🛡️ Nhật Ký GVCN</button>
-            </div>
+                <button onclick="if(typeof window.ham_22_1_mo_giao_dien_quan_ly_lop === 'function') window.ham_22_1_mo_giao_dien_quan_ly_lop(); else alert('Đang cập nhật tính năng!');" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">👥 Quản lý lớp CN</button>
+                </div>
 
             <div id="vung-lam-viec-chi-tiet" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px dashed #ccc; min-height: 200px;">
                 <p style="color: #6c757d; text-align: center; margin-top: 80px;">Bấm vào các nút chức năng bên trên để bắt đầu làm việc...</p>
