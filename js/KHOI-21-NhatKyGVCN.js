@@ -2153,8 +2153,175 @@ window.ham_21_14_luu_thong_tin_tuan = async function (btn) {
 // };
 
 
+// // =====================================================================
+// // HÀM 21.15: LƯU SỰ KIỆN (UPSERT THÔNG MINH KẾT HỢP XÓA RÁC)
+// // =====================================================================
+// window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
+//     const cacDong = document.querySelectorAll('.dong-nhap-su-kien');
+//     const tuanXayRa = document.getElementById('gvcn-sk-tuan-chon').value;
+//     const maLop = document.getElementById('gvcn-input-lop').value.match(/\(([^)]+)\)$/)?.[1]?.trim();
+
+//     if (!maLop) { alert("⚠️ Vui lòng chọn Lớp học ở phần 1 trước!"); return; }
+//     if (!tuanXayRa) { alert("⚠️ Vui lòng CHỌN TUẦN xảy ra sự kiện ở Bước 1!"); return; }
+
+//     let danhSachChoLuu = [];
+//     let coLoiThiếuDuLieu = false;
+//     let currentIds = []; // 🌟 Mảng ghi nhớ các ID hợp lệ đang có trên bảng
+
+//     cacDong.forEach(dong => {
+//         let ngay = dong.querySelector('.sk-ngay').value;
+//         let thu = dong.querySelector('.sk-thu').value;
+//         let buoi = dong.querySelector('.sk-buoi').value;
+//         let hsInput = dong.querySelector('.sk-hs').value.trim();
+//         let loi = dong.querySelector('.sk-loi').value.trim();
+//         let diemTru = dong.querySelector('.sk-diem-tru').value;
+//         let ghiChuThem = dong.querySelector('.sk-ghichu').value.trim();
+//         let idSuKien = dong.dataset.id || null;
+
+//         let mangAnhDong = [];
+//         try { if (dong.dataset.mangAnhDong) mangAnhDong = JSON.parse(dong.dataset.mangAnhDong); } catch (e) { }
+
+//         let coNhapLieu = (hsInput !== '') || (loi !== '');
+
+//         if (coNhapLieu) {
+//             if (!ngay || !thu || !buoi || !hsInput || !loi || diemTru === '') {
+//                 coLoiThiếuDuLieu = true;
+//                 dong.style.border = '2px solid #dc3545';
+//                 dong.style.boxShadow = '0 0 8px rgba(220, 53, 69, 0.4)';
+//                 dong.classList.remove('dong-dang-chon');
+//             } else {
+//                 dong.style.border = '1px solid #ced4da';
+//                 dong.style.boxShadow = 'none';
+
+//                 let uidHS = null, tenDangNhap = '';
+//                 if (window.DanhSachHocSinhLopHienTai) {
+//                     let hsObj = window.DanhSachHocSinhLopHienTai.find(h => h.chuoiGhep === hsInput);
+//                     if (hsObj) { uidHS = hsObj.uid; tenDangNhap = hsObj.tenDangNhap; }
+//                 }
+//                 let tenHS = hsInput.split(' - ')[0].trim();
+
+//                 if (idSuKien) currentIds.push(idSuKien); // Thêm ID vào danh sách giữ lại
+
+//                 danhSachChoLuu.push({
+//                     id: idSuKien,
+//                     tuan: tuanXayRa, ngay: ngay, buoi: buoi,
+//                     uid: uidHS, ten_hs: tenHS, ten_dang_nhap: tenDangNhap, loi: loi, diem_tru: diemTru, ghi_chu: ghiChuThem,
+//                     mang_anh: mangAnhDong
+//                 });
+//             }
+//         } else {
+//             dong.style.border = dong.classList.contains('dong-dang-chon') ? '1px solid #e83e8c' : '1px solid #ced4da';
+//             dong.style.boxShadow = dong.classList.contains('dong-dang-chon') ? '0 0 5px rgba(232, 62, 140, 0.3)' : 'none';
+//         }
+//     });
+
+//     if (coLoiThiếuDuLieu) {
+//         alert("⚠️ CÓ LỖI: Phát hiện dòng chưa điền đủ dữ liệu bắt buộc (Ngày, Thứ, Buổi, Học sinh, Lỗi, Điểm).\n👉 Các dòng bị thiếu đã được bôi viền ĐỎ, thầy vui lòng bổ sung đầy đủ trước khi lưu!");
+//         return;
+//     }
+
+//     let oldTxt = btnLuu.innerHTML;
+//     let oldBg = btnLuu.style.background || '#e83e8c';
+//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ ẢNH & ĐỒNG BỘ CSDL..."; btnLuu.disabled = true;
+
+//     const d = new Date();
+//     const timeStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}_${String(d.getHours()).padStart(2, '0')}h${String(d.getMinutes()).padStart(2, '0')}m${String(d.getSeconds()).padStart(2, '0')}s`;
+//     const cleanStr = (s) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/\s+/g, "_") : "";
+
+//     try {
+//         let mangSuKienDB = [];
+//         let cacheUpload = {};
+
+//         let idNK = null;
+//         const { data: nkData } = await _supabase.from('nhat_ky_gvcn').select('id').eq('ma_lop', maLop).eq('tuan_hoc', tuanXayRa).maybeSingle();
+//         if (nkData) { idNK = nkData.id; } else {
+//             const { data: newNK } = await _supabase.from('nhat_ky_gvcn').insert([{ ma_lop: maLop, tuan_hoc: tuanXayRa, tu_ngay: document.getElementById('gvcn-sk-tuan-tu').value || new Date().toISOString().split('T')[0], trang_thai: 1 }]).select();
+//             idNK = newNK[0].id;
+//         }
+
+//         // 🌟 KIỂM TRA BẢNG CŨ VÀ XÓA RÁC (Dòng nào thầy đã bấm nút ✖ xóa trên giao diện thì xóa vĩnh viễn trong CSDL)
+//         const { data: dbEvents } = await _supabase.from('nhat_ky_gvcn_su_kien_hs')
+//             .select('id').eq('id_gvcn_nhat_ky', idNK).not('nhom_su_kien', 'ilike', 'Giao việc:%');
+
+//         if (dbEvents) {
+//             let idsToDelete = dbEvents.map(e => e.id).filter(id => !currentIds.includes(id));
+//             if (idsToDelete.length > 0) {
+//                 await _supabase.from('nhat_ky_gvcn_su_kien_hs').delete().in('id', idsToDelete);
+//             }
+//         }
+
+//         if (danhSachChoLuu.length === 0) {
+//             alert("✅ Đã đồng bộ bảng sự kiện thành công! (Bảng đã được làm sạch)");
+//             if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
+//             btnLuu.style.background = oldBg; btnLuu.innerHTML = oldTxt; btnLuu.disabled = false;
+//             return;
+//         }
+
+//         for (let sk of danhSachChoLuu) {
+//             let mangLink = [];
+//             let hsClean = cleanStr(sk.ten_hs);
+//             let loiClean = cleanStr(sk.loi);
+//             let tuanClean = cleanStr(sk.tuan);
+//             let idxAnh = 1;
+
+//             for (let imgObj of sk.mang_anh) {
+//                 if (imgObj.type === 'url') {
+//                     mangLink.push(imgObj.b64); // Ảnh cũ giữ nguyên
+//                 } else {
+//                     let key = imgObj.size + '_' + idxAnh;
+//                     if (!cacheUpload[key]) {
+//                         let tenFile = `SuKien_[${timeStr}]_Lop[${maLop}]_Tuan[${tuanClean}]_HS[${hsClean}]_Loi[${loiClean}]_Anh[${idxAnh}].jpg`;
+//                         let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                             CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                             { action: "upload_anh_nhat_ky_gvcn", base64: imgObj.b64, mimeType: imgObj.type || 'image/jpeg', fileName: tenFile, maLop: maLop, loaiAnh: "GVCN_MC" }
+//                         );
+//                         cacheUpload[key] = res.url;
+//                     }
+//                     mangLink.push(cacheUpload[key]);
+//                 }
+//                 idxAnh++;
+//             }
+
+//             let ghiChuChiTiet = sk.loi + ` (Xảy ra ngày ${sk.ngay} - Buổi ${sk.buoi})`;
+//             if (sk.ghi_chu) ghiChuChiTiet += ` - Ghi chú: ${sk.ghi_chu}`;
+//             if (sk.diem_tru && parseFloat(sk.diem_tru) !== 0) ghiChuChiTiet += ` - Điểm: ${sk.diem_tru}`;
+
+//             let obj = {
+//                 id_gvcn_nhat_ky: idNK, uid_hoc_sinh: sk.uid, ten_dang_nhap_hoc_sinh: sk.ten_dang_nhap, ten_hoc_sinh: sk.ten_hs,
+//                 nhom_su_kien: sk.loi, noi_dung_chi_tiet: ghiChuChiTiet, hinh_thuc_xu_ly: '',
+//                 ngay_ghi_nhan: sk.ngay, muc_do: 1,
+//                 thong_tin_mo_rong: { mau_sac: '#e83e8c', danh_sach_anh_minh_chung: mangLink, diem_tru: sk.diem_tru }
+//             };
+
+//             if (sk.id) obj.id = sk.id; // Nếu có ID -> Lệnh upsert sẽ tự hiểu là Update
+//             mangSuKienDB.push(obj);
+//         }
+
+//         if (mangSuKienDB.length > 0) {
+//             const { error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').upsert(mangSuKienDB);
+//             if (error) throw error;
+
+//             alert("✅ Đã cập nhật tất cả sự kiện vào Hồ sơ lớp thành công!");
+
+//             // Reload lại bảng từ CSDL để chuẩn hóa Data (lấy ID mới sinh ra)
+//             if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') {
+//                 window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
+//             }
+//         }
+//     } catch (e) {
+//         alert("❌ Lỗi: " + e.message);
+//     }
+//     finally {
+//         btnLuu.style.background = oldBg;
+//         btnLuu.innerHTML = oldTxt;
+//         btnLuu.disabled = false;
+//     }
+// };
+
+
+
 // =====================================================================
-// HÀM 21.15: LƯU SỰ KIỆN (UPSERT THÔNG MINH KẾT HỢP XÓA RÁC)
+// HÀM 21.15: LƯU SỰ KIỆN TỪ BẢNG (UPSERT THÔNG MINH + GHI NHẬN JSON XỬ LÝ PHẠT)
 // =====================================================================
 window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
     const cacDong = document.querySelectorAll('.dong-nhap-su-kien');
@@ -2166,7 +2333,17 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
 
     let danhSachChoLuu = [];
     let coLoiThiếuDuLieu = false;
-    let currentIds = []; // 🌟 Mảng ghi nhớ các ID hợp lệ đang có trên bảng
+    let currentIds = [];
+
+    // 🌟 Bắt trạng thái khu vực Yêu cầu xử lý (B4)
+    let checkXuLy = document.getElementById('gvcn-check-xu-ly').checked;
+    let hinhThucXL = document.getElementById('gvcn-hinh-thuc-xu-ly').value;
+    let noiDungXL = document.getElementById('gvcn-noi-dung-xu-ly').value.trim();
+
+    if (checkXuLy) {
+        if (!hinhThucXL) { alert("⚠️ Yêu cầu xử lý đang BẬT: Vui lòng chọn ít nhất 1 Hình thức (bấm vào các nút tag màu cam)!"); return; }
+        if (!noiDungXL) { alert("⚠️ Yêu cầu xử lý đang BẬT: Vui lòng ghi rõ Nội dung yêu cầu khắc phục (VD: Viết bản kiểm điểm có chữ ký PH...)!"); return; }
+    }
 
     cacDong.forEach(dong => {
         let ngay = dong.querySelector('.sk-ngay').value;
@@ -2186,12 +2363,9 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
         if (coNhapLieu) {
             if (!ngay || !thu || !buoi || !hsInput || !loi || diemTru === '') {
                 coLoiThiếuDuLieu = true;
-                dong.style.border = '2px solid #dc3545';
-                dong.style.boxShadow = '0 0 8px rgba(220, 53, 69, 0.4)';
-                dong.classList.remove('dong-dang-chon');
+                dong.style.border = '2px solid #dc3545'; dong.style.boxShadow = '0 0 8px rgba(220, 53, 69, 0.4)'; dong.classList.remove('dong-dang-chon');
             } else {
-                dong.style.border = '1px solid #ced4da';
-                dong.style.boxShadow = 'none';
+                dong.style.border = '1px solid #ced4da'; dong.style.boxShadow = 'none';
 
                 let uidHS = null, tenDangNhap = '';
                 if (window.DanhSachHocSinhLopHienTai) {
@@ -2200,13 +2374,25 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
                 }
                 let tenHS = hsInput.split(' - ')[0].trim();
 
-                if (idSuKien) currentIds.push(idSuKien); // Thêm ID vào danh sách giữ lại
+                if (idSuKien) currentIds.push(idSuKien);
+
+                // Tạo đối tượng JSON xử lý (nếu có bật checkbox)
+                let goiXuLy = null;
+                if (checkXuLy) {
+                    goiXuLy = {
+                        hinh_thuc: hinhThucXL,
+                        noi_dung: noiDungXL,
+                        trang_thai: 'Chưa hoàn thành',
+                        anh_minh_chung: []
+                    };
+                }
 
                 danhSachChoLuu.push({
                     id: idSuKien,
                     tuan: tuanXayRa, ngay: ngay, buoi: buoi,
                     uid: uidHS, ten_hs: tenHS, ten_dang_nhap: tenDangNhap, loi: loi, diem_tru: diemTru, ghi_chu: ghiChuThem,
-                    mang_anh: mangAnhDong
+                    mang_anh: mangAnhDong,
+                    goi_xu_ly: goiXuLy
                 });
             }
         } else {
@@ -2215,13 +2401,9 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
         }
     });
 
-    if (coLoiThiếuDuLieu) {
-        alert("⚠️ CÓ LỖI: Phát hiện dòng chưa điền đủ dữ liệu bắt buộc (Ngày, Thứ, Buổi, Học sinh, Lỗi, Điểm).\n👉 Các dòng bị thiếu đã được bôi viền ĐỎ, thầy vui lòng bổ sung đầy đủ trước khi lưu!");
-        return;
-    }
+    if (coLoiThiếuDuLieu) { alert("⚠️ CÓ LỖI: Phát hiện dòng chưa điền đủ dữ liệu bắt buộc (Ngày, Thứ, Buổi, Học sinh, Lỗi, Điểm).\n👉 Các dòng bị thiếu đã được bôi viền ĐỎ, thầy vui lòng bổ sung đầy đủ trước khi lưu!"); return; }
 
-    let oldTxt = btnLuu.innerHTML;
-    let oldBg = btnLuu.style.background || '#e83e8c';
+    let oldTxt = btnLuu.innerHTML; let oldBg = btnLuu.style.background || '#e83e8c';
     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ ẢNH & ĐỒNG BỘ CSDL..."; btnLuu.disabled = true;
 
     const d = new Date();
@@ -2239,42 +2421,28 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
             idNK = newNK[0].id;
         }
 
-        // 🌟 KIỂM TRA BẢNG CŨ VÀ XÓA RÁC (Dòng nào thầy đã bấm nút ✖ xóa trên giao diện thì xóa vĩnh viễn trong CSDL)
-        const { data: dbEvents } = await _supabase.from('nhat_ky_gvcn_su_kien_hs')
-            .select('id').eq('id_gvcn_nhat_ky', idNK).not('nhom_su_kien', 'ilike', 'Giao việc:%');
-
+        const { data: dbEvents } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('id').eq('id_gvcn_nhat_ky', idNK).not('nhom_su_kien', 'ilike', 'Giao việc:%');
         if (dbEvents) {
             let idsToDelete = dbEvents.map(e => e.id).filter(id => !currentIds.includes(id));
-            if (idsToDelete.length > 0) {
-                await _supabase.from('nhat_ky_gvcn_su_kien_hs').delete().in('id', idsToDelete);
-            }
+            if (idsToDelete.length > 0) await _supabase.from('nhat_ky_gvcn_su_kien_hs').delete().in('id', idsToDelete);
         }
 
         if (danhSachChoLuu.length === 0) {
             alert("✅ Đã đồng bộ bảng sự kiện thành công! (Bảng đã được làm sạch)");
             if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
-            btnLuu.style.background = oldBg; btnLuu.innerHTML = oldTxt; btnLuu.disabled = false;
-            return;
+            btnLuu.style.background = oldBg; btnLuu.innerHTML = oldTxt; btnLuu.disabled = false; return;
         }
 
         for (let sk of danhSachChoLuu) {
             let mangLink = [];
-            let hsClean = cleanStr(sk.ten_hs);
-            let loiClean = cleanStr(sk.loi);
-            let tuanClean = cleanStr(sk.tuan);
-            let idxAnh = 1;
+            let hsClean = cleanStr(sk.ten_hs); let loiClean = cleanStr(sk.loi); let tuanClean = cleanStr(sk.tuan); let idxAnh = 1;
 
             for (let imgObj of sk.mang_anh) {
-                if (imgObj.type === 'url') {
-                    mangLink.push(imgObj.b64); // Ảnh cũ giữ nguyên
-                } else {
+                if (imgObj.type === 'url') { mangLink.push(imgObj.b64); } else {
                     let key = imgObj.size + '_' + idxAnh;
                     if (!cacheUpload[key]) {
                         let tenFile = `SuKien_[${timeStr}]_Lop[${maLop}]_Tuan[${tuanClean}]_HS[${hsClean}]_Loi[${loiClean}]_Anh[${idxAnh}].jpg`;
-                        let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
-                            CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
-                            { action: "upload_anh_nhat_ky_gvcn", base64: imgObj.b64, mimeType: imgObj.type || 'image/jpeg', fileName: tenFile, maLop: maLop, loaiAnh: "GVCN_MC" }
-                        );
+                        let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, { action: "upload_anh_nhat_ky_gvcn", base64: imgObj.b64, mimeType: imgObj.type || 'image/jpeg', fileName: tenFile, maLop: maLop, loaiAnh: "GVCN_MC" });
                         cacheUpload[key] = res.url;
                     }
                     mangLink.push(cacheUpload[key]);
@@ -2286,14 +2454,17 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
             if (sk.ghi_chu) ghiChuChiTiet += ` - Ghi chú: ${sk.ghi_chu}`;
             if (sk.diem_tru && parseFloat(sk.diem_tru) !== 0) ghiChuChiTiet += ` - Điểm: ${sk.diem_tru}`;
 
+            // Ghép gói JSON mở rộng
+            let thongTinMoRong = { mau_sac: '#e83e8c', danh_sach_anh_minh_chung: mangLink, diem_tru: sk.diem_tru };
+            if (sk.goi_xu_ly) thongTinMoRong.xu_ly = sk.goi_xu_ly;
+
             let obj = {
                 id_gvcn_nhat_ky: idNK, uid_hoc_sinh: sk.uid, ten_dang_nhap_hoc_sinh: sk.ten_dang_nhap, ten_hoc_sinh: sk.ten_hs,
                 nhom_su_kien: sk.loi, noi_dung_chi_tiet: ghiChuChiTiet, hinh_thuc_xu_ly: '',
-                ngay_ghi_nhan: sk.ngay, muc_do: 1,
-                thong_tin_mo_rong: { mau_sac: '#e83e8c', danh_sach_anh_minh_chung: mangLink, diem_tru: sk.diem_tru }
+                ngay_ghi_nhan: sk.ngay, muc_do: 1, thong_tin_mo_rong: thongTinMoRong
             };
 
-            if (sk.id) obj.id = sk.id; // Nếu có ID -> Lệnh upsert sẽ tự hiểu là Update
+            if (sk.id) obj.id = sk.id;
             mangSuKienDB.push(obj);
         }
 
@@ -2301,22 +2472,44 @@ window.ham_21_15_luu_su_kien_tuan_truoc = async function (btnLuu) {
             const { error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').upsert(mangSuKienDB);
             if (error) throw error;
 
-            alert("✅ Đã cập nhật tất cả sự kiện vào Hồ sơ lớp thành công!");
+            // Xóa form khắc phục
+            document.getElementById('gvcn-check-xu-ly').checked = false;
+            document.getElementById('gvcn-vung-xu-ly').style.display = 'none';
+            document.getElementById('gvcn-hinh-thuc-xu-ly').value = '';
+            document.getElementById('gvcn-noi-dung-xu-ly').value = '';
+            document.querySelectorAll('.tag-xu-ly-btn').forEach(b => { b.style.background = 'transparent'; b.style.color = b.dataset.color; });
 
-            // Reload lại bảng từ CSDL để chuẩn hóa Data (lấy ID mới sinh ra)
-            if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') {
-                window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
-            }
+            alert("✅ Đã cập nhật tất cả sự kiện vào Hồ sơ lớp thành công!");
+            if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
         }
-    } catch (e) {
-        alert("❌ Lỗi: " + e.message);
-    }
-    finally {
-        btnLuu.style.background = oldBg;
-        btnLuu.innerHTML = oldTxt;
-        btnLuu.disabled = false;
-    }
+    } catch (e) { alert("❌ Lỗi: " + e.message); }
+    finally { btnLuu.style.background = oldBg; btnLuu.innerHTML = oldTxt; btnLuu.disabled = false; }
 };
+
+
+
+// =====================================================================
+// HÀM MỚI: CHỌN TAG HÌNH THỨC XỬ LÝ (CHỌN NHIỀU MỤC CÙNG LÚC)
+// =====================================================================
+window.ham_21_chon_hinh_thuc_xu_ly = function (btnElem, tenHinhThuc) {
+    let hiddenInput = document.getElementById('gvcn-hinh-thuc-xu-ly');
+    if (!hiddenInput) return;
+
+    let currentValues = hiddenInput.value ? hiddenInput.value.split(', ') : [];
+
+    if (currentValues.includes(tenHinhThuc)) {
+        currentValues = currentValues.filter(v => v !== tenHinhThuc);
+        btnElem.style.background = 'transparent';
+        btnElem.style.color = btnElem.dataset.color;
+    } else {
+        currentValues.push(tenHinhThuc);
+        btnElem.style.background = btnElem.dataset.color;
+        btnElem.style.color = '#fff';
+    }
+    hiddenInput.value = currentValues.join(', ');
+};
+
+
 
 
 
@@ -4339,28 +4532,116 @@ window.ham_21_33_chon_anh_sk_dong = async function (inputElem) {
 
 
 
+// // =====================================================================
+// // HÀM 21.34: RENDER BẢNG CHỌN NHANH (100% ĐỌC TỪ DATABASE, KHÔNG CÒN CODE CỨNG)
+// // =====================================================================
+// window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
+//     try {
+//         // Chỉ đọc từ Database, không còn mảng dữ liệu code cứng
+//         let { data: customData } = await _supabase.from('cai_dat_the_su_kien_gvcn').select('*');
+//         window.gvcn_DanhSachTheSuKien = [];
+
+//         if (customData) {
+//             customData.forEach(cd => {
+//                 window.gvcn_DanhSachTheSuKien.push({
+//                     ten: cd.ten_the,
+//                     diem: cd.diem_so || 0,
+//                     nhom: cd.nhom_the || "KHÁC / TÙY CHỈNH"
+//                 });
+//             });
+//         }
+
+//         // Khởi tạo các nhóm cơ bản để giữ thứ tự đẹp, tự động gom nhóm
+//         let nhomMapGVCN = { 'I. THỜI GIAN': [], 'II. SỔ ĐẦU BÀI': [], 'III. TÁC PHONG': [], 'IV. NỀ NẾP': [], 'V. TẬP THỂ': [], 'KHÁC / TÙY CHỈNH': [] };
+
+//         window.gvcn_DanhSachTheSuKien.forEach(t => {
+//             if (!nhomMapGVCN[t.nhom]) nhomMapGVCN[t.nhom] = [];
+//             nhomMapGVCN[t.nhom].push(t);
+//         });
+
+//         let htmlGroup = '';
+//         for (let [tenNhom, danhSachThe] of Object.entries(nhomMapGVCN)) {
+//             if (danhSachThe.length === 0 && tenNhom !== 'KHÁC / TÙY CHỈNH') continue; // Ẩn các nhóm trống
+
+//             let tenNhomSafe = tenNhom.replace(/'/g, "\\'");
+//             htmlGroup += `<div style="width:100%; margin-bottom:10px; border-left:3px solid #e83e8c; padding-left:10px;">
+//                 <span style="font-size:11px; font-weight:bold; color:#495057; text-transform:uppercase;">${tenNhom}</span>
+//                 <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:5px;">`;
+
+//             danhSachThe.forEach(t => {
+//                 let diemStr = t.diem !== 0 ? ` (${t.diem > 0 ? '+' : ''}${t.diem})` : '';
+//                 let bg = '#f8d7da'; let color = '#721c24'; let border = '#f5c6cb';
+//                 if (t.diem === 0) { bg = '#e2e3e5'; color = '#383d41'; border = '#d6d8db'; }
+//                 if (t.diem > 0) { bg = '#d4edda'; color = '#155724'; border = '#c3e6cb'; }
+
+//                 let tenSafe = t.ten.replace(/'/g, "\\'");
+
+//                 htmlGroup += `
+//                 <div style="display:inline-flex; align-items:stretch; border: 1px solid ${border}; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom:4px;">
+//                     <button type="button" onclick="window.ham_21_42_gan_the_vao_dong_hien_hanh('${tenSafe}', ${t.diem})" style="padding: 4px 8px; background: ${bg}; color: ${color}; border: none; cursor: pointer; font-size: 11px; font-weight: bold; transition:0.2s;" title="Điểm: ${t.diem}" onmouseover="this.style.filter='brightness(0.95)'" onmouseout="this.style.filter='brightness(1)'">${t.ten}${diemStr}</button>
+//                     <button type="button" onclick="window.ham_21_43_sua_the('${tenSafe}', ${t.diem}, '${tenNhomSafe}')" style="padding: 4px 6px; background: #f8f9fa; color: #6c757d; border: none; border-left: 1px dashed ${border}; cursor: pointer; font-size: 10px; transition:0.2s;" title="Sửa thẻ này" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">✏️</button>
+//                 </div>`;
+//             });
+
+//             htmlGroup += `<button type="button" onclick="window.ham_21_32_mo_modal_the('${tenNhomSafe}')" style="padding: 4px 8px; background: #fff; border: 1px dashed #e83e8c; color: #e83e8c; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; margin-bottom:4px; display:inline-flex; align-items:center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition:0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='#fff'">➕ Thêm</button>`;
+//             htmlGroup += `</div></div>`;
+//         }
+
+//         let vungChonNhanh = document.getElementById('gvcn-khu-vuc-chon-the-duoi-bang');
+//         if (vungChonNhanh) {
+//             vungChonNhanh.innerHTML = `
+//                 <div style="background:#fdf5f8; padding:15px; border-radius:6px; border:1px solid #fce4ec;">
+//                     <h5 style="margin-top:0; color:#e83e8c; margin-bottom:10px; font-size:14px; border-bottom:1px solid #fce4ec; padding-bottom:5px;">🛡️ DANH MỤC THẺ SỰ KIỆN / LỖI GVCN</h5>
+//                     ${htmlGroup}
+//                 </div>
+//             `;
+//         }
+
+//         const datalistLoi = document.getElementById('gvcn-dl-loi');
+//         if (datalistLoi) {
+//             let htmlOptions = '';
+//             window.gvcn_DanhSachTheSuKien.forEach(t => { htmlOptions += `<option value="${t.ten}"></option>`; });
+//             datalistLoi.innerHTML = htmlOptions;
+//         }
+//     } catch (e) { console.error("Lỗi render thẻ nội quy:", e); }
+// };
+
+
 // =====================================================================
-// HÀM 21.34: RENDER BẢNG CHỌN NHANH (100% ĐỌC TỪ DATABASE, KHÔNG CÒN CODE CỨNG)
+// HÀM 21.34: RENDER BẢNG CHỌN SỰ KIỆN VÀ HÌNH THỨC XỬ LÝ TỪ DATABASE
 // =====================================================================
 window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
     try {
-        // Chỉ đọc từ Database, không còn mảng dữ liệu code cứng
         let { data: customData } = await _supabase.from('cai_dat_the_su_kien_gvcn').select('*');
         window.gvcn_DanhSachTheSuKien = [];
+        let theXuLy = [];
 
         if (customData) {
             customData.forEach(cd => {
-                window.gvcn_DanhSachTheSuKien.push({
-                    ten: cd.ten_the,
-                    diem: cd.diem_so || 0,
-                    nhom: cd.nhom_the || "KHÁC / TÙY CHỈNH"
-                });
+                if (cd.nhom_the === 'hinh_thuc_xu_ly') {
+                    theXuLy.push({ ten: cd.ten_the, diem: cd.diem_so || 0, nhom: cd.nhom_the });
+                } else {
+                    window.gvcn_DanhSachTheSuKien.push({
+                        ten: cd.ten_the, diem: cd.diem_so || 0, nhom: cd.nhom_the || "KHÁC / TÙY CHỈNH"
+                    });
+                }
             });
         }
 
-        // Khởi tạo các nhóm cơ bản để giữ thứ tự đẹp, tự động gom nhóm
-        let nhomMapGVCN = { 'I. THỜI GIAN': [], 'II. SỔ ĐẦU BÀI': [], 'III. TÁC PHONG': [], 'IV. NỀ NẾP': [], 'V. TẬP THỂ': [], 'KHÁC / TÙY CHỈNH': [] };
+        // Tự động mồi dữ liệu hình thức xử lý mặc định nếu chưa có
+        if (theXuLy.length === 0) {
+            let mauData = [
+                { ten_the: '📝 Chép phạt', nhom_the: 'hinh_thuc_xu_ly', diem_so: 0 },
+                { ten_the: '✍️ Viết kiểm điểm', nhom_the: 'hinh_thuc_xu_ly', diem_so: 0 },
+                { ten_the: '🧹 Trực nhật', nhom_the: 'hinh_thuc_xu_ly', diem_so: 0 },
+                { ten_the: '📌 Khác', nhom_the: 'hinh_thuc_xu_ly', diem_so: 0 }
+            ];
+            await _supabase.from('cai_dat_the_su_kien_gvcn').insert(mauData);
+            mauData.forEach(m => theXuLy.push({ ten: m.ten_the, diem: 0, nhom: m.nhom_the }));
+        }
 
+        // --- 1. RENDER NHÓM LỖI SỰ KIỆN CHÍNH ---
+        let nhomMapGVCN = { 'I. THỜI GIAN': [], 'II. SỔ ĐẦU BÀI': [], 'III. TÁC PHONG': [], 'IV. NỀ NẾP': [], 'V. TẬP THỂ': [], 'KHÁC / TÙY CHỈNH': [] };
         window.gvcn_DanhSachTheSuKien.forEach(t => {
             if (!nhomMapGVCN[t.nhom]) nhomMapGVCN[t.nhom] = [];
             nhomMapGVCN[t.nhom].push(t);
@@ -4368,9 +4649,9 @@ window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
 
         let htmlGroup = '';
         for (let [tenNhom, danhSachThe] of Object.entries(nhomMapGVCN)) {
-            if (danhSachThe.length === 0 && tenNhom !== 'KHÁC / TÙY CHỈNH') continue; // Ẩn các nhóm trống
-
+            if (danhSachThe.length === 0 && tenNhom !== 'KHÁC / TÙY CHỈNH') continue;
             let tenNhomSafe = tenNhom.replace(/'/g, "\\'");
+
             htmlGroup += `<div style="width:100%; margin-bottom:10px; border-left:3px solid #e83e8c; padding-left:10px;">
                 <span style="font-size:11px; font-weight:bold; color:#495057; text-transform:uppercase;">${tenNhom}</span>
                 <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:5px;">`;
@@ -4380,7 +4661,6 @@ window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
                 let bg = '#f8d7da'; let color = '#721c24'; let border = '#f5c6cb';
                 if (t.diem === 0) { bg = '#e2e3e5'; color = '#383d41'; border = '#d6d8db'; }
                 if (t.diem > 0) { bg = '#d4edda'; color = '#155724'; border = '#c3e6cb'; }
-
                 let tenSafe = t.ten.replace(/'/g, "\\'");
 
                 htmlGroup += `
@@ -4390,7 +4670,7 @@ window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
                 </div>`;
             });
 
-            htmlGroup += `<button type="button" onclick="window.ham_21_32_mo_modal_the('${tenNhomSafe}')" style="padding: 4px 8px; background: #fff; border: 1px dashed #e83e8c; color: #e83e8c; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; margin-bottom:4px; display:inline-flex; align-items:center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition:0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='#fff'">➕ Thêm</button>`;
+            htmlGroup += `<button type="button" onclick="window.ham_21_32_mo_modal_the('${tenNhomSafe}')" style="padding: 4px 8px; background: #fff; border: 1px dashed #e83e8c; color: #e83e8c; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; margin-bottom:4px; display:inline-flex; align-items:center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition:0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='#fff'">➕ Thêm mới</button>`;
             htmlGroup += `</div></div>`;
         }
 
@@ -4404,6 +4684,22 @@ window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
             `;
         }
 
+        // --- 2. RENDER NHÓM THẺ HÌNH THỨC XỬ LÝ (B4) ---
+        let vungTagsXuLy = document.getElementById('gvcn-khu-vuc-tags-xu-ly');
+        if (vungTagsXuLy) {
+            let htmlXuLy = '';
+            theXuLy.forEach(t => {
+                let tenSafe = t.ten.replace(/'/g, "\\'");
+                htmlXuLy += `
+                <div style="display: inline-flex; border: 1px solid #d35400; border-radius: 4px; overflow: hidden; background: #fff;">
+                    <button type="button" class="tag-xu-ly-btn" data-color="#d35400" onclick="window.ham_21_chon_hinh_thuc_xu_ly(this, '${tenSafe}')" style="padding: 6px 12px; font-size: 12px; background: transparent; border: none; color: #d35400; cursor: pointer; font-weight: bold; transition: 0.2s;" title="Bấm để chọn hình thức này">${t.ten}</button>
+                    <button type="button" onclick="window.ham_21_43_sua_the('${tenSafe}', 0, 'hinh_thuc_xu_ly')" style="padding: 3px 6px; font-size: 10px; background: #f8f9fa; border: none; border-left: 1px dashed #d35400; color: #6c757d; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="Sửa hoặc Xóa">✏️</button>
+                </div>`;
+            });
+            htmlXuLy += `<button type="button" onclick="window.ham_21_32_mo_modal_the('hinh_thuc_xu_ly')" style="padding: 6px 12px; font-size: 12px; background: #f8f9fa; border: 1px dashed #d35400; color: #d35400; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#e2e6ea'" onmouseout="this.style.background='#f8f9fa'">➕ Thêm hình thức mới</button>`;
+            vungTagsXuLy.innerHTML = htmlXuLy;
+        }
+
         const datalistLoi = document.getElementById('gvcn-dl-loi');
         if (datalistLoi) {
             let htmlOptions = '';
@@ -4412,6 +4708,7 @@ window.ham_21_34_render_tat_ca_cac_the_su_kien = async function () {
         }
     } catch (e) { console.error("Lỗi render thẻ nội quy:", e); }
 };
+
 
 
 
@@ -4891,8 +5188,178 @@ window.ham_21_36_luu_the = async function () {
 
 
 
+// // =====================================================================
+// // HÀM 21.38: GIAO DIỆN MỤC 5 (KHÔNG TỰ ĐỘNG THÊM DÒNG TRỐNG KHI MỞ)
+// // =====================================================================
+// window.ham_21_38_ve_giao_dien_muc_5 = function () {
+//     const vungMuc5 = document.getElementById('vung-chua-muc-5');
+//     if (!vungMuc5) return;
+
+//     vungMuc5.innerHTML = `
+//         <div style="background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #dee2e6; box-shadow: 0 4px 10px rgba(0,0,0,0.03); width: 100%; box-sizing: border-box;">
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #fce4ec; padding-bottom: 10px; margin-bottom: 15px;">
+//                 <h4 style="margin: 0; color: #e83e8c; font-size: 17px;">🎯 5. Quản lý Sự kiện (Tuần trước / Vi phạm)</h4>
+//                 <button onclick="window.ham_21_22_toggle_muc('body-muc-5', this);" style="background: #f8f9fa; border: 1px solid #ccc; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">➖ Thu hẹp</button>
+//             </div>
+            
+//             <div id="body-muc-5">
+//                 <div style="background: #fdf5f8; padding: 15px; border-radius: 8px; border: 2px solid #e83e8c; margin-bottom: 20px;">
+//                     <label style="font-weight: bold; font-size: 14px; color: #e83e8c; display:block; margin-bottom:8px;">B1. Chọn Tuần xảy ra sự kiện (Độc lập):</label>
+//                     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+//                         <div style="display: flex; gap: 4px;">
+//                             <button onclick="if(typeof ham_21_29_chuyen_tuan_su_kien === 'function') ham_21_29_chuyen_tuan_su_kien(-1)" style="padding: 8px 12px; background: #e83e8c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Tuần trước">◀ Lùi</button>
+//                             <button onclick="if(typeof ham_21_29_chuyen_tuan_su_kien === 'function') ham_21_29_chuyen_tuan_su_kien(1)" style="padding: 8px 12px; background: #e83e8c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Tuần sau">Tiến ▶</button>
+//                         </div>
+//                         <input id="gvcn-sk-tuan-chon" list="dl-tuan" onchange="if(typeof ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') ham_21_30_cap_nhat_ngay_tuan_su_kien();" placeholder="Chọn tuần..." style="width: 140px; padding: 9px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold; font-size: 14px; outline: none; background:#fff; color:#e83e8c;">
+//                         <span style="font-size:12px; font-weight:bold; color:#6c757d;">Từ:</span>
+//                         <input type="date" id="gvcn-sk-tuan-tu" style="width: 130px; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none;">
+//                         <span style="font-size:12px; font-weight:bold; color:#6c757d;">Đến:</span>
+//                         <input type="date" id="gvcn-sk-tuan-den" style="width: 130px; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none;">
+//                     </div>
+//                 </div>
+
+//                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ced4da; margin-bottom: 15px; overflow-x: auto;">
+//                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Nhập danh sách Sự kiện / Vi phạm:</label>
+//                     </div>
+                    
+//                     <div style="display: flex; gap: 5px; font-weight: bold; font-size: 11px; color: #6c757d; text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+//                         <div style="width: 120px;">Ngày</div>
+//                         <div style="width: 70px;">Thứ</div>
+//                         <div style="width: 75px;">Buổi</div>
+//                         <div style="flex: 1.5; min-width: 180px;">Học sinh</div>
+//                         <div style="flex: 1.5; min-width: 180px;">Sự kiện / Lỗi (Bấm chọn bảng dưới)</div>
+//                         <div style="width: 80px;">Điểm</div>
+//                         <div style="flex: 1; min-width: 120px;">Ghi chú riêng</div>
+//                         <div style="width: 130px;">Ảnh</div>
+//                         <div style="width: 40px;">Xóa</div>
+//                     </div>
+
+//                     <div id="gvcn-khu-vuc-su-kien-nhanh" style="display: flex; flex-direction: column; gap: 6px;"></div>
+
+//                     <div style="margin-top: 12px; text-align: left;">
+//                         <button type="button" onclick="if(typeof ham_21_4_them_dong_su_kien === 'function') ham_21_4_them_dong_su_kien();" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.3); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">➕ Thêm dòng sự kiện mới</button>
+//                     </div>
+//                 </div>
+                
+//                 <div style="text-align: right; margin-bottom: 20px;">
+//                     <button onclick="if(typeof ham_21_15_luu_su_kien_tuan_truoc === 'function') ham_21_15_luu_su_kien_tuan_truoc(this);" style="padding: 12px 30px; background: #e83e8c; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 10px rgba(232,62,140,0.3); transition:0.2s;" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">💾 LƯU CÁC SỰ KIỆN TRONG BẢNG</button>
+//                 </div>
+
+//                 <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px dashed #e83e8c; margin-bottom: 20px;">
+//                     <label style="font-weight: bold; font-size: 13px; color: #e83e8c; display: block; margin-bottom: 10px;">🏷️ Bấm chọn nhanh Sự kiện / Lỗi (Tự động nạp vào dòng đang chọn bên trên):</label>
+//                     <div id="gvcn-khu-vuc-chon-the-duoi-bang"></div>
+//                 </div>
+
+//             </div>
+//         </div>
+//         <datalist id="gvcn-dl-loi"></datalist>
+//     `;
+
+//     if (typeof window.ham_21_34_render_tat_ca_cac_the_su_kien === 'function') window.ham_21_34_render_tat_ca_cac_the_su_kien();
+// };
+
+
+// // =====================================================================
+// // HÀM 21.38: GIAO DIỆN MỤC 5 (BỔ SUNG KHUNG YÊU CẦU XỬ LÝ)
+// // =====================================================================
+// window.ham_21_38_ve_giao_dien_muc_5 = function () {
+//     const vungMuc5 = document.getElementById('vung-chua-muc-5');
+//     if (!vungMuc5) return;
+
+//     vungMuc5.innerHTML = `
+//         <div style="background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #dee2e6; box-shadow: 0 4px 10px rgba(0,0,0,0.03); width: 100%; box-sizing: border-box;">
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #fce4ec; padding-bottom: 10px; margin-bottom: 15px;">
+//                 <h4 style="margin: 0; color: #e83e8c; font-size: 17px;">🎯 5. Quản lý Sự kiện (Tuần trước / Vi phạm)</h4>
+//                 <button onclick="window.ham_21_22_toggle_muc('body-muc-5', this);" style="background: #f8f9fa; border: 1px solid #ccc; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">➖ Thu hẹp</button>
+//             </div>
+            
+//             <div id="body-muc-5">
+//                 <div style="background: #fdf5f8; padding: 15px; border-radius: 8px; border: 2px solid #e83e8c; margin-bottom: 20px;">
+//                     <label style="font-weight: bold; font-size: 14px; color: #e83e8c; display:block; margin-bottom:8px;">B1. Chọn Tuần xảy ra sự kiện (Độc lập):</label>
+//                     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+//                         <div style="display: flex; gap: 4px;">
+//                             <button onclick="if(typeof ham_21_29_chuyen_tuan_su_kien === 'function') ham_21_29_chuyen_tuan_su_kien(-1)" style="padding: 8px 12px; background: #e83e8c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Tuần trước">◀ Lùi</button>
+//                             <button onclick="if(typeof ham_21_29_chuyen_tuan_su_kien === 'function') ham_21_29_chuyen_tuan_su_kien(1)" style="padding: 8px 12px; background: #e83e8c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Tuần sau">Tiến ▶</button>
+//                         </div>
+//                         <input id="gvcn-sk-tuan-chon" list="dl-tuan" onchange="if(typeof ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') ham_21_30_cap_nhat_ngay_tuan_su_kien();" placeholder="Chọn tuần..." style="width: 140px; padding: 9px; border: 1px solid #ced4da; border-radius: 6px; font-weight: bold; font-size: 14px; outline: none; background:#fff; color:#e83e8c;">
+//                         <span style="font-size:12px; font-weight:bold; color:#6c757d;">Từ:</span>
+//                         <input type="date" id="gvcn-sk-tuan-tu" style="width: 130px; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none;">
+//                         <span style="font-size:12px; font-weight:bold; color:#6c757d;">Đến:</span>
+//                         <input type="date" id="gvcn-sk-tuan-den" style="width: 130px; padding: 8px; border: 1px solid #ced4da; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none;">
+//                     </div>
+//                 </div>
+
+//                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ced4da; margin-bottom: 15px; overflow-x: auto;">
+//                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+//                         <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Danh sách Học sinh & Sự kiện:</label>
+//                     </div>
+                    
+//                     <div style="display: flex; gap: 5px; font-weight: bold; font-size: 11px; color: #6c757d; text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+//                         <div style="width: 120px;">Ngày</div>
+//                         <div style="width: 70px;">Thứ</div>
+//                         <div style="width: 75px;">Buổi</div>
+//                         <div style="flex: 1.5; min-width: 180px;">Học sinh</div>
+//                         <div style="flex: 1.5; min-width: 180px;">Sự kiện / Lỗi (Bấm chọn bảng dưới)</div>
+//                         <div style="width: 80px;">Điểm</div>
+//                         <div style="flex: 1; min-width: 120px;">Ghi chú riêng</div>
+//                         <div style="width: 130px;">Ảnh</div>
+//                         <div style="width: 40px;">Xóa</div>
+//                     </div>
+
+//                     <div id="gvcn-khu-vuc-su-kien-nhanh" style="display: flex; flex-direction: column; gap: 6px;"></div>
+
+//                     <div style="margin-top: 12px; text-align: left;">
+//                         <button type="button" onclick="if(typeof ham_21_4_them_dong_su_kien === 'function') ham_21_4_them_dong_su_kien();" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; box-shadow: 0 2px 4px rgba(40,167,69,0.3); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">➕ Thêm dòng sự kiện mới</button>
+//                     </div>
+//                 </div>
+                
+//                 <!-- BẢNG CHỌN SỰ KIỆN -->
+//                 <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px dashed #e83e8c; margin-bottom: 15px;">
+//                     <label style="font-weight: bold; font-size: 13px; color: #e83e8c; display: block; margin-bottom: 10px;">🏷️ B3. Bấm chọn nhanh Sự kiện / Lỗi (Tự động nạp vào dòng đang chọn bên trên):</label>
+//                     <div id="gvcn-khu-vuc-chon-the-duoi-bang"></div>
+//                 </div>
+
+//                 <!-- KHU VỰC YÊU CẦU XỬ LÝ (MỚI) -->
+//                 <div style="margin-bottom: 15px; padding: 15px; background: #fffcf8; border: 1px dashed #d35400; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+//                     <label style="display:flex; align-items:center; gap:8px; font-weight:bold; font-size:14px; color:#d35400; cursor:pointer;">
+//                         <input type="checkbox" id="gvcn-check-xu-ly" onchange="document.getElementById('gvcn-vung-xu-ly').style.display = this.checked ? 'block' : 'none';" style="width:18px; height:18px; cursor:pointer; accent-color:#d35400;">
+//                         ☑️ B4. Yêu cầu khắc phục / Xử lý phạt (Tùy chọn)
+//                     </label>
+                    
+//                     <div id="gvcn-vung-xu-ly" style="display:none; margin-top:15px; border-top:1px dashed #ffeeba; padding-top:15px;">
+//                         <div style="font-size:13px; font-weight:bold; color:#d35400; margin-bottom:8px;">Chọn hình thức (Có thể chọn nhiều mục):</div>
+                        
+//                         <!-- Dàn nút Hình thức xử lý -->
+//                         <div id="gvcn-khu-vuc-tags-xu-ly" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">
+//                             <button type="button" class="tag-xu-ly-btn" data-color="#d35400" onclick="window.ham_21_chon_hinh_thuc_xu_ly(this, '📝 Chép phạt')" style="padding: 6px 12px; font-size: 12px; background: transparent; border: 1px solid #d35400; color: #d35400; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;">📝 Chép phạt</button>
+//                             <button type="button" class="tag-xu-ly-btn" data-color="#d35400" onclick="window.ham_21_chon_hinh_thuc_xu_ly(this, '✍️ Viết bản kiểm điểm')" style="padding: 6px 12px; font-size: 12px; background: transparent; border: 1px solid #d35400; color: #d35400; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;">✍️ Viết kiểm điểm</button>
+//                             <button type="button" class="tag-xu-ly-btn" data-color="#d35400" onclick="window.ham_21_chon_hinh_thuc_xu_ly(this, '🧹 Trực nhật')" style="padding: 6px 12px; font-size: 12px; background: transparent; border: 1px solid #d35400; color: #d35400; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;">🧹 Lao động / Trực nhật</button>
+//                             <button type="button" class="tag-xu-ly-btn" data-color="#d35400" onclick="window.ham_21_chon_hinh_thuc_xu_ly(this, '📌 Khác')" style="padding: 6px 12px; font-size: 12px; background: transparent; border: 1px solid #d35400; color: #d35400; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s;">📌 Khác</button>
+//                         </div>
+//                         <input type="hidden" id="gvcn-hinh-thuc-xu-ly" value="">
+                        
+//                         <div style="font-size:13px; font-weight:bold; color:#d35400; margin-bottom:5px;">Ghi rõ nội dung:</div>
+//                         <input id="gvcn-noi-dung-xu-ly" type="text" placeholder="VD: Chép phạt 10 lần nội quy điều 5, Trực nhật quét rác cuối giờ..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:4px; font-size:13px; outline:none; box-sizing:border-box;">
+//                     </div>
+//                 </div>
+
+//                 <div style="text-align: right; margin-bottom: 20px;">
+//                     <button onclick="if(typeof ham_21_15_luu_su_kien_tuan_truoc === 'function') ham_21_15_luu_su_kien_tuan_truoc(this);" style="padding: 15px 35px; background: #e83e8c; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(232,62,140,0.3); transition:0.2s;" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">💾 B5. LƯU BẢNG SỰ KIỆN VÀO HỒ SƠ</button>
+//                 </div>
+
+//             </div>
+//         </div>
+//         <datalist id="gvcn-dl-loi"></datalist>
+//     `;
+
+//     if (typeof window.ham_21_34_render_tat_ca_cac_the_su_kien === 'function') window.ham_21_34_render_tat_ca_cac_the_su_kien();
+// };
+
+
+
 // =====================================================================
-// HÀM 21.38: GIAO DIỆN MỤC 5 (KHÔNG TỰ ĐỘNG THÊM DÒNG TRỐNG KHI MỞ)
+// HÀM 21.38: GIAO DIỆN MỤC 5 (BỔ SUNG KHUNG YÊU CẦU XỬ LÝ)
 // =====================================================================
 window.ham_21_38_ve_giao_dien_muc_5 = function () {
     const vungMuc5 = document.getElementById('vung-chua-muc-5');
@@ -4923,7 +5390,7 @@ window.ham_21_38_ve_giao_dien_muc_5 = function () {
 
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ced4da; margin-bottom: 15px; overflow-x: auto;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
-                        <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Nhập danh sách Sự kiện / Vi phạm:</label>
+                        <label style="font-weight: bold; font-size: 13px; color: #495057;">B2. Danh sách Học sinh & Sự kiện:</label>
                     </div>
                     
                     <div style="display: flex; gap: 5px; font-weight: bold; font-size: 11px; color: #6c757d; text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 5px;">
@@ -4945,13 +5412,35 @@ window.ham_21_38_ve_giao_dien_muc_5 = function () {
                     </div>
                 </div>
                 
-                <div style="text-align: right; margin-bottom: 20px;">
-                    <button onclick="if(typeof ham_21_15_luu_su_kien_tuan_truoc === 'function') ham_21_15_luu_su_kien_tuan_truoc(this);" style="padding: 12px 30px; background: #e83e8c; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 10px rgba(232,62,140,0.3); transition:0.2s;" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">💾 LƯU CÁC SỰ KIỆN TRONG BẢNG</button>
+                <!-- BẢNG CHỌN SỰ KIỆN CHÍNH -->
+                <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px dashed #e83e8c; margin-bottom: 15px;">
+                    <label style="font-weight: bold; font-size: 13px; color: #e83e8c; display: block; margin-bottom: 10px;">🏷️ B3. Bấm chọn nhanh Sự kiện / Lỗi (Tự động nạp vào dòng đang chọn bên trên):</label>
+                    <div id="gvcn-khu-vuc-chon-the-duoi-bang"></div>
                 </div>
 
-                <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px dashed #e83e8c; margin-bottom: 20px;">
-                    <label style="font-weight: bold; font-size: 13px; color: #e83e8c; display: block; margin-bottom: 10px;">🏷️ Bấm chọn nhanh Sự kiện / Lỗi (Tự động nạp vào dòng đang chọn bên trên):</label>
-                    <div id="gvcn-khu-vuc-chon-the-duoi-bang"></div>
+                <!-- KHU VỰC YÊU CẦU XỬ LÝ (MỚI) -->
+                <div style="margin-bottom: 15px; padding: 15px; background: #fffcf8; border: 1px dashed #d35400; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <label style="display:flex; align-items:center; gap:8px; font-weight:bold; font-size:14px; color:#d35400; cursor:pointer;">
+                        <input type="checkbox" id="gvcn-check-xu-ly" onchange="document.getElementById('gvcn-vung-xu-ly').style.display = this.checked ? 'block' : 'none';" style="width:18px; height:18px; cursor:pointer; accent-color:#d35400;">
+                        ☑️ B4. Yêu cầu khắc phục / Xử lý phạt (Tùy chọn)
+                    </label>
+                    
+                    <div id="gvcn-vung-xu-ly" style="display:none; margin-top:15px; border-top:1px dashed #ffeeba; padding-top:15px;">
+                        <div style="font-size:13px; font-weight:bold; color:#d35400; margin-bottom:8px;">Chọn hình thức (Có thể chọn nhiều mục):</div>
+                        
+                        <!-- Dàn nút Hình thức xử lý (Tự động nạp từ DB) -->
+                        <div id="gvcn-khu-vuc-tags-xu-ly" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">
+                            <span style="font-size: 12px; color: #999;">⏳ Đang tải thẻ xử lý...</span>
+                        </div>
+                        <input type="hidden" id="gvcn-hinh-thuc-xu-ly" value="">
+                        
+                        <div style="font-size:13px; font-weight:bold; color:#d35400; margin-bottom:5px;">Ghi rõ nội dung:</div>
+                        <input id="gvcn-noi-dung-xu-ly" type="text" placeholder="VD: Chép phạt 10 lần nội quy điều 5, Trực nhật quét rác cuối giờ..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:4px; font-size:13px; outline:none; box-sizing:border-box;">
+                    </div>
+                </div>
+
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <button onclick="if(typeof ham_21_15_luu_su_kien_tuan_truoc === 'function') ham_21_15_luu_su_kien_tuan_truoc(this);" style="padding: 15px 35px; background: #e83e8c; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(232,62,140,0.3); transition:0.2s;" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">💾 B5. LƯU BẢNG SỰ KIỆN VÀO HỒ SƠ</button>
                 </div>
 
             </div>
@@ -4961,6 +5450,11 @@ window.ham_21_38_ve_giao_dien_muc_5 = function () {
 
     if (typeof window.ham_21_34_render_tat_ca_cac_the_su_kien === 'function') window.ham_21_34_render_tat_ca_cac_the_su_kien();
 };
+
+
+
+
+
 
 
 
@@ -5107,6 +5601,47 @@ window.ham_21_43_sua_the = function (tenCu, diemCu, nhomThe) {
     window.ham_21_44_hien_thi_modal_the(tenCu, diemCu, nhomThe, 'sua');
 };
 
+// window.ham_21_44_hien_thi_modal_the = function (tenCu, diemCu, nhomThe, hanhDong) {
+//     let modal = document.getElementById('gvcn-modal-the');
+//     if (!modal) {
+//         modal = document.createElement('div');
+//         modal.id = 'gvcn-modal-the';
+//         modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:999999; backdrop-filter: blur(2px);';
+//         document.body.appendChild(modal);
+//     }
+
+//     let title = hanhDong === 'sua' ? '✏️ Sửa Sự Kiện / Lỗi' : '➕ Thêm Sự Kiện / Lỗi Mới';
+//     let btnText = hanhDong === 'sua' ? 'Cập nhật' : 'Lưu mới';
+
+//     modal.innerHTML = `
+//         <div style="background:#fff; width:400px; padding:25px; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.4); animation: fadeIn 0.2s;">
+//             <h3 style="margin-top:0; color:#e83e8c; border-bottom:1px dashed #eee; padding-bottom:10px;">${title}</h3>
+            
+//             <input type="hidden" id="gvcn-the-hanh-dong" value="${hanhDong}">
+//             <input type="hidden" id="gvcn-the-ten-cu" value="${tenCu.replace(/"/g, '&quot;')}">
+            
+//             <label style="font-size:12px; font-weight:bold; color:#495057;">Nhóm sự kiện:</label>
+//             <input type="text" id="gvcn-the-nhom" value="${nhomThe.replace(/"/g, '&quot;')}" placeholder="VD: HỌC TẬP, TÁC PHONG..." style="width:100%; padding:10px; border:1px solid #ccc; color:#495057; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box; font-weight:bold;">
+
+//             <label style="font-size:12px; font-weight:bold; color:#e83e8c;">Tên sự kiện / lỗi:</label>
+//             <input type="text" id="gvcn-the-ten" value="${tenCu.replace(/"/g, '&quot;')}" placeholder="VD: Không thuộc bài, Phát biểu tốt..." style="width:100%; padding:10px; border:2px solid #e83e8c; color:#e83e8c; font-weight:bold; outline:none; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;">
+            
+//             <label style="font-size:12px; font-weight:bold; color:#dc3545;">Điểm số (Ghi dấu trừ nếu là lỗi, VD: -5, +2):</label>
+//             <input type="number" id="gvcn-the-diem" value="${diemCu}" step="0.5" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; margin-top:5px; margin-bottom:20px; box-sizing:border-box; font-weight:bold; color:#dc3545;">
+
+//             <div style="text-align:right; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee; padding-top:15px;">
+//                 <button onclick="document.getElementById('gvcn-modal-the').remove()" style="padding:10px 20px; background:#6c757d; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">Hủy</button>
+//                 <button onclick="window.ham_21_36_luu_the()" style="padding:10px 25px; background:#e83e8c; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold; box-shadow:0 2px 4px rgba(232,62,140,0.3);">💾 ${btnText}</button>
+//             </div>
+//         </div>
+//     `;
+// };
+
+
+
+// =====================================================================
+// HÀM 21.44: HIỂN THỊ MODAL THÊM/SỬA THẺ (CÓ BỔ SUNG NÚT XÓA)
+// =====================================================================
 window.ham_21_44_hien_thi_modal_the = function (tenCu, diemCu, nhomThe, hanhDong) {
     let modal = document.getElementById('gvcn-modal-the');
     if (!modal) {
@@ -5119,6 +5654,13 @@ window.ham_21_44_hien_thi_modal_the = function (tenCu, diemCu, nhomThe, hanhDong
     let title = hanhDong === 'sua' ? '✏️ Sửa Sự Kiện / Lỗi' : '➕ Thêm Sự Kiện / Lỗi Mới';
     let btnText = hanhDong === 'sua' ? 'Cập nhật' : 'Lưu mới';
 
+    // 🌟 Hiển thị nút Xóa nếu đang ở chế độ Sửa
+    let btnXoaHtml = hanhDong === 'sua' ? `<button onclick="window.ham_21_44b_xoa_the('${tenCu.replace(/'/g, "\\'")}')" style="padding:10px 15px; background:#dc3545; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-right:auto; box-shadow:0 2px 4px rgba(220,53,69,0.3);">🗑️ Xóa</button>` : '';
+
+    // Nếu là nhóm hình thức xử lý thì khóa ô Điểm và Nhóm lại (để không bị sửa nhầm sang thẻ lỗi)
+    let thuocTinhKhoaNhom = nhomThe === 'hinh_thuc_xu_ly' ? 'readonly style="background:#e9ecef;"' : '';
+    let thuocTinhKhoaDiem = nhomThe === 'hinh_thuc_xu_ly' ? 'disabled' : '';
+
     modal.innerHTML = `
         <div style="background:#fff; width:400px; padding:25px; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.4); animation: fadeIn 0.2s;">
             <h3 style="margin-top:0; color:#e83e8c; border-bottom:1px dashed #eee; padding-bottom:10px;">${title}</h3>
@@ -5127,21 +5669,43 @@ window.ham_21_44_hien_thi_modal_the = function (tenCu, diemCu, nhomThe, hanhDong
             <input type="hidden" id="gvcn-the-ten-cu" value="${tenCu.replace(/"/g, '&quot;')}">
             
             <label style="font-size:12px; font-weight:bold; color:#495057;">Nhóm sự kiện:</label>
-            <input type="text" id="gvcn-the-nhom" value="${nhomThe.replace(/"/g, '&quot;')}" placeholder="VD: HỌC TẬP, TÁC PHONG..." style="width:100%; padding:10px; border:1px solid #ccc; color:#495057; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box; font-weight:bold;">
+            <input type="text" id="gvcn-the-nhom" value="${nhomThe.replace(/"/g, '&quot;')}" placeholder="VD: HỌC TẬP, TÁC PHONG..." style="width:100%; padding:10px; border:1px solid #ccc; color:#495057; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box; font-weight:bold;" ${thuocTinhKhoaNhom}>
 
-            <label style="font-size:12px; font-weight:bold; color:#e83e8c;">Tên sự kiện / lỗi:</label>
-            <input type="text" id="gvcn-the-ten" value="${tenCu.replace(/"/g, '&quot;')}" placeholder="VD: Không thuộc bài, Phát biểu tốt..." style="width:100%; padding:10px; border:2px solid #e83e8c; color:#e83e8c; font-weight:bold; outline:none; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;">
+            <label style="font-size:12px; font-weight:bold; color:#e83e8c;">Tên sự kiện / lỗi / hình thức xử lý:</label>
+            <input type="text" id="gvcn-the-ten" value="${tenCu.replace(/"/g, '&quot;')}" placeholder="VD: Không thuộc bài, Chép phạt..." style="width:100%; padding:10px; border:2px solid #e83e8c; color:#e83e8c; font-weight:bold; outline:none; border-radius:4px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;">
             
             <label style="font-size:12px; font-weight:bold; color:#dc3545;">Điểm số (Ghi dấu trừ nếu là lỗi, VD: -5, +2):</label>
-            <input type="number" id="gvcn-the-diem" value="${diemCu}" step="0.5" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; margin-top:5px; margin-bottom:20px; box-sizing:border-box; font-weight:bold; color:#dc3545;">
+            <input type="number" id="gvcn-the-diem" value="${diemCu}" step="0.5" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; margin-top:5px; margin-bottom:20px; box-sizing:border-box; font-weight:bold; color:#dc3545;" ${thuocTinhKhoaDiem}>
 
             <div style="text-align:right; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee; padding-top:15px;">
+                ${btnXoaHtml}
                 <button onclick="document.getElementById('gvcn-modal-the').remove()" style="padding:10px 20px; background:#6c757d; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">Hủy</button>
                 <button onclick="window.ham_21_36_luu_the()" style="padding:10px 25px; background:#e83e8c; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:bold; box-shadow:0 2px 4px rgba(232,62,140,0.3);">💾 ${btnText}</button>
             </div>
         </div>
     `;
 };
+
+// =====================================================================
+// HÀM 21.44b: XÓA VĨNH VIỄN THẺ (CHO CẢ LỖI VÀ HÌNH THỨC XỬ LÝ)
+// =====================================================================
+window.ham_21_44b_xoa_the = async function (tenThe) {
+    if (!confirm(`⚠️ Thầy có chắc chắn muốn xóa vĩnh viễn thẻ "${tenThe}" ra khỏi cấu hình không?`)) return;
+    try {
+        const { error } = await _supabase.from('cai_dat_the_su_kien_gvcn').delete().eq('ten_the', tenThe);
+        if (error) throw error;
+
+        document.getElementById('gvcn-modal-the').remove();
+        if (typeof window.ham_21_34_render_tat_ca_cac_the_su_kien === 'function') {
+            window.ham_21_34_render_tat_ca_cac_the_su_kien();
+        }
+    } catch (e) {
+        alert("❌ Lỗi khi xóa: " + e.message);
+    }
+};
+
+
+
 
 
 
@@ -5395,9 +5959,103 @@ window.ham_21_49_hien_dropdown_hs_thong_ke = function (inputElem) {
     });
 };
 
-// =====================================================================
-// HÀM 21.47: TRUY VẤN DỮ LIỆU THỐNG KÊ TỪ SUPABASE (CÓ LỌC THEO UID HỌC SINH)
-// =====================================================================
+// // =====================================================================
+// // HÀM 21.47: TRUY VẤN DỮ LIỆU THỐNG KÊ TỪ SUPABASE (CÓ LỌC THEO UID HỌC SINH)
+// // =====================================================================
+// window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
+//     const maLopRaw = document.getElementById('gvcn-input-lop').value;
+//     const maLop = maLopRaw.match(/\(([^)]+)\)$/)?.[1]?.trim() || maLopRaw.trim();
+//     const tuanChon = document.getElementById('tk-chon-tuan').value;
+//     const uidHS = document.getElementById('tk-chon-hs-uid').value;
+//     const tenHSInput = document.getElementById('tk-chon-hs').value.toLowerCase().trim();
+
+//     const vungKQ = document.getElementById('gvcn-vung-ket-qua-tk');
+//     vungKQ.innerHTML = '<div style="text-align:center; color:#6f42c1; font-weight:bold; padding:30px;">⏳ Đang tổng hợp dữ liệu thi đua...</div>';
+
+//     try {
+//         let queryNK = _supabase.from('nhat_ky_gvcn').select('id, tuan_hoc').eq('ma_lop', maLop);
+//         if (tuanChon) queryNK = queryNK.eq('tuan_hoc', tuanChon);
+
+//         const { data: nkList, error: errNK } = await queryNK;
+//         if (errNK) throw errNK;
+
+//         if (!nkList || nkList.length === 0) {
+//             vungKQ.innerHTML = '<div style="text-align:center; color:#dc3545; font-weight:bold; padding:30px;">⚠️ Không tìm thấy dữ liệu tuần phù hợp cho lớp này!</div>';
+//             document.getElementById('tk-tong-so-dong').innerText = 'Tổng số: 0 sự kiện';
+//             return;
+//         }
+
+//         let idNKS = nkList.map(x => x.id);
+//         let mapTuan = {};
+//         nkList.forEach(x => mapTuan[x.id] = x.tuan_hoc);
+
+//         let querySK = _supabase.from('nhat_ky_gvcn_su_kien_hs')
+//             .select('*')
+//             .in('id_gvcn_nhat_ky', idNKS)
+//             .not('nhom_su_kien', 'ilike', 'Giao việc:%')
+//             .order('ngay_ghi_nhan', { ascending: false });
+
+//         if (uidHS) {
+//             querySK = querySK.eq('uid_hoc_sinh', uidHS);
+//         }
+
+//         const { data: skList, error: errSK } = await querySK;
+//         if (errSK) throw errSK;
+
+//         let ketQuaLoc = skList || [];
+//         // Lọc phụ bằng tên nếu người dùng gõ tay nhưng chưa chọn từ danh sách gợi ý
+//         if (!uidHS && tenHSInput) {
+//             ketQuaLoc = ketQuaLoc.filter(item => (item.ten_hoc_sinh || '').toLowerCase().includes(tenHSInput));
+//         }
+
+//         document.getElementById('tk-tong-so-dong').innerText = `Tổng số: ${ketQuaLoc.length} sự kiện / vi phạm`;
+
+//         if (ketQuaLoc.length === 0) {
+//             vungKQ.innerHTML = '<div style="text-align:center; color:#6c757d; font-style:italic; padding:30px;">Không có sự kiện hoặc vi phạm nào khớp với điều kiện lọc.</div>';
+//             return;
+//         }
+
+//         let htmlTable = `
+//             <table id="bang-in-thong-ke" style="width:100%; border-collapse:collapse; font-size:13px; background:#fff; border:1px solid #dee2e6;">
+//                 <tr style="background:#f3e8ff; color:#6f42c1; border-bottom:2px solid #6f42c1;">
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:40px;">STT</th>
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:110px;">Tuần</th>
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:90px;">Ngày</th>
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:left; width:180px;">Học sinh</th>
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:left;">Sự kiện / Lỗi</th>
+//                     <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:70px;">Điểm</th>
+//                 </tr>
+//         `;
+
+//         ketQuaLoc.forEach((sk, idx) => {
+//             let tuanHienThi = mapTuan[sk.id_gvcn_nhat_ky] || '...';
+//             let strNgay = sk.ngay_ghi_nhan ? sk.ngay_ghi_nhan.split('-').reverse().join('/') : '';
+//             let diemTru = sk.thong_tin_mo_rong?.diem_tru || 0;
+//             let mauDiem = diemTru < 0 ? '#dc3545' : (diemTru > 0 ? '#28a745' : '#495057');
+
+//             htmlTable += `
+//                 <tr style="border-bottom:1px solid #dee2e6;">
+//                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center; font-weight:bold;">${idx + 1}</td>
+//                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#6f42c1;">${tuanHienThi}</td>
+//                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center;">${strNgay}</td>
+//                     <td style="padding:8px; border:1px solid #dee2e6; font-weight:bold; color:#0056b3;">${sk.ten_hoc_sinh || ''}</td>
+//                     <td style="padding:8px; border:1px solid #dee2e6;">${sk.nhom_su_kien || ''} <div style="font-size:11px; color:#666;">${sk.noi_dung_chi_tiet || ''}</div></td>
+//                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:${mauDiem};">${diemTru !== 0 ? diemTru : '-'}</td>
+//                 </tr>
+//             `;
+//         });
+
+//         htmlTable += `</table>`;
+//         vungKQ.innerHTML = htmlTable;
+
+//     } catch (e) {
+//         console.error(e);
+//         vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`;
+//     }
+// };
+
+
+// Cập nhật lại Hàm ham_21_47_thuc_hien_tim_kiem_thong_ke để vẽ Thẻ Xử lý 3 màu
 window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
     const maLopRaw = document.getElementById('gvcn-input-lop').value;
     const maLop = maLopRaw.match(/\(([^)]+)\)$/)?.[1]?.trim() || maLopRaw.trim();
@@ -5417,39 +6075,25 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
 
         if (!nkList || nkList.length === 0) {
             vungKQ.innerHTML = '<div style="text-align:center; color:#dc3545; font-weight:bold; padding:30px;">⚠️ Không tìm thấy dữ liệu tuần phù hợp cho lớp này!</div>';
-            document.getElementById('tk-tong-so-dong').innerText = 'Tổng số: 0 sự kiện';
-            return;
+            document.getElementById('tk-tong-so-dong').innerText = 'Tổng số: 0 sự kiện'; return;
         }
 
         let idNKS = nkList.map(x => x.id);
         let mapTuan = {};
         nkList.forEach(x => mapTuan[x.id] = x.tuan_hoc);
 
-        let querySK = _supabase.from('nhat_ky_gvcn_su_kien_hs')
-            .select('*')
-            .in('id_gvcn_nhat_ky', idNKS)
-            .not('nhom_su_kien', 'ilike', 'Giao việc:%')
-            .order('ngay_ghi_nhan', { ascending: false });
-
-        if (uidHS) {
-            querySK = querySK.eq('uid_hoc_sinh', uidHS);
-        }
+        let querySK = _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').in('id_gvcn_nhat_ky', idNKS).not('nhom_su_kien', 'ilike', 'Giao việc:%').order('ngay_ghi_nhan', { ascending: false });
+        if (uidHS) querySK = querySK.eq('uid_hoc_sinh', uidHS);
 
         const { data: skList, error: errSK } = await querySK;
         if (errSK) throw errSK;
 
         let ketQuaLoc = skList || [];
-        // Lọc phụ bằng tên nếu người dùng gõ tay nhưng chưa chọn từ danh sách gợi ý
-        if (!uidHS && tenHSInput) {
-            ketQuaLoc = ketQuaLoc.filter(item => (item.ten_hoc_sinh || '').toLowerCase().includes(tenHSInput));
-        }
+        if (!uidHS && tenHSInput) ketQuaLoc = ketQuaLoc.filter(item => (item.ten_hoc_sinh || '').toLowerCase().includes(tenHSInput));
 
         document.getElementById('tk-tong-so-dong').innerText = `Tổng số: ${ketQuaLoc.length} sự kiện / vi phạm`;
 
-        if (ketQuaLoc.length === 0) {
-            vungKQ.innerHTML = '<div style="text-align:center; color:#6c757d; font-style:italic; padding:30px;">Không có sự kiện hoặc vi phạm nào khớp với điều kiện lọc.</div>';
-            return;
-        }
+        if (ketQuaLoc.length === 0) { vungKQ.innerHTML = '<div style="text-align:center; color:#6c757d; font-style:italic; padding:30px;">Không có sự kiện hoặc vi phạm nào khớp với điều kiện lọc.</div>'; return; }
 
         let htmlTable = `
             <table id="bang-in-thong-ke" style="width:100%; border-collapse:collapse; font-size:13px; background:#fff; border:1px solid #dee2e6;">
@@ -5460,6 +6104,7 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
                     <th style="padding:10px; border:1px solid #dee2e6; text-align:left; width:180px;">Học sinh</th>
                     <th style="padding:10px; border:1px solid #dee2e6; text-align:left;">Sự kiện / Lỗi</th>
                     <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:70px;">Điểm</th>
+                    <th style="padding:10px; border:1px solid #dee2e6; text-align:center; width:180px;">Tiến độ Khắc phục</th>
                 </tr>
         `;
 
@@ -5469,6 +6114,24 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
             let diemTru = sk.thong_tin_mo_rong?.diem_tru || 0;
             let mauDiem = diemTru < 0 ? '#dc3545' : (diemTru > 0 ? '#28a745' : '#495057');
 
+            // 🌟 RENDER NHÃN XỬ LÝ 3 MÀU 🌟
+            let xlObj = sk.thong_tin_mo_rong?.xu_ly;
+            let xlHtml = '<span style="color:#adb5bd; font-style:italic;">Không yêu cầu</span>';
+            if (xlObj) {
+                let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+                let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
+                let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
+                let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
+                let icnXl = isDone ? '✅' : (isPartial ? '🔄' : '⏳');
+                let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
+                let bdrXl = isDone ? '#c3e6cb' : (isPartial ? '#b8daff' : '#ffeeba');
+
+                xlHtml = `<div onclick="window.ham_21_51_mo_popup_cap_nhat_xu_ly('${sk.id}')" style="background:${bgXl}; color:${colXl}; padding:6px; border-radius:6px; font-size:11px; cursor:pointer; border:1px solid ${bdrXl}; box-shadow:0 1px 2px rgba(0,0,0,0.1); transition:0.2s; text-align:center;" onmouseover="this.style.filter='brightness(0.95)'" onmouseout="this.style.filter='brightness(1)'" title="Bấm để Cập nhật tiến độ">
+                    <div style="font-weight:bold; margin-bottom:4px;">${icnXl} ${textXl}</div>
+                    <div style="font-size:10px; opacity:0.9;">${xlObj.hinh_thuc}</div>
+                </div>`;
+            }
+
             htmlTable += `
                 <tr style="border-bottom:1px solid #dee2e6;">
                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center; font-weight:bold;">${idx + 1}</td>
@@ -5477,18 +6140,17 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
                     <td style="padding:8px; border:1px solid #dee2e6; font-weight:bold; color:#0056b3;">${sk.ten_hoc_sinh || ''}</td>
                     <td style="padding:8px; border:1px solid #dee2e6;">${sk.nhom_su_kien || ''} <div style="font-size:11px; color:#666;">${sk.noi_dung_chi_tiet || ''}</div></td>
                     <td style="padding:8px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:${mauDiem};">${diemTru !== 0 ? diemTru : '-'}</td>
+                    <td style="padding:8px; border:1px solid #dee2e6; text-align:center;">${xlHtml}</td>
                 </tr>
             `;
         });
+        htmlTable += `</table>`; vungKQ.innerHTML = htmlTable;
 
-        htmlTable += `</table>`;
-        vungKQ.innerHTML = htmlTable;
-
-    } catch (e) {
-        console.error(e);
-        vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`;
-    }
+    } catch (e) { vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`; }
 };
+
+
+
 
 // =====================================================================
 // HÀM 21.48: IN HOẶC XUẤT BÁO CÁO THỐNG KÊ
@@ -5521,3 +6183,190 @@ window.ham_21_50_dinh_dang_tuan_hien_thi = function (soTuan, tuNgayStr, denNgayS
     }
     return `Tuần ${soTuan}`;
 };
+
+
+
+// =====================================================================
+// HÀM 21.51: POPUP CẬP NHẬT TRẠNG THÁI "CHÉP PHẠT / LÀM LẠI BÀI" CỦA GVCN
+// =====================================================================
+window.ham_21_51_mo_popup_cap_nhat_xu_ly = async function (idSuKien) {
+    let modalId = 'modal-xu-ly-gvcn-' + idSuKien;
+    let modal = document.getElementById(modalId);
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; justify-content:center; align-items:center; padding:15px; animation: fadeIn 0.2s; box-sizing: border-box;';
+        document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#007bff; text-align:center;">⏳ Đang tải dữ liệu yêu cầu xử lý...</div>`;
+
+    try {
+        const { data: skData, error } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
+        if (error || !skData) throw error || new Error('Không tìm thấy sự kiện');
+
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        let xlObj = ttMoRong.xu_ly;
+        if (!xlObj) { alert("⚠️ Sự kiện này không có yêu cầu xử lý đính kèm."); document.body.removeChild(modal); return; }
+
+        window.danhSachAnhPhatGVCN = [];
+
+        let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+        let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
+        let isNotDone = !isDone && !isPartial;
+
+        let htmlAnhDaCo = '';
+        if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
+            htmlAnhDaCo = `<div style="margin-top:10px; font-size:12px; font-weight:bold; color:#28a745;">✅ Ảnh minh chứng đã nộp:</div><div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:5px; border:1px dashed #28a745; padding:10px; border-radius:6px; background:#f0fdf4;">`;
+            xlObj.anh_minh_chung.forEach(link => {
+                let pL = link; let mD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/); if (mD) pL = `https://lh3.googleusercontent.com/d/${mD[1]}`;
+                htmlAnhDaCo += `<img onclick="window.open('${link}', '_blank')" src="${pL}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745; cursor: zoom-in; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">`;
+            });
+            htmlAnhDaCo += `</div>`;
+        }
+
+        modal.innerHTML = `
+            <div style="background:#fff; width:100%; max-width:550px; border-radius:8px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+                <div style="background:#e83e8c; color:#fff; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0; font-size:16px;">🔄 CẬP NHẬT TRẠNG THÁI KHẮC PHỤC VI PHẠM</h3>
+                    <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="background:transparent; color:#fff; border:none; font-size:18px; cursor:pointer;" title="Đóng">✖</button>
+                </div>
+                
+                <div style="padding:20px; background:#f8f9fa;">
+                    <div style="background:#fffcf8; border:1px solid #ffeeba; border-radius:6px; padding:15px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                        <div style="font-size:13px; color:#555; margin-bottom:5px;">👤 Học sinh: <b style="color:#0056b3; font-size:14px;">${skData.ten_hoc_sinh}</b></div>
+                        <div style="font-size:13px; color:#555; margin-bottom:5px;">🚨 Vi phạm: <b style="color:#dc3545;">[${skData.nhom_su_kien}]</b></div>
+                        <div style="border-top:1px dashed #ffeeba; margin:10px 0;"></div>
+                        <div style="font-size:13px; color:#d35400;"><b>🛠️ Hình thức xử lý:</b> <span style="font-size:14px; font-weight:bold;">${xlObj.hinh_thuc}</span></div>
+                        <div style="font-size:13px; color:#d35400; margin-top:5px;"><b>📝 Nội dung yêu cầu:</b> <i>${xlObj.noi_dung}</i></div>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <label style="font-weight:bold; font-size:14px; color:#495057; display:block; margin-bottom:10px;">Thay đổi trạng thái tiến độ:</label>
+                        <div style="display:flex; gap:10px;">
+                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isNotDone ? '#dc3545' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#dc3545'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="nhan-vien-box">
+                                <input type="radio" name="trang_thai_phat" value="Chưa hoàn thành" ${isNotDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#dc3545;">
+                                <span style="font-weight:bold; color:#dc3545; font-size:12px;">⏳ Chưa xong</span>
+                            </label>
+                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isPartial ? '#007bff' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#007bff'; document.getElementById('da-xong-box').style.borderColor='#ced4da';" id="mot-phan-box">
+                                <input type="radio" name="trang_thai_phat" value="Đã nộp 1 phần" ${isPartial ? 'checked' : ''} style="width:16px; height:16px; accent-color:#007bff;">
+                                <span style="font-weight:bold; color:#007bff; font-size:12px;">🔄 Nộp 1 phần</span>
+                            </label>
+                            <label style="flex:1; cursor:pointer; background:#fff; border:2px solid ${isDone ? '#28a745' : '#ced4da'}; border-radius:6px; padding:10px 5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:0.2s;" onclick="document.getElementById('nhan-vien-box').style.borderColor='#ced4da'; document.getElementById('mot-phan-box').style.borderColor='#ced4da'; document.getElementById('da-xong-box').style.borderColor='#28a745';" id="da-xong-box">
+                                <input type="radio" name="trang_thai_phat" value="Đã hoàn thành" ${isDone ? 'checked' : ''} style="width:16px; height:16px; accent-color:#28a745;">
+                                <span style="font-weight:bold; color:#28a745; font-size:12px;">✅ Xong toàn bộ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:10px;">
+                        <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:8px;">📸 Bổ sung ảnh minh chứng (Vở chép phạt, Bảng tường trình...):</label>
+                        <div style="display:flex; gap:15px; align-items:flex-start;">
+                            <button type="button" onclick="document.getElementById('input-anh-phat-gvcn').click()" style="padding:10px 15px; background:#e0f7fa; color:#00838f; border:1px dashed #00acc1; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; transition:0.2s; flex-shrink:0;">
+                                <span style="font-size:20px;">📷</span><span style="font-size:11px;">Chụp ảnh nộp</span>
+                            </button>
+                            <input type="file" id="input-anh-phat-gvcn" accept="image/*" multiple style="display:none;" onchange="window.ham_21_52_chon_anh_phat_gvcn(this)">
+                            <div id="vung-preview-anh-phat-gvcn" style="flex:1; min-height:65px; border:1px dashed #ccc; border-radius:6px; display:flex; align-items:center; justify-content:flex-start; background:#fafafa; padding:8px; gap:8px; overflow-x:auto;">
+                                <span style="color:#adb5bd; font-size:11px; font-style:italic;">(Ảnh chụp mới bổ sung sẽ hiện tại đây)</span>
+                            </div>
+                        </div>
+                        ${htmlAnhDaCo}
+                    </div>
+                </div>
+                
+                <div style="padding:15px 20px; background:#fff; border-top:1px solid #dee2e6; display:flex; justify-content:flex-end; gap:10px;">
+                    <button onclick="document.body.removeChild(this.closest('#${modalId}'))" style="padding:10px 20px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px;">Hủy</button>
+                    <button onclick="window.ham_21_53_luu_trang_thai_xu_ly('${idSuKien}', this)" style="padding:10px 30px; background:#e83e8c; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:14px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Cập Nhật Tiến Độ</button>
+                </div>
+            </div>
+        `;
+    } catch (e) {
+        modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:red; text-align:center;">❌ Lỗi: ${e.message}<br><button onclick="document.body.removeChild(this.closest('div[style*=\\'position:fixed\\']'))" style="margin-top:15px; padding:5px 15px; cursor:pointer;">Đóng</button></div>`;
+    }
+};
+
+window.ham_21_52_chon_anh_phat_gvcn = async function (inputElem) {
+    if (inputElem.files && inputElem.files.length > 0) {
+        let btnNut = inputElem.previousElementSibling;
+        let oldHtml = btnNut.innerHTML;
+        btnNut.innerHTML = '<span style="font-size:20px;">⏳</span><span style="font-size:11px;">Đang nén...</span>';
+
+        // 🌟 Bơm mượn hàm nén của Khối 20 (vì xài chung logic nén)
+        let processedFiles = [];
+        for (let f of Array.from(inputElem.files)) {
+            let compressed = window.ham_20_24_nen_anh_canvas ? await window.ham_20_24_nen_anh_canvas(f, 0.8, 1280) : f;
+            if (compressed) processedFiles.push(compressed);
+        }
+
+        if (!window.danhSachAnhPhatGVCN) window.danhSachAnhPhatGVCN = [];
+        window.danhSachAnhPhatGVCN.push(...processedFiles);
+
+        const vungPreview = document.getElementById('vung-preview-anh-phat-gvcn');
+        if (vungPreview) {
+            vungPreview.style.flexDirection = 'column'; vungPreview.style.alignItems = 'flex-start';
+            let html = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
+            window.danhSachAnhPhatGVCN.forEach((f, idx) => {
+                let url = URL.createObjectURL(f);
+                html += `<div style="position:relative; width:60px; display:flex; flex-direction:column; align-items:center; animation: fadeIn 0.2s;"><img src="${url}" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><button type="button" onclick="window.danhSachAnhPhatGVCN.splice(${idx}, 1); this.parentElement.remove();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:white; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.3);">✖</button></div>`;
+            });
+            html += '</div>'; vungPreview.innerHTML = html;
+        }
+        btnNut.innerHTML = oldHtml; inputElem.value = '';
+    }
+};
+
+window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
+    let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;
+    const oldText = btnLuu.innerHTML; btnLuu.innerHTML = "⏳ Đang tải ảnh..."; btnLuu.disabled = true;
+
+    try {
+        const { data: skData, error: errGet } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
+        if (errGet) throw errGet;
+
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        let xlObj = ttMoRong.xu_ly;
+        if (!xlObj) throw new Error("Mất dữ liệu yêu cầu xử lý");
+
+        let mangLinkMoi = [];
+        if (window.danhSachAnhPhatGVCN && window.danhSachAnhPhatGVCN.length > 0) {
+            const ngayThucTe = new Date().toISOString().split('T')[0];
+            const d = new Date(); const timeStr = `${d.getHours()}h${d.getMinutes()}m`;
+
+            for (let k = 0; k < window.danhSachAnhPhatGVCN.length; k++) {
+                let f = window.danhSachAnhPhatGVCN[k];
+                // 🌟 Bơm mượn logic Base64 của Khối 20
+                let b64 = window.ham_ho_tro_doc_anh_base64 ? await window.ham_ho_tro_doc_anh_base64(f) : '';
+                let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
+                let tenFile = `NopPhat_[${ngayThucTe}_${timeStr}]_HS[${skData.ten_hoc_sinh.replace(/\s/g, "")}]_Anh[${k + 1}]${duoiFile}`;
+
+                let payload = { action: "upload_anh_nhat_ky_gvcn", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
+                let res = window.ham_ho_tro_upload_anh_co_tien_trinh ? await window.ham_ho_tro_upload_anh_co_tien_trinh(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload, (p) => { btnLuu.innerHTML = `🚀 Đang tải ảnh (${p}%)`; }) : { status: 'error' };
+
+                if (res.status === 'success') mangLinkMoi.push(res.url);
+            }
+        }
+
+        btnLuu.innerHTML = "⏳ Đang lưu CSDL...";
+        xlObj.trang_thai = trangThaiMoi;
+        if (trangThaiMoi === 'Đã hoàn thành') xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
+        let mangAnhCu = xlObj.anh_minh_chung || [];
+        xlObj.anh_minh_chung = mangAnhCu.concat(mangLinkMoi);
+        ttMoRong.xu_ly = xlObj;
+
+        const { error: errUp } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
+        if (errUp) throw errUp;
+
+        alert("✅ Cập nhật tiến độ khắc phục thành công!");
+        let modal = document.getElementById('modal-xu-ly-gvcn-' + idSuKien);
+        if (modal) document.body.removeChild(modal);
+
+        const btnLoc = document.querySelector('button[onclick*="ham_21_47_thuc_hien_tim_kiem_thong_ke"]');
+        if (btnLoc) btnLoc.click();
+    } catch (e) {
+        console.error("Lỗi:", e); alert("❌ Lỗi: " + e.message);
+    } finally {
+        btnLuu.innerHTML = oldText; btnLuu.disabled = false;
+    }
+};
+
+
