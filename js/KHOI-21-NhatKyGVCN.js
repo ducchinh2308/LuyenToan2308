@@ -6942,12 +6942,78 @@ window.ham_21_52b_render_anh_phat_gvcn = function () {
 
 
 
+// // =====================================================================
+// // HÀM 21.53: LƯU TRẠNG THÁI NỘP PHẠT CỦA GVCN (TỰ ĐỘNG TẢI LẠI BẢNG)
+// // =====================================================================
+// window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
+//     let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;
+//     const oldText = btnLuu.innerHTML; btnLuu.innerHTML = "⏳ Đang tải ảnh..."; btnLuu.disabled = true;
+
+//     try {
+//         const { data: skData, error: errGet } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
+//         if (errGet) throw errGet;
+
+//         let ttMoRong = skData.thong_tin_mo_rong || {};
+//         let xlObj = ttMoRong.xu_ly;
+//         if (!xlObj) throw new Error("Mất dữ liệu yêu cầu xử lý");
+
+//         let mangLinkMoi = [];
+//         if (window.danhSachAnhPhatGVCN && window.danhSachAnhPhatGVCN.length > 0) {
+//             const ngayThucTe = new Date().toISOString().split('T')[0];
+//             const d = new Date(); const timeStr = `${d.getHours()}h${d.getMinutes()}m`;
+
+//             for (let k = 0; k < window.danhSachAnhPhatGVCN.length; k++) {
+//                 let f = window.danhSachAnhPhatGVCN[k];
+//                 let b64 = window.ham_ho_tro_doc_anh_base64 ? await window.ham_ho_tro_doc_anh_base64(f) : '';
+//                 let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
+//                 let tenFile = `NopPhat_[${ngayThucTe}_${timeStr}]_HS[${skData.ten_hoc_sinh.replace(/\s/g, "")}]_Anh[${k + 1}]${duoiFile}`;
+
+//                 let payload = { action: "upload_anh_nhat_ky_gvcn", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
+//                 let res = window.ham_ho_tro_upload_anh_co_tien_trinh ? await window.ham_ho_tro_upload_anh_co_tien_trinh(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload, (p) => { btnLuu.innerHTML = `🚀 Đang tải ảnh (${p}%)`; }) : { status: 'error' };
+
+//                 if (res.status === 'success') mangLinkMoi.push(res.url);
+//             }
+//         }
+
+//         btnLuu.innerHTML = "⏳ Đang lưu CSDL...";
+//         xlObj.trang_thai = trangThaiMoi;
+//         if (trangThaiMoi === 'Đã hoàn thành') xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
+//         let mangAnhCu = xlObj.anh_minh_chung || [];
+//         xlObj.anh_minh_chung = mangAnhCu.concat(mangLinkMoi);
+//         ttMoRong.xu_ly = xlObj;
+
+//         const { error: errUp } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
+//         if (errUp) throw errUp;
+
+//         alert("✅ Cập nhật tiến độ khắc phục thành công!");
+//         let modal = document.getElementById('modal-xu-ly-gvcn-' + idSuKien);
+//         if (modal) document.body.removeChild(modal);
+
+//         // 🌟 TỰ ĐỘNG TẢI LẠI BẢNG: Nếu đang mở Bảng Mục 5 hoặc Bảng Tìm Kiếm
+//         if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') {
+//             window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
+//         }
+//         const btnLoc = document.querySelector('button[onclick*="ham_21_47_thuc_hien_tim_kiem_thong_ke"]');
+//         if (btnLoc) btnLoc.click();
+
+//     } catch (e) {
+//         console.error("Lỗi:", e); alert("❌ Lỗi: " + e.message);
+//     } finally {
+//         btnLuu.innerHTML = oldText; btnLuu.disabled = false;
+//     }
+// };
+
+
+
 // =====================================================================
-// HÀM 21.53: LƯU TRẠNG THÁI NỘP PHẠT CỦA GVCN (TỰ ĐỘNG TẢI LẠI BẢNG)
+// HÀM 21.53: LƯU TRẠNG THÁI NỘP PHẠT CỦA GVCN (HIỂN THỊ TIẾN ĐỘ KB/MB)
 // =====================================================================
 window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
     let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;
-    const oldText = btnLuu.innerHTML; btnLuu.innerHTML = "⏳ Đang tải ảnh..."; btnLuu.disabled = true;
+    const oldText = btnLuu.innerHTML;
+    const oldBg = btnLuu.style.background; // Lưu màu nền gốc để trả lại sau khi tải xong
+    btnLuu.innerHTML = "⏳ Đang chuẩn bị...";
+    btnLuu.disabled = true;
 
     try {
         const { data: skData, error: errGet } = await _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').eq('id', idSuKien).single();
@@ -6961,21 +7027,41 @@ window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
         if (window.danhSachAnhPhatGVCN && window.danhSachAnhPhatGVCN.length > 0) {
             const ngayThucTe = new Date().toISOString().split('T')[0];
             const d = new Date(); const timeStr = `${d.getHours()}h${d.getMinutes()}m`;
+            let tongSoAnh = window.danhSachAnhPhatGVCN.length;
 
-            for (let k = 0; k < window.danhSachAnhPhatGVCN.length; k++) {
+            for (let k = 0; k < tongSoAnh; k++) {
                 let f = window.danhSachAnhPhatGVCN[k];
                 let b64 = window.ham_ho_tro_doc_anh_base64 ? await window.ham_ho_tro_doc_anh_base64(f) : '';
                 let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
                 let tenFile = `NopPhat_[${ngayThucTe}_${timeStr}]_HS[${skData.ten_hoc_sinh.replace(/\s/g, "")}]_Anh[${k + 1}]${duoiFile}`;
 
                 let payload = { action: "upload_anh_nhat_ky_gvcn", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
-                let res = window.ham_ho_tro_upload_anh_co_tien_trinh ? await window.ham_ho_tro_upload_anh_co_tien_trinh(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload, (p) => { btnLuu.innerHTML = `🚀 Đang tải ảnh (${p}%)`; }) : { status: 'error' };
 
-                if (res.status === 'success') mangLinkMoi.push(res.url);
+                let res = window.ham_ho_tro_upload_anh_co_tien_trinh ? await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+                    payload,
+                    (phanTram, daTai, tongSo) => {
+                        // Dùng hàm định dạng MB/KB chung, nếu không có thì tự tính KB
+                        let strDaTai = window.ham_dinh_dang_dung_luong ? window.ham_dinh_dang_dung_luong(daTai) : (daTai / 1024).toFixed(1) + ' KB';
+                        let strTongSo = window.ham_dinh_dang_dung_luong ? window.ham_dinh_dang_dung_luong(tongSo) : (tongSo / 1024).toFixed(1) + ' KB';
+
+                        // Đổ màu thanh tiến trình ngay trên nút bấm
+                        btnLuu.style.background = `linear-gradient(90deg, #218838 ${phanTram}%, #6c757d ${phanTram}%)`;
+                        btnLuu.innerHTML = `🚀 Đang tải ảnh (${k + 1}/${tongSoAnh})<br><span style="font-size:11px; font-weight:normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                    }
+                ) : { status: 'error' };
+
+                if (res && res.status === 'success') {
+                    mangLinkMoi.push(res.url);
+                } else {
+                    throw new Error("Lỗi khi tải ảnh lên server Google Drive!");
+                }
             }
         }
 
+        btnLuu.style.background = oldBg;
         btnLuu.innerHTML = "⏳ Đang lưu CSDL...";
+
         xlObj.trang_thai = trangThaiMoi;
         if (trangThaiMoi === 'Đã hoàn thành') xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
         let mangAnhCu = xlObj.anh_minh_chung || [];
@@ -6989,19 +7075,21 @@ window.ham_21_53_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
         let modal = document.getElementById('modal-xu-ly-gvcn-' + idSuKien);
         if (modal) document.body.removeChild(modal);
 
-        // 🌟 TỰ ĐỘNG TẢI LẠI BẢNG: Nếu đang mở Bảng Mục 5 hoặc Bảng Tìm Kiếm
-        if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') {
-            window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
-        }
+        // Tự động tải lại bảng
+        if (typeof window.ham_21_30_cap_nhat_ngay_tuan_su_kien === 'function') window.ham_21_30_cap_nhat_ngay_tuan_su_kien();
         const btnLoc = document.querySelector('button[onclick*="ham_21_47_thuc_hien_tim_kiem_thong_ke"]');
         if (btnLoc) btnLoc.click();
 
     } catch (e) {
-        console.error("Lỗi:", e); alert("❌ Lỗi: " + e.message);
+        console.error("Lỗi:", e);
+        alert("❌ Lỗi: " + e.message);
     } finally {
-        btnLuu.innerHTML = oldText; btnLuu.disabled = false;
+        btnLuu.style.background = oldBg;
+        btnLuu.innerHTML = oldText;
+        btnLuu.disabled = false;
     }
 };
+
 
 
 
