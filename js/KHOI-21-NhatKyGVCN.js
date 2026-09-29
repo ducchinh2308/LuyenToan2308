@@ -15,70 +15,70 @@ window.gvcn_SuKienChoLuu = [];
 // =====================================================================
 window.gvcn_AnhTuanCuTam = [];
 
-// =====================================================================
-// HÀM 21.0: TỐI ƯU HÓA GIAO DIỆN TRÀN VIỀN CHO ĐIỆN THOẠI (MOBILE)
-// =====================================================================
-window.ham_21_0_toi_uu_giao_dien_mobile = function () {
-    if (!document.getElementById('css-mobile-gvcn')) {
-        let style = document.createElement('style');
-        style.id = 'css-mobile-gvcn';
-        style.innerHTML = `
-            @media screen and (max-width: 768px) {
-                /* 1. Xóa lề thừa của Body và Khung chứa chính (Áp dụng cả Bảng điều khiển) */
-                body, html { overflow-x: hidden !important; }
-                #vung-lam-viec-chi-tiet, #vung-lam-viec-chinh, .container, .container-fluid { 
-                    padding: 4px !important; 
-                    margin: 0 !important;
-                    width: 100% !important; 
-                    max-width: 100% !important;
-                    box-sizing: border-box !important; 
-                }
+// // =====================================================================
+// // HÀM 21.0: TỐI ƯU HÓA GIAO DIỆN TRÀN VIỀN CHO ĐIỆN THOẠI (MOBILE)
+// // =====================================================================
+// window.ham_21_0_toi_uu_giao_dien_mobile = function () {
+//     if (!document.getElementById('css-mobile-gvcn')) {
+//         let style = document.createElement('style');
+//         style.id = 'css-mobile-gvcn';
+//         style.innerHTML = `
+//             @media screen and (max-width: 768px) {
+//                 /* 1. Xóa lề thừa của Body và Khung chứa chính (Áp dụng cả Bảng điều khiển) */
+//                 body, html { overflow-x: hidden !important; }
+//                 #vung-lam-viec-chi-tiet, #vung-lam-viec-chinh, .container, .container-fluid { 
+//                     padding: 4px !important; 
+//                     margin: 0 !important;
+//                     width: 100% !important; 
+//                     max-width: 100% !important;
+//                     box-sizing: border-box !important; 
+//                 }
                 
-                /* 2. Ép các khối trắng (Mục 1,2,3,4,5) tràn ra sát viền điện thoại */
-                #vung-lam-viec-chi-tiet > div > div, 
-                .khoi-su-kien-hs {
-                    padding: 8px !important;
-                    margin-left: 0 !important;
-                    margin-right: 0 !important;
-                    border-radius: 6px !important;
-                    width: 100% !important;
-                    box-sizing: border-box !important;
-                }
+//                 /* 2. Ép các khối trắng (Mục 1,2,3,4,5) tràn ra sát viền điện thoại */
+//                 #vung-lam-viec-chi-tiet > div > div, 
+//                 .khoi-su-kien-hs {
+//                     padding: 8px !important;
+//                     margin-left: 0 !important;
+//                     margin-right: 0 !important;
+//                     border-radius: 6px !important;
+//                     width: 100% !important;
+//                     box-sizing: border-box !important;
+//                 }
 
-                /* 3. Cho phép cuộn ngang mượt mà đối với các bảng dài mà không làm vỡ khung */
-                .vung-danh-sach-loi, 
-                #gvcn-khu-vuc-su-kien-nhanh,
-                #body-muc-4,
-                #body-muc-5,
-                #gvcn-bang-noi-dung-cu,
-                table {
-                    overflow-x: auto !important;
-                    -webkit-overflow-scrolling: touch;
-                    max-width: 100vw !important;
-                }
+//                 /* 3. Cho phép cuộn ngang mượt mà đối với các bảng dài mà không làm vỡ khung */
+//                 .vung-danh-sach-loi, 
+//                 #gvcn-khu-vuc-su-kien-nhanh,
+//                 #body-muc-4,
+//                 #body-muc-5,
+//                 #gvcn-bang-noi-dung-cu,
+//                 table {
+//                     overflow-x: auto !important;
+//                     -webkit-overflow-scrolling: touch;
+//                     max-width: 100vw !important;
+//                 }
 
-                /* 4. Tăng size chữ Input lên 14px để iPhone không bị tự động Zoom màn hình khi gõ */
-                input, select, textarea {
-                    font-size: 14px !important;
-                }
+//                 /* 4. Tăng size chữ Input lên 14px để iPhone không bị tự động Zoom màn hình khi gõ */
+//                 input, select, textarea {
+//                     font-size: 14px !important;
+//                 }
                 
-                /* 5. Gấp các hàng ngang linh hoạt lại cho dễ nhìn trên điện thoại */
-                .dong-chi-tiet-hs, .sub-dong-loi {
-                    flex-wrap: nowrap !important;
-                    overflow-x: auto !important;
-                    padding-bottom: 8px !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-};
+//                 /* 5. Gấp các hàng ngang linh hoạt lại cho dễ nhìn trên điện thoại */
+//                 .dong-chi-tiet-hs, .sub-dong-loi {
+//                     flex-wrap: nowrap !important;
+//                     overflow-x: auto !important;
+//                     padding-bottom: 8px !important;
+//                 }
+//             }
+//         `;
+//         document.head.appendChild(style);
+//     }
+// };
 // =====================================================================
 // HÀM 21.1: VẼ GIAO DIỆN CHÍNH (MỤC 1, 2, 3, 4 ỔN ĐỊNH, GỌI MỤC 5 RIÊNG)
 // =====================================================================
 window.ham_21_1_mo_giao_dien_nhat_ky_gvcn = function () {
     // KÍCH HOẠT CSS TRÀN VIỀN CHO ĐIỆN THOẠI
-    if (typeof window.ham_21_0_toi_uu_giao_dien_mobile === 'function') window.ham_21_0_toi_uu_giao_dien_mobile();
+    //if (typeof window.ham_21_0_toi_uu_giao_dien_mobile === 'function') window.ham_21_0_toi_uu_giao_dien_mobile();
 
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     if (!vungLamViec) return;
