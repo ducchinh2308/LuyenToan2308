@@ -10667,3 +10667,187 @@ document.addEventListener('input', function(e) {
 });
 
 
+// =====================================================================
+// HÀM 20.52: CHỌN ẢNH NỘP PHẠT (CÓ GỌI CẮT/NÉN ẢNH NẾU TỒN TẠI)
+// =====================================================================
+window.ham_20_52_chon_anh_phat_day_hoc = async function (inputElem) {
+    const files = Array.from(inputElem.files);
+    if (files.length === 0) return;
+
+    try {
+        let processedFiles = files;
+
+        // Dò tìm hàm cắt/nén ảnh đang có trong hệ thống để tự động áp dụng
+        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        }
+
+        // Nếu người dùng bấm [Hủy] ở bước cắt ảnh thì thoát ra
+        if (!processedFiles || processedFiles.length === 0) return;
+
+        if (!window.danhSachAnhPhatDayHoc) window.danhSachAnhPhatDayHoc = [];
+        window.danhSachAnhPhatDayHoc.push(...processedFiles);
+
+        // Vẽ ảnh lên Popup
+        window.ham_20_52b_render_anh_phat_day_hoc();
+    } catch (error) {
+        console.error("Lỗi xử lý ảnh nộp phạt:", error);
+        alert("❌ Lỗi khi chọn ảnh: " + error.message);
+    } finally {
+        inputElem.value = ''; // Reset thẻ input để không bị kẹt nếu chọn lại file cũ
+    }
+};
+
+// =====================================================================
+// HÀM 20.52B: RENDER ẢNH THUMBNAIL LÊN POPUP TIẾN ĐỘ
+// =====================================================================
+window.ham_20_52b_render_anh_phat_day_hoc = function () {
+    const vungHienThi = document.getElementById('dh-vung-preview-anh-phat');
+    if (!vungHienThi) return;
+
+    if (!window.danhSachAnhPhatDayHoc || window.danhSachAnhPhatDayHoc.length === 0) {
+        vungHienThi.innerHTML = '<span style="color:#adb5bd; font-size:12px; font-style:italic;">(Chưa chọn ảnh mới)</span>';
+        return;
+    }
+
+    let html = '';
+    window.danhSachAnhPhatDayHoc.forEach((file, index) => {
+        let url = URL.createObjectURL(file);
+        html += `
+        <div style="position:relative; display:inline-block; margin-right:8px; margin-bottom:8px; animation: fadeIn 0.3s;">
+            <img src="${url}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" title="Ảnh minh chứng">
+            <button type="button" onclick="window.danhSachAnhPhatDayHoc.splice(${index}, 1); window.ham_20_52b_render_anh_phat_day_hoc();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:20px; height:20px; font-size:12px; cursor:pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;" title="Xóa ảnh">✖</button>
+        </div>`;
+    });
+    vungHienThi.innerHTML = html;
+};
+
+// =====================================================================
+// HÀM 20.58: XÓA ẢNH KHẮC PHỤC CŨ KHỎI DATABASE
+// =====================================================================
+window.ham_20_58_xoa_anh_phat_cu = async function (idSuKien, linkAnhCanXoa, btnElem) {
+    if (!confirm('⚠️ Thầy có chắc chắn muốn xóa ảnh khắc phục này không? (Sẽ xóa vĩnh viễn khỏi CSDL)')) return;
+    try {
+        btnElem.innerHTML = '⏳'; btnElem.disabled = true;
+
+        const { data: skData, error: errGet } = await _supabase.from('nhat_ky_su_kien_hs').select('thong_tin_mo_rong').eq('id', idSuKien).single();
+        if (errGet) throw errGet;
+
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        let xlObj = ttMoRong.xu_ly;
+
+        if (xlObj && xlObj.anh_minh_chung) {
+            // Lọc bỏ link ảnh đang bị yêu cầu xóa
+            xlObj.anh_minh_chung = xlObj.anh_minh_chung.filter(link => link !== linkAnhCanXoa);
+            ttMoRong.xu_ly = xlObj;
+
+            const { error: errUp } = await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
+            if (errUp) throw errUp;
+
+            btnElem.closest('div').remove();
+        }
+    } catch (e) {
+        alert("❌ Lỗi xóa ảnh: " + e.message);
+        btnElem.innerHTML = '✖'; btnElem.disabled = false;
+    }
+};
+
+// =====================================================================
+// HÀM 20.41: LƯU CẬP NHẬT TIẾN ĐỘ & UPLOAD ẢNH PHẠT LÊN DRIVE
+// =====================================================================
+window.ham_20_41_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
+    let trangThaiMoi = document.querySelector('input[name="trang_thai_phat_dh"]:checked').value;
+    const oldText = btnLuu.innerHTML;
+    const oldBg = btnLuu.style.background;
+    btnLuu.innerHTML = "⏳ Đang chuẩn bị...";
+    btnLuu.disabled = true;
+
+    try {
+        const { data: skData, error: errGet } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
+        if (errGet) throw errGet;
+
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        let xlObj = ttMoRong.xu_ly;
+        if (!xlObj) throw new Error("Dữ liệu gốc không có yêu cầu xử lý nào!");
+
+        let mangLinkMoi = [];
+        if (window.danhSachAnhPhatDayHoc && window.danhSachAnhPhatDayHoc.length > 0) {
+            const ngayThucTe = new Date().toISOString().split('T')[0];
+            const d = new Date(); const timeStr = `${d.getHours()}h${d.getMinutes()}m`;
+            let tongSoAnh = window.danhSachAnhPhatDayHoc.length;
+
+            for (let k = 0; k < tongSoAnh; k++) {
+                let f = window.danhSachAnhPhatDayHoc[k];
+
+                // Fallback nếu thiếu hàm đọc base64
+                let b64 = '';
+                if (typeof window.ham_ho_tro_doc_anh_base64 === 'function') {
+                    b64 = await window.ham_ho_tro_doc_anh_base64(f);
+                } else {
+                    b64 = await new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = error => reject(error);
+                        reader.readAsDataURL(f);
+                    });
+                }
+
+                let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
+                let tenHSClean = (typeof window.taoTenAnToan === 'function') ? window.taoTenAnToan(skData.ten_hoc_sinh) : 'HS';
+                let tenFile = `NopPhatDayHoc_[${ngayThucTe}_${timeStr}]_HS[${tenHSClean}]_Anh[${k + 1}]${duoiFile}`;
+
+                let payload = { action: "upload_anh_nhat_ky", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT_DAY_HOC" };
+
+                let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload,
+                    (phanTram) => {
+                        btnLuu.style.background = `linear-gradient(90deg, #218838 ${phanTram}%, #6c757d ${phanTram}%)`;
+                        btnLuu.innerHTML = `🚀 Đang tải ảnh (${k + 1}/${tongSoAnh}) (${phanTram}%)`;
+                    }
+                );
+
+                if (res && res.status === 'success') {
+                    mangLinkMoi.push(res.url);
+                } else {
+                    throw new Error("Lỗi khi tải ảnh lên server Google Drive!");
+                }
+            }
+        }
+
+        btnLuu.style.background = oldBg;
+        btnLuu.innerHTML = "⏳ Đang đồng bộ vào dữ liệu...";
+
+        xlObj.trang_thai = trangThaiMoi;
+        if (trangThaiMoi === 'Đã hoàn thành') {
+            xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
+        }
+
+        let mangAnhCu = xlObj.anh_minh_chung || [];
+        xlObj.anh_minh_chung = mangAnhCu.concat(mangLinkMoi);
+        ttMoRong.xu_ly = xlObj;
+
+        const { error: errUp } = await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
+        if (errUp) throw errUp;
+
+        alert("✅ Đã cập nhật tiến độ và hình ảnh khắc phục thành công!");
+
+        let modal = document.getElementById('nk-modal-chitiet-sk');
+        if (modal) modal.remove();
+
+        // Tự động tải lại bảng kết quả Thống kê để cập nhật dữ liệu mới nhất
+        let btnLoc = document.querySelector('button[onclick*="ham_20_15_thuc_hien_tra_cuu"]');
+        if (btnLoc) btnLoc.click();
+
+    } catch (e) {
+        console.error("Lỗi:", e);
+        alert("❌ Lỗi: " + e.message);
+    } finally {
+        btnLuu.style.background = oldBg;
+        btnLuu.innerHTML = oldText;
+        btnLuu.disabled = false;
+    }
+};
