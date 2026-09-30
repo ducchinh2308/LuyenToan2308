@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7050bb3aac",
+  "dapAn": "B",
+  "loiGiai": "Dựa vào hình vẽ (biểu đồ Venn), phần không bị gạch nằm hoàn toàn trong tập hợp $B$ nhưng không thuộc tập hợp $A$. Do đó, đây là biểu diễn của hiệu của hai tập hợp $B$ và $A$, ký hiệu là $B \\setminus A$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e7a60f2aa7",
+  "dapAn": "C",
+  "loiGiai": "Ta kiểm tra từng khẳng định:\\\\\r\n\t\t- $A \\cap B = \\{0; 1; 2\\}$.\\\\\r\n\t\t- $A \\cap C = \\{0; 1; 2\\}$.\\\\\r\n\t\t- $A \\setminus C = \\{3; 4\\}$ (đúng).\\\\\r\n\t\t- $A \\cup B = \\{0; 1; 2; 3; 4\\}$."
+}

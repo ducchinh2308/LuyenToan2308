@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8bad11a31e",
+  "dapAn": "TFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Theo cách viết tập hợp dưới dạng khoảng, nửa khoảng thì $A = (-2; 5], B = (1; +\\infty)$.\r\n\t\t\t\\itemch $A \\cap B = (1; 5]$.\r\n\t\t\t\\itemch $A \\cup B = (-2; +\\infty)$.\r\n\t\t\t\\itemch $A \\cap B = (1; 5] \\Rightarrow C_{\\mathbb{R}}(A \\cap B) = \\mathbb{R} \\setminus (1; 5] = (-\\infty; 1] \\cup (5; +\\infty)$.\r\n\t\t\\end{itemchoice}"
+}
