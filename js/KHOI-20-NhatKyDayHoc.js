@@ -8694,35 +8694,127 @@ window.ham_20_toggle_anh_class = function (className, btn) {
 
 
 
-// =====================================================================
-// HÀM 20.28: TẢI THÔNG TIN CỦA TIẾT HỌC GẦN NHẤT VỪA LƯU
-// =====================================================================
-window.ham_20_28_tai_tiet_gan_nhat = function () {
-    const lastNgayDay = localStorage.getItem('nk_last_ngayDay');
-    const lastBuoi = localStorage.getItem('nk_last_buoi');
-    const lastTiet = localStorage.getItem('nk_last_tiet');
-    const lastLop = localStorage.getItem('nk_last_lop');
+// // =====================================================================
+// // HÀM 20.28: TẢI THÔNG TIN CỦA TIẾT HỌC GẦN NHẤT VỪA LƯU
+// // =====================================================================
+// window.ham_20_28_tai_tiet_gan_nhat = function () {
+//     const lastNgayDay = localStorage.getItem('nk_last_ngayDay');
+//     const lastBuoi = localStorage.getItem('nk_last_buoi');
+//     const lastTiet = localStorage.getItem('nk_last_tiet');
+//     const lastLop = localStorage.getItem('nk_last_lop');
 
-    if (!lastNgayDay && !lastBuoi && !lastTiet && !lastLop) {
-        alert("⚠️ Hệ thống chưa ghi nhận tiết học nào được lưu gần đây trên trình duyệt này!");
-        return;
+//     if (!lastNgayDay && !lastBuoi && !lastTiet && !lastLop) {
+//         alert("⚠️ Hệ thống chưa ghi nhận tiết học nào được lưu gần đây trên trình duyệt này!");
+//         return;
+//     }
+
+//     // Đổ dữ liệu vào giao diện
+//     if (lastNgayDay) document.querySelector('input[type="date"]').value = lastNgayDay;
+//     if (lastBuoi) document.getElementById('nk-input-buoi').value = lastBuoi;
+//     if (lastTiet) document.getElementById('nk-input-tiet').value = lastTiet;
+//     if (lastLop) document.getElementById('nk-input-lop').value = lastLop;
+
+//     // Kích hoạt nạp danh sách học sinh và kiểm tra dữ liệu tiết học tự động
+//     if (lastLop && typeof ham_20_2_tai_danh_sach_hs_theo_lop === 'function') {
+//         ham_20_2_tai_danh_sach_hs_theo_lop();
+//     }
+
+//     if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+//         ham_20_27_kiem_tra_tiet_da_luu();
+//     }
+// };
+
+
+// HÀM 20.28: TẢI TIẾT GẦN NHẤT TỪ DATABASE (ĐỒNG BỘ ĐÁM MÁY & LỌC THEO LỚP)
+// =====================================================================
+window.ham_20_28_tai_tiet_gan_nhat = async function (btnElem) {
+    const btn = btnElem || event?.currentTarget;
+    let oldText = btn ? btn.innerHTML : '🔄 Tiết gần nhất';
+    if (btn) { btn.innerHTML = '⏳ Đang tải...'; btn.disabled = true; }
+
+    const inputLop = document.getElementById('nk-input-lop');
+    let maLopChon = inputLop ? inputLop.value.trim() : '';
+    let maLop = '';
+    
+    // Bóc tách mã lớp nếu đang có định dạng "Tên lớp (Mã lớp)"
+    if (maLopChon) {
+        maLop = maLopChon.match(/\(([^)]+)\)$/) ? maLopChon.match(/\(([^)]+)\)$/)[1].trim() : maLopChon;
     }
 
-    // Đổ dữ liệu vào giao diện
-    if (lastNgayDay) document.querySelector('input[type="date"]').value = lastNgayDay;
-    if (lastBuoi) document.getElementById('nk-input-buoi').value = lastBuoi;
-    if (lastTiet) document.getElementById('nk-input-tiet').value = lastTiet;
-    if (lastLop) document.getElementById('nk-input-lop').value = lastLop;
+    try {
+        // 1. Khởi tạo truy vấn lấy tiết mới nhất từ bảng nhat_ky_day_hoc
+        let query = _supabase.from('nhat_ky_day_hoc')
+            .select('ngay_day, buoi, tiet, ma_lop, phan_mon')
+            .order('ngay_day', { ascending: false })
+            .order('id', { ascending: false }) // Đảm bảo lấy bản ghi mới lưu nhất nếu trùng ngày
+            .limit(1);
 
-    // Kích hoạt nạp danh sách học sinh và kiểm tra dữ liệu tiết học tự động
-    if (lastLop && typeof ham_20_2_tai_danh_sach_hs_theo_lop === 'function') {
-        ham_20_2_tai_danh_sach_hs_theo_lop();
-    }
+        // 2. NẾU CÓ CHỌN LỚP -> Chèn thêm điều kiện lọc theo mã lớp đó
+        if (maLop) {
+            query = query.eq('ma_lop', maLop);
+        }
 
-    if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') {
-        ham_20_27_kiem_tra_tiet_da_luu();
+        const { data, error } = await query.maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+            // 3. Đổ dữ liệu vào các ô
+            let dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) {
+                dateInput.value = data.ngay_day || '';
+                // Kích hoạt tính toán lại "Thứ"
+                let d = new Date(data.ngay_day);
+                if (!isNaN(d.getTime())) {
+                    let thuInput = document.getElementById('nk-input-thu');
+                    if (thuInput) thuInput.value = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'][d.getDay()];
+                }
+            }
+
+            document.getElementById('nk-input-buoi').value = data.buoi || '';
+            document.getElementById('nk-input-tiet').value = data.tiet || '';
+            document.getElementById('nk-input-mon').value = data.phan_mon || '';
+
+            // Nếu ô lớp đang trống hoặc khác với DB, điền lại tên lớp chuẩn từ datalist
+            if (!maLop || maLop !== data.ma_lop) {
+                let datalistLop = document.getElementById('dl-lop');
+                let foundOption = null;
+                if (datalistLop) {
+                    for (let opt of datalistLop.options) {
+                        if (opt.value.includes(`(${data.ma_lop})`)) {
+                            foundOption = opt.value;
+                            break;
+                        }
+                    }
+                }
+                if (inputLop) {
+                    inputLop.value = foundOption || data.ma_lop;
+                    // Kích hoạt tải danh sách học sinh của lớp mới này
+                    inputLop.dispatchEvent(new Event('change'));
+                }
+            }
+
+            // 4. Đợi 1 chút để DOM ổn định rồi tự động tải Nội dung & Sự kiện của tiết này lên
+            setTimeout(() => {
+                if (typeof window.ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+                    window.ham_20_27_kiem_tra_tiet_da_luu();
+                }
+            }, 300);
+
+        } else {
+            alert(maLop ? `⚠️ Lớp ${maLop} chưa có dữ liệu Nhật ký dạy học nào trên hệ thống!` : "⚠️ Hệ thống chưa có dữ liệu Nhật ký nào!");
+        }
+
+    } catch (e) {
+        console.error("Lỗi tải tiết gần nhất:", e);
+        alert("❌ Lỗi: " + e.message);
+    } finally {
+        if (btn) { btn.innerHTML = oldText; btn.disabled = false; }
     }
 };
+
+
+
 
 
 // =====================================================================
