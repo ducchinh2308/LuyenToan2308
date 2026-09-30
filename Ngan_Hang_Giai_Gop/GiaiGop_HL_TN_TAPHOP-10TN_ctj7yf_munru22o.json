@@ -1,0 +1,30 @@
+{
+  "thoiGianGhep": "2026-09-30T07:15:54.239Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_7050bb3aac",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào hình vẽ (biểu đồ Venn), phần không bị gạch nằm hoàn toàn trong tập hợp $B$ nhưng không thuộc tập hợp $A$. Do đó, đây là biểu diễn của hiệu của hai tập hợp $B$ và $A$, ký hiệu là $B \\setminus A$."
+    },
+    {
+      "maBaoMat": "sol_e7a60f2aa7",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta kiểm tra từng khẳng định:\\\\\r\n\t\t- $A \\cap B = \\{0; 1; 2\\}$.\\\\\r\n\t\t- $A \\cap C = \\{0; 1; 2\\}$.\\\\\r\n\t\t- $A \\setminus C = \\{3; 4\\}$ (đúng).\\\\\r\n\t\t- $A \\cup B = \\{0; 1; 2; 3; 4\\}$."
+    },
+    {
+      "maBaoMat": "sol_8bad11a31e",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Theo cách viết tập hợp dưới dạng khoảng, nửa khoảng thì $A = (-2; 5], B = (1; +\\infty)$.\r\n\t\t\t\\itemch $A \\cap B = (1; 5]$.\r\n\t\t\t\\itemch $A \\cup B = (-2; +\\infty)$.\r\n\t\t\t\\itemch $A \\cap B = (1; 5] \\Rightarrow C_{\\mathbb{R}}(A \\cap B) = \\mathbb{R} \\setminus (1; 5] = (-\\infty; 1] \\cup (5; +\\infty)$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_8abb6ea1b9",
+      "dapAn": "40",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t<img src='HinhAnh/sol_8abb6ea1b9_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSố học sinh thích ít nhất một môn là: $25 + 23 - 14 = 34$.\\\\\r\n\t\tTổng số học sinh là: $34 + 6 = 40$."
+    },
+    {
+      "maBaoMat": "sol_960ecce5da",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập hợp $A\\cup B=\\left[-5; 1\\right] \\cup\\left(-3;2\\right)=\\left[-5; 2\\right)$.\r\n\tTập hợp $A\\cup B$ chứa các số nguyên âm là $\\left\\{-5;-4;-3;-2;-1\\right\\}$ nên có $5$ số nguyên âm."
+    }
+  ]
+}
