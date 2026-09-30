@@ -1590,6 +1590,158 @@ async function ham_4_14_xoa_lop(maLop) {
 // }
 
 
+// // =====================================================================
+// // HÀM 4.12: HIỆN FORM CHỈNH SỬA LỚP HỌC (ĐỒNG BỘ GIAO DIỆN 2 CỘT)
+// // =====================================================================
+// window.ham_4_12_hien_form_sua_lop = async function (maLop) {
+//     const lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+//     if (!lop) return;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px; color: #f39c12; font-size: 16px;"><b>⏳ Đang tải thông tin lớp và toàn bộ học sinh...</b></div>`;
+
+//     try {
+//         // 1. TẢI TẤT CẢ HỌC SINH TỪ DATABASE
+//         const { data: dsHS, error } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, truong, danh_sach_ma_lop')
+//             .eq('vai_tro', 'hocsinh')
+//             .order('ten', { ascending: true });
+
+//         if (error) throw error;
+
+//         let dsTrong = [];
+//         let dsNgoai = [];
+
+//         // 2. PHÂN LOẠI HỌC SINH VÀO 2 NHÓM
+//         if (dsHS) {
+//             dsHS.forEach(hs => {
+//                 let dLop = hs.danh_sach_ma_lop || [];
+//                 let isTrongLop = false;
+//                 if (Array.isArray(dLop)) isTrongLop = dLop.includes(maLop);
+//                 else if (typeof dLop === 'string') isTrongLop = dLop.includes(maLop);
+
+//                 if (isTrongLop) dsTrong.push(hs);
+//                 else dsNgoai.push(hs);
+//             });
+//         }
+
+//         // Tái sử dụng State của Chi tiết lớp để kích hoạt tính năng Thêm/Rút Live
+//         window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+
+//         // 3. VẼ GIAO DIỆN SỬA LỚP
+//         vungLamViec.innerHTML = `
+//             <div style="background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+//                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f3f4; padding-bottom: 10px; margin-bottom: 20px;">
+//                     <h3 style="color: #f39c12; margin: 0; display: flex; align-items: center; gap: 10px;">
+//                         ✏️ CHỈNH SỬA LỚP: ${lop.ten_lop} (${maLop})
+//                     </h3>
+//                     <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         ⬅ Quay Lại Bảng
+//                     </button>
+//                 </div>
+                
+//                 <!-- KHU VỰC 1: SỬA TÊN VÀ TRẠNG THÁI -->
+//                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; background: #fffaf0; padding: 20px; border-radius: 8px; border: 1px dashed #f39c12;">
+//                     <div style="grid-column: span 2;">
+//                         <label style="font-weight: bold; font-size: 14px; color: #d35400;">Tên lớp học (*):</label>
+//                         <input type="text" id="txtTenLopSua" value="${lop.ten_lop}" style="width: 100%; padding: 10px; border: 2px solid #f39c12; border-radius: 6px; box-sizing: border-box; outline: none; font-weight: bold; font-size: 15px; color: #333; margin-top: 5px;">
+//                     </div>
+//                     <div>
+//                         <label style="font-weight: bold; font-size: 14px; color: #d35400;">Trạng thái lớp:</label>
+//                         <select id="selTrangThaiLopSua" style="width: 100%; padding: 10px; border: 1px solid #f39c12; border-radius: 6px; outline: none; margin-top: 5px; background: white;">
+//                             <option value="1" ${lop.trang_thai == 1 ? 'selected' : ''}>1 - Đang mở (Hoạt động)</option>
+//                             <option value="0" ${lop.trang_thai == 0 ? 'selected' : ''}>0 - Đóng (Tạm dừng)</option>
+//                         </select>
+//                     </div>
+//                     <div style="display: flex; align-items: flex-end;">
+//                         <button onclick="ham_4_13_luu_cap_nhat_lop('${maLop}', this)" style="width: 100%; padding: 10px; background: #f39c12; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3); transition: 0.2s;" onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#f39c12'">
+//                             💾 LƯU TÊN & TRẠNG THÁI LỚP
+//                         </button>
+//                     </div>
+//                 </div>
+
+//                 <!-- KHU VỰC 2: ĐIỀU PHỐI HỌC SINH -->
+//                 <div style="margin-bottom: 15px;">
+//                     <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 8px;">👥 Điều phối học sinh (Hệ thống tự động lưu khi bấm nút Thêm/Rút tên):</label>
+//                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//                 </div>
+
+//                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+//                     <!-- Cột Trái -->
+//                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
+//                             <span>🎓 ĐÃ TRONG LỚP</span>
+//                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+
+//                     <!-- Cột Phải -->
+//                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
+//                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
+//                             <span>🌍 HỌC SINH BÊN NGOÀI</span>
+//                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
+//                         </h4>
+//                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+
+//         // 4. KÍCH HOẠT VẼ DANH SÁCH HỌC SINH 2 CỘT
+//         window.ham_4_9_1_render_danh_sach();
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<p style="color: red; text-align: center;">Lỗi tải dữ liệu: ${error.message}</p>
+//                                  <div style="text-align: center;"><button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Quay lại</button></div>`;
+//     }
+// };
+
+// // =====================================================================
+// // HÀM 4.13: LƯU TÊN VÀ TRẠNG THÁI LỚP (TỐI GIẢN VÌ HỌC SINH ĐÃ LƯU LIVE)
+// // =====================================================================
+// window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
+//     const tenMoi = document.getElementById('txtTenLopSua').value.trim();
+//     const trangThaiMoi = parseInt(document.getElementById('selTrangThaiLopSua').value);
+
+//     if (!tenMoi) {
+//         alert("Thầy vui lòng không để trống Tên lớp!");
+//         return;
+//     }
+
+//     btn.disabled = true;
+//     const textGoc = btn.innerHTML;
+//     btn.innerHTML = "⏳ ĐANG LƯU...";
+
+//     try {
+//         const { error: errLop } = await _supabase
+//             .from('lop_hoc')
+//             .update({
+//                 ten_lop: tenMoi,
+//                 trang_thai: trangThaiMoi
+//             })
+//             .eq('ma_lop', maLop);
+
+//         if (error) throw errLop;
+
+//         // Báo hiệu lưu thành công trên nút
+//         btn.style.background = "#28a745";
+//         btn.innerHTML = "✅ ĐÃ LƯU THÀNH CÔNG";
+
+//         setTimeout(() => {
+//             btn.style.background = "#f39c12";
+//             btn.innerHTML = textGoc;
+//             btn.disabled = false;
+//         }, 2000);
+
+//     } catch (error) {
+//         alert("Lỗi cập nhật: " + error.message);
+//         btn.disabled = false;
+//         btn.innerHTML = textGoc;
+//     }
+// };
+
 // =====================================================================
 // HÀM 4.12: HIỆN FORM CHỈNH SỬA LỚP HỌC (ĐỒNG BỘ GIAO DIỆN 2 CỘT)
 // =====================================================================
@@ -1604,9 +1756,8 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
         // 1. TẢI TẤT CẢ HỌC SINH TỪ DATABASE
         const { data: dsHS, error } = await _supabase
             .from('hoc_sinh')
-            .select('uid, ten, sdt, truong, danh_sach_ma_lop')
-            .eq('vai_tro', 'hocsinh')
-            .order('ten', { ascending: true });
+            .select('uid, ten, sdt, truong, danh_sach_ma_lop, anh_dai_dien')
+            .eq('vai_tro', 'hocsinh');
 
         if (error) throw error;
 
@@ -1627,7 +1778,14 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
         }
 
         // Tái sử dụng State của Chi tiết lớp để kích hoạt tính năng Thêm/Rút Live
-        window.ChiTietLopState = { maLop: maLop, tenLop: lop.ten_lop, dsTrong, dsNgoai };
+        window.ChiTietLopState = {
+            maLop: maLop,
+            tenLop: lop.ten_lop,
+            dsTrong: dsTrong,
+            dsNgoai: dsNgoai,
+            sortTrong: 'asc',
+            sortNgoai: 'asc'
+        };
 
         // 3. VẼ GIAO DIỆN SỬA LỚP
         vungLamViec.innerHTML = `
@@ -1663,7 +1821,7 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
 
                 <!-- KHU VỰC 2: ĐIỀU PHỐI HỌC SINH -->
                 <div style="margin-bottom: 15px;">
-                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 8px;">👥 Điều phối học sinh (Hệ thống tự động lưu khi bấm nút Thêm/Rút tên):</label>
+                    <label style="font-weight: bold; font-size: 14px; color: #1a73e8; display: block; margin-bottom: 8px;">👥 Điều phối học sinh (Hệ thống tự động cập nhật danh sách khi bấm Thêm/Rút):</label>
                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
                 </div>
 
@@ -1671,7 +1829,10 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
                     <!-- Cột Trái -->
                     <div style="flex: 1; min-width: 300px; background: #f0fdf4; border: 1px solid #28a745; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
                         <h4 style="color: #155724; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #28a745; padding-bottom: 8px;">
-                            <span>🎓 ĐÃ TRONG LỚP</span>
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                🎓 ĐÃ TRONG LỚP
+                                <button id="btn-sort-trong" onclick="window.ham_4_9_4_dao_chieu_sort('trong')" style="background: #e8f5e9; border: 1px solid #28a745; color: #155724; border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#c3e6cb'" onmouseout="this.style.background='#e8f5e9'" title="Đảo chiều sắp xếp">⬇️️ A-Z</button>
+                            </span>
                             <span id="count-trong" style="background: #28a745; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
                         </h4>
                         <div id="vung-hs-trong-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
@@ -1680,7 +1841,10 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
                     <!-- Cột Phải -->
                     <div style="flex: 1; min-width: 300px; background: #f8f9fa; border: 1px solid #ced4da; border-radius: 8px; padding: 15px; display: flex; flex-direction: column;">
                         <h4 style="color: #495057; margin-top: 0; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #adb5bd; padding-bottom: 8px;">
-                            <span>🌍 HỌC SINH BÊN NGOÀI</span>
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                🌍 HS BÊN NGOÀI
+                                <button id="btn-sort-ngoai" onclick="window.ham_4_9_4_dao_chieu_sort('ngoai')" style="background: #e9ecef; border: 1px solid #adb5bd; color: #495057; border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: 0.2s;" onmouseover="this.style.background='#dee2e6'" onmouseout="this.style.background='#e9ecef'" title="Đảo chiều sắp xếp">⬇️ A-Z</button>
+                            </span>
                             <span id="count-ngoai" style="background: #6c757d; color: white; padding: 2px 10px; border-radius: 12px; font-size: 13px;">0</span>
                         </h4>
                         <div id="vung-hs-ngoai-lop" style="overflow-y: auto; max-height: 400px; padding-right: 5px; flex: 1;"></div>
@@ -1699,14 +1863,14 @@ window.ham_4_12_hien_form_sua_lop = async function (maLop) {
 };
 
 // =====================================================================
-// HÀM 4.13: LƯU TÊN VÀ TRẠNG THÁI LỚP (TỐI GIẢN VÌ HỌC SINH ĐÃ LƯU LIVE)
+// HÀM 4.13: LƯU TÊN VÀ TRẠNG THÁI LỚP (CẬP NHẬT CẢ BẢNG LỚP HỌC)
 // =====================================================================
 window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
     const tenMoi = document.getElementById('txtTenLopSua').value.trim();
     const trangThaiMoi = parseInt(document.getElementById('selTrangThaiLopSua').value);
 
     if (!tenMoi) {
-        alert("Thầy vui lòng không để trống Tên lớp!");
+        alert("⚠️ Thầy vui lòng không để trống Tên lớp!");
         return;
     }
 
@@ -1715,15 +1879,20 @@ window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
     btn.innerHTML = "⏳ ĐANG LƯU...";
 
     try {
+        // 1. Phân tích lại danh sách UID những học sinh đang trong lớp (Cột trái)
+        const dsUidMoiNhat = window.ChiTietLopState.dsTrong.map(hs => hs.uid);
+
+        // 2. Cập nhật tên, trạng thái và mảng hoc_sinh_ids (nếu bảng lop_hoc có dùng)
         const { error: errLop } = await _supabase
             .from('lop_hoc')
             .update({
                 ten_lop: tenMoi,
-                trang_thai: trangThaiMoi
+                trang_thai: trangThaiMoi,
+                hoc_sinh_ids: dsUidMoiNhat
             })
             .eq('ma_lop', maLop);
 
-        if (error) throw errLop;
+        if (errLop) throw errLop;
 
         // Báo hiệu lưu thành công trên nút
         btn.style.background = "#28a745";
@@ -1735,14 +1904,19 @@ window.ham_4_13_luu_cap_nhat_lop = async function (maLop, btn) {
             btn.disabled = false;
         }, 2000);
 
+        // Cập nhật lại State ở RAM để bấm Quay Lại Bảng không bị mất tên mới
+        let lop = BangLopState.duLieu.find(l => l.ma_lop === maLop);
+        if (lop) {
+            lop.ten_lop = tenMoi;
+            lop.trang_thai = trangThaiMoi;
+        }
+
     } catch (error) {
-        alert("Lỗi cập nhật: " + error.message);
+        alert("❌ Lỗi cập nhật: " + error.message);
         btn.disabled = false;
         btn.innerHTML = textGoc;
     }
 };
-
-
 // =====================================================================
 // KHỐI HÀM CẬP NHẬT AVATAR ĐỒNG LOẠT (TỪ 4.16 ĐẾN 4.23)
 // =====================================================================
