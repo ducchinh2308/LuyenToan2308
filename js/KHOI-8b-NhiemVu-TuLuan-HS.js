@@ -530,56 +530,163 @@ async function ham_8b_5_layMetadataHocLieu(maNhiemVu) {
 }
 
 
-window.ham_8b_6_xu_ly_chon_anh = function (input) {
-    const files = input.files;
-    if (!files || files.length === 0) return;
+// window.ham_8b_6_xu_ly_chon_anh = function (input) {
+//     const files = input.files;
+//     if (!files || files.length === 0) return;
 
-    // Duyệt qua tất cả các file học sinh vừa chọn
-    Array.from(files).forEach(file => {
-        // Bỏ qua nếu không phải là ảnh
-        if (!file.type.startsWith('image/')) return;
+//     // Duyệt qua tất cả các file học sinh vừa chọn
+//     Array.from(files).forEach(file => {
+//         // Bỏ qua nếu không phải là ảnh
+//         if (!file.type.startsWith('image/')) return;
 
-        // Kiểm tra chống trùng lặp
-        const isDuplicate = TuLuanHS_State.linkAnhDaUpload.some(item =>
-            item.fileName === file.name && item.size === file.size
-        );
-        if (isDuplicate) return; // Nếu ảnh đã có trên lưới thì bỏ qua
+//         // Kiểm tra chống trùng lặp
+//         const isDuplicate = TuLuanHS_State.linkAnhDaUpload.some(item =>
+//             item.fileName === file.name && item.size === file.size
+//         );
+//         if (isDuplicate) return; // Nếu ảnh đã có trên lưới thì bỏ qua
 
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const base64 = e.target.result;
+//         const reader = new FileReader();
+//         reader.onload = function (e) {
+//             const base64 = e.target.result;
 
-            // Đẩy vào mảng bộ nhớ
-            TuLuanHS_State.linkAnhDaUpload.push({
-                data: base64,
-                fileName: file.name,
-                size: file.size
-            });
+//             // Đẩy vào mảng bộ nhớ
+//             TuLuanHS_State.linkAnhDaUpload.push({
+//                 data: base64,
+//                 fileName: file.name,
+//                 size: file.size
+//             });
 
-            // Vẽ ảnh ra màn hình
-            const grid = document.getElementById('luoi_anh_da_nop');
-            const div = document.createElement('div');
-            div.style.position = "relative";
-            div.innerHTML = `
-                <img src="${base64}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid #ccc;">
-                <button onclick="ham_8b_7_xoa_anh_tam_thoi(this, '${file.name}', ${file.size})" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;">×</button>
-            `;
-            grid.appendChild(div);
-        };
-        reader.readAsDataURL(file);
+//             // Vẽ ảnh ra màn hình
+//             const grid = document.getElementById('luoi_anh_da_nop');
+//             const div = document.createElement('div');
+//             div.style.position = "relative";
+//             div.innerHTML = `
+//                 <img src="${base64}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid #ccc;">
+//                 <button onclick="ham_8b_7_xoa_anh_tam_thoi(this, '${file.name}', ${file.size})" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;">×</button>
+//             `;
+//             grid.appendChild(div);
+//         };
+//         reader.readAsDataURL(file);
+//     });
+
+//     // Reset input để học sinh có thể bấm chọn thêm lần nữa nếu muốn
+//     input.value = "";
+// };
+
+// =====================================================================
+// HÀM 8B.6: XỬ LÝ CHỌN ẢNH BÀI LÀM (SỬ DỤNG BỘ CẮT NÉN ĐẦY ĐỦ CỦA HỆ THỐNG)
+// =====================================================================
+window.ham_8b_6_xu_ly_chon_anh = async function (inputElem) {
+    const files = Array.from(inputElem.files);
+    if (files.length === 0) return;
+
+    try {
+        let processedFiles = files;
+
+        // 🌟 GỌI BỘ CÔNG CỤ CẮT/NÉN ẢNH ĐẦY ĐỦ CHO HỌC SINH TỰ CHỌN
+        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        }
+
+        // Nếu học sinh bấm [Hủy] ở giao diện cắt ảnh thì thoát ra
+        if (!processedFiles || processedFiles.length === 0) {
+            inputElem.value = '';
+            return;
+        }
+
+        // Lọc bỏ các file không phải là ảnh
+        processedFiles = processedFiles.filter(f => f.type.startsWith('image/'));
+
+        // Xử lý nạp từng file đã cắt vào mảng lưu trữ
+        for (let i = 0; i < processedFiles.length; i++) {
+            let file = processedFiles[i];
+
+            // Kiểm tra chống trùng lặp dựa trên Tên và Kích thước
+            const isDuplicate = TuLuanHS_State.linkAnhDaUpload.some(item =>
+                item.fileName === file.name && item.size === file.size
+            );
+
+            if (!isDuplicate) {
+                // Đọc file sang Base64 để lưu vào State
+                let base64 = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+
+                TuLuanHS_State.linkAnhDaUpload.push({
+                    data: base64,
+                    fileName: file.name,
+                    size: file.size
+                });
+            }
+        }
+
+        // Gọi hàm vẽ lại toàn bộ lưới ảnh
+        window.ham_8b_6b_render_luoi_anh();
+
+    } catch (error) {
+        console.error("Lỗi xử lý ảnh nộp bài:", error);
+        alert("❌ Lỗi khi xử lý ảnh: " + error.message);
+    } finally {
+        inputElem.value = ''; // Reset thẻ input để có thể chọn lại
+    }
+};
+
+// =====================================================================
+// HÀM 8B.6B: VẼ LẠI LƯỚI ẢNH ĐÃ CHỌN LÊN MÀN HÌNH (GÓC HỌC SINH)
+// =====================================================================
+window.ham_8b_6b_render_luoi_anh = function () {
+    const grid = document.getElementById('luoi_anh_da_nop');
+    if (!grid) return;
+
+    grid.innerHTML = ''; // Xóa trắng để vẽ lại từ đầu
+
+    TuLuanHS_State.linkAnhDaUpload.forEach((item, index) => {
+        let dungLuongKB = (item.size / 1024).toFixed(1);
+
+        const div = document.createElement('div');
+        div.style.position = "relative";
+        div.style.animation = "fadeIn 0.3s";
+
+        div.innerHTML = `
+            <img src="${item.data}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <span style="position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.6); color: white; font-size: 10px; text-align: center; border-radius: 0 0 6px 6px;">${dungLuongKB}KB</span>
+            <button type="button" onclick="ham_8b_7_xoa_anh_tam_thoi(${index})" style="position: absolute; top: -6px; right: -6px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 22px; height: 22px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">✖</button>
+        `;
+        grid.appendChild(div);
     });
-
-    // Reset input để học sinh có thể bấm chọn thêm lần nữa nếu muốn
-    input.value = "";
 };
 
-// Hàm hỗ trợ xóa ảnh trong mảng
-window.ham_8b_7_xoa_anh_tam_thoi = function (btn, fileName, size) {
-    btn.parentElement.remove();
-    TuLuanHS_State.linkAnhDaUpload = TuLuanHS_State.linkAnhDaUpload.filter(item =>
-        !(item.fileName === fileName && item.size === size)
-    );
+
+
+
+
+// // Hàm hỗ trợ xóa ảnh trong mảng
+// window.ham_8b_7_xoa_anh_tam_thoi = function (btn, fileName, size) {
+//     btn.parentElement.remove();
+//     TuLuanHS_State.linkAnhDaUpload = TuLuanHS_State.linkAnhDaUpload.filter(item =>
+//         !(item.fileName === fileName && item.size === size)
+//     );
+// };
+
+
+// =====================================================================
+// HÀM 8B.7: XÓA ẢNH KHỎI MẢNG TẠM VÀ VẼ LẠI
+// =====================================================================
+window.ham_8b_7_xoa_anh_tam_thoi = function (index) {
+    // Xóa phần tử theo vị trí index
+    TuLuanHS_State.linkAnhDaUpload.splice(index, 1);
+    // Vẽ lại giao diện
+    window.ham_8b_6b_render_luoi_anh();
 };
+
+
+
 
 window.ham_8b_8_nen_anh_thanh_base64 = function (file, maxWidth = 1200, maxHeight = 1600, quality = 0.7) {
     return new Promise((resolve, reject) => {
@@ -604,77 +711,389 @@ window.ham_8b_8_nen_anh_thanh_base64 = function (file, maxWidth = 1200, maxHeigh
         };
     });
 };
+// window.ham_8b_9_nop_bai_ve_supabase = async function () {
+//     if (TuLuanHS_State.linkAnhDaUpload.length === 0) return alert("⚠️ Em chưa tải ảnh nào lên!");
+
+//     // 🌟 1. TÍNH TOÁN XEM ĐÂY LÀ LẦN NỘP THỨ MẤY (Đưa lên đầu để dùng cho Cảnh báo)
+//     const tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+//     const luotNopHienTai = (tienDoHienTai[TuLuanHS_State.maNhiemVu] || 0) + 1;
+
+//     // 🌟 2. CẢNH BÁO THÔNG MINH (Tùy theo lần nộp)
+//     if (luotNopHienTai > 1) {
+//         const xacNhanNopLai = confirm(`⚠️ CẢNH BÁO LÀM LẠI BÀI (Lần ${luotNopHienTai}):\n\nNếu em nộp bài bây giờ, toàn bộ các bức ảnh đã nộp ở lần trước sẽ bị hủy bỏ và thay thế bằng ảnh mới.\n\nEm có chắc chắn muốn nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh mới này không?`);
+//         if (!xacNhanNopLai) return;
+//     } else {
+//         if (!confirm(`Xác nhận nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh cho thầy/cô?`)) return;
+//     }
+
+//     // 3. KIỂM TRA METADATA
+//     if (!TuLuanHS_State || !TuLuanHS_State.metadata) {
+//         return alert("❌ Lỗi: Dữ liệu nhiệm vụ bị thiếu (Metadata không tồn tại).");
+//     }
+
+//     // Lấy ID thư mục từ metadata của nhiệm vụ
+//     const folderId = TuLuanHS_State.metadata.folder_id_drive;
+//     if (!folderId) return alert("❌ Lỗi: Thư mục nộp bài không tồn tại (Chưa có ID).");
+
+//     const btn = document.getElementById('btn_nop_bai_chinh_thuc');
+//     btn.innerText = "⏳ ĐANG TẢI ẢNH LÊN DRIVE...";
+//     btn.disabled = true;
+
+//     try {
+//         let danhSachUrlDrive = [];
+//         for (let i = 0; i < TuLuanHS_State.linkAnhDaUpload.length; i++) {
+//             const img = TuLuanHS_State.linkAnhDaUpload[i];
+
+//             const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//                 method: "POST",
+//                 body: JSON.stringify({
+//                     action: "upload_bai_nop",
+//                     folderId: folderId,
+//                     // CHÈN THÊM CHỮ "Lan_X" VÀO TÊN FILE ĐỂ LƯU VẾT TRÊN DRIVE
+//                     fileName: `${TuLuanHS_State.maNhiemVu}_${GocHocSinhState.ten.replace(/\\s+/g, '_')}_Lan_${luotNopHienTai}_anh_${i + 1}.png`,
+//                     mimeType: "image/png",
+//                     base64Data: img.data.split(',')[1]
+//                 })
+//             });
+//             const result = await response.json();
+//             if (result.status === "success") danhSachUrlDrive.push(result.url);
+//         }
+
+//         // 🌟 4. LƯU VÀO SUPABASE (CHỐNG LỖI 409 CONFLICT)
+//         const payloadKQT = {
+//             ma_nhiem_vu: TuLuanHS_State.maNhiemVu,
+//             uid_hoc_sinh: TuLuanHS_State.uidHocSinh,
+//             thoi_gian_nop: new Date().toISOString(),
+//             trang_thai_cham: 0, // Reset lại trạng thái chưa chấm
+//             // ĐÃ XÓA DÒNG `diem: null` GÂY LỖI 400 Ở ĐÂY
+//             chi_tiet_lam_bai: {
+//                 kieu_bai: "TU_LUAN_ANH",
+//                 danh_sach_link_anh: danhSachUrlDrive,
+//                 thoi_gian_bat_dau: TuLuanHS_State.batDauLuc,
+//                 luot_nop: luotNopHienTai // Ghi chú luôn vào log
+//             }
+//         };
+//         // Bước A: Tìm xem đã có dòng kết quả cũ chưa
+//         const { data: kqCu } = await _supabase
+//             .from('ket_qua_tu_luan')
+//             .select('id')
+//             .eq('ma_nhiem_vu', TuLuanHS_State.maNhiemVu)
+//             .eq('uid_hoc_sinh', TuLuanHS_State.uidHocSinh)
+//             .maybeSingle();
+
+//         // Bước B: Có rồi thì Update đè lên, Chưa có thì Insert
+//         if (kqCu && kqCu.id) {
+//             const { error: errUpdate } = await _supabase.from('ket_qua_tu_luan').update(payloadKQT).eq('id', kqCu.id);
+//             if (errUpdate) throw errUpdate;
+//         } else {
+//             const { error: errInsert } = await _supabase.from('ket_qua_tu_luan').insert([payloadKQT]);
+//             if (errInsert) throw errInsert;
+//         }
+
+//         // ====================================================================
+//         // 5. CẬP NHẬT TIẾN ĐỘ ĐỂ CHUYỂN TAB "ĐÃ LÀM" NHƯ TRẮC NGHIỆM
+//         // ====================================================================
+//         let tienDo = GocHocSinhState.tien_do_lam_bai || {};
+//         tienDo[TuLuanHS_State.maNhiemVu] = luotNopHienTai;
+
+//         await _supabase.from('hoc_sinh')
+//             .update({ tien_do_lam_bai: tienDo })
+//             .eq('uid', TuLuanHS_State.uidHocSinh);
+
+//         GocHocSinhState.tien_do_lam_bai = tienDo;
+
+//         // 6. HIỂN THỊ HOÀN THÀNH
+//         document.getElementById('dashboard-container').innerHTML = `
+//             <div style="text-align:center; padding: 50px;">
+//                 <h2 style="color:#28a745;">🎉 NỘP BÀI THÀNH CÔNG!</h2>
+//                 <p>Hệ thống đã lưu ảnh bài làm của em.</p>
+//                 <button onclick="ham_8b_4_quay_lai_danh_sach()" style="padding: 12px 25px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+//                     ⬅️ TRỞ VỀ DANH SÁCH BÀI TẬP
+//                 </button>
+//             </div>`;
+
+//     } catch (error) {
+//         alert("Lỗi ghi nhận: " + error.message);
+//         btn.disabled = false;
+//         btn.innerText = "🚀 HOÀN THÀNH & GỬI BÀI CHO THẦY";
+//     }
+// };
+
+
+// // =====================================================================
+// // HÀM 8B.9: GỬI BÀI LÊN GOOGLE DRIVE (CÓ HIỂN THỊ TIẾN TRÌNH % VÀ KB)
+// // =====================================================================
+// window.ham_8b_9_nop_bai_ve_supabase = async function () {
+//     if (TuLuanHS_State.linkAnhDaUpload.length === 0) return alert("⚠️ Em chưa tải ảnh nào lên!");
+
+//     // 🌟 1. TÍNH TOÁN XEM ĐÂY LÀ LẦN NỘP THỨ MẤY (Đưa lên đầu để dùng cho Cảnh báo)
+//     const tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+//     const luotNopHienTai = (tienDoHienTai[TuLuanHS_State.maNhiemVu] || 0) + 1;
+
+//     // 🌟 2. CẢNH BÁO THÔNG MINH (Tùy theo lần nộp)
+//     if (luotNopHienTai > 1) {
+//         const xacNhanNopLai = confirm(`⚠️ CẢNH BÁO LÀM LẠI BÀI (Lần ${luotNopHienTai}):\n\nNếu em nộp bài bây giờ, toàn bộ các bức ảnh đã nộp ở lần trước sẽ bị hủy bỏ và thay thế bằng ảnh mới.\n\nEm có chắc chắn muốn nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh mới này không?`);
+//         if (!xacNhanNopLai) return;
+//     } else {
+//         if (!confirm(`Xác nhận nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh cho thầy/cô?`)) return;
+//     }
+
+//     // 3. KIỂM TRA METADATA
+//     if (!TuLuanHS_State || !TuLuanHS_State.metadata) {
+//         return alert("❌ Lỗi: Dữ liệu nhiệm vụ bị thiếu (Metadata không tồn tại).");
+//     }
+
+//     // Lấy ID thư mục từ metadata của nhiệm vụ
+//     const folderId = TuLuanHS_State.metadata.folder_id_drive;
+//     if (!folderId) return alert("❌ Lỗi: Thư mục nộp bài không tồn tại (Chưa có ID).");
+
+//     const btn = document.getElementById('btn_nop_bai_chinh_thuc');
+//     const oldBg = btn.style.background;
+//     btn.innerHTML = "⏳ ĐANG CHUẨN BỊ ĐƯỜNG TRUYỀN...";
+//     btn.disabled = true;
+
+//     // Hàm hỗ trợ hiển thị dung lượng (KB/MB)
+//     const formatSize = (bytes) => {
+//         if (bytes === 0) return '0 Bytes';
+//         const k = 1024;
+//         const sizes = ['Bytes', 'KB', 'MB'];
+//         const i = Math.floor(Math.log(bytes) / Math.log(k));
+//         return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+//     };
+
+//     try {
+//         let danhSachUrlDrive = [];
+//         let tongSoAnh = TuLuanHS_State.linkAnhDaUpload.length;
+
+//         for (let i = 0; i < tongSoAnh; i++) {
+//             const img = TuLuanHS_State.linkAnhDaUpload[i];
+//             const tenFile = `${TuLuanHS_State.maNhiemVu}_${GocHocSinhState.ten.replace(/\s+/g, '_')}_Lan_${luotNopHienTai}_anh_${i + 1}.png`;
+
+//             // Gọi hàm đẩy ảnh lên Drive có tích hợp thanh Tiến trình
+//             if (typeof window.ham_ho_tro_upload_anh_co_tien_trinh === 'function') {
+//                 let payload = {
+//                     action: "upload_bai_nop",
+//                     folderId: folderId,
+//                     fileName: tenFile,
+//                     mimeType: "image/png",
+//                     base64Data: img.data.split(',')[1]
+//                 };
+
+//                 let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                     CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                     payload,
+//                     function (phanTram, daTai, tongSo) {
+//                         let strDaTai = formatSize(daTai);
+//                         let strTongSo = formatSize(tongSo);
+//                         // Đổ màu thanh tiến trình trực tiếp lên nút bấm
+//                         btn.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #dc3545 ${phanTram}%)`;
+//                         btn.innerHTML = `🚀 ĐANG TẢI ẢNH (${i + 1}/${tongSoAnh})<br><span style="font-size: 13px; font-weight: normal; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+//                     }
+//                 );
+
+//                 if (result && result.status === 'success') {
+//                     danhSachUrlDrive.push(result.url);
+//                 } else {
+//                     throw new Error("Lỗi tải ảnh lên Google Drive ở tệp số " + (i + 1));
+//                 }
+//             } else {
+//                 // Fallback (Trường hợp trình duyệt lỗi không nhận hàm tiến trình)
+//                 btn.innerHTML = `🚀 ĐANG TẢI ẢNH (${i + 1}/${tongSoAnh})...`;
+//                 const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//                     method: "POST",
+//                     body: JSON.stringify({
+//                         action: "upload_bai_nop",
+//                         folderId: folderId,
+//                         fileName: tenFile,
+//                         mimeType: "image/png",
+//                         base64Data: img.data.split(',')[1]
+//                     })
+//                 });
+//                 const result = await response.json();
+//                 if (result.status === "success") danhSachUrlDrive.push(result.url);
+//                 else throw new Error("Lỗi tải ảnh lên Drive");
+//             }
+//         }
+
+//         // 🌟 4. LƯU VÀO SUPABASE (CHỐNG LỖI 409 CONFLICT)
+//         btn.style.background = oldBg;
+//         btn.innerHTML = "⏳ ĐANG LƯU VÀO HỆ THỐNG...";
+
+//         const payloadKQT = {
+//             ma_nhiem_vu: TuLuanHS_State.maNhiemVu,
+//             uid_hoc_sinh: TuLuanHS_State.uidHocSinh,
+//             thoi_gian_nop: new Date().toISOString(),
+//             trang_thai_cham: 0, // Reset lại trạng thái chưa chấm
+//             chi_tiet_lam_bai: {
+//                 kieu_bai: "TU_LUAN_ANH",
+//                 danh_sach_link_anh: danhSachUrlDrive,
+//                 thoi_gian_bat_dau: TuLuanHS_State.batDauLuc,
+//                 luot_nop: luotNopHienTai // Ghi chú luôn vào log
+//             }
+//         };
+
+//         // Bước A: Tìm xem đã có dòng kết quả cũ chưa
+//         const { data: kqCu } = await _supabase
+//             .from('ket_qua_tu_luan')
+//             .select('id')
+//             .eq('ma_nhiem_vu', TuLuanHS_State.maNhiemVu)
+//             .eq('uid_hoc_sinh', TuLuanHS_State.uidHocSinh)
+//             .maybeSingle();
+
+//         // Bước B: Có rồi thì Update đè lên, Chưa có thì Insert
+//         if (kqCu && kqCu.id) {
+//             const { error: errUpdate } = await _supabase.from('ket_qua_tu_luan').update(payloadKQT).eq('id', kqCu.id);
+//             if (errUpdate) throw errUpdate;
+//         } else {
+//             const { error: errInsert } = await _supabase.from('ket_qua_tu_luan').insert([payloadKQT]);
+//             if (errInsert) throw errInsert;
+//         }
+
+//         // ====================================================================
+//         // 5. CẬP NHẬT TIẾN ĐỘ ĐỂ CHUYỂN TAB "ĐÃ LÀM" NHƯ TRẮC NGHIỆM
+//         // ====================================================================
+//         let tienDo = GocHocSinhState.tien_do_lam_bai || {};
+//         tienDo[TuLuanHS_State.maNhiemVu] = luotNopHienTai;
+
+//         await _supabase.from('hoc_sinh')
+//             .update({ tien_do_lam_bai: tienDo })
+//             .eq('uid', TuLuanHS_State.uidHocSinh);
+
+//         GocHocSinhState.tien_do_lam_bai = tienDo;
+
+//         // 6. HIỂN THỊ HOÀN THÀNH
+//         document.getElementById('dashboard-container').innerHTML = `
+//             <div style="text-align:center; padding: 50px; animation: fadeIn 0.5s;">
+//                 <h2 style="color:#28a745; font-size: 28px;">🎉 NỘP BÀI THÀNH CÔNG!</h2>
+//                 <p style="color: #666; font-size: 15px; margin-bottom: 25px;">Hệ thống đã nhận đủ ${tongSoAnh} ảnh bài làm của em.</p>
+//                 <button onclick="ham_8b_4_quay_lai_danh_sach()" style="padding: 12px 30px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(111,66,193,0.3); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+//                     ⬅️️ TRỞ VỀ DANH SÁCH BÀI TẬP
+//                 </button>
+//             </div>`;
+
+//     } catch (error) {
+//         alert("Lỗi ghi nhận: " + error.message);
+//         btn.style.background = oldBg;
+//         btn.disabled = false;
+//         btn.innerText = "🚀 HOÀN THÀNH & GỬI BÀI";
+//     }
+// };
+
+
+// =====================================================================
+// HÀM 8B.9: GỬI BÀI LÊN GOOGLE DRIVE (FIX TRIỆT ĐỂ LỖI PROMISE LENGTH)
+// =====================================================================
 window.ham_8b_9_nop_bai_ve_supabase = async function () {
-    if (TuLuanHS_State.linkAnhDaUpload.length === 0) return alert("⚠️ Em chưa tải ảnh nào lên!");
-
-    // 🌟 1. TÍNH TOÁN XEM ĐÂY LÀ LẦN NỘP THỨ MẤY (Đưa lên đầu để dùng cho Cảnh báo)
-    const tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
-    const luotNopHienTai = (tienDoHienTai[TuLuanHS_State.maNhiemVu] || 0) + 1;
-
-    // 🌟 2. CẢNH BÁO THÔNG MINH (Tùy theo lần nộp)
-    if (luotNopHienTai > 1) {
-        const xacNhanNopLai = confirm(`⚠️ CẢNH BÁO LÀM LẠI BÀI (Lần ${luotNopHienTai}):\n\nNếu em nộp bài bây giờ, toàn bộ các bức ảnh đã nộp ở lần trước sẽ bị hủy bỏ và thay thế bằng ảnh mới.\n\nEm có chắc chắn muốn nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh mới này không?`);
-        if (!xacNhanNopLai) return;
-    } else {
-        if (!confirm(`Xác nhận nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh cho thầy/cô?`)) return;
-    }
-
-    // 3. KIỂM TRA METADATA
-    if (!TuLuanHS_State || !TuLuanHS_State.metadata) {
-        return alert("❌ Lỗi: Dữ liệu nhiệm vụ bị thiếu (Metadata không tồn tại).");
-    }
-
-    // Lấy ID thư mục từ metadata của nhiệm vụ
-    const folderId = TuLuanHS_State.metadata.folder_id_drive;
-    if (!folderId) return alert("❌ Lỗi: Thư mục nộp bài không tồn tại (Chưa có ID).");
-
-    const btn = document.getElementById('btn_nop_bai_chinh_thuc');
-    btn.innerText = "⏳ ĐANG TẢI ẢNH LÊN DRIVE...";
-    btn.disabled = true;
-
     try {
-        let danhSachUrlDrive = [];
-        for (let i = 0; i < TuLuanHS_State.linkAnhDaUpload.length; i++) {
-            const img = TuLuanHS_State.linkAnhDaUpload[i];
-
-            const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
-                method: "POST",
-                body: JSON.stringify({
-                    action: "upload_bai_nop",
-                    folderId: folderId,
-                    // CHÈN THÊM CHỮ "Lan_X" VÀO TÊN FILE ĐỂ LƯU VẾT TRÊN DRIVE
-                    fileName: `${TuLuanHS_State.maNhiemVu}_${GocHocSinhState.ten.replace(/\\s+/g, '_')}_Lan_${luotNopHienTai}_anh_${i + 1}.png`,
-                    mimeType: "image/png",
-                    base64Data: img.data.split(',')[1]
-                })
-            });
-            const result = await response.json();
-            if (result.status === "success") danhSachUrlDrive.push(result.url);
+        if (!TuLuanHS_State || !TuLuanHS_State.linkAnhDaUpload || TuLuanHS_State.linkAnhDaUpload.length === 0) {
+            return alert("⚠️ Em chưa tải ảnh nào lên!");
         }
 
-        // 🌟 4. LƯU VÀO SUPABASE (CHỐNG LỖI 409 CONFLICT)
+        const tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+        const luotNopHienTai = (tienDoHienTai[TuLuanHS_State.maNhiemVu] || 0) + 1;
+        const tenHS = (GocHocSinhState.ten || 'HocSinh').replace(/\s+/g, '_');
+
+        if (luotNopHienTai > 1) {
+            if (!confirm(`⚠️ CẢNH BÁO LÀM LẠI BÀI (Lần ${luotNopHienTai}):\n\nNếu em nộp bài bây giờ, toàn bộ ảnh nộp lần trước sẽ bị thay thế bằng ảnh mới.\nEm có chắc chắn nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh này không?`)) return;
+        } else {
+            if (!confirm(`Xác nhận nộp ${TuLuanHS_State.linkAnhDaUpload.length} bức ảnh cho thầy/cô?`)) return;
+        }
+
+        if (!TuLuanHS_State.metadata || !TuLuanHS_State.metadata.folder_id_drive) {
+            throw new Error("Dữ liệu nhiệm vụ bị lỗi (Không tìm thấy ID thư mục lưu trữ).");
+        }
+
+        const folderId = TuLuanHS_State.metadata.folder_id_drive;
+        const btn = document.getElementById('btn_nop_bai_chinh_thuc');
+        let oldBg = "";
+
+        if (btn) {
+            oldBg = btn.style.background;
+            btn.innerHTML = "⏳ ĐANG CHUẨN BỊ ĐƯỜNG TRUYỀN...";
+            btn.disabled = true;
+        }
+
+        // Hàm hỗ trợ hiển thị dung lượng (KB/MB) an toàn
+        const formatSize = (bytes) => {
+            if (!bytes || isNaN(bytes) || bytes === 0) return '0 KB';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + (sizes[i] || 'KB');
+        };
+
+        let danhSachUrlDrive = [];
+        let tongSoAnh = TuLuanHS_State.linkAnhDaUpload.length;
+
+        // XỬ LÝ ĐẨY TỪNG ẢNH LÊN DRIVE
+        for (let i = 0; i < tongSoAnh; i++) {
+            const img = TuLuanHS_State.linkAnhDaUpload[i];
+            let base64Split = img.data.split(',');
+            let base64String = base64Split.length > 1 ? base64Split[1] : base64Split[0];
+            const tenFile = `${TuLuanHS_State.maNhiemVu}_${tenHS}_Lan_${luotNopHienTai}_anh_${i + 1}.png`;
+
+            if (typeof window.ham_ho_tro_upload_anh_co_tien_trinh === 'function') {
+                let payload = {
+                    action: "upload_bai_nop",
+                    folderId: folderId,
+                    fileName: tenFile,
+                    mimeType: "image/png",
+                    // 🌟 MẤU CHỐT FIX LỖI Ở ĐÂY: Truyền cả 2 biến
+                    base64: base64String,      // Để hàm tính % tiến trình đọc được độ dài (.length)
+                    base64Data: base64String   // Để Google Apps Script cũ nhận diện được file
+                };
+
+                let result = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+                    payload,
+                    function (phanTram, daTai, tongSo) {
+                        if (btn) {
+                            let strDaTai = formatSize(daTai);
+                            let strTongSo = formatSize(tongSo);
+                            btn.style.background = `linear-gradient(90deg, #17a2b8 ${phanTram}%, #dc3545 ${phanTram}%)`;
+                            btn.innerHTML = `🚀 ĐANG TẢI ẢNH (${i + 1}/${tongSoAnh})<br><span style="font-size: 13px; font-weight: normal; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                        }
+                    }
+                );
+
+                if (result && result.status === 'success') {
+                    danhSachUrlDrive.push(result.url);
+                } else {
+                    throw new Error(result?.message || `Lỗi tải ảnh lên Drive ở tệp số ${i + 1}`);
+                }
+            } else {
+                if (btn) btn.innerHTML = `🚀 ĐANG TẢI ẢNH (${i + 1}/${tongSoAnh})...`;
+                const response = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+                    method: "POST",
+                    body: JSON.stringify({ action: "upload_bai_nop", folderId: folderId, fileName: tenFile, mimeType: "image/png", base64Data: base64String })
+                });
+                const result = await response.json();
+                if (result.status === "success") danhSachUrlDrive.push(result.url);
+                else throw new Error(result.message || "Lỗi tải ảnh lên Drive");
+            }
+        }
+
+        if (btn) {
+            btn.style.background = oldBg;
+            btn.innerHTML = "⏳ ĐANG LƯU VÀO HỆ THỐNG...";
+        }
+
+        // LƯU VÀO SUPABASE (CHỐNG LỖI 409 CONFLICT)
         const payloadKQT = {
             ma_nhiem_vu: TuLuanHS_State.maNhiemVu,
             uid_hoc_sinh: TuLuanHS_State.uidHocSinh,
             thoi_gian_nop: new Date().toISOString(),
-            trang_thai_cham: 0, // Reset lại trạng thái chưa chấm
-            // ĐÃ XÓA DÒNG `diem: null` GÂY LỖI 400 Ở ĐÂY
+            trang_thai_cham: 0,
             chi_tiet_lam_bai: {
                 kieu_bai: "TU_LUAN_ANH",
                 danh_sach_link_anh: danhSachUrlDrive,
                 thoi_gian_bat_dau: TuLuanHS_State.batDauLuc,
-                luot_nop: luotNopHienTai // Ghi chú luôn vào log
+                luot_nop: luotNopHienTai
             }
         };
-        // Bước A: Tìm xem đã có dòng kết quả cũ chưa
-        const { data: kqCu } = await _supabase
-            .from('ket_qua_tu_luan')
-            .select('id')
-            .eq('ma_nhiem_vu', TuLuanHS_State.maNhiemVu)
-            .eq('uid_hoc_sinh', TuLuanHS_State.uidHocSinh)
-            .maybeSingle();
 
-        // Bước B: Có rồi thì Update đè lên, Chưa có thì Insert
+        const { data: kqCu } = await _supabase.from('ket_qua_tu_luan').select('id').eq('ma_nhiem_vu', TuLuanHS_State.maNhiemVu).eq('uid_hoc_sinh', TuLuanHS_State.uidHocSinh).maybeSingle();
+
         if (kqCu && kqCu.id) {
             const { error: errUpdate } = await _supabase.from('ket_qua_tu_luan').update(payloadKQT).eq('id', kqCu.id);
             if (errUpdate) throw errUpdate;
@@ -683,34 +1102,33 @@ window.ham_8b_9_nop_bai_ve_supabase = async function () {
             if (errInsert) throw errInsert;
         }
 
-        // ====================================================================
-        // 5. CẬP NHẬT TIẾN ĐỘ ĐỂ CHUYỂN TAB "ĐÃ LÀM" NHƯ TRẮC NGHIỆM
-        // ====================================================================
-        let tienDo = GocHocSinhState.tien_do_lam_bai || {};
-        tienDo[TuLuanHS_State.maNhiemVu] = luotNopHienTai;
+        const tienDoHienTaiGoc = GocHocSinhState.tien_do_lam_bai || {};
+        tienDoHienTaiGoc[TuLuanHS_State.maNhiemVu] = luotNopHienTai;
+        await _supabase.from('hoc_sinh').update({ tien_do_lam_bai: tienDoHienTaiGoc }).eq('uid', TuLuanHS_State.uidHocSinh);
+        GocHocSinhState.tien_do_lam_bai = tienDoHienTaiGoc;
 
-        await _supabase.from('hoc_sinh')
-            .update({ tien_do_lam_bai: tienDo })
-            .eq('uid', TuLuanHS_State.uidHocSinh);
-
-        GocHocSinhState.tien_do_lam_bai = tienDo;
-
-        // 6. HIỂN THỊ HOÀN THÀNH
         document.getElementById('dashboard-container').innerHTML = `
-            <div style="text-align:center; padding: 50px;">
-                <h2 style="color:#28a745;">🎉 NỘP BÀI THÀNH CÔNG!</h2>
-                <p>Hệ thống đã lưu ảnh bài làm của em.</p>
-                <button onclick="ham_8b_4_quay_lai_danh_sach()" style="padding: 12px 25px; background: #6f42c1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-                    ⬅️ TRỞ VỀ DANH SÁCH BÀI TẬP
+            <div style="text-align:center; padding: 50px; animation: fadeIn 0.5s;">
+                <h2 style="color:#28a745; font-size: 28px;">🎉 NỘP BÀI THÀNH CÔNG!</h2>
+                <p style="color: #666; font-size: 15px; margin-bottom: 25px;">Hệ thống đã nhận đủ ${tongSoAnh} ảnh bài làm của em.</p>
+                <button onclick="ham_8b_4_quay_lai_danh_sach()" style="padding: 12px 30px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(111,66,193,0.3); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
+                    ⬅ TRỞ VỀ DANH SÁCH BÀI TẬP
                 </button>
             </div>`;
 
     } catch (error) {
-        alert("Lỗi ghi nhận: " + error.message);
-        btn.disabled = false;
-        btn.innerText = "🚀 HOÀN THÀNH & GỬI BÀI CHO THẦY";
+        console.error("Lỗi Nộp bài:", error);
+        alert("❌ Lỗi ghi nhận: " + error.message);
+        const btn = document.getElementById('btn_nop_bai_chinh_thuc');
+        if (btn) {
+            btn.style.background = '#dc3545';
+            btn.disabled = false;
+            btn.innerHTML = "🚀 THỬ NỘP LẠI BÀI";
+        }
     }
 };
+
+
 
 // ==============================================================
 // Hàm 16.9: Giao diện học sinh tự xem lại các ảnh bài làm đã nộp

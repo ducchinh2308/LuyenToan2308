@@ -105,6 +105,100 @@ window.ham_6b_2_tai_danh_sach_hoc_lieu_tu_luan = async function () {
 };
 
 
+// // --- [BẢN SẠCH SẼ - HẾT LỒNG KHUNG] Hàm 6b.3: Giao diện Tạo Học Liệu Tự luận ---
+// window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
+//     let htmlOptionsHL = `<option value="KHONG_DUNG">[ --- Chọn Học liệu tự luận (File/Văn bản) --- ]</option>`;
+
+//     try {
+//         const { data: dataHL } = await _supabase
+//             .from('hoc_lieu_tu_luan')
+//             .select('ma_hoc_lieu, ten_hoc_lieu, metadata')
+//             .order('ngay_tao', { ascending: false });
+
+//         if (dataHL) {
+//             window.tempDsHocLieuTuLuan = dataHL;
+//             dataHL.forEach(hl => {
+//                 const meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {});
+//                 const isText = meta.loai_tu_luan === 'text' || meta.kieu_de_tu_luan === 'van_ban';
+//                 htmlOptionsHL += `<option value="${hl.ma_hoc_lieu}">${isText ? '✍️' : '📁'} [${hl.ma_hoc_lieu}] - ${hl.ten_hoc_lieu}</option>`;
+//             });
+//         }
+//     } catch (err) { }
+
+//     const maHL_MacDinh = "HL_TL_" + ham_6b_tao_ma_6_ky_tu();
+
+//     // 🌟 CHỈ TRẢ VỀ CÁC Ô NHẬP LIỆU - KHÔNG CÓ TIÊU ĐỀ NÀO NỮA
+//     return `
+//         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-bottom: 15px;">
+//             <div>
+//                 <label style="font-size: 13px; font-weight:bold; color: #333;">Tên học liệu (*):</label>
+//                 <input type="text" id="tao_hl_ten" placeholder="Ví dụ: Đề thi khảo sát chất lượng..." style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; margin-top: 5px; box-sizing: border-box;">
+//             </div>
+//             <div>
+//                 <label style="font-size: 13px; font-weight:bold; color: #333;">Mã học liệu:</label>
+//                 <input type="text" id="tao_hl_ma" value="${maHL_MacDinh}" disabled style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background: #e9ecef; margin-top: 5px; color: #495057; font-weight:bold; box-sizing: border-box;">
+//             </div>
+//         </div>
+
+//         <div style="background: #f8f9fa; border: 1px solid #ced4da; border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+//             <label style="font-weight: bold; color: #17a2b8; font-size: 14px; margin-bottom: 10px; display: block;">📝 PHẦN 1: ĐỀ BÀI (*)</label>
+//             <div style="margin-bottom: 15px; display: flex; gap: 20px; font-weight: bold; color: #495057;">
+//                 <label style="cursor: pointer;"><input type="radio" name="loai_de_tu_luan" value="file" checked onchange="ham_6b_5_doi_nguon_tu_luan()"> 📂 Tải File lên</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="loai_de_tu_luan" value="text" onchange="ham_6b_5_doi_nguon_tu_luan()"> ✍️ Soạn nội dung mới</label>
+//             </div>
+            
+//             <div id="khung_de_file" style="display: block; margin-top: 5px;">
+//                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #17a2b8; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                    
+//                     <span style="background: #17a2b8; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         📁 Chọn tệp Đề bài
+//                     </span>
+                    
+//                     <span id="text_hien_thi_de" style="color: #6c757d; font-size: 13px; font-style: italic;">
+//                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
+//                     </span>
+                    
+//                     <input type="file" id="tao_hl_file_de" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'text_hien_thi_de')">
+//                 </label>
+//             </div>
+//             <div id="khung_de_text" style="display: none;">
+//                 <textarea id="tao_hl_text_de" placeholder="Gõ nội dung đề bài tại đây..." style="width: 100%; height: 120px; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; resize: vertical; box-sizing: border-box;"></textarea>
+//             </div>
+//         </div>
+
+//         <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+//             <label style="font-weight: bold; color: #d35400; font-size: 14px; margin-bottom: 10px; display: block;">💡 PHẦN 2: BÀI GIẢI (Tùy chọn)</label>
+//             <div style="margin-bottom: 15px; display: flex; gap: 20px; font-weight: bold; color: #495057;">
+//                 <label style="cursor: pointer;"><input type="radio" name="loai_giai_tu_luan" value="none" checked onchange="ham_6b_5_doi_nguon_tu_luan()"> ❌ Không kèm giải</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="loai_giai_tu_luan" value="file" onchange="ham_6b_5_doi_nguon_tu_luan()"> 📎 Tải File Giải</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="loai_giai_tu_luan" value="text" onchange="ham_6b_5_doi_nguon_tu_luan()"> 📝 Soạn lời giải</label>
+//             </div>
+            
+//             <div id="khung_giai_file" style="display: none; margin-top: 5px;">
+//                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #28a745; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                    
+//                     <span style="background: #28a745; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+//                         📎 Chọn tệp Bài giải
+//                     </span>
+                    
+//                     <span id="text_hien_thi_giai" style="color: #6c757d; font-size: 13px; font-style: italic;">
+//                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
+//                     </span>
+                    
+//                     <input type="file" id="tao_hl_file_giai" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'text_hien_thi_giai')">
+//                 </label>
+//             </div>
+//             <div id="khung_giai_text" style="display: none;">
+//                 <textarea id="tao_hl_text_giai" placeholder="Gõ nội dung bài giải tại đây..." style="width: 100%; height: 120px; padding: 10px; border: 1px solid #ffe8a1; border-radius: 4px; resize: vertical; box-sizing: border-box;"></textarea>
+//             </div>
+//         </div>
+
+//         <button type="button" onclick="ham_6b_9_thuc_thi_upload_drive(this)" style="width: 100%; padding: 14px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(253,126,20,0.3); transition: 0.2s;">🚀 TẢI LÊN HỆ THỐNG</button>
+//     `;
+// };
+
+
+
 // --- [BẢN SẠCH SẼ - HẾT LỒNG KHUNG] Hàm 6b.3: Giao diện Tạo Học Liệu Tự luận ---
 window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
     let htmlOptionsHL = `<option value="KHONG_DUNG">[ --- Chọn Học liệu tự luận (File/Văn bản) --- ]</option>`;
@@ -127,7 +221,6 @@ window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
 
     const maHL_MacDinh = "HL_TL_" + ham_6b_tao_ma_6_ky_tu();
 
-    // 🌟 CHỈ TRẢ VỀ CÁC Ô NHẬP LIỆU - KHÔNG CÓ TIÊU ĐỀ NÀO NỮA
     return `
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-bottom: 15px;">
             <div>
@@ -149,16 +242,14 @@ window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
             
             <div id="khung_de_file" style="display: block; margin-top: 5px;">
                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #17a2b8; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
-                    
                     <span style="background: #17a2b8; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         📁 Chọn tệp Đề bài
                     </span>
-                    
                     <span id="text_hien_thi_de" style="color: #6c757d; font-size: 13px; font-style: italic;">
                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
                     </span>
-                    
-                    <input type="file" id="tao_hl_file_de" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'text_hien_thi_de')">
+                    <!-- 🌟 GỌI HÀM CẮT ẢNH Ở ĐÂY -->
+                    <input type="file" id="tao_hl_file_de" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_xu_ly_file_khi_chon(this, 'text_hien_thi_de')">
                 </label>
             </div>
             <div id="khung_de_text" style="display: none;">
@@ -176,16 +267,14 @@ window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
             
             <div id="khung_giai_file" style="display: none; margin-top: 5px;">
                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #28a745; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
-                    
                     <span style="background: #28a745; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         📎 Chọn tệp Bài giải
                     </span>
-                    
                     <span id="text_hien_thi_giai" style="color: #6c757d; font-size: 13px; font-style: italic;">
                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
                     </span>
-                    
-                    <input type="file" id="tao_hl_file_giai" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'text_hien_thi_giai')">
+                    <!-- 🌟 GỌI HÀM CẮT ẢNH Ở ĐÂY -->
+                    <input type="file" id="tao_hl_file_giai" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_xu_ly_file_khi_chon(this, 'text_hien_thi_giai')">
                 </label>
             </div>
             <div id="khung_giai_text" style="display: none;">
@@ -196,6 +285,9 @@ window.ham_6b_3_html_khu_vuc_tao_hoc_lieu_tu_luan = async function () {
         <button type="button" onclick="ham_6b_9_thuc_thi_upload_drive(this)" style="width: 100%; padding: 14px; background: #fd7e14; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 6px rgba(253,126,20,0.3); transition: 0.2s;">🚀 TẢI LÊN HỆ THỐNG</button>
     `;
 };
+
+
+
 
 
 // --- [ĐÃ NÂNG CẤP] Hàm 6b.5: Điều khiển ẩn/hiện 2 khối Đề và Giải ---
@@ -211,7 +303,47 @@ window.ham_6b_5_doi_nguon_tu_luan = function () {
     document.getElementById('khung_giai_text').style.display = (kieuGiai === 'text') ? 'block' : 'none';
 };
 
+// =====================================================================
+// HÀM XỬ LÝ CHỌN ẢNH ĐỀ BÀI TỰ LUẬN (CÓ GỌI CẮT NÉN ẢNH)
+// =====================================================================
+window.ham_chon_anh_de_bai_tu_luan = async function (inputElem) {
+    const files = Array.from(inputElem.files);
+    if (files.length === 0) return;
 
+    try {
+        let processedFiles = files;
+
+        // Dò tìm hàm cắt/nén ảnh đang có trong hệ thống để tự động áp dụng
+        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        }
+
+        // Nếu người dùng bấm [Hủy] ở cửa sổ cắt ảnh thì thoát ra
+        if (!processedFiles || processedFiles.length === 0) return;
+
+        // 🌟 NẠP VÀO MẢNG LƯU TRỮ CỦA PHẦN TỰ LUẬN
+        // (Thầy nhớ đổi tên mảng này cho đúng với biến thầy đang dùng nhé)
+        if (!window.danhSachAnhDeBaiTam) window.danhSachAnhDeBaiTam = [];
+        window.danhSachAnhDeBaiTam.push(...processedFiles);
+
+        // 🌟 GỌI HÀM VẼ ẢNH (RENDER) LÊN GIAO DIỆN
+        // (Thầy thay bằng hàm render tương ứng của phần tự luận)
+        if (typeof window.ham_render_anh_de_bai_tu_luan === 'function') {
+            window.ham_render_anh_de_bai_tu_luan();
+        }
+
+    } catch (error) {
+        console.error("Lỗi xử lý ảnh đề bài:", error);
+        alert("❌ Lỗi khi chọn ảnh: " + error.message);
+    } finally {
+        // Reset thẻ input để không bị kẹt nếu chọn lại chính file vừa xóa
+        inputElem.value = '';
+    }
+};
 
 // // --- [ĐÃ BỔ SUNG THÔNG TIN READONLY] Hàm 6b.6: Mở Form Sửa Học Liệu Tự Luận ---
 // window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
@@ -341,6 +473,161 @@ window.ham_6b_5_doi_nguon_tu_luan = function () {
 //     `;
 // };
 
+// // --- [ĐÃ BỔ SUNG THÔNG TIN READONLY + NÚT XEM FILE] Hàm 6b.6: Mở Form Sửa Học Liệu Tự Luận ---
+// window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
+//     if (!maHL) return alert("❌ Lỗi: Không nhận được mã học liệu!");
+
+//     if (!window.BangHocLieuTuLuanState.duLieu || window.BangHocLieuTuLuanState.duLieu.length === 0) {
+//         await window.ham_6b_2_tai_danh_sach_hoc_lieu_tu_luan();
+//     }
+
+//     const hl = window.BangHocLieuTuLuanState.duLieu.find(item => String(item.ma_hoc_lieu || '').trim() === String(maHL).trim());
+//     if (!hl) return alert("❌ Không tìm thấy thông tin học liệu này!");
+
+//     let meta = {};
+//     try { meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {}); } catch (e) { }
+
+//     // Đọc trạng thái hiện tại
+//     const kieuDe = (meta.loai_tu_luan === 'text' || meta.kieu_de_tu_luan === 'van_ban') ? 'text' : 'file';
+//     const kieuGiai = meta.kieu_giai || 'none';
+
+//     // Xử lý các thông tin Readonly (Chỉ đọc)
+//     const dangDeText = kieuDe === 'text' ? '✍️ Văn bản' : '📁 File đính kèm';
+//     const ngayTao = hl.ngay_tao ? new Date(hl.ngay_tao).toLocaleString('vi-VN') : 'Không rõ';
+//     const styleReadOnly = "width:100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #e9ecef; color: #6c757d; cursor: not-allowed; font-weight: bold; margin-top: 5px; box-sizing: border-box;";
+
+//     // ==========================================
+//     // UI Phần 1: ĐỀ BÀI
+//     // ==========================================
+//     let htmlFileDeHienTai = '';
+//     if (kieuDe === 'file' && meta.ten_file_goc) {
+//         // TẠO NÚT XEM FILE ĐỀ NẾU CÓ URL
+//         const nutXemDe = hl.url_github
+//             ? `<button type="button" onclick="window.open('${hl.url_github}', '_blank')" style="margin-left: 10px; padding: 4px 10px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; float: right;">👁️ Xem File</button>`
+//             : `<span style="float: right; color: red; font-size: 11px;">⚠️ Mất link file</span>`;
+
+//         htmlFileDeHienTai = `
+//             <div style="font-size: 13px; color: #0056b3; margin-bottom: 8px; padding: 8px 12px; background: #e8f4fd; border-radius: 4px; border-left: 3px solid #17a2b8; overflow: hidden; display: flex; justify-content: space-between; align-items: center;">
+//                 <span>🔄 File Đề hiện tại: <b>${meta.ten_file_goc}</b></span>
+//                 ${nutXemDe}
+//             </div>
+//         `;
+//     }
+
+//     const uiPhanDe = `
+//         <div style="background: #f8f9fa; border: 1px solid #ced4da; border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+//             <label style="font-weight: bold; color: #17a2b8; font-size: 14px; margin-bottom: 10px; display: block;">📝 PHẦN 1: CẬP NHẬT ĐỀ BÀI</label>
+            
+//             <div style="margin-bottom: 15px; display: flex; gap: 20px; font-weight: bold; color: #495057;">
+//                 <label style="cursor: pointer;"><input type="radio" name="sua_kieu_de_tl" value="file" ${kieuDe === 'file' ? 'checked' : ''} onchange="ham_6b_6_doi_nguon_de()"> 📂 Đính kèm File Đề</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="sua_kieu_de_tl" value="text" ${kieuDe === 'text' ? 'checked' : ''} onchange="ham_6b_6_doi_nguon_de()"> ✍️ Soạn nội dung Văn bản</label>
+//             </div>
+            
+//             <div id="sua_khung_de_file" style="display: ${kieuDe === 'file' ? 'block' : 'none'}; margin-top: 10px;">
+//                 ${htmlFileDeHienTai}
+                
+//                 <label style="font-size: 13px; font-weight:bold; color: #495057; display: block; margin-bottom: 6px;">Chọn file ĐỀ mới (Bỏ trống nếu giữ nguyên file cũ):</label>
+                
+//                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #17a2b8; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s; box-sizing: border-box;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                     <span style="background: #17a2b8; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+//                         📁 Chọn tệp Đề mới
+//                     </span>
+//                     <span id="sua_text_hien_thi_de" style="color: #6c757d; font-size: 13px; font-style: italic;">
+//                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
+//                     </span>
+//                     <input type="file" id="sua_file_de_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'sua_text_hien_thi_de')">
+//                 </label>
+//             </div>
+            
+//             <div id="sua_khung_de_text" style="display: ${kieuDe === 'text' ? 'block' : 'none'};">
+//                 <label style="font-size: 12px; font-weight:bold;">Nội dung đề bài:</label>
+//                 <textarea id="sua_text_de_tl" style="width: 100%; height: 150px; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; resize: vertical; margin-top:3px;">${meta.noi_dung_chinh || ''}</textarea>
+//             </div>
+//         </div>
+//     `;
+
+//     // ==========================================
+//     // UI Phần 2: BÀI GIẢI
+//     // ==========================================
+//     let htmlFileGiaiHienTai = '';
+//     if (kieuGiai === 'file' && meta.ten_file_giai) {
+//         // TẠO NÚT XEM FILE GIẢI NẾU CÓ URL
+//         const nutXemGiai = hl.url_file_giai
+//             ? `<button type="button" onclick="window.open('${hl.url_file_giai}', '_blank')" style="margin-left: 10px; padding: 4px 10px; background: #28a745; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; float: right;">👁️ Xem File</button>`
+//             : `<span style="float: right; color: red; font-size: 11px;">⚠️ Mất link file</span>`;
+
+//         htmlFileGiaiHienTai = `
+//             <div style="font-size: 13px; color: #155724; margin-bottom: 8px; padding: 8px 12px; background: #d4edda; border-radius: 4px; border-left: 3px solid #28a745; overflow: hidden; display: flex; justify-content: space-between; align-items: center;">
+//                 <span>🔄 File Giải hiện tại: <b>${meta.ten_file_giai}</b></span>
+//                 ${nutXemGiai}
+//             </div>
+//         `;
+//     }
+
+//     const uiPhanGiai = `
+//         <div style="background: #fff8e6; border: 1px solid #ffe8a1; border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+//             <label style="font-weight: bold; color: #d35400; font-size: 14px; margin-bottom: 10px; display: block;">💡 PHẦN 2: CẬP NHẬT BÀI GIẢI</label>
+            
+//             <div style="margin-bottom: 15px; display: flex; gap: 20px; font-weight: bold; color: #495057;">
+//                 <label style="cursor: pointer;"><input type="radio" name="sua_kieu_giai_tl" value="none" ${kieuGiai === 'none' ? 'checked' : ''} onchange="ham_6b_6_doi_nguon_giai()"> ❌ Không kèm giải</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="sua_kieu_giai_tl" value="file" ${kieuGiai === 'file' ? 'checked' : ''} onchange="ham_6b_6_doi_nguon_giai()"> 📎 Kèm File Giải</label>
+//                 <label style="cursor: pointer;"><input type="radio" name="sua_kieu_giai_tl" value="text" ${kieuGiai === 'text' ? 'checked' : ''} onchange="ham_6b_6_doi_nguon_giai()"> 📝 Soạn lời giải</label>
+//             </div>
+            
+//             <div id="sua_khung_giai_file" style="display: ${kieuGiai === 'file' ? 'block' : 'none'}; margin-top: 10px;">
+//                 ${htmlFileGiaiHienTai}
+                
+//                 <label style="font-size: 13px; font-weight:bold; color: #495057; display: block; margin-bottom: 6px;">Chọn file GIẢI mới (Bỏ trống nếu giữ nguyên file cũ):</label>
+                
+//                 <label style="display: flex; align-items: center; width: 100%; border: 1px dashed #28a745; border-radius: 6px; background: #f8f9fa; padding: 10px; cursor: pointer; transition: 0.2s; box-sizing: border-box;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+//                     <span style="background: #28a745; color: white; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+//                         📎 Chọn tệp Giải mới
+//                     </span>
+//                     <span id="sua_text_hien_thi_giai" style="color: #6c757d; font-size: 13px; font-style: italic;">
+//                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
+//                     </span>
+//                     <input type="file" id="sua_file_giai_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'sua_text_hien_thi_giai')">
+//                 </label>
+//             </div>
+            
+//             <div id="sua_khung_giai_text" style="display: ${kieuGiai === 'text' ? 'block' : 'none'};">
+//                 <label style="font-size: 12px; font-weight:bold;">Nội dung bài giải:</label>
+//                 <textarea id="sua_text_giai_tl" style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ffe8a1; border-radius: 4px; resize: vertical; margin-top:3px;">${meta.noi_dung_giai || ''}</textarea>
+//             </div>
+//         </div>
+//     `;
+
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `
+//         <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto; position: relative;">
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+//                 <h3 style="color: #007bff; margin:0;">✏️ Sửa Học Liệu: [${hl.ma_hoc_lieu}]</h3>
+//             </div>
+            
+//             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #e9ecef;">
+//                 <div><label style="font-weight:bold; font-size: 12px; color: #495057;">Mã học liệu:</label><input type="text" value="${hl.ma_hoc_lieu}" readonly style="${styleReadOnly}"></div>
+//                 <div><label style="font-weight:bold; font-size: 12px; color: #495057;">Dạng đề hiện tại:</label><input type="text" value="${dangDeText}" readonly style="${styleReadOnly}"></div>
+//                 <div><label style="font-weight:bold; font-size: 12px; color: #495057;">Giáo viên tạo:</label><input type="text" value="${hl.ten_gv_tao || 'Không xác định'}" readonly style="${styleReadOnly}"></div>
+//                 <div><label style="font-weight:bold; font-size: 12px; color: #495057;">Ngày tạo:</label><input type="text" value="${ngayTao}" readonly style="${styleReadOnly}"></div>
+//             </div>
+
+//             <div style="margin-bottom: 20px;">
+//                 <label style="font-weight:bold; color: #333;">Tên học liệu (*):</label>
+//                 <input type="text" id="sua_ten_hl_tl" value="${hl.ten_hoc_lieu || ''}" style="width:100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; font-weight:bold; margin-top: 5px; box-sizing: border-box;">
+//             </div>
+            
+//             ${uiPhanDe}
+//             ${uiPhanGiai}
+
+//             <div style="text-align: right; border-top: 1px solid #eee; padding-top: 15px; display: flex; justify-content: flex-end; gap: 10px;">
+//                 <button onclick="ham_6b_1_ve_quan_ly_hoc_lieu_tu_luan()" style="background:#6c757d; color:white; padding:12px 20px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Quay lại</button>
+//                 <button onclick="ham_6b_7_luu_sua_hoc_lieu_tu_luan('${maHL}', this)" style="background:#ffc107; color:#333; padding:12px 25px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">💾 LƯU CẬP NHẬT</button>
+//             </div>
+//         </div>
+//     `;
+// };
+
+
 // --- [ĐÃ BỔ SUNG THÔNG TIN READONLY + NÚT XEM FILE] Hàm 6b.6: Mở Form Sửa Học Liệu Tự Luận ---
 window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
     if (!maHL) return alert("❌ Lỗi: Không nhận được mã học liệu!");
@@ -355,21 +642,15 @@ window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
     let meta = {};
     try { meta = typeof hl.metadata === 'string' ? JSON.parse(hl.metadata || '{}') : (hl.metadata || {}); } catch (e) { }
 
-    // Đọc trạng thái hiện tại
     const kieuDe = (meta.loai_tu_luan === 'text' || meta.kieu_de_tu_luan === 'van_ban') ? 'text' : 'file';
     const kieuGiai = meta.kieu_giai || 'none';
 
-    // Xử lý các thông tin Readonly (Chỉ đọc)
     const dangDeText = kieuDe === 'text' ? '✍️ Văn bản' : '📁 File đính kèm';
     const ngayTao = hl.ngay_tao ? new Date(hl.ngay_tao).toLocaleString('vi-VN') : 'Không rõ';
     const styleReadOnly = "width:100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #e9ecef; color: #6c757d; cursor: not-allowed; font-weight: bold; margin-top: 5px; box-sizing: border-box;";
 
-    // ==========================================
-    // UI Phần 1: ĐỀ BÀI
-    // ==========================================
     let htmlFileDeHienTai = '';
     if (kieuDe === 'file' && meta.ten_file_goc) {
-        // TẠO NÚT XEM FILE ĐỀ NẾU CÓ URL
         const nutXemDe = hl.url_github
             ? `<button type="button" onclick="window.open('${hl.url_github}', '_blank')" style="margin-left: 10px; padding: 4px 10px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; float: right;">👁️ Xem File</button>`
             : `<span style="float: right; color: red; font-size: 11px;">⚠️ Mất link file</span>`;
@@ -403,7 +684,8 @@ window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
                     <span id="sua_text_hien_thi_de" style="color: #6c757d; font-size: 13px; font-style: italic;">
                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
                     </span>
-                    <input type="file" id="sua_file_de_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'sua_text_hien_thi_de')">
+                    <!-- 🌟 GỌI HÀM CẮT ẢNH Ở ĐÂY -->
+                    <input type="file" id="sua_file_de_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_xu_ly_file_khi_chon(this, 'sua_text_hien_thi_de')">
                 </label>
             </div>
             
@@ -414,12 +696,8 @@ window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
         </div>
     `;
 
-    // ==========================================
-    // UI Phần 2: BÀI GIẢI
-    // ==========================================
     let htmlFileGiaiHienTai = '';
     if (kieuGiai === 'file' && meta.ten_file_giai) {
-        // TẠO NÚT XEM FILE GIẢI NẾU CÓ URL
         const nutXemGiai = hl.url_file_giai
             ? `<button type="button" onclick="window.open('${hl.url_file_giai}', '_blank')" style="margin-left: 10px; padding: 4px 10px; background: #28a745; color: white; border: none; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; float: right;">👁️ Xem File</button>`
             : `<span style="float: right; color: red; font-size: 11px;">⚠️ Mất link file</span>`;
@@ -454,7 +732,8 @@ window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
                     <span id="sua_text_hien_thi_giai" style="color: #6c757d; font-size: 13px; font-style: italic;">
                         Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để gộp PDF)
                     </span>
-                    <input type="file" id="sua_file_giai_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_cap_nhat_text_file(this, 'sua_text_hien_thi_giai')">
+                    <!-- 🌟 GỌI HÀM CẮT ẢNH Ở ĐÂY -->
+                    <input type="file" id="sua_file_giai_input_tl" accept=".pdf, .doc, .docx, image/*" multiple style="display: none;" onchange="ham_6b_xu_ly_file_khi_chon(this, 'sua_text_hien_thi_giai')">
                 </label>
             </div>
             
@@ -494,6 +773,9 @@ window.ham_6b_6_mo_form_sua_hoc_lieu_tu_luan = async function (maHL) {
         </div>
     `;
 };
+
+
+
 
 // --- Các hàm Bổ trợ Form Sửa: Đổi nguồn hiển thị ---
 window.ham_6b_6_doi_nguon_de = function () {
@@ -1340,3 +1622,53 @@ window.ham_6b_cap_nhat_text_file = function (inputNode, labelId) {
         labelNode.innerHTML = `<span style="color: #6c757d; font-style: italic;">Chưa chọn tệp (Loại file: pdf/word/ảnh. Có thể chọn nhiều ảnh để ghép PDF)</span>`;
     }
 };
+
+
+// =====================================================================
+// HÀM MỚI: XỬ LÝ FILE ĐẦU VÀO TỰ LUẬN (CHỈ CẮT NÉN NẾU LÀ ẢNH)
+// =====================================================================
+window.ham_6b_xu_ly_file_khi_chon = async function (inputElem, labelId) {
+    const files = Array.from(inputElem.files);
+
+    // Nếu người dùng hủy chọn
+    if (files.length === 0) {
+        window.ham_6b_cap_nhat_text_file(inputElem, labelId);
+        return;
+    }
+
+    // Kiểm tra xem tất cả các file được chọn có phải là ẢNH không
+    const laToanAnh = files.every(f => f.type.startsWith('image/'));
+
+    // NẾU LÀ ẢNH -> KÍCH HOẠT BỘ CẮT NÉN
+    if (laToanAnh) {
+        try {
+            let processedFiles = files;
+            // Dò tìm bộ cắt nén từ các khối khác
+            if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+                processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+            } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+                processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+            }
+
+            // Nếu người dùng bấm [Hủy] ở cửa sổ cắt ảnh thì xóa rỗng input
+            if (!processedFiles || processedFiles.length === 0) {
+                inputElem.value = '';
+                window.ham_6b_cap_nhat_text_file(inputElem, labelId);
+                return;
+            }
+
+            // NẠP NGƯỢC ẢNH ĐÃ CẮT VÀO LẠI INPUT BẰNG DATATRANSFER
+            let dt = new DataTransfer();
+            processedFiles.forEach(f => dt.items.add(f));
+            inputElem.files = dt.files;
+
+        } catch (e) {
+            console.error("Lỗi xử lý cắt nén ảnh:", e);
+        }
+    }
+
+    // Cuối cùng: Cập nhật lại Text hiển thị (Dù là PDF hay Ảnh)
+    window.ham_6b_cap_nhat_text_file(inputElem, labelId);
+};
+
+
