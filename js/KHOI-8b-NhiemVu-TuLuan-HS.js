@@ -583,14 +583,19 @@ window.ham_8b_6_xu_ly_chon_anh = async function (inputElem) {
     try {
         let processedFiles = files;
 
-        // 🌟 GỌI BỘ CÔNG CỤ CẮT/NÉN ẢNH ĐẦY ĐỦ CHO HỌC SINH TỰ CHỌN
-        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
-            processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
-        } else if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
-            processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
-        } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
-            processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        // // 🌟 GỌI BỘ CÔNG CỤ CẮT/NÉN ẢNH ĐẦY ĐỦ CHO HỌC SINH TỰ CHỌN
+        // if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+        //     processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+        // } else if (typeof window.ham_21_25_xu_ly_mang_anh_dau_vao === 'function') {
+        //     processedFiles = await window.ham_21_25_xu_ly_mang_anh_dau_vao(files);
+        // } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+        //     processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        // }
+        // 🌟 GỌI HÀM TỰ ĐỘNG NÉN VỀ FULL HD
+        if (typeof window.ham_8b_11_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_8b_11_xu_ly_mang_anh_dau_vao(files);
         }
+        
 
         // Nếu học sinh bấm [Hủy] ở giao diện cắt ảnh thì thoát ra
         if (!processedFiles || processedFiles.length === 0) {
@@ -1030,14 +1035,14 @@ window.ham_8b_9_nop_bai_ve_supabase = async function () {
             const img = TuLuanHS_State.linkAnhDaUpload[i];
             let base64Split = img.data.split(',');
             let base64String = base64Split.length > 1 ? base64Split[1] : base64Split[0];
-            const tenFile = `${TuLuanHS_State.maNhiemVu}_${tenHS}_Lan_${luotNopHienTai}_anh_${i + 1}.png`;
-
+            // const tenFile = `${TuLuanHS_State.maNhiemVu}_${tenHS}_Lan_${luotNopHienTai}_anh_${i + 1}.png`;
+            const tenFile = `${TuLuanHS_State.maNhiemVu}_${tenHS}_Lan_${luotNopHienTai}_anh_${i + 1}.jpg`;
             if (typeof window.ham_ho_tro_upload_anh_co_tien_trinh === 'function') {
                 let payload = {
                     action: "upload_bai_nop",
                     folderId: folderId,
                     fileName: tenFile,
-                    mimeType: "image/png",
+                    mimeType: "image/jpeg",
                     // 🌟 MẤU CHỐT FIX LỖI Ở ĐÂY: Truyền cả 2 biến
                     base64: base64String,      // Để hàm tính % tiến trình đọc được độ dài (.length)
                     base64Data: base64String   // Để Google Apps Script cũ nhận diện được file
@@ -1193,6 +1198,101 @@ window.ham_8b_10_hs_xem_lai_bai_nop = async function (maNhiemVu, idKetQua) {
         Swal.fire("❌ Lỗi tải bài", err.message, "error");
     }
 };
+
+// =====================================================================
+// HÀM 8b.11: TỰ ĐỘNG NÉN & GIỚI HẠN MẢNG ẢNH ĐẦU VÀO VỀ CHUẨN FULL HD (1920px)
+// =====================================================================
+window.ham_8b_11_xu_ly_mang_anh_dau_vao = async function (files) {
+    if (!files || files.length === 0) return [];
+
+    // Hiển thị thông báo nhỏ gọn bằng SweetAlert2 khi đang nén ảnh
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: '⏳ Đang tối ưu hóa ảnh...',
+            html: 'Đang nén ảnh về chuẩn Full HD để tải lên nhanh hơn.',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading(); }
+        });
+    }
+
+    let processedFiles = [];
+
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+
+        // Nếu không phải là file ảnh thì giữ nguyên không xử lý
+        if (!file.type.startsWith('image/')) {
+            processedFiles.push(file);
+            continue;
+        }
+
+        try {
+            let compressedFile = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        let width = img.width;
+                        let height = img.height;
+
+                        // 🌟 GIỚI HẠN TỐI ĐA CHUẨN FULL HD (1920 x 1920 px)
+                        const MAX_WIDTH = 1920;
+                        const MAX_HEIGHT = 1920;
+
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height = Math.round((height * MAX_WIDTH) / width);
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width = Math.round((width * MAX_HEIGHT) / height);
+                                height = MAX_HEIGHT;
+                            }
+                        }
+
+                        // Vẽ lại ảnh lên Canvas với kích thước tối ưu
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Xuất ảnh ra định dạng JPEG với chất lượng 0.8 (Đủ nét để chấm bài, dung lượng siêu nhẹ)
+                        canvas.toBlob((blob) => {
+                            if (!blob) return reject(new Error("Lỗi nén ảnh canvas"));
+
+                            const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+                                type: 'image/jpeg',
+                                lastModified: Date.now()
+                            });
+                            resolve(newFile);
+                        }, 'image/jpeg', 0.8);
+                    };
+                    img.onerror = () => reject(new Error("Không thể đọc dữ liệu ảnh"));
+                    img.src = e.target.result;
+                };
+                reader.onerror = () => reject(new Error("Lỗi đọc file"));
+                reader.readAsDataURL(file);
+            });
+
+            processedFiles.push(compressedFile);
+        } catch (err) {
+            console.error("Lỗi nén file số " + i, err);
+            // Nếu lỗi nén, giữ nguyên file gốc để học sinh không bị mất bài
+            processedFiles.push(file);
+        }
+    }
+
+    if (typeof Swal !== 'undefined') {
+        Swal.close();
+    }
+
+    return processedFiles;
+};
+
+
+
 // =====================================================================
 // Hàm 8b.17: Điều khiển Tabs trạng thái (Tự luận)
 // =====================================================================

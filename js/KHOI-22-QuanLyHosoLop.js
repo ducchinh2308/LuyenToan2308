@@ -170,6 +170,10 @@ window.ham_22_2_tai_du_lieu_lop = async function () {
     vungTabs.innerHTML = `<span style="color:#007bff; font-weight:bold; padding:10px;">⏳ Đang tải hồ sơ...</span>`;
     document.getElementById('qlhs-vung-noi-dung-tab').innerHTML = '';
 
+
+
+
+
     try {
         const { data, error } = await _supabase.from('ho_so_danh_muc_lop').select('*').eq('ma_lop', window.qlhs_MaLopHienTai).order('thu_tu', { ascending: true });
         if (error) throw error;
@@ -225,19 +229,88 @@ window.ham_22_4_mo_modal_them_danh_muc = function () {
 // =====================================================================
 // HÀM 22.5: THỰC THI LƯU DANH MỤC LỚN VÀO CSDL VÀ TẠO FOLDER DRIVE
 // =====================================================================
+// window.ham_22_5_luu_danh_muc_moi = async function () {
+//     const tenDM = document.getElementById('qlhs-dm-ten').value.trim();
+//     if (!tenDM) return alert("⚠️️ Vui lòng nhập Tên hồ sơ!");
+
+//     try {
+//         let thuTuMoi = window.qlhs_DanhSachDanhMuc.length + 1;
+//         const { data, error } = await _supabase.from('ho_so_danh_muc_lop').insert([{
+//             ma_lop: window.qlhs_MaLopHienTai,
+//             ten_danh_muc: tenDM,
+//             kieu_giao_dien: 'SUPER_TAB',
+//             thu_tu: thuTuMoi,
+//             du_lieu_json: []
+//         }]).select();
+
+//         if (error) throw error;
+//         document.getElementById('qlhs-modal-them-dm').remove();
+//         if (data && data.length > 0) window.qlhs_TabDangChon = data[0].id;
+//         window.ham_22_2_tai_du_lieu_lop();
+
+//         // 🌟 GỬI TÍN HIỆU TẠO THƯ MỤC RỖNG TRÊN GOOGLE DRIVE
+//         let tenDanhMucChuan = window.taoTenAnToan ? window.taoTenAnToan(tenDM, 40) : tenDM.replace(/[\\/:*?"<>| ]/g, "_");
+//         fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//             method: "POST",
+//             body: JSON.stringify({ action: "create_folder_ho_so_lop", maLop: window.qlhs_MaLopHienTai, tenDanhMuc: tenDanhMucChuan })
+//         }).catch(e => console.log("Lỗi tạo thư mục Drive."));
+
+//     } catch (e) { alert("❌ Lỗi tạo danh mục: " + e.message); }
+// };
+
+
+// window.ham_22_5_luu_danh_muc_moi = async function () {
+//     const tenDM = document.getElementById('qlhs-dm-ten').value.trim();
+//     if (!tenDM) return alert("⚠ Vui lòng nhập Tên hồ sơ!");
+
+//     try {
+//         let thuTuMoi = window.qlhs_DanhSachDanhMuc.length + 1;
+
+//         // 🌟 SỬA TỪ .insert() THÀNH .upsert() VÀ THÊM onConflict ĐỂ CHỐNG LỖI 409 CONFLICT
+//         const { data, error } = await _supabase.from('ho_so_danh_muc_lop').upsert([{
+//             ma_lop: window.qlhs_MaLopHienTai,
+//             ten_danh_muc: tenDM,
+//             kieu_giao_dien: 'SUPER_TAB',
+//             thu_tu: thuTuMoi,
+//             du_lieu_json: []
+//         }], {
+//             onConflict: 'ma_lop' // Tên cột bị trùng khóa duy nhất trong bảng của thầy
+//         }).select();
+
+//         if (error) throw error;
+//         document.getElementById('qlhs-modal-them-dm').remove();
+//         if (data && data.length > 0) window.qlhs_TabDangChon = data[0].id;
+//         window.ham_22_2_tai_du_lieu_lop();
+
+//         // 🌟 GỬI TÍN HIỆU TẠO THƯ MỤC RỖNG TRÊN GOOGLE DRIVE
+//         let tenDanhMucChuan = window.taoTenAnToan ? window.taoTenAnToan(tenDM, 40) : tenDM.replace(/[\\/:*?"<>| ]/g, "_");
+//         fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, {
+//             method: "POST",
+//             body: JSON.stringify({ action: "create_folder_ho_so_lop", maLop: window.qlhs_MaLopHienTai, tenDanhMuc: tenDanhMucChuan })
+//         }).catch(e => console.log("Lỗi tạo thư mục Drive."));
+
+//     } catch (e) { alert("❌ Lỗi tạo danh mục: " + e.message); }
+// };
+
 window.ham_22_5_luu_danh_muc_moi = async function () {
     const tenDM = document.getElementById('qlhs-dm-ten').value.trim();
-    if (!tenDM) return alert("⚠️️ Vui lòng nhập Tên hồ sơ!");
+    if (!tenDM) return alert("⚠ Vui lòng nhập Tên hồ sơ!");
 
     try {
         let thuTuMoi = window.qlhs_DanhSachDanhMuc.length + 1;
-        const { data, error } = await _supabase.from('ho_so_danh_muc_lop').insert([{
-            ma_lop: window.qlhs_MaLopHienTai,
-            ten_danh_muc: tenDM,
-            kieu_giao_dien: 'SUPER_TAB',
-            thu_tu: thuTuMoi,
-            du_lieu_json: []
-        }]).select();
+
+        // 🌟 SỬ DỤNG .upsert() VÀ KHÔNG GÂY XUNG ĐỘT BẰNG CÁCH ĐỂ SUPABASE TỰ SINH UUID CHO ID NẾU LÀ TẠO MỚI
+        const { data, error } = await _supabase.from('ho_so_danh_muc_lop').upsert([
+            {
+                ma_lop: window.qlhs_MaLopHienTai,
+                ten_danh_muc: tenDM,
+                kieu_giao_dien: 'SUPER_TAB',
+                thu_tu: thuTuMoi,
+                du_lieu_json: []
+            }
+        ], {
+            onConflict: 'id' // Chỉ xung đột khi trùng id (tạo mới thì id trống nên sẽ luôn insert thành công)
+        }).select();
 
         if (error) throw error;
         document.getElementById('qlhs-modal-them-dm').remove();
@@ -253,6 +326,7 @@ window.ham_22_5_luu_danh_muc_moi = async function () {
 
     } catch (e) { alert("❌ Lỗi tạo danh mục: " + e.message); }
 };
+
 
 // =====================================================================
 // HÀM 22.6: CHỌN TAB LỚN -> HIỂN THỊ DANH SÁCH MỤC CON (CÓ ĐÁNH SỐ THỨ TỰ)
