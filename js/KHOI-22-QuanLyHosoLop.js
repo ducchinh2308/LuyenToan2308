@@ -73,6 +73,71 @@ window.qlhs_TabDangChon = null;
 // =====================================================================
 // HÀM 22.1: MỞ GIAO DIỆN CHÍNH (XỬ LÝ NÚT LỚP GẦN NHẤT ĐỘNG)
 // =====================================================================
+// window.ham_22_1_mo_giao_dien_quan_ly_lop = function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     if (!vungLamViec) return;
+
+//     vungLamViec.innerHTML = `
+//         <div style="padding: 10px; animation: fadeIn 0.3s ease-in-out;">
+//             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #007bff; padding-bottom: 12px; margin-bottom: 20px;">
+//                 <h3 style="color: #007bff; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 10px; font-size: 20px;">
+//                     👥 SIÊU HỒ SƠ LỚP HỌC
+//                 </h3>
+//                 <div style="display: flex; gap: 10px;">
+//                     <button onclick="ham_3_1_ve_dashboard_admin()" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">⬅️ Quay lại</button>
+//                 </div>
+//             </div>
+
+//             <div style="background: #e6f2ff; padding: 15px 25px; border-radius: 8px; border: 1px solid #b8daff; margin-bottom: 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+//                 <label style="font-weight: bold; font-size: 15px; color: #0056b3; white-space: nowrap;">🏫 CHỌN LỚP:</label>
+//                 <div style="display:flex; flex:1; max-width: 650px; gap: 10px;">
+//                     <input id="qlhs-input-lop" list="dl-lop" placeholder="Gõ tên hoặc chọn lớp..." onchange="window.ham_22_2_tai_du_lieu_lop()" style="flex: 1; padding: 10px; border: 2px solid #007bff; border-radius: 6px; font-weight: bold; font-size: 15px; outline: none; color: #0056b3;">
+//                     <!-- 🌟 Vùng chứa nút Lớp Gần Nhất sẽ hiện ra tại đây -->
+//                     <div id="vung-nut-lop-gan-nhat"></div>
+//                 </div>
+//                 <datalist id="dl-lop"></datalist>
+//             </div>
+
+//             <div id="qlhs-vung-tabs" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-bottom: 2px solid #dee2e6; padding-bottom: 10px;">
+//                 <span style="color:#6c757d; font-style:italic; padding:10px;">Vui lòng chọn lớp để tải danh sách hồ sơ...</span>
+//             </div>
+
+//             <div id="qlhs-vung-noi-dung-tab" style="background: #fff; border-radius: 10px; border: 1px solid #dee2e6; box-shadow: 0 4px 10px rgba(0,0,0,0.03); min-height: 400px; padding: 25px;">
+//                 <div style="text-align:center; color:#adb5bd; font-size:15px; padding:50px;">Chưa có dữ liệu hiển thị.</div>
+//             </div>
+//         </div>
+//     `;
+
+//     if (typeof window.ham_20_7_tai_danh_sach_lop === 'function') {
+//         let oLop = document.getElementById('qlhs-input-lop'); oLop.id = 'nk-input-lop';
+//         window.ham_20_7_tai_danh_sach_lop(); oLop.id = 'qlhs-input-lop';
+//     }
+
+//     // 🌟 HÀM PHỤ: Cập nhật hiển thị nút
+//     window.ham_22_cap_nhat_nut_lop_gan_nhat = function (tenLop) {
+//         let vungNut = document.getElementById('vung-nut-lop-gan-nhat');
+//         if (vungNut && tenLop) {
+//             let tenNgan = tenLop.split(' - ')[0] || tenLop;
+//             vungNut.innerHTML = `<button onclick="document.getElementById('qlhs-input-lop').value='${tenLop}'; window.ham_22_2_tai_du_lieu_lop();" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap; transition: 0.2s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='brightness(1)'" title="Tải nhanh lớp vừa xem">🕒 Lớp gần nhất: ${tenNgan}</button>`;
+//         }
+//     };
+
+//     // 1. Đọc nhanh từ LocalStorage vẽ ra ngay lập tức
+//     let lopLocal = localStorage.getItem('qlhs_lastClass_text');
+//     if (lopLocal) window.ham_22_cap_nhat_nut_lop_gan_nhat(lopLocal);
+
+//     // 2. Chạy ngầm đọc Database để đồng bộ nếu thầy đang dùng máy khác
+//     _supabase.from('ho_so_danh_muc_lop').select('du_lieu_json').eq('ma_lop', 'SYS_CONFIG').eq('ten_danh_muc', 'LAST_CLASS').maybeSingle().then(({ data }) => {
+//         if (data && Array.isArray(data.du_lieu_json) && data.du_lieu_json.length > 0) {
+//             let lopDB = data.du_lieu_json[0];
+//             if (lopDB && lopDB !== lopLocal) {
+//                 localStorage.setItem('qlhs_lastClass_text', lopDB);
+//                 window.ham_22_cap_nhat_nut_lop_gan_nhat(lopDB);
+//             }
+//         }
+//     }).catch(e => console.log("Lỗi đồng bộ cấu hình"));
+// };
+
 window.ham_22_1_mo_giao_dien_quan_ly_lop = function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
     if (!vungLamViec) return;
@@ -122,25 +187,55 @@ window.ham_22_1_mo_giao_dien_quan_ly_lop = function () {
         }
     };
 
-    // 1. Đọc nhanh từ LocalStorage vẽ ra ngay lập tức
+    // Đọc nhanh từ LocalStorage vẽ ra ngay lập tức
     let lopLocal = localStorage.getItem('qlhs_lastClass_text');
     if (lopLocal) window.ham_22_cap_nhat_nut_lop_gan_nhat(lopLocal);
-
-    // 2. Chạy ngầm đọc Database để đồng bộ nếu thầy đang dùng máy khác
-    _supabase.from('ho_so_danh_muc_lop').select('du_lieu_json').eq('ma_lop', 'SYS_CONFIG').eq('ten_danh_muc', 'LAST_CLASS').maybeSingle().then(({ data }) => {
-        if (data && Array.isArray(data.du_lieu_json) && data.du_lieu_json.length > 0) {
-            let lopDB = data.du_lieu_json[0];
-            if (lopDB && lopDB !== lopLocal) {
-                localStorage.setItem('qlhs_lastClass_text', lopDB);
-                window.ham_22_cap_nhat_nut_lop_gan_nhat(lopDB);
-            }
-        }
-    }).catch(e => console.log("Lỗi đồng bộ cấu hình"));
 };
 
-// =====================================================================
-// HÀM 22.2: TẢI DỮ LIỆU LỚP VÀ GHI NHẬN VÀO CẢ LOCAL LẪN DATABASE
-// =====================================================================
+// // =====================================================================
+// // HÀM 22.2: TẢI DỮ LIỆU LỚP VÀ GHI NHẬN VÀO CẢ LOCAL LẪN DATABASE
+// // =====================================================================
+// window.ham_22_2_tai_du_lieu_lop = async function () {
+//     const inputLop = document.getElementById('qlhs-input-lop');
+//     if (!inputLop || !inputLop.value) return;
+
+//     let rawLop = inputLop.value.trim();
+//     window.qlhs_MaLopHienTai = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+
+//     // 🌟 1. LƯU VÀO TRÌNH DUYỆT VÀ VẼ LẠI NÚT NGAY LẬP TỨC
+//     localStorage.setItem('qlhs_lastClass_text', rawLop);
+//     if (typeof window.ham_22_cap_nhat_nut_lop_gan_nhat === 'function') {
+//         window.ham_22_cap_nhat_nut_lop_gan_nhat(rawLop);
+//     }
+
+//     // 🌟 2. LƯU NGẦM LÊN MÁY CHỦ
+//     setTimeout(async () => {
+//         try {
+//             let { data: checkExist } = await _supabase.from('ho_so_danh_muc_lop').select('id').eq('ma_lop', 'SYS_CONFIG').eq('ten_danh_muc', 'LAST_CLASS');
+//             if (checkExist && checkExist.length > 0) {
+//                 await _supabase.from('ho_so_danh_muc_lop').update({ du_lieu_json: [rawLop] }).eq('id', checkExist[0].id);
+//             } else {
+//                 await _supabase.from('ho_so_danh_muc_lop').insert([{ ma_lop: 'SYS_CONFIG', ten_danh_muc: 'LAST_CLASS', kieu_giao_dien: 'CONFIG', thu_tu: 0, du_lieu_json: [rawLop] }]);
+//             }
+//         } catch (e) { console.log("Lỗi lưu cấu hình: ", e); }
+//     }, 100);
+
+//     const vungTabs = document.getElementById('qlhs-vung-tabs');
+//     vungTabs.innerHTML = `<span style="color:#007bff; font-weight:bold; padding:10px;">⏳ Đang tải hồ sơ...</span>`;
+//     document.getElementById('qlhs-vung-noi-dung-tab').innerHTML = '';
+
+
+
+
+
+//     try {
+//         const { data, error } = await _supabase.from('ho_so_danh_muc_lop').select('*').eq('ma_lop', window.qlhs_MaLopHienTai).order('thu_tu', { ascending: true });
+//         if (error) throw error;
+//         window.qlhs_DanhSachDanhMuc = data || [];
+//         window.ham_22_3_ve_thanh_tabs();
+//     } catch (e) { vungTabs.innerHTML = `<span style="color:red; font-weight:bold; padding:10px;">❌ Lỗi: ${e.message}</span>`; }
+// };
+
 window.ham_22_2_tai_du_lieu_lop = async function () {
     const inputLop = document.getElementById('qlhs-input-lop');
     if (!inputLop || !inputLop.value) return;
@@ -148,38 +243,29 @@ window.ham_22_2_tai_du_lieu_lop = async function () {
     let rawLop = inputLop.value.trim();
     window.qlhs_MaLopHienTai = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
 
-    // 🌟 1. LƯU VÀO TRÌNH DUYỆT VÀ VẼ LẠI NÚT NGAY LẬP TỨC
+    // 🌟 CHỈ LƯU VÀO TRÌNH DUYỆT (LOCALSTORAGE) VÀ VẼ LẠI NÚT NGAY LẬP TỨC
+    // Đã xóa phần lưu 'SYS_CONFIG' lên Database để tránh lỗi 409 vi phạm khóa ngoại
     localStorage.setItem('qlhs_lastClass_text', rawLop);
     if (typeof window.ham_22_cap_nhat_nut_lop_gan_nhat === 'function') {
         window.ham_22_cap_nhat_nut_lop_gan_nhat(rawLop);
     }
 
-    // 🌟 2. LƯU NGẦM LÊN MÁY CHỦ
-    setTimeout(async () => {
-        try {
-            let { data: checkExist } = await _supabase.from('ho_so_danh_muc_lop').select('id').eq('ma_lop', 'SYS_CONFIG').eq('ten_danh_muc', 'LAST_CLASS');
-            if (checkExist && checkExist.length > 0) {
-                await _supabase.from('ho_so_danh_muc_lop').update({ du_lieu_json: [rawLop] }).eq('id', checkExist[0].id);
-            } else {
-                await _supabase.from('ho_so_danh_muc_lop').insert([{ ma_lop: 'SYS_CONFIG', ten_danh_muc: 'LAST_CLASS', kieu_giao_dien: 'CONFIG', thu_tu: 0, du_lieu_json: [rawLop] }]);
-            }
-        } catch (e) { console.log("Lỗi lưu cấu hình: ", e); }
-    }, 100);
-
     const vungTabs = document.getElementById('qlhs-vung-tabs');
     vungTabs.innerHTML = `<span style="color:#007bff; font-weight:bold; padding:10px;">⏳ Đang tải hồ sơ...</span>`;
     document.getElementById('qlhs-vung-noi-dung-tab').innerHTML = '';
 
-
-
-
-
     try {
-        const { data, error } = await _supabase.from('ho_so_danh_muc_lop').select('*').eq('ma_lop', window.qlhs_MaLopHienTai).order('thu_tu', { ascending: true });
+        const { data, error } = await _supabase.from('ho_so_danh_muc_lop')
+            .select('*')
+            .eq('ma_lop', window.qlhs_MaLopHienTai)
+            .order('thu_tu', { ascending: true });
+
         if (error) throw error;
         window.qlhs_DanhSachDanhMuc = data || [];
         window.ham_22_3_ve_thanh_tabs();
-    } catch (e) { vungTabs.innerHTML = `<span style="color:red; font-weight:bold; padding:10px;">❌ Lỗi: ${e.message}</span>`; }
+    } catch (e) {
+        vungTabs.innerHTML = `<span style="color:red; font-weight:bold; padding:10px;">❌ Lỗi: ${e.message}</span>`;
+    }
 };
 
 window.ham_22_3_ve_thanh_tabs = function () {
@@ -291,7 +377,6 @@ window.ham_22_4_mo_modal_them_danh_muc = function () {
 
 //     } catch (e) { alert("❌ Lỗi tạo danh mục: " + e.message); }
 // };
-
 window.ham_22_5_luu_danh_muc_moi = async function () {
     const tenDM = document.getElementById('qlhs-dm-ten').value.trim();
     if (!tenDM) return alert("⚠ Vui lòng nhập Tên hồ sơ!");
@@ -299,8 +384,8 @@ window.ham_22_5_luu_danh_muc_moi = async function () {
     try {
         let thuTuMoi = window.qlhs_DanhSachDanhMuc.length + 1;
 
-        // 🌟 SỬ DỤNG .upsert() VÀ KHÔNG GÂY XUNG ĐỘT BẰNG CÁCH ĐỂ SUPABASE TỰ SINH UUID CHO ID NẾU LÀ TẠO MỚI
-        const { data, error } = await _supabase.from('ho_so_danh_muc_lop').upsert([
+        // 🌟 SỬ DỤNG .insert() CHUẨN XÁC ĐỂ TẠO MỚI TAB HỒ SƠ LỚN
+        const { data, error } = await _supabase.from('ho_so_danh_muc_lop').insert([
             {
                 ma_lop: window.qlhs_MaLopHienTai,
                 ten_danh_muc: tenDM,
@@ -308,12 +393,14 @@ window.ham_22_5_luu_danh_muc_moi = async function () {
                 thu_tu: thuTuMoi,
                 du_lieu_json: []
             }
-        ], {
-            onConflict: 'id' // Chỉ xung đột khi trùng id (tạo mới thì id trống nên sẽ luôn insert thành công)
-        }).select();
+        ]).select();
 
         if (error) throw error;
-        document.getElementById('qlhs-modal-them-dm').remove();
+
+        // Đóng modal và làm mới giao diện
+        let modal = document.getElementById('qlhs-modal-them-dm');
+        if (modal) modal.remove();
+
         if (data && data.length > 0) window.qlhs_TabDangChon = data[0].id;
         window.ham_22_2_tai_du_lieu_lop();
 
