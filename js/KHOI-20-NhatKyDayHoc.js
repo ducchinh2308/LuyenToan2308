@@ -5847,6 +5847,68 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
             `;
         });
 
+        // dsSuKien.forEach(sk => {
+        //     let uid = sk.uid_hoc_sinh;
+        //     let hs = mapHocSinh[uid];
+
+        //     let nkTuongUng = dsNhatKy.find(n => n.id === sk.id_nhat_ky);
+        //     let ngaySK = nkTuongUng ? new Date(nkTuongUng.ngay_day) : new Date();
+        //     let strNgaySK = `${String(ngaySK.getDate()).padStart(2, '0')}/${String(ngaySK.getMonth() + 1).padStart(2, '0')}`;
+
+        //     let dsAnh = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+        //     if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
+        //     let iconAnh = (dsAnh.length > 0) ? ' 📸' : '';
+
+        //     let iconXuLy = '';
+        //     if (sk.thong_tin_mo_rong?.xu_ly) {
+        //         let xl = sk.thong_tin_mo_rong.xu_ly;
+        //         let isDone = xl.trang_thai === 'Đã hoàn thành';
+        //         let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
+
+        //         if (isDone) iconXuLy = `<span style="background:#fff; color:#28a745; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">✅ Xong</span>`;
+        //         else if (isPartial) iconXuLy = `<span style="background:#fff; color:#0056b3; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">🔄 1 phần</span>`;
+        //         else iconXuLy = `<span style="background:#fff; color:#dc3545; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px; box-shadow:0 0 5px rgba(220,53,69,0.5);">⏳ Nợ</span>`;
+        //     }
+
+        //     let encGhiChu = encodeURIComponent(sk.ghi_chu || '');
+        //     let encLoaiThe = encodeURIComponent(sk.loai_the || '');
+        //     let encLinks = encodeURIComponent(dsAnh.join(','));
+        //     let diemSo = sk.thong_tin_mo_rong?.diem_so || '';
+
+        //     let actionStr = `onclick="window.ham_20_40_cap_nhat_xu_ly_popup('${sk.id}')" style="cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"`;
+        //     let cssChung = "padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; white-space: nowrap; display: inline-block;";
+
+        //     // if (sk.loai_the === 'Vắng mặt') {
+        //     //     hs.vang++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" title="Bấm để xem & cập nhật">[${strNgaySK}] Vắng${iconAnh}</span>`);
+        //     // } else if (sk.loai_the === 'Cho điểm') {
+        //     //     hs.diem.push(`<b>${diemSo}đ</b>`); hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #e8f5e9; color: #155724; border: 1px solid #c3e6cb;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
+        //     // } else if (sk.thong_tin_mo_rong?.mau_sac === '#28a745') {
+        //     //     hs.tot++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #d4edda; color: #155724; border: 1px solid #c3e6cb;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     // } else {
+        //     //     hs.xau++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #fff3cd; color: #856404; border: 1px solid #ffeeba;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     // }
+
+        //     // TÌM VÀ CHÉP ĐÈ ĐOẠN NÀY LÊN KHỐI IF...ELSE HIỆN TẠI CỦA THẦY
+        //     if (sk.loai_the === 'Vắng mặt') {
+        //         hs.vang++;
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #dc3545; background: transparent; border: none;" title="Bấm để xem & cập nhật">[${strNgaySK}] Vắng${iconAnh}</span>`);
+        //     } else if (sk.loai_the === 'Cho điểm') {
+        //         hs.diem.push(`<b>${diemSo}đ</b>`);
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745; background: transparent; border: none;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
+        //     } else if (sk.thong_tin_mo_rong?.mau_sac === '#28a745') {
+        //         hs.tot++;
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745; background: transparent; border: none;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     } else {
+        //         hs.xau++;
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000; background: transparent; border: none;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     }
+
+
+
+        // });
+
+
+        // KHU 2: BẢNG THỐNG KÊ HÀNH VI
         dsSuKien.forEach(sk => {
             let uid = sk.uid_hoc_sinh;
             let hs = mapHocSinh[uid];
@@ -5859,35 +5921,52 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
             if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
             let iconAnh = (dsAnh.length > 0) ? ' 📸' : '';
 
-            let iconXuLy = '';
-            if (sk.thong_tin_mo_rong?.xu_ly) {
-                let xl = sk.thong_tin_mo_rong.xu_ly;
-                let isDone = xl.trang_thai === 'Đã hoàn thành';
-                let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
+            // 🌟 DUY TRÌ ICON NỢ / XONG NHƯ BẢN CŨ CỦA THẦY
+                let iconXuLy = '';
+                if (sk.thong_tin_mo_rong?.xu_ly) {
+                    let xl = sk.thong_tin_mo_rong.xu_ly;
+                    let isDone = xl.trang_thai === 'Đã hoàn thành';
+                    let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
 
-                if (isDone) iconXuLy = `<span style="background:#fff; color:#28a745; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">✅ Xong</span>`;
-                else if (isPartial) iconXuLy = `<span style="background:#fff; color:#0056b3; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">🔄 1 phần</span>`;
-                else iconXuLy = `<span style="background:#fff; color:#dc3545; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px; box-shadow:0 0 5px rgba(220,53,69,0.5);">⏳ Nợ</span>`;
-            }
+                    if (isDone) iconXuLy = `<span style="background:#fff; color:#28a745; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">✅ Xong</span>`;
+                    else if (isPartial) iconXuLy = `<span style="background:#fff; color:#0056b3; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">🔄 1 phần</span>`;
+                    else iconXuLy = `<span style="background:#fff; color:#dc3545; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px; box-shadow:0 0 5px rgba(220,53,69,0.5);">⏳ Nợ</span>`;
+                }
+
 
             let encGhiChu = encodeURIComponent(sk.ghi_chu || '');
             let encLoaiThe = encodeURIComponent(sk.loai_the || '');
             let encLinks = encodeURIComponent(dsAnh.join(','));
             let diemSo = sk.thong_tin_mo_rong?.diem_so || '';
 
-            let actionStr = `onclick="window.ham_20_40_cap_nhat_xu_ly_popup('${sk.id}')" style="cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"`;
-            let cssChung = "padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; white-space: nowrap; display: inline-block;";
+            let actionStr = `onclick="window.ham_20_34_xem_chi_tiet_su_kien_popup('${sk.id}', '${encLoaiThe}', '${encGhiChu}', '${diemSo}', '${strNgaySK}', '${encLinks}')" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"`;
 
+            // 🌟 ĐÃ BỎ FONT-WEIGHT: BOLD ĐỂ CHỮ TRỞ LẠI BÌNH THƯỜNG
+            let cssChung = "cursor: pointer; transition: 0.2s; padding: 3px 6px; font-size: 12px; white-space: nowrap; display: inline-block; background: transparent; border: none;";
+
+            // 🌟 ÁP DỤNG MÀU MỚI THEO YÊU CẦU CỦA THẦY
             if (sk.loai_the === 'Vắng mặt') {
-                hs.vang++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" title="Bấm để xem & cập nhật">[${strNgaySK}] Vắng${iconAnh}</span>`);
+                hs.vang++;
+                // Vắng = Xanh lá (#28a745)
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">[${strNgaySK}] Vắng${iconAnh}${iconXuLy}</span>`);
             } else if (sk.loai_the === 'Cho điểm') {
-                hs.diem.push(`<b>${diemSo}đ</b>`); hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #e8f5e9; color: #155724; border: 1px solid #c3e6cb;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
+                hs.diem.push(`<b>${diemSo}đ</b>`);
+                // Cho điểm (Tốt) = Xanh dương (#007bff)
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
             } else if (sk.thong_tin_mo_rong?.mau_sac === '#28a745') {
-                hs.tot++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #d4edda; color: #155724; border: 1px solid #c3e6cb;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+                hs.tot++;
+                // Việc Tốt = Xanh dương (#007bff)
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
             } else {
-                hs.xau++; hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} background: #fff3cd; color: #856404; border: 1px solid #ffeeba;" title="Bấm để xem & cập nhật">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+                hs.xau++;
+                // Việc Xấu = Đen (#000)
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
             }
+
+
         });
+
+
 
         let mangHocSinh = Object.values(mapHocSinh).sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn ? window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten) : a.ten.localeCompare(b.ten, 'vi'));
         if (isTimHocSinh) mangHocSinh = mangHocSinh.filter(hs => hs.ten.toLowerCase().includes(tenHsTimKiem));
@@ -5909,7 +5988,7 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
                         <td style="padding: 8px; border-bottom: 1px solid #eee; font-size: 11px;">
                             <span style="color:#28a745; font-weight:bold;">🟢 ${hs.tot} Tốt</span> | <span style="color:#dc3545; font-weight:bold;">🔴 ${hs.xau} Xấu</span> | <span style="color:#6c757d; font-weight:bold;">⚫ ${hs.vang} Vắng</span>
                         </td>
-                        <td style="padding: 8px; border-bottom: 1px solid #eee;"><div style="display: flex; flex-wrap: wrap; gap: 6px;">${hs.suKien.join('')}</div></td>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee;"><div style="display: flex; flex-wrap: wrap; gap: 6px;">${hs.suKien.join(' <span style="color:#ccc;">|</span> ')}</div></td>
                     </tr>
                 `;
             } else {
@@ -6162,6 +6241,411 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
     }
 };
 
+// // =====================================================================
+// // HÀM 20.15: THỰC HIỆN TRA CỨU - RENDER DASHBOARD (CẬP NHẬT MÀU CHỮ & NHÃN NỢ/XONG)
+// // =====================================================================
+// window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
+//     const vungKetQua = document.getElementById('tc-khu-vuc-ket-qua');
+
+//     let tuNgay = document.getElementById('tc-tu-ngay').value;
+//     let denNgay = document.getElementById('tc-den-ngay').value;
+//     let rawMon = document.getElementById('tc-input-mon').value.trim();
+//     let rawLop = document.getElementById('tc-input-lop').value.trim();
+//     let maLopLuu = rawLop.match(/\(([^)]+)\)$/) ? rawLop.match(/\(([^)]+)\)$/)[1].trim() : rawLop;
+
+//     let rawHS = document.getElementById('tc-input-hs').value.trim();
+//     let tenHsTimKiem = rawHS.split(' - ')[0].trim().toLowerCase();
+//     let isTimHocSinh = tenHsTimKiem !== '';
+
+//     if (!tuNgay || !denNgay || !maLopLuu) {
+//         alert("⚠️ Vui lòng chọn đủ: Từ ngày, Đến ngày và BẮT BUỘC phải chọn Lớp!");
+//         return;
+//     }
+
+//     const textGoc = btnLoc.innerHTML;
+//     btnLoc.innerHTML = "⏳ ĐANG LẤY VÀ PHÂN TÍCH DỮ LIỆU...";
+//     btnLoc.disabled = true;
+//     vungKetQua.innerHTML = `<div style="text-align: center; color: #007bff; padding: 30px; font-size: 16px;"><b>⏳ Đang tải và phân tích dữ liệu...</b></div>`;
+
+//     try {
+//         const taoLinkAnhPreview = (url) => {
+//             if (!url) return '';
+//             let fileId = '';
+//             let matchD = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+//             let matchId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+//             let matchOpen = url.match(/\/open\?id=([a-zA-Z0-9_-]+)/);
+//             if (matchD) fileId = matchD[1]; else if (matchId) fileId = matchId[1]; else if (matchOpen) fileId = matchOpen[1];
+//             return fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : url;
+//         };
+
+//         // 1. Tải danh sách Nhật ký (Tiết dạy)
+//         let queryNhatKy = _supabase.from('nhat_ky_day_hoc').select('*').eq('ma_lop', maLopLuu).gte('ngay_day', tuNgay).lte('ngay_day', denNgay).order('ngay_day', { ascending: false }).order('tiet', { ascending: true });
+//         if (rawMon) queryNhatKy = queryNhatKy.ilike('phan_mon', `%${rawMon}%`);
+//         let { data: dsNhatKy, error: err1 } = await queryNhatKy;
+//         if (err1) throw err1;
+
+//         if (!dsNhatKy || dsNhatKy.length === 0) {
+//             vungKetQua.innerHTML = `<div style="text-align: center; color: #dc3545; padding: 20px;"><b>Không tìm thấy tiết dạy nào khớp với bộ lọc!</b></div>`;
+//             return;
+//         }
+
+//         // 2. Tải toàn bộ sự kiện
+//         let mangIdNhatKy = dsNhatKy.map(nk => nk.id);
+//         let { data: dsSuKien, error: err2 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').in('id_nhat_ky', mangIdNhatKy);
+//         if (err2) throw err2;
+//         if (!dsSuKien) dsSuKien = [];
+
+//         // 3. Tải danh sách Học sinh
+//         let { data: dsHocSinhLop, error: err3 } = await _supabase.from('hoc_sinh').select('*').contains('danh_sach_ma_lop', JSON.stringify([maLopLuu]));
+//         if (err3) throw err3;
+
+//         let mapHocSinh = {};
+//         if (dsHocSinhLop) {
+//             dsHocSinhLop.forEach(hs => {
+//                 let tenHienThi = hs.ten || hs.ho_ten || hs.ho_va_ten || 'Chưa có tên';
+//                 let uid = hs.uid || hs.id;
+//                 let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(tenHienThi)}&background=random&color=fff&size=100`;
+//                 mapHocSinh[uid] = { ten: tenHienThi, vang: 0, tot: 0, xau: 0, diem: [], suKien: [], avatar: avatarUrl };
+//             });
+//         }
+
+//         dsSuKien.forEach(sk => {
+//             if (!mapHocSinh[sk.uid_hoc_sinh]) {
+//                 let avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(sk.ten_hoc_sinh)}&background=random&color=fff&size=100`;
+//                 mapHocSinh[sk.uid_hoc_sinh] = { ten: sk.ten_hoc_sinh, vang: 0, tot: 0, xau: 0, diem: [], suKien: [], avatar: avatarUrl };
+//             }
+//         });
+
+//         const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+
+//         // KHU 1: BẢNG TIẾN ĐỘ BÀI GIẢNG 
+//         let rowsKhu1 = '';
+//         dsNhatKy.forEach(nk => {
+//             let dateObj = new Date(nk.ngay_day);
+//             let strNgay = String(dateObj.getDate()).padStart(2, '0') + '/' + String(dateObj.getMonth() + 1).padStart(2, '0') + '/' + dateObj.getFullYear();
+//             let thuHienTai = tenCacThu[dateObj.getDay()];
+//             let sortTimeStr = `${nk.ngay_day}_${nk.buoi}_${nk.tiet}`;
+
+//             let mangAnhBG = [];
+//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
+//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
+//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); } catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
+//             }
+//             let soAnhBG = mangAnhBG.length;
+
+//             let skCuaTiet = dsSuKien.filter(s => s.id_nhat_ky === nk.id);
+//             let soVang = skCuaTiet.filter(s => s.loai_the === 'Vắng mặt').length;
+//             let soKienKhac = skCuaTiet.length - soVang;
+
+//             let soAnhMC = 0;
+//             skCuaTiet.forEach(sk => {
+//                 let dsMC = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+//                 if (typeof dsMC === 'string') dsMC = dsMC.split(',').filter(l => l.trim());
+//                 soAnhMC += dsMC.length;
+//             });
+
+//             let hienThiTiet = nk.tiet.toLowerCase().includes('tiết') ? `${nk.tiet} - ${nk.buoi}` : `Tiết ${nk.tiet} - ${nk.buoi}`;
+
+//             rowsKhu1 += `
+//                 <tr onclick="window.ham_20_33_xem_chi_tiet_tiet('${nk.id}')" style="background: #fff; transition: 0.2s; cursor: pointer;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='#fff'" title="Bấm để xem chi tiết tiết dạy">
+//                     <td data-sort="${sortTimeStr}" style="padding: 10px; border-bottom: 1px solid #eee;"><b>${strNgay}</b><br><span style="font-size:11px; color:#666;">${thuHienTai}</span></td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; color: #17a2b8; font-weight:bold;">${hienThiTiet}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee;">${nk.phan_mon || '-'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight:bold; color:#0056b3;">${nk.ten_bai || '(Chưa nhập tên bài)'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; text-align:center;">${soAnhBG > 0 ? `<b style="color:#28a745;">${soAnhBG} 📸</b>` : '-'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; text-align:center;">${soVang > 0 ? `<b style="color:red;">${soVang}</b>` : '-'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; text-align:center;">${soKienKhac > 0 ? `<b style="color:#d35400;">${soKienKhac}</b>` : '-'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; text-align:center;">${soAnhMC > 0 ? `<b style="color:#6f42c1;">${soAnhMC} 🖼️</b>` : '-'}</td>
+//                     <td style="padding: 10px; border-bottom: 1px solid #eee; text-align:center; white-space:nowrap;">
+//                         <button onclick="event.stopPropagation(); window.ham_20_33_xem_chi_tiet_tiet('${nk.id}')" style="background: #007bff; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold; margin-right:3px;" title="Xem chi tiết">👁️</button>
+//                         <button onclick="event.stopPropagation(); window.ham_20_39_sua_tiet_hoc_popup('${nk.id}')" style="background: #ffc107; color: #000; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold; margin-right:3px;" title="Sửa nội dung tiết">✏️</button>
+//                         <button onclick="event.stopPropagation(); window.ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;" title="Xóa tiết này">🗑️</button>
+//                     </td>
+//                 </tr>
+//             `;
+//         });
+
+//         // KHU 2: BẢNG THỐNG KÊ HÀNH VI TỔNG HỢP LỚP
+//         dsSuKien.forEach(sk => {
+//             let uid = sk.uid_hoc_sinh;
+//             let hs = mapHocSinh[uid];
+
+//             let nkTuongUng = dsNhatKy.find(n => n.id === sk.id_nhat_ky);
+//             let ngaySK = nkTuongUng ? new Date(nkTuongUng.ngay_day) : new Date();
+//             let strNgaySK = `${String(ngaySK.getDate()).padStart(2, '0')}/${String(ngaySK.getMonth() + 1).padStart(2, '0')}`;
+
+//             let dsAnh = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+//             if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
+//             let iconAnh = (dsAnh.length > 0) ? ' 📸' : '';
+
+//             let encGhiChu = encodeURIComponent(sk.ghi_chu || '');
+//             let encLoaiThe = encodeURIComponent(sk.loai_the || '');
+//             let encLinks = encodeURIComponent(dsAnh.join(','));
+//             let diemSo = sk.thong_tin_mo_rong?.diem_so || '';
+//             let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#000';
+
+//             // 🌟 1. XÁC ĐỊNH SỰ KIỆN TỐT / XẤU ĐỂ ĐỔI MÀU CHỮ (ĐEN - XANH)
+//             let isTot = (mauThe.toLowerCase() === '#28a745' || sk.loai_the === 'Cho điểm');
+
+//             // 🌟 2. GIỮ NGUYÊN HIỂN THỊ "NỢ / XONG" CHUẨN NHƯ CŨ
+//             let xlObj = sk.thong_tin_mo_rong?.xu_ly;
+//             let xlIcon = '';
+//             if (xlObj) {
+//                 let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+//                 xlIcon = isDone ? ' <span style="color:#28a745; font-weight:bold;">[Xong]</span>' : ' <span style="color:#dc3545; font-weight:bold;">[Nợ]</span>';
+//             }
+
+//             let actionStr = `onclick="window.ham_20_34_xem_chi_tiet_su_kien_popup('${sk.id}', '${encLoaiThe}', '${encGhiChu}', '${diemSo}', '${strNgaySK}', '${encLinks}')" style="cursor: pointer; transition: 0.2s;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"`;
+
+//             // 🌟 CHỈ DÙNG MÀU CHỮ (BỎ BACKGROUND RỰC RỠ)
+//             let cssChung = "padding: 3px 6px; font-size: 12px; font-weight: bold; white-space: nowrap; display: inline-block; background: transparent;";
+
+//             // 🌟 3. RENDER THẺ SỰ KIỆN THEO ĐÚNG Ý THẦY (MÀU CHỮ + NỢ/XONG)
+//             if (sk.loai_the === 'Vắng mặt') {
+//                 hs.vang++;
+//                 hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #dc3545;" title="Bấm để xem chi tiết">[${strNgaySK}] Vắng${iconAnh}${xlIcon}</span>`);
+//             } else if (sk.loai_the === 'Cho điểm') {
+//                 hs.diem.push(`<b>${diemSo}đ</b>`);
+//                 hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${xlIcon}</span>`);
+//             } else if (isTot) {
+//                 hs.tot++;
+//                 hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${xlIcon}</span>`);
+//             } else {
+//                 hs.xau++;
+//                 hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${xlIcon}</span>`);
+//             }
+//         });
+
+//         let mangHocSinh = Object.values(mapHocSinh).sort((a, b) => window.ham_ho_tro_so_sanh_ten_vn ? window.ham_ho_tro_so_sanh_ten_vn(a.ten, b.ten) : a.ten.localeCompare(b.ten, 'vi'));
+//         if (isTimHocSinh) mangHocSinh = mangHocSinh.filter(hs => hs.ten.toLowerCase().includes(tenHsTimKiem));
+
+//         let rowsKhu2 = '';
+//         mangHocSinh.forEach((hs, idx) => {
+//             let hasEvent = (hs.vang > 0 || hs.tot > 0 || hs.xau > 0 || hs.diem.length > 0);
+//             if (hasEvent) {
+//                 rowsKhu2 += `
+//                     <tr style="background: #fff; transition: 0.2s;" onmouseover="this.style.background='#fdfdfd'" onmouseout="this.style.background='#fff'">
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center; color: #999;">${idx + 1}</td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee;">
+//                             <div style="display: flex; align-items: center; gap: 8px;">
+//                                 <img src="${hs.avatar}" style="width: 32px; height: 32px; object-fit: cover; border-radius: 50%; border: 1px solid #dee2e6; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+//                                 <span style="font-weight: bold; color: #333;">${hs.ten}</span>
+//                             </div>
+//                         </td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center; color: #28a745;">${hs.diem.join(', ') || '-'}</td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; font-size: 11px;">
+//                             <span style="color:#28a745; font-weight:bold;">🟢 ${hs.tot} Tốt</span> | <span style="color:#dc3545; font-weight:bold;">🔴 ${hs.xau} Xấu</span> | <span style="color:#6c757d; font-weight:bold;">⚫ ${hs.vang} Vắng</span>
+//                         </td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee;">
+//                             <div style="display: flex; flex-wrap: wrap; gap: 6px;">${hs.suKien.join(' <span style="color:#ccc;">|</span> ')}</div>
+//                         </td>
+//                     </tr>
+//                 `;
+//             } else {
+//                 rowsKhu2 += `
+//                     <tr style="background: #f8fbff; transition: 0.2s;" onmouseover="this.style.background='#eef6ff'" onmouseout="this.style.background='#f8fbff'">
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center; color: #999;">${idx + 1}</td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee;"><div style="display: flex; align-items: center; gap: 8px;"><img src="${hs.avatar}" style="width: 32px; height: 32px; object-fit: cover; border-radius: 50%; border: 1px solid #dee2e6; box-shadow: 0 1px 2px rgba(0,0,0,0.1);"><span style="font-weight: bold; color: #333;">${hs.ten}</span></div></td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center; color: #ccc;">-</td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center; font-size: 11px; font-weight: bold; color: #007bff;">✅ Ổn định</td>
+//                         <td style="padding: 8px; border-bottom: 1px solid #eee; font-size: 11px; color: #adb5bd; font-style: italic;">Không có vi phạm hay vắng mặt</td>
+//                     </tr>
+//                 `;
+//             }
+//         });
+
+//         // KHU 3: CHI TIẾT NỘI DUNG VÀ SỰ KIỆN TỪNG HỌC SINH 
+//         let dsNhatKyHienThi = isTimHocSinh ? dsNhatKy.filter(nk => dsSuKien.some(sk => sk.id_nhat_ky === nk.id && mapHocSinh[sk.uid_hoc_sinh].ten.toLowerCase().includes(tenHsTimKiem))) : dsNhatKy;
+//         let htmlKhu3 = '';
+
+//         dsNhatKyHienThi.forEach(nk => {
+//             let dateObj = new Date(nk.ngay_day);
+//             let strNgay = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
+//             let hienThiTiet = nk.tiet.toLowerCase().includes('tiết') ? nk.tiet : `Tiết ${nk.tiet}`;
+
+//             let mangAnhBG = [];
+//             if (Array.isArray(nk.danh_sach_anh)) mangAnhBG = nk.danh_sach_anh;
+//             else if (typeof nk.danh_sach_anh === 'string' && nk.danh_sach_anh.length > 5) {
+//                 try { mangAnhBG = JSON.parse(nk.danh_sach_anh); } catch (e) { mangAnhBG = nk.danh_sach_anh.split(',').filter(l => l.trim()); }
+//             }
+//             let htmlAnhBG = '';
+//             if (mangAnhBG.length > 0) {
+//                 htmlAnhBG = `<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 10px; background: #e0f7fa; border-radius: 6px;">`;
+//                 mangAnhBG.forEach((link) => {
+//                     htmlAnhBG += `<img onclick="window.ham_20_36_xem_anh_toan_man_hinh('${link}')" src="${taoLinkAnhPreview(link)}" loading="lazy" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #fff; border-radius: 6px; border: 2px solid #00acc1; box-shadow: 0 2px 4px rgba(0,0,0,0.15); cursor: zoom-in;" title="Bấm để phóng to">`;
+//                 });
+//                 htmlAnhBG += `</div>`;
+//             }
+
+//             let skCuaTiet = dsSuKien.filter(sk => sk.id_nhat_ky === nk.id);
+//             if (isTimHocSinh) skCuaTiet = skCuaTiet.filter(sk => mapHocSinh[sk.uid_hoc_sinh].ten.toLowerCase().includes(tenHsTimKiem));
+
+//             let vangMat = skCuaTiet.filter(sk => sk.loai_the === 'Vắng mặt');
+//             let suKienKhac = skCuaTiet.filter(sk => sk.loai_the !== 'Vắng mặt');
+
+//             let htmlSuKien = '';
+
+//             // Xử lý nhóm Vắng Mặt (Khu 3)
+//             if (vangMat.length > 0) {
+//                 let htmlVang = vangMat.map(v => {
+//                     let hsAvatar = mapHocSinh[v.uid_hoc_sinh]?.avatar;
+//                     return `<span style="display:inline-flex; align-items:center; gap:6px; background:#f8d7da; color:#721c24; padding:4px 8px; border-radius:20px; font-size:12px; font-weight:bold; border:1px solid #f5c6cb; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"><img src="${hsAvatar}" style="width:20px; height:20px; border-radius:50%; object-fit: cover; border: 1px solid #fff;"> ${v.ten_hoc_sinh}</span>`;
+//                 }).join(' ');
+//                 htmlSuKien += `<div style="margin-bottom:12px;"><strong style="color: #dc3545; font-size: 13px; display:block; margin-bottom:5px;">❌ Vắng mặt:</strong> <div style="display:flex; flex-wrap:wrap; gap:8px;">${htmlVang}</div></div>`;
+//             }
+
+//             // Xử lý nhóm Sự Kiện Khác (Khu 3)
+//             if (suKienKhac.length > 0) {
+//                 htmlSuKien += `<strong style="color: #d35400; font-size: 13px; display:inline-block; margin-top:8px;">🎯 Sự kiện / Điểm:</strong><div style="margin-top: 5px;">`;
+//                 suKienKhac.forEach(sk => {
+//                     let textGC = sk.ghi_chu ? ` - <i>${sk.ghi_chu}</i>` : '';
+//                     let mauThe = sk.thong_tin_mo_rong?.mau_sac || '#000';
+
+//                     // 🌟 KIỂM TRA MÀU ĐỂ HIỂN THỊ CHỮ XANH HAY ĐEN Ở KHU 3
+//                     let isTot = (mauThe.toLowerCase() === '#28a745' || sk.loai_the === 'Cho điểm');
+//                     let textTheColor = isTot ? '#28a745' : '#000';
+
+//                     let badgeDiem = (sk.loai_the === 'Cho điểm' && sk.thong_tin_mo_rong?.diem_so) ? `<span style="background:#28a745; color:white; padding:1px 5px; border-radius:3px; font-size:11px; margin-right:4px;">⭐ ${sk.thong_tin_mo_rong.diem_so}đ</span>` : '';
+
+//                     // NÚT YÊU CẦU XỬ LÝ (Khu 3 - Giữ nguyên Nợ / Xong chuẩn)
+//                     let xlObj = sk.thong_tin_mo_rong?.xu_ly;
+//                     let xlHtml = '';
+//                     if (xlObj) {
+//                         let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+//                         let bgXl = isDone ? '#d4edda' : '#fff3cd';
+//                         let colXl = isDone ? '#155724' : '#856404';
+//                         let icnXl = isDone ? '✅' : '⏳';
+//                         let textXl = isDone ? 'Xong' : 'Nợ';
+
+//                         xlHtml = `<div style="margin-top:6px;">
+//                             <span onclick="event.stopPropagation(); window.ham_20_40_cap_nhat_xu_ly_popup('${sk.id}')" 
+//                                   style="background:${bgXl}; color:${colXl}; padding:4px 8px; border-radius:6px; font-size:11px; font-weight:bold; cursor:pointer; border:1px solid ${isDone ? '#c3e6cb' : '#ffeeba'}; box-shadow:0 1px 2px rgba(0,0,0,0.1); transition:0.2s; display:inline-flex; align-items:center; gap:5px;" 
+//                                   onmouseover="this.style.filter='brightness(0.95)'" onmouseout="this.style.filter='brightness(1)'" title="Bấm để Cập nhật tiến độ xử lý">
+//                                 <span>${icnXl} ${xlObj.hinh_thuc}: ${xlObj.noi_dung}</span>
+//                                 <span style="background:#fff; border-radius:10px; padding:2px 6px; font-size:10px; border:1px solid ${isDone ? '#c3e6cb' : '#ffeeba'};">${textXl}</span>
+//                             </span>
+//                         </div>`;
+//                     }
+
+//                     // Ảnh Minh chứng
+//                     let dsMC = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+//                     if (typeof dsMC === 'string') dsMC = dsMC.split(',').filter(l => l.trim());
+//                     let htmlMC = dsMC.length > 0 ? `<div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">${dsMC.map(l => `<img onclick="window.ham_20_36_xem_anh_toan_man_hinh('${l}')" src="${taoLinkAnhPreview(l)}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain; background: #fff; border-radius: 6px; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: zoom-in;" title="Bấm để phóng to">`).join('')}</div>` : '';
+
+//                     let hsAvatar = mapHocSinh[sk.uid_hoc_sinh]?.avatar;
+
+//                     htmlSuKien += `<div style="margin-bottom:8px; border-left:3px solid ${mauThe}; padding-left:10px; background:#fff; padding-top:8px; padding-bottom:8px; font-size:13px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-radius: 0 6px 6px 0;">
+//                         <div style="display:flex; align-items:center; gap:8px;">
+//                             <img src="${hsAvatar}" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #dee2e6;">
+//                             <div style="line-height: 1.4;">
+//                                 <b>${sk.ten_hoc_sinh}</b>: ${badgeDiem}
+//                                 <span style="color:${textTheColor}; font-weight:bold;">[${sk.loai_the}]</span>
+//                                 <span style="color:#555;">${textGC}</span>
+//                             </div>
+//                         </div>
+//                         ${xlHtml}
+//                         ${htmlMC}
+//                     </div>`;
+//                 });
+//                 htmlSuKien += `</div>`;
+//             }
+//             if (skCuaTiet.length === 0) htmlSuKien = `<i style="color:#28a745; font-size:12px;">✅ Không có sự kiện nào.</i>`;
+
+//             htmlKhu3 += `
+//                 <div id="card-tiet-${nk.id}" style="background: #fff; border: 1px solid #ced4da; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); padding: 15px; margin-bottom: 20px;">
+//                     <div style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+//                         <div style="display: flex; align-items: center; gap: 10px;">
+//                             <span style="background: #17a2b8; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px;">${nk.phan_mon || 'Không rõ môn'}</span>
+//                             <span style="color: #6c757d; font-size: 13px; font-weight: bold;">🕒 ${hienThiTiet} - ${nk.buoi} - ${tenCacThu[new Date(nk.ngay_day).getDay()]}, Ngày ${strNgay}</span>
+//                         </div>
+//                         <div style="display: flex; gap: 5px;">
+//                             <button onclick="window.ham_20_39_sua_tiet_hoc_popup('${nk.id}')" style="background: #ffc107; color: #000; border: none; padding: 5px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">✏️ Sửa chi tiết</button>
+//                             <button onclick="window.ham_20_18_xoa_nguyen_tiet('${nk.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">🗑️ Xóa tiết này</button>
+//                             <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" style="background: #6c757d; color: white; border: none; padding: 5px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">⬆️ Lên đầu trang</button>
+//                         </div>
+//                     </div>
+//                     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+//                         <div style="flex: 1.5; min-width: 300px; border-right: 1px dashed #ccc; padding-right: 15px;">
+//                             <div style="font-size: 15px; font-weight: bold; color: #0056b3; margin-bottom: 5px;">📖 Tên bài: ${nk.ten_bai || '---'}</div>
+//                             <div style="font-size: 13px; color: #333; margin-bottom: 5px;"><b>Lý thuyết:</b> <span style="white-space:pre-wrap;">${nk.ly_thuyet || '---'}</span></div>
+//                             <div style="font-size: 13px; color: #333; margin-bottom: 5px;"><b>Bài tập:</b> <span style="white-space:pre-wrap;">${nk.bai_tap || '---'}</span></div>
+//                             <div style="font-size: 13px; color: #856404; background:#fffcf8; padding:5px; border-radius:4px;"><b>Dặn dò:</b> <span style="white-space:pre-wrap;">${nk.dan_do || '---'}</span></div>
+//                             ${htmlAnhBG}
+//                         </div>
+//                         <div style="flex: 1; min-width: 250px; background: #fafafa; padding: 10px; border-radius: 6px;">
+//                             ${htmlSuKien}
+//                         </div>
+//                     </div>
+//                 </div>
+//             `;
+//         });
+
+//         vungKetQua.innerHTML = `
+//             <div style="${isTimHocSinh ? 'display:none;' : ''} background: #fff; border: 1px solid #b8daff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 15px;">
+//                 <div style="background: #e0f3ff; padding: 12px 15px; border-bottom: 1px solid #b8daff; display: flex; justify-content: space-between; align-items: center;">
+//                     <h4 style="margin: 0; color: #0056b3; font-size: 15px;">🏫 1. TIẾN ĐỘ BÀI GIẢNG CỦA LỚP (${dsNhatKy.length} tiết)</h4>
+//                     <button onclick="let c = document.getElementById('khu-vuc-1-content'); if(c.style.display==='none'){c.style.display='block'; this.innerHTML='🔽 Thu gọn';}else{c.style.display='none'; this.innerHTML='👁️ Mở rộng';}" style="background: transparent; border: 1px solid #0056b3; color: #0056b3; border-radius: 4px; padding: 3px 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🔽 Thu gọn</button>
+//                 </div>
+//                 <div id="khu-vuc-1-content" style="padding: 15px; overflow-x: auto; display: block;">
+//                     <table id="bang-tien-do-lop" style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px;">
+//                         <thead>
+//                             <tr style="background: #007bff; color: white; text-align: left;">
+//                                 <th onclick="ham_20_21_sap_xep_bang(0, 'bang-tien-do-lop')" style="padding: 10px; cursor: pointer; border-bottom: 2px solid #0056b3;">Thời gian ↕️</th>
+//                                 <th onclick="ham_20_21_sap_xep_bang(1, 'bang-tien-do-lop')" style="padding: 10px; cursor: pointer; border-bottom: 2px solid #0056b3;">Tiết ↕️</th>
+//                                 <th onclick="ham_20_21_sap_xep_bang(2, 'bang-tien-do-lop')" style="padding: 10px; cursor: pointer; border-bottom: 2px solid #0056b3;">Môn ↕️</th>
+//                                 <th onclick="ham_20_21_sap_xep_bang(3, 'bang-tien-do-lop')" style="padding: 10px; cursor: pointer; border-bottom: 2px solid #0056b3; width: 30%;">Tên bài ↕️</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #0056b3; text-align:center;">Ảnh BG</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #0056b3; text-align:center;">Vắng</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #0056b3; text-align:center;">Sự kiện</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #0056b3; text-align:center;">Ảnh MC</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #0056b3; text-align:center;">Thao tác</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>${rowsKhu1}</tbody>
+//                     </table>
+//                 </div>
+//             </div>
+
+//             <div style="background: #fff; border: 1px solid #c3e6cb; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 15px;">
+//                 <div style="background: #d4edda; padding: 12px 15px; border-bottom: 1px solid #c3e6cb; display: flex; justify-content: space-between; align-items: center;">
+//                     <h4 style="margin: 0; color: #155724; font-size: 15px;">${isTimHocSinh ? '🧑‍🎓 BÁO CÁO CÁ NHÂN: <span style="text-transform:uppercase;">' + tenHsTimKiem + '</span>' : '🧑‍🎓 2. BẢNG THỐNG KÊ HÀNH VI TOÀN LỚP'}</h4>
+//                     <button onclick="let c = document.getElementById('khu-vuc-2-content'); if(c.style.display==='none'){c.style.display='block'; this.innerHTML='🔽 Thu gọn';}else{c.style.display='none'; this.innerHTML='👁️ Mở rộng';}" style="background: transparent; border: 1px solid #155724; color: #155724; border-radius: 4px; padding: 3px 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🔽 Thu gọn</button>
+//                 </div>
+//                 <div id="khu-vuc-2-content" style="padding: 15px; overflow-x: auto; display: block;">
+//                     <table id="bang-thong-ke-lop" style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px;">
+//                         <thead>
+//                             <tr style="background: #28a745; color: white; text-align: left;">
+//                                 <th style="padding: 10px; border-bottom: 2px solid #1e7e34; text-align: center; width: 40px;">STT</th>
+//                                 <th onclick="ham_20_21_sap_xep_bang(1, 'bang-thong-ke-lop')" style="padding: 10px; cursor: pointer; border-bottom: 2px solid #1e7e34; width: 150px;">Tên Học sinh ↕️</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #1e7e34; text-align: center; width: 100px;">💯 Điểm số</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #1e7e34; width: 160px;">📊 Đánh giá Nề nếp</th>
+//                                 <th style="padding: 10px; border-bottom: 2px solid #1e7e34;">⏱️ Lịch sử Sự kiện (Bấm vào Thẻ để xem Chi tiết & Cập nhật)</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>${rowsKhu2}</tbody>
+//                     </table>
+//                 </div>
+//             </div>
+
+//             <div style="background: #fff; border: 1px solid #ffeeba; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden;">
+//                 <div style="background: #fff3cd; padding: 12px 15px; border-bottom: 1px solid #ffeeba; display: flex; justify-content: space-between; align-items: center;">
+//                     <h4 style="margin: 0; color: #856404; font-size: 15px;">📝 ${isTimHocSinh ? 'CHI TIẾT NỘI DUNG CÁC TIẾT CÓ SỰ KIỆN' : '3. CHI TIẾT NỘI DUNG TỪNG TIẾT'}</h4>
+//                     <button id="btn-toggle-khu-3" onclick="let c = document.getElementById('khu-vuc-3-content'); if(c.style.display==='none'){c.style.display='block'; this.innerHTML='🔽 Thu gọn';}else{c.style.display='none'; this.innerHTML='👁️ Xem chi tiết';}" style="background: #ffc107; border: 1px solid #d39e00; color: #000; border-radius: 4px; padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: bold;">${isTimHocSinh ? '🔽 Thu gọn' : '👁️ Xem chi tiết'}</button>
+//                 </div>
+//                 <div id="khu-vuc-3-content" style="padding: 15px; display: ${isTimHocSinh ? 'block' : 'none'}; background: #fafafa;">
+//                     ${htmlKhu3}
+//                 </div>
+//             </div>
+//         `;
+
+//     } catch (err) {
+//         console.error("Lỗi tra cứu:", err);
+//         vungKetQua.innerHTML = `<div style="text-align: center; color: red; padding: 20px;"><b>❌ Lỗi khi phân tích dữ liệu! ${err.message || ''}</b></div>`;
+//     } finally {
+//         btnLoc.innerHTML = textGoc;
+//         btnLoc.disabled = false;
+//     }
+// };
 
 
 
@@ -9405,212 +9889,320 @@ window.ham_20_33_xem_chi_tiet_tiet = function (idNhatKy) {
 // };
 
 
+// // =====================================================================
+// // HÀM 20.34: XEM CHI TIẾT SỰ KIỆN TỪ BẢNG THỐNG KÊ (HIỂN THỊ ĐỦ THÔNG TIN TIẾT THỨ & ẢNH)
+// // =====================================================================
+// window.ham_20_34_xem_chi_tiet_su_kien_popup = async function (idSuKien, ...args) {
+//     // 1. Tạo modal Loading
+//     let modal = document.getElementById('nk-modal-chitiet-sk');
+//     if (modal) modal.remove();
+
+//     modal = document.createElement('div');
+//     modal.id = 'nk-modal-chitiet-sk';
+//     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:999999; backdrop-filter: blur(2px); animation: fadeIn 0.2s;';
+//     modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#0056b3; box-shadow:0 5px 15px rgba(0,0,0,0.3);">⏳ Đang tải dữ liệu chi tiết từ hệ thống...</div>`;
+//     document.body.appendChild(modal);
+
+//     try {
+//         // 2. Lấy sự kiện
+//         const { data: sk, error: errSK } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
+//         if (errSK) throw errSK;
+//         if (!sk) {
+//             modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#dc3545;">⚠️ Không tìm thấy sự kiện này trong hệ thống!</div>`;
+//             setTimeout(() => modal.remove(), 2000);
+//             return;
+//         }
+
+//         // Lấy thông tin tiết học gốc (để lấy Ngày, Buổi, Tiết, Môn)
+//         let nk = null;
+//         if (sk.id_nhat_ky) {
+//             const { data: nkData } = await _supabase.from('nhat_ky_day_hoc').select('*').eq('id', sk.id_nhat_ky).single();
+//             nk = nkData;
+//         }
+
+//         // Xử lý Thứ, Ngày, Buổi, Tiết, Môn
+//         const tenCacThu = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+//         let strNgay = 'Không rõ ngày';
+//         let strThu = '';
+//         let strBuoi = '';
+//         let strTiet = '';
+//         let strMon = 'Không rõ môn';
+
+//         if (nk) {
+//             if (nk.ngay_day) {
+//                 let d = new Date(nk.ngay_day);
+//                 strNgay = !isNaN(d.getTime()) ? `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}` : nk.ngay_day;
+//                 if (!isNaN(d.getTime())) strThu = tenCacThu[d.getDay()];
+//             }
+//             strBuoi = nk.buoi || '';
+//             strTiet = nk.tiet || '';
+//             strMon = nk.phan_mon || 'Không rõ môn';
+//         } else if (sk.ngay_ghi_nhan) {
+//             let d = new Date(sk.ngay_ghi_nhan);
+//             strNgay = !isNaN(d.getTime()) ? `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}` : sk.ngay_ghi_nhan;
+//             if (!isNaN(d.getTime())) strThu = tenCacThu[d.getDay()];
+//         }
+
+//         // Ghép chuỗi thời gian tiết học hoàn chỉnh (VD: Thứ 2, Ngày 28/09/2026 - Sáng - Tiết 3)
+//         let thoiGianHoc = `${strThu ? strThu + ', ' : ''}Ngày ${strNgay} ${strBuoi ? ' - ' + strBuoi : ''} ${strTiet ? ' - ' + strTiet : ''}`;
+
+//         // Xử lý Avatar học sinh
+//         let hsAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(sk.ten_hoc_sinh)}&background=random&color=fff`;
+//         if (window.DanhSachHocSinhLopHienTai) {
+//             let hsObj = window.DanhSachHocSinhLopHienTai.find(h => h.uid === sk.uid_hoc_sinh || h.tenHienThi === sk.ten_hoc_sinh);
+//             if (hsObj && hsObj.avatarUrl) hsAvatar = hsObj.avatarUrl;
+//         }
+
+//         let diemDb = sk.thong_tin_mo_rong?.diem_so || '';
+//         let diemStr = diemDb ? `<span style="background:#28a745; color:white; padding:2px 6px; border-radius:4px; font-size:12px; margin-left:5px;">⭐ ${diemDb}đ</span>` : '';
+
+//         // --- 1. ẢNH MINH CHỨNG LỖI / SỰ KIỆN BAN ĐẦU ---
+//         let dsAnhLoi = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+//         if (typeof dsAnhLoi === 'string') {
+//             try { dsAnhLoi = JSON.parse(dsAnhLoi); }
+//             catch (e) { dsAnhLoi = dsAnhLoi.split(',').filter(l => l.trim()); }
+//         }
+        
+//         let htmlAnhLoi = '';
+//         if (dsAnhLoi && dsAnhLoi.length > 0) {
+//             htmlAnhLoi = `<div style="margin-top:12px; border-top:1px dashed #eee; padding-top:12px;"><b style="font-size:13px; color:#495057;">📸 Ảnh minh chứng sự kiện:</b><div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;">`;
+//             dsAnhLoi.forEach(link => {
+//                 if (!link) return;
+//                 let fileId = null;
+//                 if (link.includes('/d/')) { let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+//                 else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+//                 let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w400` : link;
+//                 htmlAnhLoi += `<a href="${link}" target="_blank"><img src="${srcTN}" style="height:70px; border-radius:6px; border:1px solid #ced4da; box-shadow:0 1px 3px rgba(0,0,0,0.1); object-fit:cover; transition:0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Bấm xem ảnh gốc"></a>`;
+//             });
+//             htmlAnhLoi += `</div></div>`;
+//         }
+
+//         // --- 2. YÊU CẦU KHẮC PHỤC & BỘ CÔNG CỤ CẬP NHẬT ---
+//         let htmlXuLy = '';
+//         let xl = sk.thong_tin_mo_rong?.xu_ly;
+        
+//         if (xl) {
+//             window.danhSachAnhPhatDayHoc = []; // Reset RAM
+//             let ttHienTai = xl.trang_thai || 'Chưa hoàn thành';
+
+//             let htmlAnhPhatCu = '';
+//             if (xl.anh_minh_chung && xl.anh_minh_chung.length > 0) {
+//                 htmlAnhPhatCu = `<div style="margin-bottom:15px;"><b style="font-size:12px; color:#6c757d;">🖼️ Ảnh khắc phục đã lưu trước đó:</b><div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;">`;
+//                 xl.anh_minh_chung.forEach(link => {
+//                     let fileId = null;
+//                     if (link.includes('/d/')) { let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+//                     else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+//                     let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w400` : link;
+//                     htmlAnhPhatCu += `
+//                         <div style="position:relative; display:inline-block;">
+//                             <a href="${link}" target="_blank"><img src="${srcTN}" style="height:60px; width:60px; border-radius:4px; border:1px solid #ccc; box-shadow:0 1px 3px rgba(0,0,0,0.1); object-fit:cover; transition:0.2s;" title="Bấm xem ảnh gốc"></a>
+//                             <button type="button" onclick="window.ham_20_58_xoa_anh_phat_cu('${sk.id}', '${link}', this)" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;" title="Xóa ảnh cũ này">✖</button>
+//                         </div>
+//                     `;
+//                 });
+//                 htmlAnhPhatCu += `</div></div>`;
+//             }
+
+//             let isDone = xl.trang_thai === 'Đã hoàn thành';
+//             let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
+//             let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
+//             let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
+//             let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
+
+//             htmlXuLy = `
+//                 <div style="margin-top:15px; background:#fffcf8; border:1px dashed #d35400; padding:15px; border-radius:8px; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05);">
+//                     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #ffeeba; padding-bottom:8px; margin-bottom:10px;">
+//                         <b style="color:#d35400; font-size:15px;">🛠️ Cập nhật tiến độ khắc phục</b>
+//                         <span style="background:${bgXl}; color:${colXl}; padding:4px 10px; border-radius:15px; font-size:11px; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.1); border: 1px solid ${colXl}">${textXl}</span>
+//                     </div>
+//                     <div style="font-size:13px; color:#333; margin-bottom:5px;"><b>Hình thức:</b> <span style="color:#e83e8c; font-weight:bold;">${xl.hinh_thuc || 'Chưa định dạng'}</span></div>
+//                     <div style="font-size:13px; color:#555; margin-bottom:15px;"><b>Nội dung:</b> ${xl.noi_dung || 'Không có chi tiết'}</div>
+                    
+//                     <div style="margin-bottom:15px;">
+//                         <label style="font-weight:bold; font-size:13px; color:#495057;">Trạng thái hiện tại:</label>
+//                         <div style="display:flex; gap:15px; margin-top:8px;">
+//                             <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Chưa hoàn thành" ${ttHienTai === 'Chưa hoàn thành' ? 'checked' : ''}> ⏳ Chưa xong</label>
+//                             <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Đã nộp 1 phần" ${ttHienTai === 'Đã nộp 1 phần' ? 'checked' : ''}> 🔄 Nộp 1 phần</label>
+//                             <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Đã hoàn thành" ${ttHienTai === 'Đã hoàn thành' ? 'checked' : ''}> ✅ Xong tất cả</label>
+//                         </div>
+//                     </div>
+
+//                     ${htmlAnhPhatCu}
+
+//                     <div style="margin-bottom:15px;">
+//                         <label style="font-weight:bold; font-size:13px; color:#28a745;">📸 Nộp thêm ảnh khắc phục mới:</label>
+//                         <div style="display:flex; gap:10px; margin-top:5px; align-items:flex-start;">
+//                             <button type="button" onclick="document.getElementById('dh-input-anh-phat').click()" style="padding:8px 12px; background:#e0f7fa; border:1px dashed #00acc1; color:#00838f; border-radius:4px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center;">
+//                                 <span style="font-size:20px;">📷</span> Thêm ảnh
+//                             </button>
+//                             <input type="file" id="dh-input-anh-phat" accept="image/*" multiple style="display:none;" onchange="window.ham_20_52_chon_anh_phat_day_hoc(this)">
+//                             <div id="dh-vung-preview-anh-phat" style="flex:1; display:flex; gap:5px; flex-wrap:wrap; min-height:55px; border:1px dashed #ccc; padding:5px; border-radius:4px; align-items:center; background:#f8f9fa;">
+//                                 <span style="color:#adb5bd; font-size:12px; font-style:italic;">(Chưa chọn ảnh mới)</span>
+//                             </div>
+//                         </div>
+//                     </div>
+
+//                     <div style="text-align:right; border-top:1px solid #ffeeba; padding-top:12px;">
+//                         <button onclick="window.ham_20_41_luu_trang_thai_xu_ly('${sk.id}', this)" style="padding:10px 20px; background:#28a745; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(40,167,69,0.3); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">💾 Lưu cập nhật Tiến độ</button>
+//                     </div>
+//                 </div>
+//             `;
+//         } else {
+//             htmlXuLy = `<div style="margin-top:15px; font-size:13px; color:#856404; background:#fff3cd; padding:12px; border-radius:6px; border:1px dashed #ffeeba; text-align:center;">⚠️ Sự kiện này không có yêu cầu xử lý đính kèm.</div>`;
+//         }
+
+//         // 3. Đổ dữ liệu vào Modal chính
+//         modal.innerHTML = `
+//             <div style="background:#fff; width:520px; max-width:92%; padding:25px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.4); position:relative; max-height: 90vh; overflow-y: auto;">
+//                 <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="position:absolute; top:12px; right:15px; background:none; border:none; font-size:22px; font-weight:bold; cursor:pointer; color:#adb5bd; transition:0.2s;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color='#adb5bd'">✖</button>
+//                 <h3 style="margin-top:0; color:#0056b3; border-bottom:2px solid #cce5ff; padding-bottom:12px; font-size:17px; text-transform:uppercase;">
+//                     📌 Chi tiết Sự kiện / Vi phạm
+//                 </h3>
+                
+//                 <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #e9ecef; display:flex; gap:12px; align-items:flex-start;">
+//                     <img src="${hsAvatar}" style="width:45px; height:45px; border-radius:50%; border:2px solid #e83e8c; object-fit:cover; margin-top:2px;">
+//                     <div style="flex:1;">
+//                         <div style="font-size:15px; margin-bottom:6px; color:#e83e8c; font-weight:bold;">
+//                             ${sk.ten_hoc_sinh}
+//                         </div>
+//                         <div style="font-size:13px; margin-bottom:5px; color:#6c757d; font-weight:bold;">
+//                             🕒 ${thoiGianHoc} <span style="background:#17a2b8; color:#fff; padding:1px 6px; border-radius:4px; font-size:11px; margin-left:5px;">${strMon}</span>
+//                         </div>
+//                         <div style="font-size:13px; margin-bottom:5px;">
+//                             <b style="color:#495057;">Sự kiện:</b> <span style="color:${sk.thong_tin_mo_rong?.mau_sac || '#0056b3'}; font-weight:bold;">${sk.loai_the}</span> ${diemStr}
+//                         </div>
+//                         <div style="font-size:13px; color:#555;">
+//                             <b style="color:#495057;">Ghi chú:</b> <span style="color:#333;">${sk.ghi_chu || '<i style="color:#adb5bd">Không có ghi chú thêm</i>'}</span>
+//                         </div>
+//                     </div>
+//                 </div>
+                
+//                 ${htmlAnhLoi}
+//                 ${htmlXuLy}
+                
+//                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:15px; border-top:1px solid #eee; gap:10px;">
+//                     <button onclick="if(confirm('⚠️ Thầy có chắc chắn muốn xóa sự kiện này khỏi Hồ sơ học sinh không?')) { window.ham_20_35_xoa_su_kien_trong_db('${sk.id}', document.getElementById('nk-modal-chitiet-sk')); }" style="padding:10px 15px; background:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">🗑️ Xóa sự kiện</button>
+//                     <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="padding:10px 25px; background:#6c757d; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">Đóng lại</button>
+//                 </div>
+//             </div>
+//         `;
+//     } catch (e) {
+//         console.error(e);
+//         modal.innerHTML = `
+//             <div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#dc3545; text-align:center; position:relative;">
+//                 <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:18px; cursor:pointer; color:#adb5bd;">✖</button>
+//                 <div style="margin-top:10px;">❌ Lỗi tải chi tiết: ${e.message}</div>
+//             </div>`;
+//     }
+// };
+
 // =====================================================================
-// HÀM 20.34: XEM CHI TIẾT SỰ KIỆN TỪ BẢNG THỐNG KÊ (HIỂN THỊ ĐỦ THÔNG TIN TIẾT THỨ & ẢNH)
+// HÀM 20.34: MỞ POPUP XEM CHI TIẾT SỰ KIỆN (FIX LỖI HIỂN THỊ ẢNH DRIVE)
 // =====================================================================
-window.ham_20_34_xem_chi_tiet_su_kien_popup = async function (idSuKien, ...args) {
-    // 1. Tạo modal Loading
-    let modal = document.getElementById('nk-modal-chitiet-sk');
+window.ham_20_34_xem_chi_tiet_su_kien_popup = async function (idSuKien) {
+    // Xóa modal cũ nếu có đang mở
+    let modal = document.getElementById('nk-modal-chi-tiet-su-kien');
     if (modal) modal.remove();
 
+    // Tạo phông nền mờ
     modal = document.createElement('div');
-    modal.id = 'nk-modal-chitiet-sk';
+    modal.id = 'nk-modal-chi-tiet-su-kien';
     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:999999; backdrop-filter: blur(2px); animation: fadeIn 0.2s;';
-    modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#0056b3; box-shadow:0 5px 15px rgba(0,0,0,0.3);">⏳ Đang tải dữ liệu chi tiết từ hệ thống...</div>`;
+
+    modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:12px; font-weight:bold; color:#007bff; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">⏳ Đang tải dữ liệu chi tiết...</div>`;
     document.body.appendChild(modal);
 
     try {
-        // 2. Lấy sự kiện
-        const { data: sk, error: errSK } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
-        if (errSK) throw errSK;
-        if (!sk) {
-            modal.innerHTML = `<div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#dc3545;">⚠️ Không tìm thấy sự kiện này trong hệ thống!</div>`;
-            setTimeout(() => modal.remove(), 2000);
-            return;
-        }
+        // 1. Tải dữ liệu sự kiện
+        const { data: skData, error: err1 } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
+        if (err1) throw err1;
 
-        // Lấy thông tin tiết học gốc (để lấy Ngày, Buổi, Tiết, Môn)
-        let nk = null;
-        if (sk.id_nhat_ky) {
-            const { data: nkData } = await _supabase.from('nhat_ky_day_hoc').select('*').eq('id', sk.id_nhat_ky).single();
-            nk = nkData;
-        }
+        // 2. Tải dữ liệu tiết học tương ứng
+        const { data: nkData, error: err2 } = await _supabase.from('nhat_ky_day_hoc').select('*').eq('id', skData.id_nhat_ky).single();
+        if (err2) throw err2;
 
-        // Xử lý Thứ, Ngày, Buổi, Tiết, Môn
-        const tenCacThu = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-        let strNgay = 'Không rõ ngày';
-        let strThu = '';
-        let strBuoi = '';
-        let strTiet = '';
-        let strMon = 'Không rõ môn';
+        const dateObj = new Date(nkData.ngay_day);
+        const tenCacThu = ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+        const thuStr = tenCacThu[dateObj.getDay()];
+        const ngayStr = String(dateObj.getDate()).padStart(2, '0') + '/' + String(dateObj.getMonth() + 1).padStart(2, '0') + '/' + dateObj.getFullYear();
 
-        if (nk) {
-            if (nk.ngay_day) {
-                let d = new Date(nk.ngay_day);
-                strNgay = !isNaN(d.getTime()) ? `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}` : nk.ngay_day;
-                if (!isNaN(d.getTime())) strThu = tenCacThu[d.getDay()];
-            }
-            strBuoi = nk.buoi || '';
-            strTiet = nk.tiet || '';
-            strMon = nk.phan_mon || 'Không rõ môn';
-        } else if (sk.ngay_ghi_nhan) {
-            let d = new Date(sk.ngay_ghi_nhan);
-            strNgay = !isNaN(d.getTime()) ? `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}` : sk.ngay_ghi_nhan;
-            if (!isNaN(d.getTime())) strThu = tenCacThu[d.getDay()];
-        }
+        let hienThiTiet = nkData.tiet.toLowerCase().includes('tiết') ? nkData.tiet : `Tiết ${nkData.tiet}`;
+        let timeStr = `${thuStr}, Ngày ${ngayStr} - ${nkData.buoi} - ${hienThiTiet} ${nkData.phan_mon || ''}`;
 
-        // Ghép chuỗi thời gian tiết học hoàn chỉnh (VD: Thứ 2, Ngày 28/09/2026 - Sáng - Tiết 3)
-        let thoiGianHoc = `${strThu ? strThu + ', ' : ''}Ngày ${strNgay} ${strBuoi ? ' - ' + strBuoi : ''} ${strTiet ? ' - ' + strTiet : ''}`;
+        // 3. Phân tích ảnh và áp dụng máy chủ LH3 của Google để bỏ qua lỗi chặn Thumbnail
+        let dsAnh = skData.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+        if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
 
-        // Xử lý Avatar học sinh
-        let hsAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(sk.ten_hoc_sinh)}&background=random&color=fff`;
-        if (window.DanhSachHocSinhLopHienTai) {
-            let hsObj = window.DanhSachHocSinhLopHienTai.find(h => h.uid === sk.uid_hoc_sinh || h.tenHienThi === sk.ten_hoc_sinh);
-            if (hsObj && hsObj.avatarUrl) hsAvatar = hsObj.avatarUrl;
-        }
+        let htmlAnh = '';
+        if (dsAnh.length > 0) {
+            htmlAnh = '<div style="display:flex; flex-direction:column; gap:15px; margin-top:10px;">';
+            dsAnh.forEach(link => {
+                let preview = link;
+                let fileId = '';
 
-        let diemDb = sk.thong_tin_mo_rong?.diem_so || '';
-        let diemStr = diemDb ? `<span style="background:#28a745; color:white; padding:2px 6px; border-radius:4px; font-size:12px; margin-left:5px;">⭐ ${diemDb}đ</span>` : '';
+                // Bóc tách ID từ đường dẫn Google Drive
+                let matchD = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || link.match(/[?&]id=([a-zA-Z0-9_-]+)/) || link.match(/\/open\?id=([a-zA-Z0-9_-]+)/) || link.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (matchD) fileId = matchD[1];
 
-        // --- 1. ẢNH MINH CHỨNG LỖI / SỰ KIỆN BAN ĐẦU ---
-        let dsAnhLoi = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
-        if (typeof dsAnhLoi === 'string') {
-            try { dsAnhLoi = JSON.parse(dsAnhLoi); }
-            catch (e) { dsAnhLoi = dsAnhLoi.split(',').filter(l => l.trim()); }
-        }
-        
-        let htmlAnhLoi = '';
-        if (dsAnhLoi && dsAnhLoi.length > 0) {
-            htmlAnhLoi = `<div style="margin-top:12px; border-top:1px dashed #eee; padding-top:12px;"><b style="font-size:13px; color:#495057;">📸 Ảnh minh chứng sự kiện:</b><div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;">`;
-            dsAnhLoi.forEach(link => {
-                if (!link) return;
-                let fileId = null;
-                if (link.includes('/d/')) { let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
-                else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
-                let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w400` : link;
-                htmlAnhLoi += `<a href="${link}" target="_blank"><img src="${srcTN}" style="height:70px; border-radius:6px; border:1px solid #ced4da; box-shadow:0 1px 3px rgba(0,0,0,0.1); object-fit:cover; transition:0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Bấm xem ảnh gốc"></a>`;
+                if (fileId) {
+                    // 🌟 SỬ DỤNG SERVER PHÂN PHỐI ẢNH (LH3) CỦA GOOGLE ĐỂ ÉP HIỂN THỊ ẢNH RA THẺ IMG
+                    preview = `https://lh3.googleusercontent.com/d/${fileId}`;
+                }
+
+                htmlAnh += `
+                    <div style="border: 1px solid #ced4da; border-radius: 8px; padding: 5px; background: #f8f9fa;">
+                        <img src="${preview}" onclick="window.open('${link}', '_blank')" 
+                             style="width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 4px; cursor: zoom-in; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" 
+                             title="Bấm để xem ảnh kích thước gốc trên Tab mới"
+                             onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=${fileId}&sz=w1000';">
+                        <div style="text-align: center; font-size: 11px; color: #6c757d; margin-top: 8px; font-style: italic;">(Bấm vào ảnh để xem kích thước gốc trên Tab mới)</div>
+                    </div>
+                `;
             });
-            htmlAnhLoi += `</div></div>`;
-        }
-
-        // --- 2. YÊU CẦU KHẮC PHỤC & BỘ CÔNG CỤ CẬP NHẬT ---
-        let htmlXuLy = '';
-        let xl = sk.thong_tin_mo_rong?.xu_ly;
-        
-        if (xl) {
-            window.danhSachAnhPhatDayHoc = []; // Reset RAM
-            let ttHienTai = xl.trang_thai || 'Chưa hoàn thành';
-
-            let htmlAnhPhatCu = '';
-            if (xl.anh_minh_chung && xl.anh_minh_chung.length > 0) {
-                htmlAnhPhatCu = `<div style="margin-bottom:15px;"><b style="font-size:12px; color:#6c757d;">🖼️ Ảnh khắc phục đã lưu trước đó:</b><div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;">`;
-                xl.anh_minh_chung.forEach(link => {
-                    let fileId = null;
-                    if (link.includes('/d/')) { let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
-                    else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
-                    let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w400` : link;
-                    htmlAnhPhatCu += `
-                        <div style="position:relative; display:inline-block;">
-                            <a href="${link}" target="_blank"><img src="${srcTN}" style="height:60px; width:60px; border-radius:4px; border:1px solid #ccc; box-shadow:0 1px 3px rgba(0,0,0,0.1); object-fit:cover; transition:0.2s;" title="Bấm xem ảnh gốc"></a>
-                            <button type="button" onclick="window.ham_20_58_xoa_anh_phat_cu('${sk.id}', '${link}', this)" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;" title="Xóa ảnh cũ này">✖</button>
-                        </div>
-                    `;
-                });
-                htmlAnhPhatCu += `</div></div>`;
-            }
-
-            let isDone = xl.trang_thai === 'Đã hoàn thành';
-            let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
-            let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
-            let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
-            let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
-
-            htmlXuLy = `
-                <div style="margin-top:15px; background:#fffcf8; border:1px dashed #d35400; padding:15px; border-radius:8px; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05);">
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #ffeeba; padding-bottom:8px; margin-bottom:10px;">
-                        <b style="color:#d35400; font-size:15px;">🛠️ Cập nhật tiến độ khắc phục</b>
-                        <span style="background:${bgXl}; color:${colXl}; padding:4px 10px; border-radius:15px; font-size:11px; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.1); border: 1px solid ${colXl}">${textXl}</span>
-                    </div>
-                    <div style="font-size:13px; color:#333; margin-bottom:5px;"><b>Hình thức:</b> <span style="color:#e83e8c; font-weight:bold;">${xl.hinh_thuc || 'Chưa định dạng'}</span></div>
-                    <div style="font-size:13px; color:#555; margin-bottom:15px;"><b>Nội dung:</b> ${xl.noi_dung || 'Không có chi tiết'}</div>
-                    
-                    <div style="margin-bottom:15px;">
-                        <label style="font-weight:bold; font-size:13px; color:#495057;">Trạng thái hiện tại:</label>
-                        <div style="display:flex; gap:15px; margin-top:8px;">
-                            <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Chưa hoàn thành" ${ttHienTai === 'Chưa hoàn thành' ? 'checked' : ''}> ⏳ Chưa xong</label>
-                            <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Đã nộp 1 phần" ${ttHienTai === 'Đã nộp 1 phần' ? 'checked' : ''}> 🔄 Nộp 1 phần</label>
-                            <label style="font-size:13px; cursor:pointer; display:flex; align-items:center; gap:4px;"><input type="radio" name="trang_thai_phat_dh" value="Đã hoàn thành" ${ttHienTai === 'Đã hoàn thành' ? 'checked' : ''}> ✅ Xong tất cả</label>
-                        </div>
-                    </div>
-
-                    ${htmlAnhPhatCu}
-
-                    <div style="margin-bottom:15px;">
-                        <label style="font-weight:bold; font-size:13px; color:#28a745;">📸 Nộp thêm ảnh khắc phục mới:</label>
-                        <div style="display:flex; gap:10px; margin-top:5px; align-items:flex-start;">
-                            <button type="button" onclick="document.getElementById('dh-input-anh-phat').click()" style="padding:8px 12px; background:#e0f7fa; border:1px dashed #00acc1; color:#00838f; border-radius:4px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center;">
-                                <span style="font-size:20px;">📷</span> Thêm ảnh
-                            </button>
-                            <input type="file" id="dh-input-anh-phat" accept="image/*" multiple style="display:none;" onchange="window.ham_20_52_chon_anh_phat_day_hoc(this)">
-                            <div id="dh-vung-preview-anh-phat" style="flex:1; display:flex; gap:5px; flex-wrap:wrap; min-height:55px; border:1px dashed #ccc; padding:5px; border-radius:4px; align-items:center; background:#f8f9fa;">
-                                <span style="color:#adb5bd; font-size:12px; font-style:italic;">(Chưa chọn ảnh mới)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="text-align:right; border-top:1px solid #ffeeba; padding-top:12px;">
-                        <button onclick="window.ham_20_41_luu_trang_thai_xu_ly('${sk.id}', this)" style="padding:10px 20px; background:#28a745; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(40,167,69,0.3); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">💾 Lưu cập nhật Tiến độ</button>
-                    </div>
-                </div>
-            `;
+            htmlAnh += '</div>';
         } else {
-            htmlXuLy = `<div style="margin-top:15px; font-size:13px; color:#856404; background:#fff3cd; padding:12px; border-radius:6px; border:1px dashed #ffeeba; text-align:center;">⚠️ Sự kiện này không có yêu cầu xử lý đính kèm.</div>`;
+            htmlAnh = '<div style="font-size: 13px; color: #6c757d; font-style: italic; background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px dashed #ccc; text-align: center;">Không có ảnh minh chứng đính kèm</div>';
         }
 
-        // 3. Đổ dữ liệu vào Modal chính
+        // 4. Lấy màu sắc chuẩn (Đồng bộ Xanh dương cho Tốt giống trên bảng tra cứu)
+        let mauThe = skData.thong_tin_mo_rong?.mau_sac || '#000';
+        let isTot = (mauThe.toLowerCase() === '#28a745' || skData.loai_the === 'Cho điểm');
+        let textColor = isTot ? '#007bff' : (skData.loai_the === 'Vắng mặt' ? '#28a745' : '#000');
+
         modal.innerHTML = `
-            <div style="background:#fff; width:520px; max-width:92%; padding:25px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.4); position:relative; max-height: 90vh; overflow-y: auto;">
-                <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="position:absolute; top:12px; right:15px; background:none; border:none; font-size:22px; font-weight:bold; cursor:pointer; color:#adb5bd; transition:0.2s;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color='#adb5bd'">✖</button>
-                <h3 style="margin-top:0; color:#0056b3; border-bottom:2px solid #cce5ff; padding-bottom:12px; font-size:17px; text-transform:uppercase;">
-                    📌 Chi tiết Sự kiện / Vi phạm
-                </h3>
-                
-                <div style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #e9ecef; display:flex; gap:12px; align-items:flex-start;">
-                    <img src="${hsAvatar}" style="width:45px; height:45px; border-radius:50%; border:2px solid #e83e8c; object-fit:cover; margin-top:2px;">
-                    <div style="flex:1;">
-                        <div style="font-size:15px; margin-bottom:6px; color:#e83e8c; font-weight:bold;">
-                            ${sk.ten_hoc_sinh}
-                        </div>
-                        <div style="font-size:13px; margin-bottom:5px; color:#6c757d; font-weight:bold;">
-                            🕒 ${thoiGianHoc} <span style="background:#17a2b8; color:#fff; padding:1px 6px; border-radius:4px; font-size:11px; margin-left:5px;">${strMon}</span>
-                        </div>
-                        <div style="font-size:13px; margin-bottom:5px;">
-                            <b style="color:#495057;">Sự kiện:</b> <span style="color:${sk.thong_tin_mo_rong?.mau_sac || '#0056b3'}; font-weight:bold;">${sk.loai_the}</span> ${diemStr}
-                        </div>
-                        <div style="font-size:13px; color:#555;">
-                            <b style="color:#495057;">Ghi chú:</b> <span style="color:#333;">${sk.ghi_chu || '<i style="color:#adb5bd">Không có ghi chú thêm</i>'}</span>
-                        </div>
-                    </div>
+            <div style="background:#fff; width:100%; max-width:550px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; max-height: 90vh;">
+                <div style="padding: 15px 20px; border-bottom: 2px solid #17a2b8; display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; border-radius: 12px 12px 0 0;">
+                    <h3 style="margin:0; color:#17a2b8; font-size: 16px;">📌 Chi tiết Sự kiện / Vi phạm</h3>
+                    <button onclick="document.getElementById('nk-modal-chi-tiet-su-kien').remove()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #dc3545; transition: 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">✖</button>
                 </div>
                 
-                ${htmlAnhLoi}
-                ${htmlXuLy}
-                
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; padding-top:15px; border-top:1px solid #eee; gap:10px;">
-                    <button onclick="if(confirm('⚠️ Thầy có chắc chắn muốn xóa sự kiện này khỏi Hồ sơ học sinh không?')) { window.ham_20_35_xoa_su_kien_trong_db('${sk.id}', document.getElementById('nk-modal-chitiet-sk')); }" style="padding:10px 15px; background:#dc3545; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='#dc3545'">🗑️ Xóa sự kiện</button>
-                    <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="padding:10px 25px; background:#6c757d; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">Đóng lại</button>
+                <div style="padding: 20px; overflow-y: auto;">
+                    <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 5px;">${skData.ten_hoc_sinh}</div>
+                    <div style="font-size: 13px; color: #6c757d; margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">🕒 ${timeStr}</div>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <strong style="color: #495057;">Sự kiện:</strong> <span style="font-weight: bold; color: ${textColor};">${skData.loai_the}</span>
+                        ${skData.thong_tin_mo_rong?.diem_so ? ` <span style="background:#28a745; color:white; padding:2px 6px; border-radius:4px; font-size:11px;">⭐ ${skData.thong_tin_mo_rong.diem_so}đ</span>` : ''}
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: #495057;">Ghi chú:</strong> <span style="color: #333;">${skData.ghi_chu || 'Không có ghi chú thêm'}</span>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <strong style="color: #495057; display: block; margin-bottom: 8px;">📸 Ảnh minh chứng sự kiện:</strong>
+                        ${htmlAnh}
+                    </div>
                 </div>
             </div>
         `;
+
     } catch (e) {
-        console.error(e);
-        modal.innerHTML = `
-            <div style="background:#fff; padding:20px; border-radius:8px; font-weight:bold; color:#dc3545; text-align:center; position:relative;">
-                <button onclick="document.getElementById('nk-modal-chitiet-sk').remove()" style="position:absolute; top:5px; right:10px; background:none; border:none; font-size:18px; cursor:pointer; color:#adb5bd;">✖</button>
-                <div style="margin-top:10px;">❌ Lỗi tải chi tiết: ${e.message}</div>
-            </div>`;
+        modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:12px; font-weight:bold; color:#dc3545; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center;">❌ Lỗi tải dữ liệu: ${e.message}<br><br><button onclick="document.getElementById('nk-modal-chi-tiet-su-kien').remove()" style="margin-top: 15px; padding: 8px 15px; background: #6c757d; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Đóng</button></div>`;
     }
 };
+
+
 
 
 
