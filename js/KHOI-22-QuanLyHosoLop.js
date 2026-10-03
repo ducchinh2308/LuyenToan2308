@@ -1027,8 +1027,92 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
     }
 };
 
+// // =====================================================================
+// // HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CHO PHÉP ZOOM OUT THU NHỎ THẢ GA)
+// // =====================================================================
+// window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
+//     // 1. Tải thư viện CropperJS nếu chưa có
+//     if (typeof window.Cropper === 'undefined') {
+//         Swal.fire({ title: 'Đang tải bộ công cụ cắt ảnh...', didOpen: () => Swal.showLoading() });
+//         await new Promise((resolve) => {
+//             const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(link);
+//             const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+//         });
+//         Swal.close();
+//     }
+
+//     return new Promise(async (resolve) => {
+//         let objectURL = URL.createObjectURL(fileImage);
+
+//         let modalBox = document.createElement('div');
+//         modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
+
+//         modalBox.innerHTML = `
+//             <div style="flex: 0 0 60px; background:#222; padding:0 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10;">
+//                 <span style="color:#ffc107; font-weight:bold; font-size:15px;">✂️ CẮT & TỐI ƯU HÓA ẢNH (CHO PHÉP ZOOM OUT)</span>
+//                 <div style="display:flex; gap:10px;">
+//                     <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh này</button>
+//                     <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Bỏ qua file này</button>
+//                 </div>
+//             </div>
+//             <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 60px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+//                 <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
+//             </div>
+//         `;
+//         document.body.appendChild(modalBox);
+
+//         const targetImg = document.getElementById('img_cropper_target_popup');
+
+//         // 🌟 CẤU HÌNH MỞ RỘNG GIỚI HẠN ZOOM OUT
+//         let cropperInstance = new window.Cropper(targetImg, {
+//             viewMode: 0,             // Cho phép khung ảnh dịch chuyển thoải mái ra ngoài vùng canvas
+//             dragMode: 'crop',        // Chế độ kéo tạo khung hoặc 'move' để dịch chuyển ảnh
+//             autoCropArea: 0.9,       // Khung cắt mặc định chiếm 90% diện tích ảnh
+//             restore: false,
+//             guides: true,
+//             center: true,
+//             highlight: false,
+//             cropBoxMovable: true,
+//             cropBoxResizable: true,
+//             toggleDragModeOnDblclick: false,
+//             zoomOnWheel: true,       // Cho phép lăn chuột giữa để phóng to / thu nhỏ (zoom in/out) thoải mái
+//             zoomOnTouch: true,       // Cho phép chụm 2 ngón tay để zoom trên điện thoại
+//             wheelZoomRatio: 0.1,     // Tốc độ zoom mượt mà
+//             minContainerWidth: 200,
+//             minContainerHeight: 200,
+//             responsive: true
+//         });
+
+//         document.getElementById('btn_cropper_huy').onclick = function () {
+//             cropperInstance.destroy();
+//             modalBox.remove();
+//             URL.revokeObjectURL(objectURL);
+//             resolve(null);
+//         };
+
+//         document.getElementById('btn_cropper_luu').onclick = function () {
+//             const canvas = cropperInstance.getCroppedCanvas({
+//                 maxWidth: 1920,
+//                 maxHeight: 1920,
+//                 imageSmoothingEnabled: true,
+//                 imageSmoothingQuality: 'high'
+//             });
+
+//             canvas.toBlob((blob) => {
+//                 cropperInstance.destroy();
+//                 modalBox.remove();
+//                 URL.revokeObjectURL(objectURL);
+//                 resolve(blob);
+//             }, 'image/jpeg', 0.8);
+//         };
+//     });
+// };
+
+
+
+
 // =====================================================================
-// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CHO PHÉP ZOOM OUT THU NHỎ THẢ GA)
+// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CÓ CHỌN ĐỘ PHÂN GIẢI & ZOOM OUT THẢ GA)
 // =====================================================================
 window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
     // 1. Tải thư viện CropperJS nếu chưa có
@@ -1048,13 +1132,25 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
 
         modalBox.innerHTML = `
-            <div style="flex: 0 0 60px; background:#222; padding:0 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10;">
-                <span style="color:#ffc107; font-weight:bold; font-size:15px;">✂️ CẮT & TỐI ƯU HÓA ẢNH (CHO PHÉP ZOOM OUT)</span>
-                <div style="display:flex; gap:10px;">
-                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh này</button>
-                    <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Bỏ qua file này</button>
+            <!-- THANH CÔNG CỤ CỐ ĐỊNH PHÍA TRÊN (GỒM CHỌN ĐỘ PHÂN GIẢI VÀ NÚT LƯU/HỦY) -->
+            <div style="flex: 0 0 60px; background:#222; padding:0 15px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="color:#ffc107; font-weight:bold; font-size:13px;">📐 Độ phân giải:</span>
+                    <select id="select_chat_luong_anh_popup" style="padding:6px 10px; border-radius:4px; background:#fff; color:#333; font-weight:bold; font-size:12px; border:1px solid #ccc; outline:none; cursor:pointer;">
+                        <option value="ORIGINAL">✨ Giữ nguyên bản (Gốc)</option>
+                        <option value="2K">🖥️ Chuẩn 2K (Max 2560px)</option>
+                        <option value="FULLHD" selected>💻 Chuẩn Full HD (Max 1920px)</option>
+                        <option value="HD">📱 Chuẩn HD (Max 1280px)</option>
+                    </select>
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:7px 15px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh này</button>
+                    <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:7px 15px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Bỏ qua</button>
                 </div>
             </div>
+
+            <!-- VÙNG CHỨA ẢNH CẮT (CHO PHÉP ZOOM OUT THU NHỎ THẢ GA) -->
             <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 60px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
             </div>
@@ -1063,11 +1159,10 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
 
         const targetImg = document.getElementById('img_cropper_target_popup');
 
-        // 🌟 CẤU HÌNH MỞ RỘNG GIỚI HẠN ZOOM OUT
         let cropperInstance = new window.Cropper(targetImg, {
-            viewMode: 0,             // Cho phép khung ảnh dịch chuyển thoải mái ra ngoài vùng canvas
-            dragMode: 'crop',        // Chế độ kéo tạo khung hoặc 'move' để dịch chuyển ảnh
-            autoCropArea: 0.9,       // Khung cắt mặc định chiếm 90% diện tích ảnh
+            viewMode: 0,             // Cho phép dịch chuyển và thu nhỏ ảnh thoải mái ra ngoài khung
+            dragMode: 'crop',
+            autoCropArea: 0.9,
             restore: false,
             guides: true,
             center: true,
@@ -1075,9 +1170,9 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
             cropBoxMovable: true,
             cropBoxResizable: true,
             toggleDragModeOnDblclick: false,
-            zoomOnWheel: true,       // Cho phép lăn chuột giữa để phóng to / thu nhỏ (zoom in/out) thoải mái
-            zoomOnTouch: true,       // Cho phép chụm 2 ngón tay để zoom trên điện thoại
-            wheelZoomRatio: 0.1,     // Tốc độ zoom mượt mà
+            zoomOnWheel: true,       // Lăn chuột phóng to / thu nhỏ linh hoạt
+            zoomOnTouch: true,       // Chụm ngón tay zoom trên điện thoại
+            wheelZoomRatio: 0.1,
             minContainerWidth: 200,
             minContainerHeight: 200,
             responsive: true
@@ -1091,9 +1186,23 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         };
 
         document.getElementById('btn_cropper_luu').onclick = function () {
+            // Đọc mức độ phân giải mà thầy/cô vừa chọn từ thẻ select
+            const kieuChon = document.getElementById('select_chat_luong_anh_popup').value;
+            let maxW = 1920, maxH = 1920, chatLuongJpeg = 0.8;
+
+            if (kieuChon === 'ORIGINAL') {
+                maxW = 10000; maxH = 10000; chatLuongJpeg = 0.92;
+            } else if (kieuChon === '2K') {
+                maxW = 2560; maxH = 2560; chatLuongJpeg = 0.85;
+            } else if (kieuChon === 'FULLHD') {
+                maxW = 1920; maxH = 1920; chatLuongJpeg = 0.8;
+            } else if (kieuChon === 'HD') {
+                maxW = 1280; maxH = 1280; chatLuongJpeg = 0.7;
+            }
+
             const canvas = cropperInstance.getCroppedCanvas({
-                maxWidth: 1920,
-                maxHeight: 1920,
+                maxWidth: maxW,
+                maxHeight: maxH,
                 imageSmoothingEnabled: true,
                 imageSmoothingQuality: 'high'
             });
@@ -1102,11 +1211,12 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
                 cropperInstance.destroy();
                 modalBox.remove();
                 URL.revokeObjectURL(objectURL);
-                resolve(blob);
-            }, 'image/jpeg', 0.8);
+                resolve(blob); // Trả về file blob đã cắt nén theo đúng độ phân giải mong muốn[cite: 4]
+            }, 'image/jpeg', chatLuongJpeg);
         };
     });
 };
+
 
 
 // =====================================================================
