@@ -1028,7 +1028,7 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
 };
 
 // =====================================================================
-// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH NHANH (SỬ DỤNG CROPPERJS)
+// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (ĐÃ CỐ ĐỊNH THANH NÚT BẤM KHÔNG BỊ CHE)
 // =====================================================================
 window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
     // 1. Tải thư viện CropperJS nếu chưa có
@@ -1045,16 +1045,20 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         let objectURL = URL.createObjectURL(fileImage);
 
         let modalBox = document.createElement('div');
-        modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; flex-direction:column; z-index:9999999; animation:fadeIn 0.2s;';
+        // Ép toàn bộ modal chiếm trọn màn hình với flex-direction column và ẩn thanh cuộn thừa
+        modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
+
         modalBox.innerHTML = `
-            <div style="background:#222; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444;">
+            <!-- Thanh tiêu đề và nút bấm được cố định chiều cao, không bao giờ bị che -->
+            <div style="flex: 0 0 60px; background:#222; padding:0 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10;">
                 <span style="color:#ffc107; font-weight:bold; font-size:15px;">✂️ CẮT & TỐI ƯU HÓA ẢNH (CHUẨN FULL HD)</span>
                 <div style="display:flex; gap:10px;">
-                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer;">💾 Lưu ảnh này</button>
-                    <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer;">✖ Bỏ qua file này</button>
+                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh này</button>
+                    <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Bỏ qua file này</button>
                 </div>
             </div>
-            <div style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#111;">
+            <!-- Vùng chứa ảnh cắt chiếm phần không gian còn lại -->
+            <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 60px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
             </div>
         `;
@@ -1093,7 +1097,6 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         };
     });
 };
-
 
 // =====================================================================
 // 1. XÓA FILE LẺ BÊN TRONG THÀNH PHẦN (CÓ XÓA DRIVE)
