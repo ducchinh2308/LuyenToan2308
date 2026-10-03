@@ -1109,10 +1109,8 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
 // };
 
 
-
-
 // =====================================================================
-// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CÓ CHỌN ĐỘ PHÂN GIẢI & ZOOM OUT THẢ GA)
+// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CHẾ ĐỘ MOVE ẢNH & ZOOM OUT THẢ GA)
 // =====================================================================
 window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
     // 1. Tải thư viện CropperJS nếu chưa có
@@ -1132,25 +1130,25 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
 
         modalBox.innerHTML = `
-            <!-- THANH CÔNG CỤ CỐ ĐỊNH PHÍA TRÊN (GỒM CHỌN ĐỘ PHÂN GIẢI VÀ NÚT LƯU/HỦY) -->
+            <!-- THANH CÔNG CỤ PHÍA TRÊN -->
             <div style="flex: 0 0 60px; background:#222; padding:0 15px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10; flex-wrap:wrap; gap:10px;">
                 <div style="display:flex; align-items:center; gap:8px;">
                     <span style="color:#ffc107; font-weight:bold; font-size:13px;">📐 Độ phân giải:</span>
                     <select id="select_chat_luong_anh_popup" style="padding:6px 10px; border-radius:4px; background:#fff; color:#333; font-weight:bold; font-size:12px; border:1px solid #ccc; outline:none; cursor:pointer;">
-                        <option value="ORIGINAL">✨ Giữ nguyên bản (Gốc)</option>
-                        <option value="2K">🖥️ Chuẩn 2K (Max 2560px)</option>
-                        <option value="FULLHD" selected>💻 Chuẩn Full HD (Max 1920px)</option>
-                        <option value="HD">📱 Chuẩn HD (Max 1280px)</option>
+                        <option value="ORIGINAL">✨ Gốc</option>
+                        <option value="2K">🖥️ 2K</option>
+                        <option value="FULLHD" selected>💻 Full HD</option>
+                        <option value="HD">📱 HD</option>
                     </select>
                 </div>
 
                 <div style="display:flex; gap:8px;">
-                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:7px 15px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh này</button>
+                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:7px 15px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu ảnh</button>
                     <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:7px 15px; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Bỏ qua</button>
                 </div>
             </div>
 
-            <!-- VÙNG CHỨA ẢNH CẮT (CHO PHÉP ZOOM OUT THU NHỎ THẢ GA) -->
+            <!-- VÙNG CHỨA ẢNH CẮT -->
             <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 60px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                 <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
             </div>
@@ -1160,17 +1158,17 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         const targetImg = document.getElementById('img_cropper_target_popup');
 
         let cropperInstance = new window.Cropper(targetImg, {
-            viewMode: 0,             // Cho phép dịch chuyển và thu nhỏ ảnh thoải mái ra ngoài khung
-            dragMode: 'crop',
-            autoCropArea: 0.9,
+            viewMode: 0,             // Cho phép dịch chuyển ảnh thoải mái ra ngoài khung
+            dragMode: 'move',        // 🌟 ĐẶT LÀ 'MOVE': Giúp bấm và kéo bức ảnh dịch chuyển tự do đi bất cứ đâu
+            autoCropArea: 0.95,       // Khung cắt mặc định phủ rộng gần kín ảnh
             restore: false,
             guides: true,
             center: true,
             highlight: false,
-            cropBoxMovable: true,
-            cropBoxResizable: true,
-            toggleDragModeOnDblclick: false,
-            zoomOnWheel: true,       // Lăn chuột phóng to / thu nhỏ linh hoạt
+            cropBoxMovable: true,    // Cho phép di chuyển khung cắt bằng cách kéo viền/giữa khung
+            cropBoxResizable: true,  // Cho phép co giãn kích thước khung cắt
+            toggleDragModeOnDblclick: true, // 🌟 Bật tính năng: Nhấp đúp chuột/chạm 2 lần để chuyển đổi nhanh giữa chế độ Kéo ảnh (move) và Vẽ khung (crop)
+            zoomOnWheel: true,       // Lăn chuột phóng to / thu nhỏ
             zoomOnTouch: true,       // Chụm ngón tay zoom trên điện thoại
             wheelZoomRatio: 0.1,
             minContainerWidth: 200,
@@ -1186,7 +1184,6 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         };
 
         document.getElementById('btn_cropper_luu').onclick = function () {
-            // Đọc mức độ phân giải mà thầy/cô vừa chọn từ thẻ select
             const kieuChon = document.getElementById('select_chat_luong_anh_popup').value;
             let maxW = 1920, maxH = 1920, chatLuongJpeg = 0.8;
 
@@ -1211,14 +1208,11 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
                 cropperInstance.destroy();
                 modalBox.remove();
                 URL.revokeObjectURL(objectURL);
-                resolve(blob); // Trả về file blob đã cắt nén theo đúng độ phân giải mong muốn[cite: 4]
+                resolve(blob);
             }, 'image/jpeg', chatLuongJpeg);
         };
     });
 };
-
-
-
 // =====================================================================
 // 1. XÓA FILE LẺ BÊN TRONG THÀNH PHẦN (CÓ XÓA DRIVE)
 // =====================================================================
