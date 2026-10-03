@@ -797,32 +797,158 @@ window.ham_22_18_luu_thanh_phan = async function (idDanhMuc, idMucCon, idThanhPh
     } catch (e) { alert("❌ Lỗi: " + e.message); }
 };
 
+// // =====================================================================
+// // HÀM 22.19: UPLOAD FILE VÀO THÀNH PHẦN TƯƠNG ỨNG (CÓ TIẾN TRÌNH CHI TIẾT)
+// // =====================================================================
+// window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhMuc, idMucCon, idThanhPhan) {
+//     const files = Array.from(inputElem.files);
+//     if (files.length === 0) return;
+
+//     const btn = inputElem.previousElementSibling;
+//     const oldText = btn.innerHTML;
+//     btn.innerHTML = "⏳ Đang xử lý..."; btn.disabled = true;
+
+//     try {
+//         let imgFiles = files.filter(f => f.type.startsWith('image/'));
+//         let docFiles = files.filter(f => !f.type.startsWith('image/'));
+//         let processedImages = [];
+
+//         if (imgFiles.length > 0 && typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+//             processedImages = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(imgFiles);
+//         } else if (imgFiles.length > 0 && typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+//             processedImages = await window.ham_20_25_xu_ly_mang_anh_dau_vao(imgFiles);
+//         } else {
+//             processedImages = imgFiles;
+//         }
+
+//         let allFinalFiles = [...processedImages, ...docFiles];
+//         if (allFinalFiles.length === 0) throw new Error("Thao tác bị hủy.");
+
+//         const tabData = window.qlhs_DanhSachDanhMuc.find(t => t.id === idDanhMuc);
+//         let mangMucCon = typeof tabData.du_lieu_json === 'string' ? JSON.parse(tabData.du_lieu_json || '[]') : tabData.du_lieu_json;
+//         let mucCon = mangMucCon.find(m => m.idMucCon === idMucCon);
+//         let thanhPhan = mucCon.mangThanhPhan.find(tp => tp.idThanhPhan === idThanhPhan);
+
+//         if (!thanhPhan.duLieu.danhSachFile) thanhPhan.duLieu.danhSachFile = [];
+
+//         // Tên Thư Mục Drive Cấu Trúc Đẹp Nhất: TabLớn_MụcCon
+//         let tenDanhMucChuan = window.taoTenAnToan ? window.taoTenAnToan(tabData.ten_danh_muc, 40) : tabData.ten_danh_muc.replace(/[\\/:*?"<>| ]/g, "_");
+//         let tenMucConChuan = window.taoTenAnToan ? window.taoTenAnToan(mucCon.tenMucCon, 40) : mucCon.tenMucCon.replace(/[\\/:*?"<>| ]/g, "_");
+
+//         for (let k = 0; k < allFinalFiles.length; k++) {
+//             let f = allFinalFiles[k];
+//             let b64 = await new Promise((resolve, reject) => {
+//                 let reader = new FileReader();
+//                 reader.onload = () => { let res = reader.result; resolve(res.includes(',') ? res.split(',')[1] : res); };
+//                 reader.onerror = err => reject(err); reader.readAsDataURL(f);
+//             });
+
+//             if (!b64) throw new Error("Lỗi đọc file.");
+
+//             let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '';
+//             let tenGoc = f.name.replace(duoiFile, '').replace(/[\\/:*?"<>| ]/g, "_");
+//             let tenFileMoi = `HoSo_${window.qlhs_MaLopHienTai}_${tenGoc}${duoiFile}`;
+
+//             btn.innerHTML = `🚀 Đang tải (${k + 1}/${allFinalFiles.length})...`;
+
+//             let payload = {
+//                 action: "upload_file_ho_so_lop",
+//                 base64: b64, base64Data: b64, mimeType: f.type, fileName: tenFileMoi,
+//                 maLop: window.qlhs_MaLopHienTai,
+//                 tenDanhMuc: tenDanhMucChuan,
+//                 tenMucCon: tenMucConChuan
+//             };
+
+//             let uploadResult;
+//             if (typeof window.ham_ho_tro_upload_anh_co_tien_trinh === 'function') {
+//                 uploadResult = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                     CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
+//                     payload,
+//                     (phanTram, daTai, tongSo) => {
+//                         // 🌟 TÍNH TOÁN DUNG LƯỢNG VÀ HIỂN THỊ CHI TIẾT
+//                         let strDaTai = (daTai / 1024).toFixed(1) + ' KB';
+//                         let strTongSo = (tongSo / 1024).toFixed(1) + ' KB';
+
+//                         if (typeof window.ham_dinh_dang_dung_luong === 'function') {
+//                             strDaTai = window.ham_dinh_dang_dung_luong(daTai);
+//                             strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
+//                         }
+
+//                         // Chạy màu nền dần dần từ trái sang phải
+//                         btn.style.background = `linear-gradient(90deg, #28a745 ${phanTram}%, #007bff ${phanTram}%)`;
+
+//                         // Hiển thị nội dung File đang tải + KB + %
+//                         btn.innerHTML = `🚀 Đang tải (${k + 1}/${allFinalFiles.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+//                     }
+//                 );
+//             } else {
+//                 const res = await fetch(CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, { method: "POST", body: JSON.stringify(payload) });
+//                 uploadResult = await res.json();
+//             }
+
+//             if (uploadResult && uploadResult.status === 'success') {
+//                 thanhPhan.duLieu.danhSachFile.push({ name: f.name, url: uploadResult.url, size: (f.size / 1024).toFixed(1), type: f.type });
+//             } else { throw new Error(uploadResult.message || "Lỗi tải lên từ máy chủ."); }
+//         }
+
+//         btn.style.background = ''; // Xóa màu nền gradient tiến trình
+//         btn.innerHTML = "⏳ Lưu Database...";
+//         const { error: errUp } = await _supabase.from('ho_so_danh_muc_lop').update({ du_lieu_json: mangMucCon }).eq('id', idDanhMuc);
+//         if (errUp) throw errUp;
+
+//         tabData.du_lieu_json = mangMucCon;
+//         window.ham_22_16_mo_muc_con(idDanhMuc, idMucCon);
+
+//     } catch (e) {
+//         if (e.message !== "Thao tác bị hủy.") alert("❌ Lỗi: " + e.message);
+//     } finally {
+//         inputElem.value = '';
+//         btn.style.background = '';
+//         btn.innerHTML = oldText;
+//         btn.disabled = false;
+//     }
+// };
+
+
 // =====================================================================
-// HÀM 22.19: UPLOAD FILE VÀO THÀNH PHẦN TƯƠNG ỨNG (CÓ TIẾN TRÌNH CHI TIẾT)
+// HÀM 22.19: CHO PHÉP CHỌN FILE, CHỤP CAMERA, CẮT NÉN TRỰC TIẾP & UPLOAD
 // =====================================================================
 window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhMuc, idMucCon, idThanhPhan) {
     const files = Array.from(inputElem.files);
     if (files.length === 0) return;
 
     const btn = inputElem.previousElementSibling;
-    const oldText = btn.innerHTML;
-    btn.innerHTML = "⏳ Đang xử lý..."; btn.disabled = true;
+    const oldText = btn ? btn.innerHTML : "☁️ Tải Tệp Lên";
+    if (btn) { btn.innerHTML = "⏳ Đang chuẩn bị ảnh..."; btn.disabled = true; }
 
     try {
-        let imgFiles = files.filter(f => f.type.startsWith('image/'));
-        let docFiles = files.filter(f => !f.type.startsWith('image/'));
-        let processedImages = [];
+        let finalFilesToUpload = [];
 
-        if (imgFiles.length > 0 && typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
-            processedImages = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(imgFiles);
-        } else if (imgFiles.length > 0 && typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
-            processedImages = await window.ham_20_25_xu_ly_mang_anh_dau_vao(imgFiles);
-        } else {
-            processedImages = imgFiles;
+        // Duyệt qua từng file được chọn/chụp
+        for (let i = 0; i < files.length; i++) {
+            let file = filesi = files[i];
+
+            // Nếu là file ảnh, ta mở công cụ Cắt & Nén trực tiếp trước khi upload
+            if (file.type.startsWith('image/')) {
+                let processedBlob = await window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh(file);
+                if (processedBlob) {
+                    let newFile = new File([processedBlob], file.name.replace(/\.[^/.]+$/, "") + "_edit.jpg", {
+                        type: 'image/jpeg',
+                        lastModified: Date.now()
+                    });
+                    finalFilesToUpload.push(newFile);
+                }
+            } else {
+                // Nếu là file tài liệu (PDF, Word, Excel...) thì giữ nguyên không cần cắt nén
+                finalFilesToUpload.push(file);
+            }
         }
 
-        let allFinalFiles = [...processedImages, ...docFiles];
-        if (allFinalFiles.length === 0) throw new Error("Thao tác bị hủy.");
+        if (finalFilesToUpload.length === 0) {
+            if (btn) { btn.style.background = ''; btn.innerHTML = oldText; btn.disabled = false; }
+            inputElem.value = '';
+            return;
+        }
 
         const tabData = window.qlhs_DanhSachDanhMuc.find(t => t.id === idDanhMuc);
         let mangMucCon = typeof tabData.du_lieu_json === 'string' ? JSON.parse(tabData.du_lieu_json || '[]') : tabData.du_lieu_json;
@@ -831,12 +957,11 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
 
         if (!thanhPhan.duLieu.danhSachFile) thanhPhan.duLieu.danhSachFile = [];
 
-        // Tên Thư Mục Drive Cấu Trúc Đẹp Nhất: TabLớn_MụcCon
         let tenDanhMucChuan = window.taoTenAnToan ? window.taoTenAnToan(tabData.ten_danh_muc, 40) : tabData.ten_danh_muc.replace(/[\\/:*?"<>| ]/g, "_");
         let tenMucConChuan = window.taoTenAnToan ? window.taoTenAnToan(mucCon.tenMucCon, 40) : mucCon.tenMucCon.replace(/[\\/:*?"<>| ]/g, "_");
 
-        for (let k = 0; k < allFinalFiles.length; k++) {
-            let f = allFinalFiles[k];
+        for (let k = 0; k < finalFilesToUpload.length; k++) {
+            let f = finalFilesToUpload[k];
             let b64 = await new Promise((resolve, reject) => {
                 let reader = new FileReader();
                 reader.onload = () => { let res = reader.result; resolve(res.includes(',') ? res.split(',')[1] : res); };
@@ -849,7 +974,7 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
             let tenGoc = f.name.replace(duoiFile, '').replace(/[\\/:*?"<>| ]/g, "_");
             let tenFileMoi = `HoSo_${window.qlhs_MaLopHienTai}_${tenGoc}${duoiFile}`;
 
-            btn.innerHTML = `🚀 Đang tải (${k + 1}/${allFinalFiles.length})...`;
+            if (btn) btn.innerHTML = `🚀 Đang tải (${k + 1}/${finalFilesToUpload.length})...`;
 
             let payload = {
                 action: "upload_file_ho_so_lop",
@@ -865,20 +990,16 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
                     CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP,
                     payload,
                     (phanTram, daTai, tongSo) => {
-                        // 🌟 TÍNH TOÁN DUNG LƯỢNG VÀ HIỂN THỊ CHI TIẾT
                         let strDaTai = (daTai / 1024).toFixed(1) + ' KB';
                         let strTongSo = (tongSo / 1024).toFixed(1) + ' KB';
-
                         if (typeof window.ham_dinh_dang_dung_luong === 'function') {
                             strDaTai = window.ham_dinh_dang_dung_luong(daTai);
                             strTongSo = window.ham_dinh_dang_dung_luong(tongSo);
                         }
-
-                        // Chạy màu nền dần dần từ trái sang phải
-                        btn.style.background = `linear-gradient(90deg, #28a745 ${phanTram}%, #007bff ${phanTram}%)`;
-
-                        // Hiển thị nội dung File đang tải + KB + %
-                        btn.innerHTML = `🚀 Đang tải (${k + 1}/${allFinalFiles.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                        if (btn) {
+                            btn.style.background = `linear-gradient(90deg, #28a745 ${phanTram}%, #007bff ${phanTram}%)`;
+                            btn.innerHTML = `🚀 Đang tải (${k + 1}/${finalFilesToUpload.length})<br><span style="font-size: 11px; font-weight: normal;">${strDaTai} / ${strTongSo} (${phanTram}%)</span>`;
+                        }
                     }
                 );
             } else {
@@ -891,8 +1012,7 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
             } else { throw new Error(uploadResult.message || "Lỗi tải lên từ máy chủ."); }
         }
 
-        btn.style.background = ''; // Xóa màu nền gradient tiến trình
-        btn.innerHTML = "⏳ Lưu Database...";
+        if (btn) { btn.style.background = ''; btn.innerHTML = "⏳ Lưu Database..."; }
         const { error: errUp } = await _supabase.from('ho_so_danh_muc_lop').update({ du_lieu_json: mangMucCon }).eq('id', idDanhMuc);
         if (errUp) throw errUp;
 
@@ -903,12 +1023,76 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
         if (e.message !== "Thao tác bị hủy.") alert("❌ Lỗi: " + e.message);
     } finally {
         inputElem.value = '';
-        btn.style.background = '';
-        btn.innerHTML = oldText;
-        btn.disabled = false;
+        if (btn) { btn.style.background = ''; btn.innerHTML = oldText; btn.disabled = false; }
     }
 };
 
+// =====================================================================
+// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH NHANH (SỬ DỤNG CROPPERJS)
+// =====================================================================
+window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
+    // 1. Tải thư viện CropperJS nếu chưa có
+    if (typeof window.Cropper === 'undefined') {
+        Swal.fire({ title: 'Đang tải bộ công cụ cắt ảnh...', didOpen: () => Swal.showLoading() });
+        await new Promise((resolve) => {
+            const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(link);
+            const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+        });
+        Swal.close();
+    }
+
+    return new Promise(async (resolve) => {
+        let objectURL = URL.createObjectURL(fileImage);
+
+        let modalBox = document.createElement('div');
+        modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; flex-direction:column; z-index:9999999; animation:fadeIn 0.2s;';
+        modalBox.innerHTML = `
+            <div style="background:#222; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444;">
+                <span style="color:#ffc107; font-weight:bold; font-size:15px;">✂️ CẮT & TỐI ƯU HÓA ẢNH (CHUẨN FULL HD)</span>
+                <div style="display:flex; gap:10px;">
+                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer;">💾 Lưu ảnh này</button>
+                    <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:8px 18px; border-radius:6px; font-weight:bold; cursor:pointer;">✖ Bỏ qua file này</button>
+                </div>
+            </div>
+            <div style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#111;">
+                <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
+            </div>
+        `;
+        document.body.appendChild(modalBox);
+
+        const targetImg = document.getElementById('img_cropper_target_popup');
+        let cropperInstance = new window.Cropper(targetImg, {
+            viewMode: 2,
+            autoCropArea: 0.95,
+            background: false,
+            responsive: true
+        });
+
+        document.getElementById('btn_cropper_huy').onclick = function () {
+            cropperInstance.destroy();
+            modalBox.remove();
+            URL.revokeObjectURL(objectURL);
+            resolve(null); // Bỏ qua file này
+        };
+
+        document.getElementById('btn_cropper_luu').onclick = function () {
+            // Lấy canvas đã cắt và tự động giới hạn chuẩn Full HD (1920px) với chất lượng 0.8
+            const canvas = cropperInstance.getCroppedCanvas({
+                maxWidth: 1920,
+                maxHeight: 1920,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high'
+            });
+
+            canvas.toBlob((blob) => {
+                cropperInstance.destroy();
+                modalBox.remove();
+                URL.revokeObjectURL(objectURL);
+                resolve(blob); // Trả về tệp blob đã cắt nén hoàn chỉnh
+            }, 'image/jpeg', 0.8);
+        };
+    });
+};
 
 
 // =====================================================================
