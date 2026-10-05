@@ -753,31 +753,75 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                 `;
             }
 
+            // htmlRows += `
+            //     <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
+            //         <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+            //         <td style="padding: 15px 10px;">
+            //             <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
+            //             <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
+            //             <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
+            //         </td>
+            //         <td style="padding: 15px 10px;">
+            //             <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
+            //             ${khungThongTinPhu}
+            //             <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
+            //                 ${loaiBadge} 
+            //                 <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi lúc: ${ngayGui}</span>
+            //             </div>
+            //         </td>
+            //         <td style="padding: 15px 10px;">
+            //             <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
+            //                 "${don.ly_do || 'Không có lý do giải trình.'}"
+            //             </div>
+            //         </td>
+            //         <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
+            //         <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
+            //     </tr>
+            // `;
+            // =====================================================================
+            // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
+            // =====================================================================
+            // =====================================================================
+            // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
+            // =====================================================================
+            const tenLopCuaHocSinh = tuDienLopHoc[don.ma_lop] || don.ma_lop || 'Chưa xếp lớp';
+
             htmlRows += `
                 <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
                     <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+                    
                     <td style="padding: 15px 10px;">
                         <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
-                        <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
+                        <div style="font-size: 12px; color: #28a745; margin-top: 4px;">Lớp: <b title="Mã lớp: ${don.ma_lop || 'N/A'}">${tenLopCuaHocSinh}</b></div>
                         <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
                     </td>
+                    
                     <td style="padding: 15px 10px;">
                         <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
                         ${khungThongTinPhu}
                         <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
                             ${loaiBadge} 
-                            <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi lúc: ${ngayGui}</span>
+                            <!-- Đã chuyển "Gửi lúc" sang cột ghi chú -->
                         </div>
                     </td>
+                    
                     <td style="padding: 15px 10px;">
+                        <!-- 🌟 BỔ SUNG NGÀY GIỜ VÀO ĐẦU CỘT GHI CHÚ -->
+                        <div style="font-size: 11px; color: #6c757d; margin-bottom: 6px; font-weight: bold;">
+                            🕒 Gửi lúc: <span style="color: #495057;">${ngayGui}</span>
+                        </div>
+                        
                         <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
                             "${don.ly_do || 'Không có lý do giải trình.'}"
                         </div>
                     </td>
+                    
                     <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
                     <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
                 </tr>
             `;
+
+
         });
 
         // 5. RENDER MAIN GIAO DIỆN

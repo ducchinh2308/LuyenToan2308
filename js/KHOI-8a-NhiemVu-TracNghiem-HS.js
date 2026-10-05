@@ -2267,7 +2267,7 @@ window.ham_8a_15_xin_luot_lam_bai_trac_nghiem = function (maNhiemVu, tenNhiemVu,
             Swal.fire({
                 icon: 'success',
                 title: 'Đã gửi đơn thành công!',
-                text: 'Yêu cầu của em đã được ném vào Hòm thư của Giáo viên. Hãy đợi Thầy duyệt nha!',
+                text: 'Yêu cầu của em đã được gửi vào Hòm thư của Giáo viên. Hãy đợi Thầy duyệt nha!',
                 confirmButtonColor: '#28a745'
             });
         }

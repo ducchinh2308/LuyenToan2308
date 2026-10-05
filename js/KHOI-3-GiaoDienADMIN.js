@@ -62,7 +62,14 @@ function ham_3_1_ve_dashboard_admin() {
 
             <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG HỆ THỐNG (ADMIN)</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
-                <button onclick="ham_14_1_ve_tab_duyet_don()" style="padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📩 Duyệt Yêu Cầu</button>
+                <button onclick="ham_14_1_ve_tab_duyet_don()" style="position: relative; padding: 12px 20px; background: #ffc107; color: #000; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    📩 Duyệt Yêu Cầu
+    <!-- Vị trí gắn Badge -->
+    <span id="badge-so-don-cho" style="display:none; position: absolute; top: -8px; right: -8px; background: #dc3545; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: 900; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">0</span>
+</button>
+                
+                
+                
                 <button onclick="ham_4_1_ve_quan_ly_lop()" style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🏫 Quản Lý Lớp</button>
                 <button onclick="ham_5_1_ve_quan_ly_hoc_sinh()" style="padding: 12px 20px; background: #6f42c1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🎓 Quản Lý HS</button>
                 
@@ -116,12 +123,56 @@ function ham_3_1_ve_dashboard_admin() {
     // Nhúng toàn bộ mã HTML đã tổng hợp vào dashboard
     dashboard.innerHTML = htmlContent;
 
+    // 🌟 KHỞI TẠO BỘ ĐẾM SỐ ĐƠN CHỜ DUYỆT (CHẠY NGẦM KHÔNG LÀM LAG GIAO DIỆN)
+    if (AppState.role === 'admin') {
+        window.ham_3_1_dem_so_don_cho_duyet();
+    }
+
     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
     ham_3_2_ve_thanh_chay_nop_bai();
     window.dongHoThanhChay = setInterval(ham_3_2_ve_thanh_chay_nop_bai, 60000);
+
+    
 }
 
+// =====================================================================
+// HÀM BỔ TRỢ: ĐẾM NGẦM SỐ LƯỢNG YÊU CẦU & TÀI KHOẢN MỚI CHỜ DUYỆT
+// =====================================================================
+window.ham_3_1_dem_so_don_cho_duyet = async function () {
+    try {
+        // 1. Đếm số đơn yêu cầu (trang_thai = 0)
+        const { count: soDonYeuCau, error: err1 } = await _supabase
+            .from('yeu_cau_hoc_sinh')
+            .select('*', { count: 'exact', head: true })
+            .eq('trang_thai', 0);
 
+        if (err1) throw err1;
+
+        // 2. Đếm số tài khoản học sinh đăng ký chờ duyệt (trang_thai = 2)
+        const { count: soTaiKhoanCho, error: err2 } = await _supabase
+            .from('hoc_sinh')
+            .select('*', { count: 'exact', head: true })
+            .eq('trang_thai', 2);
+
+        if (err2) throw err2;
+
+        let tongSoCho = (soDonYeuCau || 0) + (soTaiKhoanCho || 0);
+
+        // 3. Hiển thị lên Badge nếu có số lượng > 0
+        const badge = document.getElementById('badge-so-don-cho');
+        if (badge) {
+            if (tongSoCho > 0) {
+                badge.innerText = tongSoCho > 99 ? '99+' : tongSoCho;
+                badge.style.display = 'block';
+                badge.style.animation = 'bounce 0.5s ease-in-out'; // Hiệu ứng nảy nhẹ gây chú ý
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+    } catch (e) {
+        console.warn("Lỗi khi đếm số đơn chờ duyệt:", e.message);
+    }
+};
 
 
 //// =====================================================================
