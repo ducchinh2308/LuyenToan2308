@@ -623,36 +623,38 @@ window.ham_22_16_mo_muc_con = function (idDanhMuc, idMucCon, kieuSort = 'TIME_AS
             if (dsFile.length === 0) {
                 htmlFiles = `<div style="font-style:italic; color:#adb5bd; font-size:13px; padding:10px;">Chưa có tệp nào được tải lên.</div>`;
             } else {
-                htmlFiles += `<div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">`;
+                // 🌟 KHUNG CHỨA BỌC NGOÀI ĐƯỢC CHUYỂN WIDTH: 100%
+                htmlFiles += `<div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; width:100%;">`;
                 dsFile.forEach((f, fIdx) => {
                     let isImg = f.name.toLowerCase().match(/\.(jpg|jpeg|png|gif|webp)$/i);
                     let preview = isImg ? f.url : '📄';
 
                     if (isImg && f.url.includes('drive.google.com')) {
                         const mD = f.url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-                        if (mD) preview = `https://drive.google.com/thumbnail?id=${mD[1]}&sz=w2000`;
+                        if (mD) preview = `https://drive.google.com/thumbnail?id=${mD[1]}&sz=w2500`; // 🌟 Tăng độ nét tối đa (2500px) để xem ảnh lớn
                     }
 
-                    // 🌟 TÍNH TOÁN VÀ ĐỊNH DẠNG DUNG LƯỢNG FILE (Chuyển sang MB nếu lớn hơn 1024KB)
                     let numSize = parseFloat(f.size);
                     let fileSizeText = isNaN(numSize) ? 'Chưa rõ dung lượng' : (numSize >= 1024 ? (numSize / 1024).toFixed(1) + ' MB' : numSize + ' KB');
 
                     let displayContent = '';
+                    let cardWidth = isImg ? 'width: 100%;' : 'width: auto;'; // 🌟 ẢNH THÌ CHIẾM 100% BỀ NGANG, FILE THÌ ĐỨNG CẠNH NHAU
 
                     if (isImg) {
-                        // 🌟 GIAO DIỆN HIỂN THỊ DÀNH CHO ẢNH
+                        // 🌟 GIAO DIỆN ẢNH HIỂN THỊ TO HẾT CỠ TRONG KHUNG
                         displayContent = `
-                            <div style="display:flex; flex-direction:column; align-items:center;">
-                                <img src="${preview}" style="max-width:100%; max-height:85vh; height:auto; object-fit:contain; border-radius:6px; border:1px solid #dee2e6; background:#f8f9fa; display:block; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-                                <div style="margin-top:12px; text-align:center; background:#f1f3f4; padding:6px 15px; border-radius:20px; width:fit-content;">
-                                    <div style="font-size:13px; font-weight:bold; color:#0056b3; max-width:400px; word-break:break-word; line-height:1.3;">${f.name}</div>
-                                    <div style="font-size:11px; color:#6c757d; margin-top:4px;">📏 ${fileSizeText}</div>
+                            <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+                                <!-- Bấm vào ảnh gọi hàm phóng to toàn màn hình -->
+                                <img src="${preview}" onclick="window.ham_22_xem_anh_full_screen('${preview}')" style="width:100%; max-height:85vh; object-fit:contain; border-radius:8px; border:1px solid #dee2e6; background:#181818; display:block; cursor:zoom-in; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+                                <div style="margin-top:12px; text-align:center; background:#f1f3f4; padding:8px 20px; border-radius:20px; width:fit-content; max-width:90%;">
+                                    <div style="font-size:14px; font-weight:bold; color:#0056b3; word-break:break-word; line-height:1.4;">${f.name}</div>
+                                    <div style="font-size:12px; color:#6c757d; margin-top:4px;">📏 ${fileSizeText} (Bấm vào ảnh để xem toàn màn hình)</div>
                                 </div>
                             </div>`;
                     } else {
-                        // 🌟 GIAO DIỆN HIỂN THỊ DÀNH CHO FILE TÀI LIỆU (PDF, WORD, EXCEL...)
+                        // 🌟 GIAO DIỆN HIỂN THỊ FILE TÀI LIỆU
                         displayContent = `
-                            <div style="display:flex; flex-direction:column; align-items:center; width: 140px;">
+                            <a href="${f.url}" target="_blank" style="text-decoration:none; display:flex; flex-direction:column; align-items:center; width: 140px;">
                                 <div style="width:100%; height:110px; display:flex; align-items:center; justify-content:center; background:#f1f3f4; border-radius:8px; border:1px solid #dee2e6; box-shadow:inset 0 0 10px rgba(0,0,0,0.02);">
                                     <span style="font-size:50px;">📄</span>
                                 </div>
@@ -660,16 +662,13 @@ window.ham_22_16_mo_muc_con = function (idDanhMuc, idMucCon, kieuSort = 'TIME_AS
                                     <div style="font-size:12px; font-weight:bold; color:#0056b3; word-break:break-word; line-height:1.4; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;" title="${f.name}">${f.name}</div>
                                     <div style="font-size:11px; color:#6c757d; margin-top:5px;">📏 ${fileSizeText}</div>
                                 </div>
-                            </div>`;
+                            </a>`;
                     }
 
-                    // Đóng gói từng tệp thành dạng Card có bo góc và đổ bóng nhẹ
                     htmlFiles += `
-                        <div style="position:relative; animation:fadeIn 0.3s; max-width:100%; background:#fff; padding:12px; border-radius:12px; border:1px solid #e9ecef; box-shadow:0 2px 5px rgba(0,0,0,0.04); transition:0.2s;" onmouseover="this.style.boxShadow='0 6px 15px rgba(0,123,255,0.15)'; this.style.borderColor='#b8daff'" onmouseout="this.style.boxShadow='0 2px 5px rgba(0,0,0,0.04)'; this.style.borderColor='#e9ecef'">
-                            <a href="${f.url}" target="_blank" style="text-decoration:none; display:inline-block; max-width:100%;">
-                                ${displayContent}
-                            </a>
-                            <button onclick="window.ham_22_20_xoa_file('${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}', ${fIdx})" style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.3); z-index:2;" title="Xóa tệp này">✖</button>
+                        <div style="position:relative; animation:fadeIn 0.3s; ${cardWidth} background:#fff; padding:15px; border-radius:12px; border:1px solid #e9ecef; box-shadow:0 2px 5px rgba(0,0,0,0.04); transition:0.2s;" onmouseover="this.style.boxShadow='0 6px 15px rgba(0,123,255,0.15)'; this.style.borderColor='#b8daff'" onmouseout="this.style.boxShadow='0 2px 5px rgba(0,0,0,0.04)'; this.style.borderColor='#e9ecef'">
+                            ${displayContent}
+                            <button onclick="window.ham_22_20_xoa_file('${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}', ${fIdx})" style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:bold; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.3); z-index:2;" title="Xóa tệp này">✖</button>
                         </div>
                     `;
                 });
@@ -1679,3 +1678,25 @@ window.ham_22_extract_drive_id = function (url) {
     let m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/) || url.match(/\/open\?id=([a-zA-Z0-9_-]+)/) || url.match(/\/d\/([a-zA-Z0-9_-]+)/);
     return m ? m[1] : null;
 };
+
+
+// =====================================================================
+// HÀM HỖ TRỢ: BẬT MODAL XEM ẢNH TOÀN MÀN HÌNH (LIGHTBOX)
+// =====================================================================
+window.ham_22_xem_anh_full_screen = function (url) {
+    let modalBox = document.createElement('div');
+    modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.95); display:flex; flex-direction:column; z-index:9999999; animation:fadeIn 0.2s;';
+
+    // Nút đóng ở góc trên bên phải
+    modalBox.innerHTML = `
+        <div style="position:absolute; top:20px; right:20px; z-index:10;">
+            <button onclick="this.parentElement.parentElement.remove()" style="background:#dc3545; color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; font-weight:bold; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,0.5);" title="Đóng">✖</button>
+        </div>
+        <!-- Vùng hiển thị ảnh gốc -->
+        <div style="flex:1; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;" onclick="this.parentElement.remove()">
+            <img src="${url}" onclick="event.stopPropagation()" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+        </div>
+    `;
+    document.body.appendChild(modalBox);
+};
+
