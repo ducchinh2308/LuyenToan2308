@@ -551,8 +551,338 @@ if (!window.DuyetDonSortState) {
 }
 
 
+// // =====================================================================
+// // Hàm 14.1: Tab HÒM THƯ DUYỆT ĐƠN (ĐÃ TÍCH HỢP DUYỆT TÀI KHOẢN ĐĂNG KÝ MỚI)
+// // =====================================================================
+// window.ham_14_1_ve_tab_duyet_don = async function () {
+//     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+//     vungLamViec.innerHTML = `<div style="text-align: center; padding: 40px;"><h3 style="color:#ffc107;">⏳ Đang mở hòm thư và trích xuất dữ liệu...</h3></div>`;
+
+//     try {
+//         // 1A. Tải toàn bộ đơn yêu cầu từ bảng yeu_cau_hoc_sinh
+//         const { data: dsDonGoc, error } = await _supabase
+//             .from('yeu_cau_hoc_sinh')
+//             .select('*');
+
+//         if (error) throw error;
+
+//         // 🌟 1B. TẢI CÁC TÀI KHOẢN ĐANG CHỜ DUYỆT TỪ BẢNG hoc_sinh (trang_thai = 2)
+//         const { data: dsTaiKhoanCho, error: errTK } = await _supabase
+//             .from('hoc_sinh')
+//             .select('uid, ten, sdt, danh_sach_ma_lop, ngay_tham_gia')
+//             .eq('trang_thai', 2);
+
+//         if (errTK) throw errTK;
+
+//         // 🌟 Ép kiểu dữ liệu tài khoản thành "Đơn yêu cầu ảo" để dùng chung UI hòm thư
+//         const dsDonTaiKhoan = (dsTaiKhoanCho || []).map(hs => ({
+//             id: 'TK_' + hs.uid, // Đánh dấu ID ảo để phân biệt
+//             uid_hoc_sinh: hs.uid,
+//             ten_hoc_sinh: hs.ten,
+//             ma_lop: (hs.danh_sach_ma_lop && hs.danh_sach_ma_lop.length > 0) ? hs.danh_sach_ma_lop[0] : '',
+//             ma_nhiem_vu: '',
+//             loai_yeu_cau: 'DANG_KY_TAI_KHOAN',
+//             ly_do: `SĐT Liên hệ: ${hs.sdt} - Học sinh đăng ký tài khoản mới, đang chờ phê duyệt để vào hệ thống.`,
+//             trang_thai: 0, // Gán 0 (Chờ duyệt) để nổi lên đầu hòm thư
+//             ngay_tao: hs.ngay_tham_gia
+//         }));
+
+//         // Trộn 2 mảng lại với nhau
+//         let dsDon = [...(dsDonGoc || []), ...dsDonTaiKhoan];
+
+//         if (!dsDon || dsDon.length === 0) {
+//             vungLamViec.innerHTML = `
+//                 <div style="text-align: center; padding: 50px; background: #fff; border-radius: 10px; border: 1px dashed #ccc;">
+//                     <p style="font-size: 60px; margin:0;">📭</p>
+//                     <h3 style="color: #6c757d;">Hòm thư trống</h3>
+//                     <p style="color: #888;">Hiện tại chưa có học sinh nào gửi yêu cầu hoặc đăng ký mới.</p>
+//                 </div>
+//             `;
+//             return;
+//         }
+
+//         // ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT (Bao gồm cả đơn xin tài khoản)
+//         const soDonChuaDuyet = dsDon.filter(d => d.trang_thai === 0).length;
+
+//         const cssBadge = soDonChuaDuyet > 0
+//             ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
+//             : "background: rgba(0,0,0,0.1); color: #333;";
+
+//         // =====================================================================
+//         // 🌟 TỰ ĐỘNG CẬP NHẬT ĐỒNG BỘ LÊN NHÃN (BADGE) NÚT MENU ADMIN
+//         // =====================================================================
+//         const badgeMenu = document.getElementById('badge-so-don-cho');
+//         if (badgeMenu) {
+//             if (soDonChuaDuyet > 0) {
+//                 badgeMenu.innerText = soDonChuaDuyet > 99 ? '99+' : soDonChuaDuyet;
+//                 badgeMenu.style.display = 'block';
+//                 // Reset animation để tạo hiệu ứng nảy báo hiệu mỗi khi có cập nhật
+//                 badgeMenu.style.animation = 'none';
+//                 setTimeout(() => badgeMenu.style.animation = 'bounce 0.5s ease-in-out', 10);
+//             } else {
+//                 badgeMenu.style.display = 'none';
+//             }
+//         }
+
+
+
+//         // 2. TRUY VẤN TỪ ĐIỂN NHIỆM VỤ VÀ TÊN LỚP
+//         const mangMaNV = [...new Set(dsDon.map(d => d.ma_nhiem_vu).filter(Boolean))];
+//         let tuDienNhiemVuGoc = {};
+//         if (mangMaNV.length > 0) {
+//             const { data: dsNVGoc } = await _supabase.from('nhiem_vu_trac_nghiem').select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai, cau_truc_de').in('ma_nhiem_vu', mangMaNV);
+//             if (dsNVGoc) dsNVGoc.forEach(nv => { tuDienNhiemVuGoc[nv.ma_nhiem_vu] = nv; });
+//         }
+
+//         const mangMaLopYeuCau = [...new Set(dsDon.map(d => d.ma_lop).filter(Boolean))];
+//         let tuDienLopHoc = {};
+//         if (mangMaLopYeuCau.length > 0) {
+//             const { data: dsLopGoc } = await _supabase.from('lop_hoc').select('ma_lop, ten_lop').in('ma_lop', mangMaLopYeuCau);
+//             if (dsLopGoc) dsLopGoc.forEach(l => { tuDienLopHoc[l.ma_lop] = l.ten_lop; });
+//         }
+        
+//         // 3. LOGIC SẮP XẾP ĐA TẦNG
+//         dsDon.sort((a, b) => {
+//             const sortKey = window.DuyetDonSortState.key;
+//             const isAsc = window.DuyetDonSortState.asc;
+
+//             if (sortKey === 'trang_thai') {
+//                 const ttA = Number(a.trang_thai);
+//                 const ttB = Number(b.trang_thai);
+
+//                 if (ttA === 0 && ttB !== 0) return -1;
+//                 if (ttA !== 0 && ttB === 0) return 1;
+
+//                 if (ttA === ttB) {
+//                     return new Date(b.ngay_tao || 0) - new Date(a.ngay_tao || 0);
+//                 }
+//                 return isAsc ? (ttA - ttB) : (ttB - ttA);
+//             }
+
+//             let valA, valB;
+//             if (sortKey === 'hoc_sinh') {
+//                 valA = (a.ten_hoc_sinh || '').toLowerCase(); valB = (b.ten_hoc_sinh || '').toLowerCase();
+//             } else if (sortKey === 'nhiem_vu') {
+//                 valA = (a.ten_nhiem_vu || '').toLowerCase(); valB = (b.ten_nhiem_vu || '').toLowerCase();
+//             } else if (sortKey === 'ly_do') {
+//                 valA = (a.ly_do || '').toLowerCase(); valB = (b.ly_do || '').toLowerCase();
+//             } else if (sortKey === 'ngay_tao') {
+//                 valA = new Date(a.ngay_tao || 0).getTime(); valB = new Date(b.ngay_tao || 0).getTime();
+//             } else {
+//                 valA = a[sortKey] || ''; valB = b[sortKey] || '';
+//             }
+
+//             if (valA < valB) return isAsc ? -1 : 1;
+//             if (valA > valB) return isAsc ? 1 : -1;
+//             return 0;
+//         });
+
+//         const veMuiTenSort = (colKey) => {
+//             if (window.DuyetDonSortState.key !== colKey) return ' <span style="color:#ccc; font-size:10px;">⇅</span>';
+//             return window.DuyetDonSortState.asc ? ' <span style="color:#28a745;">🔼</span>' : ' <span style="color:#dc3545;">🔽</span>';
+//         };
+
+//         // 4. DUYỆT MẢNG VẼ HÀNG DỮ LIỆU HTML
+//         let htmlRows = '';
+//         const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+//         dsDon.forEach((don, index) => {
+//             const ngayGui = don.ngay_tao ? new Date(don.ngay_tao).toLocaleString('vi-VN', opts) : '';
+
+//             // 🌟 HIỂN THỊ BADGE CHO TÀI KHOẢN MỚI
+//             let loaiBadge = '';
+//             if (don.loai_yeu_cau === 'QUA_HAN') {
+//                 loaiBadge = `<span style="background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #ffeeba;">⏰ XIN NỘP MUỘN</span>`;
+//             } else if (don.loai_yeu_cau === 'XIN_VAO_LOP') {
+//                 loaiBadge = `<span style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #c8e6c9;">🏫 XIN NHẬP HỌC</span>`;
+//             } else if (don.loai_yeu_cau === 'DANG_KY_TAI_KHOAN') {
+//                 loaiBadge = `<span style="background: #f3e5f5; color: #6a1b9a; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #ce93d8;">👤 ĐĂNG KÝ TÀI KHOẢN</span>`;
+//             } else {
+//                 loaiBadge = `<span style="background: #cce5ff; color: #004085; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #b8daff;">🔄 XIN THÊM LƯỢT</span>`;
+//             }
+
+//             const thamSoDinhDanh = don.loai_yeu_cau === 'XIN_VAO_LOP' ? don.ma_lop : don.ma_nhiem_vu;
+
+//             let hanhDongHtml = '';
+//             let trangThaiBadge = '';
+
+//             // 🌟 Ẩn nút xóa thùng rác đối với đơn đăng ký tài khoản (Vì thao tác "Từ chối" đã tự động xóa tài khoản rác)
+//             let btnXoa = don.loai_yeu_cau === 'DANG_KY_TAI_KHOAN' ? '' : `<button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>`;
+
+//             if (don.trang_thai === 0) {
+//                 trangThaiBadge = `<span style="color: #fd7e14; font-weight: bold; font-size: 13px;">⏳ Chờ duyệt</span>`;
+//                 hanhDongHtml = `
+//                 <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+//                     <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'DUYET')" style="padding: 6px 8px; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">✅ DUYỆT</button>
+//                     <button onclick="ham_14_2_xu_ly_duyet_don('${don.id}', '${don.uid_hoc_sinh}', '${thamSoDinhDanh}', '${don.loai_yeu_cau}', 'TU_CHOI')" style="padding: 6px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 11px;">❌ TỪ CHỐI</button>
+//                     ${btnXoa}
+//                 </div>
+//             `;
+//             } else {
+//                 trangThaiBadge = (don.trang_thai === 1)
+//                     ? `<span style="color: #28a745; font-weight: bold; font-size: 13px;">✅ Đã duyệt</span>`
+//                     : `<span style="color: #dc3545; font-weight: bold; font-size: 13px;">❌ Từ chối</span>`;
+
+//                 hanhDongHtml = `
+//                 <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+//                     <span style="color: #ccc; font-size: 11px; font-weight: bold;">Đã xử lý</span>
+//                     ${btnXoa}
+//                 </div>
+//             `;
+//             }
+
+//             // 🌟 KHUNG THÔNG TIN PHỤ DÀNH CHO TÀI KHOẢN MỚI
+//             let khungThongTinPhu = '';
+//             if (don.loai_yeu_cau === 'DANG_KY_TAI_KHOAN') {
+//                 const tenLopThucTe = tuDienLopHoc[don.ma_lop] || 'Không xác định';
+//                 khungThongTinPhu = `
+//                     <div style="font-size: 12px; background: #faf5ff; border: 1px solid #e9d8fd; border-radius: 6px; padding: 10px; color: #553c9a; line-height: 1.6; max-width: 320px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);">
+//                         <div style="margin-bottom: 4px;">🚀 <b>Mục đích:</b> Xin cấp quyền truy cập hệ thống</div>
+//                         <div>🏫 <b>Khai báo lớp:</b> <span style="font-family: monospace; font-size: 13px; background: white; padding: 2px 6px; border:1px solid #d6bcfa; border-radius:3px; color:#c0392b; font-weight: bold;">${don.ma_lop || 'Chưa nhập'}</span> - <span style="font-weight:bold;">${tenLopThucTe}</span></div>
+//                     </div>
+//                 `;
+//             } else if (don.loai_yeu_cau === 'XIN_VAO_LOP') {
+//                 const tenLopThucTe = tuDienLopHoc[don.ma_lop] || 'Lớp học không xác định hoặc đã bị xóa';
+//                 khungThongTinPhu = `
+//                     <div style="font-size: 12px; background: #f4fbf7; border: 1px solid #c8e6c9; border-radius: 6px; padding: 10px; color: #2e7d32; line-height: 1.6; max-width: 320px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);">
+//                         <div style="margin-bottom: 4px;">🔑 <b>Mã lớp xin vào:</b> <span style="font-family: monospace; font-size: 13px; background: white; padding: 2px 6px; border:1px solid #a3cfbb; border-radius:3px; color:#c0392b; font-weight: bold;">${don.ma_lop || 'N/A'}</span></div>
+//                         <div>🏫 <b>Tên lớp học:</b> <span style="color: #1b5e20; font-weight: bold;">${tenLopThucTe}</span></div>
+//                     </div>
+//                 `;
+//             } else {
+//                 const nvGoc = tuDienNhiemVuGoc[don.ma_nhiem_vu] || {};
+//                 const thoiGianLamTxt = nvGoc.thoi_gian_lam_bai > 0 ? `${nvGoc.thoi_gian_lam_bai} minutes` : 'Tự do';
+//                 const gioHanLuotTxt = nvGoc.so_luot_lam_bai > 0 ? `${nvGoc.so_luot_lam_bai} lượt` : 'Vô hạn';
+//                 const cauTrucTxt = nvGoc.cau_truc_de || 'Chưa cấu hình';
+//                 const renderTimeFormat = (dStr) => dStr ? new Date(dStr).toLocaleString('vi-VN', opts) : "Không giới hạn";
+
+//                 khungThongTinPhu = `
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 11px; background: #fdfefe; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; color: #4a5568; line-height: 1.4; max-width: 320px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+//                         <div>⏱️ Thời gian: <b style="color:#2b6cb0;">${thoiGianLamTxt}</b></div>
+//                         <div>🔄 Giới hạn: <b style="color:#2b6cb0;">${gioHanLuotTxt}</b></div>
+//                         <div style="grid-column: span 2; border-bottom: 1px dashed #e2e8f0; padding-bottom: 3px; margin-bottom: 2px;">
+//                             📦 Cấu trúc: <span style="color:#2e7d32; font-weight:bold;">${cauTrucTxt}</span>
+//                         </div>
+//                         <div style="grid-column: span 2; font-size: 10px; color: #718096;">
+//                             <div style="display:flex; justify-content:space-between;"><span>🟢 Ngày mở:</span> <b>${renderTimeFormat(nvGoc.thoi_gian_mo)}</b></div>
+//                             <div style="display:flex; justify-content:space-between; margin-top:1px;"><span>🔴 Ngày đóng:</span> <b style="color:#c62828;">${renderTimeFormat(nvGoc.thoi_gian_dong)}</b></div>
+//                         </div>
+//                     </div>
+//                 `;
+//             }
+
+//             // htmlRows += `
+//             //     <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
+//             //         <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+//             //         <td style="padding: 15px 10px;">
+//             //             <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
+//             //             <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
+//             //             <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
+//             //         </td>
+//             //         <td style="padding: 15px 10px;">
+//             //             <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
+//             //             ${khungThongTinPhu}
+//             //             <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
+//             //                 ${loaiBadge} 
+//             //                 <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi lúc: ${ngayGui}</span>
+//             //             </div>
+//             //         </td>
+//             //         <td style="padding: 15px 10px;">
+//             //             <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
+//             //                 "${don.ly_do || 'Không có lý do giải trình.'}"
+//             //             </div>
+//             //         </td>
+//             //         <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
+//             //         <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
+//             //     </tr>
+//             // `;
+//             // =====================================================================
+//             // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
+//             // =====================================================================
+//             // =====================================================================
+//             // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
+//             // =====================================================================
+//             const tenLopCuaHocSinh = tuDienLopHoc[don.ma_lop] || don.ma_lop || 'Chưa xếp lớp';
+
+//             htmlRows += `
+//                 <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
+//                     <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
+                    
+//                     <td style="padding: 15px 10px;">
+//                         <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
+//                         <div style="font-size: 12px; color: #28a745; margin-top: 4px;">Lớp: <b title="Mã lớp: ${don.ma_lop || 'N/A'}">${tenLopCuaHocSinh}</b></div>
+//                         <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
+//                     </td>
+                    
+//                     <td style="padding: 15px 10px;">
+//                         <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
+//                         ${khungThongTinPhu}
+//                         <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
+//                             ${loaiBadge} 
+//                             <!-- Đã chuyển "Gửi lúc" sang cột ghi chú -->
+//                         </div>
+//                     </td>
+                    
+//                     <td style="padding: 15px 10px;">
+//                         <!-- 🌟 BỔ SUNG NGÀY GIỜ VÀO ĐẦU CỘT GHI CHÚ -->
+//                         <div style="font-size: 11px; color: #6c757d; margin-bottom: 6px; font-weight: bold;">
+//                             🕒 Gửi lúc: <span style="color: #495057;">${ngayGui}</span>
+//                         </div>
+                        
+//                         <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
+//                             "${don.ly_do || 'Không có lý do giải trình.'}"
+//                         </div>
+//                     </td>
+                    
+//                     <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
+//                     <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
+//                 </tr>
+//             `;
+
+
+//         });
+
+//         // 5. RENDER MAIN GIAO DIỆN
+//         vungLamViec.innerHTML = `
+//             <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+//                 <div style="background: linear-gradient(135deg, #ffc107, #ff9800); padding: 20px; color: #000; display: flex; justify-content: space-between; align-items: center;">
+//                     <h3 style="margin: 0; font-size: 18px; font-weight: 900; display:flex; align-items:center; gap:8px;">📭 HÒM THƯ XÉT DUYỆT YÊU CẦU CỦA HỌC SINH</h3>
+//                     <span style="${cssBadge} padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: bold; transition: 0.3s;">
+//                         🔔 Cần duyệt: ${soDonChuaDuyet} đơn
+//                     </span>
+//                 </div>
+                
+//                 <div style="background: #fff9e6; padding: 10px 15px; font-size: 12px; color: #b7791f; border-bottom: 1px solid #fbd38d; font-weight: bold;">
+//                     💡 Mẹo quản lý: Thầy có thể click chuột trực tiếp vào tiêu đề các cột để đảo chiều sắp xếp danh sách.
+//                 </div>
+
+//                 <div style="overflow-x: auto; padding: 10px;">
+//                     <table style="width: 100%; border-collapse: collapse; min-width: 950px; text-align: left;">
+//                         <thead style="background: #f7fafc; border-bottom: 2px solid #e2e8f0; user-select: none;">
+//                             <tr>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #4a5568; width: 40px; font-weight: bold;">STT</th>
+//                                 <th onclick="ham_14_3_thay_doi_sap_xep('hoc_sinh')" style="padding: 12px 10px; color: #4a5568; width: 190px; cursor: pointer; font-weight: bold;">Học Sinh ${veMuiTenSort('hoc_sinh')}</th>
+//                                 <th onclick="ham_14_3_thay_doi_sap_xep('nhiem_vu')" style="padding: 12px 10px; color: #4a5568; width: 340px; cursor: pointer; font-weight: bold;">Nội Dung Yêu Cầu ${veMuiTenSort('nhiem_vu')}</th>
+//                                 <th onclick="ham_14_3_thay_doi_sap_xep('ly_do')" style="padding: 12px 10px; color: #4a5568; cursor: pointer; font-weight: bold;">Ghi Chú ${veMuiTenSort('ly_do')}</th>
+//                                 <th onclick="ham_14_3_thay_doi_sap_xep('trang_thai')" style="padding: 12px 10px; text-align: center; color: #4a5568; width: 110px; cursor: pointer; font-weight: bold;">Trạng Thái ${veMuiTenSort('trang_thai')}</th>
+//                                 <th style="padding: 12px 10px; text-align: center; color: #4a5568; width: 150px; font-weight: bold;">Thao Tác</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>
+//                             ${htmlRows}
+//                         </tbody>
+//                     </table>
+//                 </div>
+//             </div>
+//         `;
+
+//     } catch (error) {
+//         vungLamViec.innerHTML = `<div style="color: #dc3545; text-align: center; padding: 20px; font-weight:bold;">❌ Lỗi truy xuất hòm thư: ${error.message}</div>`;
+//     }
+// }
+
 // =====================================================================
-// Hàm 14.1: Tab HÒM THƯ DUYỆT ĐƠN (ĐÃ TÍCH HỢP DUYỆT TÀI KHOẢN ĐĂNG KÝ MỚI)
+// Hàm 14.1: Tab HÒM THƯ DUYỆT ĐƠN (ĐÃ TÍCH HỢP DUYỆT TÀI KHOẢN VÀ HIỂN THỊ CHUẨN TỰ LUẬN)
 // =====================================================================
 window.ham_14_1_ve_tab_duyet_don = async function () {
     const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
@@ -576,14 +906,14 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
 
         // 🌟 Ép kiểu dữ liệu tài khoản thành "Đơn yêu cầu ảo" để dùng chung UI hòm thư
         const dsDonTaiKhoan = (dsTaiKhoanCho || []).map(hs => ({
-            id: 'TK_' + hs.uid, // Đánh dấu ID ảo để phân biệt
+            id: 'TK_' + hs.uid,
             uid_hoc_sinh: hs.uid,
             ten_hoc_sinh: hs.ten,
             ma_lop: (hs.danh_sach_ma_lop && hs.danh_sach_ma_lop.length > 0) ? hs.danh_sach_ma_lop[0] : '',
             ma_nhiem_vu: '',
             loai_yeu_cau: 'DANG_KY_TAI_KHOAN',
             ly_do: `SĐT Liên hệ: ${hs.sdt} - Học sinh đăng ký tài khoản mới, đang chờ phê duyệt để vào hệ thống.`,
-            trang_thai: 0, // Gán 0 (Chờ duyệt) để nổi lên đầu hòm thư
+            trang_thai: 0,
             ngay_tao: hs.ngay_tham_gia
         }));
 
@@ -601,22 +931,19 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             return;
         }
 
-        // ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT (Bao gồm cả đơn xin tài khoản)
+        // ĐẾM SỐ ĐƠN ĐANG CHỜ DUYỆT
         const soDonChuaDuyet = dsDon.filter(d => d.trang_thai === 0).length;
 
         const cssBadge = soDonChuaDuyet > 0
             ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
             : "background: rgba(0,0,0,0.1); color: #333;";
 
-        // =====================================================================
         // 🌟 TỰ ĐỘNG CẬP NHẬT ĐỒNG BỘ LÊN NHÃN (BADGE) NÚT MENU ADMIN
-        // =====================================================================
         const badgeMenu = document.getElementById('badge-so-don-cho');
         if (badgeMenu) {
             if (soDonChuaDuyet > 0) {
                 badgeMenu.innerText = soDonChuaDuyet > 99 ? '99+' : soDonChuaDuyet;
                 badgeMenu.style.display = 'block';
-                // Reset animation để tạo hiệu ứng nảy báo hiệu mỗi khi có cập nhật
                 badgeMenu.style.animation = 'none';
                 setTimeout(() => badgeMenu.style.animation = 'bounce 0.5s ease-in-out', 10);
             } else {
@@ -624,14 +951,32 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             }
         }
 
-
-
-        // 2. TRUY VẤN TỪ ĐIỂN NHIỆM VỤ VÀ TÊN LỚP
+        // =====================================================================
+        // 2. TRUY VẤN TỪ ĐIỂN NHIỆM VỤ (LẤY CẢ TRẮC NGHIỆM VÀ TỰ LUẬN) VÀ TÊN LỚP
+        // =====================================================================
         const mangMaNV = [...new Set(dsDon.map(d => d.ma_nhiem_vu).filter(Boolean))];
         let tuDienNhiemVuGoc = {};
+
         if (mangMaNV.length > 0) {
-            const { data: dsNVGoc } = await _supabase.from('nhiem_vu_trac_nghiem').select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai, cau_truc_de').in('ma_nhiem_vu', mangMaNV);
-            if (dsNVGoc) dsNVGoc.forEach(nv => { tuDienNhiemVuGoc[nv.ma_nhiem_vu] = nv; });
+            // A. Lấy thông tin từ bảng Trắc Nghiệm
+            const { data: dsNV_TN } = await _supabase
+                .from('nhiem_vu_trac_nghiem')
+                .select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai, cau_truc_de')
+                .in('ma_nhiem_vu', mangMaNV);
+
+            if (dsNV_TN) {
+                dsNV_TN.forEach(nv => { tuDienNhiemVuGoc[nv.ma_nhiem_vu] = { ...nv, isTuLuan: false }; });
+            }
+
+            // B. Lấy thông tin từ bảng Tự Luận
+            const { data: dsNV_TL } = await _supabase
+                .from('nhiem_vu_tu_luan')
+                .select('ma_nhiem_vu, thoi_gian_lam_bai, thoi_gian_mo, thoi_gian_dong, so_luot_lam_bai')
+                .in('ma_nhiem_vu', mangMaNV);
+
+            if (dsNV_TL) {
+                dsNV_TL.forEach(nv => { tuDienNhiemVuGoc[nv.ma_nhiem_vu] = { ...nv, isTuLuan: true }; });
+            }
         }
 
         const mangMaLopYeuCau = [...new Set(dsDon.map(d => d.ma_lop).filter(Boolean))];
@@ -689,9 +1034,8 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
         dsDon.forEach((don, index) => {
             const ngayGui = don.ngay_tao ? new Date(don.ngay_tao).toLocaleString('vi-VN', opts) : '';
 
-            // 🌟 HIỂN THỊ BADGE CHO TÀI KHOẢN MỚI
             let loaiBadge = '';
-            if (don.loai_yeu_cau === 'QUA_HAN') {
+            if (don.loai_yeu_cau === 'QUA_HAN' || don.loai_yeu_cau === 'QUA_HAN_TU_LUAN') {
                 loaiBadge = `<span style="background: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #ffeeba;">⏰ XIN NỘP MUỘN</span>`;
             } else if (don.loai_yeu_cau === 'XIN_VAO_LOP') {
                 loaiBadge = `<span style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid #c8e6c9;">🏫 XIN NHẬP HỌC</span>`;
@@ -706,7 +1050,6 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             let hanhDongHtml = '';
             let trangThaiBadge = '';
 
-            // 🌟 Ẩn nút xóa thùng rác đối với đơn đăng ký tài khoản (Vì thao tác "Từ chối" đã tự động xóa tài khoản rác)
             let btnXoa = don.loai_yeu_cau === 'DANG_KY_TAI_KHOAN' ? '' : `<button onclick="ham_14_4_xoa_yeu_cau('${don.id}')" style="padding: 6px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" title="Xóa yêu cầu">🗑️</button>`;
 
             if (don.trang_thai === 0) {
@@ -731,7 +1074,6 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             `;
             }
 
-            // 🌟 KHUNG THÔNG TIN PHỤ DÀNH CHO TÀI KHOẢN MỚI
             let khungThongTinPhu = '';
             if (don.loai_yeu_cau === 'DANG_KY_TAI_KHOAN') {
                 const tenLopThucTe = tuDienLopHoc[don.ma_lop] || 'Không xác định';
@@ -751,9 +1093,17 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                 `;
             } else {
                 const nvGoc = tuDienNhiemVuGoc[don.ma_nhiem_vu] || {};
-                const thoiGianLamTxt = nvGoc.thoi_gian_lam_bai > 0 ? `${nvGoc.thoi_gian_lam_bai} minutes` : 'Tự do';
+
+                // Hiển thị thời gian và lượt
+                const thoiGianLamTxt = nvGoc.thoi_gian_lam_bai > 0 ? `${nvGoc.thoi_gian_lam_bai} phút` : 'Tự do';
                 const gioHanLuotTxt = nvGoc.so_luot_lam_bai > 0 ? `${nvGoc.so_luot_lam_bai} lượt` : 'Vô hạn';
-                const cauTrucTxt = nvGoc.cau_truc_de || 'Chưa cấu hình';
+
+                // Nhận diện cấu trúc tự luận
+                let cauTrucTxt = nvGoc.cau_truc_de || 'Chưa cấu hình';
+                if (nvGoc.isTuLuan || (don.ma_nhiem_vu && don.ma_nhiem_vu.startsWith('TL_'))) {
+                    cauTrucTxt = '📝 Tự luận';
+                }
+
                 const renderTimeFormat = (dStr) => dStr ? new Date(dStr).toLocaleString('vi-VN', opts) : "Không giới hạn";
 
                 khungThongTinPhu = `
@@ -771,37 +1121,6 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                 `;
             }
 
-            // htmlRows += `
-            //     <tr style="border-bottom: 1px solid #eee; background: ${don.trang_thai === 0 ? '#fff' : '#f8f9fa'};">
-            //         <td style="padding: 15px 10px; text-align: center; color: #666; font-weight: bold;">${index + 1}</td>
-            //         <td style="padding: 15px 10px;">
-            //             <div style="font-weight: bold; color: #1a73e8; font-size: 15px;">${don.ten_hoc_sinh || 'Học sinh'}</div>
-            //             <div style="font-size: 11px; color: #666; margin-top: 3px;">Lớp: <b>${don.ma_lop || 'N/A'}</b></div>
-            //             <div style="font-size: 10px; color: #999; margin-top: 2px; font-family: monospace;">UID: ${don.uid_hoc_sinh}</div>
-            //         </td>
-            //         <td style="padding: 15px 10px;">
-            //             <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
-            //             ${khungThongTinPhu}
-            //             <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
-            //                 ${loaiBadge} 
-            //                 <span style="font-size: 11px; color: #7f8c8d; font-style: italic;">Gửi lúc: ${ngayGui}</span>
-            //             </div>
-            //         </td>
-            //         <td style="padding: 15px 10px;">
-            //             <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
-            //                 "${don.ly_do || 'Không có lý do giải trình.'}"
-            //             </div>
-            //         </td>
-            //         <td style="padding: 15px 10px; text-align: center;">${trangThaiBadge}</td>
-            //         <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
-            //     </tr>
-            // `;
-            // =====================================================================
-            // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
-            // =====================================================================
-            // =====================================================================
-            // 🌟 LẤY TÊN LỚP ĐỂ HIỂN THỊ ĐẸP Ở CỘT HỌC SINH
-            // =====================================================================
             const tenLopCuaHocSinh = tuDienLopHoc[don.ma_lop] || don.ma_lop || 'Chưa xếp lớp';
 
             htmlRows += `
@@ -817,16 +1136,15 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                     <td style="padding: 15px 10px;">
                         <div style="font-weight: bold; color: #2c3e50; font-size: 14px; margin-bottom: 6px;">${don.ten_nhiem_vu || 'Nhiệm vụ'}</div>
                         ${khungThongTinPhu}
-                        <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px;">
-                            ${loaiBadge} 
-                            <!-- Đã chuyển "Gửi lúc" sang cột ghi chú -->
-                        </div>
                     </td>
                     
                     <td style="padding: 15px 10px;">
-                        <!-- 🌟 BỔ SUNG NGÀY GIỜ VÀO ĐẦU CỘT GHI CHÚ -->
-                        <div style="font-size: 11px; color: #6c757d; margin-bottom: 6px; font-weight: bold;">
-                            🕒 Gửi lúc: <span style="color: #495057;">${ngayGui}</span>
+                        <!-- 🌟 GOM NHÓM LOẠI YÊU CẦU VÀ NGÀY GIỜ VÀO CỘT GHI CHÚ -->
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 8px;">
+                            ${loaiBadge}
+                            <div style="font-size: 11px; color: #6c757d; font-weight: bold;">
+                                🕒 Gửi lúc: <span style="color: #495057;">${ngayGui}</span>
+                            </div>
                         </div>
                         
                         <div style="background: #f1f3f4; padding: 10px 12px; border-radius: 6px; font-size: 13px; color: #2c3e50; font-style: italic; border-left: 4px solid #ff9800; line-height: 1.5; min-width: 180px;">
@@ -838,8 +1156,6 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
                     <td style="padding: 15px 10px; text-align: center;">${hanhDongHtml}</td>
                 </tr>
             `;
-
-
         });
 
         // 5. RENDER MAIN GIAO DIỆN
