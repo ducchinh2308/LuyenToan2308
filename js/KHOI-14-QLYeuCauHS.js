@@ -608,6 +608,24 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
             ? "background: #dc3545; color: white; box-shadow: 0 2px 6px rgba(220,53,69,0.4);"
             : "background: rgba(0,0,0,0.1); color: #333;";
 
+        // =====================================================================
+        // 🌟 TỰ ĐỘNG CẬP NHẬT ĐỒNG BỘ LÊN NHÃN (BADGE) NÚT MENU ADMIN
+        // =====================================================================
+        const badgeMenu = document.getElementById('badge-so-don-cho');
+        if (badgeMenu) {
+            if (soDonChuaDuyet > 0) {
+                badgeMenu.innerText = soDonChuaDuyet > 99 ? '99+' : soDonChuaDuyet;
+                badgeMenu.style.display = 'block';
+                // Reset animation để tạo hiệu ứng nảy báo hiệu mỗi khi có cập nhật
+                badgeMenu.style.animation = 'none';
+                setTimeout(() => badgeMenu.style.animation = 'bounce 0.5s ease-in-out', 10);
+            } else {
+                badgeMenu.style.display = 'none';
+            }
+        }
+
+
+
         // 2. TRUY VẤN TỪ ĐIỂN NHIỆM VỤ VÀ TÊN LỚP
         const mangMaNV = [...new Set(dsDon.map(d => d.ma_nhiem_vu).filter(Boolean))];
         let tuDienNhiemVuGoc = {};
