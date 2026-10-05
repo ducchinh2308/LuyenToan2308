@@ -1099,7 +1099,7 @@ window.ham_14_1_ve_tab_duyet_don = async function () {
 
 
 // =====================================================================
-// HÀM 14.2: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH 
+// HÀM 14.2: XỬ LÝ LỆNH DUYỆT HOẶC TỪ CHỐI ĐƠN TỪ HỌC SINH (ĐÃ FIX TỰ LUẬN)
 // =====================================================================
 window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, loaiYeuCau, hanhDong) {
 
@@ -1123,7 +1123,6 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                         const { error } = await _supabase.from('hoc_sinh').update({ trang_thai: 1 }).eq('uid', uidHocSinh);
                         if (error) throw error;
                     } else {
-                        // Từ chối = Xóa luôn record trong bảng học sinh để dọn dẹp data rác
                         const { error } = await _supabase.from('hoc_sinh').delete().eq('uid', uidHocSinh);
                         if (error) throw error;
                     }
@@ -1139,12 +1138,11 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                 if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
             }
         });
-        return; // Dừng hàm tại đây, không chạy xuống phần xử lý bảng yeu_cau_hoc_sinh nữa
+        return;
     }
 
-
     // =====================================================================
-    // 2. TRƯỜNG HỢP TỪ CHỐI ĐƠN (Chung cho tất cả các loại đơn nhiệm vụ)
+    // 2. TRƯỜNG HỢP TỪ CHỐI ĐƠN
     // =====================================================================
     if (hanhDong === 'TU_CHOI') {
         Swal.fire({
@@ -1178,11 +1176,13 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
         return;
     }
 
-    // 3. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT TRẮC NGHIỆM
+    // =====================================================================
+    // 3. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT (Áp dụng chung cho cả Trắc nghiệm & Tự luận)
+    // =====================================================================
     if (loaiYeuCau === 'HET_LUOT') {
         Swal.fire({
             title: 'Duyệt cấp thêm lượt?',
-            text: "Hệ thống sẽ trừ đi 1 lượt đã làm trong hồ sơ của học sinh này (điểm và lịch sử cũ vẫn được giữ nguyên). Xác nhận cấp lượt?",
+            text: "Hệ thống sẽ trừ đi 1 lượt đã làm trong hồ sơ của học sinh này để mở lại quyền nộp bài. Xác nhận cấp lượt?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: '✅ Duyệt & Cấp lượt',
@@ -1216,57 +1216,15 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã cấp thêm 1 lượt!', timer: 1200, showConfirmButton: false });
+                Swal.fire({ icon: 'success', title: 'Đã cấp thêm 1 lượt thành công!', timer: 1200, showConfirmButton: false });
                 if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
             }
         });
     }
 
-    // 🌟 3.1. TRƯỜNG HỢP DUYỆT ĐƠN HẾT LƯỢT TỰ LUẬN
-    else if (loaiYeuCau === 'HET_LUOT_TU_LUAN') {
-        Swal.fire({
-            title: 'Duyệt cấp thêm lượt Tự luận?',
-            text: "Hệ thống sẽ trừ đi 1 lượt đã làm trong hồ sơ của học sinh này để mở lại quyền nộp bài tự luận. Xác nhận cấp lượt?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: '✅ Duyệt & Cấp lượt',
-            cancelButtonText: 'Hủy',
-            confirmButtonColor: '#28a745',
-            cancelButtonColor: '#6c757d',
-            showLoaderOnConfirm: true,
-            preConfirm: async () => {
-                try {
-                    const tenCotLuotLam = 'tien_do_lam_bai';
-                    const { data: hsInfo, error: errHS } = await _supabase.from('hoc_sinh').select(tenCotLuotLam).eq('uid', uidHocSinh).single();
-                    if (errHS) throw errHS;
-
-                    let jsonLuotLam = {};
-                    try { jsonLuotLam = typeof hsInfo[tenCotLuotLam] === 'string' ? JSON.parse(hsInfo[tenCotLuotLam]) : (hsInfo[tenCotLuotLam] || {}); } catch (e) { }
-
-                    if (jsonLuotLam[maNhiemVu] && jsonLuotLam[maNhiemVu] > 0) {
-                        jsonLuotLam[maNhiemVu] = jsonLuotLam[maNhiemVu] - 1;
-                    }
-
-                    const { error: errUpdateHS } = await _supabase.from('hoc_sinh').update({ [tenCotLuotLam]: jsonLuotLam }).eq('uid', uidHocSinh);
-                    if (errUpdateHS) throw errUpdateHS;
-
-                    const { error: errUpdateDon } = await _supabase.from('yeu_cau_hoc_sinh').update({ trang_thai: 1, uid_gv_duyet: window.GocGiaoVienState?.uid || null }).eq('id', idDon);
-                    if (errUpdateDon) throw errUpdateDon;
-                    return true;
-                } catch (e) {
-                    Swal.showValidationMessage(`Lỗi xử lý cấp lượt tự luận: ${e.message}`);
-                    return false;
-                }
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã cấp thêm lượt tự luận!', timer: 1200, showConfirmButton: false });
-                if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
-            }
-        });
-    }
-
-    // 4. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN TRẮC NGHIỆM
+    // =====================================================================
+    // 4. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN (TỰ ĐỘNG NHẬN DIỆN TRẮC NGHIỆM HAY TỰ LUẬN)
+    // =====================================================================
     else if (loaiYeuCau === 'QUA_HAN') {
         Swal.fire({
             title: 'Duyệt dời hạn chót?',
@@ -1284,11 +1242,30 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
                     let offset = ngayMai.getTimezoneOffset() * 60000;
                     let thoiGianMoiISO = (new Date(ngayMai - offset)).toISOString().slice(0, 19);
 
-                    const { error: errNhiemVu } = await _supabase.from('nhiem_vu_trac_nghiem').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
-                    if (errNhiemVu) throw errNhiemVu;
+                    // 🌟 4.1. KIỂM TRA MÃ NHIỆM VỤ THUỘC BẢNG NÀO ĐỂ DỜI HẠN CHÓT CHO ĐÚNG
+                    // Thường mã nhiệm vụ tự luận bắt đầu bằng tiền tố "TL_" hoặc ta quét kiểm tra song song
+                    let isTuLuan = maNhiemVu.startsWith('TL_');
 
+                    if (!isTuLuan) {
+                        // Thử check xem có tồn tại trong bảng tự luận không nếu mã không có tiền tố TL_
+                        const { data: checkTL } = await _supabase.from('nhiem_vu_tu_luan').select('ma_nhiem_vu').eq('ma_nhiem_vu', maNhiemVu).maybeSingle();
+                        if (checkTL) isTuLuan = true;
+                    }
+
+                    if (isTuLuan) {
+                        // Cập nhật dời hạn cho Bảng Tự Luận
+                        const { error: errTL } = await _supabase.from('nhiem_vu_tu_luan').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
+                        if (errTL) throw errTL;
+                    } else {
+                        // Cập nhật dời hạn cho Bảng Trắc Nghiệm
+                        const { error: errTN } = await _supabase.from('nhiem_vu_trac_nghiem').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
+                        if (errTN) throw errTN;
+                    }
+
+                    // 4.2. Chốt trạng thái đơn thành Đã duyệt (1)
                     const { error: errUpdate } = await _supabase.from('yeu_cau_hoc_sinh').update({ trang_thai: 1, uid_gv_duyet: window.GocGiaoVienState?.uid || null }).eq('id', idDon);
                     if (errUpdate) throw errUpdate;
+
                     return true;
                 } catch (e) {
                     Swal.showValidationMessage(`Lỗi gia hạn đề: ${e.message}`);
@@ -1297,51 +1274,15 @@ window.ham_14_2_xu_ly_duyet_don = async function (idDon, uidHocSinh, maNhiemVu, 
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã gia hạn thành công!', timer: 1500, showConfirmButton: false });
+                Swal.fire({ icon: 'success', title: 'Đã gia hạn và mở khóa thành công!', timer: 1500, showConfirmButton: false });
                 if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
             }
         });
     }
 
-    // 🌟 4.1. TRƯỜNG HỢP DUYỆT ĐƠN QUÁ HẠN TỰ LUẬN
-    else if (loaiYeuCau === 'QUA_HAN_TU_LUAN') {
-        Swal.fire({
-            title: 'Duyệt dời hạn chót Tự luận?',
-            html: "Hệ thống sẽ dời thời gian đóng đề tự luận sang <b>23:59 ngày mai</b>. Xác nhận gia hạn?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: '✅ Duyệt & Gia hạn',
-            cancelButtonText: 'Hủy',
-            confirmButtonColor: '#28a745',
-            cancelButtonColor: '#6c757d',
-            showLoaderOnConfirm: true,
-            preConfirm: async () => {
-                try {
-                    let ngayMai = new Date(); ngayMai.setDate(ngayMai.getDate() + 1); ngayMai.setHours(23, 59, 59, 999);
-                    let offset = ngayMai.getTimezoneOffset() * 60000;
-                    let thoiGianMoiISO = (new Date(ngayMai - offset)).toISOString().slice(0, 19);
-
-                    // Cập nhật dời hạn chót ở bảng nhiem_vu_tu_luan
-                    const { error: errNhiemVu } = await _supabase.from('nhiem_vu_tu_luan').update({ thoi_gian_dong: thoiGianMoiISO }).eq('ma_nhiem_vu', maNhiemVu);
-                    if (errNhiemVu) throw errNhiemVu;
-
-                    const { error: errUpdate } = await _supabase.from('yeu_cau_hoc_sinh').update({ trang_thai: 1, uid_gv_duyet: window.GocGiaoVienState?.uid || null }).eq('id', idDon);
-                    if (errUpdate) throw errUpdate;
-                    return true;
-                } catch (e) {
-                    Swal.showValidationMessage(`Lỗi gia hạn đề tự luận: ${e.message}`);
-                    return false;
-                }
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({ icon: 'success', title: 'Đã gia hạn tự luận thành công!', timer: 1500, showConfirmButton: false });
-                if (typeof ham_14_1_ve_tab_duyet_don === 'function') ham_14_1_ve_tab_duyet_don();
-            }
-        });
-    }
-
+    // =====================================================================
     // 5. TRƯỜNG HỢP DUYỆT ĐƠN XIN VÀO LỚP MỚI
+    // =====================================================================
     else if (loaiYeuCau === 'XIN_VAO_LOP') {
         const maLopCanDuyet = maNhiemVu;
 
