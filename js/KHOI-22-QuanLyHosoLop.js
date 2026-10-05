@@ -623,23 +623,53 @@ window.ham_22_16_mo_muc_con = function (idDanhMuc, idMucCon, kieuSort = 'TIME_AS
             if (dsFile.length === 0) {
                 htmlFiles = `<div style="font-style:italic; color:#adb5bd; font-size:13px; padding:10px;">Chưa có tệp nào được tải lên.</div>`;
             } else {
-                htmlFiles += `<div style="display:flex; gap:15px; flex-wrap:wrap;">`;
+                htmlFiles += `<div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">`;
                 dsFile.forEach((f, fIdx) => {
                     let isImg = f.name.toLowerCase().match(/\.(jpg|jpeg|png|gif|webp)$/i);
                     let preview = isImg ? f.url : '📄';
+
                     if (isImg && f.url.includes('drive.google.com')) {
                         const mD = f.url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-                        if (mD) preview = `https://drive.google.com/thumbnail?id=${mD[1]}&sz=w1000`;
+                        if (mD) preview = `https://drive.google.com/thumbnail?id=${mD[1]}&sz=w2000`;
                     }
 
-                    let displayThumb = isImg
-                        ? `<img src="${preview}" style="width:100%; height:auto; max-height:200px; object-fit:cover; border-radius:6px; border:1px solid #dee2e6;">`
-                        : `<div style="width:150px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#f1f3f4; border-radius:6px; border:1px solid #dee2e6;"><div style="font-size:30px; margin-bottom:5px;">${preview}</div><div style="font-size:11px; font-weight:bold; color:#495057; width:130px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${f.name}">${f.name}</div></div>`;
+                    // 🌟 TÍNH TOÁN VÀ ĐỊNH DẠNG DUNG LƯỢNG FILE (Chuyển sang MB nếu lớn hơn 1024KB)
+                    let numSize = parseFloat(f.size);
+                    let fileSizeText = isNaN(numSize) ? 'Chưa rõ dung lượng' : (numSize >= 1024 ? (numSize / 1024).toFixed(1) + ' MB' : numSize + ' KB');
 
+                    let displayContent = '';
+
+                    if (isImg) {
+                        // 🌟 GIAO DIỆN HIỂN THỊ DÀNH CHO ẢNH
+                        displayContent = `
+                            <div style="display:flex; flex-direction:column; align-items:center;">
+                                <img src="${preview}" style="max-width:100%; max-height:85vh; height:auto; object-fit:contain; border-radius:6px; border:1px solid #dee2e6; background:#f8f9fa; display:block; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+                                <div style="margin-top:12px; text-align:center; background:#f1f3f4; padding:6px 15px; border-radius:20px; width:fit-content;">
+                                    <div style="font-size:13px; font-weight:bold; color:#0056b3; max-width:400px; word-break:break-word; line-height:1.3;">${f.name}</div>
+                                    <div style="font-size:11px; color:#6c757d; margin-top:4px;">📏 ${fileSizeText}</div>
+                                </div>
+                            </div>`;
+                    } else {
+                        // 🌟 GIAO DIỆN HIỂN THỊ DÀNH CHO FILE TÀI LIỆU (PDF, WORD, EXCEL...)
+                        displayContent = `
+                            <div style="display:flex; flex-direction:column; align-items:center; width: 140px;">
+                                <div style="width:100%; height:110px; display:flex; align-items:center; justify-content:center; background:#f1f3f4; border-radius:8px; border:1px solid #dee2e6; box-shadow:inset 0 0 10px rgba(0,0,0,0.02);">
+                                    <span style="font-size:50px;">📄</span>
+                                </div>
+                                <div style="margin-top:10px; text-align:center; width:100%;">
+                                    <div style="font-size:12px; font-weight:bold; color:#0056b3; word-break:break-word; line-height:1.4; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;" title="${f.name}">${f.name}</div>
+                                    <div style="font-size:11px; color:#6c757d; margin-top:5px;">📏 ${fileSizeText}</div>
+                                </div>
+                            </div>`;
+                    }
+
+                    // Đóng gói từng tệp thành dạng Card có bo góc và đổ bóng nhẹ
                     htmlFiles += `
-                        <div style="position:relative; animation:fadeIn 0.3s;">
-                            <a href="${f.url}" target="_blank" style="text-decoration:none; display:block;">${displayThumb}</a>
-                            <button onclick="window.ham_22_20_xoa_file('${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}', ${fIdx})" style="position:absolute; top:-5px; right:-5px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:22px; height:22px; font-size:11px; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.3);">✖</button>
+                        <div style="position:relative; animation:fadeIn 0.3s; max-width:100%; background:#fff; padding:12px; border-radius:12px; border:1px solid #e9ecef; box-shadow:0 2px 5px rgba(0,0,0,0.04); transition:0.2s;" onmouseover="this.style.boxShadow='0 6px 15px rgba(0,123,255,0.15)'; this.style.borderColor='#b8daff'" onmouseout="this.style.boxShadow='0 2px 5px rgba(0,0,0,0.04)'; this.style.borderColor='#e9ecef'">
+                            <a href="${f.url}" target="_blank" style="text-decoration:none; display:inline-block; max-width:100%;">
+                                ${displayContent}
+                            </a>
+                            <button onclick="window.ham_22_20_xoa_file('${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}', ${fIdx})" style="position:absolute; top:-8px; right:-8px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.3); z-index:2;" title="Xóa tệp này">✖</button>
                         </div>
                     `;
                 });
@@ -649,9 +679,9 @@ window.ham_22_16_mo_muc_con = function (idDanhMuc, idMucCon, kieuSort = 'TIME_AS
             tpUI = `
                 <div style="margin-top:10px; background:#f8f9fa; padding:15px; border-radius:8px; border:1px dashed #ced4da;">
                     ${htmlFiles}
-                    <div style="margin-top:15px; border-top:1px dashed #ccc; padding-top:10px;">
-                        <button onclick="this.nextElementSibling.click()" style="padding:6px 12px; background:#007bff; color:#fff; border:none; border-radius:4px; font-size:12px; font-weight:bold; cursor:pointer;">☁️ Tải Tệp Lên</button>
-                        <input type="file" multiple style="display:none;" onchange="window.ham_22_19_upload_file_vao_thanh_phan(this, '${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}')">
+                    <div style="margin-top:20px; border-top:1px dashed #ccc; padding-top:15px;">
+                        <button onclick="this.nextElementSibling.click()" style="padding:8px 16px; background:#007bff; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:bold; cursor:pointer; box-shadow:0 2px 4px rgba(0,123,255,0.2);">☁️ Tải Tệp Lên (Hỗ trợ Ảnh & File)</button>
+                        <input type="file" accept="image/*, application/pdf, .doc, .docx, .xls, .xlsx, .rar, .zip" multiple style="display:none;" onchange="window.ham_22_19_upload_file_vao_thanh_phan(this, '${idDanhMuc}', '${idMucCon}', '${tp.idThanhPhan}')">
                     </div>
                 </div>
             `;
@@ -1108,13 +1138,137 @@ window.ham_22_19_upload_file_vao_thanh_phan = async function (inputElem, idDanhM
 //     });
 // };
 
+// // =====================================================================
+// // HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CÓ NÚT ZOOM TRỰC TIẾP & KHUNG CẮT THU GỌN)
+// // =====================================================================
+// window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
+//     // 1. Tải thư viện CropperJS nếu chưa có
+//     if (typeof window.Cropper === 'undefined') {
+//         Swal.fire({ title: 'Đang tải bộ công cụ cắt ảnh...', didOpen: () => Swal.showLoading() });
+//         await new Promise((resolve) => {
+//             const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(link);
+//             const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
+//         });
+//         Swal.close();
+//     }
+
+//     return new Promise(async (resolve) => {
+//         let objectURL = URL.createObjectURL(fileImage);
+
+//         let modalBox = document.createElement('div');
+//         modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
+
+//         modalBox.innerHTML = `
+//             <!-- THANH CÔNG CỤ PHÍA TRÊN (GỒM NÚT ZOOM, CHỌN ĐỘ PHÂN GIẢI VÀ NÚT LƯU/HỦY) -->
+//             <div style="flex: 0 0 65px; background:#222; padding:0 12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10; flex-wrap:wrap; gap:8px;">
+//                 <div style="display:flex; align-items:center; gap:6px;">
+//                     <span style="color:#ffc107; font-weight:bold; font-size:12px;">📐 Cỡ:</span>
+//                     <select id="select_chat_luong_anh_popup" style="padding:5px 6px; border-radius:4px; background:#fff; color:#333; font-weight:bold; font-size:11px; border:1px solid #ccc; outline:none; cursor:pointer;">
+//                         <option value="ORIGINAL">✨ Gốc</option>
+//                         <option value="2K">🖥️ 2K</option>
+//                         <option value="FULLHD" selected>💻 Full HD</option>
+//                         <option value="HD">📱 HD</option>
+//                     </select>
+
+//                     <!-- 🌟 CỤM NÚT ZOOM NHANH TRỰC TIẾP TRÊN GIAO DIỆN -->
+//                     <div style="display:flex; gap:3px; margin-left:5px;">
+//                         <button id="btn_zoom_out" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Thu nhỏ ảnh (Zoom Out)">🔍-</button>
+//                         <button id="btn_zoom_in" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Phóng to ảnh (Zoom In)">🔍+</button>
+//                         <button id="btn_zoom_reset" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:11px;" title="Đặt lại kích thước">🔄</button>
+//                     </div>
+//                 </div>
+
+//                 <div style="display:flex; gap:6px;">
+//                     <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu</button>
+//                     <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Hủy</button>
+//                 </div>
+//             </div>
+
+//             <!-- VÙNG CHỨA ẢNH CẮT -->
+//             <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 65px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+//                 <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
+//             </div>
+//         `;
+//         document.body.appendChild(modalBox);
+
+//         const targetImg = document.getElementById('img_cropper_target_popup');
+
+//         let cropperInstance = new window.Cropper(targetImg, {
+//             viewMode: 0,             // Cho phép dịch chuyển ảnh ra ngoài khung thoải mái
+//             dragMode: 'move',        // Mặc định là chế độ kéo di chuyển ảnh
+//             autoCropArea: 0.7,       // 🌟 Đặt 0.7 giúp khung cắt ban đầu gọn gàng ở giữa, không bị che kín màn hình
+//             restore: false,
+//             guides: true,
+//             center: true,
+//             highlight: false,
+//             cropBoxMovable: true,    // Cho phép di chuyển khung cắt
+//             cropBoxResizable: true,  // Cho phép kéo co giãn các góc của khung cắt
+//             toggleDragModeOnDblclick: true, // Nhấp đúp để đổi qua lại giữa vẽ khung và kéo ảnh
+//             zoomOnWheel: true,       // Lăn chuột zoom
+//             zoomOnTouch: true,       // Chụm ngón tay zoom trên điện thoại
+//             wheelZoomRatio: 0.1,
+//             minContainerWidth: 200,
+//             minContainerHeight: 200,
+//             responsive: true
+//         });
+
+//         // 🌟 GẮN SỰ KIỆN CHO CÁC NÚT ZOOM TRÊN THANH CÔNG CỤ
+//         document.getElementById('btn_zoom_out').onclick = function () {
+//             cropperInstance.zoom(-0.1); // Thu nhỏ ảnh 10% mỗi lần bấm
+//         };
+//         document.getElementById('btn_zoom_in').onclick = function () {
+//             cropperInstance.zoom(0.1);  // Phóng to ảnh 10% mỗi lần bấm
+//         };
+//         document.getElementById('btn_zoom_reset').onclick = function () {
+//             cropperInstance.reset();    // Đặt lại trạng thái ban đầu
+//         };
+
+//         document.getElementById('btn_cropper_huy').onclick = function () {
+//             cropperInstance.destroy();
+//             modalBox.remove();
+//             URL.revokeObjectURL(objectURL);
+//             resolve(null);
+//         };
+
+//         document.getElementById('btn_cropper_luu').onclick = function () {
+//             const kieuChon = document.getElementById('select_chat_luong_anh_popup').value;
+//             let maxW = 1920, maxH = 1920, chatLuongJpeg = 0.8;
+
+//             if (kieuChon === 'ORIGINAL') {
+//                 maxW = 10000; maxH = 10000; chatLuongJpeg = 0.92;
+//             } else if (kieuChon === '2K') {
+//                 maxW = 2560; maxH = 2560; chatLuongJpeg = 0.85;
+//             } else if (kieuChon === 'FULLHD') {
+//                 maxW = 1920; maxH = 1920; chatLuongJpeg = 0.8;
+//             } else if (kieuChon === 'HD') {
+//                 maxW = 1280; maxH = 1280; chatLuongJpeg = 0.7;
+//             }
+
+//             const canvas = cropperInstance.getCroppedCanvas({
+//                 maxWidth: maxW,
+//                 maxHeight: maxH,
+//                 imageSmoothingEnabled: true,
+//                 imageSmoothingQuality: 'high'
+//             });
+
+//             canvas.toBlob((blob) => {
+//                 cropperInstance.destroy();
+//                 modalBox.remove();
+//                 URL.revokeObjectURL(objectURL);
+//                 resolve(blob);
+//             }, 'image/jpeg', chatLuongJpeg);
+//         };
+//     });
+// };
+
+
 // =====================================================================
-// HÀM HỖ TRỢ: BẬT MODAL CẮT & NÉN ẢNH (CÓ NÚT ZOOM TRỰC TIẾP & KHUNG CẮT THU GỌN)
+// HÀM HỖ TRỢ: BẬT MODAL XEM TRƯỚC - NÉN ẢNH (CHỈ BẬT CẮT KHI CẦN THIẾT)
 // =====================================================================
 window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
-    // 1. Tải thư viện CropperJS nếu chưa có
+    // 1. Tải thư viện CropperJS sẵn sàng dưới nền
     if (typeof window.Cropper === 'undefined') {
-        Swal.fire({ title: 'Đang tải bộ công cụ cắt ảnh...', didOpen: () => Swal.showLoading() });
+        Swal.fire({ title: 'Đang tải bộ công cụ ảnh...', didOpen: () => Swal.showLoading() });
         await new Promise((resolve) => {
             const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css'; document.head.appendChild(link);
             const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js'; script.onload = resolve; document.head.appendChild(script);
@@ -1129,107 +1283,161 @@ window.ham_22_mo_modal_cat_nen_anh_cuc_nhanh = async function (fileImage) {
         modalBox.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); display:flex; flex-direction:column; z-index:9999999; overflow:hidden;';
 
         modalBox.innerHTML = `
-            <!-- THANH CÔNG CỤ PHÍA TRÊN (GỒM NÚT ZOOM, CHỌN ĐỘ PHÂN GIẢI VÀ NÚT LƯU/HỦY) -->
+            <!-- THANH CÔNG CỤ PHÍA TRÊN -->
             <div style="flex: 0 0 65px; background:#222; padding:0 12px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #444; z-index:10; flex-wrap:wrap; gap:8px;">
                 <div style="display:flex; align-items:center; gap:6px;">
                     <span style="color:#ffc107; font-weight:bold; font-size:12px;">📐 Cỡ:</span>
                     <select id="select_chat_luong_anh_popup" style="padding:5px 6px; border-radius:4px; background:#fff; color:#333; font-weight:bold; font-size:11px; border:1px solid #ccc; outline:none; cursor:pointer;">
-                        <option value="ORIGINAL">✨ Gốc</option>
+                        <!-- 🌟 Đã chuyển thuộc tính 'selected' lên mức độ Gốc -->
+                        <option value="ORIGINAL" selected>✨ Gốc</option>
                         <option value="2K">🖥️ 2K</option>
-                        <option value="FULLHD" selected>💻 Full HD</option>
+                        <option value="FULLHD">💻 Full HD</option>
                         <option value="HD">📱 HD</option>
                     </select>
 
-                    <!-- 🌟 CỤM NÚT ZOOM NHANH TRỰC TIẾP TRÊN GIAO DIỆN -->
-                    <div style="display:flex; gap:3px; margin-left:5px;">
-                        <button id="btn_zoom_out" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Thu nhỏ ảnh (Zoom Out)">🔍-</button>
-                        <button id="btn_zoom_in" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Phóng to ảnh (Zoom In)">🔍+</button>
+                    <!-- CỤM NÚT ZOOM (Sẽ chỉ hiện khi bật chế độ cắt) -->
+                    <div id="vung_nut_zoom" style="display:none; gap:3px; margin-left:5px;">
+                        <button id="btn_zoom_out" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Thu nhỏ ảnh">🔍-</button>
+                        <button id="btn_zoom_in" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;" title="Phóng to ảnh">🔍+</button>
                         <button id="btn_zoom_reset" style="background:#444; color:white; border:none; padding:5px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:11px;" title="Đặt lại kích thước">🔄</button>
                     </div>
                 </div>
 
                 <div style="display:flex; gap:6px;">
-                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">💾 Lưu</button>
+                    <button id="btn_bat_cat_anh" style="background:#17a2b8; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✂️ Bật chế độ cắt</button>
+                    <button id="btn_cropper_luu" style="background:#28a745; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">🚀 Tải lên luôn</button>
                     <button id="btn_cropper_huy" style="background:#6c757d; color:white; border:none; padding:6px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:12px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">✖ Hủy</button>
                 </div>
             </div>
 
-            <!-- VÙNG CHỨA ẢNH CẮT -->
+            <!-- VÙNG CHỨA ẢNH (MẶC ĐỊNH CHỈ LÀ XEM TRƯỚC) -->
             <div style="flex: 1; position:relative; width:100%; height:calc(100vh - 65px); background:#111; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block;">
+                <img id="img_cropper_target_popup" src="${objectURL}" style="max-width:100%; max-height:100%; display:block; object-fit:contain;">
             </div>
         `;
         document.body.appendChild(modalBox);
 
         const targetImg = document.getElementById('img_cropper_target_popup');
+        let cropperInstance = null; // Biến kiểm tra xem đã bật công cụ cắt chưa
 
-        let cropperInstance = new window.Cropper(targetImg, {
-            viewMode: 0,             // Cho phép dịch chuyển ảnh ra ngoài khung thoải mái
-            dragMode: 'move',        // Mặc định là chế độ kéo di chuyển ảnh
-            autoCropArea: 0.7,       // 🌟 Đặt 0.7 giúp khung cắt ban đầu gọn gàng ở giữa, không bị che kín màn hình
-            restore: false,
-            guides: true,
-            center: true,
-            highlight: false,
-            cropBoxMovable: true,    // Cho phép di chuyển khung cắt
-            cropBoxResizable: true,  // Cho phép kéo co giãn các góc của khung cắt
-            toggleDragModeOnDblclick: true, // Nhấp đúp để đổi qua lại giữa vẽ khung và kéo ảnh
-            zoomOnWheel: true,       // Lăn chuột zoom
-            zoomOnTouch: true,       // Chụm ngón tay zoom trên điện thoại
-            wheelZoomRatio: 0.1,
-            minContainerWidth: 200,
-            minContainerHeight: 200,
-            responsive: true
-        });
+        // 🌟 BẬT CHẾ ĐỘ CẮT KHI NGƯỜI DÙNG CHỦ ĐỘNG BẤM
+        document.getElementById('btn_bat_cat_anh').onclick = function () {
+            if (cropperInstance) return;
 
-        // 🌟 GẮN SỰ KIỆN CHO CÁC NÚT ZOOM TRÊN THANH CÔNG CỤ
-        document.getElementById('btn_zoom_out').onclick = function () {
-            cropperInstance.zoom(-0.1); // Thu nhỏ ảnh 10% mỗi lần bấm
-        };
-        document.getElementById('btn_zoom_in').onclick = function () {
-            cropperInstance.zoom(0.1);  // Phóng to ảnh 10% mỗi lần bấm
-        };
-        document.getElementById('btn_zoom_reset').onclick = function () {
-            cropperInstance.reset();    // Đặt lại trạng thái ban đầu
+            // Ẩn nút bật cắt, hiện bộ công cụ zoom
+            this.style.display = 'none';
+            document.getElementById('vung_nut_zoom').style.display = 'flex';
+            document.getElementById('btn_cropper_luu').innerHTML = "💾 Lưu & Tải lên";
+
+            cropperInstance = new window.Cropper(targetImg, {
+                viewMode: 0,
+                dragMode: 'move',
+                autoCropArea: 0.7,
+                restore: false,
+                guides: true,
+                center: true,
+                highlight: false,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                toggleDragModeOnDblclick: true,
+                zoomOnWheel: true,
+                zoomOnTouch: true,
+                wheelZoomRatio: 0.1,
+                minContainerWidth: 200,
+                minContainerHeight: 200,
+                responsive: true
+            });
+
+            // Gắn sự kiện zoom
+            document.getElementById('btn_zoom_out').onclick = () => cropperInstance.zoom(-0.1);
+            document.getElementById('btn_zoom_in').onclick = () => cropperInstance.zoom(0.1);
+            document.getElementById('btn_zoom_reset').onclick = () => cropperInstance.reset();
         };
 
+        // 🌟 NÚT HỦY BỎ
         document.getElementById('btn_cropper_huy').onclick = function () {
-            cropperInstance.destroy();
+            if (cropperInstance) cropperInstance.destroy();
             modalBox.remove();
             URL.revokeObjectURL(objectURL);
             resolve(null);
         };
 
+        // 🌟 NÚT XỬ LÝ LƯU (TỰ NHẬN DIỆN CÓ CẮT HAY CHỈ NÉN)
         document.getElementById('btn_cropper_luu').onclick = function () {
+            this.innerHTML = "⏳ Đang xử lý...";
+            this.disabled = true;
+
             const kieuChon = document.getElementById('select_chat_luong_anh_popup').value;
             let maxW = 1920, maxH = 1920, chatLuongJpeg = 0.8;
 
-            if (kieuChon === 'ORIGINAL') {
-                maxW = 10000; maxH = 10000; chatLuongJpeg = 0.92;
-            } else if (kieuChon === '2K') {
-                maxW = 2560; maxH = 2560; chatLuongJpeg = 0.85;
-            } else if (kieuChon === 'FULLHD') {
-                maxW = 1920; maxH = 1920; chatLuongJpeg = 0.8;
-            } else if (kieuChon === 'HD') {
-                maxW = 1280; maxH = 1280; chatLuongJpeg = 0.7;
+            if (kieuChon === 'ORIGINAL') { maxW = 10000; maxH = 10000; chatLuongJpeg = 1.0; } // Đặt chất lượng 1.0 (100%) nếu có cắt
+            else if (kieuChon === '2K') { maxW = 2560; maxH = 2560; chatLuongJpeg = 0.85; }
+            else if (kieuChon === 'FULLHD') { maxW = 1920; maxH = 1920; chatLuongJpeg = 0.8; }
+            else if (kieuChon === 'HD') { maxW = 1280; maxH = 1280; chatLuongJpeg = 0.7; }
+
+            // TRƯỜNG HỢP 1: NẾU ĐÃ BẬT CÔNG CỤ CẮT (Buộc phải qua Canvas để lấy phần ảnh đã cắt)
+            if (cropperInstance) {
+                const canvas = cropperInstance.getCroppedCanvas({
+                    maxWidth: maxW,
+                    maxHeight: maxH,
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high'
+                });
+
+                canvas.toBlob((blob) => {
+                    cropperInstance.destroy();
+                    modalBox.remove();
+                    URL.revokeObjectURL(objectURL);
+                    resolve(blob);
+                }, 'image/jpeg', chatLuongJpeg);
             }
 
-            const canvas = cropperInstance.getCroppedCanvas({
-                maxWidth: maxW,
-                maxHeight: maxH,
-                imageSmoothingEnabled: true,
-                imageSmoothingQuality: 'high'
-            });
+            // TRƯỜNG HỢP 2: KHÔNG CẮT, CHỈ MUỐN TẢI LÊN LUÔN
+            else {
+                // 🌟 NẾU CHỌN GỐC VÀ KHÔNG CẮT: Bỏ qua hoàn toàn Canvas, trả thẳng file nguyên bản 100%
+                if (kieuChon === 'ORIGINAL') {
+                    modalBox.remove();
+                    URL.revokeObjectURL(objectURL);
+                    resolve(fileImage); // Trả về tệp tin gốc không qua nén
+                    return;
+                }
 
-            canvas.toBlob((blob) => {
-                cropperInstance.destroy();
-                modalBox.remove();
-                URL.revokeObjectURL(objectURL);
-                resolve(blob);
-            }, 'image/jpeg', chatLuongJpeg);
+                // 🌟 NẾU CHỌN FULL HD, 2K, HD: Mới bắt đầu đưa vào Canvas để nén giảm dung lượng
+                let imgTemp = new Image();
+                imgTemp.onload = function () {
+                    let w = imgTemp.width;
+                    let h = imgTemp.height;
+
+                    if (w > maxW || h > maxH) {
+                        let ratio = Math.min(maxW / w, maxH / h);
+                        w = Math.round(w * ratio);
+                        h = Math.round(h * ratio);
+                    }
+
+                    let canvas = document.createElement('canvas');
+                    canvas.width = w;
+                    canvas.height = h;
+                    let ctx = canvas.getContext('2d');
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+
+                    ctx.drawImage(imgTemp, 0, 0, w, h);
+
+                    canvas.toBlob((blob) => {
+                        modalBox.remove();
+                        URL.revokeObjectURL(objectURL);
+                        resolve(blob);
+                    }, 'image/jpeg', chatLuongJpeg);
+                };
+                imgTemp.src = objectURL;
+            }
         };
     });
 };
+
+
+
+
 // =====================================================================
 // 1. XÓA FILE LẺ BÊN TRONG THÀNH PHẦN (CÓ XÓA DRIVE)
 // =====================================================================
