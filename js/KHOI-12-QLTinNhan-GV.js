@@ -68,16 +68,54 @@ window.ham_12_1_ve_quan_ly_tin_nhan = function () {
     ham_12_8_khoi_tao_su_kien_anh();
 }
 
-//// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.2: Lấy dữ liệu và nhét vào Bộ nhớ tạm (Không vẽ bảng)
+// //// [Nhãn thời gian: 21:05 - Ngày 12/06/2026] - Hàm 12.2: Lấy dữ liệu và nhét vào Bộ nhớ tạm (Không vẽ bảng)
+// window.ham_12_2_tai_danh_sach_tin_nhan = async function () {
+//     const vungDS = document.getElementById('vung-danh-sach-tn');
+//     if (!vungDS) return;
+//     vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang đồng bộ CSDL...</div>`;
+
+//     try {
+//         // Tải 1 lần toàn bộ tin nhắn
+//         const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+//         const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(ten,danh_sach_ma_lop)`, { headers: headersAPI });
+//         const dataTN = await resTN.json();
+
+//         if (resTN.ok) {
+//             BangTinNhanState.duLieuGoc = dataTN || [];
+//             ham_12_14_ve_bang_tin_nhan(); // Tải xong thì gọi hàm Xử lý & Vẽ Bảng
+//         } else {
+//             throw new Error("Lỗi API");
+//         }
+//     } catch (e) {
+//         console.error(e);
+//         vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL.</div>`;
+//     }
+// }
+
+
+//// [CẬP NHẬT] Hàm 12.2: Lấy dữ liệu và nhét vào Bộ nhớ tạm (Có tạo từ điển Lớp)
 window.ham_12_2_tai_danh_sach_tin_nhan = async function () {
     const vungDS = document.getElementById('vung-danh-sach-tn');
     if (!vungDS) return;
     vungDS.innerHTML = `<div style="text-align:center; padding: 20px; color:#0ea5e9; font-weight:bold;">⏳ Đang đồng bộ CSDL...</div>`;
 
     try {
-        // Tải 1 lần toàn bộ tin nhắn
         const headersAPI = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
-        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(ten,danh_sach_ma_lop)`, { headers: headersAPI });
+
+        // 🌟 BỔ SUNG 1: Tải từ điển Lớp học để dịch mã lớp ra Tên lớp cho đẹp
+        const resLop = await fetch(`${SUPABASE_URL}/rest/v1/lop_hoc?select=ma_lop,ten_lop`, { method: 'GET', headers: headersAPI });
+        const dataLop = await resLop.json();
+
+        // Lưu từ điển lớp vào State chung để hàm Vẽ Bảng (ham_12_14) có thể dùng
+        window.BangTinNhanState.tuDienLop = {};
+        if (dataLop) {
+            dataLop.forEach(lop => {
+                window.BangTinNhanState.tuDienLop[lop.ma_lop] = lop.ten_lop;
+            });
+        }
+
+        // Tải 1 lần toàn bộ tin nhắn kèm theo CẢ UID, TÊN, SĐT của học sinh
+        const resTN = await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?select=*,hoc_sinh!uid_hoc_sinh(uid,ten,sdt,danh_sach_ma_lop,anh_dai_dien)`, { headers: headersAPI });
         const dataTN = await resTN.json();
 
         if (resTN.ok) {
@@ -91,6 +129,9 @@ window.ham_12_2_tai_danh_sach_tin_nhan = async function () {
         vungDS.innerHTML = `<div style="text-align:center; padding:20px; color:red;">❌ Lỗi kết nối CSDL.</div>`;
     }
 }
+
+
+
 
 
 //// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.3: Thêm Thời gian & Kiểm tra Khóa
@@ -224,6 +265,74 @@ window.ham_12_9_nen_va_preview_anh = function (fileBlob) {
     }
 }
 
+// //// [Nhãn thời gian: 16:45 - Ngày 12/06/2026] - Hàm 12.7: XỬ LÝ LÕI ĐẨY ẢNH LÊN STORAGE VÀ CẬP NHẬT JSONB
+// window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
+//     const noiDungText = document.getElementById('txt-noi-dung-chat').value.trim();
+//     if (!noiDungText && !currentImageBase64) return;
+
+//     const btnGui = document.getElementById('btn-gui-chat');
+//     btnGui.innerText = "⏳..."; btnGui.disabled = true;
+
+//     try {
+//         let imageUrl = null;
+
+//         if (currentImageBase64) {
+//             const byteCharacters = atob(currentImageBase64.split(',')[1]);
+//             const byteNumbers = new Array(byteCharacters.length);
+//             for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
+//             const blobAnh = new Blob([new Uint8Array(byteNumbers)], { type: 'image/jpeg' });
+
+//             // 🌟 CẤU TRÚC MỚI: [idTinNhan]_[nguoiGui]_[timestamp].jpg
+//             const timestamp = Date.now();
+//             const tenFile = `${currentChatId}_gv_${timestamp}.jpg`;
+
+//             const resUpload = await fetch(`${SUPABASE_URL}/storage/v1/object/chat_images/${tenFile}`, {
+//                 method: 'POST',
+//                 headers: {
+//                     'apikey': SUPABASE_KEY,
+//                     'Authorization': `Bearer ${SUPABASE_KEY}`,
+//                     'Content-Type': 'image/jpeg'
+//                 },
+//                 body: blobAnh
+//             });
+
+//             if (!resUpload.ok) throw new Error("Lỗi upload ảnh");
+//             imageUrl = `${SUPABASE_URL}/storage/v1/object/public/chat_images/${tenFile}`;
+//         }
+
+//         const tinNhanMoi = {
+//             nguoi_gui: "GV",
+//             noidung: noiDungText,
+//             hinh_anh: imageUrl ? [imageUrl] : [],
+//             time: new Date().toISOString()
+//         };
+
+//         currentChatHistory.push(tinNhanMoi);
+
+//         const payload = {
+//             lich_su_chat: currentChatHistory,
+//             trang_thai: 1, // Chuyển sang trạng thái "Đã phản hồi"
+//             thoi_gian_cap_nhat: new Date().toISOString()
+//         };
+
+//         await fetch(`${SUPABASE_URL}/rest/v1/tin_nhan?id=eq.${currentChatId}`, {
+//             method: 'PATCH',
+//             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+//             body: JSON.stringify(payload)
+//         });
+
+//         ham_12_3_mo_khung_chat(currentChatId);
+//         ham_12_2_tai_danh_sach_tin_nhan();
+
+//     } catch (e) {
+//         console.error(e);
+//         alert("❌ Lỗi khi gửi tin nhắn!");
+//     } finally {
+//         btnGui.innerText = "GỬI 🚀"; btnGui.disabled = false;
+//     }
+// }
+
+
 //// [Nhãn thời gian: 16:45 - Ngày 12/06/2026] - Hàm 12.7: XỬ LÝ LÕI ĐẨY ẢNH LÊN STORAGE VÀ CẬP NHẬT JSONB
 window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
     const noiDungText = document.getElementById('txt-noi-dung-chat').value.trim();
@@ -283,6 +392,13 @@ window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
         ham_12_3_mo_khung_chat(currentChatId);
         ham_12_2_tai_danh_sach_tin_nhan();
 
+        // =====================================================================
+        // 🌟 GỌI LẠI HÀM ĐẾM ĐỂ CẬP NHẬT BADGE NGAY LẬP TỨC
+        // =====================================================================
+        if (typeof window.ham_3_1_dem_ngam_du_lieu_admin === 'function') {
+            window.ham_3_1_dem_ngam_du_lieu_admin();
+        }
+
     } catch (e) {
         console.error(e);
         alert("❌ Lỗi khi gửi tin nhắn!");
@@ -290,6 +406,8 @@ window.ham_12_7_gui_tin_nhan_tu_gv = async function () {
         btnGui.innerText = "GỬI 🚀"; btnGui.disabled = false;
     }
 }
+
+
 
 //// [Nhãn thời gian: 19:45 - Ngày 12/06/2026] - Hàm 12.11: Xử lý Khóa tin nhắn
 window.ham_12_11_khoa_tin_nhan = async function (id) {
@@ -300,6 +418,8 @@ window.ham_12_11_khoa_tin_nhan = async function (id) {
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ trang_thai: 2 })
         });
+        
+        if (typeof window.ham_3_1_dem_ngam_du_lieu_admin === 'function') window.ham_3_1_dem_ngam_du_lieu_admin();
         ham_12_2_tai_danh_sach_tin_nhan();
     } catch (e) { alert("Lỗi khi khóa!"); }
 }
@@ -327,7 +447,7 @@ window.ham_12_12_xoa_tin_nhan = async function (id) {
             method: 'DELETE',
             headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
         });
-
+        if (typeof window.ham_3_1_dem_ngam_du_lieu_admin === 'function') window.ham_3_1_dem_ngam_du_lieu_admin();
         ham_12_2_tai_danh_sach_tin_nhan();
     } catch (e) {
         console.error(e);
@@ -426,13 +546,89 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
         </thead>
         <tbody>`;
 
-    dataLoc.forEach((tn, i) => {
-        let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
+    // dataLoc.forEach((tn, i) => {
+    //     let tenHS = (tn.hoc_sinh && tn.hoc_sinh.ten) ? tn.hoc_sinh.ten : "Ẩn danh";
 
-        // Hiện danh sách lớp
-        let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop && tn.hoc_sinh.danh_sach_ma_lop.length > 0)
-            ? `<div style="font-size:11px; color:#64748b; margin-top:2px;">Lớp: ${tn.hoc_sinh.danh_sach_ma_lop.join(", ")}</div>`
-            : `<div style="font-size:11px; color:#94a3b8; margin-top:2px;">(Chưa có lớp)</div>`;
+    //     // Hiện danh sách lớp
+    //     let dsLop = (tn.hoc_sinh && tn.hoc_sinh.danh_sach_ma_lop && tn.hoc_sinh.danh_sach_ma_lop.length > 0)
+    //         ? `<div style="font-size:11px; color:#64748b; margin-top:2px;">Lớp: ${tn.hoc_sinh.danh_sach_ma_lop.join(", ")}</div>`
+    //         : `<div style="font-size:11px; color:#94a3b8; margin-top:2px;">(Chưa có lớp)</div>`;
+
+    //     let soLuot = tn.lich_su_chat?.length || 0;
+    //     let tinCuoi = (soLuot > 0) ? (tn.lich_su_chat[soLuot - 1].noidung || "[Hình ảnh]") : "Chưa có nội dung";
+    //     let dCapNhat = new Date(tn.thoi_gian_cap_nhat);
+
+    //     let tgCapNhat = `
+    //         <div style="font-weight:bold;">${dCapNhat.getHours().toString().padStart(2, '0')}:${dCapNhat.getMinutes().toString().padStart(2, '0')}</div>
+    //         <div style="font-size:11px; color:#64748b;">${dCapNhat.getDate().toString().padStart(2, '0')}/${(dCapNhat.getMonth() + 1).toString().padStart(2, '0')}</div>
+    //     `;
+
+    //     // Nút Khóa / Mở khóa
+    //     let btnAction = (tn.trang_thai === 2)
+    //         ? `<button onclick="ham_12_16_mo_khoa_tin_nhan('${tn.id}')" style="background:#10b981; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Mở khóa">🔓</button>`
+    //         : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Khóa">🔒</button>`;
+
+    //     htmlBang += `
+    //         <tr style="border-bottom: 1px solid #e2e8f0; ${tn.trang_thai === 0 ? "background: #fff8f8;" : ""}">
+    //             <td style="padding: 10px; text-align: center;">${i + 1}</td>
+    //             <td style="padding: 10px;">
+    //                 <b style="color: #0ea5e9;">${tenHS}</b>
+    //                 ${dsLop} 
+    //             </td>
+    //             <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
+    //             <td style="padding: 10px;">
+    //                 <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt liên lạc)</span><br>
+    //                 <i style="color: #334155;">"${tinCuoi.substring(0, 30)}..."</i>
+    //             </td>
+    //             <td style="padding: 10px;">${tgCapNhat}</td>
+    //             <td style="padding: 10px; text-align: center;">${tn.trang_thai === 2 ? "🔒 Đã khóa" : (tn.trang_thai === 1 ? "🟢 Đã trả lời" : "🔴 Chờ xử lý")}</td>
+    //             <td style="padding: 10px; text-align: center;">
+    //                 <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
+    //                     <button onclick="ham_12_3_mo_khung_chat('${tn.id}')" 
+    //                         style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s;"
+    //                         onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    //                         💬 Mở chat
+    //                     </button>
+    //                     ${btnAction}
+    //                     <button onclick="ham_12_12_xoa_tin_nhan('${tn.id}')" style="background:#ef4444; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;">🗑️</button>
+    //                 </div>
+    //             </td>
+    //         </tr>`;
+    // });
+
+    dataLoc.forEach((tn, i) => {
+        // =========================================================
+        // 🌟 NÂNG CẤP GIAO DIỆN CỘT HỌC SINH (AVATAR + TÊN LỚP THẬT)
+        // =========================================================
+        let tenHS = "Ẩn danh";
+        let avatarUrl = "https://ui-avatars.com/api/?name=User&background=e0e7ff&color=4f46e5";
+        let dsLopHienThi = `<div style="font-size:11px; color:#94a3b8; margin-top:2px;">(Chưa xếp lớp)</div>`;
+        let sdtHS = "";
+
+        if (tn.hoc_sinh) {
+            tenHS = tn.hoc_sinh.ten || "Ẩn danh";
+            sdtHS = tn.hoc_sinh.sdt || "";
+            // Ưu tiên ảnh đại diện thực tế, nếu không có thì lấy ảnh UI theo tên
+            avatarUrl = tn.hoc_sinh.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(tenHS)}&background=e0e7ff&color=4f46e5`;
+
+            // Dịch mã lớp sang tên lớp thực tế từ Từ điển
+            if (tn.hoc_sinh.danh_sach_ma_lop && tn.hoc_sinh.danh_sach_ma_lop.length > 0) {
+                let mangTenLop = tn.hoc_sinh.danh_sach_ma_lop.map(ma => window.BangTinNhanState.tuDienLop[ma] || ma);
+                dsLopHienThi = `<div style="font-size:12px; color:#16a34a; margin-top:2px; font-weight:bold;">Lớp: ${mangTenLop.join(", ")}</div>`;
+            }
+        }
+
+        let khungHocSinhSinhDong = `
+            <div style="display:flex; align-items:flex-start; gap:10px;">
+                <img src="${avatarUrl}" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #e2e8f0; margin-top:2px;">
+                <div>
+                    <div style="font-weight:bold; color:#0ea5e9; font-size:14px;">${tenHS}</div>
+                    ${dsLopHienThi}
+                    ${sdtHS ? `<div style="font-size:10px; color:#94a3b8; margin-top:1px; font-family:monospace;">ID: ${sdtHS}</div>` : ''}
+                </div>
+            </div>
+        `;
+        // =========================================================
 
         let soLuot = tn.lich_su_chat?.length || 0;
         let tinCuoi = (soLuot > 0) ? (tn.lich_su_chat[soLuot - 1].noidung || "[Hình ảnh]") : "Chưa có nội dung";
@@ -443,7 +639,6 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
             <div style="font-size:11px; color:#64748b;">${dCapNhat.getDate().toString().padStart(2, '0')}/${(dCapNhat.getMonth() + 1).toString().padStart(2, '0')}</div>
         `;
 
-        // Nút Khóa / Mở khóa
         let btnAction = (tn.trang_thai === 2)
             ? `<button onclick="ham_12_16_mo_khoa_tin_nhan('${tn.id}')" style="background:#10b981; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Mở khóa">🔓</button>`
             : `<button onclick="ham_12_11_khoa_tin_nhan('${tn.id}')" style="background:#f59e0b; color:white; border:none; padding:8px; border-radius:6px; cursor:pointer;" title="Khóa">🔒</button>`;
@@ -452,13 +647,12 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
             <tr style="border-bottom: 1px solid #e2e8f0; ${tn.trang_thai === 0 ? "background: #fff8f8;" : ""}">
                 <td style="padding: 10px; text-align: center;">${i + 1}</td>
                 <td style="padding: 10px;">
-                    <b style="color: #0ea5e9;">${tenHS}</b>
-                    ${dsLop} 
+                    ${khungHocSinhSinhDong}
                 </td>
                 <td style="padding: 10px; font-weight: bold; color: #d97706;">${tn.chu_de}</td>
                 <td style="padding: 10px;">
                     <span style="color:#0ea5e9; font-weight:bold; font-size:11px;">(${soLuot} lượt liên lạc)</span><br>
-                    <i style="color: #334155;">"${tinCuoi.substring(0, 30)}..."</i>
+                    <i style="color: #334155;">"${tinCuoi.substring(0, 40)}..."</i>
                 </td>
                 <td style="padding: 10px;">${tgCapNhat}</td>
                 <td style="padding: 10px; text-align: center;">${tn.trang_thai === 2 ? "🔒 Đã khóa" : (tn.trang_thai === 1 ? "🟢 Đã trả lời" : "🔴 Chờ xử lý")}</td>
@@ -475,6 +669,8 @@ window.ham_12_14_ve_bang_tin_nhan = function () {
                 </td>
             </tr>`;
     });
+
+
     vungDS.innerHTML = htmlBang + `</tbody></table>`;
 };
 

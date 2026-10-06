@@ -77,8 +77,24 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_19_1_mo_giao_dien_tao_tk_hang_loat()" style="padding: 12px 20px; background: #e83e8c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📝 Tạo TK Hàng Loạt</button>
                 
                 
-                <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">📢 Thông Báo</button>
-                <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">💬 Hộp Thư</button>
+                <button onclick="ham_11_1_ve_quan_ly_thong_bao()" style="position: relative; padding: 12px 20px; background: #fd7e14; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    📢 Thông Báo
+    <!-- Vị trí gắn Badge Thông Báo -->
+    <span id="badge-so-thong-bao" style="display:none; position: absolute; top: -8px; right: -8px; background: #dc3545; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: 900; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">0</span>
+</button>
+                
+                
+                
+                
+                <button onclick="ham_12_1_ve_quan_ly_tin_nhan()" style="position: relative; padding: 12px 20px; background: #0ea5e9; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    💬 Hộp Thư
+    <!-- Vị trí gắn Badge Tin Nhắn -->
+    <span id="badge-so-tin-nhan" style="display:none; position: absolute; top: -8px; right: -8px; background: #dc3545; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: 900; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">0</span>
+</button>
+                
+                
+                
+                
                 <button onclick="ham_9_1_tab_live_quiz()" style="padding: 12px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">🔴 Live Quiz</button>
                 
                 <button onclick="ham_3_8_ve_cai_dat_he_thong()" style="padding: 12px 20px; background: #34495e; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">⚙️ Cài Đặt Hệ Thống</button>
@@ -123,10 +139,16 @@ function ham_3_1_ve_dashboard_admin() {
     // Nhúng toàn bộ mã HTML đã tổng hợp vào dashboard
     dashboard.innerHTML = htmlContent;
 
-    // 🌟 KHỞI TẠO BỘ ĐẾM SỐ ĐƠN CHỜ DUYỆT (CHẠY NGẦM KHÔNG LÀM LAG GIAO DIỆN)
+    // // 🌟 KHỞI TẠO BỘ ĐẾM SỐ ĐƠN CHỜ DUYỆT (CHẠY NGẦM KHÔNG LÀM LAG GIAO DIỆN)
+    // if (AppState.role === 'admin') {
+    //     window.ham_3_1_dem_so_don_cho_duyet();
+    // }
+    // 🌟 KHỞI TẠO BỘ ĐẾM NGẦM (CHẠY NGẦM KHÔNG LÀM LAG GIAO DIỆN)
     if (AppState.role === 'admin') {
-        window.ham_3_1_dem_so_don_cho_duyet();
+        window.ham_3_1_dem_ngam_du_lieu_admin();
     }
+
+
 
     if (window.dongHoThanhChay) clearInterval(window.dongHoThanhChay);
     ham_3_2_ve_thanh_chay_nop_bai();
@@ -135,44 +157,130 @@ function ham_3_1_ve_dashboard_admin() {
     
 }
 
+// // =====================================================================
+// // HÀM BỔ TRỢ: ĐẾM NGẦM SỐ LƯỢNG YÊU CẦU & TÀI KHOẢN MỚI CHỜ DUYỆT
+// // =====================================================================
+// window.ham_3_1_dem_so_don_cho_duyet = async function () {
+//     try {
+//         // 1. Đếm số đơn yêu cầu (trang_thai = 0)
+//         const { count: soDonYeuCau, error: err1 } = await _supabase
+//             .from('yeu_cau_hoc_sinh')
+//             .select('*', { count: 'exact', head: true })
+//             .eq('trang_thai', 0);
+
+//         if (err1) throw err1;
+
+//         // 2. Đếm số tài khoản học sinh đăng ký chờ duyệt (trang_thai = 2)
+//         const { count: soTaiKhoanCho, error: err2 } = await _supabase
+//             .from('hoc_sinh')
+//             .select('*', { count: 'exact', head: true })
+//             .eq('trang_thai', 2);
+
+//         if (err2) throw err2;
+
+//         let tongSoCho = (soDonYeuCau || 0) + (soTaiKhoanCho || 0);
+
+//         // 3. Hiển thị lên Badge nếu có số lượng > 0
+//         const badge = document.getElementById('badge-so-don-cho');
+//         if (badge) {
+//             if (tongSoCho > 0) {
+//                 badge.innerText = tongSoCho > 99 ? '99+' : tongSoCho;
+//                 badge.style.display = 'block';
+//                 badge.style.animation = 'bounce 0.5s ease-in-out'; // Hiệu ứng nảy nhẹ gây chú ý
+//             } else {
+//                 badge.style.display = 'none';
+//             }
+//         }
+//     } catch (e) {
+//         console.warn("Lỗi khi đếm số đơn chờ duyệt:", e.message);
+//     }
+// };
+
+
 // =====================================================================
-// HÀM BỔ TRỢ: ĐẾM NGẦM SỐ LƯỢNG YÊU CẦU & TÀI KHOẢN MỚI CHỜ DUYỆT
+// HÀM BỔ TRỢ: ĐẾM NGẦM SỐ LƯỢNG YÊU CẦU, THÔNG BÁO & TIN NHẮN CHO ADMIN
 // =====================================================================
-window.ham_3_1_dem_so_don_cho_duyet = async function () {
+window.ham_3_1_dem_ngam_du_lieu_admin = async function () {
     try {
-        // 1. Đếm số đơn yêu cầu (trang_thai = 0)
+        // --- 1. ĐẾM YÊU CẦU & TÀI KHOẢN CHỜ DUYỆT ---
         const { count: soDonYeuCau, error: err1 } = await _supabase
             .from('yeu_cau_hoc_sinh')
             .select('*', { count: 'exact', head: true })
             .eq('trang_thai', 0);
 
-        if (err1) throw err1;
-
-        // 2. Đếm số tài khoản học sinh đăng ký chờ duyệt (trang_thai = 2)
         const { count: soTaiKhoanCho, error: err2 } = await _supabase
             .from('hoc_sinh')
             .select('*', { count: 'exact', head: true })
             .eq('trang_thai', 2);
 
-        if (err2) throw err2;
+        if (!err1 && !err2) {
+            let tongSoCho = (soDonYeuCau || 0) + (soTaiKhoanCho || 0);
+            const badgeYeuCau = document.getElementById('badge-so-don-cho');
+            if (badgeYeuCau) {
+                badgeYeuCau.innerText = tongSoCho > 99 ? '99+' : tongSoCho;
+                badgeYeuCau.style.display = 'block';
 
-        let tongSoCho = (soDonYeuCau || 0) + (soTaiKhoanCho || 0);
-
-        // 3. Hiển thị lên Badge nếu có số lượng > 0
-        const badge = document.getElementById('badge-so-don-cho');
-        if (badge) {
-            if (tongSoCho > 0) {
-                badge.innerText = tongSoCho > 99 ? '99+' : tongSoCho;
-                badge.style.display = 'block';
-                badge.style.animation = 'bounce 0.5s ease-in-out'; // Hiệu ứng nảy nhẹ gây chú ý
-            } else {
-                badge.style.display = 'none';
+                if (tongSoCho > 0) {
+                    badgeYeuCau.style.animation = 'none';
+                    setTimeout(() => badgeYeuCau.style.animation = 'bounce 0.5s ease-in-out', 10);
+                } else {
+                    badgeYeuCau.style.animation = 'none';
+                }
             }
         }
+
+        // --- 2. ĐẾM SỐ THÔNG BÁO ĐANG MỞ (ĐANG HOẠT ĐỘNG) ---
+        const { count: soThongBao, error: err3 } = await _supabase
+            .from('thong_bao')
+            .select('*', { count: 'exact', head: true })
+            .eq('trang_thai', 1);
+
+        if (!err3) {
+            const badgeThongBao = document.getElementById('badge-so-thong-bao');
+            if (badgeThongBao) {
+                let soTB = soThongBao || 0;
+                badgeThongBao.innerText = soTB > 99 ? '99+' : soTB;
+                badgeThongBao.style.display = 'block';
+
+                if (soTB > 0) {
+                    badgeThongBao.style.animation = 'none';
+                    setTimeout(() => badgeThongBao.style.animation = 'bounce 0.5s ease-in-out', 10);
+                } else {
+                    badgeThongBao.style.animation = 'none';
+                }
+            }
+        }
+
+        // --- 3. ĐẾM SỐ TIN NHẮN CHƯA ĐỌC / CẦN TRẢ LỜI ---
+        // ⚠️ Lưu ý: Thầy kiểm tra lại tên bảng 'tin_nhan' và cột 'trang_thai' cho khớp với CSDL nhé
+        const { count: soTinNhan, error: err4 } = await _supabase
+            .from('tin_nhan') // Sửa tên bảng tại đây nếu cần
+            .select('*', { count: 'exact', head: true })
+            .eq('trang_thai', 0); // Trạng thái = 0 thường là chưa đọc/chưa trả lời
+
+        if (!err4) {
+            const badgeTinNhan = document.getElementById('badge-so-tin-nhan');
+            if (badgeTinNhan) {
+                let soTN = soTinNhan || 0;
+                badgeTinNhan.innerText = soTN > 99 ? '99+' : soTN;
+                badgeTinNhan.style.display = 'block';
+
+                if (soTN > 0) {
+                    badgeTinNhan.style.animation = 'none';
+                    setTimeout(() => badgeTinNhan.style.animation = 'bounce 0.5s ease-in-out', 10);
+                } else {
+                    badgeTinNhan.style.animation = 'none';
+                }
+            }
+        }
+
     } catch (e) {
-        console.warn("Lỗi khi đếm số đơn chờ duyệt:", e.message);
+        console.warn("Lỗi khi đếm ngầm dữ liệu Admin:", e.message);
     }
 };
+
+
+
 
 
 //// =====================================================================
