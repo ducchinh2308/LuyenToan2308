@@ -3320,9 +3320,253 @@ window.ham_21_49_hien_dropdown_hs_thong_ke = function (inputElem) {
     });
 };
 
+// // =====================================================================
+// // HÀM 21.47: TRA CỨU & THỐNG KÊ THI ĐUA (CĂN CHỈNH LẠI ĐỘ RỘNG CỘT TỐI ƯU)
+// // =====================================================================
+// window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
+//     const maLopRaw = document.getElementById('gvcn-input-lop').value;
+//     const maLop = maLopRaw.match(/\(([^)]+)\)$/)?.[1]?.trim() || maLopRaw.trim();
+
+//     const tuanTu = document.getElementById('tk-chon-tuan-tu').value;
+//     const tuanDen = document.getElementById('tk-chon-tuan-den').value;
+
+//     const uidHS = document.getElementById('tk-chon-hs-uid').value;
+//     const tenHSInput = document.getElementById('tk-chon-hs').value.toLowerCase().trim();
+
+//     const vungKQ = document.getElementById('gvcn-vung-ket-qua-tk');
+//     vungKQ.innerHTML = '<div style="text-align:center; color:#6f42c1; font-weight:bold; padding:30px;">⏳ Đang tổng hợp dữ liệu thi đua...</div>';
+
+//     try {
+//         let queryNK = _supabase.from('nhat_ky_gvcn').select('id, tuan_hoc, tu_ngay, den_ngay').eq('ma_lop', maLop);
+//         const { data: nkList, error: errNK } = await queryNK;
+//         if (errNK) throw errNK;
+
+//         if (!nkList || nkList.length === 0) {
+//             vungKQ.innerHTML = '<div style="text-align:center; color:#dc3545; font-weight:bold; padding:30px;">⚠️ Lớp này chưa có dữ liệu Nhật ký!</div>';
+//             document.getElementById('tk-tong-so-dong').innerText = 'Tổng số: 0 sự kiện'; return;
+//         }
+
+//         let idNKS = [];
+//         let mapTuan = {};
+
+//         let numTu = tuanTu ? parseInt(tuanTu.replace(/\D/g, '')) : 1;
+//         let numDen = tuanDen ? parseInt(tuanDen.replace(/\D/g, '')) : 99;
+
+//         nkList.forEach(x => {
+//             let numTuan = parseInt(x.tuan_hoc.replace(/\D/g, ''));
+//             if (!isNaN(numTuan) && numTuan >= numTu && numTuan <= numDen) {
+//                 idNKS.push(x.id);
+
+//                 let strTu = x.tu_ngay ? x.tu_ngay.split('-').reverse().join('/') : '';
+//                 let strDen = x.den_ngay ? x.den_ngay.split('-').reverse().join('/') : '';
+
+//                 // Backup tính ngày nếu DB thiếu
+//                 if (!strTu || !strDen) {
+//                     let dBatDau = new Date('2026-09-07T00:00:00');
+//                     dBatDau.setDate(dBatDau.getDate() + (numTuan - 1) * 7);
+//                     let dKetThuc = new Date(dBatDau);
+//                     dKetThuc.setDate(dKetThuc.getDate() + 6);
+//                     strTu = dBatDau.toISOString().split('T')[0].split('-').reverse().join('/');
+//                     strDen = dKetThuc.toISOString().split('T')[0].split('-').reverse().join('/');
+//                 }
+
+//                 let textTuan = x.tuan_hoc;
+//                 if (strTu && strDen) textTuan += `<br><span style="font-size:10px; color:#6c757d; font-weight:normal;">(${strTu} - ${strDen})</span>`;
+//                 mapTuan[x.id] = textTuan;
+//             }
+//         });
+
+//         if (idNKS.length === 0) {
+//             vungKQ.innerHTML = '<div style="text-align:center; color:#dc3545; font-weight:bold; padding:30px;">⚠️ Không tìm thấy dữ liệu trong khoảng tuần này!</div>';
+//             document.getElementById('tk-tong-so-dong').innerText = 'Tổng số: 0 sự kiện'; return;
+//         }
+
+//         let querySK = _supabase.from('nhat_ky_gvcn_su_kien_hs').select('*').in('id_gvcn_nhat_ky', idNKS).not('nhom_su_kien', 'ilike', 'Giao việc:%').order('ngay_ghi_nhan', { ascending: false });
+//         if (uidHS) querySK = querySK.eq('uid_hoc_sinh', uidHS);
+
+//         const { data: skList, error: errSK } = await querySK;
+//         if (errSK) throw errSK;
+
+//         let ketQuaLoc = skList || [];
+//         if (!uidHS && tenHSInput) ketQuaLoc = ketQuaLoc.filter(item => (item.ten_hoc_sinh || '').toLowerCase().includes(tenHSInput));
+
+//         document.getElementById('tk-tong-so-dong').innerText = `Tổng số: ${ketQuaLoc.length} vi phạm`;
+
+//         let hsMap = {};
+
+//         ketQuaLoc.forEach(sk => {
+//             let key = sk.uid_hoc_sinh || sk.ten_hoc_sinh;
+//             if (!hsMap[key]) {
+//                 let hsAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(sk.ten_hoc_sinh)}&background=random&color=fff`;
+//                 if (window.DanhSachHocSinhLopHienTai) {
+//                     let hsObj = window.DanhSachHocSinhLopHienTai.find(h => h.uid === sk.uid_hoc_sinh || h.tenHienThi === sk.ten_hoc_sinh);
+//                     if (hsObj) hsAvatar = hsObj.avatarUrl;
+//                 }
+//                 hsMap[key] = { ten: sk.ten_hoc_sinh, avatar: hsAvatar, tongDiem: 0, dsLoi: [] };
+//             }
+//             hsMap[key].dsLoi.push(sk);
+//             let d = parseFloat(sk.thong_tin_mo_rong?.diem_tru) || 0;
+//             hsMap[key].tongDiem += d;
+//         });
+
+//         if (window.DanhSachHocSinhLopHienTai) {
+//             window.DanhSachHocSinhLopHienTai.forEach(hs => {
+//                 if (uidHS && hs.uid !== uidHS) return;
+//                 if (!uidHS && tenHSInput && !hs.tenHienThi.toLowerCase().includes(tenHSInput)) return;
+
+//                 let key = hs.uid;
+//                 if (!hsMap[key]) {
+//                     hsMap[key] = { ten: hs.tenHienThi, avatar: hs.avatarUrl, tongDiem: 0, dsLoi: [] };
+//                 }
+//             });
+//         }
+
+//         let arrHS = Object.values(hsMap);
+//         if (arrHS.length === 0) {
+//             vungKQ.innerHTML = '<div style="text-align:center; color:#6c757d; font-style:italic; padding:30px;">Không tìm thấy học sinh nào khớp với điều kiện lọc.</div>';
+//             return;
+//         }
+
+//         arrHS.sort((a, b) => {
+//             let tenA = a.ten.split(' ').pop().toLowerCase();
+//             let tenB = b.ten.split(' ').pop().toLowerCase();
+//             return tenA.localeCompare(tenB, 'vi');
+//         });
+
+//         // 🌟 BÓP NHỎ CÁC CỘT PHỤ, TĂNG RỘNG CỘT SỰ KIỆN 🌟
+//         let htmlTable = `
+//             <table id="bang-in-thong-ke" style="width:100%; border-collapse:collapse; font-size:12px; background:#fff; border:1px solid #dee2e6;">
+//                 <tr style="background:#f3e8ff; color:#6f42c1; border-bottom:2px solid #6f42c1;">
+//                     <th style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; width:30px;">STT</th>
+//                     <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:150px;">Học sinh</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:80px;">Tuần</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ngày</th>
+//                     <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left;">Sự kiện / Lỗi vi phạm</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:40px;">Điểm</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ảnh Lỗi</th>
+//                     <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:120px;">Khắc phục</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Tiến độ</th>
+//                     <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:70px;">Ảnh Phạt</th>
+//                 </tr>
+//         `;
+
+//         let stt = 1;
+//         arrHS.forEach(hs => {
+
+//             if (hs.dsLoi.length === 0) {
+//                 htmlTable += `
+//                     <tr style="background:#e8f5e9; border-bottom:2px solid #28a745;">
+//                         <td style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#155724;">${stt}</td>
+//                         <td style="padding:10px 6px; border:1px solid #dee2e6; vertical-align:middle; background:#e8f5e9;">
+//                             <div style="display:flex; align-items:flex-start; gap:8px;">
+//                                 <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #28a745;">
+//                                 <b style="color:#155724; font-size:13px; line-height:30px;">${hs.ten}</b>
+//                             </div>
+//                         </td>
+//                         <td colspan="8" style="padding:10px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#28a745; font-size:13px;">
+//                             🌟 TỐT (Không ghi nhận vi phạm nào)
+//                         </td>
+//                     </tr>
+//                 `;
+//                 stt++;
+//                 return;
+//             }
+
+//             let rowSpan = hs.dsLoi.length + 1;
+//             hs.dsLoi.sort((a, b) => new Date(a.ngay_ghi_nhan) - new Date(b.ngay_ghi_nhan));
+
+//             hs.dsLoi.forEach((sk, idx) => {
+//                 let tuanHienThi = mapTuan[sk.id_gvcn_nhat_ky] || '...';
+//                 let strNgay = sk.ngay_ghi_nhan ? sk.ngay_ghi_nhan.split('-').reverse().join('/') : '';
+//                 let diemTru = sk.thong_tin_mo_rong?.diem_tru || 0;
+//                 let mauDiem = parseFloat(diemTru) < 0 ? '#dc3545' : (parseFloat(diemTru) > 0 ? '#28a745' : '#495057');
+
+//                 let htmlAnhLoi = '';
+//                 let mangAnhLoi = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+//                 if (mangAnhLoi.length > 0) {
+//                     htmlAnhLoi = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
+//                     mangAnhLoi.forEach(link => {
+//                         let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
+//                         htmlAnhLoi += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #ccc;"></a>`;
+//                     });
+//                     htmlAnhLoi += `</div>`;
+//                 }
+
+//                 let xlObj = sk.thong_tin_mo_rong?.xu_ly;
+//                 let khacPhucHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+//                 let xlHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+//                 let htmlAnhPhat = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+
+//                 if (xlObj) {
+//                     khacPhucHtml = `<b style="color:#d35400;">${xlObj.hinh_thuc || ''}</b><div style="font-size:10px; color:#555; margin-top:2px;">${xlObj.noi_dung || ''}</div>`;
+
+//                     let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+//                     let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
+//                     let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
+//                     let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
+//                     let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
+
+//                     xlHtml = `<div style="background:${bgXl}; color:${colXl}; padding:4px 2px; border-radius:4px; font-size:10px; font-weight:bold; border:1px solid ${bgXl};">${textXl}</div>`;
+
+//                     if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
+//                         htmlAnhPhat = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
+//                         xlObj.anh_minh_chung.forEach(link => {
+//                             let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
+//                             htmlAnhPhat += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #28a745;"></a>`;
+//                         });
+//                         htmlAnhPhat += `</div>`;
+//                     }
+//                 }
+
+//                 let cotHocSinh = '';
+//                 if (idx === 0) {
+//                     cotHocSinh = `
+//                         <td rowspan="${rowSpan}" style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; background:#fffafb;">${stt}</td>
+//                         <td rowspan="${rowSpan}" style="padding:10px 6px; border:1px solid #dee2e6; background:#fffafb; vertical-align:top;">
+//                             <div style="display:flex; align-items:flex-start; gap:6px;">
+//                                 <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #e83e8c;">
+//                                 <b style="color:#e83e8c; font-size:12px;">${hs.ten}</b>
+//                             </div>
+//                         </td>
+//                     `;
+//                 }
+
+//                 htmlTable += `
+//                     <tr style="border-bottom:1px dashed #dee2e6;">
+//                         ${cotHocSinh}
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#6f42c1; line-height:1.3; font-size:11px;">${tuanHienThi}</td>
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-size:11px;">${strNgay}</td>
+//                         <td style="padding:8px 6px; border:1px solid #dee2e6;"><b>${sk.nhom_su_kien || ''}</b> <div style="font-size:11px; color:#555; margin-top:3px;">${sk.noi_dung_chi_tiet || ''}</div></td>
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:${mauDiem};">${diemTru !== 0 ? diemTru : '-'}</td>
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhLoi}</td>
+//                         <td style="padding:6px; border:1px solid #dee2e6; line-height:1.3;">${khacPhucHtml}</td>
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${xlHtml}</td>
+//                         <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhPhat}</td>
+//                     </tr>
+//                 `;
+//             });
+
+//             htmlTable += `
+//                 <tr style="background:#fdf5f8; border-bottom:2px solid #e83e8c;">
+//                     <td colspan="3" style="padding:8px 6px; border:1px solid #dee2e6; text-align:right; font-weight:bold; color:#d35400;">TỔNG ĐIỂM BỊ TRỪ:</td>
+//                     <td style="padding:8px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; font-size:13px; color:#dc3545;">${hs.tongDiem}</td>
+//                     <td colspan="4" style="padding:8px; border:1px solid #dee2e6;"></td>
+//                 </tr>
+//             `;
+//             stt++;
+//         });
+
+//         htmlTable += `</table>`; vungKQ.innerHTML = htmlTable;
+
+//     } catch (e) { vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`; }
+// };
+
 // =====================================================================
-// HÀM 21.47: TRA CỨU & THỐNG KÊ THI ĐUA (CĂN CHỈNH LẠI ĐỘ RỘNG CỘT TỐI ƯU)
+// HÀM 21.47: TRA CỨU & THỐNG KÊ THI ĐUA (CÓ CỘT TỔNG ĐIỂM VÀ SORT ĐƯỢC)
 // =====================================================================
+window.gvcn_ThongKeDataCache = []; // Bộ nhớ tạm để chứa dữ liệu đã gom nhóm
+window.gvcn_ThongKeSortState = { col: 'ten', asc: true }; // Trạng thái Sort
+
 window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
     const maLopRaw = document.getElementById('gvcn-input-lop').value;
     const maLop = maLopRaw.match(/\(([^)]+)\)$/)?.[1]?.trim() || maLopRaw.trim();
@@ -3360,7 +3604,6 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
                 let strTu = x.tu_ngay ? x.tu_ngay.split('-').reverse().join('/') : '';
                 let strDen = x.den_ngay ? x.den_ngay.split('-').reverse().join('/') : '';
 
-                // Backup tính ngày nếu DB thiếu
                 if (!strTu || !strDen) {
                     let dBatDau = new Date('2026-09-07T00:00:00');
                     dBatDau.setDate(dBatDau.getDate() + (numTuan - 1) * 7);
@@ -3394,6 +3637,7 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
 
         let hsMap = {};
 
+        // Gom nhóm sự kiện vào từng học sinh và tính tổng điểm trừ
         ketQuaLoc.forEach(sk => {
             let key = sk.uid_hoc_sinh || sk.ten_hoc_sinh;
             if (!hsMap[key]) {
@@ -3409,6 +3653,7 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
             hsMap[key].tongDiem += d;
         });
 
+        // Bổ sung những học sinh không có lỗi vào bảng (nếu không lọc tên)
         if (window.DanhSachHocSinhLopHienTai) {
             window.DanhSachHocSinhLopHienTai.forEach(hs => {
                 if (uidHS && hs.uid !== uidHS) return;
@@ -3427,138 +3672,191 @@ window.ham_21_47_thuc_hien_tim_kiem_thong_ke = async function () {
             return;
         }
 
-        arrHS.sort((a, b) => {
+        // Lưu dữ liệu vào cache để sắp xếp
+        window.gvcn_ThongKeDataCache = arrHS;
+        window.gvcn_MapTuanCache = mapTuan;
+
+        // Gọi hàm vẽ giao diện với điều kiện Sort mặc định (A-Z)
+        window.ham_21_47b_sort_bang_thong_ke('ten');
+
+    } catch (e) {
+        vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`;
+    }
+};
+
+
+// =====================================================================
+// HÀM 21.47B: HÀM BỔ TRỢ ĐỂ SẮP XẾP VÀ VẼ LẠI BẢNG THỐNG KÊ
+// =====================================================================
+window.ham_21_47b_sort_bang_thong_ke = function (col) {
+    const vungKQ = document.getElementById('gvcn-vung-ket-qua-tk');
+    if (!vungKQ || !window.gvcn_ThongKeDataCache || window.gvcn_ThongKeDataCache.length === 0) return;
+
+    let arrHS = [...window.gvcn_ThongKeDataCache];
+    let mapTuan = window.gvcn_MapTuanCache || {};
+
+    // 1. Cập nhật trạng thái Sort
+    if (window.gvcn_ThongKeSortState.col === col) {
+        window.gvcn_ThongKeSortState.asc = !window.gvcn_ThongKeSortState.asc;
+    } else {
+        window.gvcn_ThongKeSortState.col = col;
+        window.gvcn_ThongKeSortState.asc = true;
+    }
+
+    let isAsc = window.gvcn_ThongKeSortState.asc;
+
+    // 2. Logic sắp xếp
+    arrHS.sort((a, b) => {
+        if (col === 'ten') {
             let tenA = a.ten.split(' ').pop().toLowerCase();
             let tenB = b.ten.split(' ').pop().toLowerCase();
-            return tenA.localeCompare(tenB, 'vi');
-        });
+            return isAsc ? tenA.localeCompare(tenB, 'vi') : tenB.localeCompare(tenA, 'vi');
+        } else if (col === 'diem') {
+            return isAsc ? a.tongDiem - b.tongDiem : b.tongDiem - a.tongDiem;
+        }
+        return 0;
+    });
 
-        // 🌟 BÓP NHỎ CÁC CỘT PHỤ, TĂNG RỘNG CỘT SỰ KIỆN 🌟
-        let htmlTable = `
-            <table id="bang-in-thong-ke" style="width:100%; border-collapse:collapse; font-size:12px; background:#fff; border:1px solid #dee2e6;">
-                <tr style="background:#f3e8ff; color:#6f42c1; border-bottom:2px solid #6f42c1;">
-                    <th style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; width:30px;">STT</th>
-                    <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:150px;">Học sinh</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:80px;">Tuần</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ngày</th>
-                    <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left;">Sự kiện / Lỗi vi phạm</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:40px;">Điểm</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ảnh Lỗi</th>
-                    <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:120px;">Khắc phục</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Tiến độ</th>
-                    <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:70px;">Ảnh Phạt</th>
-                </tr>
-        `;
+    // Helper tạo mũi tên sắp xếp
+    const arrow = (c) => {
+        if (window.gvcn_ThongKeSortState.col !== c) return ' ↕️';
+        return isAsc ? ' 🔼' : ' 🔽';
+    };
 
-        let stt = 1;
-        arrHS.forEach(hs => {
+    // 3. Vẽ cấu trúc bảng
+    let htmlTable = `
+        <style>
+            #bang-in-thong-ke th { cursor: pointer; transition: background 0.2s; user-select: none; }
+            #bang-in-thong-ke th:hover { background: #e9ecef; }
+        </style>
+        <table id="bang-in-thong-ke" style="width:100%; border-collapse:collapse; font-size:12px; background:#fff; border:1px solid #dee2e6;">
+            <tr style="background:#f3e8ff; color:#6f42c1; border-bottom:2px solid #6f42c1;">
+                <th style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; width:30px;">STT</th>
+                <th onclick="window.ham_21_47b_sort_bang_thong_ke('ten')" style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:150px;">Học sinh${arrow('ten')}</th>
+                
+                <!-- 🌟 THÊM CỘT TỔNG ĐIỂM TRỪ VÀO ĐÂY VÀ GẮN SỰ KIỆN SORT -->
+                <th onclick="window.ham_21_47b_sort_bang_thong_ke('diem')" style="padding:10px 6px; border:1px solid #dee2e6; text-align:center; width:65px; color:#dc3545;">Tổng Trừ${arrow('diem')}</th>
+                
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:80px;">Tuần</th>
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ngày</th>
+                <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left;">Sự kiện / Lỗi vi phạm</th>
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:40px;">Điểm</th>
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Ảnh Lỗi</th>
+                <th style="padding:10px 6px; border:1px solid #dee2e6; text-align:left; width:120px;">Khắc phục</th>
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:65px;">Tiến độ</th>
+                <th style="padding:10px 2px; border:1px solid #dee2e6; text-align:center; width:70px;">Ảnh Phạt</th>
+            </tr>
+    `;
 
-            if (hs.dsLoi.length === 0) {
-                htmlTable += `
-                    <tr style="background:#e8f5e9; border-bottom:2px solid #28a745;">
-                        <td style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#155724;">${stt}</td>
-                        <td style="padding:10px 6px; border:1px solid #dee2e6; vertical-align:middle; background:#e8f5e9;">
-                            <div style="display:flex; align-items:flex-start; gap:8px;">
-                                <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #28a745;">
-                                <b style="color:#155724; font-size:13px; line-height:30px;">${hs.ten}</b>
-                            </div>
-                        </td>
-                        <td colspan="8" style="padding:10px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#28a745; font-size:13px;">
-                            🌟 TỐT (Không ghi nhận vi phạm nào)
-                        </td>
-                    </tr>
-                `;
-                stt++;
-                return;
-            }
+    let stt = 1;
+    arrHS.forEach(hs => {
 
-            let rowSpan = hs.dsLoi.length + 1;
-            hs.dsLoi.sort((a, b) => new Date(a.ngay_ghi_nhan) - new Date(b.ngay_ghi_nhan));
-
-            hs.dsLoi.forEach((sk, idx) => {
-                let tuanHienThi = mapTuan[sk.id_gvcn_nhat_ky] || '...';
-                let strNgay = sk.ngay_ghi_nhan ? sk.ngay_ghi_nhan.split('-').reverse().join('/') : '';
-                let diemTru = sk.thong_tin_mo_rong?.diem_tru || 0;
-                let mauDiem = parseFloat(diemTru) < 0 ? '#dc3545' : (parseFloat(diemTru) > 0 ? '#28a745' : '#495057');
-
-                let htmlAnhLoi = '';
-                let mangAnhLoi = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
-                if (mangAnhLoi.length > 0) {
-                    htmlAnhLoi = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
-                    mangAnhLoi.forEach(link => {
-                        let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
-                        htmlAnhLoi += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #ccc;"></a>`;
-                    });
-                    htmlAnhLoi += `</div>`;
-                }
-
-                let xlObj = sk.thong_tin_mo_rong?.xu_ly;
-                let khacPhucHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
-                let xlHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
-                let htmlAnhPhat = '<span style="color:#adb5bd; font-size:10px;">-</span>';
-
-                if (xlObj) {
-                    khacPhucHtml = `<b style="color:#d35400;">${xlObj.hinh_thuc || ''}</b><div style="font-size:10px; color:#555; margin-top:2px;">${xlObj.noi_dung || ''}</div>`;
-
-                    let isDone = xlObj.trang_thai === 'Đã hoàn thành';
-                    let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
-                    let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
-                    let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
-                    let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
-
-                    xlHtml = `<div style="background:${bgXl}; color:${colXl}; padding:4px 2px; border-radius:4px; font-size:10px; font-weight:bold; border:1px solid ${bgXl};">${textXl}</div>`;
-
-                    if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
-                        htmlAnhPhat = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
-                        xlObj.anh_minh_chung.forEach(link => {
-                            let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
-                            htmlAnhPhat += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #28a745;"></a>`;
-                        });
-                        htmlAnhPhat += `</div>`;
-                    }
-                }
-
-                let cotHocSinh = '';
-                if (idx === 0) {
-                    cotHocSinh = `
-                        <td rowspan="${rowSpan}" style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; background:#fffafb;">${stt}</td>
-                        <td rowspan="${rowSpan}" style="padding:10px 6px; border:1px solid #dee2e6; background:#fffafb; vertical-align:top;">
-                            <div style="display:flex; align-items:flex-start; gap:6px;">
-                                <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #e83e8c;">
-                                <b style="color:#e83e8c; font-size:12px;">${hs.ten}</b>
-                            </div>
-                        </td>
-                    `;
-                }
-
-                htmlTable += `
-                    <tr style="border-bottom:1px dashed #dee2e6;">
-                        ${cotHocSinh}
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#6f42c1; line-height:1.3; font-size:11px;">${tuanHienThi}</td>
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-size:11px;">${strNgay}</td>
-                        <td style="padding:8px 6px; border:1px solid #dee2e6;"><b>${sk.nhom_su_kien || ''}</b> <div style="font-size:11px; color:#555; margin-top:3px;">${sk.noi_dung_chi_tiet || ''}</div></td>
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:${mauDiem};">${diemTru !== 0 ? diemTru : '-'}</td>
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhLoi}</td>
-                        <td style="padding:6px; border:1px solid #dee2e6; line-height:1.3;">${khacPhucHtml}</td>
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${xlHtml}</td>
-                        <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhPhat}</td>
-                    </tr>
-                `;
-            });
-
+        if (hs.dsLoi.length === 0) {
             htmlTable += `
-                <tr style="background:#fdf5f8; border-bottom:2px solid #e83e8c;">
-                    <td colspan="3" style="padding:8px 6px; border:1px solid #dee2e6; text-align:right; font-weight:bold; color:#d35400;">TỔNG ĐIỂM BỊ TRỪ:</td>
-                    <td style="padding:8px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; font-size:13px; color:#dc3545;">${hs.tongDiem}</td>
-                    <td colspan="4" style="padding:8px; border:1px solid #dee2e6;"></td>
+                <tr style="background:#e8f5e9; border-bottom:2px solid #28a745;">
+                    <td style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#155724;">${stt}</td>
+                    <td style="padding:10px 6px; border:1px solid #dee2e6; vertical-align:middle; background:#e8f5e9;">
+                        <div style="display:flex; align-items:flex-start; gap:8px;">
+                            <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #28a745;">
+                            <b style="color:#155724; font-size:13px; line-height:30px;">${hs.ten}</b>
+                        </div>
+                    </td>
+                    <td style="padding:10px 6px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#28a745; font-size:14px;">0</td>
+                    <td colspan="8" style="padding:10px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#28a745; font-size:13px;">
+                        🌟 TỐT (Không ghi nhận vi phạm nào)
+                    </td>
                 </tr>
             `;
             stt++;
+            return;
+        }
+
+        let rowSpan = hs.dsLoi.length;
+        hs.dsLoi.sort((a, b) => new Date(a.ngay_ghi_nhan) - new Date(b.ngay_ghi_nhan));
+
+        hs.dsLoi.forEach((sk, idx) => {
+            let tuanHienThi = mapTuan[sk.id_gvcn_nhat_ky] || '...';
+            let strNgay = sk.ngay_ghi_nhan ? sk.ngay_ghi_nhan.split('-').reverse().join('/') : '';
+            let diemTru = sk.thong_tin_mo_rong?.diem_tru || 0;
+            let mauDiem = parseFloat(diemTru) < 0 ? '#dc3545' : (parseFloat(diemTru) > 0 ? '#28a745' : '#495057');
+
+            let htmlAnhLoi = '';
+            let mangAnhLoi = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+            if (mangAnhLoi.length > 0) {
+                htmlAnhLoi = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
+                mangAnhLoi.forEach(link => {
+                    let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
+                    htmlAnhLoi += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #ccc;"></a>`;
+                });
+                htmlAnhLoi += `</div>`;
+            }
+
+            let xlObj = sk.thong_tin_mo_rong?.xu_ly;
+            let khacPhucHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+            let xlHtml = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+            let htmlAnhPhat = '<span style="color:#adb5bd; font-size:10px;">-</span>';
+
+            if (xlObj) {
+                khacPhucHtml = `<b style="color:#d35400;">${xlObj.hinh_thuc || ''}</b><div style="font-size:10px; color:#555; margin-top:2px;">${xlObj.noi_dung || ''}</div>`;
+
+                let isDone = xlObj.trang_thai === 'Đã hoàn thành';
+                let isPartial = xlObj.trang_thai === 'Đã nộp 1 phần';
+                let bgXl = isDone ? '#d4edda' : (isPartial ? '#cce5ff' : '#fff3cd');
+                let colXl = isDone ? '#155724' : (isPartial ? '#004085' : '#856404');
+                let textXl = isDone ? 'Đã xong' : (isPartial ? '1 phần' : 'Chưa xong');
+
+                xlHtml = `<div style="background:${bgXl}; color:${colXl}; padding:4px 2px; border-radius:4px; font-size:10px; font-weight:bold; border:1px solid ${bgXl};">${textXl}</div>`;
+
+                if (xlObj.anh_minh_chung && xlObj.anh_minh_chung.length > 0) {
+                    htmlAnhPhat = `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center;">`;
+                    xlObj.anh_minh_chung.forEach(link => {
+                        let srcTN = window.ham_21_25_get_thumbnail_drive ? window.ham_21_25_get_thumbnail_drive(link, 'w100') : link;
+                        htmlAnhPhat += `<a href="${link}" target="_blank"><img src="${srcTN}" style="width:22px; height:22px; object-fit:cover; border-radius:3px; border:1px solid #28a745;"></a>`;
+                    });
+                    htmlAnhPhat += `</div>`;
+                }
+            }
+
+            let cotHocSinh = '';
+            // Gộp hàng (rowspan) cho cột Tên và cột Tổng Điểm
+            if (idx === 0) {
+                cotHocSinh = `
+                    <td rowspan="${rowSpan}" style="padding:10px 4px; border:1px solid #dee2e6; text-align:center; font-weight:bold; background:#fffafb;">${stt}</td>
+                    <td rowspan="${rowSpan}" style="padding:10px 6px; border:1px solid #dee2e6; background:#fffafb; vertical-align:top;">
+                        <div style="display:flex; align-items:flex-start; gap:6px;">
+                            <img src="${hs.avatar}" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #e83e8c;">
+                            <b style="color:#e83e8c; font-size:12px;">${hs.ten}</b>
+                        </div>
+                    </td>
+                    <td rowspan="${rowSpan}" style="padding:10px 6px; border:1px solid #dee2e6; text-align:center; font-weight:bold; font-size:14px; color:#dc3545; background:#fffafb; vertical-align:middle;">
+                        ${hs.tongDiem}
+                    </td>
+                `;
+            }
+
+            // CSS cho border bottom
+            let isLastRow = (idx === hs.dsLoi.length - 1);
+            let borderStyle = isLastRow ? 'border-bottom: 2px solid #e83e8c;' : 'border-bottom: 1px dashed #dee2e6;';
+
+            htmlTable += `
+                <tr style="${borderStyle}">
+                    ${cotHocSinh}
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:#6f42c1; line-height:1.3; font-size:11px;">${tuanHienThi}</td>
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-size:11px;">${strNgay}</td>
+                    <td style="padding:8px 6px; border:1px solid #dee2e6;"><b>${sk.nhom_su_kien || ''}</b> <div style="font-size:11px; color:#555; margin-top:3px;">${sk.noi_dung_chi_tiet || ''}</div></td>
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center; font-weight:bold; color:${mauDiem};">${diemTru !== 0 ? diemTru : '-'}</td>
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhLoi}</td>
+                    <td style="padding:6px; border:1px solid #dee2e6; line-height:1.3;">${khacPhucHtml}</td>
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${xlHtml}</td>
+                    <td style="padding:6px 2px; border:1px solid #dee2e6; text-align:center;">${htmlAnhPhat}</td>
+                </tr>
+            `;
         });
+        stt++;
+    });
 
-        htmlTable += `</table>`; vungKQ.innerHTML = htmlTable;
-
-    } catch (e) { vungKQ.innerHTML = `<div style="color:red; text-align:center; font-weight:bold;">❌ Lỗi thống kê: ${e.message}</div>`; }
+    htmlTable += `</table>`;
+    vungKQ.innerHTML = htmlTable;
 };
 
 
