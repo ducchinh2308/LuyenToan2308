@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a4f4ab870e",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\lim\\limits_{x \\rightarrow-\\infty} y=\\lim\\limits_{x \\rightarrow-\\infty} \\dfrac{4 x+1}{x-1}=4$ và $\\lim\\limits_{x \\rightarrow+\\infty} y=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{4 x+1}{x-1}=4$.\\\\\r\n\t\tTiệm cận ngang của đồ thị hàm số $y=\\dfrac{4 x+1}{x-1}$ là $y=4$."
+}

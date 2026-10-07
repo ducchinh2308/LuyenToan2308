@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_63f2cc0437",
+  "dapAn": "FTTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số đồng biến trên các khoảng $(0;1)$ và $(3;+\\infty)$.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số nghịch biến trên khoảng $(-\\infty;0)$ và $(1;3)$.\\\\\\itemch Xét hàm số $g(x) = f(x+1)$. Ta có $g'(x) = f'(x+1)$. \\\\\r\n\t\t\tHàm số đồng biến khi và chỉ khi $$g'(x) > 0 \\Leftrightarrow f'(x+1) > 0 \\left[ \\begin{array}{l}\n0 < x+1 < 1 \\\\ x+1 > 3\n\\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l}\n-1 < x < 0 \\\\  x > 2.\n\\end{array} \\right. $$\r\n\t\t\tDo đó hàm số đồng biến trên $(2;4)$.\r\n\t\t\t\\itemch Phương trình $f(x)-3=0 \\Leftrightarrow f(x)=3$. \\\\\r\n\t\t\tDựa vào bảng biến thiên, đường thẳng $y=3$ cắt đồ thị hàm số tại $4$ điểm phân biệt.\r\n\t\\end{itemchoice}"
+}

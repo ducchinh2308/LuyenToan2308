@@ -1,0 +1,225 @@
+{
+  "maDe": "K12-GK1-26011-NGUYENDU-THAIBINH-2526",
+  "tenDe": "K12-GK1-26011-NGUYENDU-THAIBINH-2526",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N1-2]",
+      "maCau": "q_9e04b7d348",
+      "ma_goc": "2603-813",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9e04b7d348_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-\\infty ; 0)$",
+      "paB": "$(-\\infty ; 2)$",
+      "paC": "$(0;2)$",
+      "paD": "$(0 ;+\\infty)$"
+    },
+    {
+      "id_Cau": "[2D1N2-2]",
+      "maCau": "q_b32f9d72c3",
+      "ma_goc": "2603-814",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b32f9d72c3_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị cực tiểu của hàm số đã cho là",
+      "paA": "$0$",
+      "paB": "$2$",
+      "paC": "$4$",
+      "paD": "$6$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_d03c0ef7e6",
+      "ma_goc": "2603-815",
+      "kieuCau": "TN",
+      "cauDan": "Tìm giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$.",
+      "paA": "$\\displaystyle\\max_{[-2 ; 2]} y=3$",
+      "paB": "$\\displaystyle\\max_{[-2 ; 2]} y=34$",
+      "paC": "$\\displaystyle\\max_{[-2 ; 2]} y=10$",
+      "paD": "$\\displaystyle\\max_{[-2 ; 2]} y=30$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_e52a28a8a9",
+      "ma_goc": "2603-816",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên đoạn $[-1 ; 3]$ và có đồ thị như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e52a28a8a9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị lớn nhất của hàm số đã cho trên đoạn $[-1 ; 3]$ bằng bao nhiêu?",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$-2$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[2D1N5-1]",
+      "maCau": "q_ab4f773bd7",
+      "ma_goc": "2603-817",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận ngang của đồ thị hàm số $y=\\dfrac{4 x+1}{x-1}$ là",
+      "paA": "$y=1$",
+      "paB": "$y=4$",
+      "paC": "$x=4$",
+      "paD": "$x=1$"
+    },
+    {
+      "id_Cau": "[2D1H4-1]",
+      "maCau": "q_0ec57cbccc",
+      "ma_goc": "2603-818",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận xiên của đồ thị hàm số $y=\\dfrac{2x^{2}-9x+3}{x+1}$ là đường thẳng",
+      "paA": "$y=2 x-9$",
+      "paB": "$y=2 x-11$",
+      "paC": "$y=2 x+11$",
+      "paD": "$y=2 x+9$"
+    },
+    {
+      "id_Cau": "[1D7N2-8]",
+      "maCau": "q_d9284af093",
+      "ma_goc": "2603-819",
+      "kieuCau": "TN",
+      "cauDan": "Cho chuyển động được xác định bởi phương trình $s=3 t^{3}+4 t^{2}-t$, trong đó $t$ được tính bằng giây và $s$ được tính bằng mét. Vận tốc của chuyển động khi $t=4$s bằng",
+      "paA": "$175$\\,m/s",
+      "paB": "$41$ \\,m/s",
+      "paC": "$176$\\,m/s",
+      "paD": "$20$\\,m/s"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_706ee5d350",
+      "ma_goc": "2603-820",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=-x^3+3x-1$. Đồ thị của hàm số đã cho là hình nào trong các hình bên dưới?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_706ee5d350_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t<img src='HinhAnh/q_706ee5d350_cd_tikz_2.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t<img src='HinhAnh/q_706ee5d350_cd_tikz_3.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t<img src='HinhAnh/q_706ee5d350_cd_tikz_4.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hình 1",
+      "paB": "Hình 2",
+      "paC": "Hình 3",
+      "paD": "Hình 4"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_02efd3099a",
+      "ma_goc": "2603-821",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị của hàm số nào dưới đây có dạng như đường cong trong hình bên dưới?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_02efd3099a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y=\\dfrac{-x-2}{x-1}$",
+      "paB": "$y=\\dfrac{-x-2}{x+1}$",
+      "paC": "$y=\\dfrac{x-2}{x+1}$",
+      "paD": "$y=\\dfrac{x-2}{x-1}$"
+    },
+    {
+      "id_Cau": "[2H2V1-1]",
+      "maCau": "q_392f70da76",
+      "ma_goc": "2603-822",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $O x y z$, cho $A(-1 ;-1 ; 3)$, $B(0 ; 2 ; 0)$ và $C(5 ;-2 ; 1)$. Tìm tọa độ của điểm $D$ sao cho tứ giác $A B C D$ là hình bình hành.",
+      "paA": "$(-4 ;-5 ; 4)$",
+      "paB": "$(4 ;-5 ; 4)$",
+      "paC": "$(4 ; 5 ;-4)$",
+      "paD": "$(-4 ;-5 ;-4)$"
+    },
+    {
+      "id_Cau": "[2D3N2-1]",
+      "maCau": "q_3cbe0bc76b",
+      "ma_goc": "2603-823",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $O x y z$, cho ba vectơ $\\vec{a}=(1 ; 2 ; 3)$, $\\vec{b}=(2 ; 2 ;-1)$, $\\vec{c}=(4 ; 0 ;-4)$. Tọa độ của vectơ $\\vec{d}=\\vec{a}-\\vec{b}+2 \\vec{c}$ là",
+      "paA": "$\\vec{d}=(-7 ; 0 ;-4)$",
+      "paB": "$\\vec{d}=(-7 ; 0 ; 4)$",
+      "paC": "$\\vec{d}=(7 ; 0 ;-4)$",
+      "paD": "$\\vec{d}=(7 ; 0 ; 4)$"
+    },
+    {
+      "id_Cau": "[2H2N1-2]",
+      "maCau": "q_057fdc1dac",
+      "ma_goc": "2603-824",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$. Vectơ nào dưới đây bằng vectơ $\\overrightarrow{AD}$ ?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_057fdc1dac_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\overrightarrow{AB}$",
+      "paB": "$\\overrightarrow{DC}$",
+      "paC": "$\\overrightarrow{B'C'}$",
+      "paD": "$\\overrightarrow{B'C}$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_5657eceb3f",
+      "ma_goc": "2603-825",
+      "kieuCau": "DS",
+      "cauDan": "Một hộ làm nghề dệt vải lụa tơ tằm sản xuất mỗi ngày được $x$ mét vải lụa ($1 \\le x \\le 18$). Tổng chi phí sản xuất $x$ mét vải lụa, tính bằng nghìn đồng, cho bởi hàm chi phí \\break $C(x) = x^3 - 3x^2 - 20x + 500$. Giả sử hộ làm nghề dệt này bán hết sản phẩm mỗi ngày với giá $220$ nghìn đồng/mét. Gọi $B(x)$ là số tiền bán được và $L(x)$ là lợi nhuận thu được khi bán $x$ mét vải lụa.",
+      "paA": "Đạo hàm của hàm $C(x)$ là $C'(x)=3x^2-6x+20$",
+      "paB": "Biểu thức $B(x)$ theo $x$ là $B(x)=220x$ (nghìn đồng)",
+      "paC": "Biểu thức $L(x)$ theo $x$ là $L(x)=B(x)-C(x)=-x^3+3x^2+240x-500$ (nghìn đồng)",
+      "paD": "Lợi nhuận tối đa của hộ làm nghề dệt vải lụa tơ tằm có thể đạt được là $1\\,200$ (nghìn đồng)"
+    },
+    {
+      "id_Cau": "[2D1H5-4]",
+      "maCau": "q_d5d7a484f4",
+      "ma_goc": "2603-826",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như sau\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d5d7a484f4_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số đã cho đồng biến trên $(0;4)$",
+      "paB": "Hàm số đã cho nghịch biến trên $(-\\infty;0)$",
+      "paC": "Hàm số $y=f(x+1)$ đồng biến trên $(2;4)$",
+      "paD": "Phương trình $f(x)-3=0$ có $4$ nghiệm"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_2654c5f802",
+      "ma_goc": "2603-827",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=\\dfrac{ax^2+bx+c}{mx+n}$ (với $a$, $m \\ne 0$) có đồ thị là đường cong như hình dưới đây\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_2654c5f802_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Đồ thị hàm số $y=f(x)$ nhận điểm $I(1;1)$ làm tâm đối xứng",
+      "paB": "Đồ thị hàm số $y=f(x)$ không có đường tiệm cận ngang",
+      "paC": "Đồ thị hàm số $y=f(x)$ có tiệm cận đứng là đường thẳng có phương trình $x=1$",
+      "paD": "Đồ thị hàm số $y=f(x)$ có tiệm cận xiên là đường thẳng có phương trình $y=-x$"
+    },
+    {
+      "id_Cau": "[2H2H2-3]",
+      "maCau": "q_206383f9d8",
+      "ma_goc": "2603-828",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho ba điểm $A(-1;3;2)$, $B(2;-1;1)$, $C(7;5;-4)$.",
+      "paA": "Tọa độ trung điểm của đoạn thẳng $AB$ là $I\\left(\\dfrac{1}{2};1;\\dfrac{3}{2}\\right)$",
+      "paB": "Tam giác $ABC$ có $AB=2AC$",
+      "paC": "Điểm $M(x;y;z)$ thoả mãn $2\\vec{MA}-3\\vec{MB}+2\\vec{MC}=\\vec{0}$ thì ta có $x+y+z=18$",
+      "paD": "Chu vi tam giác $ABC$ bằng $3\\sqrt{26}$"
+    },
+    {
+      "id_Cau": "[2D1H1-3]",
+      "maCau": "q_b4307e06c2",
+      "ma_goc": "2603-829",
+      "kieuCau": "TLN",
+      "cauDan": "Có tất cả bao nhiêu giá trị nguyên dương của tham số $m$ để hàm số $y=\\dfrac{x+m}{x+224}$ đồng biến trên từng khoảng xác định của nó?"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_353ae384b9",
+      "ma_goc": "2603-830",
+      "kieuCau": "TLN",
+      "cauDan": "Giả sử hàm số $f(x)=x^3-6x^2+9x-5$ đạt cực đại tại $x=a$ và đạt cực tiểu tại $x=b$. Giá trị của biểu thức $M=a^3-b^3$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_a789b546a2",
+      "ma_goc": "2603-831",
+      "kieuCau": "TLN",
+      "cauDan": "Độ giảm huyết áp của một bệnh nhân sau khi sử dụng thuốc được đo bởi công thức $G( x )=0{,}025x^2(30-x)$ trong đó $x$\\,(mg) và $x>0$ là liều lượng thuốc tiêm cho bệnh nhân. Để huyết áp giảm nhiều nhất thì cần tiêm cho bệnh nhân một liều lượng bằng $a$\\,(mg). Khi đó $3a-1$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_82b52fa482",
+      "ma_goc": "2603-832",
+      "kieuCau": "TLN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y=\\dfrac{x+3}{x-1}$ trên đoạn $[5;6]$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1V2-6]",
+      "maCau": "q_f68c30440e",
+      "ma_goc": "2603-833",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $y=f( x )$ có đạo hàm trên $\\mathbb{R}$ và đồ thị $y=f'(x)$ như hình vẽ dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f68c30440e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tXét hàm số $g( x )=f( x )+x-2025$. Hàm số $g( x )$ có bao nhiêu điểm cực trị?"
+    },
+    {
+      "id_Cau": "[2H2V2-6]",
+      "maCau": "q_9f03556e5e",
+      "ma_goc": "2603-834",
+      "kieuCau": "TLN",
+      "cauDan": "Một chậu cây được đặt trên một giá đỡ có bốn chân với điểm đặt $S( 0;0;30 )$ và các điểm chạm mặt đất của bốn chân lần lượt là $A( 30;0;0 )$, $B( 0;30;0 )$, $C( -30;0;0 )$, $D( 0;-30;0 )$. Cho biết trọng lực tác dụng lên chậu cây có độ lớn $60N$ và được phân bố thành bốn lực $\\overrightarrow{F_1}$, $\\overrightarrow{F_2}$, $\\overrightarrow{F_3}$, $\\overrightarrow{F_4}$ có độ lớn bằng nhau như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9f03556e5e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTính $\\left| \\overrightarrow{F_1}+\\overrightarrow{F_2}+\\overrightarrow{F_3}-\\overrightarrow{F_4} \\right|$."
+    }
+  ]
+}

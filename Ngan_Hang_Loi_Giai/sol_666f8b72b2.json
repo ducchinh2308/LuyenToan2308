@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_666f8b72b2",
+  "dapAn": "B",
+  "loiGiai": "Tứ giác $ABCD$ là hình bình hành thì $\\overrightarrow{A B}=\\overrightarrow{D C}$.\\\\\r\n\t\tVới $\\overrightarrow{A B}=(1 ; 3 ;-3)$ và $\\overrightarrow{D C}=(5-x ;-2-y ; 1-z)$, với $D(x ; y ; z)$.\\\\\r\n\t\tKhi đó\r\n\t\t$\\overrightarrow{A B}=\\overrightarrow{D C} \\Leftrightarrow\\begin{cases}\nx=4 \\\\ y=-5 \\\\ z=4.\n\\end{cases}$\\\\\r\n\t\tVậy $D(4 ;-5 ; 4)$."
+}

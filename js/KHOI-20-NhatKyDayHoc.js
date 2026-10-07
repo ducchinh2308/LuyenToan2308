@@ -5908,6 +5908,65 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
         // });
 
 
+        // // KHU 2: BẢNG THỐNG KÊ HÀNH VI
+        // dsSuKien.forEach(sk => {
+        //     let uid = sk.uid_hoc_sinh;
+        //     let hs = mapHocSinh[uid];
+
+        //     let nkTuongUng = dsNhatKy.find(n => n.id === sk.id_nhat_ky);
+        //     let ngaySK = nkTuongUng ? new Date(nkTuongUng.ngay_day) : new Date();
+        //     let strNgaySK = `${String(ngaySK.getDate()).padStart(2, '0')}/${String(ngaySK.getMonth() + 1).padStart(2, '0')}`;
+
+        //     let dsAnh = sk.thong_tin_mo_rong?.danh_sach_anh_minh_chung || [];
+        //     if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
+        //     let iconAnh = (dsAnh.length > 0) ? ' 📸' : '';
+
+        //     // 🌟 DUY TRÌ ICON NỢ / XONG NHƯ BẢN CŨ CỦA THẦY
+        //         let iconXuLy = '';
+        //         if (sk.thong_tin_mo_rong?.xu_ly) {
+        //             let xl = sk.thong_tin_mo_rong.xu_ly;
+        //             let isDone = xl.trang_thai === 'Đã hoàn thành';
+        //             let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
+
+        //             if (isDone) iconXuLy = `<span style="background:#fff; color:#28a745; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">✅ Xong</span>`;
+        //             else if (isPartial) iconXuLy = `<span style="background:#fff; color:#0056b3; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">🔄 1 phần</span>`;
+        //             else iconXuLy = `<span style="background:#fff; color:#dc3545; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px; box-shadow:0 0 5px rgba(220,53,69,0.5);">⏳ Nợ</span>`;
+        //         }
+
+
+        //     let encGhiChu = encodeURIComponent(sk.ghi_chu || '');
+        //     let encLoaiThe = encodeURIComponent(sk.loai_the || '');
+        //     let encLinks = encodeURIComponent(dsAnh.join(','));
+        //     let diemSo = sk.thong_tin_mo_rong?.diem_so || '';
+
+        //     let actionStr = `onclick="window.ham_20_34_xem_chi_tiet_su_kien_popup('${sk.id}', '${encLoaiThe}', '${encGhiChu}', '${diemSo}', '${strNgaySK}', '${encLinks}')" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"`;
+
+        //     // 🌟 ĐÃ BỎ FONT-WEIGHT: BOLD ĐỂ CHỮ TRỞ LẠI BÌNH THƯỜNG
+        //     let cssChung = "cursor: pointer; transition: 0.2s; padding: 3px 6px; font-size: 12px; white-space: nowrap; display: inline-block; background: transparent; border: none;";
+
+        //     // 🌟 ÁP DỤNG MÀU MỚI THEO YÊU CẦU CỦA THẦY
+        //     if (sk.loai_the === 'Vắng mặt') {
+        //         hs.vang++;
+        //         // Vắng = Xanh lá (#28a745)
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">[${strNgaySK}] Vắng${iconAnh}${iconXuLy}</span>`);
+        //     } else if (sk.loai_the === 'Cho điểm') {
+        //         hs.diem.push(`<b>${diemSo}đ</b>`);
+        //         // Cho điểm (Tốt) = Xanh dương (#007bff)
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
+        //     } else if (sk.thong_tin_mo_rong?.mau_sac === '#28a745') {
+        //         hs.tot++;
+        //         // Việc Tốt = Xanh dương (#007bff)
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     } else {
+        //         hs.xau++;
+        //         // Việc Xấu = Đen (#000)
+        //         hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+        //     }
+
+
+        // });
+
+
         // KHU 2: BẢNG THỐNG KÊ HÀNH VI
         dsSuKien.forEach(sk => {
             let uid = sk.uid_hoc_sinh;
@@ -5921,18 +5980,18 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
             if (typeof dsAnh === 'string') dsAnh = dsAnh.split(',').filter(l => l.trim());
             let iconAnh = (dsAnh.length > 0) ? ' 📸' : '';
 
-            // 🌟 DUY TRÌ ICON NỢ / XONG NHƯ BẢN CŨ CỦA THẦY
-                let iconXuLy = '';
-                if (sk.thong_tin_mo_rong?.xu_ly) {
-                    let xl = sk.thong_tin_mo_rong.xu_ly;
-                    let isDone = xl.trang_thai === 'Đã hoàn thành';
-                    let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
+            // 🌟 MỚI: TÍCH HỢP NÚT BẤM VÀO ĐÚNG NHÃN XỬ LÝ (TRONG BẢNG THỐNG KÊ)
+            let iconXuLy = '';
+            if (sk.thong_tin_mo_rong?.xu_ly) {
+                let xl = sk.thong_tin_mo_rong.xu_ly;
+                let isDone = xl.trang_thai === 'Đã hoàn thành';
+                let isPartial = xl.trang_thai === 'Đã nộp 1 phần';
 
-                    if (isDone) iconXuLy = `<span style="background:#fff; color:#28a745; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">✅ Xong</span>`;
-                    else if (isPartial) iconXuLy = `<span style="background:#fff; color:#0056b3; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px;">🔄 1 phần</span>`;
-                    else iconXuLy = `<span style="background:#fff; color:#dc3545; padding:1px 4px; border-radius:10px; margin-left:5px; font-size:9px; box-shadow:0 0 5px rgba(220,53,69,0.5);">⏳ Nợ</span>`;
-                }
+                let bgXl = isDone ? '#28a745' : (isPartial ? '#0056b3' : '#dc3545');
+                let textXl = isDone ? '✅ Xong' : (isPartial ? '🔄 1 phần' : '⏳ Nợ');
 
+                iconXuLy = `<span onclick="event.stopPropagation(); window.ham_20_40_cap_nhat_xu_ly_popup('${sk.id}')" style="background:${bgXl}; color:#fff; padding:2px 5px; border-radius:10px; margin-left:5px; font-size:10px; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,0.2); transition:0.2s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='brightness(1)'" title="Bấm để Nộp phạt / Cập nhật tiến độ">${textXl}</span>`;
+            }
 
             let encGhiChu = encodeURIComponent(sk.ghi_chu || '');
             let encLoaiThe = encodeURIComponent(sk.loai_the || '');
@@ -5941,30 +6000,25 @@ window.ham_20_15_thuc_hien_tra_cuu = async function (btnLoc) {
 
             let actionStr = `onclick="window.ham_20_34_xem_chi_tiet_su_kien_popup('${sk.id}', '${encLoaiThe}', '${encGhiChu}', '${diemSo}', '${strNgaySK}', '${encLinks}')" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"`;
 
-            // 🌟 ĐÃ BỎ FONT-WEIGHT: BOLD ĐỂ CHỮ TRỞ LẠI BÌNH THƯỜNG
             let cssChung = "cursor: pointer; transition: 0.2s; padding: 3px 6px; font-size: 12px; white-space: nowrap; display: inline-block; background: transparent; border: none;";
 
-            // 🌟 ÁP DỤNG MÀU MỚI THEO YÊU CẦU CỦA THẦY
             if (sk.loai_the === 'Vắng mặt') {
                 hs.vang++;
-                // Vắng = Xanh lá (#28a745)
-                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">[${strNgaySK}] Vắng${iconAnh}${iconXuLy}</span>`);
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #28a745;" title="Bấm để xem chi tiết">[${strNgaySK}] Vắng${iconAnh}</span>${iconXuLy}`);
             } else if (sk.loai_the === 'Cho điểm') {
                 hs.diem.push(`<b>${diemSo}đ</b>`);
-                // Cho điểm (Tốt) = Xanh dương (#007bff)
-                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] Điểm ${diemSo}${iconXuLy}</span>`);
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] Điểm ${diemSo}</span>${iconXuLy}`);
             } else if (sk.thong_tin_mo_rong?.mau_sac === '#28a745') {
                 hs.tot++;
-                // Việc Tốt = Xanh dương (#007bff)
-                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #007bff;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}</span>${iconXuLy}`);
             } else {
                 hs.xau++;
-                // Việc Xấu = Đen (#000)
-                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}${iconXuLy}</span>`);
+                hs.suKien.push(`<span ${actionStr} class="tag-sk" style="${cssChung} color: #000;" title="Bấm để xem chi tiết">${iconAnh}[${strNgaySK}] ${sk.loai_the}</span>${iconXuLy}`);
             }
-
-
         });
+
+
+
 
 
 
@@ -11126,57 +11180,315 @@ window.ham_20_39c_xoa_anh_mc = async function (idSuKien, indexAnhMC, idNhatKy) {
 // };
 
 
-// =====================================================================
-// HÀM ĐỒNG BỘ SỰ KIỆN CLICKS: KHI BẤM VÀO ĐÂU CŨNG GỌI 1 POPUP DUY NHẤT
-// =====================================================================
-window.ham_20_40_cap_nhat_xu_ly_popup = function (idSuKien) {
-    window.ham_20_34_xem_chi_tiet_su_kien_popup(idSuKien);
-};
-
-
-
-
+// // =====================================================================
+// // HÀM ĐỒNG BỘ SỰ KIỆN CLICKS: KHI BẤM VÀO ĐÂU CŨNG GỌI 1 POPUP DUY NHẤT
+// // =====================================================================
+// window.ham_20_40_cap_nhat_xu_ly_popup = function (idSuKien) {
+//     window.ham_20_34_xem_chi_tiet_su_kien_popup(idSuKien);
+// };
 
 
 // =====================================================================
-// HÀM 20.41: HIỂN THỊ PREVIEW ẢNH NỘP PHẠT (CÓ BẬT MODAL CẮT/NÉN ẢNH)
+// HÀM 20.40: BẬT POPUP CẬP NHẬT TIẾN ĐỘ & NỘP PHẠT (CÓ HIỆN ẢNH VI PHẠM GỐC TO RÕ)
 // =====================================================================
-window.ham_20_41_chon_anh_phat = async function (inputElem) {
-    if (inputElem.files && inputElem.files.length > 0) {
-        let files = Array.from(inputElem.files);
+window.ham_20_40_cap_nhat_xu_ly_popup = async function (skId) {
+    // 1. Dựng Loading Modal
+    let modal = document.getElementById('modal-cap-nhat-xu-ly');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'modal-cap-nhat-xu-ly';
+        modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); animation:fadeIn 0.2s;';
+        document.body.appendChild(modal);
+    }
 
-        // Gọi hàm xử lý chung (Bật Modal Cắt/Nén ảnh giống các mục khác)
-        let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
-        processedFiles = processedFiles.filter(f => f !== null); // Loại bỏ nếu thầy bấm Hủy
+    modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:10px; font-weight:bold; color:#0056b3;">⏳ Đang truy xuất dữ liệu xử lý...</div>`;
 
-        if (processedFiles.length === 0) {
-            inputElem.value = '';
-            return;
-        }
+    try {
+        // 2. Kéo thông tin MỚI NHẤT của sự kiện từ CSDL
+        const { data: skData, error } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', skId).single();
+        if (error) throw error;
 
-        if (!window.danhSachAnhPhatTam) window.danhSachAnhPhatTam = [];
-        window.danhSachAnhPhatTam.push(...processedFiles);
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        let xuLyObj = ttMoRong.xu_ly || { hinh_thuc: 'Không rõ', noi_dung: 'Không có yêu cầu', trang_thai: 'Chưa hoàn thành', anh_minh_chung: [] };
 
-        const vungPreview = document.getElementById('vung-preview-anh-phat');
-        if (vungPreview) {
-            vungPreview.style.flexDirection = 'column';
-            vungPreview.style.alignItems = 'flex-start';
-            let html = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
-            window.danhSachAnhPhatTam.forEach((f, idx) => {
-                let url = URL.createObjectURL(f);
-                html += `
-                <div style="position:relative; width:60px; display:flex; flex-direction:column; align-items:center; animation: fadeIn 0.2s;">
-                    <img src="${url}" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                    <button type="button" onclick="window.danhSachAnhPhatTam.splice(${idx}, 1); this.parentElement.remove();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:white; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">✖</button>
-                </div>`;
+        window.danhSachAnhNopPhatTam = []; // Biến chứa ảnh mới
+
+        // 🌟 3A. TRÍCH XUẤT ẢNH MINH CHỨNG VI PHẠM (ẢNH LỖI ĐÃ ĐƯỢC LÀM TO RÕ RÀNG)
+        let dsAnhViPham = ttMoRong.danh_sach_anh_minh_chung || [];
+        if (typeof dsAnhViPham === 'string') dsAnhViPham = dsAnhViPham.split(',').filter(l => l.trim());
+
+        let htmlAnhViPham = '';
+        if (dsAnhViPham.length > 0) {
+            htmlAnhViPham = `
+            <div style="margin-top: 15px; border-top: 1px dashed #dee2e6; padding-top: 15px;">
+                <b style="font-size: 13px; color: #495057; display: block; margin-bottom: 10px;">📸 Ảnh minh chứng vi phạm gốc:</b>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e9ecef;">`;
+
+            dsAnhViPham.forEach(link => {
+                let fileId = null;
+                let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1];
+                else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+
+                // Nâng sz=w800 để ảnh nét hơn khi phóng to
+                let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w800` : link;
+
+                htmlAnhViPham += `
+                <a href="${link}" target="_blank" title="Bấm để xem ảnh kích thước thật" style="display: block; width: 100%;">
+                    <img src="${srcTN}" onerror="this.src='${link}'" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; background: #fff; border-radius: 6px; border: 1px solid #ced4da; cursor: zoom-in; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                </a>`;
             });
-            html += '</div>';
-            vungPreview.innerHTML = html;
+            htmlAnhViPham += `</div></div>`;
         }
 
-        inputElem.value = '';
+        // 🌟 3B. TRÍCH XUẤT ẢNH NỘP PHẠT CŨ (CỦA YÊU CẦU XỬ LÝ)
+        let htmlAnhCu = '';
+        if (xuLyObj.anh_minh_chung && xuLyObj.anh_minh_chung.length > 0) {
+            htmlAnhCu = xuLyObj.anh_minh_chung.map((link, idx) => {
+                let fileId = null;
+                let m = link.match(/\/d\/([a-zA-Z0-9_-]+)/); if (m) fileId = m[1];
+                else if (link.includes('id=')) { let m = link.match(/id=([a-zA-Z0-9_-]+)/); if (m) fileId = m[1]; }
+                let srcTN = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w150` : link;
+                return `
+                <div style="position:relative; display:inline-block; margin-right:8px; margin-bottom:8px;">
+                    <a href="${link}" target="_blank" title="Xem ảnh gốc"><img src="${srcTN}" onerror="this.src='${link}'" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #ccc;"></a>
+                    <button type="button" onclick="window.ham_20_42_xoa_anh_phat_cu('${skId}', ${idx})" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer;">✖</button>
+                </div>`;
+            }).join('');
+        }
+
+        modal.innerHTML = `
+            <div style="background:#fff; width:90%; max-width:550px; padding:25px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.3); position:relative; max-height:90vh; overflow-y:auto;">
+                <button onclick="document.getElementById('modal-cap-nhat-xu-ly').remove()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:20px; font-weight:bold; cursor:pointer; color:#adb5bd; transition:0.2s;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color='#adb5bd'">✖</button>
+                <h3 style="margin-top:0; color:#d35400; border-bottom:2px solid #ffeeba; padding-bottom:10px; font-size:18px;">🛠️ CẬP NHẬT TIẾN ĐỘ NỘP PHẠT</h3>
+                
+                <div style="background:#fdfdfd; padding:15px; border-radius:8px; border:1px dashed #ced4da; margin-bottom:15px;">
+                    <div style="font-size:14px; margin-bottom:8px;">👤 <b>Học sinh:</b> <span style="color:#0056b3;">${skData.ten_hoc_sinh}</span></div>
+                    <div style="font-size:14px; margin-bottom:8px;">🚨 <b>Lỗi vi phạm:</b> ${skData.nhom_su_kien || skData.loai_the}</div>
+                    
+                    ${htmlAnhViPham}
+
+                    <div style="font-size:14px; color:#d35400; padding:10px; background:#fffcf8; border-radius:6px; border:1px solid #ffeeba; margin-top:15px;">
+                        <span style="font-weight:bold;">${xuLyObj.hinh_thuc}:</span> ${xuLyObj.noi_dung}
+                    </div>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057;">Trạng thái tiến độ:</label>
+                    <div style="display:flex; gap:15px; margin-top:8px;">
+                        <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:13px;"><input type="radio" name="tt_phat" value="Chưa hoàn thành" ${xuLyObj.trang_thai === 'Chưa hoàn thành' ? 'checked' : ''}> ⏳ Chưa xong</label>
+                        <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:13px;"><input type="radio" name="tt_phat" value="Đã nộp 1 phần" ${xuLyObj.trang_thai === 'Đã nộp 1 phần' ? 'checked' : ''}> 🔄 1 phần</label>
+                        <label style="cursor:pointer; display:flex; align-items:center; gap:4px; font-size:13px;"><input type="radio" name="tt_phat" value="Đã hoàn thành" ${xuLyObj.trang_thai === 'Đã hoàn thành' ? 'checked' : ''}> ✅ Hoàn thành</label>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label style="font-weight:bold; font-size:13px; color:#28a745;">📸 Nộp ảnh minh chứng (Cắt/Nén tự động):</label>
+                    <div style="display:flex; gap:10px; align-items:flex-start; margin-top:5px;">
+                        <button type="button" onclick="document.getElementById('input-anh-phat-moi').click()" style="padding:10px; background:#e0f7fa; color:#00838f; border:1px dashed #00acc1; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; flex-direction:column; align-items:center; flex-shrink:0;">
+                            <span style="font-size:24px;">📷</span><span style="font-size:11px;">Thêm ảnh</span>
+                        </button>
+                        <input type="file" id="input-anh-phat-moi" accept="image/*" multiple style="display:none;" onchange="window.ham_20_41_chon_anh_nop_phat(this)">
+                        
+                        <div id="vung-anh-phat-moi" style="flex:1; display:flex; flex-wrap:wrap; gap:8px; padding:10px; border:1px dashed #ccc; border-radius:6px; min-height:60px; background:#fafafa; align-items:center;">
+                            <i style="font-size:12px; color:#adb5bd;">(Chưa chọn ảnh mới)</i>
+                        </div>
+                    </div>
+                </div>
+
+                ${htmlAnhCu ? `
+                <div style="margin-bottom:15px; border-top:1px dashed #eee; padding-top:15px;">
+                    <label style="font-weight:bold; font-size:12px; color:#6c757d; display:block; margin-bottom:8px;">🖼️ Ảnh nộp phạt đã lưu:</label>
+                    <div>${htmlAnhCu}</div>
+                </div>` : ''}
+
+                <div style="display:flex; justify-content:flex-end; border-top:2px solid #f8f9fa; padding-top:15px; margin-top:20px;">
+                    <button onclick="window.ham_20_43_luu_tien_do_nop_phat('${skId}', this)" style="padding:12px 25px; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; font-size:14px; cursor:pointer; box-shadow:0 4px 6px rgba(40,167,69,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                        💾 XÁC NHẬN TIẾN ĐỘ
+                    </button>
+                </div>
+            </div>
+        `;
+    } catch (e) {
+        modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:10px; color:#dc3545; font-weight:bold;">❌ Lỗi: ${e.message} <br><button onclick="document.getElementById('modal-cap-nhat-xu-ly').remove()" style="margin-top:15px;">Đóng</button></div>`;
     }
 };
+
+// =====================================================================
+// HÀM 20.41: XỬ LÝ CHỌN VÀ HIỂN THỊ ẢNH NỘP PHẠT (CÓ BỘ CẮT NÉN)
+// =====================================================================
+window.ham_20_41_chon_anh_nop_phat = async function (inputElem) {
+    const files = Array.from(inputElem.files);
+    if (files.length === 0) return;
+
+    // Kích hoạt bộ nén ảnh nếu có
+    let processedFiles = files;
+    if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+        processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+    } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+        processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+    }
+
+    if (!window.danhSachAnhNopPhatTam) window.danhSachAnhNopPhatTam = [];
+    window.danhSachAnhNopPhatTam.push(...processedFiles);
+
+    const vungHienThi = document.getElementById('vung-anh-phat-moi');
+    if (!vungHienThi) return;
+
+    let html = '';
+    window.danhSachAnhNopPhatTam.forEach((file, index) => {
+        let url = URL.createObjectURL(file);
+        html += `
+        <div style="position:relative; display:inline-block; animation: fadeIn 0.3s;">
+            <img src="${url}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #28a745;">
+            <button type="button" onclick="window.danhSachAnhNopPhatTam.splice(${index}, 1); window.ham_20_41_chon_anh_nop_phat({files:[]});" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✖</button>
+        </div>`;
+    });
+
+    if (html === '') html = '<i style="font-size:12px; color:#adb5bd;">(Chưa chọn ảnh mới)</i>';
+    vungHienThi.innerHTML = html;
+    inputElem.value = '';
+};
+
+// =====================================================================
+// HÀM 20.42: XÓA ẢNH PHẠT CŨ (GỌI API CẬP NHẬT LUÔN DB)
+// =====================================================================
+window.ham_20_42_xoa_anh_phat_cu = async function (skId, indexAnh) {
+    if (!confirm('Thầy có chắc muốn xóa ảnh này khỏi CSDL không? (Hành động này không thể hoàn tác)')) return;
+
+    try {
+        const { data: skData, error } = await _supabase.from('nhat_ky_su_kien_hs').select('thong_tin_mo_rong').eq('id', skId).single();
+        if (error) throw error;
+
+        let ttMoRong = skData.thong_tin_mo_rong;
+        if (ttMoRong.xu_ly && ttMoRong.xu_ly.anh_minh_chung) {
+            ttMoRong.xu_ly.anh_minh_chung.splice(indexAnh, 1); // Xóa phần tử
+            await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', skId);
+
+            // Vẽ lại popup
+            window.ham_20_40_cap_nhat_xu_ly_popup(skId);
+        }
+    } catch (e) {
+        alert("Lỗi khi xóa ảnh: " + e.message);
+    }
+};
+
+// =====================================================================
+// HÀM 20.43: UPLOAD ẢNH & LƯU LẠI TIẾN ĐỘ
+// =====================================================================
+window.ham_20_43_luu_tien_do_nop_phat = async function (skId, btnLuu) {
+    let trangThaiMoi = document.querySelector('input[name="tt_phat"]:checked').value;
+
+    const oldText = btnLuu.innerHTML;
+    const oldBg = btnLuu.style.background;
+    btnLuu.innerHTML = "⏳ Đang kết nối..."; btnLuu.disabled = true;
+
+    try {
+        const { data: skData, error: errGet } = await _supabase.from('nhat_ky_su_kien_hs').select('thong_tin_mo_rong').eq('id', skId).single();
+        if (errGet) throw errGet;
+
+        let ttMoRong = skData.thong_tin_mo_rong || {};
+        if (!ttMoRong.xu_ly) ttMoRong.xu_ly = {};
+
+        let mangLinkMoi = [];
+        if (window.danhSachAnhNopPhatTam && window.danhSachAnhNopPhatTam.length > 0) {
+            let tongSoAnh = window.danhSachAnhNopPhatTam.length;
+
+            for (let k = 0; k < tongSoAnh; k++) {
+                let f = window.danhSachAnhNopPhatTam[k];
+                let b64 = await window.ham_ho_tro_doc_anh_base64(f);
+                let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
+                let tenFile = `NopPhat_[${Date.now()}]_Anh[${k + 1}]${duoiFile}`;
+                let payload = { action: "upload_anh_nhat_ky", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
+
+                let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload,
+                    (phanTram) => {
+                        btnLuu.style.background = `linear-gradient(90deg, #218838 ${phanTram}%, #6c757d ${phanTram}%)`;
+                        btnLuu.innerHTML = `🚀 Đang tải ảnh (${k + 1}/${tongSoAnh}) (${phanTram}%)`;
+                    }
+                );
+                if (res && res.status === 'success') mangLinkMoi.push(res.url);
+            }
+        }
+
+        // Cập nhật thuộc tính
+        ttMoRong.xu_ly.trang_thai = trangThaiMoi;
+        if (trangThaiMoi === 'Đã hoàn thành') ttMoRong.xu_ly.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
+        if (!ttMoRong.xu_ly.anh_minh_chung) ttMoRong.xu_ly.anh_minh_chung = [];
+        ttMoRong.xu_ly.anh_minh_chung = ttMoRong.xu_ly.anh_minh_chung.concat(mangLinkMoi);
+
+        // Lưu xuống DB
+        btnLuu.innerHTML = "⏳ Đang ghi nhận...";
+        await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', skId);
+
+        // Đóng popup
+        document.getElementById('modal-cap-nhat-xu-ly').remove();
+
+        // 🌟 Tải lại bảng tra cứu bên dưới mà không làm mất trạng thái lọc
+        let nutLoc = document.querySelector('button[onclick="ham_20_15_thuc_hien_tra_cuu(this)"]');
+        if (nutLoc) nutLoc.click();
+
+        // Hiển thị thông báo nhỏ
+        Swal.fire({
+            icon: 'success',
+            title: '✅ Đã cập nhật tiến độ nộp phạt thành công!',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+    } catch (e) {
+        console.error(e); alert("❌ Lỗi: " + e.message);
+        btnLuu.style.background = oldBg; btnLuu.innerHTML = oldText; btnLuu.disabled = false;
+    }
+};
+
+
+
+
+
+
+
+// // =====================================================================
+// // HÀM 20.41: HIỂN THỊ PREVIEW ẢNH NỘP PHẠT (CÓ BẬT MODAL CẮT/NÉN ẢNH)
+// // =====================================================================
+// window.ham_20_41_chon_anh_phat = async function (inputElem) {
+//     if (inputElem.files && inputElem.files.length > 0) {
+//         let files = Array.from(inputElem.files);
+
+//         // Gọi hàm xử lý chung (Bật Modal Cắt/Nén ảnh giống các mục khác)
+//         let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+//         processedFiles = processedFiles.filter(f => f !== null); // Loại bỏ nếu thầy bấm Hủy
+
+//         if (processedFiles.length === 0) {
+//             inputElem.value = '';
+//             return;
+//         }
+
+//         if (!window.danhSachAnhPhatTam) window.danhSachAnhPhatTam = [];
+//         window.danhSachAnhPhatTam.push(...processedFiles);
+
+//         const vungPreview = document.getElementById('vung-preview-anh-phat');
+//         if (vungPreview) {
+//             vungPreview.style.flexDirection = 'column';
+//             vungPreview.style.alignItems = 'flex-start';
+//             let html = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
+//             window.danhSachAnhPhatTam.forEach((f, idx) => {
+//                 let url = URL.createObjectURL(f);
+//                 html += `
+//                 <div style="position:relative; width:60px; display:flex; flex-direction:column; align-items:center; animation: fadeIn 0.2s;">
+//                     <img src="${url}" style="width:60px; height:60px; object-fit:cover; border-radius:4px; border:1px solid #17a2b8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+//                     <button type="button" onclick="window.danhSachAnhPhatTam.splice(${idx}, 1); this.parentElement.remove();" style="position:absolute; top:-6px; right:-6px; background:#dc3545; color:white; border:none; border-radius:50%; width:18px; height:18px; font-size:10px; cursor:pointer; font-weight:bold; box-shadow:0 1px 2px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">✖</button>
+//                 </div>`;
+//             });
+//             html += '</div>';
+//             vungPreview.innerHTML = html;
+//         }
+
+//         inputElem.value = '';
+//     }
+// };
 // // =====================================================================
 // // HÀM 20.42: LƯU TRẠNG THÁI NỘP PHẠT VÀO DATABASE
 // // =====================================================================
@@ -11252,85 +11564,85 @@ window.ham_20_41_chon_anh_phat = async function (inputElem) {
 
 
 
-// =====================================================================
-// HÀM 20.42: LƯU TRẠNG THÁI NỘP PHẠT VÀO DATABASE
-// =====================================================================
-window.ham_20_42_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
-    let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;
-    const oldText = btnLuu.innerHTML;
+// // =====================================================================
+// // HÀM 20.42: LƯU TRẠNG THÁI NỘP PHẠT VÀO DATABASE
+// // =====================================================================
+// window.ham_20_42_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
+//     let trangThaiMoi = document.querySelector('input[name="trang_thai_phat"]:checked').value;
+//     const oldText = btnLuu.innerHTML;
 
-    btnLuu.innerHTML = "⏳ Đang tải ảnh...";
-    btnLuu.disabled = true;
+//     btnLuu.innerHTML = "⏳ Đang tải ảnh...";
+//     btnLuu.disabled = true;
 
-    try {
-        const { data: skData, error: errGet } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
-        if (errGet) throw errGet;
+//     try {
+//         const { data: skData, error: errGet } = await _supabase.from('nhat_ky_su_kien_hs').select('*').eq('id', idSuKien).single();
+//         if (errGet) throw errGet;
 
-        let ttMoRong = skData.thong_tin_mo_rong || {};
-        let xlObj = ttMoRong.xu_ly;
-        if (!xlObj) throw new Error("Mất dữ liệu yêu cầu xử lý");
+//         let ttMoRong = skData.thong_tin_mo_rong || {};
+//         let xlObj = ttMoRong.xu_ly;
+//         if (!xlObj) throw new Error("Mất dữ liệu yêu cầu xử lý");
 
-        // 1. Upload ảnh mới (nếu có)
-        let mangLinkMoi = [];
-        if (window.danhSachAnhPhatTam && window.danhSachAnhPhatTam.length > 0) {
-            const ngayThucTe = new Date().toISOString().split('T')[0];
-            const timeStr = window.layGioPhutGiay();
+//         // 1. Upload ảnh mới (nếu có)
+//         let mangLinkMoi = [];
+//         if (window.danhSachAnhPhatTam && window.danhSachAnhPhatTam.length > 0) {
+//             const ngayThucTe = new Date().toISOString().split('T')[0];
+//             const timeStr = window.layGioPhutGiay();
 
-            for (let k = 0; k < window.danhSachAnhPhatTam.length; k++) {
-                let f = window.danhSachAnhPhatTam[k];
-                let b64 = await window.ham_ho_tro_doc_anh_base64(f);
-                let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
-                let tenFile = `NopPhat_[${ngayThucTe}_${timeStr}]_HS[${window.taoTenAnToan(skData.ten_hoc_sinh, 20)}]_Anh[${k + 1}]${duoiFile}`;
+//             for (let k = 0; k < window.danhSachAnhPhatTam.length; k++) {
+//                 let f = window.danhSachAnhPhatTam[k];
+//                 let b64 = await window.ham_ho_tro_doc_anh_base64(f);
+//                 let duoiFile = f.name.includes('.') ? f.name.substring(f.name.lastIndexOf('.')) : '.jpg';
+//                 let tenFile = `NopPhat_[${ngayThucTe}_${timeStr}]_HS[${window.taoTenAnToan(skData.ten_hoc_sinh, 20)}]_Anh[${k + 1}]${duoiFile}`;
 
-                let payload = { action: "upload_anh_nhat_ky", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
-                let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
-                    CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload,
-                    (p) => { btnLuu.innerHTML = `🚀 Đang tải ảnh (${p}%)`; }
-                );
+//                 let payload = { action: "upload_anh_nhat_ky", base64: b64, mimeType: f.type, fileName: tenFile, maLop: "CHUNG", loaiAnh: "NOP_PHAT" };
+//                 let res = await window.ham_ho_tro_upload_anh_co_tien_trinh(
+//                     CFG_HE_THONG.URL_APPS_SCRIPT_API_TONG_HOP, payload,
+//                     (p) => { btnLuu.innerHTML = `🚀 Đang tải ảnh (${p}%)`; }
+//                 );
 
-                if (res.status === 'success') mangLinkMoi.push(res.url);
-            }
-        }
+//                 if (res.status === 'success') mangLinkMoi.push(res.url);
+//             }
+//         }
 
-        btnLuu.innerHTML = "⏳ Đang lưu CSDL...";
+//         btnLuu.innerHTML = "⏳ Đang lưu CSDL...";
 
-        // 2. Cập nhật dữ liệu JSON
-        xlObj.trang_thai = trangThaiMoi;
-        if (trangThaiMoi === 'Đã hoàn thành') xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
+//         // 2. Cập nhật dữ liệu JSON
+//         xlObj.trang_thai = trangThaiMoi;
+//         if (trangThaiMoi === 'Đã hoàn thành') xlObj.ngay_hoan_thanh = new Date().toISOString().split('T')[0];
 
-        let mangAnhCu = xlObj.anh_minh_chung || [];
-        xlObj.anh_minh_chung = mangAnhCu.concat(mangLinkMoi);
-        ttMoRong.xu_ly = xlObj;
+//         let mangAnhCu = xlObj.anh_minh_chung || [];
+//         xlObj.anh_minh_chung = mangAnhCu.concat(mangLinkMoi);
+//         ttMoRong.xu_ly = xlObj;
 
-        // 3. Đẩy lên Supabase
-        const { error: errUp } = await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
-        if (errUp) throw errUp;
+//         // 3. Đẩy lên Supabase
+//         const { error: errUp } = await _supabase.from('nhat_ky_su_kien_hs').update({ thong_tin_mo_rong: ttMoRong }).eq('id', idSuKien);
+//         if (errUp) throw errUp;
 
-        alert("✅ Cập nhật tiến độ khắc phục thành công!");
+//         alert("✅ Cập nhật tiến độ khắc phục thành công!");
 
-        // Đóng Popup
-        let modal = document.getElementById('modal-xu-ly-' + idSuKien);
-        if (modal) document.body.removeChild(modal);
+//         // Đóng Popup
+//         let modal = document.getElementById('modal-xu-ly-' + idSuKien);
+//         if (modal) document.body.removeChild(modal);
 
-        // 🌟 TỰ ĐỘNG CẬP NHẬT LẠI GIAO DIỆN SAU KHI LƯU 🌟
+//         // 🌟 TỰ ĐỘNG CẬP NHẬT LẠI GIAO DIỆN SAU KHI LƯU 🌟
 
-        // Nếu thầy đang mở Bảng Tra Cứu (Mục 🔍 Tìm lại) -> Bấm nút Lọc lại để làm mới
-        const btnLoc = document.querySelector('button[onclick*="ham_20_15_thuc_hien_tra_cuu"]');
-        if (btnLoc) btnLoc.click();
+//         // Nếu thầy đang mở Bảng Tra Cứu (Mục 🔍 Tìm lại) -> Bấm nút Lọc lại để làm mới
+//         const btnLoc = document.querySelector('button[onclick*="ham_20_15_thuc_hien_tra_cuu"]');
+//         if (btnLoc) btnLoc.click();
 
-        // Nếu thầy đang mở Màn hình Nhập liệu tiết học (Mục 1, 2, 3...) -> Tải lại dữ liệu tiết đó
-        if (typeof window.ham_20_27_kiem_tra_tiet_da_luu === 'function') {
-            window.ham_20_27_kiem_tra_tiet_da_luu();
-        }
+//         // Nếu thầy đang mở Màn hình Nhập liệu tiết học (Mục 1, 2, 3...) -> Tải lại dữ liệu tiết đó
+//         if (typeof window.ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+//             window.ham_20_27_kiem_tra_tiet_da_luu();
+//         }
 
-    } catch (e) {
-        console.error("Lỗi cập nhật nộp phạt:", e);
-        alert("❌ Lỗi: " + e.message);
-    } finally {
-        btnLuu.innerHTML = oldText;
-        btnLuu.disabled = false;
-    }
-};
+//     } catch (e) {
+//         console.error("Lỗi cập nhật nộp phạt:", e);
+//         alert("❌ Lỗi: " + e.message);
+//     } finally {
+//         btnLuu.innerHTML = oldText;
+//         btnLuu.disabled = false;
+//     }
+// };
 
 
 

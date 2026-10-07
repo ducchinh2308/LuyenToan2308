@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f4ab13bd25",
+  "dapAn": "59",
+  "loiGiai": "Xét hàm số $G(x)=0{,}025x^2(30-x)$ với $x>0$.\\\\\r\n\t\tTa có $G(x)=\\dfrac{3}{4}x^2-\\dfrac{1}{40}x^3$, suy ra \r\n\t\t${G}'( x )=\\dfrac{3}{2}x-\\dfrac{3}{40}x^2$.\\\\\r\n\t\t${G}'( x )=0\\Leftrightarrow \\dfrac{3}{2}x-\\dfrac{3}{40}x^2=0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx=20 \\text{ (nhận)}\\\\ x=0 \\text{ (loại)}.\n\\end{array} \\right.$\\\\\r\n\t\tBảng biến thiên\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_f4ab13bd25_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên ta thấy trên $( 0;+\\infty)$, hàm số đạt giá trị lớn nhất khi $x=20$.\\\\\r\n\t\tVậy để huyết áp giảm nhiều nhất thì cần tiêm cho bệnh nhân một liều lượng bằng $a=20$\\,(mg).\\\\\r\n\t\tKhi đó $3a-1=3\\cdot 20-1=59$."
+}

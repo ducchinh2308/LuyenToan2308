@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_564379437d",
+  "dapAn": "223",
+  "loiGiai": "Tập xác định $\\mathscr D=\\mathbb{R}\\backslash \\left\\{ -224 \\right\\}$.\\\\\r\n\t\tTa có $y'=\\dfrac{224-m}{(x+224)^2}$.\\\\\r\n\t\tHàm số đồng biến trên từng khoảng xác định khi và chỉ khi\t\t\r\n\t\t$${y}'>0,\\;\\forall x \\in \\mathscr{D} \\Leftrightarrow 224-m>0\\Leftrightarrow m<224.$$\r\n\t\tDo $m$ nguyên dương nên $m\\in \\left\\{ 1;2;3;\\ldots;223 \\right\\}$.\\\\\r\n\t\tVậy có $223$ giá trị nguyên dương của $m$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3236d4f4be",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tọa độ trung điểm của đoạn thẳng $AB$ là $I\\left(\\dfrac{1}{2};1;\\dfrac{3}{2}\\right)$.\r\n\t\t\t\\itemch Ta có $AB=\\sqrt{3^2+(-4)^2+(-1)^2}=\\sqrt{26}$, $AC=\\sqrt{8^2+2^2+(-6)^2}=\\sqrt{104}=2\\sqrt{26}$. Do đó $AC=2AB$.\r\n\t\t\t\\itemch Ta có $$\\vec{MA}=(-1-x;3-y;2-z),\\vec{MB}=(2-x;-1-y;1-z),\\vec{MC}=(7-x;5-y;-4-z).$$\r\n\t\t\tDo đó $$2\\vec{MA}-3\\vec{MB}+2\\vec{MC}=\\vec{0} \\Leftrightarrow \\begin{cases}\n2(-1-x)-3(2-x)+2(7-x)=0 \\\\\r\n\t\t\t\t2(3-y)-3(-1-y)+2(5-y)=0 \\\\\r\n\t\t\t\t2(2-z)-3(1-z)+2(-4-z)=0\n\\end{cases} \\Leftrightarrow \\begin{cases}\nx=6 \\\\ y=19 \\\\ z=-7.\n\\end{cases}$$\r\n\t\t\tVậy $x+y+z=6+19-7=18.$\r\n\t\t\t\\itemch Ta có $AB=\\sqrt{26}$, $AC=2\\sqrt{26}$, $BC=\\sqrt{5^2+6^2+(-5)^2}=\\sqrt{86}$.\\\\\r\n\t\t\tDo đó chu vi tam giác $ABC$ bằng $AB+AC+BC=3\\sqrt{26}+\\sqrt{86}$.\r\n\t\\end{itemchoice}"
+}

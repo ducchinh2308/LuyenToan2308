@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bd21119af9",
+  "dapAn": "B",
+  "loiGiai": "Ta có\r\n\t\t$a=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{f(x)}{x}=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{2 x^{2}-9 x+3}{x^{2}+x}=2$.\\\\ Và\r\n\t\t$b=\\lim\\limits_{x \\rightarrow+\\infty}[f(x)-a x]=\\lim\\limits_{x \\rightarrow+\\infty}\\left(\\dfrac{2 x^{2}-9 x+3}{x+1}-2 x\\right)=\\lim\\limits_{x \\rightarrow+\\infty}\\left(\\dfrac{-11 x+3}{x+1}\\right)=-11$.\\\\\r\n\t\tVậy tiệm cận xiên của đồ thị hàm số là $y=2x-11$."
+}
