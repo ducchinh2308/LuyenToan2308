@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-10-07T12:36:03.723Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_d5bc9a6f0d",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, ta có số đã cho nghịch biến trên $(0;2)$."
+    },
+    {
+      "maBaoMat": "sol_5b7e75f03f",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, ta có giá trị cực tiểu của hàm số đã cho $0$."
+    },
+    {
+      "maBaoMat": "sol_f6d130e1e0",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $y'=3 x^{2}+6 x-9$.\\\\ Khi đó $y'=0 \\Leftrightarrow 3 x^{2}+6 x-9=0 \\Leftrightarrow\\left[ \\begin{array}{l}\nx=1 \\\\ x=-3.\n\\end{array} \\right.$\\\\\r\n\t\tTa có $y(1)=3$, $ y(-2)=30$ và $y(2)=10$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$ là $30$."
+    },
+    {
+      "maBaoMat": "sol_c62053e3a6",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào đồ thị, ta có giá trị lớn nhất của hàm số đã cho trên đoạn $[-1 ; 3]$ là $3$."
+    },
+    {
+      "maBaoMat": "sol_a4f4ab870e",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\lim\\limits_{x \\rightarrow-\\infty} y=\\lim\\limits_{x \\rightarrow-\\infty} \\dfrac{4 x+1}{x-1}=4$ và $\\lim\\limits_{x \\rightarrow+\\infty} y=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{4 x+1}{x-1}=4$.\\\\\r\n\t\tTiệm cận ngang của đồ thị hàm số $y=\\dfrac{4 x+1}{x-1}$ là $y=4$."
+    },
+    {
+      "maBaoMat": "sol_bd21119af9",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có\r\n\t\t$a=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{f(x)}{x}=\\lim\\limits_{x \\rightarrow+\\infty} \\dfrac{2 x^{2}-9 x+3}{x^{2}+x}=2$.\\\\ Và\r\n\t\t$b=\\lim\\limits_{x \\rightarrow+\\infty}[f(x)-a x]=\\lim\\limits_{x \\rightarrow+\\infty}\\left(\\dfrac{2 x^{2}-9 x+3}{x+1}-2 x\\right)=\\lim\\limits_{x \\rightarrow+\\infty}\\left(\\dfrac{-11 x+3}{x+1}\\right)=-11$.\\\\\r\n\t\tVậy tiệm cận xiên của đồ thị hàm số là $y=2x-11$."
+    },
+    {
+      "maBaoMat": "sol_59e8339326",
+      "dapAn": "C",
+      "loiGiaiHtml": "Do $s=3 t^{3}+4 t^{2}-t$ nên $v=9 t^{2}+8 t$.\\\\\r\n\t\tSuy ra $v(4)=9\\cdot 4^{2}+8\\cdot 4=176$\\,m/s."
+    },
+    {
+      "maBaoMat": "sol_b457287969",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hàm số $y=-x^{3}+3 x-1$ là hàm bậc ba có $a=-1<0$ nên loại hình 2, hình 4.\\\\\r\n\t\tĐồ thị hàm số đi qua $A(0 ;-1)$ nên loại hình 3, nhận hình 1 ."
+    },
+    {
+      "maBaoMat": "sol_7b70a849cd",
+      "dapAn": "B",
+      "loiGiaiHtml": "Đồ thị hàm số có tiệm cận đứng $x=-1$ nên loại phương án $y=\\dfrac{-x-2}{x-1}$ và $y=\\dfrac{x-2}{x-1}$.\\\\\r\n\t\tĐồ thị hàm số có tiệm cận ngang là $y=-1$ nên loại phương án $y=\\dfrac{x-2}{x+1}$."
+    },
+    {
+      "maBaoMat": "sol_666f8b72b2",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tứ giác $ABCD$ là hình bình hành thì $\\overrightarrow{A B}=\\overrightarrow{D C}$.\\\\\r\n\t\tVới $\\overrightarrow{A B}=(1 ; 3 ;-3)$ và $\\overrightarrow{D C}=(5-x ;-2-y ; 1-z)$, với $D(x ; y ; z)$.\\\\\r\n\t\tKhi đó\r\n\t\t$\\overrightarrow{A B}=\\overrightarrow{D C} \\Leftrightarrow\\begin{cases}\nx=4 \\\\ y=-5 \\\\ z=4.\n\\end{cases}$\\\\\r\n\t\tVậy $D(4 ;-5 ; 4)$."
+    },
+    {
+      "maBaoMat": "sol_4668d4e32d",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{a}=(1 ; 2 ; 3)$, $-\\vec{b}=(-2 ;-2 ; 1)$ và $2 \\vec{c}=(8 ; 0 ;-8)$.\\\\ Suy ra $\\vec{d}=\\vec{a}-\\vec{b}+2 \\vec{c}=(7 ; 0 ;-4)$."
+    },
+    {
+      "maBaoMat": "sol_ac95b7f2b6",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vì $ABCD.A'B'C'D'$ là hình lập phương nên $\\overrightarrow{AD}=\\overrightarrow{B C}=\\overrightarrow{B'C'}$."
+    },
+    {
+      "maBaoMat": "sol_f689d3fa54",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $C'(x) = 3x^2 - 6x - 20$.\r\n\t\t\t\\itemch Số tiền bán được khi bán $x$ mét vải lụa với giá $220$ nghìn đồng/mét là $B(x)=220x$ (nghìn đồng).\r\n\t\t\t\\itemch Lợi nhuận thu được khi bán $x$ mét vải lụa là\r\n\t\t\t\\begin{eqnarray*}\r\n\t\t\t\tL(x) &=& B(x) - C(x) \\\\\r\n\t\t\t\t&=& 220x - \\left(x^3 - 3x^2 - 20x + 500\\right) \\\\\r\n\t\t\t\t&=& -x^3 + 3x^2 + 240x - 500 \\text{ (nghìn đồng).}\r\n\t\t\t\\end{eqnarray*}\r\n\t\t\t\\itemch Xét hàm số $L(x) = -x^3 + 3x^2 + 240x - 500$ trên đoạn $[1; 18]$. \\\\\r\n\t\t\tTa có $L'(x) = -3x^2 + 6x + 240$. \\\\\r\n\t\t\t$L'(x) = 0 \\Leftrightarrow -3x^2 + 6x + 240 = 0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx = 10 \\in [1; 18] \\\\ x = -8 \\notin [1; 18].\n\\end{array} \\right.$ \\\\\r\n\t\t\tBảng biến thiên\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_f689d3fa54_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tDựa vào bảng biến thiên, lợi nhuận tối đa đạt được tại $x=10$, giá trị lớn nhất là \\break $L(10) = 1\\,200$ (nghìn đồng).\r\n\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_63f2cc0437",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số đồng biến trên các khoảng $(0;1)$ và $(3;+\\infty)$.\r\n\t\t\t\\itemch Dựa vào bảng biến thiên, hàm số nghịch biến trên khoảng $(-\\infty;0)$ và $(1;3)$.\\\\\\itemch Xét hàm số $g(x) = f(x+1)$. Ta có $g'(x) = f'(x+1)$. \\\\\r\n\t\t\tHàm số đồng biến khi và chỉ khi $$g'(x) > 0 \\Leftrightarrow f'(x+1) > 0 \\left[ \\begin{array}{l}\n0 < x+1 < 1 \\\\ x+1 > 3\n\\end{array} \\right. \\Leftrightarrow \\left[ \\begin{array}{l}\n-1 < x < 0 \\\\  x > 2.\n\\end{array} \\right. $$\r\n\t\t\tDo đó hàm số đồng biến trên $(2;4)$.\r\n\t\t\t\\itemch Phương trình $f(x)-3=0 \\Leftrightarrow f(x)=3$. \\\\\r\n\t\t\tDựa vào bảng biến thiên, đường thẳng $y=3$ cắt đồ thị hàm số tại $4$ điểm phân biệt.\r\n\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_2f22afa3ca",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Điểm $I(1 ;-1)$ là giao điểm của hai đường tiệm cận nên điểm $I(1 ;-1)$ là tâm đối xứng của đồ thị hàm số.\\\\\\itemch  Nhìn vào đồ thị ta thấy đồ thị hàm số $y=f(x)$ không có đường tiệm cận ngang.\\\\\\itemch Nhìn vào đồ thị ta thấy đồ thị hàm số $y=f(x)$ có tiệm cận đứng là đường thẳng có phương trình $x=1$.\\\\\\itemch Tiệm cận xiên của đồ thị hàm số đi qua các điểm $(0 ; 0)$, $(1 ;-1)$ nên đường tiệm cận xiên có phương trình là $y=-x$.\r\n\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_3236d4f4be",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tọa độ trung điểm của đoạn thẳng $AB$ là $I\\left(\\dfrac{1}{2};1;\\dfrac{3}{2}\\right)$.\r\n\t\t\t\\itemch Ta có $AB=\\sqrt{3^2+(-4)^2+(-1)^2}=\\sqrt{26}$, $AC=\\sqrt{8^2+2^2+(-6)^2}=\\sqrt{104}=2\\sqrt{26}$. Do đó $AC=2AB$.\r\n\t\t\t\\itemch Ta có $$\\vec{MA}=(-1-x;3-y;2-z),\\vec{MB}=(2-x;-1-y;1-z),\\vec{MC}=(7-x;5-y;-4-z).$$\r\n\t\t\tDo đó $$2\\vec{MA}-3\\vec{MB}+2\\vec{MC}=\\vec{0} \\Leftrightarrow \\begin{cases}\n2(-1-x)-3(2-x)+2(7-x)=0 \\\\\r\n\t\t\t\t2(3-y)-3(-1-y)+2(5-y)=0 \\\\\r\n\t\t\t\t2(2-z)-3(1-z)+2(-4-z)=0\n\\end{cases} \\Leftrightarrow \\begin{cases}\nx=6 \\\\ y=19 \\\\ z=-7.\n\\end{cases}$$\r\n\t\t\tVậy $x+y+z=6+19-7=18.$\r\n\t\t\t\\itemch Ta có $AB=\\sqrt{26}$, $AC=2\\sqrt{26}$, $BC=\\sqrt{5^2+6^2+(-5)^2}=\\sqrt{86}$.\\\\\r\n\t\t\tDo đó chu vi tam giác $ABC$ bằng $AB+AC+BC=3\\sqrt{26}+\\sqrt{86}$.\r\n\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_564379437d",
+      "dapAn": "223",
+      "loiGiaiHtml": "Tập xác định $\\mathscr D=\\mathbb{R}\\backslash \\left\\{ -224 \\right\\}$.\\\\\r\n\t\tTa có $y'=\\dfrac{224-m}{(x+224)^2}$.\\\\\r\n\t\tHàm số đồng biến trên từng khoảng xác định khi và chỉ khi\t\t\r\n\t\t$${y}'>0,\\;\\forall x \\in \\mathscr{D} \\Leftrightarrow 224-m>0\\Leftrightarrow m<224.$$\r\n\t\tDo $m$ nguyên dương nên $m\\in \\left\\{ 1;2;3;\\ldots;223 \\right\\}$.\\\\\r\n\t\tVậy có $223$ giá trị nguyên dương của $m$."
+    },
+    {
+      "maBaoMat": "sol_ceaa9b948c",
+      "dapAn": "-26",
+      "loiGiaiHtml": "Tập xác định $\\mathscr D=\\mathbb{R}$.\\\\\r\n\t\tTa có $f'(x)=3x^2-12x+9$.\\\\\r\n\t\tKhi đó $f'( x )=0\\Leftrightarrow 3x^2-12x+9=0\\Leftrightarrow \\left[ \\begin{array}{l}\nx=1 \\\\ x=3.\n\\end{array} \\right.$\\\\\r\n\t\tBảng biến thiên\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_ceaa9b948c_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tHàm số đạt cực đại tại $x=1$ và đạt cực tiểu tại $x=3$. Do đó $a=1$ và $b=3$.\\\\\r\n\t\tSuy ra $M=a^3-b^3=1^3-3^3=-26$."
+    },
+    {
+      "maBaoMat": "sol_f4ab13bd25",
+      "dapAn": "59",
+      "loiGiaiHtml": "Xét hàm số $G(x)=0{,}025x^2(30-x)$ với $x>0$.\\\\\r\n\t\tTa có $G(x)=\\dfrac{3}{4}x^2-\\dfrac{1}{40}x^3$, suy ra \r\n\t\t${G}'( x )=\\dfrac{3}{2}x-\\dfrac{3}{40}x^2$.\\\\\r\n\t\t${G}'( x )=0\\Leftrightarrow \\dfrac{3}{2}x-\\dfrac{3}{40}x^2=0 \\Leftrightarrow \\left[ \\begin{array}{l}\nx=20 \\text{ (nhận)}\\\\ x=0 \\text{ (loại)}.\n\\end{array} \\right.$\\\\\r\n\t\tBảng biến thiên\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_f4ab13bd25_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên ta thấy trên $( 0;+\\infty)$, hàm số đạt giá trị lớn nhất khi $x=20$.\\\\\r\n\t\tVậy để huyết áp giảm nhiều nhất thì cần tiêm cho bệnh nhân một liều lượng bằng $a=20$\\,(mg).\\\\\r\n\t\tKhi đó $3a-1=3\\cdot 20-1=59$."
+    },
+    {
+      "maBaoMat": "sol_72454c0d58",
+      "dapAn": "2",
+      "loiGiaiHtml": "Ta có $y'=\\dfrac{-4}{(x-1)^2}<0$, $\\forall x\\in [5;6]$.\\\\\r\n\t\tSuy ra $\\max\\limits_{[5;6]} y=y(5)=2$."
+    },
+    {
+      "maBaoMat": "sol_39f7306494",
+      "dapAn": "2",
+      "loiGiaiHtml": "Ta có $g'(x)=f'(x)+1$.\r\n\t\tSuy ra $g'(x)=0\\Leftrightarrow f'( x )=-1$.\\\\\r\n\t\tDựa vào đồ thị hàm số $y=f'(x)$ như hình vẽ, ta thấy phương trình $f'(x)=-1$ có hai nghiệm đơn phân biệt.\\\\\r\n\t\tDo đó hàm số $g(x)$ có $2$ điểm cực trị."
+    },
+    {
+      "maBaoMat": "sol_b530afcd35",
+      "dapAn": "42",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b530afcd35_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa có $\\overrightarrow{SA}=k\\overrightarrow{F_1}$, $\\overrightarrow{SB}=k\\overrightarrow{F_2}$, $\\overrightarrow{SC}=k\\overrightarrow{F_3}$, $\\overrightarrow{SD}=k\\overrightarrow{F_4}$ (điều kiện $k>0$).\\\\\r\n\t\tVới $\\left| \\overrightarrow{SA}+\\overrightarrow{SB}+\\overrightarrow{SC}+\\overrightarrow{SD} \\right|=4\\left| \\overrightarrow{SO} \\right|=120$ và \r\n\t\t$\\left| \\overrightarrow{F_1}+\\overrightarrow{F_2}+\\overrightarrow{F_3}+\\overrightarrow{F_4} \\right|=60$. Suy ra\r\n\t\t$$60k=120 \\Rightarrow k=2.$$\r\n\t\tKhi đó \r\n\t\t\\begin{eqnarray*}\r\n\t\t\t\\left| \\overrightarrow{F_1}+\\overrightarrow{F_2}+\\overrightarrow{F_3}-\\overrightarrow{F_4} \\right|&=&\\dfrac{1}{2}\\left| \\overrightarrow{SA}+\\overrightarrow{SB}+\\overrightarrow{SC}-\\overrightarrow{SD} \\right|\\\\\r\n\t\t\t&=& \\dfrac{1}{2}\\left| (\\overrightarrow{SA}+\\overrightarrow{SC})+\\overrightarrow{SB}-\\overrightarrow{SD} \\right|\\\\\r\n\t\t\t&=& \\dfrac{1}{2}\\left| 2\\overrightarrow{SB}+\\overrightarrow{SD}-\\overrightarrow{SD} \\right|\\\\\r\n\t\t\t&=&\\left| \\overrightarrow{SB} \\right|=30\\sqrt{2}\\approx 42.\r\n\t\t\\end{eqnarray*}"
+    }
+  ]
+}
