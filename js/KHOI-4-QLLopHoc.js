@@ -903,6 +903,7 @@ window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
             sortNgoai: 'asc'
         };
 
+        // (Đây là đoạn cắt ra từ trong hàm ham_4_9_xem_chi_tiet_lop)
         vungLamViec.innerHTML = `
             <div style="background: white; padding: 25px; border-radius: 10px; border: 1px solid #1a73e8; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
@@ -910,14 +911,20 @@ window.ham_4_9_xem_chi_tiet_lop = async function (maLop) {
                         🏫 CHI TIẾT LỚP: ${lop.ten_lop} (${maLop})
                     </h3>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <!-- 🌟 NÚT TẠO MỚI HỌC SINH TẠI ĐÂY -->
+                        <button onclick="window.ham_4_9_5_popup_tao_hoc_sinh_moi()" style="padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                            ➕ Tạo HS Mới
+                        </button>
+
                         <button onclick="window.ham_4_16_popup_cap_nhat_avatar_lop()" style="padding: 8px 15px; background: #6f42c1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.background='#5a32a3'" onmouseout="this.style.background='#6f42c1'">
-                            📸 Cập nhật Avatar cả lớp
+                            📸 Cập nhật Avatar
                         </button>
                         <button onclick="ham_4_4_tai_danh_sach_lop(); ham_4_1_ve_quan_ly_lop();" style="padding: 8px 15px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                             ⬅ Quay Lại Bảng
                         </button>
                     </div>
                 </div>
+                
 
                 <div style="margin-bottom: 15px;">
                     <input type="text" id="input-tim-hs-chi-tiet" oninput="ham_4_9_1_render_danh_sach(this.value)" placeholder="🔍 Nhập Tên hoặc SĐT để tìm nhanh học sinh..." style="width: 100%; padding: 12px; border: 2px solid #17a2b8; border-radius: 6px; font-size: 14px; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
@@ -1372,7 +1379,435 @@ window.ham_4_9_4_dao_chieu_sort = function (cot) {
     window.ham_4_9_1_render_danh_sach(kw);
 };
 
+// // =====================================================================
+// // HÀM 4.9.5: MỞ POPUP TẠO HỌC SINH MỚI TRỰC TIẾP VÀO LỚP
+// // =====================================================================
+// window.ham_4_9_5_popup_tao_hoc_sinh_moi = function () {
+//     let modal = document.getElementById('modal-tao-hs');
+//     if (modal) document.body.removeChild(modal);
 
+//     modal = document.createElement('div');
+//     modal.id = 'modal-tao-hs';
+//     modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); animation:fadeIn 0.2s;';
+
+//     // Form thu thập thông tin (Giao diện chuẩn Bootstrap)
+//     modal.innerHTML = `
+//         <div style="background:#fff; width:90%; max-width:450px; padding:25px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.3); position:relative;">
+//             <button onclick="document.getElementById('modal-tao-hs').remove()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:20px; font-weight:bold; cursor:pointer; color:#adb5bd; transition:0.2s;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color='#adb5bd'">✖</button>
+//             <h3 style="margin-top:0; color:#28a745; border-bottom:2px solid #d4edda; padding-bottom:10px; font-size:18px; text-transform:uppercase;">
+//                 👤 KHỞI TẠO TÀI KHOẢN HỌC SINH
+//             </h3>
+            
+//             <div style="margin-bottom:15px;">
+//                 <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Họ và Tên (*):</label>
+//                 <input type="text" id="hs-new-ten" placeholder="Ví dụ: Nguyễn Văn A..." style="width:100%; padding:10px; border:2px solid #28a745; border-radius:6px; box-sizing:border-box; outline:none; font-weight:bold; font-size:14px;">
+//             </div>
+
+//             <div style="display:flex; gap:10px; margin-bottom:15px;">
+//                 <div style="flex:1;">
+//                     <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">SĐT / Tên đăng nhập (*):</label>
+//                     <input type="text" id="hs-new-sdt" placeholder="SĐT 10 số..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+//                 </div>
+//                 <div style="flex:1;">
+//                     <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Mật khẩu (*):</label>
+//                     <input type="text" id="hs-new-pass" value="123456" style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+//                 </div>
+//             </div>
+
+//             <div style="display:flex; gap:10px; margin-bottom:15px;">
+//                 <div style="flex:2;">
+//                     <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Trường (Tùy chọn):</label>
+//                     <input type="text" id="hs-new-truong" placeholder="VD: THPT Gia Định..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+//                 </div>
+//                 <div style="flex:1;">
+//                     <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Khối:</label>
+//                     <input type="text" id="hs-new-khoi" placeholder="VD: 12..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+//                 </div>
+//             </div>
+
+//             <div style="background:#e8f5e9; padding:10px; border-radius:6px; border:1px solid #c3e6cb; margin-bottom:20px; font-size:13px; color:#155724; display:flex; align-items:center; gap:8px;">
+//                 <span style="font-size:18px;">🏷️</span> Học sinh này sẽ được gán tự động vào lớp <b style="font-size:14px;">${window.ChiTietLopState.tenLop} (${window.ChiTietLopState.maLop})</b>.
+//             </div>
+
+//             <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #eee; padding-top:15px;">
+//                 <button onclick="document.getElementById('modal-tao-hs').remove()" style="padding:10px 15px; background:#6c757d; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Hủy</button>
+//                 <button onclick="window.ham_4_9_6_thuc_thi_tao_hoc_sinh(this)" style="padding:10px 20px; background:#28a745; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 4px 6px rgba(40,167,69,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+//                     💾 TẠO TÀI KHOẢN
+//                 </button>
+//             </div>
+//         </div>
+//     `;
+//     document.body.appendChild(modal);
+// };
+
+// // =====================================================================
+// // HÀM 4.9.6: THỰC THI GHI VÀO DB VÀ ĐỒNG BỘ MẢNG
+// // =====================================================================
+// window.ham_4_9_6_thuc_thi_tao_hoc_sinh = async function (btnLuu) {
+//     const ten = document.getElementById('hs-new-ten').value.trim();
+//     const sdt = document.getElementById('hs-new-sdt').value.trim();
+//     const matKhau = document.getElementById('hs-new-pass').value.trim();
+//     const truong = document.getElementById('hs-new-truong').value.trim();
+//     const khoi = document.getElementById('hs-new-khoi').value.trim();
+//     const maLopHienTai = window.ChiTietLopState.maLop;
+
+//     if (!ten || !sdt || !matKhau) {
+//         alert("⚠️ Vui lòng điền đầy đủ Tên, SĐT và Mật khẩu!");
+//         return;
+//     }
+
+//     if (sdt.length < 9) {
+//         alert("⚠️ Số điện thoại không hợp lệ (Phải từ 9 số trở lên)!");
+//         return;
+//     }
+
+//     const textGoc = btnLuu.innerHTML;
+//     btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
+//     btnLuu.disabled = true;
+
+//     try {
+//         // 1. Kiểm tra SĐT đã tồn tại chưa
+//         const { data: checkSdt, error: errSdt } = await _supabase.from('hoc_sinh').select('sdt').eq('sdt', sdt).maybeSingle();
+//         if (checkSdt) throw new Error(`Số điện thoại ${sdt} đã được đăng ký cho một tài khoản khác!`);
+
+//         // 2. Tạo UID và lưu Học sinh mới
+//         const uidMoi = crypto.randomUUID();
+//         const hocSinhMoi = {
+//             uid: uidMoi,
+//             sdt: sdt,
+//             mat_khau: matKhau,
+//             ten: ten,
+//             vai_tro: 'hocsinh',
+//             trang_thai: 1, // Kích hoạt ngay
+//             truong: truong,
+//             khoi_lop: khoi,
+//             danh_sach_ma_lop: [maLopHienTai], // Gán luôn mã lớp đang đứng
+//             ngay_tham_gia: new Date().toISOString()
+//         };
+
+//         const { error: errInsert } = await _supabase.from('hoc_sinh').insert([hocSinhMoi]);
+//         if (errInsert) throw errInsert;
+
+//         // 3. Đẩy UID mới vào bảng lop_hoc (Mảng hoc_sinh_ids) để đồng bộ 2 chiều
+//         const { data: dataLop, error: errLop } = await _supabase.from('lop_hoc').select('hoc_sinh_ids').eq('ma_lop', maLopHienTai).single();
+//         if (errLop) throw errLop;
+
+//         let dsUidHienTai = Array.isArray(dataLop.hoc_sinh_ids) ? dataLop.hoc_sinh_ids : [];
+//         if (!dsUidHienTai.includes(uidMoi)) {
+//             dsUidHienTai.push(uidMoi);
+//             await _supabase.from('lop_hoc').update({ hoc_sinh_ids: dsUidHienTai }).eq('ma_lop', maLopHienTai);
+//         }
+
+//         // 4. Bơm ngay học sinh mới vào State (Cột Trong) để render live mà không cần tải lại trang
+//         window.ChiTietLopState.dsTrong.push({
+//             uid: uidMoi,
+//             ten: ten,
+//             sdt: sdt,
+//             truong: truong,
+//             danh_sach_ma_lop: [maLopHienTai]
+//         });
+
+//         // 5. Đóng Popup và Cập nhật Giao diện
+//         alert(`✅ Đã tạo tài khoản và thêm học sinh ${ten} vào lớp thành công!`);
+//         document.getElementById('modal-tao-hs').remove();
+
+//         let kw = document.getElementById('input-tim-hs-chi-tiet').value;
+//         window.ham_4_9_1_render_danh_sach(kw);
+
+//         // Đánh dấu bảng danh sách tổng cần load lại sau (nếu thầy quay ra)
+//         BangHocSinhState.duLieu.push(hocSinhMoi);
+
+//     } catch (e) {
+//         alert("❌ Lỗi: " + e.message);
+//         btnLuu.innerHTML = textGoc;
+//         btnLuu.disabled = false;
+//     }
+// };
+
+
+
+// =====================================================================
+// HÀM 4.9.5: MỞ POPUP TẠO HỌC SINH MỚI TRỰC TIẾP VÀO LỚP (CÓ AVATAR)
+// =====================================================================
+window.ham_4_9_5_popup_tao_hoc_sinh_moi = function () {
+    window.AvatarHocSinhMoiTam = null; // Reset biến lưu ảnh tạm
+
+    let modal = document.getElementById('modal-tao-hs');
+    if (modal) document.body.removeChild(modal);
+
+    modal = document.createElement('div');
+    modal.id = 'modal-tao-hs';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); animation:fadeIn 0.2s;';
+
+    // Form thu thập thông tin
+    modal.innerHTML = `
+        <div style="background:#fff; width:90%; max-width:480px; padding:25px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.3); position:relative;">
+            <button onclick="document.getElementById('modal-tao-hs').remove()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:20px; font-weight:bold; cursor:pointer; color:#adb5bd; transition:0.2s;" onmouseover="this.style.color='#dc3545'" onmouseout="this.style.color='#adb5bd'">✖</button>
+            <h3 style="margin-top:0; color:#28a745; border-bottom:2px solid #d4edda; padding-bottom:10px; font-size:18px; text-transform:uppercase;">
+                👤 KHỞI TẠO TÀI KHOẢN HỌC SINH
+            </h3>
+            
+            <div style="display:flex; gap:15px; margin-bottom:15px; align-items:center;">
+                <!-- VÙNG TẢI ẢNH AVATAR -->
+                <div style="position:relative; flex-shrink:0;">
+                    <img id="preview-avatar-hs-new" src="https://ui-avatars.com/api/?name=HS&background=e9ecef&color=6c757d" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px dashed #adb5bd; background:#f8f9fa;">
+                    <button type="button" onclick="document.getElementById('input-avatar-hs-new').click()" style="position:absolute; bottom:-5px; right:-5px; background:#28a745; color:#fff; border:none; border-radius:50%; width:26px; height:26px; font-size:12px; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center;" title="Đổi Avatar">📷</button>
+                    <input type="file" id="input-avatar-hs-new" accept="image/*" style="display:none;" onchange="window.ham_4_9_7_xu_ly_anh_avatar_moi(this)">
+                </div>
+
+                <!-- HỌ VÀ TÊN -->
+                <div style="flex:1;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Họ và Tên (*):</label>
+                    <input type="text" id="hs-new-ten" placeholder="Ví dụ: Nguyễn Văn A..." oninput="let iv=document.getElementById('preview-avatar-hs-new'); if(!window.AvatarHocSinhMoiTam && this.value.trim()){ iv.src='https://ui-avatars.com/api/?name='+encodeURIComponent(this.value)+'&background=random&color=fff'; }" style="width:100%; padding:10px; border:2px solid #28a745; border-radius:6px; box-sizing:border-box; outline:none; font-weight:bold; font-size:14px;">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                <div style="flex:1;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Tên đăng nhập (*):</label>
+                    <input type="text" id="hs-new-sdt" placeholder="SĐT hoặc chữ viết liền..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px; font-weight:bold; color:#0056b3;">
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Mật khẩu (*):</label>
+                    <input type="text" id="hs-new-pass" value="123456" style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px; color:#d35400;">
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                <div style="flex:2;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Trường (Tùy chọn):</label>
+                    <input type="text" id="hs-new-truong" placeholder="VD: THPT Gia Định..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:bold; font-size:13px; color:#495057; display:block; margin-bottom:5px;">Khối:</label>
+                    <input type="text" id="hs-new-khoi" placeholder="VD: 12..." style="width:100%; padding:10px; border:1px solid #ced4da; border-radius:6px; box-sizing:border-box; outline:none; font-size:14px;">
+                </div>
+            </div>
+
+            <div style="background:#e8f5e9; padding:10px; border-radius:6px; border:1px solid #c3e6cb; margin-bottom:20px; font-size:13px; color:#155724; display:flex; align-items:center; gap:8px;">
+                <span style="font-size:18px;">🏷️</span> Học sinh này sẽ được gán tự động vào lớp <b style="font-size:14px;">${window.ChiTietLopState.tenLop} (${window.ChiTietLopState.maLop})</b>.
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid #eee; padding-top:15px;">
+                <button onclick="document.getElementById('modal-tao-hs').remove()" style="padding:10px 15px; background:#6c757d; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">Hủy</button>
+                <button onclick="window.ham_4_9_6_thuc_thi_tao_hoc_sinh(this)" style="padding:10px 20px; background:#28a745; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; box-shadow:0 4px 6px rgba(40,167,69,0.2); transition:0.2s;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+                    💾 TẠO TÀI KHOẢN
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+};
+// =====================================================================
+// HÀM 4.9.7: XỬ LÝ ẢNH AVATAR KHI TẠO HỌC SINH MỚI (BẬT POPUP CẮT NÉN UI)
+// =====================================================================
+window.ham_4_9_7_xu_ly_anh_avatar_moi = async function (input) {
+    if (!input.files || input.files.length === 0) return;
+
+    try {
+        let files = Array.from(input.files);
+        let processedFiles = files;
+        let finalBase64 = null;
+
+        // 1. Kích hoạt bộ công cụ cắt nén có giao diện (UI) của hệ thống
+        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao(files);
+        } else if (typeof window.ham_ho_tro_xu_ly_mang_anh_dau_vao === 'function') {
+            processedFiles = await window.ham_ho_tro_xu_ly_mang_anh_dau_vao(files);
+        }
+
+        if (processedFiles && processedFiles.length > 0) {
+            let fileSauKhiCat = processedFiles[0];
+
+            // 2. Chuyển File đã qua cắt/nén thành Base64 để hiển thị lên vòng tròn Avatar
+            finalBase64 = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.readAsDataURL(fileSauKhiCat);
+            });
+        } else {
+            // Dự phòng: Nếu hệ thống không gọi được công cụ UI, xài hàm cắt vuông ngầm của Khối 4
+            if (typeof window.ham_4_22_nen_anh_base64 === 'function') {
+                finalBase64 = await window.ham_4_22_nen_anh_base64(files[0]);
+            }
+        }
+
+        // 3. Ghi nhận ảnh và đẩy lên giao diện
+        if (finalBase64) {
+            window.AvatarHocSinhMoiTam = finalBase64;
+            document.getElementById('preview-avatar-hs-new').src = finalBase64;
+        }
+
+    } catch (e) {
+        console.error(e);
+        alert("Lỗi xử lý ảnh: " + e.message);
+    }
+
+    input.value = ''; // Reset input để có thể chọn lại chính bức ảnh đó nếu muốn thao tác lại
+};
+// =====================================================================
+// HÀM 4.9.6: THỰC THI GHI VÀO DB VÀ ĐỒNG BỘ MẢNG (CHẶN TRÙNG & GỢI Ý TÊN - ĐÃ FIX Z-INDEX)
+// =====================================================================
+window.ham_4_9_6_thuc_thi_tao_hoc_sinh = async function (btnLuu) {
+    const ten = document.getElementById('hs-new-ten').value.trim();
+    let tenDangNhap = document.getElementById('hs-new-sdt').value.trim();
+    const matKhau = document.getElementById('hs-new-pass').value.trim();
+    const truong = document.getElementById('hs-new-truong').value.trim();
+    const khoi = document.getElementById('hs-new-khoi').value.trim();
+    const maLopHienTai = window.ChiTietLopState.maLop;
+
+    if (!ten || !tenDangNhap || !matKhau) {
+        alert("⚠️ Vui lòng điền đầy đủ Họ Tên, Tên đăng nhập và Mật khẩu!");
+        return;
+    }
+
+    const textGoc = btnLuu.innerHTML;
+    btnLuu.innerHTML = "⏳ ĐANG XỬ LÝ...";
+    btnLuu.disabled = true;
+
+    try {
+        // 1. KIỂM TRA TRÙNG TÊN ĐĂNG NHẬP (CỘT SDT)
+        const { data: checkTonTai } = await _supabase
+            .from('hoc_sinh')
+            .select('sdt')
+            .eq('sdt', tenDangNhap)
+            .maybeSingle();
+
+        // 🌟 XỬ LÝ NẾU BỊ TRÙNG: TÌM 3 GỢI Ý VÀ DỪNG LẠI YÊU CẦU THẦY ĐỔI TÊN
+        if (checkTonTai) {
+            let arrGoiY = [];
+            let counter = 1;
+
+            // Dò tìm 3 tên gợi ý khả dụng (chưa có ai xài)
+            while (arrGoiY.length < 3) {
+                let tenThu = tenDangNhap + counter.toString();
+                const { data: checkThu } = await _supabase
+                    .from('hoc_sinh')
+                    .select('sdt')
+                    .eq('sdt', tenThu)
+                    .maybeSingle();
+
+                if (!checkThu) arrGoiY.push(tenThu);
+                counter++;
+                if (counter > 20) break; // An toàn vòng lặp
+            }
+
+            let strGoiY = arrGoiY.join(', ');
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'TÊN ĐĂNG NHẬP BỊ TRÙNG',
+                    html: `Tên đăng nhập <b>"${tenDangNhap}"</b> đã có người sử dụng!<br><br>Thầy vui lòng gõ thêm số vào sau tên. Các gợi ý chưa ai dùng:<br><b style="color:#d35400; font-size:16px;">${strGoiY}</b>`,
+                    confirmButtonText: 'Đã hiểu',
+                    confirmButtonColor: '#f39c12',
+                    // 🌟 FIX LỖI BỊ CHE: Ép z-index của Swal lên mức cao nhất
+                    didOpen: () => {
+                        let swalContainer = document.querySelector('.swal2-container');
+                        if (swalContainer) swalContainer.style.zIndex = '999999';
+                    }
+                });
+            } else {
+                alert(`⚠️ Tên đăng nhập "${tenDangNhap}" đã có người sử dụng!\n\nVui lòng đặt tên khác. Gợi ý cho thầy: ${strGoiY}`);
+            }
+
+            // Dừng xử lý, trả lại trạng thái nút
+            btnLuu.innerHTML = textGoc;
+            btnLuu.disabled = false;
+            return;
+        }
+
+        // 2. TẠO UID VÀ LƯU HỌC SINH MỚI (NẾU KHÔNG TRÙNG)
+        const uidMoi = crypto.randomUUID();
+        const hocSinhMoi = {
+            uid: uidMoi,
+            sdt: tenDangNhap, // Cột sdt đóng vai trò là Tên đăng nhập
+            mat_khau: matKhau,
+            ten: ten,
+            vai_tro: 'hocsinh',
+            trang_thai: 1, // Kích hoạt ngay
+            truong: truong,
+            khoi_lop: khoi,
+            danh_sach_ma_lop: [maLopHienTai],
+            anh_dai_dien: window.AvatarHocSinhMoiTam || null, // Lưu ảnh Base64
+            ngay_tham_gia: new Date().toISOString()
+        };
+
+        const { error: errInsert } = await _supabase.from('hoc_sinh').insert([hocSinhMoi]);
+        if (errInsert) throw errInsert;
+
+        // 3. ĐẨY UID MỚI VÀO BẢNG LỚP HỌC (ĐỒNG BỘ 2 CHIỀU)
+        const { data: dataLop, error: errLop } = await _supabase.from('lop_hoc').select('hoc_sinh_ids').eq('ma_lop', maLopHienTai).single();
+        if (errLop) throw errLop;
+
+        let dsUidHienTai = Array.isArray(dataLop.hoc_sinh_ids) ? dataLop.hoc_sinh_ids : [];
+        if (!dsUidHienTai.includes(uidMoi)) {
+            dsUidHienTai.push(uidMoi);
+            await _supabase.from('lop_hoc').update({ hoc_sinh_ids: dsUidHienTai }).eq('ma_lop', maLopHienTai);
+        }
+
+        // 4. BƠM NGAY VÀO STATE (CỘT TRONG LỚP) ĐỂ RENDER LIVE
+        window.ChiTietLopState.dsTrong.push({
+            uid: uidMoi,
+            ten: ten,
+            sdt: tenDangNhap,
+            truong: truong,
+            danh_sach_ma_lop: [maLopHienTai],
+            anh_dai_dien: window.AvatarHocSinhMoiTam
+        });
+
+        // Đóng form tạo tài khoản
+        let modalHienTai = document.getElementById('modal-tao-hs');
+        if (modalHienTai) modalHienTai.remove();
+
+        // 5. HIỂN THỊ BÁO CÁO THẺ THÔNG TIN TÀI KHOẢN (ĐÃ FIX Z-INDEX BẢO VỆ)
+        let avatarSrc = window.AvatarHocSinhMoiTam || `https://ui-avatars.com/api/?name=${encodeURIComponent(ten)}&background=random&color=fff&size=100`;
+
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                icon: 'success',
+                title: 'TẠO TÀI KHOẢN THÀNH CÔNG',
+                html: `
+                    <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ced4da; margin-top: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed #ced4da; padding-bottom: 15px;">
+                            <img src="${avatarSrc}" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2px solid #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div>
+                                <b style="font-size: 16px; color: #1a73e8;">${ten}</b><br>
+                                <span style="font-size: 13px; color: #6c757d;">Khối: <b>${khoi || '---'}</b> | Trường: <b>${truong || '---'}</b></span>
+                            </div>
+                        </div>
+                        <div style="font-size: 14px; line-height: 1.8;">
+                            👉 <b>Tên đăng nhập:</b> <span style="color: #d35400; font-weight: bold; font-size: 16px; background: #fffcf8; border: 1px solid #ffeeba; padding: 2px 6px; border-radius: 4px; user-select: all;">${tenDangNhap}</span><br>
+                            🔑 <b>Mật khẩu:</b> <b style="color: #dc3545; user-select: all;">${matKhau}</b><br>
+                            🏫 <b>Tham gia lớp:</b> <b style="color: #28a745;">${window.ChiTietLopState.tenLop}</b>
+                        </div>
+                    </div>
+                `,
+                confirmButtonText: 'Đóng',
+                confirmButtonColor: '#1a73e8',
+                width: '500px',
+                didOpen: () => {
+                    let swalContainer = document.querySelector('.swal2-container');
+                    if (swalContainer) swalContainer.style.zIndex = '999999';
+                }
+            });
+        } else {
+            alert(`✅ TẠO TÀI KHOẢN THÀNH CÔNG!\n\n- Họ và Tên: ${ten}\n- Tên đăng nhập: ${tenDangNhap}\n- Mật khẩu: ${matKhau}\n- Khối: ${khoi || '---'}\n- Trường: ${truong || '---'}\n- Lớp: ${window.ChiTietLopState.tenLop}`);
+        }
+
+        // Vẽ lại Cột Trong Lớp
+        let kw = document.getElementById('input-tim-hs-chi-tiet').value;
+        window.ham_4_9_1_render_danh_sach(kw);
+
+        // Nạp vào mảng bảng gốc để khi thầy quay ra ngoài không cần tải lại trang
+        BangHocSinhState.duLieu.push(hocSinhMoi);
+
+    } catch (e) {
+        alert("❌ Lỗi: " + e.message);
+        btnLuu.innerHTML = textGoc;
+        btnLuu.disabled = false;
+    }
+};
 // ==============================================================================
 // PHẦN C: CHỈNH SỬA VÀ XÓA LỚP HỌC
 // ==============================================================================
