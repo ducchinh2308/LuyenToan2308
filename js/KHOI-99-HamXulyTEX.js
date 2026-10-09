@@ -358,7 +358,7 @@ window.ham_99_2_phan_tich_cau_hoi_tex = function (texContent) {
         ketQua.kieuCau = "TLN";
         ketQua.cauDan = body.substring(0, cmd_short.start).trim();
 
-        // Dọn dẹp đáp án ngắn (V3 Normalization)
+    
         let s = cmd_short.args[0].replace(/\{,\}/g, ",").replace(/[^0-9\-\.,]/g, "");
         ketQua.dapAnKey = s;
     }
@@ -378,132 +378,313 @@ window.ham_99_3_trich_xuat_dap_an = function (texContent, kieuCau) {
 
 
 
+// // =====================================================================
+// // Hàm 6.19: Dọn rác và Chuẩn hóa cấu trúc TeX (Dịch từ C# sang JS)
+// // =====================================================================
+// window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
+//     if (!text || typeof text !== 'string' || text.trim() === "") return text;
+
+//     // 🌟 0. DỌN RÁC CƠ BẢN
+//     text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
+//     text = text.replace(/\\noindent\s*/g, "");
+//     text = text.replace(/\\centering\s*/g, "");
+//     text = text.replace(/\\hfill\s*/g, "");
+
+//     // 🌟 1. CHUẨN HÓA VECTOR VÀ TRỊ TUYỆT ĐỐI
+//     text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
+//     text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+
+//     // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac (Chuyển đổi sang format Web)
+//     const tuKhoas = ["\\heva", "\\hoac"];
+//     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
+//     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
+
+//     for (let k = 0; k < tuKhoas.length; k++) {
+//         let keyword = tuKhoas[k];
+//         let startIdx;
+
+//         while ((startIdx = text.indexOf(keyword)) !== -1) {
+//             let contentStart = startIdx + keyword.length;
+//             let contentEnd = -1;
+//             let ruot = "";
+//             let coNgoacNhon = false;
+
+//             let firstCharIdx = contentStart;
+//             // Bỏ qua các khoảng trắng
+//             while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
+
+//             if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
+//                 coNgoacNhon = true;
+//                 let count = 0;
+//                 for (let i = firstCharIdx; i < text.length; i++) {
+//                     if (text[i] === '{') count++;
+//                     else if (text[i] === '}') {
+//                         count--;
+//                         if (count === 0) { contentEnd = i; break; }
+//                     }
+//                 }
+//                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx + 1, contentEnd);
+//             } else {
+//                 for (let i = firstCharIdx; i < text.length; i++) {
+//                     let check = text.substring(i);
+//                     if (check.startsWith("\\Rightarrow") || check.startsWith("\\\\") || text[i] === '}') {
+//                         contentEnd = i;
+//                         break;
+//                     }
+//                 }
+//                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
+//             }
+
+//             if (contentEnd !== -1) {
+//                 let phanDau = text.substring(0, startIdx);
+//                 let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+//                 text = phanDau + mos[k] + ruot + dongs[k] + phanDuoi;
+//             } else {
+//                 break; // Thoát vòng lặp nếu không tìm thấy điểm kết thúc để tránh treo trình duyệt
+//             }
+//         }
+//     }
+
+//     // =====================================================================
+//     // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC (CHỐNG LỖI XUỐNG DÒNG)
+//     // =====================================================================
+//     let hiddenMath = [];
+
+//     // Bảo vệ các môi trường toán học / bảng biểu / hình vẽ (begin...end)
+//     text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
+//         hiddenMath.push(match);
+//         return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+
+//     // Bảo vệ khối $$ ... $$ (Toán độc lập)
+//     text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
+//         hiddenMath.push(match);
+//         return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+
+//     // Bảo vệ khối \[ ... \] (Toán độc lập)
+//     text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
+//         hiddenMath.push(match);
+//         return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+
+//     // Bảo vệ khối $ ... $ (Toán trong dòng)
+//     text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
+//         hiddenMath.push(match);
+//         return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+
+//     // Xử lý thay thế khoảng trắng/xuống dòng dư thừa ở phần văn bản thường
+//     text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
+//     text = text.replace(/\\\$/g, "$\\$$");
+//     text = text.replace(/\\\\\\\\/g, "\\\\"); // Thu gọn 2 lệnh xuống dòng liên tiếp
+
+//     // Khôi phục lại lõi toán học nguyên bản (Chạy ngược mảng để đảm bảo độ chính xác)
+//     for (let i = hiddenMath.length - 1; i >= 0; i--) {
+//         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
+//     }
+
+//     return text.trim();
+// };
+
+
+
+// window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = async function (maDe = "CHUNG", idCauChinhXac = "", text) {
+//     console.log(`[DEBUG 99.5] Bắt đầu xử lý nội dung. Mã đề: ${maDe}, ID câu: ${idCauChinhXac}`);
+
+
+//     if (!text || typeof text !== 'string' || text.trim() === "") return text;
+
+//     // 🌟 0. DỌN RÁC VÀ CHUẨN HÓA CƠ BẢN (Giữ nguyên)
+//     text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
+//     text = text.replace(/\\noindent\s*/g, "");
+//     text = text.replace(/\\centering\s*/g, "");
+//     text = text.replace(/\\hfill\s*/g, "");
+//     text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
+//     text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+
+//     // 🌟 1. THUẬT TOÁN XỬ LÝ \heva, \hoac (Giữ nguyên)
+//     const tuKhoas = ["\\heva", "\\hoac"];
+//     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
+//     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
+
+//     for (let k = 0; k < tuKhoas.length; k++) {
+//         let keyword = tuKhoas[k];
+//         let startIdx;
+//         while ((startIdx = text.indexOf(keyword)) !== -1) {
+//             let contentStart = startIdx + keyword.length;
+//             let contentEnd = -1;
+//             let ruot = "";
+//             let coNgoacNhon = false;
+
+//             let firstCharIdx = contentStart;
+//             while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
+
+//             if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
+//                 coNgoacNhon = true;
+//                 let count = 0;
+//                 for (let i = firstCharIdx; i < text.length; i++) {
+//                     if (text[i] === '{') count++;
+//                     else if (text[i] === '}') { count--; if (count === 0) { contentEnd = i; break; } }
+//                 }
+//                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx + 1, contentEnd);
+//             } else {
+//                 for (let i = firstCharIdx; i < text.length; i++) {
+//                     let check = text.substring(i);
+//                     if (check.startsWith("\\Rightarrow") || check.startsWith("\\\\") || text[i] === '}') {
+//                         contentEnd = i; break;
+//                     }
+//                 }
+//                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
+//             }
+
+//             if (contentEnd !== -1) {
+//                 let phanDau = text.substring(0, startIdx);
+//                 let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+//                 text = phanDau + mos[k] + ruot + dongs[k] + phanDuoi;
+//             } else { break; }
+//         }
+//     }
+
+//     // =====================================================================
+//     // 🌟 2. PHÂN TÁCH ĐỀ / GIẢI VÀ ĐỒNG BỘ ẢNH LÊN GITHUB
+//     // =====================================================================
+//     let phanDe = text;
+//     let phanGiai = "";
+//     const chiMucLoiGiai = text.indexOf("\\loigiai");
+
+//     console.log(`[DEBUG 99.5] Text: ${text}`);
+//     if (chiMucLoiGiai !== -1) {
+//         phanDe = text.substring(0, chiMucLoiGiai);
+//         phanGiai = text.substring(chiMucLoiGiai);
+//     }
+
+//     console.log(`[DEBUG 99.5] Phân tách nội dung thành Đề và Giải. Đề: ${phanDe}, Giải: ${phanGiai}`);
+//     // Hàm nội bộ xử lý quét và thay thế
+//     const xuLyAnhTungPhan = async (noiDung, isPhanGiai) => {
+//         console.log(`[DEBUG 99.5] Bắt đầu xử lý ảnh cho ${isPhanGiai ? 'Giải' : 'Đề'}. Nội dung: ${noiDung}`);
+//         // Regex tìm [IMG:...] hoặc \includegraphics
+//         const regexImg = /\[IMG:(.*?)\]|\\includegraphics(?:\[.*?\])?\{(.*?)\}/g;
+//         let match;
+//         let tempNoiDung = noiDung;
+
+//         // // Lưu danh sách ảnh cần xử lý
+//         // let danhSachAnh = [];
+//         // while ((match = regexImg.exec(noiDung)) !== null) {
+//         //     let tenFile = match[1] || match[2];
+//         //     console.log(`[DEBUG 99.5] Tìm thấyảnh: ${tenFile}}`);
+//         //     danhSachAnh.push({ fullMatch: match[0], ten: tenFile.trim() });
+//         // }
+
+//         // Lưu danh sách ảnh cần xử lý
+//         let danhSachAnh = [];
+//         // Regex này tìm: [IMG:ID|TênFile] hoặc \includegraphics{ID|TênFile}
+//         // Thầy điều chỉnh Regex để khớp với định dạng: [IMG:ID_của_ảnh]
+//         // Nếu thầy muốn lấy "tên file" (ví dụ: ảnh này là hinh_cau_1.png),
+//         // Thầy phải đảm bảo trong đề thầy viết: [IMG:ID_file_anh|hinh_cau_1.png]
+//         // Hoặc nếu chỉ có ID, thầy lấy ID làm tên file tạm.
+
+//         while ((match = regexImg.exec(noiDung)) !== null) {
+//             let fullTag = match[1] || match[2]; // Đây là chuỗi ID hoặc ID|TênFile
+
+//             let idFile = "";
+//             let tenFile = "";
+
+//             if (fullTag.includes('|')) {
+//                 let parts = fullTag.split('|');
+//                 idFile = parts[0].trim();
+//                 tenFile = parts[1].trim();
+//             } else {
+//                 idFile = fullTag.trim();
+//                 tenFile = idFile + ".png"; // Mặc định nếu không có tên thì lấy ID làm tên
+//             }
+
+//             console.log(`[DEBUG 99.5] Tìm thấy ID: ${idFile}, Tên file: ${tenFile}`);
+
+//             danhSachAnh.push({
+//                 fullMatch: match[0],
+//                 id: idFile,
+//                 ten: tenFile
+//             });
+//         }
+
+
+
+
+
+//         console.log(`[DEBUG 99.5] Tìm thấy danh sách ảnh: ${danhSachAnh.map(a => a.ten).join(', ')}`);
+//         for (let anh of danhSachAnh) {
+//             // Gọi hàm đẩy lên GitHub (hàm này thầy đã có/sửa theo ý đồ)
+//             console.log(`[DEBUG 99.5] Đang xử lý ảnh: ${anh.ten} (Phân giải: ${isPhanGiai})`);
+//             let linkMoi = await window.ham_99_6_tai_anh_drive_va_push_github_tu_dong(maDe, idCauChinhXac, anh.ten, isPhanGiai);
+//             if (linkMoi) {
+//                 tempNoiDung = tempNoiDung.replace(anh.fullMatch, `<img src="${linkMoi}" style="max-width:100%"/>`);
+//             }
+//         }
+//         return tempNoiDung;
+//     };
+
+//     // Chạy xử lý tuần tự cho Đề rồi tới Giải
+//     phanDe = await xuLyAnhTungPhan(phanDe, false);
+//     phanGiai = await xuLyAnhTungPhan(phanGiai, true);
+
+//     console.log(`[DEBUG 99.5] Hoàn tất xử lý ảnh. Đề: ${phanDe}, Giải: ${phanGiai}`);
+//     // Ghép lại thành một khối hoàn chỉnh
+//     text = phanDe + phanGiai;
+
+//     // =====================================================================
+//     // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC
+//     // =====================================================================
+//     let hiddenMath = [];
+
+//     text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
+//         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+//     text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
+//         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+//     text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
+//         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+//     text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
+//         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+//     });
+
+//     text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
+//     text = text.replace(/\\\$/g, "$\\$$");
+//     text = text.replace(/\\\\\\\\/g, "\\\\");
+
+//     for (let i = hiddenMath.length - 1; i >= 0; i--) {
+//         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
+//     }
+
+//     return text.trim();
+// };
+
+
+
 // =====================================================================
-// Hàm 6.19: Dọn rác và Chuẩn hóa cấu trúc TeX (Dịch từ C# sang JS)
+// Hàm 6.19 (99.4): Dọn rác và Chuẩn hóa cấu trúc TeX (ĐÃ FIX LỖI DƯ DẤU XUYỆT)
 // =====================================================================
 window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
     if (!text || typeof text !== 'string' || text.trim() === "") return text;
 
-    // 🌟 0. DỌN RÁC CƠ BẢN
+    // 🌟 0. DỌN RÁC CƠ BẢN VÀ XÓA BỌC HÌNH ẢNH
     text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
     text = text.replace(/\\noindent\s*/g, "");
     text = text.replace(/\\centering\s*/g, "");
     text = text.replace(/\\hfill\s*/g, "");
+    text = text.replace(/\\begin\{center\}/g, "");
+    text = text.replace(/\\end\{center\}/g, "");
+    text = text.replace(/\\begin\{figure\}\[.*?\]/g, "");
+    text = text.replace(/\\begin\{figure\}/g, "");
+    text = text.replace(/\\end\{figure\}/g, "");
 
     // 🌟 1. CHUẨN HÓA VECTOR VÀ TRỊ TUYỆT ĐỐI
     text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
     text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
 
-    // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac (Chuyển đổi sang format Web)
-    const tuKhoas = ["\\heva", "\\hoac"];
-    const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
-    const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
-
-    for (let k = 0; k < tuKhoas.length; k++) {
-        let keyword = tuKhoas[k];
-        let startIdx;
-
-        while ((startIdx = text.indexOf(keyword)) !== -1) {
-            let contentStart = startIdx + keyword.length;
-            let contentEnd = -1;
-            let ruot = "";
-            let coNgoacNhon = false;
-
-            let firstCharIdx = contentStart;
-            // Bỏ qua các khoảng trắng
-            while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
-
-            if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
-                coNgoacNhon = true;
-                let count = 0;
-                for (let i = firstCharIdx; i < text.length; i++) {
-                    if (text[i] === '{') count++;
-                    else if (text[i] === '}') {
-                        count--;
-                        if (count === 0) { contentEnd = i; break; }
-                    }
-                }
-                if (contentEnd !== -1) ruot = text.substring(firstCharIdx + 1, contentEnd);
-            } else {
-                for (let i = firstCharIdx; i < text.length; i++) {
-                    let check = text.substring(i);
-                    if (check.startsWith("\\Rightarrow") || check.startsWith("\\\\") || text[i] === '}') {
-                        contentEnd = i;
-                        break;
-                    }
-                }
-                if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
-            }
-
-            if (contentEnd !== -1) {
-                let phanDau = text.substring(0, startIdx);
-                let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
-                text = phanDau + mos[k] + ruot + dongs[k] + phanDuoi;
-            } else {
-                break; // Thoát vòng lặp nếu không tìm thấy điểm kết thúc để tránh treo trình duyệt
-            }
-        }
-    }
-
-    // =====================================================================
-    // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC (CHỐNG LỖI XUỐNG DÒNG)
-    // =====================================================================
-    let hiddenMath = [];
-
-    // Bảo vệ các môi trường toán học / bảng biểu / hình vẽ (begin...end)
-    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
-        hiddenMath.push(match);
-        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // Bảo vệ khối $$ ... $$ (Toán độc lập)
-    text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
-        hiddenMath.push(match);
-        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // Bảo vệ khối \[ ... \] (Toán độc lập)
-    text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
-        hiddenMath.push(match);
-        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // Bảo vệ khối $ ... $ (Toán trong dòng)
-    text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
-        hiddenMath.push(match);
-        return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // Xử lý thay thế khoảng trắng/xuống dòng dư thừa ở phần văn bản thường
-    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
-    text = text.replace(/\\\$/g, "$\\$$");
-    text = text.replace(/\\\\\\\\/g, "\\\\"); // Thu gọn 2 lệnh xuống dòng liên tiếp
-
-    // Khôi phục lại lõi toán học nguyên bản (Chạy ngược mảng để đảm bảo độ chính xác)
-    for (let i = hiddenMath.length - 1; i >= 0; i--) {
-        text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
-    }
-
-    return text.trim();
-};
-
-
-
-window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = async function (maDe = "CHUNG", idCauChinhXac = "", text) {
-    console.log(`[DEBUG 99.5] Bắt đầu xử lý nội dung. Mã đề: ${maDe}, ID câu: ${idCauChinhXac}`);
-
-
-    if (!text || typeof text !== 'string' || text.trim() === "") return text;
-
-    // 🌟 0. DỌN RÁC VÀ CHUẨN HÓA CƠ BẢN (Giữ nguyên)
-    text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
-    text = text.replace(/\\noindent\s*/g, "");
-    text = text.replace(/\\centering\s*/g, "");
-    text = text.replace(/\\hfill\s*/g, "");
-    text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
-    text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
-
-    // 🌟 1. THUẬT TOÁN XỬ LÝ \heva, \hoac (Giữ nguyên)
+    // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac
     const tuKhoas = ["\\heva", "\\hoac"];
     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
@@ -546,95 +727,7 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
         }
     }
 
-    // =====================================================================
-    // 🌟 2. PHÂN TÁCH ĐỀ / GIẢI VÀ ĐỒNG BỘ ẢNH LÊN GITHUB
-    // =====================================================================
-    let phanDe = text;
-    let phanGiai = "";
-    const chiMucLoiGiai = text.indexOf("\\loigiai");
-
-    console.log(`[DEBUG 99.5] Text: ${text}`);
-    if (chiMucLoiGiai !== -1) {
-        phanDe = text.substring(0, chiMucLoiGiai);
-        phanGiai = text.substring(chiMucLoiGiai);
-    }
-
-    console.log(`[DEBUG 99.5] Phân tách nội dung thành Đề và Giải. Đề: ${phanDe}, Giải: ${phanGiai}`);
-    // Hàm nội bộ xử lý quét và thay thế
-    const xuLyAnhTungPhan = async (noiDung, isPhanGiai) => {
-        console.log(`[DEBUG 99.5] Bắt đầu xử lý ảnh cho ${isPhanGiai ? 'Giải' : 'Đề'}. Nội dung: ${noiDung}`);
-        // Regex tìm [IMG:...] hoặc \includegraphics
-        const regexImg = /\[IMG:(.*?)\]|\\includegraphics(?:\[.*?\])?\{(.*?)\}/g;
-        let match;
-        let tempNoiDung = noiDung;
-
-        // // Lưu danh sách ảnh cần xử lý
-        // let danhSachAnh = [];
-        // while ((match = regexImg.exec(noiDung)) !== null) {
-        //     let tenFile = match[1] || match[2];
-        //     console.log(`[DEBUG 99.5] Tìm thấyảnh: ${tenFile}}`);
-        //     danhSachAnh.push({ fullMatch: match[0], ten: tenFile.trim() });
-        // }
-
-        // Lưu danh sách ảnh cần xử lý
-        let danhSachAnh = [];
-        // Regex này tìm: [IMG:ID|TênFile] hoặc \includegraphics{ID|TênFile}
-        // Thầy điều chỉnh Regex để khớp với định dạng: [IMG:ID_của_ảnh]
-        // Nếu thầy muốn lấy "tên file" (ví dụ: ảnh này là hinh_cau_1.png),
-        // Thầy phải đảm bảo trong đề thầy viết: [IMG:ID_file_anh|hinh_cau_1.png]
-        // Hoặc nếu chỉ có ID, thầy lấy ID làm tên file tạm.
-
-        while ((match = regexImg.exec(noiDung)) !== null) {
-            let fullTag = match[1] || match[2]; // Đây là chuỗi ID hoặc ID|TênFile
-
-            let idFile = "";
-            let tenFile = "";
-
-            if (fullTag.includes('|')) {
-                let parts = fullTag.split('|');
-                idFile = parts[0].trim();
-                tenFile = parts[1].trim();
-            } else {
-                idFile = fullTag.trim();
-                tenFile = idFile + ".png"; // Mặc định nếu không có tên thì lấy ID làm tên
-            }
-
-            console.log(`[DEBUG 99.5] Tìm thấy ID: ${idFile}, Tên file: ${tenFile}`);
-
-            danhSachAnh.push({
-                fullMatch: match[0],
-                id: idFile,
-                ten: tenFile
-            });
-        }
-
-
-
-
-
-        console.log(`[DEBUG 99.5] Tìm thấy danh sách ảnh: ${danhSachAnh.map(a => a.ten).join(', ')}`);
-        for (let anh of danhSachAnh) {
-            // Gọi hàm đẩy lên GitHub (hàm này thầy đã có/sửa theo ý đồ)
-            console.log(`[DEBUG 99.5] Đang xử lý ảnh: ${anh.ten} (Phân giải: ${isPhanGiai})`);
-            let linkMoi = await window.ham_99_6_tai_anh_drive_va_push_github_tu_dong(maDe, idCauChinhXac, anh.ten, isPhanGiai);
-            if (linkMoi) {
-                tempNoiDung = tempNoiDung.replace(anh.fullMatch, `<img src="${linkMoi}" style="max-width:100%"/>`);
-            }
-        }
-        return tempNoiDung;
-    };
-
-    // Chạy xử lý tuần tự cho Đề rồi tới Giải
-    phanDe = await xuLyAnhTungPhan(phanDe, false);
-    phanGiai = await xuLyAnhTungPhan(phanGiai, true);
-
-    console.log(`[DEBUG 99.5] Hoàn tất xử lý ảnh. Đề: ${phanDe}, Giải: ${phanGiai}`);
-    // Ghép lại thành một khối hoàn chỉnh
-    text = phanDe + phanGiai;
-
-    // =====================================================================
     // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC
-    // =====================================================================
     let hiddenMath = [];
 
     text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
@@ -650,9 +743,174 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
     });
 
+    // 🌟 4. DỌN DẸP VĂN BẢN VÀ LỌC DẤU XUYỆT THỪA (ĐÃ BỌC TOÁN NÊN RẤT AN TOÀN)
     text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
     text = text.replace(/\\\$/g, "$\\$$");
     text = text.replace(/\\\\\\\\/g, "\\\\");
+
+    // --> Chuyển đổi các ký tự escape để web hiển thị đúng
+    text = text.replace(/\\%/g, "%"); // \% -> %
+    text = text.replace(/\\&/g, "&"); // \& -> &
+    text = text.replace(/\\#/g, "#"); // \# -> #
+    text = text.replace(/\\_/g, "_"); // \_ -> _
+    text = text.replace(/\\ /g, " "); // Dấu cách ép buộc \ -> khoảng trắng
+    text = text.replace(/\\,/g, " "); // Khoảng cách nhỏ \, -> khoảng trắng
+
+    // --> BẮT VÀ XÓA CÁC DẤU \ BỊ LẺ LOI NẰM CUỐI TỪ (Ví dụ x\, a\, 175\)
+    text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
+
+    // Khôi phục lại lõi toán học nguyên bản
+    for (let i = hiddenMath.length - 1; i >= 0; i--) {
+        text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
+    }
+
+    return text.trim();
+};
+
+
+// =====================================================================
+// HÀM 99.5: NẠP ẢNH TỪ DRIVE SANG GITHUB (ĐỒNG BỘ FIX LỖI DẤU XUYỆT)
+// =====================================================================
+window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = async function (maDe = "CHUNG", idCauChinhXac = "", text) {
+    if (!text || typeof text !== 'string' || text.trim() === "") return text;
+
+    // 🌟 0. DỌN RÁC CƠ BẢN VÀ XÓA BỌC HÌNH ẢNH
+    text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
+    text = text.replace(/\\noindent\s*/g, "");
+    text = text.replace(/\\centering\s*/g, "");
+    text = text.replace(/\\hfill\s*/g, "");
+    text = text.replace(/\\begin\{center\}/g, "");
+    text = text.replace(/\\end\{center\}/g, "");
+    text = text.replace(/\\begin\{figure\}\[.*?\]/g, "");
+    text = text.replace(/\\begin\{figure\}/g, "");
+    text = text.replace(/\\end\{figure\}/g, "");
+
+    text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
+    text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+
+    // 🌟 1. THUẬT TOÁN XỬ LÝ \heva, \hoac
+    const tuKhoas = ["\\heva", "\\hoac"];
+    const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
+    const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
+
+    for (let k = 0; k < tuKhoas.length; k++) {
+        let keyword = tuKhoas[k];
+        let startIdx;
+        while ((startIdx = text.indexOf(keyword)) !== -1) {
+            let contentStart = startIdx + keyword.length;
+            let contentEnd = -1;
+            let ruot = "";
+            let coNgoacNhon = false;
+
+            let firstCharIdx = contentStart;
+            while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
+
+            if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
+                coNgoacNhon = true;
+                let count = 0;
+                for (let i = firstCharIdx; i < text.length; i++) {
+                    if (text[i] === '{') count++;
+                    else if (text[i] === '}') { count--; if (count === 0) { contentEnd = i; break; } }
+                }
+                if (contentEnd !== -1) ruot = text.substring(firstCharIdx + 1, contentEnd);
+            } else {
+                for (let i = firstCharIdx; i < text.length; i++) {
+                    let check = text.substring(i);
+                    if (check.startsWith("\\Rightarrow") || check.startsWith("\\\\") || text[i] === '}') {
+                        contentEnd = i; break;
+                    }
+                }
+                if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
+            }
+
+            if (contentEnd !== -1) {
+                let phanDau = text.substring(0, startIdx);
+                let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
+                text = phanDau + mos[k] + ruot + dongs[k] + phanDuoi;
+            } else { break; }
+        }
+    }
+
+    // 🌟 2. PHÂN TÁCH ĐỀ / GIẢI VÀ ĐỒNG BỘ ẢNH LÊN GITHUB
+    let phanDe = text;
+    let phanGiai = "";
+    const chiMucLoiGiai = text.indexOf("\\loigiai");
+
+    if (chiMucLoiGiai !== -1) {
+        phanDe = text.substring(0, chiMucLoiGiai);
+        phanGiai = text.substring(chiMucLoiGiai);
+    }
+
+    const xuLyAnhTungPhan = async (noiDung, isPhanGiai) => {
+        const regexImg = /\[IMG:(.*?)\]|\\includegraphics(?:\[.*?\])?\{(.*?)\}/g;
+        let match;
+        let tempNoiDung = noiDung;
+        let danhSachAnh = [];
+
+        while ((match = regexImg.exec(noiDung)) !== null) {
+            let fullTag = match[1] || match[2];
+            let idFile = "";
+            let tenFile = "";
+
+            if (fullTag.includes('|')) {
+                let parts = fullTag.split('|');
+                idFile = parts[0].trim();
+                tenFile = parts[1].trim();
+            } else {
+                idFile = fullTag.trim();
+                tenFile = idFile + ".png";
+            }
+
+            danhSachAnh.push({
+                fullMatch: match[0],
+                id: idFile,
+                ten: tenFile
+            });
+        }
+
+        for (let anh of danhSachAnh) {
+            let linkMoi = await window.ham_99_6_tai_anh_drive_va_push_github_tu_dong(maDe, idCauChinhXac, anh.ten, isPhanGiai);
+            if (linkMoi) {
+                tempNoiDung = tempNoiDung.replace(anh.fullMatch, `<br><img src="${linkMoi}" style="max-width:100%"/><br>`);
+            }
+        }
+        return tempNoiDung;
+    };
+
+    phanDe = await xuLyAnhTungPhan(phanDe, false);
+    phanGiai = await xuLyAnhTungPhan(phanGiai, true);
+    text = phanDe + phanGiai;
+
+    // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC
+    let hiddenMath = [];
+
+    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
+        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+    text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
+        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+    text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
+        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+    text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
+        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    });
+
+    // 🌟 4. DỌN DẸP VĂN BẢN (ĐỒNG BỘ NHƯ 99.4)
+    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
+    text = text.replace(/\\\$/g, "$\\$$");
+    text = text.replace(/\\\\\\\\/g, "\\\\");
+
+    text = text.replace(/\\%/g, "%");
+    text = text.replace(/\\&/g, "&");
+    text = text.replace(/\\#/g, "#");
+    text = text.replace(/\\_/g, "_");
+    text = text.replace(/\\ /g, " ");
+    text = text.replace(/\\,/g, " ");
+
+    // Bắt dấu backslash rác ở cuối từ
+    text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
 
     for (let i = hiddenMath.length - 1; i >= 0; i--) {
         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
