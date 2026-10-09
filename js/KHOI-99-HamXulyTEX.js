@@ -662,9 +662,8 @@ window.ham_99_3_trich_xuat_dap_an = function (texContent, kieuCau) {
 // };
 
 
-
 // =====================================================================
-// Hàm 6.19 (99.4): Dọn rác và Chuẩn hóa cấu trúc TeX (ĐÃ FIX LỖI DƯ DẤU XUYỆT)
+// Hàm 6.19 (99.4): Dọn rác và Chuẩn hóa cấu trúc TeX (ĐÃ FIX LỖI \, VÀ \break)
 // =====================================================================
 window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
     if (!text || typeof text !== 'string' || text.trim() === "") return text;
@@ -743,23 +742,27 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
     });
 
-    // 🌟 4. DỌN DẸP VĂN BẢN VÀ LỌC DẤU XUYỆT THỪA (ĐÃ BỌC TOÁN NÊN RẤT AN TOÀN)
+    // 🌟 4. DỌN DẸP VĂN BẢN VÀ LỌC DẤU XUYỆT THỪA
     text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
     text = text.replace(/\\\$/g, "$\\$$");
+
+    // --> Xử lý \break thành xuống dòng chuẩn của V3
+    text = text.replace(/\\break\b/g, "\\\\");
     text = text.replace(/\\\\\\\\/g, "\\\\");
 
-    // --> Chuyển đổi các ký tự escape để web hiển thị đúng
-    text = text.replace(/\\%/g, "%"); // \% -> %
-    text = text.replace(/\\&/g, "&"); // \& -> &
-    text = text.replace(/\\#/g, "#"); // \# -> #
-    text = text.replace(/\\_/g, "_"); // \_ -> _
-    text = text.replace(/\\ /g, " "); // Dấu cách ép buộc \ -> khoảng trắng
-    text = text.replace(/\\,/g, " "); // Khoảng cách nhỏ \, -> khoảng trắng
+    text = text.replace(/\\%/g, "%");
+    text = text.replace(/\\&/g, "&");
+    text = text.replace(/\\#/g, "#");
+    text = text.replace(/\\_/g, "_");
 
-    // --> BẮT VÀ XÓA CÁC DẤU \ BỊ LẺ LOI NẰM CUỐI TỪ (Ví dụ x\, a\, 175\)
+    // --> Xóa mọi khoảng trắng ép buộc của LaTeX (\, \; \: \! \ ) thành khoảng trắng web
+    text = text.replace(/\\[,;:! ]/g, " ");
+    text = text.replace(/\\quad\b/g, "  ");
+    text = text.replace(/\\qquad\b/g, "    ");
+
+    // Bắt và diệt các dấu backslash rác bị lẻ loi ở cuối từ
     text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
 
-    // Khôi phục lại lõi toán học nguyên bản
     for (let i = hiddenMath.length - 1; i >= 0; i--) {
         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
     }
@@ -769,7 +772,7 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
 
 
 // =====================================================================
-// HÀM 99.5: NẠP ẢNH TỪ DRIVE SANG GITHUB (ĐỒNG BỘ FIX LỖI DẤU XUYỆT)
+// HÀM 99.5: NẠP ẢNH TỪ DRIVE SANG GITHUB (ĐỒNG BỘ FIX LỖI \, VÀ \break)
 // =====================================================================
 window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = async function (maDe = "CHUNG", idCauChinhXac = "", text) {
     if (!text || typeof text !== 'string' || text.trim() === "") return text;
@@ -900,16 +903,18 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
     // 🌟 4. DỌN DẸP VĂN BẢN (ĐỒNG BỘ NHƯ 99.4)
     text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
     text = text.replace(/\\\$/g, "$\\$$");
+
+    text = text.replace(/\\break\b/g, "\\\\");
     text = text.replace(/\\\\\\\\/g, "\\\\");
 
     text = text.replace(/\\%/g, "%");
     text = text.replace(/\\&/g, "&");
     text = text.replace(/\\#/g, "#");
     text = text.replace(/\\_/g, "_");
-    text = text.replace(/\\ /g, " ");
-    text = text.replace(/\\,/g, " ");
 
-    // Bắt dấu backslash rác ở cuối từ
+    text = text.replace(/\\[,;:! ]/g, " ");
+    text = text.replace(/\\quad\b/g, "  ");
+    text = text.replace(/\\qquad\b/g, "    ");
     text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
 
     for (let i = hiddenMath.length - 1; i >= 0; i--) {
