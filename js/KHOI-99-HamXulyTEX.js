@@ -1,109 +1,223 @@
 ﻿
 
 
-// ---------------------------------------------------------------------
-// 2.5. BỘ DỊCH CÔNG THỨC LATEX VÀ XỬ LÝ HTML TỪ TOOL C# LÊN WEB
-// ---------------------------------------------------------------------
-// Đây là hàm cực kỳ quan trọng để xử lý lỗi hiển thị toán học, TikZ, Bảng biến thiên
-function dichLaTeX(tex) {
-    if (!tex) return "";
+// // ---------------------------------------------------------------------
+// // 2.5. BỘ DỊCH CÔNG THỨC LATEX VÀ XỬ LÝ HTML TỪ TOOL C# LÊN WEB
+// // ---------------------------------------------------------------------
+// // Đây là hàm cực kỳ quan trọng để xử lý lỗi hiển thị toán học, TikZ, Bảng biến thiên
+// function dichLaTeX(tex) {
+//     if (!tex) return "";
 
-    // BƯỚC 1: MÃ HÓA HTML VÀ BẢO VỆ ẢNH (Bảo vệ thẻ <img> không bị cắt hỏng)
-    let imgTags = [];
-    tex = tex.replace(/<img[^>]*>/gi, function (match) {
-        imgTags.push(match);
-        return '___IMG_TAG_' + (imgTags.length - 1) + '___';
-    });
+//     // BƯỚC 1: MÃ HÓA HTML VÀ BẢO VỆ ẢNH (Bảo vệ thẻ <img> không bị cắt hỏng)
+//     let imgTags = [];
+//     tex = tex.replace(/<img[^>]*>/gi, function (match) {
+//         imgTags.push(match);
+//         return '___IMG_TAG_' + (imgTags.length - 1) + '___';
+//     });
 
-    // Chuyển đổi các dấu lớn/bé để không bị trình duyệt nhận nhầm thành thẻ HTML
-    tex = tex.replace(/</g, ' &lt; ').replace(/>/g, ' &gt; ');
+//     // Chuyển đổi các dấu lớn/bé để không bị trình duyệt nhận nhầm thành thẻ HTML
+//     tex = tex.replace(/</g, ' &lt; ').replace(/>/g, ' &gt; ');
 
-    // Trả lại thẻ ảnh
-    imgTags.forEach((img, index) => {
-        tex = tex.replace('___IMG_TAG_' + index + '___', img);
-    });
+//     // Trả lại thẻ ảnh
+//     imgTags.forEach((img, index) => {
+//         tex = tex.replace('___IMG_TAG_' + index + '___', img);
+//     });
 
-    // BƯỚC 2: CHUẨN HÓA KÝ HIỆU VECTOR ĐỂ MATHJAX KHÔNG BỊ SẬP
-    tex = tex.replace(/\|\\overrightarrow\{([^}]+)\}\|/g, '\\left|\\overrightarrow{$1}\\right|');
-    tex = tex.replace(/\|\\vec\{([^}]+)\}\|/g, '\\left|\\vec{$1}\\right|');
-    tex = tex.replace(/\|([^|]+?)\\overrightarrow\{([^}]+)\}([^|]+?)\|/g, '\\left|$1\\overrightarrow{$2}$3\\right|');
+//     // BƯỚC 2: CHUẨN HÓA KÝ HIỆU VECTOR ĐỂ MATHJAX KHÔNG BỊ SẬP
+//     tex = tex.replace(/\|\\overrightarrow\{([^}]+)\}\|/g, '\\left|\\overrightarrow{$1}\\right|');
+//     tex = tex.replace(/\|\\vec\{([^}]+)\}\|/g, '\\left|\\vec{$1}\\right|');
+//     tex = tex.replace(/\|([^|]+?)\\overrightarrow\{([^}]+)\}([^|]+?)\|/g, '\\left|$1\\overrightarrow{$2}$3\\right|');
 
-    // BƯỚC 3: THUẬT TOÁN "BỌC LÕI" - GIẤU BẢO VỆ TOÀN BỘ CÔNG THỨC TOÁN
-    let hiddenBlocks = [];
-    const hideBlock = (match) => {
-        hiddenBlocks.push(match);
-        return `___MATH_BLOCK_${hiddenBlocks.length - 1}___`;
-    };
+//     // BƯỚC 3: THUẬT TOÁN "BỌC LÕI" - GIẤU BẢO VỆ TOÀN BỘ CÔNG THỨC TOÁN
+//     let hiddenBlocks = [];
+//     const hideBlock = (match) => {
+//         hiddenBlocks.push(match);
+//         return `___MATH_BLOCK_${hiddenBlocks.length - 1}___`;
+//     };
 
-    tex = tex.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix)\}[\s\S]*?\\end\{\1\}/g, hideBlock);
-    tex = tex.replace(/\$\$[\s\S]*?\$\$/g, hideBlock);
-    tex = tex.replace(/\\\[[\s\S]*?\\\]/g, hideBlock);
-    tex = tex.replace(/\$[^$]+\$/g, hideBlock);
+//     tex = tex.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix)\}[\s\S]*?\\end\{\1\}/g, hideBlock);
+//     tex = tex.replace(/\$\$[\s\S]*?\$\$/g, hideBlock);
+//     tex = tex.replace(/\\\[[\s\S]*?\\\]/g, hideBlock);
+//     tex = tex.replace(/\$[^$]+\$/g, hideBlock);
 
-    // BƯỚC 4: XỬ LÝ XUỐNG DÒNG VÀ DỌN RÁC (Sau khi lõi toán đã an toàn)
-    tex = tex.replace(/(?:\r?\n){2,}/g, '<br><br>');
-    tex = tex.replace(/\\\\/g, '<br>');
-    tex = tex.replace(/\\(noindent|centering|hfill|vfill|vspace\{[^}]+\}|hspace\{[^}]+\})\s*/g, '');
+//     // BƯỚC 4: XỬ LÝ XUỐNG DÒNG VÀ DỌN RÁC (Sau khi lõi toán đã an toàn)
+//     tex = tex.replace(/(?:\r?\n){2,}/g, '<br><br>');
+//     tex = tex.replace(/\\\\/g, '<br>');
+//     tex = tex.replace(/\\(noindent|centering|hfill|vfill|vspace\{[^}]+\}|hspace\{[^}]+\})\s*/g, '');
 
-    tex = tex.replace(/\\shortans\[[^\]]*\]\{([\s\S]*?)\}/g, '<br><strong style="color:#d35400;">🎯 Đáp số:</strong> $1');
-    tex = tex.replace(/\\textbf\{([\s\S]*?)\}/g, '<strong>$1</strong>');
+//     tex = tex.replace(/\\shortans\[[^\]]*\]\{([\s\S]*?)\}/g, '<br><strong style="color:#d35400;">🎯 Đáp số:</strong> $1');
+//     tex = tex.replace(/\\textbf\{([\s\S]*?)\}/g, '<strong>$1</strong>');
 
-    // BƯỚC 5: TRẢ LẠI RUỘT TOÁN VÀO ĐÚNG VỊ TRÍ 
-    // Dùng split().join() thay cho replace() để 100% chống cắt xén chuỗi có ký tự đặc biệt
-    for (let i = hiddenBlocks.length - 1; i >= 0; i--) {
-        tex = tex.split(`___MATH_BLOCK_${i}___`).join(hiddenBlocks[i]);
-    }
+//     // BƯỚC 5: TRẢ LẠI RUỘT TOÁN VÀO ĐÚNG VỊ TRÍ 
+//     // Dùng split().join() thay cho replace() để 100% chống cắt xén chuỗi có ký tự đặc biệt
+//     for (let i = hiddenBlocks.length - 1; i >= 0; i--) {
+//         tex = tex.split(`___MATH_BLOCK_${i}___`).join(hiddenBlocks[i]);
+//     }
 
-    // BƯỚC 6: XỬ LÝ SÂU BÊN TRONG CÁC KHỐI TOÁN ĐẶC THÙ (Bảng biến thiên, đồ thị)
-    tex = tex.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, '');
-    tex = tex.replace(/\\allowdisplaybreaks/g, '');
+//     // BƯỚC 6: XỬ LÝ SÂU BÊN TRONG CÁC KHỐI TOÁN ĐẶC THÙ (Bảng biến thiên, đồ thị)
+//     tex = tex.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, '');
+//     tex = tex.replace(/\\allowdisplaybreaks/g, '');
 
-    tex = tex.replace(/\$\$\s*(\\begin{eqnarray\*?}[\s\S]*?\\end{eqnarray\*?})\s*\$\$/g, '$1');
-    tex = tex.replace(/\\begin{eqnarray\*?}/g, '$$\\begin{aligned}');
-    tex = tex.replace(/\\end{eqnarray\*?}/g, '\\end{aligned}$$');
-    tex = tex.replace(/\\begin{center}([\s\S]*?)\\end{center}/g, '<div style="text-align: center; overflow-x: auto; margin: 10px 0;">$1</div>');
+//     tex = tex.replace(/\$\$\s*(\\begin{eqnarray\*?}[\s\S]*?\\end{eqnarray\*?})\s*\$\$/g, '$1');
+//     tex = tex.replace(/\\begin{eqnarray\*?}/g, '$$\\begin{aligned}');
+//     tex = tex.replace(/\\end{eqnarray\*?}/g, '\\end{aligned}$$');
+//     tex = tex.replace(/\\begin{center}([\s\S]*?)\\end{center}/g, '<div style="text-align: center; overflow-x: auto; margin: 10px 0;">$1</div>');
 
-    // Nhúng Script cho TikzJax
-    tex = tex.replace(/\\begin{tikzpicture}([\s\S]*?)\\end{tikzpicture}/g, function (match) {
-        return '<script type="text/tikz">' + match + '</script>';
-    });
+//     // Nhúng Script cho TikzJax
+//     tex = tex.replace(/\\begin{tikzpicture}([\s\S]*?)\\end{tikzpicture}/g, function (match) {
+//         return '<script type="text/tikz">' + match + '</script>';
+//     });
 
-    tex = tex.replace(/\$\$\s*(\\begin{(tabular|array)}[\s\S]*?\\end{\2})\s*\$\$/g, '$1');
-    tex = tex.replace(/\\begin{(tabular|array)}([\s\S]*?)\\end{\1}/g, function (match, type, inner) {
-        if (type === 'tabular' || inner.includes('\\hline') || match.includes('|')) {
-            let cleanInner = inner.replace(/\$\$/g, '').replace(/(?<!\\)\$/g, '');
+//     tex = tex.replace(/\$\$\s*(\\begin{(tabular|array)}[\s\S]*?\\end{\2})\s*\$\$/g, '$1');
+//     tex = tex.replace(/\\begin{(tabular|array)}([\s\S]*?)\\end{\1}/g, function (match, type, inner) {
+//         if (type === 'tabular' || inner.includes('\\hline') || match.includes('|')) {
+//             let cleanInner = inner.replace(/\$\$/g, '').replace(/(?<!\\)\$/g, '');
 
-            cleanInner = cleanInner.replace(/&gt;\{\\centering\\arraybackslash\}p\{[^}]+\}/g, 'c');
-            cleanInner = cleanInner.replace(/p\{[^}]+\}/g, 'c');
-            cleanInner = cleanInner.replace(/m\{[^}]+\}/g, 'c');
+//             cleanInner = cleanInner.replace(/&gt;\{\\centering\\arraybackslash\}p\{[^}]+\}/g, 'c');
+//             cleanInner = cleanInner.replace(/p\{[^}]+\}/g, 'c');
+//             cleanInner = cleanInner.replace(/m\{[^}]+\}/g, 'c');
 
-            cleanInner = cleanInner.replace(/\\multicolumn\{([^}]+)\}\{([^}]+)\}/g, function (m, p1, p2) {
-                let newAlign = p2.includes('|') ? '|c|' : 'c';
-                return `\\multicolumn{${p1}}{${newAlign}}`;
-            });
+//             cleanInner = cleanInner.replace(/\\multicolumn\{([^}]+)\}\{([^}]+)\}/g, function (m, p1, p2) {
+//                 let newAlign = p2.includes('|') ? '|c|' : 'c';
+//                 return `\\multicolumn{${p1}}{${newAlign}}`;
+//             });
 
-            cleanInner = cleanInner.replace(/\\multirow\{[^}]+\}\{[^}]+\}\{([\s\S]*?)\}/g, '$1');
+//             cleanInner = cleanInner.replace(/\\multirow\{[^}]+\}\{[^}]+\}\{([\s\S]*?)\}/g, '$1');
 
-            // Xử lý các đoạn text tiếng Việt xen kẽ trong công thức
-            const viChars = "A-ZĐa-zđ0-9áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ";
-            const regexText = new RegExp(`([${viChars}]+(?:\\s+[${viChars}]+)+)`, 'g');
-            cleanInner = cleanInner.replace(regexText, '\\text{$1}');
+//             // Xử lý các đoạn text tiếng Việt xen kẽ trong công thức
+//             const viChars = "A-ZĐa-zđ0-9áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ";
+//             const regexText = new RegExp(`([${viChars}]+(?:\\s+[${viChars}]+)+)`, 'g');
+//             cleanInner = cleanInner.replace(regexText, '\\text{$1}');
 
-            return '<div style="overflow-x: auto; margin: 10px 0; padding-bottom: 5px;">$$\\begin{array}' + cleanInner + '\\end{array}$$</div>';
-        }
-        return match;
-    });
+//             return '<div style="overflow-x: auto; margin: 10px 0; padding-bottom: 5px;">$$\\begin{array}' + cleanInner + '\\end{array}$$</div>';
+//         }
+//         return match;
+//     });
 
-    // BƯỚC 7: XỬ LÝ DANH SÁCH (LISTS CỦA BỘ EXAM)
-    tex = tex.split('\\begin{itemchoice}').join('<ul style="margin: 10px 0 10px 20px; list-style-type: lower-alpha;">');
-    tex = tex.split('\\end{itemchoice}').join('</ul>');
-    tex = tex.split('\\itemch').join('<li style="margin-bottom: 8px;">');
-    tex = tex.split('\\begin{itemize}').join('<ul style="margin: 10px 0 10px 20px; list-style-type: disc;">');
-    tex = tex.split('\\end{itemize}').join('</ul>');
-    tex = tex.split('\\item').join('<li style="margin-bottom: 8px;">');
+//     // BƯỚC 7: XỬ LÝ DANH SÁCH (LISTS CỦA BỘ EXAM)
+//     tex = tex.split('\\begin{itemchoice}').join('<ul style="margin: 10px 0 10px 20px; list-style-type: lower-alpha;">');
+//     tex = tex.split('\\end{itemchoice}').join('</ul>');
+//     tex = tex.split('\\itemch').join('<li style="margin-bottom: 8px;">');
+//     tex = tex.split('\\begin{itemize}').join('<ul style="margin: 10px 0 10px 20px; list-style-type: disc;">');
+//     tex = tex.split('\\end{itemize}').join('</ul>');
+//     tex = tex.split('\\item').join('<li style="margin-bottom: 8px;">');
 
-    return tex;
-}
+//     return tex;
+// }
+
+// // ---------------------------------------------------------------------
+// // 2.5. BỘ DỊCH CÔNG THỨC LATEX VÀ XỬ LÝ HTML TỪ TOOL C# LÊN WEB
+// // ---------------------------------------------------------------------
+// function dichLaTeX(tex) {
+//     if (!tex) return "";
+
+//     // BƯỚC 1: MÃ HÓA HTML VÀ BẢO VỆ ẢNH (Bảo vệ thẻ <img> không bị cắt hỏng)
+//     let imgTags = [];
+//     tex = tex.replace(/<img[^>]*>/gi, function (match) {
+//         imgTags.push(match);
+//         return '___IMG_TAG_' + (imgTags.length - 1) + '___';
+//     });
+
+//     // Chuyển đổi các dấu lớn/bé để không bị trình duyệt nhận nhầm thành thẻ HTML
+//     tex = tex.replace(/</g, ' &lt; ').replace(/>/g, ' &gt; ');
+
+//     // Trả lại thẻ ảnh
+//     imgTags.forEach((img, index) => {
+//         tex = tex.replace('___IMG_TAG_' + index + '___', img);
+//     });
+
+//     // BƯỚC 2: CHUẨN HÓA KÝ HIỆU VECTOR ĐỂ MATHJAX KHÔNG BỊ SẬP
+//     // --> Bảo vệ \left| và \right| trước để không bị regex Vector bọc đè lên nhau
+//     tex = tex.replace(/\\left\|/g, "___LEFT_ABS___");
+//     text = tex.replace(/\\right\|/g, "___RIGHT_ABS___");
+
+//     tex = tex.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
+//     tex = tex.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+//     tex = tex.replace(/\|([^|]+?)\\overrightarrow\{([^}]+)\}([^|]+?)\|/g, "\\left|$1\\overrightarrow{$2}$3\\right|");
+
+//     // --> Trả lại \left| và \right| nguyên vẹn
+//     tex = tex.replace(/___LEFT_ABS___/g, "\\left|");
+//     tex = tex.replace(/___RIGHT_ABS___/g, "\\right|");
+
+//     // BƯỚC 3: THUẬT TOÁN "BỌC LÕI" - GIẤU BẢO VỆ TOÀN BỘ CÔNG THỨC TOÁN
+//     let hiddenBlocks = [];
+//     const hideBlock = (match) => {
+//         hiddenBlocks.push(match);
+//         return `___MATH_BLOCK_${hiddenBlocks.length - 1}___`;
+//     };
+
+//     tex = tex.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix)\}[\s\S]*?\\end\{\1\}/g, hideBlock);
+//     tex = tex.replace(/\$\$[\s\S]*?\$\$/g, hideBlock);
+//     tex = tex.replace(/\\\[[\s\S]*?\\\]/g, hideBlock);
+//     tex = tex.replace(/\$(?:\\.|[^$])*?\$/g, hideBlock);
+
+//     // BƯỚC 4: XỬ LÝ XUỐNG DÒNG VÀ DỌN RÁC (Sau khi lõi toán đã an toàn)
+//     tex = tex.replace(/\\break\b/g, '<br>');
+//     tex = tex.replace(/(?:\r?\n){2,}/g, '<br><br>');
+//     tex = tex.replace(/\\\\/g, '<br>');
+//     tex = tex.replace(/\\(noindent|centering|hfill|vfill|vspace\{[^}]+\}|hspace\{[^}]+\})\s*/g, '');
+
+//     // --> Diệt các lệnh tạo khoảng trắng thừa của LaTeX (\, \; \: \! \ ) thành khoảng trắng web
+//     tex = tex.replace(/\\[,;:! ]/g, " "); tex = tex.replace(/\\quad\b/g, "  "); tex = text.replace(/\\qquad\b/g, "    ");          // --> Quét sạch các dấu backslash \ mồ côi ở cuối chữ (Ví dụ: 175\, x\, a\)     tex = tex.replace(/([a-zA-Z0-9])\\(?=\s\vert{}$\vert{}[.,:;?!<])/g, "$1");      tex = tex.replace(/\\shortans\[[^\]]*\]\{([\s\S]*?)\}/g, '<br><strong style="color:#d35400;">🎯 Đáp số:</strong> $1');
+//     tex = tex.replace(/\\textbf\{([\s\S]*?)\}/g, '<strong>$1</strong>');
+
+//     // BƯỚC 5: TRẢ LẠI RUỘT TOÁN VÀO ĐÚNG VỊ TRÍ 
+//     for (let i = hiddenBlocks.length - 1; i >= 0; i--) {
+//         // Sử dụng Arrow function () => để tránh lỗi MathJax khi chuỗi toán có chứa ký tự $
+//         tex = tex.replace(`___MATH_BLOCK_${i}___`, () => hiddenBlocks[i]);
+//     }
+
+//     // BƯỚC 6: XỬ LÝ SÂU BÊN TRONG CÁC KHỐI TOÁN ĐẶC THÙ (Bảng biến thiên, đồ thị)
+//     tex = tex.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, '');
+//     tex = tex.replace(/\\allowdisplaybreaks/g, '');
+
+//     // --> Tự động Convert môi trường eqnarray lỗi thời thành aligned để MathJax chạy mượt mà
+//     tex = tex.replace(/\$\$\s*(\\begin\{eqnarray\*?\}[\s\S]*?\\end\{eqnarray\*?\})\s*\$\$/g, '$1');
+//     tex = tex.replace(/\\begin\{eqnarray\*?\}/g, '$$\\begin{aligned}'); tex = tex.replace(/\\end\{eqnarray\*?\}/g, '\\end{aligned}$$');
+
+//     tex = tex.replace(/\\begin\{center\}([\s\S]*?)\\end\{center\}/g, '<div style="text-align: center; overflow-x: auto; margin: 10px 0;">$1</div>');
+
+//     // Nhúng Script cho TikzJax
+//     tex = tex.replace(/\\begin\{tikzpicture\}([\s\S]*?)\\end\{tikzpicture\}/g, function (match) {
+//         return '<script type="text/tikz">' + match + '</script>';
+//     });
+
+//     tex = tex.replace(/\$\$\s*(\\begin\{(tabular|array)\}[\s\S]*?\\end\{\2\})\s*\$\$/g, '$1');
+//     tex = tex.replace(/\\begin\{(tabular|array)\}([\s\S]*?)\\end\{\1\}/g, function (match, type, inner) {
+//         if (type === 'tabular' || inner.includes('\\hline') || match.includes('|')) {
+//             let cleanInner = inner.replace(/\$\$/g, '').replace(/(?<!\\)\$/g, '');
+
+//             cleanInner = cleanInner.replace(/&gt;\{\\centering\\arraybackslash\}p\{[^}]+\}/g, 'c');
+//             cleanInner = cleanInner.replace(/p\{[^}]+\}/g, 'c');
+//             cleanInner = cleanInner.replace(/m\{[^}]+\}/g, 'c');
+
+//             cleanInner = cleanInner.replace(/\\multicolumn\{([^}]+)\}\{([^}]+)\}/g, function (m, p1, p2) {
+//                 let newAlign = p2.includes('|') ? '|c|' : 'c';
+//                 return `\\multicolumn{${p1}}{${newAlign}}`;
+//             });
+
+//             cleanInner = cleanInner.replace(/\\multirow\{[^}]+\}\{[^}]+\}\{([\s\S]*?)\}/g, '$1');
+
+//             // Xử lý các đoạn text tiếng Việt xen kẽ trong công thức
+//             const viChars = "A-ZĐa-zđ0-9áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ";
+//             const regexText = new RegExp(`([${viChars}]+(?:\\s+[${viChars}]+)+)`, 'g');
+//             cleanInner = cleanInner.replace(regexText, '\\text{$1}');
+
+//             return '<div style="overflow-x: auto; margin: 10px 0; padding-bottom: 5px;">$$\\begin{array}' + cleanInner + '\\end{array}$$</div>';
+//         }
+//         return match;
+//     });
+
+//     // BƯỚC 7: XỬ LÝ DANH SÁCH (LISTS CỦA BỘ EXAM)
+//     tex = tex.replace(/\\begin\{itemchoice\}/g, '<ul style="margin: 10px 0 10px 20px; list-style-type: lower-alpha;">');
+//     tex = tex.replace(/\\end\{itemchoice\}/g, '</ul>');
+//     tex = tex.replace(/\\itemch\b/g, '<li style="margin-bottom: 8px;">');
+//     tex = tex.replace(/\\begin\{itemize\}/g, '<ul style="margin: 10px 0 10px 20px; list-style-type: disc;">');
+//     tex = tex.replace(/\\end\{itemize\}/g, '</ul>');
+//     tex = tex.replace(/\\item\b/g, '<li style="margin-bottom: 8px;">');
+
+//     return tex;
+// }
 
 
 
@@ -662,13 +776,120 @@ window.ham_99_3_trich_xuat_dap_an = function (texContent, kieuCau) {
 // };
 
 
+
 // =====================================================================
-// Hàm 6.19 (99.4): Dọn rác và Chuẩn hóa cấu trúc TeX (ĐÃ FIX LỖI \, VÀ \break)
+// 2.5. BỘ DỊCH CÔNG THỨC LATEX VÀ XỬ LÝ HTML TỪ TOOL C# LÊN WEB
+// =====================================================================
+function dichLaTeX(tex) {
+    if (!tex) return "";
+
+    // 1. CHUẨN HÓA MÔI TRƯỜNG LỖI THỜI
+    tex = tex.replace(/\$\$\s*(\\begin\{eqnarray\*?\}[\s\S]*?\\end\{eqnarray\*?\})\s*\$\$/g, '$1');
+    tex = tex.replace(/\\begin\{eqnarray\*?\}/g, '$$\\begin{aligned}'); tex = tex.replace(/\\end\{eqnarray\*?\}/g, '\\end{aligned}$$');
+
+    // 2. XỬ LÝ HTML VÀ BẢO VỆ ẢNH
+    let imgTags = [];
+    tex = tex.replace(/<img[^>]*>/gi, function (match) {
+        imgTags.push(match);
+        return '___IMG_TAG_' + (imgTags.length - 1) + '___';
+    });
+    tex = tex.replace(/</g, ' &lt; ').replace(/>/g, ' &gt; ');
+    imgTags.forEach((img, index) => {
+        tex = tex.replace('___IMG_TAG_' + index + '___', img);
+    });
+
+    // 3. CHUẨN HÓA VECTOR VÀ TRỊ TUYỆT ĐỐI (Thuật toán an toàn tuyệt đối)
+    tex = tex.replace(/\|(.*?)\|/g, function (match, inner, offset, str) {
+        let prefix = str.substring(Math.max(0, offset - 6), offset);
+        if (prefix.includes("left") || prefix.includes("right")) return match;
+        if (inner.includes("\\overrightarrow") || inner.includes("\\vec")) {
+            return "\\left|" + inner + "\\right|";
+        }
+        return match;
+    });
+
+    // 4. THUẬT TOÁN "BỌC LÕI" GIẤU TOÁN HỌC
+    let hiddenBlocks = [];
+    const hideBlock = (match) => {
+        hiddenBlocks.push(match);
+        return `___MATH_BLOCK_${hiddenBlocks.length - 1}___`;
+    };
+    tex = tex.replace(/\\begin\{(array|tabular|tikzpicture|aligned|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, hideBlock);
+    tex = tex.replace(/\$\$[\s\S]*?\$\$/g, hideBlock);
+    tex = tex.replace(/\\\[[\s\S]*?\\\]/g, hideBlock);
+    tex = tex.replace(/\$(?:\\.|[^$])*?\$/g, hideBlock);
+
+    // 5. DỌN DẸP VĂN BẢN NGOÀI TOÁN HỌC
+    tex = tex.replace(/\\break\b/g, '<br>');
+    tex = tex.replace(/(?:\r?\n[ \t]*){2,}/g, '<br><br>');
+    tex = tex.replace(/\\\\/g, '<br>');
+    tex = tex.replace(/\\(noindent|centering|hfill|vfill|vspace\{[^}]+\}|hspace\{[^}]+\})\s*/g, '');
+    tex = tex.replace(/\\begin\{center\}/g, "");
+    tex = tex.replace(/\\end\{center\}/g, "");
+    tex = tex.replace(/\\begin\{figure\}\[.*?\]/g, "");
+    tex = tex.replace(/\\begin\{figure\}/g, "");
+    tex = tex.replace(/\\end\{figure\}/g, "");
+
+    // Xóa khoảng trắng thừa của LaTeX (\, \; \: \! \ )
+    tex = tex.replace(/\\[,;:! ]/g, " "); tex = tex.replace(/\\quad\b/g, "  "); tex = tex.replace(/\\qquad\b/g, "    ");          // Bắt và diệt dấu backslash mồ côi (175\, a\, x\)     tex = tex.replace(/([a-zA-Z0-9])\\(?=\s\vert{}$\vert{}[.,:;?!<])/g, "$1");     tex = tex.replace(/\\(?=\s\vert{}$\vert{}[.,:;?!<])/g, "");       tex = tex.replace(/\\shortans\[[^\]]*\]\{([\s\S]*?)\}/g, '<br><strong style="color:#d35400;">🎯 Đáp số:</strong> $1');
+    tex = tex.replace(/\\textbf\{([\s\S]*?)\}/g, '<strong>$1</strong>');
+
+    // 6. TRẢ LẠI RUỘT TOÁN VÀO ĐÚNG VỊ TRÍ 
+    for (let i = hiddenBlocks.length - 1; i >= 0; i--) {
+        tex = tex.replace(`___MATH_BLOCK_${i}___`, () => hiddenBlocks[i]);
+    }
+
+    // 7. XỬ LÝ SÂU BÊN TRONG CÁC KHỐI TOÁN ĐẶC THÙ
+    tex = tex.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, '');
+    tex = tex.replace(/\\allowdisplaybreaks/g, '');
+
+    tex = tex.replace(/\\begin\{center\}([\s\S]*?)\\end\{center\}/g, '<div style="text-align: center; overflow-x: auto; margin: 10px 0;">$1</div>');
+
+    tex = tex.replace(/\\begin\{tikzpicture\}([\s\S]*?)\\end\{tikzpicture\}/g, function (match) {
+        return '<script type="text/tikz">' + match + '</script>';
+    });
+
+    tex = tex.replace(/\$\$\s*(\\begin\{(tabular|array)\}[\s\S]*?\\end\{\2\})\s*\$\$/g, '$1');
+    tex = tex.replace(/\\begin\{(tabular|array)\}([\s\S]*?)\\end\{\1\}/g, function (match, type, inner) {
+        if (type === 'tabular' || inner.includes('\\hline') || match.includes('|')) {
+            let cleanInner = inner.replace(/\$\$/g, '').replace(/(?<!\\)\$/g, '');
+            cleanInner = cleanInner.replace(/&gt;\{\\centering\\arraybackslash\}p\{[^}]+\}/g, 'c');
+            cleanInner = cleanInner.replace(/p\{[^}]+\}/g, 'c');
+            cleanInner = cleanInner.replace(/m\{[^}]+\}/g, 'c');
+            cleanInner = cleanInner.replace(/\\multicolumn\{([^}]+)\}\{([^}]+)\}/g, function (m, p1, p2) {
+                let newAlign = p2.includes('|') ? '|c|' : 'c';
+                return `\\multicolumn{${p1}}{${newAlign}}`;
+            });
+            cleanInner = cleanInner.replace(/\\multirow\{[^}]+\}\{[^}]+\}\{([\s\S]*?)\}/g, '$1');
+            const viChars = "A-ZĐa-zđ0-9áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ";
+            const regexText = new RegExp(`([${viChars}]+(?:\\s+[${viChars}]+)+)`, 'g');
+            cleanInner = cleanInner.replace(regexText, '\\text{$1}');
+            return '<div style="overflow-x: auto; margin: 10px 0; padding-bottom: 5px;">$$\\begin{array}' + cleanInner + '\\end{array}$$</div>';
+        }
+        return match;
+    });
+
+    // 8. XỬ LÝ DANH SÁCH (LISTS CỦA BỘ EXAM)
+    tex = tex.replace(/\\begin\{itemchoice\}/g, '<ul style="margin: 10px 0 10px 20px; list-style-type: lower-alpha;">');
+    tex = tex.replace(/\\end\{itemchoice\}/g, '</ul>');
+    tex = tex.replace(/\\itemch\b/g, '<li style="margin-bottom: 8px;">');
+    tex = tex.replace(/\\begin\{itemize\}/g, '<ul style="margin: 10px 0 10px 20px; list-style-type: disc;">');
+    tex = tex.replace(/\\end\{itemize\}/g, '</ul>');
+    tex = tex.replace(/\\item\b/g, '<li style="margin-bottom: 8px;">');
+
+    return tex;
+}
+
+
+// =====================================================================
+// Hàm 6.19 (99.4): Dọn rác và Chuẩn hóa cấu trúc TeX trước khi đẩy lên DB
 // =====================================================================
 window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
     if (!text || typeof text !== 'string' || text.trim() === "") return text;
 
-    // 🌟 0. DỌN RÁC CƠ BẢN VÀ XÓA BỌC HÌNH ẢNH
+    text = text.replace(/\$\$\s*(\\begin\{eqnarray\*?\}[\s\S]*?\\end\{eqnarray\*?\})\s*\$\$/g, '$1');
+    text = text.replace(/\\begin\{eqnarray\*?\}/g, '$$\\begin{aligned}'); text = text.replace(/\\end\{eqnarray\*?\}/g, '\\end{aligned}$$');
+
     text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
     text = text.replace(/\\noindent\s*/g, "");
     text = text.replace(/\\centering\s*/g, "");
@@ -679,11 +900,16 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
     text = text.replace(/\\begin\{figure\}/g, "");
     text = text.replace(/\\end\{figure\}/g, "");
 
-    // 🌟 1. CHUẨN HÓA VECTOR VÀ TRỊ TUYỆT ĐỐI
-    text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
-    text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+    // Thuật toán chuẩn hóa Vector an toàn
+    text = text.replace(/\|(.*?)\|/g, function (match, inner, offset, str) {
+        let prefix = str.substring(Math.max(0, offset - 6), offset);
+        if (prefix.includes("left") || prefix.includes("right")) return match;
+        if (inner.includes("\\overrightarrow") || inner.includes("\\vec")) {
+            return "\\left|" + inner + "\\right|";
+        }
+        return match;
+    });
 
-    // 🌟 2. THUẬT TOÁN XỬ LÝ \heva, \hoac
     const tuKhoas = ["\\heva", "\\hoac"];
     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
@@ -696,10 +922,8 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
             let contentEnd = -1;
             let ruot = "";
             let coNgoacNhon = false;
-
             let firstCharIdx = contentStart;
             while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
-
             if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
                 coNgoacNhon = true;
                 let count = 0;
@@ -717,7 +941,6 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
                 }
                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
             }
-
             if (contentEnd !== -1) {
                 let phanDau = text.substring(0, startIdx);
                 let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
@@ -726,58 +949,39 @@ window.ham_99_4_xu_ly_du_lieu_truoc_khi_push = function (text) {
         }
     }
 
-    // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC
     let hiddenMath = [];
+    const hideMath = (match) => {
+        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
+    };
+    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, hideMath);
+    text = text.replace(/\$\$[\s\S]*?\$\$/g, hideMath);
+    text = text.replace(/\\\[[\s\S]*?\\\]/g, hideMath);
+    text = text.replace(/\$(?:\\.|[^$])*?\$/g, hideMath);
 
-    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // 🌟 4. DỌN DẸP VĂN BẢN VÀ LỌC DẤU XUYỆT THỪA
-    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
-    text = text.replace(/\\\$/g, "$\\$$");
-
-    // --> Xử lý \break thành xuống dòng chuẩn của V3
     text = text.replace(/\\break\b/g, "\\\\");
-    text = text.replace(/\\\\\\\\/g, "\\\\");
-
-    text = text.replace(/\\%/g, "%");
-    text = text.replace(/\\&/g, "&");
-    text = text.replace(/\\#/g, "#");
-    text = text.replace(/\\_/g, "_");
-
-    // --> Xóa mọi khoảng trắng ép buộc của LaTeX (\, \; \: \! \ ) thành khoảng trắng web
+    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
     text = text.replace(/\\[,;:! ]/g, " ");
     text = text.replace(/\\quad\b/g, "  ");
     text = text.replace(/\\qquad\b/g, "    ");
-
-    // Bắt và diệt các dấu backslash rác bị lẻ loi ở cuối từ
-    text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
+    text = text.replace(/([a-zA-Z0-9])\\(?=\s|$|[.,:;?!<])/g, "$1");
+    text = text.replace(/\\(?=\s|$|[.,:;?!<])/g, "");
 
     for (let i = hiddenMath.length - 1; i >= 0; i--) {
         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
     }
-
     return text.trim();
 };
 
 
 // =====================================================================
-// HÀM 99.5: NẠP ẢNH TỪ DRIVE SANG GITHUB (ĐỒNG BỘ FIX LỖI \, VÀ \break)
+// HÀM 99.5: NẠP ẢNH TỪ DRIVE SANG GITHUB
 // =====================================================================
 window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = async function (maDe = "CHUNG", idCauChinhXac = "", text) {
     if (!text || typeof text !== 'string' || text.trim() === "") return text;
 
-    // 🌟 0. DỌN RÁC CƠ BẢN VÀ XÓA BỌC HÌNH ẢNH
+    text = text.replace(/\$\$\s*(\\begin\{eqnarray\*?\}[\s\S]*?\\end\{eqnarray\*?\})\s*\$\$/g, '$1');
+    text = text.replace(/\\begin\{eqnarray\*?\}/g, '$$\\begin{aligned}'); text = text.replace(/\\end\{eqnarray\*?\}/g, '\\end{aligned}$$');
+
     text = text.replace(/\\renewcommand\s*\{\s*\\arraystretch\s*\}\s*\{[^}]+\}/g, "");
     text = text.replace(/\\noindent\s*/g, "");
     text = text.replace(/\\centering\s*/g, "");
@@ -788,10 +992,16 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
     text = text.replace(/\\begin\{figure\}/g, "");
     text = text.replace(/\\end\{figure\}/g, "");
 
-    text = text.replace(/\|\s*\\overrightarrow\s*\{([^}]+)\}\s*\|/g, "\\left|\\overrightarrow{$1}\\right|");
-    text = text.replace(/\|\s*\\vec\s*\{([^}]+)\}\s*\|/g, "\\left|\\vec{$1}\\right|");
+    // Thuật toán chuẩn hóa Vector an toàn
+    text = text.replace(/\|(.*?)\|/g, function (match, inner, offset, str) {
+        let prefix = str.substring(Math.max(0, offset - 6), offset);
+        if (prefix.includes("left") || prefix.includes("right")) return match;
+        if (inner.includes("\\overrightarrow") || inner.includes("\\vec")) {
+            return "\\left|" + inner + "\\right|";
+        }
+        return match;
+    });
 
-    // 🌟 1. THUẬT TOÁN XỬ LÝ \heva, \hoac
     const tuKhoas = ["\\heva", "\\hoac"];
     const mos = ["\\left\\{\\begin{aligned}", "\\left[\\begin{aligned}"];
     const dongs = ["\\end{aligned}\\right.", "\\end{aligned}\\right."];
@@ -804,10 +1014,8 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
             let contentEnd = -1;
             let ruot = "";
             let coNgoacNhon = false;
-
             let firstCharIdx = contentStart;
             while (firstCharIdx < text.length && /\s/.test(text[firstCharIdx])) firstCharIdx++;
-
             if (firstCharIdx < text.length && text[firstCharIdx] === '{') {
                 coNgoacNhon = true;
                 let count = 0;
@@ -825,7 +1033,6 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
                 }
                 if (contentEnd !== -1) ruot = text.substring(firstCharIdx, contentEnd);
             }
-
             if (contentEnd !== -1) {
                 let phanDau = text.substring(0, startIdx);
                 let phanDuoi = text.substring(coNgoacNhon ? contentEnd + 1 : contentEnd);
@@ -834,7 +1041,6 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
         }
     }
 
-    // 🌟 2. PHÂN TÁCH ĐỀ / GIẢI VÀ ĐỒNG BỘ ẢNH LÊN GITHUB
     let phanDe = text;
     let phanGiai = "";
     const chiMucLoiGiai = text.indexOf("\\loigiai");
@@ -854,7 +1060,6 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
             let fullTag = match[1] || match[2];
             let idFile = "";
             let tenFile = "";
-
             if (fullTag.includes('|')) {
                 let parts = fullTag.split('|');
                 idFile = parts[0].trim();
@@ -863,12 +1068,7 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
                 idFile = fullTag.trim();
                 tenFile = idFile + ".png";
             }
-
-            danhSachAnh.push({
-                fullMatch: match[0],
-                id: idFile,
-                ten: tenFile
-            });
+            danhSachAnh.push({ fullMatch: match[0], id: idFile, ten: tenFile });
         }
 
         for (let anh of danhSachAnh) {
@@ -884,43 +1084,26 @@ window.ham_99_5_xu_ly_du_lieu_truoc_khi_push_nap_anh_tu_supabase_sang_github = a
     phanGiai = await xuLyAnhTungPhan(phanGiai, true);
     text = phanDe + phanGiai;
 
-    // 🌟 3. THUẬT TOÁN "BỌC LÕI" BẢO VỆ TOÁN HỌC
     let hiddenMath = [];
-
-    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|eqnarray\*?|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, (match) => {
+    const hideMath = (match) => {
         hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\$\$[\s\S]*?(?<!\\)\$\$/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\\\[[\s\S]*?(?<!\\)\\\]/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-    text = text.replace(/(?<!\\)\$(?!\$)([\s\S]*?)(?<!\\)\$/g, (match) => {
-        hiddenMath.push(match); return `___MATH_BLOCK_${hiddenMath.length - 1}___`;
-    });
-
-    // 🌟 4. DỌN DẸP VĂN BẢN (ĐỒNG BỘ NHƯ 99.4)
-    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
-    text = text.replace(/\\\$/g, "$\\$$");
+    };
+    text = text.replace(/\\begin\{(array|tabular|tikzpicture|aligned|cases|[bpvB]matrix|matrix)\}[\s\S]*?\\end\{\1\}/g, hideMath);
+    text = text.replace(/\$\$[\s\S]*?\$\$/g, hideMath);
+    text = text.replace(/\\\[[\s\S]*?\\\]/g, hideMath);
+    text = text.replace(/\$(?:\\.|[^$])*?\$/g, hideMath);
 
     text = text.replace(/\\break\b/g, "\\\\");
-    text = text.replace(/\\\\\\\\/g, "\\\\");
-
-    text = text.replace(/\\%/g, "%");
-    text = text.replace(/\\&/g, "&");
-    text = text.replace(/\\#/g, "#");
-    text = text.replace(/\\_/g, "_");
-
+    text = text.replace(/(?:\r?\n[ \t]*){2,}/g, "\\\\");
     text = text.replace(/\\[,;:! ]/g, " ");
     text = text.replace(/\\quad\b/g, "  ");
     text = text.replace(/\\qquad\b/g, "    ");
-    text = text.replace(/(\S)\\(?=\s|[.,:;!?]|$)/g, "$1");
+    text = text.replace(/([a-zA-Z0-9])\\(?=\s|$|[.,:;?!<])/g, "$1");
+    text = text.replace(/\\(?=\s|$|[.,:;?!<])/g, "");
 
     for (let i = hiddenMath.length - 1; i >= 0; i--) {
         text = text.replace(`___MATH_BLOCK_${i}___`, hiddenMath[i]);
     }
-
     return text.trim();
 };
 
