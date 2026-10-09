@@ -134,23 +134,64 @@ window.ham_8_6_kiem_tra_phong_ngay_lap_tuc = async function () {
     else Swal.fire('Thông báo', 'Thầy chưa bắt đầu thi!', 'info');
 };
 
+// // =====================================================================
+// // 4. Hàm Bắt đầu thi (dùng chung)
+// // =====================================================================
+// window.ham_8_6_bat_dau_thi_ngay = function (phong) {
+//     if (window.IntervalKiemTraPhong) clearInterval(window.IntervalKiemTraPhong);
+//     if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
+
+//     const tStart = new Date(phong.thoi_gian_bat_dau);
+//     window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + (phong.thoi_gian_lam_bai || 45) * 60000);
+
+//     Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', timer: 1500, showConfirmButton: false }).then(() => {
+//         ham_8_6_3_bat_dau_lam_bai_live();
+//     });
+// };
+
+
+
+
+// window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
+//     try {
+//         Swal.fire({ title: '⏳ Đang nạp đề...', didOpen: () => Swal.showLoading() });
+//         const { data: nv } = await _supabase.from('nhiem_vu_trac_nghiem').select('*').eq('ma_nhiem_vu', window.ThongTinLiveHocSinh.maNhiemVu).single();
+
+//         window.DangKhoiTaoLiveQuiz = true;
+
+//         if (window.ThongTinLiveHocSinh.thoiGianDong) {
+//             const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
+//             nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
+//         }
+
+//         // QUAN TRỌNG: Phải chờ hàm này chạy xong (vẽ xong giao diện) rồi mới gọi phục hồi
+//         await ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv);
+
+//         // Đợi 200ms để DOM cập nhật hoàn toàn các ID câu hỏi
+//         setTimeout(async () => {
+//             await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+//             Swal.close();
+//         }, 200);
+
+//     } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
+// };
+
 // =====================================================================
-// 4. Hàm Bắt đầu thi (dùng chung)
+// 4. Hàm Bắt đầu thi (Đã fix lỗi đồng bộ thời gian)
 // =====================================================================
 window.ham_8_6_bat_dau_thi_ngay = function (phong) {
     if (window.IntervalKiemTraPhong) clearInterval(window.IntervalKiemTraPhong);
     if (window.HocSinhLiveChannel) _supabase.removeChannel(window.HocSinhLiveChannel);
 
+    // Lấy thời điểm giáo viên bắt đầu tính giờ từ Database
     const tStart = new Date(phong.thoi_gian_bat_dau);
+    // Tính toán mốc thời gian ĐÓNG PHÒNG chính xác tuyệt đối
     window.ThongTinLiveHocSinh.thoiGianDong = new Date(tStart.getTime() + (phong.thoi_gian_lam_bai || 45) * 60000);
 
     Swal.fire({ title: '🚀 TRẬN ĐẤU BẮT ĐẦU!', timer: 1500, showConfirmButton: false }).then(() => {
         ham_8_6_3_bat_dau_lam_bai_live();
     });
 };
-
-
-
 
 window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
     try {
@@ -160,22 +201,29 @@ window.ham_8_6_3_bat_dau_lam_bai_live = async function () {
         window.DangKhoiTaoLiveQuiz = true;
 
         if (window.ThongTinLiveHocSinh.thoiGianDong) {
-            const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - Date.now()) / 1000);
+            // Lấy thời gian hiện tại của máy học sinh
+            const now = Date.now();
+            // Tính số giây còn lại từ bây giờ cho đến mốc đóng phòng
+            const giayConLai = Math.floor((window.ThongTinLiveHocSinh.thoiGianDong.getTime() - now) / 1000);
+
+            // Ép thời gian làm bài của nhiệm vụ thành đúng số phút còn lại để hàm đồng hồ (ở Khối 8) chạy chính xác
             nv.thoi_gian_lam_bai = giayConLai > 0 ? Number((giayConLai / 60).toFixed(2)) : 0;
         }
 
+        // Ghi đè cấu hình để tắt chế độ tự nộp bài của hệ thống cũ (nếu có), vì Live Quiz có cơ chế nộp riêng
+        nv.kieu_hien_thi = 'live';
+
         // QUAN TRỌNG: Phải chờ hàm này chạy xong (vẽ xong giao diện) rồi mới gọi phục hồi
-        await ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv);
+        await window.ham_8a_8_khoi_tao_phong_thi_trac_nghiem(nv);
 
         // Đợi 200ms để DOM cập nhật hoàn toàn các ID câu hỏi
         setTimeout(async () => {
-            await ham_8_6_5_khoi_phuc_dap_an_da_nop();
+            await window.ham_8_6_5_khoi_phuc_dap_an_da_nop();
             Swal.close();
         }, 200);
 
     } catch (e) { Swal.fire('Lỗi nạp đề', e.message, 'error'); }
 };
-
 // =====================================================================
 // Hàm chạy ngầm: Bắn tín hiệu cập nhật thanh tiến độ Live Quiz
 // =====================================================================
