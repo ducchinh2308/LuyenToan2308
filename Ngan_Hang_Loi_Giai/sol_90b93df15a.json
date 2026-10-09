@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_90b93df15a",
+  "dapAn": "64,3",
+  "loiGiai": "Trong tam giác $ABC$, ta có $\\widehat{A} = 30^\\circ$, $\\widehat{C} = 100^\\circ$ và $b = AC = 50\\text{ m}$.\r\n\t\tSuy ra $\\widehat{B} = 180^\\circ - (30^\\circ + 100^\\circ) = 50^\\circ$.\r\n\t\tÁp dụng định lí sin: $\\displaystyle \\frac{AB}{\\sin C} = \\displaystyle \\frac{AC}{\\sin B} \\Rightarrow AB = \\displaystyle \\frac{AC \\cdot \\sin C}{\\sin B} = \\displaystyle \\frac{50 \\cdot \\sin 100^\\circ}{\\sin 50^\\circ}$.\r\n\t\tTa có $\\sin 100^\\circ = \\sin(180^\\circ - 80^\\circ) = \\sin 80^\\circ = 2\\sin 40^\\circ\\cos 40^\\circ$ (không giúp đơn giản hơn).\r\n\t\tTính giá trị: $AB \\approx \\displaystyle \\frac{50 \\cdot 0{,}9848}{0{,}7660} \\approx 64{,}28\\text{ m}$.\r\n\t\tLàm tròn đến một chữ số sau dấu phẩy, $AB \\approx 64{,}3\\text{ m}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2165fa6312",
+  "dapAn": "20",
+  "loiGiai": "Khoảng cách từ điểm $A$ đến cạnh $BC$ chính là đường cao $AH$ của tam giác $ABC$.\r\n\t\tTa có $c = 23{,}8, b = 31{,}9, \\widehat{A} = 83{,}6^\\circ$.\r\n\t\tDiện tích tam giác $ABC$: $S = \\displaystyle \\frac{1}{2}bc\\sin A = \\displaystyle \\frac{1}{2} \\cdot 23{,}8 \\cdot 31{,}9 \\cdot \\sin 83{,}6^\\circ \\approx 377{,}24\\text{ km}^2$.\r\n\t\tĐộ dài cạnh $a = BC$:\r\n\t\t$a^2 = b^2 + c^2 - 2bc\\cos A = 31{,}9^2 + 23{,}8^2 - 2 \\cdot 31{,}9 \\cdot 23{,}8 \\cdot \\cos 83{,}6^\\circ$\r\n\t\t$a^2 = 1017{,}61 + 566{,}44 - 1518{,}44 \\cdot 0{,}1115 \\approx 1584{,}05 - 169{,}31 = 1414{,}74$.\r\n\t\t$\\Rightarrow a \\approx 37{,}61\\text{ km}$.\r\n\t\tTa có $S = \\displaystyle \\frac{1}{2}a \\cdot AH \\Rightarrow AH = \\displaystyle \\frac{2S}{a} = \\displaystyle \\frac{2 \\cdot 377{,}24}{37{,}61} \\approx 20{,}06\\text{ km}$.\r\n\t\t(Khoảng cách làm tròn đến hàng đơn vị là $20$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b0e9a1169f",
+  "dapAn": "C",
+  "loiGiai": "Góc nhìn từ vệ tinh $C$ đến $A$ và $B$ là góc $\\widehat{ACB}$.\r\n\t\tÁp dụng hệ quả định lí côsin trong tam giác $ABC$:\r\n\t\t$\\cos C = \\displaystyle \\frac{AC^2 + BC^2 - AB^2}{2 \\cdot AC \\cdot BC} = \\displaystyle \\frac{420^2 + 300^2 - 160^2}{2 \\cdot 420 \\cdot 300} = \\displaystyle \\frac{176400 + 90000 - 25600}{252000} = \\displaystyle \\frac{240800}{252000} \\approx 0{,}9555$.\r\n\t\tSuy ra $\\widehat{C} \\approx 17{,}15^\\circ$. Góc này gần với $17^\\circ$ nhất."
+}

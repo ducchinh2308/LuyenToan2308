@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_976d817ff8",
+  "dapAn": "D",
+  "loiGiai": "Ta có $\\widehat{C} = 180^\\circ - (72^\\circ + 83^\\circ) = 180^\\circ - 155^\\circ = 25^\\circ$.\r\n\t\tÁp dụng định lí sin trong tam giác $ABC$:\r\n\t\t$\\displaystyle \\frac{AB}{\\sin C} = 2R \\Rightarrow AB = 2R \\sin C = 2 \\cdot 9{,}5 \\cdot \\sin 25^\\circ = 19 \\cdot \\sin 25^\\circ \\approx 8{,}029$.\r\n\t\tLàm tròn đến hàng đơn vị, $AB \\approx 8\\text{ cm}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_47725c6bab",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng định lí côsin trong tam giác $ABC$:\r\n\t\t$AC^2 = AB^2 + BC^2 - 2 \\cdot AB \\cdot BC \\cdot \\cos B = 8^2 + 9^2 - 2 \\cdot 8 \\cdot 9 \\cdot \\cos 60^\\circ = 64 + 81 - 144 \\cdot \\displaystyle \\frac{1}{2} = 145 - 72 = 73$.\r\n\t\t$\\Rightarrow AC = \\sqrt{73}$."
+}

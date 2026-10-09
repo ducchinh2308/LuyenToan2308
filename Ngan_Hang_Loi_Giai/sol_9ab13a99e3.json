@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9ab13a99e3",
+  "dapAn": "TTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Trong $\\Delta ACD$ vuông tại $C$, ta có $\\widehat{DAC} = 45^\\circ$ nên $\\widehat{ADC} = 90^\\circ - 45^\\circ = 45^\\circ$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Trong $\\Delta ACB$ vuông tại $C$, ta có $AC = 10\\text{ m}$, $\\widehat{CAB} = 10^\\circ$.\r\n\t\t\t$AB = \\displaystyle \\frac{AC}{\\cos 10^\\circ} = \\displaystyle \\frac{10}{\\cos 10^\\circ} \\approx 10{,}154\\text{ m}$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Tam giác $ACD$ vuông cân tại $C$ do $\\widehat{DAC} = 45^\\circ$, nên $CD = AC = 10\\text{ m}$.\r\n\t\t\tDiện tích $S_{ACD} = \\displaystyle \\frac{1}{2} \\cdot AC \\cdot CD = \\displaystyle \\frac{1}{2} \\cdot 10 \\cdot 10 = 50\\text{ m}^2$. Khẳng định $S = 100\\text{ m}^2$ là Sai.\r\n\t\t\t\\itemch Trong $\\Delta ACB$, $BC = AC \\cdot \\tan 10^\\circ = 10 \\cdot \\tan 10^\\circ \\approx 1{,}76\\text{ m}$.\r\n\t\t\tChiều cao tháp $BD = BC + CD \\approx 1{,}76 + 10 = 11{,}76\\text{ m}$. Khẳng định này Đúng.\r\n\t\t\\end{itemchoice}"
+}

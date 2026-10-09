@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3a1afcecdd",
+  "dapAn": "A",
+  "loiGiai": "Ta có $M \\in BC$ và $MB = 3MC \\Rightarrow MC = \\displaystyle \\frac{1}{4}BC = \\displaystyle \\frac{1}{4} \\cdot 8 = 2$ và $MB = 6$.\r\n\t\tÁp dụng hệ quả định lí côsin trong tam giác $ABC$:\r\n\t\t$\\cos C = \\displaystyle \\frac{AC^2 + BC^2 - AB^2}{2 \\cdot AC \\cdot BC} = \\displaystyle \\frac{5^2 + 8^2 - 7^2}{2 \\cdot 5 \\cdot 8} = \\displaystyle \\frac{25 + 64 - 49}{80} = \\displaystyle \\frac{40}{80} = \\displaystyle \\frac{1}{2}$.\r\n\t\tÁp dụng định lí côsin trong tam giác $AMC$:\r\n\t\t$AM^2 = AC^2 + MC^2 - 2 \\cdot AC \\cdot MC \\cdot \\cos C = 5^2 + 2^2 - 2 \\cdot 5 \\cdot 2 \\cdot \\displaystyle \\frac{1}{2} = 25 + 4 - 10 = 19$.\r\n\t\t$\\Rightarrow AM = \\sqrt{19}$."
+}

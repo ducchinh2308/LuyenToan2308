@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_41e72b09ce",
+  "dapAn": "18",
+  "loiGiai": "Độ dài quãng đường cũ: $d_1 = AB + BC = 15 + 20 = 35\\text{ km}$.\r\n\t\tĐộ dài đoạn đường hầm xuyên núi (đoạn thẳng $AC$):\r\n\t\tÁp dụng định lí côsin trong tam giác $ABC$:\r\n\t\t$AC^2 = AB^2 + BC^2 - 2 \\cdot AB \\cdot BC \\cdot \\cos B = 15^2 + 20^2 - 2 \\cdot 15 \\cdot 20 \\cdot \\cos 120^\\circ$\r\n\t\t$AC^2 = 225 + 400 - 600 \\cdot \\left(-\\displaystyle \\frac{1}{2}\\right) = 625 + 300 = 925$.\r\n\t\t$\\Rightarrow AC = \\sqrt{925} = 5\\sqrt{37} \\approx 30{,}41\\text{ km}$.\r\n\t\tQuãng đường tiết kiệm được: $\\Delta d = d_1 - AC \\approx 35 - 30{,}41 = 4{,}59\\text{ km}$.\r\n\t\tSố lít xăng tiết kiệm được: $\\displaystyle \\frac{\\Delta d}{5} \\approx \\displaystyle \\frac{4{,}59}{5} \\approx 0{,}918\\text{ lít}$.\r\n\t\tSố tiền tiết kiệm được: $0{,}918 \\cdot 20.000 = 18.360$ đồng $= 18{,}36$ nghìn đồng.\r\n\t\tLàm tròn đến hàng đơn vị của nghìn đồng là $18$ nghìn đồng."
+}

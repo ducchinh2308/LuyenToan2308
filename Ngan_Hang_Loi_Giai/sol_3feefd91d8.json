@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3feefd91d8",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng hệ quả định lí côsin trong tam giác $ABC$:\r\n\t\t$\\cos C = \\displaystyle \\frac{AC^2 + BC^2 - AB^2}{2 \\cdot AC \\cdot BC} = \\displaystyle \\frac{8^2 + 7^2 - 6^2}{2 \\cdot 8 \\cdot 7} = \\displaystyle \\frac{64 + 49 - 36}{112} = \\displaystyle \\frac{77}{112} = \\displaystyle \\frac{11}{16}$."
+}

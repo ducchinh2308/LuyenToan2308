@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e41144bcf4",
+  "dapAn": "C",
+  "loiGiai": "Áp dụng hệ thức lượng trong tam giác vuông $ABC$ với đường cao $AH$:\r\n\t\t$\\displaystyle \\frac{1}{AH^2} = \\displaystyle \\frac{1}{AB^2} + \\displaystyle \\frac{1}{AC^2} \\Leftrightarrow \\displaystyle \\frac{1}{4^2} = \\displaystyle \\frac{1}{AB^2} + \\displaystyle \\frac{1}{(2AB)^2}$\r\n\t\t$\\Leftrightarrow \\displaystyle \\frac{1}{16} = \\displaystyle \\frac{1}{AB^2} + \\displaystyle \\frac{1}{4AB^2} \\Leftrightarrow \\displaystyle \\frac{1}{16} = \\displaystyle \\frac{5}{4AB^2}$.\r\n\t\t$\\Rightarrow 4AB^2 = 80 \\Rightarrow AB^2 = 20 \\Rightarrow AB = \\sqrt{20} = 2\\sqrt{5}$."
+}

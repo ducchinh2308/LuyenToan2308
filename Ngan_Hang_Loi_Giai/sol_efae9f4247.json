@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_efae9f4247",
+  "dapAn": "18,5",
+  "loiGiai": "Gọi $D$ là hình chiếu vuông góc của $A$ lên phương thẳng đứng chứa cột ăng-ten.\r\n\t\tTa có tam giác vuông $ADC$ và $ADB$.\r\n\t\t$\\widehat{DAC} = 40^\\circ, \\widehat{DAB} = 50^\\circ$.\r\n\t\tChiều cao cột ăng-ten là $BC = BD - CD = AD \\cdot \\tan 50^\\circ - AD \\cdot \\tan 40^\\circ = 5\\text{ m}$.\r\n\t\t$\\Rightarrow AD = \\displaystyle \\frac{5}{\\tan 50^\\circ - \\tan 40^\\circ} \\approx 14{,}18\\text{ m}$.\r\n\t\tKhoảng cách từ $A$ đến chân $C$ của cột là $AC$.\r\n\t\tTrong $\\Delta ABC$, $\\widehat{BAC} = 50^\\circ - 40^\\circ = 10^\\circ$.\r\n\t\tGóc $\\widehat{ABC}$ (với phương thẳng đứng là phụ với góc $50^\\circ$) là $\\widehat{ABD} = 90^\\circ - 50^\\circ = 40^\\circ$.\r\n\t\tÁp dụng định lí sin: $\\displaystyle \\frac{AC}{\\sin B} = \\displaystyle \\frac{BC}{\\sin A} \\Rightarrow \\displaystyle \\frac{AC}{\\sin 40^\\circ} = \\displaystyle \\frac{5}{\\sin 10^\\circ} \\Rightarrow AC = \\displaystyle \\frac{5 \\cdot \\sin 40^\\circ}{\\sin 10^\\circ} \\approx \\displaystyle \\frac{5 \\cdot 0{,}6428}{0{,}1736} \\approx 18{,}51\\text{ m}$.\r\n\t\tVậy đáp án là $18{,}5$."
+}

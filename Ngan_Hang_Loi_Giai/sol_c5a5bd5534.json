@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c5a5bd5534",
+  "dapAn": "A",
+  "loiGiai": "Trong tam giác $ABQ$ vuông tại $B$, khoảng cách từ chiếc thuyền $Q$ đến chân tháp $B$ là đoạn $QB$.\r\n\t\tTa có: $\\tan \\widehat{BQA} = \\displaystyle \\frac{AB}{QB} \\Rightarrow QB = \\displaystyle \\frac{AB}{\\tan \\widehat{BQA}} = \\displaystyle \\frac{42}{\\tan 48^\\circ} \\approx 37{,}82\\text{ mét}$.\r\n\t\tVậy khoảng cách này gần với $38$ mét nhất."
+}

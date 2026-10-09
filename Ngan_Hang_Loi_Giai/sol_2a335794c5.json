@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2a335794c5",
+  "dapAn": "D",
+  "loiGiai": "Gọi $A$ là trạm ở Đà Nẵng, $B$ là trạm ở Nha Trang, $C$ là vệ tinh.\r\n\t\tTa có $\\widehat{A} = 75^\\circ$, $\\widehat{B} = 60^\\circ$ và $AC = 637\\text{ km}$.\r\n\t\tGóc $\\widehat{C} = 180^\\circ - (75^\\circ + 60^\\circ) = 45^\\circ$.\r\n\t\tÁp dụng định lí sin trong tam giác $ABC$:\r\n\t\t$\\displaystyle \\frac{AB}{\\sin C} = \\displaystyle \\frac{AC}{\\sin B} \\Rightarrow AB = \\displaystyle \\frac{AC \\cdot \\sin C}{\\sin B} = \\displaystyle \\frac{637 \\cdot \\sin 45^\\circ}{\\sin 60^\\circ} = \\displaystyle \\frac{637 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{\\sqrt{3}}{2}} = \\displaystyle \\frac{637\\sqrt{2}}{\\sqrt{3}} \\approx 520{,}1\\text{ km}$.\r\n\t\tKhoảng cách này gần với $520\\text{ km}$ nhất."
+}

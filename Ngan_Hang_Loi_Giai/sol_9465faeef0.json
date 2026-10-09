@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9465faeef0",
+  "dapAn": "D",
+  "loiGiai": "Áp dụng định lí côsin trong tam giác $ABC$, ta tính được cạnh $AB$:\r\n\t\t$AB^2 = AC^2 + BC^2 - 2 \\cdot AC \\cdot BC \\cdot \\cos C = 7^2 + 9^2 - 2 \\cdot 7 \\cdot 9 \\cdot \\cos 60^\\circ = 49 + 81 - 126 \\cdot \\displaystyle \\frac{1}{2} = 130 - 63 = 67$.\r\n\t\t$\\Rightarrow AB = \\sqrt{67}\\text{ cm}$.\r\n\t\tÁp dụng định lí sin:\r\n\t\t$\\displaystyle \\frac{BC}{\\sin A} = \\displaystyle \\frac{AB}{\\sin C} \\Rightarrow \\sin A = \\displaystyle \\frac{BC \\cdot \\sin C}{AB} = \\displaystyle \\frac{9 \\cdot \\sin 60^\\circ}{\\sqrt{67}} = \\displaystyle \\frac{9\\sqrt{3}}{2\\sqrt{67}} \\approx 0{,}9526$.\r\n\t\tSuy ra $\\widehat{A} \\approx 72{,}28^\\circ$. Góc $\\widehat{A}$ gần với $72^\\circ$ nhất."
+}

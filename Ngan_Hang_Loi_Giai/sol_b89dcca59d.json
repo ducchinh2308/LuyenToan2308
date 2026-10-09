@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b89dcca59d",
+  "dapAn": "D",
+  "loiGiai": "Diện tích tam giác $ABC$ là:\r\n\t\t$S = \\displaystyle \\frac{1}{2} \\cdot AB \\cdot AC \\cdot \\sin A = \\displaystyle \\frac{1}{2} \\cdot 7 \\cdot 5 \\cdot \\sin 60^\\circ = \\displaystyle \\frac{35}{2} \\cdot \\displaystyle \\frac{\\sqrt{3}}{2} = \\displaystyle \\frac{35\\sqrt{3}}{4}\\text{ cm}^2$."
+}

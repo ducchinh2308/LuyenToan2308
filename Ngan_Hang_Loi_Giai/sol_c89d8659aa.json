@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c89d8659aa",
+  "dapAn": "54,1",
+  "loiGiai": "Sau $1{,}5$ giờ, quãng đường xe 1 đi được là: $c = AB = 30 \\cdot 1{,}5 = 45\\text{ km}$.\r\n\t\tQuãng đường xe 2 đi được là: $b = AC = 40 \\cdot 1{,}5 = 60\\text{ km}$.\r\n\t\tGóc hợp bởi hai hướng đi là $\\widehat{A} = 60^\\circ$.\r\n\t\tKhoảng cách giữa hai xe lúc này là đoạn $a = BC$.\r\n\t\tÁp dụng định lí côsin trong $\\Delta ABC$:\r\n\t\t$a^2 = b^2 + c^2 - 2bc\\cos A = 60^2 + 45^2 - 2 \\cdot 60 \\cdot 45 \\cdot \\cos 60^\\circ$\r\n\t\t$a^2 = 3600 + 2025 - 5400 \\cdot \\displaystyle \\frac{1}{2} = 5625 - 2700 = 2925$.\r\n\t\t$\\Rightarrow a = \\sqrt{2925} = 15\\sqrt{13} \\approx 54{,}08\\text{ km}$.\r\n\t\tLàm tròn đến một chữ số sau dấu phẩy, khoảng cách là $54{,}1\\text{ km}$."
+}

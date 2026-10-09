@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3fce684715",
+  "dapAn": "12",
+  "loiGiai": "Quãng đường tàu 1 đi được là $AC = 30 \\cdot 2 = 60\\text{ km}$.\r\n\t\tQuãng đường tàu 2 đi được là $AB = 40 \\cdot 2 = 80\\text{ km}$.\r\n\t\tGóc xen giữa $\\widehat{A} = 60^\\circ$.\r\n\t\tDiện tích tam giác $ABC$:\r\n\t\t$S = \\displaystyle \\frac{1}{2} \\cdot AB \\cdot AC \\cdot \\sin A = \\displaystyle \\frac{1}{2} \\cdot 80 \\cdot 60 \\cdot \\sin 60^\\circ = 2400 \\cdot \\displaystyle \\frac{\\sqrt{3}}{2} = 1200\\sqrt{3}$.\r\n\t\tGiá trị cần tính là $\\displaystyle \\frac{S}{100\\sqrt{3}} = \\displaystyle \\frac{1200\\sqrt{3}}{100\\sqrt{3}} = 12$."
+}

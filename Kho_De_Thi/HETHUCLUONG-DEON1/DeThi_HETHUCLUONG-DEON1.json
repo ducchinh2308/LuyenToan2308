@@ -1,0 +1,225 @@
+{
+  "maDe": "HETHUCLUONG-DEON1",
+  "tenDe": "DECUONGGD-HETHUCLUONG-DEON1",
+  "thoiGian": 90,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_1f45be9095",
+      "ma_goc": "2610-171",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $AB=7, AC=5, BC=8$. Điểm $M$ thuộc cạnh $BC$ sao cho $MB=3MC$. Tính độ dài cạnh $AM$.",
+      "paA": "$AM=\\sqrt{19}$",
+      "paB": "$AM=2\\sqrt{19}$",
+      "paC": "$AM=19$",
+      "paD": "$AM=76$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_709f651887",
+      "ma_goc": "2610-172",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $\\widehat{A}=72^\\circ, \\widehat{B}=83^\\circ$ nội tiếp trong đường tròn có bán kính bằng $9{,}5\\text{ cm}$. Tính độ dài cạnh $AB$? Làm tròn đến hàng đơn vị.",
+      "paA": "$9$",
+      "paB": "$6$",
+      "paC": "$10$",
+      "paD": "$8$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_48c8e4f217",
+      "ma_goc": "2610-173",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $\\widehat{C}=60^\\circ, BC=9\\text{ cm}, AC=7\\text{ cm}$. Tính $\\widehat{A}$?",
+      "paA": "$68^\\circ$",
+      "paB": "$86^\\circ$",
+      "paC": "$27^\\circ$",
+      "paD": "$72^\\circ$"
+    },
+    {
+      "id_Cau": "[0H4H2-3]",
+      "maCau": "q_fdc1b5db68",
+      "ma_goc": "2610-174",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $\\widehat{A}=60^\\circ, AB=7\\text{ cm}, AC=5\\text{ cm}$. Tính diện tích tam giác đã cho",
+      "paA": "$\\displaystyle \\frac{5\\sqrt{3}}{4}\\text{ cm}^2$",
+      "paB": "$\\displaystyle \\frac{35\\sqrt{3}}{2}\\text{ cm}^2$",
+      "paC": "$\\displaystyle \\frac{7\\sqrt{3}}{4}\\text{ cm}^2$",
+      "paD": "$\\displaystyle \\frac{35\\sqrt{3}}{4}\\text{ cm}^2$"
+    },
+    {
+      "id_Cau": "[0H4H2-3]",
+      "maCau": "q_54fa7c8d61",
+      "ma_goc": "2610-175",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $AB=4\\text{ cm}; BC=5\\text{ cm}; \\widehat{ABC}=135^\\circ$. Diện tích tam giác $ABC$ bằng:",
+      "paA": "$5\\sqrt{2}\\text{ cm}^2$",
+      "paB": "$10\\sqrt{2}\\text{ cm}^2$",
+      "paC": "$4\\sqrt{2}\\text{ cm}^2$",
+      "paD": "$20\\sqrt{2}\\text{ cm}^2$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_f8fdae437a",
+      "ma_goc": "2610-176",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $AB=8, BC=9$, góc $\\widehat{B}=60^\\circ$. Độ dài cạnh $AC$ là",
+      "paA": "$AC=\\sqrt{217}$",
+      "paB": "$AC=73$",
+      "paC": "$AC=\\sqrt{109}$",
+      "paD": "$AC=\\sqrt{73}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_5553653225",
+      "ma_goc": "2610-177",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $AB=6\\text{ cm}, BC=7\\text{ cm}, AC=8\\text{ cm}$. Tính $\\cos C$.",
+      "paA": "$\\cos C = \\displaystyle \\frac{1}{4}$",
+      "paB": "$\\cos C = \\displaystyle \\frac{17}{32}$",
+      "paC": "$\\cos C = \\displaystyle \\frac{11}{32}$",
+      "paD": "$\\cos C = \\displaystyle \\frac{11}{16}$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_f922301ce7",
+      "ma_goc": "2610-178",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $AB=4, BC=6, AC=2\\sqrt{7}$. Điểm $M$ thuộc đoạn $BC$ sao cho $MC=2MB$. Tính độ dài $AM$.",
+      "paA": "$4$",
+      "paB": "$3$",
+      "paC": "$3\\sqrt{2}$",
+      "paD": "$2\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[0H4H2-2]",
+      "maCau": "q_9f7cc8d0b5",
+      "ma_goc": "2610-179",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác vuông $ABC$ có $\\widehat{A}=90^\\circ, AC=2AB$ và đường cao $AH=4$. Tính độ dài $AB$.",
+      "paA": "$4$",
+      "paB": "$3\\sqrt{5}$",
+      "paC": "$2\\sqrt{5}$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_8bfe837dd5",
+      "ma_goc": "2610-180",
+      "kieuCau": "TN",
+      "cauDan": "Tháp hải đăng $AB$ có chiều cao là $42$ mét (hình vẽ). Từ vị trí chiếc thuyền $Q$ người ta nhìn thấy tháp dưới góc $\\widehat{BQA}=48^\\circ$. Chiếc thuyền cách chân tháp gần với giá trị nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8bfe837dd5_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$38$ mét",
+      "paB": "$39$ mét",
+      "paC": "$40$ mét",
+      "paD": "$41$ mét"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_7b66bf8a14",
+      "ma_goc": "2610-181",
+      "kieuCau": "TN",
+      "cauDan": "Khoảng cách $AB$ giữa hai toà cao ốc bằng $160\\text{ km}$, khoảng cách từ hai điểm đó đến vệ tinh $C$ viễn thông lần lượt là $420\\text{ km}, 300\\text{ km}$. Góc nhìn từ vệ tinh $C$ đến $A$ và $B$ gần với giá trị nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7b66bf8a14_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$18^\\circ$",
+      "paB": "$19^\\circ$",
+      "paC": "$17^\\circ$",
+      "paD": "$20^\\circ$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_619940a7df",
+      "ma_goc": "2610-182",
+      "kieuCau": "TN",
+      "cauDan": "Hai trạm quan sát ở hai thành phố Đà Nẵng và Nha Trang đồng thời nhìn thấy một vệ tinh với góc nâng lần lượt là $75^\\circ$ và $60^\\circ$. Vệ tinh cách trạm quan sát tại thành phố Đà Nẵng $637\\text{ km}$. Khoảng cách giữa hai thành phố gần với giá trị nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_619940a7df_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$540\\text{ km}$",
+      "paB": "$530\\text{ km}$",
+      "paC": "$510\\text{ km}$",
+      "paD": "$520\\text{ km}$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_d6bb13307d",
+      "ma_goc": "2610-183",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ có các cạnh $a=4, b=5, c=6$ (giả thiết áp dụng cho câu a, b, c). Xét tính đúng sai của các khẳng định sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d6bb13307d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Công thức tính diện tích của $\\Delta ABC$ là $S = \\displaystyle \\frac{abc}{2R}$",
+      "paB": "Diện tích $\\Delta ABC$ bằng $10\\sqrt{3}$",
+      "paC": "Chiều cao hạ từ đỉnh $C$ của $\\Delta ABC$ bằng $\\displaystyle \\frac{10\\sqrt{7}}{7}$",
+      "paD": "Giả sử $CD = h$ là chiều cao của tháp trong đó $C$ là chân tháp. Chọn hai điểm $A, B$ trên mặt đất sao cho ba điểm $A, B, C$ thẳng hàng như hình vẽ. Giả sử $AB = 24\\text{ m}$, $\\widehat{CAD} = 63^\\circ; \\widehat{CBD} = 48^\\circ$. Chiều cao $h$ của khối tháp nhỏ hơn $62\\text{ (m)}$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_d7a6cda1e1",
+      "ma_goc": "2610-184",
+      "kieuCau": "DS",
+      "cauDan": "Một người quan sát đứng cách một cái tháp $10\\text{ (m)}$, nhìn thẳng cái tháp dưới một góc $55^\\circ$ và được phân tích như trong hình. Xét tính đúng sai của các khẳng định sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d7a6cda1e1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Số đo của góc $\\widehat{ADC} = 45^\\circ$",
+      "paB": "Độ dài đoạn $AB$ xấp xỉ bằng $10{,}15\\text{ (m)}$",
+      "paC": "Diện tích $\\Delta ACD$ bằng $100\\text{ (m}^2)$",
+      "paD": "Chiều cao của tháp xấp xỉ bằng $11{,}76\\text{ (m)}$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_6cc6b8ee5e",
+      "ma_goc": "2610-185",
+      "kieuCau": "DS",
+      "cauDan": "Nhà bác An có một khoảng đất trống phía trước nhà là nửa đường tròn bán kính $R = 1\\text{m}$, bác muốn trồng hoa trên diện tích là hình chữ nhật nội tiếp trong nửa đường tròn sao cho một cạnh của hình chữ nhật nằm dọc theo đường kính của đường tròn. Giả sử khoảng đất được mô phỏng như hình vẽ. Xét tính đúng sai của các khẳng định sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6cc6b8ee5e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Độ dài đoạn $OM = 1\\text{ (m)}$",
+      "paB": "Nếu $AM = 0{,}8\\text{ (m)}$ thì diện tích $\\Delta AMO$ bằng $0{,}24\\text{ (m}^2)$",
+      "paC": "Nếu $AM = 0{,}5\\text{ m}$ thì chu vi hình chữ nhật $AMNB$ bằng $1 + 2\\sqrt{3}\\text{ (m)}$ và diện tích đất trồng hoa bằng $\\sqrt{3}\\text{ (m}^2)$",
+      "paD": "Nếu $\\widehat{AOM} = \\alpha$, mảnh đất trồng hoa có diện tích lớn nhất khi $\\alpha = 90^\\circ$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_c9e632c761",
+      "ma_goc": "2610-186",
+      "kieuCau": "DS",
+      "cauDan": "Từ vị trí $A$ người ta quan sát một cây cao (tham khảo hình bên dưới). Biết rằng độ dài $AH = 4\\text{ (m)}; HB = 20\\text{ m}, \\widehat{BAC} = 45^\\circ$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c9e632c761_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Diện tích $\\Delta AHB$ bằng $40\\text{ (m}^2)$",
+      "paB": "Nếu $\\widehat{ACB} = 45^\\circ$ thì độ dài đoạn $AC = 10\\text{ (m)}$",
+      "paC": "Số đo của góc $\\widehat{ABC}$ xấp xỉ $78^\\circ 41'$",
+      "paD": "Chiều cao của cây xấp xỉ bằng $17{,}33\\text{ (m)}$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_5725b8e899",
+      "ma_goc": "2610-187",
+      "kieuCau": "TLN",
+      "cauDan": "Hai chiếc xe cùng xuất phát ở vị trí $A$, đi theo hai hướng tạo với nhau một góc $60^\\circ$. Xe thứ nhất chạy với tốc độ $30\\text{ (km/h)}$, xe thứ hai chạy với tốc độ $40\\text{ (km/h)}$ (tham khảo hình vẽ).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_5725b8e899_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tSau thời gian $1{,}5$ giờ thì khoảng cách của hai xe bằng (kết quả làm tròn đến một chữ số sau dấu phẩy)."
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_b9aed8ef99",
+      "ma_goc": "2610-188",
+      "kieuCau": "TLN",
+      "cauDan": "Bác An cần đo khoảng cách từ một điểm trên bờ sông đến một điểm $B$ ở giữa hồ mà không thể đến trực tiếp được. Bác sử dụng giác kế để chọn điểm $C$ cùng nằm trên bờ với $A$ sao cho $\\widehat{BAC} = 30^\\circ; \\widehat{ACB} = 100^\\circ$ và cạnh $AC = 50\\text{ (m)}$. Tính khoảng cách $AB$ (kết quả làm tròn đến một chữ số sau dấu phẩy)."
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_c844db1ed4",
+      "ma_goc": "2610-189",
+      "kieuCau": "TLN",
+      "cauDan": "Một ô tô muốn đi từ $A$ đến $C$ nhưng giữa $A$ và $C$ là một ngọn núi cao nên ô tô phải đi thành hai đoạn từ $A$ đến $B$ rồi từ $B$ đến $C$, các đoạn đường tạo thành tam giác $ABC$ có $AB = 15\\text{ (km)}, BC = 20\\text{ (km)}$ và $\\widehat{ABC} = 120^\\circ$ (tham khảo hình vẽ bên dưới). Giả sử ô tô chạy $5\\text{ km}$ tốn một lít xăng, giá một lít xăng là $20.000$ đồng. Nếu người ta làm một đoạn đường hầm xuyên núi chạy thẳng từ $A$ đến $C$, khi đó ô tô chạy trên con đường này sẽ tiết kiệm được bao nhiêu nghìn đồng so với chạy trên đường cũ (làm tròn đến hàng đơn vị của nghìn đồng).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c844db1ed4_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_260578be48",
+      "ma_goc": "2610-190",
+      "kieuCau": "TLN",
+      "cauDan": "Trên nóc một tòa nhà có một cột ăngten cao $5\\text{ (m)}$. Từ vị trí quan sát $A$ cao $7\\text{ (m)}$ so với mặt đất, có thể nhìn thấy đỉnh $B$ và chân $C$ của cột ăng-ten dưới góc $50^\\circ$ và $40^\\circ$ so với phương nằm ngang. Tính khoảng cách từ điểm $A$ đến chân $C$ của cột (kết quả làm tròn đến một chữ số sau dấu phẩy)."
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_18100e47e4",
+      "ma_goc": "2610-191",
+      "kieuCau": "TLN",
+      "cauDan": "Một máy bay trực thăng $A$ quan sát hai tàu $B$ và $C$, $B$ cách trực thăng $23{,}8\\text{ km}$ và $C$ cách trực thăng $31{,}9\\text{ km}$. Góc nhìn $\\widehat{BAC}$ từ trực thăng đến hai tàu là $83{,}6^\\circ$ như hình vẽ dưới đây. Tính khoảng cách từ điểm $A$ đến cạnh $BC$ (kết quả làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_18100e47e4_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_0bb688ad7d",
+      "ma_goc": "2610-192",
+      "kieuCau": "TLN",
+      "cauDan": "Hai chiếc tàu thủy cùng xuất phát từ vị trí $A$, đi thẳng theo hai hướng hợp với nhau một góc $60^\\circ$. Tàu thứ nhất chạy với tốc độ $30\\text{ km/h}$, tàu thứ hai chạy với tốc độ $40\\text{ km/h}$. Sau $2\\text{ h}$, tàu thứ nhất ở vị trí $C$, tàu thứ hai ở vị trí $B$ (tham khảo hình vẽ dưới).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0bb688ad7d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $S$ là diện tích của tam giác $ABC$. Tính $\\displaystyle \\frac{S}{100\\sqrt{3}}$."
+    }
+  ]
+}
