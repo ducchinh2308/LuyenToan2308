@@ -1257,15 +1257,32 @@ window.ham_4_9_1_render_danh_sach = function (keyword = '') {
     } else {
         locTrong.forEach((hs, idx) => {
             let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=100`;
+            // htmlTrong += `
+            //     <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f8fff9'" onmouseout="this.style.background='white'">
+            //         <div style="display: flex; align-items: center; gap: 12px;">
+            //             <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #28a745; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            //             <div>
+            //                 <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
+            //                 <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
+            //             </div>
+            //         </div>
+            //         <button onclick="ham_4_9_3_xoa_hs_khoi_lop('${hs.uid}', this)" style="padding: 6px 10px; background: #fff; color: #dc3545; border: 1px dashed #dc3545; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f8d7da'" onmouseout="this.style.background='#fff'" title="Rút học sinh này ra khỏi lớp">
+            //             ✖ Rút tên
+            //         </button>
+            //     </div>
+            // `;
             htmlTrong += `
                 <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s;" onmouseover="this.style.background='#f8fff9'" onmouseout="this.style.background='white'">
-                    <div style="display: flex; align-items: center; gap: 12px;">
+                    
+                    <!-- 🌟 BỌC ONCLICK VÀO ĐÂY ĐỂ MỞ POPUP -->
+                    <div onclick="window.ham_4_9_8_xem_thong_tin_hoc_sinh('${hs.uid}')" style="display: flex; align-items: center; gap: 12px; cursor: pointer; flex: 1;" title="Bấm để xem thông tin chi tiết và cập nhật Avatar">
                         <img src="${avatarUrl}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; border: 2px solid #28a745; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         <div>
                             <b style="color: #155724; font-size: 14px;">${idx + 1}. ${hs.ten}</b>
                             <div style="font-size: 11px; color: #666; margin-top: 3px;">📞 ${hs.sdt || '---'} | 🏫 ${hs.truong || '---'}</div>
                         </div>
                     </div>
+
                     <button onclick="ham_4_9_3_xoa_hs_khoi_lop('${hs.uid}', this)" style="padding: 6px 10px; background: #fff; color: #dc3545; border: 1px dashed #dc3545; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='#f8d7da'" onmouseout="this.style.background='#fff'" title="Rút học sinh này ra khỏi lớp">
                         ✖ Rút tên
                     </button>
@@ -1808,6 +1825,211 @@ window.ham_4_9_6_thuc_thi_tao_hoc_sinh = async function (btnLuu) {
         btnLuu.disabled = false;
     }
 };
+
+// =====================================================================
+// HÀM 4.9.8: XEM CHI TIẾT VÀ CẬP NHẬT THÔNG TIN HỌC SINH TỪ BẢNG
+// =====================================================================
+window.ham_4_9_8_xem_thong_tin_hoc_sinh = async function (uidHocSinh) {
+    // Xóa popup cũ nếu có
+    let modal = document.getElementById('modal-chi-tiet-hs');
+    if (modal) document.body.removeChild(modal);
+
+    modal = document.createElement('div');
+    modal.id = 'modal-chi-tiet-hs';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); animation:fadeIn 0.2s;';
+
+    modal.innerHTML = `<div style="background:#fff; padding:30px; border-radius:12px; font-weight:bold; color:#1a73e8; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">⏳ Đang tải hồ sơ học sinh...</div>`;
+    document.body.appendChild(modal);
+
+    try {
+        // Lấy thông tin từ Supabase để đảm bảo dữ liệu mới nhất
+        const { data: hs, error } = await _supabase
+            .from('hoc_sinh')
+            .select('*')
+            .eq('uid', uidHocSinh)
+            .single();
+
+        if (error || !hs) throw new Error("Không tìm thấy dữ liệu học sinh!");
+
+        let avatarUrl = hs.anh_dai_dien || `https://ui-avatars.com/api/?name=${encodeURIComponent(hs.ten || 'HS')}&background=random&color=fff&size=120`;
+        let trangThaiText = hs.trang_thai === 1 ? '<span style="color:#28a745;">✅ Đang hoạt động</span>' : '<span style="color:#dc3545;">🔒 Đã khóa</span>';
+
+        // Xử lý an toàn chuỗi mật khẩu trước khi nhúng vào HTML attribute
+        let matKhauGoc = (hs.mat_khau || '---').replace(/"/g, '&quot;');
+
+        modal.innerHTML = `
+            <div style="background:#fff; width:90%; max-width:450px; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.3); overflow:hidden; position:relative; display:flex; flex-direction:column;">
+                
+                <!-- HEADER & AVATAR -->
+                <div style="background: linear-gradient(135deg, #1a73e8, #6f42c1); padding: 30px 20px 60px; text-align: center; position: relative;">
+                    <button onclick="document.getElementById('modal-chi-tiet-hs').remove()" style="position:absolute; top:15px; right:15px; background:rgba(255,255,255,0.2); border:none; border-radius:50%; width:30px; height:30px; font-size:16px; font-weight:bold; cursor:pointer; color:#fff; transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">✖</button>
+                    <h2 style="margin:0; color:#fff; font-size: 20px; text-transform: uppercase; letter-spacing: 1px;">Hồ Sơ Học Sinh</h2>
+                </div>
+
+                <div style="text-align: center; margin-top: -50px; position: relative; z-index: 10;">
+                    <div style="position: relative; display: inline-block;">
+                        <img id="chi-tiet-avatar-hs" src="${avatarUrl}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15); background: #f8f9fa;">
+                        
+                        <!-- Nút thay Avatar -->
+                        <button onclick="document.getElementById('input-cap-nhat-avatar').click()" style="position: absolute; bottom: 0; right: 0; background: #ffc107; border: 2px solid #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Cập nhật ảnh đại diện">📷</button>
+                        <input type="file" id="input-cap-nhat-avatar" accept="image/*" style="display: none;" onchange="window.ham_4_9_9_cap_nhat_avatar_ca_nhan(this, '${uidHocSinh}')">
+                    </div>
+                    <h3 style="margin: 10px 0 20px; color: #333; font-size: 22px;">${hs.ten}</h3>
+                </div>
+
+                <!-- THÔNG TIN CHI TIẾT -->
+                <div style="padding: 0 25px 20px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="border-bottom: 1px dashed #eee;">
+                            <td style="padding: 10px 0; color: #6c757d; width: 120px;">☎️ Tên ĐN / SĐT</td>
+                            <td style="padding: 10px 0; font-weight: bold; color: #1a73e8; text-align: right;">${hs.sdt || '---'}</td>
+                        </tr>
+                        
+                        <!-- 🌟 MẬT KHẨU ĐÃ CHUYỂN XUỐNG ĐÂY -->
+                        <tr style="border-bottom: 1px dashed #eee;">
+                            <td style="padding: 10px 0; color: #6c757d;">🔑 Mật khẩu</td>
+                            <td style="padding: 10px 0; text-align: right;">
+                                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+                                    <span id="chi-tiet-mat-khau-hs" data-pass="${matKhauGoc}" style="background:#f1f3f4; padding:2px 8px; border-radius:4px; color:#d35400; font-weight: bold; min-width: 40px; letter-spacing: 2px;">***</span>
+                                    <button onclick="window.ham_4_9_8_toggle_mat_khau(this)" style="background: none; border: none; cursor: pointer; font-size: 16px; padding: 0; outline: none; transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Hiện mật khẩu">👁️</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr style="border-bottom: 1px dashed #eee;">
+                            <td style="padding: 10px 0; color: #6c757d;">🏫 Trường</td>
+                            <td style="padding: 10px 0; font-weight: bold; text-align: right;">${hs.truong || '---'}</td>
+                        </tr>
+                        <tr style="border-bottom: 1px dashed #eee;">
+                            <td style="padding: 10px 0; color: #6c757d;">🎓 Khối Lớp</td>
+                            <td style="padding: 10px 0; font-weight: bold; text-align: right;">Khối ${hs.khoi_lop || '---'}</td>
+                        </tr>
+                        <tr style="border-bottom: 1px dashed #eee;">
+                            <td style="padding: 10px 0; color: #6c757d;">💎 Điểm Tích Lũy</td>
+                            <td style="padding: 10px 0; font-weight: bold; color: #d35400; text-align: right;">${hs.diem_tich_luy || 0}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 0; color: #6c757d;">Trạng thái</td>
+                            <td style="padding: 10px 0; font-weight: bold; text-align: right;">${trangThaiText}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="status-cap-nhat-avatar" style="text-align:center; font-size:13px; color:#28a745; margin-bottom:15px; font-weight:bold; min-height: 20px;"></div>
+
+                <!-- NÚT ĐÓNG -->
+                <div style="padding: 15px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
+                    <button onclick="document.getElementById('modal-chi-tiet-hs').remove()" style="padding: 10px 30px; background: #6c757d; color: #fff; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#5a6268'" onmouseout="this.style.background='#6c757d'">ĐÓNG</button>
+                </div>
+            </div>
+        `;
+
+    } catch (err) {
+        modal.innerHTML = `
+            <div style="background:#fff; padding:30px; border-radius:12px; text-align:center;">
+                <h3 style="color:#dc3545;">❌ Lỗi</h3>
+                <p>${err.message}</p>
+                <button onclick="document.getElementById('modal-chi-tiet-hs').remove()" style="padding: 8px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer;">Đóng</button>
+            </div>
+        `;
+    }
+};
+
+// =====================================================================
+// HÀM 4.9.8.B: BẬT/TẮT HIỂN THỊ MẬT KHẨU
+// =====================================================================
+window.ham_4_9_8_toggle_mat_khau = function (btnElem) {
+    const spanMk = document.getElementById('chi-tiet-mat-khau-hs');
+    if (!spanMk) return;
+
+    if (spanMk.innerText === '***') {
+        // Hiện mật khẩu
+        spanMk.innerText = spanMk.getAttribute('data-pass');
+        spanMk.style.letterSpacing = 'normal';
+        btnElem.innerText = '🙈';
+        btnElem.title = 'Ẩn mật khẩu';
+    } else {
+        // Ẩn mật khẩu
+        spanMk.innerText = '***';
+        spanMk.style.letterSpacing = '2px';
+        btnElem.innerText = '👁️';
+        btnElem.title = 'Hiện mật khẩu';
+    }
+};
+// =====================================================================
+// HÀM 4.9.9: XỬ LÝ NÉN VÀ UPLOAD AVATAR CÁ NHÂN LÊN SUPABASE
+// =====================================================================
+window.ham_4_9_9_cap_nhat_avatar_ca_nhan = async function (inputElem, uidHocSinh) {
+    if (!inputElem.files || inputElem.files.length === 0) return;
+    let file = inputElem.files[0];
+
+    const statusText = document.getElementById('status-cap-nhat-avatar');
+    statusText.style.color = '#f39c12';
+    statusText.innerText = '⏳ Đang nén và tải ảnh lên hệ thống...';
+
+    try {
+        let finalBase64 = null;
+
+        // 1. Dùng bộ cắt ảnh có giao diện UI (nếu hệ thống đã import file Khối 20)
+        if (typeof window.ham_20_25_xu_ly_mang_anh_dau_vao === 'function') {
+            let processedFiles = await window.ham_20_25_xu_ly_mang_anh_dau_vao([file]);
+            if (processedFiles && processedFiles.length > 0) {
+                let fileSauKhiCat = processedFiles[0];
+                finalBase64 = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(fileSauKhiCat);
+                });
+            }
+        }
+        // 2. Dự phòng: Dùng hàm nén tàng hình tốc độ cao (Khối 4)
+        else if (typeof window.ham_4_22_nen_anh_base64 === 'function') {
+            finalBase64 = await window.ham_4_22_nen_anh_base64(file);
+        } else {
+            throw new Error("Không tìm thấy bộ công cụ nén ảnh trên hệ thống!");
+        }
+
+        if (!finalBase64) throw new Error("Thao tác chọn ảnh đã bị hủy.");
+
+        // 3. Hiển thị ngay lên màn hình để thầy xem trước
+        document.getElementById('chi-tiet-avatar-hs').src = finalBase64;
+
+        // 4. Bắn lên Supabase
+        const { error } = await _supabase
+            .from('hoc_sinh')
+            .update({ anh_dai_dien: finalBase64 })
+            .eq('uid', uidHocSinh);
+
+        if (error) throw error;
+
+        // 5. Cập nhật lại vào Biến State tạm (để khi tắt popup, bảng chính tự động load lại ảnh mới)
+        let hsTrongList = window.ChiTietLopState.dsTrong.find(h => h.uid === uidHocSinh);
+        if (hsTrongList) hsTrongList.anh_dai_dien = finalBase64;
+
+        let hsNgoaiList = window.ChiTietLopState.dsNgoai.find(h => h.uid === uidHocSinh);
+        if (hsNgoaiList) hsNgoaiList.anh_dai_dien = finalBase64;
+
+        // Đồng bộ lại bảng nếu có
+        let kw = document.getElementById('input-tim-hs-chi-tiet')?.value || '';
+        if (typeof window.ham_4_9_1_render_danh_sach === 'function') {
+            window.ham_4_9_1_render_danh_sach(kw);
+        }
+
+        statusText.style.color = '#28a745';
+        statusText.innerText = '✅ Cập nhật ảnh đại diện thành công!';
+
+        setTimeout(() => { statusText.innerText = ''; }, 3000);
+
+    } catch (e) {
+        statusText.style.color = '#dc3545';
+        statusText.innerText = '❌ Lỗi: ' + e.message;
+        console.error(e);
+    } finally {
+        inputElem.value = ''; // Reset thẻ input
+    }
+};
+
+
 // ==============================================================================
 // PHẦN C: CHỈNH SỬA VÀ XÓA LỚP HỌC
 // ==============================================================================
