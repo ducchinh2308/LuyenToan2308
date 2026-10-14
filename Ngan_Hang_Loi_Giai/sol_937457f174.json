@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_937457f174",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Theo định lí côsin, công thức $c^2=a^2+b^2-2ab\\cos C$ là công thức chuẩn. Khẳng định này Đúng.\r\n\t\t\t\\itemch Áp dụng định lí côsin: $c^2 = 3^2 + 4^2 - 2 \\cdot 3 \\cdot 4 \\cdot \\cos 30^\\circ = 25 - 24 \\cdot \\displaystyle \\frac{\\sqrt{3}}{2} = 25 - 12\\sqrt{3} \\approx 4{,}215 \\Rightarrow c \\approx 2{,}05\\text{ cm}$. Khẳng định $c \\approx 3{,}05\\text{ (cm)}$ là Sai.\r\n\t\t\t\\itemch Áp dụng hệ quả định lí côsin: $\\cos A = \\displaystyle \\frac{b^2+c^2-a^2}{2bc} = \\displaystyle \\frac{4^2 + (25-12\\sqrt{3}) - 3^2}{2 \\cdot 4 \\cdot c} = \\displaystyle \\frac{32-12\\sqrt{3}}{8c} \\approx \\displaystyle \\frac{11{,}215}{16{,}424} \\approx 0{,}68$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Từ $\\cos A \\approx 0{,}6828 \\Rightarrow \\widehat{A} \\approx 46{,}9^\\circ$. Khẳng định $\\widehat{A} \\approx 77{,}2^\\circ$ là Sai.\r\n\t\t\\end{itemchoice}"
+}

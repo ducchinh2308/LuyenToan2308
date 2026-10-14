@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_06d132b847",
+  "dapAn": "D",
+  "loiGiai": "Góc $\\widehat{A} = 180^\\circ - (\\widehat{B} + \\widehat{C}) = 180^\\circ - (56^\\circ 13' + 71^\\circ) = 52^\\circ 47'$.\r\n\t\tÁp dụng định lí sin:\r\n\t\t$\\displaystyle \\frac{a}{\\sin A} = \\displaystyle \\frac{c}{\\sin C} \\Rightarrow c = \\displaystyle \\frac{a \\cdot \\sin C}{\\sin A} = \\displaystyle \\frac{16{,}8 \\cdot \\sin 71^\\circ}{\\sin 52^\\circ 47'} \\approx 19{,}9$."
+}

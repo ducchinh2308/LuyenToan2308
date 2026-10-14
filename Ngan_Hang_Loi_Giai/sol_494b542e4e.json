@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_494b542e4e",
+  "dapAn": "TTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đây là hệ quả trực tiếp của định lí côsin. Khẳng định này Đúng.\r\n\t\t\t\\itemch Theo định lí côsin: $a^2 = b^2 + c^2 - 2bc \\cos A$. Góc $\\widehat{A}=90^\\circ \\Leftrightarrow \\cos A = 0 \\Leftrightarrow a^2 = b^2+c^2$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Góc $\\widehat{A}$ nhọn $\\Leftrightarrow \\cos A > 0 \\Leftrightarrow \\displaystyle \\frac{b^2+c^2-a^2}{2bc} > 0 \\Leftrightarrow b^2+c^2-a^2 > 0 \\Leftrightarrow a^2 < b^2+c^2$. Khẳng định $a^2 > b^2+c^2$ là Sai.\r\n\t\t\t\\itemch Góc $\\widehat{A}$ tù $\\Leftrightarrow \\cos A < 0 \\Leftrightarrow \\displaystyle \\frac{b^2+c^2-a^2}{2bc} < 0 \\Leftrightarrow b^2+c^2-a^2 < 0 \\Leftrightarrow a^2 > b^2+c^2$. Khẳng định $a^2 < b^2+c^2$ là Sai.\r\n\t\t\\end{itemchoice}"
+}

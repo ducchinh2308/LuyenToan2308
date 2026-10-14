@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3c2f19947e",
+  "dapAn": "B",
+  "loiGiai": "Trong tam giác $ABC$, áp dụng định lí côsin:\r\n\t\t$AB^2 = CA^2 + CB^2 - 2 \\cdot CA \\cdot CB \\cdot \\cos C$\r\n\t\t$AB^2 = 250^2 + 120^2 - 2 \\cdot 250 \\cdot 120 \\cdot \\cos(78^\\circ 24')$\r\n\t\t$AB^2 \\approx 62500 + 14400 - 60000 \\cdot 0{,}201077 \\approx 76900 - 12064{,}6 = 64835{,}4$.\r\n\t\t$\\Rightarrow AB = \\sqrt{64835{,}4} \\approx 254{,}6m$.\r\n\t\tGiá trị này gần nhất với $255m$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bebd9089f0",
+  "dapAn": "C",
+  "loiGiai": "Tam giác có độ dài ba cạnh $5, 12, 13$ là tam giác vuông (do $5^2+12^2=13^2$).\r\n\t\tBán kính đường tròn ngoại tiếp tam giác vuông bằng nửa độ dài cạnh huyền:\r\n\t\t$R = \\displaystyle \\frac{13}{2}$."
+}

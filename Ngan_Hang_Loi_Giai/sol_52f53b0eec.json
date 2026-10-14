@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_52f53b0eec",
+  "dapAn": "A",
+  "loiGiai": "Ta có cạnh $c = AB = 117$. Cạnh cần tính là $b = AC$.\r\n\t\tGóc $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B}) = 180^\\circ - (68^\\circ 12' + 34^\\circ 44') = 77^\\circ 4'$.\r\n\t\tÁp dụng định lí sin:\r\n\t\t$\\displaystyle \\frac{b}{\\sin B} = \\displaystyle \\frac{c}{\\sin C} \\Rightarrow AC = \\displaystyle \\frac{AB \\cdot \\sin B}{\\sin C} = \\displaystyle \\frac{117 \\cdot \\sin 34^\\circ 44'}{\\sin 77^\\circ 4'} \\approx 68{,}39$.\r\n\t\tGiá trị gần nhất là $68$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bfb1f90df5",
+  "dapAn": "B",
+  "loiGiai": "Nửa chu vi tam giác: $p = \\displaystyle \\frac{4+6+8}{2} = 9$.\r\n\t\tÁp dụng công thức Heron:\r\n\t\t$S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{9(9-4)(9-6)(9-8)} = \\sqrt{9 \\cdot 5 \\cdot 3 \\cdot 1} = \\sqrt{135} = 3\\sqrt{15}$."
+}

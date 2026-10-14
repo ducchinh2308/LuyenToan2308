@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_78f9bec5ff",
+  "dapAn": "0,33",
+  "loiGiai": "Xét $\\Delta BDE$ và $\\Delta BAC$:\r\n\t\tVì $AD \\perp BC$ và $CE \\perp AB$ nên $\\Delta ABD \\sim \\Delta CBE$ (g-g) $\\Rightarrow \\displaystyle \\frac{BD}{BE} = \\displaystyle \\frac{AB}{BC} \\Rightarrow \\displaystyle \\frac{BD}{AB} = \\displaystyle \\frac{BE}{BC}$.\r\n\t\tDo đó $\\Delta BDE \\sim \\Delta BAC$ (c-g-c).\r\n\t\tTỉ số đồng dạng $k = \\displaystyle \\frac{BD}{AB} = \\cos B$ (vì $\\Delta ABD$ vuông tại $D$).\r\n\t\tTỉ số diện tích hai tam giác đồng dạng bằng bình phương tỉ số đồng dạng:\r\n\t\t$\\displaystyle \\frac{S_{BDE}}{S_{ABC}} = k^2 \\Rightarrow \\displaystyle \\frac{1}{9} = \\cos^2 B$.\r\n\t\tVì $\\widehat{B}$ nhọn nên $\\cos B > 0 \\Rightarrow \\cos B = \\displaystyle \\frac{1}{3} \\approx 0{,}33$.\r\n\t\t(Dữ kiện $DE = 2\\sqrt{2}$ là thừa, dùng để tính $AC$ nếu cần: $AC = \\displaystyle \\frac{DE}{k} = 3 \\cdot 2\\sqrt{2} = 6\\sqrt{2}$)."
+}

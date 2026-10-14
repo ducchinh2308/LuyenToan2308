@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_0e4e9c8f3c",
+  "dapAn": "7,41",
+  "loiGiai": "Ta có $c=8, b=9, a=10$.\r\n\t\tÁp dụng hệ quả định lí côsin trong tam giác $ABC$ để tính $\\cos B$:\r\n\t\t$\\cos B = \\displaystyle \\frac{AB^2+BC^2-AC^2}{2 \\cdot AB \\cdot BC} = \\displaystyle \\frac{8^2+10^2-9^2}{2 \\cdot 8 \\cdot 10} = \\displaystyle \\frac{64+100-81}{160} = \\displaystyle \\frac{83}{160}$.\r\n\t\tÁp dụng định lí côsin trong tam giác $ABM$:\r\n\t\t$AM^2 = AB^2 + BM^2 - 2 \\cdot AB \\cdot BM \\cdot \\cos B = 8^2 + 7^2 - 2 \\cdot 8 \\cdot 7 \\cdot \\displaystyle \\frac{83}{160} = 64 + 49 - 112 \\cdot \\displaystyle \\frac{83}{160} = 113 - 58{,}1 = 54{,}9$.\r\n\t\t$\\Rightarrow AM = \\sqrt{54{,}9} \\approx 7{,}409$.\r\n\t\tLàm tròn đến hàng phần trăm, $AM \\approx 7{,}41$."
+}

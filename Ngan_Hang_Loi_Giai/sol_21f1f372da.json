@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_21f1f372da",
+  "dapAn": "B",
+  "loiGiai": "Sửa giả thiết $h=8$ thành cạnh $b=8$. \r\n\t\tTa có $a^2 + b^2 = 6^2 + 8^2 = 36 + 64 = 100 = 10^2 = c^2$.\r\n\t\tDo đó tam giác $ABC$ vuông tại $C$.\r\n\t\tDiện tích tam giác là: $S = \\displaystyle \\frac{1}{2}ab = \\displaystyle \\frac{1}{2} \\cdot 6 \\cdot 8 = 24$."
+}

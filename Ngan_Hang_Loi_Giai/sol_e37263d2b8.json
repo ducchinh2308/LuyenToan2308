@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e37263d2b8",
+  "dapAn": "2,08",
+  "loiGiai": "Ta có $S = \\displaystyle \\frac{1}{2}ab\\sin C \\Leftrightarrow 3\\sqrt{3} = \\displaystyle \\frac{1}{2} \\cdot 3 \\cdot 4 \\cdot \\sin C = 6\\sin C \\Rightarrow \\sin C = \\displaystyle \\frac{\\sqrt{3}}{2}$.\r\n\t\tVì tam giác $ABC$ nhọn nên $\\widehat{C} < 90^\\circ \\Rightarrow \\widehat{C} = 60^\\circ$.\r\n\t\tTheo định lí côsin:\r\n\t\t$c^2 = a^2 + b^2 - 2ab\\cos C = 3^2 + 4^2 - 2 \\cdot 3 \\cdot 4 \\cdot \\cos 60^\\circ = 9 + 16 - 24 \\cdot \\displaystyle \\frac{1}{2} = 25 - 12 = 13 \\Rightarrow c = \\sqrt{13}$.\r\n\t\tBán kính đường tròn ngoại tiếp $R$:\r\n\t\tÁp dụng $S = \\displaystyle \\frac{abc}{4R} \\Rightarrow R = \\displaystyle \\frac{abc}{4S} = \\displaystyle \\frac{3 \\cdot 4 \\cdot \\sqrt{13}}{4 \\cdot 3\\sqrt{3}} = \\displaystyle \\frac{\\sqrt{13}}{\\sqrt{3}} \\approx 2{,}0816$.\r\n\t\t(Hoặc $R = \\displaystyle \\frac{c}{2\\sin C} = \\displaystyle \\frac{\\sqrt{13}}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\displaystyle \\frac{\\sqrt{13}}{\\sqrt{3}}$).\r\n\t\tLàm tròn đến hàng phần trăm, $R \\approx 2{,}08$."
+}

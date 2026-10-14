@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fd35c834c3",
+  "dapAn": "A",
+  "loiGiai": "Áp dụng định lí côsin trong tam giác $ABC$:\r\n\t\t$a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2 \\cdot 6 \\cdot 8 \\cdot \\cos 60^\\circ = 36 + 64 - 96 \\cdot \\displaystyle \\frac{1}{2} = 100 - 48 = 52$.\r\n\t\t$\\Rightarrow a = \\sqrt{52} = 2\\sqrt{13}$."
+}

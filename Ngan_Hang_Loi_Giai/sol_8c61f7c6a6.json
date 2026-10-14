@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8c61f7c6a6",
+  "dapAn": "4,95",
+  "loiGiai": "Diện tích tam giác $ABC$: $S = \\displaystyle \\frac{1}{2} \\cdot AB \\cdot AC \\cdot \\sin A = \\displaystyle \\frac{1}{2} \\cdot 8 \\cdot 5 \\cdot \\sin 60^\\circ = 20 \\cdot \\displaystyle \\frac{\\sqrt{3}}{2} = 10\\sqrt{3}$.\r\n\t\tCạnh $BC$ theo định lí côsin:\r\n\t\t$BC^2 = AB^2 + AC^2 - 2 \\cdot AB \\cdot AC \\cdot \\cos A = 8^2 + 5^2 - 2 \\cdot 8 \\cdot 5 \\cdot \\cos 60^\\circ = 64 + 25 - 80 \\cdot \\displaystyle \\frac{1}{2} = 89 - 40 = 49$.\r\n\t\t$\\Rightarrow BC = 7$.\r\n\t\tMặt khác, $S = \\displaystyle \\frac{1}{2} \\cdot BC \\cdot AH \\Rightarrow AH = \\displaystyle \\frac{2S}{BC} = \\displaystyle \\frac{2 \\cdot 10\\sqrt{3}}{7} = \\displaystyle \\frac{20\\sqrt{3}}{7} \\approx 4{,}948$.\r\n\t\tLàm tròn đến hàng phần trăm, $AH \\approx 4{,}95$."
+}

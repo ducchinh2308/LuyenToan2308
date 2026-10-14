@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a72fdcad6c",
+  "dapAn": "42",
+  "loiGiai": "Gọi $S$ là diện tích tam giác $ABC$.\r\n\t\tBa cạnh là $c=15, a=18, b=27$.\r\n\t\tNửa chu vi $p = \\displaystyle \\frac{15+18+27}{2} = 30$.\r\n\t\tÁp dụng công thức Heron:\r\n\t\t$S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{30(30-18)(30-27)(30-15)} = \\sqrt{30 \\cdot 12 \\cdot 3 \\cdot 15} = \\sqrt{16200} = 90\\sqrt{2}$.\r\n\t\tDiện tích tam giác $GBC$ bằng $\\displaystyle \\frac{1}{3}$ diện tích tam giác $ABC$ (tính chất trọng tâm).\r\n\t\t$S_{GBC} = \\displaystyle \\frac{1}{3}S = \\displaystyle \\frac{1}{3} \\cdot 90\\sqrt{2} = 30\\sqrt{2} \\approx 42{,}426$.\r\n\t\tLàm tròn đến hàng đơn vị, $S_{GBC} \\approx 42$."
+}

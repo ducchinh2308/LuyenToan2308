@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_19dba06f07",
+  "dapAn": "D",
+  "loiGiai": "Trong tam giác $ABC$, áp dụng định lí côsin:\r\n\t\t$AB^2 = CA^2 + CB^2 - 2 \\cdot CA \\cdot CB \\cdot \\cos C$\r\n\t\t$AB^2 = 200^2 + 180^2 - 2 \\cdot 200 \\cdot 180 \\cdot \\cos(56^\\circ 16')$\r\n\t\t$AB^2 \\approx 40000 + 32400 - 72000 \\cdot 0{,}5553 \\approx 72400 - 39981{,}6 = 32418{,}4$.\r\n\t\t$\\Rightarrow AB = \\sqrt{32418{,}4} \\approx 180{,}05m$.\r\n\t\tGiá trị này gần nhất với $180m$."
+}

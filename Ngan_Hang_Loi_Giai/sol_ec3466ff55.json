@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ec3466ff55",
+  "dapAn": "A",
+  "loiGiai": "Vì $5^2 + 12^2 = 25 + 144 = 169 = 13^2$ nên đây là tam giác vuông.\r\n\t\tBán kính đường tròn nội tiếp tam giác vuông được tính bằng công thức:\r\n\t\t$r = \\displaystyle \\frac{a+b-c}{2} = \\displaystyle \\frac{5+12-13}{2} = \\displaystyle \\frac{4}{2} = 2$."
+}

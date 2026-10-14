@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c7f0ec56ab",
+  "dapAn": "C",
+  "loiGiai": "Sau $2$ giờ, quãng đường tàu thứ nhất đi được là: $AC = 30 \\cdot 2 = 60\\text{ km}$.\r\n\t\tQuãng đường tàu thứ hai đi được là: $AB = 40 \\cdot 2 = 80\\text{ km}$.\r\n\t\tGóc hợp bởi hai hướng là $\\widehat{A} = 60^\\circ$. Khoảng cách hai tàu là $BC$.\r\n\t\tÁp dụng định lí côsin:\r\n\t\t$BC^2 = AC^2 + AB^2 - 2 \\cdot AC \\cdot AB \\cdot \\cos A = 60^2 + 80^2 - 2 \\cdot 60 \\cdot 80 \\cdot \\cos 60^\\circ$\r\n\t\t$BC^2 = 3600 + 6400 - 9600 \\cdot \\displaystyle \\frac{1}{2} = 10000 - 4800 = 5200$.\r\n\t\t$\\Rightarrow BC = \\sqrt{5200} = 20\\sqrt{13}\\text{ km}$."
+}

@@ -1,0 +1,225 @@
+{
+  "maDe": "DE ON HE THUC LUONG-DECUONGGIADINH-DE SO 2",
+  "tenDe": "de on he thuc luong-decuonggiadinh-de so 2",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0H4V2-1]",
+      "maCau": "q_06594bdedf",
+      "ma_goc": "2610-193",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\Delta ABC$ có $b=6, c=8, \\widehat{A}=60^\\circ$. Độ dài cạnh $a$ là:",
+      "paA": "$2\\sqrt{13}$",
+      "paB": "$3\\sqrt{12}$",
+      "paC": "$2\\sqrt{37}$",
+      "paD": "$\\sqrt{20}$"
+    },
+    {
+      "id_Cau": "[0H4H2-3]",
+      "maCau": "q_325c10c2cd",
+      "ma_goc": "2610-194",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\Delta ABC$ có $a=6, h=8, c=10$. Diện tích $S$ của tam giác trên là:\r\n\t(Chú ý: Theo bộ ba số Pytago, tam giác có ba cạnh 6, 8, 10 là tam giác vuông. Có thể đề in nhầm $h=8$ thành $b=8$. Ta sẽ giải theo giả thiết $b=8$).",
+      "paA": "$48$",
+      "paB": "$24$",
+      "paC": "$12$",
+      "paD": "$30$"
+    },
+    {
+      "id_Cau": "[0H4V2-3]",
+      "maCau": "q_5ef57182c9",
+      "ma_goc": "2610-195",
+      "kieuCau": "TN",
+      "cauDan": "Một tam giác có ba cạnh là $52, 56, 60$. Bán kính đường tròn ngoại tiếp là:",
+      "paA": "$\\displaystyle \\frac{65}{8}$",
+      "paB": "$40$",
+      "paC": "$32{,}5$",
+      "paD": "$\\displaystyle \\frac{65}{4}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_beb8f73747",
+      "ma_goc": "2610-196",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $a=16{,}8; \\widehat{B}=56^\\circ 13'; \\widehat{C}=71^\\circ$. Tính độ dài cạnh $c$ (chính xác đến hàng phần chục)?",
+      "paA": "$29{,}9$",
+      "paB": "$14{,}1$",
+      "paC": "$17{,}5$",
+      "paD": "$19{,}9$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_805094eb9a",
+      "ma_goc": "2610-197",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $\\widehat{A}=68^\\circ 12', \\widehat{B}=34^\\circ 44', AB=117$. Độ dài đoạn $AC$ gần nhất với giá trị nào sau đây?",
+      "paA": "$68$",
+      "paB": "$168$",
+      "paC": "$118$",
+      "paD": "$200$"
+    },
+    {
+      "id_Cau": "[0H4H2-3]",
+      "maCau": "q_ed806bb0df",
+      "ma_goc": "2610-198",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác với ba cạnh là $5; 12; 13$ có bán kính đường tròn nội tiếp tam giác đó bằng bao nhiêu?",
+      "paA": "$2$",
+      "paB": "$2\\sqrt{2}$",
+      "paC": "$2\\sqrt{3}$",
+      "paD": "$3$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_52a17c0fdf",
+      "ma_goc": "2610-199",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác với ba cạnh là $5; 12; 13$ có bán kính đường tròn ngoại tiếp là?",
+      "paA": "$6$",
+      "paB": "$8$",
+      "paC": "$\\displaystyle \\frac{13}{2}$",
+      "paD": "$\\displaystyle \\frac{11}{2}$"
+    },
+    {
+      "id_Cau": "[0H4H2-3]",
+      "maCau": "q_8e459f8356",
+      "ma_goc": "2610-200",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $a=4, b=6, c=8$. Khi đó diện tích của tam giác là:",
+      "paA": "$9\\sqrt{15}$",
+      "paB": "$3\\sqrt{15}$",
+      "paC": "$105$",
+      "paD": "$\\displaystyle \\frac{2}{3}\\sqrt{15}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_0886770c73",
+      "ma_goc": "2610-201",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $\\widehat{A}=60^\\circ, a=10, r=\\displaystyle \\frac{5\\sqrt{3}}{3}$, bán kính đường tròn ngoại tiếp tam giác $ABC$ là:",
+      "paA": "$R=\\displaystyle \\frac{\\sqrt{3}}{3}$",
+      "paB": "$R=\\displaystyle \\frac{4\\sqrt{3}}{3}$",
+      "paC": "$R=\\displaystyle \\frac{8\\sqrt{3}}{3}$",
+      "paD": "$R=\\displaystyle \\frac{10\\sqrt{3}}{3}$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_dabf5d6bf1",
+      "ma_goc": "2610-202",
+      "kieuCau": "TN",
+      "cauDan": "Khoảng cách từ $A$ đến $B$ không thể đo trực tiếp được vì phải qua một đầm lầy. Người ta xác định được một điểm $C$ mà từ đó có thể nhìn được $A$ và $B$ dưới một góc $78^\\circ 24'$. Biết $CA=250m, CB=120m$. Khoảng cách $AB$ gần nhất với kết quả nào sau đây?",
+      "paA": "$266m$",
+      "paB": "$255m$",
+      "paC": "$166m$",
+      "paD": "$298m$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_96b1d044f7",
+      "ma_goc": "2610-203",
+      "kieuCau": "TN",
+      "cauDan": "Khoảng cách từ $A$ đến $B$ không thể đo trực tiếp được vì phải qua một đầm lầy. Người ta xác định được một điểm $C$ mà từ đó có thể nhìn được $A$ và $B$ dưới một góc $56^\\circ 16'$. Biết $CA=200m, CB=180m$. Khoảng cách $AB$ gần nhất với kết quả nào sau đây?",
+      "paA": "$163m$",
+      "paB": "$224m$",
+      "paC": "$112m$",
+      "paD": "$180m$"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_4a63cdcb0c",
+      "ma_goc": "2610-204",
+      "kieuCau": "TN",
+      "cauDan": "Hai chiếc tàu thuỷ cùng xuất phát từ vị trí $A$, đi thẳng theo hai hướng tạo với nhau một góc $60^\\circ$. Tàu thứ nhất chạy với tốc độ $30\\text{ km/h}$, tàu thứ hai chạy với tốc độ $40\\text{ km/h}$. Hỏi sau 2 giờ hai tàu cách nhau bao nhiêu $km$?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4a63cdcb0c_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$13$",
+      "paB": "$15\\sqrt{13}$",
+      "paC": "$20\\sqrt{13}$",
+      "paD": "$15$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_374b311a44",
+      "ma_goc": "2610-205",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ biết $a=3\\text{ cm}, b=4\\text{ cm}, \\widehat{C}=30^\\circ$. Khi đó:",
+      "paA": "$c^2=a^2+b^2-2ab\\cos C$",
+      "paB": "$c \\approx 3{,}05\\text{ (cm)}$ (Làm tròn đến hàng phần trăm)",
+      "paC": "$\\cos A \\approx 0{,}68$ (Làm tròn đến hàng phần trăm)",
+      "paD": "$\\widehat{A} \\approx 77{,}2^\\circ$ (Làm tròn đến hàng phần chục của độ)"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_7b1157f60d",
+      "ma_goc": "2610-206",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ có $BC=a, CA=b, AB=c$. Khi đó:",
+      "paA": "$\\cos A = \\displaystyle \\frac{b^2+c^2-a^2}{2bc}$",
+      "paB": "Góc $A$ vuông khi và chỉ khi $a^2 = b^2 + c^2$",
+      "paC": "Góc $A$ nhọn khi và chỉ khi $a^2 > b^2 + c^2$",
+      "paD": "Góc $A$ tù khi và chỉ khi $a^2 < b^2 + c^2$"
+    },
+    {
+      "id_Cau": "[0H4V2-1]",
+      "maCau": "q_ba62dca769",
+      "ma_goc": "2610-207",
+      "kieuCau": "DS",
+      "cauDan": "Cho $\\Delta ABC$ có $\\widehat{A}=135^\\circ, \\widehat{C}=15^\\circ$ và $b=12$. Khi đó:",
+      "paA": "$\\widehat{B} = 30^\\circ$",
+      "paB": "$a = 12\\sqrt{2}$",
+      "paC": "$c \\approx 8{,}21$ (Làm tròn đến hàng phần trăm)",
+      "paD": "$R = 15$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_9e48488e9c",
+      "ma_goc": "2610-208",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$. Khi đó:",
+      "paA": "$a = b\\cos C + c\\cos B$",
+      "paB": "$\\sin A = \\sin B\\cos C + \\sin C\\cos B$",
+      "paC": "$h_a = 2R\\sin B\\sin C$",
+      "paD": "$b^2 - c^2 = a(b\\cos C - c\\cos B)$"
+    },
+    {
+      "id_Cau": "[0H4V2-2]",
+      "maCau": "q_bacf9da796",
+      "ma_goc": "2610-209",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$, có $AB=8, AC=9, BC=10$. Một điểm $M$ nằm trên cạnh $BC$ sao cho $BM=7$. Tính độ dài đoạn thẳng $AM$ (làm tròn đến hàng phần trăm)."
+    },
+    {
+      "id_Cau": "[0H4V2-3]",
+      "maCau": "q_d2d4c9c795",
+      "ma_goc": "2610-210",
+      "kieuCau": "TLN",
+      "cauDan": "Cho $\\Delta ABC$ có $AB=8, AC=5, \\widehat{BAC}=60^\\circ$. Tính chiều cao $AH$ của $\\Delta ABC$ (làm tròn đến hàng phần trăm)."
+    },
+    {
+      "id_Cau": "[0H4V2-3]",
+      "maCau": "q_8a687a57b3",
+      "ma_goc": "2610-211",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác nhọn $ABC$ có $a=3, b=4$ và diện tích $S=3\\sqrt{3}$. Tính bán kính $R$ của đường tròn ngoại tiếp tam giác đó (làm tròn đến hàng phần trăm)."
+    },
+    {
+      "id_Cau": "[0H4V2-3]",
+      "maCau": "q_d7605e9ebf",
+      "ma_goc": "2610-212",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$ có trọng tâm $G$ và độ dài ba cạnh $AB, BC, CA$ lần lượt là $15, 18, 27$. Tính diện tích tam giác $GBC$ (làm tròn đến hàng đơn vị)."
+    },
+    {
+      "id_Cau": "[0H4V2-3]",
+      "maCau": "q_3a97fcff8d",
+      "ma_goc": "2610-213",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$ có góc $B$ nhọn, $AD$ và $CE$ là hai đường cao. Biết rằng $S_{ABC} = 9S_{BDE}$ và $DE = 2\\sqrt{2}$. Tính $\\cos B$ (làm tròn đến hàng phần trăm)."
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_df537a5a01",
+      "ma_goc": "2610-214",
+      "kieuCau": "TLN",
+      "cauDan": "Để đo khoảng cách từ một điểm $A$ trên bờ sông đến gốc cây $C$ trên cù lao giữa sông, người ta chọn một điểm $B$ cùng ở trên bờ với $A$ sao cho từ $A$ và $B$ có thể nhìn thấy điểm $C$. Ta đo được khoảng cách $AB = 40\\text{ m}, \\widehat{CAB} = 45^\\circ, \\widehat{CBA} = 70^\\circ$. Vậy sau khi đo đạc và tính toán khoảng cách $AC$ bằng bao nhiêu mét? (làm tròn đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_df537a5a01_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

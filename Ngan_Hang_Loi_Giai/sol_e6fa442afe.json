@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e6fa442afe",
+  "dapAn": "D",
+  "loiGiai": "Dữ kiện $r = \\displaystyle \\frac{5\\sqrt{3}}{3}$ là thừa. \r\n\t\tÁp dụng định lí sin, ta có:\r\n\t\t$\\displaystyle \\frac{a}{\\sin A} = 2R \\Rightarrow R = \\displaystyle \\frac{a}{2\\sin A} = \\displaystyle \\frac{10}{2 \\cdot \\sin 60^\\circ} = \\displaystyle \\frac{10}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\displaystyle \\frac{10}{\\sqrt{3}} = \\displaystyle \\frac{10\\sqrt{3}}{3}$."
+}

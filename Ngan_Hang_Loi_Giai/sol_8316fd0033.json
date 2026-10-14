@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8316fd0033",
+  "dapAn": "C",
+  "loiGiai": "Nửa chu vi của tam giác: $p = \\displaystyle \\frac{52+56+60}{2} = 84$.\r\n\t\tDiện tích tam giác theo công thức Heron:\r\n\t\t$S = \\sqrt{84(84-52)(84-56)(84-60)} = \\sqrt{84 \\cdot 32 \\cdot 28 \\cdot 24} = 1344$.\r\n\t\tBán kính đường tròn ngoại tiếp:\r\n\t\t$R = \\displaystyle \\frac{abc}{4S} = \\displaystyle \\frac{52 \\cdot 56 \\cdot 60}{4 \\cdot 1344} = \\displaystyle \\frac{174720}{5376} = 32{,}5$."
+}

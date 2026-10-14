@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8dcbd59eec",
+  "dapAn": "TTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng ba góc trong tam giác bằng $180^\\circ$ nên $\\widehat{B} = 180^\\circ - (135^\\circ + 15^\\circ) = 30^\\circ$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Áp dụng định lí sin: $\\displaystyle \\frac{a}{\\sin A} = \\displaystyle \\frac{b}{\\sin B} \\Rightarrow a = \\displaystyle \\frac{12 \\cdot \\sin 135^\\circ}{\\sin 30^\\circ} = \\displaystyle \\frac{12 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{1}{2}} = 12\\sqrt{2}$. Khẳng định này Đúng.\r\n\t\t\t\\itemch Áp dụng định lí sin: $\\displaystyle \\frac{c}{\\sin C} = \\displaystyle \\frac{b}{\\sin B} \\Rightarrow c = \\displaystyle \\frac{12 \\cdot \\sin 15^\\circ}{\\sin 30^\\circ} = 24 \\cdot \\sin 15^\\circ \\approx 6{,}21$. Khẳng định $c \\approx 8{,}21$ là Sai.\r\n\t\t\t\\itemch Bán kính đường tròn ngoại tiếp $R = \\displaystyle \\frac{b}{2\\sin B} = \\displaystyle \\frac{12}{2 \\cdot \\sin 30^\\circ} = 12$. Khẳng định $R = 15$ là Sai.\r\n\t\t\\end{itemchoice}"
+}

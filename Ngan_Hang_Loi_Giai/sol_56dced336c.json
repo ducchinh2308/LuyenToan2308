@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_56dced336c",
+  "dapAn": "41,5",
+  "loiGiai": "Trong tam giác $ABC$, ta có $\\widehat{A} = 45^\\circ, \\widehat{B} = 70^\\circ$ và $c = AB = 40\\text{ m}$.\r\n\t\tGóc $\\widehat{C} = 180^\\circ - (45^\\circ + 70^\\circ) = 65^\\circ$.\r\n\t\tÁp dụng định lí sin:\r\n\t\t$\\displaystyle \\frac{AC}{\\sin B} = \\displaystyle \\frac{AB}{\\sin C} \\Rightarrow AC = \\displaystyle \\frac{AB \\cdot \\sin B}{\\sin C} = \\displaystyle \\frac{40 \\cdot \\sin 70^\\circ}{\\sin 65^\\circ} \\approx \\displaystyle \\frac{40 \\cdot 0{,}9397}{0{,}9063} \\approx 41{,}47\\text{ m}$.\r\n\t\tLàm tròn đến hàng phần chục, $AC \\approx 41{,}5\\text{ m}$."
+}
