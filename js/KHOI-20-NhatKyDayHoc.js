@@ -10539,134 +10539,106 @@ window.ham_20_28_tai_tiet_gan_nhat = async function (btnElem) {
 //     if (typeof ham_20_27_kiem_tra_tiet_da_luu === 'function') ham_20_27_kiem_tra_tiet_da_luu();
 // };
 
-
 // =====================================================================
-// HÀM 20.29: LÀM MỚI TIẾT HỌC (CÓ TỰ ĐỘNG GỢI Ý BUỔI & TIẾT THEO GIỜ)
+// HÀM 20.29: LÀM MỚI TIẾT HỌC (CÓ POPUP HỎI TỰ ĐỘNG TÍNH BUỔI/TIẾT)
 // =====================================================================
 window.ham_20_29_lam_moi_tiet_hoc = function () {
-    // 1. LÀM SẠCH CÁC TRƯỜNG DỮ LIỆU
-    let inputLop = document.getElementById('nk-input-lop');
-    let inputMon = document.getElementById('nk-input-mon');
-    let inputTenBai = document.getElementById('nk-input-ten-bai');
+    // 1. Dọn dẹp nội dung bài giảng
+    let elTenBai = document.getElementById('nk-input-ten-bai');
+    if (elTenBai) elTenBai.value = '';
 
-    if (inputLop) inputLop.value = '';
-    if (inputMon) inputMon.value = '';
-    if (inputTenBai) inputTenBai.value = '';
+    let textareas = document.querySelectorAll('#body-muc-bg textarea, #body-muc-dd textarea');
+    textareas.forEach(ta => ta.value = '');
 
-    let textareas = document.querySelectorAll('textarea');
-    if (textareas.length >= 3) {
-        textareas[0].value = ''; // Lý thuyết
-        textareas[1].value = ''; // Bài tập
-        textareas[2].value = ''; // Dặn dò
-    }
+    // 2. Dọn dẹp ảnh tạm thời
+    window.danhSachAnhBaiGiangTam = [];
+    if (typeof window.ham_20_11_render_anh_bai_giang === 'function') window.ham_20_11_render_anh_bai_giang();
+    window.danhSachAnhMinhChungTam = [];
+    if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
 
-    // Reset bảng điểm danh và sự kiện
-    let khuVucDiemDanh = document.getElementById('nk-khu-vuc-diem-danh');
-    if (khuVucDiemDanh) {
-        khuVucDiemDanh.innerHTML = `
-            <div class="dong-hs-vang" style="display: flex; gap: 8px; align-items: center;">
-                <input class="nk-input-hs-vang" list="nk-dl-hs" placeholder="Chọn hoặc gõ tên HS vắng..." style="flex: 1; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; outline: none; font-size: 13px;">
-                <button onclick="this.parentElement.remove()" style="padding: 8px 12px; background: #f8d7da; color: #721c24; border: none; border-radius: 4px; cursor: pointer;">✖</button>
-            </div>
-        `;
-    }
-
-    let cacDongSuKien = document.querySelectorAll('.dong-hs-su-kien');
-    cacDongSuKien.forEach((dong, i) => { if (i > 0) dong.remove(); else dong.querySelector('input').value = ''; });
+    // 3. Reset khu vực sự kiện học sinh
+    document.querySelectorAll('.nk-input-hs-su-kien').forEach((o, i) => {
+        if (i > 0) o.parentElement.remove(); else o.value = '';
+    });
 
     let oGhiChu = document.getElementById('nk-input-ghi-chu');
     if (oGhiChu) oGhiChu.value = '';
     let oDiem = document.getElementById('nk-input-diem-so');
     if (oDiem) oDiem.value = '';
+    let timThe = document.getElementById('nk-input-tim-the');
+    if (timThe) timThe.value = '';
 
-    // Reset vùng B5
+    if (typeof window.ham_20_chon_the === 'function') window.ham_20_chon_the(null, '', '');
+
+    // 4. Reset khu vực B5 (Xử lý phạt)
     let checkXuLy = document.getElementById('nk-check-xu-ly');
-    if (checkXuLy) checkXuLy.checked = true;
+    if (checkXuLy) checkXuLy.checked = true; // Bật mặc định nhưng không bắt buộc nhập
     let vungXuLy = document.getElementById('nk-vung-xu-ly');
     if (vungXuLy) vungXuLy.style.display = 'block';
 
     let hinhThucXL = document.getElementById('nk-hinh-thuc-xu-ly');
     if (hinhThucXL) hinhThucXL.value = '';
-    let noiDungXL = document.getElementById('nk-noi-dung-xu-ly');
-    if (noiDungXL) noiDungXL.value = '';
+    let ndXL = document.getElementById('nk-noi-dung-xu-ly');
+    if (ndXL) ndXL.value = '';
 
-    let tagXuLyContainer = document.getElementById('nk-khu-vuc-tags-xu-ly');
-    if (tagXuLyContainer) {
-        tagXuLyContainer.querySelectorAll('button.tag-xu-ly-btn').forEach(b => {
-            b.style.background = 'transparent';
-            b.style.color = b.dataset.color;
+    let container = document.getElementById('nk-khu-vuc-tags-xu-ly');
+    if (container) {
+        container.querySelectorAll('button.tag-xu-ly-btn').forEach(b => {
+            b.style.background = 'transparent'; b.style.color = b.dataset.color;
         });
     }
 
-    if (typeof window.ham_20_chon_the === 'function') window.ham_20_chon_the(null, '', '');
+    // 5. HIỆN POPUP HỎI Ý KIẾN
+    let hoiTuDong = confirm("Thầy có muốn TỰ ĐỘNG TÍNH [Buổi] và [Tiết] học dựa trên giờ hiện tại không?\n\n- [OK]: Tự động tính và tải lại dữ liệu tiết đó (nếu đã lưu).\n- [Cancel / Hủy]: Xóa trắng Buổi và Tiết để tự nhập thủ công.");
 
-    // Làm sạch RAM
-    window.danhSachAnhBaiGiangTam = [];
-    if (typeof window.ham_20_11_render_anh_bai_giang === 'function') window.ham_20_11_render_anh_bai_giang();
+    let inputBuoi = document.getElementById('nk-input-buoi');
+    let inputTiet = document.getElementById('nk-input-tiet');
+    let vungAnhDaLuu = document.getElementById('vung-anh-bai-giang-da-luu');
 
-    window.danhSachAnhMinhChungTam = [];
-    if (typeof window.ham_20_22_render_anh_minh_chung === 'function') window.ham_20_22_render_anh_minh_chung();
+    if (hoiTuDong) {
+        // Tự động tính toán
+        let now = new Date();
+        let h = now.getHours();
+        let m = now.getMinutes();
+        let totalMins = h * 60 + m;
 
-    window.danhSachSuKienTam = [];
-    if (typeof window.ham_20_4_ve_danh_sach_cho === 'function') window.ham_20_4_ve_danh_sach_cho();
+        let buoi = 'Sáng';
+        if (h >= 12 && h < 18) buoi = 'Chiều';
+        else if (h >= 18) buoi = 'Tối';
 
-    let vungDaLuu = document.getElementById('vung-su-kien-da-luu');
-    if (vungDaLuu) vungDaLuu.style.display = 'none';
+        let tiet = 'Tiết 1';
+        if (buoi === 'Sáng') {
+            if (totalMins <= 7 * 60 + 45) tiet = 'Tiết 1';
+            else if (totalMins <= 8 * 60 + 40) tiet = 'Tiết 2';
+            else if (totalMins <= 9 * 60 + 35) tiet = 'Tiết 3';
+            else if (totalMins <= 10 * 60 + 30) tiet = 'Tiết 4';
+            else tiet = 'Tiết 5';
+        } else if (buoi === 'Chiều') {
+            if (totalMins <= 13 * 60 + 45) tiet = 'Tiết 1';
+            else if (totalMins <= 14 * 60 + 40) tiet = 'Tiết 2';
+            else if (totalMins <= 15 * 60 + 35) tiet = 'Tiết 3';
+            else if (totalMins <= 16 * 60 + 30) tiet = 'Tiết 4';
+            else tiet = 'Tiết 5';
+        }
 
+        if (inputBuoi) inputBuoi.value = buoi;
+        if (inputTiet) inputTiet.value = tiet;
 
-    // 🌟 2. TỰ ĐỘNG TÍNH TOÁN NGÀY, THỨ, BUỔI VÀ TIẾT DỰA THEO GIỜ THỰC TẾ 🌟
-    const now = new Date();
-    const hour = now.getHours();
+        // Gọi hàm quét xem tiết này đã lưu gì chưa
+        if (typeof window.ham_20_27_kiem_tra_tiet_da_luu === 'function') {
+            window.ham_20_27_kiem_tra_tiet_da_luu();
+        }
+    } else {
+        // Không tự động -> Làm trống để nhập tay
+        if (inputBuoi) inputBuoi.value = '';
+        if (inputTiet) inputTiet.value = '';
 
-    let buoiDeXuat = '';
-    let tietDeXuat = '';
-
-    // Xác định Buổi
-    if (hour >= 6 && hour < 12) {
-        buoiDeXuat = 'Sáng';
-    } else if (hour >= 12 && hour < 17) {
-        buoiDeXuat = 'Chiều';
-    } else if (hour >= 17 && hour <= 23) {
-        buoiDeXuat = 'Tối';
-    }
-
-    // Xác định Tiết (Khung Sáng và Chiều)
-    if (buoiDeXuat === 'Sáng') {
-        if (hour === 7) tietDeXuat = 'Tiết 1';
-        else if (hour === 8) tietDeXuat = 'Tiết 2';
-        else if (hour === 9) tietDeXuat = 'Tiết 3';
-        else if (hour === 10) tietDeXuat = 'Tiết 4';
-        else if (hour === 11) tietDeXuat = 'Tiết 5';
-    } else if (buoiDeXuat === 'Chiều') {
-        if (hour === 13) tietDeXuat = 'Tiết 1';
-        else if (hour === 14) tietDeXuat = 'Tiết 2';
-        else if (hour === 15) tietDeXuat = 'Tiết 3';
-        else if (hour === 16) tietDeXuat = 'Tiết 4';
-        else if (hour === 17) tietDeXuat = 'Tiết 5';
-    }
-
-    // Gán dữ liệu lên giao diện
-    const inputNgay = document.querySelector('input[type="date"]');
-    const inputThu = document.getElementById('nk-input-thu');
-    const inputBuoi = document.getElementById('nk-input-buoi');
-    const inputTiet = document.getElementById('nk-input-tiet');
-
-    if (inputNgay) inputNgay.value = now.toISOString().split('T')[0];
-    if (inputThu) inputThu.value = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'][now.getDay()];
-
-    if (inputBuoi && buoiDeXuat) {
-        inputBuoi.value = buoiDeXuat;
-        inputBuoi.style.background = '#fff3cd'; // Nháy nền vàng báo hiệu tự điền
-        setTimeout(() => inputBuoi.style.background = '#fff', 800);
-    }
-
-    if (inputTiet && tietDeXuat) {
-        inputTiet.value = tietDeXuat;
-        inputTiet.style.background = '#fff3cd'; // Nháy nền vàng báo hiệu tự điền
-        setTimeout(() => inputTiet.style.background = '#fff', 800);
+        if (vungAnhDaLuu) {
+            vungAnhDaLuu.innerHTML = '';
+            vungAnhDaLuu.style.display = 'none';
+        }
     }
 };
-
 
 // =======================================================
 // HÀM 20.33: MỞ BUNG KHU VỰC 3 VÀ CUỘN ĐẾN ĐÚNG TIẾT CẦN XEM
