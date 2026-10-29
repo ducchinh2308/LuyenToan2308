@@ -1341,13 +1341,81 @@ window.ham_7b_12_ve_bang_nhiem_vu_tu_luan = async function () {
     renderArea.innerHTML = htmlTable;
 };
 
+// // =====================================================================
+// // Hàm 7b.15: Bảng thống kê (Tầng 1)
+// // =====================================================================
+// window.ham_7b_13_thong_ke_nhiem_vu_tu_luan = async function (maNhiemVu, tenNhiemVu) {
+//     Swal.fire({ title: '📊 Đang tổng hợp dữ liệu...', didOpen: () => Swal.showLoading() });
+//     try {
+//         const { data: nv } = await _supabase.from('nhiem_vu_tu_luan').select('danh_sach_lop').eq('ma_nhiem_vu', maNhiemVu).single();
+//         let mangMaLop = [];
+//         try { mangMaLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
+
+//         let dsHocSinhLop = [];
+//         if (mangMaLop.length > 0) {
+//             const { data: dataHS } = await _supabase.from('hoc_sinh').select('uid, ten, sdt, danh_sach_ma_lop');
+//             dsHocSinhLop = (dataHS || []).filter(hs => {
+//                 let l = []; try { l = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//                 return l.some(m => mangMaLop.includes(m));
+//             });
+//         }
+
+//         const { data: dsKQ } = await _supabase.from('ket_qua_tu_luan').select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop').eq('ma_nhiem_vu', maNhiemVu).order('thoi_gian_nop', { ascending: false });
+//         let tuDienKQCuoi = {};
+//         if (dsKQ) dsKQ.forEach(kq => { if (!tuDienKQCuoi[kq.uid_hoc_sinh]) tuDienKQCuoi[kq.uid_hoc_sinh] = kq; });
+
+//         let mangDaLam = [], mangChưaLam = [], tongDiemLop = 0;
+//         dsHocSinhLop.forEach(hs => {
+//             const bai = tuDienKQCuoi[hs.uid];
+//             if (bai) {
+//                 mangDaLam.push({ uid: hs.uid, ten: hs.ten, sdt: hs.sdt, diem: bai.tong_diem || 'Chưa chấm', ngayNop: bai.thoi_gian_nop });
+//                 if (!isNaN(bai.tong_diem)) tongDiemLop += Number(bai.tong_diem);
+//             } else {
+//                 mangChưaLam.push({ uid: hs.uid, ten: hs.ten, sdt: hs.sdt });
+//             }
+//         });
+
+//         window.DataThongKeHienTaiTL = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
+
+//         let soDaLamChamDiem = mangDaLam.filter(x => !isNaN(parseFloat(x.diem))).length;
+//         const diemTB = soDaLamChamDiem > 0 ? (tongDiemLop / soDaLamChamDiem).toFixed(2) : "0.00";
+
+//         Swal.fire({
+//             title: `📊 TIẾN ĐỘ: ${tenNhiemVu}`,
+//             html: `
+//                 <div style="text-align: left;">
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+//                         <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; text-align: center;">
+//                             <span style="font-size: 11px; font-weight: bold;">Sĩ số giao bài</span>
+//                             <div style="font-size: 24px; font-weight: 900; color: #1565c0;">${dsHocSinhLop.length} <span style="font-size: 12px;">em</span></div>
+//                         </div>
+//                         <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; text-align: center;">
+//                             <span style="font-size: 11px; font-weight: bold;">Điểm TB (những em đã chấm)</span>
+//                             <div style="font-size: 24px; font-weight: 900; color: #2e7d32;">${diemTB}</div>
+//                         </div>
+//                     </div>
+//                     <button onclick="ham_7b_15_sub_danh_sach_da_lam_tu_luan()" style="width: 100%; padding: 14px; background: #17a2b8; color: white; border: none; border-radius: 8px; font-weight: bold; margin-bottom: 10px; cursor:pointer;">
+//                         🟢 Danh sách ĐÃ NỘP BÀI (${mangDaLam.length} em)
+//                     </button>
+//                     <button onclick="ham_7b_16_sub_danh_sach_chua_lam_tu_luan()" style="width: 100%; padding: 14px; background: #dc3545; color: white; border: none; border-radius: 8px; font-weight: bold; cursor:pointer;">
+//                         🔴 Danh sách CHƯA NỘP (${mangChưaLam.length} em)
+//                     </button>
+//                 </div>
+//             `,
+//             confirmButtonText: 'Đóng',
+//             width: '450px'
+//         });
+//     } catch (err) { Swal.fire('Lỗi', err.message, 'error'); }
+// };
+
 // =====================================================================
-// Hàm 7b.15: Bảng thống kê (Tầng 1)
+// Hàm 7b.15: Bảng thống kê Tiến Độ Tầng 1 (Đã thêm Ngày giao / Ngày đóng)
 // =====================================================================
 window.ham_7b_13_thong_ke_nhiem_vu_tu_luan = async function (maNhiemVu, tenNhiemVu) {
     Swal.fire({ title: '📊 Đang tổng hợp dữ liệu...', didOpen: () => Swal.showLoading() });
     try {
-        const { data: nv } = await _supabase.from('nhiem_vu_tu_luan').select('danh_sach_lop').eq('ma_nhiem_vu', maNhiemVu).single();
+        // 🌟 Lấy thêm thoi_gian_mo và thoi_gian_dong từ database
+        const { data: nv } = await _supabase.from('nhiem_vu_tu_luan').select('danh_sach_lop, thoi_gian_mo, thoi_gian_dong').eq('ma_nhiem_vu', maNhiemVu).single();
         let mangMaLop = [];
         try { mangMaLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []); } catch (e) { }
 
@@ -1375,7 +1443,13 @@ window.ham_7b_13_thong_ke_nhiem_vu_tu_luan = async function (maNhiemVu, tenNhiem
             }
         });
 
-        window.DataThongKeHienTaiTL = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
+        // 🌟 Định dạng thời gian Giao / Đóng
+        const fTime = (d) => d ? new Date(d).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : "Không giới hạn";
+        const tgMo = fTime(nv.thoi_gian_mo);
+        const tgDong = fTime(nv.thoi_gian_dong);
+
+        // 🌟 Cập nhật thông tin vào biến tạm để truyền sang popup con
+        window.DataThongKeHienTaiTL = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong };
 
         let soDaLamChamDiem = mangDaLam.filter(x => !isNaN(parseFloat(x.diem))).length;
         const diemTB = soDaLamChamDiem > 0 ? (tongDiemLop / soDaLamChamDiem).toFixed(2) : "0.00";
@@ -1384,6 +1458,10 @@ window.ham_7b_13_thong_ke_nhiem_vu_tu_luan = async function (maNhiemVu, tenNhiem
             title: `📊 TIẾN ĐỘ: ${tenNhiemVu}`,
             html: `
                 <div style="text-align: left;">
+                    <div style="font-size: 13px; color: #495057; margin-bottom: 15px; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #dee2e6;">
+                        <div style="margin-bottom: 6px;">🟢 <b>Giao bài:</b> <span style="color:#28a745; font-weight:bold;">${tgMo}</span></div>
+                        <div>🔴 <b>Hạn chót:</b> <span style="color:#dc3545; font-weight:bold;">${tgDong}</span></div>
+                    </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
                         <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; text-align: center;">
                             <span style="font-size: 11px; font-weight: bold;">Sĩ số giao bài</span>
@@ -1408,6 +1486,9 @@ window.ham_7b_13_thong_ke_nhiem_vu_tu_luan = async function (maNhiemVu, tenNhiem
     } catch (err) { Swal.fire('Lỗi', err.message, 'error'); }
 };
 
+
+
+
 // =====================================================================
 // Hàm 7b.16: Tìm kiếm Live (Search Box)
 // =====================================================================
@@ -1417,15 +1498,72 @@ window.ham_7b_14_tim_kiem_live_nhiem_vu_tu_luan = function (tuKhoa) {
     }
 };
 
+// // =====================================================================
+// // Hàm Phụ: Danh sách Đã Nộp & Chưa Nộp (Cập nhật hiển thị tên nhiệm vụ)
+// // =====================================================================
+// window.ham_7b_15_sub_danh_sach_da_lam_tu_luan = function () {
+//     const { mangDaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTaiTL;
+//     let html = mangDaLam.map((hs, i) => `
+//         <tr style="border-bottom: 1px solid #edf2f7;">
+//             <td style="padding: 10px; text-align: center;">${i + 1}</td>
+//             <td style="padding: 10px; font-weight: bold;">${hs.ten} <br><small>${hs.sdt}</small></td>
+//             <td style="padding: 10px; text-align: center; color: #d35400; font-weight: bold;">${hs.diem}</td>
+//             <td style="padding: 10px; text-align: center; font-size:11px;">${hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN') : ''}</td>
+//         </tr>
+//     `).join('');
+
+//     Swal.fire({
+//         title: `🟢 ĐÃ NỘP BÀI`,
+//         html: `
+//             <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #ccc;">
+//                 📊 TIẾN ĐỘ: ${tenNhiemVu}
+//             </div>
+//             <div style="max-height: 400px; overflow-y: auto;">
+//                 <table style="width: 100%; font-size:13px; text-align:left;">
+//                     <thead><tr style="background:#f1f3f4;"><th>STT</th><th>Học sinh</th><th>Điểm</th><th>Ngày nộp</th></tr></thead>
+//                     <tbody>${html || '<tr><td colspan="4" align="center">Chưa có ai</td></tr>'}</tbody>
+//                 </table>
+//             </div>
+//         `,
+//         showCancelButton: true, confirmButtonText: 'Quay lại', cancelButtonText: 'Đóng', width: '550px'
+//     }).then(r => { if (r.isConfirmed) ham_7b_13_thong_ke_nhiem_vu_tu_luan(maNhiemVu, tenNhiemVu); });
+// };
+
+// window.ham_7b_16_sub_danh_sach_chua_lam_tu_luan = function () {
+//     const { mangChưaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTaiTL;
+//     let html = mangChưaLam.map((hs, i) => `
+//         <tr style="border-bottom: 1px solid #edf2f7;"><td style="padding: 8px; text-align: center;">${i + 1}</td><td style="padding: 8px; font-weight: bold;">${hs.ten}</td><td style="padding: 8px;">${hs.sdt}</td></tr>
+//     `).join('');
+
+//     Swal.fire({
+//         title: `🔴 CHƯA NỘP BÀI`,
+//         html: `
+//             <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #ccc;">
+//                 📊 TIẾN ĐỘ: ${tenNhiemVu}
+//             </div>
+//             <div style="max-height: 400px; overflow-y: auto;">
+//                 <table style="width: 100%; font-size:13px; text-align:left;">
+//                     <thead><tr style="background:#fff5f5; color:#9b2c2c;"><th>STT</th><th>Học sinh</th><th>Số điện thoại</th></tr></thead>
+//                     <tbody>${html || '<tr><td colspan="3" align="center">Tất cả đã nộp</td></tr>'}</tbody>
+//                 </table>
+//             </div>
+//         `,
+//         showCancelButton: true, confirmButtonText: 'Quay lại', cancelButtonText: 'Đóng', width: '450px'
+//     }).then(r => { if (r.isConfirmed) ham_7b_13_thong_ke_nhiem_vu_tu_luan(maNhiemVu, tenNhiemVu); });
+// };
+
+
 // =====================================================================
-// Hàm Phụ: Danh sách Đã Nộp & Chưa Nộp
+// Hàm Phụ: Danh sách Đã Nộp & Chưa Nộp (Đổi "Số điện thoại" thành "Tên đăng nhập")
 // =====================================================================
 window.ham_7b_15_sub_danh_sach_da_lam_tu_luan = function () {
-    const { mangDaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTaiTL;
+    // Rút các biến thời gian từ Object
+    const { mangDaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong } = window.DataThongKeHienTaiTL;
+
     let html = mangDaLam.map((hs, i) => `
         <tr style="border-bottom: 1px solid #edf2f7;">
             <td style="padding: 10px; text-align: center;">${i + 1}</td>
-            <td style="padding: 10px; font-weight: bold;">${hs.ten} <br><small>${hs.sdt}</small></td>
+            <td style="padding: 10px; font-weight: bold;">${hs.ten} <br><small style="color: #6c757d;">Tên ĐN: ${hs.sdt}</small></td>
             <td style="padding: 10px; text-align: center; color: #d35400; font-weight: bold;">${hs.diem}</td>
             <td style="padding: 10px; text-align: center; font-size:11px;">${hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN') : ''}</td>
         </tr>
@@ -1433,24 +1571,52 @@ window.ham_7b_15_sub_danh_sach_da_lam_tu_luan = function () {
 
     Swal.fire({
         title: `🟢 ĐÃ NỘP BÀI`,
-        html: `<div style="max-height: 400px; overflow-y: auto;"><table style="width: 100%; font-size:13px; text-align:left;"><thead><tr style="background:#f1f3f4;"><th>STT</th><th>Học sinh</th><th>Điểm</th><th>Ngày nộp</th></tr></thead><tbody>${html || '<tr><td colspan="4" align="center">Chưa có ai</td></tr>'}</tbody></table></div>`,
+        html: `
+            <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 10px;">
+                📊 TIẾN ĐỘ: ${tenNhiemVu}
+            </div>
+            <div style="font-size: 12px; color: #495057; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #ccc; display: flex; flex-direction: column; gap: 4px;">
+                <span>🟢 <b>Giao bài:</b> ${tgMo}</span>
+                <span>🔴 <b>Hạn chót:</b> ${tgDong}</span>
+            </div>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table style="width: 100%; font-size:13px; text-align:left;">
+                    <thead><tr style="background:#f1f3f4;"><th>STT</th><th>Học sinh</th><th>Điểm</th><th>Ngày nộp</th></tr></thead>
+                    <tbody>${html || '<tr><td colspan="4" align="center">Chưa có ai</td></tr>'}</tbody>
+                </table>
+            </div>
+        `,
         showCancelButton: true, confirmButtonText: 'Quay lại', cancelButtonText: 'Đóng', width: '550px'
     }).then(r => { if (r.isConfirmed) ham_7b_13_thong_ke_nhiem_vu_tu_luan(maNhiemVu, tenNhiemVu); });
 };
 
 window.ham_7b_16_sub_danh_sach_chua_lam_tu_luan = function () {
-    const { mangChưaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTaiTL;
+    const { mangChưaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong } = window.DataThongKeHienTaiTL;
+
     let html = mangChưaLam.map((hs, i) => `
         <tr style="border-bottom: 1px solid #edf2f7;"><td style="padding: 8px; text-align: center;">${i + 1}</td><td style="padding: 8px; font-weight: bold;">${hs.ten}</td><td style="padding: 8px;">${hs.sdt}</td></tr>
     `).join('');
 
     Swal.fire({
         title: `🔴 CHƯA NỘP BÀI`,
-        html: `<div style="max-height: 400px; overflow-y: auto;"><table style="width: 100%; font-size:13px; text-align:left;"><thead><tr style="background:#fff5f5; color:#9b2c2c;"><th>STT</th><th>Học sinh</th><th>Số điện thoại</th></tr></thead><tbody>${html || '<tr><td colspan="3" align="center">Tất cả đã nộp</td></tr>'}</tbody></table></div>`,
+        html: `
+            <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 10px;">
+                📊 TIẾN ĐỘ: ${tenNhiemVu}
+            </div>
+            <div style="font-size: 12px; color: #495057; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #ccc; display: flex; flex-direction: column; gap: 4px;">
+                <span>🟢 <b>Giao bài:</b> ${tgMo}</span>
+                <span>🔴 <b>Hạn chót:</b> ${tgDong}</span>
+            </div>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <table style="width: 100%; font-size:13px; text-align:left;">
+                    <thead><tr style="background:#fff5f5; color:#9b2c2c;"><th>STT</th><th>Học sinh</th><th>Tên đăng nhập</th></tr></thead>
+                    <tbody>${html || '<tr><td colspan="3" align="center">Tất cả đã nộp</td></tr>'}</tbody>
+                </table>
+            </div>
+        `,
         showCancelButton: true, confirmButtonText: 'Quay lại', cancelButtonText: 'Đóng', width: '450px'
     }).then(r => { if (r.isConfirmed) ham_7b_13_thong_ke_nhiem_vu_tu_luan(maNhiemVu, tenNhiemVu); });
 };
-
 
 
 // =====================================================================

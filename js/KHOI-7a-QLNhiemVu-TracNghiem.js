@@ -1908,9 +1908,165 @@ window.ham_7a_14_ve_nut_loi_giai_dong_trac_nghiem = async function (maHocLieu) {
 
 
 
-//// =====================================================================
-//// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI
-//// =====================================================================
+// //// =====================================================================
+// //// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI
+// //// =====================================================================
+// window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenNhiemVu) {
+//     // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
+//     Swal.fire({
+//         title: '📊 Đang tổng hợp dữ liệu...',
+//         text: 'Hệ thống đang đồng bộ danh sách lớp và két sắt điểm số...',
+//         allowOutsideClick: false,
+//         didOpen: () => { Swal.showLoading(); }
+//     });
+
+//     try {
+//         // BƯỚC A: Lấy thông tin lớp học được giao của Nhiệm vụ này
+//         const { data: nv, error: errNV } = await _supabase
+//             .from('nhiem_vu_trac_nghiem')
+//             .select('danh_sach_lop')
+//             .eq('ma_nhiem_vu', maNhiemVu)
+//             .single();
+
+//         if (errNV || !nv) throw new Error("Không tìm thấy thông tin cấu trúc nhiệm vụ.");
+
+//         let mangMaLop = [];
+//         try {
+//             mangMaLop = typeof nv.danh_sach_lop === 'string' ? JSON.parse(nv.danh_sach_lop) : (nv.danh_sach_lop || []);
+//         } catch (e) { mangMaLop = []; }
+
+//         // BƯỚC B: Tải toàn bộ danh sách học sinh thuộc các lớp được giao bài tập này
+//         let dsHocSinhLop = [];
+//         if (mangMaLop.length > 0) {
+//             const { data: dataHS, error: errHS } = await _supabase
+//                 .from('hoc_sinh') // Ghi chú: Thầy kiểm tra lại nếu tên bảng của thầy là 'hoc_sinh' nhé
+//                 .select('uid, ten, sdt, danh_sach_ma_lop');
+
+//             if (!errHS && dataHS) {
+//                 dsHocSinhLop = dataHS.filter(hs => {
+//                     let lopCuaEm = [];
+//                     try {
+//                         lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
+//                     } catch (e) { }
+//                     return lopCuaEm.some(m => mangMaLop.includes(m));
+//                 });
+//             } else if (errHS) {
+//                 // Dự phòng nếu tên bảng là 'hoc_sinh' (có h)
+//                 const { data: dataHS2, error: errHS2 } = await _supabase
+//                     .from('hoc_sinh')
+//                     .select('uid, ten, sdt, danh_sach_ma_lop');
+//                 if (errHS2) throw errHS2;
+//                 dsHocSinhLop = (dataHS2 || []).filter(hs => {
+//                     let lopCuaEm = [];
+//                     try {
+//                         lopCuaEm = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []);
+//                     } catch (e) { }
+//                     return lopCuaEm.some(m => mangMaLop.includes(m));
+//                 });
+//             }
+//         }
+
+//         // =====================================================================
+//         // 🌟 BƯỚC C: TRUY VẤN CHUẨN CỘT chi_tiet_lam_bai THEO ĐÚNG ẢNH SUPABASE
+//         // =====================================================================
+//         const { data: dsKQ, error: errKQ } = await _supabase
+//             .from('ket_qua_trac_nghiem')
+//             .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, chi_tiet_lam_bai') // <-- Đã đổi thành chi_tiet_lam_bai
+//             .eq('ma_nhiem_vu', maNhiemVu)
+//             .order('thoi_gian_nop', { ascending: false });
+
+//         if (errKQ) throw errKQ;
+
+//         // Lọc trùng: Một học sinh làm nhiều lần thì chỉ giữ lại kết quả mới nhất
+//         let tuDienKQCuoi = {};
+//         if (dsKQ) {
+//             dsKQ.forEach(kq => {
+//                 if (!tuDienKQCuoi[kq.uid_hoc_sinh]) {
+//                     tuDienKQCuoi[kq.uid_hoc_sinh] = kq;
+//                 }
+//             });
+//         }
+
+//         // BƯỚC D: PHÂN LOẠI HỌC SINH (ĐÃ LÀM VÀ CHƯA LÀM)
+//         let mangDaLam = [];
+//         let mangChưaLam = [];
+//         let tongDiemLop = 0;
+
+//         dsHocSinhLop.forEach(hs => {
+//             const baiLamCuoi = tuDienKQCuoi[hs.uid];
+//             if (baiLamCuoi) {
+//                 mangDaLam.push({
+//                     idKQ: baiLamCuoi.id,
+//                     uid: hs.uid,
+//                     ten: hs.ten || 'Học sinh',
+//                     sdt: hs.sdt || 'N/A',
+//                     diem: baiLamCuoi.tong_diem,
+//                     ngayNop: baiLamCuoi.thoi_gian_nop,
+//                     chiTietCau: baiLamCuoi.chi_tiet_lam_bai // Mảng lưu đáp án từ Supabase
+//                 });
+//                 tongDiemLop += Number(baiLamCuoi.tong_diem) || 0;
+//             } else {
+//                 mangChưaLam.push({
+//                     uid: hs.uid,
+//                     ten: hs.ten,
+//                     sdt: hs.sdt || 'N/A'
+//                 });
+//             }
+//         });
+
+//         const tongSoHS = dsHocSinhLop.length;
+//         const soLgDaLam = mangDaLam.length;
+//         const soLgChuaLam = mangChưaLam.length;
+//         const diemTrungBinh = soLgDaLam > 0 ? (tongDiemLop / soLgDaLam).toFixed(2) : "0.00";
+
+//         // Ghi dữ liệu vào bộ nhớ RAM tạm thời
+//         window.DataThongKeHienTai = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
+
+//         // BƯỚC E: HIỂN THỊ POPUP TỔNG QUAN (TẦNG 1)
+//         Swal.fire({
+//             title: `📊 THỐNG KÊ: ${tenNhiemVu}`,
+//             html: `
+//                 <div style="text-align: left; background: #fff; border-radius: 8px; font-size: 14px; color: #2c3e50; line-height: 1.6;">
+//                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+//                         <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; border-left: 4px solid #1e88e5; text-align: center;">
+//                             <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Sĩ số giao bài</span>
+//                             <div style="font-size: 24px; font-weight: 900; color: #1565c0;">${tongSoHS} <span style="font-size: 12px; font-weight: normal; color: #666;">em</span></div>
+//                         </div>
+//                         <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; border-left: 4px solid #43a047; text-align: center;">
+//                             <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Điểm trung bình</span>
+//                             <div style="font-size: 24px; font-weight: 900; color: #2e7d32;">${diemTrungBinh} <span style="font-size: 12px; font-weight: normal; color: #666;">đ</span></div>
+//                         </div>
+//                     </div>
+
+//                     <div style="display: flex; flex-direction: column; gap: 10px;">
+//                         <button onclick="ham_7a_19_sub_danh_sach_da_lam_trac_nghiem()" style="width: 100%; padding: 14px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(40,167,69,0.2);">
+//                             <span>🟢 Danh sách Học sinh ĐV NỘP BÀI</span>
+//                             <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgDaLam} em</b>
+//                         </button>
+
+//                         <button onclick="ham_7a_21_sub_danh_sach_chua_lam_trac_nghiem()" style="width: 100%; padding: 14px; background: #dc3545; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(220,53,69,0.2);">
+//                             <span>🔴 Danh sách Học sinh CHƯA LÀM BÀI</span>
+//                             <b style="background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 12px;">${soLgChuaLam} em</b>
+//                         </button>
+//                     </div>
+//                 </div>
+//             `,
+//             showConfirmButton: true,
+//             confirmButtonText: 'Đóng thống kê',
+//             confirmButtonColor: '#6c757d',
+//             width: '450px'
+//         });
+
+//     } catch (err) {
+//         console.error("LỖI THỐNG KÊ:", err);
+//         Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
+//     }
+// };
+
+
+// =====================================================================
+// HÀM 7.15: KÍCH HOẠT BẢNG THỐNG KÊ CHI TIẾT CỦA MỘT NHIỆM VỤ THI (CẬP NHẬT THỜI GIAN)
+// =====================================================================
 window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenNhiemVu) {
     // 1. Hiện popup loading để quét dữ liệu đa bảng từ Supabase
     Swal.fire({
@@ -1921,10 +2077,10 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
     });
 
     try {
-        // BƯỚC A: Lấy thông tin lớp học được giao của Nhiệm vụ này
+        // BƯỚC A: Lấy thông tin lớp học được giao và Thời gian
         const { data: nv, error: errNV } = await _supabase
             .from('nhiem_vu_trac_nghiem')
-            .select('danh_sach_lop')
+            .select('danh_sach_lop, thoi_gian_mo, thoi_gian_dong')
             .eq('ma_nhiem_vu', maNhiemVu)
             .single();
 
@@ -1939,7 +2095,7 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
         let dsHocSinhLop = [];
         if (mangMaLop.length > 0) {
             const { data: dataHS, error: errHS } = await _supabase
-                .from('hoc_sinh') // Ghi chú: Thầy kiểm tra lại nếu tên bảng của thầy là 'hoc_sinh' nhé
+                .from('hoc_sinh')
                 .select('uid, ten, sdt, danh_sach_ma_lop');
 
             if (!errHS && dataHS) {
@@ -1951,7 +2107,6 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
                     return lopCuaEm.some(m => mangMaLop.includes(m));
                 });
             } else if (errHS) {
-                // Dự phòng nếu tên bảng là 'hoc_sinh' (có h)
                 const { data: dataHS2, error: errHS2 } = await _supabase
                     .from('hoc_sinh')
                     .select('uid, ten, sdt, danh_sach_ma_lop');
@@ -1966,12 +2121,10 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
             }
         }
 
-        // =====================================================================
-        // 🌟 BƯỚC C: TRUY VẤN CHUẨN CỘT chi_tiet_lam_bai THEO ĐÚNG ẢNH SUPABASE
-        // =====================================================================
+        // BƯỚC C: TRUY VẤN CHUẨN CỘT chi_tiet_lam_bai THEO ĐÚNG ẢNH SUPABASE
         const { data: dsKQ, error: errKQ } = await _supabase
             .from('ket_qua_trac_nghiem')
-            .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, chi_tiet_lam_bai') // <-- Đã đổi thành chi_tiet_lam_bai
+            .select('id, uid_hoc_sinh, tong_diem, thoi_gian_nop, chi_tiet_lam_bai')
             .eq('ma_nhiem_vu', maNhiemVu)
             .order('thoi_gian_nop', { ascending: false });
 
@@ -2002,7 +2155,7 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
                     sdt: hs.sdt || 'N/A',
                     diem: baiLamCuoi.tong_diem,
                     ngayNop: baiLamCuoi.thoi_gian_nop,
-                    chiTietCau: baiLamCuoi.chi_tiet_lam_bai // Mảng lưu đáp án từ Supabase
+                    chiTietCau: baiLamCuoi.chi_tiet_lam_bai
                 });
                 tongDiemLop += Number(baiLamCuoi.tong_diem) || 0;
             } else {
@@ -2014,19 +2167,30 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
             }
         });
 
+        // 🌟 Định dạng thời gian Giao / Đóng
+        const fTime = (d) => d ? new Date(d).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : "Không giới hạn";
+        const tgMo = fTime(nv.thoi_gian_mo);
+        const tgDong = fTime(nv.thoi_gian_dong);
+
         const tongSoHS = dsHocSinhLop.length;
         const soLgDaLam = mangDaLam.length;
         const soLgChuaLam = mangChưaLam.length;
         const diemTrungBinh = soLgDaLam > 0 ? (tongDiemLop / soLgDaLam).toFixed(2) : "0.00";
 
         // Ghi dữ liệu vào bộ nhớ RAM tạm thời
-        window.DataThongKeHienTai = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu };
+        window.DataThongKeHienTai = { mangDaLam, mangChưaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong };
 
         // BƯỚC E: HIỂN THỊ POPUP TỔNG QUAN (TẦNG 1)
         Swal.fire({
             title: `📊 THỐNG KÊ: ${tenNhiemVu}`,
             html: `
                 <div style="text-align: left; background: #fff; border-radius: 8px; font-size: 14px; color: #2c3e50; line-height: 1.6;">
+                    
+                    <div style="font-size: 13px; color: #495057; margin-bottom: 15px; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; border: 1px solid #dee2e6;">
+                        <div style="margin-bottom: 6px;">🟢 <b>Giao bài:</b> <span style="color:#28a745; font-weight:bold;">${tgMo}</span></div>
+                        <div>🔴 <b>Hạn chót:</b> <span style="color:#dc3545; font-weight:bold;">${tgDong}</span></div>
+                    </div>
+
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
                         <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; border-left: 4px solid #1e88e5; text-align: center;">
                             <span style="font-size: 11px; color: #546e7a; font-weight: bold; text-transform: uppercase;">Sĩ số giao bài</span>
@@ -2062,6 +2226,8 @@ window.ham_7a_15_thong_ke_nhiem_vu_trac_nghiem = async function (maNhiemVu, tenN
         Swal.fire({ icon: 'error', title: 'Không thể xuất thống kê', text: err.message });
     }
 };
+
+
 
 
 
@@ -2227,16 +2393,150 @@ async function ham_7a_18_gv_cham_lai_ca_lop_trac_nghiem(maNhiemVu) {
 
 
 
+// // =====================================================================
+// // HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐV LÀM BÀI (TẦNG 2)
+// // =====================================================================
+// window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
+//     const { mangDaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
+//     const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
+
+//     // ==========================================
+//     // 1. QUẢN LÝ TRẠNG THÁI SẮP XẾP & TÌM KIẾM
+//     // ==========================================
+//     if (!window.DataThongKeHienTai.sortState) {
+//         window.DataThongKeHienTai.sortState = { cot: 'diem', tangDan: false, tuKhoa: '' };
+//     }
+
+//     if (loaiSort) {
+//         if (window.DataThongKeHienTai.sortState.cot === loaiSort) {
+//             window.DataThongKeHienTai.sortState.tangDan = !window.DataThongKeHienTai.sortState.tangDan;
+//         } else {
+//             window.DataThongKeHienTai.sortState.cot = loaiSort;
+//             window.DataThongKeHienTai.sortState.tangDan = (loaiSort === 'ten') ? true : false;
+//         }
+//     }
+//     const sortState = window.DataThongKeHienTai.sortState;
+
+//     // ==========================================
+//     // 2. TẠO BẢN SAO VÀ TIẾN HÀNH SẮP XẾP
+//     // ==========================================
+//     let mangHienThi = [...mangDaLam];
+
+//     mangHienThi.sort((a, b) => {
+//         if (sortState.cot === 'ten') {
+//             const tenA = (a.ten || "").trim().split(" ").pop();
+//             const tenB = (b.ten || "").trim().split(" ").pop();
+//             return sortState.tangDan ? tenA.localeCompare(tenB, 'vi') : tenB.localeCompare(tenA, 'vi');
+//         } else if (sortState.cot === 'diem') {
+//             const diemA = parseFloat(a.diem) || 0;
+//             const diemB = parseFloat(b.diem) || 0;
+//             return sortState.tangDan ? (diemA - diemB) : (diemB - diemA);
+//         }
+//         return 0;
+//     });
+
+//     const iconTen = sortState.cot === 'ten' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
+//     const iconDiem = sortState.cot === 'diem' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
+
+//     // ==========================================
+//     // 3. SINH HTML BẢNG DỮ LIỆU
+//     // ==========================================
+//     let htmlBaoCaoTable = '';
+//     if (mangHienThi.length === 0) {
+//         htmlBaoCaoTable = `<tr><td colspan="4" style="text-align:center; color:#999; padding: 20px;">Chưa có học sinh nào nộp bài.</td></tr>`;
+//     } else {
+//         mangHienThi.forEach((hs, index) => {
+//             const gioNop = hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN', opts) : 'N/A';
+//             const indexGoc = mangDaLam.indexOf(hs);
+
+//             // Xử lý giữ trạng thái ẩn/hiện nếu đang có từ khóa tìm kiếm
+//             const tuKhoaHienTai = (sortState.tuKhoa || "").toLowerCase();
+//             const tenHS = (hs.ten || "").toLowerCase();
+//             const hienThiDong = tenHS.includes(tuKhoaHienTai) ? "" : "display: none;";
+
+//             htmlBaoCaoTable += `
+//                 <tr class="dong-hoc-sinh" data-ten="${tenHS}" style="border-bottom: 1px solid #e2e8f0; transition: background 0.2s; ${hienThiDong}" onmouseover="this.style.background='#f7fafc'" onmouseout="this.style.background='transparent'">
+//                     <td style="padding: 10px 6px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
+//                     <td style="padding: 10px 6px; text-align: left;">
+//                         <b style="color:#2b6cb0; font-size:14px;">${hs.ten}</b>
+//                         <div style="font-size:11px; color:#718096; margin-top:2px;">SĐT: ${hs.sdt}</div>
+//                     </td>
+//                     <td style="padding: 10px 6px; text-align: center;">
+//                         <span style="font-size: 16px; font-weight: 900; color: #e53e3e;">${hs.diem}</span>
+//                         <div style="font-size:10px; color:#a0aec0; margin-top:2px;">${gioNop}</div>
+//                     </td>
+//                     <td style="padding: 10px 6px; text-align: center;">
+//                         <button onclick="ham_7a_22_sub_soi_bai_lam_trac_nghiem(${indexGoc})" style="padding: 6px 10px; background: #3182ce; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; transition: 0.2s;">
+//                             👁️ SOI BÀI
+//                         </button>
+//                     </td>
+//                 </tr>
+//             `;
+//         });
+//     }
+
+//     // ==========================================
+//     // 4. VẼ GIAO DIỆN (Thêm Ô Tìm Kiếm)
+//     // ==========================================
+//     Swal.fire({
+//         title: `🟢 DANH SÁCH ĐV NỘP BÀI`,
+//         html: `
+//             <div style="padding: 10px; background: #edf2f7; border-bottom: 1px solid #cbd5e0; border-radius: 6px 6px 0 0;">
+//                 <input type="text" id="input-tim-kiem-hs" placeholder="🔍 Nhập tên học sinh để tìm nhanh..." 
+//                        value="${sortState.tuKhoa}"
+//                        oninput="ham_7a_20_sub_tim_kiem_live_trac_nghiem(this.value)"
+//                        style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+//             </div>
+
+//             <div style="height: 350px; overflow-y: auto; background: white; text-align: left;">
+//                 <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+//                     <thead style="background: #f7fafc; position: sticky; top: 0; border-bottom: 2px solid #cbd5e0; z-index: 2;">
+//                         <tr>
+//                             <th style="padding: 10px 6px; text-align: center; color: #4a5568; width: 35px;">STT</th>
+//                             <th onclick="ham_7a_19_sub_danh_sach_da_lam_trac_nghiem('ten')" 
+//                                 style="padding: 10px 6px; color: #4a5568; text-align: left; cursor: pointer; user-select: none;" title="Bấm để sắp xếp">
+//                                 Học sinh ${iconTen}
+//                             </th>
+//                             <th onclick="ham_7a_19_sub_danh_sach_da_lam_trac_nghiem('diem')" 
+//                                 style="padding: 10px 6px; text-align: center; color: #4a5568; width: 100px; cursor: pointer; user-select: none;" title="Bấm để sắp xếp">
+//                                 Điểm Số ${iconDiem}
+//                             </th>
+//                             <th style="padding: 10px 6px; text-align: center; color: #4a5568; width: 75px;">Bài làm</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody id="tbody-danh-sach-da-lam">
+//                         ${htmlBaoCaoTable}
+//                     </tbody>
+//                 </table>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonText: '⬅️ Quay lại tổng quan',
+//         cancelButtonText: 'Đóng hẳn',
+//         confirmButtonColor: '#3182ce',
+//         cancelButtonColor: '#718096',
+//         width: '500px',
+//         didOpen: () => {
+//             // Tự động focus vào ô tìm kiếm nếu đang gõ dở
+//             if (sortState.tuKhoa) {
+//                 const input = document.getElementById('input-tim-kiem-hs');
+//                 input.focus();
+//                 input.setSelectionRange(input.value.length, input.value.length);
+//             }
+//         }
+//     }).then((result) => {
+//         if (result.isConfirmed) ham_7a_15_thong_ke_nhiem_vu_trac_nghiem(maNhiemVu, tenNhiemVu);
+//     });
+// };
+
+
 // =====================================================================
 // HÀM SUB 1: HIỂN THỊ DANH SÁCH CHI TIẾT HỌC SINH ĐV LÀM BÀI (TẦNG 2)
 // =====================================================================
 window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
-    const { mangDaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
+    const { mangDaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong } = window.DataThongKeHienTai;
     const opts = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' };
 
-    // ==========================================
-    // 1. QUẢN LÝ TRẠNG THÁI SẮP XẾP & TÌM KIẾM
-    // ==========================================
     if (!window.DataThongKeHienTai.sortState) {
         window.DataThongKeHienTai.sortState = { cot: 'diem', tangDan: false, tuKhoa: '' };
     }
@@ -2251,9 +2551,6 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
     }
     const sortState = window.DataThongKeHienTai.sortState;
 
-    // ==========================================
-    // 2. TẠO BẢN SAO VÀ TIẾN HÀNH SẮP XẾP
-    // ==========================================
     let mangHienThi = [...mangDaLam];
 
     mangHienThi.sort((a, b) => {
@@ -2272,9 +2569,6 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
     const iconTen = sortState.cot === 'ten' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
     const iconDiem = sortState.cot === 'diem' ? (sortState.tangDan ? '🔼' : '🔽') : '<span style="color:#cbd5e0">↕️</span>';
 
-    // ==========================================
-    // 3. SINH HTML BẢNG DỮ LIỆU
-    // ==========================================
     let htmlBaoCaoTable = '';
     if (mangHienThi.length === 0) {
         htmlBaoCaoTable = `<tr><td colspan="4" style="text-align:center; color:#999; padding: 20px;">Chưa có học sinh nào nộp bài.</td></tr>`;
@@ -2283,7 +2577,6 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
             const gioNop = hs.ngayNop ? new Date(hs.ngayNop).toLocaleString('vi-VN', opts) : 'N/A';
             const indexGoc = mangDaLam.indexOf(hs);
 
-            // Xử lý giữ trạng thái ẩn/hiện nếu đang có từ khóa tìm kiếm
             const tuKhoaHienTai = (sortState.tuKhoa || "").toLowerCase();
             const tenHS = (hs.ten || "").toLowerCase();
             const hienThiDong = tenHS.includes(tuKhoaHienTai) ? "" : "display: none;";
@@ -2293,7 +2586,7 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
                     <td style="padding: 10px 6px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
                     <td style="padding: 10px 6px; text-align: left;">
                         <b style="color:#2b6cb0; font-size:14px;">${hs.ten}</b>
-                        <div style="font-size:11px; color:#718096; margin-top:2px;">SĐT: ${hs.sdt}</div>
+                        <div style="font-size:11px; color:#718096; margin-top:2px;">Tên ĐN: ${hs.sdt}</div>
                     </td>
                     <td style="padding: 10px 6px; text-align: center;">
                         <span style="font-size: 16px; font-weight: 900; color: #e53e3e;">${hs.diem}</span>
@@ -2309,17 +2602,24 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
         });
     }
 
-    // ==========================================
-    // 4. VẼ GIAO DIỆN (Thêm Ô Tìm Kiếm)
-    // ==========================================
     Swal.fire({
         title: `🟢 DANH SÁCH ĐV NỘP BÀI`,
         html: `
-            <div style="padding: 10px; background: #edf2f7; border-bottom: 1px solid #cbd5e0; border-radius: 6px 6px 0 0;">
+            <div style="text-align: left; margin-bottom: 10px;">
+                <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 10px;">
+                    📊 TIẾN ĐỘ: ${tenNhiemVu}
+                </div>
+                <div style="font-size: 12px; color: #495057; margin-bottom: 15px; padding-bottom: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <span>🟢 <b>Giao bài:</b> ${tgMo}</span>
+                    <span>🔴 <b>Hạn chót:</b> ${tgDong}</span>
+                </div>
+            </div>
+
+            <div style="padding: 10px; background: #edf2f7; border: 1px solid #cbd5e0; border-radius: 6px 6px 0 0;">
                 <input type="text" id="input-tim-kiem-hs" placeholder="🔍 Nhập tên học sinh để tìm nhanh..." 
                        value="${sortState.tuKhoa}"
                        oninput="ham_7a_20_sub_tim_kiem_live_trac_nghiem(this.value)"
-                       style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);">
+                       style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 14px; outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); box-sizing: border-box;">
             </div>
 
             <div style="height: 350px; overflow-y: auto; background: white; text-align: left;">
@@ -2351,17 +2651,20 @@ window.ham_7a_19_sub_danh_sach_da_lam_trac_nghiem = function (loaiSort = null) {
         cancelButtonColor: '#718096',
         width: '500px',
         didOpen: () => {
-            // Tự động focus vào ô tìm kiếm nếu đang gõ dở
             if (sortState.tuKhoa) {
                 const input = document.getElementById('input-tim-kiem-hs');
-                input.focus();
-                input.setSelectionRange(input.value.length, input.value.length);
+                if (input) {
+                    input.focus();
+                    input.setSelectionRange(input.value.length, input.value.length);
+                }
             }
         }
     }).then((result) => {
         if (result.isConfirmed) ham_7a_15_thong_ke_nhiem_vu_trac_nghiem(maNhiemVu, tenNhiemVu);
     });
 };
+
+
 
 // =====================================================================
 // HÀM TRỢ THỦ: XỬ LÝ TÌM KIẾM LIVE TRÊN DOM
@@ -2389,11 +2692,61 @@ window.ham_7a_20_sub_tim_kiem_live_trac_nghiem = function (tuKhoa) {
 
 
 
+// // =====================================================================
+// // HÀM SUB 2: HIỂN THỊ DANH SÁCH HỌC SINH CHƯA NỘP BÀI (TẦNG 2)
+// // =====================================================================
+// window.ham_7a_21_sub_danh_sach_chua_lam_trac_nghiem = function () {
+//     const { mangChưaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
+
+//     let htmlChuaLamTable = '';
+//     if (mangChưaLam.length === 0) {
+//         htmlChuaLamTable = `<tr><td colspan="3" style="text-align:center; color:#2d3748; padding: 20px; font-weight:bold; background:#f0fff4;">🎉 100% học sinh đã hoàn thành bài!</td></tr>`;
+//     } else {
+//         mangChưaLam.forEach((hs, index) => {
+//             htmlChuaLamTable += `
+//                 <tr style="border-bottom: 1px solid #edf2f7;">
+//                     <td style="padding: 10px 8px; text-align: center; font-weight: bold; color: #718096;">${index + 1}</td>
+//                     <td style="padding: 10px 8px; font-weight: bold; color: #4a5568;">${hs.ten}</td>
+//                     <td style="padding: 10px 8px; text-align: center; color: #e53e3e; font-weight: bold;">${hs.sdt}</td>
+//                 </tr>
+//             `;
+//         });
+//     }
+
+//     Swal.fire({
+//         title: `🔴 DANH SÁCH CHƯA NỘP BÀI`,
+//         html: `
+//             <div style="max-height: 400px; overflow-y: auto; background: white;">
+//                 <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+//                     <thead style="background: #fff5f5; position: sticky; top: 0; border-bottom: 2px solid #fed7d7;">
+//                         <tr>
+//                             <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 40px;">STT</th>
+//                             <th style="padding: 8px 8px; color: #9b2c2c;">Tên học sinh</th>
+//                             <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 130px;">Số điện thoại</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         ${htmlChuaLamTable}
+//                     </tbody>
+//                 </table>
+//             </div>
+//         `,
+//         showCancelButton: true,
+//         confirmButtonText: '⬅️ Quay lại tổng quan',
+//         cancelButtonText: 'Đóng hẳn',
+//         confirmButtonColor: '#e53e3e',
+//         cancelButtonColor: '#718096',
+//         width: '450px'
+//     }).then((result) => {
+//         if (result.isConfirmed) ham_7a_15_thong_ke_nhiem_vu_trac_nghiem(maNhiemVu, tenNhiemVu);
+//     });
+// };
+
 // =====================================================================
 // HÀM SUB 2: HIỂN THỊ DANH SÁCH HỌC SINH CHƯA NỘP BÀI (TẦNG 2)
 // =====================================================================
 window.ham_7a_21_sub_danh_sach_chua_lam_trac_nghiem = function () {
-    const { mangChưaLam, maNhiemVu, tenNhiemVu } = window.DataThongKeHienTai;
+    const { mangChưaLam, maNhiemVu, tenNhiemVu, tgMo, tgDong } = window.DataThongKeHienTai;
 
     let htmlChuaLamTable = '';
     if (mangChưaLam.length === 0) {
@@ -2413,13 +2766,23 @@ window.ham_7a_21_sub_danh_sach_chua_lam_trac_nghiem = function () {
     Swal.fire({
         title: `🔴 DANH SÁCH CHƯA NỘP BÀI`,
         html: `
+            <div style="text-align: left; margin-bottom: 15px;">
+                <div style="font-size: 14px; color: #0056b3; font-weight: bold; margin-bottom: 10px;">
+                    📊 TIẾN ĐỘ: ${tenNhiemVu}
+                </div>
+                <div style="font-size: 12px; color: #495057; display: flex; flex-direction: column; gap: 4px;">
+                    <span>🟢 <b>Giao bài:</b> ${tgMo}</span>
+                    <span>🔴 <b>Hạn chót:</b> ${tgDong}</span>
+                </div>
+            </div>
+
             <div style="max-height: 400px; overflow-y: auto; background: white;">
                 <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
-                    <thead style="background: #fff5f5; position: sticky; top: 0; border-bottom: 2px solid #fed7d7;">
+                    <thead style="background: #fff5f5; position: sticky; top: 0; border-bottom: 2px solid #fed7d7; z-index: 1;">
                         <tr>
                             <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 40px;">STT</th>
                             <th style="padding: 8px 8px; color: #9b2c2c;">Tên học sinh</th>
-                            <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 130px;">Số điện thoại</th>
+                            <th style="padding: 8px 8px; text-align: center; color: #9b2c2c; width: 130px;">Tên đăng nhập</th>
                         </tr>
                     </thead>
                     <tbody>
