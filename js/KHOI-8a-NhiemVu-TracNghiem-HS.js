@@ -1690,28 +1690,160 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
 
 
 
+// // =====================================================================
+// // 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
+// // =====================================================================
+// function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
+
+//     // 🌟 Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
+//     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
+//     const maCauHienThi = cau.ma_goc || cau.maGoc || cau.maCauGoc || cau.idGoc || maCauLogic;
+
+
+//     const thuMucAnh = window.PhienLamBai.base_url_anh;
+
+//     // Bộ lọc Kép: Dịch LaTeX trước -> Vá đường dẫn ảnh sau
+//     const xuLyNoiDung = (noiDung) => {
+//         if (!noiDung) return "";
+//         let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
+//         return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
+//             if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
+//             const cleanFile = tenFile.split('/').pop();
+//             return `src="${thuMucAnh}/${cleanFile}"`;
+//         });
+//     };
+
+//     let cauDan = xuLyNoiDung(cau.cauDan || cau.noiDungHtml || "");
+
+//     let htmlBlock = `
+//         <div id="cau-${maCauLogic}" data-loaicau="${loaiCau}" class="cau-hoi" style="margin-bottom: 30px; padding: 25px; border: 1px solid #ccc; border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+//             <p style="color: #0056b3; margin-top: 0; font-size: 18px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+//                 <span style="display: flex; align-items: baseline; gap: 8px;">
+//                     <strong style="font-weight: 900; color: #000080;">(${loaiCau}) Câu ${stt}:</strong>
+//                     <span style="font-size: 13px; color: #6c757d; font-weight: normal;">[Mã: ${maCauHienThi}]</span> 
+//                 </span>
+//             </p>
+//             <div style="font-size: 17px; line-height: 1.6; margin-bottom: 20px; margin-top: 15px; overflow-x: auto;">${cauDan}</div>
+//     `;
+
+//     if (loaiCau === "TN") {
+//         htmlBlock += `<div style="display: flex; flex-direction: column; gap: 10px;">`;
+//         const mangPA = cau.dsTron || [{ idGoc: 'A', text: cau.paA }, { idGoc: 'B', text: cau.paB }, { idGoc: 'C', text: cau.paC }, { idGoc: 'D', text: cau.paD }];
+//         mangPA.forEach((pa, idx) => {
+//             const nhan = String.fromCharCode(65 + idx);
+//             htmlBlock += `
+//                 <label style="display: flex; align-items: flex-start; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; background: #f8f9fa; transition: 0.2s;" onmouseover="this.style.background='#e8f0fe'" onmouseout="if(!this.querySelector('input').checked) this.style.background='#f8f9fa'">
+//                     <input type="radio" name="dapan_${maCauLogic}" value="${pa.idGoc}" onchange="ham_8_25_luuDapAn('${maCauLogic}', '${pa.idGoc}', this)" style="margin-top: 5px; margin-right: 15px; transform: scale(1.3);">
+//                     <div style="flex:1; font-size: 17px;"><b>${nhan}.</b> ${xuLyNoiDung(pa.text)}</div>
+//                 </label>`;
+//         });
+//         htmlBlock += `</div>`;
+//     }
+//     else if (loaiCau === "DS") {
+//         htmlBlock += `<div style="font-weight: bold; color: #d35400; margin-bottom: 15px; background: #fff8e1; padding: 10px; border-left: 4px solid #ffc107; font-size: 14px;">✅ Yêu cầu: Chọn Đúng hoặc Sai.</div><div class="cau-ds">`;
+//         const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
+//         mangY.forEach((y, idx) => {
+//             const nhanThuong = ['a', 'b', 'c', 'd'][idx];
+//             htmlBlock += `
+//                 <div class="dong-ds" style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+//                     <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
+//                     <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da;">
+//                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #28a745;">
+//                             <input type="radio" name="ds_${maCauLogic}_${y.id}" value="T" onchange="ham_8_26_luuDapAnDS('${maCauLogic}', '${y.id}', 'T', this)" style="transform: scale(1.3);"> Đúng
+//                         </label>
+//                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #dc3545;">
+//                             <input type="radio" name="ds_${maCauLogic}_${y.id}" value="F" onchange="ham_8_26_luuDapAnDS('${maCauLogic}', '${y.id}', 'F', this)" style="transform: scale(1.3);"> Sai
+//                         </label>
+//                     </div>
+//                 </div>`;
+//         });
+//         htmlBlock += `</div>`;
+//     }
+//     else if (loaiCau === "TLN") {
+//         const inputStyle = "width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid #1a73e8; border-radius: 8px; color: #000080; outline: none; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-transform: uppercase;";
+//         const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); ham_8_25_luuDapAn('${maCauLogic}', ans, this);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
+
+//         htmlBlock += `
+//             <div class="cau-tln-container" style="margin-top: 15px; padding: 25px; background: #e8f4f8; border-radius: 8px; border: 1px dashed #b8daff; text-align: center;">
+//                 <label style="font-weight: bold; color: #0056b3; font-size: 16px; margin-bottom: 20px; display: block;">✏️ Điền đáp án của em vào 4 ô trống:</label>
+//                 <div class="tln-inputs" style="display: flex; justify-content: center; gap: 12px;">
+//                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+//                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+//                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+//                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
+//                 </div>
+//                 <div style="font-size: 13px; color: #6c757d; margin-top: 15px;">(Mỗi ô điền 1 ký tự, bao gồm cả dấu trừ "-" hoặc dấu phẩy ",")</div>
+//             </div>`;
+//     }
+
+
+//     // 🌟 KIỂM TRA: Nếu đang ở chế độ Live Quiz -> Cấy thêm nút NỘP TỪNG CÂU
+//     if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) {
+//         // Xử lý chuỗi đáp án đúng để truyền vào hàm chấm điểm
+//         let dapAnDungTruyen = (cau.dap_an || cau.dapAn || '');
+//         // Thay thế dấu nháy đơn để tránh lỗi cú pháp JS khi render HTML
+//         dapAnDungTruyen = dapAnDungTruyen.replace(/'/g, "\\'");
+
+//         htmlBlock += `
+//             <div style="margin-top: 18px; border-top: 1px dashed #e0e0e0; padding-top: 12px; text-align: right;">
+//                 <button id="btn-live-${maCauLogic}" 
+//                         onclick="window.ham_8_6_4_nop_tung_cau('${maCauLogic}', '${loaiCau}', '${dapAnDungTruyen}')" 
+//                         style="padding: 10px 22px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-weight: 900; font-size: 14px; cursor: pointer; box-shadow: 0 3px 6px rgba(231,76,60,0.2); transition: 0.2s;"
+//                         onmouseover="if(!this.disabled) this.style.background='#c0392b'" 
+//                         onmouseout="if(!this.disabled) this.style.background='#e74c3c'">
+//                     🚀 GỬI & KHÓA CÂU NÀY
+//                 </button>
+//             </div>
+//         `;
+//     }
+
+
+//     return htmlBlock + `</div>`;
+// }
+
+
+
 // =====================================================================
-// 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Dịch LaTeX & Màng lọc ảnh)
+// 8.11 HÀM BỔ TRỢ: VẼ TỪNG CÂU HỎI (Tích hợp Flex-wrap cho nút Đúng Sai)
 // =====================================================================
 function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
 
-    // 🌟 Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
+    // Tách rạch ròi 2 mã: Logic (q_) để chấm điểm, và Hiển thị (2605-123) cho học sinh xem
     const maCauLogic = cau.ma_cau_hoi || cau.maCau;
     const maCauHienThi = cau.ma_goc || cau.maGoc || cau.maCauGoc || cau.idGoc || maCauLogic;
-
 
     const thuMucAnh = window.PhienLamBai.base_url_anh;
 
     // Bộ lọc Kép: Dịch LaTeX trước -> Vá đường dẫn ảnh sau
+    // const xuLyNoiDung = (noiDung) => {
+    //     if (!noiDung) return "";
+    //     let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
+    //     return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
+    //         if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
+    //         const cleanFile = tenFile.split('/').pop();
+    //         return `src="${thuMucAnh}/${cleanFile}"`;
+    //     });
+    // };
+
+
     const xuLyNoiDung = (noiDung) => {
         if (!noiDung) return "";
         let htmlDich = typeof dichLaTeX === 'function' ? dichLaTeX(noiDung) : noiDung;
+
+        // 🌟 Tự động thêm style giới hạn khung và sự kiện click phóng to cho tất cả ảnh
         return htmlDich.replace(/src=['"]([^'"]+)['"]/g, (match, tenFile) => {
-            if (tenFile.startsWith('http') || tenFile.startsWith('data:')) return match;
-            const cleanFile = tenFile.split('/').pop();
-            return `src="${thuMucAnh}/${cleanFile}"`;
+            let linkAnh = tenFile;
+            if (!tenFile.startsWith('http') && !tenFile.startsWith('data:')) {
+                const cleanFile = tenFile.split('/').pop();
+                linkAnh = `${thuMucAnh}/${cleanFile}`;
+            }
+            // Trả về src kèm theo style tối ưu cho mobile và sự kiện click xem lớn
+            return `src="${linkAnh}" style="max-width: 100%; height: auto; border-radius: 6px; cursor: zoom-in; display: block; margin: 10px auto;" onclick="ham_hs_phong_to_anh_chi_tiet('${linkAnh}')" title="Chạm để phóng to ảnh"`;
         });
     };
+
+
+
 
     let cauDan = xuLyNoiDung(cau.cauDan || cau.noiDungHtml || "");
 
@@ -1744,10 +1876,12 @@ function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
         const mangY = [{ id: 'A', text: cau.paA }, { id: 'B', text: cau.paB }, { id: 'C', text: cau.paC }, { id: 'D', text: cau.paD }];
         mangY.forEach((y, idx) => {
             const nhanThuong = ['a', 'b', 'c', 'd'][idx];
+            // 🌟 CẬP NHẬT GIAO DIỆN: Sử dụng flex-wrap và min-width để tự động xuống hàng khi hẹp
             htmlBlock += `
-                <div class="dong-ds" style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="flex: 1; padding-right: 20px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
-                    <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da;">
+                <div class="dong-ds" style="margin-bottom: 12px; padding: 12px 15px; background: #f8f9fa; border: 1px solid #eee; border-radius: 6px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1; min-width: 200px; font-size: 16px;"><strong>${nhanThuong})</strong> ${xuLyNoiDung(y.text)}</div>
+                    
+                    <div style="display: flex; gap: 20px; flex-shrink: 0; background: #fff; padding: 8px 15px; border-radius: 20px; border: 1px solid #ced4da; margin-left: auto;">
                         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; color: #28a745;">
                             <input type="radio" name="ds_${maCauLogic}_${y.id}" value="T" onchange="ham_8_26_luuDapAnDS('${maCauLogic}', '${y.id}', 'T', this)" style="transform: scale(1.3);"> Đúng
                         </label>
@@ -1761,7 +1895,9 @@ function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
     }
     else if (loaiCau === "TLN") {
         const inputStyle = "width: 55px; height: 60px; text-align: center; font-size: 26px; font-weight: bold; border: 2px solid #1a73e8; border-radius: 8px; color: #000080; outline: none; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-transform: uppercase;";
-        const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); ham_8_25_luuDapAn('${maCauLogic}', ans, this);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
+
+        // 🌟 Bổ sung gọi hàm kiểm tra định dạng ngay khi nhập liệu
+        const autoJumpScript = `oninput="if(this.value) this.nextElementSibling?.focus(); let ans=''; this.parentElement.querySelectorAll('input').forEach(i => ans+=i.value); ham_8_25_luuDapAn('${maCauLogic}', ans, this); ham_kiem_tra_dinh_dang_tln('${maCauLogic}', ans);" onkeydown="if(event.key === 'Backspace' && !this.value) this.previousElementSibling?.focus();"`;
 
         htmlBlock += `
             <div class="cau-tln-container" style="margin-top: 15px; padding: 25px; background: #e8f4f8; border-radius: 8px; border: 1px dashed #b8daff; text-align: center;">
@@ -1772,16 +1908,15 @@ function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
                     <input type="text" maxlength="1" style="${inputStyle}" ${autoJumpScript}>
                 </div>
-                <div style="font-size: 13px; color: #6c757d; margin-top: 15px;">(Mỗi ô điền 1 ký tự, bao gồm cả dấu trừ "-" hoặc dấu phẩy ",")</div>
+                <!-- 🌟 Khung hiển thị cảnh báo nhập sai quy định -->
+                <div id="tln-warn-${maCauLogic}" style="font-size: 13px; color: #dc3545; margin-top: 10px; font-weight: bold; min-height: 18px;"></div>
+                <div style="font-size: 13px; color: #6c757d; margin-top: 5px;">(Mỗi ô điền 1 ký tự, phần thập phân bắt buộc dùng dấu phẩy <b>,</b> theo quy định)</div>
             </div>`;
     }
 
-
-    // 🌟 KIỂM TRA: Nếu đang ở chế độ Live Quiz -> Cấy thêm nút NỘP TỪNG CÂU
+    // KIỂM TRA: Nếu đang ở chế độ Live Quiz -> Cấy thêm nút NỘP TỪNG CÂU
     if (window.PhienLamBai && window.PhienLamBai.isLiveQuiz) {
-        // Xử lý chuỗi đáp án đúng để truyền vào hàm chấm điểm
         let dapAnDungTruyen = (cau.dap_an || cau.dapAn || '');
-        // Thay thế dấu nháy đơn để tránh lỗi cú pháp JS khi render HTML
         dapAnDungTruyen = dapAnDungTruyen.replace(/'/g, "\\'");
 
         htmlBlock += `
@@ -1797,14 +1932,107 @@ function ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, stt, loaiCau) {
         `;
     }
 
-
     return htmlBlock + `</div>`;
 }
+
+
+// =====================================================================
+// HÀM MỚI: Phóng to ảnh bài làm / đề thi cho học sinh trên điện thoại
+// =====================================================================
+window.ham_hs_phong_to_anh_chi_tiet = function (urlAnh) {
+    let oldModal = document.getElementById('modal-zoom-anh-hs');
+    if (oldModal) oldModal.remove();
+
+    let modal = document.createElement('div');
+    modal.id = 'modal-zoom-anh-hs';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:9999999; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(3px); padding:15px; box-sizing:border-box;';
+
+    modal.innerHTML = `
+        <div style="position:relative; max-width:100%; max-height:100%; display:flex; flex-direction:column; align-items:center;">
+            <button onclick="this.closest('#modal-zoom-anh-hs').remove()" style="position:absolute; top:-40px; right:0; background:#dc3545; color:white; border:none; width:36px; height:36px; border-radius:50%; font-size:18px; font-weight:bold; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.3);">✕</button>
+            <div style="overflow:auto; max-width:95vw; max-height:85vh; background:#fff; border-radius:8px; padding:5px;">
+                <img src="${urlAnh}" style="width:100%; height:auto; display:block; object-fit:contain;">
+            </div>
+            <div style="color:#fff; font-size:12px; margin-top:10px; font-style:italic;">Chạm nút (✕) ở góc trên để đóng ảnh</div>
+        </div>
+    `;
+
+    // Bấm ra ngoài vùng ảnh cũng tự đóng modal cho tiện trên mobile
+    modal.onclick = function (e) {
+        if (e.target === modal) modal.remove();
+    };
+
+    document.body.appendChild(modal);
+};
+// =====================================================================
+// HÀM BỔ TRỢ: Kiểm tra nhanh định dạng Trả lời ngắn (Báo lỗi ngay khi nhập sai dấu)
+// =====================================================================
+window.ham_kiem_tra_dinh_dang_tln = function (maCauLogic, ans) {
+    const warnEl = document.getElementById(`tln-warn-${maCauLogic}`);
+    if (!warnEl) return;
+
+    if (!ans) {
+        warnEl.innerHTML = "";
+        return;
+    }
+
+    // Nếu học sinh lỡ tay nhập dấu chấm (.)
+    if (ans.includes('.')) {
+        warnEl.innerHTML = `⚠️ Nhập sai quy định: Phần thập phân phải dùng dấu phẩy (<b>,</b>) thay vì dấu chấm (<b>.</b>). Vui lòng sửa lại!`;
+        return;
+    }
+
+    // Kiểm tra ký tự lạ (chỉ cho phép số 0-9, dấu trừ -, dấu phẩy ,)
+    const hopLe = /^[0-9\-,]+$/.test(ans);
+    if (!hopLe) {
+        warnEl.innerHTML = `⚠️ Ký tự không hợp lệ! Chỉ cho phép số, dấu trừ (-) và dấu phẩy (,).`;
+        return;
+    }
+
+    // Nếu đúng quy định thì xóa sạch thông báo lỗi
+    warnEl.innerHTML = "";
+};
 
 // =====================================================================
 // HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT (KÈM TÍNH KIM CƯƠNG)
 // =====================================================================
 async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
+    
+    // 🌟 BƯỚC KIỂM TRA CHẶN NỘP NẾU CÓ CÂU TLN DÙNG DẤU CHẤM (.)
+    let coLoiDinhDang = false;
+    let cauLoiId = null;
+
+    if (window.PhienLamBai && window.PhienLamBai.dap_an_hoc_sinh) {
+        for (let maCau in window.PhienLamBai.dap_an_hoc_sinh) {
+            let val = window.PhienLamBai.dap_an_hoc_sinh[maCau];
+            // Nếu là câu trả lời ngắn và chuỗi đáp án chứa dấu chấm
+            if (typeof val === 'string' && val.includes('.')) {
+                // Kiểm tra xem câu này có phải dạng TLN không
+                const cauObj = window.PhienLamBai.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi || c.maCau) === maCau);
+                if (cauObj && (cauObj.kieuCau || cauObj.loaiCau || "").toUpperCase() === 'TLN') {
+                    coLoiDinhDang = true;
+                    cauLoiId = maCau;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (coLoiDinhDang) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Lỗi định dạng thập phân!',
+            text: 'Phát hiện câu trả lời ngắn đang dùng dấu chấm (.) thay vì dấu phẩy (,) theo đúng quy định. Vui lòng kiểm tra và sửa lại trước khi nộp bài!',
+            confirmButtonColor: '#d33'
+        });
+        if (cauLoiId) {
+            const el = document.getElementById(`cau-${cauLoiId}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return; // Dừng tiến trình nộp bài
+    }
+    
+    
     if (!isForce) {
         if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
     }
