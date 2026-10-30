@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-10-30T05:57:47.104Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_d7d0f4e101",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta thấy mọi phần tử của tập hợp $B$ đều thuộc tập hợp $A$. Do đó $B\\subset A$."
+    },
+    {
+      "maBaoMat": "sol_8331923347",
+      "dapAn": "A",
+      "loiGiaiHtml": "Áp dụng định lý sin trong tam giác $ABC$, ta có:\r\n\t\t$\\displaystyle \\frac{AB}{\\sin C} = \\frac{AC}{\\sin B} \\Rightarrow AC = \\frac{AB \\cdot \\sin B}{\\sin C} = \\frac{5 \\cdot \\sin 60^\\circ}{\\sin 45^\\circ} = \\frac{5 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{\\sqrt{2}}{2}} = \\frac{5\\sqrt{3}}{\\sqrt{2}} = \\frac{5\\sqrt{6}}{2}$."
+    },
+    {
+      "maBaoMat": "sol_db2f1f0cf7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào hình vẽ, miền nghiệm của hệ là miền tứ giác $ABOC$ (phần màu trắng).\r\n\t\tTa thấy điểm $(-2;1)$ nằm bên trong tứ giác $ABOC$. Các điểm $(0;2), (1;4), (1;2)$ đều nằm trong vùng màu đỏ (không thuộc miền nghiệm)."
+    },
+    {
+      "maBaoMat": "sol_9876cbedae",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\sin 90^\\circ = 1$, $\\cos 60^\\circ = \\displaystyle \\frac{1}{2}$, $\\tan 45^\\circ = 1$.\\\\\r\n\t\tThay vào biểu thức: $A = 3 - 1^2 + 2\\left(\\displaystyle \\frac{1}{2}\\right)^2 - 3(1)^2 = 3 - 1 + 2\\left(\\frac{1}{4}\\right) - 3 = -1 + \\frac{1}{2} = -\\frac{1}{2}$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_374b930353",
+      "dapAn": "A",
+      "loiGiaiHtml": "Theo định lý côsin trong tam giác, ta có: $a^{2}=b^{2}+c^{2}-2bc \\cos A$.\\\\\r\n\t\tDo đó mệnh đề $a^{2}=b^{2}+c^{2}+2bc \\cos A$ là sai."
+    },
+    {
+      "maBaoMat": "sol_c3972202ea",
+      "dapAn": "A",
+      "loiGiaiHtml": "Phần gạch chéo là những phần tử thuộc tập $A$ nhưng không thuộc tập $B$. Đây chính là tập hợp $A\\setminus B$."
+    },
+    {
+      "maBaoMat": "sol_fc1948a6ff",
+      "dapAn": "D",
+      "loiGiaiHtml": "(I) là một khẳng định sai nên là một mệnh đề.\\\\\r\n\t\t(II) là câu hỏi nên không phải mệnh đề.\\\\\r\n\t\t(III) là một khẳng định đúng nên là một mệnh đề.\\\\\r\n\t\t(IV) là câu cảm thán nên không phải mệnh đề.\\\\\r\n\t\tVậy có 2 câu là mệnh đề."
+    },
+    {
+      "maBaoMat": "sol_1e80f75d98",
+      "dapAn": "B",
+      "loiGiaiHtml": "Trong tam giác $ABC$ có $A+B+C=180^\\circ \\Rightarrow A+B = 180^\\circ - C$.\\\\\r\n\t\tÁp dụng tính chất góc bù nhau, ta có $\\sin(A+B) = \\sin(180^\\circ - C) = \\sin C$. Mệnh đề B đúng."
+    },
+    {
+      "maBaoMat": "sol_73794dd324",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $A\\cap B = (-1;3) \\cap [0;5] = [0;3)$."
+    },
+    {
+      "maBaoMat": "sol_6b8aeefece",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thay tọa độ $O(0;0)$ vào hệ C:\\\\\r\n\t\t$\\begin{cases}0+3(0)<0 \\Leftrightarrow 0<0 \\text{ (sai)}\\\\ 2(0)+0+4>0 \\Leftrightarrow 4>0 \\text{ (đúng)}\\end{cases}$.\\\\\r\n\t\tVậy $O(0;0)$ không thuộc miền nghiệm của hệ C."
+    },
+    {
+      "maBaoMat": "sol_e3dd632400",
+      "dapAn": "B",
+      "loiGiaiHtml": "Bất phương trình $2x+y>5$ có dạng $ax+by+c>0$ với $a=2, b=1$ nên là bất phương trình bậc nhất hai ẩn. Các bất phương trình còn lại đều có chứa bậc 2."
+    },
+    {
+      "maBaoMat": "sol_37cbb146d9",
+      "dapAn": "D",
+      "loiGiaiHtml": "Mệnh đề phủ định của $\\forall$ là $\\exists$, của $>$ là $\\le$.\\\\\r\n\t\tVậy mệnh đề phủ định là: \"$\\exists x\\in\\mathbb{R}: x^{2}+x+2025\\le 0$\"."
+    },
+    {
+      "maBaoMat": "sol_07199af4cb",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $A=(-7;5]$ và $B=(-1;+\\infty)$. Mệnh đề $B=[-1;+\\infty)$ là sai.\r\n\t\t\t\\itemch $A\\cap B = (-7;5] \\cap (-1;+\\infty) = (-1;5]$. Mệnh đề đúng.\r\n\t\t\t\\itemch $A\\cup B = (-7;5] \\cup (-1;+\\infty) = (-7;+\\infty)$. Mệnh đề sai vì dùng ngoặc vuông $[-7$.\r\n\t\t\t\\itemch $C_{\\mathbb{R}}(A\\cup B) = \\mathbb{R} \\setminus (-7;+\\infty) = (-\\infty;-7]$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_bb9b409a9e",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Áp dụng hệ quả định lý côsin:\\\\\r\n\t\t\t$\\cos A = \\displaystyle \\frac{AB^2+AC^2-BC^2}{2 \\cdot AB \\cdot AC} = \\frac{(1+\\sqrt{3})^2+2^2-(\\sqrt{6})^2}{2(1+\\sqrt{3})(2)} = \\frac{1+2\\sqrt{3}+3+4-6}{4(1+\\sqrt{3})} = \\frac{2+2\\sqrt{3}}{4(1+\\sqrt{3})} = \\frac{1}{2}$.\\\\\r\n\t\t\tSuy ra $\\widehat{A} = 60^\\circ$. Mệnh đề đúng.\r\n\t\t\t\\itemch Bán kính đường tròn ngoại tiếp: $R = \\displaystyle \\frac{BC}{2\\sin A} = \\frac{\\sqrt{6}}{2\\sin 60^\\circ} = \\frac{\\sqrt{6}}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\sqrt{2} \\ne 2$. Mệnh đề sai.\r\n\t\t\t\\itemch Diện tích tam giác: $S = \\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A = \\frac{1}{2}(1+\\sqrt{3})(2)\\sin 60^\\circ = (1+\\sqrt{3}) \\frac{\\sqrt{3}}{2} = \\frac{3+\\sqrt{3}}{2}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Diện tích tam giác $ABC$ bằng tổng diện tích hai tam giác $ABD$ và $ACD$:\\\\\r\n\t\t\t$S_{ABC} = \\displaystyle \\frac{1}{2}AB \\cdot AD \\cdot \\sin 30^\\circ + \\frac{1}{2}AC \\cdot AD \\cdot \\sin 30^\\circ = \\frac{1}{2}AD \\cdot \\sin 30^\\circ (AB+AC)$.\\\\\r\n\t\t\t$\\Rightarrow \\displaystyle \\frac{3+\\sqrt{3}}{2} = \\frac{1}{2} \\cdot AD \\cdot \\frac{1}{2} (1+\\sqrt{3}+2) = \\frac{AD(3+\\sqrt{3})}{4}$.\\\\\r\n\t\t\t$\\Rightarrow AD = \\displaystyle \\frac{4(3+\\sqrt{3})}{2(3+\\sqrt{3})} = 2$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_72327ce1da",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số tiền thu được từ hàng loại I là $160x$ (nghìn đồng), từ hàng loại II là $80y$ (nghìn đồng). Tổng số tiền là $160x+80y$ (nghìn đồng). Mệnh đề đúng.\r\n\t\t\t\\itemch $40$ triệu đồng = $40.000$ nghìn đồng. Để cửa hàng có lãi (thu nhiều hơn chi phí, tức là số tiền thu được $>40$ triệu): $160x+80y > 40000 \\Leftrightarrow 2x+y > 500$. (Mệnh đề dùng dấu $\\ge$ là chỉ điểm hòa vốn, \"có lãi\" nên dùng dấu $>$, tuy nhiên trong thực tế kinh tế đôi khi người ta gộp chung. Hãy xem đáp án trường, đáp án trường cho là SAI, vậy chữ \"có lãi\" là dấu $>$, mệnh đề $\\ge$ sai).\r\n\t\t\t\\itemch Nếu $x=100, y=301 \\Rightarrow 2x+y = 2(100)+301 = 501 > 500$. Thỏa mãn có lãi. Mệnh đề đúng.\r\n\t\t\t\\itemch Nếu $x=230$, để có lãi: $2(230) + y > 500 \\Leftrightarrow 460 + y > 500 \\Leftrightarrow y > 40$. Vì $y \\in \\mathbb{N}$ nên $y \\ge 41$. Vậy cần bán thêm ít nhất 41 sản phẩm loại II. Mệnh đề \"ít nhất 40\" là điểm hòa vốn, không phải có lãi. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_6c0b01db51",
+      "dapAn": "FTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Góc $90^\\circ<\\alpha<180^\\circ$ (góc tù), $\\sin \\alpha>0$ và $\\cos \\alpha<0$ nên chúng trái dấu. Mệnh đề sai.\r\n\t\t\t\\itemch Áp dụng công thức góc bù: $\\cos(180^\\circ-\\alpha)=-\\cos \\alpha$, $\\sin(180^\\circ-\\alpha)=\\sin \\alpha$. Vế trái bằng $-\\cos \\alpha + 2\\sin \\alpha = 2\\sin \\alpha - \\cos \\alpha$. Mệnh đề đúng.\r\n\t\t\t\\itemch Có $\\cos \\alpha = -\\sqrt{1-\\sin^2 \\alpha} = -\\sqrt{1-\\left(\\displaystyle \\frac{1}{3}\\right)^2} = -\\sqrt{\\frac{8}{9}} = \\frac{-2\\sqrt{2}}{3}$. Đồng nhất với $\\displaystyle \\frac{-2\\sqrt{b}}{c} \\Rightarrow b=2, c=3$ (thỏa mãn phân số tối giản). Khi đó $b^2+c = 2^2+3 = 7 \\ne 6$. Mệnh đề sai.\r\n\t\t\t\\itemch Ta có $A = \\displaystyle \\frac{\\cos^{2}\\alpha - (1-\\cos^{2}\\alpha)}{\\sin \\alpha+\\cos \\alpha} = \\frac{\\cos^{2}\\alpha-\\sin^{2}\\alpha}{\\sin \\alpha+\\cos \\alpha} = \\frac{(\\cos \\alpha-\\sin \\alpha)(\\cos \\alpha+\\sin \\alpha)}{\\sin \\alpha+\\cos \\alpha} = \\cos \\alpha-\\sin \\alpha$. Mệnh đề cho $A=\\sin \\alpha+\\cos \\alpha$ là sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4ec2c5edd6",
+      "dapAn": "26",
+      "loiGiaiHtml": "Gọi $x$ và $y$ lần lượt là diện tích trồng hoa hồng và hoa lan (đơn vị: trăm $\\text{m}^2$).\\\\\r\n\t\tĐiều kiện: $x\\ge 0, y\\ge 0$.\\\\\r\n\t\tDiện tích: $x+y \\le 8$.\\\\\r\n\t\tSố công: $20x + 30y \\le 180 \\Leftrightarrow 2x+3y \\le 18$.\\\\\r\n\t\tHệ bất phương trình ràng buộc: $\\begin{cases}x+y\\le 8\\\\ 2x+3y\\le 18\\\\ x\\ge 0, y\\ge 0\\end{cases}$.\\\\\r\n\t\tSố tiền thu được (triệu đồng): $F(x,y) = 3x+4y$.\\\\\r\n\t\tMiền nghiệm là tứ giác với các đỉnh: $(0;0)$, $(8;0)$, $(6;2)$, $(0;6)$.\\\\\r\n\t\tTại $(0;0): F=0$.\\\\\r\n\t\tTại $(8;0): F = 3(8)+0 = 24$.\\\\\r\n\t\tTại $(6;2): F = 3(6)+4(2) = 26$.\\\\\r\n\t\tTại $(0;6): F = 3(0)+4(6) = 24$.\\\\\r\n\t\tGiá trị lớn nhất là $26$. Vậy số tiền nhiều nhất thu được là $26$ triệu đồng."
+    },
+    {
+      "maBaoMat": "sol_a2498881c2",
+      "dapAn": "8,15",
+      "loiGiaiHtml": "Trong tam giác $ABC$, ta có $AB=10\\text{km}$, $\\widehat{A} = 60^\\circ$, $\\widehat{B} = 50^\\circ$.\\\\\r\n\t\tSuy ra $\\widehat{C} = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lý sin: $\\displaystyle \\frac{AC}{\\sin B} = \\frac{AB}{\\sin C} \\Rightarrow AC = \\frac{AB \\cdot \\sin B}{\\sin C} = \\frac{10 \\cdot \\sin 50^\\circ}{\\sin 70^\\circ} \\approx 8{,}152$.\\\\\r\n\t\tLàm tròn đến hàng phần trăm, khoảng cách $AC \\approx 8{,}15\\text{ (km)}$."
+    },
+    {
+      "maBaoMat": "sol_dba454a716",
+      "dapAn": "3",
+      "loiGiaiHtml": "Gọi $Z$ và $T$ lần lượt là tập hợp học sinh dùng Zoom và Teams.\\\\\r\n\t\tSố học sinh sử dụng ít nhất một trong hai nền tảng là: $n(Z\\cup T) = 48 - 8 = 40$ (học sinh).\\\\\r\n\t\tMặt khác, $n(Z\\cup T) = n(Z) + n(T \\setminus Z)$ (Số người dùng Zoom cộng số người chỉ dùng Teams).\\\\\r\n\t\t$\\Rightarrow 40 = 37 + n(T \\setminus Z) \\Rightarrow n(T \\setminus Z) = 3$.\\\\\r\n\t\tVậy có 3 em sử dụng Teams mà không sử dụng Zoom."
+    },
+    {
+      "maBaoMat": "sol_35159db0ba",
+      "dapAn": "2023",
+      "loiGiaiHtml": "Đường thẳng $d: 2x+y=2$ cắt các trục $Ox, Oy$ lần lượt tại $M(1;0)$ và $N(0;2)$.\\\\\r\n\t\tMiền nghiệm $D$ là nửa mặt phẳng bờ $d$ không chứa gốc tọa độ $O(0;0)$ (vì $2(0)+0 \\ge 2$ sai).\\\\\r\n\t\tHình vuông $ABCO$ nằm trong góc phần tư thứ nhất có một đỉnh là gốc tọa độ $O$, gọi cạnh hình vuông là $a$. Các đỉnh của nó là $O(0;0), M'(a;0), N'(a;a), P'(0;a)$.\\\\\r\n\t\tĐường thẳng $d$ cắt hai cạnh $OA$ và $OC$ của hình vuông tạo thành tam giác vuông $OMN$ (nếu $a \\ge 2$).\\\\\r\n\t\tDiện tích tam giác vuông $OMN$ (phần không thuộc $D$) là: $S_{OMN} = \\displaystyle \\frac{1}{2} \\cdot OM \\cdot ON = \\frac{1}{2} \\cdot 1 \\cdot 2 = 1$.\\\\\r\n\t\tDiện tích phần chung giữa $D$ và hình vuông $ABCO$ chính là diện tích hình vuông trừ đi diện tích tam giác $OMN$.\\\\\r\n\t\tVậy $S_{chung} = S_{vuong} - S_{OMN} = a^2 - 1 = 2022 \\Rightarrow a^2 = 2023$.\\\\\r\n\t\tDiện tích hình vuông $ABCO$ là $a^2 = 2023$."
+    },
+    {
+      "maBaoMat": "sol_511a5160d6",
+      "dapAn": "140",
+      "loiGiaiHtml": "Hình tròn lớn nhất nằm trong tam giác là đường tròn nội tiếp tam giác $ABC$. Gọi bán kính đường tròn này là $r$.\\\\\r\n\t\tNửa chu vi tam giác: $p = \\displaystyle \\frac{1{,}6+1{,}6+1{,}2}{2} = 2{,}2\\text{ (m)}$.\\\\\r\n\t\tDiện tích tam giác $ABC$: $S = \\sqrt{p(p-AB)(p-BC)(p-AC)} = \\sqrt{2{,}2(0{,}6)(0{,}6)(1)} = 0{,}6\\sqrt{2{,}2} \\approx 0{,}8899\\text{ (m}^2)$.\\\\\r\n\t\tBán kính đường tròn nội tiếp: $r = \\displaystyle \\frac{S}{p} = \\frac{0{,}6\\sqrt{2{,}2}}{2{,}2} \\approx 0{,}4045\\text{ (m)}$.\\\\\r\n\t\tDiện tích hình tròn: $S_{tron} = \\pi r^2 = \\pi \\left(\\displaystyle \\frac{0{,}6\\sqrt{2{,}2}}{2{,}2}\\right)^2 = \\pi \\cdot \\frac{0{,}792}{4{,}84} \\approx 0{,}5141\\text{ (m}^2)$.\\\\\r\n\t\tDiện tích phần còn lại: $S_{conlai} = S - S_{tron} \\approx 0{,}8899 - 0{,}5141 = 0{,}3758\\text{ (m}^2)$.\\\\\r\n\t\tChi phí sơn: $C = S_{tron} \\cdot 200 + S_{conlai} \\cdot 100 \\approx 0{,}5141 \\cdot 200 + 0{,}3758 \\cdot 100 = 102{,}82 + 37{,}58 = 140{,}4$ (nghìn đồng).\\\\\r\n\t\tLàm tròn đến hàng đơn vị, tổng chi phí là $140$ nghìn đồng."
+    },
+    {
+      "maBaoMat": "sol_107dbbac6e",
+      "dapAn": "71",
+      "loiGiaiHtml": "Quãng đường tàu B đi được sau 3 giờ là: $AB = 30 \\cdot 3 = 90\\text{ (km)}$.\\\\\r\n\t\tQuãng đường tàu C đi được sau 3 giờ là: $AC = 25 \\cdot 3 = 75\\text{ (km)}$.\\\\\r\n\t\tÁp dụng định lý côsin cho tam giác $ABC$:\\\\\r\n\t\t$BC^2 = AB^2 + AC^2 - 2 \\cdot AB \\cdot AC \\cdot \\cos A = 90^2 + 75^2 - 2 \\cdot 90 \\cdot 75 \\cdot \\cos 50^\\circ = 8100 + 5625 - 13500 \\cdot \\cos 50^\\circ \\approx 5047{,}55$.\\\\\r\n\t\t$\\Rightarrow BC \\approx \\sqrt{5047{,}55} \\approx 71{,}046\\text{ (km)}$.\\\\\r\n\t\tLàm tròn đến hàng đơn vị, hai tàu cách nhau $71\\text{km}$."
+    }
+  ]
+}
