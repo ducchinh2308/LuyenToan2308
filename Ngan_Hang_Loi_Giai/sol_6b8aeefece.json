@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6b8aeefece",
+  "dapAn": "C",
+  "loiGiai": "Thay tọa độ $O(0;0)$ vào hệ C:\\\\\r\n\t\t$\\begin{cases}0+3(0)<0 \\Leftrightarrow 0<0 \\text{ (sai)}\\\\ 2(0)+0+4>0 \\Leftrightarrow 4>0 \\text{ (đúng)}\\end{cases}$.\\\\\r\n\t\tVậy $O(0;0)$ không thuộc miền nghiệm của hệ C."
+}

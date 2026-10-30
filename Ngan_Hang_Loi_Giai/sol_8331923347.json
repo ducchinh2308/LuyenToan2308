@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8331923347",
+  "dapAn": "A",
+  "loiGiai": "Áp dụng định lý sin trong tam giác $ABC$, ta có:\r\n\t\t$\\displaystyle \\frac{AB}{\\sin C} = \\frac{AC}{\\sin B} \\Rightarrow AC = \\frac{AB \\cdot \\sin B}{\\sin C} = \\frac{5 \\cdot \\sin 60^\\circ}{\\sin 45^\\circ} = \\frac{5 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{\\sqrt{2}}{2}} = \\frac{5\\sqrt{3}}{\\sqrt{2}} = \\frac{5\\sqrt{6}}{2}$."
+}

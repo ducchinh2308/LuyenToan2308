@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_35159db0ba",
+  "dapAn": "2023",
+  "loiGiai": "Đường thẳng $d: 2x+y=2$ cắt các trục $Ox, Oy$ lần lượt tại $M(1;0)$ và $N(0;2)$.\\\\\r\n\t\tMiền nghiệm $D$ là nửa mặt phẳng bờ $d$ không chứa gốc tọa độ $O(0;0)$ (vì $2(0)+0 \\ge 2$ sai).\\\\\r\n\t\tHình vuông $ABCO$ nằm trong góc phần tư thứ nhất có một đỉnh là gốc tọa độ $O$, gọi cạnh hình vuông là $a$. Các đỉnh của nó là $O(0;0), M'(a;0), N'(a;a), P'(0;a)$.\\\\\r\n\t\tĐường thẳng $d$ cắt hai cạnh $OA$ và $OC$ của hình vuông tạo thành tam giác vuông $OMN$ (nếu $a \\ge 2$).\\\\\r\n\t\tDiện tích tam giác vuông $OMN$ (phần không thuộc $D$) là: $S_{OMN} = \\displaystyle \\frac{1}{2} \\cdot OM \\cdot ON = \\frac{1}{2} \\cdot 1 \\cdot 2 = 1$.\\\\\r\n\t\tDiện tích phần chung giữa $D$ và hình vuông $ABCO$ chính là diện tích hình vuông trừ đi diện tích tam giác $OMN$.\\\\\r\n\t\tVậy $S_{chung} = S_{vuong} - S_{OMN} = a^2 - 1 = 2022 \\Rightarrow a^2 = 2023$.\\\\\r\n\t\tDiện tích hình vuông $ABCO$ là $a^2 = 2023$."
+}

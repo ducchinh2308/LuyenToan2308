@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6c0b01db51",
+  "dapAn": "FTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Góc $90^\\circ<\\alpha<180^\\circ$ (góc tù), $\\sin \\alpha>0$ và $\\cos \\alpha<0$ nên chúng trái dấu. Mệnh đề sai.\r\n\t\t\t\\itemch Áp dụng công thức góc bù: $\\cos(180^\\circ-\\alpha)=-\\cos \\alpha$, $\\sin(180^\\circ-\\alpha)=\\sin \\alpha$. Vế trái bằng $-\\cos \\alpha + 2\\sin \\alpha = 2\\sin \\alpha - \\cos \\alpha$. Mệnh đề đúng.\r\n\t\t\t\\itemch Có $\\cos \\alpha = -\\sqrt{1-\\sin^2 \\alpha} = -\\sqrt{1-\\left(\\displaystyle \\frac{1}{3}\\right)^2} = -\\sqrt{\\frac{8}{9}} = \\frac{-2\\sqrt{2}}{3}$. Đồng nhất với $\\displaystyle \\frac{-2\\sqrt{b}}{c} \\Rightarrow b=2, c=3$ (thỏa mãn phân số tối giản). Khi đó $b^2+c = 2^2+3 = 7 \\ne 6$. Mệnh đề sai.\r\n\t\t\t\\itemch Ta có $A = \\displaystyle \\frac{\\cos^{2}\\alpha - (1-\\cos^{2}\\alpha)}{\\sin \\alpha+\\cos \\alpha} = \\frac{\\cos^{2}\\alpha-\\sin^{2}\\alpha}{\\sin \\alpha+\\cos \\alpha} = \\frac{(\\cos \\alpha-\\sin \\alpha)(\\cos \\alpha+\\sin \\alpha)}{\\sin \\alpha+\\cos \\alpha} = \\cos \\alpha-\\sin \\alpha$. Mệnh đề cho $A=\\sin \\alpha+\\cos \\alpha$ là sai.\r\n\t\t\\end{itemchoice}"
+}

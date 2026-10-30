@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dba454a716",
+  "dapAn": "3",
+  "loiGiai": "Gọi $Z$ và $T$ lần lượt là tập hợp học sinh dùng Zoom và Teams.\\\\\r\n\t\tSố học sinh sử dụng ít nhất một trong hai nền tảng là: $n(Z\\cup T) = 48 - 8 = 40$ (học sinh).\\\\\r\n\t\tMặt khác, $n(Z\\cup T) = n(Z) + n(T \\setminus Z)$ (Số người dùng Zoom cộng số người chỉ dùng Teams).\\\\\r\n\t\t$\\Rightarrow 40 = 37 + n(T \\setminus Z) \\Rightarrow n(T \\setminus Z) = 3$.\\\\\r\n\t\tVậy có 3 em sử dụng Teams mà không sử dụng Zoom."
+}

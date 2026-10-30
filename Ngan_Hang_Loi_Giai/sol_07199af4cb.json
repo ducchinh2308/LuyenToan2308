@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_07199af4cb",
+  "dapAn": "FTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $A=(-7;5]$ và $B=(-1;+\\infty)$. Mệnh đề $B=[-1;+\\infty)$ là sai.\r\n\t\t\t\\itemch $A\\cap B = (-7;5] \\cap (-1;+\\infty) = (-1;5]$. Mệnh đề đúng.\r\n\t\t\t\\itemch $A\\cup B = (-7;5] \\cup (-1;+\\infty) = (-7;+\\infty)$. Mệnh đề sai vì dùng ngoặc vuông $[-7$.\r\n\t\t\t\\itemch $C_{\\mathbb{R}}(A\\cup B) = \\mathbb{R} \\setminus (-7;+\\infty) = (-\\infty;-7]$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}

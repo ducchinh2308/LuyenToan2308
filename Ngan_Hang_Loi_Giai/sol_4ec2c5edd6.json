@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4ec2c5edd6",
+  "dapAn": "26",
+  "loiGiai": "Gọi $x$ và $y$ lần lượt là diện tích trồng hoa hồng và hoa lan (đơn vị: trăm $\\text{m}^2$).\\\\\r\n\t\tĐiều kiện: $x\\ge 0, y\\ge 0$.\\\\\r\n\t\tDiện tích: $x+y \\le 8$.\\\\\r\n\t\tSố công: $20x + 30y \\le 180 \\Leftrightarrow 2x+3y \\le 18$.\\\\\r\n\t\tHệ bất phương trình ràng buộc: $\\begin{cases}x+y\\le 8\\\\ 2x+3y\\le 18\\\\ x\\ge 0, y\\ge 0\\end{cases}$.\\\\\r\n\t\tSố tiền thu được (triệu đồng): $F(x,y) = 3x+4y$.\\\\\r\n\t\tMiền nghiệm là tứ giác với các đỉnh: $(0;0)$, $(8;0)$, $(6;2)$, $(0;6)$.\\\\\r\n\t\tTại $(0;0): F=0$.\\\\\r\n\t\tTại $(8;0): F = 3(8)+0 = 24$.\\\\\r\n\t\tTại $(6;2): F = 3(6)+4(2) = 26$.\\\\\r\n\t\tTại $(0;6): F = 3(0)+4(6) = 24$.\\\\\r\n\t\tGiá trị lớn nhất là $26$. Vậy số tiền nhiều nhất thu được là $26$ triệu đồng."
+}

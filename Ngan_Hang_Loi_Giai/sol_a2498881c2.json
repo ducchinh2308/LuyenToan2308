@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a2498881c2",
+  "dapAn": "8,15",
+  "loiGiai": "Trong tam giác $ABC$, ta có $AB=10\\text{km}$, $\\widehat{A} = 60^\\circ$, $\\widehat{B} = 50^\\circ$.\\\\\r\n\t\tSuy ra $\\widehat{C} = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lý sin: $\\displaystyle \\frac{AC}{\\sin B} = \\frac{AB}{\\sin C} \\Rightarrow AC = \\frac{AB \\cdot \\sin B}{\\sin C} = \\frac{10 \\cdot \\sin 50^\\circ}{\\sin 70^\\circ} \\approx 8{,}152$.\\\\\r\n\t\tLàm tròn đến hàng phần trăm, khoảng cách $AC \\approx 8{,}15\\text{ (km)}$."
+}

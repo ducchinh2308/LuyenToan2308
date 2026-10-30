@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_72327ce1da",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Số tiền thu được từ hàng loại I là $160x$ (nghìn đồng), từ hàng loại II là $80y$ (nghìn đồng). Tổng số tiền là $160x+80y$ (nghìn đồng). Mệnh đề đúng.\r\n\t\t\t\\itemch $40$ triệu đồng = $40.000$ nghìn đồng. Để cửa hàng có lãi (thu nhiều hơn chi phí, tức là số tiền thu được $>40$ triệu): $160x+80y > 40000 \\Leftrightarrow 2x+y > 500$. (Mệnh đề dùng dấu $\\ge$ là chỉ điểm hòa vốn, \"có lãi\" nên dùng dấu $>$, tuy nhiên trong thực tế kinh tế đôi khi người ta gộp chung. Hãy xem đáp án trường, đáp án trường cho là SAI, vậy chữ \"có lãi\" là dấu $>$, mệnh đề $\\ge$ sai).\r\n\t\t\t\\itemch Nếu $x=100, y=301 \\Rightarrow 2x+y = 2(100)+301 = 501 > 500$. Thỏa mãn có lãi. Mệnh đề đúng.\r\n\t\t\t\\itemch Nếu $x=230$, để có lãi: $2(230) + y > 500 \\Leftrightarrow 460 + y > 500 \\Leftrightarrow y > 40$. Vì $y \\in \\mathbb{N}$ nên $y \\ge 41$. Vậy cần bán thêm ít nhất 41 sản phẩm loại II. Mệnh đề \"ít nhất 40\" là điểm hòa vốn, không phải có lãi. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

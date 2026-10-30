@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1e80f75d98",
+  "dapAn": "B",
+  "loiGiai": "Trong tam giác $ABC$ có $A+B+C=180^\\circ \\Rightarrow A+B = 180^\\circ - C$.\\\\\r\n\t\tÁp dụng tính chất góc bù nhau, ta có $\\sin(A+B) = \\sin(180^\\circ - C) = \\sin C$. Mệnh đề B đúng."
+}

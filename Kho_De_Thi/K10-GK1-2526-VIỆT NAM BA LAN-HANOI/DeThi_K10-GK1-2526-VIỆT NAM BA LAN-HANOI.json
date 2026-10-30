@@ -1,0 +1,225 @@
+{
+  "maDe": "K10-GK1-2526-VIỆT NAM BA LAN-HANOI",
+  "tenDe": "K10-GK1-2526-VIỆT NAM BA LAN-HANOI",
+  "thoiGian": 75,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0D1N2-2]",
+      "maCau": "q_c866ef180e",
+      "ma_goc": "2610-1591",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai tập hợp $A=\\{1;3;a;5;6;8;9\\}$ và $B=\\{1;3;a;5;6;9\\}$. Khẳng định nào sau đây đúng?",
+      "paA": "$0\\in B$",
+      "paB": "$0\\in A$",
+      "paC": "$A\\subset B$",
+      "paD": "$B\\subset A$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_37f677afe8",
+      "ma_goc": "2610-1592",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $\\widehat{B}=60^\\circ$, $\\widehat{C}=45^\\circ$, $AB=5$. Độ dài cạnh $AC$ bằng",
+      "paA": "$\\displaystyle \\frac{5\\sqrt{6}}{2}$",
+      "paB": "$5\\sqrt{2}$",
+      "paC": "$10$",
+      "paD": "$5\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[0D2H2-2]",
+      "maCau": "q_ee32a2e06d",
+      "ma_goc": "2610-1593",
+      "kieuCau": "TN",
+      "cauDan": "Miền nghiệm của một hệ bất phương trình bậc nhất hai ẩn là miền trong của tứ giác $ABOC$ được cho bởi hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ee32a2e06d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm nào sau đây thuộc miền nghiệm của hệ bất phương trình trên?",
+      "paA": "$(0;2)$",
+      "paB": "$(-2;1)$",
+      "paC": "$(1;4)$",
+      "paD": "$(1;2)$"
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_81914c6248",
+      "ma_goc": "2610-1594",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị của biểu thức $A=3-\\sin^{2}90^\\circ+2\\cos^{2}60^\\circ-3\\tan^{2}45^\\circ$ bằng",
+      "paA": "$-\\displaystyle \\frac{2}{3}$",
+      "paB": "$\\displaystyle \\frac{3}{2}$",
+      "paC": "$-\\displaystyle \\frac{1}{2}$",
+      "paD": "$-\\displaystyle \\frac{1}{3}$"
+    },
+    {
+      "id_Cau": "[0H4N2-2]",
+      "maCau": "q_8ce23a25c2",
+      "ma_goc": "2610-1595",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có độ dài ba cạnh là $BC=a, AC=b, AB=c$. Gọi $R$ là bán kính đường tròn ngoại tiếp tam giác đó. Mệnh đề nào sau đây sai?",
+      "paA": "$a^{2}=b^{2}+c^{2}+2bc \\cos A$",
+      "paB": "$\\displaystyle \\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$",
+      "paC": "$S=\\displaystyle \\frac{abc}{4R}$",
+      "paD": "$b^{2}=a^{2}+c^{2}-2ac \\cos B$"
+    },
+    {
+      "id_Cau": "[0D1N3-2]",
+      "maCau": "q_7363a7e3c9",
+      "ma_goc": "2610-1596",
+      "kieuCau": "TN",
+      "cauDan": "Phần gạch chéo trong hình vẽ sau biểu diễn tập hợp nào?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7363a7e3c9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$A\\setminus B$",
+      "paB": "$A\\cap B$",
+      "paC": "$A\\cup B$",
+      "paD": "$B\\setminus A$"
+    },
+    {
+      "id_Cau": "[0D1N1-1]",
+      "maCau": "q_e7fbba1a06",
+      "ma_goc": "2610-1597",
+      "kieuCau": "TN",
+      "cauDan": "Trong các câu dưới đây, có bao nhiêu câu là mệnh đề?\\\\\r\n\t(I) Số 2025 là số chẵn.\\\\\r\n\t(II) Hôm nay bạn có vui không?\\\\\r\n\t(III) Hà Nội là thủ đô của nước Việt Nam.\\\\\r\n\t(IV) Hôm nay trời đẹp quá!",
+      "paA": "$4$",
+      "paB": "$1$",
+      "paC": "$3$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[0H4H1-3]",
+      "maCau": "q_1e781fe233",
+      "ma_goc": "2610-1598",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$. Khẳng định nào sau đây đúng?",
+      "paA": "$\\cos A=\\cos(B+C)$",
+      "paB": "$\\sin(A+B)=\\sin C$",
+      "paC": "$\\tan(A+B)=\\cot C$",
+      "paD": "$\\sin A=\\cos(B+C)$"
+    },
+    {
+      "id_Cau": "[0D1H3-3]",
+      "maCau": "q_a27a93ab5b",
+      "ma_goc": "2610-1599",
+      "kieuCau": "TN",
+      "cauDan": "Cho $A=(-1;3)$ và $B=[0;5]$. Khi đó $A\\cap B$ là",
+      "paA": "$(-1;3]$",
+      "paB": "$(-1;5)$",
+      "paC": "$[0;3)$",
+      "paD": "$(0;3)$"
+    },
+    {
+      "id_Cau": "[0D2H2-2]",
+      "maCau": "q_cf55b2c5d9",
+      "ma_goc": "2610-1600",
+      "kieuCau": "TN",
+      "cauDan": "Điểm $O(0;0)$ không thuộc miền nghiệm của hệ bất phương trình nào sau đây?",
+      "paA": "$\\begin{cases}x+3y-6<0\\\\ 2x+y+4>0\\end{cases}$",
+      "paB": "$\\begin{cases}x+3y-6<0\\\\ 2x+y+4\\ge 0\\end{cases}$",
+      "paC": "$\\begin{cases}x+3y<0\\\\ 2x+y+4>0\\end{cases}$",
+      "paD": "$\\begin{cases}x+3y\\ge 0\\\\ 2x+y-4<0\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_d964bae6bf",
+      "ma_goc": "2610-1601",
+      "kieuCau": "TN",
+      "cauDan": "Bất phương trình nào sau đây là bất phương trình bậc nhất hai ẩn?",
+      "paA": "$2x^{2}+3x+1>0$",
+      "paB": "$2x+y>5$",
+      "paC": "$2x+5y^{2}>0$",
+      "paD": "$2x^{2}+5y^{2}>3$"
+    },
+    {
+      "id_Cau": "[0D1N1-3]",
+      "maCau": "q_f3bd8b5549",
+      "ma_goc": "2610-1602",
+      "kieuCau": "TN",
+      "cauDan": "Mệnh đề phủ định của mệnh đề \"$\\forall x\\in\\mathbb{R}: x^{2}+x+2025>0$\" là",
+      "paA": "\"$\\forall x\\in\\mathbb{R}: x^{2}+x+2025<0$\"",
+      "paB": "\"$\\exists x\\in\\mathbb{R}: x^{2}+x+2025<0$\"",
+      "paC": "\"$\\forall x\\in\\mathbb{R}: x^{2}+x+2025\\le 0$\"",
+      "paD": "\"$\\exists x\\in\\mathbb{R}: x^{2}+x+2025\\le 0$\""
+    },
+    {
+      "id_Cau": "[0D1H3-3]",
+      "maCau": "q_52fd9caad1",
+      "ma_goc": "2610-1603",
+      "kieuCau": "DS",
+      "cauDan": "Cho hai tập hợp: $A=\\{x\\in\\mathbb{R} \\mid -7<x\\le 5\\}$, $B=\\{x\\in\\mathbb{R} \\mid x>-1\\}$. Khi đó:",
+      "paA": "$A=(-7;5], B=[-1;+\\infty)$.",
+      "paB": "$A\\cap B=(-1;5]$.",
+      "paC": "$A\\cup B=[-7;+\\infty)$.",
+      "paD": "$C_{\\mathbb{R}}(A\\cup B)=(-\\infty;-7]$."
+    },
+    {
+      "id_Cau": "[0H4V2-4]",
+      "maCau": "q_39b4e67d1c",
+      "ma_goc": "2610-1604",
+      "kieuCau": "DS",
+      "cauDan": "Cho $\\Delta ABC$ có $BC=\\sqrt{6}, CA=2, AB=1+\\sqrt{3}$. Khi đó:",
+      "paA": "Số đo của góc $A$ bằng $60^\\circ$.",
+      "paB": "Bán kính đường tròn ngoại tiếp $\\Delta ABC$ là $R=2$.",
+      "paC": "Diện tích $\\Delta ABC$ bằng $\\displaystyle \\frac{3+\\sqrt{3}}{2}$.",
+      "paD": "Gọi $D$ là chân đường phân giác trong của góc $A$. Khi đó $AD=2$."
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_4ee8cc1e63",
+      "ma_goc": "2610-1605",
+      "kieuCau": "DS",
+      "cauDan": "Cửa hàng nhà ông An kinh doanh một sản phẩm có hai mức giá.\\\\\r\n\tHàng loại I: $160.000$ đồng/sản phẩm.\\\\\r\n\tHàng loại II: $80.000$ đồng/sản phẩm.\\\\\r\n\tÔng An tính toán rằng, để không bị lỗ thì mỗi tháng số tiền thu được từ việc bán sản phẩm trên phải đạt tối thiểu $40$ triệu đồng. Gọi $x$ là số sản phẩm loại I bán được ($x\\in\\mathbb{N}$) và $y$ là số sản phẩm loại II bán được trong tháng ($y\\in\\mathbb{N}$). Khi đó:",
+      "paA": "Tổng số tiền ông An thu được từ việc bán hai loại sản phẩm trên là $160x+80y$ (nghìn đồng).",
+      "paB": "Để tháng đó, ông An có lãi thì $x, y$ phải thỏa mãn bất phương trình $2x+y\\ge 500$.",
+      "paC": "Nếu trong tháng đó, ông An bán được $100$ sản phẩm loại I và $301$ sản phẩm loại II thì cửa hàng có lãi.",
+      "paD": "Nếu trong tháng đó, cửa hàng đã bán $230$ sản phẩm loại I và hết hàng loại I thì cần bán thêm ít nhất $40$ sản phẩm loại II mới có lãi."
+    },
+    {
+      "id_Cau": "[0H4V1-3]",
+      "maCau": "q_e82991fa4c",
+      "ma_goc": "2610-1606",
+      "kieuCau": "DS",
+      "cauDan": "Cho góc $\\alpha \\ (90^\\circ<\\alpha<180^\\circ)$ và biểu thức $A=\\displaystyle \\frac{2\\cos^{2}\\alpha-1}{\\sin \\alpha+\\cos \\alpha}$. Khi đó:",
+      "paA": "$\\sin \\alpha, \\cos \\alpha$ cùng dấu.",
+      "paB": "$\\cos(180^\\circ-\\alpha)+2\\sin(180^\\circ-\\alpha)=2\\sin \\alpha-\\cos \\alpha$.",
+      "paC": "Biết $\\sin \\alpha=\\displaystyle \\frac{1}{3}$ và $\\cos \\alpha=\\displaystyle \\frac{-2\\sqrt{b}}{c}$ ($b,c\\in\\mathbb{N}^{*}, \\frac{b}{c}$ là phân số tối giản). Khi đó $b^{2}+c=6$.",
+      "paD": "$A=\\sin \\alpha+\\cos \\alpha$."
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_ff9eb1dd51",
+      "ma_goc": "2610-1607",
+      "kieuCau": "TLN",
+      "cauDan": "Bác Bình dự định trồng hoa hồng và hoa lan trên diện tích $800\\text{m}^{2}$. Nếu trồng hoa hồng thì cần 20 công và thu $3.000.000$ đồng trên $100\\text{m}^{2}$. Nếu trồng hoa lan thì cần 30 công và thu $4.000.000$ đồng trên $100\\text{m}^{2}$. Bác Bình đã lập được phương án trồng hai loại hoa sao cho thu được nhiều tiền nhất. Biết tổng số công không quá 180. Số tiền đó là bao nhiêu triệu đồng?"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_4bc42aed38",
+      "ma_goc": "2610-1608",
+      "kieuCau": "TLN",
+      "cauDan": "Một người ngồi trên tàu hoả đi từ ga A đến ga B. Khi tàu đỗ ở ga A, qua ống nhòm người đó nhìn thấy một tháp C. Hướng nhìn từ người đó đến tháp tạo với hướng đi của tàu một góc khoảng $60^\\circ$. Khi tàu đỗ ở ga B tiếp theo, người đó nhìn lại vẫn thấy tháp C, hướng nhìn từ người đó đến tháp tạo với hướng ngược với hướng đi của tàu khoảng $50^\\circ$. Biết rằng đoạn đường tàu nối thẳng ga A với B dài 10km, hỏi khoảng cách từ ga A đến tháp C là bao nhiêu km? (Kết quả làm tròn đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4bc42aed38_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D1V3-5]",
+      "maCau": "q_8444a3b7e3",
+      "ma_goc": "2610-1609",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một cuộc khảo sát 48 học sinh lớp 10A về thói quen sử dụng nền tảng học trực tuyến, có 37 em sử dụng Zoom; 15 em sử dụng cả Zoom và Teams; 8 em không sử dụng cả hai nền tảng này. Hỏi có bao nhiêu em sử dụng Teams mà không sử dụng Zoom?"
+    },
+    {
+      "id_Cau": "[0D2V1-2]",
+      "maCau": "q_973bdf787b",
+      "ma_goc": "2610-1610",
+      "kieuCau": "TLN",
+      "cauDan": "Trong hệ trục tọa độ $Oxy$, cho bất phương trình $2x+y\\ge 2$ có miền nghiệm $D$. Dựng hình vuông $ABCO$ nằm trong góc phần tư thứ nhất, với $O(0;0)$ là gốc tọa độ. Biết rằng diện tích phần chung giữa miền nghiệm $D$ và hình vuông $ABCO$ bằng 2022. Tìm diện tích hình vuông $ABCO$."
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_f20e7a51bc",
+      "ma_goc": "2610-1611",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn Giang dự định sơn một góc tường trang trí hình tam giác $ABC$ có $AB=BC=1{,}6\\text{m}$ và $AC=1{,}2\\text{m}$. Bạn Giang muốn vẽ một hình tròn nằm bên trong tam giác $ABC$ sao cho hình tròn đó có diện tích lớn nhất. Biết rằng chi phí sơn màu nghệ thuật cho phần hình tròn là $200.000\\text{ đ/m}^2$ và chi phí sơn cho phần còn lại là $100.000\\text{ đ/m}^2$. Hỏi tổng chi phí sơn tường là bao nhiêu nghìn đồng? (Kết quả làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f20e7a51bc_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_1b51ae169f",
+      "ma_goc": "2610-1612",
+      "kieuCau": "TLN",
+      "cauDan": "Hai chiếc tàu cùng xuất phát từ một vị trí $A$, đi thẳng theo hai hướng tạo với nhau góc $50^\\circ$. Tàu $B$ chạy với vận tốc $30\\text{km/h}$. Tàu $C$ chạy với vận tốc $25\\text{km/h}$. Sau ba giờ, hai tàu cách nhau bao nhiêu km? (Kết quả làm tròn đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1b51ae169f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

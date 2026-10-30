@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_511a5160d6",
+  "dapAn": "140",
+  "loiGiai": "Hình tròn lớn nhất nằm trong tam giác là đường tròn nội tiếp tam giác $ABC$. Gọi bán kính đường tròn này là $r$.\\\\\r\n\t\tNửa chu vi tam giác: $p = \\displaystyle \\frac{1{,}6+1{,}6+1{,}2}{2} = 2{,}2\\text{ (m)}$.\\\\\r\n\t\tDiện tích tam giác $ABC$: $S = \\sqrt{p(p-AB)(p-BC)(p-AC)} = \\sqrt{2{,}2(0{,}6)(0{,}6)(1)} = 0{,}6\\sqrt{2{,}2} \\approx 0{,}8899\\text{ (m}^2)$.\\\\\r\n\t\tBán kính đường tròn nội tiếp: $r = \\displaystyle \\frac{S}{p} = \\frac{0{,}6\\sqrt{2{,}2}}{2{,}2} \\approx 0{,}4045\\text{ (m)}$.\\\\\r\n\t\tDiện tích hình tròn: $S_{tron} = \\pi r^2 = \\pi \\left(\\displaystyle \\frac{0{,}6\\sqrt{2{,}2}}{2{,}2}\\right)^2 = \\pi \\cdot \\frac{0{,}792}{4{,}84} \\approx 0{,}5141\\text{ (m}^2)$.\\\\\r\n\t\tDiện tích phần còn lại: $S_{conlai} = S - S_{tron} \\approx 0{,}8899 - 0{,}5141 = 0{,}3758\\text{ (m}^2)$.\\\\\r\n\t\tChi phí sơn: $C = S_{tron} \\cdot 200 + S_{conlai} \\cdot 100 \\approx 0{,}5141 \\cdot 200 + 0{,}3758 \\cdot 100 = 102{,}82 + 37{,}58 = 140{,}4$ (nghìn đồng).\\\\\r\n\t\tLàm tròn đến hàng đơn vị, tổng chi phí là $140$ nghìn đồng."
+}
