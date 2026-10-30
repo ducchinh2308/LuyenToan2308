@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7e14d0fafa",
+  "dapAn": "A",
+  "loiGiai": "Ta có đạo hàm:\r\n\t\t$$y' = \\frac{(2x-3)(x-2) - (x^2-3x+6)}{(x-2)^2} = \\frac{2x^2-7x+6-x^2+3x-6}{(x-2)^2} = \\frac{x^2-4x}{(x-2)^2}.$$\r\n\t\tCho $y' = 0 \\Leftrightarrow x^2-4x = 0 \\Leftrightarrow \\left[\\begin{aligned} &x=0 \\Rightarrow y=-3 \\\\ &x=4 \\Rightarrow y=5 \\end{aligned}\\right.$\\\\\r\n\t\tĐồ thị hàm số có hai điểm cực trị là $A(0; -3)$ và $B(4; 5)$.\\\\\r\n\t\tPhương trình đường thẳng đi qua hai điểm cực trị $A$ và $B$ có dạng $y = ax + b$.\\\\\r\n\t\tThay tọa độ $A, B$ vào ta có hệ phương trình:\r\n\t\t$$\\begin{cases} -3 = a \\cdot 0 + b \\\\ 5 = a \\cdot 4 + b \\end{cases} \\Leftrightarrow \\begin{cases} b = -3 \\\\ 4a - 3 = 5 \\end{cases} \\Leftrightarrow \\begin{cases} a = 2 \\\\ b = -3 \\end{cases}$$\r\n\t\tVậy phương trình đường thẳng đi qua hai điểm cực trị là $y = 2x - 3$.\\\\\r\n\t\t\\textit{Cách tính nhanh:} Phương trình đường thẳng đi qua hai điểm cực trị của hàm số phân thức $y = \\displaystyle\\frac{u(x)}{v(x)}$ có dạng $y = \\displaystyle\\frac{u'(x)}{v'(x)}$. Ta có $y = \\frac{2x-3}{1} = 2x-3$."
+}

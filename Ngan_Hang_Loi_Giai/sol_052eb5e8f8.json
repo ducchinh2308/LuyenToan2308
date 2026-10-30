@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_052eb5e8f8",
+  "dapAn": "D",
+  "loiGiai": "Dựa vào đồ thị hàm số, ta có các nhận xét sau:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Khi $x \\to +\\infty$, đồ thị đi xuống nên $\\lim\\limits_{x \\to +\\infty} y = -\\infty \\Rightarrow a < 0$.\r\n\t\t\t\\item Đồ thị cắt trục tung tại điểm có tung độ âm nên giao điểm $(0; d)$ nằm dưới trục hoành $\\Rightarrow d < 0$.\r\n\t\t\t\\item Đồ thị hàm số có hai điểm cực trị $x_1, x_2$ nằm về hai phía trục tung (một điểm cực tiểu có hoành độ âm, một điểm cực đại có hoành độ dương). Phương trình $y' = 3ax^2 + 2bx + c = 0$ có hai nghiệm phân biệt trái dấu $\\Leftrightarrow \\displaystyle\\frac{c}{3a} < 0 \\Leftrightarrow 3ac < 0$. Do $a < 0$ nên $c > 0$.\r\n\t\t\t\\item Quan sát hình, khoảng cách từ điểm cực đại (phần dương) đến trục tung lớn hơn khoảng cách từ điểm cực tiểu (phần âm) đến trục tung, nên tổng hai nghiệm $x_1 + x_2 > 0$.\r\n\t\t\tTheo định lí Viète, $x_1 + x_2 = -\\displaystyle\\frac{2b}{3a} > 0$. Vì $a < 0$ nên $-\\displaystyle\\frac{2b}{(-)} > 0 \\Rightarrow 2b > 0 \\Rightarrow b > 0$.\r\n\t\t\\end{itemize}\r\n\t\tVậy $a<0, b>0, c>0, d<0$."
+}

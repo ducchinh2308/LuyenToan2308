@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1556068b42",
+  "dapAn": "C",
+  "loiGiai": "Tập xác định: $\\mathscr{D} = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có:\r\n\t\t$\\lim\\limits_{x \\to \\pm\\infty} y = \\lim\\limits_{x \\to \\pm\\infty} \\displaystyle\\frac{2x-1}{x+1} = 2$, nên đường thẳng $y = 2$ là tiệm cận ngang của đồ thị hàm số.\\\\\r\n\t\t$\\lim\\limits_{x \\to -1^+} y = \\lim\\limits_{x \\to -1^+} \\displaystyle\\frac{2x-1}{x+1} = -\\infty$ (và $\\lim\\limits_{x \\to -1^-} y = +\\infty$), nên đường thẳng $x = -1$ là tiệm cận đứng của đồ thị hàm số.\\\\\r\n\t\tVậy đồ thị hàm số đã cho có tất cả $2$ đường tiệm cận."
+}

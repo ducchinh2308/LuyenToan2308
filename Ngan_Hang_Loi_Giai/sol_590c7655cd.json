@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_590c7655cd",
+  "dapAn": "B",
+  "loiGiai": "Ta có hàm số $y = \\displaystyle\\frac{2x+2}{x+2}$.\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Tập xác định: $\\mathscr{D} = \\mathbb{R} \\setminus \\{-2\\}$.\r\n\t\t\t\\item Tiệm cận ngang: $\\lim\\limits_{x \\to \\pm\\infty} y = \\lim\\limits_{x \\to \\pm\\infty} \\displaystyle\\frac{2x+2}{x+2} = 2 \\Rightarrow y = 2$.\r\n\t\t\t\\item Tiệm cận đứng: $\\lim\\limits_{x \\to -2^+} y = \\lim\\limits_{x \\to -2^+} \\displaystyle\\frac{2x+2}{x+2} = -\\infty \\Rightarrow x = -2$.\r\n\t\t\t\\item Giao điểm với trục tung: Cho $x = 0 \\Rightarrow y = 1 \\Rightarrow$ Đồ thị đi qua điểm $(0; 1)$.\r\n\t\t\t\\item Giao điểm với trục hoành: Cho $y = 0 \\Rightarrow 2x+2 = 0 \\Leftrightarrow x = -1 \\Rightarrow$ Đồ thị đi qua điểm $(-1; 0)$.\r\n\t\t\\end{itemize}\r\n\t\tĐối chiếu các đặc điểm trên, chỉ có đồ thị ở phương án B là thỏa mãn tất cả (TCĐ $x=-2$, TCN $y=2$, đi qua $(0;1)$ và $(-1;0)$)."
+}

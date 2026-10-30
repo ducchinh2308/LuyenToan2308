@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_deeecb1bdc",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào bảng biến thiên, trên nửa khoảng $[-5; 7)$ hàm số đạt giá trị nhỏ nhất tại $x = 1$, với giá trị nhỏ nhất là $\\min\\limits_{[-5;7)} f(x) = f(1) = 2$.\\\\\r\n\t\tHàm số không có giá trị lớn nhất trên $[-5; 7)$ do $\\lim\\limits_{x \\to 7^-} f(x) = 9$ (giá trị này không đạt được tại điểm nào trong tập xác định do $x=7$ không thuộc nửa khoảng)."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_82d49cbdc8",
+  "dapAn": "A",
+  "loiGiai": "Quan sát đồ thị hàm số, ta thấy đồ thị đi qua điểm có tọa độ $(0;-6)$.\\\\\r\n\t\tThay $x=0$ vào các hàm số ở các phương án:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Phương án A: $y(0) = \\displaystyle\\frac{6}{-1} = -6$ (thỏa mãn).\r\n\t\t\t\\item Phương án B: $y(0) = \\displaystyle\\frac{3}{-1} = -3$ (loại).\r\n\t\t\t\\item Phương án C: $y(0) = \\displaystyle\\frac{3}{-1} = -3$ (loại).\r\n\t\t\t\\item Phương án D: $y(0) = 1$ (loại).\r\n\t\t\\end{itemize}\r\n\t\tVậy đường cong đã cho là đồ thị của hàm số $y=\\displaystyle\\frac{x^2-3x+6}{x-1}$."
+}

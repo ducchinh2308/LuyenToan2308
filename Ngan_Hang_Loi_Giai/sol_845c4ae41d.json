@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_845c4ae41d",
+  "dapAn": "B",
+  "loiGiai": "Tập xác định: $\\mathscr{D} = \\mathbb{R} \\setminus \\{0\\}$.\\\\\r\n\t\tĐạo hàm: $y' = 1 - \\displaystyle\\frac{4}{x^2} = \\frac{x^2 - 4}{x^2}$.\\\\\r\n\t\tHàm số nghịch biến khi $y' < 0 \\Leftrightarrow \\displaystyle\\frac{x^2 - 4}{x^2} < 0 \\Leftrightarrow \\left\\{\\begin{aligned} &x^2 - 4 < 0 \\\\ &x \\neq 0 \\end{aligned}\\right. \\Leftrightarrow \\left\\{\\begin{aligned} &-2 < x < 2 \\\\ &x \\neq 0 \\end{aligned}\\right.$.\\\\\r\n\t\tVậy hàm số nghịch biến trên các khoảng $(-2; 0)$ và $(0; 2)$.\\\\\r\n\t\tĐối chiếu với các phương án, khoảng $(-2; 0)$ thỏa mãn."
+}
