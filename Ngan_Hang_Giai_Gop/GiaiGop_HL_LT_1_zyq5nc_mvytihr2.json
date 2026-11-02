@@ -1,0 +1,130 @@
+{
+  "thoiGianGhep": "2026-11-02T05:28:04.187Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_34f81e6bba",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ bảng biến thiên, ta thấy trên khoảng $(1;3)$ thì $f'(x) < 0$.\\\\\r\n\t\tDo đó hàm số nghịch biến trong khoảng $(1;3)$."
+    },
+    {
+      "maBaoMat": "sol_1fc2d28258",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\displaystyle y = \\frac{-2x+5}{x+3} \\Rightarrow y' = \\frac{-2 \\cdot 3 - 5 \\cdot 1}{(x+3)^2} = \\frac{-11}{(x+3)^2}$.\\\\\r\n\t\t$\\Rightarrow y' < 0, \\forall x \\neq -3$.\\\\\r\n\t\tSuy ra hàm số nghịch biến trên khoảng $(-\\infty; -3)$ và $(-3; +\\infty)$."
+    },
+    {
+      "maBaoMat": "sol_207942543a",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số $y=f'(x)$, ta thấy $f'(x) < 0$ khi $x \\in (-\\infty;-2)$ hoặc $x \\in (2;5)$.\\\\\r\n\t\tVì khoảng $(-3;-2) \\subset (-\\infty;-2)$ nên hàm số nghịch biến trên khoảng $(-3;-2)$."
+    },
+    {
+      "maBaoMat": "sol_ac69735a70",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng xét dấu đạo hàm, ta thấy $f'(x) < 0$ trên các khoảng $(-2; 0)$ và $(2; +\\infty)$.\\\\\r\n\t\tĐối chiếu các phương án, hàm số nghịch biến trên khoảng $(2; +\\infty)$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_2d74a9f903",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị, ta thấy đồ thị hàm số đi lên (đồng biến) trong các khoảng $(-3; -1)$ và $(1; +\\infty)$.\\\\\r\n\t\tĐối chiếu các đáp án, ta chọn khoảng $(-3; -1)$."
+    },
+    {
+      "maBaoMat": "sol_1c6741bcc0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tập xác định $\\mathscr{D}=\\left[-2;4\\right]$.\\\\\r\n\tĐạo hàm $y'=\\dfrac{2-2x}{2\\sqrt{8+2x-x^2}}$.\\\\\r\n\t$y'=0\\Leftrightarrow x=1$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/sol_1c6741bcc0_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đồng biến trên khoảng $\\left(-2;1\\right)$."
+    },
+    {
+      "maBaoMat": "sol_45e2955300",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $y=-x^3+3x^2+2\\Rightarrow y'=-3x^2+6x$.\\\\\r\n\t\t$y'>0\\Leftrightarrow -3x^2+6x>0\\Leftrightarrow 0<x<2$.\\\\\r\n\t\tVậy hàm số đồng biến trên khoảng $(0;2)$."
+    },
+    {
+      "maBaoMat": "sol_9d6d923806",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có: $f'(x) = 0 \\Leftrightarrow 4 - x^2 = 0 \\Leftrightarrow x = 2$ hoặc $x = -2$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_9d6d923806_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, ta có hàm số $y = f(x)$ đồng biến trên khoảng $(-2; 2)$."
+    },
+    {
+      "maBaoMat": "sol_de754e226f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Xét hàm số $y = -x^3 - 3x + 1$, ta có $y' = -3x^2 - 3 = -3(x^2+1) < 0, \\forall x \\in \\mathbb{R}$.\r\n\t\tDo đó hàm số nghịch biến trên $\\mathbb{R}$."
+    },
+    {
+      "maBaoMat": "sol_9e6ba8f9f0",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có $y' = \\displaystyle \\frac{2x(x+1) - (x^2+3)}{(x+1)^2} = \\frac{x^2+2x-3}{(x+1)^2}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow x^2+2x-3=0 \\Leftrightarrow \\left[ \\begin{aligned} x&=1 \\\\ x&=-3 \\end{aligned} \\right.$.\\\\\r\n\t\tGiới hạn: $\\displaystyle \\lim_{x \\to \\pm \\infty} \\frac{x^2+3}{x+1} = \\pm \\infty$; $\\displaystyle \\lim_{x \\to -1^+} y = +\\infty$; $\\displaystyle \\lim_{x \\to -1^-} y = -\\infty$.\\\\\r\n\t\tGiá trị cực trị: $y(-3) = -6$; $y(1) = 2$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_9e6ba8f9f0_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy cực tiểu của hàm số bằng $2$."
+    },
+    {
+      "maBaoMat": "sol_1087833888",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm $y' = 3x^2 - 6x$; $y' = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 2 \\\\ x &= 0 \\end{aligned} \\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_1087833888_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, giá trị cực tiểu của hàm số là $y_{CT} = 2021$ tại $x = 2$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_46efaefde0",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $f'(x) = 0 \\Leftrightarrow x(x-1)(x-2)^2 = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 0 \\\\ x &= 1 \\\\ x &= 2 \\end{aligned} \\right.$.\\\\\r\n\t\tBảng xét dấu $f'(x)$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_46efaefde0_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTa thấy đạo hàm đổi dấu khi qua $x=0$ và $x=1$. Tại $x=2$ đạo hàm không đổi dấu (nghiệm bội chẵn).\\\\\r\n\t\tVậy hàm số có 2 điểm cực trị."
+    },
+    {
+      "maBaoMat": "sol_ad4b1e6bee",
+      "dapAn": "C",
+      "loiGiaiHtml": "Xét hàm số $y = 4x^3 - 6x^2 + 11$.\\\\\r\n\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm: $y' = 12x^2 - 12x$.\\\\\r\n\t\t$y' = 0 \\iff 12x^2 - 12x = 0 \\iff \\left[\\begin{aligned} &x = 0 \\\\ &x = 1 \\end{aligned}\\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_ad4b1e6bee_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên, giá trị cực tiểu của hàm số $y = 4x^3 - 6x^2 + 11$ bằng $9$."
+    },
+    {
+      "maBaoMat": "sol_f3038ee325",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ bảng biến thiên suy ra giá trị cực tiểu của hàm số đã cho bằng $-4$."
+    },
+    {
+      "maBaoMat": "sol_b47caebb83",
+      "dapAn": "D",
+      "loiGiaiHtml": "Quan sát đồ thị hàm số, ta thấy tại điểm có hoành độ $x = 1$, đồ thị hàm số đạt vị trí thấp nhất cục bộ.\\\\\r\n\t\tGiá trị tương ứng là $y = -4$.\\\\\r\n\t\tVậy điểm cực tiểu của đồ thị hàm số là $(1; -4)$.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_505ad51448",
+      "dapAn": "A",
+      "loiGiaiHtml": "Điểm cực đại của hàm số đã cho là $x=-1$."
+    },
+    {
+      "maBaoMat": "sol_34e0f07a42",
+      "dapAn": "D",
+      "loiGiaiHtml": "Giá trị cực tiểu của hàm số đã cho bằng $y_{\\text{CT}}=-4$."
+    },
+    {
+      "maBaoMat": "sol_caa2f93abc",
+      "dapAn": "B",
+      "loiGiaiHtml": "Xét hàm số $f(x) = x^3 - 8x^2 + 16x - 9$ trên $[1;3]$.\\\\\r\n\t\tTa có $f'(x) = 3x^2 - 16x + 16$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} &x = 4 \\notin [1;3] \\\\ &x = \\frac{4}{3} \\in [1;3] \\end{aligned} \\right.$.\\\\\r\n\t\tTính các giá trị:\r\n\t\t$f(1) = 0$; $f\\left(\\frac{4}{3}\\right) = \\displaystyle \\frac{13}{27}$; $f(3) = -6$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số trên đoạn $[1;3]$ là $\\displaystyle \\frac{13}{27}$ khi $x = 1$."
+    },
+    {
+      "maBaoMat": "sol_38cef52284",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị, trên đoạn $[1;3]$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Giá trị lớn nhất $M = \\max_{[1;3]} f(x) = f(2) = 0$.\r\n\t\t\t\\item Giá trị nhỏ nhất $m = \\min_{[1;3]} f(x) = f(3) = -4$.\r\n\t\t\\end{itemize}\r\n\t\tSuy ra: $M + m = 0 + (-4) = -4$."
+    },
+    {
+      "maBaoMat": "sol_26d21957d6",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số trên đoạn $[0;5]$, ta thấy:\\\\\r\n\t\tGiá trị lớn nhất $\\max_{[0;5]} f(x) = 3$ tại $x=5$.\\\\\r\n\t\tGiá trị nhỏ nhất $\\min_{[0;5]} f(x) = -2$ tại $x=2$.\\\\\r\n\t\tVậy tổng cần tìm là $3 + (-2) = 1$."
+    },
+    {
+      "maBaoMat": "sol_0b10d39d4b",
+      "dapAn": "A",
+      "loiGiaiHtml": "$f(0)=5;f(2)=1;f(3)=4;f\\left(-1\\right)=0$\\\\\r\n\tVậy $\\max\\limits_{\\left[-1;3\\right]}f(x)=f(0)=5$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_7514b23622",
+      "dapAn": "B",
+      "loiGiaiHtml": "Xét hàm số $y = \\displaystyle \\frac{3x+2}{x+1}$ trên $[0; 2]$.\\\\\r\n\t\tĐạo hàm $y' = \\displaystyle \\frac{1}{(x+1)^2} > 0, \\forall x \\neq -1$.\\\\\r\n\t\tHàm số đồng biến và liên tục trên $[0; 2]$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số trên $[0; 2]$ là $y(2) = \\displaystyle \\frac{3(2)+2}{2+1} = \\frac{8}{3}$.\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_8c8c8ea73d",
+      "dapAn": "A",
+      "loiGiaiHtml": "Xét hàm số $y = -2x^3 + 9x^2 + 24x - 114$.\\\\\r\n\t\tTập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm: $y' = -6x^2 + 18x + 24$.\\\\\r\n\t\t$y' = 0 \\iff -6x^2 + 18x + 24 = 0 \\iff \\left[\\begin{aligned} &x = -1 \\\\ &x = 4 \\end{aligned}\\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_8c8c8ea73d_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên, hàm số $y = -2x^3 + 9x^2 + 24x - 114$ đồng biến trên khoảng $(-1;4)$."
+    },
+    {
+      "maBaoMat": "sol_164b6b6732",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $y'=3 x^{2}+6 x-9$.\\\\ Khi đó $y'=0 \\Leftrightarrow 3 x^{2}+6 x-9=0 \\Leftrightarrow\\left[ \\begin{array}{l}\nx=1 \\\\ x=-3.\n\\end{array} \\right.$\\\\\r\n\t\tTa có $y(1)=3$, $ y(-2)=30$ và $y(2)=10$.\\\\\r\n\t\tVậy giá trị lớn nhất của hàm số $y=x^{3}+3 x^{2}-9 x+8$ trên đoạn $[-2 ; 2]$ là $30$."
+    },
+    {
+      "maBaoMat": "sol_615f72fe22",
+      "dapAn": "B",
+      "loiGiaiHtml": "Xét $y=x^3-3x+1$ có $y'=3x^2-3$.\\\\\r\n\tVới $y'=0 \r\n\t\\Leftrightarrow \\left[ \\begin{array}{l}\nx=1\\\\x=-1.\n\\end{array} \\right.$\r\n\tBảng biến thiên\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/sol_615f72fe22_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tVới $y' < 0,\\forall x\\in\\left(-1;1\\right)$ nên hàm số nghịch biến trên $\\left(-1;1\\right)$."
+    }
+  ]
+}
