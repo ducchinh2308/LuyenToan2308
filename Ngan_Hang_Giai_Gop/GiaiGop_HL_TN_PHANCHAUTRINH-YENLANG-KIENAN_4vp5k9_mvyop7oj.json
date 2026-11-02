@@ -1,0 +1,180 @@
+{
+  "thoiGianGhep": "2026-11-02T03:13:19.648Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_2e75771c4d",
+      "dapAn": "D",
+      "loiGiaiHtml": "Mệnh đề A sai (vì lẻ + lẻ = chẵn).\\\\\r\n\t\tMệnh đề B sai (chỉ cần ít nhất một số chẵn thì tích là số chẵn, không cần cả hai).\\\\\r\n\t\tMệnh đề C sai (lẻ + chẵn = lẻ, lẻ + lẻ = chẵn).\\\\\r\n\t\tMệnh đề D đúng. Tích hai số tự nhiên là số lẻ khi và chỉ khi cả hai số đó đều phải là số lẻ."
+    },
+    {
+      "maBaoMat": "sol_5b39c3d195",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $2x+1 < 4+3x \\Leftrightarrow -x < 3 \\Leftrightarrow x > -3$.\\\\\r\n\t\tVậy $A = (-3;+\\infty)$. Tập hợp $B = (-3;+\\infty)$ là tập con của chính nó."
+    },
+    {
+      "maBaoMat": "sol_bf6b0bf19b",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $a \\in \\mathbb{N}^{*}$ nên $a \\ge 1 \\Rightarrow \\displaystyle \\frac{a}{2} < a < 2a$.\\\\\r\n\t\tVậy $a \\in \\left(\\displaystyle \\frac{a}{2}; 2a\\right)$. Các khoảng $(a;2a], (a;a+1), (a-1;a)$ đều không chứa phần tử $a$."
+    },
+    {
+      "maBaoMat": "sol_5379e9e906",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vẽ đường thẳng $d \\colon 3x - 2y = -6$ trên mặt phẳng tọa độ.\\\\\r\n\t\tCho $x = 0 \\Rightarrow y = 3$, ta được điểm $(0; 3)$.\\\\\r\n\t\tCho $y = 0 \\Rightarrow x = -2$, ta được điểm $(-2; 0)$.\\\\\r\n\t\tVậy đường thẳng $d$ đi qua hai điểm $(-2; 0)$ và $(0; 3)$. (Loại được phương án A và B do vẽ sai đường thẳng bờ).\\\\\r\n\t\tLấy điểm $O(0; 0)$ không thuộc $d$. Thay tọa độ điểm $O$ vào bất phương trình $3x - 2y \\le -6$, ta được:\r\n\t\t$$3 \\cdot 0 - 2 \\cdot 0 \\le -6 \\Leftrightarrow 0 \\le -6 \\text{ (vô lý)}.$$\r\n\t\tDo đó, miền nghiệm của bất phương trình $3x - 2y \\le -6$ là nửa mặt phẳng bờ $d$ (kể cả bờ) \\textbf{không chứa} gốc tọa độ $O(0; 0)$.\\\\\r\n\t\tHay nói cách khác, phần bị gạch (không phải miền nghiệm) là phần chứa gốc tọa độ $O(0; 0)$.\\\\\r\n\t\tQuan sát các hình, ta thấy hình ở phương án C thỏa mãn điều kiện này."
+    },
+    {
+      "maBaoMat": "sol_451552addf",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thay lần lượt tọa độ các điểm vào hệ bất phương trình:\\\\\r\n\t\tVới $(0;1)$: $\\begin{cases}2(0)-1+1 = 0 \\ge 0 \\text{ (đúng)}\\\\ 3(0)+2(1)-5 = -3 < 0 \\text{ (đúng)}\\end{cases}$. Điểm $(0;1)$ thuộc miền nghiệm.\\\\\r\n\t\tVới $\\left(\\displaystyle \\frac{1}{3};\\frac{1}{2}\\right)$: $\\begin{cases}2\\left(\\displaystyle \\frac{1}{3}\\right)-\\frac{1}{2}+1 = \\frac{7}{6} \\ge 0 \\text{ (đúng)}\\\\ 3\\left(\\displaystyle \\frac{1}{3}\\right)+2\\left(\\frac{1}{2}\\right)-5 = -3 < 0 \\text{ (đúng)}\\end{cases}$. Điểm $\\left(\\displaystyle \\frac{1}{3};\\frac{1}{2}\\right)$ thuộc.\\\\\r\n\t\tVới $(2;1)$: $\\begin{cases}2(2)-1+1 = 4 \\ge 0 \\text{ (đúng)}\\\\ 3(2)+2(1)-5 = 3 < 0 \\text{ (sai)}\\end{cases}$. Điểm $(2;1)$ \\textbf{không thuộc} miền nghiệm.\\\\\r\n\t\tVới $(1;-2)$: $\\begin{cases}2(1)-(-2)+1 = 5 \\ge 0 \\text{ (đúng)}\\\\ 3(1)+2(-2)-5 = -6 < 0 \\text{ (đúng)}\\end{cases}$. Điểm $(1;-2)$ thuộc miền nghiệm."
+    },
+    {
+      "maBaoMat": "sol_783e055d8f",
+      "dapAn": "B",
+      "loiGiaiHtml": "Vì điểm $M$ nằm trên nửa đường tròn đơn vị nên tọa độ của $M(x;y)$ chính là $(\\cos \\alpha; \\sin \\alpha)$.\\\\\r\n\t\tTa có $\\cos \\alpha = -\\displaystyle \\frac{1}{3}$ và $\\sin \\alpha = \\frac{2\\sqrt{2}}{3}$.\\\\\r\n\t\tSuy ra $\\tan \\alpha = \\displaystyle \\frac{\\sin \\alpha}{\\cos \\alpha} = \\frac{\\frac{2\\sqrt{2}}{3}}{-\\frac{1}{3}} = -2\\sqrt{2}$."
+    },
+    {
+      "maBaoMat": "sol_515116a032",
+      "dapAn": "C",
+      "loiGiaiHtml": "Theo định lí sin, ta có $\\displaystyle \\frac{b}{\\sin B} = 2R \\Leftrightarrow b = 2R\\sin B$. Khẳng định $b\\sin B=2R$ là sai.\\\\\r\n\t\tKhẳng định $\\displaystyle \\frac{c}{\\sin C} = \\frac{a}{\\sin A} \\Leftrightarrow \\sin C = \\frac{c\\sin A}{a}$ là đúng."
+    },
+    {
+      "maBaoMat": "sol_8e830d1809",
+      "dapAn": "A",
+      "loiGiaiHtml": "Áp dụng hệ quả của định lí côsin trong tam giác $ABC$:\\\\\r\n\t\t$\\cos A = \\displaystyle \\frac{b^{2}+c^{2}-a^{2}}{2bc}$.\\\\\r\n\t\tThay $b^{2}+c^{2}-a^{2}=\\sqrt{3}bc$ vào, ta được:\\\\\r\n\t\t$\\cos A = \\displaystyle \\frac{\\sqrt{3}bc}{2bc} = \\frac{\\sqrt{3}}{2} \\Rightarrow \\widehat{A} = 30^\\circ$."
+    },
+    {
+      "maBaoMat": "sol_bf0e54d122",
+      "dapAn": "A",
+      "loiGiaiHtml": "Có 3 câu là mệnh đề vì có tính đúng hoặc sai rõ ràng:\r\n\t\t1/ \"Hà Nội là thủ đô của Việt Nam\" (Mệnh đề đúng).\r\n\t\t3/ \"$2^{10}-1$ chia hết cho 11\" (Mệnh đề đúng hoặc sai).\r\n\t\t4/ \"2763 là hợp số\" (Mệnh đề đúng).\r\n\t\tCâu 2/ là câu hỏi nên không phải là mệnh đề.\r\n\t\tCâu 5/ là mệnh đề chứa biến, không phải là mệnh đề."
+    },
+    {
+      "maBaoMat": "sol_ce81d23e48",
+      "dapAn": "A",
+      "loiGiaiHtml": "Phủ định của lượng từ \"$\\forall$\" là \"$\\exists$\".\r\n\t\tPhủ định của bất đẳng thức \"$>$\" là \"$\\le$\".\\\\\r\n\t\tVậy mệnh đề phủ định là $\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}-1\\le 0\"$."
+    },
+    {
+      "maBaoMat": "sol_f191d1439f",
+      "dapAn": "A",
+      "loiGiaiHtml": "Mệnh đề $P\\Leftrightarrow Q$ được phát biểu dưới dạng \"P khi và chỉ khi Q\".\\\\\r\n\t\tNên phát biểu đúng là \"Tứ giác $ABCD$ là hình thoi khi và chỉ khi tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc\"."
+    },
+    {
+      "maBaoMat": "sol_f2e97b17cc",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $x \\in \\mathbb{N}$ và $x \\le 6$ nên các giá trị của $x$ là $0, 1, 2, 3, 4, 5, 6$.\\\\\r\n\t\tVậy $A = \\{0;1;2;3;4;5;6\\}$."
+    },
+    {
+      "maBaoMat": "sol_0a857aab92",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $M=(-\\infty;7]$, $N=(-3;8)$. Khi đó phần giao của chúng là $M\\cap N = (-3;7]$."
+    },
+    {
+      "maBaoMat": "sol_68424beb22",
+      "dapAn": "A",
+      "loiGiaiHtml": "Số tập hợp con của tập $A$ có $n$ phần tử là $2^n$.\\\\\r\n\t\tVậy số tập hợp con của tập $A$ có $3$ phần tử là $2^3 = 8$."
+    },
+    {
+      "maBaoMat": "sol_3654e78e02",
+      "dapAn": "A",
+      "loiGiaiHtml": "Bất phương trình bậc nhất hai ẩn có dạng $ax+by+c < 0$ (hoặc $\\le, >, \\ge$) với $a,b$ không đồng thời bằng 0.\\\\\r\n\t\tBất phương trình $2x-y<1$ là bất phương trình bậc nhất hai ẩn. Các bất phương trình còn lại chứa $y^2, x^2$ hoặc $xy$ nên có bậc lớn hơn 1."
+    },
+    {
+      "maBaoMat": "sol_429e8b7920",
+      "dapAn": "A",
+      "loiGiaiHtml": "Lần lượt thay tọa độ các điểm vào bất phương trình $2x+3y>2$:\\\\\r\n\t\tVới $(1;1)$: $2(1) + 3(1) = 5 > 2$ (đúng). Điểm $(1;1)$ thuộc miền nghiệm.\\\\\r\n\t\tVới $(2;-1)$: $2(2) + 3(-1) = 1 > 2$ (sai).\\\\\r\n\t\tVới $(1;0)$: $2(1) + 3(0) = 2 > 2$ (sai).\\\\\r\n\t\tVới $(0;0)$: $2(0) + 3(0) = 0 > 2$ (sai)."
+    },
+    {
+      "maBaoMat": "sol_f77bd9ba0e",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hệ $\\begin{cases}x^{2}+y^{2}>4\\\\ 4x+y\\le 10\\end{cases}$ chứa bất phương trình $x^2+y^2>4$ có bậc hai nên không phải là hệ bất phương trình bậc nhất hai ẩn."
+    },
+    {
+      "maBaoMat": "sol_063da17c29",
+      "dapAn": "A",
+      "loiGiaiHtml": "Lần lượt thay tọa độ các điểm vào hệ bất phương trình:\\\\\r\n\t\tVới $A(1;2)$: $\\begin{cases}1 - 4(2) = -7 \\le 0 \\text{ (đúng)}\\\\ 1 + 6(2) - 10 = 3 > 0 \\text{ (đúng)}\\end{cases}$. Vậy $A$ thuộc miền nghiệm.\\\\\r\n\t\tVới $B(-2;1)$: $\\begin{cases}-2 - 4(1) = -6 \\le 0 \\text{ (đúng)}\\\\ -2 + 6(1) - 10 = -6 > 0 \\text{ (sai)}\\end{cases}$.\\\\\r\n\t\tVới $C(4;0)$: $\\begin{cases}4 - 4(0) = 4 \\le 0 \\text{ (sai)}\\end{cases}$.\\\\\r\n\t\tVới $D(-3;-4)$: $\\begin{cases}-3 - 4(-4) = 13 \\le 0 \\text{ (sai)}\\end{cases}$."
+    },
+    {
+      "maBaoMat": "sol_40e1f0534c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hai góc bù nhau có $\\sin$ bằng nhau, các giá trị lượng giác còn lại đối nhau.\\\\\r\n\t\tDo đó khẳng định $\\sin(180^\\circ-\\alpha)=\\sin \\alpha$ là đúng."
+    },
+    {
+      "maBaoMat": "sol_20a5f474ce",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta có $\\sin 150^\\circ = \\sin(180^\\circ - 30^\\circ) = \\sin 30^\\circ = \\displaystyle \\frac{1}{2}$. Mệnh đề A đúng.\\\\\r\n\t\tCác mệnh đề khác sai vì $\\cos 150^\\circ = -\\displaystyle \\frac{\\sqrt{3}}{2}$, $\\tan 150^\\circ = -\\displaystyle \\frac{\\sqrt{3}}{3}$, $\\cot 150^\\circ = -\\sqrt{3}$."
+    },
+    {
+      "maBaoMat": "sol_d5e52ca83d",
+      "dapAn": "3",
+      "loiGiaiHtml": "Gọi $X$ là tập hợp học sinh lớp 10A, $A$ là tập hợp học sinh thích bóng rổ, $B$ là tập hợp học sinh thích bóng chuyền.\\\\\r\n\t\tSố học sinh thích ít nhất một trong hai môn là: $n(A\\cup B) = n(X) - 10 = 45 - 10 = 35$ (học sinh).\\\\\r\n\t\tMặt khác, $n(A\\cup B) = n(A) + n(B) - n(A\\cap B)$.\\\\\r\n\t\tSuy ra $35 = 20 + 18 - n(A\\cap B) \\Rightarrow n(A\\cap B) = 38 - 35 = 3$.\\\\\r\n\t\tVậy có $3$ học sinh thích cả hai môn bóng rổ và bóng chuyền."
+    },
+    {
+      "maBaoMat": "sol_5fda2b868b",
+      "dapAn": "9",
+      "loiGiaiHtml": "Vẽ các đường thẳng $d_1: x=-2$, $d_2: y=2$, $d_3: x+2y=8$.\\\\\r\n\t\tMiền nghiệm của hệ bất phương trình là miền tam giác $ABC$ kể cả các cạnh $AB, BC, CA$ trong đó:\\\\\r\n\t\t$A = d_1 \\cap d_2 \\Rightarrow A(-2;2)$.\\\\\r\n\t\t$B = d_1 \\cap d_3 \\Rightarrow \\begin{cases}x=-2\\\\ x+2y=8\\end{cases} \\Rightarrow B(-2;5)$.\\\\\r\n\t\t$C = d_2 \\cap d_3 \\Rightarrow \\begin{cases}y=2\\\\ x+2y=8\\end{cases} \\Rightarrow C(4;2)$.\\\\\r\n\t\tDễ thấy tam giác $ABC$ vuông tại $A$ (do các đường $x=-2$ và $y=2$ vuông góc với nhau).\\\\\r\n\t\tĐộ dài các cạnh góc vuông là: $AB = |5-2| = 3$, $AC = |4-(-2)| = 6$.\\\\\r\n\t\tDiện tích tam giác $ABC$ là $S = \\displaystyle \\frac{1}{2}AB \\cdot AC = \\frac{1}{2} \\cdot 3 \\cdot 6 = 9$."
+    },
+    {
+      "maBaoMat": "sol_98b29e981a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Thay tọa độ điểm $A(-1;3)$ vào các bất phương trình để kiểm tra:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Với $3x-y>0$: $3(-1) - 3 = -6 > 0$ (sai).\r\n\t\t\t\\item Với $-3x+2y-4>0$: $-3(-1) + 2(3) - 4 = 3 + 6 - 4 = 5 > 0$ (đúng).\r\n\t\t\t\\item Với $2x-y+4>0$: $2(-1) - 3 + 4 = -1 > 0$ (sai).\r\n\t\t\t\\item Với $x+3y<0$: $-1 + 3(3) = 8 < 0$ (sai).\r\n\t\t\\end{itemize}\r\n\t\tVậy $A(-1;3)$ thuộc miền nghiệm của bất phương trình $-3x+2y-4>0$."
+    },
+    {
+      "maBaoMat": "sol_37a53582cf",
+      "dapAn": "D",
+      "loiGiaiHtml": "Theo định lý Côsin trong tam giác $ABC$, ta có: $a^{2}=b^{2}+c^{2}-2bc\\cos A$."
+    },
+    {
+      "maBaoMat": "sol_621d2f761c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Để lập mệnh đề phủ định, ta thay lượng từ \"$\\forall$\" thành \"$\\exists$\" và đổi chiều bất đẳng thức \"$>$\" thành \"$\\le$\".\\\\\r\n\t\tMệnh đề phủ định của $P$ là $\\overline{P} \\colon \"\\exists x\\in\\mathbb{R}, x^{2}-x+2\\le0\"$."
+    },
+    {
+      "maBaoMat": "sol_34e945586a",
+      "dapAn": "A",
+      "loiGiaiHtml": "Mệnh đề là một câu khẳng định có tính đúng hoặc sai rõ ràng.\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Câu A là câu cảm thán/cầu khiến, không xác định được tính đúng sai nên không phải là mệnh đề.\r\n\t\t\t\\item Các câu B, C là mệnh đề sai.\r\n\t\t\t\\item Câu D là một mệnh đề (có thể xác định đúng sai).\r\n\t\t\\end{itemize}"
+    },
+    {
+      "maBaoMat": "sol_a75129e218",
+      "dapAn": "A",
+      "loiGiaiHtml": "Vì $90^{\\circ}<\\alpha<180^{\\circ}$ nên $\\cos \\alpha < 0$.\\\\\r\n\t\tTa có: $\\cos^2 \\alpha = 1 - \\sin^2 \\alpha = 1 - \\left(\\displaystyle\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}$.\\\\\r\n\t\t$\\Rightarrow \\cos \\alpha = -\\displaystyle\\frac{4}{5}$.\\\\\r\n\t\tTừ đó, $\\cot \\alpha = \\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha} = \\frac{-\\frac{4}{5}}{\\frac{3}{5}} = -\\frac{4}{3}$.\\\\\r\n\t\tMặt khác, $\\cot(180^{\\circ}-\\alpha) = -\\cot \\alpha$. Do đó $P = -\\left(-\\displaystyle\\frac{4}{3}\\right) = \\frac{4}{3}$."
+    },
+    {
+      "maBaoMat": "sol_d0b3164741",
+      "dapAn": "A",
+      "loiGiaiHtml": "Diện tích của tam giác $ABC$ được tính theo công thức:\r\n\t\t$$S = \\frac{1}{2}ac\\sin B = \\frac{1}{2} \\cdot 4 \\cdot 5 \\cdot \\sin 150^{\\circ} = 10 \\cdot \\frac{1}{2} = 5.$$"
+    },
+    {
+      "maBaoMat": "sol_3c29a8f7f4",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hệ bất phương trình bậc nhất hai ẩn là hệ chứa các bất phương trình bậc nhất đối với hai ẩn.\\\\\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Đáp án B và C chứa các số hạng bậc hai ($x^2, y^2$).\r\n\t\t\t\\item Đáp án D chứa $3$ ẩn $x, y, z$.\r\n\t\t\t\\item Đáp án A gồm các bất phương trình bậc nhất với hai ẩn $x, y$.\r\n\t\t\\end{itemize}"
+    },
+    {
+      "maBaoMat": "sol_3ed79f38c0",
+      "dapAn": "A",
+      "loiGiaiHtml": "Trong tam giác $ABC$, ta có $\\widehat{A} + \\widehat{B} + \\widehat{C} = 180^{\\circ} \\Rightarrow B+C = 180^{\\circ} - A$.\\\\\r\n\t\tDo đó, $\\cos(B+C) = \\cos(180^{\\circ} - A) = -\\cos A$.\\\\\r\n\t\tTheo giả thiết, $\\cos(B+C) = -\\displaystyle\\frac{1}{5} \\Rightarrow -\\cos A = -\\frac{1}{5} \\Rightarrow \\cos A = \\frac{1}{5}$.\\\\\r\n\t\tÁp dụng định lý côsin trong tam giác $ABC$:\r\n\t\t$$BC^2 = AB^2 + AC^2 - 2 \\cdot AB \\cdot AC \\cdot \\cos A$$\r\n\t\t$$BC^2 = 7^2 + 5^2 - 2 \\cdot 7 \\cdot 5 \\cdot \\frac{1}{5} = 49 + 25 - 14 = 60$$\r\n\t\t$$\\Rightarrow BC = \\sqrt{60} = 2\\sqrt{15}.$$"
+    },
+    {
+      "maBaoMat": "sol_8854184461",
+      "dapAn": "D",
+      "loiGiaiHtml": "Để $B \\subset A$, tức là $(m;+\\infty) \\subset (2;+\\infty)$, thì điểm bắt đầu của $B$ phải lớn hơn hoặc bằng điểm bắt đầu của $A$.\\\\\r\n\t\tDo đó điều kiện là $m \\ge 2$."
+    },
+    {
+      "maBaoMat": "sol_f68911a66b",
+      "dapAn": "C",
+      "loiGiaiHtml": "Từ đồ thị, ta thấy đường thẳng bờ $\\Delta$ cắt trục $Ox$ tại $\\left(\\displaystyle\\frac{3}{2}; 0\\right)$ và cắt trục $Oy$ tại $(0; -3)$.\\\\\r\n\t\tPhương trình theo đoạn chắn của đường thẳng này là:\r\n\t\t$$\\frac{x}{\\frac{3}{2}} + \\frac{y}{-3} = 1 \\Leftrightarrow \\frac{2x}{3} - \\frac{y}{3} = 1 \\Leftrightarrow 2x - y = 3.$$\r\n\t\tQuan sát đồ thị, nửa mặt phẳng không bị gạch chứa gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào biểu thức $2x-y$, ta được $2(0) - 0 = 0 < 3$.\\\\\r\n\t\tVì đường thẳng nét liền (tính cả bờ), miền nghiệm là phần mặt phẳng thỏa mãn bất phương trình $2x - y \\le 3$."
+    },
+    {
+      "maBaoMat": "sol_28f3597feb",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tập hợp giao $A \\cap B$ chứa các phần tử chung của cả hai tập hợp $A$ và $B$.\\\\\r\n\t\tTa thấy các phần tử $2, 3, 5$ vừa thuộc $A$ vừa thuộc $B$. Vậy $A \\cap B = \\{2;3;5\\}$."
+    },
+    {
+      "maBaoMat": "sol_cb3dd65f4c",
+      "dapAn": "D",
+      "loiGiaiHtml": "Theo định lý Sin trong tam giác $ABC$, ta có:\r\n\t\t$$\\frac{a}{\\sin A} = 2R \\Rightarrow a = 2R\\sin A.$$"
+    },
+    {
+      "maBaoMat": "sol_392947596d",
+      "dapAn": "250",
+      "loiGiaiHtml": "Gọi $x, y$ lần lượt là số ly trà sữa và số bánh flan mà lớp 10C nhập về để bán ($x, y \\in \\mathbb{N}$).\\\\\r\n\t\tSố tiền vốn dùng để mua $x$ ly trà sữa và $y$ bánh flan là $15x + 3y$ (nghìn đồng).\\\\\r\n\t\tTheo giả thiết, ta thiết lập hệ bất phương trình ràng buộc như sau:\r\n\t\t$$\\begin{cases} 15x + 3y \\le 630 & (\\text{tổng vốn } 630 \\text{ nghìn}) \\\\ x \\ge 20 & (\\text{nhập sỉ ít nhất } 20 \\text{ ly trà sữa}) \\\\ 20 \\le y \\le 40 & (\\text{bánh flan từ } 20 \\text{ đến } 40 \\text{ cái}) \\end{cases}$$\r\n\t\tLợi nhuận thu được (đơn vị: nghìn đồng) là hàm mục tiêu: $F(x,y) = 5x + 2y$.\\\\\r\n\t\tBiểu diễn miền nghiệm của hệ bất phương trình trên mặt phẳng tọa độ:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_392947596d_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tMiền nghiệm là tứ giác $ABCD$ với tọa độ các đỉnh:\r\n\t\t$A(20; 20)$, $B(20; 40)$, $C(34; 40)$ và $D(38; 20)$.\\\\\r\n\t\tTa tính giá trị của $F(x,y)$ tại các đỉnh:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Tại $A(20;20)$: $F = 5(20) + 2(20) = 100 + 40 = 140$.\r\n\t\t\t\\item Tại $B(20;40)$: $F = 5(20) + 2(40) = 100 + 80 = 180$.\r\n\t\t\t\\item Tại $C(34;40)$: $F = 5(34) + 2(40) = 170 + 80 = 250$.\r\n\t\t\t\\item Tại $D(38;20)$: $F = 5(38) + 2(20) = 190 + 40 = 230$.\r\n\t\t\\end{itemize}\r\n\t\tSo sánh các kết quả, lợi nhuận đạt giá trị lớn nhất là $250$ (nghìn đồng) khi $x = 34$ và $y = 40$.\\\\\r\n\t\tVậy lớp 10C cần nhập $34$ ly trà sữa và $40$ cái bánh flan để thu được lợi nhuận lớn nhất là $250$ nghìn đồng."
+    }
+  ]
+}
