@@ -1691,7 +1691,7 @@ function ham_8a_9_tron_de_thi_trac_nghiem(mangCauHoi) {
 
 
 // =====================================================================
-// HÀM 8.10: GIAO DIỆN PHÒNG THI (ĐÃ TÍCH HỢP RADAR CHỐNG CHUYỂN TAB)
+// HÀM 8.10: GIAO DIỆN PHÒNG THI (SỬA LỖI CHE KHUẤT CẢNH BÁO CHUYỂN TAB)
 // =====================================================================
 window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     const vungLamViec = document.getElementById('dashboard-container');
@@ -1778,6 +1778,8 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
         <style>
             #vung-cuon-cau-hoi::-webkit-scrollbar { width: 0px; background: transparent; }
             #vung-cuon-cau-hoi { scrollbar-width: none; -ms-overflow-style: none; }
+            /* 🌟 ÉP POPUP CẢNH BÁO LÊN TRÊN CÙNG ĐỂ KHÔNG BỊ PHÒNG THI CHE KHUẤT */
+            .swal2-container { z-index: 9999999 !important; } 
         </style>
 
         <div id="cot-trai-nav" style="flex: 0 0 54px; background: #fff; height: 100vh; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
@@ -1857,29 +1859,39 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     }, 1000);
 
     // =========================================================
-    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: BẮT SỰ KIỆN CHUYỂN TAB 
+    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: XỬ LÝ LÚC QUAY LẠI TAB
     // =========================================================
     phien.soLanChuyenTab = 0;
-    document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan); // Dọn dẹp listener cũ nếu có
+    phien.daRoiKhoiTab = false; // Thêm cờ để biết học sinh đã ra ngoài
+
+    document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
 
     window.ham_8_6_9_theo_doi_gian_lan = function () {
         if (document.hidden) {
-            phien.soLanChuyenTab++;
-            Swal.fire({
-                icon: 'warning',
-                title: '🚨 CẢNH BÁO VI PHẠM!',
-                html: `Hệ thống phát hiện em vừa <b>chuyển Tab</b> hoặc <b>thoát khỏi màn hình làm bài</b>!<br><br>
-                       <span style="color:#d35400; font-weight:bold; font-size:16px;">Vi phạm lần thứ: ${phien.soLanChuyenTab}</span><br><br>
-                       Hành vi này đã được ghi chép vào hệ thống và sẽ báo cáo cho Giáo viên khi em nộp bài!`,
-                confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
-                confirmButtonColor: '#d33',
-                allowOutsideClick: false
-            });
+            // Đánh dấu học sinh đã rời màn hình thi
+            window.PhienLamBai.daRoiKhoiTab = true;
+        } else {
+            // Khi học sinh QUAY LẠI màn hình
+            if (window.PhienLamBai.daRoiKhoiTab) {
+                window.PhienLamBai.soLanChuyenTab++;
+                window.PhienLamBai.daRoiKhoiTab = false;
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: '🚨 CẢNH BÁO VI PHẠM!',
+                    html: `Hệ thống phát hiện em vừa <b>chuyển Tab</b> hoặc <b>thoát khỏi màn hình làm bài</b>!<br><br>
+                           <span style="color:#d35400; font-weight:bold; font-size:16px;">Vi phạm lần thứ: ${window.PhienLamBai.soLanChuyenTab}</span><br><br>
+                           Hành vi này đã được ghi chép vào hệ thống và sẽ báo cáo cho Giáo viên khi em nộp bài!`,
+                    confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
+                    confirmButtonColor: '#d33',
+                    allowOutsideClick: false, // Chặn bấm ra ngoài
+                    allowEscapeKey: false     // Chặn phím Esc
+                });
+            }
         }
     };
     document.addEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
 };
-
 
 
 
