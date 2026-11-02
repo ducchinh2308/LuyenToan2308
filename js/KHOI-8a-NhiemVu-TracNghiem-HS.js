@@ -1691,7 +1691,7 @@ function ham_8a_9_tron_de_thi_trac_nghiem(mangCauHoi) {
 
 
 // =====================================================================
-// HÀM 8.10: GIAO DIỆN PHÒNG THI (SỬA LỖI CHE KHUẤT CẢNH BÁO CHUYỂN TAB)
+// HÀM 8.10: GIAO DIỆN PHÒNG THI (SỬA LỖI POPUP CẢNH BÁO TỰ BIẾN MẤT)
 // =====================================================================
 window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     const vungLamViec = document.getElementById('dashboard-container');
@@ -1859,22 +1859,25 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     }, 1000);
 
     // =========================================================
-    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: XỬ LÝ LÚC QUAY LẠI TAB
+    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: KHÓA CHẶT POPUP BÁO LỖI
     // =========================================================
     phien.soLanChuyenTab = 0;
-    phien.daRoiKhoiTab = false; // Thêm cờ để biết học sinh đã ra ngoài
+    phien.daRoiKhoiTab = false;
+    phien.dangHienCanhBao = false; // Cờ khóa chống trùng lặp popup
 
     document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
 
     window.ham_8_6_9_theo_doi_gian_lan = function () {
         if (document.hidden) {
-            // Đánh dấu học sinh đã rời màn hình thi
             window.PhienLamBai.daRoiKhoiTab = true;
         } else {
-            // Khi học sinh QUAY LẠI màn hình
             if (window.PhienLamBai.daRoiKhoiTab) {
                 window.PhienLamBai.soLanChuyenTab++;
                 window.PhienLamBai.daRoiKhoiTab = false;
+
+                // 🌟 Nếu đang hiện cảnh báo rồi thì không hiện đè nữa (nguyên nhân gây tắt popup)
+                if (window.PhienLamBai.dangHienCanhBao) return;
+                window.PhienLamBai.dangHienCanhBao = true;
 
                 Swal.fire({
                     icon: 'warning',
@@ -1885,7 +1888,12 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
                     confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
                     confirmButtonColor: '#d33',
                     allowOutsideClick: false, // Chặn bấm ra ngoài
-                    allowEscapeKey: false     // Chặn phím Esc
+                    allowEscapeKey: false,    // Chặn phím Esc
+                    allowEnterKey: false,     // Chặn phím Enter
+                    timer: 0                  // Ép vô hiệu hóa mọi cài đặt tự đóng nếu có
+                }).then(() => {
+                    // 🌟 Chỉ mở khóa khi học sinh đã tự tay bấm nút
+                    window.PhienLamBai.dangHienCanhBao = false;
                 });
             }
         }
