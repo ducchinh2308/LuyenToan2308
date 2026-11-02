@@ -1510,9 +1510,188 @@ function ham_8a_9_tron_de_thi_trac_nghiem(mangCauHoi) {
 
 
 
+// // =====================================================================
+// // HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
+// // [Nhãn thời gian: 08:45 - Ngày 29/05/2026] - Cố định Đồng hồ & Nút nộp, chỉ cuộn danh sách câu
+// // =====================================================================
+// window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
+//     const vungLamViec = document.getElementById('dashboard-container');
+//     if (vungLamViec) vungLamViec.style.display = 'none';
+
+//     const phien = window.PhienLamBai;
+//     document.body.style.overflow = 'hidden';
+//     document.documentElement.style.overflow = 'hidden';
+//     phien.thoi_diem_bat_dau = Date.now();
+
+//     // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
+//     let dsTN = [], dsDS = [], dsTLN = [];
+//     phien.danh_sach_cau_hoi.forEach(cau => {
+//         const loai = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+//         if (loai === "TN") dsTN.push(cau);
+//         else if (loai === "DS") dsDS.push(cau);
+//         else if (loai === "TLN") dsTLN.push(cau);
+//     });
+
+//     let htmlContentRight = '';
+//     if (phien.isLiveQuiz) {
+//         htmlContentRight = `<div style="background:#e74c3c; color:white; padding:11px; border-radius:5px; margin-bottom:12px; box-shadow:0 2px 3px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:11px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2></div>`;
+//     } else {
+//         htmlContentRight = `<div style="background:#0056b3; color:white; padding:11px; border-radius:5px; margin-bottom:13px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:13px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+//     }
+
+//     let htmlNavLeft = ``;
+
+//     const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
+//         if (danhSach.length === 0) return;
+
+//         htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
+
+//         let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
+//         htmlNavLeft += `<div style="margin-bottom: 10px; width: 100%;">
+//                             <h4 style="margin: 0 0 6px 0; color: #c0392b; font-size: 11px; border-bottom: 1px solid #ddd; padding-bottom: 3px; text-align: center;">📍${tenNav}</h4>
+//                             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">`;
+
+//         let sttPhan = 1;
+//         danhSach.forEach(cau => {
+//             htmlContentRight += ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, sttPhan, loaiCau);
+//             const maCau = cau.ma_cau_hoi || cau.maCau;
+//             htmlNavLeft += `
+//                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
+//                      style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" 
+//                      onmouseover="if(!this.classList.contains('da-lam')) this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) this.style.background='#fff'">
+//                     <span style="line-height: 1;">${sttPhan}</span>
+//                     <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
+//                 </div>`;
+//             sttPhan++;
+//         });
+//         htmlNavLeft += `</div></div>`;
+//     };
+
+//     sinhGiaoDienNhom("PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn", dsTN, "TN");
+//     sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
+//     sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
+
+//     let htmlLiveDiem = '';
+//     if (phien.isLiveQuiz) {
+//         htmlLiveDiem = `
+//             <div style="background: linear-gradient(135deg, #1e1e2f, #2a2a3c); border: 1px solid #444; border-radius: 6px; padding: 6px 2px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+//                 <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">PIN</div>
+//                 <div style="font-size: 11px; font-weight: 900; color: #e74c3c; font-family: monospace; margin-bottom: 8px; letter-spacing: 0.5px;">
+//                     ${window.ThongTinLiveHocSinh ? window.ThongTinLiveHocSinh.maPhong : '---'}
+//                 </div>
+                
+//                 <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">ĐIỂM</div>
+//                 <div id="diem-hien-tai-hs" style="font-size: 12px; font-weight: 900; color: #f1c40f; font-family: monospace; transition: all 0.3s ease;">
+//                     0.00
+//                 </div>
+//             </div>
+//         `;
+//     }
+
+//     // 🌟 CHÌA KHÓA Ở ĐÂY: Quyết định hàm Nộp Bài tùy theo loại nhiệm vụ
+//     const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live_trac_nghiem()" : "ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()";
+
+
+
+//     // 3. RÁP VÀO BỘ KHUNG
+//     const rootDiv = document.createElement('div');
+//     rootDiv.id = 'khong-gian-thi-toan-man-hinh';
+//     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
+
+//     rootDiv.innerHTML = `
+//         <style>
+//             /* Ẩn thanh cuộn xấu xí của vùng danh sách câu nhưng vẫn cho phép vuốt */
+//             #vung-cuon-cau-hoi::-webkit-scrollbar { width: 0px; background: transparent; }
+//             #vung-cuon-cau-hoi { scrollbar-width: none; -ms-overflow-style: none; }
+//         </style>
+
+//         <div id="cot-trai-nav" style="flex: 0 0 54px; background: #fff; height: 100vh; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+            
+//             <div style="flex-shrink: 0; padding: 6px 4px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #eee; background: #fdfdfe; z-index: 2;">
+//                 <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 6px 0; border-radius: 4px; font-size: 11px;">
+//                     <span id="dong-ho-dem-nguoc">--:--</span>
+//                 </div>
+                
+//                 <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 4px 0; border-radius: 4px; font-size: 10px;">
+//                     <span id="so-cau-da-lam" style="color: #28a745;">0</span>/${phien.tong_so_cau}
+//                 </div>
+                
+//                <div style="display: flex; gap: 5px; width: 100%;">
+//                     <button id="btn-luu-tam" onclick="ham_16_7_luu_tam_thu_cong(this)" style="flex: 1; padding: 10px 0; background: #ffc107; color: #856404; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Cất tạm lên máy chủ">LƯU TẠM</button>
+                    
+//                     <button id="btn-nop-bai" onclick="ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()" style="flex: 1; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Chấm dứt làm bài">NỘP</button>
+//                 </div>
+                 
+//             </div>
+
+//             <div id="vung-cuon-cau-hoi" style="flex: 1; overflow-y: auto; overflow-x: hidden; padding: 6px 4px; padding-top: 10px;">
+//             ${htmlLiveDiem}    
+//             <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 30px;">
+//                     ${htmlNavLeft}
+//                 </div>
+//             </div>
+//         </div>
+
+//         <div id="khu-vuc-cuon-de" style="flex: 1; padding: 20px 15px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
+//             <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
+//                 ${htmlContentRight}
+//             </div>
+//         </div>
+//     `;
+
+//     document.body.appendChild(rootDiv);
+
+//     // Kích hoạt toán học & Hình vẽ
+//     const vungCuon = document.getElementById('khu-vuc-cuon-de');
+//     if (window.renderMathInElement) {
+//         window.renderMathInElement(vungCuon, {
+//             delimiters: [
+//                 { left: "$$", right: "$$", display: true },
+//                 { left: "$", right: "$", display: false }
+//             ],
+//             throwOnError: false,
+//             macros: { "\\heva": "\\left\\{\\begin{array}{l}#1\\end{array}\\right.", "\\hoac": "\\left[\\begin{array}{l}#1\\end{array}\\right." }
+//         });
+//     } else if (window.MathJax) {
+//         MathJax.typesetPromise();
+//     }
+
+//     let oldTikz = document.getElementById('tikz-script-reload');
+//     if (oldTikz) oldTikz.remove();
+//     let newTikz = document.createElement('script');
+//     newTikz.id = 'tikz-script-reload';
+//     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
+//     document.body.appendChild(newTikz);
+
+//     // Bắt đầu đồng hồ đếm ngược
+//     if (phien.id_timer) clearInterval(phien.id_timer);
+//     phien.id_timer = setInterval(() => {
+//         phien.thoi_gian_con_lai--;
+
+//         const tongGiayThucTe = Math.floor(phien.thoi_gian_con_lai);
+//         const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
+//         const ss = String(tongGiayThucTe % 60).padStart(2, '0');
+
+//         document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
+
+//         if (phien.thoi_gian_con_lai <= 300) {
+//             const dh = document.getElementById('khung-dong-ho');
+//             if (dh) { dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb'; }
+//         }
+
+//         if (phien.thoi_gian_con_lai <= 0) {
+//             clearInterval(phien.id_timer);
+//             alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
+//             ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(true);
+//         }
+//     }, 1000);
+// }
+
+
+
+
 // =====================================================================
-// HÀM 8.10: GIAO DIỆN PHÒNG THI CUỘN TỪ TRÊN XUỐNG CÙNG (2 CỘT CHUẨN)
-// [Nhãn thời gian: 08:45 - Ngày 29/05/2026] - Cố định Đồng hồ & Nút nộp, chỉ cuộn danh sách câu
+// HÀM 8.10: GIAO DIỆN PHÒNG THI (ĐÃ TÍCH HỢP RADAR CHỐNG CHUYỂN TAB)
 // =====================================================================
 window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     const vungLamViec = document.getElementById('dashboard-container');
@@ -1588,10 +1767,7 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
         `;
     }
 
-    // 🌟 CHÌA KHÓA Ở ĐÂY: Quyết định hàm Nộp Bài tùy theo loại nhiệm vụ
     const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live_trac_nghiem()" : "ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()";
-
-
 
     // 3. RÁP VÀO BỘ KHUNG
     const rootDiv = document.createElement('div');
@@ -1600,7 +1776,6 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
 
     rootDiv.innerHTML = `
         <style>
-            /* Ẩn thanh cuộn xấu xí của vùng danh sách câu nhưng vẫn cho phép vuốt */
             #vung-cuon-cau-hoi::-webkit-scrollbar { width: 0px; background: transparent; }
             #vung-cuon-cau-hoi { scrollbar-width: none; -ms-overflow-style: none; }
         </style>
@@ -1618,10 +1793,8 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
                 
                <div style="display: flex; gap: 5px; width: 100%;">
                     <button id="btn-luu-tam" onclick="ham_16_7_luu_tam_thu_cong(this)" style="flex: 1; padding: 10px 0; background: #ffc107; color: #856404; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Cất tạm lên máy chủ">LƯU TẠM</button>
-                    
                     <button id="btn-nop-bai" onclick="ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()" style="flex: 1; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Chấm dứt làm bài">NỘP</button>
                 </div>
-                 
             </div>
 
             <div id="vung-cuon-cau-hoi" style="flex: 1; overflow-y: auto; overflow-x: hidden; padding: 6px 4px; padding-top: 10px;">
@@ -1641,10 +1814,8 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
 
     document.body.appendChild(rootDiv);
 
-    // Kích hoạt toán học & Hình vẽ
-    const vungCuon = document.getElementById('khu-vuc-cuon-de');
     if (window.renderMathInElement) {
-        window.renderMathInElement(vungCuon, {
+        window.renderMathInElement(document.getElementById('khu-vuc-cuon-de'), {
             delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "$", right: "$", display: false }
@@ -1663,7 +1834,6 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
     document.body.appendChild(newTikz);
 
-    // Bắt đầu đồng hồ đếm ngược
     if (phien.id_timer) clearInterval(phien.id_timer);
     phien.id_timer = setInterval(() => {
         phien.thoi_gian_con_lai--;
@@ -1685,7 +1855,31 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
             ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(true);
         }
     }, 1000);
-}
+
+    // =========================================================
+    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: BẮT SỰ KIỆN CHUYỂN TAB 
+    // =========================================================
+    phien.soLanChuyenTab = 0;
+    document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan); // Dọn dẹp listener cũ nếu có
+
+    window.ham_8_6_9_theo_doi_gian_lan = function () {
+        if (document.hidden) {
+            phien.soLanChuyenTab++;
+            Swal.fire({
+                icon: 'warning',
+                title: '🚨 CẢNH BÁO VI PHẠM!',
+                html: `Hệ thống phát hiện em vừa <b>chuyển Tab</b> hoặc <b>thoát khỏi màn hình làm bài</b>!<br><br>
+                       <span style="color:#d35400; font-weight:bold; font-size:16px;">Vi phạm lần thứ: ${phien.soLanChuyenTab}</span><br><br>
+                       Hành vi này đã được ghi chép vào hệ thống và sẽ báo cáo cho Giáo viên khi em nộp bài!`,
+                confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
+                confirmButtonColor: '#d33',
+                allowOutsideClick: false
+            });
+        }
+    };
+    document.addEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
+};
+
 
 
 
@@ -1993,49 +2187,222 @@ window.ham_kiem_tra_dinh_dang_tln = function (maCauLogic, ans) {
     warnEl.innerHTML = "";
 };
 
-// =====================================================================
-// HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT (KÈM TÍNH KIM CƯƠNG)
-// =====================================================================
-async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
+// // =====================================================================
+// // HÀM 8.12: NỘP BÀI TỔNG VÀ GỌI SUPABASE CHẤM ĐIỂM BẢO MẬT (KÈM TÍNH KIM CƯƠNG)
+// // =====================================================================
+// async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
     
-    // 🌟 BƯỚC KIỂM TRA CHẶN NỘP NẾU CÓ CÂU TLN DÙNG DẤU CHẤM (.)
-    let coLoiDinhDang = false;
-    let cauLoiId = null;
+//     // 🌟 BƯỚC KIỂM TRA CHẶN NỘP NẾU CÓ CÂU TLN DÙNG DẤU CHẤM (.)
+//     let coLoiDinhDang = false;
+//     let cauLoiId = null;
 
-    if (window.PhienLamBai && window.PhienLamBai.dap_an_hoc_sinh) {
-        for (let maCau in window.PhienLamBai.dap_an_hoc_sinh) {
-            let val = window.PhienLamBai.dap_an_hoc_sinh[maCau];
-            // Nếu là câu trả lời ngắn và chuỗi đáp án chứa dấu chấm
-            if (typeof val === 'string' && val.includes('.')) {
-                // Kiểm tra xem câu này có phải dạng TLN không
-                const cauObj = window.PhienLamBai.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi || c.maCau) === maCau);
-                if (cauObj && (cauObj.kieuCau || cauObj.loaiCau || "").toUpperCase() === 'TLN') {
-                    coLoiDinhDang = true;
-                    cauLoiId = maCau;
-                    break;
-                }
-            }
-        }
-    }
+//     if (window.PhienLamBai && window.PhienLamBai.dap_an_hoc_sinh) {
+//         for (let maCau in window.PhienLamBai.dap_an_hoc_sinh) {
+//             let val = window.PhienLamBai.dap_an_hoc_sinh[maCau];
+//             // Nếu là câu trả lời ngắn và chuỗi đáp án chứa dấu chấm
+//             if (typeof val === 'string' && val.includes('.')) {
+//                 // Kiểm tra xem câu này có phải dạng TLN không
+//                 const cauObj = window.PhienLamBai.danh_sach_cau_hoi.find(c => (c.ma_cau_hoi || c.maCau) === maCau);
+//                 if (cauObj && (cauObj.kieuCau || cauObj.loaiCau || "").toUpperCase() === 'TLN') {
+//                     coLoiDinhDang = true;
+//                     cauLoiId = maCau;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
 
-    if (coLoiDinhDang) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Lỗi định dạng thập phân!',
-            text: 'Phát hiện câu trả lời ngắn đang dùng dấu chấm (.) thay vì dấu phẩy (,) theo đúng quy định. Vui lòng kiểm tra và sửa lại trước khi nộp bài!',
-            confirmButtonColor: '#d33'
-        });
-        if (cauLoiId) {
-            const el = document.getElementById(`cau-${cauLoiId}`);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return; // Dừng tiến trình nộp bài
-    }
+//     if (coLoiDinhDang) {
+//         Swal.fire({
+//             icon: 'warning',
+//             title: 'Lỗi định dạng thập phân!',
+//             text: 'Phát hiện câu trả lời ngắn đang dùng dấu chấm (.) thay vì dấu phẩy (,) theo đúng quy định. Vui lòng kiểm tra và sửa lại trước khi nộp bài!',
+//             confirmButtonColor: '#d33'
+//         });
+//         if (cauLoiId) {
+//             const el = document.getElementById(`cau-${cauLoiId}`);
+//             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//         }
+//         return; // Dừng tiến trình nộp bài
+//     }
     
     
+//     if (!isForce) {
+//         if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
+//     }
+
+//     const btnNop = document.getElementById('btn-nop-bai');
+//     if (btnNop) { btnNop.innerText = "⏳ HỆ THỐNG ĐANG CHẤM..."; btnNop.disabled = true; }
+
+//     const phien = window.PhienLamBai;
+//     if (phien.id_timer) clearInterval(phien.id_timer);
+
+//     if (phien.isLiveQuiz && window.HocSinhLiveChannel) {
+//         _supabase.removeChannel(window.HocSinhLiveChannel);
+//         window.HocSinhLiveChannel = null;
+//     }
+
+//     let payloadBaiLam = {};
+//     phien.danh_sach_cau_hoi.forEach(cau => {
+//         const maCauChuan = cau.ma_cau_hoi || cau.maCau;
+//         const dapanHS = phien.dap_an_hoc_sinh[maCauChuan];
+//         const kieu = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+
+//         if (kieu === 'DS' && typeof dapanHS === 'object') {
+//             let strDS = "";
+//             ['A', 'B', 'C', 'D'].forEach(k => { strDS += dapanHS[k] || dapanHS[k.toUpperCase()] || "_"; });
+//             payloadBaiLam[maCauChuan] = strDS;
+//         } else {
+//             payloadBaiLam[maCauChuan] = dapanHS || "";
+//         }
+//     });
+
+//     const tBatDau = phien.thoi_diem_bat_dau || Date.now();
+//     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
+//     const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+    
+
+//     try {
+//         const { data: diemSoBiMat, error: errCham } = await _supabase.rpc('cham_diem_bai_thi_trac_nghiem', {
+//             p_id_ket_qua: phien.id_ket_qua_database,
+//             p_ma_nhiem_vu: phien.ma_nhiem_vu,
+//             p_dap_an_hoc_sinh: payloadBaiLam,
+//             p_thoi_gian_lam_bai: thoiGianLamBaiStr
+//         });
+
+//         if (errCham) throw errCham;
+
+
+//         // 🌟 [AUTO-SAVE BƯỚC 4] CHỐT TRẠNG THÁI VÀ DỌN RÁC BỘ NHỚ
+//         if (!phien.isLiveQuiz) {
+//             // Update trạng thái thành Đã Nộp để đóng sổ
+//             await _supabase.from('ket_qua_trac_nghiem')
+//                 .update({ trang_thai_lam_bai: 'da_nop' })
+//                 .eq('id', phien.id_ket_qua_database);
+
+//             // Xóa bộ nhớ tạm và dừng đồng hồ Auto-save
+//             if (typeof ham_16_4_don_dep_sau_khi_nop === 'function') {
+//                 ham_16_4_don_dep_sau_khi_nop(phien.ma_nhiem_vu);
+//             }
+//         }
+
+
+
+
+//         const diemTongKet = Number(diemSoBiMat || 0);
+
+//         document.body.style.overflow = 'auto';
+//         document.documentElement.style.overflow = 'auto';
+//         const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
+//         if (khongGianThi) khongGianThi.remove();
+
+//         // ==============================================================
+//         // 4. THUẬT TOÁN KIM CƯƠNG (SỔ CÁI VÀ ĐỘ CHÊNH LỆCH)
+//         // ==============================================================
+//         let kcTheoDiem = 1;
+//         if (diemTongKet === 10) kcTheoDiem = 4;
+//         else if (diemTongKet >= 8) kcTheoDiem = 3;
+//         else if (diemTongKet >= 5) kcTheoDiem = 2;
+
+//         let soCaiKC = GocHocSinhState.chi_tiet_kim_cuong || {};
+//         let tongKC = GocHocSinhState.kim_cuong || 0;
+//         let maNV = phien.ma_nhiem_vu;
+
+//         let kcCu = soCaiKC[maNV] || 0;
+//         let chenhLechKC = kcTheoDiem - kcCu;
+
+//         tongKC += chenhLechKC;
+//         if (tongKC < 0) tongKC = 0;
+//         soCaiKC[maNV] = kcTheoDiem;
+
+//         GocHocSinhState.kim_cuong = tongKC;
+//         GocHocSinhState.chi_tiet_kim_cuong = soCaiKC;
+
+//         let textThongBaoKC = "";
+//         if (chenhLechKC > 0) {
+//             textThongBaoKC = `<span style="font-size: 20px; color: #00bcd4; font-weight: bold;">+${chenhLechKC} 💎 Kim Cương</span>`;
+//         } else if (chenhLechKC < 0) {
+//             textThongBaoKC = `<span style="font-size: 18px; color: #e74c3c; font-weight: bold;">${chenhLechKC} 💎 Kim Cương (Do điểm thấp hơn)</span>`;
+//         } else {
+//             textThongBaoKC = `<span style="font-size: 16px; color: #f39c12; font-weight: bold;">Không thay đổi 💎 Kim Cương</span>`;
+//         }
+
+//         // ==============================================================
+//         // 5. RẼ NHÁNH GIAO DIỆN SAU KHI TÍNH KIM CƯƠNG
+//         // ==============================================================
+//         if (phien.isLiveQuiz) {
+//             if (window.ThongTinLiveHocSinh && window.ThongTinLiveHocSinh.maPhong) {
+//                 await _supabase.from('tien_do_live_quiz')
+//                     .update({ da_nop: true, diem_so: diemTongKet })
+//                     .eq('ma_phong', window.ThongTinLiveHocSinh.maPhong)
+//                     .eq('uid_hoc_sinh', GocHocSinhState.uid);
+//             }
+
+//             // Lưu Kim Cương lên Server
+//             await _supabase.from('hoc_sinh')
+//                 .update({ kim_cuong: tongKC, chi_tiet_kim_cuong: soCaiKC })
+//                 .eq('uid', GocHocSinhState.uid);
+
+//             const khuVucDashboard = document.getElementById('dashboard-container');
+//             if (khuVucDashboard) khuVucDashboard.style.display = 'block';
+
+//             if (typeof window.ham_8_6_6_man_hinh_ket_qua_cho === 'function') {
+//                 window.ham_8_6_6_man_hinh_ket_qua_cho(diemTongKet);
+//             }
+
+//             Swal.fire({
+//                 title: isForce ? '⏳ HẾT GIỜ LÀM BÀI!' : '📤 NỘP BÀI THÀNH CÔNG!',
+//                 html: `Thành tích đấu trường của em: <b>${diemTongKet.toFixed(2)} điểm</b><br><br>${textThongBaoKC}`,
+//                 icon: 'success',
+//                 timer: 4000,
+//                 showConfirmButton: true
+//             });
+
+//         } else {
+//             let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
+//             tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
+
+//             // Lưu Tiến độ và Kim Cương lên Server cùng 1 nhịp
+//             await _supabase.from('hoc_sinh')
+//                 .update({
+//                     tien_do_lam_bai: tienDoHienTai,
+//                     kim_cuong: tongKC,
+//                     chi_tiet_kim_cuong: soCaiKC
+//                 })
+//                 .eq('uid', GocHocSinhState.uid);
+
+//             GocHocSinhState.tien_do_lam_bai = tienDoHienTai;
+
+//             Swal.fire({
+//                 title: '🏆 NỘP BÀI THÀNH CÔNG!',
+//                 html: `Điểm số của em là: <b>${diemTongKet.toFixed(2)} điểm</b><br><br>${textThongBaoKC}`,
+//                 icon: 'success',
+//                 confirmButtonText: 'Tuyệt vời',
+//                 confirmButtonColor: '#28a745'
+//             }).then(() => {
+//                 document.getElementById('dashboard-container').style.display = 'block';
+//                 ham_3b_1_tai_nhiem_vu_cua_toi(GocHocSinhState.uid, GocHocSinhState.danh_sach_ma_lop, GocHocSinhState.ten);
+//             });
+//         }
+
+//     } catch (err) {
+//         alert("❌ Máy chủ quá tải hoặc lỗi khi chấm: " + err.message);
+//         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
+//     }
+// }
+
+
+
+// =====================================================================
+// HÀM 8.12: NỘP BÀI TỔNG (CẤP BÁO SỐ LẦN CHUYỂN TAB VÀO DATABASE)
+// =====================================================================
+window.ham_8a_12_nop_bai_va_cham_diem_trac_nghiem = async function (isForce = false) {
     if (!isForce) {
         if (!confirm("Bạn có chắc chắn muốn nộp bài? Hãy chắc chắn rằng bạn đã soát lại toàn bộ đáp án.")) return;
     }
+
+    // Dọn dẹp sự kiện theo dõi ngay lập tức để không cản trở lúc chờ mạng nộp bài
+    document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
 
     const btnNop = document.getElementById('btn-nop-bai');
     if (btnNop) { btnNop.innerText = "⏳ HỆ THỐNG ĐANG CHẤM..."; btnNop.disabled = true; }
@@ -2065,8 +2432,12 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
 
     const tBatDau = phien.thoi_diem_bat_dau || Date.now();
     const soGiayThucTe = Math.floor((Date.now() - tBatDau) / 1000);
-    const thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
-    
+
+    // 🌟 GHI NHẬN HÀNH VI GIAN LẬN VÀO THỜI GIAN LÀM BÀI TRƯỚC KHI BẮN LÊN DB
+    let thoiGianLamBaiStr = `${Math.floor(soGiayThucTe / 60)} phút ${soGiayThucTe % 60} giây`;
+    if (phien.soLanChuyenTab > 0) {
+        thoiGianLamBaiStr += ` (CẢNH BÁO: Rời màn hình ${phien.soLanChuyenTab} lần)`;
+    }
 
     try {
         const { data: diemSoBiMat, error: errCham } = await _supabase.rpc('cham_diem_bai_thi_trac_nghiem', {
@@ -2078,22 +2449,15 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
 
         if (errCham) throw errCham;
 
-
-        // 🌟 [AUTO-SAVE BƯỚC 4] CHỐT TRẠNG THÁI VÀ DỌN RÁC BỘ NHỚ
         if (!phien.isLiveQuiz) {
-            // Update trạng thái thành Đã Nộp để đóng sổ
             await _supabase.from('ket_qua_trac_nghiem')
                 .update({ trang_thai_lam_bai: 'da_nop' })
                 .eq('id', phien.id_ket_qua_database);
 
-            // Xóa bộ nhớ tạm và dừng đồng hồ Auto-save
             if (typeof ham_16_4_don_dep_sau_khi_nop === 'function') {
                 ham_16_4_don_dep_sau_khi_nop(phien.ma_nhiem_vu);
             }
         }
-
-
-
 
         const diemTongKet = Number(diemSoBiMat || 0);
 
@@ -2102,9 +2466,7 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
         const khongGianThi = document.getElementById('khong-gian-thi-toan-man-hinh');
         if (khongGianThi) khongGianThi.remove();
 
-        // ==============================================================
-        // 4. THUẬT TOÁN KIM CƯƠNG (SỔ CÁI VÀ ĐỘ CHÊNH LỆCH)
-        // ==============================================================
+        // THUẬT TOÁN KIM CƯƠNG
         let kcTheoDiem = 1;
         if (diemTongKet === 10) kcTheoDiem = 4;
         else if (diemTongKet >= 8) kcTheoDiem = 3;
@@ -2133,9 +2495,6 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
             textThongBaoKC = `<span style="font-size: 16px; color: #f39c12; font-weight: bold;">Không thay đổi 💎 Kim Cương</span>`;
         }
 
-        // ==============================================================
-        // 5. RẼ NHÁNH GIAO DIỆN SAU KHI TÍNH KIM CƯƠNG
-        // ==============================================================
         if (phien.isLiveQuiz) {
             if (window.ThongTinLiveHocSinh && window.ThongTinLiveHocSinh.maPhong) {
                 await _supabase.from('tien_do_live_quiz')
@@ -2144,7 +2503,6 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
                     .eq('uid_hoc_sinh', GocHocSinhState.uid);
             }
 
-            // Lưu Kim Cương lên Server
             await _supabase.from('hoc_sinh')
                 .update({ kim_cuong: tongKC, chi_tiet_kim_cuong: soCaiKC })
                 .eq('uid', GocHocSinhState.uid);
@@ -2168,7 +2526,6 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
             let tienDoHienTai = GocHocSinhState.tien_do_lam_bai || {};
             tienDoHienTai[phien.ma_nhiem_vu] = (tienDoHienTai[phien.ma_nhiem_vu] || 0) + 1;
 
-            // Lưu Tiến độ và Kim Cương lên Server cùng 1 nhịp
             await _supabase.from('hoc_sinh')
                 .update({
                     tien_do_lam_bai: tienDoHienTai,
@@ -2195,7 +2552,8 @@ async function ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(isForce = false) {
         alert("❌ Máy chủ quá tải hoặc lỗi khi chấm: " + err.message);
         if (btnNop) { btnNop.innerText = "NỘP LẠI"; btnNop.disabled = false; }
     }
-}
+};
+
 // ==============================================================
 // Hàm 8.13: Tải dữ liệu Xem lại bài (Tích hợp chốt chặn File Bóng Ma)
 // ==============================================================
@@ -2619,11 +2977,35 @@ function ham_8a_18_capNhatMauNutLuoi_trac_nghiem(maCauHoi, textHienThi) {
     if (ansSpan) ansSpan.innerText = textHienThi.substring(0, 4); // Rút gọn chuỗi ĐS
 }
 
+// window.ham_8a_19_thoat_phong_thi_trac_nghiem = async () => {
+//     const daLam = Object.keys(window.PhienLamBai.dap_an_hoc_sinh).length;
+//     if (daLam > 0) {
+//         if (!confirm("⚠️ CẢNH BÁO!\nNếu thoát bây giờ, bài của bạn SẼ BỊ HỦY KHÔNG GHI NHẬN ĐIỂM. Bạn có chắc chắn muốn thoát?")) return;
+//     }
+//     clearInterval(window.PhienLamBai.id_timer);
+//     document.body.style.overflow = '';
+//     document.documentElement.style.overflow = '';
+
+//     const root = document.getElementById('khong-gian-thi-toan-man-hinh');
+//     if (root) root.remove();
+//     document.getElementById('dashboard-container').style.display = 'block';
+// };
+
+
+
+
+// =====================================================================
+// HÀM 8.19: THOÁT PHÒNG THI THỦ CÔNG (DỌN DẸP RADAR)
+// =====================================================================
 window.ham_8a_19_thoat_phong_thi_trac_nghiem = async () => {
     const daLam = Object.keys(window.PhienLamBai.dap_an_hoc_sinh).length;
     if (daLam > 0) {
         if (!confirm("⚠️ CẢNH BÁO!\nNếu thoát bây giờ, bài của bạn SẼ BỊ HỦY KHÔNG GHI NHẬN ĐIỂM. Bạn có chắc chắn muốn thoát?")) return;
     }
+
+    // Gỡ lệnh theo dõi gian lận
+    document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
+
     clearInterval(window.PhienLamBai.id_timer);
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
@@ -2632,6 +3014,13 @@ window.ham_8a_19_thoat_phong_thi_trac_nghiem = async () => {
     if (root) root.remove();
     document.getElementById('dashboard-container').style.display = 'block';
 };
+
+
+
+
+
+
+
 
 
 
