@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3654e78e02",
+  "dapAn": "A",
+  "loiGiai": "Bất phương trình bậc nhất hai ẩn có dạng $ax+by+c < 0$ (hoặc $\\le, >, \\ge$) với $a,b$ không đồng thời bằng 0.\\\\\r\n\t\tBất phương trình $2x-y<1$ là bất phương trình bậc nhất hai ẩn. Các bất phương trình còn lại chứa $y^2, x^2$ hoặc $xy$ nên có bậc lớn hơn 1."
+}

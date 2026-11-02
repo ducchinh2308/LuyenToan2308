@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8e830d1809",
+  "dapAn": "A",
+  "loiGiai": "Áp dụng hệ quả của định lí côsin trong tam giác $ABC$:\\\\\r\n\t\t$\\cos A = \\displaystyle \\frac{b^{2}+c^{2}-a^{2}}{2bc}$.\\\\\r\n\t\tThay $b^{2}+c^{2}-a^{2}=\\sqrt{3}bc$ vào, ta được:\\\\\r\n\t\t$\\cos A = \\displaystyle \\frac{\\sqrt{3}bc}{2bc} = \\frac{\\sqrt{3}}{2} \\Rightarrow \\widehat{A} = 30^\\circ$."
+}

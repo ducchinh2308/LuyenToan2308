@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_063da17c29",
+  "dapAn": "A",
+  "loiGiai": "Lần lượt thay tọa độ các điểm vào hệ bất phương trình:\\\\\r\n\t\tVới $A(1;2)$: $\\begin{cases}1 - 4(2) = -7 \\le 0 \\text{ (đúng)}\\\\ 1 + 6(2) - 10 = 3 > 0 \\text{ (đúng)}\\end{cases}$. Vậy $A$ thuộc miền nghiệm.\\\\\r\n\t\tVới $B(-2;1)$: $\\begin{cases}-2 - 4(1) = -6 \\le 0 \\text{ (đúng)}\\\\ -2 + 6(1) - 10 = -6 > 0 \\text{ (sai)}\\end{cases}$.\\\\\r\n\t\tVới $C(4;0)$: $\\begin{cases}4 - 4(0) = 4 \\le 0 \\text{ (sai)}\\end{cases}$.\\\\\r\n\t\tVới $D(-3;-4)$: $\\begin{cases}-3 - 4(-4) = 13 \\le 0 \\text{ (sai)}\\end{cases}$."
+}

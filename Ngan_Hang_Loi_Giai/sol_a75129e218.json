@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a75129e218",
+  "dapAn": "A",
+  "loiGiai": "Vì $90^{\\circ}<\\alpha<180^{\\circ}$ nên $\\cos \\alpha < 0$.\\\\\r\n\t\tTa có: $\\cos^2 \\alpha = 1 - \\sin^2 \\alpha = 1 - \\left(\\displaystyle\\frac{3}{5}\\right)^2 = 1 - \\frac{9}{25} = \\frac{16}{25}$.\\\\\r\n\t\t$\\Rightarrow \\cos \\alpha = -\\displaystyle\\frac{4}{5}$.\\\\\r\n\t\tTừ đó, $\\cot \\alpha = \\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha} = \\frac{-\\frac{4}{5}}{\\frac{3}{5}} = -\\frac{4}{3}$.\\\\\r\n\t\tMặt khác, $\\cot(180^{\\circ}-\\alpha) = -\\cot \\alpha$. Do đó $P = -\\left(-\\displaystyle\\frac{4}{3}\\right) = \\frac{4}{3}$."
+}

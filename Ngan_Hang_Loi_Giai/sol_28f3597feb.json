@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_28f3597feb",
+  "dapAn": "C",
+  "loiGiai": "Tập hợp giao $A \\cap B$ chứa các phần tử chung của cả hai tập hợp $A$ và $B$.\\\\\r\n\t\tTa thấy các phần tử $2, 3, 5$ vừa thuộc $A$ vừa thuộc $B$. Vậy $A \\cap B = \\{2;3;5\\}$."
+}

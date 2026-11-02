@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_34e945586a",
+  "dapAn": "A",
+  "loiGiai": "Mệnh đề là một câu khẳng định có tính đúng hoặc sai rõ ràng.\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Câu A là câu cảm thán/cầu khiến, không xác định được tính đúng sai nên không phải là mệnh đề.\r\n\t\t\t\\item Các câu B, C là mệnh đề sai.\r\n\t\t\t\\item Câu D là một mệnh đề (có thể xác định đúng sai).\r\n\t\t\\end{itemize}"
+}

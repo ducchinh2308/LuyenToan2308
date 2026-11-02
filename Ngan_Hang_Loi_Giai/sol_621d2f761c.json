@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_621d2f761c",
+  "dapAn": "A",
+  "loiGiai": "Để lập mệnh đề phủ định, ta thay lượng từ \"$\\forall$\" thành \"$\\exists$\" và đổi chiều bất đẳng thức \"$>$\" thành \"$\\le$\".\\\\\r\n\t\tMệnh đề phủ định của $P$ là $\\overline{P} \\colon \"\\exists x\\in\\mathbb{R}, x^{2}-x+2\\le0\"$."
+}

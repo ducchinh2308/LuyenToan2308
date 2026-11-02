@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3ed79f38c0",
+  "dapAn": "A",
+  "loiGiai": "Trong tam giác $ABC$, ta có $\\widehat{A} + \\widehat{B} + \\widehat{C} = 180^{\\circ} \\Rightarrow B+C = 180^{\\circ} - A$.\\\\\r\n\t\tDo đó, $\\cos(B+C) = \\cos(180^{\\circ} - A) = -\\cos A$.\\\\\r\n\t\tTheo giả thiết, $\\cos(B+C) = -\\displaystyle\\frac{1}{5} \\Rightarrow -\\cos A = -\\frac{1}{5} \\Rightarrow \\cos A = \\frac{1}{5}$.\\\\\r\n\t\tÁp dụng định lý côsin trong tam giác $ABC$:\r\n\t\t$$BC^2 = AB^2 + AC^2 - 2 \\cdot AB \\cdot AC \\cdot \\cos A$$\r\n\t\t$$BC^2 = 7^2 + 5^2 - 2 \\cdot 7 \\cdot 5 \\cdot \\frac{1}{5} = 49 + 25 - 14 = 60$$\r\n\t\t$$\\Rightarrow BC = \\sqrt{60} = 2\\sqrt{15}.$$"
+}

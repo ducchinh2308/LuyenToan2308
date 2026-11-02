@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2e75771c4d",
+  "dapAn": "D",
+  "loiGiai": "Mệnh đề A sai (vì lẻ + lẻ = chẵn).\\\\\r\n\t\tMệnh đề B sai (chỉ cần ít nhất một số chẵn thì tích là số chẵn, không cần cả hai).\\\\\r\n\t\tMệnh đề C sai (lẻ + chẵn = lẻ, lẻ + lẻ = chẵn).\\\\\r\n\t\tMệnh đề D đúng. Tích hai số tự nhiên là số lẻ khi và chỉ khi cả hai số đó đều phải là số lẻ."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_98b29e981a",
+  "dapAn": "B",
+  "loiGiai": "Thay tọa độ điểm $A(-1;3)$ vào các bất phương trình để kiểm tra:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Với $3x-y>0$: $3(-1) - 3 = -6 > 0$ (sai).\r\n\t\t\t\\item Với $-3x+2y-4>0$: $-3(-1) + 2(3) - 4 = 3 + 6 - 4 = 5 > 0$ (đúng).\r\n\t\t\t\\item Với $2x-y+4>0$: $2(-1) - 3 + 4 = -1 > 0$ (sai).\r\n\t\t\t\\item Với $x+3y<0$: $-1 + 3(3) = 8 < 0$ (sai).\r\n\t\t\\end{itemize}\r\n\t\tVậy $A(-1;3)$ thuộc miền nghiệm của bất phương trình $-3x+2y-4>0$."
+}

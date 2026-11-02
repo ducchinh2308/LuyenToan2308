@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5fda2b868b",
+  "dapAn": "9",
+  "loiGiai": "Vẽ các đường thẳng $d_1: x=-2$, $d_2: y=2$, $d_3: x+2y=8$.\\\\\r\n\t\tMiền nghiệm của hệ bất phương trình là miền tam giác $ABC$ kể cả các cạnh $AB, BC, CA$ trong đó:\\\\\r\n\t\t$A = d_1 \\cap d_2 \\Rightarrow A(-2;2)$.\\\\\r\n\t\t$B = d_1 \\cap d_3 \\Rightarrow \\begin{cases}x=-2\\\\ x+2y=8\\end{cases} \\Rightarrow B(-2;5)$.\\\\\r\n\t\t$C = d_2 \\cap d_3 \\Rightarrow \\begin{cases}y=2\\\\ x+2y=8\\end{cases} \\Rightarrow C(4;2)$.\\\\\r\n\t\tDễ thấy tam giác $ABC$ vuông tại $A$ (do các đường $x=-2$ và $y=2$ vuông góc với nhau).\\\\\r\n\t\tĐộ dài các cạnh góc vuông là: $AB = |5-2| = 3$, $AC = |4-(-2)| = 6$.\\\\\r\n\t\tDiện tích tam giác $ABC$ là $S = \\displaystyle \\frac{1}{2}AB \\cdot AC = \\frac{1}{2} \\cdot 3 \\cdot 6 = 9$."
+}

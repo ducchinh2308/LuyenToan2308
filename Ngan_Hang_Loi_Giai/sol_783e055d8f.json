@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_783e055d8f",
+  "dapAn": "B",
+  "loiGiai": "Vì điểm $M$ nằm trên nửa đường tròn đơn vị nên tọa độ của $M(x;y)$ chính là $(\\cos \\alpha; \\sin \\alpha)$.\\\\\r\n\t\tTa có $\\cos \\alpha = -\\displaystyle \\frac{1}{3}$ và $\\sin \\alpha = \\frac{2\\sqrt{2}}{3}$.\\\\\r\n\t\tSuy ra $\\tan \\alpha = \\displaystyle \\frac{\\sin \\alpha}{\\cos \\alpha} = \\frac{\\frac{2\\sqrt{2}}{3}}{-\\frac{1}{3}} = -2\\sqrt{2}$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_515116a032",
+  "dapAn": "C",
+  "loiGiai": "Theo định lí sin, ta có $\\displaystyle \\frac{b}{\\sin B} = 2R \\Leftrightarrow b = 2R\\sin B$. Khẳng định $b\\sin B=2R$ là sai.\\\\\r\n\t\tKhẳng định $\\displaystyle \\frac{c}{\\sin C} = \\frac{a}{\\sin A} \\Leftrightarrow \\sin C = \\frac{c\\sin A}{a}$ là đúng."
+}

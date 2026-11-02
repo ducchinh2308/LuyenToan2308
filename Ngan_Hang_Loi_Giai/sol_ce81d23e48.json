@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ce81d23e48",
+  "dapAn": "A",
+  "loiGiai": "Phủ định của lượng từ \"$\\forall$\" là \"$\\exists$\".\r\n\t\tPhủ định của bất đẳng thức \"$>$\" là \"$\\le$\".\\\\\r\n\t\tVậy mệnh đề phủ định là $\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}-1\\le 0\"$."
+}

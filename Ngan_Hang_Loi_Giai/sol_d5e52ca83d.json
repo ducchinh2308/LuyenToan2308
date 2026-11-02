@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d5e52ca83d",
+  "dapAn": "3",
+  "loiGiai": "Gọi $X$ là tập hợp học sinh lớp 10A, $A$ là tập hợp học sinh thích bóng rổ, $B$ là tập hợp học sinh thích bóng chuyền.\\\\\r\n\t\tSố học sinh thích ít nhất một trong hai môn là: $n(A\\cup B) = n(X) - 10 = 45 - 10 = 35$ (học sinh).\\\\\r\n\t\tMặt khác, $n(A\\cup B) = n(A) + n(B) - n(A\\cap B)$.\\\\\r\n\t\tSuy ra $35 = 20 + 18 - n(A\\cap B) \\Rightarrow n(A\\cap B) = 38 - 35 = 3$.\\\\\r\n\t\tVậy có $3$ học sinh thích cả hai môn bóng rổ và bóng chuyền."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f68911a66b",
+  "dapAn": "C",
+  "loiGiai": "Từ đồ thị, ta thấy đường thẳng bờ $\\Delta$ cắt trục $Ox$ tại $\\left(\\displaystyle\\frac{3}{2}; 0\\right)$ và cắt trục $Oy$ tại $(0; -3)$.\\\\\r\n\t\tPhương trình theo đoạn chắn của đường thẳng này là:\r\n\t\t$$\\frac{x}{\\frac{3}{2}} + \\frac{y}{-3} = 1 \\Leftrightarrow \\frac{2x}{3} - \\frac{y}{3} = 1 \\Leftrightarrow 2x - y = 3.$$\r\n\t\tQuan sát đồ thị, nửa mặt phẳng không bị gạch chứa gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào biểu thức $2x-y$, ta được $2(0) - 0 = 0 < 3$.\\\\\r\n\t\tVì đường thẳng nét liền (tính cả bờ), miền nghiệm là phần mặt phẳng thỏa mãn bất phương trình $2x - y \\le 3$."
+}

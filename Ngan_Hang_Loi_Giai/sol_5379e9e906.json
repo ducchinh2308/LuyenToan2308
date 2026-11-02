@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5379e9e906",
+  "dapAn": "C",
+  "loiGiai": "Vẽ đường thẳng $d \\colon 3x - 2y = -6$ trên mặt phẳng tọa độ.\\\\\r\n\t\tCho $x = 0 \\Rightarrow y = 3$, ta được điểm $(0; 3)$.\\\\\r\n\t\tCho $y = 0 \\Rightarrow x = -2$, ta được điểm $(-2; 0)$.\\\\\r\n\t\tVậy đường thẳng $d$ đi qua hai điểm $(-2; 0)$ và $(0; 3)$. (Loại được phương án A và B do vẽ sai đường thẳng bờ).\\\\\r\n\t\tLấy điểm $O(0; 0)$ không thuộc $d$. Thay tọa độ điểm $O$ vào bất phương trình $3x - 2y \\le -6$, ta được:\r\n\t\t$$3 \\cdot 0 - 2 \\cdot 0 \\le -6 \\Leftrightarrow 0 \\le -6 \\text{ (vô lý)}.$$\r\n\t\tDo đó, miền nghiệm của bất phương trình $3x - 2y \\le -6$ là nửa mặt phẳng bờ $d$ (kể cả bờ) \\textbf{không chứa} gốc tọa độ $O(0; 0)$.\\\\\r\n\t\tHay nói cách khác, phần bị gạch (không phải miền nghiệm) là phần chứa gốc tọa độ $O(0; 0)$.\\\\\r\n\t\tQuan sát các hình, ta thấy hình ở phương án C thỏa mãn điều kiện này."
+}

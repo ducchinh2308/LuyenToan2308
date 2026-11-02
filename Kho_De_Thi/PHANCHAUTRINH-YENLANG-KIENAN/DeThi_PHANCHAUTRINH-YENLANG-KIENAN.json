@@ -1,0 +1,380 @@
+{
+  "maDe": "PHANCHAUTRINH-YENLANG-KIENAN",
+  "tenDe": "PHANCHAUTRINH-YENLANG-KIENAN",
+  "thoiGian": 30,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0D1H1-4]",
+      "maCau": "q_5a90792260",
+      "ma_goc": "2610-1706",
+      "kieuCau": "TN",
+      "cauDan": "Phát biểu nào sau đây là mệnh đề đúng?",
+      "paA": "Tổng của hai số tự nhiên là một số chẵn khi và chỉ khi cả hai số đều là số chẵn.",
+      "paB": "Tích của hai số tự nhiên là một số chẵn khi và chỉ khi cả hai số đều là số chẵn.",
+      "paC": "Tổng của hai số tự nhiên là một số lẻ khi và chỉ khi cả hai số đều là số lẻ.",
+      "paD": "Tích của hai số tự nhiên là một số lẻ khi và chỉ khi cả hai số đều là số lẻ."
+    },
+    {
+      "id_Cau": "[0D1H3-2]",
+      "maCau": "q_9fd8ee53a2",
+      "ma_goc": "2610-1707",
+      "kieuCau": "TN",
+      "cauDan": "Cho tập hợp $A=\\{x\\in\\mathbb{R} \\mid 2x+1<4+3x\\}$. Tập hợp nào dưới đây là tập con của tập $A$?",
+      "paA": "$B=(-3;+\\infty)$",
+      "paB": "$C=[-3;+\\infty)$",
+      "paC": "$D=(-5;+\\infty)$",
+      "paD": "$E=(-\\infty;-3)$"
+    },
+    {
+      "id_Cau": "[0D1V3-2]",
+      "maCau": "q_0c3f943ac0",
+      "ma_goc": "2610-1708",
+      "kieuCau": "TN",
+      "cauDan": "Cho số $a\\in\\mathbb{N}^{*}$. Số $a$ thuộc tập hợp nào dưới đây?",
+      "paA": "$\\left(\\displaystyle \\frac{a}{2}; 2a\\right)$",
+      "paB": "$(a;2a]$",
+      "paC": "$(a;a+1)$",
+      "paD": "$(a-1;a)$"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_c5cb30ffe2",
+      "ma_goc": "2610-1709",
+      "kieuCau": "TN",
+      "cauDan": "Miền nghiệm của bất phương trình $3x - 2y \\le -6$ là phần không bị gạch kể cả bờ biểu diễn ở hình",
+      "paA": "<img src='HinhAnh/q_c5cb30ffe2_A_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paB": "<img src='HinhAnh/q_c5cb30ffe2_B_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paC": "<img src='HinhAnh/q_c5cb30ffe2_C_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paD": "<img src='HinhAnh/q_c5cb30ffe2_D_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />"
+    },
+    {
+      "id_Cau": "[0D2H2-1]",
+      "maCau": "q_4c496b712f",
+      "ma_goc": "2610-1710",
+      "kieuCau": "TN",
+      "cauDan": "Điểm nào sau đây không thuộc miền nghiệm của hệ bất phương trình $\\begin{cases}2x-y+1\\ge 0\\\\ 3x+2y-5<0\\end{cases}$?",
+      "paA": "$(0;1)$",
+      "paB": "$\\left(\\displaystyle \\frac{1}{3};\\frac{1}{2}\\right)$",
+      "paC": "$(2;1)$",
+      "paD": "$(1;-2)$"
+    },
+    {
+      "id_Cau": "[0H4H1-2]",
+      "maCau": "q_4a6a39c81d",
+      "ma_goc": "2610-1711",
+      "kieuCau": "TN",
+      "cauDan": "Cho góc $\\alpha=\\widehat{xOM}$ với điểm $M\\left(-\\displaystyle \\frac{1}{3};\\frac{2\\sqrt{2}}{3}\\right)$ trên nửa đường tròn đơn vị. Giá trị của $\\tan \\alpha$ là",
+      "paA": "$\\tan \\alpha=-\\displaystyle \\frac{1}{2\\sqrt{2}}$",
+      "paB": "$\\tan \\alpha=-2\\sqrt{2}$",
+      "paC": "$\\tan \\alpha=\\displaystyle \\frac{2\\sqrt{2}-1}{3}$",
+      "paD": "$\\tan \\alpha=-\\displaystyle \\frac{2\\sqrt{2}}{9}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_aaedba2af8",
+      "ma_goc": "2610-1712",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $BC=a; CA=b; AB=c$. Khẳng định \"sai\" là",
+      "paA": "$\\displaystyle \\frac{a}{\\sin A}=2R$",
+      "paB": "$\\sin A=\\displaystyle \\frac{a}{2R}$",
+      "paC": "$b\\sin B=2R$",
+      "paD": "$\\sin C=\\displaystyle \\frac{c\\sin A}{a}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_7dc68b94a6",
+      "ma_goc": "2610-1713",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ có $b^{2}+c^{2}-a^{2}=\\sqrt{3}bc$. Khi đó",
+      "paA": "$\\widehat{A}=30^\\circ$",
+      "paB": "$\\widehat{A}=45^\\circ$",
+      "paC": "$\\widehat{A}=60^\\circ$",
+      "paD": "$\\widehat{A}=120^\\circ$"
+    },
+    {
+      "id_Cau": "[0D1N1-1]",
+      "maCau": "q_0094302474",
+      "ma_goc": "2610-1736",
+      "kieuCau": "TN",
+      "cauDan": "Trong các phát biểu sau, có bao nhiêu phát biểu là mệnh đề?\\\\\r\n\t1/ Hà Nội là thủ đô của Việt Nam.\\\\\r\n\t2/ Bạn có đi học thêm Toán không?\\\\\r\n\t3/ $2^{10}-1$ chia hết cho 11.\\\\\r\n\t4/ 2763 là hợp số.\\\\\r\n\t5/ $x^{2}-3x+2=0$.",
+      "paA": "3",
+      "paB": "2",
+      "paC": "1",
+      "paD": "4"
+    },
+    {
+      "id_Cau": "[0D1N1-3]",
+      "maCau": "q_7a125751a5",
+      "ma_goc": "2610-1737",
+      "kieuCau": "TN",
+      "cauDan": "Mệnh đề phủ định của mệnh đề $P: \"\\forall x\\in\\mathbb{R}, x^{2}-1>0\"$ là",
+      "paA": "$\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}-1\\le 0\"$",
+      "paB": "$\\overline{P}: \"\\forall x\\in\\mathbb{R}, x^{2}-1>0\"$",
+      "paC": "$\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}-1<0\"$",
+      "paD": "$\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}-1>0\"$"
+    },
+    {
+      "id_Cau": "[0D1H1-4]",
+      "maCau": "q_0b9b619058",
+      "ma_goc": "2610-1738",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai mệnh đề $P$: \"Tứ giác $ABCD$ là hình thoi\" và $Q$: \"Tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc\". Phát biểu nào sau đây là phát biểu của mệnh đề $P\\Leftrightarrow Q$?",
+      "paA": "Tứ giác $ABCD$ là hình thoi khi và chỉ khi tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc.",
+      "paB": "Tứ giác $ABCD$ là hình thoi là điều kiện cần để tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc.",
+      "paC": "Tứ giác $ABCD$ là hình thoi nếu tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc.",
+      "paD": "Nếu tứ giác $ABCD$ là hình thoi thì tứ giác $ABCD$ là hình bình hành có hai đường chéo vuông góc."
+    },
+    {
+      "id_Cau": "[0D1H2-1]",
+      "maCau": "q_35e50234fb",
+      "ma_goc": "2610-1739",
+      "kieuCau": "TN",
+      "cauDan": "Cho tập hợp $A=\\{x\\in\\mathbb{N} \\mid x\\le 6\\}$. Khẳng định nào sau đây đúng?",
+      "paA": "$A=\\{0;1;2;3;4;5;6\\}$",
+      "paB": "$A=\\{1;2;3;4;5;6\\}$",
+      "paC": "$A=\\{0;1;2;3;4;5\\}$",
+      "paD": "$A=\\{-2;-1;0;1;2;3;4;5\\}$"
+    },
+    {
+      "id_Cau": "[0D1N3-3]",
+      "maCau": "q_c88590d400",
+      "ma_goc": "2610-1740",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai tập hợp $M=(-\\infty;7]$, $N=(-3;8)$. Tập hợp $M\\cap N$ bằng tập hợp nào sau đây?",
+      "paA": "$(-3;7]$",
+      "paB": "$(-\\infty;8)$",
+      "paC": "$(-\\infty;7]$",
+      "paD": "$(-\\infty;-3]$"
+    },
+    {
+      "id_Cau": "[0D1N2-2]",
+      "maCau": "q_6c73986d56",
+      "ma_goc": "2610-1741",
+      "kieuCau": "TN",
+      "cauDan": "Cho tập hợp $A$ có $3$ phần tử. Số tập hợp con của tập $A$ là",
+      "paA": "$8$",
+      "paB": "$6$",
+      "paC": "$7$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_64a5aa84b1",
+      "ma_goc": "2610-1742",
+      "kieuCau": "TN",
+      "cauDan": "Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
+      "paA": "$2x-y<1$",
+      "paB": "$2x+y^{2}<1$",
+      "paC": "$x^{2}-y\\ge 1$",
+      "paD": "$xy\\le 1$"
+    },
+    {
+      "id_Cau": "[0D2N1-2]",
+      "maCau": "q_8e1493d1a4",
+      "ma_goc": "2610-1743",
+      "kieuCau": "TN",
+      "cauDan": "Điểm nào sau đây thuộc miền nghiệm của bất phương trình $2x+3y>2$?",
+      "paA": "$(1;1)$",
+      "paB": "$(2;-1)$",
+      "paC": "$(1;0)$",
+      "paD": "$(0;0)$"
+    },
+    {
+      "id_Cau": "[0D2N2-1]",
+      "maCau": "q_aa6a69a8e0",
+      "ma_goc": "2610-1744",
+      "kieuCau": "TN",
+      "cauDan": "Trong các hệ bất phương trình sau, hệ nào không phải là hệ bất phương trình bậc nhất hai ẩn?",
+      "paA": "$\\begin{cases}x^{2}+y^{2}>4\\\\ 4x+y\\le 10\\end{cases}$",
+      "paB": "$\\begin{cases}x+y>0\\\\ x>1\\end{cases}$",
+      "paC": "$\\begin{cases}2x+3y>10\\\\ x-4y<1\\end{cases}$",
+      "paD": "$\\begin{cases}y>0\\\\ x-5\\le 0\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0D2H2-2]",
+      "maCau": "q_7d128b83a0",
+      "ma_goc": "2610-1745",
+      "kieuCau": "TN",
+      "cauDan": "Điểm nào sau đây thuộc vào miền nghiệm của hệ bất phương trình $\\begin{cases}x-4y\\le 0\\\\ x+6y-10>0\\end{cases}$?",
+      "paA": "$A(1;2)$",
+      "paB": "$B(-2;1)$",
+      "paC": "$C(4;0)$",
+      "paD": "$D(-3;-4)$"
+    },
+    {
+      "id_Cau": "[0H4N1-3]",
+      "maCau": "q_5c1617e7b9",
+      "ma_goc": "2610-1746",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\sin(180^\\circ-\\alpha)=\\sin \\alpha$",
+      "paB": "$\\cos(180^\\circ-\\alpha)=\\cos \\alpha$",
+      "paC": "$\\tan(180^\\circ-\\alpha)=\\tan \\alpha \\ (\\alpha\\ne 90^\\circ)$",
+      "paD": "$\\cot(180^\\circ-\\alpha)=\\cot \\alpha \\ (0^\\circ<\\alpha<180^\\circ)$"
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_7d9d40be03",
+      "ma_goc": "2610-1747",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\sin 150^\\circ=\\displaystyle \\frac{1}{2}$",
+      "paB": "$\\cos 150^\\circ=\\displaystyle \\frac{\\sqrt{3}}{2}$",
+      "paC": "$\\tan 150^\\circ=\\displaystyle \\frac{\\sqrt{3}}{3}$",
+      "paD": "$\\cot 150^\\circ=-\\displaystyle \\frac{\\sqrt{3}}{3}$"
+    },
+    {
+      "id_Cau": "[0D1V3-5]",
+      "maCau": "q_c5c6d5895c",
+      "ma_goc": "2610-1751",
+      "kieuCau": "TLN",
+      "cauDan": "Lớp 10A có $45$ học sinh, trong đó có $20$ học sinh thích bóng rổ, $18$ học sinh thích bóng chuyền và $10$ học sinh không thích bóng rổ và bóng chuyền. Hỏi có bao nhiêu học sinh thích cả hai môn bóng rổ và bóng chuyền?"
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_b592b45bc3",
+      "ma_goc": "2610-1752",
+      "kieuCau": "TLN",
+      "cauDan": "Miền nghiệm của hệ bất phương trình $\\begin{cases}x\\ge -2\\\\ y\\ge 2\\\\ x+2y\\le 8\\end{cases}$ là một miền đa giác. Tính diện tích $S$ của đa giác đó."
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_9fb0da1d77",
+      "ma_goc": "2610-1921",
+      "kieuCau": "TN",
+      "cauDan": "Điểm $A(-1;3)$ là điểm thuộc miền nghiệm của bất phương trình:",
+      "paA": "$3x-y>0$",
+      "paB": "$-3x+2y-4>0$",
+      "paC": "$2x-y+4>0$",
+      "paD": "$x+3y<0$"
+    },
+    {
+      "id_Cau": "[0H4N2-1]",
+      "maCau": "q_1f0917bb6a",
+      "ma_goc": "2610-1922",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ với $BC=a, AC=b, AB=c$. Khẳng định nào sau đây đúng?",
+      "paA": "$a^{2}=b^{2}+c^{2}+bc\\cos A$",
+      "paB": "$a^{2}=b^{2}+c^{2}+2bc\\cos A$",
+      "paC": "$a^{2}=b^{2}+c^{2}-bc\\cos A$",
+      "paD": "$a^{2}=b^{2}+c^{2}-2bc\\cos A$"
+    },
+    {
+      "id_Cau": "[0D1H1-5]",
+      "maCau": "q_a89b4e5c62",
+      "ma_goc": "2610-1923",
+      "kieuCau": "TN",
+      "cauDan": "Cho mệnh đề: $P \\colon \"\\forall x\\in\\mathbb{R}, x^{2}-x+2>0\"$. Mệnh đề phủ định sẽ là:",
+      "paA": "$\"\\exists x\\in\\mathbb{R}, x^{2}-x+2\\le0\"$",
+      "paB": "$\"\\forall x\\in\\mathbb{R}, x^{2}-x+2<0\"$",
+      "paC": "$\"\\forall x\\in\\mathbb{R}, x^{2}-x+2\\le0\"$",
+      "paD": "$\"\\exists x\\in\\mathbb{R}, x^{2}-x+2<0\"$"
+    },
+    {
+      "id_Cau": "[0D1N1-1]",
+      "maCau": "q_e718530499",
+      "ma_goc": "2610-1924",
+      "kieuCau": "TN",
+      "cauDan": "Câu nào dưới đây không phải là mệnh đề?",
+      "paA": "Các em phải chăm học!",
+      "paB": "$5+7+4=15$",
+      "paC": "$12+8=11$",
+      "paD": "Năm $2016$ không phải là năm nhuận"
+    },
+    {
+      "id_Cau": "[0H4H1-1]",
+      "maCau": "q_680ec0bae8",
+      "ma_goc": "2610-1925",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\sin \\alpha=\\displaystyle\\frac{3}{5}, (90^{\\circ}<\\alpha<180^{\\circ})$. Giá trị của $P=\\cot(180^{\\circ}-\\alpha)$ là:",
+      "paA": "$P=\\displaystyle\\frac{4}{3}$",
+      "paB": "$P=-\\displaystyle\\frac{3}{4}$",
+      "paC": "$P=\\displaystyle\\frac{3}{4}$",
+      "paD": "$P=-\\displaystyle\\frac{4}{3}$"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_5f5da441c2",
+      "ma_goc": "2610-1926",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\Delta ABC$ có $a=4, c=5, \\widehat{B}=150^{\\circ}$. Diện tích của tam giác là:",
+      "paA": "$5$",
+      "paB": "$10$",
+      "paC": "$5\\sqrt{3}$",
+      "paD": "$10\\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[0D2N2-1]",
+      "maCau": "q_ebef74d9d0",
+      "ma_goc": "2610-1927",
+      "kieuCau": "TN",
+      "cauDan": "Trong các hệ bất phương trình sau, hệ bất phương trình nào là hệ bất phương trình bậc nhất hai ẩn?",
+      "paA": "$\\begin{cases}x\\le3y\\\\ y>-2\\end{cases}$",
+      "paB": "$\\begin{cases}x^{2}+y\\ge3\\\\ 2x-3y<5\\end{cases}$",
+      "paC": "$\\begin{cases}x^{2}+2y^{2}\\ge6\\\\ x^{2}-3y^{2}<15\\end{cases}$",
+      "paD": "$\\begin{cases}x-y>2z\\\\ -x+3y>4\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0H4V2-1]",
+      "maCau": "q_8eb812dafe",
+      "ma_goc": "2610-1928",
+      "kieuCau": "TN",
+      "cauDan": "Tam giác $ABC$ có $AB=7, AC=5$ và $\\cos(B+C)=-\\displaystyle\\frac{1}{5}$. Độ dài $BC$ bằng",
+      "paA": "$2\\sqrt{15}$",
+      "paB": "$4\\sqrt{22}$",
+      "paC": "$4\\sqrt{15}$",
+      "paD": "$2\\sqrt{22}$"
+    },
+    {
+      "id_Cau": "[0D1V3-2]",
+      "maCau": "q_9a1661262c",
+      "ma_goc": "2610-1929",
+      "kieuCau": "TN",
+      "cauDan": "Cho $A=(2;+\\infty)$ và $B=(m;+\\infty)$. Điều kiện cần và đủ của $m$ sao cho $B$ là tập con của $A$ là:",
+      "paA": "$m\\le2$",
+      "paB": "$m>2$",
+      "paC": "$m=2$",
+      "paD": "$m\\ge2$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_46b824e401",
+      "ma_goc": "2610-1930",
+      "kieuCau": "TN",
+      "cauDan": "Miền nghiệm của bất phương trình nào sau đây được biểu diễn bởi nửa mặt phẳng không bị gạch trong hình vẽ sau?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_46b824e401_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$2x-y\\ge3$",
+      "paB": "$x-y\\ge3$",
+      "paC": "$2x-y\\le3$",
+      "paD": "$2x+y\\le3$"
+    },
+    {
+      "id_Cau": "[0D1N3-1]",
+      "maCau": "q_6f3b8813bb",
+      "ma_goc": "2610-1931",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai tập hợp $A=\\{-2;2;3;5;8\\}$, $B=\\{1;2;3;4;5\\}$. Khi đó giao của hai tập hợp là:",
+      "paA": "$A\\cap B=\\{-2;2;3;4;5;8\\}$",
+      "paB": "$A\\cap B=\\{-2\\}$",
+      "paC": "$A\\cap B=\\{2;3;5\\}$",
+      "paD": "$A\\cap B=\\{8\\}$"
+    },
+    {
+      "id_Cau": "[0H4N2-1]",
+      "maCau": "q_d8f998f92c",
+      "ma_goc": "2610-1932",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$ với $BC=a, AC=b, AB=c$. Khẳng định nào sau đây đúng?",
+      "paA": "$a=R\\sin A$",
+      "paB": "$a=2R\\tan A$",
+      "paC": "$a=2R\\cos A$",
+      "paD": "$a=2R\\sin A$"
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_e020f0b0a0",
+      "ma_goc": "2610-1941",
+      "kieuCau": "TLN",
+      "cauDan": "Trường THPT X tổ chức gian hàng Mùa Thu, lớp 10C lên kế hoạch bán trà sữa và bánh flan để vui và kiếm lời, toàn bộ số tiền lời thu được sẽ quyên góp để gây quỹ khuyến học cho các bạn khó khăn trong trường. Lớp có số tiền vốn là $630$ nghìn đồng, biết một ly trà sữa kèm topping có giá vốn là $15$ nghìn đồng, bán ra lãi $5$ nghìn đồng; một cái bánh flan có giá vốn là $3$ nghìn đồng, bán ra lãi $2$ nghìn đồng. Để được giá sỉ thì lớp phải nhập từ $20$ ly trà sữa và từ $20$ cái bánh flan trở lên, theo khảo sát nhu cầu thì không thể bán vượt quá $40$ cái bánh flan. Lớp 10C cần tính toán số lượng ly trà sữa và bánh flan để thu được lợi nhuận lớn nhất, khi đó lợi nhuận lớn nhất là bao nhiêu? (đơn vị tính: nghìn đồng)."
+    }
+  ]
+}

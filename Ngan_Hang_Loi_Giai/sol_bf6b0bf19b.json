@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bf6b0bf19b",
+  "dapAn": "A",
+  "loiGiai": "Vì $a \\in \\mathbb{N}^{*}$ nên $a \\ge 1 \\Rightarrow \\displaystyle \\frac{a}{2} < a < 2a$.\\\\\r\n\t\tVậy $a \\in \\left(\\displaystyle \\frac{a}{2}; 2a\\right)$. Các khoảng $(a;2a], (a;a+1), (a-1;a)$ đều không chứa phần tử $a$."
+}
