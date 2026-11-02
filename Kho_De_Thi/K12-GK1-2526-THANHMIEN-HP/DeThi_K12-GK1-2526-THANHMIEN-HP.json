@@ -1,0 +1,229 @@
+{
+  "maDe": "K12-GK1-2526-THANHMIEN-HP",
+  "tenDe": "K12-GK1-2526-THANHMIEN-HPHONG",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N1-2]",
+      "maCau": "q_f26c7704fc",
+      "ma_goc": "2610-1309",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_f26c7704fc_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(-2;0)$",
+      "paB": "$(-\\infty;0)$",
+      "paC": "$(1;3)$",
+      "paD": "$(3;+\\infty)$"
+    },
+    {
+      "id_Cau": "[2D1N2-2]",
+      "maCau": "q_5ddbfbd0a1",
+      "ma_goc": "2610-1310",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị là đường cong như hình vẽ bên dưới:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_5ddbfbd0a1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $f(x)$ đạt cực đại tại điểm nào sau đây?",
+      "paA": "$x=1$",
+      "paB": "$x=-1$",
+      "paC": "$y=3$",
+      "paD": "$M(-1;3)$"
+    },
+    {
+      "id_Cau": "[2D1N1-1]",
+      "maCau": "q_01d7dbcdb3",
+      "ma_goc": "2610-1311",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{x-2}{x+1}$, khẳng định nào sau đây là đúng?",
+      "paA": "Hàm số đồng biến trên $(-\\infty;-1) \\cup (-1;+\\infty)$.",
+      "paB": "Hàm số đồng biến trên $(-\\infty;-1)$ và $(-1;+\\infty)$.",
+      "paC": "Hàm số đồng biến trên $\\mathbb{R} \\setminus \\{-1\\}$.",
+      "paD": "Hàm số đồng biến trên $(-\\infty;1)$."
+    },
+    {
+      "id_Cau": "[2D1H1-1]",
+      "maCau": "q_9d6e08292a",
+      "ma_goc": "2610-1312",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$. Mệnh đề nào sau đây đúng?",
+      "paA": "Nếu $f'(x) \\ne 0, \\forall x\\in\\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$.",
+      "paB": "Nếu $f'(x)>0, \\forall x\\in\\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$.",
+      "paC": "Nếu $f'(x)=0, \\forall x\\in\\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$.",
+      "paD": "Nếu $f'(x)<0, \\forall x\\in\\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$."
+    },
+    {
+      "id_Cau": "[2D1N3-2]",
+      "maCau": "q_8794510436",
+      "ma_goc": "2610-1313",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên trên đoạn $[0;3]$ như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8794510436_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGiá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[0;3]$ là",
+      "paA": "$4$",
+      "paB": "$1$",
+      "paC": "$0$",
+      "paD": "$-4$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_236f994f17",
+      "ma_goc": "2610-1314",
+      "kieuCau": "TN",
+      "cauDan": "Tổng giá trị nhỏ nhất và giá trị lớn nhất của hàm số $y=\\sin 2x+2$ trên tập xác định là",
+      "paA": "$4$",
+      "paB": "$0$",
+      "paC": "$3$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_979fe118a9",
+      "ma_goc": "2610-1315",
+      "kieuCau": "TN",
+      "cauDan": "Đường cong cho trong hình bên là đồ thị của hàm số nào trong các hàm số dưới đây?\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_979fe118a9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}",
+      "paA": "$y=-x^3+2x-1$",
+      "paB": "$y=-x^3+3x+1$",
+      "paC": "$y=2x^3-6x+1$",
+      "paD": "$y=x^3-3x+1$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_dce2fff130",
+      "ma_goc": "2610-1316",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị hàm số $y=\\displaystyle \\frac{1+2x}{x-1}$ có đường tiệm cận ngang là",
+      "paA": "$x=1$",
+      "paB": "$y=1$",
+      "paC": "$x=2$",
+      "paD": "$y=2$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_a370fe7721",
+      "ma_goc": "2610-1317",
+      "kieuCau": "TN",
+      "cauDan": "Đường tiệm cận xiên của đồ thị hàm số $y=\\displaystyle \\frac{x^{2}-2x+3}{x+1}$ là",
+      "paA": "$y=x-3$",
+      "paB": "$y=x+1$",
+      "paC": "$y=-3x+1$",
+      "paD": "$x=-3y+1$"
+    },
+    {
+      "id_Cau": "[2D1H4-2]",
+      "maCau": "q_701e89bd39",
+      "ma_goc": "2610-1318",
+      "kieuCau": "TN",
+      "cauDan": "Tổng số tiệm cận đứng và tiệm cận ngang của đồ thị hàm số $y=\\displaystyle \\frac{2x^{2}-3x+1}{x^{2}-1}$ là",
+      "paA": "$1$",
+      "paB": "$0$",
+      "paC": "$3$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_d059170a5b",
+      "ma_goc": "2610-1319",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = \\dfrac{ax - b}{x - 1}$ có đồ thị như hình vẽ. Khẳng định nào dưới đây là đúng?\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_d059170a5b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}",
+      "paA": "$b < 0 < a$",
+      "paB": "$0 < b < a$",
+      "paC": "$b < a < 0$",
+      "paD": "$0 < a < b$"
+    },
+    {
+      "id_Cau": "[2D1N5-1]",
+      "maCau": "q_13984baed4",
+      "ma_goc": "2610-1320",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{ax+b}{cx+d}$ có đồ thị là đường cong như hình vẽ bên.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_13984baed4_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTọa độ tâm đối xứng của đồ thị hàm số đã cho là",
+      "paA": "$(0;\\displaystyle \\frac{1}{2})$",
+      "paB": "$(1;0)$",
+      "paC": "$\\left(\\displaystyle \\frac{1}{2};1\\right)$",
+      "paD": "$\\left(1;\\displaystyle \\frac{1}{2}\\right)$"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_d504f8967e",
+      "ma_goc": "2610-1321",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=f(x)=x^{3}+ax^{2}+bx+c \\ (a,b,c\\in\\mathbb{R})$ có đồ thị như hình bên dưới.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d504f8967e_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Hàm số đồng biến trên khoảng $(-\\infty;2)$.",
+      "paB": "Hàm số $y=f(x)$ có hai điểm cực trị là $0$ và $2$.",
+      "paC": "Giá trị của $c=-2$.",
+      "paD": "Giá trị của biểu thức $T=a+b+c$ bằng $-1$."
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_8015ddc5c2",
+      "ma_goc": "2610-1322",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=f(x)=\\displaystyle \\frac{ax+b}{cx+1}$ với $a,b,c\\in\\mathbb{R}$ có đồ thị như hình vẽ dưới:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8015ddc5c2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Đạo hàm của hàm số $f'(x)<0, \\forall x\\in\\mathbb{R}$.",
+      "paB": "Hàm số $y=f(x)$ nghịch biến trên khoảng $(1;+\\infty)$ và đồng biến trên khoảng $(-\\infty;1)$.",
+      "paC": "Đồ thị hàm số $y=f(x)$ có đường tiệm cận đứng là $x=1$ và đường tiệm cận ngang là $y=-1$.",
+      "paD": "Tổng $a+b+c=5$."
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_daaa0749a1",
+      "ma_goc": "2610-1323",
+      "kieuCau": "DS",
+      "cauDan": "Một công ty sản xuất dụng cụ thể thao nhận được một đơn đặt hàng sản xuất $8000$ quả bóng pickleball. Công ty này sở hữu một số máy móc, mỗi máy có thể sản xuất $30$ quả bóng trong một giờ. Chi phí thiết lập các máy này là $200$ nghìn đồng cho mỗi máy. Khi được thiết lập, hoạt động sản xuất sẽ hoàn toàn diễn ra tự động dưới sự giám sát (người giám sát sẽ giám sát tất cả các máy). Số tiền phải trả cho người giám sát là $192$ nghìn đồng một giờ.",
+      "paA": "Trong $1$ giờ, cần $266$ máy để sản xuất được $8000$ quả bóng pickleball.",
+      "paB": "Trong $\\displaystyle \\frac{8}{3}$ giờ, cần $100$ máy để sản xuất được $8000$ quả bóng pickleball.",
+      "paC": "Chi phí hoạt động thấp nhất là $6{,}5$ triệu đồng.",
+      "paD": "Để chi phí hoạt động thấp nhất, công ty cần sử dụng $16$ máy."
+    },
+    {
+      "id_Cau": "[2D1H2-4]",
+      "maCau": "q_3d57334cd6",
+      "ma_goc": "2610-1324",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{x^{2}-x+7}{x+1}$.",
+      "paA": "Đồ thị hàm số có hai điểm cực trị.",
+      "paB": "Hàm số nghịch biến trên khoảng $(-4;-1)$.",
+      "paC": "Đường tiệm cận xiên của đồ thị hàm số là đường thẳng $y=x-2$.",
+      "paD": "Giá trị lớn nhất của hàm số trên khoảng $(-\\infty;-1)$ bằng $3$."
+    },
+    {
+      "id_Cau": "[2D1V2-1]",
+      "maCau": "q_6d87c9df80",
+      "ma_goc": "2610-1325",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $y=x^{3}+9x^{2}-12$ có đồ thị là đường cong $(C)$. Điểm $M(a;b)$ là điểm cực đại của đồ thị $(C)$. Giá trị của $a-b$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1V4-2]",
+      "maCau": "q_9d874f6100",
+      "ma_goc": "2610-1326",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{3x-3}{\\sqrt{x^{2}-1}}$. Gọi $a$ là số đường tiệm cận đứng và $b$ là số đường tiệm cận ngang của đồ thị hàm số đã cho. Giá trị $20a+10b^{2}$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D1H5-3]",
+      "maCau": "q_07bff247eb",
+      "ma_goc": "2610-1327",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = ax^3 + bx^2 + cx + d \\, (a, b, c, d \\in \\mathbb{R})$ có đồ thị là đường cong trong hình bên. Có bao nhiêu số dương trong các số $a, b, c, d$?\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/q_07bff247eb_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$2$",
+      "paC": "$3$",
+      "paD": "$4$"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_5a242e53f1",
+      "ma_goc": "2610-1328",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp dự định sản xuất không quá $500$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm $(1\\le x\\le 500)$ thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x)=x^{3}-1999x^{2}+1001000x+250000$ (đồng), trong khi chi phí sản xuất bình quân cho một sản phẩm là $G(x)=x+1000+\\displaystyle \\frac{250000}{x}$ (đồng). Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?"
+    },
+    {
+      "id_Cau": "[2D1N1-1]",
+      "maCau": "q_2a8b4603f3",
+      "ma_goc": "2610-1329",
+      "kieuCau": "TLN",
+      "cauDan": "Biết rằng tất cả các khoảng nghịch biến của hàm số $y=\\displaystyle \\frac{x^{2}+2x+2}{x+1}$ là hai khoảng $(a;b), (b;c)$ với $a<b<c$. Tính $T=a+b+c$."
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_6ff1a6ace5",
+      "ma_goc": "2610-1330",
+      "kieuCau": "TLN",
+      "cauDan": "Một phần đường chạy của tàu lượn siêu tốc (hình 1) khi gắn hệ trục toạ độ $Oxy$ được mô phỏng ở hình 2, đơn vị trên mỗi trục là mét. Biết đường chạy của nó là một phần đồ thị hàm bậc ba $y=ax^{3}+bx^{2}+cx+d \\ (0\\le x \\le 90)$; tàu lượn siêu tốc xuất phát từ điểm $A$, đi qua các điểm $C, D$ đồng thời đạt độ cao nhỏ nhất so với mặt đất là $6\\text{m}$. Độ cao lớn nhất mà tàu lượn siêu tốc đạt được là bao nhiêu mét so với mặt đất? (Kết quả làm tròn đến hàng phần chục).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6ff1a6ace5_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_be9832fa1d",
+  "dapAn": "D",
+  "loiGiai": "Dựa vào đồ thị hàm số, ta có:\r\n\t\t\t\\begin{itemize}\r\n\t\t\t\t\\item Nhánh ngoài cùng bên phải của đồ thị hướng lên trên nên hệ số $a > 0$. Do đó, ta loại đáp án A và B.\r\n\t\t\t\t\\item Đồ thị hàm số đi qua điểm $(1; -1)$.\r\n\t\t\t\t\\item Xét đáp án C: Với $x = 1$, ta có $y = 2 \\cdot 1^3 - 6 \\cdot 1 + 1 = -3 \\neq -1$. Loại đáp án C.\r\n\t\t\t\t\\item Xét đáp án D: Với $x = 1$, ta có $y = 1^3 - 3 \\cdot 1 + 1 = -1$ (thỏa mãn).\r\n\t\t\t\\end{itemize}\r\n\t\t\tVậy đồ thị đã cho là của hàm số $y = x^3 - 3x + 1$."
+}

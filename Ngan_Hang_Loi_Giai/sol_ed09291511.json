@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ed09291511",
+  "dapAn": "FTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào đồ thị, ta thấy hàm số đồng biến trên các khoảng $(-\\infty;0)$ và $(2;+\\infty)$; nghịch biến trên khoảng $(0;2)$. Mệnh đề đồng biến trên $(-\\infty;2)$ là sai.\r\n\t\t\t\\itemch Đồ thị hàm số đạt cực đại tại điểm có hoành độ $x=0$ và đạt cực tiểu tại điểm có hoành độ $x=2$. Vậy hàm số có hai điểm cực trị là $x=0$ và $x=2$. Mệnh đề đúng.\r\n\t\t\t\\itemch Đồ thị hàm số cắt trục tung tại điểm $(0;2)$. Suy ra $y(0) = c = 2$. Mệnh đề ghi $c = -2$ là sai.\r\n\t\t\t\\itemch Ta có hàm số là $y=x^3+ax^2+bx+c$. Đạo hàm $y' = 3x^2+2ax+b$.\\\\\r\n\t\t\tĐồ thị có điểm cực đại là $(0;2) \\Rightarrow y(0)=2 \\Rightarrow c=2$ và $y'(0)=0 \\Rightarrow b=0$.\\\\\r\n\t\t\tĐồ thị có điểm cực tiểu là $(2;-2) \\Rightarrow y'(2)=0 \\Rightarrow 12+4a+b=0 \\Rightarrow 4a=-12 \\Rightarrow a=-3$.\\\\\r\n\t\t\tSuy ra hàm số là $y=x^3-3x^2+2$.\\\\\r\n\t\t\tTính giá trị biểu thức $T = a+b+c = -3+0+2 = -1$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}

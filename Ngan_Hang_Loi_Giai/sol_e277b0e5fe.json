@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e277b0e5fe",
+  "dapAn": "A",
+  "loiGiai": "Tập xác định của hàm số là $D = \\mathbb{R}$.\\\\\r\n\t\tTa có: $-1 \\le \\sin 2x \\le 1, \\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tCộng thêm 2 vào các vế: $1 \\le \\sin 2x + 2 \\le 3, \\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tVậy giá trị nhỏ nhất là $m=1$ và giá trị lớn nhất là $M=3$.\\\\\r\n\t\tTổng giá trị nhỏ nhất và giá trị lớn nhất là $M+m = 3+1=4$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dece8c60e9",
+  "dapAn": "D",
+  "loiGiai": "Ta có $\\lim\\limits_{x \\to \\pm\\infty} \\displaystyle \\frac{1+2x}{x-1} = \\lim\\limits_{x \\to \\pm\\infty} \\frac{2x+1}{x-1} = 2$.\\\\\r\n\t\tVậy đường tiệm cận ngang của đồ thị hàm số là đường thẳng $y=2$."
+}

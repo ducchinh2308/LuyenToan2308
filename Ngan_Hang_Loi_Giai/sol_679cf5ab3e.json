@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_679cf5ab3e",
+  "dapAn": "C",
+  "loiGiai": "Dựa vào đồ thị hàm số, ta có các nhận xét sau:\r\n\t\t\t\\begin{itemize}\r\n\t\t\t\t\\item Đồ thị hàm số có đường tiệm cận ngang là $y = -1$.\r\n\t\t\t\tTừ phương trình hàm số $y = \\frac{ax - b}{x - 1}$, ta có phương trình đường tiệm cận ngang là $y = a$.\r\n\t\t\t\tSuy ra $a = -1 < 0$.\r\n\t\t\t\t\\item Đồ thị hàm số cắt trục tung tại điểm có tung độ $y = b$ (thay $x=0$ vào hàm số).\r\n\t\t\t\tQuan sát đồ thị, ta thấy giao điểm của đồ thị với trục tung ($Oy$) nằm phía dưới đường tiệm cận ngang $y = -1$.\r\n\t\t\t\tSuy ra $b < -1$.\r\n\t\t\t\t\\item Từ hai điều trên, ta có $b < -1 = a < 0$, hay $b < a < 0$.\r\n\t\t\t\\end{itemize}\r\n\t\t\tVậy khẳng định đúng là $b < a < 0$."
+}

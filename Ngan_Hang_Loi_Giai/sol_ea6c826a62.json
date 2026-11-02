@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ea6c826a62",
+  "dapAn": "-3",
+  "loiGiai": "Tập xác định của hàm số: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa biến đổi hàm số: $y = \\displaystyle \\frac{x^{2}+2x+2}{x+1} = \\frac{x(x+1)+(x+1)+1}{x+1} = x + 1 + \\frac{1}{x+1}$.\\\\\r\n\t\tĐạo hàm: $y' = 1 - \\displaystyle \\frac{1}{(x+1)^2} = \\frac{(x+1)^2-1}{(x+1)^2} = \\frac{x^2+2x}{(x+1)^2}$.\\\\\r\n\t\tĐể hàm số nghịch biến thì $y' < 0 \\Leftrightarrow \\displaystyle \\frac{x^2+2x}{(x+1)^2} < 0 \\Leftrightarrow x^2+2x < 0$ (vì $(x+1)^2 > 0, \\forall x \\ne -1$).\\\\\r\n\t\t$\\Leftrightarrow -2 < x < 0$.\\\\\r\n\t\tKết hợp với điều kiện xác định $x \\ne -1$, hàm số nghịch biến trên hai khoảng là $(-2;-1)$ và $(-1;0)$.\\\\\r\n\t\tTheo giả thiết, hai khoảng đó là $(a;b)$ và $(b;c)$ với $a<b<c$.\\\\\r\n\t\tĐồng nhất hai kết quả, ta được: $a = -2, b = -1, c = 0$.\\\\\r\n\t\tTính $T = a+b+c = -2 + (-1) + 0 = -3$."
+}

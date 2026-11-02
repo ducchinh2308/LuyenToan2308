@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8ee6e8bb59",
+  "dapAn": "D",
+  "loiGiai": "Dựa vào bảng biến thiên trên đoạn $[0;3]$, ta thấy hàm số giảm từ $0$ xuống $-4$ tại $x=1$, sau đó tăng lên $-3$ tại $x=3$.\\\\\r\n\t\tĐiểm thấp nhất của đồ thị trên đoạn này có tung độ là $-4$.\\\\\r\n\t\tVậy giá trị nhỏ nhất của hàm số trên đoạn $[0;3]$ là $-4$."
+}

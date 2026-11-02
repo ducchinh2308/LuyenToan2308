@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1f708d0ab4",
+  "dapAn": "B",
+  "loiGiai": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có đạo hàm $y' = \\displaystyle \\frac{1(1) - (-2)(1)}{(x+1)^2} = \\frac{3}{(x+1)^2} > 0, \\forall x \\ne -1$.\\\\\r\n\t\tVậy hàm số đồng biến trên từng khoảng xác định là $(-\\infty;-1)$ và $(-1;+\\infty)$.\\\\\r\n\t\tLưu ý: Không dùng ký hiệu $\\cup$ hoặc $\\mathbb{R} \\setminus \\{-1\\}$ để kết luận khoảng đồng biến."
+}

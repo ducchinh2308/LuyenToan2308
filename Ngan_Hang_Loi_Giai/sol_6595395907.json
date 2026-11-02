@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6595395907",
+  "dapAn": "B",
+  "loiGiai": "Theo định lý về dấu của đạo hàm và sự biến thiên của hàm số:\\\\\r\n\t\tNếu $f'(x) > 0, \\forall x \\in \\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$. Mệnh đề B đúng.\\\\\r\n\t\tMệnh đề D sai vì $f'(x)<0$ thì hàm số nghịch biến.\\\\\r\n\t\tMệnh đề C sai vì $f'(x)=0$ thì hàm số là hàm hằng.\\\\\r\n\t\tMệnh đề A sai vì $f'(x) \\ne 0$ có thể mang dấu âm, lúc đó hàm số nghịch biến."
+}

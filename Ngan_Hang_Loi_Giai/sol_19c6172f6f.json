@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_19c6172f6f",
+  "dapAn": "-102",
+  "loiGiai": "Tập xác định: $D = \\mathbb{R}$.\\\\\r\n\t\tTa có đạo hàm $y' = 3x^{2}+18x$.\\\\\r\n\t\tCho $y' = 0 \\Leftrightarrow 3x^{2}+18x = 0 \\Leftrightarrow \\left[\\begin{aligned} &x = 0 \\\\ &x = -6 \\end{aligned}\\right.$.\\\\\r\n\t\tĐạo hàm cấp hai: $y'' = 6x+18$.\\\\\r\n\t\tTại $x = -6$, ta có $y''(-6) = 6(-6)+18 = -18 < 0 \\Rightarrow x=-6$ là điểm cực đại của hàm số.\\\\\r\n\t\tGiá trị cực đại $y_{C\\text{Đ}} = y(-6) = (-6)^{3} + 9(-6)^{2} - 12 = -216 + 324 - 12 = 96$.\\\\\r\n\t\tVậy tọa độ điểm cực đại là $M(-6; 96)$, suy ra $a = -6$ và $b = 96$.\\\\\r\n\t\tTính giá trị của biểu thức: $a-b = -6 - 96 = -102$."
+}

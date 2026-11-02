@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f390e1ba36",
+  "dapAn": "D",
+  "loiGiai": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1; 1\\}$.\\\\\r\n\t\tPhân tích tử và mẫu thành nhân tử: $y = \\displaystyle \\frac{2x^{2}-3x+1}{x^{2}-1} = \\frac{(2x-1)(x-1)}{(x-1)(x+1)}$.\\\\\r\n\t\tVới $x \\ne 1$ và $x \\ne -1$, ta có $y = \\displaystyle \\frac{2x-1}{x+1}$.\\\\\r\n\t\tTiệm cận ngang: $\\lim\\limits_{x \\to \\pm\\infty} \\displaystyle \\frac{2x-1}{x+1} = 2 \\Rightarrow y=2$ là đường tiệm cận ngang.\\\\\r\n\t\tTiệm cận đứng: $\\lim\\limits_{x \\to -1^+} \\displaystyle \\frac{2x-1}{x+1} = -\\infty$ (và $\\lim\\limits_{x \\to -1^-} y = +\\infty$) $\\Rightarrow x=-1$ là đường tiệm cận đứng.\\\\\r\n\t\t(Lưu ý: tại $x=1$ tử số bằng 0 và triệt tiêu với mẫu, $\\lim\\limits_{x \\to 1} y = \\displaystyle \\frac{1}{2}$ (hữu hạn) nên $x=1$ không phải là tiệm cận đứng).\\\\\r\n\t\tVậy đồ thị hàm số có $1$ tiệm cận ngang và $1$ tiệm cận đứng. Tổng cộng là $2$ đường tiệm cận."
+}
