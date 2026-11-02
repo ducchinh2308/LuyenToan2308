@@ -170,13 +170,196 @@ window.ham_23_2_quet_nhiem_vu_de_xuat_excel = async function () {
     }
 };
 
+// // =====================================================================
+// // HÀM 23.3: THỰC THI GOM ĐIỂM VÀ TẠO FILE EXCEL TỰ ĐỘNG TẢI XUỐNG
+// // =====================================================================
+// window.ham_23_3_thuc_thi_xuat_excel = async function () {
+//     const checkboxes = document.querySelectorAll('.chk-xuat-diem:checked');
+//     if (checkboxes.length === 0) {
+//         Swal.showValidationMessage('⚠️ Vui lòng Quét và Chọn ít nhất 1 nhiệm vụ để xuất bảng điểm!');
+//         return false;
+//     }
+
+//     const maLop = window.DataXuatDiem_MaLop;
+
+//     // Thu thập các nhiệm vụ đã chọn
+//     let dsNhiemVuChon = [];
+//     checkboxes.forEach(chk => {
+//         const nvGoc = window.DataXuatDiem_NhiemVu.find(n => n.ma_nhiem_vu === chk.value);
+//         dsNhiemVuChon.push({
+//             ma_nhiem_vu: chk.value,
+//             loai: chk.getAttribute('data-loai'),
+//             ten: nvGoc.ten_nhiem_vu
+//         });
+//     });
+
+//     Swal.fire({ title: '⏳ Đang tổng hợp kết quả...', text: 'Việc này có thể mất vài giây...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//     try {
+//         // 1. Tải danh sách học sinh của lớp đó
+//         const { data: dsHS } = await _supabase.from('hoc_sinh').select('uid, ten, sdt, danh_sach_ma_lop');
+//         let dsHocSinhLop = (dsHS || []).filter(hs => {
+//             let arrLop = [];
+//             try { arrLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//             return arrLop.includes(maLop);
+//         });
+
+//         // Sắp xếp học sinh theo Tên (chữ cái cuối cùng)
+//         const getTenCuoi = (fullName) => {
+//             if (!fullName) return "";
+//             let parts = fullName.trim().split(" ");
+//             return parts[parts.length - 1].toLowerCase();
+//         };
+//         dsHocSinhLop.sort((a, b) => getTenCuoi(a.ten).localeCompare(getTenCuoi(b.ten), 'vi'));
+
+//         // 2. Tải toàn bộ Điểm số của các Nhiệm vụ được chọn
+//         const maNhiemVuTN = dsNhiemVuChon.filter(n => n.loai === 'TN').map(n => n.ma_nhiem_vu);
+//         const maNhiemVuTL = dsNhiemVuChon.filter(n => n.loai === 'TL').map(n => n.ma_nhiem_vu);
+
+//         // Cấu trúc Map lưu điểm: mapDiem[UID_HocSinh][Ma_Nhiem_Vu] = DiemSo
+//         let mapDiem = {};
+
+//         // Quét Điểm Trắc Nghiệm
+//         if (maNhiemVuTN.length > 0) {
+//             const { data: kqTN } = await _supabase.from('ket_qua_trac_nghiem')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+//                 .in('ma_nhiem_vu', maNhiemVuTN)
+//                 .order('thoi_gian_nop', { ascending: false }); // Sắp xếp giảm dần để lấy bài nộp cuối
+
+//             if (kqTN) {
+//                 kqTN.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+//                     }
+//                 });
+//             }
+//         }
+
+//         // Quét Điểm Tự Luận
+//         if (maNhiemVuTL.length > 0) {
+//             const { data: kqTL } = await _supabase.from('ket_qua_tu_luan')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+//                 .in('ma_nhiem_vu', maNhiemVuTL)
+//                 .order('thoi_gian_nop', { ascending: false });
+
+//             if (kqTL) {
+//                 kqTL.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+//                     }
+//                 });
+//             }
+//         }
+
+//         // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML ĐỂ EXPORT EXCEL
+//         // Mẹo nhỏ: dùng mso-number-format để ép Excel giữ số 0 ở tên đăng nhập/SĐT
+//         let htmlTable = `
+//             <table border="1">
+//                 <thead>
+//                     <tr style="background-color: #0070C0; color: white; font-weight: bold;">
+//                         <th style="width: 50px; text-align: center;">STT</th>
+//                         <th style="width: 250px;">Họ và Tên Học Sinh</th>
+//                         <th style="width: 150px; text-align: center;">Tên đăng nhập</th>
+//         `;
+
+//         // Cột Header Điểm số cho từng nhiệm vụ
+//         dsNhiemVuChon.forEach(nv => {
+//             htmlTable += `<th style="background-color: #28a745; color: white;">${nv.ten}</th>`;
+//         });
+//         htmlTable += `<th style="background-color: #e74c3c; color: white;">Điểm Trung Bình</th></tr></thead><tbody>`;
+
+//         // Đổ dữ liệu từng học sinh
+//         dsHocSinhLop.forEach((hs, index) => {
+//             htmlTable += `
+//                 <tr>
+//                     <td style="text-align: center;">${index + 1}</td>
+//                     <td>${hs.ten}</td>
+//                     <td style="text-align: center; mso-number-format:'\\@';">${hs.sdt || ''}</td>
+//             `;
+
+//             let tongDiemHS = 0;
+//             let soCotCoDiem = 0;
+
+//             dsNhiemVuChon.forEach(nv => {
+//                 let diem = '';
+//                 if (mapDiem[hs.uid] && mapDiem[hs.uid][nv.ma_nhiem_vu] !== undefined && mapDiem[hs.uid][nv.ma_nhiem_vu] !== null) {
+//                     diem = parseFloat(mapDiem[hs.uid][nv.ma_nhiem_vu]);
+//                     tongDiemHS += diem;
+//                     soCotCoDiem++;
+//                 }
+//                 // Nếu chưa làm/chưa chấm -> In rỗng
+//                 htmlTable += `<td style="text-align: center; mso-number-format:'0.00';">${diem !== '' ? diem : ''}</td>`;
+//             });
+
+//             // Cột Điểm Trung Bình
+//             let dtb = soCotCoDiem > 0 ? (tongDiemHS / soCotCoDiem).toFixed(2) : '';
+//             htmlTable += `<td style="text-align: center; font-weight: bold; mso-number-format:'0.00';">${dtb}</td></tr>`;
+//         });
+
+//         htmlTable += `</tbody></table>`;
+
+//         // 4. GÓI THÀNH FILE EXCEL VÀ TẢI XUỐNG BẰNG URI BASE64 
+//         // Lõi Excel Template XML cực chuẩn để không bị lỗi font Tiếng Việt
+//         let templateXML = `
+//             <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+//             <head>
+//                 <meta charset="UTF-8">
+//                 <!--[if gte mso 9]>
+//                 <xml>
+//                     <x:ExcelWorkbook>
+//                         <x:ExcelWorksheets>
+//                             <x:ExcelWorksheet>
+//                                 <x:Name>{worksheet}</x:Name>
+//                                 <x:WorksheetOptions>
+//                                     <x:DisplayGridlines/>
+//                                 </x:WorksheetOptions>
+//                             </x:ExcelWorksheet>
+//                         </x:ExcelWorksheets>
+//                     </x:ExcelWorkbook>
+//                 </xml>
+//                 <![endif]-->
+//             </head>
+//             <body>{table}</body>
+//             </html>
+//         `;
+
+//         let encodeBase64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) };
+//         let replaceVars = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
+
+//         let fileUri = 'data:application/vnd.ms-excel;base64,';
+//         let context = {
+//             worksheet: 'Bang Diem LOP ' + maLop,
+//             table: htmlTable
+//         };
+
+//         // Kích hoạt Download
+//         let theA = document.createElement("a");
+//         theA.download = `BangDiem_Lop_${maLop}_${new Date().toISOString().split('T')[0]}.xls`;
+//         theA.href = fileUri + encodeBase64(replaceVars(templateXML, context));
+//         document.body.appendChild(theA);
+//         theA.click();
+//         document.body.removeChild(theA);
+
+//         Swal.fire('Thành công', '✅ File Excel đã được tải xuống máy tính của Thầy/Cô!', 'success');
+//         return true;
+
+//     } catch (error) {
+//         Swal.fire('Lỗi xuất file', error.message, 'error');
+//         return false;
+//     }
+// };
+
+
+
 // =====================================================================
-// HÀM 23.3: THỰC THI GOM ĐIỂM VÀ TẠO FILE EXCEL TỰ ĐỘNG TẢI XUỐNG
+// HÀM 23.3: THỰC THI GOM ĐIỂM VÀ HIỂN THỊ BẢNG XEM TRƯỚC (PREVIEW)
 // =====================================================================
 window.ham_23_3_thuc_thi_xuat_excel = async function () {
     const checkboxes = document.querySelectorAll('.chk-xuat-diem:checked');
     if (checkboxes.length === 0) {
-        Swal.showValidationMessage('⚠️ Vui lòng Quét và Chọn ít nhất 1 nhiệm vụ để xuất bảng điểm!');
+        Swal.showValidationMessage('⚠️ Vui lòng Quét và Chọn ít nhất 1 nhiệm vụ để xem trước bảng điểm!');
         return false;
     }
 
@@ -219,12 +402,11 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
         // Cấu trúc Map lưu điểm: mapDiem[UID_HocSinh][Ma_Nhiem_Vu] = DiemSo
         let mapDiem = {};
 
-        // Quét Điểm Trắc Nghiệm
         if (maNhiemVuTN.length > 0) {
             const { data: kqTN } = await _supabase.from('ket_qua_trac_nghiem')
                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
                 .in('ma_nhiem_vu', maNhiemVuTN)
-                .order('thoi_gian_nop', { ascending: false }); // Sắp xếp giảm dần để lấy bài nộp cuối
+                .order('thoi_gian_nop', { ascending: false });
 
             if (kqTN) {
                 kqTN.forEach(kq => {
@@ -236,7 +418,6 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
             }
         }
 
-        // Quét Điểm Tự Luận
         if (maNhiemVuTL.length > 0) {
             const { data: kqTL } = await _supabase.from('ket_qua_tu_luan')
                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
@@ -253,30 +434,37 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
             }
         }
 
-        // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML ĐỂ EXPORT EXCEL
-        // Mẹo nhỏ: dùng mso-number-format để ép Excel giữ số 0 ở tên đăng nhập/SĐT
+        // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML XEM TRƯỚC (PREVIEW) VÀ DỮ LIỆU THUẦN CHO EXCEL
+        // Mảng 2 chiều chứa dữ liệu thuần túy để gửi cho thư viện tạo Excel sau này
+        let dataForExcel = [];
+        let headerRow = ['STT', 'Họ và Tên Học Sinh', 'Tên đăng nhập'];
+        dsNhiemVuChon.forEach(nv => headerRow.push(nv.ten));
+        headerRow.push('Điểm Trung Bình');
+        dataForExcel.push(headerRow);
+
         let htmlTable = `
-            <table border="1">
-                <thead>
-                    <tr style="background-color: #0070C0; color: white; font-weight: bold;">
-                        <th style="width: 50px; text-align: center;">STT</th>
-                        <th style="width: 250px;">Họ và Tên Học Sinh</th>
-                        <th style="width: 150px; text-align: center;">Tên đăng nhập</th>
+            <div style="max-height: 450px; overflow-y: auto; overflow-x: auto; border: 1px solid #ced4da; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); background:#fff;">
+                <table style="width: 100%; border-collapse: collapse; min-width: ${500 + dsNhiemVuChon.length * 100}px; font-size: 13px;">
+                    <thead style="position: sticky; top: 0; z-index: 2;">
+                        <tr style="background-color: #0070C0; color: white;">
+                            <th style="padding: 10px; border: 1px solid #dee2e6; width: 40px; text-align: center; white-space: nowrap;">STT</th>
+                            <th style="padding: 10px; border: 1px solid #dee2e6; width: 180px; text-align: left; white-space: nowrap;">Họ và Tên Học Sinh</th>
+                            <th style="padding: 10px; border: 1px solid #dee2e6; width: 120px; text-align: center; white-space: nowrap;">Tên ĐN</th>
         `;
 
-        // Cột Header Điểm số cho từng nhiệm vụ
         dsNhiemVuChon.forEach(nv => {
-            htmlTable += `<th style="background-color: #28a745; color: white;">${nv.ten}</th>`;
+            htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #28a745; min-width: 100px; text-align: center;">${nv.ten}</th>`;
         });
-        htmlTable += `<th style="background-color: #e74c3c; color: white;">Điểm Trung Bình</th></tr></thead><tbody>`;
+        htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #dc3545; min-width: 80px; text-align: center;">ĐTB</th></tr></thead><tbody>`;
 
-        // Đổ dữ liệu từng học sinh
         dsHocSinhLop.forEach((hs, index) => {
+            let rowData = [index + 1, hs.ten, hs.sdt || '']; // Dữ liệu cho dòng Excel
+
             htmlTable += `
-                <tr>
-                    <td style="text-align: center;">${index + 1}</td>
-                    <td>${hs.ten}</td>
-                    <td style="text-align: center; mso-number-format:'\\@';">${hs.sdt || ''}</td>
+                <tr style="border-bottom: 1px solid #eee;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='#fff'">
+                    <td style="padding: 8px; text-align: center; font-weight: bold; color: #555; border: 1px solid #dee2e6;">${index + 1}</td>
+                    <td style="padding: 8px; font-weight: bold; color: #333; border: 1px solid #dee2e6;">${hs.ten}</td>
+                    <td style="padding: 8px; text-align: center; color: #17a2b8; border: 1px solid #dee2e6;">${hs.sdt || ''}</td>
             `;
 
             let tongDiemHS = 0;
@@ -289,64 +477,107 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
                     tongDiemHS += diem;
                     soCotCoDiem++;
                 }
-                // Nếu chưa làm/chưa chấm -> In rỗng
-                htmlTable += `<td style="text-align: center; mso-number-format:'0.00';">${diem !== '' ? diem : ''}</td>`;
+
+                rowData.push(diem !== '' ? diem : null);
+
+                htmlTable += `<td style="padding: 8px; text-align: center; font-weight: 500; color: ${diem !== '' ? '#d35400' : '#ccc'}; border: 1px solid #dee2e6;">${diem !== '' ? diem : '-'}</td>`;
             });
 
-            // Cột Điểm Trung Bình
-            let dtb = soCotCoDiem > 0 ? (tongDiemHS / soCotCoDiem).toFixed(2) : '';
-            htmlTable += `<td style="text-align: center; font-weight: bold; mso-number-format:'0.00';">${dtb}</td></tr>`;
+            let dtb = soCotCoDiem > 0 ? parseFloat((tongDiemHS / soCotCoDiem).toFixed(2)) : null;
+            rowData.push(dtb);
+
+            htmlTable += `<td style="padding: 8px; text-align: center; font-weight: bold; color: #dc3545; border: 1px solid #dee2e6; background:#fff5f5;">${dtb !== null ? dtb : '-'}</td></tr>`;
+
+            dataForExcel.push(rowData);
         });
 
-        htmlTable += `</tbody></table>`;
+        htmlTable += `</tbody></table></div>`;
 
-        // 4. GÓI THÀNH FILE EXCEL VÀ TẢI XUỐNG BẰNG URI BASE64 
-        // Lõi Excel Template XML cực chuẩn để không bị lỗi font Tiếng Việt
-        let templateXML = `
-            <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-            <head>
-                <meta charset="UTF-8">
-                <!--[if gte mso 9]>
-                <xml>
-                    <x:ExcelWorkbook>
-                        <x:ExcelWorksheets>
-                            <x:ExcelWorksheet>
-                                <x:Name>{worksheet}</x:Name>
-                                <x:WorksheetOptions>
-                                    <x:DisplayGridlines/>
-                                </x:WorksheetOptions>
-                            </x:ExcelWorksheet>
-                        </x:ExcelWorksheets>
-                    </x:ExcelWorkbook>
-                </xml>
-                <![endif]-->
-            </head>
-            <body>{table}</body>
-            </html>
-        `;
+        // Lưu mảng 2 chiều vào RAM để lúc click Xuất sẽ dùng tới
+        window.DataXuatDiem_ExportArray = dataForExcel;
 
-        let encodeBase64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) };
-        let replaceVars = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
+        // 4. HIỂN THỊ POPUP BẢNG XEM TRƯỚC (RỘNG RÃI)
+        Swal.fire({
+            title: `👀 BẢNG ĐIỂM: LỚP ${maLop}`,
+            html: htmlTable,
+            width: '90vw', // Mở rộng tối đa màn hình
+            showCancelButton: true,
+            cancelButtonText: 'Đóng lại',
+            confirmButtonText: '📥 XÁC NHẬN XUẤT EXCEL (.xlsx)',
+            confirmButtonColor: '#28a745',
+            cancelButtonColor: '#6c757d',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Gọi hàm phụ để tạo file XLSX thật sự
+                ham_23_4_tao_file_xlsx_that(maLop, dsNhiemVuChon.length);
+            }
+        });
 
-        let fileUri = 'data:application/vnd.ms-excel;base64,';
-        let context = {
-            worksheet: 'Bang Diem LOP ' + maLop,
-            table: htmlTable
-        };
-
-        // Kích hoạt Download
-        let theA = document.createElement("a");
-        theA.download = `BangDiem_Lop_${maLop}_${new Date().toISOString().split('T')[0]}.xls`;
-        theA.href = fileUri + encodeBase64(replaceVars(templateXML, context));
-        document.body.appendChild(theA);
-        theA.click();
-        document.body.removeChild(theA);
-
-        Swal.fire('Thành công', '✅ File Excel đã được tải xuống máy tính của Thầy/Cô!', 'success');
         return true;
 
     } catch (error) {
         Swal.fire('Lỗi xuất file', error.message, 'error');
         return false;
+    }
+};
+
+// =====================================================================
+// HÀM 23.4 (MỚI): XUẤT RA FILE .XLSX CHUẨN (SỬ DỤNG THƯ VIỆN SHEETJS)
+// =====================================================================
+window.ham_23_4_tao_file_xlsx_that = async function (maLop, soLuongNhiemVu) {
+    Swal.fire({ title: 'Đang tạo file Excel...', didOpen: () => Swal.showLoading() });
+
+    try {
+        // Tải thư viện SheetJS (XLSX) từ CDN nếu chưa có
+        if (typeof XLSX === 'undefined') {
+            await new Promise((resolve, reject) => {
+                let script = document.createElement('script');
+                script.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+                script.onload = resolve;
+                script.onerror = () => reject(new Error("Lỗi tải thư viện SheetJS"));
+                document.head.appendChild(script);
+            });
+        }
+
+        // Lấy dữ liệu thuần túy từ RAM
+        const dataForExcel = window.DataXuatDiem_ExportArray;
+        if (!dataForExcel || dataForExcel.length === 0) throw new Error("Mất dữ liệu trong quá trình xử lý!");
+
+        // Tạo Workbook và Worksheet mới
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(dataForExcel);
+
+        // Định dạng ép kiểu Cột Tên Đăng Nhập (Cột C / index 2) thành chuỗi TEXT để không mất số 0
+        const range = XLSX.utils.decode_range(ws['!ref']);
+        for (let R = 1; R <= range.e.r; ++R) { // Bỏ qua dòng tiêu đề
+            let cellAddress = { c: 2, r: R }; // Cột 2 là cột Tên đăng nhập
+            let cellRef = XLSX.utils.encode_cell(cellAddress);
+            if (ws[cellRef]) {
+                ws[cellRef].t = 's'; // Ép kiểu string
+            }
+        }
+
+        // Thiết lập độ rộng cột cho đẹp
+        let wscols = [
+            { wch: 5 },  // STT
+            { wch: 30 }, // Họ và Tên
+            { wch: 15 }  // Tên Đăng Nhập
+        ];
+        for (let i = 0; i < soLuongNhiemVu; i++) wscols.push({ wch: 25 }); // Cột Nhiệm vụ
+        wscols.push({ wch: 15 }); // Cột ĐTB
+        ws['!cols'] = wscols;
+
+        XLSX.utils.book_append_sheet(wb, ws, "BangDiem");
+
+        // Xuất file và tải về
+        const fileName = `BangDiem_Lop_${maLop}_${new Date().toISOString().split('T')[0]}.xlsx`;
+        XLSX.writeFile(wb, fileName);
+
+        Swal.fire('Thành công!', '✅ File Excel (.xlsx) đã được tải xuống máy tính.', 'success');
+
+    } catch (e) {
+        console.error("Lỗi xuất XLSX:", e);
+        Swal.fire('Lỗi tạo file', e.message, 'error');
     }
 };

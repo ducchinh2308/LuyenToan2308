@@ -1690,8 +1690,221 @@ function ham_8a_9_tron_de_thi_trac_nghiem(mangCauHoi) {
 
 
 
+// // =====================================================================
+// // HÀM 8.10: GIAO DIỆN PHÒNG THI (SỬA LỖI POPUP CẢNH BÁO TỰ BIẾN MẤT)
+// // =====================================================================
+// window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
+//     const vungLamViec = document.getElementById('dashboard-container');
+//     if (vungLamViec) vungLamViec.style.display = 'none';
+
+//     const phien = window.PhienLamBai;
+//     document.body.style.overflow = 'hidden';
+//     document.documentElement.style.overflow = 'hidden';
+//     phien.thoi_diem_bat_dau = Date.now();
+
+//     // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
+//     let dsTN = [], dsDS = [], dsTLN = [];
+//     phien.danh_sach_cau_hoi.forEach(cau => {
+//         const loai = (cau.kieuCau || cau.loaiCau || "TN").toUpperCase();
+//         if (loai === "TN") dsTN.push(cau);
+//         else if (loai === "DS") dsDS.push(cau);
+//         else if (loai === "TLN") dsTLN.push(cau);
+//     });
+
+//     let htmlContentRight = '';
+//     if (phien.isLiveQuiz) {
+//         htmlContentRight = `<div style="background:#e74c3c; color:white; padding:11px; border-radius:5px; margin-bottom:12px; box-shadow:0 2px 3px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:11px; text-transform: uppercase;">🔥 ĐẤU TRƯỜNG: ${phien.ten_nhiem_vu}</h2></div>`;
+//     } else {
+//         htmlContentRight = `<div style="background:#0056b3; color:white; padding:11px; border-radius:5px; margin-bottom:13px; box-shadow:0 4px 6px rgba(0,0,0,0.1);"><h2 style="margin:0; font-size:13px; text-transform: uppercase;">📝 ${phien.ten_nhiem_vu}</h2></div>`;
+//     }
+
+//     let htmlNavLeft = ``;
+
+//     const sinhGiaoDienNhom = (tieuDePhan, danhSach, loaiCau) => {
+//         if (danhSach.length === 0) return;
+
+//         htmlContentRight += `<h3 style="color: #c0392b; border-bottom: 2px solid #c0392b; padding-bottom: 5px; margin-top: 40px; margin-bottom: 20px; font-size: 20px; text-transform: uppercase;">${tieuDePhan}</h3>`;
+
+//         let tenNav = loaiCau === 'TN' ? 'TN' : (loaiCau === 'DS' ? 'ĐS' : 'TLN');
+//         htmlNavLeft += `<div style="margin-bottom: 10px; width: 100%;">
+//                             <h4 style="margin: 0 0 6px 0; color: #c0392b; font-size: 11px; border-bottom: 1px solid #ddd; padding-bottom: 3px; text-align: center;">📍${tenNav}</h4>
+//                             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">`;
+
+//         let sttPhan = 1;
+//         danhSach.forEach(cau => {
+//             htmlContentRight += ham_8a_11_taoGiaoDienCauHoi_trac_nghiem(cau, sttPhan, loaiCau);
+//             const maCau = cau.ma_cau_hoi || cau.maCau;
+//             htmlNavLeft += `
+//                 <div id="btn-nav-${maCau}" onclick="document.getElementById('cau-${maCau}').scrollIntoView({behavior: 'smooth', block: 'center'})" 
+//                      style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; color: #495057; font-weight: bold; font-size: 14px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" 
+//                      onmouseover="if(!this.classList.contains('da-lam')) this.style.background='#e9ecef'" onmouseout="if(!this.classList.contains('da-lam')) this.style.background='#fff'">
+//                     <span style="line-height: 1;">${sttPhan}</span>
+//                     <span id="nav-ans-${maCau}" style="font-size: 10px; font-weight: bold; color: #888; margin-top: 2px; min-height: 12px;"></span>
+//                 </div>`;
+//             sttPhan++;
+//         });
+//         htmlNavLeft += `</div></div>`;
+//     };
+
+//     sinhGiaoDienNhom("PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn", dsTN, "TN");
+//     sinhGiaoDienNhom("PHẦN II. Câu trắc nghiệm đúng/sai", dsDS, "DS");
+//     sinhGiaoDienNhom("PHẦN III. Câu trắc nghiệm trả lời ngắn", dsTLN, "TLN");
+
+//     let htmlLiveDiem = '';
+//     if (phien.isLiveQuiz) {
+//         htmlLiveDiem = `
+//             <div style="background: linear-gradient(135deg, #1e1e2f, #2a2a3c); border: 1px solid #444; border-radius: 6px; padding: 6px 2px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+//                 <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">PIN</div>
+//                 <div style="font-size: 11px; font-weight: 900; color: #e74c3c; font-family: monospace; margin-bottom: 8px; letter-spacing: 0.5px;">
+//                     ${window.ThongTinLiveHocSinh ? window.ThongTinLiveHocSinh.maPhong : '---'}
+//                 </div>
+                
+//                 <div style="font-size: 9px; color: #a0a0b2; font-weight: bold; margin-bottom: 2px;">ĐIỂM</div>
+//                 <div id="diem-hien-tai-hs" style="font-size: 12px; font-weight: 900; color: #f1c40f; font-family: monospace; transition: all 0.3s ease;">
+//                     0.00
+//                 </div>
+//             </div>
+//         `;
+//     }
+
+//     const lenhNopBai = phien.isLiveQuiz ? "ham_8_6_8_chot_nop_bai_live_trac_nghiem()" : "ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()";
+
+//     // 3. RÁP VÀO BỘ KHUNG
+//     const rootDiv = document.createElement('div');
+//     rootDiv.id = 'khong-gian-thi-toan-man-hinh';
+//     rootDiv.style.cssText = "position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; background: #e9ecef; box-sizing: border-box; z-index: 99999;";
+
+//     rootDiv.innerHTML = `
+//         <style>
+//             #vung-cuon-cau-hoi::-webkit-scrollbar { width: 0px; background: transparent; }
+//             #vung-cuon-cau-hoi { scrollbar-width: none; -ms-overflow-style: none; }
+//             /* 🌟 ÉP POPUP CẢNH BÁO LÊN TRÊN CÙNG ĐỂ KHÔNG BỊ PHÒNG THI CHE KHUẤT */
+//             .swal2-container { z-index: 9999999 !important; } 
+//         </style>
+
+//         <div id="cot-trai-nav" style="flex: 0 0 54px; background: #fff; height: 100vh; display: flex; flex-direction: column; border-right: 1px solid #ccc; box-shadow: 2px 0 10px rgba(0,0,0,0.05); z-index: 10;">
+            
+//             <div style="flex-shrink: 0; padding: 6px 4px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #eee; background: #fdfdfe; z-index: 2;">
+//                 <div id="khung-dong-ho" style="background: #fff3cd; border: 1px solid #ffe69c; color: #856404; font-weight: bold; text-align: center; padding: 6px 0; border-radius: 4px; font-size: 11px;">
+//                     <span id="dong-ho-dem-nguoc">--:--</span>
+//                 </div>
+                
+//                 <div style="background: #e8f4f8; border: 1px solid #b8daff; color: #0056b3; font-weight: bold; text-align: center; padding: 4px 0; border-radius: 4px; font-size: 10px;">
+//                     <span id="so-cau-da-lam" style="color: #28a745;">0</span>/${phien.tong_so_cau}
+//                 </div>
+                
+//                <div style="display: flex; gap: 5px; width: 100%;">
+//                     <button id="btn-luu-tam" onclick="ham_16_7_luu_tam_thu_cong(this)" style="flex: 1; padding: 10px 0; background: #ffc107; color: #856404; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Cất tạm lên máy chủ">LƯU TẠM</button>
+//                     <button id="btn-nop-bai" onclick="ham_8a_12_nop_bai_va_cham_diem_trac_nghiem()" style="flex: 1; padding: 10px 0; background: #28a745; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 11px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Chấm dứt làm bài">NỘP</button>
+//                 </div>
+//             </div>
+
+//             <div id="vung-cuon-cau-hoi" style="flex: 1; overflow-y: auto; overflow-x: hidden; padding: 6px 4px; padding-top: 10px;">
+//             ${htmlLiveDiem}    
+//             <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 30px;">
+//                     ${htmlNavLeft}
+//                 </div>
+//             </div>
+//         </div>
+
+//         <div id="khu-vuc-cuon-de" style="flex: 1; padding: 20px 15px; overflow-y: auto; scroll-behavior: smooth; position: relative;">
+//             <div style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
+//                 ${htmlContentRight}
+//             </div>
+//         </div>
+//     `;
+
+//     document.body.appendChild(rootDiv);
+
+//     if (window.renderMathInElement) {
+//         window.renderMathInElement(document.getElementById('khu-vuc-cuon-de'), {
+//             delimiters: [
+//                 { left: "$$", right: "$$", display: true },
+//                 { left: "$", right: "$", display: false }
+//             ],
+//             throwOnError: false,
+//             macros: { "\\heva": "\\left\\{\\begin{array}{l}#1\\end{array}\\right.", "\\hoac": "\\left[\\begin{array}{l}#1\\end{array}\\right." }
+//         });
+//     } else if (window.MathJax) {
+//         MathJax.typesetPromise();
+//     }
+
+//     let oldTikz = document.getElementById('tikz-script-reload');
+//     if (oldTikz) oldTikz.remove();
+//     let newTikz = document.createElement('script');
+//     newTikz.id = 'tikz-script-reload';
+//     newTikz.src = 'https://tikzjax.com/v1/tikzjax.js';
+//     document.body.appendChild(newTikz);
+
+//     if (phien.id_timer) clearInterval(phien.id_timer);
+//     phien.id_timer = setInterval(() => {
+//         phien.thoi_gian_con_lai--;
+
+//         const tongGiayThucTe = Math.floor(phien.thoi_gian_con_lai);
+//         const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
+//         const ss = String(tongGiayThucTe % 60).padStart(2, '0');
+
+//         document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
+
+//         if (phien.thoi_gian_con_lai <= 300) {
+//             const dh = document.getElementById('khung-dong-ho');
+//             if (dh) { dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb'; }
+//         }
+
+//         if (phien.thoi_gian_con_lai <= 0) {
+//             clearInterval(phien.id_timer);
+//             alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
+//             ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(true);
+//         }
+//     }, 1000);
+
+//     // =========================================================
+//     // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: KHÓA CHẶT POPUP BÁO LỖI
+//     // =========================================================
+//     phien.soLanChuyenTab = 0;
+//     phien.daRoiKhoiTab = false;
+//     phien.dangHienCanhBao = false; // Cờ khóa chống trùng lặp popup
+
+//     document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
+
+//     window.ham_8_6_9_theo_doi_gian_lan = function () {
+//         if (document.hidden) {
+//             window.PhienLamBai.daRoiKhoiTab = true;
+//         } else {
+//             if (window.PhienLamBai.daRoiKhoiTab) {
+//                 window.PhienLamBai.soLanChuyenTab++;
+//                 window.PhienLamBai.daRoiKhoiTab = false;
+
+//                 // 🌟 Nếu đang hiện cảnh báo rồi thì không hiện đè nữa (nguyên nhân gây tắt popup)
+//                 if (window.PhienLamBai.dangHienCanhBao) return;
+//                 window.PhienLamBai.dangHienCanhBao = true;
+
+//                 Swal.fire({
+//                     icon: 'warning',
+//                     title: '🚨 CẢNH BÁO VI PHẠM!',
+//                     html: `Hệ thống phát hiện em vừa <b>chuyển Tab</b> hoặc <b>thoát khỏi màn hình làm bài</b>!<br><br>
+//                            <span style="color:#d35400; font-weight:bold; font-size:16px;">Vi phạm lần thứ: ${window.PhienLamBai.soLanChuyenTab}</span><br><br>
+//                            Hành vi này đã được ghi chép vào hệ thống và sẽ báo cáo cho Giáo viên khi em nộp bài!`,
+//                     confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
+//                     confirmButtonColor: '#d33',
+//                     allowOutsideClick: false, // Chặn bấm ra ngoài
+//                     allowEscapeKey: false,    // Chặn phím Esc
+//                     allowEnterKey: false,     // Chặn phím Enter
+//                     timer: 0                  // Ép vô hiệu hóa mọi cài đặt tự đóng nếu có
+//                 }).then(() => {
+//                     // 🌟 Chỉ mở khóa khi học sinh đã tự tay bấm nút
+//                     window.PhienLamBai.dangHienCanhBao = false;
+//                 });
+//             }
+//         }
+//     };
+//     document.addEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
+// };
+
+
+
 // =====================================================================
-// HÀM 8.10: GIAO DIỆN PHÒNG THI (SỬA LỖI POPUP CẢNH BÁO TỰ BIẾN MẤT)
+// HÀM 8.10: GIAO DIỆN PHÒNG THI (TỰ ĐỘNG ÉP THU BÀI KHI ĐẾN HẠN CHÓT)
 // =====================================================================
 window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     const vungLamViec = document.getElementById('dashboard-container');
@@ -1701,6 +1914,33 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     phien.thoi_diem_bat_dau = Date.now();
+
+    // =========================================================
+    // 🌟 BỔ SUNG: ÉP RÚT NGẮN ĐỒNG HỒ NẾU SẮP ĐẾN HẠN CHÓT KHÓA ĐỀ
+    // =========================================================
+    phien.lyDoThuBai = "HẾT GIỜ LÀM BÀI"; // Mặc định
+    if (typeof GocHocSinhState !== 'undefined' && GocHocSinhState.danhSachNhiemVu) {
+        const nv = GocHocSinhState.danhSachNhiemVu.find(n => n.ma_nhiem_vu === phien.ma_nhiem_vu);
+        if (nv && nv.thoi_gian_dong) {
+            const timeDong = new Date(nv.thoi_gian_dong).getTime();
+            const timeNow = Date.now();
+
+            if (timeDong > timeNow) {
+                // Tính số giây còn lại cho đến khi hạn chót đóng cửa
+                const giayConLaiTheoHan = Math.floor((timeDong - timeNow) / 1000);
+
+                // Nếu hạn chót ập đến sớm hơn số phút làm bài -> Rút ngắn đồng hồ
+                if (giayConLaiTheoHan < phien.thoi_gian_con_lai) {
+                    phien.thoi_gian_con_lai = giayConLaiTheoHan;
+                    phien.lyDoThuBai = "ĐẾN HẠN CHÓT KHÓA BÀI";
+                }
+            } else {
+                // Đã lố giờ khóa bài (do mạng lag hoặc thao tác chậm) -> Ép nộp ngay lập tức
+                phien.thoi_gian_con_lai = 1;
+                phien.lyDoThuBai = "ĐẾN HẠN CHÓT KHÓA BÀI";
+            }
+        }
+    }
 
     // 1. PHÂN LOẠI CÂU HỎI THEO NHÓM
     let dsTN = [], dsDS = [], dsTLN = [];
@@ -1778,7 +2018,6 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
         <style>
             #vung-cuon-cau-hoi::-webkit-scrollbar { width: 0px; background: transparent; }
             #vung-cuon-cau-hoi { scrollbar-width: none; -ms-overflow-style: none; }
-            /* 🌟 ÉP POPUP CẢNH BÁO LÊN TRÊN CÙNG ĐỂ KHÔNG BỊ PHÒNG THI CHE KHUẤT */
             .swal2-container { z-index: 9999999 !important; } 
         </style>
 
@@ -1844,26 +2083,36 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
         const mm = String(Math.floor(tongGiayThucTe / 60)).padStart(2, '0');
         const ss = String(tongGiayThucTe % 60).padStart(2, '0');
 
-        document.getElementById('dong-ho-dem-nguoc').innerText = `${mm}:${ss}`;
+        const lblDongHo = document.getElementById('dong-ho-dem-nguoc');
+        if (lblDongHo) lblDongHo.innerText = `${mm}:${ss}`;
 
         if (phien.thoi_gian_con_lai <= 300) {
             const dh = document.getElementById('khung-dong-ho');
             if (dh) { dh.style.background = '#f8d7da'; dh.style.color = '#721c24'; dh.style.borderColor = '#f5c6cb'; }
         }
 
+        // =========================================================
+        // 🌟 KHI HẾT GIỜ: TÁCH BẠCH THÔNG BÁO THEO ĐÚNG TÌNH HUỐNG
+        // =========================================================
         if (phien.thoi_gian_con_lai <= 0) {
             clearInterval(phien.id_timer);
-            alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
+
+            if (phien.lyDoThuBai === "ĐẾN HẠN CHÓT KHÓA BÀI") {
+                alert("🛑 ĐÃ ĐẾN THỜI ĐIỂM KHÓA BÀI! Hệ thống sẽ tự động thu bài của em ngay bây giờ.");
+            } else {
+                alert("⏳ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài.");
+            }
+
             ham_8a_12_nop_bai_va_cham_diem_trac_nghiem(true);
         }
     }, 1000);
 
     // =========================================================
-    // 🌟 BỘ MÁY KIỂM SOÁT GIAN LẬN: KHÓA CHẶT POPUP BÁO LỖI
+    // BỘ MÁY KIỂM SOÁT GIAN LẬN
     // =========================================================
     phien.soLanChuyenTab = 0;
     phien.daRoiKhoiTab = false;
-    phien.dangHienCanhBao = false; // Cờ khóa chống trùng lặp popup
+    phien.dangHienCanhBao = false;
 
     document.removeEventListener("visibilitychange", window.ham_8_6_9_theo_doi_gian_lan);
 
@@ -1875,7 +2124,6 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
                 window.PhienLamBai.soLanChuyenTab++;
                 window.PhienLamBai.daRoiKhoiTab = false;
 
-                // 🌟 Nếu đang hiện cảnh báo rồi thì không hiện đè nữa (nguyên nhân gây tắt popup)
                 if (window.PhienLamBai.dangHienCanhBao) return;
                 window.PhienLamBai.dangHienCanhBao = true;
 
@@ -1887,12 +2135,11 @@ window.ham_8a_10_ve_giao_dien_lam_bai_trac_nghiem = function () {
                            Hành vi này đã được ghi chép vào hệ thống và sẽ báo cáo cho Giáo viên khi em nộp bài!`,
                     confirmButtonText: 'Em đã hiểu và sẽ không tái phạm',
                     confirmButtonColor: '#d33',
-                    allowOutsideClick: false, // Chặn bấm ra ngoài
-                    allowEscapeKey: false,    // Chặn phím Esc
-                    allowEnterKey: false,     // Chặn phím Enter
-                    timer: 0                  // Ép vô hiệu hóa mọi cài đặt tự đóng nếu có
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    timer: 0
                 }).then(() => {
-                    // 🌟 Chỉ mở khóa khi học sinh đã tự tay bấm nút
                     window.PhienLamBai.dangHienCanhBao = false;
                 });
             }
