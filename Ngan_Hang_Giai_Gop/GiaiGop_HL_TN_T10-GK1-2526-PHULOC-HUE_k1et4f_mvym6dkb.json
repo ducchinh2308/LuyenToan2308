@@ -1,0 +1,110 @@
+{
+  "thoiGianGhep": "2026-11-02T02:02:41.576Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_709c6add06",
+      "dapAn": "A",
+      "loiGiaiHtml": "\"Hà Nội là thủ đô của Việt Nam\" là một câu khẳng định có tính đúng sai rõ ràng nên là một mệnh đề. Các câu còn lại là câu cảm thán và câu hỏi."
+    },
+    {
+      "maBaoMat": "sol_6521095ab2",
+      "dapAn": "D",
+      "loiGiaiHtml": "Bất phương trình $2^{x}+y<1$ chứa biến ở số mũ nên không phải là bất phương trình bậc nhất hai ẩn."
+    },
+    {
+      "maBaoMat": "sol_5429b14220",
+      "dapAn": "D",
+      "loiGiaiHtml": "Bất phương trình $\\sqrt{2}x+y\\le 2$ có dạng $ax+by+c\\le 0$ với $a, b$ không đồng thời bằng $0$ nên là bất phương trình bậc nhất hai ẩn. Các bất phương trình còn lại chứa $y^2$, $xy$, $\\sqrt{y}$ nên không phải."
+    },
+    {
+      "maBaoMat": "sol_05bc43edfc",
+      "dapAn": "A",
+      "loiGiaiHtml": "Đây là định lý sin trong tam giác: $\\displaystyle \\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$."
+    },
+    {
+      "maBaoMat": "sol_3f5382f632",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\cos 45^\\circ = \\displaystyle \\frac{\\sqrt{2}}{2}$ và $\\sin 30^\\circ = \\frac{1}{2}$.\\\\\r\n\t\tVậy $\\cos 45^\\circ+\\sin 30^\\circ = \\displaystyle \\frac{\\sqrt{2}}{2} + \\frac{1}{2} = \\frac{1+\\sqrt{2}}{2}$."
+    },
+    {
+      "maBaoMat": "sol_87e34537de",
+      "dapAn": "D",
+      "loiGiaiHtml": "Hệ $\\begin{cases}2x+3y\\le 5\\\\ x+5y<-1\\end{cases}$ gồm các bất phương trình bậc nhất hai ẩn $x, y$."
+    },
+    {
+      "maBaoMat": "sol_1590bebbe2",
+      "dapAn": "A",
+      "loiGiaiHtml": "Đường thẳng $x+3y=-2$ đi qua các điểm $(-2;0)$ và $(1;-1)$. (Loại C và D).\\\\\r\n\t\tThay tọa độ điểm $O(0;0)$ vào bất phương trình: $0+3(0) = 0 \\ge -2$ (Đúng).\\\\\r\n\t\tVậy gốc tọa độ $O$ thuộc miền nghiệm (phần không bị gạch). Do đó phần không chứa $O$ bị gạch chéo.\\\\\r\n\t\tHình A có phần bị gạch chéo là nửa mặt phẳng không chứa gốc $O$. Vậy Hình A là đáp án đúng."
+    },
+    {
+      "maBaoMat": "sol_4fe7e7df5a",
+      "dapAn": "A",
+      "loiGiaiHtml": "Ta lần lượt kiểm tra tính đúng sai của từng mệnh đề:\\\\\r\n\t\tVới $x=7$: $P(7) \\Leftrightarrow 2(7)+10 \\le 7^2 \\Leftrightarrow 24 \\le 49$ (Đúng).\\\\\r\n\t\tVới $x=3$: $P(3) \\Leftrightarrow 2(3)+10 \\le 3^2 \\Leftrightarrow 16 \\le 9$ (Sai).\\\\\r\n\t\tVới $x=0$: $P(0) \\Leftrightarrow 2(0)+10 \\le 0^2 \\Leftrightarrow 10 \\le 0$ (Sai).\\\\\r\n\t\tVới $x=4$: $P(4) \\Leftrightarrow 2(4)+10 \\le 4^2 \\Leftrightarrow 18 \\le 16$ (Sai).\\\\\r\n\t\tVậy $P(7)$ là mệnh đề đúng."
+    },
+    {
+      "maBaoMat": "sol_6433fa686f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Trong mệnh đề kéo theo $P\\Rightarrow Q$, ta nói \"$P$ là điều kiện đủ để có $Q$\" hoặc \"$Q$ là điều kiện cần để có $P$\"."
+    },
+    {
+      "maBaoMat": "sol_5085072e03",
+      "dapAn": "D",
+      "loiGiaiHtml": "Mệnh đề phủ định của $\\forall$ là $\\exists$, của $>$ là $\\le$.\\\\\r\n\t\tVậy mệnh đề phủ định là $\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}\\le 0\"$."
+    },
+    {
+      "maBaoMat": "sol_c9a40fd722",
+      "dapAn": "C",
+      "loiGiaiHtml": "Theo định nghĩa, tập hợp $A\\cup B$ (hợp của $A$ và $B$) là tập hợp gồm tất cả các phần tử thuộc $A$ hoặc thuộc $B$."
+    },
+    {
+      "maBaoMat": "sol_bf330db075",
+      "dapAn": "B",
+      "loiGiaiHtml": "Mệnh đề đảo của mệnh đề $P \\Rightarrow Q$ là $Q \\Rightarrow P$.\\\\\r\n\t\tỞ đây $P$: \"tam giác có hai góc bằng $60^\\circ$\", $Q$: \"tam giác đó là tam giác đều\".\\\\\r\n\t\tVậy mệnh đề đảo là: \"Nếu tam giác là tam giác đều thì tam giác đó có hai góc bằng $60^\\circ$\"."
+    },
+    {
+      "maBaoMat": "sol_a204cc57b7",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Mối quan hệ giữa phần tử và tập hợp phải dùng kí hiệu \"$\\in$\". Viết $2\\subset A$ là sai. Mệnh đề sai.\r\n\t\t\t\\itemch Tập hợp $B = \\{x\\in\\mathbb{N} \\mid 2\\le x < 6\\} = \\{2; 3; 4; 5\\}$. Vậy $B$ có $4$ phần tử. Mệnh đề đúng.\r\n\t\t\t\\itemch $A\\cap B = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2\\right\\} \\cap \\{2; 3; 4; 5\\} = \\{2\\}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $A\\cup B = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2; 3; 4; 5\\right\\}$.\\\\\r\n\t\t\tSuy ra $(A\\cup B)\\setminus(A\\cap B) = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2; 3; 4; 5\\right\\} \\setminus \\{2\\} = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 3; 4; 5\\right\\}$. Tập hợp này có $5$ phần tử. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_eec9761d85",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đây là nội dung của định lí hàm số côsin. Mệnh đề đúng.\r\n\t\t\t\\itemch Công thức tính diện tích tam giác là $S=\\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A$, không phải là $\\cos A$. Mệnh đề sai.\r\n\t\t\t\\itemch Áp dụng định lí côsin:\\\\\r\n\t\t\t$BC = \\sqrt{AB^2+AC^2-2AB \\cdot AC \\cdot \\cos A} = \\sqrt{6^2+8^2-2 \\cdot 6 \\cdot 8 \\cdot \\cos 130^\\circ} \\approx 12{,}7\\text{ (cm)}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Diện tích tam giác $ABC$ là:\\\\\r\n\t\t\t$S = \\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A = \\frac{1}{2} \\cdot 6 \\cdot 8 \\cdot \\sin 130^\\circ \\approx 18{,}4\\text{ (cm}^2)$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_20b6933537",
+      "dapAn": "19,5",
+      "loiGiaiHtml": "Vẽ điểm $A$ và trục Bắc - Nam đi qua $A$. Điểm $C$ nằm cách $A$ $8\\text{km}$ về phía Nam, nên đường thẳng $AC$ trùng với trục Bắc - Nam.\\\\\r\n\t\tGóc tạo bởi hướng di chuyển $AB$ ($\\text{S}52^\\circ\\text{W}$) và hướng Nam (tia $AC$) là $\\widehat{BAC} = 52^\\circ$.\\\\\r\n\t\tTại $B$, dựng trục Bắc - Nam, kẻ tia $BD$ song song và cùng chiều với tia $AC$ (hướng Nam). Khi đó $\\widehat{ABD} = \\widehat{BAC} = 52^\\circ$ (so le trong).\\\\\r\n\t\tHướng di chuyển $BC$ là $\\text{S}40^\\circ\\text{E}$, tức là tia $BC$ hợp với tia $BD$ (hướng Nam) một góc $40^\\circ$ về phía Đông. \\\\\r\n\t\tGóc trong tam giác tại $B$ là $\\widehat{ABC} = 180^\\circ - \\widehat{ABD} - 40^\\circ = 180^\\circ - 52^\\circ - 40^\\circ = 88^\\circ$.\\\\\r\n\t\tTrong tam giác $ABC$, ta có $\\widehat{A} = 52^\\circ, \\widehat{B} = 88^\\circ \\Rightarrow \\widehat{C} = 180^\\circ - 52^\\circ - 88^\\circ = 40^\\circ$.\\\\\r\n\t\tCạnh $AC = b = 8\\text{km}$.\\\\\r\n\t\tÁp dụng định lý sin:\\\\\r\n\t\t$\\displaystyle \\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} \\Rightarrow \\frac{BC}{\\sin 52^\\circ} = \\frac{8}{\\sin 88^\\circ} = \\frac{AB}{\\sin 40^\\circ}$.\\\\\r\n\t\tSuy ra $BC = a = \\displaystyle \\frac{8\\sin 52^\\circ}{\\sin 88^\\circ}$ và $AB = c = \\frac{8\\sin 40^\\circ}{\\sin 88^\\circ}$.\\\\\r\n\t\tTổng độ dài quãng đường đua là chu vi tam giác $ABC$:\\\\\r\n\t\t$P = 8 + a + c = 8 + \\displaystyle \\frac{8\\sin 52^\\circ}{\\sin 88^\\circ} + \\frac{8\\sin 40^\\circ}{\\sin 88^\\circ} \\approx 19{,}46\\text{ (km)}$.\\\\\r\n\t\tLàm tròn đến hàng phần mười, ta được $19{,}5\\text{km}$."
+    },
+    {
+      "maBaoMat": "sol_5de05301ac",
+      "dapAn": "2056",
+      "loiGiaiHtml": "Vẽ các đường thẳng $d_1: x+y=5$, $d_2: 3x+2y=12$, $d_3: x=1$, $d_4: y=0$.\\\\\r\n\t\tMiền nghiệm của hệ là tứ giác $ABCD$ với các đỉnh:\\\\\r\n\t\t$A(1;0)$ (giao của $x=1$ và $y=0$).\\\\\r\n\t\t$B(1;4)$ (giao của $x=1$ và $x+y=5$).\\\\\r\n\t\t$C(2;3)$ (giao của $x+y=5$ và $3x+2y=12$).\\\\\r\n\t\t$D(4;0)$ (giao của $3x+2y=12$ và $y=0$).\\\\\r\n\t\tTính giá trị của hàm $F=3x+7y+2025$ tại các đỉnh:\\\\\r\n\t\t$F(A) = F(1;0) = 3(1) + 7(0) + 2025 = 2028$.\\\\\r\n\t\t$F(B) = F(1;4) = 3(1) + 7(4) + 2025 = 2056$.\\\\\r\n\t\t$F(C) = F(2;3) = 3(2) + 7(3) + 2025 = 2052$.\\\\\r\n\t\t$F(D) = F(4;0) = 3(4) + 7(0) + 2025 = 2037$.\\\\\r\n\t\tVậy giá trị lớn nhất của $F$ là $2056$."
+    },
+    {
+      "maBaoMat": "sol_fe5dcd23fc",
+      "dapAn": "-2",
+      "loiGiaiHtml": "Ta có:\\\\\r\n\t\t$\\cos 60^\\circ = \\displaystyle \\frac{1}{2}$.\\\\\r\n\t\t$\\sin 45^\\circ = \\displaystyle \\frac{\\sqrt{2}}{2}$.\\\\\r\n\t\t$\\tan 135^\\circ = -1$.\\\\\r\n\t\tThay vào biểu thức $T$:\\\\\r\n\t\t$T = 2\\left(\\displaystyle \\frac{1}{2}\\right) + \\sqrt{2}\\left(\\frac{\\sqrt{2}}{2}\\right) + 4(-1) = 1 + 1 - 4 = -2$."
+    },
+    {
+      "maBaoMat": "sol_a0eca00452",
+      "dapAn": "7",
+      "loiGiaiHtml": "Số học sinh sử dụng ít nhất một trong hai mạng xã hội là: $n(I \\cup T) = 40 - 5 = 35$ (học sinh).\\\\\r\n\t\tTa có công thức: $n(I \\cup T) = n(I) + n(T) - n(I \\cap T)$.\\\\\r\n\t\tSuy ra: $35 = 18 + 24 - n(I \\cap T) \\Rightarrow n(I \\cap T) = 42 - 35 = 7$.\\\\\r\n\t\tVậy có $7$ học sinh sử dụng cả hai mạng xã hội."
+    },
+    {
+      "maBaoMat": "sol_30cce4c84d",
+      "dapAn": "59,9",
+      "loiGiaiHtml": "Ta có $\\widehat{A} = 180^\\circ - (\\widehat{B}+\\widehat{C}) = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lí sin, ta có: $\\displaystyle \\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.\\\\\r\n\t\tSuy ra: $b = \\displaystyle \\frac{a \\cdot \\sin B}{\\sin A} = \\frac{65 \\cdot \\sin 60^\\circ}{\\sin 70^\\circ} \\approx 59{,}9\\text{ (cm)}$."
+    },
+    {
+      "maBaoMat": "sol_3257fd9596",
+      "dapAn": "34,6",
+      "loiGiaiHtml": "Ta có $\\widehat{A} = 180^\\circ - (\\widehat{B}+\\widehat{C}) = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lí sin, ta có: $\\displaystyle \\frac{a}{\\sin A} = 2R$.\\\\\r\n\t\tSuy ra: $R = \\displaystyle \\frac{a}{2\\sin A} = \\frac{65}{2\\sin 70^\\circ} \\approx 34{,}6\\text{ (cm)}$."
+    },
+    {
+      "maBaoMat": "sol_f685564086",
+      "dapAn": "86",
+      "loiGiaiHtml": "Gọi $x, y$ lần lượt là số áo Vest và số quần Âu mà phân xưởng may ($x\\ge 0, y\\ge 0$ và $x,y\\in\\mathbb{Z}$).\\\\\r\n\t\tSố tiền lãi của phân xưởng là: $F(x;y)=250x+100y$ (nghìn đồng).\\\\\r\n\t\tTheo đề bài, ta thiết lập hệ bất phương trình ràng buộc:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Số vải không quá $900\\text{m}$: $2x + 1{,}5y \\le 900 \\Leftrightarrow 4x + 3y \\le 1800$.\r\n\t\t\t\\item Số giờ công không quá $6000$ giờ: $20x + 5y \\le 6000 \\Leftrightarrow 4x + y \\le 1200$.\r\n\t\t\t\\item Số lượng quần không nhỏ hơn số áo và không vượt quá $2$ lần số áo: $x \\le y \\le 2x$.\r\n\t\t\\end{itemize}\r\n\t\tHệ bất phương trình:\r\n\t\t$$\\begin{cases} x \\ge 0, y \\ge 0 \\\\ 4x + 3y \\le 1800 \\\\ 4x + y \\le 1200 \\\\ y \\ge x \\\\ y \\le 2x \\end{cases}$$\r\n\t\tMiền nghiệm của hệ là miền tứ giác $OABC$ với tọa độ các đỉnh:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $O(0;0)$.\r\n\t\t\t\\item $A(180;360)$ (giao của $y=2x$ và $4x+y=1200$).\r\n\t\t\t\\item $B(225;300)$ (giao của $4x+y=1200$ và $4x+3y=1800$).\r\n\t\t\t\\item $C(240;240)$ (giao của $4x+3y=1800$ và $y=x$).\r\n\t\t\\end{itemize}\r\n\t\tTính giá trị của $F$ tại các đỉnh:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Tại $O(0;0)$: $F = 0$.\r\n\t\t\t\\item Tại $A(180;360)$: $F = 250(180) + 100(360) = 81000$.\r\n\t\t\t\\item Tại $B(225;300)$: $F = 250(225) + 100(300) = 86250$.\r\n\t\t\t\\item Tại $C(240;240)$: $F = 250(240) + 100(240) = 84000$.\r\n\t\t\\end{itemize}\r\n\t\tHàm số $F$ đạt giá trị lớn nhất bằng $86250$ tại $x=225, y=300$.\\\\\r\n\t\tVậy số tiền lãi cao nhất mà phân xưởng có thể thu được là $86250$ nghìn đồng."
+    }
+  ]
+}
