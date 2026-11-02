@@ -58,6 +58,9 @@ function ham_3_1_ve_dashboard_admin() {
                 <button onclick="ham_7b_1_ve_quan_ly_nhiem_vu_tu_luan()" style="${btnStyle} background: #d68910;">📝 NV Tự Luận</button>
                 <button onclick="ham_7_3_nv_doc_bai()" style="${btnStyle} background: #7f8c8d;">📖 NV Đọc Bài</button>
                 <button onclick="ham_7_4_nv_khao_sat()" style="${btnStyle} background: #c0392b;">📊 NV Khảo Sát</button>
+                <button onclick="ham_23_1_mo_giao_dien_xuat_diem_tong_hop()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(40,167,69,0.3); transition: 0.2s; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='#218838'" onmouseout="this.style.background='#28a745'">
+    📥 XUẤT ĐIỂM LỚP
+</button>
             </div>
 
             <h4 style="color: #555; margin-bottom: 15px;">⚙️ CHỨC NĂNG HỆ THỐNG (ADMIN)</h4>
