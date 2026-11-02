@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d321746e40",
+  "dapAn": "C",
+  "loiGiai": "Đồ thị hàm số đi qua gốc tọa độ $O(0;0)$ nên loại B và D.\\\\\r\n\t\tHàm số có cực trị nên loại hàm phân thức (hoặc kiểm tra đồ thị là một đường cong liên tục trên $\\mathbb{R}$).\\\\\r\n\t\tVậy đồ thị là của hàm số bậc ba $y=x^{3}-3x$."
+}

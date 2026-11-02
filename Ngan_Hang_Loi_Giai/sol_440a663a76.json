@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_440a663a76",
+  "dapAn": "3",
+  "loiGiai": "Dựa vào đồ thị hàm số, ta thấy:\\\\\r\n\t\tĐường tiệm cận đứng là $x=2$. Suy ra nghiệm của mẫu thức là $x=2 \\Rightarrow 2+c=0 \\Rightarrow c=-2$.\\\\\r\n\t\tĐường tiệm cận ngang là $y=-1$. Suy ra $\\displaystyle \\frac{a}{1}=-1 \\Rightarrow a=-1$.\\\\\r\n\t\tKiểm tra lại với $a=-1, c=-2$, ta có hàm số $y=\\displaystyle \\frac{-x+3}{x-2}$.\\\\\r\n\t\tĐồ thị hàm số này cắt trục tung tại $\\left(0; -\\displaystyle \\frac{3}{2}\\right)$ và cắt trục hoành tại $(3;0)$, hoàn toàn phù hợp với hình vẽ.\\\\\r\n\t\tVậy giá trị của $T = a - 2c = -1 - 2(-2) = -1 + 4 = 3$."
+}

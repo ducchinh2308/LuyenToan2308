@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_08479040ae",
+  "dapAn": "253",
+  "loiGiai": "Gọi $x$ là số sản phẩm sản xuất ($200 < x \\le 400$).\\\\\r\n\t\tDoanh thu: $F(x) = x^{3}-1999x^{2}+1001000x+250000$.\\\\\r\n\t\tChi phí vận hành tổng cộng: $C_{vh}(x) = x \\cdot G(x) = \\displaystyle \\frac{100000x^2}{1{,}5x+1}$.\\\\\r\n\t\tChi phí nguyên vật liệu có chiết khấu:\\\\\r\n\t\t$C_{nl}(x) = 0{,}99 \\cdot H(200) + 0{,}98 \\cdot (H(x) - H(200)) = 0{,}98H(x) + 0{,}01H(200)$.\\\\\r\n\t\tHàm lợi nhuận là: $P(x) = F(x) - C_{vh}(x) - C_{nl}(x)$.\\\\\r\n\t\tĐạo hàm hàm lợi nhuận: $P'(x) = F'(x) - C_{vh}'(x) - 0{,}98H'(x)$.\\\\\r\n\t\tTa có $F'(x) = 3x^2 - 3998x + 1001000$.\\\\\r\n\t\t$C_{vh}'(x) = \\displaystyle \\frac{200000x(1{,}5x+1) - 100000x^2(1{,}5)}{(1{,}5x+1)^2} = \\frac{150000x^2 + 200000x}{(1{,}5x+1)^2}$.\\\\\r\n\t\t$H'(x) = 6x^2 + 100000 \\Rightarrow 0{,}98H'(x) = 5{,}88x^2 + 98000$.\\\\\r\n\t\tKhảo sát phương trình $P'(x) = 0$ trên đoạn $[1; 400]$, sử dụng máy tính cầm tay để giải gần đúng, ta tìm được nghiệm $x \\approx 253$.\\\\\r\n\t\tLập bảng biến thiên, ta thấy hàm số lợi nhuận đạt giá trị lớn nhất tại $x = 253$.\\\\\r\n\t\tVậy doanh nghiệp cần sản xuất $253$ sản phẩm."
+}

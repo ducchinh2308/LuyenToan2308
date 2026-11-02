@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b8e0eba8d7",
+  "dapAn": "34",
+  "loiGiai": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có $y = \\displaystyle \\frac{x^{2}+x+4}{x+1} = x + \\frac{4}{x+1}$.\\\\\r\n\t\tĐạo hàm: $y' = 1 - \\displaystyle \\frac{4}{(x+1)^2} = \\frac{(x+1)^2 - 4}{(x+1)^2}$.\\\\\r\n\t\tCho $y'=0 \\Leftrightarrow (x+1)^2 = 4 \\Leftrightarrow \\left[\\begin{aligned}&x+1 = 2\\\\ &x+1 = -2\\end{aligned}\\right. \\Leftrightarrow \\left[\\begin{aligned}&x = 1\\\\ &x = -3\\end{aligned}\\right.$.\\\\\r\n\t\tBảng xét dấu $y'$ cho thấy:\\\\\r\n\t\tHàm số đạt cực đại tại $x = -3$, giá trị cực đại $m = y(-3) = -3 + \\displaystyle \\frac{4}{-2} = -5$.\\\\\r\n\t\tHàm số đạt cực tiểu tại $x = 1$, giá trị cực tiểu $n = y(1) = 1 + \\displaystyle \\frac{4}{2} = 3$.\\\\\r\n\t\tGiá trị của biểu thức $P$ là: $P = m^2 + n^2 = (-5)^2 + 3^2 = 25 + 9 = 34$."
+}

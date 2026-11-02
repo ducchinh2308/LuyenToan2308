@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2b1f53b83a",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\lim\\limits_{x \\to 2^+} \\displaystyle \\frac{x+1}{x-2} = +\\infty$ và $\\lim\\limits_{x \\to 2^-} \\frac{x+1}{x-2} = -\\infty$.\\\\\r\n\t\tVậy đường thẳng $x=2$ là tiệm cận đứng của đồ thị hàm số."
+}

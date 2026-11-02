@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d60f951328",
+  "dapAn": "D",
+  "loiGiai": "Ta có $f'(x) = 2x \\cdot e^{2x} + (x^{2}-2) \\cdot 2e^{2x} = 2e^{2x}(x^{2}+x-2)$.\\\\\r\n\t\tCho $f'(x) = 0 \\Leftrightarrow x^{2}+x-2 = 0 \\Leftrightarrow \\left[\\begin{aligned}&x = 1 \\in [-1;2]\\\\ &x = -2 \\notin [-1;2]\\end{aligned}\\right.$.\\\\\r\n\t\tTính các giá trị:\\\\\r\n\t\t$f(-1) = ((-1)^{2}-2)e^{-2} = -e^{-2} = -\\displaystyle \\frac{1}{e^{2}}$.\\\\\r\n\t\t$f(1) = (1^{2}-2)e^{2} = -e^{2}$.\\\\\r\n\t\t$f(2) = (2^{2}-2)e^{4} = 2e^{4}$.\\\\\r\n\t\tSo sánh các giá trị, ta được $m = \\min\\limits_{[-1;2]} f(x) = -e^{2}$.\\\\\r\n\t\tSuy ra $a = 0$ và $b = -1$.\\\\\r\n\t\tVậy $2a+b = 2(0) + (-1) = -1$."
+}

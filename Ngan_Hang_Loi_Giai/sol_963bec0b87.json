@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_963bec0b87",
+  "dapAn": "C",
+  "loiGiai": "Ta có $f'(x) = 0 \\Leftrightarrow x(x-2) = 0 \\Leftrightarrow \\left[\\begin{aligned}&x=0\\\\ &x=2\\end{aligned}\\right.$.\\\\\r\n\t\tBảng xét dấu $f'(x)$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_963bec0b87_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng xét dấu, $f'(x) < 0$ trên khoảng $(0;2)$.\\\\\r\n\t\tVậy hàm số nghịch biến trên khoảng $(0;2)$."
+}

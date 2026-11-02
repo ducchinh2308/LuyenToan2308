@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b054179949",
+  "dapAn": "C",
+  "loiGiai": "Hàm vận tốc là đạo hàm của hàm quãng đường theo thời gian:\\\\\r\n\t\t$v(t) = s'(t) = -\\displaystyle \\frac{3}{2}t^{2}+12t$.\\\\\r\n\t\tVận tốc tại thời điểm $t=6$ giây là:\\\\\r\n\t\t$v(6) = -\\displaystyle \\frac{3}{2}(6)^{2} + 12(6) = -\\frac{3}{2}(36) + 72 = -54 + 72 = 18\\text{ (m/s)}$."
+}

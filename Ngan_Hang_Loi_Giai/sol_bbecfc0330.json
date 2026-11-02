@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bbecfc0330",
+  "dapAn": "30",
+  "loiGiai": "Cách 1: Sử dụng bất đẳng thức AM-GM.\\\\\r\n\t\tVì $x>0$ nên $2x>0$ và $\\displaystyle \\frac{1800}{x}>0$. Áp dụng bất đẳng thức AM-GM, ta có:\\\\\r\n\t\t$f(x) = 2x + \\displaystyle \\frac{1800}{x} + 140 \\ge 2\\sqrt{2x \\cdot \\frac{1800}{x}} + 140 = 2\\sqrt{3600} + 140 = 120 + 140 = 260$.\\\\\r\n\t\tDấu \"=\" xảy ra khi và chỉ khi $2x = \\displaystyle \\frac{1800}{x} \\Leftrightarrow x^2 = 900 \\Leftrightarrow x = 30$ (do $x>0$).\\\\\r\n\t\tVậy chi phí trung bình thấp nhất khi sản xuất $30$ đồ chơi.\\\\Cách 2: Sử dụng đạo hàm.\\\\\r\n\t\tTa có $f'(x) = 2 - \\displaystyle \\frac{1800}{x^2}$.\\\\\r\n\t\tCho $f'(x)=0 \\Leftrightarrow 2 - \\displaystyle \\frac{1800}{x^2} = 0 \\Leftrightarrow x^2 = 900 \\Leftrightarrow x=30$ (vì $x>0$).\\\\\r\n\t\tQua $x=30$, $f'(x)$ đổi dấu từ âm sang dương nên hàm số đạt cực tiểu và cũng là giá trị nhỏ nhất tại $x=30$.\\\\\r\n\t\tVậy công ty cần sản xuất $30$ đồ chơi."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_99c5fed2bb",
+  "dapAn": "TTFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\lim\\limits_{x \\to 1^+} \\displaystyle \\frac{x^{2}+x+2}{x-1} = +\\infty$ nên $x=1$ là đường tiệm cận đứng. Mệnh đề đúng.\r\n\t\t\t\\itemch Thực hiện phép chia đa thức, ta có $y = \\displaystyle \\frac{x^{2}+x+2}{x-1} = x+2+\\frac{4}{x-1}$. Vậy đường thẳng $y=x+2$ là tiệm cận xiên. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $y' = \\displaystyle \\frac{(2x+1)(x-1) - (x^2+x+2)}{(x-1)^2} = \\frac{x^2-2x-3}{(x-1)^2}$. Cho $y'=0 \\Leftrightarrow x=-1$ hoặc $x=3$. Qua $x=-1$, $y'$ đổi dấu từ $+$ sang $-$ nên $x=-1$ là điểm cực đại. Mệnh đề sai.\r\n\t\t\t\\itemch Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số $y=\\displaystyle \\frac{u(x)}{v(x)}$ có phương trình là $y = \\displaystyle \\frac{u'(x)}{v'(x)} = \\frac{2x+1}{1} = 2x+1$. Đường thẳng này cắt trục $Ox$ tại $M\\left(-\\displaystyle \\frac{1}{2};0\\right)$ và cắt trục $Oy$ tại $N(0;1)$. Diện tích tam giác vuông tạo thành là $S = \\displaystyle \\frac{1}{2} \\cdot \\left|-\\frac{1}{2}\\right| \\cdot |1| = \\frac{1}{4}$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}

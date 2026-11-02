@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_051019ae9a",
+  "dapAn": "FFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $y' = \\displaystyle \\frac{3(-1) - 2(-1)}{(2x-1)^2} = \\frac{-1}{(2x-1)^2}$. Mệnh đề sai.\r\n\t\t\t\\itemch Vì $y' = \\displaystyle \\frac{-1}{(2x-1)^2} < 0, \\forall x \\ne \\frac{1}{2}$ nên hàm số nghịch biến (thời gian truyền tín hiệu giảm) trên các khoảng xác định. Mệnh đề sai.\r\n\t\t\t\\itemch Ta có $\\lim\\limits_{x \\to +\\infty} y = \\displaystyle \\frac{3}{2}$ nên đường tiệm cận ngang là $y=\\displaystyle \\frac{3}{2}$. Tiệm cận đứng là $x=\\displaystyle \\frac{1}{2}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Khi $x=0$, $y(0) = \\displaystyle \\frac{-1}{-1} = 1 \\ne 0$. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

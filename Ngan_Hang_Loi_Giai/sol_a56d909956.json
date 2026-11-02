@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a56d909956",
+  "dapAn": "D",
+  "loiGiai": "Ta có $f'(x) = 0 \\Leftrightarrow x^{2}(x-1)(x-2)^{3} = 0 \\Leftrightarrow \\left[\\begin{aligned}&x=0\\\\ &x=1\\\\ &x=2\\end{aligned}\\right.$.\\\\\r\n\t\tBảng xét dấu $f'(x)$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_a56d909956_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTại $x=0$, $f'(x)$ không đổi dấu (do $x=0$ là nghiệm kép) nên không phải là điểm cực trị.\\\\\r\n\t\tTại $x=1$, $f'(x)$ đổi dấu từ $(+)$ sang $(-)$ nên $x=1$ là điểm cực đại.\\\\\r\n\t\tTại $x=2$, $f'(x)$ đổi dấu từ $(-)$ sang $(+)$ nên $x=2$ là điểm cực tiểu.\\\\\r\n\t\tVậy hàm số có $1$ điểm cực đại."
+}

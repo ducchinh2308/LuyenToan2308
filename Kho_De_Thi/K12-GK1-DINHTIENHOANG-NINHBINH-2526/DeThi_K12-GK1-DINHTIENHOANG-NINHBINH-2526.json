@@ -1,0 +1,225 @@
+{
+  "maDe": "K12-GK1-DINHTIENHOANG-NINHBINH-2526",
+  "tenDe": "K12-GK1-DINHTIENHOANG-NINHBINH-2526",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2H2N1-2]",
+      "maCau": "q_007189ad40",
+      "ma_goc": "2610-1243",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình bình hành. Tìm $\\overrightarrow{SD}+\\overrightarrow{AB}+\\overrightarrow{CA}$.",
+      "paA": "$\\overrightarrow{SB}$",
+      "paB": "$\\overrightarrow{SC}$",
+      "paC": "$\\overrightarrow{SA}$",
+      "paD": "$\\overrightarrow{SD}$"
+    },
+    {
+      "id_Cau": "[2D1N1-2]",
+      "maCau": "q_8a6c7d383b",
+      "ma_goc": "2610-1244",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8a6c7d383b_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(0;+\\infty)$",
+      "paB": "$(1;+\\infty)$",
+      "paC": "$(0;1)$",
+      "paD": "$(-1;0)$"
+    },
+    {
+      "id_Cau": "[2D1N3-1]",
+      "maCau": "q_e12fd7afb3",
+      "ma_goc": "2610-1245",
+      "kieuCau": "TN",
+      "cauDan": "Gọi $m$ là giá trị nhỏ nhất của hàm số $f(x)=(x^{2}-2)e^{2x}$ trên đoạn $[-1;2]$. Khi đó $m$ có dạng $m=a+be^{2}$ ($a,b\\in\\mathbb{Z}$). Tính $2a+b$.",
+      "paA": "$-2$",
+      "paB": "$1$",
+      "paC": "$2$",
+      "paD": "$-1$"
+    },
+    {
+      "id_Cau": "[2D1N3-2]",
+      "maCau": "q_d37c9e5dc1",
+      "ma_goc": "2610-1246",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị như hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_d37c9e5dc1_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tGọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số $f(x)$ trên $\\left[-1;\\displaystyle \\frac{3}{2}\\right]$. Giá trị của $2M+2m$ bằng",
+      "paA": "$10$",
+      "paB": "$1$",
+      "paC": "$6$",
+      "paD": "$8$"
+    },
+    {
+      "id_Cau": "[2D1N1-5]",
+      "maCau": "q_51845845f5",
+      "ma_goc": "2610-1247",
+      "kieuCau": "TN",
+      "cauDan": "Một vật chuyển động theo quy luật $s=-\\displaystyle \\frac{1}{2}t^{3}+6t^{2}$ với $t$ (giây) là khoảng thời gian từ khi vật bắt đầu khởi động và $s$ (mét) là quãng đường vật di chuyển trong thời gian đó. Vận tốc đạt được tại thời gian $6$ giây là",
+      "paA": "$24\\text{ (m/s)}$",
+      "paB": "$23\\text{ (m/s)}$",
+      "paC": "$18\\text{ (m/s)}$",
+      "paD": "$12\\text{ (m/s)}$"
+    },
+    {
+      "id_Cau": "[2D1N2-1]",
+      "maCau": "q_750bdb650e",
+      "ma_goc": "2610-1248",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số $f(x)$ có đạo hàm $f'(x)=x^{2}(x-1)(x-2)^{3}, \\forall x\\in\\mathbb{R}$. Hàm số $f(x)$ có bao nhiêu điểm cực đại?",
+      "paA": "$2$",
+      "paB": "$0$",
+      "paC": "$3$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_08e0c1eef3",
+      "ma_goc": "2610-1249",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận đứng của đồ thị hàm số $y=\\displaystyle \\frac{x+1}{x-2}$ là đường thẳng có phương trình:",
+      "paA": "$x=-1$",
+      "paB": "$x=2$",
+      "paC": "$x=1$",
+      "paD": "$x=-2$"
+    },
+    {
+      "id_Cau": "[2D1N5-1]",
+      "maCau": "q_a649ea3890",
+      "ma_goc": "2610-1250",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị của hàm số nào dưới đây có dạng như đường cong trong hình bên?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a649ea3890_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y=-x^{3}+3x$",
+      "paB": "$y=-x^{3}+3x^{2}$",
+      "paC": "$y=x^{3}-3x^{2}+1$",
+      "paD": "$y=\\displaystyle \\frac{x-1}{x+1}$"
+    },
+    {
+      "id_Cau": "[2D1N5-1]",
+      "maCau": "q_55d903fe78",
+      "ma_goc": "2610-1251",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình dưới đây.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_55d903fe78_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tBiểu thức $f(x)$ là biểu thức nào sau đây?",
+      "paA": "$x+\\displaystyle \\frac{1}{x}$",
+      "paB": "$\\displaystyle \\frac{2x-1}{x+1}$",
+      "paC": "$x^{3}-3x$",
+      "paD": "$-x^{3}+3x-1$"
+    },
+    {
+      "id_Cau": "[2D1N1-1]",
+      "maCau": "q_a1fbff6d93",
+      "ma_goc": "2610-1252",
+      "kieuCau": "TN",
+      "cauDan": "Cho $y=f(x)$ có $f'(x)=x(x-2), \\forall x\\in\\mathbb{R}$. Hàm số $y=f(x)$ nghịch biến trên khoảng nào?",
+      "paA": "$(2;+\\infty)$",
+      "paB": "$(-\\infty;0)$",
+      "paC": "$(0;2)$",
+      "paD": "$(0;+\\infty)$"
+    },
+    {
+      "id_Cau": "[2H2N1-2]",
+      "maCau": "q_e1539c6130",
+      "ma_goc": "2610-1253",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_e1539c6130_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tVectơ $\\overrightarrow{AC'}$ là kết quả của phép tính tổng nào sau đây?",
+      "paA": "$\\overrightarrow{AA'}+\\overrightarrow{AD}+\\overrightarrow{CD}$",
+      "paB": "$\\overrightarrow{AA'}+\\overrightarrow{AD}+\\overrightarrow{AB}$",
+      "paC": "$\\overrightarrow{AA'}+\\overrightarrow{B'C'}$",
+      "paD": "$\\overrightarrow{AA'}+\\overrightarrow{A'B}+\\overrightarrow{B'C'}$"
+    },
+    {
+      "id_Cau": "[2D1N2-2]",
+      "maCau": "q_082775e829",
+      "ma_goc": "2610-1254",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ liên tục trên tập số thực, có bảng biến thiên như hình vẽ sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_082775e829_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tĐiểm cực đại của hàm số là",
+      "paA": "$y=3$",
+      "paB": "$x=0$",
+      "paC": "$N(1;-2)$",
+      "paD": "$M(0;3)$"
+    },
+    {
+      "id_Cau": "[2D1N4-2]",
+      "maCau": "q_d4b4337c9a",
+      "ma_goc": "2610-1255",
+      "kieuCau": "DS",
+      "cauDan": "Một công ty viễn thông nghiên cứu mối quan hệ giữa thời gian truyền tín hiệu $y$ (tính bằng mili-giây) và khoảng cách truyền $x$ (tính bằng km) theo công thức: $y=\\displaystyle \\frac{3x-1}{2x-1}$. Đồ thị của hàm số được ký hiệu là $(C)$. Dựa trên mô hình này, hãy xác định các mệnh đề sau đúng hay sai:",
+      "paA": "Tốc độ thay đổi của thời gian truyền tín hiệu theo khoảng cách được cho bởi $y'=\\displaystyle \\frac{-5}{(2x-1)^{2}}$.",
+      "paB": "Thời gian truyền tín hiệu tăng khi khoảng cách truyền tăng trên hai khoảng $\\left(-\\infty;\\displaystyle \\frac{1}{2}\\right)$ và $\\left(\\displaystyle \\frac{1}{2};+\\infty\\right)$.",
+      "paC": "Khi khoảng cách truyền ngày càng lớn, thời gian truyền tín hiệu tiệm cận đến một giá trị giới hạn là $y=\\displaystyle \\frac{3}{2}$. Ngoài ra, khi khoảng cách đạt $x=\\displaystyle \\frac{1}{2}$ hệ thống bị mất tín hiệu (ứng với tiệm cận đứng $x=\\displaystyle \\frac{1}{2}$).",
+      "paD": "Khi khoảng cách truyền bằng $0\\text{ km}$ (ngay tại trạm phát), thời gian xử lý tín hiệu nội bộ là $y_{0}=0$."
+    },
+    {
+      "id_Cau": "[2D1V3-2]",
+      "maCau": "q_1bf0997db8",
+      "ma_goc": "2610-1256",
+      "kieuCau": "DS",
+      "cauDan": "Một tàu đổ bộ tiếp cận Mặt Trăng theo cách tiếp cận thẳng đứng và đốt cháy các tên lửa hãm ở độ cao $250\\text{ km}$ so với bề mặt của Mặt Trăng. Trong khoảng $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, độ cao $h$ của con tàu so với bề mặt của Mặt Trăng được tính (gần đúng) bởi hàm $h(t)=-0{,}01t^{3}+1{,}1t^{2}-30t+250$ trong đó $t$ là thời gian tính bằng giây và $h$ là độ cao tính bằng kilômét (Nguồn: A. Bigalke et al., Mathematik, Grundkurs ma-1, Cornelsen 2016).",
+      "paA": "Vận tốc tức thời của con tàu ở thời điểm $t$ (giây) kể từ khi đốt cháy các tên lửa hãm được xác định bởi $v(t)=-0{,}03t^{2}+2{,}2t-30 \\ (0\\le t\\le 50)$.",
+      "paB": "Vận tốc tức thời của con tàu tại thời điểm $t=25\\text{ (giây)}$ là $6{,}25\\text{ (km/s)}$.",
+      "paC": "Tại thời điểm $t=25$ (giây), vận tốc tức thời của con tàu tiếp tục giảm.",
+      "paD": "Trong khoảng $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, con tàu đạt khoảng cách nhỏ nhất so với bề mặt Mặt Trăng là $10\\text{ km}$."
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_8a32331722",
+      "ma_goc": "2610-1257",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{x^{2}+x+2}{x-1}$. Các mệnh đề dưới đây đúng hay sai:",
+      "paA": "Đồ thị hàm số có đường tiệm cận đứng là $x=1$.",
+      "paB": "Đường tiệm cận xiên của đồ thị hàm số là $y=x+2$.",
+      "paC": "Đồ thị hàm số có điểm cực tiểu là $A(-1;-1)$.",
+      "paD": "Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số giao với hai trục tọa độ tạo thành một tam giác có diện tích bằng $\\displaystyle \\frac{1}{4}$."
+    },
+    {
+      "id_Cau": "[2H2N1-2]",
+      "maCau": "q_3946bf44f3",
+      "ma_goc": "2610-1258",
+      "kieuCau": "DS",
+      "cauDan": "Một nhóm kỹ sư đang lắp đặt buồng mô phỏng thực tế ảo (VR Cube) có dạng hình lập phương $ABCD.A'B'C'D'$ với các cạnh dài $a$ mét. Khung buồng được tạo bởi các thanh nhôm định hình nối giữa các đỉnh, mỗi cạnh là một thanh đỡ. Để đảm bảo buồng lắp đúng tiêu chuẩn, kỹ sư trưởng cần kiểm tra mối liên hệ giữa các thanh trong mô hình bằng vectơ. Họ đưa ra một số nhận định sau và yêu cầu nhóm kỹ thuật xác định đúng hay sai để đảm bảo các yêu cầu của mô phỏng.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3946bf44f3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Thanh nối từ $D$ đến $C'$ được tạo thành bởi tổng hai vectơ ứng với thanh $DC$ và thanh $DD'$, tức là: $\\overrightarrow{DC'}=\\overrightarrow{DC}+\\overrightarrow{DD'}$.",
+      "paB": "$\\left|\\overrightarrow{AB}\\right|=\\left|\\overrightarrow{C'D'}\\right|$.",
+      "paC": "$2\\overrightarrow{AB}+\\overrightarrow{B'C'}+\\overrightarrow{CD}+\\overrightarrow{D'A'}=\\overrightarrow{0}$.",
+      "paD": "$\\overrightarrow{AD'} \\cdot \\overrightarrow{CC'}=a^{2}$."
+    },
+    {
+      "id_Cau": "[2H2H1-1]",
+      "maCau": "q_e6678cf976",
+      "ma_goc": "2610-1259",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy là hình chữ nhật, $AB=2a$, $BC=a$. Hình chiếu vuông góc $H$ của đỉnh $S$ trên mặt phẳng đáy là trung điểm của cạnh $AB$, góc giữa đường thẳng $SC$ và mặt phẳng đáy bằng $60^\\circ$. Tính cosin góc giữa hai véctơ $\\overrightarrow{SB}$ và $\\overrightarrow{AC}$. (Kết quả làm tròn đến hàng phần chục)."
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_b491ba904c",
+      "ma_goc": "2610-1260",
+      "kieuCau": "TLN",
+      "cauDan": "Một doanh nghiệp dự định sản xuất không quá $400$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm $(1\\le x\\le 400)$ thì doanh thu nhận được khi bán hết số sản phẩm đó được biểu diễn bởi công thức là $F(x)=x^{3}-1999x^{2}+1001000x+250000$ (đồng). Trong đó chi phí vận hành máy móc cho mỗi sản phẩm là $G(x)=\\displaystyle \\frac{100000x}{\\frac{3}{2}x+1}$ (đồng). Tổng chi phí mua nguyên vật liệu được biểu diễn bởi hàm $H(x)=2x^{3}+100000x-50000$ (đồng) nhưng do doanh nghiệp đó mua nguyên vật liệu với số lượng lớn nên được giảm $1\\%$ cho $200$ sản phẩm đầu tiên doanh nghiệp sản xuất và giảm $2\\%$ cho sản phẩm tiếp theo. Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?"
+    },
+    {
+      "id_Cau": "[2H2H1-4]",
+      "maCau": "q_22579fa238",
+      "ma_goc": "2610-1261",
+      "kieuCau": "TLN",
+      "cauDan": "Một chiếc máy bay điều khiển từ xa mini đang đậu tại điểm $A$ nằm trên mặt phẳng nằm ngang $(\\alpha)$. Lúc khởi động nó chịu tác dụng của ba lực đẩy: $\\overrightarrow{F_{1}}, \\overrightarrow{F_{2}}, \\overrightarrow{F_{3}}$. Hai cánh quạt trái và phải tạo ra hai lực $\\overrightarrow{F_{1}}, \\overrightarrow{F_{2}}$ có giá nằm trong mặt phẳng ngang $(\\alpha)$ và $(\\overrightarrow{F_{1}}, \\overrightarrow{F_{2}})=135^\\circ$. Một lực nâng $\\overrightarrow{F_{3}}$ do cánh quạt chính tạo ra có giá vuông góc với $(\\alpha)$ và hướng lên trên. Độ lớn hợp lực của các lực $F_{1}, F_{2}, F_{3}$ bằng bao nhiêu Niu-tơn, biết rằng độ lớn của ba lực đó lần lượt là $20\\text{ N}, 15\\text{ N}$ và $10\\text{ N}$ (Kết quả làm tròn đến hàng phần chục)?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_22579fa238_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_688ba8d241",
+      "ma_goc": "2610-1262",
+      "kieuCau": "TLN",
+      "cauDan": "Gọi $m, n$ lần lượt là giá trị cực đại và giá trị cực tiểu của hàm số $y=\\displaystyle \\frac{x^{2}+x+4}{x+1}$. Tính giá trị biểu thức $P=m^{2}+n^{2}$."
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_b8ccb88f6f",
+      "ma_goc": "2610-1263",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $y=\\displaystyle \\frac{ax+3}{x+c}$ có đồ thị như hình vẽ bên. Tính giá trị của $T=a-2c$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_b8ccb88f6f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_835772773a",
+      "ma_goc": "2610-1264",
+      "kieuCau": "TLN",
+      "cauDan": "Một công ty sản xuất đồ chơi dự tính sản xuất một loại đồ chơi mới cho trẻ em. Biết rằng hàm chi phí trung bình cho mỗi đồ chơi của công ty là $f(x)=2x+140+\\displaystyle \\frac{1800}{x} \\ (x>0)$, trong đó $x$ là số lượng đồ chơi được sản xuất. Hỏi công ty phải sản xuất bao nhiêu đồ chơi để chi phí trung bình mỗi sản phẩm là thấp nhất?"
+    }
+  ]
+}
