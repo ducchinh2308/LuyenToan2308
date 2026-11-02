@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a204cc57b7",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Mối quan hệ giữa phần tử và tập hợp phải dùng kí hiệu \"$\\in$\". Viết $2\\subset A$ là sai. Mệnh đề sai.\r\n\t\t\t\\itemch Tập hợp $B = \\{x\\in\\mathbb{N} \\mid 2\\le x < 6\\} = \\{2; 3; 4; 5\\}$. Vậy $B$ có $4$ phần tử. Mệnh đề đúng.\r\n\t\t\t\\itemch $A\\cap B = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2\\right\\} \\cap \\{2; 3; 4; 5\\} = \\{2\\}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $A\\cup B = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2; 3; 4; 5\\right\\}$.\\\\\r\n\t\t\tSuy ra $(A\\cup B)\\setminus(A\\cap B) = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 2; 3; 4; 5\\right\\} \\setminus \\{2\\} = \\left\\{\\displaystyle \\frac{-1}{2}; 0; 3; 4; 5\\right\\}$. Tập hợp này có $5$ phần tử. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

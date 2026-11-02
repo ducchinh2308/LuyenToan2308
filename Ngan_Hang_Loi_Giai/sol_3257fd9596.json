@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3257fd9596",
+  "dapAn": "34,6",
+  "loiGiai": "Ta có $\\widehat{A} = 180^\\circ - (\\widehat{B}+\\widehat{C}) = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lí sin, ta có: $\\displaystyle \\frac{a}{\\sin A} = 2R$.\\\\\r\n\t\tSuy ra: $R = \\displaystyle \\frac{a}{2\\sin A} = \\frac{65}{2\\sin 70^\\circ} \\approx 34{,}6\\text{ (cm)}$."
+}

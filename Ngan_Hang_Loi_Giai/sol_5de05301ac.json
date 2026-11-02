@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5de05301ac",
+  "dapAn": "2056",
+  "loiGiai": "Vẽ các đường thẳng $d_1: x+y=5$, $d_2: 3x+2y=12$, $d_3: x=1$, $d_4: y=0$.\\\\\r\n\t\tMiền nghiệm của hệ là tứ giác $ABCD$ với các đỉnh:\\\\\r\n\t\t$A(1;0)$ (giao của $x=1$ và $y=0$).\\\\\r\n\t\t$B(1;4)$ (giao của $x=1$ và $x+y=5$).\\\\\r\n\t\t$C(2;3)$ (giao của $x+y=5$ và $3x+2y=12$).\\\\\r\n\t\t$D(4;0)$ (giao của $3x+2y=12$ và $y=0$).\\\\\r\n\t\tTính giá trị của hàm $F=3x+7y+2025$ tại các đỉnh:\\\\\r\n\t\t$F(A) = F(1;0) = 3(1) + 7(0) + 2025 = 2028$.\\\\\r\n\t\t$F(B) = F(1;4) = 3(1) + 7(4) + 2025 = 2056$.\\\\\r\n\t\t$F(C) = F(2;3) = 3(2) + 7(3) + 2025 = 2052$.\\\\\r\n\t\t$F(D) = F(4;0) = 3(4) + 7(0) + 2025 = 2037$.\\\\\r\n\t\tVậy giá trị lớn nhất của $F$ là $2056$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fe5dcd23fc",
+  "dapAn": "-2",
+  "loiGiai": "Ta có:\\\\\r\n\t\t$\\cos 60^\\circ = \\displaystyle \\frac{1}{2}$.\\\\\r\n\t\t$\\sin 45^\\circ = \\displaystyle \\frac{\\sqrt{2}}{2}$.\\\\\r\n\t\t$\\tan 135^\\circ = -1$.\\\\\r\n\t\tThay vào biểu thức $T$:\\\\\r\n\t\t$T = 2\\left(\\displaystyle \\frac{1}{2}\\right) + \\sqrt{2}\\left(\\frac{\\sqrt{2}}{2}\\right) + 4(-1) = 1 + 1 - 4 = -2$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a0eca00452",
+  "dapAn": "7",
+  "loiGiai": "Số học sinh sử dụng ít nhất một trong hai mạng xã hội là: $n(I \\cup T) = 40 - 5 = 35$ (học sinh).\\\\\r\n\t\tTa có công thức: $n(I \\cup T) = n(I) + n(T) - n(I \\cap T)$.\\\\\r\n\t\tSuy ra: $35 = 18 + 24 - n(I \\cap T) \\Rightarrow n(I \\cap T) = 42 - 35 = 7$.\\\\\r\n\t\tVậy có $7$ học sinh sử dụng cả hai mạng xã hội."
+}

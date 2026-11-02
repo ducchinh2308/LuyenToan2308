@@ -1,0 +1,210 @@
+{
+  "maDe": "T10-GK1-2526-PHULOC-HUE",
+  "tenDe": "T10-GK1-2526-PHULOC-HUE",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0D1N1-1]",
+      "maCau": "q_e994fbbb7c",
+      "ma_goc": "2610-1665",
+      "kieuCau": "TN",
+      "cauDan": "Phát biểu nào sau đây là một mệnh đề?",
+      "paA": "Hà Nội là thủ đô của Việt Nam.",
+      "paB": "Mùa thu Hà Nội đẹp quá!",
+      "paC": "Đề thi môn Toán khó quá!",
+      "paD": "Bạn có đi học không?"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_de0bcca665",
+      "ma_goc": "2610-1666",
+      "kieuCau": "TN",
+      "cauDan": "Bất phương trình nào sau đây không phải là bất phương trình bậc nhất hai ẩn?",
+      "paA": "$-\\sqrt{2}y-2x\\le -1$",
+      "paB": "$-\\displaystyle \\frac{x}{2}\\ge 0$",
+      "paC": "$3^{2}x+1>0$",
+      "paD": "$2^{x}+y<1$"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_25eafcf039",
+      "ma_goc": "2610-1667",
+      "kieuCau": "TN",
+      "cauDan": "Bất phương trình nào sau đây là bất phương trình bậc nhất hai ẩn?",
+      "paA": "$x-y^{2}<-2$",
+      "paB": "$-x\\cdot y+1\\ge 0$",
+      "paC": "$3\\sqrt{y}\\ge 0$",
+      "paD": "$\\sqrt{2}x+y\\le 2$"
+    },
+    {
+      "id_Cau": "[0H4N2-1]",
+      "maCau": "q_9d9e311b07",
+      "ma_goc": "2610-1668",
+      "kieuCau": "TN",
+      "cauDan": "Cho $\\Delta ABC$ với các cạnh $AB=c$, $AC=b$, $BC=a$, $R$ là bán kính đường tròn ngoại tiếp. Trong các phát biểu sau, phát biểu nào đúng?",
+      "paA": "$\\displaystyle \\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R$",
+      "paB": "$\\displaystyle \\frac{a}{\\cos A}=\\frac{b}{\\cos B}=\\frac{c}{\\cos C}=2R$",
+      "paC": "$\\displaystyle \\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=R$",
+      "paD": "$\\displaystyle \\frac{a}{\\cos A}=\\frac{b}{\\cos B}=\\frac{c}{\\cos C}=R$"
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_5dcdaa21f8",
+      "ma_goc": "2610-1669",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị của $\\cos 45^\\circ+\\sin 30^\\circ$ bằng",
+      "paA": "$0$",
+      "paB": "$\\displaystyle \\frac{1+\\sqrt{2}}{2}$",
+      "paC": "$1$",
+      "paD": "$2\\sqrt{2}$"
+    },
+    {
+      "id_Cau": "[0D2N2-1]",
+      "maCau": "q_c2d360c9a6",
+      "ma_goc": "2610-1670",
+      "kieuCau": "TN",
+      "cauDan": "Hệ bất phương trình nào sau đây là hệ bất phương trình bậc nhất hai ẩn?",
+      "paA": "$\\begin{cases}x+3xy-5<0\\\\ 2x+y-3<0\\end{cases}$",
+      "paB": "$\\begin{cases}x+y+z<0\\\\ y<0\\end{cases}$",
+      "paC": "$\\begin{cases}5x+9y-7\\le 0\\\\ 99x^{2}-11y+3\\ge 0\\end{cases}$",
+      "paD": "$\\begin{cases}2x+3y\\le 5\\\\ x+5y<-1\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_c6221ef8d0",
+      "ma_goc": "2610-1671",
+      "kieuCau": "TN",
+      "cauDan": "Hình nào sau đây biểu diễn miền nghiệm của bất phương trình $x+3y\\ge -2$?",
+      "paA": "<img src='HinhAnh/q_c6221ef8d0_A_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paB": "<img src='HinhAnh/q_c6221ef8d0_B_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paC": "<img src='HinhAnh/q_c6221ef8d0_C_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />",
+      "paD": "<img src='HinhAnh/q_c6221ef8d0_D_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />"
+    },
+    {
+      "id_Cau": "[0D1V1-2]",
+      "maCau": "q_974871acea",
+      "ma_goc": "2610-1672",
+      "kieuCau": "TN",
+      "cauDan": "Cho mệnh đề chứa biến $P(x): \"2x+10\\le x^{2}\"$ với $x$ là số tự nhiên. Mệnh đề nào sau đây là đúng?",
+      "paA": "$P(7)$",
+      "paB": "$P(3)$",
+      "paC": "$P(0)$",
+      "paD": "$P(4)$"
+    },
+    {
+      "id_Cau": "[0D1N1-4]",
+      "maCau": "q_8646b7b02a",
+      "ma_goc": "2610-1673",
+      "kieuCau": "TN",
+      "cauDan": "Cho mệnh đề $P\\Rightarrow Q$. Mệnh đề nào sau đây đúng?",
+      "paA": "P là điều kiện cần để có Q.",
+      "paB": "Q là điều kiện đủ để có P.",
+      "paC": "Q là điều kiện cần và đủ để có P.",
+      "paD": "P là điều kiện đủ để có Q."
+    },
+    {
+      "id_Cau": "[0D1N1-3]",
+      "maCau": "q_0f50e1cc7e",
+      "ma_goc": "2610-1674",
+      "kieuCau": "TN",
+      "cauDan": "Mệnh đề phủ định của mệnh đề $P: \"\\forall x\\in\\mathbb{R}, x^{2}>0\"$ là:",
+      "paA": "$\\overline{P}: \"\\forall x\\in\\mathbb{R}, x^{2}\\le 0\"$",
+      "paB": "$\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}<0\"$",
+      "paC": "$\\overline{P}: \"\\forall x\\in\\mathbb{R}, x^{2}<0\"$",
+      "paD": "$\\overline{P}: \"\\exists x\\in\\mathbb{R}, x^{2}\\le 0\"$"
+    },
+    {
+      "id_Cau": "[0D1N3-1]",
+      "maCau": "q_e9a9363ff1",
+      "ma_goc": "2610-1675",
+      "kieuCau": "TN",
+      "cauDan": "Cho hai tập hợp $A$ và $B$. Tập hợp $A\\cup B$ là",
+      "paA": "Tập hợp tất cả các phần tử vừa thuộc A vừa thuộc B.",
+      "paB": "Tập hợp tất cả các phần tử thuộc B nhưng không thuộc A.",
+      "paC": "Tập hợp tất cả các phần tử thuộc A hoặc thuộc B.",
+      "paD": "Tập hợp tất cả các phần tử thuộc A nhưng không thuộc B."
+    },
+    {
+      "id_Cau": "[0D1H1-4]",
+      "maCau": "q_fd0493e65e",
+      "ma_goc": "2610-1676",
+      "kieuCau": "TN",
+      "cauDan": "Cho mệnh đề: \"Nếu tam giác có hai góc bằng $60^\\circ$ thì tam giác đó là tam giác đều\". Mệnh đề đảo của mệnh đề trên là:",
+      "paA": "Nếu một tam giác là tam giác đều thì tam giác đó có hai góc bằng nhau.",
+      "paB": "Nếu tam giác là tam giác đều thì tam giác đó có hai góc bằng $60^\\circ$.",
+      "paC": "Nếu tam giác có hai góc bằng $60^\\circ$ thì tam giác đó không phải là tam giác đều.",
+      "paD": "Một tam giác là tam giác đều nếu và chỉ nếu tam giác đó có hai góc bằng $60^\\circ$."
+    },
+    {
+      "id_Cau": "[0D1H3-3]",
+      "maCau": "q_ec7edbc37a",
+      "ma_goc": "2610-1677",
+      "kieuCau": "DS",
+      "cauDan": "Cho hai tập hợp $A=\\left\\{\\displaystyle \\frac{-1}{2}; 0; 2\\right\\}$ và $B=\\{x\\in\\mathbb{N} \\mid 2\\le x < 6\\}$.",
+      "paA": "$2\\subset A$.",
+      "paB": "Tập hợp $B$ có 4 phần tử.",
+      "paC": "$A\\cap B=\\{2\\}$.",
+      "paD": "Tập hợp $(A\\cup B)\\setminus(A\\cap B)$ có 4 phần tử."
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_1265227b3c",
+      "ma_goc": "2610-1678",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ có $AB=6\\text{cm}, AC=8\\text{cm}$ và góc $\\widehat{A}=130^\\circ$.",
+      "paA": "$BC^{2}=AB^{2}+AC^{2}-2AB \\cdot AC \\cdot \\cos A$.",
+      "paB": "Diện tích của tam giác $ABC$ là $S=\\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\cos A$.",
+      "paC": "Độ dài cạnh $BC$ gần bằng $12{,}7\\text{ (cm)}$ (làm tròn kết quả đến hàng phần mười).",
+      "paD": "Diện tích tam giác $ABC$ gần bằng $18{,}4\\text{ (cm}^2)$ (làm tròn kết quả đến hàng phần mười)."
+    },
+    {
+      "id_Cau": "[0H4V3-2]",
+      "maCau": "q_f5cfd13674",
+      "ma_goc": "2610-1679",
+      "kieuCau": "TLN",
+      "cauDan": "Một đường đua thuyền bắt đầu tại điểm $A$ và di chuyển theo hướng $\\text{S}52^\\circ\\text{W}$ đến điểm $B$, sau đó từ điểm $B$ di chuyển theo hướng $\\text{S}40^\\circ\\text{E}$ đến điểm $C$ và cuối cùng quay trở lại điểm $A$. Biết rằng điểm $C$ nằm cách điểm $A$ một đoạn $8$ kilômét theo phương thẳng đứng về phía Nam và mỗi thuyền đua được phát một La Bàn như hình bên. Hãy tính tổng độ dài của đường đua. (Không làm tròn kết quả các phép tính trung gian, chỉ làm tròn kết quả cuối cùng đến hàng phần mười).\\\\\r\n\tHướng $\\mathrm{S}\\alpha^\\circ\\mathrm{E}$ là hướng tạo với hướng nam góc $\\alpha^\\circ$ và tạo với hướng đông góc $90^\\circ - \\alpha^\\circ$. Các hướng $\\mathrm{S}\\alpha^\\circ\\mathrm{W}$, $\\mathrm{N}\\alpha^\\circ\\mathrm{E}$, $\\mathrm{N}\\alpha^\\circ\\mathrm{W}$ cũng được định nghĩa một cách tương tự.\\\\\\begin{center}\r\n\t\t<img src='HinhAnh/q_f5cfd13674_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_173e04321d",
+      "ma_goc": "2610-1680",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm giá trị lớn nhất của biểu thức $F=3x+7y+2025$ với $(x;y)$ thuộc miền nghiệm của hệ bất phương trình $\\begin{cases}x+y\\le 5\\\\ 3x+2y\\le 12\\\\ x\\ge 1\\\\ y\\ge 0\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0H4H1-2]",
+      "maCau": "q_7313814fb0",
+      "ma_goc": "2610-1681",
+      "kieuCau": "TLN",
+      "cauDan": "Tính giá trị của biểu thức: $T=2\\cos 60^\\circ+\\sqrt{2}\\sin 45^\\circ+4\\tan 135^\\circ$."
+    },
+    {
+      "id_Cau": "[0D1V3-5]",
+      "maCau": "q_efdafa7be2",
+      "ma_goc": "2610-1682",
+      "kieuCau": "TLN",
+      "cauDan": "Một cuộc khảo sát về thói quen sử dụng mạng xã hội của $40$ học sinh trong một lớp 10B đã cho kết quả như sau: Có $18$ học sinh dùng Instagram và $24$ học sinh dùng TikTok. Ngoài ra, có $5$ học sinh không sử dụng mạng xã hội nào trong hai mạng xã hội trên. Hỏi có bao nhiêu học sinh trong lớp 10B sử dụng cả hai mạng xã hội Instagram và TikTok?"
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_73c9399e5d",
+      "ma_goc": "2610-1683",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$, biết cạnh $a=65\\text{ cm}, \\widehat{B}=60^\\circ, \\widehat{C}=50^\\circ$. Tính độ dài cạnh $b$ (kết quả làm tròn đến hàng phần mười)."
+    },
+    {
+      "id_Cau": "[0H4H2-1]",
+      "maCau": "q_245805a8b0",
+      "ma_goc": "2610-1684",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tam giác $ABC$, biết cạnh $a=65\\text{ cm}, \\widehat{B}=60^\\circ, \\widehat{C}=50^\\circ$. Tính bán kính $R$ của đường tròn ngoại tiếp tam giác $ABC$ (kết quả làm tròn đến hàng phần mười)."
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_2a22d273fd",
+      "ma_goc": "2610-1685",
+      "kieuCau": "TLN",
+      "cauDan": "Một phân xưởng may áo Vest và quần Âu để chuẩn bị bán cho dịp cuối năm. Biết may một cái áo Vest hết $2\\text{m}$ vải và cần $20$ giờ công; một chiếc quần Âu hết $1{,}5\\text{m}$ vải và cần $5$ giờ công. Phân xưởng được giao sử dụng không quá $900\\text{m}$ vải và số giờ công không vượt quá $6000$ giờ. Theo khảo sát thị trường, số lượng quần Âu bán ra không nhỏ hơn số lượng áo Vest và không vượt quá $2$ lần số lượng áo Vest. Khi bán ra thị trường, một cái áo Vest lãi $250$ nghìn đồng và một chiếc quần Âu lãi $100$ nghìn đồng. Hỏi số tiền lãi cao nhất mà phân xưởng có thể thu được bằng bao nhiêu triệu đồng? (làm tròn đến hàng đơn vị)"
+    }
+  ]
+}

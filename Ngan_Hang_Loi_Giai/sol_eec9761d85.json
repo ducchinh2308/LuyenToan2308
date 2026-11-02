@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_eec9761d85",
+  "dapAn": "TFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Đây là nội dung của định lí hàm số côsin. Mệnh đề đúng.\r\n\t\t\t\\itemch Công thức tính diện tích tam giác là $S=\\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A$, không phải là $\\cos A$. Mệnh đề sai.\r\n\t\t\t\\itemch Áp dụng định lí côsin:\\\\\r\n\t\t\t$BC = \\sqrt{AB^2+AC^2-2AB \\cdot AC \\cdot \\cos A} = \\sqrt{6^2+8^2-2 \\cdot 6 \\cdot 8 \\cdot \\cos 130^\\circ} \\approx 12{,}7\\text{ (cm)}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Diện tích tam giác $ABC$ là:\\\\\r\n\t\t\t$S = \\displaystyle \\frac{1}{2}AB \\cdot AC \\cdot \\sin A = \\frac{1}{2} \\cdot 6 \\cdot 8 \\cdot \\sin 130^\\circ \\approx 18{,}4\\text{ (cm}^2)$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}

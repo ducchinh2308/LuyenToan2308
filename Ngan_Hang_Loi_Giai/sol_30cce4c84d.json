@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_30cce4c84d",
+  "dapAn": "59,9",
+  "loiGiai": "Ta có $\\widehat{A} = 180^\\circ - (\\widehat{B}+\\widehat{C}) = 180^\\circ - (60^\\circ+50^\\circ) = 70^\\circ$.\\\\\r\n\t\tÁp dụng định lí sin, ta có: $\\displaystyle \\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.\\\\\r\n\t\tSuy ra: $b = \\displaystyle \\frac{a \\cdot \\sin B}{\\sin A} = \\frac{65 \\cdot \\sin 60^\\circ}{\\sin 70^\\circ} \\approx 59{,}9\\text{ (cm)}$."
+}

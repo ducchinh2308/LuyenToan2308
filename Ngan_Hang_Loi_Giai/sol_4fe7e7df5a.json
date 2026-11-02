@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4fe7e7df5a",
+  "dapAn": "A",
+  "loiGiai": "Ta lần lượt kiểm tra tính đúng sai của từng mệnh đề:\\\\\r\n\t\tVới $x=7$: $P(7) \\Leftrightarrow 2(7)+10 \\le 7^2 \\Leftrightarrow 24 \\le 49$ (Đúng).\\\\\r\n\t\tVới $x=3$: $P(3) \\Leftrightarrow 2(3)+10 \\le 3^2 \\Leftrightarrow 16 \\le 9$ (Sai).\\\\\r\n\t\tVới $x=0$: $P(0) \\Leftrightarrow 2(0)+10 \\le 0^2 \\Leftrightarrow 10 \\le 0$ (Sai).\\\\\r\n\t\tVới $x=4$: $P(4) \\Leftrightarrow 2(4)+10 \\le 4^2 \\Leftrightarrow 18 \\le 16$ (Sai).\\\\\r\n\t\tVậy $P(7)$ là mệnh đề đúng."
+}
