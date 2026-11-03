@@ -353,8 +353,384 @@ window.ham_23_2_quet_nhiem_vu_de_xuat_excel = async function () {
 
 
 
+// // =====================================================================
+// // HÀM 23.3: THỰC THI GOM ĐIỂM VÀ HIỂN THỊ BẢNG XEM TRƯỚC (PREVIEW)
+// // =====================================================================
+// window.ham_23_3_thuc_thi_xuat_excel = async function () {
+//     const checkboxes = document.querySelectorAll('.chk-xuat-diem:checked');
+//     if (checkboxes.length === 0) {
+//         Swal.showValidationMessage('⚠️ Vui lòng Quét và Chọn ít nhất 1 nhiệm vụ để xem trước bảng điểm!');
+//         return false;
+//     }
+
+//     const maLop = window.DataXuatDiem_MaLop;
+
+//     // Thu thập các nhiệm vụ đã chọn
+//     let dsNhiemVuChon = [];
+//     checkboxes.forEach(chk => {
+//         const nvGoc = window.DataXuatDiem_NhiemVu.find(n => n.ma_nhiem_vu === chk.value);
+//         dsNhiemVuChon.push({
+//             ma_nhiem_vu: chk.value,
+//             loai: chk.getAttribute('data-loai'),
+//             ten: nvGoc.ten_nhiem_vu
+//         });
+//     });
+
+//     Swal.fire({ title: '⏳ Đang tổng hợp kết quả...', text: 'Việc này có thể mất vài giây...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//     try {
+//         // 1. Tải danh sách học sinh của lớp đó
+//         const { data: dsHS } = await _supabase.from('hoc_sinh').select('uid, ten, sdt, danh_sach_ma_lop');
+//         let dsHocSinhLop = (dsHS || []).filter(hs => {
+//             let arrLop = [];
+//             try { arrLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//             return arrLop.includes(maLop);
+//         });
+
+//         // Sắp xếp học sinh theo Tên (chữ cái cuối cùng)
+//         const getTenCuoi = (fullName) => {
+//             if (!fullName) return "";
+//             let parts = fullName.trim().split(" ");
+//             return parts[parts.length - 1].toLowerCase();
+//         };
+//         dsHocSinhLop.sort((a, b) => getTenCuoi(a.ten).localeCompare(getTenCuoi(b.ten), 'vi'));
+
+//         // 2. Tải toàn bộ Điểm số của các Nhiệm vụ được chọn
+//         const maNhiemVuTN = dsNhiemVuChon.filter(n => n.loai === 'TN').map(n => n.ma_nhiem_vu);
+//         const maNhiemVuTL = dsNhiemVuChon.filter(n => n.loai === 'TL').map(n => n.ma_nhiem_vu);
+
+//         // Cấu trúc Map lưu điểm: mapDiem[UID_HocSinh][Ma_Nhiem_Vu] = DiemSo
+//         let mapDiem = {};
+
+//         if (maNhiemVuTN.length > 0) {
+//             const { data: kqTN } = await _supabase.from('ket_qua_trac_nghiem')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+//                 .in('ma_nhiem_vu', maNhiemVuTN)
+//                 .order('thoi_gian_nop', { ascending: false });
+
+//             if (kqTN) {
+//                 kqTN.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+//                     }
+//                 });
+//             }
+//         }
+
+//         if (maNhiemVuTL.length > 0) {
+//             const { data: kqTL } = await _supabase.from('ket_qua_tu_luan')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+//                 .in('ma_nhiem_vu', maNhiemVuTL)
+//                 .order('thoi_gian_nop', { ascending: false });
+
+//             if (kqTL) {
+//                 kqTL.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+//                     }
+//                 });
+//             }
+//         }
+
+//         // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML XEM TRƯỚC (PREVIEW) VÀ DỮ LIỆU THUẦN CHO EXCEL
+//         // Mảng 2 chiều chứa dữ liệu thuần túy để gửi cho thư viện tạo Excel sau này
+//         let dataForExcel = [];
+//         let headerRow = ['STT', 'Họ và Tên Học Sinh', 'Tên đăng nhập'];
+//         dsNhiemVuChon.forEach(nv => headerRow.push(nv.ten));
+//         headerRow.push('Điểm Trung Bình');
+//         dataForExcel.push(headerRow);
+
+//         let htmlTable = `
+//             <div style="max-height: 450px; overflow-y: auto; overflow-x: auto; border: 1px solid #ced4da; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); background:#fff;">
+//                 <table style="width: 100%; border-collapse: collapse; min-width: ${500 + dsNhiemVuChon.length * 100}px; font-size: 13px;">
+//                     <thead style="position: sticky; top: 0; z-index: 2;">
+//                         <tr style="background-color: #0070C0; color: white;">
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 40px; text-align: center; white-space: nowrap;">STT</th>
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 180px; text-align: left; white-space: nowrap;">Họ và Tên Học Sinh</th>
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 120px; text-align: center; white-space: nowrap;">Tên ĐN</th>
+//         `;
+
+//         dsNhiemVuChon.forEach(nv => {
+//             htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #28a745; min-width: 100px; text-align: center;">${nv.ten}</th>`;
+//         });
+//         htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #dc3545; min-width: 80px; text-align: center;">ĐTB</th></tr></thead><tbody>`;
+
+//         dsHocSinhLop.forEach((hs, index) => {
+//             let rowData = [index + 1, hs.ten, hs.sdt || '']; // Dữ liệu cho dòng Excel
+
+//             htmlTable += `
+//                 <tr style="border-bottom: 1px solid #eee;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='#fff'">
+//                     <td style="padding: 8px; text-align: center; font-weight: bold; color: #555; border: 1px solid #dee2e6;">${index + 1}</td>
+//                     <td style="padding: 8px; font-weight: bold; color: #333; border: 1px solid #dee2e6;">${hs.ten}</td>
+//                     <td style="padding: 8px; text-align: center; color: #17a2b8; border: 1px solid #dee2e6;">${hs.sdt || ''}</td>
+//             `;
+
+//             let tongDiemHS = 0;
+//             let soCotCoDiem = 0;
+
+//             dsNhiemVuChon.forEach(nv => {
+//                 let diem = '';
+//                 if (mapDiem[hs.uid] && mapDiem[hs.uid][nv.ma_nhiem_vu] !== undefined && mapDiem[hs.uid][nv.ma_nhiem_vu] !== null) {
+//                     diem = parseFloat(mapDiem[hs.uid][nv.ma_nhiem_vu]);
+//                     tongDiemHS += diem;
+//                     soCotCoDiem++;
+//                 }
+
+//                 rowData.push(diem !== '' ? diem : null);
+
+//                 htmlTable += `<td style="padding: 8px; text-align: center; font-weight: 500; color: ${diem !== '' ? '#d35400' : '#ccc'}; border: 1px solid #dee2e6;">${diem !== '' ? diem : '-'}</td>`;
+//             });
+
+//             let dtb = soCotCoDiem > 0 ? parseFloat((tongDiemHS / soCotCoDiem).toFixed(2)) : null;
+//             rowData.push(dtb);
+
+//             htmlTable += `<td style="padding: 8px; text-align: center; font-weight: bold; color: #dc3545; border: 1px solid #dee2e6; background:#fff5f5;">${dtb !== null ? dtb : '-'}</td></tr>`;
+
+//             dataForExcel.push(rowData);
+//         });
+
+//         htmlTable += `</tbody></table></div>`;
+
+//         // Lưu mảng 2 chiều vào RAM để lúc click Xuất sẽ dùng tới
+//         window.DataXuatDiem_ExportArray = dataForExcel;
+
+//         // 4. HIỂN THỊ POPUP BẢNG XEM TRƯỚC (RỘNG RÃI)
+//         Swal.fire({
+//             title: `👀 BẢNG ĐIỂM: LỚP ${maLop}`,
+//             html: htmlTable,
+//             width: '90vw', // Mở rộng tối đa màn hình
+//             showCancelButton: true,
+//             cancelButtonText: 'Đóng lại',
+//             confirmButtonText: '📥 XÁC NHẬN XUẤT EXCEL (.xlsx)',
+//             confirmButtonColor: '#28a745',
+//             cancelButtonColor: '#6c757d',
+//             allowOutsideClick: false,
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 // Gọi hàm phụ để tạo file XLSX thật sự
+//                 ham_23_4_tao_file_xlsx_that(maLop, dsNhiemVuChon.length);
+//             }
+//         });
+
+//         return true;
+
+//     } catch (error) {
+//         Swal.fire('Lỗi xuất file', error.message, 'error');
+//         return false;
+//     }
+// };
+
+
+// // =====================================================================
+// // HÀM 23.3: THỰC THI GOM ĐIỂM, PHÂN LOẠI TRẠNG THÁI VÀ HIỂN THỊ PREVIEW
+// // =====================================================================
+// window.ham_23_3_thuc_thi_xuat_excel = async function () {
+//     const checkboxes = document.querySelectorAll('.chk-xuat-diem:checked');
+//     if (checkboxes.length === 0) {
+//         Swal.showValidationMessage('⚠️ Vui lòng Quét và Chọn ít nhất 1 nhiệm vụ để xem trước bảng điểm!');
+//         return false;
+//     }
+
+//     const maLop = window.DataXuatDiem_MaLop;
+
+//     // Thu thập các nhiệm vụ đã chọn
+//     let dsNhiemVuChon = [];
+//     checkboxes.forEach(chk => {
+//         const nvGoc = window.DataXuatDiem_NhiemVu.find(n => n.ma_nhiem_vu === chk.value);
+//         dsNhiemVuChon.push({
+//             ma_nhiem_vu: chk.value,
+//             loai: chk.getAttribute('data-loai'),
+//             ten: nvGoc.ten_nhiem_vu
+//         });
+//     });
+
+//     Swal.fire({ title: '⏳ Đang tổng hợp kết quả...', text: 'Việc này có thể mất vài giây...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+//     try {
+//         // 1. Tải danh sách học sinh của lớp đó
+//         const { data: dsHS } = await _supabase.from('hoc_sinh').select('uid, ten, sdt, danh_sach_ma_lop');
+//         let dsHocSinhLop = (dsHS || []).filter(hs => {
+//             let arrLop = [];
+//             try { arrLop = typeof hs.danh_sach_ma_lop === 'string' ? JSON.parse(hs.danh_sach_ma_lop) : (hs.danh_sach_ma_lop || []); } catch (e) { }
+//             return arrLop.includes(maLop);
+//         });
+
+//         // Sắp xếp học sinh theo Tên (chữ cái cuối cùng)
+//         const getTenCuoi = (fullName) => {
+//             if (!fullName) return "";
+//             let parts = fullName.trim().split(" ");
+//             return parts[parts.length - 1].toLowerCase();
+//         };
+//         dsHocSinhLop.sort((a, b) => getTenCuoi(a.ten).localeCompare(getTenCuoi(b.ten), 'vi'));
+
+//         // 2. Tải toàn bộ Điểm số của các Nhiệm vụ được chọn (Bổ sung lấy trang_thai_cham)
+//         const maNhiemVuTN = dsNhiemVuChon.filter(n => n.loai === 'TN').map(n => n.ma_nhiem_vu);
+//         const maNhiemVuTL = dsNhiemVuChon.filter(n => n.loai === 'TL').map(n => n.ma_nhiem_vu);
+
+//         // Cấu trúc Map lưu điểm: mapDiem[UID_HocSinh][Ma_Nhiem_Vu] = { diem, trang_thai_cham }
+//         let mapDiem = {};
+
+//         if (maNhiemVuTN.length > 0) {
+//             const { data: kqTN } = await _supabase.from('ket_qua_trac_nghiem')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop, trang_thai_cham')
+//                 .in('ma_nhiem_vu', maNhiemVuTN)
+//                 .order('thoi_gian_nop', { ascending: false });
+
+//             if (kqTN) {
+//                 kqTN.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = { diem: kq.tong_diem, trang_thai_cham: kq.trang_thai_cham };
+//                     }
+//                 });
+//             }
+//         }
+
+//         if (maNhiemVuTL.length > 0) {
+//             const { data: kqTL } = await _supabase.from('ket_qua_tu_luan')
+//                 .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop, trang_thai_cham')
+//                 .in('ma_nhiem_vu', maNhiemVuTL)
+//                 .order('thoi_gian_nop', { ascending: false });
+
+//             if (kqTL) {
+//                 kqTL.forEach(kq => {
+//                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
+//                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
+//                         mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = { diem: kq.tong_diem, trang_thai_cham: kq.trang_thai_cham };
+//                     }
+//                 });
+//             }
+//         }
+
+//         // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML XEM TRƯỚC (PREVIEW) VÀ DỮ LIỆU THUẦN CHO EXCEL
+//         let dataForExcel = [];
+//         let headerRow = ['STT', 'Họ và Tên Học Sinh', 'Tên đăng nhập'];
+//         dsNhiemVuChon.forEach(nv => headerRow.push(nv.ten));
+//         headerRow.push('Điểm Trung Bình');
+//         dataForExcel.push(headerRow);
+
+//         let htmlTable = `
+//             <div style="max-height: 450px; overflow-y: auto; overflow-x: auto; border: 1px solid #ced4da; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); background:#fff;">
+//                 <table style="width: 100%; border-collapse: collapse; min-width: ${500 + dsNhiemVuChon.length * 120}px; font-size: 13px;">
+//                     <thead style="position: sticky; top: 0; z-index: 2;">
+//                         <tr style="background-color: #0070C0; color: white;">
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 40px; text-align: center; white-space: nowrap;">STT</th>
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 180px; text-align: left; white-space: nowrap;">Họ và Tên Học Sinh</th>
+//                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 120px; text-align: center; white-space: nowrap;">Tên ĐN</th>
+//         `;
+
+//         dsNhiemVuChon.forEach(nv => {
+//             htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #28a745; min-width: 120px; text-align: center;">${nv.ten}</th>`;
+//         });
+//         htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #dc3545; min-width: 80px; text-align: center;">ĐTB</th></tr></thead><tbody>`;
+
+//         dsHocSinhLop.forEach((hs, index) => {
+//             let rowData = [index + 1, hs.ten, hs.sdt || '']; // Dữ liệu cho dòng Excel
+
+//             htmlTable += `
+//                 <tr style="border-bottom: 1px solid #eee;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='#fff'">
+//                     <td style="padding: 8px; text-align: center; font-weight: bold; color: #555; border: 1px solid #dee2e6;">${index + 1}</td>
+//                     <td style="padding: 8px; font-weight: bold; color: #333; border: 1px solid #dee2e6;">${hs.ten}</td>
+//                     <td style="padding: 8px; text-align: center; color: #17a2b8; border: 1px solid #dee2e6;">${hs.sdt || ''}</td>
+//             `;
+
+//             let tongDiemHS = 0;
+//             let soCotCoDiem = 0;
+
+//             dsNhiemVuChon.forEach(nv => {
+//                 let cellDataExcel = '';
+//                 let cellHtml = '';
+
+//                 let kq = mapDiem[hs.uid] ? mapDiem[hs.uid][nv.ma_nhiem_vu] : null;
+
+//                 if (!kq) {
+//                     // CHƯA NỘP BÀI
+//                     cellDataExcel = 'Chưa nộp';
+//                     cellHtml = `<span style="color: #dc3545; font-size: 11px; font-weight: bold; background: #ffe3e6; padding: 3px 8px; border-radius: 4px;">Chưa nộp</span>`;
+//                 } else {
+//                     if (nv.loai === 'TL') {
+//                         // NHIỆM VỤ TỰ LUẬN
+//                         if (kq.trang_thai_cham === 1) {
+//                             let d = parseFloat(kq.diem);
+//                             if (!isNaN(d)) {
+//                                 cellDataExcel = d; // Xuất ra số
+//                                 cellHtml = `<b style="color: #28a745; font-size: 15px;">${d}</b>`;
+//                                 tongDiemHS += d;
+//                                 soCotCoDiem++;
+//                             } else {
+//                                 cellDataExcel = 'Đã chấm (Chữ)';
+//                                 cellHtml = `<span style="color: #17a2b8; font-size: 11px; font-weight: bold;">Đã chấm (Chữ)</span>`;
+//                             }
+//                         } else {
+//                             cellDataExcel = 'Chưa chấm';
+//                             cellHtml = `<span style="color: #d35400; font-size: 11px; font-weight: bold; background: #ffe8d6; padding: 3px 8px; border-radius: 4px;">Chưa chấm</span>`;
+//                         }
+//                     } else {
+//                         // NHIỆM VỤ TRẮC NGHIỆM
+//                         let d = parseFloat(kq.diem);
+//                         if (!isNaN(d)) {
+//                             cellDataExcel = d; // Xuất ra số
+//                             cellHtml = `<b style="color: #28a745; font-size: 15px;">${d}</b>`;
+//                             tongDiemHS += d;
+//                             soCotCoDiem++;
+//                         } else {
+//                             cellDataExcel = 0;
+//                             cellHtml = `<b style="color: #28a745; font-size: 15px;">0</b>`;
+//                             tongDiemHS += 0;
+//                             soCotCoDiem++;
+//                         }
+//                     }
+//                 }
+
+//                 rowData.push(cellDataExcel);
+//                 htmlTable += `<td style="padding: 8px; text-align: center; border: 1px solid #dee2e6;">${cellHtml}</td>`;
+//             });
+
+//             // Tính Điểm Trung Bình (Chỉ chia cho các cột thực sự có số)
+//             let dtb = soCotCoDiem > 0 ? parseFloat((tongDiemHS / soCotCoDiem).toFixed(2)) : null;
+//             rowData.push(dtb !== null ? dtb : '');
+
+//             htmlTable += `<td style="padding: 8px; text-align: center; font-weight: bold; color: #dc3545; border: 1px solid #dee2e6; background:#fff5f5;">${dtb !== null ? dtb : '-'}</td></tr>`;
+
+//             dataForExcel.push(rowData);
+//         });
+
+//         htmlTable += `</tbody></table></div>`;
+
+//         // Lưu mảng 2 chiều vào RAM để lúc click Xuất sẽ dùng tới
+//         window.DataXuatDiem_ExportArray = dataForExcel;
+
+//         // 4. HIỂN THỊ POPUP BẢNG XEM TRƯỚC (PREVIEW)
+//         Swal.fire({
+//             title: `👀 BẢNG ĐIỂM: LỚP ${maLop}`,
+//             html: htmlTable,
+//             width: '90vw',
+//             showCancelButton: true,
+//             cancelButtonText: 'Đóng lại',
+//             confirmButtonText: '📥 XÁC NHẬN XUẤT EXCEL (.xlsx)',
+//             confirmButtonColor: '#28a745',
+//             cancelButtonColor: '#6c757d',
+//             allowOutsideClick: false,
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 // Gọi hàm phụ 23.4 tạo file XLSX
+//                 ham_23_4_tao_file_xlsx_that(maLop, dsNhiemVuChon.length);
+//             }
+//         });
+
+//         return true;
+
+//     } catch (error) {
+//         Swal.fire('Lỗi xuất file', error.message, 'error');
+//         return false;
+//     }
+// };
+
+
 // =====================================================================
-// HÀM 23.3: THỰC THI GOM ĐIỂM VÀ HIỂN THỊ BẢNG XEM TRƯỚC (PREVIEW)
+// HÀM 23.3: THỰC THI GOM ĐIỂM, PHÂN LOẠI TRẠNG THÁI VÀ HIỂN THỊ PREVIEW (TÍCH HỢP CLICK NHẬP ĐIỂM TRỰC TIẾP)
 // =====================================================================
 window.ham_23_3_thuc_thi_xuat_excel = async function () {
     const checkboxes = document.querySelectorAll('.chk-xuat-diem:checked');
@@ -399,12 +775,11 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
         const maNhiemVuTN = dsNhiemVuChon.filter(n => n.loai === 'TN').map(n => n.ma_nhiem_vu);
         const maNhiemVuTL = dsNhiemVuChon.filter(n => n.loai === 'TL').map(n => n.ma_nhiem_vu);
 
-        // Cấu trúc Map lưu điểm: mapDiem[UID_HocSinh][Ma_Nhiem_Vu] = DiemSo
         let mapDiem = {};
 
         if (maNhiemVuTN.length > 0) {
             const { data: kqTN } = await _supabase.from('ket_qua_trac_nghiem')
-                .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+                .select('id, uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop, trang_thai_cham')
                 .in('ma_nhiem_vu', maNhiemVuTN)
                 .order('thoi_gian_nop', { ascending: false });
 
@@ -412,7 +787,7 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
                 kqTN.forEach(kq => {
                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
-                        mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+                        mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = { id: kq.id, diem: kq.tong_diem, trang_thai_cham: kq.trang_thai_cham };
                     }
                 });
             }
@@ -420,7 +795,7 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
 
         if (maNhiemVuTL.length > 0) {
             const { data: kqTL } = await _supabase.from('ket_qua_tu_luan')
-                .select('uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop')
+                .select('id, uid_hoc_sinh, ma_nhiem_vu, tong_diem, thoi_gian_nop, trang_thai_cham')
                 .in('ma_nhiem_vu', maNhiemVuTL)
                 .order('thoi_gian_nop', { ascending: false });
 
@@ -428,14 +803,12 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
                 kqTL.forEach(kq => {
                     if (!mapDiem[kq.uid_hoc_sinh]) mapDiem[kq.uid_hoc_sinh] = {};
                     if (mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] === undefined) {
-                        mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = kq.tong_diem;
+                        mapDiem[kq.uid_hoc_sinh][kq.ma_nhiem_vu] = { id: kq.id, diem: kq.tong_diem, trang_thai_cham: kq.trang_thai_cham };
                     }
                 });
             }
         }
 
-        // 3. THUẬT TOÁN XÂY DỰNG BẢNG HTML XEM TRƯỚC (PREVIEW) VÀ DỮ LIỆU THUẦN CHO EXCEL
-        // Mảng 2 chiều chứa dữ liệu thuần túy để gửi cho thư viện tạo Excel sau này
         let dataForExcel = [];
         let headerRow = ['STT', 'Họ và Tên Học Sinh', 'Tên đăng nhập'];
         dsNhiemVuChon.forEach(nv => headerRow.push(nv.ten));
@@ -444,7 +817,7 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
 
         let htmlTable = `
             <div style="max-height: 450px; overflow-y: auto; overflow-x: auto; border: 1px solid #ced4da; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); background:#fff;">
-                <table style="width: 100%; border-collapse: collapse; min-width: ${500 + dsNhiemVuChon.length * 100}px; font-size: 13px;">
+                <table style="width: 100%; border-collapse: collapse; min-width: ${500 + dsNhiemVuChon.length * 120}px; font-size: 13px;">
                     <thead style="position: sticky; top: 0; z-index: 2;">
                         <tr style="background-color: #0070C0; color: white;">
                             <th style="padding: 10px; border: 1px solid #dee2e6; width: 40px; text-align: center; white-space: nowrap;">STT</th>
@@ -453,12 +826,12 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
         `;
 
         dsNhiemVuChon.forEach(nv => {
-            htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #28a745; min-width: 100px; text-align: center;">${nv.ten}</th>`;
+            htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #28a745; min-width: 120px; text-align: center;">${nv.ten}</th>`;
         });
         htmlTable += `<th style="padding: 10px; border: 1px solid #dee2e6; background-color: #dc3545; min-width: 80px; text-align: center;">ĐTB</th></tr></thead><tbody>`;
 
         dsHocSinhLop.forEach((hs, index) => {
-            let rowData = [index + 1, hs.ten, hs.sdt || '']; // Dữ liệu cho dòng Excel
+            let rowData = [index + 1, hs.ten, hs.sdt || ''];
 
             htmlTable += `
                 <tr style="border-bottom: 1px solid #eee;" onmouseover="this.style.background='#f1f8ff'" onmouseout="this.style.background='#fff'">
@@ -471,20 +844,59 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
             let soCotCoDiem = 0;
 
             dsNhiemVuChon.forEach(nv => {
-                let diem = '';
-                if (mapDiem[hs.uid] && mapDiem[hs.uid][nv.ma_nhiem_vu] !== undefined && mapDiem[hs.uid][nv.ma_nhiem_vu] !== null) {
-                    diem = parseFloat(mapDiem[hs.uid][nv.ma_nhiem_vu]);
-                    tongDiemHS += diem;
-                    soCotCoDiem++;
+                let cellDataExcel = '';
+                let cellHtml = '';
+
+                let kq = mapDiem[hs.uid] ? mapDiem[hs.uid][nv.ma_nhiem_vu] : null;
+                let tenHSafe = hs.ten.replace(/'/g, "\\'");
+
+                if (!kq) {
+                    // CHƯA NỘP BÀI -> BẤM VÀO ĐỂ NHẬP ĐIỂM GIẤY NHANH
+                    cellDataExcel = 'Chưa nộp';
+                    cellHtml = `<span onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', null, '')" title="Bấm để nhập điểm giấy" style="color: #dc3545; font-size: 11px; font-weight: bold; background: #ffe3e6; padding: 3px 8px; border-radius: 4px; cursor: pointer; display: inline-block; transition: 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">Chưa nộp ✏️</span>`;
+                } else {
+                    let idKqStr = kq.id ? `'${kq.id}'` : 'null';
+                    let diemHienTai = kq.diem !== null && kq.diem !== undefined ? kq.diem : '';
+
+                    if (nv.loai === 'TL') {
+                        if (kq.trang_thai_cham === 1) {
+                            let d = parseFloat(kq.diem);
+                            if (!isNaN(d)) {
+                                cellDataExcel = d;
+                                cellHtml = `<b onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', ${idKqStr}, ${d})" title="Bấm để sửa điểm" style="color: #28a745; font-size: 15px; cursor: pointer;">${d} ✏️</b>`;
+                                tongDiemHS += d;
+                                soCotCoDiem++;
+                            } else {
+                                cellDataExcel = 'Đã chấm (Chữ)';
+                                cellHtml = `<span onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', ${idKqStr}, '')" title="Bấm để sửa" style="color: #17a2b8; font-size: 11px; font-weight: bold; cursor: pointer;">Đã chấm (Chữ) ✏️</span>`;
+                            }
+                        } else {
+                            cellDataExcel = 'Chưa chấm';
+                            cellHtml = `<span onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', ${idKqStr}, '')" title="Bấm để chấm điểm" style="color: #d35400; font-size: 11px; font-weight: bold; background: #ffe8d6; padding: 3px 8px; border-radius: 4px; cursor: pointer;">Chưa chấm ✏️</span>`;
+                        }
+                    } else {
+                        // TRẮC NGHIỆM
+                        let d = parseFloat(kq.diem);
+                        if (!isNaN(d)) {
+                            cellDataExcel = d;
+                            cellHtml = `<b onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', ${idKqStr}, ${d})" title="Bấm để sửa điểm" style="color: #28a745; font-size: 15px; cursor: pointer;">${d} ✏️</b>`;
+                            tongDiemHS += d;
+                            soCotCoDiem++;
+                        } else {
+                            cellDataExcel = 0;
+                            cellHtml = `<b onclick="ham_23_5_nhap_diem_nhanh_tu_preview('${hs.uid}', '${tenHSafe}', '${nv.ma_nhiem_vu}', '${nv.loai}', ${idKqStr}, 0)" title="Bấm để sửa" style="color: #28a745; font-size: 15px; cursor: pointer;">0 ✏️</b>`;
+                            tongDiemHS += 0;
+                            soCotCoDiem++;
+                        }
+                    }
                 }
 
-                rowData.push(diem !== '' ? diem : null);
-
-                htmlTable += `<td style="padding: 8px; text-align: center; font-weight: 500; color: ${diem !== '' ? '#d35400' : '#ccc'}; border: 1px solid #dee2e6;">${diem !== '' ? diem : '-'}</td>`;
+                rowData.push(cellDataExcel);
+                htmlTable += `<td style="padding: 8px; text-align: center; border: 1px solid #dee2e6;">${cellHtml}</td>`;
             });
 
             let dtb = soCotCoDiem > 0 ? parseFloat((tongDiemHS / soCotCoDiem).toFixed(2)) : null;
-            rowData.push(dtb);
+            rowData.push(dtb !== null ? dtb : '');
 
             htmlTable += `<td style="padding: 8px; text-align: center; font-weight: bold; color: #dc3545; border: 1px solid #dee2e6; background:#fff5f5;">${dtb !== null ? dtb : '-'}</td></tr>`;
 
@@ -492,15 +904,12 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
         });
 
         htmlTable += `</tbody></table></div>`;
-
-        // Lưu mảng 2 chiều vào RAM để lúc click Xuất sẽ dùng tới
         window.DataXuatDiem_ExportArray = dataForExcel;
 
-        // 4. HIỂN THỊ POPUP BẢNG XEM TRƯỚC (RỘNG RÃI)
         Swal.fire({
             title: `👀 BẢNG ĐIỂM: LỚP ${maLop}`,
             html: htmlTable,
-            width: '90vw', // Mở rộng tối đa màn hình
+            width: '90vw',
             showCancelButton: true,
             cancelButtonText: 'Đóng lại',
             confirmButtonText: '📥 XÁC NHẬN XUẤT EXCEL (.xlsx)',
@@ -509,7 +918,6 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
             allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                // Gọi hàm phụ để tạo file XLSX thật sự
                 ham_23_4_tao_file_xlsx_that(maLop, dsNhiemVuChon.length);
             }
         });
@@ -520,6 +928,78 @@ window.ham_23_3_thuc_thi_xuat_excel = async function () {
         Swal.fire('Lỗi xuất file', error.message, 'error');
         return false;
     }
+};
+
+// =====================================================================
+// HÀM 23.5 (MỚI): HỖ TRỢ BẬT POPUP NHẬP ĐIỂM NGAY TỪ BẢNG XEM TRƯỚC (PREVIEW)
+// =====================================================================
+window.ham_23_5_nhap_diem_nhanh_tu_preview = function (uidHocSinh, tenHocSinh, maNhiemVu, loaiNhiemVu, idKetQua, diemCu) {
+    Swal.fire({
+        title: '📝 NHẬP ĐIỂM NHANH',
+        html: `Học sinh: <b style="color:#0056b3;">${tenHocSinh}</b><br><br>Nhập điểm số đạt được:`,
+        input: 'number',
+        inputValue: diemCu !== undefined && diemCu !== null ? diemCu : '',
+        inputAttributes: { step: 0.1, min: 0, max: 100 },
+        showCancelButton: true,
+        confirmButtonText: '💾 Lưu điểm',
+        cancelButtonText: 'Hủy',
+        confirmButtonColor: '#28a745',
+        showLoaderOnConfirm: true,
+        preConfirm: async (diemMoi) => {
+            if (diemMoi === '') return Swal.showValidationMessage('Vui lòng nhập điểm!');
+            const diemSo = parseFloat(diemMoi);
+
+            try {
+                let tableName = (loaiNhiemVu === 'TL') ? 'ket_qua_tu_luan' : 'ket_qua_trac_nghiem';
+
+                if (idKetQua && idKetQua !== 'null') {
+                    let payload = {
+                        tong_diem: diemSo,
+                        trang_thai_cham: 1
+                    };
+                    if (loaiNhiemVu === 'TN') {
+                        payload.thoi_gian_lam_bai = 'Nhập tay (Giấy)';
+                    }
+                    const { error } = await _supabase.from(tableName).update(payload).eq('id', idKetQua);
+                    if (error) throw error;
+                } else {
+                    let payload = {
+                        uid_hoc_sinh: uidHocSinh,
+                        ma_nhiem_vu: maNhiemVu,
+                        tong_diem: diemSo,
+                        trang_thai_cham: 1,
+                        thoi_gian_nop: new Date().toISOString()
+                    };
+                    if (loaiNhiemVu === 'TN') {
+                        payload.lan_thu = 1;
+                        payload.trang_thai_lam_bai = 'da_nop';
+                        payload.thoi_gian_lam_bai = 'Nhập tay (Giấy)';
+                        payload.chi_tiet_lam_bai = [];
+                    } else {
+                        payload.chi_tiet_lam_bai = { luot_nop: 1, ghi_chu: "Nhập điểm trực tiếp từ bảng tổng hợp" };
+                    }
+                    const { error } = await _supabase.from(tableName).insert([payload]);
+                    if (error) throw error;
+                }
+                return true;
+            } catch (e) {
+                Swal.showValidationMessage('Lỗi hệ thống: ' + e.message);
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Thành công',
+                text: 'Đã cập nhật điểm vào hệ thống!',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                // Tự động load lại bảng Xem trước (Preview) để cập nhật số điểm mới ngay lập tức
+                window.ham_23_3_thuc_thi_xuat_excel();
+            });
+        }
+    });
 };
 
 // =====================================================================

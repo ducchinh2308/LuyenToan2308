@@ -288,11 +288,22 @@ async function ham_7a_3_hien_form_them_nhiem_vu_trac_nghiem() {
 
     try {
         const tapKyTu = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+
         let chuoiNgauNhien = '';
         for (let i = 0; i < 6; i++) {
             chuoiNgauNhien += tapKyTu.charAt(Math.floor(Math.random() * tapKyTu.length));
         }
         const maNV_MacDinh = "NV_TN_" + chuoiNgauNhien;
+
+
+        // 🌟 LẤY THỜI GIAN HIỆN HÀNH CHUẨN ĐỊNH DẠNG DATETIME-LOCAL
+        const now = new Date();
+        const valNow = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + 'T' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+
+
+
 
         const { data: dsHocLieu } = await _supabase.from('hoc_lieu_trac_nghiem').select('*').order('ngay_tao', { ascending: false });
         window.tempDsHocLieu = dsHocLieu || [];
@@ -424,7 +435,7 @@ async function ham_7a_3_hien_form_them_nhiem_vu_trac_nghiem() {
 
                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
                             <label style="width: 160px; font-size: 13px; font-weight:bold;">📅 Mở Lúc:</label>
-                            <input type="datetime-local" id="add_nv_mo" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
+                            <input type="datetime-local" id="add_nv_mo" value="${valNow}" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif;">
                         </div>
 
                         <div style="display: flex; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid #eee;">
