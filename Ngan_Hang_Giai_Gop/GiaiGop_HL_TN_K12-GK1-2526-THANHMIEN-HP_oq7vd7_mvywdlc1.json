@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-02T06:48:14.397Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_c2725b1fb3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, ta thấy $y' < 0$ trên khoảng $(1;3)$.\\\\\r\n\t\tVậy hàm số nghịch biến trên khoảng $(1;3)$."
+    },
+    {
+      "maBaoMat": "sol_a6ca37cc61",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, điểm cực đại của đồ thị là $M(-1;3)$.\\\\\r\n\t\tHàm số $f(x)$ đạt cực đại tại hoành độ của điểm cực đại, tức là tại $x = -1$."
+    },
+    {
+      "maBaoMat": "sol_1f708d0ab4",
+      "dapAn": "B",
+      "loiGiaiHtml": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa có đạo hàm $y' = \\displaystyle \\frac{1(1) - (-2)(1)}{(x+1)^2} = \\frac{3}{(x+1)^2} > 0, \\forall x \\ne -1$.\\\\\r\n\t\tVậy hàm số đồng biến trên từng khoảng xác định là $(-\\infty;-1)$ và $(-1;+\\infty)$.\\\\\r\n\t\tLưu ý: Không dùng ký hiệu $\\cup$ hoặc $\\mathbb{R} \\setminus \\{-1\\}$ để kết luận khoảng đồng biến."
+    },
+    {
+      "maBaoMat": "sol_6595395907",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo định lý về dấu của đạo hàm và sự biến thiên của hàm số:\\\\\r\n\t\tNếu $f'(x) > 0, \\forall x \\in \\mathbb{R}$ thì hàm số $f(x)$ đồng biến trên $\\mathbb{R}$. Mệnh đề B đúng.\\\\\r\n\t\tMệnh đề D sai vì $f'(x)<0$ thì hàm số nghịch biến.\\\\\r\n\t\tMệnh đề C sai vì $f'(x)=0$ thì hàm số là hàm hằng.\\\\\r\n\t\tMệnh đề A sai vì $f'(x) \\ne 0$ có thể mang dấu âm, lúc đó hàm số nghịch biến."
+    },
+    {
+      "maBaoMat": "sol_8ee6e8bb59",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên trên đoạn $[0;3]$, ta thấy hàm số giảm từ $0$ xuống $-4$ tại $x=1$, sau đó tăng lên $-3$ tại $x=3$.\\\\\r\n\t\tĐiểm thấp nhất của đồ thị trên đoạn này có tung độ là $-4$.\\\\\r\n\t\tVậy giá trị nhỏ nhất của hàm số trên đoạn $[0;3]$ là $-4$."
+    },
+    {
+      "maBaoMat": "sol_e277b0e5fe",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tập xác định của hàm số là $D = \\mathbb{R}$.\\\\\r\n\t\tTa có: $-1 \\le \\sin 2x \\le 1, \\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tCộng thêm 2 vào các vế: $1 \\le \\sin 2x + 2 \\le 3, \\forall x \\in \\mathbb{R}$.\\\\\r\n\t\tVậy giá trị nhỏ nhất là $m=1$ và giá trị lớn nhất là $M=3$.\\\\\r\n\t\tTổng giá trị nhỏ nhất và giá trị lớn nhất là $M+m = 3+1=4$."
+    },
+    {
+      "maBaoMat": "sol_be9832fa1d",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, ta có:\r\n\t\t\t\\begin{itemize}\r\n\t\t\t\t\\item Nhánh ngoài cùng bên phải của đồ thị hướng lên trên nên hệ số $a > 0$. Do đó, ta loại đáp án A và B.\r\n\t\t\t\t\\item Đồ thị hàm số đi qua điểm $(1; -1)$.\r\n\t\t\t\t\\item Xét đáp án C: Với $x = 1$, ta có $y = 2 \\cdot 1^3 - 6 \\cdot 1 + 1 = -3 \\neq -1$. Loại đáp án C.\r\n\t\t\t\t\\item Xét đáp án D: Với $x = 1$, ta có $y = 1^3 - 3 \\cdot 1 + 1 = -1$ (thỏa mãn).\r\n\t\t\t\\end{itemize}\r\n\t\t\tVậy đồ thị đã cho là của hàm số $y = x^3 - 3x + 1$."
+    },
+    {
+      "maBaoMat": "sol_dece8c60e9",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\lim\\limits_{x \\to \\pm\\infty} \\displaystyle \\frac{1+2x}{x-1} = \\lim\\limits_{x \\to \\pm\\infty} \\frac{2x+1}{x-1} = 2$.\\\\\r\n\t\tVậy đường tiệm cận ngang của đồ thị hàm số là đường thẳng $y=2$."
+    },
+    {
+      "maBaoMat": "sol_bcad21c0b7",
+      "dapAn": "A",
+      "loiGiaiHtml": "Thực hiện phép chia đa thức tử cho mẫu, ta có:\\\\\r\n\t\t$\\displaystyle \\frac{x^{2}-2x+3}{x+1} = \\frac{x(x+1) - 3(x+1) + 6}{x+1} = x - 3 + \\frac{6}{x+1}$.\\\\\r\n\t\tDo $\\lim\\limits_{x \\to \\pm\\infty} \\displaystyle \\frac{6}{x+1} = 0$ nên đường thẳng $y=x-3$ là tiệm cận xiên của đồ thị hàm số."
+    },
+    {
+      "maBaoMat": "sol_f390e1ba36",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1; 1\\}$.\\\\\r\n\t\tPhân tích tử và mẫu thành nhân tử: $y = \\displaystyle \\frac{2x^{2}-3x+1}{x^{2}-1} = \\frac{(2x-1)(x-1)}{(x-1)(x+1)}$.\\\\\r\n\t\tVới $x \\ne 1$ và $x \\ne -1$, ta có $y = \\displaystyle \\frac{2x-1}{x+1}$.\\\\\r\n\t\tTiệm cận ngang: $\\lim\\limits_{x \\to \\pm\\infty} \\displaystyle \\frac{2x-1}{x+1} = 2 \\Rightarrow y=2$ là đường tiệm cận ngang.\\\\\r\n\t\tTiệm cận đứng: $\\lim\\limits_{x \\to -1^+} \\displaystyle \\frac{2x-1}{x+1} = -\\infty$ (và $\\lim\\limits_{x \\to -1^-} y = +\\infty$) $\\Rightarrow x=-1$ là đường tiệm cận đứng.\\\\\r\n\t\t(Lưu ý: tại $x=1$ tử số bằng 0 và triệt tiêu với mẫu, $\\lim\\limits_{x \\to 1} y = \\displaystyle \\frac{1}{2}$ (hữu hạn) nên $x=1$ không phải là tiệm cận đứng).\\\\\r\n\t\tVậy đồ thị hàm số có $1$ tiệm cận ngang và $1$ tiệm cận đứng. Tổng cộng là $2$ đường tiệm cận."
+    },
+    {
+      "maBaoMat": "sol_679cf5ab3e",
+      "dapAn": "C",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, ta có các nhận xét sau:\r\n\t\t\t\\begin{itemize}\r\n\t\t\t\t\\item Đồ thị hàm số có đường tiệm cận ngang là $y = -1$.\r\n\t\t\t\tTừ phương trình hàm số $y = \\frac{ax - b}{x - 1}$, ta có phương trình đường tiệm cận ngang là $y = a$.\r\n\t\t\t\tSuy ra $a = -1 < 0$.\r\n\t\t\t\t\\item Đồ thị hàm số cắt trục tung tại điểm có tung độ $y = b$ (thay $x=0$ vào hàm số).\r\n\t\t\t\tQuan sát đồ thị, ta thấy giao điểm của đồ thị với trục tung ($Oy$) nằm phía dưới đường tiệm cận ngang $y = -1$.\r\n\t\t\t\tSuy ra $b < -1$.\r\n\t\t\t\t\\item Từ hai điều trên, ta có $b < -1 = a < 0$, hay $b < a < 0$.\r\n\t\t\t\\end{itemize}\r\n\t\t\tVậy khẳng định đúng là $b < a < 0$."
+    },
+    {
+      "maBaoMat": "sol_26496e1aa2",
+      "dapAn": "D",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm phân thức bậc nhất trên bậc nhất, đồ thị có đường tiệm cận đứng là $x=1$ và đường tiệm cận ngang là $y=\\displaystyle \\frac{1}{2}$.\\\\\r\n\t\tTâm đối xứng của đồ thị là giao điểm của hai đường tiệm cận.\\\\\r\n\t\tVậy tọa độ tâm đối xứng là $I\\left(1;\\displaystyle \\frac{1}{2}\\right)$."
+    },
+    {
+      "maBaoMat": "sol_ed09291511",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào đồ thị, ta thấy hàm số đồng biến trên các khoảng $(-\\infty;0)$ và $(2;+\\infty)$; nghịch biến trên khoảng $(0;2)$. Mệnh đề đồng biến trên $(-\\infty;2)$ là sai.\r\n\t\t\t\\itemch Đồ thị hàm số đạt cực đại tại điểm có hoành độ $x=0$ và đạt cực tiểu tại điểm có hoành độ $x=2$. Vậy hàm số có hai điểm cực trị là $x=0$ và $x=2$. Mệnh đề đúng.\r\n\t\t\t\\itemch Đồ thị hàm số cắt trục tung tại điểm $(0;2)$. Suy ra $y(0) = c = 2$. Mệnh đề ghi $c = -2$ là sai.\r\n\t\t\t\\itemch Ta có hàm số là $y=x^3+ax^2+bx+c$. Đạo hàm $y' = 3x^2+2ax+b$.\\\\\r\n\t\t\tĐồ thị có điểm cực đại là $(0;2) \\Rightarrow y(0)=2 \\Rightarrow c=2$ và $y'(0)=0 \\Rightarrow b=0$.\\\\\r\n\t\t\tĐồ thị có điểm cực tiểu là $(2;-2) \\Rightarrow y'(2)=0 \\Rightarrow 12+4a+b=0 \\Rightarrow 4a=-12 \\Rightarrow a=-3$.\\\\\r\n\t\t\tSuy ra hàm số là $y=x^3-3x^2+2$.\\\\\r\n\t\t\tTính giá trị biểu thức $T = a+b+c = -3+0+2 = -1$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_da7130f05e",
+      "dapAn": "FFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào đồ thị, đường tiệm cận đứng là $x=1 \\Rightarrow cx+1=0$ khi $x=1 \\Rightarrow c+1=0 \\Rightarrow c=-1$.\\\\\r\n\t\t\tĐường tiệm cận ngang là $y=-1 \\Rightarrow \\displaystyle \\frac{a}{c} = -1 \\Rightarrow a = -c = 1$.\\\\\r\n\t\t\tĐồ thị đi qua điểm $(0;-2) \\Rightarrow \\displaystyle \\frac{b}{1} = -2 \\Rightarrow b=-2$.\\\\\r\n\t\t\tVậy hàm số là $y = \\displaystyle \\frac{x-2}{-x+1}$.\\\\\r\n\t\t\tĐạo hàm $f'(x) = \\displaystyle \\frac{1(1) - (-2)(-1)}{(-x+1)^2} = \\frac{-1}{(-x+1)^2} < 0, \\forall x \\ne 1$. Do hàm số không xác định tại $x=1$ nên việc kết luận $\\forall x \\in \\mathbb{R}$ là sai. Mệnh đề sai.\r\n\t\t\t\\itemch Từ đạo hàm $f'(x) < 0, \\forall x \\ne 1$, ta thấy hàm số nghịch biến trên từng khoảng xác định là $(-\\infty;1)$ và $(1;+\\infty)$. Việc nói hàm số đồng biến trên $(-\\infty;1)$ là sai. Mệnh đề sai.\r\n\t\t\t\\itemch Dựa trực tiếp vào hình vẽ, đồ thị hàm số có TCĐ là $x=1$ và TCN là $y=-1$. Mệnh đề đúng.\r\n\t\t\t\\itemch Với $a=1, b=-2, c=-1$, ta có tổng $a+b+c = 1 - 2 - 1 = -2$. Mệnh đề ghi bằng $5$ là sai. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_683ee10a8e",
+      "dapAn": "FTFT",
+      "loiGiaiHtml": "Gọi $x$ là số máy được thiết lập để sản xuất ($x \\in \\mathbb{N}^*$), và $t$ là số giờ sản xuất.\\\\\r\n\t\tTheo bài ra, mỗi máy sản xuất được $30$ quả/giờ. Tổng sản lượng là $8000$ quả nên ta có phương trình:\\\\\r\n\t\t$30 \\cdot x \\cdot t = 8000 \\Rightarrow t = \\displaystyle \\frac{800}{3x}$ (giờ).\\\\\r\n\t\tHàm chi phí tổng cộng bao gồm chi phí thiết lập máy và chi phí trả cho người giám sát:\\\\\r\n\t\t$C(x) = 200x + 192t = 200x + 192\\left(\\displaystyle \\frac{800}{3x}\\right) = 200x + \\frac{51200}{x}$ (nghìn đồng).\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Khi $t=1$ giờ, ta có $x = \\displaystyle \\frac{800}{3} \\approx 266{,}67$. Để sản xuất đủ (hoặc vượt) $8000$ quả trong $1$ giờ thì cần thiết lập ít nhất $267$ máy. Nếu chỉ dùng $266$ máy thì sản lượng là $266 \\times 30 \\times 1 = 7980$ quả $< 8000$ quả. Mệnh đề sai.\r\n\t\t\t\\itemch Khi $t = \\displaystyle \\frac{8}{3}$ giờ, số máy cần là $x = \\displaystyle \\frac{800}{3 \\cdot \\frac{8}{3}} = \\frac{800}{8} = 100$ máy. Sản lượng là $100 \\times 30 \\times \\frac{8}{3} = 8000$ quả. Mệnh đề đúng.\r\n\t\t\t\\itemch Áp dụng bất đẳng thức AM-GM cho hai số dương $200x$ và $\\displaystyle \\frac{51200}{x}$, ta có:\\\\\r\n\t\t\t$C(x) = 200x + \\displaystyle \\frac{51200}{x} \\ge 2\\sqrt{200x \\cdot \\frac{51200}{x}} = 2\\sqrt{10240000} = 2 \\cdot 3200 = 6400$ (nghìn đồng).\\\\\r\n\t\t\tChi phí thấp nhất là $6400$ nghìn đồng, tức là $6{,}4$ triệu đồng. Mệnh đề ghi $6{,}5$ triệu đồng là sai.\r\n\t\t\t\\itemch Dấu \"=\" của bất đẳng thức AM-GM xảy ra khi và chỉ khi:\\\\\r\n\t\t\t$200x = \\displaystyle \\frac{51200}{x} \\Leftrightarrow x^2 = \\frac{51200}{200} = 256 \\Rightarrow x = 16$ (máy).\\\\\r\n\t\t\tVậy công ty cần sử dụng $16$ máy để đạt chi phí thấp nhất. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_7cf1de5162",
+      "dapAn": "TTTF",
+      "loiGiaiHtml": "Tập xác định: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tĐạo hàm $y' = \\displaystyle \\frac{(2x-1)(x+1) - (x^2-x+7)}{(x+1)^2} = \\frac{2x^2+x-1-x^2+x-7}{(x+1)^2} = \\frac{x^2+2x-8}{(x+1)^2}$.\\\\\r\n\t\tCho $y'=0 \\Leftrightarrow x^2+2x-8=0 \\Leftrightarrow \\left[\\begin{aligned} &x=2 \\\\ &x=-4 \\end{aligned}\\right.$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Đạo hàm đổi dấu $2$ lần khi qua $x=-4$ và $x=2$ nên đồ thị hàm số có hai điểm cực trị. Mệnh đề đúng.\r\n\t\t\t\\itemch Bảng xét dấu của $y'$: $y' < 0$ khi $x \\in (-4;2) \\setminus \\{-1\\}$. Vậy hàm số nghịch biến trên khoảng $(-4;-1)$ và $(-1;2)$. Mệnh đề đúng.\r\n\t\t\t\\itemch Thực hiện phép chia đa thức: $\\displaystyle \\frac{x^2-x+7}{x+1} = \\frac{x(x+1) - 2(x+1) + 9}{x+1} = x - 2 + \\frac{9}{x+1}$.\\\\\r\n\t\t\tVậy đường thẳng $y=x-2$ là tiệm cận xiên của đồ thị hàm số. Mệnh đề đúng.\r\n\t\t\t\\itemch Trên khoảng $(-\\infty;-1)$, hàm số có điểm cực đại tại $x=-4$.\\\\\r\n\t\t\tBảng biến thiên cho thấy trên $(-\\infty;-1)$, hàm số đi lên từ $-\\infty$ đạt cực đại rồi đi xuống $-\\infty$.\\\\\r\n\t\t\tGiá trị lớn nhất trên khoảng $(-\\infty;-1)$ là $y(-4) = \\displaystyle \\frac{(-4)^2-(-4)+7}{-4+1} = \\frac{16+4+7}{-3} = -9$.\\\\\r\n\t\t\tMệnh đề ghi giá trị lớn nhất bằng $3$ là sai. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_19c6172f6f",
+      "dapAn": "-102",
+      "loiGiaiHtml": "Tập xác định: $D = \\mathbb{R}$.\\\\\r\n\t\tTa có đạo hàm $y' = 3x^{2}+18x$.\\\\\r\n\t\tCho $y' = 0 \\Leftrightarrow 3x^{2}+18x = 0 \\Leftrightarrow \\left[\\begin{aligned} &x = 0 \\\\ &x = -6 \\end{aligned}\\right.$.\\\\\r\n\t\tĐạo hàm cấp hai: $y'' = 6x+18$.\\\\\r\n\t\tTại $x = -6$, ta có $y''(-6) = 6(-6)+18 = -18 < 0 \\Rightarrow x=-6$ là điểm cực đại của hàm số.\\\\\r\n\t\tGiá trị cực đại $y_{C\\text{Đ}} = y(-6) = (-6)^{3} + 9(-6)^{2} - 12 = -216 + 324 - 12 = 96$.\\\\\r\n\t\tVậy tọa độ điểm cực đại là $M(-6; 96)$, suy ra $a = -6$ và $b = 96$.\\\\\r\n\t\tTính giá trị của biểu thức: $a-b = -6 - 96 = -102$."
+    },
+    {
+      "maBaoMat": "sol_257c823d61",
+      "dapAn": "60",
+      "loiGiaiHtml": "Hàm số xác định khi $x^{2}-1 > 0 \\Leftrightarrow x \\in (-\\infty;-1) \\cup (1;+\\infty)$.\\\\\r\n\t\tTa biến đổi hàm số: $y = \\displaystyle \\frac{3(x-1)}{\\sqrt{|x-1|} \\sqrt{|x+1|}}$.\\\\\r\n\t\t\\textbf{Xét tiệm cận ngang:}\\\\\r\n\t\tKhi $x \\to +\\infty$: $y = \\displaystyle \\frac{3x-3}{\\sqrt{x^2(1 - 1/x^2)}} = \\frac{3x-3}{x\\sqrt{1 - 1/x^2}} = \\frac{3 - 3/x}{\\sqrt{1 - 1/x^2}}$.\\\\\r\n\t\tDo đó $\\lim\\limits_{x \\to +\\infty} y = 3 \\Rightarrow y=3$ là một đường tiệm cận ngang.\\\\\r\n\t\tKhi $x \\to -\\infty$: $y = \\displaystyle \\frac{3x-3}{|x|\\sqrt{1 - 1/x^2}} = \\frac{3x-3}{-x\\sqrt{1 - 1/x^2}} = \\frac{3 - 3/x}{-\\sqrt{1 - 1/x^2}}$.\\\\\r\n\t\tDo đó $\\lim\\limits_{x \\to -\\infty} y = -3 \\Rightarrow y=-3$ là một đường tiệm cận ngang.\\\\\r\n\t\tVậy đồ thị hàm số có $2$ đường tiệm cận ngang, tức là $b=2$.\\\\\r\n\t\t\\textbf{Xét tiệm cận đứng:}\\\\\r\n\t\tTa tính giới hạn của hàm số tại các điểm biên của tập xác định là $x=1$ và $x=-1$.\\\\\r\n\t\tKhi $x \\to 1^+$: $\\lim\\limits_{x \\to 1^+} \\displaystyle \\frac{3(x-1)}{\\sqrt{x-1}\\sqrt{x+1}} = \\lim\\limits_{x \\to 1^+} \\frac{3\\sqrt{x-1}}{\\sqrt{x+1}} = \\frac{0}{\\sqrt{2}} = 0$ (hữu hạn).\\\\\r\n\t\tDo đó đường thẳng $x=1$ không phải là tiệm cận đứng.\\\\\r\n\t\tKhi $x \\to -1^-$: $\\lim\\limits_{x \\to -1^-} \\displaystyle \\frac{3(x-1)}{\\sqrt{x^{2}-1}}$. Khi đó tử số tiến về $3(-2) = -6 < 0$, còn mẫu số tiến về $0^+$.\\\\\r\n\t\tSuy ra $\\lim\\limits_{x \\to -1^-} y = -\\infty$. Do đó đường thẳng $x=-1$ là tiệm cận đứng.\\\\\r\n\t\tVậy đồ thị hàm số có $1$ đường tiệm cận đứng, tức là $a=1$.\\\\\r\n\t\t\\textbf{Tính giá trị biểu thức:}\\\\\r\n\t\t$20a + 10b^{2} = 20(1) + 10(2^2) = 20 + 40 = 60$."
+    },
+    {
+      "maBaoMat": "sol_87812bc993",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào hình dáng đồ thị hàm số bậc ba $y = ax^3 + bx^2 + cx + d$, ta xét dấu các hệ số như sau:\r\n\t\t\t\\begin{itemize}\r\n\t\t\t\t\\item \\textbf{Xác định dấu của $a$:} Nhánh phía bên phải của đồ thị đi xuống nên hệ số $a < 0$ (có $1$ số âm).\r\n\t\t\t\t\\item \\textbf{Xác định dấu của $d$:} Đồ thị cắt trục tung tại điểm nằm phía trên gốc tọa độ $O$, nên $y(0) = d > 0$ (có $1$ số dương).\r\n\t\t\t\t\\item \\textbf{Xác định dấu của $b$:} Đồ thị có hai điểm cực trị $x_1, x_2$ thỏa mãn một điểm nằm bên trái và một điểm nằm bên phải trục tung (hoặc một điểm nằm ngay trên trục tung $x=0$, cụ thể theo hình vẽ là $x_1 < 0 < x_2$). \r\n\t\t\t\tDo tích hoành độ hai điểm cực trị là $x_1 x_2 = \\frac{c}{3a} < 0$. Vì $a < 0$ nên suy ra $c > 0$ (thêm $1$ số dương).\r\n\t\t\t\t\\item \\textbf{Xác định dấu của $c$:} Tổng hoành độ hai điểm cực trị là $x_1 + x_2 = \\frac{-2b}{3a}$. Nhìn đồ thị, điểm cực trị dương có giá trị tuyệt đối lớn hơn điểm cực trị âm nên $x_1 + x_2 > 0 \\Rightarrow \\frac{-2b}{3a} > 0$. Kết hợp $a < 0$, suy ra $b < 0$ (đây là số âm).\r\n\t\t\t\\end{itemize}\r\n\t\t\tTóm lại, trong bốn hệ số $a, b, c, d$, các hệ số dương là $d$ và $c$ (tổng cộng có $2$ số dương)."
+    },
+    {
+      "maBaoMat": "sol_576bc246b6",
+      "dapAn": "333",
+      "loiGiaiHtml": "Tổng chi phí để sản xuất $x$ sản phẩm là:\\\\\r\n\t\t$C(x) = x \\cdot G(x) = x\\left(x+1000+\\displaystyle \\frac{250000}{x}\\right) = x^2+1000x+250000$ (đồng).\\\\\r\n\t\tLợi nhuận thu được khi sản xuất và bán $x$ sản phẩm là:\\\\\r\n\t\t$P(x) = F(x) - C(x) = (x^3-1999x^2+1001000x+250000) - (x^2+1000x+250000)$\\\\\r\n\t\t$\\Rightarrow P(x) = x^3 - 2000x^2 + 1000000x$.\\\\\r\n\t\tĐể tìm giá trị $x$ mang lại lợi nhuận lớn nhất, ta xét đạo hàm:\\\\\r\n\t\t$P'(x) = 3x^2 - 4000x + 1000000$.\\\\\r\n\t\tCho $P'(x) = 0 \\Leftrightarrow 3x^2 - 4000x + 1000000 = 0$.\\\\\r\n\t\tPhương trình có các nghiệm: $x = \\displaystyle \\frac{2000 \\pm \\sqrt{2000^2 - 3(1000000)}}{3} = \\frac{2000 \\pm 1000}{3}$.\\\\\r\n\t\t$\\Rightarrow x_1 = 1000$ và $x_2 = \\displaystyle \\frac{1000}{3} \\approx 333{,}33$.\\\\\r\n\t\tDo điều kiện $1 \\le x \\le 500$ nên ta chỉ xét $x_2 = \\displaystyle \\frac{1000}{3}$. Hàm số đạt cực đại tại điểm này.\\\\\r\n\t\tTuy nhiên, số lượng sản phẩm $x$ phải là số nguyên ($x \\in \\mathbb{N}$). Do đó ta kiểm tra lợi nhuận tại hai giá trị nguyên gần cực đại nhất là $x=333$ và $x=334$.\\\\\r\n\t\tNhận xét $P(x) = x(x^2 - 2000x + 1000000) = x(x-1000)^2$.\\\\\r\n\t\tVới $x=333$: $P(333) = 333(333-1000)^2 = 333(-667)^2 = 148\\,148\\,037$ (đồng).\\\\\r\n\t\tVới $x=334$: $P(334) = 334(334-1000)^2 = 334(-666)^2 = 148\\,147\\,704$ (đồng).\\\\\r\n\t\tSo sánh, ta thấy $P(333) > P(334)$. Lợi nhuận lớn nhất đạt được tại $x=333$.\\\\\r\n\t\tVậy doanh nghiệp cần sản xuất $333$ sản phẩm."
+    },
+    {
+      "maBaoMat": "sol_ea6c826a62",
+      "dapAn": "-3",
+      "loiGiaiHtml": "Tập xác định của hàm số: $D = \\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\tTa biến đổi hàm số: $y = \\displaystyle \\frac{x^{2}+2x+2}{x+1} = \\frac{x(x+1)+(x+1)+1}{x+1} = x + 1 + \\frac{1}{x+1}$.\\\\\r\n\t\tĐạo hàm: $y' = 1 - \\displaystyle \\frac{1}{(x+1)^2} = \\frac{(x+1)^2-1}{(x+1)^2} = \\frac{x^2+2x}{(x+1)^2}$.\\\\\r\n\t\tĐể hàm số nghịch biến thì $y' < 0 \\Leftrightarrow \\displaystyle \\frac{x^2+2x}{(x+1)^2} < 0 \\Leftrightarrow x^2+2x < 0$ (vì $(x+1)^2 > 0, \\forall x \\ne -1$).\\\\\r\n\t\t$\\Leftrightarrow -2 < x < 0$.\\\\\r\n\t\tKết hợp với điều kiện xác định $x \\ne -1$, hàm số nghịch biến trên hai khoảng là $(-2;-1)$ và $(-1;0)$.\\\\\r\n\t\tTheo giả thiết, hai khoảng đó là $(a;b)$ và $(b;c)$ với $a<b<c$.\\\\\r\n\t\tĐồng nhất hai kết quả, ta được: $a = -2, b = -1, c = 0$.\\\\\r\n\t\tTính $T = a+b+c = -2 + (-1) + 0 = -3$."
+    },
+    {
+      "maBaoMat": "sol_4194adc72e",
+      "dapAn": "39,9",
+      "loiGiaiHtml": "Từ Hình 2, đồ thị hàm số $f(x)=ax^{3}+bx^{2}+cx+d$ đi qua các điểm $A(0; 30), C(50; 30), D(80; 30)$.\\\\\r\n\t\tDo đó $f(x) - 30 = 0$ có 3 nghiệm là $0, 50, 80$.\\\\\r\n\t\tSuy ra phương trình hàm số có dạng: $f(x) = ax(x-50)(x-80) + 30$.\\\\\r\n\t\tTàu lượn đạt độ cao nhỏ nhất (điểm cực tiểu) là $6\\text{m}$. Ta tìm hoành độ của các điểm cực trị:\\\\\r\n\t\t$f'(x) = a [ (x-50)(x-80) + x(x-80) + x(x-50) ] = a(3x^2 - 260x + 4000)$.\\\\\r\n\t\tCho $f'(x) = 0 \\Leftrightarrow 3x^2 - 260x + 4000 = 0$.\\\\\r\n\t\tGiải phương trình ta được hai nghiệm $x_1 = 20$ và $x_2 = \\displaystyle \\frac{200}{3} \\approx 66{,}67$.\\\\\r\n\t\tDựa vào đồ thị, điểm cực tiểu nằm giữa $0$ và $50$, do đó hàm số đạt cực tiểu tại $x_1 = 20$.\\\\\r\n\t\tTại $x=20$, độ cao nhỏ nhất là $f(20) = 6$. Thay vào phương trình hàm số:\\\\\r\n\t\t$a \\cdot 20(20-50)(20-80) + 30 = 6 \\Leftrightarrow a \\cdot 20(-30)(-60) = -24$\\\\\r\n\t\t$\\Leftrightarrow 36000a = -24 \\Leftrightarrow a = -\\displaystyle \\frac{24}{36000} = -\\frac{1}{1500}$.\\\\\r\n\t\tVậy hàm số là $f(x) = -\\displaystyle \\frac{1}{1500}x(x-50)(x-80) + 30$.\\\\\r\n\t\tĐộ cao lớn nhất của tàu lượn đạt được tại điểm cực đại có hoành độ $x_2 = \\displaystyle \\frac{200}{3}$.\\\\\r\n\t\tGiá trị lớn nhất này là:\\\\\r\n\t\t$f\\left(\\displaystyle \\frac{200}{3}\\right) = -\\frac{1}{1500} \\left(\\frac{200}{3}\\right) \\left(\\frac{200}{3} - 50\\right) \\left(\\frac{200}{3} - 80\\right) + 30$\\\\\r\n\t\t$= -\\displaystyle \\frac{1}{1500} \\cdot \\frac{200}{3} \\cdot \\frac{50}{3} \\cdot \\left(-\\frac{40}{3}\\right) + 30 = \\frac{400000}{40500} + 30 = \\frac{800}{81} + 30 \\approx 9{,}8765 + 30 = 39{,}8765\\text{ (m)}$.\\\\\r\n\t\tLàm tròn kết quả đến hàng phần chục, ta được $39{,}9\\text{m}$."
+    }
+  ]
+}
