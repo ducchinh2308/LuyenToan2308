@@ -1,0 +1,225 @@
+{
+  "maDe": "K12-GK1-THPT-THANG-LONG-HANOI-2627-12-4-6",
+  "tenDe": "K12-GK1-THPT-THANG-LONG-HANOI-2627-12-4-6",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2H2H2-6]",
+      "maCau": "q_16476f2ebf",
+      "ma_goc": "2611-22",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$ (đơn vị trên mỗi trục tính bằng mét) được thiết lập cho khu vực vận hành drone, một thiết bị bay di chuyển thẳng đều với vận tốc không đổi từ vị trí điểm $A(1;1;1)$ đến điểm $B(7;10;13)$ trong thời gian $60$ giây. Trên hành trình đó, sau khi xuất phát từ $A$ được $20$ giây, drone bay qua điểm kiểm soát $C(a;b;c)$. Tổng $a+b+c$ bằng",
+      "paA": "$18$",
+      "paB": "$10$",
+      "paC": "$15$",
+      "paD": "$12$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_9a2063e2f5",
+      "ma_goc": "2611-23",
+      "kieuCau": "TN",
+      "cauDan": "Một chất điểm chuyển động theo phương trình $s(t)=t^{3}-3t^{2}+5t+2$, trong đó thời gian $t>0$ tính bằng giây và quãng đường $s$ tính bằng mét. Trong 5 giây đầu vận tốc nhỏ nhất của chất điểm bằng bao nhiêu?",
+      "paA": "$5\\text{ m/s}$",
+      "paB": "$3\\text{ m/s}$",
+      "paC": "$2\\text{ m/s}$",
+      "paD": "$1\\text{ m/s}$"
+    },
+    {
+      "id_Cau": "[2D1N2-2]",
+      "maCau": "q_57049d047f",
+      "ma_goc": "2611-24",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ. Giá trị cực đại của hàm số bằng\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_57049d047f_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$3$",
+      "paB": "$2$",
+      "paC": "$1$",
+      "paD": "$-1$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_197f41602e",
+      "ma_goc": "2611-25",
+      "kieuCau": "TN",
+      "cauDan": "Đường tiệm cận đứng của đồ thị hàm số $y=2+\\displaystyle\\frac{1}{x}$ có phương trình là",
+      "paA": "$x=2$",
+      "paB": "$x=0$",
+      "paC": "$y=2$",
+      "paD": "$y=0$"
+    },
+    {
+      "id_Cau": "[2H2H1-2]",
+      "maCau": "q_15ac9163bd",
+      "ma_goc": "2611-26",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A_1B_1C_1D_1$. Khẳng định nào dưới đây sai?",
+      "paA": "$\\vec{BA}+\\vec{DD_1}+\\vec{BD_1}=\\vec{BC}$",
+      "paB": "$\\vec{BA}+\\vec{BC}+\\vec{BB_1}=\\vec{BD_1}$",
+      "paC": "$\\vec{BA}+\\vec{BC}=\\vec{B_1C_1}+\\vec{B_1A_1}$",
+      "paD": "$\\vec{AD}+\\vec{D_1C_1}+\\vec{D_1A_1}=\\vec{DC}$"
+    },
+    {
+      "id_Cau": "[2H2N2-3]",
+      "maCau": "q_975bb009d0",
+      "ma_goc": "2611-27",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho véc-tơ $\\vec{u}=3\\vec{j}-4\\vec{i}+2\\vec{k}$. Tọa độ của véc-tơ $\\vec{u}$ là",
+      "paA": "$(3;-4;2)$",
+      "paB": "$(3;2;-4)$",
+      "paC": "$(-4;2;3)$",
+      "paD": "$(-4;3;2)$"
+    },
+    {
+      "id_Cau": "[2D1H1-1]",
+      "maCau": "q_8a393feac7",
+      "ma_goc": "2611-28",
+      "kieuCau": "TN",
+      "cauDan": "Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+      "paA": "$y=2$",
+      "paB": "$y=\\log_2 x$",
+      "paC": "$y=\\displaystyle\\frac{2x-1}{x+2}$",
+      "paD": "$y=2^x$"
+    },
+    {
+      "id_Cau": "[2H2H1-3]",
+      "maCau": "q_79db6483b4",
+      "ma_goc": "2611-29",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi cạnh bằng $a$, $\\widehat{ABC}=60^\\circ$. Biết $SA=SC$, tích vô hướng $\\vec{AC} \\cdot \\vec{SB}$ bằng",
+      "paA": "$\\displaystyle\\frac{a^2}{2}$",
+      "paB": "$0$",
+      "paC": "$-a^2$",
+      "paD": "$a^2$"
+    },
+    {
+      "id_Cau": "[2D1H3-2]",
+      "maCau": "q_3d946c110a",
+      "ma_goc": "2611-30",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đồ thị $y=f'(x)$ như hình vẽ. Hàm số đạt giá trị nhỏ nhất tại\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3d946c110a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$x=2$",
+      "paB": "$x=1$",
+      "paC": "$x=-2$",
+      "paD": "$x=-1$"
+    },
+    {
+      "id_Cau": "[2D1H1-5]",
+      "maCau": "q_cd466d2b71",
+      "ma_goc": "2611-31",
+      "kieuCau": "TN",
+      "cauDan": "Trong 8 phút đầu kể từ khi xuất phát, độ cao $h$ (tính bằng mét) so với mặt đất của khinh khí cầu vào thời điểm $t$ phút được cho bởi công thức $h(t)=6t^3-81t^2+324t$. Trong 3 phút đầu tiên, độ cao của khinh khí cầu",
+      "paA": "Tăng rồi giảm",
+      "paB": "Giảm rồi tăng",
+      "paC": "Tăng",
+      "paD": "Giảm"
+    },
+    {
+      "id_Cau": "[2H2H2-4]",
+      "maCau": "q_d3fad650c3",
+      "ma_goc": "2611-32",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $M(1;-2;3)$. Khoảng cách từ điểm $M$ đến trục $Oy$ là",
+      "paA": "$2$",
+      "paB": "$\\sqrt{7}$",
+      "paC": "$\\sqrt{10}$",
+      "paD": "$3$"
+    },
+    {
+      "id_Cau": "[2D1H4-1]",
+      "maCau": "q_56db6ea1dc",
+      "ma_goc": "2611-33",
+      "kieuCau": "TN",
+      "cauDan": "Biết đồ thị hàm số $y=f(x)$ có một đường tiệm cận ngang là $y=2$. Khi đó, đồ thị hàm số $y=3f(x)-2$ có một đường tiệm cận ngang là",
+      "paA": "$y=-2$",
+      "paB": "$y=4$",
+      "paC": "$y=2$",
+      "paD": "$y=3$"
+    },
+    {
+      "id_Cau": "[2D1V5-6]",
+      "maCau": "q_4f2a306a43",
+      "ma_goc": "2611-34",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $y=\\displaystyle\\frac{x^2+x+1}{x+1}$.",
+      "paA": "Hàm số nghịch biến trên khoảng $(-2;0)$",
+      "paB": "Tiệm cận xiên của đồ thị hàm số là đường thẳng $y=x$",
+      "paC": "Gọi $d$ là tiếp tuyến của đồ thị hàm số tại điểm có hoành độ $x=1$. Giao điểm của đường thẳng $d$ với tiệm cận xiên của đồ thị hàm số là $M(3;3)$",
+      "paD": "Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số có phương trình là $y=2x-1$"
+    },
+    {
+      "id_Cau": "[2H2C2-6]",
+      "maCau": "q_1afaa671bf",
+      "ma_goc": "2611-35",
+      "kieuCau": "DS",
+      "cauDan": "Sau một trận lũ lớn, một trạm cứu hộ sử dụng drone để vận chuyển nhu yếu phẩm đến người dân bị cô lập. Chọn hệ trục $Oxyz$ với gốc $O$ đặt tại trạm cứu hộ, mặt phẳng $(Oxy)$ trùng với mặt đất, trục $Oz$ hướng thẳng đứng lên trời, đơn vị đo tính theo mét. Một chiếc drone chưa được sạc đầy pin xuất phát từ trạm, phát hiện được hai địa điểm cần cứu hộ ở trên nóc hai tòa nhà là $A(120;90;30)$ và $B(40;30;10)$. Sau khi bay đến điểm $A$, drone chỉ còn đủ pin để bay $40\\%$ quãng đường từ $A$ đến $B$. Các kết quả làm tròn đến hàng đơn vị.",
+      "paA": "Hai địa điểm cần cứu hộ cách nhau xấp xỉ $102\\text{ m}$",
+      "paB": "Drone chỉ có thể vận chuyển nhu yếu phẩm đến từng địa điểm, nên người ở trạm cứu hộ quyết định dựng thêm một trạm cứu hộ cho riêng hai tòa nhà, mà tổng khoảng cách từ trạm cứu hộ đó đến nóc hai tòa nhà là ngắn nhất. Trạm cứu hộ mới có tọa độ $(45;60;0)$",
+      "paC": "Vị trí drone hết pin cách mặt đất $20\\text{ m}$",
+      "paD": "Giả sử drone bay với tốc độ không đổi là $10\\text{ m/s}$. Drone sẽ báo sắp hết pin khoảng $3$ giây trước khi pin hết hẳn. Sau $22$ giây kể từ lúc xuất phát từ trạm, drone sẽ báo sắp hết pin"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_19d24b8b2f",
+      "ma_goc": "2611-36",
+      "kieuCau": "DS",
+      "cauDan": "Để điều trị cho một bệnh nhân, bác sĩ tiêm một loại thuốc vào tĩnh mạch. Nồng độ $C(t)$ của thuốc trong máu bệnh nhân (đơn vị: mg/l) thay đổi theo thời gian $t$ (đơn vị: giờ) kể từ lúc tiêm ($t \\ge 0$) được xác định bởi công thức $C(t)=\\displaystyle\\frac{15t}{t^2+9}$.",
+      "paA": "Nồng độ thuốc trong máu đạt giá trị lớn nhất tại thời điểm $t=9$ giờ sau khi tiêm",
+      "paB": "Giá trị nồng độ thuốc trong máu cao nhất là $2{,}5\\text{ mg/l}$",
+      "paC": "Trong $3$ giờ đầu tiên, nồng độ thuốc trong máu của bệnh nhân tăng",
+      "paD": "Tại thời điểm $t=1$ giờ, tốc độ tăng của nồng độ thuốc là $1{,}2\\text{ mg/l/giờ}$"
+    },
+    {
+      "id_Cau": "[2H2V2-4]",
+      "maCau": "q_1e34c5ac07",
+      "ma_goc": "2611-37",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho tam giác $ABC$ biết $A(7;3;3)$, $B(1;2;4)$, $C(2;3;5)$.",
+      "paA": "$\\sin\\widehat{BAC}=\\sqrt{\\displaystyle\\frac{37}{551}}$",
+      "paB": "$\\vec{AB} \\cdot \\vec{AC}=32$",
+      "paC": "Để tứ giác $ABCD$ là hình bình hành thì tọa độ điểm $D$ là $(8;4;4)$",
+      "paD": "Gọi $H(a;b;c)$ là chân đường cao kẻ từ $A$ của tam giác $ABC$. Khi đó $2a-5b+c=8$"
+    },
+    {
+      "id_Cau": "[2H2V2-6]",
+      "maCau": "q_6132104b0c",
+      "ma_goc": "2611-38",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một sân vận động, chọn hệ tọa độ $Oxyz$, đơn vị đo là mét, trong đó mặt sân nằm trên mặt phẳng $Oxy$ và trục $Oz$ vuông góc với mặt sân. Một hệ thống camera tự động được lắp trên một thanh ray cố định ở phía trên sân. Hai đầu của thanh ray lần lượt có tọa độ là $A(0;6;8)$ và $B(12;6;8)$. Camera có thể di chuyển dọc theo đoạn ray $AB$. Một cầu thủ đang đứng cố định tại vị trí $C(6;0;0)$. Gọi $M$ là vị trí của camera. Để hình ảnh cầu thủ rõ nét, nhà sản xuất quy định độ phóng đại hiệu dụng của camera tỉ lệ nghịch với bình phương khoảng cách từ camera đến cầu thủ. Do đó để hình ảnh đạt chất lượng cao nhất, cần tìm vị trí của điểm $M$ để khoảng cách $CM$ nhỏ nhất. Điểm $M$ cách đầu ray $A$ bao nhiêu mét để khoảng cách từ camera đến cầu thủ là nhỏ nhất?"
+    },
+    {
+      "id_Cau": "[2D1V2-1]",
+      "maCau": "q_96af98b5ee",
+      "ma_goc": "2611-39",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $y=f(x)$ có đạo hàm $f'(x)=(x-1)^1(x-2)^2(x-3)^3 \\dots (x-2026)^{2026}$. Số điểm cực đại của hàm số đã cho là bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2H2V1-4]",
+      "maCau": "q_63f22dda0b",
+      "ma_goc": "2611-40",
+      "kieuCau": "TLN",
+      "cauDan": "Tại một xưởng cơ khí, người ta dùng cần cẩu để di chuyển một kiện hàng. Kiện hàng nặng $50\\text{ kg}$ được đặt trên một tấm ván gỗ hình vuông nặng $10\\text{ kg}$. Tấm ván được giữ cân bằng nằm ngang nhờ $4$ sợi dây cáp nhẹ, không giãn có độ dài bằng nhau. Một đầu của mỗi sợi dây cáp được cố định vào một góc tấm ván, bốn đầu còn lại cùng được xỏ vào móc của cần cẩu. Khi cần cẩu nâng kiện hàng lên theo phương thẳng đứng, mỗi sợi dây cáp hợp với mặt phẳng tấm ván một góc $60^\\circ$. Lấy gia tốc rơi tự do $g=10\\text{ m/s}^2$. Lực căng của mỗi sợi dây cáp nối từ góc tấm ván đến móc của cần cẩu bằng bao nhiêu Newton? Kết quả làm tròn đến hàng đơn vị.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_63f22dda0b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_ed95d93899",
+      "ma_goc": "2611-41",
+      "kieuCau": "TLN",
+      "cauDan": "Bạn Trung có một tờ giấy hình chữ nhật $ABCD$ có chiều dài $15\\text{ cm}$ và chiều rộng $10\\text{ cm}$. Gấp góc bên phải của tờ giấy sao cho sau khi gấp, đỉnh $B$ của góc đó chạm lên cạnh $CD$. Biết nếp gấp $MN$ có độ dài nhỏ nhất bằng $\\displaystyle\\frac{a\\sqrt{b}}{c}$ với $a, b, c \\in \\mathbb{N}^*$, $b, c$ là các số nguyên tố. Tính tổng $a+b+c$."
+    },
+    {
+      "id_Cau": "[2D1H2-3]",
+      "maCau": "q_10db90d2ff",
+      "ma_goc": "2611-42",
+      "kieuCau": "TLN",
+      "cauDan": "Tìm tất cả các giá trị của tham số $m$ để hàm số $y=\\displaystyle\\frac{1}{3}x^3+mx^2-(m+7)x+5$ đạt cực tiểu tại $x=2$."
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_765e763ed4",
+      "ma_goc": "2611-43",
+      "kieuCau": "TLN",
+      "cauDan": "Một cửa hàng thời trang tự thiết kế (Local Brand) đang bán một mẫu áo phông. Hiện tại, trung bình mỗi tháng cửa hàng bán được $500$ chiếc với giá $300$ nghìn đồng/chiếc. Dữ liệu nghiên cứu thị trường cho thấy nếu cứ giảm giá bán $30$ nghìn đồng/chiếc, số lượng áo bán ra sẽ tăng thêm $100$ chiếc mỗi tháng. Biết hàm giá bán $p(x)$ theo số lượng $x$ chiếc áo bán ra là một hàm số bậc nhất. Cửa hàng sản xuất áo với tổng chi phí hằng tháng là $C(x)=0{,}12x+50$ (triệu đồng), trong đó $0{,}12$ triệu đồng là chi phí nguyên vật liệu cho một chiếc áo và $50$ triệu đồng là chi phí mặt bằng, nhân sự. Cửa hàng nên bán mỗi chiếc áo với giá bao nhiêu nghìn đồng để thu được lợi nhuận cao nhất?"
+    }
+  ]
+}

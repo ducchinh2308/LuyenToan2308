@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_764f756d7f",
+  "dapAn": "A",
+  "loiGiai": "Xét phương án A: Ta có $\\vec{DD_1}=\\vec{BB_1}$.\\\\\r\n\t\tSuy ra $\\vec{BA}+\\vec{DD_1}+\\vec{BD_1}=\\vec{BA}+\\vec{BB_1}+\\vec{BD_1}=\\vec{BA}+\\vec{BB_1}+\\vec{BA}+\\vec{BC}+\\vec{BB_1}=2\\vec{BA}+\\vec{BC}+2\\vec{BB_1} \\ne \\vec{BC}$. Vậy A sai.\\\\\r\n\t\tXét phương án B: Theo quy tắc hình hộp ta có $\\vec{BA}+\\vec{BC}+\\vec{BB_1}=\\vec{BD_1}$. Vậy B đúng.\\\\\r\n\t\tXét phương án C: Ta có $\\vec{B_1C_1}=\\vec{BC}$ và $\\vec{B_1A_1}=\\vec{BA}$. Do đó $\\vec{BA}+\\vec{BC}=\\vec{B_1C_1}+\\vec{B_1A_1}$. Vậy C đúng.\\\\\r\n\t\tXét phương án D: Ta có $\\vec{AD}=\\vec{BC}$, $\\vec{D_1C_1}=\\vec{DC}$, $\\vec{D_1A_1}=\\vec{DA}$.\\\\\r\n\t\tThay vào vế trái: $\\vec{AD}+\\vec{D_1C_1}+\\vec{D_1A_1}=\\vec{BC}+\\vec{DC}+\\vec{DA}=\\vec{AD}+\\vec{DC}+\\vec{DA}=\\vec{0}+\\vec{DC}=\\vec{DC}$. Vậy D đúng."
+}

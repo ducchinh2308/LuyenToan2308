@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_9c2ad730e0",
+  "dapAn": "C",
+  "loiGiai": "Ta có $h'(t)=18t^2-162t+324=18(t^2-9t+18)$.\\\\\r\n\t\tTa có $h'(t)=0 \\Leftrightarrow \\left[\\begin{matrix} t=3 \\\\ t=6 \\end{matrix}\\right.$\\\\\r\n\t\tLại có $h'(t)>0 \\Leftrightarrow \\left[\\begin{matrix} t<3 \\\\ t>6 \\end{matrix}\\right.$\\\\\r\n\t\tTrong khoảng thời gian $t \\in [0;3]$ (3 phút đầu tiên), $h'(t) \\ge 0$ suy ra hàm số đồng biến (tăng) trên $[0;3]$."
+}

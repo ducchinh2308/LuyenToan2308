@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_825cb88913",
+  "dapAn": "B",
+  "loiGiai": "Ta có $\\lim\\limits_{x \\to 0^+} \\left(2+\\displaystyle\\frac{1}{x}\\right) = +\\infty$ và $\\lim\\limits_{x \\to 0^-} \\left(2+\\displaystyle\\frac{1}{x}\\right) = -\\infty$.\\\\\r\n\t\tVì $\\lim\\limits_{x \\to 0} y = \\pm\\infty$ nên đường thẳng $x=0$ là tiệm cận đứng của đồ thị hàm số."
+}

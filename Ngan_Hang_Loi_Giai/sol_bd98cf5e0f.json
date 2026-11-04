@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_bd98cf5e0f",
+  "dapAn": "173",
+  "loiGiai": "Tổng khối lượng cần nâng gồm kiện hàng và tấm ván gỗ là: $m=50+10=60\\text{ kg}$.\\\\\r\n\t\tTổng trọng lượng tác dụng lên hệ là: $P=mg=60 \\cdot 10=600\\text{ (N)}$.\\\\\r\n\t\tKhi hệ thống được nâng lên thẳng đứng và cân bằng, có $4$ sợi dây cáp gánh toàn bộ trọng lượng $P$. Do tính đối xứng, lực căng trên mỗi sợi dây có cùng độ lớn là $T$.\\\\\r\n\t\tMỗi sợi dây cáp tạo với mặt phẳng nằm ngang một góc $\\alpha=60^\\circ$.\\\\\r\n\t\tThành phần lực căng của mỗi sợi dây theo phương thẳng đứng hướng lên là: $T_0=T \\sin 60^\\circ$.\\\\\r\n\t\tĐể hệ cân bằng theo phương thẳng đứng, tổng các thành phần lực hướng lên phải bằng trọng lượng hướng xuống:\\\\\r\n\t\t$P=4T_0=4T \\sin 60^\\circ=2\\sqrt{3}T \\Rightarrow 2\\sqrt{3}T=600 \\Rightarrow T=100\\sqrt{3} \\approx 173\\text{ (N)}$."
+}

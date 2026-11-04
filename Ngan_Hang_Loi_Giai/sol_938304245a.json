@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_938304245a",
+  "dapAn": "B",
+  "loiGiai": "Theo giả thiết, đồ thị hàm số $y=f(x)$ có tiệm cận ngang là $y=2$, nghĩa là $\\lim\\limits_{x \\to \\pm\\infty} f(x) = 2$.\\\\\r\n\t\tTa có $\\lim\\limits_{x \\to \\pm\\infty} (3f(x)-2) = 3 \\cdot 2 - 2 = 4$.\\\\\r\n\t\tDo đó, đồ thị hàm số $y=3f(x)-2$ có đường tiệm cận ngang là $y=4$."
+}

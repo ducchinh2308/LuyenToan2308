@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_2f385a8d2f",
+  "dapAn": "C",
+  "loiGiai": "Khoảng cách từ điểm $M(x_0; y_0; z_0)$ đến trục $Oy$ được tính theo công thức: $d(M,Oy)=\\sqrt{x_0^2+z_0^2}$.\\\\\r\n\t\tThay tọa độ điểm $M(1;-2;3)$ vào công thức: $d(M,Oy)=\\sqrt{1^2+3^2}=\\sqrt{1+9}=\\sqrt{10}$."
+}

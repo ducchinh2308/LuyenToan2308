@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b65a6a6a7d",
+  "dapAn": "6",
+  "loiGiai": "Giả sử $M(x;y;z)$.\\\\\r\n\t\tVì $M$ thuộc đoạn thẳng $AB$ nên $\\vec{AM}=k \\cdot \\vec{AB}$ với $0 \\le k \\le 1$.\\\\\r\n\t\tTa có $\\vec{AB} = (12;0;0)$, suy ra $\\begin{cases} x-0=k \\cdot 12 \\\\ y-6=k \\cdot 0 \\\\ z-8=k \\cdot 0 \\end{cases} \\Leftrightarrow \\begin{cases} x=12k \\\\ y=6 \\\\ z=8 \\end{cases} \\Rightarrow M(12k;6;8)$.\\\\\r\n\t\tKhoảng cách $CM = \\sqrt{(12k-6)^2+(6-0)^2+(8-0)^2} = \\sqrt{(12k-6)^2+6^2+8^2} \\ge \\sqrt{6^2+8^2} = 10$.\\\\\r\n\t\tDấu \"=\" xảy ra khi $12k-6=0 \\Leftrightarrow k=\\displaystyle\\frac{1}{2}$ (thỏa mãn).\\\\\r\n\t\tSuy ra $M(6;6;8)$.\\\\\r\n\t\tKhi đó $AM = \\sqrt{(6-0)^2+(6-6)^2+(8-8)^2} = 6$.\\\\\r\n\t\tVậy, điểm $M$ cách đầu ray $A$ $6$ mét để khoảng cách từ camera đến cầu thủ là nhỏ nhất."
+}

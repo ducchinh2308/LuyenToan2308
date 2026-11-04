@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b54e841860",
+  "dapAn": "B",
+  "loiGiai": "Do $ABCD$ là hình thoi nên đường chéo $AC \\perp BD$.\\\\\r\n\t\tDo $SA=SC$ nên điểm $S$ nằm trên mặt phẳng trung trực của đoạn $AC$, suy ra $AC \\perp SO$ với $O$ là giao điểm hai đường chéo đáy.\\\\\r\n\t\tSuy ra $AC \\perp (SBD) \\Rightarrow AC \\perp SB$.\\\\\r\n\t\tVậy $\\vec{AC} \\cdot \\vec{SB} = 0$."
+}

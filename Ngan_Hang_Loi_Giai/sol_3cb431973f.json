@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3cb431973f",
+  "dapAn": "D",
+  "loiGiai": "Do thiết bị bay di chuyển thẳng đều với vận tốc không đổi nên ta có $\\vec{AC} = \\displaystyle\\frac{20}{60}\\vec{AB} = \\displaystyle\\frac{1}{3}\\vec{AB}$.\\\\\r\n\t\tTa có: $\\vec{AC}=(a-1;b-1;c-1)$ và $\\vec{AB}=(6;9;12)$.\\\\\r\n\t\tKhi đó $\\vec{AC} = \\displaystyle\\frac{1}{3}\\vec{AB} \\Leftrightarrow \\begin{cases} a-1=2 \\\\ b-1=3 \\\\ c-1=4 \\end{cases} \\Leftrightarrow \\begin{cases} a=3 \\\\ b=4 \\\\ c=5 \\end{cases}$.\\\\\r\n\t\tVậy $a+b+c=12$."
+}

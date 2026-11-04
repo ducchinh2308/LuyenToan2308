@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_385d5b7d31",
+  "dapAn": "C",
+  "loiGiai": "Vận tốc của chất điểm tại thời điểm $t$ là $v(t)=s'(t)=3t^{2}-6t+5$.\\\\\r\n\t\tTa có: $v'(t)=6t-6=0 \\Leftrightarrow t=1$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_385d5b7d31_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy $\\min\\limits_{(0;5)} v(t) = v(1) = 2\\text{ m/s}$."
+}
