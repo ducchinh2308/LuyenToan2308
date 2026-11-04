@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-04T01:14:50.868Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_57b424eb0c",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thay lần lượt các cặp số vào bất phương trình $2x-y\\ge3$:\\\\\r\n\t\t- Với $(0;2)$: $2(0) - 2 = -2 \\ge 3$ (sai).\\\\\r\n\t\t- Với $(0;3)$: $2(0) - 3 = -3 \\ge 3$ (sai).\\\\\r\n\t\t- Với $(3;0)$: $2(3) - 0 = 6 \\ge 3$ (đúng).\\\\\r\n\t\t- Với $(0;1)$: $2(0) - 1 = -1 \\ge 3$ (sai).\\\\\r\n\t\tVậy $(3;0)$ là một nghiệm của bất phương trình."
+    },
+    {
+      "maBaoMat": "sol_7fadf1dcb0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Phủ định của mệnh đề \"$\\forall x \\in X, P(x)$\" là mệnh đề \"$\\exists x \\in X, \\overline{P(x)}$\".\\\\\r\n\t\tPhủ định của bất đẳng thức \"$>0$\" là \"$\\le 0$\".\\\\\r\n\t\tVậy mệnh đề phủ định là: \"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026\\le0$\"."
+    },
+    {
+      "maBaoMat": "sol_1b88accc87",
+      "dapAn": "B",
+      "loiGiaiHtml": "Với hai góc bù nhau ($\\alpha$ và $180^{\\circ}-\\alpha$), sin của chúng bằng nhau, còn cosin, tang và côtang của chúng đối nhau.\r\n\t\tNghĩa là: $\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$, $\\cos(180^{\\circ}-\\alpha)=-\\cos \\alpha$, $\\tan(180^{\\circ}-\\alpha)=-\\tan \\alpha$, $\\cot(180^{\\circ}-\\alpha)=-\\cot \\alpha$.\\\\\r\n\t\tVậy khẳng định $\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$ là đúng."
+    },
+    {
+      "maBaoMat": "sol_a931a2507c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Hệ bất phương trình bậc nhất hai ẩn là hệ chứa các bất phương trình bậc nhất với hai ẩn.\\\\\r\n\t\t- Các đáp án B, C, D đều chứa các số hạng bậc hai ($x^2, y^2$) nên không phải.\\\\\r\n\t\t- Chỉ có đáp án A gồm các bất phương trình bậc nhất hai ẩn $x, y$."
+    },
+    {
+      "maBaoMat": "sol_65b2a14083",
+      "dapAn": "A",
+      "loiGiaiHtml": "Theo định nghĩa các giá trị lượng giác của một góc từ $0^\\circ$ đến $180^\\circ$, trên nửa đường tròn đơn vị tâm $O$, điểm $M(x_0; y_0)$ thoả mãn $\\widehat{xOM} = \\alpha$ thì:\\\\\r\n\t\t$\\sin \\alpha = y_0$ (tung độ của $M$).\\\\\r\n\t\t$\\cos \\alpha = x_0$ (hoành độ của $M$).\\\\\r\n\t\tVậy khẳng định đúng là $\\sin \\alpha=y_{0}$."
+    },
+    {
+      "maBaoMat": "sol_848d9ca81c",
+      "dapAn": "B",
+      "loiGiaiHtml": "Phần gạch sọc biểu diễn những phần tử thuộc tập hợp $A$ nhưng không thuộc tập hợp $B$. Theo định nghĩa, đây chính là tập hợp hiệu $A \\setminus B$."
+    },
+    {
+      "maBaoMat": "sol_f50b40cb21",
+      "dapAn": "D",
+      "loiGiaiHtml": "Tập hợp $E$ gồm các số thực $x$ thỏa mãn $-3 \\le x \\le 7$. Vì có dấu \"$=$\" ở cả hai đầu mút nên tập hợp này được viết dưới dạng đoạn là $[-3;7]$."
+    },
+    {
+      "maBaoMat": "sol_facbb008c7",
+      "dapAn": "B",
+      "loiGiaiHtml": "Cụm từ \"Với mọi số thực $x$\" được kí hiệu là $\\forall x\\in\\mathbb{R}$.\\\\\r\n\t\tCụm từ \"bình phương của nó lớn hơn hoặc bằng $0$\" được kí hiệu là $x^2 \\ge 0$.\\\\\r\n\t\tVậy mệnh đề được viết dưới dạng kí hiệu là: $\\forall x\\in\\mathbb{R} \\colon x^{2}\\ge0$."
+    },
+    {
+      "maBaoMat": "sol_70caa34790",
+      "dapAn": "B",
+      "loiGiaiHtml": "Bất phương trình bậc nhất hai ẩn có dạng $ax+by+c<0$ (hoặc $\\le, >, \\ge$) với $a, b$ không đồng thời bằng $0$.\\\\\r\n\t\t- Đáp án A chứa biến $y$ bậc $3$.\\\\\r\n\t\t- Đáp án C có chứa $3$ ẩn $x, y, z$ và số hạng $xy$ bậc hai.\\\\\r\n\t\t- Đáp án D chứa số hạng $xy^2$ bậc $3$.\\\\\r\n\t\t- Đáp án B là bất phương trình bậc nhất với hai ẩn $x, y$."
+    },
+    {
+      "maBaoMat": "sol_1038a2d001",
+      "dapAn": "B",
+      "loiGiaiHtml": "Với hai góc bù nhau ($\\alpha$ và $180^\\circ - \\alpha$), ta có giá trị sin bằng nhau, các giá trị lượng giác còn lại đối nhau.\\\\\r\n\t\tDo đó, $\\cos(180^{\\circ}-\\alpha) = -\\cos \\alpha$. Khẳng định $\\cos(180^{\\circ}-\\alpha)=\\cos \\alpha$ là sai."
+    },
+    {
+      "maBaoMat": "sol_3025b3dfa9",
+      "dapAn": "A",
+      "loiGiaiHtml": "Đường thẳng biên $d$ đi qua các điểm $(2;0)$ và $(0;-1)$.\\\\\r\n\t\tPhương trình đoạn chắn của $d$ là: $\\displaystyle\\frac{x}{2} + \\frac{y}{-1} = 1 \\Leftrightarrow x - 2y = 2$.\\\\\r\n\t\tPhần không bị gạch chứa gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào vế trái của đường thẳng, ta được $0 - 2(0) = 0 \\le 2$.\\\\\r\n\t\tVậy miền nghiệm là nửa mặt phẳng kể cả bờ $d$ chứa điểm $O$, tương ứng với bất phương trình $x-2y\\le2$."
+    },
+    {
+      "maBaoMat": "sol_9e718e0956",
+      "dapAn": "C",
+      "loiGiaiHtml": "Theo bảng giá trị lượng giác của các góc đặc biệt, ta có $\\cos 45^{\\circ} = \\displaystyle\\frac{\\sqrt{2}}{2}$."
+    },
+    {
+      "maBaoMat": "sol_b38c96778d",
+      "dapAn": "10",
+      "loiGiaiHtml": "Theo bảng giá trị lượng giác của các góc đặc biệt, ta có:\r\n\t\t$$\\sin 120^{\\circ} = \\frac{\\sqrt{3}}{2}$$\r\n\t\tĐồng nhất với biểu thức $\\displaystyle\\frac{\\sqrt{a}}{b}$, ta được $a = 3$ và $b = 2$ (phân số đã tối giản).\\\\\r\n\t\tVậy $4a - b = 4(3) - 2 = 12 - 2 = 10$."
+    },
+    {
+      "maBaoMat": "sol_a8e4132b7e",
+      "dapAn": "160",
+      "loiGiaiHtml": "Miền nghiệm của hệ bất phương trình là tứ giác $OHEG$ với tọa độ các đỉnh là $O(0;0)$, $H(0;3)$, $E(2;2)$ và $G(3;0)$.\\\\\r\n\t\tTa tính giá trị của biểu thức $F(x;y)=10x+60y-20$ tại các đỉnh:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Tại $O(0;0) \\Rightarrow F(0;0) = 10(0) + 60(0) - 20 = -20$.\r\n\t\t\t\\item Tại $H(0;3) \\Rightarrow F(0;3) = 10(0) + 60(3) - 20 = 160$.\r\n\t\t\t\\item Tại $E(2;2) \\Rightarrow F(2;2) = 10(2) + 60(2) - 20 = 120$.\r\n\t\t\t\\item Tại $G(3;0) \\Rightarrow F(3;0) = 10(3) + 60(0) - 20 = 10$.\r\n\t\t\\end{itemize}\r\n\t\tSo sánh các kết quả thu được, ta có giá trị lớn nhất của $F(x;y)$ bằng $160$, đạt được khi $x=0, y=3$.\\\\\r\n\t\tVậy lợi nhuận $F(x;y)$ đạt cao nhất là $160$."
+    },
+    {
+      "maBaoMat": "sol_f217614fe6",
+      "dapAn": "156",
+      "loiGiaiHtml": "Lượng gỗ tiêu thụ để làm $x$ chiếc bàn và $y$ cái ghế là $3x+5y$ (kg).\\\\\r\n\t\tVì xưởng chỉ có lượng gỗ dự trữ là $150\\text{ kg}$, nên lượng gỗ tiêu thụ không được vượt quá lượng gỗ dự trữ.\r\n\t\tTa có bất phương trình biểu diễn lượng gỗ tiêu thụ là:\r\n\t\t$$3x + 5y \\le 150$$\r\n\t\tĐồng nhất với bất phương trình có dạng $ax+5y\\le b$, ta nhận được $a = 3$ và $b = 150$.\\\\\r\n\t\tKhi đó, giá trị biểu thức $T = 2a + b = 2(3) + 150 = 156$."
+    },
+    {
+      "maBaoMat": "sol_1999c1eac3",
+      "dapAn": "4",
+      "loiGiaiHtml": "Tập hợp $A$ có $3$ phần tử phân biệt là $x, 1$ và $4$.\\\\\r\n\t\tCác tập hợp con của $A$ bắt buộc phải chứa phần tử $x$ được tạo thành bằng cách ghép $x$ với các tập con của tập hợp $\\{1;4\\}$.\\\\\r\n\t\tTập hợp $\\{1;4\\}$ có $2^2 = 4$ tập con là: $\\varnothing, \\{1\\}, \\{4\\}, \\{1;4\\}$.\\\\\r\n\t\tGhép phần tử $x$ vào các tập con trên, ta được $4$ tập con của $A$ chứa $x$ gồm:\r\n\t\t$\\{x\\}, \\{x; 1\\}, \\{x; 4\\}, \\{x; 1; 4\\}$.\\\\\r\n\t\tVậy có tất cả $4$ tập hợp."
+    },
+    {
+      "maBaoMat": "sol_3f1bc8cfa7",
+      "dapAn": "103",
+      "loiGiaiHtml": "Xét tam giác $ABC$, tổng ba góc trong tam giác bằng $180^\\circ$, ta có:\r\n\t\t$$\\widehat{ACB} = 180^{\\circ} - (\\widehat{CAB} + \\widehat{CBA}) = 180^{\\circ} - (54^{\\circ} + 74^{\\circ}) = 180^{\\circ} - 128^{\\circ} = 52^{\\circ}.$$\r\n\t\tÁp dụng định lý sin trong tam giác $ABC$, ta có:\r\n\t\t$$\\frac{BC}{\\sin A} = \\frac{AB}{\\sin C} \\Rightarrow BC = \\frac{AB \\cdot \\sin A}{\\sin C}$$\r\n\t\tThay các số liệu đã biết vào công thức, ta được khoảng cách từ con tàu $C$ đến người $B$ là:\r\n\t\t$$BC = \\frac{100 \\cdot \\sin 54^{\\circ}}{\\sin 52^{\\circ}} \\approx 102{,}66 \\text{ (m)}.$$\r\n\t\tLàm tròn kết quả đến hàng đơn vị, ta được $BC \\approx 103\\text{ m}$."
+    },
+    {
+      "maBaoMat": "sol_6d4a308ccb",
+      "dapAn": "45",
+      "loiGiaiHtml": "Gọi $A$ là tập hợp các học sinh đạt Giỏi môn Toán.\\\\\r\n\t\tGọi $B$ là tập hợp các học sinh đạt Giỏi môn Văn.\\\\\r\n\t\tTheo giả thiết, ta có số lượng phần tử của các tập hợp là:\r\n\t\t$n(A)=10$, $n(B)=15$, $n(A\\cap B)=5$.\\\\\r\n\t\tSố học sinh đạt loại Giỏi ít nhất một trong hai môn (thuộc tập hợp $A \\cup B$) là:\r\n\t\t$$n(A\\cup B)=n(A)+n(B)-n(A\\cap B)=10+15-5=20 \\text{ (em)}.$$\r\n\t\tSố học sinh không đạt loại Giỏi môn nào trong hai môn Toán và Văn là $25$ em.\\\\\r\n\t\tSĩ số học sinh của lớp 10B là tổng số học sinh đạt loại Giỏi ít nhất $1$ môn và số học sinh không đạt loại Giỏi môn nào:\\\\\r\n\t\t$$N = 20 + 25 = 45 \\text{ (em)}.$$\r\n\t\tVậy sĩ số học sinh của lớp là $45$ em."
+    },
+    {
+      "maBaoMat": "sol_b295c8440c",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Thay tọa độ điểm $(1;2)$ vào hệ bất phương trình (I) ta được:\r\n\t\t\t$\\begin{cases}1+2(2)=5\\le10 \\text{ (đúng)}\\\\ 2(1)+2=4\\le8 \\text{ (đúng)}\\\\ 1\\ge0 \\text{ (đúng)}\\\\ 2\\ge0 \\text{ (đúng)}\\end{cases}$.\r\n\t\t\tVậy điểm $(1;2)$ thuộc miền nghiệm của hệ. Mệnh đề đúng.\r\n\t\t\t\\itemch Tại điểm $C(4;0)$, giá trị của biểu thức là: $F(4;0) = 2(4) + 3(0) = 8$. Mệnh đề khẳng định bằng $7$ là sai.\r\n\t\t\t\\itemch Các đỉnh của miền tứ giác nghiệm là $O(0;0)$, $A(0;5)$, $B(2;4)$ và $C(4;0)$.\\\\\r\n\t\t\tTính giá trị của $F(x;y) = 2x+3y$ tại các đỉnh này:\\\\\r\n\t\t\t$F(0;0) = 0$.\\\\\r\n\t\t\t$F(0;5) = 2(0) + 3(5) = 15$.\\\\\r\n\t\t\t$F(2;4) = 2(2) + 3(4) = 16$.\\\\\r\n\t\t\t$F(4;0) = 2(4) + 3(0) = 8$.\\\\\r\n\t\t\tSuy ra giá trị lớn nhất của biểu thức $F(x;y)$ là $16$ (đạt tại điểm $B$). Mệnh đề đúng.\r\n\t\t\t\\itemch Từ kết quả tính toán ở trên, giá trị nhỏ nhất của biểu thức $F(x;y)$ trên miền nghiệm là $0$ (đạt tại $O(0;0)$). Mệnh đề khẳng định bằng $10$ là sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_f908ae8453",
+      "dapAn": "TTFT",
+      "loiGiaiHtml": "Với $90^{\\circ}<\\alpha<180^{\\circ}$ (góc tù), điểm biểu diễn góc $\\alpha$ trên nửa đường tròn đơn vị nằm ở góc phần tư thứ hai. Khi đó:\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Tung độ dương nên $\\sin \\alpha > 0$. Mệnh đề đúng.\r\n\t\t\t\\itemch Hoành độ âm nên $\\cos \\alpha < 0$. Mệnh đề đúng.\r\n\t\t\t\\itemch Vì $\\sin \\alpha > 0$ và $\\cos \\alpha < 0$ nên $\\tan \\alpha = \\displaystyle\\frac{\\sin \\alpha}{\\cos \\alpha} < 0$. Mệnh đề sai.\r\n\t\t\t\\itemch Tương tự, $\\cot \\alpha = \\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha} < 0$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_629d0d1bcd",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Vì $x \\in \\mathbb{Z}$ và $-2 \\le x \\le 2$ nên các phần tử của tập hợp $A$ là các số nguyên từ $-2$ đến $2$. Vậy $A=\\{-2;-1;0;1;2\\}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta thấy phần tử $3 \\in \\{1;2;3\\}$ nhưng $3 \\notin A$. Do đó, tập hợp $\\{1;2;3\\}$ không phải là tập con của $A$. Mệnh đề sai.\r\n\t\t\t\\itemch Tập hợp $A \\setminus B$ gồm các phần tử thuộc $A$ nhưng không thuộc $B$. \r\n\t\t\tTa có $A \\setminus B = \\{-2;-1;0;1\\}$ (do phần tử $2$ nằm trong cả $A$ và $B$). Mệnh đề phát biểu $A \\setminus B = \\{-2;-1;0;1;2\\}$ là sai.\r\n\t\t\t\\itemch Tập hợp $A \\cup B = \\{-2;-1;0;1;2;3;4;5;6;7\\}$. Đếm số lượng phần tử ta thấy có tất cả $10$ phần tử. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_ddf35424ee",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch $5$ thuộc tập hợp các số nguyên $\\mathbb{Z}$ nên $P$ là mệnh đề đúng. Mệnh đề khẳng định đúng.\r\n\t\t\t\\itemch Bình phương của mọi số thực luôn không âm, tức là $x^2 \\ge 0, \\forall x \\in \\mathbb{R}$. Do đó $Q$ là mệnh đề đúng. Mệnh đề khẳng định đúng.\r\n\t\t\t\\itemch Phủ định của mệnh đề $P=$ ``Số $5$ là một số nguyên'' phải là $\\overline{P}=$ ``Số $5$ không là một số nguyên''. Mệnh đề khẳng định sai.\r\n\t\t\t\\itemch Phủ định của mệnh đề $Q=$ ``$\\forall x\\in \\mathbb{R} \\colon x^{2}\\ge0$'' là $\\overline{Q}=$ ``$\\exists x\\in \\mathbb{R} \\colon x^{2}<0$''. Mệnh đề khẳng định sai.\r\n\t\t\\end{itemchoice}"
+    }
+  ]
+}
