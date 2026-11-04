@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_62efc6de45",
+  "dapAn": "105",
+  "loiGiai": "Gọi $A, B, C$ lần lượt là tập hợp các học sinh học tiếng Anh, tiếng Pháp và tiếng Đức.\\\\\r\n\t\tTheo giả thiết, số phần tử của các tập hợp là:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $n(A) = 70$, $n(B) = 45$, $n(C) = 30$.\r\n\t\t\t\\item $n(A \\cap B) = 20$, $n(A \\cap C) = 15$, $n(B \\cap C) = 10$.\r\n\t\t\t\\item $n(A \\cap B \\cap C) = 5$.\r\n\t\t\\end{itemize}\r\n\t\tVì mỗi học sinh đều học ít nhất một ngoại ngữ nên tổng số học sinh tham gia khảo sát chính là số phần tử của tập hợp $A \\cup B \\cup C$.\\\\\r\n\t\tÁp dụng công thức cộng, ta có:\\\\\r\n\t\t$n(A \\cup B \\cup C) = n(A) + n(B) + n(C) - n(A \\cap B) - n(A \\cap C) - n(B \\cap C) + n(A \\cap B \\cap C)$\\\\\r\n\t\t$n(A \\cup B \\cup C) = 70 + 45 + 30 - 20 - 15 - 10 + 5 = 105$.\\\\\r\n\t\tVậy có tất cả $105$ học sinh đã tham gia khảo sát."
+}

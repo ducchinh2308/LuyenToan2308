@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e67a1aab6d",
+  "dapAn": "19",
+  "loiGiai": "Tổng số học sinh của lớp là $42$. Vì có $2$ bạn không tham gia tiết mục nào nên số học sinh có tham gia ít nhất một tiết mục (thuộc tập hợp Hợp) là:\r\n\t\t$$42 - 2 = 40 \\text{ (học sinh)}.$$\r\n\t\tGọi $A$ là tập hợp các học sinh tham gia tiết mục nhảy $\\Rightarrow n(A) = 33$.\\\\\r\n\t\tGọi $B$ là tập hợp các học sinh tham gia tiết mục hát $\\Rightarrow n(B)$ là số cần tìm.\\\\\r\n\t\tSố học sinh tham gia cả hai tiết mục là $n(A \\cap B) = 12$.\\\\\r\n\t\tÁp dụng công thức cộng số phần tử của tập hợp, ta có:\r\n\t\t$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$\r\n\t\t$$40 = 33 + n(B) - 12 \\Leftrightarrow 40 = 21 + n(B) \\Leftrightarrow n(B) = 19.$$\r\n\t\tVậy có $19$ học sinh tham gia tiết mục hát."
+}

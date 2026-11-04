@@ -1,0 +1,225 @@
+{
+  "maDe": "K10-GK1-NGUYENQUANNHO-HOAVANG-12-4-6",
+  "tenDe": "K10-GK1-NGUYENQUANNHO-HOAVANG-12-4-6",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0D1H3-2]",
+      "maCau": "q_ca172cdf3b",
+      "ma_goc": "2610-1890",
+      "kieuCau": "DS",
+      "cauDan": "Cho hai tập hợp $A=(-4;6]$ và $B=\\{x\\in\\mathbb{R} \\mid 1<x\\le8\\}$.\r\n\tHãy xác định tính đúng/sai của các phát biểu sau:",
+      "paA": "Hiệu của hai tập hợp $A\\setminus B$ chứa $4$ phần tử nguyên",
+      "paB": "Tập hợp $B$ được viết dưới dạng khoảng là $(1;8]$",
+      "paC": "Hợp của hai tập hợp $A$ và $B$ là $A\\cup B=(-4;8]$",
+      "paD": "Giao của hai tập hợp $A$ và $B$ là $A\\cap B=(1;6)$"
+    },
+    {
+      "id_Cau": "[0D1H1-3]",
+      "maCau": "q_906ea784d7",
+      "ma_goc": "2610-1978",
+      "kieuCau": "DS",
+      "cauDan": "Xét tính đúng sai của các mệnh đề sau",
+      "paA": "Tứ giác là hình chữ nhật khi và chỉ khi tứ giác có hai đường chéo bằng nhau",
+      "paB": "Một số chia hết cho $9$ là điều kiện cần để số đó chia hết cho $3$",
+      "paC": "Nếu $a$ và $b$ là các số lẻ thì $a+b$ là số chẵn",
+      "paD": "$\\exists x\\in\\mathbb{Z}, 16x^{2}-1=0$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_31142a4957",
+      "ma_goc": "2610-1979",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ có $AB=6\\text{ cm}; \\widehat{B}=45^{\\circ}; \\widehat{A}=60^{\\circ}$.",
+      "paA": "Diện tích tam giác $ABC$ tính theo công thức $S=\\displaystyle\\frac{1}{2}AB.AC.\\sin B$",
+      "paB": "Đường cao từ đỉnh $C$ của tam giác $ABC$ là $h_{c}=9-3\\sqrt{3}$",
+      "paC": "Bán kính đường tròn ngoại tiếp của tam giác $ABC$ là $R=3\\sqrt{6}-3\\sqrt{2}$",
+      "paD": "$\\sin C=\\displaystyle\\frac{\\sqrt{6}+\\sqrt{2}}{4}$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_0ed079fa22",
+      "ma_goc": "2610-1891",
+      "kieuCau": "DS",
+      "cauDan": "Cho tam giác $ABC$ có $b=10\\text{ cm}, c=8\\text{ cm}$ và $\\widehat{A}=60^{\\circ}$.\r\n\tHãy xác định tính đúng/sai của các phát biểu sau:",
+      "paA": "Bán kính đường tròn nội tiếp tam giác $ABC$ là $r=\\displaystyle\\frac{10\\sqrt{3}}{1+\\sqrt{21}+5}\\text{ cm}$",
+      "paB": "Các góc còn lại của tam giác là $\\widehat{B}\\approx79{,}1^{\\circ}$ và $\\widehat{C}\\approx40{,}9^{\\circ}$",
+      "paC": "Độ dài cạnh $a$ là $2\\sqrt{21}\\text{ cm}$",
+      "paD": "Diện tích của tam giác $ABC$ là $S=20\\sqrt{3}\\text{ cm}^{2}$"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_9170ca42c6",
+      "ma_goc": "2610-1986",
+      "kieuCau": "TLN",
+      "cauDan": "Một đội công nhân cần mắc dây điện lên hai cột điện nằm trên hai đỉnh núi. Để tiết kiệm sức lực, họ muốn xác định khoảng cách giữa hai cột điện để mang lượng dây điện cho phù hợp. Một người đã nghĩ ra cách làm như sau: Gọi $2$ đầu cột điện là hai điểm $A, B$, lấy trên mặt đất hai điểm $C, D$ sao cho khoảng cách giữa hai điểm $C, D$ đo được và từ cả $C$ lẫn $D$ đều nhìn thấy $3$ điểm còn lại đồng thời các điểm đó cùng nằm trên một mặt phẳng. Sử dụng thước dây và giác kế, người đó đã đo được các số liệu như sau: $CD=50\\text{m}, \\widehat{ACB}=100^{\\circ}, \\widehat{BCD}=15^{\\circ}, \\widehat{ADC}=57^{\\circ}, \\widehat{ADB}=103^{\\circ}$. Hãy tính gần đúng khoảng cách giữa hai cột điện trên? (kết quả làm tròn đến hàng đơn vị)\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_9170ca42c6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D1V2-2]",
+      "maCau": "q_28c25a8190",
+      "ma_goc": "2610-1980",
+      "kieuCau": "TLN",
+      "cauDan": "Lớp 10/1 có $42$ học sinh chuẩn bị cho hội diễn văn nghệ chào mừng ngày thành lập đoàn 26/3. Trong danh sách đăng kí tham gia tiết mục nhảy và tiết mục hát, có $33$ học sinh tham gia tiết mục nhảy, $12$ học sinh tham gia cả hai tiết mục. Hỏi có bao nhiêu học sinh trong lớp tham gia tiết mục hát? Biết rằng lớp 10/1 có $2$ bạn bị khuyết tật hòa nhập nên không tham gia tiết mục nào, các bạn còn lại tham gia ít nhất một tiết mục."
+    },
+    {
+      "id_Cau": "[0H4V1-2]",
+      "maCau": "q_1dc66a50af",
+      "ma_goc": "2610-1983",
+      "kieuCau": "TLN",
+      "cauDan": "Cho góc $\\alpha (0^{\\circ}<\\alpha<180^{\\circ})$ thoả mãn $\\cot \\alpha=2$. Tính giá trị biểu thức $P=\\displaystyle\\frac{3\\sin \\alpha+2\\cos \\alpha}{5\\sin \\alpha-\\cos \\alpha}$ (Kết quả làm tròn $2$ chữ số thập phân)."
+    },
+    {
+      "id_Cau": "[0D1V2-2]",
+      "maCau": "q_654833573d",
+      "ma_goc": "2610-1892",
+      "kieuCau": "TLN",
+      "cauDan": "Trong một cuộc khảo sát về việc học ngoại ngữ tại trường THPT, người ta thu được kết quả như sau: $70$ học sinh học tiếng Anh, $45$ học sinh học tiếng Pháp, $30$ học sinh học tiếng Đức. Có $20$ học sinh học tiếng Anh và tiếng Pháp, $15$ học sinh học tiếng Anh và tiếng Đức, $10$ học sinh học tiếng Pháp và tiếng Đức. Ngoài ra, có $5$ học sinh học cả ba thứ tiếng. Biết rằng mỗi học sinh tham gia khảo sát đều học ít nhất một ngoại ngữ. Hỏi có tất cả bao nhiêu học sinh đã tham gia khảo sát?"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_c20195964b",
+      "ma_goc": "2610-1893",
+      "kieuCau": "TLN",
+      "cauDan": "Để đo chiều cao của một cây cột điện, người ta đặt một máy đo khoảng cách tại hai vị trí $A, B$ trên mặt đất, cách nhau $20\\text{ m}$. Từ vị trí $A$, nhìn thấy đỉnh cột điện $C$ với góc nâng $60^{\\circ}$. Từ vị trí $B$, nhìn thấy đỉnh cột điện $C$ với góc nâng $45^{\\circ}$. Biết $A, B, H$ thẳng hàng, với $H$ là chân cột điện và $H$ nằm giữa $A$ và $B$. Tính chiều cao của cột điện $CH$ (làm tròn đến hàng phần mười).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c20195964b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_8ad4b0a696",
+      "ma_goc": "2610-1894",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hệ bất phương trình bậc nhất hai ẩn:\r\n\t$\\begin{cases}x+y\\le2\\\\ 2x-y\\le4\\\\ x\\ge0\\\\ y\\ge0\\end{cases}$\r\n\tCác đỉnh của miền nghiệm của hệ bất phương trình trên tạo thành một tam giác có diện tích bằng bao nhiêu? (Làm tròn đến hàng đơn vị)."
+    },
+    {
+      "id_Cau": "[0D1N3-2]",
+      "maCau": "q_4650c99f22",
+      "ma_goc": "2610-1966",
+      "kieuCau": "TN",
+      "cauDan": "Cho biểu đồ Ven sau đây. Phần tô đậm biểu diễn tập hợp nào?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_4650c99f22_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$A\\cap B$",
+      "paB": "$A\\setminus B$",
+      "paC": "$A\\cup B$",
+      "paD": "$B\\setminus A$"
+    },
+    {
+      "id_Cau": "[0D2H2-2]",
+      "maCau": "q_ebd16603ae",
+      "ma_goc": "2610-1888",
+      "kieuCau": "TN",
+      "cauDan": "Miền nghiệm của một hệ bất phương trình bậc nhất hai ẩn được biểu diễn bởi phần không bị gạch trong hình vẽ sau (nét liền là tính cả bờ, nét đứt là không tính bờ). Hệ bất phương trình đó là:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ebd16603ae_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\begin{cases}y-x+1\\le0\\\\ x+y-3<0\\end{cases}$",
+      "paB": "$\\begin{cases}y-x+1<0\\\\ x+y-3\\ge0\\end{cases}$",
+      "paC": "$\\begin{cases}y-x+1\\ge0\\\\ x+y-3<0\\end{cases}$",
+      "paD": "$\\begin{cases}y-x+1\\ge0\\\\ x+y-3>0\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0D1H1-5]",
+      "maCau": "q_f2697b57e1",
+      "ma_goc": "2610-1971",
+      "kieuCau": "TN",
+      "cauDan": "Tìm mệnh đề phủ định của mệnh đề: $\\forall x \\in \\mathbb{R}, x^{2}+2x+5>0$.",
+      "paA": "$\\forall x \\in \\mathbb{R}, x^{2}+2x+5\\le0$",
+      "paB": "$\\exists x\\in\\mathbb{R}, x^{2}+2x+5\\le0$",
+      "paC": "$\\forall x \\in \\mathbb{R}, x^{2}+2x+5>0$",
+      "paD": "$\\exists x\\in\\mathbb{R}, x^{2}+2x+5<0$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_8068827aaf",
+      "ma_goc": "2610-1972",
+      "kieuCau": "TN",
+      "cauDan": "Cặp số nào sau đây là nghiệm của bất phương trình $x-2y+5>0$",
+      "paA": "$(x;y)=(1;3)$",
+      "paB": "$(x;y)=(2;1)$",
+      "paC": "$(x;y)=(-2;4)$",
+      "paD": "$(x;y)=(-2;2)$"
+    },
+    {
+      "id_Cau": "[0H4H1-2]",
+      "maCau": "q_d87c063d72",
+      "ma_goc": "2610-1973",
+      "kieuCau": "TN",
+      "cauDan": "Trong các khẳng định sau, khẳng định nào sai?",
+      "paA": "$1+\\tan^{2}x=\\displaystyle\\frac{1}{\\cos^{2}x} (\\cos x\\ne0)$",
+      "paB": "$\\tan \\alpha=\\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha}$",
+      "paC": "$\\sin^{2}x+\\cos^{2}x=1$",
+      "paD": "$\\tan x \\cdot \\cot x=1 (\\sin x \\cdot \\cos x\\ne0)$"
+    },
+    {
+      "id_Cau": "[0D1N2-2]",
+      "maCau": "q_9783cc1c0a",
+      "ma_goc": "2610-1975",
+      "kieuCau": "TN",
+      "cauDan": "Tập hợp $A=\\{x\\in\\mathbb{N} \\mid x(x-1)(x+3)=0\\}$ bằng tập hợp nào sau đây?",
+      "paA": "$M=\\{-3;0\\}$",
+      "paB": "$N=\\{0;1\\}$",
+      "paC": "$B=\\{-3;0;1\\}$",
+      "paD": "$C=\\{-3;1\\}$"
+    },
+    {
+      "id_Cau": "[0D1H1-5]",
+      "maCau": "q_258734ca6b",
+      "ma_goc": "2610-1881",
+      "kieuCau": "TN",
+      "cauDan": "Mệnh đề phủ định của mệnh đề \"Tồn tại số thực $x$ sao cho $2x^{2}+3x-5<0$\" là:",
+      "paA": "Với mọi số thực $x$, $2x^{2}+3x-5>0$",
+      "paB": "Với mọi số thực $x$, $2x^{2}+3x-5<0$",
+      "paC": "Tồn tại số thực $x$ sao cho $2x^{2}+3x-5\\ge0$",
+      "paD": "Với mọi số thực $x$, $2x^{2}+3x-5\\ge0$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_710a8645a2",
+      "ma_goc": "2610-1880",
+      "kieuCau": "TN",
+      "cauDan": "Miền nghiệm của bất phương trình $x-y+2\\ge0$ được biểu diễn bởi hình vẽ sau (phần không bị gạch). Điểm nào trong các điểm sau đây thuộc miền nghiệm?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_710a8645a2_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$M(0;1)$",
+      "paB": "$N(1;4)$",
+      "paC": "$P(-2;1)$",
+      "paD": "$Q(-3;0)$"
+    },
+    {
+      "id_Cau": "[0H4N2-1]",
+      "maCau": "q_bbf97ed9cc",
+      "ma_goc": "2610-1968",
+      "kieuCau": "TN",
+      "cauDan": "Cho tam giác $ABC$, mệnh đề nào sau đây đúng?",
+      "paA": "$b^{2}=a^{2}+c^{2}-a.c\\cos B$",
+      "paB": "$b^{2}=a^{2}+c^{2}+2a.c\\cos B$",
+      "paC": "$b^{2}=a^{2}-c^{2}+2a.c\\cos B$",
+      "paD": "$b^{2}=a^{2}+c^{2}-2a.c\\cos B$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_8f53169c26",
+      "ma_goc": "2610-1969",
+      "kieuCau": "TN",
+      "cauDan": "Phần nửa mặt phẳng bờ là đường thẳng $d$ (kể cả đường thẳng $d$), phần không gạch chéo trong hình vẽ bên là miền nghiệm của bất phương trình nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8f53169c26_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$-2x+y\\le4$",
+      "paB": "$x-2y\\le4$",
+      "paC": "$x-2y<4$",
+      "paD": "$x-2y\\ge4$"
+    },
+    {
+      "id_Cau": "[0D1N2-1]",
+      "maCau": "q_ee2bc5bf83",
+      "ma_goc": "2610-1879",
+      "kieuCau": "TN",
+      "cauDan": "Phần tử nào sau đây thuộc tập hợp $A=\\{-5;-1;0;2;7\\}$?",
+      "paA": "$5$",
+      "paB": "$-6$",
+      "paC": "$1$",
+      "paD": "$0$"
+    },
+    {
+      "id_Cau": "[0H4N1-1]",
+      "maCau": "q_cc09cbe70c",
+      "ma_goc": "2610-1878",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị của $\\sin 150^{\\circ}$ là:",
+      "paA": "$\\left(-\\displaystyle\\frac{1}{2}\\right)$",
+      "paB": "$\\displaystyle\\frac{1}{2}$",
+      "paC": "$\\left(-\\displaystyle\\frac{\\sqrt{3}}{2}\\right)$",
+      "paD": "$\\displaystyle\\frac{\\sqrt{3}}{2}$"
+    }
+  ]
+}

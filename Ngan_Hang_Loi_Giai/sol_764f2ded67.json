@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_764f2ded67",
+  "dapAn": "FFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hình thang cân cũng có hai đường chéo bằng nhau nhưng không phải là hình chữ nhật. Do đó, đây là mệnh đề sai.\r\n\t\t\t\\itemch Đặt $P \\colon$ \"Số đó chia hết cho $9$\" và $Q \\colon$ \"Số đó chia hết cho $3$\".\\\\\r\n\t\t\tMệnh đề \"Một số chia hết cho 9 là điều kiện cần để số đó chia hết cho 3\" tương đương với mệnh đề kéo theo $Q \\Rightarrow P$ (Nếu số đó chia hết cho 3 thì số đó chia hết cho 9).\\\\\r\n\t\t\tVí dụ số $6$ chia hết cho $3$ nhưng không chia hết cho $9$, nên $Q \\Rightarrow P$ là mệnh đề sai. Do đó, khẳng định này sai.\r\n\t\t\t\\itemch Tổng của hai số lẻ bất kỳ luôn là một số chẵn (ví dụ $a=2k+1$, $b=2m+1 \\Rightarrow a+b = 2(k+m+1)$ chẵn). Khẳng định đúng.\r\n\t\t\t\\itemch Xét phương trình $16x^2 - 1 = 0 \\Leftrightarrow x^2 = \\displaystyle\\frac{1}{16} \\Leftrightarrow x = \\pm\\frac{1}{4}$.\\\\\r\n\t\t\tVì $\\pm\\displaystyle\\frac{1}{4} \\notin \\mathbb{Z}$ nên không tồn tại $x \\in \\mathbb{Z}$ thỏa mãn. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+}

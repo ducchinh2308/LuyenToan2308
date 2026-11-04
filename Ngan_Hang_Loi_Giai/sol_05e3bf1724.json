@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_05e3bf1724",
+  "dapAn": "B",
+  "loiGiai": "Giải phương trình $x(x-1)(x+3) = 0$, ta được các nghiệm:\r\n\t\t$$x = 0; \\quad x = 1; \\quad x = -3$$\r\n\t\tVì yêu cầu $x \\in \\mathbb{N}$ (tập hợp số tự nhiên) nên ta chỉ nhận các giá trị $x = 0$ và $x = 1$. Giá trị $x = -3 \\notin \\mathbb{N}$ bị loại.\\\\\r\n\t\tVậy $A = \\{0; 1\\} = N$."
+}

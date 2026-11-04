@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_81d36e72a2",
+  "dapAn": "A",
+  "loiGiai": "Thay toạ độ các điểm vào bất phương trình $x-y+2\\ge0$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Với $M(0;1)$: $0 - 1 + 2 = 1 \\ge 0$ (đúng).\r\n\t\t\t\\item Với $N(1;4)$: $1 - 4 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\t\\item Với $P(-2;1)$: $-2 - 1 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\t\\item Với $Q(-3;0)$: $-3 - 0 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\\end{itemize}\r\n\t\tVậy điểm $M(0;1)$ thuộc miền nghiệm của bất phương trình."
+}

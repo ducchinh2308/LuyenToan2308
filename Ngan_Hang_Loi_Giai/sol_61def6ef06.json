@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_61def6ef06",
+  "dapAn": "12,7",
+  "loiGiai": "Gọi $h$ là chiều cao của cột điện $CH$ ($h > 0$).\\\\\r\n\t\tXét tam giác $AHC$ vuông tại $H$, ta có: $\\cot 60^{\\circ} = \\displaystyle\\frac{AH}{CH} \\Rightarrow AH = h \\cdot \\cot 60^{\\circ} = \\frac{h}{\\sqrt{3}}$.\\\\\r\n\t\tXét tam giác $BHC$ vuông tại $H$, ta có: $\\cot 45^{\\circ} = \\displaystyle\\frac{BH}{CH} \\Rightarrow BH = h \\cdot \\cot 45^{\\circ} = h$.\\\\\r\n\t\tVì $H$ nằm giữa $A$ và $B$ nên: $AH + BH = AB = 20$.\\\\\r\n\t\t$\\Rightarrow \\displaystyle\\frac{h}{\\sqrt{3}} + h = 20 \\Leftrightarrow h\\left(\\frac{1}{\\sqrt{3}} + 1\\right) = 20 \\Leftrightarrow h\\left(\\frac{\\sqrt{3}+1}{\\sqrt{3}}\\right) = 20$.\\\\\r\n\t\t$\\Rightarrow h = \\displaystyle\\frac{20\\sqrt{3}}{\\sqrt{3}+1} = 10\\sqrt{3}(\\sqrt{3}-1) = 30 - 10\\sqrt{3}$.\\\\\r\n\t\tBấm máy tính ta được $h \\approx 12{,}679\\text{ m}$.\\\\\r\n\t\tLàm tròn đến hàng phần mười, ta được $12{,}7\\text{ m}$."
+}

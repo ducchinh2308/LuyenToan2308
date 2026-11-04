@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_306930242e",
+  "dapAn": "D",
+  "loiGiai": "Từ hình vẽ, ta thấy đường thẳng $d$ đi qua hai điểm $(4; 0)$ và $(0; -2)$.\\\\\r\n\t\tPhương trình đường thẳng $d$ theo đoạn chắn là: \r\n\t\t$$\\frac{x}{4} + \\frac{y}{-2} = 1 \\Leftrightarrow x - 2y = 4$$\r\n\t\tPhần không gạch chéo (miền nghiệm) là nửa mặt phẳng \\textbf{không chứa} gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào biểu thức $x - 2y$, ta được $0 - 2(0) = 0$.\\\\\r\n\t\tĐể $O$ không thuộc miền nghiệm, ta phải có $0 \\ge 4$ (mệnh đề sai).\\\\\r\n\t\tLấy $1$ điểm nằm trong phần không gạch, ví dụ $(4;-2)$, thay vào có: $4 - 2(-2) = 8 \\ge 4$ (đúng).\\\\\r\n\t\tVì miền nghiệm kể cả đường thẳng $d$ (có dấu bằng), nên bất phương trình cần tìm là $x - 2y \\ge 4$."
+}

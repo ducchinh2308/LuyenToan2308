@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_17e4fb4f0b",
+  "dapAn": "D",
+  "loiGiai": "Mệnh đề ban đầu có dạng: \"$\\exists x \\in \\mathbb{R}, 2x^2+3x-5 < 0$\".\\\\\r\n\t\tĐể lập mệnh đề phủ định, ta thay lượng từ \"Tồn tại\" ($\\exists$) thành \"Với mọi\" ($\\forall$), đồng thời phủ định bất đẳng thức \"$< 0$\" thành \"$\\ge 0$\".\\\\\r\n\t\tVậy mệnh đề phủ định là: \"Với mọi số thực $x$, $2x^{2}+3x-5\\ge0$\"."
+}

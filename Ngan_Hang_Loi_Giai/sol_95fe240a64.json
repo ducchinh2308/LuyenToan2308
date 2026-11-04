@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_95fe240a64",
+  "dapAn": "B",
+  "loiGiai": "Mệnh đề phủ định của lượng từ \"$\\forall$\" (với mọi) là lượng từ \"$\\exists$\" (tồn tại), và phủ định của bất đẳng thức \"$>$\" là \"$\\le$\".\\\\\r\n\t\tDo đó, mệnh đề phủ định là: $\\exists x\\in\\mathbb{R}, x^{2}+2x+5\\le0$."
+}

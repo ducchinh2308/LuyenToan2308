@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_34519e0309",
+  "dapAn": "B",
+  "loiGiai": "Theo định nghĩa các giá trị lượng giác cơ bản:\r\n\t\t$$\\tan \\alpha = \\frac{\\sin \\alpha}{\\cos \\alpha} \\quad \\text{và} \\quad \\cot \\alpha = \\frac{\\cos \\alpha}{\\sin \\alpha}$$\r\n\t\tDo đó khẳng định $\\tan \\alpha=\\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha}$ là sai."
+}

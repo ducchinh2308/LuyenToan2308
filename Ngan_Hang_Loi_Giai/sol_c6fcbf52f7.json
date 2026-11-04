@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c6fcbf52f7",
+  "dapAn": "FTTF",
+  "loiGiai": "Viết tập $B$ dưới dạng nửa khoảng: $B = (1; 8]$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Tập hợp hiệu $A \\setminus B = (-4;6] \\setminus (1;8] = (-4; 1]$.\\\\\r\n\t\t\tCác số nguyên thuộc nửa khoảng này là: $-3, -2, -1, 0, 1$. Có tất cả $5$ phần tử nguyên. Phát biểu khẳng định có $4$ phần tử là sai.\r\n\t\t\t\\itemch Từ định nghĩa, tập $B=\\{x\\in\\mathbb{R} \\mid 1<x\\le8\\}$ được viết là $(1;8]$ (nửa khoảng). Mặc dù đề dùng chữ \"khoảng\" (đúng ra là nửa khoảng) nhưng kí hiệu $(1;8]$ là hoàn toàn chính xác. Phát biểu này được tính là đúng.\r\n\t\t\t\\itemch Hợp của hai tập hợp: $A \\cup B = (-4;6] \\cup (1;8] = (-4; 8]$. Phát biểu đúng.\r\n\t\t\t\\itemch Giao của hai tập hợp: $A \\cap B = (-4;6] \\cap (1;8] = (1; 6]$. Phát biểu khẳng định là khoảng $(1;6)$ (không có ngoặc vuông ở $6$) là sai.\r\n\t\t\\end{itemchoice}"
+}

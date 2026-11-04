@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dd13dc3310",
+  "dapAn": "2",
+  "loiGiai": "Vẽ các đường thẳng $d_1 \\colon x+y=2$ và $d_2 \\colon 2x-y=4$ trên mặt phẳng tọa độ:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Đường thẳng $d_1$ đi qua $(0;2)$ và $(2;0)$.\r\n\t\t\t\\item Đường thẳng $d_2$ đi qua $(0;-4)$ và $(2;0)$.\r\n\t\t\\end{itemize}\r\n\t\tDo $x \\ge 0$ và $y \\ge 0$, miền nghiệm nằm trong góc phần tư thứ nhất.\\\\\r\n\t\tGiao điểm của $d_1$ và $d_2$ là nghiệm của hệ:\r\n\t\t$\\begin{cases} x+y=2 \\\\ 2x-y=4 \\end{cases} \\Leftrightarrow \\begin{cases} 3x=6 \\\\ y = 2-x \\end{cases} \\Leftrightarrow \\begin{cases} x=2 \\\\ y=0 \\end{cases}$.\\\\\r\n\t\tKết hợp các đường biên, ta nhận thấy miền nghiệm là tam giác vuông $OAB$ với các đỉnh:\r\n\t\t$O(0;0)$, $A(2;0)$ và $B(0;2)$.\r\n\t\t(Giao điểm của $d_1$ và $d_2$ trùng luôn vào điểm $A$).\\\\\r\n\t\tTam giác $OAB$ vuông tại $O$, có hai cạnh góc vuông là $OA = 2$ và $OB = 2$.\\\\\r\n\t\tDiện tích tam giác $OAB$ là: $S = \\displaystyle\\frac{1}{2} \\cdot OA \\cdot OB = \\frac{1}{2} \\cdot 2 \\cdot 2 = 2$.\\\\\r\n\t\tVậy diện tích tam giác là $2$."
+}

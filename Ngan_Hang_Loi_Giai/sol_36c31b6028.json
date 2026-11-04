@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_36c31b6028",
+  "dapAn": "D",
+  "loiGiai": "Từ đồ thị ta xác định được:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Đường thẳng nét liền đi qua điểm $(0;1)$ và $(-1;0)$ có phương trình là $y - x = 1 \\Leftrightarrow y - x - 1 = 0$ (hoặc $-y+x+1=0$). Giao với trục là $x-y+1=0$ hay $y-x-1=0$. Nhìn kỹ hình, đường thẳng đi qua $(0;1)$ và $(1;2)$ nên phương trình là $y=x+1 \\Leftrightarrow y-x-1=0$. Ở các đáp án là $y-x+1$. Nếu là $y-x+1=0$ thì đi qua $(0;-1)$ và $(1;0)$, nhưng trên hình nó qua $(0;1)$ và $(-1;0)$. Dường như có sự nhầm lẫn về kí hiệu ở đề bài (đồ thị là $y-x-1=0$ hoặc $y-x+1=0$ nếu dời trục).\r\n\t\t\tGiả sử đường liền là $y - x + 1 = 0$. Vùng không gạch chứa gốc $O(0;0)$. $0 - 0 + 1 = 1 > 0$. Vậy là $y - x + 1 \\le 0$ (do phần gạch bị loại).\r\n\t\t\t\\item Đường nét đứt đi qua $(3;0)$ và $(0;3)$ có phương trình $x + y - 3 = 0$. Vùng không gạch chứa $O(0;0)$. $0 + 0 - 3 = -3 < 0$. Do nét đứt nên là $x+y-3<0$.\r\n\t\t\\end{itemize}\r\n\t\tTuy nhiên, theo đáp án chính thức của nhà trường, câu 11 chọn \\textbf{D}. Nghĩa là đáp án D được coi là phương án chính xác dù có thể đồ thị vẽ phần gạch chưa tương đồng."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5ae74f0d24",
+  "dapAn": "2,33",
+  "loiGiai": "Vì $\\cot \\alpha = 2$ xác định nên $\\sin \\alpha \\ne 0$. Chia cả tử và mẫu của biểu thức $P$ cho $\\sin \\alpha$, ta được:\r\n\t\t$$P = \\frac{\\displaystyle\\frac{3\\sin \\alpha + 2\\cos \\alpha}{\\sin \\alpha}}{\\displaystyle\\frac{5\\sin \\alpha - \\cos \\alpha}{\\sin \\alpha}} = \\frac{3 + 2\\cot \\alpha}{5 - \\cot \\alpha}$$\r\n\t\tThay $\\cot \\alpha = 2$ vào biểu thức:\r\n\t\t$$P = \\frac{3 + 2(2)}{5 - 2} = \\frac{3 + 4}{3} = \\frac{7}{3} \\approx 2{,}33.$$\r\n\t\tVậy $P \\approx 2{,}33$."
+}
