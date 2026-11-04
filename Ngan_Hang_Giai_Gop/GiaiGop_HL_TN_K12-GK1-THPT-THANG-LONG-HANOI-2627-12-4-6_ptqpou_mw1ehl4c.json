@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-04T00:50:46.181Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_3cb431973f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Do thiết bị bay di chuyển thẳng đều với vận tốc không đổi nên ta có $\\vec{AC} = \\displaystyle\\frac{20}{60}\\vec{AB} = \\displaystyle\\frac{1}{3}\\vec{AB}$.\\\\\r\n\t\tTa có: $\\vec{AC}=(a-1;b-1;c-1)$ và $\\vec{AB}=(6;9;12)$.\\\\\r\n\t\tKhi đó $\\vec{AC} = \\displaystyle\\frac{1}{3}\\vec{AB} \\Leftrightarrow \\begin{cases} a-1=2 \\\\ b-1=3 \\\\ c-1=4 \\end{cases} \\Leftrightarrow \\begin{cases} a=3 \\\\ b=4 \\\\ c=5 \\end{cases}$.\\\\\r\n\t\tVậy $a+b+c=12$."
+    },
+    {
+      "maBaoMat": "sol_385d5b7d31",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vận tốc của chất điểm tại thời điểm $t$ là $v(t)=s'(t)=3t^{2}-6t+5$.\\\\\r\n\t\tTa có: $v'(t)=6t-6=0 \\Leftrightarrow t=1$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_385d5b7d31_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tVậy $\\min\\limits_{(0;5)} v(t) = v(1) = 2\\text{ m/s}$."
+    },
+    {
+      "maBaoMat": "sol_c23c996955",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ đồ thị hàm số ta thấy điểm cực đại của đồ thị hàm số là $(1;3)$.\\\\\r\n\t\tDo đó, giá trị cực đại của hàm số là $y_{\\text{CĐ}}=3$."
+    },
+    {
+      "maBaoMat": "sol_825cb88913",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\lim\\limits_{x \\to 0^+} \\left(2+\\displaystyle\\frac{1}{x}\\right) = +\\infty$ và $\\lim\\limits_{x \\to 0^-} \\left(2+\\displaystyle\\frac{1}{x}\\right) = -\\infty$.\\\\\r\n\t\tVì $\\lim\\limits_{x \\to 0} y = \\pm\\infty$ nên đường thẳng $x=0$ là tiệm cận đứng của đồ thị hàm số."
+    },
+    {
+      "maBaoMat": "sol_764f756d7f",
+      "dapAn": "A",
+      "loiGiaiHtml": "Xét phương án A: Ta có $\\vec{DD_1}=\\vec{BB_1}$.\\\\\r\n\t\tSuy ra $\\vec{BA}+\\vec{DD_1}+\\vec{BD_1}=\\vec{BA}+\\vec{BB_1}+\\vec{BD_1}=\\vec{BA}+\\vec{BB_1}+\\vec{BA}+\\vec{BC}+\\vec{BB_1}=2\\vec{BA}+\\vec{BC}+2\\vec{BB_1} \\ne \\vec{BC}$. Vậy A sai.\\\\\r\n\t\tXét phương án B: Theo quy tắc hình hộp ta có $\\vec{BA}+\\vec{BC}+\\vec{BB_1}=\\vec{BD_1}$. Vậy B đúng.\\\\\r\n\t\tXét phương án C: Ta có $\\vec{B_1C_1}=\\vec{BC}$ và $\\vec{B_1A_1}=\\vec{BA}$. Do đó $\\vec{BA}+\\vec{BC}=\\vec{B_1C_1}+\\vec{B_1A_1}$. Vậy C đúng.\\\\\r\n\t\tXét phương án D: Ta có $\\vec{AD}=\\vec{BC}$, $\\vec{D_1C_1}=\\vec{DC}$, $\\vec{D_1A_1}=\\vec{DA}$.\\\\\r\n\t\tThay vào vế trái: $\\vec{AD}+\\vec{D_1C_1}+\\vec{D_1A_1}=\\vec{BC}+\\vec{DC}+\\vec{DA}=\\vec{AD}+\\vec{DC}+\\vec{DA}=\\vec{0}+\\vec{DC}=\\vec{DC}$. Vậy D đúng."
+    },
+    {
+      "maBaoMat": "sol_a38396b438",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{u}=-4\\vec{i}+3\\vec{j}+2\\vec{k}$.\\\\\r\n\t\tVậy tọa độ của véc-tơ $\\vec{u}$ là $(-4;3;2)$."
+    },
+    {
+      "maBaoMat": "sol_88a76380e6",
+      "dapAn": "D",
+      "loiGiaiHtml": "Hàm số $y=2^x$ có $y' = 2^x \\ln 2 > 0$ với mọi $x \\in \\mathbb{R}$ nên hàm số đồng biến trên $\\mathbb{R}$."
+    },
+    {
+      "maBaoMat": "sol_b54e841860",
+      "dapAn": "B",
+      "loiGiaiHtml": "Do $ABCD$ là hình thoi nên đường chéo $AC \\perp BD$.\\\\\r\n\t\tDo $SA=SC$ nên điểm $S$ nằm trên mặt phẳng trung trực của đoạn $AC$, suy ra $AC \\perp SO$ với $O$ là giao điểm hai đường chéo đáy.\\\\\r\n\t\tSuy ra $AC \\perp (SBD) \\Rightarrow AC \\perp SB$.\\\\\r\n\t\tVậy $\\vec{AC} \\cdot \\vec{SB} = 0$."
+    },
+    {
+      "maBaoMat": "sol_580b9087fc",
+      "dapAn": "A",
+      "loiGiaiHtml": "Từ đồ thị suy ra bảng biến thiên.\r\n\t\tTừ bảng biến thiên, hàm số đạt cực tiểu (cũng là giá trị nhỏ nhất trên khoảng quan sát) tại $x=2$."
+    },
+    {
+      "maBaoMat": "sol_9c2ad730e0",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $h'(t)=18t^2-162t+324=18(t^2-9t+18)$.\\\\\r\n\t\tTa có $h'(t)=0 \\Leftrightarrow \\left[\\begin{matrix} t=3 \\\\ t=6 \\end{matrix}\\right.$\\\\\r\n\t\tLại có $h'(t)>0 \\Leftrightarrow \\left[\\begin{matrix} t<3 \\\\ t>6 \\end{matrix}\\right.$\\\\\r\n\t\tTrong khoảng thời gian $t \\in [0;3]$ (3 phút đầu tiên), $h'(t) \\ge 0$ suy ra hàm số đồng biến (tăng) trên $[0;3]$."
+    },
+    {
+      "maBaoMat": "sol_2f385a8d2f",
+      "dapAn": "C",
+      "loiGiaiHtml": "Khoảng cách từ điểm $M(x_0; y_0; z_0)$ đến trục $Oy$ được tính theo công thức: $d(M,Oy)=\\sqrt{x_0^2+z_0^2}$.\\\\\r\n\t\tThay tọa độ điểm $M(1;-2;3)$ vào công thức: $d(M,Oy)=\\sqrt{1^2+3^2}=\\sqrt{1+9}=\\sqrt{10}$."
+    },
+    {
+      "maBaoMat": "sol_938304245a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo giả thiết, đồ thị hàm số $y=f(x)$ có tiệm cận ngang là $y=2$, nghĩa là $\\lim\\limits_{x \\to \\pm\\infty} f(x) = 2$.\\\\\r\n\t\tTa có $\\lim\\limits_{x \\to \\pm\\infty} (3f(x)-2) = 3 \\cdot 2 - 2 = 4$.\\\\\r\n\t\tDo đó, đồ thị hàm số $y=3f(x)-2$ có đường tiệm cận ngang là $y=4$."
+    },
+    {
+      "maBaoMat": "sol_7d1c9e40c1",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tập xác định: $D=\\mathbb{R} \\setminus \\{-1\\}$.\\\\\r\n\t\t\tTa có $y'=1-\\displaystyle\\frac{1}{(x+1)^2}$. Cho $y'=0 \\Leftrightarrow \\left[\\begin{matrix} x=-2 \\\\ x=0 \\end{matrix}\\right.$.\\\\\r\n\t\t\tBảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_7d1c9e40c1_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tHàm số đồng biến trên các khoảng $(-\\infty;-2)$ và $(0;+\\infty)$; nghịch biến trên các khoảng $(-2;-1)$ và $(-1;0)$. Vậy ý này sai.\r\n\t\t\t\\itemch Ta có $y=\\displaystyle\\frac{x^2+x+1}{x+1}=x+\\displaystyle\\frac{1}{x+1}$.\\\\\r\n\t\t\tVì $\\lim\\limits_{x \\to +\\infty} (y-x) = \\lim\\limits_{x \\to +\\infty} \\left(\\displaystyle\\frac{1}{x+1}\\right) = 0$ và $\\lim\\limits_{x \\to -\\infty} (y-x) = \\lim\\limits_{x \\to -\\infty} \\left(\\displaystyle\\frac{1}{x+1}\\right) = 0$.\\\\\r\n\t\t\tVậy đồ thị hàm số có tiệm cận xiên là đường thẳng $y=x$. Vậy ý này đúng.\r\n\t\t\t\\itemch Với $x=1 \\Rightarrow y(1)=\\displaystyle\\frac{3}{2}$.\\\\\r\n\t\t\tHệ số góc của tiếp tuyến tại $A\\left(1;\\displaystyle\\frac{3}{2}\\right)$ là $y'(1)=\\displaystyle\\frac{3}{4}$.\\\\\r\n\t\t\tPhương trình tiếp tuyến $d$ tại $A\\left(1;\\displaystyle\\frac{3}{2}\\right)$ là $y=\\displaystyle\\frac{3}{4}(x-1)+\\displaystyle\\frac{3}{2} \\Leftrightarrow y=\\displaystyle\\frac{3}{4}x+\\displaystyle\\frac{3}{4}$.\\\\\r\n\t\t\tGiao điểm của tiếp tuyến $d$ và tiệm cận xiên là nghiệm của hệ $\\begin{cases} y=\\displaystyle\\frac{3}{4}x+\\displaystyle\\frac{3}{4} \\\\ y=x \\end{cases} \\Leftrightarrow \\begin{cases} x=3 \\\\ y=3 \\end{cases} \\Rightarrow M(3;3)$. Vậy ý này đúng.\r\n\t\t\t\\itemch Đường thẳng đi qua hai điểm cực trị có dạng $y=ax+b$. Dựa vào bảng biến thiên ta có các điểm cực trị là $(-2;-3)$ và $(0;1)$.\\\\\r\n\t\t\tTa có hệ phương trình $\\begin{cases} -2a+b=-3 \\\\ 0a+b=1 \\end{cases} \\Leftrightarrow \\begin{cases} a=2 \\\\ b=1 \\end{cases} \\Rightarrow y=2x+1$. Vậy ý này sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a12de3c539",
+      "dapAn": "TFFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Khoảng cách giữa hai địa điểm cần cứu hộ là $AB=\\sqrt{(40-120)^2+(30-90)^2+(10-30)^2}=20\\sqrt{26} \\approx 102\\text{ (m)}$. Vậy ý này đúng.\r\n\t\t\t\\itemch Giả sử trạm cứu hộ được dựng riêng cho hai tòa nhà $M(x;y;0)$.\\\\\r\n\t\t\tDo $z_A>0$, $z_B>0$ nên hai điểm $A, B$ nằm cùng phía so với mặt phẳng $(Oxy)$.\\\\\r\n\t\t\tGọi $B'$ là điểm đối xứng của $B$ qua $(Oxy) \\Rightarrow B'(40;30;-10)$.\\\\\r\n\t\t\tKhi đó ta có: $MA+MB=MA+MB' \\ge AB'$. Do đó $MA+MB$ nhỏ nhất khi và chỉ khi ba điểm $M, A, B'$ thẳng hàng hay $\\vec{AM}$ và $\\vec{AB'}$ cùng phương.\\\\\r\n\t\t\tCó $\\vec{AM}=(x-120;y-90;-30)$, $\\vec{AB'}=(-80;-60;-40)$.\\\\\r\n\t\t\t$\\vec{AM}$ và $\\vec{AB'}$ cùng phương $\\Leftrightarrow \\displaystyle\\frac{x-120}{-80} = \\displaystyle\\frac{y-90}{-60} = \\displaystyle\\frac{-30}{-40} \\Leftrightarrow \\begin{cases} x=60 \\\\ y=45 \\end{cases}$.\\\\\r\n\t\t\tVậy trạm cứu hộ mới có tọa độ $(60;45;0)$. Vậy ý này sai.\r\n\t\t\t\\itemch Gọi vị trí drone hết pin là $C(x_1;y_1;z_1)$. Khi đó $\\vec{AC}=(x_1-120;y_1-90;z_1-30)$; $\\vec{AB}=(-80;-60;-20)$.\\\\\r\n\t\t\tDo drone chỉ còn đủ pin để bay $40\\%$ quãng đường từ $A$ đến $B$ nên ta có $\\vec{AC}=0{,}4\\vec{AB}$.\\\\\r\n\t\t\tSuy ra $\\begin{cases} x_1-120 = 0{,}4 \\cdot (-80) \\\\ y_1-90 = 0{,}4 \\cdot (-60) \\\\ z_1-30 = 0{,}4 \\cdot (-20) \\end{cases} \\Leftrightarrow \\begin{cases} x_1=88 \\\\ y_1=66 \\\\ z_1=22 \\end{cases}$.\\\\\r\n\t\t\tVậy vị trí drone hết pin cách mặt đất $22\\text{ (m)}$. Vậy ý này sai.\r\n\t\t\t\\itemch Ta có: $OA=\\sqrt{120^2+90^2+30^2}=30\\sqrt{26}$; $AC=\\sqrt{(88-120)^2+(66-90)^2+(22-30)^2}=8\\sqrt{26}$.\\\\\r\n\t\t\tTổng quãng đường drone di chuyển từ lúc xuất phát đến khi hết sạch pin là: $S=OA+AC=38\\sqrt{26}\\text{ (m)}$.\\\\\r\n\t\t\tThời gian tối đa drone có thể bay với vận tốc $10\\text{ (m/s)}$ là: $t=\\displaystyle\\frac{S}{10}=\\displaystyle\\frac{38\\sqrt{26}}{10} \\approx 19\\text{ (s)}$.\\\\\r\n\t\t\tDrone sẽ báo sắp hết pin sau khoảng thời gian là: $19-3=16\\text{ (s)}$.\\\\\r\n\t\t\tVậy sau khoảng $16$ giây kể từ lúc xuất phát từ trạm, drone sẽ báo sắp hết pin. Vậy ý này sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_106fb176a2",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $C'(t)=\\displaystyle\\frac{15(t^2+9)-15t \\cdot 2t}{(t^2+9)^2}=\\displaystyle\\frac{-15t^2+135}{(t^2+9)^2}$.\\\\\r\n\t\t\tCho $C'(t)=0 \\Leftrightarrow -15t^2+135=0 \\Leftrightarrow \\left[\\begin{matrix} t=3 \\\\ t=-3 \\text{ (loại)} \\end{matrix}\\right.$.\\\\\r\n\t\t\tBảng biến thiên:\r\n\t\t\t\\begin{center}\r\n\t\t\t\t<img src='HinhAnh/sol_106fb176a2_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\t\\end{center}\r\n\t\t\tNồng độ thuốc trong máu đạt giá trị lớn nhất tại thời điểm $t=3$ giờ sau khi tiêm. Vậy ý này sai.\r\n\t\t\t\\itemch Từ bảng biến thiên, ta thấy giá trị nồng độ thuốc trong máu cao nhất là $2{,}5\\text{ mg/l}$ (ứng với $\\displaystyle\\frac{5}{2}$). Vậy ý này đúng.\r\n\t\t\t\\itemch Trong $3$ giờ đầu tiên (tức là $t \\in (0;3)$), $C'(t)>0$ nên hàm số đồng biến, do đó nồng độ thuốc trong máu của bệnh nhân tăng. Vậy ý này đúng.\r\n\t\t\t\\itemch Tại thời điểm $t=1$ giờ, tốc độ tăng của nồng độ thuốc là $C'(1)=\\displaystyle\\frac{-15 \\cdot 1^2+135}{(1^2+9)^2}=1{,}2\\text{ mg/l/giờ}$. Vậy ý này đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_8f9762786d",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{AB}=(-6;-1;1)$; $\\vec{AC}=(-5;0;2)$.\\\\\r\n\t\t\t$\\cos\\widehat{BAC}=\\displaystyle\\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|}=\\displaystyle\\frac{(-6) \\cdot (-5)+(-1) \\cdot 0+1 \\cdot 2}{\\sqrt{(-6)^2+(-1)^2+1^2} \\cdot \\sqrt{(-5)^2+0^2+2^2}}=\\displaystyle\\frac{32}{\\sqrt{38} \\cdot \\sqrt{29}}=\\displaystyle\\frac{32}{\\sqrt{1102}}$.\\\\\r\n\t\t\t$\\sin\\widehat{BAC}=\\sqrt{1-\\cos^2\\widehat{BAC}}=\\sqrt{1-\\left(\\displaystyle\\frac{32}{\\sqrt{1102}}\\right)^2}=\\sqrt{\\displaystyle\\frac{78}{1102}}=\\sqrt{\\displaystyle\\frac{39}{551}}$. Vậy ý này sai.\r\n\t\t\t\\itemch $\\vec{AB} \\cdot \\vec{AC}=(-6) \\cdot (-5)+(-1) \\cdot 0+1 \\cdot 2=32$. Vậy ý này đúng.\r\n\t\t\t\\itemch Gọi $D(x;y;z)$. Ta có $\\vec{DC}=(2-x;3-y;5-z)$.\\\\\r\n\t\t\tĐể tứ giác $ABCD$ là hình bình hành thì $\\vec{AB}=\\vec{DC} \\Leftrightarrow \\begin{cases} 2-x=-6 \\\\ 3-y=-1 \\\\ 5-z=1 \\end{cases} \\Leftrightarrow \\begin{cases} x=8 \\\\ y=4 \\\\ z=4 \\end{cases}$.\\\\\r\n\t\t\tVậy điểm $D(8;4;4)$. Vậy ý này đúng.\r\n\t\t\t\\itemch Gọi $H(a;b;c)$ là chân đường cao kẻ từ $A$ của tam giác $ABC$.\\\\\r\n\t\t\tTa có $\\vec{AH}=(a-7;b-3;c-3)$; $\\vec{BH}=(a-1;b-2;c-4)$; $\\vec{BC}=(1;1;1)$.\\\\\r\n\t\t\t$H$ là chân đường cao kẻ từ $A$ nên $\\begin{cases} AH \\perp BC \\\\ H \\in BC \\end{cases} \\Leftrightarrow \\begin{cases} \\vec{AH} \\cdot \\vec{BC}=0 \\\\ \\vec{BH}=k\\vec{BC} \\end{cases}$.\\\\\r\n\t\t\t$\\Rightarrow \\begin{cases} 1(a-7)+1(b-3)+1(c-3)=0 \\\\ a-1=k \\\\ b-2=k \\\\ c-4=k \\end{cases} \\Leftrightarrow \\begin{cases} a+b+c=13 \\\\ a=k+1 \\\\ b=k+2 \\\\ c=k+4 \\end{cases}$.\\\\\r\n\t\t\tThay $a,b,c$ vào phương trình đầu ta được: $(k+1)+(k+2)+(k+4)=13 \\Leftrightarrow 3k+7=13 \\Leftrightarrow k=2$.\\\\\r\n\t\t\tSuy ra $a=3$, $b=4$, $c=6$ hay $H(3;4;6)$.\\\\\r\n\t\t\tKhi đó $2a-5b+c=2 \\cdot 3 - 5 \\cdot 4 + 6 = -8$. Vậy ý này sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_b65a6a6a7d",
+      "dapAn": "6",
+      "loiGiaiHtml": "Giả sử $M(x;y;z)$.\\\\\r\n\t\tVì $M$ thuộc đoạn thẳng $AB$ nên $\\vec{AM}=k \\cdot \\vec{AB}$ với $0 \\le k \\le 1$.\\\\\r\n\t\tTa có $\\vec{AB} = (12;0;0)$, suy ra $\\begin{cases} x-0=k \\cdot 12 \\\\ y-6=k \\cdot 0 \\\\ z-8=k \\cdot 0 \\end{cases} \\Leftrightarrow \\begin{cases} x=12k \\\\ y=6 \\\\ z=8 \\end{cases} \\Rightarrow M(12k;6;8)$.\\\\\r\n\t\tKhoảng cách $CM = \\sqrt{(12k-6)^2+(6-0)^2+(8-0)^2} = \\sqrt{(12k-6)^2+6^2+8^2} \\ge \\sqrt{6^2+8^2} = 10$.\\\\\r\n\t\tDấu \"=\" xảy ra khi $12k-6=0 \\Leftrightarrow k=\\displaystyle\\frac{1}{2}$ (thỏa mãn).\\\\\r\n\t\tSuy ra $M(6;6;8)$.\\\\\r\n\t\tKhi đó $AM = \\sqrt{(6-0)^2+(6-6)^2+(8-8)^2} = 6$.\\\\\r\n\t\tVậy, điểm $M$ cách đầu ray $A$ $6$ mét để khoảng cách từ camera đến cầu thủ là nhỏ nhất."
+    },
+    {
+      "maBaoMat": "sol_7f52fd03d8",
+      "dapAn": "506",
+      "loiGiaiHtml": "Phương trình $f'(x)=0$ có $2026$ nghiệm, trong đó có $1013$ nghiệm bội lẻ (là các nghiệm $x \\in \\{1; 3; 5; \\dots; 2025\\}$), nghĩa là hàm số $y=f(x)$ có $1013$ điểm cực trị.\\\\\r\n\t\tDo đó có $1014$ khoảng xét dấu của đạo hàm.\\\\\r\n\t\tBảng biến thiên của hàm số $y=f(x)$:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_7f52fd03d8_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tĐạo hàm có $\\displaystyle\\frac{1014}{2}=507$ khoảng âm và $\\displaystyle\\frac{1014}{2}=507$ khoảng dương.\\\\\r\n\t\tVậy, hàm số $y=f(x)$ có $507$ điểm cực tiểu và $506$ điểm cực đại."
+    },
+    {
+      "maBaoMat": "sol_bd98cf5e0f",
+      "dapAn": "173",
+      "loiGiaiHtml": "Tổng khối lượng cần nâng gồm kiện hàng và tấm ván gỗ là: $m=50+10=60\\text{ kg}$.\\\\\r\n\t\tTổng trọng lượng tác dụng lên hệ là: $P=mg=60 \\cdot 10=600\\text{ (N)}$.\\\\\r\n\t\tKhi hệ thống được nâng lên thẳng đứng và cân bằng, có $4$ sợi dây cáp gánh toàn bộ trọng lượng $P$. Do tính đối xứng, lực căng trên mỗi sợi dây có cùng độ lớn là $T$.\\\\\r\n\t\tMỗi sợi dây cáp tạo với mặt phẳng nằm ngang một góc $\\alpha=60^\\circ$.\\\\\r\n\t\tThành phần lực căng của mỗi sợi dây theo phương thẳng đứng hướng lên là: $T_0=T \\sin 60^\\circ$.\\\\\r\n\t\tĐể hệ cân bằng theo phương thẳng đứng, tổng các thành phần lực hướng lên phải bằng trọng lượng hướng xuống:\\\\\r\n\t\t$P=4T_0=4T \\sin 60^\\circ=2\\sqrt{3}T \\Rightarrow 2\\sqrt{3}T=600 \\Rightarrow T=100\\sqrt{3} \\approx 173\\text{ (N)}$."
+    },
+    {
+      "maBaoMat": "sol_2f37b672a1",
+      "dapAn": "20",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2f37b672a1_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\textbf{Cách 1:}\\\\\r\n\t\tDo phép gấp là phép lấy đối xứng trục qua đường thẳng $MN$, nên $MN$ là đường trung trực của đoạn thẳng $BB'$.\\\\\r\n\t\tTam giác $BMN$ vuông tại $B$. Sau khi gấp, $\\Delta MB'N = \\Delta MBN$ (vuông tại $B'$).\\\\\r\n\t\tĐặt góc giữa nếp gấp $MN$ và cạnh $AB$ là: $\\alpha=\\widehat{BMN}$ ($0^\\circ < \\alpha < 90^\\circ$).\\\\\r\n\t\tTa có: $BM=MN \\cos \\alpha$, $BN=MN \\sin \\alpha$, $\\widehat{BNM}=90^\\circ-\\alpha$.\\\\\r\n\t\tGọi $H$ là giao điểm của $MN$ và $BB'$. Do $MN$ là trung trực của $BB'$ nên $H$ là trung điểm của $MN$ và $MN \\perp BB'$.\\\\\r\n\t\tKhoảng cách từ $B$ đến đường thẳng $MN$ là: $BH=BM \\sin \\alpha=MN \\cos \\alpha \\sin \\alpha$.\\\\\r\n\t\tDo đó, độ dài đoạn nối: $BB'=2BH=2MN \\cos \\alpha \\sin \\alpha$.\\\\\r\n\t\tMặt khác, xét góc giữa đoạn thẳng $BB'$ và $BC$ chính bằng góc giữa $MN$ và $AB$, tức là: $\\widehat{B'BC}=\\alpha$. Suy ra $BC=BB' \\cos \\alpha$.\\\\\r\n\t\tTa có $BC=10 \\Rightarrow 10 = 2MN \\sin \\alpha \\cos^2 \\alpha \\Leftrightarrow MN=\\displaystyle\\frac{5}{\\sin \\alpha \\cos^2 \\alpha}=\\displaystyle\\frac{5}{\\sin \\alpha (1-\\sin^2 \\alpha)}$.\\\\\r\n\t\tĐặt $t=\\sin \\alpha$, $t \\in (0;1)$.\\\\\r\n\t\tXét $f(t)=t(1-t^2)=-t^3+t$ với $t \\in (0;1)$.\\\\\r\n\t\tTa có $f'(t)=-3t^2+1=0 \\Leftrightarrow t=\\displaystyle\\frac{\\sqrt{3}}{3}$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2f37b672a1_lg_tikz_2.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tSuy ra: $\\max\\limits_{(0;1)} f(t) = \\displaystyle\\frac{2\\sqrt{3}}{9} \\Rightarrow \\min MN = \\displaystyle\\frac{5}{\\frac{2\\sqrt{3}}{9}} = \\displaystyle\\frac{15\\sqrt{3}}{2}$.\\\\\r\n\t\tKhi đó: $BM=\\displaystyle\\frac{15\\sqrt{2}}{2}<15$ và $BN=\\displaystyle\\frac{15}{2}<10$ (Thỏa mãn yêu cầu bài toán).\\\\\r\n\t\tVậy độ dài ngắn nhất của $MN$ là: $\\displaystyle\\frac{15\\sqrt{3}}{2}$.\\\\\r\n\t\tSuy ra: $a=15$; $b=3$; $c=2 \\Rightarrow a+b+c=20$.\\\\\r\n\t\t\\textbf{Cách 2:}\\\\\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_2f37b672a1_lg_tikz_3.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\t\\textit{Chú ý: Đã sửa lại lỗi sai tính toán trong lời giải gốc.}\\\\\r\n\t\tGọi $BN=x \\Rightarrow B'N=x$ và $CN=10-x$ ($0<x<10$).\\\\\r\n\t\tSuy ra $B'C=\\sqrt{B'N^2-CN^2}=\\sqrt{x^2-(10-x)^2}=\\sqrt{20x-100}$.\\\\\r\n\t\tGọi $BM=y \\Rightarrow B'M=y$ và $AM=15-y$ ($0<y<15$). Suy ra $MN=\\sqrt{x^2+y^2}$.\\\\\r\n\t\tHạ $MK \\perp DC$ ($K \\in DC$).\\\\\r\n\t\tDễ thấy $\\widehat{MB'N} = 90^\\circ$ nên $\\widehat{MB'K} + \\widehat{NB'C} = 90^\\circ$. Mà $\\widehat{B'NC} + \\widehat{NB'C} = 90^\\circ$, suy ra $\\widehat{MB'K} = \\widehat{B'NC}$.\\\\\r\n\t\tDo đó $\\Delta MB'K \\backsim \\Delta B'NC$ (g-g) $\\Rightarrow \\displaystyle\\frac{MB'}{NB'} = \\displaystyle\\frac{MK}{B'C} \\Rightarrow \\displaystyle\\frac{y}{x} = \\displaystyle\\frac{10}{\\sqrt{20x-100}} \\Rightarrow y=\\displaystyle\\frac{10x}{\\sqrt{20x-100}}$.\\\\\r\n\t\tKhi đó $MN^2=x^2+y^2=x^2+\\left(\\displaystyle\\frac{10x}{\\sqrt{20x-100}}\\right)^2=x^2+\\displaystyle\\frac{100x^2}{20x-100}=x^2+\\displaystyle\\frac{5x^2}{x-5}=\\displaystyle\\frac{x^3}{x-5}=f(x)$.\\\\\r\n\t\tKhảo sát hàm số $f(x)$ trên khoảng $(5;10)$:\\\\\r\n\t\t$f'(x)=\\displaystyle\\frac{3x^2(x-5)-x^3}{(x-5)^2}=\\displaystyle\\frac{2x^3-15x^2}{(x-5)^2}$. Cho $f'(x)=0 \\Leftrightarrow x=7{,}5$ (do $x>5$).\\\\\r\n\t\tTa có $f(7{,}5) = \\displaystyle\\frac{675}{4} \\Rightarrow \\min MN = \\sqrt{\\displaystyle\\frac{675}{4}} = \\displaystyle\\frac{15\\sqrt{3}}{2}$.\\\\\r\n\t\tSuy ra: $a=15$; $b=3$; $c=2 \\Rightarrow a+b+c=20$."
+    },
+    {
+      "maBaoMat": "sol_b9939e2c2c",
+      "dapAn": "1",
+      "loiGiaiHtml": "\\textit{Chú ý: Đã sửa lại đáp án trong file gốc (từ 2,5 thành 1) cho khớp với kết quả tính toán chính xác trong lời giải.}\\\\\r\n\t\tTa có $y=\\displaystyle\\frac{1}{3}x^3+mx^2-(m+7)x+5 \\Rightarrow y'=x^2+2mx-m-7$.\\\\\r\n\t\tHàm số đạt cực tiểu tại $x=2$ nên $y'(2)=0 \\Leftrightarrow 4+4m-m-7=0 \\Leftrightarrow 3m-3=0 \\Leftrightarrow m=1$.\\\\\r\n\t\tThử lại: Với $m=1$ thì $y'=x^2+2x-8$.\\\\\r\n\t\tCho $y'=0 \\Leftrightarrow x^2+2x-8=0 \\Leftrightarrow \\left[\\begin{matrix} x=2 \\\\ x=-4 \\end{matrix}\\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_b9939e2c2c_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tTừ bảng biến thiên, ta thấy hàm số đạt cực tiểu tại điểm $x=2$ (thỏa mãn).\\\\\r\n\t\tVậy $m=1$."
+    },
+    {
+      "maBaoMat": "sol_116f50f76a",
+      "dapAn": "285",
+      "loiGiaiHtml": "Gọi hàm giá bán là $p(x)=ax+b$ (với $a \\ne 0$, đơn vị: nghìn đồng).\\\\\r\n\t\tDựa vào dữ liệu đề bài:\\\\\r\n\t\t- Khi $x=500$ chiếc thì giá bán $p(500)=300$ nghìn đồng.\\\\\r\n\t\t- Khi số lượng bán tăng thêm $100$ chiếc ($x=600$) thì giá bán giảm $30$ nghìn đồng, tức $p(600)=270$ nghìn đồng.\\\\\r\n\t\tTa có hệ phương trình: $\\begin{cases} 500a+b=300 \\\\ 600a+b=270 \\end{cases} \\Rightarrow \\begin{cases} a=-0{,}3 \\\\ b=450 \\end{cases}$.\\\\\r\n\t\tHàm giá bán là: $p(x)=-0{,}3x+450$ (nghìn đồng).\\\\\r\n\t\tHàm doanh thu $R(x)=x \\cdot p(x)=x(-0{,}3x+450)=-0{,}3x^2+450x$ (nghìn đồng).\\\\\r\n\t\tHàm chi phí $C(x)$: Quy đổi $0{,}12x+50$ (triệu đồng) sang đơn vị nghìn đồng ta được: $C(x)=120x+50000$ (nghìn đồng).\\\\\r\n\t\tHàm lợi nhuận $L(x)=R(x)-C(x)=(-0{,}3x^2+450x)-(120x+50000)=-0{,}3x^2+330x-50000$ (nghìn đồng).\\\\\r\n\t\tTìm số lượng $x$ để lợi nhuận đạt giá trị lớn nhất:\\\\\r\n\t\tXét hàm số $L(x)=-0{,}3x^2+330x-50000$ trên $[0;+\\infty)$.\\\\\r\n\t\tĐồ thị hàm số $L(x)$ là một parabol có bề lõm quay xuống dưới, đạt đỉnh tại $x=\\displaystyle\\frac{-330}{2 \\cdot (-0{,}3)}=550$.\\\\\r\n\t\tDo đó, $L(x)$ đạt giá trị lớn nhất (bằng $40750$ nghìn đồng) khi $x=550$.\\\\\r\n\t\tThay $x=550$ chiếc vào hàm giá bán $p(x)$ ta có: $p(550)=-0{,}3 \\cdot 550+450=-165+450=285$ (nghìn đồng).\\\\\r\n\t\tVậy, cửa hàng nên bán mỗi chiếc áo với giá $285$ nghìn đồng (tương ứng số lượng bán ra $550$ chiếc/tháng) để thu được lợi nhuận cao nhất."
+    }
+  ]
+}
