@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_70caa34790",
+  "dapAn": "B",
+  "loiGiai": "Bất phương trình bậc nhất hai ẩn có dạng $ax+by+c<0$ (hoặc $\\le, >, \\ge$) với $a, b$ không đồng thời bằng $0$.\\\\\r\n\t\t- Đáp án A chứa biến $y$ bậc $3$.\\\\\r\n\t\t- Đáp án C có chứa $3$ ẩn $x, y, z$ và số hạng $xy$ bậc hai.\\\\\r\n\t\t- Đáp án D chứa số hạng $xy^2$ bậc $3$.\\\\\r\n\t\t- Đáp án B là bất phương trình bậc nhất với hai ẩn $x, y$."
+}

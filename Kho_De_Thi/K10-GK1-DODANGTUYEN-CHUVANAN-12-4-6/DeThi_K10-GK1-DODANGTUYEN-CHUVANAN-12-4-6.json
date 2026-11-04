@@ -1,0 +1,225 @@
+{
+  "maDe": "K10-GK1-DODANGTUYEN-CHUVANAN-12-4-6",
+  "tenDe": "K10-GK1-DODANGTUYEN-CHUVANAN-12-4-6",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_4018a77154",
+      "ma_goc": "2610-1844",
+      "kieuCau": "TN",
+      "cauDan": "Cặp số nào sau đây là một nghiệm của bất phương trình $2x-y\\ge3$?",
+      "paA": "$(0;2)$",
+      "paB": "$(0;3)$",
+      "paC": "$(3;0)$",
+      "paD": "$(0;1)$"
+    },
+    {
+      "id_Cau": "[0D1H1-5]",
+      "maCau": "q_b6755a96f6",
+      "ma_goc": "2610-1826",
+      "kieuCau": "TN",
+      "cauDan": "Phủ định của mệnh đề \"$\\forall x\\in\\mathbb{R}: x^{2}+2025x-2026>0$\" là mệnh đề:",
+      "paA": "\"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026\\ge0$\"",
+      "paB": "\"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026<0$\"",
+      "paC": "\"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026\\le0$\"",
+      "paD": "\"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026>0$\""
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_d8f12ec5e7",
+      "ma_goc": "2610-1847",
+      "kieuCau": "TN",
+      "cauDan": "Khẳng định nào sau đây đúng?",
+      "paA": "$\\cos(180^{\\circ}-\\alpha)=\\cos \\alpha$",
+      "paB": "$\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$",
+      "paC": "$\\tan(180^{\\circ}-\\alpha)=\\tan \\alpha$",
+      "paD": "$\\cot(180^{\\circ}-\\alpha)=\\cot \\alpha$"
+    },
+    {
+      "id_Cau": "[0D2N2-1]",
+      "maCau": "q_4d9b4354aa",
+      "ma_goc": "2610-1825",
+      "kieuCau": "TN",
+      "cauDan": "Hệ bất phương trình nào sau đây là hệ bất phương trình bậc nhất hai ẩn?",
+      "paA": "$\\begin{cases}x+y>0\\\\ 3x+2y>-6\\end{cases}$",
+      "paB": "$\\begin{cases}y>0\\\\ 3x^{2}+2y<-6\\end{cases}$",
+      "paC": "$\\begin{cases}y^{2}>0\\\\ 3x+2y<6\\end{cases}$",
+      "paD": "$\\begin{cases}x>0\\\\ 3x^{2}+2y^{2}\\ge0\\end{cases}$"
+    },
+    {
+      "id_Cau": "[0H4N1-1]",
+      "maCau": "q_c6b465dbe8",
+      "ma_goc": "2610-1845",
+      "kieuCau": "TN",
+      "cauDan": "Trên nửa đường tròn đơn vị cho điểm $M(x_{0};y_{0})$ sao cho $\\widehat{xOM}=\\alpha$ như hình vẽ. Khẳng định nào sau đây là đúng?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_c6b465dbe8_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\sin \\alpha=y_{0}$",
+      "paB": "$\\cos \\alpha=y_{0}$",
+      "paC": "$\\tan \\alpha=y_{0}$",
+      "paD": "$\\cot \\alpha=y_{0}$"
+    },
+    {
+      "id_Cau": "[0D1H2-2]",
+      "maCau": "q_8007d23ce6",
+      "ma_goc": "2610-1823",
+      "kieuCau": "TN",
+      "cauDan": "Cho $A, B$ là hai tập hợp bất kì. Phần gạch sọc trong hình vẽ bên dưới là tập hợp nào sau đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_8007d23ce6_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$A\\cup B$",
+      "paB": "$A\\setminus B$",
+      "paC": "$B\\setminus A$",
+      "paD": "$A\\cap B$"
+    },
+    {
+      "id_Cau": "[0D1N2-3]",
+      "maCau": "q_0474fbf3a7",
+      "ma_goc": "2610-1816",
+      "kieuCau": "TN",
+      "cauDan": "Cho tập hợp $E=\\{x\\in\\mathbb{R} \\mid -3\\le x\\le7\\}$. Khẳng định nào sau đây là đúng?",
+      "paA": "$E=(-3;7)$",
+      "paB": "$E=(-3;7]$",
+      "paC": "$E=[-3;7)$",
+      "paD": "$E=[-3;7]$"
+    },
+    {
+      "id_Cau": "[0D1N1-3]",
+      "maCau": "q_f86c375ea6",
+      "ma_goc": "2610-1837",
+      "kieuCau": "TN",
+      "cauDan": "Mệnh đề “Với mọi số thực $x$ thì bình phương của nó lớn hơn hoặc bằng $0$” được viết dưới dạng kí hiệu là",
+      "paA": "$\\forall x\\in\\mathbb{R} \\colon x^{2}\\ne0$",
+      "paB": "$\\forall x\\in\\mathbb{R} \\colon x^{2}\\ge0$",
+      "paC": "$\\exists x\\in\\mathbb{R} \\colon x^{2}=0$",
+      "paD": "$\\exists x\\in\\mathbb{R} \\colon x^{2}>0$"
+    },
+    {
+      "id_Cau": "[0D2N1-1]",
+      "maCau": "q_46720c211c",
+      "ma_goc": "2610-1843",
+      "kieuCau": "TN",
+      "cauDan": "Bất phương trình nào sau đây là bất phương trình bậc nhất hai ẩn?",
+      "paA": "$x+y^{3}<1$",
+      "paB": "$2x+y<3$",
+      "paC": "$xy+y+2z<3$",
+      "paD": "$xy^{2}+y\\ge3$"
+    },
+    {
+      "id_Cau": "[0H4N1-2]",
+      "maCau": "q_54b2a5445d",
+      "ma_goc": "2610-1819",
+      "kieuCau": "TN",
+      "cauDan": "Trong các đẳng thức sau, đẳng thức nào sai?",
+      "paA": "$\\tan(180^{\\circ}-\\alpha)=-\\tan \\alpha$",
+      "paB": "$\\cos(180^{\\circ}-\\alpha)=\\cos \\alpha$",
+      "paC": "$\\cot(180^{\\circ}-\\alpha)=-\\cot \\alpha$",
+      "paD": "$\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$"
+    },
+    {
+      "id_Cau": "[0D2H1-2]",
+      "maCau": "q_3eb9550edd",
+      "ma_goc": "2610-1821",
+      "kieuCau": "TN",
+      "cauDan": "Phần không gạch sọc (kể cả đường thẳng) trong hình vẽ bên dưới là miền nghiệm của bất phương trình nào?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3eb9550edd_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$x-2y\\le2$",
+      "paB": "$-2x+y\\le2$",
+      "paC": "$-2x+y\\ge2$",
+      "paD": "$x-2y\\ge2$"
+    },
+    {
+      "id_Cau": "[0H4N1-1]",
+      "maCau": "q_a3bb9de492",
+      "ma_goc": "2610-1846",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị của $\\cos 45^{\\circ}$ bằng",
+      "paA": "$\\displaystyle\\frac{1}{2}$",
+      "paB": "$\\displaystyle\\frac{\\sqrt{3}}{2}$",
+      "paC": "$\\displaystyle\\frac{\\sqrt{2}}{2}$",
+      "paD": "$1$"
+    },
+    {
+      "id_Cau": "[0H4H1-1]",
+      "maCau": "q_fa620cb22a",
+      "ma_goc": "2610-1831",
+      "kieuCau": "TLN",
+      "cauDan": "Cho biết $\\sin 120^{\\circ} = \\displaystyle\\frac{\\sqrt{a}}{b}$ (tối giản), tính $4a-b$."
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_7de026d110",
+      "ma_goc": "2610-1852",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hệ bất phương trình bậc nhất hai ẩn\r\n\t$\\begin{cases}2x+y\\le6\\\\ x+2y\\le6\\\\ x\\ge0\\\\ y\\ge0\\end{cases}$ (1)\r\n\tCó miền nghiệm là phần tứ giác $OGEH$ (kể cả biên) được minh họa hình vẽ bên. Gọi $F(x;y)=10x+60y-20$ là lợi nhuận thu được nếu $(x;y)$ thỏa mãn hệ (1). Lợi nhuận $F(x;y)$ đạt cao nhất là bao nhiêu?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_7de026d110_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D2V1-2]",
+      "maCau": "q_f5b5eef295",
+      "ma_goc": "2610-1830",
+      "kieuCau": "TLN",
+      "cauDan": "Một xưởng sản xuất hai loại bàn và ghế. Để làm $x$ chiếc bàn và $y$ cái ghế, xưởng cần $3x+5y$ (kg) gỗ. Lượng gỗ dự trữ là $150\\text{ kg}$. Bất phương trình biểu diễn lượng gỗ tiêu thụ có dạng $ax+5y\\le b$ với $x,b\\in\\mathbb{N}$. Tính giá trị biểu thức $T=2a+b$."
+    },
+    {
+      "id_Cau": "[0D1V2-2]",
+      "maCau": "q_e024fe930d",
+      "ma_goc": "2610-1832",
+      "kieuCau": "TLN",
+      "cauDan": "Cho tập hợp $A=\\{x;1;4\\}$, $x\\notin\\{1;4\\}$. Số tập hợp con của tập hợp $A$ chứa phần tử $x$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[0H4V3-1]",
+      "maCau": "q_16f969a9a9",
+      "ma_goc": "2610-1833",
+      "kieuCau": "TLN",
+      "cauDan": "Hai người $A$ và $B$ cùng quan sát một con tàu đang neo đậu ngoài khơi tại vị trí $C$. Người $A$ đứng trên bờ biển, người $B$ đứng trên một hòn đảo cách bờ một khoảng $AB=100\\text{m}$. Hai người tiến hành đo đạc và thu được kết quả như sau: $\\widehat{CAB}=54^{\\circ}$, $\\widehat{CBA}=74^{\\circ}$. Hỏi con tàu ở vị trí $C$ cách người $B$ bao nhiêu mét? (làm tròn kết quả đến hàng đơn vị).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_16f969a9a9_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[0D1V2-2]",
+      "maCau": "q_b1ec3e24f4",
+      "ma_goc": "2610-1853",
+      "kieuCau": "TLN",
+      "cauDan": "Bài kiểm tra khảo sát đầu năm hai môn Toán và Văn của lớp 10B có kết quả như sau: Môn Toán có $10$ em đạt loại Giỏi, môn Văn có $15$ em đạt loại Giỏi. Trong số đó có $5$ em vừa đạt loại Giỏi môn Toán, vừa đạt loại giỏi môn Văn. Biết rằng trong lớp đó có $25$ em không đạt loại Giỏi môn nào trong hai môn Toán và Văn. Hỏi sĩ số học sinh của lớp đó là bao nhiêu em?"
+    },
+    {
+      "id_Cau": "[0D2V2-3]",
+      "maCau": "q_bebbb1e801",
+      "ma_goc": "2610-1829",
+      "kieuCau": "DS",
+      "cauDan": "Cho hệ bất phương trình $\\begin{cases}x+2y\\le10\\\\ 2x+y\\le8\\\\ x\\ge0\\\\ y\\ge0\\end{cases}$ (I), miền nghiệm của hệ (I) là miền tứ giác $OABC$ kể cả biên (phần không bị gạch chéo).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bebbb1e801_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tCho biểu thức $F(x;y)=2x+3y$ với $(x;y)$ thuộc miền nghiệm của hệ bất phương trình (I).\r\n\tCác mệnh đề sau đúng hay sai?",
+      "paA": "Điểm $(1;2)$ thuộc miền nghiệm của hệ bất phương trình (I)",
+      "paB": "Giá trị $F(x;y)$ tại điểm $C(4;0)$ bằng $7$",
+      "paC": "Giá trị lớn nhất của biểu thức $F(x;y)$ trên miền nghiệm đã xác định bằng $16$",
+      "paD": "Giá trị nhỏ nhất của biểu thức $F(x;y)$ trên miền nghiệm đã xác định bằng $10$"
+    },
+    {
+      "id_Cau": "[0H4H1-1]",
+      "maCau": "q_ef1533b15b",
+      "ma_goc": "2610-1851",
+      "kieuCau": "DS",
+      "cauDan": "Cho $\\alpha$ là một góc lượng giác thoả mãn $90^{\\circ}<\\alpha<180^{\\circ}$. Xét tính đúng sai của các khẳng định sau:",
+      "paA": "$\\sin \\alpha>0$",
+      "paB": "$\\cos \\alpha<0$",
+      "paC": "$\\tan \\alpha>0$",
+      "paD": "$\\cot \\alpha<0$"
+    },
+    {
+      "id_Cau": "[0D1H3-1]",
+      "maCau": "q_7b65f1e3c3",
+      "ma_goc": "2610-1828",
+      "kieuCau": "DS",
+      "cauDan": "Cho 2 tập hợp sau:\r\n\tTập hợp $A=\\{x\\in \\mathbb{Z} \\mid -2\\le x\\le2\\}$.\r\n\tTập hợp $B=\\{2;3;4;5;6;7\\}$.\r\n\tCác mệnh đề sau đúng hay sai?",
+      "paA": "Tập hợp $A=\\{-2;-1;0;1;2\\}$",
+      "paB": "Tập hợp $\\{1;2;3\\}\\subset A$",
+      "paC": "Tập hợp $A\\setminus B=\\{-2;-1;0;1;2\\}$",
+      "paD": "Số phần tử của tập hợp $A\\cup B$ bằng $10$"
+    },
+    {
+      "id_Cau": "[0D1H1-4]",
+      "maCau": "q_27830fbcc9",
+      "ma_goc": "2610-1849",
+      "kieuCau": "DS",
+      "cauDan": "Cho mệnh đề $P=$ ``Số $5$ là một số nguyên'' và $Q=$ ``$\\forall x\\in \\mathbb{R} \\colon x^{2}\\ge0$''. Các khẳng định sau đúng hay sai?",
+      "paA": "$P$ là mệnh đề có giá trị đúng",
+      "paB": "$Q$ là mệnh đề có giá trị đúng",
+      "paC": "Phủ định của mệnh đề $P$ là $\\overline{P}=$ ``Số $5$ là một số lẻ''",
+      "paD": "Phủ định của mệnh đề $Q$ là $\\overline{Q}=$ ``$\\forall x\\in\\mathbb{Z} \\colon x^{2}>0$''"
+    }
+  ]
+}

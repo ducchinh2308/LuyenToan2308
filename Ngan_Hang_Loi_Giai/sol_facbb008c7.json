@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_facbb008c7",
+  "dapAn": "B",
+  "loiGiai": "Cụm từ \"Với mọi số thực $x$\" được kí hiệu là $\\forall x\\in\\mathbb{R}$.\\\\\r\n\t\tCụm từ \"bình phương của nó lớn hơn hoặc bằng $0$\" được kí hiệu là $x^2 \\ge 0$.\\\\\r\n\t\tVậy mệnh đề được viết dưới dạng kí hiệu là: $\\forall x\\in\\mathbb{R} \\colon x^{2}\\ge0$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1999c1eac3",
+  "dapAn": "4",
+  "loiGiai": "Tập hợp $A$ có $3$ phần tử phân biệt là $x, 1$ và $4$.\\\\\r\n\t\tCác tập hợp con của $A$ bắt buộc phải chứa phần tử $x$ được tạo thành bằng cách ghép $x$ với các tập con của tập hợp $\\{1;4\\}$.\\\\\r\n\t\tTập hợp $\\{1;4\\}$ có $2^2 = 4$ tập con là: $\\varnothing, \\{1\\}, \\{4\\}, \\{1;4\\}$.\\\\\r\n\t\tGhép phần tử $x$ vào các tập con trên, ta được $4$ tập con của $A$ chứa $x$ gồm:\r\n\t\t$\\{x\\}, \\{x; 1\\}, \\{x; 4\\}, \\{x; 1; 4\\}$.\\\\\r\n\t\tVậy có tất cả $4$ tập hợp."
+}

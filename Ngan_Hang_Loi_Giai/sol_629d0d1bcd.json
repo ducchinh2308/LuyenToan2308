@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_629d0d1bcd",
+  "dapAn": "TFFT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Vì $x \\in \\mathbb{Z}$ và $-2 \\le x \\le 2$ nên các phần tử của tập hợp $A$ là các số nguyên từ $-2$ đến $2$. Vậy $A=\\{-2;-1;0;1;2\\}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta thấy phần tử $3 \\in \\{1;2;3\\}$ nhưng $3 \\notin A$. Do đó, tập hợp $\\{1;2;3\\}$ không phải là tập con của $A$. Mệnh đề sai.\r\n\t\t\t\\itemch Tập hợp $A \\setminus B$ gồm các phần tử thuộc $A$ nhưng không thuộc $B$. \r\n\t\t\tTa có $A \\setminus B = \\{-2;-1;0;1\\}$ (do phần tử $2$ nằm trong cả $A$ và $B$). Mệnh đề phát biểu $A \\setminus B = \\{-2;-1;0;1;2\\}$ là sai.\r\n\t\t\t\\itemch Tập hợp $A \\cup B = \\{-2;-1;0;1;2;3;4;5;6;7\\}$. Đếm số lượng phần tử ta thấy có tất cả $10$ phần tử. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}

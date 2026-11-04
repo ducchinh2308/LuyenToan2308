@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f217614fe6",
+  "dapAn": "156",
+  "loiGiai": "Lượng gỗ tiêu thụ để làm $x$ chiếc bàn và $y$ cái ghế là $3x+5y$ (kg).\\\\\r\n\t\tVì xưởng chỉ có lượng gỗ dự trữ là $150\\text{ kg}$, nên lượng gỗ tiêu thụ không được vượt quá lượng gỗ dự trữ.\r\n\t\tTa có bất phương trình biểu diễn lượng gỗ tiêu thụ là:\r\n\t\t$$3x + 5y \\le 150$$\r\n\t\tĐồng nhất với bất phương trình có dạng $ax+5y\\le b$, ta nhận được $a = 3$ và $b = 150$.\\\\\r\n\t\tKhi đó, giá trị biểu thức $T = 2a + b = 2(3) + 150 = 156$."
+}

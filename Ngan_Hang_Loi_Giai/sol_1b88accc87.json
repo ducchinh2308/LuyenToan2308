@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1b88accc87",
+  "dapAn": "B",
+  "loiGiai": "Với hai góc bù nhau ($\\alpha$ và $180^{\\circ}-\\alpha$), sin của chúng bằng nhau, còn cosin, tang và côtang của chúng đối nhau.\r\n\t\tNghĩa là: $\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$, $\\cos(180^{\\circ}-\\alpha)=-\\cos \\alpha$, $\\tan(180^{\\circ}-\\alpha)=-\\tan \\alpha$, $\\cot(180^{\\circ}-\\alpha)=-\\cot \\alpha$.\\\\\r\n\t\tVậy khẳng định $\\sin(180^{\\circ}-\\alpha)=\\sin \\alpha$ là đúng."
+}

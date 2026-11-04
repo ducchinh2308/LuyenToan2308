@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_57b424eb0c",
+  "dapAn": "C",
+  "loiGiai": "Thay lần lượt các cặp số vào bất phương trình $2x-y\\ge3$:\\\\\r\n\t\t- Với $(0;2)$: $2(0) - 2 = -2 \\ge 3$ (sai).\\\\\r\n\t\t- Với $(0;3)$: $2(0) - 3 = -3 \\ge 3$ (sai).\\\\\r\n\t\t- Với $(3;0)$: $2(3) - 0 = 6 \\ge 3$ (đúng).\\\\\r\n\t\t- Với $(0;1)$: $2(0) - 1 = -1 \\ge 3$ (sai).\\\\\r\n\t\tVậy $(3;0)$ là một nghiệm của bất phương trình."
+}

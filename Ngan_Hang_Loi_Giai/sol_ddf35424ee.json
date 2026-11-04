@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ddf35424ee",
+  "dapAn": "TTFF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch $5$ thuộc tập hợp các số nguyên $\\mathbb{Z}$ nên $P$ là mệnh đề đúng. Mệnh đề khẳng định đúng.\r\n\t\t\t\\itemch Bình phương của mọi số thực luôn không âm, tức là $x^2 \\ge 0, \\forall x \\in \\mathbb{R}$. Do đó $Q$ là mệnh đề đúng. Mệnh đề khẳng định đúng.\r\n\t\t\t\\itemch Phủ định của mệnh đề $P=$ ``Số $5$ là một số nguyên'' phải là $\\overline{P}=$ ``Số $5$ không là một số nguyên''. Mệnh đề khẳng định sai.\r\n\t\t\t\\itemch Phủ định của mệnh đề $Q=$ ``$\\forall x\\in \\mathbb{R} \\colon x^{2}\\ge0$'' là $\\overline{Q}=$ ``$\\exists x\\in \\mathbb{R} \\colon x^{2}<0$''. Mệnh đề khẳng định sai.\r\n\t\t\\end{itemchoice}"
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b295c8440c",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Thay tọa độ điểm $(1;2)$ vào hệ bất phương trình (I) ta được:\r\n\t\t\t$\\begin{cases}1+2(2)=5\\le10 \\text{ (đúng)}\\\\ 2(1)+2=4\\le8 \\text{ (đúng)}\\\\ 1\\ge0 \\text{ (đúng)}\\\\ 2\\ge0 \\text{ (đúng)}\\end{cases}$.\r\n\t\t\tVậy điểm $(1;2)$ thuộc miền nghiệm của hệ. Mệnh đề đúng.\r\n\t\t\t\\itemch Tại điểm $C(4;0)$, giá trị của biểu thức là: $F(4;0) = 2(4) + 3(0) = 8$. Mệnh đề khẳng định bằng $7$ là sai.\r\n\t\t\t\\itemch Các đỉnh của miền tứ giác nghiệm là $O(0;0)$, $A(0;5)$, $B(2;4)$ và $C(4;0)$.\\\\\r\n\t\t\tTính giá trị của $F(x;y) = 2x+3y$ tại các đỉnh này:\\\\\r\n\t\t\t$F(0;0) = 0$.\\\\\r\n\t\t\t$F(0;5) = 2(0) + 3(5) = 15$.\\\\\r\n\t\t\t$F(2;4) = 2(2) + 3(4) = 16$.\\\\\r\n\t\t\t$F(4;0) = 2(4) + 3(0) = 8$.\\\\\r\n\t\t\tSuy ra giá trị lớn nhất của biểu thức $F(x;y)$ là $16$ (đạt tại điểm $B$). Mệnh đề đúng.\r\n\t\t\t\\itemch Từ kết quả tính toán ở trên, giá trị nhỏ nhất của biểu thức $F(x;y)$ trên miền nghiệm là $0$ (đạt tại $O(0;0)$). Mệnh đề khẳng định bằng $10$ là sai.\r\n\t\t\\end{itemchoice}"
+}

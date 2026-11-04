@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3025b3dfa9",
+  "dapAn": "A",
+  "loiGiai": "Đường thẳng biên $d$ đi qua các điểm $(2;0)$ và $(0;-1)$.\\\\\r\n\t\tPhương trình đoạn chắn của $d$ là: $\\displaystyle\\frac{x}{2} + \\frac{y}{-1} = 1 \\Leftrightarrow x - 2y = 2$.\\\\\r\n\t\tPhần không bị gạch chứa gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào vế trái của đường thẳng, ta được $0 - 2(0) = 0 \\le 2$.\\\\\r\n\t\tVậy miền nghiệm là nửa mặt phẳng kể cả bờ $d$ chứa điểm $O$, tương ứng với bất phương trình $x-2y\\le2$."
+}

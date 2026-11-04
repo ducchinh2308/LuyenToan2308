@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_65b2a14083",
+  "dapAn": "A",
+  "loiGiai": "Theo định nghĩa các giá trị lượng giác của một góc từ $0^\\circ$ đến $180^\\circ$, trên nửa đường tròn đơn vị tâm $O$, điểm $M(x_0; y_0)$ thoả mãn $\\widehat{xOM} = \\alpha$ thì:\\\\\r\n\t\t$\\sin \\alpha = y_0$ (tung độ của $M$).\\\\\r\n\t\t$\\cos \\alpha = x_0$ (hoành độ của $M$).\\\\\r\n\t\tVậy khẳng định đúng là $\\sin \\alpha=y_{0}$."
+}

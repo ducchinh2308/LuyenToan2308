@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_b38c96778d",
+  "dapAn": "10",
+  "loiGiai": "Theo bảng giá trị lượng giác của các góc đặc biệt, ta có:\r\n\t\t$$\\sin 120^{\\circ} = \\frac{\\sqrt{3}}{2}$$\r\n\t\tĐồng nhất với biểu thức $\\displaystyle\\frac{\\sqrt{a}}{b}$, ta được $a = 3$ và $b = 2$ (phân số đã tối giản).\\\\\r\n\t\tVậy $4a - b = 4(3) - 2 = 12 - 2 = 10$."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_6d4a308ccb",
+  "dapAn": "45",
+  "loiGiai": "Gọi $A$ là tập hợp các học sinh đạt Giỏi môn Toán.\\\\\r\n\t\tGọi $B$ là tập hợp các học sinh đạt Giỏi môn Văn.\\\\\r\n\t\tTheo giả thiết, ta có số lượng phần tử của các tập hợp là:\r\n\t\t$n(A)=10$, $n(B)=15$, $n(A\\cap B)=5$.\\\\\r\n\t\tSố học sinh đạt loại Giỏi ít nhất một trong hai môn (thuộc tập hợp $A \\cup B$) là:\r\n\t\t$$n(A\\cup B)=n(A)+n(B)-n(A\\cap B)=10+15-5=20 \\text{ (em)}.$$\r\n\t\tSố học sinh không đạt loại Giỏi môn nào trong hai môn Toán và Văn là $25$ em.\\\\\r\n\t\tSĩ số học sinh của lớp 10B là tổng số học sinh đạt loại Giỏi ít nhất $1$ môn và số học sinh không đạt loại Giỏi môn nào:\\\\\r\n\t\t$$N = 20 + 25 = 45 \\text{ (em)}.$$\r\n\t\tVậy sĩ số học sinh của lớp là $45$ em."
+}

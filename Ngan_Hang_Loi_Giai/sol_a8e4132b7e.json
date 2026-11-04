@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a8e4132b7e",
+  "dapAn": "160",
+  "loiGiai": "Miền nghiệm của hệ bất phương trình là tứ giác $OHEG$ với tọa độ các đỉnh là $O(0;0)$, $H(0;3)$, $E(2;2)$ và $G(3;0)$.\\\\\r\n\t\tTa tính giá trị của biểu thức $F(x;y)=10x+60y-20$ tại các đỉnh:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Tại $O(0;0) \\Rightarrow F(0;0) = 10(0) + 60(0) - 20 = -20$.\r\n\t\t\t\\item Tại $H(0;3) \\Rightarrow F(0;3) = 10(0) + 60(3) - 20 = 160$.\r\n\t\t\t\\item Tại $E(2;2) \\Rightarrow F(2;2) = 10(2) + 60(2) - 20 = 120$.\r\n\t\t\t\\item Tại $G(3;0) \\Rightarrow F(3;0) = 10(3) + 60(0) - 20 = 10$.\r\n\t\t\\end{itemize}\r\n\t\tSo sánh các kết quả thu được, ta có giá trị lớn nhất của $F(x;y)$ bằng $160$, đạt được khi $x=0, y=3$.\\\\\r\n\t\tVậy lợi nhuận $F(x;y)$ đạt cao nhất là $160$."
+}

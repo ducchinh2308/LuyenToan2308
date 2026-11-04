@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1038a2d001",
+  "dapAn": "B",
+  "loiGiai": "Với hai góc bù nhau ($\\alpha$ và $180^\\circ - \\alpha$), ta có giá trị sin bằng nhau, các giá trị lượng giác còn lại đối nhau.\\\\\r\n\t\tDo đó, $\\cos(180^{\\circ}-\\alpha) = -\\cos \\alpha$. Khẳng định $\\cos(180^{\\circ}-\\alpha)=\\cos \\alpha$ là sai."
+}

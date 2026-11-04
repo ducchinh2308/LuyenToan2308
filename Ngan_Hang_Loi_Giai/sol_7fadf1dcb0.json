@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7fadf1dcb0",
+  "dapAn": "C",
+  "loiGiai": "Phủ định của mệnh đề \"$\\forall x \\in X, P(x)$\" là mệnh đề \"$\\exists x \\in X, \\overline{P(x)}$\".\\\\\r\n\t\tPhủ định của bất đẳng thức \"$>0$\" là \"$\\le 0$\".\\\\\r\n\t\tVậy mệnh đề phủ định là: \"$\\exists x\\in\\mathbb{R}: x^{2}+2025x-2026\\le0$\"."
+}

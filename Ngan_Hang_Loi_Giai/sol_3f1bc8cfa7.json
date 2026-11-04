@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_3f1bc8cfa7",
+  "dapAn": "103",
+  "loiGiai": "Xét tam giác $ABC$, tổng ba góc trong tam giác bằng $180^\\circ$, ta có:\r\n\t\t$$\\widehat{ACB} = 180^{\\circ} - (\\widehat{CAB} + \\widehat{CBA}) = 180^{\\circ} - (54^{\\circ} + 74^{\\circ}) = 180^{\\circ} - 128^{\\circ} = 52^{\\circ}.$$\r\n\t\tÁp dụng định lý sin trong tam giác $ABC$, ta có:\r\n\t\t$$\\frac{BC}{\\sin A} = \\frac{AB}{\\sin C} \\Rightarrow BC = \\frac{AB \\cdot \\sin A}{\\sin C}$$\r\n\t\tThay các số liệu đã biết vào công thức, ta được khoảng cách từ con tàu $C$ đến người $B$ là:\r\n\t\t$$BC = \\frac{100 \\cdot \\sin 54^{\\circ}}{\\sin 52^{\\circ}} \\approx 102{,}66 \\text{ (m)}.$$\r\n\t\tLàm tròn kết quả đến hàng đơn vị, ta được $BC \\approx 103\\text{ m}$."
+}

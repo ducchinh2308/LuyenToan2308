@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f908ae8453",
+  "dapAn": "TTFT",
+  "loiGiai": "Với $90^{\\circ}<\\alpha<180^{\\circ}$ (góc tù), điểm biểu diễn góc $\\alpha$ trên nửa đường tròn đơn vị nằm ở góc phần tư thứ hai. Khi đó:\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Tung độ dương nên $\\sin \\alpha > 0$. Mệnh đề đúng.\r\n\t\t\t\\itemch Hoành độ âm nên $\\cos \\alpha < 0$. Mệnh đề đúng.\r\n\t\t\t\\itemch Vì $\\sin \\alpha > 0$ và $\\cos \\alpha < 0$ nên $\\tan \\alpha = \\displaystyle\\frac{\\sin \\alpha}{\\cos \\alpha} < 0$. Mệnh đề sai.\r\n\t\t\t\\itemch Tương tự, $\\cot \\alpha = \\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha} < 0$. Mệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+}
