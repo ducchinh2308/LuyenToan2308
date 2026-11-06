@@ -448,44 +448,58 @@ window.ham_24_2_luu_nhiem_vu_omr = async function (btn) {
 
 
 window.ham_24_3_mo_giao_dien_nhap_dap_an = async function (idNhiemVu) {
-    // 1. CHÈN CSS SIÊU GỌN VÀ TƯƠNG THÍCH MOBILE (RESPONSIVE)
+    // 1. CHÈN CSS SIÊU GỌN VÀ CHỐNG TRÀN MÀN HÌNH MOBILE
     if (!document.getElementById('omr-bubble-styles')) {
         const style = document.createElement('style');
         style.id = 'omr-bubble-styles';
         style.innerHTML = `
-            .omr-card { background: #fff; border: 1px solid #17a2b8; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow: hidden; }
+            .omr-card { background: #fff; border: 1px solid #17a2b8; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow: hidden; box-sizing: border-box; }
             .omr-card-header { background: #e0f7fa; padding: 10px 15px; border-bottom: 1px solid #b2ebf2; display: flex; justify-content: space-between; align-items: center; }
-            .omr-card-body { padding: 15px; display: flex; flex-direction: column; gap: 15px; }
+            .omr-card-body { padding: 15px; display: flex; flex-direction: column; gap: 15px; box-sizing: border-box; }
             
             /* Lưới P1: Dàn ngang siêu gọn */
-            .omr-p1-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 6px; }
+            .omr-p1-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px; }
             .omr-q-row { display: flex; align-items: center; gap: 4px; padding: 4px; border: 1px solid #f1f3f5; background: #fafbfc; border-radius: 4px; }
-            .omr-q-num { font-weight: bold; color: #495057; width: 22px; font-size: 13px; text-align: right; }
+            .omr-q-num { font-weight: bold; color: #495057; width: 22px; font-size: 13px; text-align: right; flex-shrink: 0; }
             
             /* Lưới P2: Dàn ngang 4 ý a,b,c,d trên PC */
-            .omr-p2-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-            .omr-p2-item { border: 1px solid #e9ecef; border-radius: 6px; padding: 8px; background: #fff; }
+            .omr-p2-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+            .omr-p2-item { border: 1px solid #e9ecef; border-radius: 6px; padding: 8px; background: #fff; box-sizing: border-box; }
             .omr-p2-row { display: flex; justify-content: space-between; margin-top: 5px; flex-wrap: wrap; gap: 8px; }
             .omr-p2-col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
             
             /* Lưới P3 */
-            .omr-p3-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+            .omr-p3-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
             
             /* Bubble Thu Nhỏ */
-            .omr-dot-sm { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #adb5bd; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; color: #6c757d; cursor: pointer; user-select: none; background: #fff; }
+            .omr-dot-sm { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #adb5bd; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; color: #6c757d; cursor: pointer; user-select: none; background: #fff; flex-shrink: 0; }
             .omr-dot-sm:hover { background: #e2e6ea; }
             .omr-dot-sm.selected-p1 { background: #28a745; border-color: #28a745; color: #fff; }
             .omr-dot-sm.selected-p2 { background: #6f42c1; border-color: #6f42c1; color: #fff; }
             
-            .omr-toggle { display: flex; border: 1px solid #17a2b8; border-radius: 4px; overflow: hidden; }
-            .omr-btn-tog { padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: #fff; color: #17a2b8; }
+            .omr-toggle { display: flex; border: 1px solid #17a2b8; border-radius: 4px; overflow: hidden; flex-wrap: wrap; }
+            .omr-btn-tog { padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: #fff; color: #17a2b8; flex: 1; text-align: center; }
             .omr-btn-tog.active { background: #17a2b8; color: #fff; }
 
-            /* MEDIA QUERY: XUỐNG DÒNG TỪNG Ý TRÊN ĐIỆN THOẠI */
+            /* MEDIA QUERY: CHỐNG TRÀN VÀ CĂN LỀ TRÊN ĐIỆN THOẠI */
             @media (max-width: 600px) {
-                .omr-p2-row { flex-direction: column; gap: 8px; }
-                .omr-p2-col { flex-direction: row; justify-content: space-between; width: 100%; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
-                .omr-p2-col:last-child { border-bottom: none; }
+                .omr-p2-grid { grid-template-columns: 1fr; }
+                .omr-p2-row { flex-direction: column; gap: 6px; }
+                .omr-p2-col { 
+                    flex-direction: row; 
+                    justify-content: flex-start; /* Nút dính sát vào chữ, không bị đẩy ra ngoài */
+                    gap: 20px; 
+                    width: 100%; 
+                    border-bottom: 1px dotted #ccc; 
+                    padding-bottom: 8px; 
+                    align-items: center; 
+                }
+                .omr-p2-col:last-child { border-bottom: none; padding-bottom: 0; }
+                .omr-p2-col > span { width: 25px; display: inline-block; } /* Ráp chiều ngang chuẩn cho a,b,c,d */
+                
+                /* Tối ưu các nút công cụ để không tràn ngang */
+                .omr-btn-group-mobile { flex-direction: column; width: 100%; align-items: stretch !important; }
+                .omr-btn-group-mobile > div { justify-content: space-between !important; }
             }
         `;
         document.head.appendChild(style);
@@ -509,47 +523,53 @@ window.ham_24_3_mo_giao_dien_nhap_dap_an = async function (idNhiemVu) {
         let htmlMaDeOptions = daData.map(da => `<option value="${da.ma_de}">Mã đề: ${da.ma_de}</option>`).join('');
 
         vungLamViec.innerHTML = `
-            <div style="padding: 10px; animation: fadeIn 0.3s;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 12px; margin-bottom: 20px;">
-                    <h3 style="color: #0056b3; margin: 0;">🔑 BƯỚC 2: CẤU HÌNH ĐÁP ÁN CHI TIẾT</h3>
-                    <button onclick="ham_24_1_mo_giao_dien_tao_nhiem_vu_omr()" style="padding: 6px 15px; background: #6c757d; color: white; border: none; border-radius: 4px;">⬅️ Trở về</button>
+            <div style="padding: 10px; animation: fadeIn 0.3s; max-width: 100%; overflow-x: hidden;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #17a2b8; padding-bottom: 12px; margin-bottom: 15px;">
+                    <h3 style="color: #0056b3; margin: 0; font-size: 16px;">🔑 BƯỚC 2: CẤU HÌNH ĐÁP ÁN</h3>
+                    <button onclick="ham_24_1_mo_giao_dien_tao_nhiem_vu_omr()" style="padding: 6px 10px; background: #6c757d; color: white; border: none; border-radius: 4px; font-size: 12px;">⬅️ Quay lại</button>
                 </div>
 
-                <!-- THANH CÔNG CỤ TỔNG HỢP -->
-                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 250px;">
+                <!-- THANH CÔNG CỤ (LOẠI BỎ MIN-WIDTH CỨNG ĐỂ TƯƠNG THÍCH MOBILE) -->
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; gap: 15px; flex-wrap: wrap; width: 100%; box-sizing: border-box;">
+                    
+                    <div style="flex: 1; min-width: 100%;">
                         <span style="font-size: 12px; color: #495057; font-weight:bold;">Chế độ hiển thị:</span>
                         <div class="omr-toggle" style="margin-top: 4px;">
                             <button id="btn_view_single" class="omr-btn-tog active" onclick="window.ham_24_3f_doi_che_do_xem('single')">📜 Xem 1 Mã Đề</button>
-                            <button id="btn_view_all" class="omr-btn-tog" onclick="window.ham_24_3f_doi_che_do_xem('all')">📚 Xem TẤT CẢ Mã Đề</button>
+                            <button id="btn_view_all" class="omr-btn-tog" onclick="window.ham_24_3f_doi_che_do_xem('all')">📚 Xem TẤT CẢ</button>
                         </div>
                     </div>
                     
-                    <div style="flex: 1; min-width: 200px;" id="box_chon_ma_de">
+                    <div style="flex: 1; min-width: 100%;" id="box_chon_ma_de">
                         <span style="font-size: 12px; color: #495057; font-weight:bold;">Chọn mã đề để sửa:</span>
-                        <select id="omr_da_chon_ma_de" style="width: 100%; padding: 6px; border: 2px solid #28a745; border-radius: 4px; font-weight: bold; color: #28a745; margin-top:4px;" onchange="window.ham_24_3g_chuyen_ma_de_single(this.value)">
+                        <select id="omr_da_chon_ma_de" style="width: 100%; padding: 8px; border: 2px solid #28a745; border-radius: 4px; font-weight: bold; color: #28a745; margin-top:4px;" onchange="window.ham_24_3g_chuyen_ma_de_single(this.value)">
                             ${htmlMaDeOptions}
                         </select>
                     </div>
 
-                    <div style="flex: 1.5; display: flex; flex-direction: column; gap: 8px; min-width: 320px; align-items: flex-end;">
-                        <div style="display: flex; gap: 8px;">
-                            <button onclick="window.ham_24_3d_tai_excel_mau()" style="padding: 6px 12px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold;">📥 Tải Excel Mẫu</button>
-                            <label style="padding: 6px 12px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold; cursor: pointer; margin:0;">
+                    <div class="omr-btn-group-mobile" style="flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 100%;">
+                        <div style="display: flex; gap: 8px; width: 100%;">
+                            <button onclick="window.ham_24_3d_tai_excel_mau()" style="flex: 1; padding: 8px 5px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold; white-space:nowrap;">📥 Tải Mẫu</button>
+                            <label style="flex: 1; padding: 8px 5px; background: #6f42c1; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold; cursor: pointer; margin:0; text-align:center; white-space:nowrap;">
                                 📤 Nhập Excel
                                 <input type="file" accept=".xlsx, .xls" style="display:none;" onchange="window.ham_24_3e_doc_excel_dap_an(this)">
                             </label>
                         </div>
-                        <div style="display: flex; gap: 8px;">
-                            <button id="btn_save_single" onclick="window.ham_24_5_luu_dap_an_vao_db(window.OMR_SelectedMaDe)" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold;">💾 Lưu Mã Đề Này</button>
-                            <button onclick="window.ham_24_5b_luu_tat_ca_dap_an()" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold;">💾 LƯU TẤT CẢ</button>
+                        <div style="display: flex; gap: 8px; width: 100%;">
+                            <button id="btn_save_single" onclick="window.ham_24_5_luu_dap_an_vao_db(window.OMR_SelectedMaDe)" style="flex: 1; padding: 8px 5px; background: #28a745; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold; white-space:nowrap;">💾 Lưu Mã Này</button>
+                            <button onclick="window.ham_24_5b_luu_tat_ca_dap_an()" style="flex: 1; padding: 8px 5px; background: #dc3545; color: white; border: none; border-radius: 4px; font-size:12px; font-weight:bold; white-space:nowrap;">💾 LƯU TẤT CẢ</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- VÙNG CHỨA CARD MÃ ĐỀ (Xếp dọc) -->
-                <div id="omr_vung_chua_ma_de" style="min-height: 200px;"></div>
+                <div id="omr_vung_chua_ma_de" style="min-height: 200px; width: 100%;"></div>
                 
+                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px dashed #ccc;">
+                    <button onclick="console.log('Chuyển sang Giao diện Camera...')" style="width: 100%; padding: 15px 10px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 6px rgba(253,126,20,0.3); text-transform: uppercase;">
+                        📸 VÀO MÀN HÌNH CHẤM
+                    </button>
+                </div>
             </div>
         `;
         window.ham_24_3h_render_toan_bo_ui();
@@ -806,14 +826,14 @@ window.ham_24_3d_tai_excel_mau = function () {
 };
 
 
-
 // Đọc file Excel người dùng tải lên, phân tích và vẽ lên UI ngay lập tức
+// Đọc file Excel người dùng tải lên, phân tích và tự động chuyển sang chế độ "Xem Tất Cả"
 window.ham_24_3e_doc_excel_dap_an = function (input) {
     let file = input.files[0];
     if (!file) return;
 
     if (typeof XLSX === 'undefined') {
-        Swal.fire('Lỗi thư viện', 'Vui lòng cài đặt thư viện xlsx-js-style.', 'error');
+        Swal.fire({ title: 'Lỗi thư viện', text: 'Vui lòng cài đặt thư viện xlsx-js-style.', icon: 'error', width: '90%' });
         return;
     }
 
@@ -845,7 +865,7 @@ window.ham_24_3e_doc_excel_dap_an = function (input) {
                     keysByMaDe[maDe].p1 += (dapAn.charAt(0) || "-");
                     p1Idx++;
                 } else if (p2Idx < cauTruc.p2_so_cau) {
-                    let d = dapAn.replace(/[^ĐS]/g, '');
+                    let d = dapAn.replace(/D/g, 'Đ').replace(/[^ĐS]/g, '');
                     d = (d + "----").substring(0, 4);
                     keysByMaDe[maDe].p2.push(d);
                     p2Idx++;
@@ -855,7 +875,7 @@ window.ham_24_3e_doc_excel_dap_an = function (input) {
                 }
             });
 
-            // Ghi đè vào bộ nhớ tạm
+            // Ghi đè vào bộ nhớ tạm RAM
             let numUpdated = 0;
             for (let maDe in keysByMaDe) {
                 let idx = window.OMR_CurrentKeys.findIndex(k => k.ma_de === maDe);
@@ -867,21 +887,29 @@ window.ham_24_3e_doc_excel_dap_an = function (input) {
                 }
             }
 
+            // TỰ ĐỘNG CHUYỂN CHẾ ĐỘ XEM SANG "TẤT CẢ" (Tránh dùng hàm đổi chế độ vì sẽ bị ghi đè nháp)
+            window.OMR_ViewMode = 'all';
+            document.getElementById('btn_view_single').classList.remove('active');
+            document.getElementById('btn_view_all').classList.add('active');
+            document.getElementById('box_chon_ma_de').style.visibility = 'hidden';
+            document.getElementById('btn_save_single').style.display = 'none';
+
             // ÉP VẼ LẠI TOÀN BỘ GIAO DIỆN NGAY LẬP TỨC
             window.ham_24_3h_render_toan_bo_ui();
 
-            // Sau khi vẽ xong mới hiện thông báo
             Swal.fire({
-                title: 'Tải đáp án thành công!',
-                html: `Đã cập nhật đáp án cho <b>${numUpdated} mã đề</b> lên màn hình.<br><br><span style="color:#dc3545; font-weight:bold;">Hãy bấm "LƯU TẤT CẢ" (Nút màu đỏ) để lưu chính thức vào cơ sở dữ liệu!</span>`,
-                icon: 'success'
+                title: '<span style="font-size: 18px;">Tải đáp án thành công!</span>',
+                html: `<div style="font-size: 13px; line-height: 1.5;">Đã nạp đáp án cho <b>${numUpdated} mã đề</b> và hiển thị <b>TẤT CẢ</b> lên màn hình.<br><br><span style="color:#dc3545; font-weight:bold;">Hãy bấm "LƯU TẤT CẢ" (Nút màu đỏ) để lưu chính thức!</span></div>`,
+                icon: 'success',
+                width: '90%',
+                padding: '1em'
             });
 
         } catch (error) {
-            Swal.fire('Lỗi định dạng', 'Không thể đọc file. Vui lòng đảm bảo dùng đúng cấu trúc file Tải Mẫu: ' + error.message, 'error');
+            Swal.fire({ title: 'Lỗi định dạng', text: 'Không thể đọc file: ' + error.message, icon: 'error', width: '90%' });
         }
 
-        input.value = ""; // Clear để upload lại file cũ nếu cần
+        input.value = "";
     };
     reader.readAsArrayBuffer(file);
 };
@@ -979,12 +1007,17 @@ window.ham_24_3h_render_toan_bo_ui = function () {
                 p3Items += `
                     <div style="display:flex; flex-direction:column; gap:3px;">
                         <span style="font-size:11px; font-weight:bold; color:#b30000;">Câu ${i}</span>
-                        <input type="text" id="p3_input_${maDe}_${i}" value="${val}" style="padding:4px; font-size:12px; font-weight:bold; text-align:center; color:#dc3545; border:1px solid #ffb3ba; border-radius:4px; outline:none; width:100%;">
+                        <input type="text" id="p3_input_${maDe}_${i}" value="${val}" maxlength="4" oninput="window.ham_24_3k_kiem_tra_nhap_tln(this)" style="padding:4px; font-size:12px; font-weight:bold; text-align:center; color:#dc3545; border:1px solid #ffb3ba; border-radius:4px; outline:none; width:100%; box-sizing:border-box;">
                     </div>`;
             }
             htmlP3 = `
                 <div style="background: #fff0f1; border: 1px dashed #ffb3ba; border-radius: 6px; padding: 10px;">
-                    <div style="font-weight:bold; font-size:13px; color:#dc3545; margin-bottom:8px;">Phần III: Điền khuyết / Trả lời ngắn</div>
+                    <div style="margin-bottom:10px;">
+                        <div style="font-weight:bold; font-size:13px; color:#dc3545;">Phần III: Điền khuyết / Trả lời ngắn</div>
+                        <div style="font-size:11px; font-style:italic; color:#c82333; margin-top:4px;">
+                            * <b>Lưu ý:</b> Dùng dấu phẩy (,) cho số thập phân. Chỉ được nhập số, phẩy và trừ. Tối đa 4 ký tự (VD: -1,5 hoặc 0,25)
+                        </div>
+                    </div>
                     <div class="omr-p3-grid">${p3Items}</div>
                 </div>`;
         }
@@ -1065,7 +1098,52 @@ window.ham_24_3i_thu_thap_data_tu_ui_vao_ram = function () {
     });
 };
 
+// ==============================================================================
+// KHỐI XỬ LÝ RÀNG BUỘC NHẬP LIỆU
+// ==============================================================================
 
+// Hàm kiểm tra nhập liệu Phần 3 Thời gian thực
+window.ham_24_3k_kiem_tra_nhap_tln = function (inputElement) {
+    let originalValue = inputElement.value;
+
+    // 1. Tiện ích: Tự động chuyển dấu chấm (.) thành dấu phẩy (,)
+    let formattedValue = originalValue.replace(/\./g, ',');
+
+    // 2. Chỉ giữ lại số, dấu phẩy và dấu trừ
+    let cleanedValue = formattedValue.replace(/[^0-9,\-]/g, '');
+
+    // 3. Cảnh báo nếu có ký tự lạ (Chữ cái, ký hiệu đặc biệt)
+    if (originalValue !== cleanedValue && originalValue.replace(/\./g, ',') !== cleanedValue) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Chỉ được nhập số, dấu trừ (-) và phẩy (,)',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+    }
+
+    // 4. Ràng buộc logic OMR: 
+    // - Dấu trừ (-) chỉ được đứng ở vị trí ĐẦU TIÊN
+    if (cleanedValue.lastIndexOf('-') > 0) {
+        cleanedValue = cleanedValue.replace(/-/g, function (match, offset) {
+            return offset === 0 ? '-' : ''; // Nếu không phải vị trí 0 thì xóa luôn
+        });
+    }
+
+    // - Dấu phẩy (,) chỉ được xuất hiện TỐI ĐA 1 LẦN
+    let firstCommaIdx = cleanedValue.indexOf(',');
+    if (firstCommaIdx !== -1) {
+        let beforeComma = cleanedValue.substring(0, firstCommaIdx + 1);
+        let afterComma = cleanedValue.substring(firstCommaIdx + 1).replace(/,/g, ''); // Xóa hết dấu phẩy ở phần đuôi
+        cleanedValue = beforeComma + afterComma;
+    }
+
+    // Gán lại kết quả siêu sạch cho ô Input
+    inputElement.value = cleanedValue;
+};
 
 
 // Hàm lưu thẳng 1 cục (Bulk Update) toàn bộ mảng OMR_CurrentKeys xuống DB
