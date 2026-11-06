@@ -111,7 +111,7 @@ function ham_3_1_ve_dashboard_admin() {
     htmlContent += `
             <h4 style="color: #555; margin-bottom: 15px;">🛠️ TIỆN ÍCH</h4>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <button onclick="ham_24_1_mo_tien_ich_cham_omr()" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            <button onclick="ham_24_1_mo_giao_dien_tao_nhiem_vu_omr()" style="padding: 10px 15px; background: #6f42c1; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
     <span style="font-size: 20px;">📷</span> Máy Quét Trắc Nghiệm (OMR)
 </button>
                 <button onclick="ham_18_1_mo_giao_dien_so_do_lop()" style="padding: 12px 20px; background: #17a2b8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">📍 Tạo Sơ Đồ Lớp</button>
