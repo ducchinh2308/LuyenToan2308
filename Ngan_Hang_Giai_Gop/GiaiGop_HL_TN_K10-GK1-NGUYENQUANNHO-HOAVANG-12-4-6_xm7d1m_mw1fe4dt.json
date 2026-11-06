@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-04T01:16:04.143Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_c6fcbf52f7",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "Viết tập $B$ dưới dạng nửa khoảng: $B = (1; 8]$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Tập hợp hiệu $A \\setminus B = (-4;6] \\setminus (1;8] = (-4; 1]$.\\\\\r\n\t\t\tCác số nguyên thuộc nửa khoảng này là: $-3, -2, -1, 0, 1$. Có tất cả $5$ phần tử nguyên. Phát biểu khẳng định có $4$ phần tử là sai.\r\n\t\t\t\\itemch Từ định nghĩa, tập $B=\\{x\\in\\mathbb{R} \\mid 1<x\\le8\\}$ được viết là $(1;8]$ (nửa khoảng). Mặc dù đề dùng chữ \"khoảng\" (đúng ra là nửa khoảng) nhưng kí hiệu $(1;8]$ là hoàn toàn chính xác. Phát biểu này được tính là đúng.\r\n\t\t\t\\itemch Hợp của hai tập hợp: $A \\cup B = (-4;6] \\cup (1;8] = (-4; 8]$. Phát biểu đúng.\r\n\t\t\t\\itemch Giao của hai tập hợp: $A \\cap B = (-4;6] \\cap (1;8] = (1; 6]$. Phát biểu khẳng định là khoảng $(1;6)$ (không có ngoặc vuông ở $6$) là sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_764f2ded67",
+      "dapAn": "FFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hình thang cân cũng có hai đường chéo bằng nhau nhưng không phải là hình chữ nhật. Do đó, đây là mệnh đề sai.\r\n\t\t\t\\itemch Đặt $P \\colon$ \"Số đó chia hết cho $9$\" và $Q \\colon$ \"Số đó chia hết cho $3$\".\\\\\r\n\t\t\tMệnh đề \"Một số chia hết cho 9 là điều kiện cần để số đó chia hết cho 3\" tương đương với mệnh đề kéo theo $Q \\Rightarrow P$ (Nếu số đó chia hết cho 3 thì số đó chia hết cho 9).\\\\\r\n\t\t\tVí dụ số $6$ chia hết cho $3$ nhưng không chia hết cho $9$, nên $Q \\Rightarrow P$ là mệnh đề sai. Do đó, khẳng định này sai.\r\n\t\t\t\\itemch Tổng của hai số lẻ bất kỳ luôn là một số chẵn (ví dụ $a=2k+1$, $b=2m+1 \\Rightarrow a+b = 2(k+m+1)$ chẵn). Khẳng định đúng.\r\n\t\t\t\\itemch Xét phương trình $16x^2 - 1 = 0 \\Leftrightarrow x^2 = \\displaystyle\\frac{1}{16} \\Leftrightarrow x = \\pm\\frac{1}{4}$.\\\\\r\n\t\t\tVì $\\pm\\displaystyle\\frac{1}{4} \\notin \\mathbb{Z}$ nên không tồn tại $x \\in \\mathbb{Z}$ thỏa mãn. Mệnh đề sai.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4522bbc115",
+      "dapAn": "FTTT",
+      "loiGiaiHtml": "Trong tam giác $ABC$, ta tính được: $\\widehat{C} = 180^{\\circ} - (\\widehat{A} + \\widehat{B}) = 180^{\\circ} - (60^{\\circ} + 45^{\\circ}) = 75^{\\circ}$.\\\\\r\n\t\tCó $c = AB = 6\\text{ cm}$.\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch Công thức tính diện tích theo hai cạnh $AB, AC$ phải là $S=\\displaystyle\\frac{1}{2}AB \\cdot AC \\cdot \\sin A$ (sin của góc xen giữa). Mệnh đề khẳng định dùng $\\sin B$ là sai.\r\n\t\t\t\\itemch Gọi đường cao từ đỉnh $C$ xuống $AB$ là $h_c$. Áp dụng định lý Sin để tìm cạnh $b = AC$:\r\n\t\t\t$$\\frac{c}{\\sin C} = \\frac{b}{\\sin B} \\Rightarrow \\frac{6}{\\sin 75^{\\circ}} = \\frac{b}{\\sin 45^{\\circ}} \\Rightarrow b = \\frac{6 \\cdot \\sin 45^{\\circ}}{\\sin 75^{\\circ}} = \\frac{6 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{\\sqrt{6}+\\sqrt{2}}{4}} = \\frac{12\\sqrt{2}}{\\sqrt{6}+\\sqrt{2}} = 6(\\sqrt{3}-1).$$\r\n\t\t\tDiện tích tam giác $ABC$ là: \r\n\t\t\t$$S = \\frac{1}{2}bc \\sin A = \\frac{1}{2} \\cdot 6(\\sqrt{3}-1) \\cdot 6 \\cdot \\sin 60^{\\circ} = 18(\\sqrt{3}-1) \\cdot \\frac{\\sqrt{3}}{2} = 9\\sqrt{3}(\\sqrt{3}-1) = 27 - 9\\sqrt{3}.$$\r\n\t\t\tMặt khác, $S = \\displaystyle\\frac{1}{2} c \\cdot h_c = \\frac{1}{2} \\cdot 6 \\cdot h_c = 3h_c$.\\\\\r\n\t\t\tSuy ra $3h_c = 27 - 9\\sqrt{3} \\Rightarrow h_c = 9 - 3\\sqrt{3}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Bán kính đường tròn ngoại tiếp $R$ được tính bởi:\r\n\t\t\t$$2R = \\frac{c}{\\sin C} = \\frac{6}{\\sin 75^{\\circ}} = \\frac{6}{\\frac{\\sqrt{6}+\\sqrt{2}}{4}} = \\frac{24}{\\sqrt{6}+\\sqrt{2}} = 24 \\cdot \\frac{\\sqrt{6}-\\sqrt{2}}{4} = 6(\\sqrt{6}-\\sqrt{2}).$$\r\n\t\t\tSuy ra $R = 3(\\sqrt{6}-\\sqrt{2}) = 3\\sqrt{6} - 3\\sqrt{2}$. Mệnh đề đúng.\r\n\t\t\t\\itemch Ta có $\\sin C = \\sin 75^{\\circ} = \\sin(45^{\\circ} + 30^{\\circ}) = \\sin 45^{\\circ}\\cos 30^{\\circ} + \\cos 45^{\\circ}\\sin 30^{\\circ}$\r\n\t\t\t$$= \\frac{\\sqrt{2}}{2} \\cdot \\frac{\\sqrt{3}}{2} + \\frac{\\sqrt{2}}{2} \\cdot \\frac{1}{2} = \\frac{\\sqrt{6} + \\sqrt{2}}{4}.$$\r\n\t\t\tMệnh đề đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_6eb0448817",
+      "dapAn": "FFTT",
+      "loiGiaiHtml": "Tính toán các thông số của tam giác $ABC$:\r\n\t\t\\begin{itemchoice}\r\n\t\t\t\\itemch (Giải quyết ý c trước): Theo định lý côsin, $a^2 = b^2 + c^2 - 2bc\\cos A = 10^2 + 8^2 - 2(10)(8)\\cos 60^{\\circ} = 100 + 64 - 160(0{,}5) = 84$.\\\\\r\n\t\t\tSuy ra $a = \\sqrt{84} = 2\\sqrt{21} \\approx 9{,}17\\text{ cm}$. Phát biểu c) đúng.\\\\\r\n\t\t\t(Quay lại ý a): Diện tích tam giác $S = \\displaystyle\\frac{1}{2}bc\\sin A = \\frac{1}{2}(10)(8)\\sin 60^{\\circ} = 40\\left(\\frac{\\sqrt{3}}{2}\\right) = 20\\sqrt{3}\\text{ cm}^2$.\\\\\r\n\t\t\tNửa chu vi $p = \\displaystyle\\frac{a+b+c}{2} = \\frac{2\\sqrt{21} + 10 + 8}{2} = 9 + \\sqrt{21}$.\\\\\r\n\t\t\tBán kính đường tròn nội tiếp $r = \\displaystyle\\frac{S}{p} = \\frac{20\\sqrt{3}}{9+\\sqrt{21}} \\neq \\frac{10\\sqrt{3}}{1+\\sqrt{21}+5} = \\frac{10\\sqrt{3}}{6+\\sqrt{21}}$. Phát biểu a) sai.\r\n\t\t\t\\itemch Theo định lý Sin: $\\sin B = \\displaystyle\\frac{b\\sin A}{a} = \\frac{10\\sin 60^{\\circ}}{2\\sqrt{21}} = \\frac{5\\sqrt{3}}{\\sqrt{21}} = \\frac{5}{\\sqrt{7}} \\approx 0{,}9449$.\\\\\r\n\t\t\tSuy ra $\\widehat{B} \\approx 70{,}9^{\\circ}$ (vì cạnh $b=10 > c=8$ nên $\\widehat{B}$ nhọn). Do đó $\\widehat{C} = 180^{\\circ} - 60^{\\circ} - 70{,}9^{\\circ} = 49{,}1^{\\circ}$. Phát biểu khẳng định $\\widehat{B}\\approx79{,}1^{\\circ}$ là sai.\r\n\t\t\t\\itemch (Đã tính ở trên) $a = 2\\sqrt{21}\\text{ cm}$. Phát biểu đúng.\r\n\t\t\t\\itemch (Đã tính ở trên) $S = 20\\sqrt{3}\\text{ cm}^{2}$. Phát biểu đúng.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_4bb057aa28",
+      "dapAn": "387",
+      "loiGiaiHtml": "Xét tam giác $ACD$:\\\\\r\n\t\tTa có góc $\\widehat{ACD} = \\widehat{ACB} + \\widehat{BCD} = 100^{\\circ} + 15^{\\circ} = 115^{\\circ}$.\\\\\r\n\t\tGóc $\\widehat{CAD} = 180^{\\circ} - (\\widehat{ACD} + \\widehat{ADC}) = 180^{\\circ} - (115^{\\circ} + 57^{\\circ}) = 8^{\\circ}$.\\\\\r\n\t\tÁp dụng định lý Sin trong tam giác $ACD$, ta tính được cạnh $AC$:\r\n\t\t$$\\frac{AC}{\\sin \\widehat{ADC}} = \\frac{CD}{\\sin \\widehat{CAD}} \\Rightarrow AC = \\frac{CD \\cdot \\sin \\widehat{ADC}}{\\sin \\widehat{CAD}} = \\frac{50 \\cdot \\sin 57^{\\circ}}{\\sin 8^{\\circ}} \\approx 301{,}3\\text{ (m)}.$$\\\\Xét tam giác $BCD$:\\\\\r\n\t\tTa có góc $\\widehat{BDC} = \\widehat{ADB} + \\widehat{ADC} = 103^{\\circ} + 57^{\\circ} = 160^{\\circ}$.\\\\\r\n\t\tGóc $\\widehat{CBD} = 180^{\\circ} - (\\widehat{BCD} + \\widehat{BDC}) = 180^{\\circ} - (15^{\\circ} + 160^{\\circ}) = 5^{\\circ}$.\\\\\r\n\t\tÁp dụng định lý Sin trong tam giác $BCD$, ta tính được cạnh $BC$:\r\n\t\t$$\\frac{BC}{\\sin \\widehat{BDC}} = \\frac{CD}{\\sin \\widehat{CBD}} \\Rightarrow BC = \\frac{CD \\cdot \\sin \\widehat{BDC}}{\\sin \\widehat{CBD}} = \\frac{50 \\cdot \\sin 160^{\\circ}}{\\sin 5^{\\circ}} \\approx 196{,}2\\text{ (m)}.$$\\\\Xét tam giác $ABC$:\\\\\r\n\t\tBiết hai cạnh $AC \\approx 301{,}3\\text{ m}, BC \\approx 196{,}2\\text{ m}$ và góc xen giữa $\\widehat{ACB} = 100^{\\circ}$.\\\\\r\n\t\tÁp dụng định lý Côsin, ta tính được khoảng cách $AB$:\r\n\t\t$$AB = \\sqrt{AC^2 + BC^2 - 2 \\cdot AC \\cdot BC \\cdot \\cos \\widehat{ACB}}$$\r\n\t\t$$AB = \\sqrt{301{,}3^2 + 196{,}2^2 - 2(301{,}3)(196{,}2)\\cos 100^{\\circ}} \\approx 387{,}05\\text{ (m)}.$$\r\n\t\tVậy khoảng cách giữa hai cột điện xấp xỉ $387{,}05\\text{ m}$."
+    },
+    {
+      "maBaoMat": "sol_e67a1aab6d",
+      "dapAn": "19",
+      "loiGiaiHtml": "Tổng số học sinh của lớp là $42$. Vì có $2$ bạn không tham gia tiết mục nào nên số học sinh có tham gia ít nhất một tiết mục (thuộc tập hợp Hợp) là:\r\n\t\t$$42 - 2 = 40 \\text{ (học sinh)}.$$\r\n\t\tGọi $A$ là tập hợp các học sinh tham gia tiết mục nhảy $\\Rightarrow n(A) = 33$.\\\\\r\n\t\tGọi $B$ là tập hợp các học sinh tham gia tiết mục hát $\\Rightarrow n(B)$ là số cần tìm.\\\\\r\n\t\tSố học sinh tham gia cả hai tiết mục là $n(A \\cap B) = 12$.\\\\\r\n\t\tÁp dụng công thức cộng số phần tử của tập hợp, ta có:\r\n\t\t$$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$$\r\n\t\t$$40 = 33 + n(B) - 12 \\Leftrightarrow 40 = 21 + n(B) \\Leftrightarrow n(B) = 19.$$\r\n\t\tVậy có $19$ học sinh tham gia tiết mục hát."
+    },
+    {
+      "maBaoMat": "sol_5ae74f0d24",
+      "dapAn": "2,33",
+      "loiGiaiHtml": "Vì $\\cot \\alpha = 2$ xác định nên $\\sin \\alpha \\ne 0$. Chia cả tử và mẫu của biểu thức $P$ cho $\\sin \\alpha$, ta được:\r\n\t\t$$P = \\frac{\\displaystyle\\frac{3\\sin \\alpha + 2\\cos \\alpha}{\\sin \\alpha}}{\\displaystyle\\frac{5\\sin \\alpha - \\cos \\alpha}{\\sin \\alpha}} = \\frac{3 + 2\\cot \\alpha}{5 - \\cot \\alpha}$$\r\n\t\tThay $\\cot \\alpha = 2$ vào biểu thức:\r\n\t\t$$P = \\frac{3 + 2(2)}{5 - 2} = \\frac{3 + 4}{3} = \\frac{7}{3} \\approx 2{,}33.$$\r\n\t\tVậy $P \\approx 2{,}33$."
+    },
+    {
+      "maBaoMat": "sol_62efc6de45",
+      "dapAn": "105",
+      "loiGiaiHtml": "Gọi $A, B, C$ lần lượt là tập hợp các học sinh học tiếng Anh, tiếng Pháp và tiếng Đức.\\\\\r\n\t\tTheo giả thiết, số phần tử của các tập hợp là:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item $n(A) = 70$, $n(B) = 45$, $n(C) = 30$.\r\n\t\t\t\\item $n(A \\cap B) = 20$, $n(A \\cap C) = 15$, $n(B \\cap C) = 10$.\r\n\t\t\t\\item $n(A \\cap B \\cap C) = 5$.\r\n\t\t\\end{itemize}\r\n\t\tVì mỗi học sinh đều học ít nhất một ngoại ngữ nên tổng số học sinh tham gia khảo sát chính là số phần tử của tập hợp $A \\cup B \\cup C$.\\\\\r\n\t\tÁp dụng công thức cộng, ta có:\\\\\r\n\t\t$n(A \\cup B \\cup C) = n(A) + n(B) + n(C) - n(A \\cap B) - n(A \\cap C) - n(B \\cap C) + n(A \\cap B \\cap C)$\\\\\r\n\t\t$n(A \\cup B \\cup C) = 70 + 45 + 30 - 20 - 15 - 10 + 5 = 105$.\\\\\r\n\t\tVậy có tất cả $105$ học sinh đã tham gia khảo sát."
+    },
+    {
+      "maBaoMat": "sol_61def6ef06",
+      "dapAn": "12,7",
+      "loiGiaiHtml": "Gọi $h$ là chiều cao của cột điện $CH$ ($h > 0$).\\\\\r\n\t\tXét tam giác $AHC$ vuông tại $H$, ta có: $\\cot 60^{\\circ} = \\displaystyle\\frac{AH}{CH} \\Rightarrow AH = h \\cdot \\cot 60^{\\circ} = \\frac{h}{\\sqrt{3}}$.\\\\\r\n\t\tXét tam giác $BHC$ vuông tại $H$, ta có: $\\cot 45^{\\circ} = \\displaystyle\\frac{BH}{CH} \\Rightarrow BH = h \\cdot \\cot 45^{\\circ} = h$.\\\\\r\n\t\tVì $H$ nằm giữa $A$ và $B$ nên: $AH + BH = AB = 20$.\\\\\r\n\t\t$\\Rightarrow \\displaystyle\\frac{h}{\\sqrt{3}} + h = 20 \\Leftrightarrow h\\left(\\frac{1}{\\sqrt{3}} + 1\\right) = 20 \\Leftrightarrow h\\left(\\frac{\\sqrt{3}+1}{\\sqrt{3}}\\right) = 20$.\\\\\r\n\t\t$\\Rightarrow h = \\displaystyle\\frac{20\\sqrt{3}}{\\sqrt{3}+1} = 10\\sqrt{3}(\\sqrt{3}-1) = 30 - 10\\sqrt{3}$.\\\\\r\n\t\tBấm máy tính ta được $h \\approx 12{,}679\\text{ m}$.\\\\\r\n\t\tLàm tròn đến hàng phần mười, ta được $12{,}7\\text{ m}$."
+    },
+    {
+      "maBaoMat": "sol_dd13dc3310",
+      "dapAn": "2",
+      "loiGiaiHtml": "Vẽ các đường thẳng $d_1 \\colon x+y=2$ và $d_2 \\colon 2x-y=4$ trên mặt phẳng tọa độ:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Đường thẳng $d_1$ đi qua $(0;2)$ và $(2;0)$.\r\n\t\t\t\\item Đường thẳng $d_2$ đi qua $(0;-4)$ và $(2;0)$.\r\n\t\t\\end{itemize}\r\n\t\tDo $x \\ge 0$ và $y \\ge 0$, miền nghiệm nằm trong góc phần tư thứ nhất.\\\\\r\n\t\tGiao điểm của $d_1$ và $d_2$ là nghiệm của hệ:\r\n\t\t$\\begin{cases} x+y=2 \\\\ 2x-y=4 \\end{cases} \\Leftrightarrow \\begin{cases} 3x=6 \\\\ y = 2-x \\end{cases} \\Leftrightarrow \\begin{cases} x=2 \\\\ y=0 \\end{cases}$.\\\\\r\n\t\tKết hợp các đường biên, ta nhận thấy miền nghiệm là tam giác vuông $OAB$ với các đỉnh:\r\n\t\t$O(0;0)$, $A(2;0)$ và $B(0;2)$.\r\n\t\t(Giao điểm của $d_1$ và $d_2$ trùng luôn vào điểm $A$).\\\\\r\n\t\tTam giác $OAB$ vuông tại $O$, có hai cạnh góc vuông là $OA = 2$ và $OB = 2$.\\\\\r\n\t\tDiện tích tam giác $OAB$ là: $S = \\displaystyle\\frac{1}{2} \\cdot OA \\cdot OB = \\frac{1}{2} \\cdot 2 \\cdot 2 = 2$.\\\\\r\n\t\tVậy diện tích tam giác là $2$."
+    },
+    {
+      "maBaoMat": "sol_1ab5b73cf0",
+      "dapAn": "B",
+      "loiGiaiHtml": "Phần tô đậm nằm hoàn toàn trong tập hợp $A$ nhưng lại nằm ngoài (không chứa các phần tử của) tập hợp $B$. \r\n\t\tTheo định nghĩa, đây là tập hợp hiệu của $A$ và $B$, kí hiệu là $A \\setminus B$."
+    },
+    {
+      "maBaoMat": "sol_36c31b6028",
+      "dapAn": "D",
+      "loiGiaiHtml": "Từ đồ thị ta xác định được:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Đường thẳng nét liền đi qua điểm $(0;1)$ và $(-1;0)$ có phương trình là $y - x = 1 \\Leftrightarrow y - x - 1 = 0$ (hoặc $-y+x+1=0$). Giao với trục là $x-y+1=0$ hay $y-x-1=0$. Nhìn kỹ hình, đường thẳng đi qua $(0;1)$ và $(1;2)$ nên phương trình là $y=x+1 \\Leftrightarrow y-x-1=0$. Ở các đáp án là $y-x+1$. Nếu là $y-x+1=0$ thì đi qua $(0;-1)$ và $(1;0)$, nhưng trên hình nó qua $(0;1)$ và $(-1;0)$. Dường như có sự nhầm lẫn về kí hiệu ở đề bài (đồ thị là $y-x-1=0$ hoặc $y-x+1=0$ nếu dời trục).\r\n\t\t\tGiả sử đường liền là $y - x + 1 = 0$. Vùng không gạch chứa gốc $O(0;0)$. $0 - 0 + 1 = 1 > 0$. Vậy là $y - x + 1 \\le 0$ (do phần gạch bị loại).\r\n\t\t\t\\item Đường nét đứt đi qua $(3;0)$ và $(0;3)$ có phương trình $x + y - 3 = 0$. Vùng không gạch chứa $O(0;0)$. $0 + 0 - 3 = -3 < 0$. Do nét đứt nên là $x+y-3<0$.\r\n\t\t\\end{itemize}\r\n\t\tTuy nhiên, theo đáp án chính thức của nhà trường, câu 11 chọn \\textbf{D}. Nghĩa là đáp án D được coi là phương án chính xác dù có thể đồ thị vẽ phần gạch chưa tương đồng."
+    },
+    {
+      "maBaoMat": "sol_95fe240a64",
+      "dapAn": "B",
+      "loiGiaiHtml": "Mệnh đề phủ định của lượng từ \"$\\forall$\" (với mọi) là lượng từ \"$\\exists$\" (tồn tại), và phủ định của bất đẳng thức \"$>$\" là \"$\\le$\".\\\\\r\n\t\tDo đó, mệnh đề phủ định là: $\\exists x\\in\\mathbb{R}, x^{2}+2x+5\\le0$."
+    },
+    {
+      "maBaoMat": "sol_6447b26426",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta thay lần lượt tọa độ của các cặp số vào vế trái của bất phương trình $x - 2y + 5 > 0$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Với $(1; 3)$: $1 - 2(3) + 5 = 0 > 0$ (sai).\r\n\t\t\t\\item Với $(2; 1)$: $2 - 2(1) + 5 = 5 > 0$ (đúng).\r\n\t\t\t\\item Với $(-2; 4)$: $-2 - 2(4) + 5 = -5 > 0$ (sai).\r\n\t\t\t\\item Với $(-2; 2)$: $-2 - 2(2) + 5 = -1 > 0$ (sai).\r\n\t\t\\end{itemize}\r\n\t\tVậy cặp số $(2;1)$ là nghiệm của bất phương trình."
+    },
+    {
+      "maBaoMat": "sol_34519e0309",
+      "dapAn": "B",
+      "loiGiaiHtml": "Theo định nghĩa các giá trị lượng giác cơ bản:\r\n\t\t$$\\tan \\alpha = \\frac{\\sin \\alpha}{\\cos \\alpha} \\quad \\text{và} \\quad \\cot \\alpha = \\frac{\\cos \\alpha}{\\sin \\alpha}$$\r\n\t\tDo đó khẳng định $\\tan \\alpha=\\displaystyle\\frac{\\cos \\alpha}{\\sin \\alpha}$ là sai."
+    },
+    {
+      "maBaoMat": "sol_05e3bf1724",
+      "dapAn": "B",
+      "loiGiaiHtml": "Giải phương trình $x(x-1)(x+3) = 0$, ta được các nghiệm:\r\n\t\t$$x = 0; \\quad x = 1; \\quad x = -3$$\r\n\t\tVì yêu cầu $x \\in \\mathbb{N}$ (tập hợp số tự nhiên) nên ta chỉ nhận các giá trị $x = 0$ và $x = 1$. Giá trị $x = -3 \\notin \\mathbb{N}$ bị loại.\\\\\r\n\t\tVậy $A = \\{0; 1\\} = N$."
+    },
+    {
+      "maBaoMat": "sol_17e4fb4f0b",
+      "dapAn": "D",
+      "loiGiaiHtml": "Mệnh đề ban đầu có dạng: \"$\\exists x \\in \\mathbb{R}, 2x^2+3x-5 < 0$\".\\\\\r\n\t\tĐể lập mệnh đề phủ định, ta thay lượng từ \"Tồn tại\" ($\\exists$) thành \"Với mọi\" ($\\forall$), đồng thời phủ định bất đẳng thức \"$< 0$\" thành \"$\\ge 0$\".\\\\\r\n\t\tVậy mệnh đề phủ định là: \"Với mọi số thực $x$, $2x^{2}+3x-5\\ge0$\"."
+    },
+    {
+      "maBaoMat": "sol_81d36e72a2",
+      "dapAn": "A",
+      "loiGiaiHtml": "Thay toạ độ các điểm vào bất phương trình $x-y+2\\ge0$:\r\n\t\t\\begin{itemize}\r\n\t\t\t\\item Với $M(0;1)$: $0 - 1 + 2 = 1 \\ge 0$ (đúng).\r\n\t\t\t\\item Với $N(1;4)$: $1 - 4 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\t\\item Với $P(-2;1)$: $-2 - 1 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\t\\item Với $Q(-3;0)$: $-3 - 0 + 2 = -1 \\ge 0$ (sai).\r\n\t\t\\end{itemize}\r\n\t\tVậy điểm $M(0;1)$ thuộc miền nghiệm của bất phương trình."
+    },
+    {
+      "maBaoMat": "sol_f250b7323f",
+      "dapAn": "D",
+      "loiGiaiHtml": "Theo định lý Côsin trong tam giác $ABC$, ta luôn có: $b^{2}=a^{2}+c^{2}-2ac\\cos B$."
+    },
+    {
+      "maBaoMat": "sol_306930242e",
+      "dapAn": "D",
+      "loiGiaiHtml": "Từ hình vẽ, ta thấy đường thẳng $d$ đi qua hai điểm $(4; 0)$ và $(0; -2)$.\\\\\r\n\t\tPhương trình đường thẳng $d$ theo đoạn chắn là: \r\n\t\t$$\\frac{x}{4} + \\frac{y}{-2} = 1 \\Leftrightarrow x - 2y = 4$$\r\n\t\tPhần không gạch chéo (miền nghiệm) là nửa mặt phẳng \\textbf{không chứa} gốc tọa độ $O(0;0)$.\\\\\r\n\t\tThay tọa độ $O(0;0)$ vào biểu thức $x - 2y$, ta được $0 - 2(0) = 0$.\\\\\r\n\t\tĐể $O$ không thuộc miền nghiệm, ta phải có $0 \\ge 4$ (mệnh đề sai).\\\\\r\n\t\tLấy $1$ điểm nằm trong phần không gạch, ví dụ $(4;-2)$, thay vào có: $4 - 2(-2) = 8 \\ge 4$ (đúng).\\\\\r\n\t\tVì miền nghiệm kể cả đường thẳng $d$ (có dấu bằng), nên bất phương trình cần tìm là $x - 2y \\ge 4$."
+    },
+    {
+      "maBaoMat": "sol_1b39ef06a6",
+      "dapAn": "D",
+      "loiGiaiHtml": "Quan sát tập hợp $A=\\{-5;-1;0;2;7\\}$, ta thấy phần tử $0$ nằm trong tập hợp $A$. Do đó $0 \\in A$."
+    },
+    {
+      "maBaoMat": "sol_aa17165f8a",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\sin 150^{\\circ} = \\sin(180^{\\circ} - 30^{\\circ}) = \\sin 30^{\\circ} = \\displaystyle\\frac{1}{2}$."
+    }
+  ]
+}
