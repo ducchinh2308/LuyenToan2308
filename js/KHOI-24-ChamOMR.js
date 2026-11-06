@@ -566,8 +566,8 @@ window.ham_24_3_mo_giao_dien_nhap_dap_an = async function (idNhiemVu) {
                 <div id="omr_vung_chua_ma_de" style="min-height: 200px; width: 100%;"></div>
                 
                 <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px dashed #ccc;">
-                    <button onclick="console.log('Chuyển sang Giao diện Camera...')" style="width: 100%; padding: 15px 10px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 6px rgba(253,126,20,0.3); text-transform: uppercase;">
-                        📸 VÀO MÀN HÌNH CHẤM
+                    <button onclick="window.ham_24_6_mo_giao_dien_cham_camera()" style="width: 100%; padding: 15px 10px; background: #fd7e14; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 6px rgba(253,126,20,0.3); text-transform: uppercase;">
+                        📸 VÀO MÀN HÌNH CHẤM BÀI
                     </button>
                 </div>
             </div>
@@ -1170,6 +1170,161 @@ window.ham_24_5b_luu_tat_ca_dap_an = async function () {
     } catch (err) {
         Swal.fire('Lỗi lưu Database', err.message, 'error');
     }
+};
+
+
+// ==============================================================================
+// KHỐI 24.6: GIAO DIỆN CAMERA VÀ BẢNG CHẤM ĐIỂM
+// ==============================================================================
+
+window.OMR_CameraFacing = 'environment'; // Mặc định dùng camera sau
+window.OMR_CameraStream = null;
+
+window.ham_24_6_mo_giao_dien_cham_camera = function () {
+    const vungLamViec = document.getElementById('vung-lam-viec-chi-tiet');
+    if (!vungLamViec) return;
+
+    // Lưu lại UI trước khi chuyển để không mất nháp
+    if (typeof window.ham_24_3i_thu_thap_data_tu_ui_vao_ram === 'function') {
+        window.ham_24_3i_thu_thap_data_tu_ui_vao_ram();
+    }
+
+    let task = window.OMR_CurrentTask;
+
+    vungLamViec.innerHTML = `
+        <div style="padding: 10px; animation: fadeIn 0.3s; max-width: 100%; overflow-x: hidden;">
+            <!-- HEADER -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fd7e14; padding-bottom: 12px; margin-bottom: 15px;">
+                <h3 style="color: #d35400; margin: 0; font-size: 18px;">📸 CHẤM OMR: ${task.ten_nhiem_vu}</h3>
+                <button onclick="window.ham_24_6b_dong_camera(); window.ham_24_3_mo_giao_dien_nhap_dap_an('${task.ma_nhiem_vu}')" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; font-weight:bold; font-size:12px;">⬅️ Quay lại Cấu hình</button>
+            </div>
+
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+                <!-- CỘT TRÁI: CAMERA VIEWFINDER -->
+                <div style="flex: 1.5; min-width: 300px; background: #212529; border-radius: 8px; overflow: hidden; position: relative; display: flex; flex-direction: column; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    
+                    <!-- Khung chứa Video -->
+                    <div style="position: relative; width: 100%; aspect-ratio: 3/4; background: #000; display: flex; justify-content: center; align-items: center; overflow: hidden;" id="omr_camera_container">
+                        <video id="omr_video_stream" autoplay playsinline style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1;"></video>
+                        <canvas id="omr_canvas_overlay" style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 2; pointer-events: none;"></canvas>
+                        <canvas id="omr_canvas_hidden" style="display:none;"></canvas>
+                        
+                        <div id="omr_camera_status" style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); color: white; padding: 6px 15px; border-radius: 20px; z-index: 3; font-weight: bold; font-size: 13px; backdrop-filter: blur(4px); white-space: nowrap;">
+                            ⏳ Đang khởi động Camera...
+                        </div>
+                    </div>
+
+                    <!-- Nút điều khiển Camera -->
+                    <div style="background: #343a40; padding: 10px; display: flex; gap: 10px; justify-content: space-between;">
+                        <button onclick="window.ham_24_6c_doi_camera()" style="flex: 1; padding: 8px; background: #495057; color: white; border: none; border-radius: 4px; font-weight: bold; font-size:12px;"><i class="fas fa-sync"></i> Đổi Camera</button>
+                        <label style="flex: 1; padding: 8px; background: #17a2b8; color: white; border: none; border-radius: 4px; font-weight: bold; font-size:12px; text-align:center; margin:0; cursor:pointer;">
+                            <i class="fas fa-image"></i> Tải ảnh có sẵn
+                            <input type="file" accept="image/*" style="display:none;" onchange="window.ham_24_xu_ly_anh_upload(this)">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: BẢNG KẾT QUẢ ĐỌC -->
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
+                    
+                    <div style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #17a2b8; box-shadow: 0 4px 6px rgba(23,162,184,0.1);">
+                        <h4 style="margin: 0 0 15px 0; color: #17a2b8; border-bottom: 1px dashed #17a2b8; padding-bottom: 8px;">📊 KẾT QUẢ NHẬN DẠNG</h4>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <span style="font-size: 11px; font-weight:bold; color: #6c757d;">SỐ BÁO DANH:</span>
+                                <input type="text" id="kq_sbd" style="width: 100%; padding: 8px; font-size: 18px; font-weight: 900; color: #dc3545; border: 2px solid #ffb3ba; border-radius: 6px; text-align: center; outline:none;" readonly placeholder="---">
+                            </div>
+                            <div style="flex: 1;">
+                                <span style="font-size: 11px; font-weight:bold; color: #6c757d;">MÃ ĐỀ:</span>
+                                <input type="text" id="kq_made" style="width: 100%; padding: 8px; font-size: 18px; font-weight: 900; color: #0056b3; border: 2px solid #b8daff; border-radius: 6px; text-align: center; outline:none;" readonly placeholder="---">
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <span style="font-size: 11px; font-weight:bold; color: #6c757d;">TỔNG ĐIỂM:</span>
+                            <div id="kq_tong_diem" style="font-size: 45px; font-weight: 900; color: #28a745; text-align: center; line-height: 1; padding: 10px; background: #e8f5e9; border-radius: 8px; border: 2px solid #c8e6c9;">
+                                -.-
+                            </div>
+                        </div>
+
+                        <!-- Điểm thành phần -->
+                        <div style="display: flex; gap: 5px; font-size: 12px; font-weight: bold; justify-content: space-between; margin-bottom: 15px; color:#495057;">
+                            <div style="background: #f8f9fa; padding: 5px 10px; border-radius: 4px; border: 1px solid #dee2e6;">P.I: <span id="kq_diem_p1" style="color:#28a745">-</span></div>
+                            <div style="background: #f8f9fa; padding: 5px 10px; border-radius: 4px; border: 1px solid #dee2e6;">P.II: <span id="kq_diem_p2" style="color:#6f42c1">-</span></div>
+                            <div style="background: #f8f9fa; padding: 5px 10px; border-radius: 4px; border: 1px solid #dee2e6;">P.III: <span id="kq_diem_p3" style="color:#dc3545">-</span></div>
+                        </div>
+
+                        <!-- Khu vực cảnh báo -->
+                        <div id="kq_canh_bao" style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 6px; border: 1px solid #ffeeba; font-size: 12px; font-weight: bold; display: none;">
+                            ⚠️ Cảnh báo: ...
+                        </div>
+                    </div>
+
+                    <!-- Nút Lưu -->
+                    <button id="btn_luu_ket_qua" onclick="console.log('Lưu vào DB')" disabled style="padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(40,167,69,0.2); opacity: 0.5;">
+                        💾 LƯU BÀI NÀY
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Gọi hàm bật Camera
+    window.ham_24_6a_khoi_dong_camera();
+};
+
+window.ham_24_6a_khoi_dong_camera = async function () {
+    const video = document.getElementById('omr_video_stream');
+    const status = document.getElementById('omr_camera_status');
+    if (!video) return;
+
+    window.ham_24_6b_dong_camera(); // Tắt stream cũ nếu có
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: window.OMR_CameraFacing,
+                width: { ideal: 1920 },
+                height: { ideal: 1080 }
+            },
+            audio: false
+        });
+
+        window.OMR_CameraStream = stream;
+        video.srcObject = stream;
+
+        video.onloadedmetadata = () => {
+            video.play();
+            status.innerText = "🟢 Camera sẵn sàng! Đưa phiếu vào khung";
+            status.style.background = "#28a745";
+
+            // Kích hoạt thuật toán OpenCV quét liên tục (Hàm Thầy đã lưu đợt trước)
+            if (typeof window.ham_24_7_bat_dau_quet_lien_tuc === 'function') {
+                setTimeout(window.ham_24_7_bat_dau_quet_lien_tuc, 500);
+            }
+        };
+    } catch (err) {
+        status.innerText = "🔴 Lỗi Camera: " + err.message;
+        status.style.background = "#dc3545";
+    }
+};
+
+window.ham_24_6b_dong_camera = function () {
+    window.OMR_QuetLienTuc = false; // Dừng vòng lặp OpenCV
+    if (window.OMR_CameraStream) {
+        window.OMR_CameraStream.getTracks().forEach(track => track.stop());
+        window.OMR_CameraStream = null;
+    }
+    const video = document.getElementById('omr_video_stream');
+    if (video) video.srcObject = null;
+};
+
+window.ham_24_6c_doi_camera = function () {
+    window.OMR_CameraFacing = window.OMR_CameraFacing === 'environment' ? 'user' : 'environment';
+    window.ham_24_6a_khoi_dong_camera();
 };
 
 
