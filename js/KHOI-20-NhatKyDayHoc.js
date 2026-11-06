@@ -26324,3 +26324,25 @@ window.ham_20_41_luu_trang_thai_xu_ly = async function (idSuKien, btnLuu) {
         btnLuu.disabled = false;
     }
 };
+
+
+// =====================================================================
+// TÍNH NĂNG TỰ ĐỘNG CHUẨN HÓA ĐIỂM (95 -> 9.5) KHI VỪA GÕ XONG (KHỐI 20)
+// =====================================================================
+document.addEventListener('change', function (e) {
+    // Lắng nghe ngầm: Nếu ô vừa thay đổi dữ liệu là ô nhập điểm (class: nd-diem-so)
+    if (e.target && e.target.classList.contains('nd-diem-so')) {
+        let val = e.target.value.trim();
+        if (val !== '') {
+            let d = parseFloat(val);
+            // 1. Nhập từ 11 đến 100 (Ví dụ: 95) -> chia 10 thành 9.5
+            if (d >= 11 && d <= 100) {
+                e.target.value = d / 10;
+            }
+            // 2. Nhập trên 100 (Ví dụ: 675) -> chia 100 thành 6.75
+            else if (d > 100) {
+                e.target.value = d / 100;
+            }
+        }
+    }
+});
