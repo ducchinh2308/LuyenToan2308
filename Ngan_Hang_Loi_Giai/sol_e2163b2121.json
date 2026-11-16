@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e2163b2121",
+  "dapAn": "FTTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào đồ thị, giá trị cực tiểu của hàm số là $y = -1$ tại $x = 2$.\\\\\r\n\t\t\t\\itemch Trên khoảng $(0; +\\infty)$, điểm thấp nhất của đồ thị là cực tiểu $(2; -1)$, vậy giá trị nhỏ nhất là $-1$.\\\\\r\n\t\t\t\\itemch Dựa vào đồ thị, hàm số đi xuống từ $x = 0$ đến $x = 2$, nên hàm số nghịch biến trên khoảng $(0; 2)$.\\\\\r\n\t\t\t\\itemch Phương trình $f(x) - 1 = 0 \\Leftrightarrow f(x) = 1$.\\\\\r\n\t\t\tĐường thẳng $y = 1$ cắt đồ thị hàm số tại 3 điểm phân biệt, nên phương trình có 3 nghiệm.\r\n\t\t\\end{itemchoice}"
+}

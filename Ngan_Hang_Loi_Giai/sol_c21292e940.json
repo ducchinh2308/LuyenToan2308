@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c21292e940",
+  "dapAn": "B",
+  "loiGiai": "Doanh thu của công ty bán ra $x$ sản phẩm là $D(x) = x \\cdot p(x) = x(400 - 2x) = -2x^2 + 400x$.\\\\\r\n\t\tVới $x = 20$, doanh thu là $D(20) = -2(20)^2 + 400 \\cdot 20 = 7200$ (triệu đồng).\\\\\r\n\t\tChọn đáp án B."
+}

@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_5bfdc30288",
+  "dapAn": "4,85",
+  "loiGiai": "Ta có $y = f(x) = -\\displaystyle\\frac{1}{3}x^3 + bx^2 + cx \\Rightarrow y' = -x^2 + 2bx + c$.\\\\\r\n\t\tĐồ thị hàm số đi qua điểm $B(3; 9)$ nên: $9 = -\\displaystyle\\frac{1}{3} \\cdot 3^3 + b \\cdot 3^2 + c \\cdot 3 \\Leftrightarrow 3b + c = 6 \\quad (1)$.\\\\\r\n\t\tĐồ thị hàm số đạt cực đại tại $x = 3$ nên $y'(3) = 0 \\Leftrightarrow -3^2 + 2b \\cdot 3 + c = 0 \\Leftrightarrow 6b + c = 9 \\quad (2)$.\\\\\r\n\t\tTừ $(1)$ và $(2)$ suy ra $b = 1, c = 3 \\Rightarrow y = f(x) = -\\displaystyle\\frac{1}{3}x^3 + x^2 + 3x$.\\\\\r\n\t\tMáy bay tiếp đất khi $y = 0 \\Leftrightarrow -\\displaystyle\\frac{1}{3}x^3 + x^2 + 3x = 0 \\Leftrightarrow x(x^2 - 3x - 9) = 0$.\\\\\r\n\t\tGiải phương trình ta được $x = 0; x \\approx 4,85; x \\approx -1,85$.\\\\\r\n\t\tVậy máy bay tiếp đất lần đầu tiên tại $x \\approx 4,85$."
+}

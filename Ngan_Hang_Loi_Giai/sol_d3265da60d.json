@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_d3265da60d",
+  "dapAn": "FFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{AB} = (-2-1; 3-0; 4-(-2)) = (-3; 3; 6)$.\\\\\r\n\t\t\t\\itemch Hình chiếu vuông góc của $B(-2; 3; 4)$ lên trục $Ox$ là $B'(-2; 0; 0)$.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AB} = (-3; 3; 6)$ và $\\vec{AC} = (3; -6; 3)$.\\\\\r\n\t\t\tXét $\\cos \\widehat{BAC} = \\displaystyle \\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|} = \\frac{-9 - 18 + 18}{\\sqrt{54} \\cdot \\sqrt{54}} = -\\frac{9}{54} = -\\frac{1}{6} < 0$.\\\\\r\n\t\t\tVì $\\cos \\widehat{BAC} < 0$ nên $\\widehat{BAC} > 90^\\circ$.\\\\\r\n\t\t\t\\itemch Trọng tâm $M$ của tam giác $ABC$ là $\\displaystyle M\\left(\\frac{1-2+4}{3}; \\frac{0+3-6}{3}; \\frac{-2+4+1}{3}\\right) = M(1; -1; 1)$.\\\\\r\n\t\t\tĐộ dài $OM = \\sqrt{1^2 + (-1)^2 + 1^2} = \\sqrt{3}$.\r\n\t\t\\end{itemchoice}"
+}

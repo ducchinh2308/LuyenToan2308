@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_c793cc8a83",
+  "dapAn": "C",
+  "loiGiai": "- Vì $\\displaystyle \\lim_{x \\to -2^+} f(x) = -\\infty$ nên đồ thị có một tiệm cận đứng là $x = -2$.\\\\\r\n\t\t- Vì $\\displaystyle \\lim_{x \\to 0^-} f(x) = 1$ và $\\displaystyle \\lim_{x \\to 0^+} f(x) = +\\infty$ nên đồ thị có một tiệm cận đứng là $x = 0$.\\\\\r\n\t\t- Vì $\\displaystyle \\lim_{x \\to +\\infty} f(x) = 0$ nên đồ thị có một tiệm cận ngang là $y = 0$.\\\\\r\n\t\tTổng cộng có 3 đường tiệm cận.\\\\\r\n\t\tChọn đáp án C."
+}

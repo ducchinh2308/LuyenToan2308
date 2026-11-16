@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_1f78040922",
+  "dapAn": "A",
+  "loiGiai": "Thực hiện phép chia đa thức: $y = \\displaystyle \\frac{2x^2+3x-1}{x+2} = 2x - 1 + \\frac{1}{x+2}$.\\\\\r\n\t\tVì $\\displaystyle \\lim_{x \\to \\pm \\infty} [y - (2x - 1)] = \\lim_{x \\to \\pm \\infty} \\frac{1}{x+2} = 0$.\\\\\r\n\t\tVậy tiệm cận xiên của đồ thị hàm số là $y = 2x - 1$.\\\\\r\n\t\tChọn đáp án A."
+}

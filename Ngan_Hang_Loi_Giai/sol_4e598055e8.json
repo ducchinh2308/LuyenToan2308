@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_4e598055e8",
+  "dapAn": "B",
+  "loiGiai": "Quan sát đồ thị ta thấy:\\\\\r\n\t\tĐồ thị hàm số có tiệm cận đứng $x = -1$ và tiệm cận ngang $y = -2$.\\\\\r\n\t\tKiểm tra hàm số $y = \\displaystyle \\frac{1-2x}{x+1}$: có TCN $y = -2$ và TCĐ $x = -1$ (thỏa mãn).\\\\\r\n\t\tChọn đáp án B."
+}

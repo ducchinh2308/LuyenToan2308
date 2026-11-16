@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_068712155d",
+  "dapAn": "FFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng chi phí là $C(x) = 0,0003x^2 + 0,15x + 3$ (triệu đồng).\\\\\r\n\t\t\t\\itemch Với $x = 100$, $C(100) = 0,0003 \\cdot 100^2 + 0,15 \\cdot 100 + 3 = 3 + 15 + 3 = 21$ triệu đồng.\\\\\r\n\t\t\t\\itemch Chi phí trung bình $\\bar{C}(x) = \\displaystyle \\frac{C(x)}{x} = \\frac{0,0003x^2 + 0,15x + 3}{x} = 0,0003x + 0,15 + \\frac{3}{x}$.\\\\\r\n\t\t\t\\itemch Xét hàm $\\bar{C}(x)$ trên $(0; 200]$, ta có $\\bar{C}'(x) = 0,0003 - \\displaystyle \\frac{3}{x^2}$.\\\\\r\n\t\t\t$\\bar{C}'(x) = 0 \\Leftrightarrow x^2 = 10000 \\Leftrightarrow x = 100$.\\\\\r\n\t\t\tLập bảng biến thiên, ta thấy $\\bar{C}(x)$ đạt giá trị nhỏ nhất tại $x = 100$.\r\n\t\t\\end{itemchoice}"
+}

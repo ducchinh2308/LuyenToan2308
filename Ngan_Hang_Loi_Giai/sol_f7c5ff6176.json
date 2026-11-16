@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f7c5ff6176",
+  "dapAn": "14",
+  "loiGiai": "Gọi $E'$ là điểm đối xứng của $E$ qua trục $Oy$, suy ra $E'(0; 10; -20)$.\\\\\r\n\t\tTa có $ME + MF = ME' + MF \\ge E'F$.\\\\\r\n\t\tTổng khoảng cách nhỏ nhất khi $M$ là giao điểm của $E'F$ với trục $Oy$.\\\\\r\n\t\tKhi đó các điểm $E', M, F$ thẳng hàng hay $\\vec{MF}, \\vec{E'F}$ cùng phương.\\\\\r\n\t\tTa có $\\vec{MF} = (0; 19-y; 25)$ và $\\vec{E'F} = (0; 9; 45)$.\\\\\r\n\t\tSuy ra $\\displaystyle\\frac{19-y}{9} = \\frac{25}{45} \\Rightarrow y = 14$.\\\\\r\n\t\tVậy $M(0; 14; 0)$."
+}

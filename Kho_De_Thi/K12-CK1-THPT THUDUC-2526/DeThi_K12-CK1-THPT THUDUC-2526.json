@@ -1,0 +1,225 @@
+{
+  "maDe": "K12-CK1-THPT THUDUC-2526",
+  "tenDe": "K12-CK1-THPT THUDUC-2526",
+  "thoiGian": 60,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2H2N2-3]",
+      "maCau": "q_f9c84f1ae5",
+      "ma_goc": "2603-529",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho các điểm $A(1; 1; -2)$ và $B(3; -1; 2)$. Tọa độ của vectơ $\\vec{BA}$ là",
+      "paA": "$(1; -1; 2)$",
+      "paB": "$(2; 0; 0)$",
+      "paC": "$(-2; 2; -4)$",
+      "paD": "$(2; -2; 4)$"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_2c72c6ba07",
+      "ma_goc": "2603-530",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = x^3 - 3x^2 + 2025$, giá trị cực tiểu của hàm số là",
+      "paA": "$2021$",
+      "paB": "$0$",
+      "paC": "$2025$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D1H3-1]",
+      "maCau": "q_0a02cd4503",
+      "ma_goc": "2603-531",
+      "kieuCau": "TN",
+      "cauDan": "Giá trị lớn nhất của hàm số $y = \\displaystyle \\frac{3x+2}{x+1}$ trên $[0; 2]$ bằng",
+      "paA": "$2$",
+      "paB": "$\\displaystyle \\frac{8}{3}$",
+      "paC": "$\\displaystyle \\frac{10}{3}$",
+      "paD": "$3$"
+    },
+    {
+      "id_Cau": "[0D3H1-3]",
+      "maCau": "q_ef21497495",
+      "ma_goc": "2603-532",
+      "kieuCau": "TN",
+      "cauDan": "Một công ty sản xuất một loại sản phẩm. Bộ phận tài chính của công ty đưa ra hàm giá bán là $p(x) = 400 - 2x$, trong đó $p(x)$ (triệu đồng) là giá bán của mỗi sản phẩm mà tại giá bán này có $x$ sản phẩm được bán ra. Tính doanh thu của công ty nếu bán ra $20$ sản phẩm là",
+      "paA": "$1440$ (triệu đồng)",
+      "paB": "$7200$ (triệu đồng)",
+      "paC": "$360$ (triệu đồng)",
+      "paD": "$720$ (triệu đồng)"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_f90a114b2d",
+      "ma_goc": "2603-533",
+      "kieuCau": "TN",
+      "cauDan": "Trong một nhà kho thông minh, kỹ sư đang lập trình cho một xe tự hành (AGV) di chuyển theo một đường thẳng để vận chuyển hàng hóa từ kệ $A$ sang kệ $B$. Phương trình tọa độ của xe được thiết lập theo công thức $x = 6t^2 - 2t^3$ ($x$ tính bằng mét, $t$ tính bằng giây, $0 \\le t \\le 2$). Vận tốc tức thời của xe đạt giá trị lớn nhất tại thời điểm nào?",
+      "paA": "$t = 5$",
+      "paB": "$t = 3$",
+      "paC": "$t = 1$",
+      "paD": "$t = 2$"
+    },
+    {
+      "id_Cau": "[2D1H4-1]",
+      "maCau": "q_7f5ae47a34",
+      "ma_goc": "2603-534",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận xiên của đồ thị hàm số $y = \\displaystyle \\frac{2x^2+3x-1}{x+2}$ có phương trình là:",
+      "paA": "$y = 2x - 1$",
+      "paB": "$y = 2x + 1$",
+      "paC": "$y = x + 11$",
+      "paD": "$y = 2x$"
+    },
+    {
+      "id_Cau": "[2D1H5-1]",
+      "maCau": "q_66c210544b",
+      "ma_goc": "2603-535",
+      "kieuCau": "TN",
+      "cauDan": "Đồ thị hình bên là của hàm số:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_66c210544b_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y = \\displaystyle \\frac{1-2x}{1-x}$",
+      "paB": "$y = \\displaystyle \\frac{1-2x}{x+1}$",
+      "paC": "$y = \\displaystyle \\frac{3-2x^2}{x+1}$",
+      "paD": "$y = \\displaystyle \\frac{2x+1}{x+1}$"
+    },
+    {
+      "id_Cau": "[2H2H2-2]",
+      "maCau": "q_74508f1e59",
+      "ma_goc": "2603-536",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hình bình hành $ABCD$ có $A(-3; 1; 2)$, $B(-2; 4; -1)$, $C(1; -3; 3)$. Tọa độ điểm $D$ là:",
+      "paA": "$(0; -6; 6)$",
+      "paB": "$(2; 0; 0)$",
+      "paC": "$(-6; 7; -2)$",
+      "paD": "$(-4; 2; 5)$"
+    },
+    {
+      "id_Cau": "[2D1N1-2]",
+      "maCau": "q_5fbc3d65bb",
+      "ma_goc": "2603-537",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_5fbc3d65bb_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "paA": "$(2; +\\infty)$",
+      "paB": "$(-\\infty; -2)$",
+      "paC": "$(-2; 2)$",
+      "paD": "$(-2; +\\infty)$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_1385c84f7b",
+      "ma_goc": "2603-538",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ dưới đây. Hỏi đồ thị của hàm số đã cho có bao nhiêu đường tiệm cận?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_1385c84f7b_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$1$",
+      "paB": "$4$",
+      "paC": "$3$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2H2H2-4]",
+      "maCau": "q_d3ce06ac5e",
+      "ma_goc": "2603-539",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a} = (1; -2; 1)$, $\\vec{b} = (-2; 1; 1)$. Tính góc giữa hai vectơ $\\vec{a}$ và $\\vec{b}$.",
+      "paA": "$30^\\circ$",
+      "paB": "$60^\\circ$",
+      "paC": "$120^\\circ$",
+      "paD": "$-30^\\circ$"
+    },
+    {
+      "id_Cau": "[2H2N2-2]",
+      "maCau": "q_afc9d8b94b",
+      "ma_goc": "2603-540",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian với hệ trục tọa độ $Oxyz$, cho điểm $M(-2; 5; 1)$. Tọa độ hình chiếu của điểm $M$ trên mặt phẳng $(Oxz)$ là",
+      "paA": "$(0; 5; 0)$",
+      "paB": "$(2; 5; 1)$",
+      "paC": "$(-2; 0; 1)$",
+      "paD": "$(-2; -5; 1)$"
+    },
+    {
+      "id_Cau": "[2H2V1-3]",
+      "maCau": "q_eee4f9e58a",
+      "ma_goc": "2603-541",
+      "kieuCau": "DS",
+      "cauDan": "Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_eee4f9e58a_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$\\left|\\vec{A'C}\\right| = a\\sqrt{3}$",
+      "paB": "$\\vec{AB} = \\vec{CD}$",
+      "paC": "$\\vec{AB} \\cdot \\vec{B'C'} = a^2$",
+      "paD": "Gọi $N$ là điểm thỏa mãn $\\vec{C'N} = 2\\vec{NB'}$. Khi đó $\\vec{AN} = \\vec{AA'} + \\vec{AB} + \\displaystyle \\frac{1}{3}\\vec{AD}$"
+    },
+    {
+      "id_Cau": "[2D1H5-3]",
+      "maCau": "q_a740fac581",
+      "ma_goc": "2603-542",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ.\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a740fac581_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Giá trị cực tiểu của hàm số đã cho bằng $2$",
+      "paB": "Trên khoảng $(0; +\\infty)$, giá trị nhỏ nhất của hàm số bằng $-1$",
+      "paC": "Hàm số nghịch biến trên khoảng $(0; 2)$",
+      "paD": "Phương trình $f(x) - 1 = 0$ có đúng hai nghiệm"
+    },
+    {
+      "id_Cau": "[2H2V2-4]",
+      "maCau": "q_925620f737",
+      "ma_goc": "2603-543",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian với hệ tọa độ $Oxyz$, cho tam giác $ABC$ với $A(1; 0; -2), B(-2; 3; 4)$ và $C(4; -6; 1)$.",
+      "paA": "$\\vec{AB} = (3; -3; 6)$",
+      "paB": "Hình chiếu vuông góc của $B$ lên trục $Ox$ là $B'(-2; 3; 0)$",
+      "paC": "$\\widehat{BAC} > 90^\\circ$",
+      "paD": "Biết $M$ là trọng tâm tam giác $ABC$, độ dài $OM = \\sqrt{3}$"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_63f7bcbee3",
+      "ma_goc": "2603-544",
+      "kieuCau": "DS",
+      "cauDan": "Theo báo cáo của một cơ sở sản xuất nước tinh khiết, nếu mỗi ngày cơ sở này sản xuất $x$ ($m^3$) nước tinh khiết thì phải chi phí các khoản sau: $3$ triệu đồng chi phí cố định; $0,15$ triệu đồng cho mỗi mét khối sản phẩm; $0,0003x^2$ chi phí bảo dưỡng máy móc. Biết công suất tối đa mỗi ngày của cơ sở này là $200$ ($m^3$). Gọi $C(x)$ là chi phí sản xuất $x$ ($m^3$) sản phẩm mỗi ngày và $\\bar{C}(x)$ là chi phí trung bình mỗi mét khối sản phẩm. Khi đó:",
+      "paA": "$C(x) = 0,0003x^2 + 0,15x + 5$ (triệu đồng)",
+      "paB": "Chi phí sản xuất $100$ $m^3$ nước tinh khiết là $18$ triệu đồng",
+      "paC": "$\\bar{C}(x) = 0,0003x + 0,15 + \\displaystyle \\frac{3}{x}$",
+      "paD": "Chi phí trung bình mỗi mét khối sản phẩm thấp nhất khi sản lượng nước tinh khiết trong ngày là $100$ $m^3$"
+    },
+    {
+      "id_Cau": "[2D1V2-7]",
+      "maCau": "q_75b2941d91",
+      "ma_goc": "2603-545",
+      "kieuCau": "TLN",
+      "cauDan": "Một máy bay trình diễn bay theo một đường cong được mô phỏng bằng một phần của đồ thị hàm số bậc ba $y = f(x) = -\\displaystyle\\frac{1}{3}x^3 + bx^2 + cx$. Trục $Ox$ gắn với mặt đất và trục $Oy$ là độ cao, đơn vị là km. Máy bay cất cánh từ vị trí $A$ và đạt độ cao cực đại tại vị trí $B$ sau khi bay được $3\\text{km}$ theo phương ngang. Hãy xác định vị trí điểm $C$ (hoành độ) máy bay tiếp đất lần đầu tiên (Làm tròn kết quả đến hàng phần trăm).\r\n\t\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_75b2941d91_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1H5-7]",
+      "maCau": "q_10cc6b7bf0",
+      "ma_goc": "2603-546",
+      "kieuCau": "TLN",
+      "cauDan": "Gọi $I$ là tâm đối xứng của đồ thị hàm số $y = \\displaystyle\\frac{3x+1}{x+4}$. Tính độ dài đoạn $OI$."
+    },
+    {
+      "id_Cau": "[2H2V2-6]",
+      "maCau": "q_a5a45fed3e",
+      "ma_goc": "2603-547",
+      "kieuCau": "TLN",
+      "cauDan": "Trong đợt mưa lũ lịch sử tại miền Trung, hai ngôi làng nằm sâu trong vùng ngập lụt đang bị cô lập hoàn toàn. Đội cứu hộ sử dụng hai chiếc Flycam để thả nhu yếu phẩm và quan sát mực nước. Flycam E đang hoạt động tại vị trí có tọa độ $E(0; 10; 20)$, Flycam F đang hoạt động tại vị trí có tọa độ $F(0; 19; 25)$. Ban chỉ huy cần đặt một Xe Trạm thu phát tín hiệu lưu động $M$ nằm trên Quốc lộ 1A (trục $Oy$) để điều khiển cả hai Flycam sao cho tổng khoảng cách từ xe đến hai Flycam là ngắn nhất. Tìm tung độ của điểm $M$.\r\n\t\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a5a45fed3e_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2H2H2-4]",
+      "maCau": "q_5797c55acc",
+      "ma_goc": "2603-548",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, cho $A(-5; 2; 3)$ và $B$ là điểm đối xứng với $A$ qua trục $Oy$. Độ dài đoạn thẳng $AB$ bằng bao nhiêu? (kết quả làm tròn đến hàng phần chục)."
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_6c3a625177",
+      "ma_goc": "2603-549",
+      "kieuCau": "TLN",
+      "cauDan": "Nhóm học sinh lớp 12A khởi nghiệp dự án bán áo thun in hình linh vật năm mới để gây quỹ từ thiện. Qua khảo sát, nhóm nhận thấy mối liên hệ giữa số lượng áo bán được (chiếc) và giá bán $p$ (nghìn đồng/chiếc) tuân theo công thức $p(x) = 200 - x$ ($10 \\le x \\le 100$). Biết rằng chi phí để sản xuất mỗi chiếc áo là $100$ nghìn đồng và chi phí cố định ban đầu là $1200$ nghìn đồng. Để thu được lợi nhuận cao nhất từ dự án này, nhóm học sinh cần bán được bao nhiêu chiếc áo?"
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_6073713343",
+      "ma_goc": "2603-550",
+      "kieuCau": "TLN",
+      "cauDan": "Cho hàm số $f(x) = x^3 + 9x^2 - 12$ có đồ thị là đường cong $(C)$. Điểm $M(a; b)$ là điểm cực đại của đồ thị $(C)$. Giá trị của $a - b$ bằng bao nhiêu?"
+    }
+  ]
+}
