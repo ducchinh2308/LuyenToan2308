@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-16T06:24:48.642Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_b240ebca13",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có tọa độ vectơ $\\vec{BA} = (x_A - x_B; y_A - y_B; z_A - z_B)$.\\\\\r\n\t\t$\\vec{BA} = (1 - 3; 1 - (-1); -2 - 2) = (-2; 2; -4)$.\\\\"
+    },
+    {
+      "maBaoMat": "sol_eedda8a1d9",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm $y' = 3x^2 - 6x$; $y' = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 2 \\\\ x &= 0 \\end{aligned} \\right.$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_eedda8a1d9_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, giá trị cực tiểu của hàm số là $y_{CT} = 2021$ tại $x = 2$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_a9bb725616",
+      "dapAn": "B",
+      "loiGiaiHtml": "Xét hàm số $y = \\displaystyle \\frac{3x+2}{x+1}$ trên $[0; 2]$.\\\\\r\n\t\tĐạo hàm $y' = \\displaystyle \\frac{1}{(x+1)^2} > 0, \\forall x \\neq -1$.\\\\\r\n\t\tHàm số đồng biến và liên tục trên $[0; 2]$.\\\\\r\n\t\tSuy ra giá trị lớn nhất của hàm số trên $[0; 2]$ là $y(2) = \\displaystyle \\frac{3(2)+2}{2+1} = \\frac{8}{3}$.\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_c21292e940",
+      "dapAn": "B",
+      "loiGiaiHtml": "Doanh thu của công ty bán ra $x$ sản phẩm là $D(x) = x \\cdot p(x) = x(400 - 2x) = -2x^2 + 400x$.\\\\\r\n\t\tVới $x = 20$, doanh thu là $D(20) = -2(20)^2 + 400 \\cdot 20 = 7200$ (triệu đồng).\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_2a706fdf3d",
+      "dapAn": "C",
+      "loiGiaiHtml": "Vận tốc tức thời của xe là $v(t) = x' = 12t - 6t^2$.\\\\\r\n\t\tXét $v'(t) = 12 - 12t$; $v'(t) = 0 \\Leftrightarrow t = 1$.\\\\\r\n\t\tXét hàm số $v(t) = 12t - 6t^2$ trên đoạn $[0; 2]$, ta thấy hàm số đạt giá trị lớn nhất tại $t = 1$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_1f78040922",
+      "dapAn": "A",
+      "loiGiaiHtml": "Thực hiện phép chia đa thức: $y = \\displaystyle \\frac{2x^2+3x-1}{x+2} = 2x - 1 + \\frac{1}{x+2}$.\\\\\r\n\t\tVì $\\displaystyle \\lim_{x \\to \\pm \\infty} [y - (2x - 1)] = \\lim_{x \\to \\pm \\infty} \\frac{1}{x+2} = 0$.\\\\\r\n\t\tVậy tiệm cận xiên của đồ thị hàm số là $y = 2x - 1$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_4e598055e8",
+      "dapAn": "B",
+      "loiGiaiHtml": "Quan sát đồ thị ta thấy:\\\\\r\n\t\tĐồ thị hàm số có tiệm cận đứng $x = -1$ và tiệm cận ngang $y = -2$.\\\\\r\n\t\tKiểm tra hàm số $y = \\displaystyle \\frac{1-2x}{x+1}$: có TCN $y = -2$ và TCĐ $x = -1$ (thỏa mãn).\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_aa2debdf49",
+      "dapAn": "A",
+      "loiGiaiHtml": "Tứ giác $ABCD$ là hình bình hành nên $\\vec{AD} = \\vec{BC}$.\\\\\r\n\t\tTa có $\\vec{BC} = (1 - (-2); -3 - 4; 3 - (-1)) = (3; -7; 4)$.\\\\\r\n\t\tGọi $D(x_D; y_D; z_D)$, ta có $\\vec{AD} = (x_D + 3; y_D - 1; z_D - 2)$.\\\\\r\n\t\t$\\vec{AD} = \\vec{BC} \\Leftrightarrow \\begin{cases} x_D + 3 = 3 \\\\ y_D - 1 = -7 \\\\ z_D - 2 = 4 \\end{cases} \\Leftrightarrow \\begin{cases} x_D = 0 \\\\ y_D = -6 \\\\ z_D = 6 \\end{cases} \\Rightarrow D(0; -6; 6)$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_eef392fe52",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng xét dấu đạo hàm, ta thấy $f'(x) < 0$ trên các khoảng $(-2; 0)$ và $(2; +\\infty)$.\\\\\r\n\t\tĐối chiếu các phương án, hàm số nghịch biến trên khoảng $(2; +\\infty)$.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_c793cc8a83",
+      "dapAn": "C",
+      "loiGiaiHtml": "- Vì $\\displaystyle \\lim_{x \\to -2^+} f(x) = -\\infty$ nên đồ thị có một tiệm cận đứng là $x = -2$.\\\\\r\n\t\t- Vì $\\displaystyle \\lim_{x \\to 0^-} f(x) = 1$ và $\\displaystyle \\lim_{x \\to 0^+} f(x) = +\\infty$ nên đồ thị có một tiệm cận đứng là $x = 0$.\\\\\r\n\t\t- Vì $\\displaystyle \\lim_{x \\to +\\infty} f(x) = 0$ nên đồ thị có một tiệm cận ngang là $y = 0$.\\\\\r\n\t\tTổng cộng có 3 đường tiệm cận.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_3463a533dc",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có: $\\cos(\\vec{a}, \\vec{b}) = \\displaystyle \\frac{1(-2) + (-2) \\cdot 1 + 1 \\cdot 1}{\\sqrt{1^2 + (-2)^2 + 1^2} \\cdot \\sqrt{(-2)^2 + 1^2 + 1^2}} = \\frac{-3}{\\sqrt{6} \\cdot \\sqrt{6}} = -\\frac{1}{2}$.\\\\\r\n\t\tSuy ra $(\\vec{a}, \\vec{b}) = 120^\\circ$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_d91984c8dd",
+      "dapAn": "C",
+      "loiGiaiHtml": "Hình chiếu của điểm $M(x; y; z)$ lên mặt phẳng $(Oxz)$ là điểm $H(x; 0; z)$.\\\\\r\n\t\tVới $M(-2; 5; 1)$, hình chiếu trên mặt phẳng $(Oxz)$ là $H(-2; 0; 1)$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_a8642fb4e2",
+      "dapAn": "TFFT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\left|\\vec{A'C}\\right| = A'C = \\sqrt{AB^2 + AD^2 + AA'^2} = \\sqrt{a^2 + a^2 + a^2} = a\\sqrt{3}$.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AB} = \\vec{DC}$, do đó $\\vec{AB} = \\vec{CD}$ là sai.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AB} \\cdot \\vec{B'C'} = \\vec{AB} \\cdot \\vec{BC} = 0$ vì $AB \\perp BC$.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AN} = \\vec{AC'} + \\vec{C'N} = \\vec{AA'} + \\vec{AB} + \\vec{AD} + \\displaystyle \\frac{2}{3}\\vec{C'B'}$.\\\\\r\n\t\t\tMà $\\vec{C'B'} = \\vec{DA} = -\\vec{AD}$ nên $\\vec{AN} = \\vec{AA'} + \\vec{AB} + \\vec{AD} - \\displaystyle \\frac{2}{3}\\vec{AD} = \\vec{AA'} + \\vec{AB} + \\frac{1}{3}\\vec{AD}$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_e2163b2121",
+      "dapAn": "FTTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Dựa vào đồ thị, giá trị cực tiểu của hàm số là $y = -1$ tại $x = 2$.\\\\\r\n\t\t\t\\itemch Trên khoảng $(0; +\\infty)$, điểm thấp nhất của đồ thị là cực tiểu $(2; -1)$, vậy giá trị nhỏ nhất là $-1$.\\\\\r\n\t\t\t\\itemch Dựa vào đồ thị, hàm số đi xuống từ $x = 0$ đến $x = 2$, nên hàm số nghịch biến trên khoảng $(0; 2)$.\\\\\r\n\t\t\t\\itemch Phương trình $f(x) - 1 = 0 \\Leftrightarrow f(x) = 1$.\\\\\r\n\t\t\tĐường thẳng $y = 1$ cắt đồ thị hàm số tại 3 điểm phân biệt, nên phương trình có 3 nghiệm.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_d3265da60d",
+      "dapAn": "FFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $\\vec{AB} = (-2-1; 3-0; 4-(-2)) = (-3; 3; 6)$.\\\\\r\n\t\t\t\\itemch Hình chiếu vuông góc của $B(-2; 3; 4)$ lên trục $Ox$ là $B'(-2; 0; 0)$.\\\\\r\n\t\t\t\\itemch Ta có $\\vec{AB} = (-3; 3; 6)$ và $\\vec{AC} = (3; -6; 3)$.\\\\\r\n\t\t\tXét $\\cos \\widehat{BAC} = \\displaystyle \\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|} = \\frac{-9 - 18 + 18}{\\sqrt{54} \\cdot \\sqrt{54}} = -\\frac{9}{54} = -\\frac{1}{6} < 0$.\\\\\r\n\t\t\tVì $\\cos \\widehat{BAC} < 0$ nên $\\widehat{BAC} > 90^\\circ$.\\\\\r\n\t\t\t\\itemch Trọng tâm $M$ của tam giác $ABC$ là $\\displaystyle M\\left(\\frac{1-2+4}{3}; \\frac{0+3-6}{3}; \\frac{-2+4+1}{3}\\right) = M(1; -1; 1)$.\\\\\r\n\t\t\tĐộ dài $OM = \\sqrt{1^2 + (-1)^2 + 1^2} = \\sqrt{3}$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_068712155d",
+      "dapAn": "FFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng chi phí là $C(x) = 0,0003x^2 + 0,15x + 3$ (triệu đồng).\\\\\r\n\t\t\t\\itemch Với $x = 100$, $C(100) = 0,0003 \\cdot 100^2 + 0,15 \\cdot 100 + 3 = 3 + 15 + 3 = 21$ triệu đồng.\\\\\r\n\t\t\t\\itemch Chi phí trung bình $\\bar{C}(x) = \\displaystyle \\frac{C(x)}{x} = \\frac{0,0003x^2 + 0,15x + 3}{x} = 0,0003x + 0,15 + \\frac{3}{x}$.\\\\\r\n\t\t\t\\itemch Xét hàm $\\bar{C}(x)$ trên $(0; 200]$, ta có $\\bar{C}'(x) = 0,0003 - \\displaystyle \\frac{3}{x^2}$.\\\\\r\n\t\t\t$\\bar{C}'(x) = 0 \\Leftrightarrow x^2 = 10000 \\Leftrightarrow x = 100$.\\\\\r\n\t\t\tLập bảng biến thiên, ta thấy $\\bar{C}(x)$ đạt giá trị nhỏ nhất tại $x = 100$.\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_5bfdc30288",
+      "dapAn": "4,85",
+      "loiGiaiHtml": "Ta có $y = f(x) = -\\displaystyle\\frac{1}{3}x^3 + bx^2 + cx \\Rightarrow y' = -x^2 + 2bx + c$.\\\\\r\n\t\tĐồ thị hàm số đi qua điểm $B(3; 9)$ nên: $9 = -\\displaystyle\\frac{1}{3} \\cdot 3^3 + b \\cdot 3^2 + c \\cdot 3 \\Leftrightarrow 3b + c = 6 \\quad (1)$.\\\\\r\n\t\tĐồ thị hàm số đạt cực đại tại $x = 3$ nên $y'(3) = 0 \\Leftrightarrow -3^2 + 2b \\cdot 3 + c = 0 \\Leftrightarrow 6b + c = 9 \\quad (2)$.\\\\\r\n\t\tTừ $(1)$ và $(2)$ suy ra $b = 1, c = 3 \\Rightarrow y = f(x) = -\\displaystyle\\frac{1}{3}x^3 + x^2 + 3x$.\\\\\r\n\t\tMáy bay tiếp đất khi $y = 0 \\Leftrightarrow -\\displaystyle\\frac{1}{3}x^3 + x^2 + 3x = 0 \\Leftrightarrow x(x^2 - 3x - 9) = 0$.\\\\\r\n\t\tGiải phương trình ta được $x = 0; x \\approx 4,85; x \\approx -1,85$.\\\\\r\n\t\tVậy máy bay tiếp đất lần đầu tiên tại $x \\approx 4,85$."
+    },
+    {
+      "maBaoMat": "sol_df8b39396b",
+      "dapAn": "5",
+      "loiGiaiHtml": "Đồ thị hàm số $y = \\displaystyle\\frac{3x+1}{x+4}$ có tiệm cận đứng là đường thẳng $x = -4$ và tiệm cận ngang là đường thẳng $y = 3$.\\\\\r\n\t\tTâm đối xứng của đồ thị hàm số là giao điểm hai đường tiệm cận $I(-4; 3)$.\\\\\r\n\t\tĐộ dài đoạn $OI$ là $OI = \\sqrt{(-4)^2 + 3^2} = 5$."
+    },
+    {
+      "maBaoMat": "sol_f7c5ff6176",
+      "dapAn": "14",
+      "loiGiaiHtml": "Gọi $E'$ là điểm đối xứng của $E$ qua trục $Oy$, suy ra $E'(0; 10; -20)$.\\\\\r\n\t\tTa có $ME + MF = ME' + MF \\ge E'F$.\\\\\r\n\t\tTổng khoảng cách nhỏ nhất khi $M$ là giao điểm của $E'F$ với trục $Oy$.\\\\\r\n\t\tKhi đó các điểm $E', M, F$ thẳng hàng hay $\\vec{MF}, \\vec{E'F}$ cùng phương.\\\\\r\n\t\tTa có $\\vec{MF} = (0; 19-y; 25)$ và $\\vec{E'F} = (0; 9; 45)$.\\\\\r\n\t\tSuy ra $\\displaystyle\\frac{19-y}{9} = \\frac{25}{45} \\Rightarrow y = 14$.\\\\\r\n\t\tVậy $M(0; 14; 0)$."
+    },
+    {
+      "maBaoMat": "sol_55e8a4c10e",
+      "dapAn": "11,7",
+      "loiGiaiHtml": "Vì $B$ đối xứng với $A$ qua trục $Oy$ nên $B(5; 2; -3)$.\\\\\r\n\t\tĐộ dài đoạn thẳng $AB = \\sqrt{(5+5)^2 + (2-2)^2 + (-3-3)^2} = \\sqrt{10^2 + (-6)^2} = \\sqrt{136} = 2\\sqrt{34} \\approx 11,7$."
+    },
+    {
+      "maBaoMat": "sol_9c04fe87e1",
+      "dapAn": "50",
+      "loiGiaiHtml": "Doanh thu khi bán được $x$ chiếc áo là $R(x) = x \\cdot p(x) = x(200 - x)$ (nghìn đồng).\\\\\r\n\t\tChi phí sản xuất $x$ chiếc áo là $C(x) = 100x + 1200$ (nghìn đồng).\\\\\r\n\t\tLợi nhuận thu được là $P(x) = R(x) - C(x) = -x^2 + 200x - 100x - 1200 = -x^2 + 100x - 1200$.\\\\\r\n\t\tHàm lợi nhuận $P(x) = -(x - 50)^2 + 1300 \\le 1300$.\\\\\r\n\t\tLợi nhuận đạt giá trị lớn nhất khi $x = 50$.\\\\\r\n\t\tVậy nhóm học sinh cần bán được $50$ chiếc áo."
+    },
+    {
+      "maBaoMat": "sol_d7aaa92c74",
+      "dapAn": "-102",
+      "loiGiaiHtml": "Tập xác định $D = \\mathbb{R}$.\\\\\r\n\t\tĐạo hàm $y' = 3x^2 + 18x = 3x(x+6)$; $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = -6$.\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_d7aaa92c74_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tĐiểm cực đại của đồ thị hàm số là $M(-6; 96)$, suy ra $a = -6, b = 96$.\\\\\r\n\t\tGiá trị của $a - b = -6 - 96 = -102$."
+    }
+  ]
+}
