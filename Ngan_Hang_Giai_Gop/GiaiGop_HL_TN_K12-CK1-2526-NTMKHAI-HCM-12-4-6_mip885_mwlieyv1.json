@@ -1,0 +1,115 @@
+{
+  "thoiGianGhep": "2026-11-18T02:36:06.008Z",
+  "danhSachLoiGiai": [
+    {
+      "maBaoMat": "sol_ec46fad56c",
+      "dapAn": "A",
+      "loiGiaiHtml": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x) > 0$ trên các khoảng $(-\\infty; -5)$ và $(-1; +\\infty)$.\\\\\r\n\t\tDo đó, hàm số đồng biến trên các khoảng $(-\\infty; -5)$ và $(-1; +\\infty)$.\\\\\r\n\t\tĐối chiếu với các phương án lựa chọn, ta thấy khoảng $(-1; +\\infty)$ thỏa mãn.\\\\\r\n\t\tChọn đáp án A."
+    },
+    {
+      "maBaoMat": "sol_8cf7ca1c52",
+      "dapAn": "C",
+      "loiGiaiHtml": "Khoảng biến thiên của mẫu số liệu ghép nhóm được tính bằng hiệu giữa đầu mút phải của nhóm cuối cùng và đầu mút trái của nhóm đầu tiên.\\\\\r\n\t\tTa có: $R = 20 - 10 = 10$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_dee4e103b3",
+      "dapAn": "C",
+      "loiGiaiHtml": "Đồ thị hàm số có dạng $y = ax^3 + bx^2 + cx + d$ với $a > 0$ (do nhánh cuối đi lên).\\\\\r\n\t\tĐồ thị đi qua điểm $(0; 1)$ nên hệ số tự do là $1$.\\\\\r\n\t\tHàm số có hai điểm cực trị trái dấu (tại $x = 1$ và $x = -1$).\\\\\r\n\t\tKiểm tra hàm số $y = x^3 - 3x + 1$: khi $x = 1 \\Rightarrow y = -1$; khi $x = -1 \\Rightarrow y = 3$.\\\\\r\n\t\tĐiều này khớp hoàn toàn với đồ thị đã cho.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_6b80ce0533",
+      "dapAn": "C",
+      "loiGiaiHtml": "Tọa độ trung điểm $M$ của đoạn thẳng $AB$ được tính theo công thức:\\\\\r\n\t\t$x_M = \\displaystyle \\frac{x_A + x_B}{2} = \\frac{1 + 5}{2} = 3$.\\\\\r\n\t\t$y_M = \\displaystyle \\frac{y_A + y_B}{2} = \\frac{2 - 12}{2} = -5$.\\\\\r\n\t\t$z_M = \\displaystyle \\frac{z_A + z_B}{2} = \\frac{-3 + 17}{2} = 7$.\\\\\r\n\t\tVậy trung điểm là $M(3; -5; 7)$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_f32bc69c25",
+      "dapAn": "B",
+      "loiGiaiHtml": "Ta có $\\vec{a} + \\vec{b} = (x_a + x_b; y_a + y_b; z_a + z_b)$.\\\\\r\n\t\t$\\vec{a} + \\vec{b} = (2 + 1; 3 + 1; 2 - 1) = (3; 4; 1)$.\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_987a1ea140",
+      "dapAn": "D",
+      "loiGiaiHtml": "Quan sát đồ thị hàm số, ta thấy tại điểm có hoành độ $x = 1$, đồ thị hàm số đạt vị trí thấp nhất cục bộ.\\\\\r\n\t\tGiá trị tương ứng là $y = -4$.\\\\\r\n\t\tVậy điểm cực tiểu của đồ thị hàm số là $(1; -4)$.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_bb12506525",
+      "dapAn": "B",
+      "loiGiaiHtml": "Dựa vào đồ thị hàm số, đồ thị đi lên từ trái sang phải trên các khoảng $(-\\infty; -1)$ và $(1; +\\infty)$.\\\\\r\n\t\tVậy hàm số đồng biến trên các khoảng $(-\\infty; -1)$ và $(1; +\\infty)$.\\\\\r\n\t\tChọn đáp án B."
+    },
+    {
+      "maBaoMat": "sol_8007b706f7",
+      "dapAn": "C",
+      "loiGiaiHtml": "Thực hiện phép chia đa thức cho đa thức, ta có:\\\\\r\n\t\t$y = \\displaystyle \\frac{x^2+3x+5}{x+2} = \\frac{x(x+2) + (x+2) + 3}{x+2} = x + 1 + \\frac{3}{x+2}$.\\\\\r\n\t\tXét $\\displaystyle \\lim_{x \\to \\pm \\infty} [y - (x+1)] = \\lim_{x \\to \\pm \\infty} \\frac{3}{x+2} = 0$.\\\\\r\n\t\tVậy đường thẳng $y = x + 1$ là tiệm cận xiên của đồ thị hàm số.\\\\\r\n\t\t(Lưu ý: Trong lời giải của ảnh gốc có ghi nhận $y=x+2$ là tiệm cận xiên nhưng phép tính thực tế ra $y=x+1$, tôi đã chọn phương án sát với phép tính chuẩn).\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_4c15f28ce8",
+      "dapAn": "C",
+      "loiGiaiHtml": "Để tứ giác $ABCD$ là hình bình hành thì $\\vec{AB} = \\vec{DC}$.\\\\\r\n\t\tTa có $\\vec{AB} = (-3 - 1; 0 - 2; 3 - 1) = (-4; -2; 2)$.\\\\\r\n\t\tGọi $D(x_D; y_D; z_D)$, ta có $\\vec{DC} = (2 - x_D; 4 - y_D; -1 - z_D)$.\\\\\r\n\t\tTừ điều kiện $\\vec{AB} = \\vec{DC}$, ta có hệ phương trình:\\\\\r\n\t\t$\\begin{cases} 2 - x_D = -4 \\\\ 4 - y_D = -2 \\\\ -1 - z_D = 2 \\end{cases} \\Leftrightarrow \\begin{cases} x_D = 6 \\\\ y_D = 6 \\\\ z_D = -3 \\end{cases} \\Rightarrow D(6; 6; -3)$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_ab4bacc5f3",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $\\vec{AM} = \\vec{AC} + \\vec{CM}$.\\\\\r\n\t\tVì $ABCD$ là hình bình hành nên $\\vec{AC} = \\vec{AB} + \\vec{AD}$.\\\\\r\n\t\tVì $M$ là trung điểm của $CC'$ và $\\vec{CC'} = \\vec{AA'}$ nên $\\vec{CM} = \\displaystyle \\frac{1}{2}\\vec{CC'} = \\frac{1}{2}\\vec{AA'}$.\\\\\r\n\t\tSuy ra $\\vec{AM} = \\vec{AB} + \\vec{AD} + \\displaystyle \\frac{1}{2}\\vec{AA'}$.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_5315b663f5",
+      "dapAn": "D",
+      "loiGiaiHtml": "Ta có $P'(x) = -0,9x^2 + 72x + 1800$.\\\\\r\n\t\tGiải phương trình $P'(x) = 0 \\Leftrightarrow \\left[ \\begin{aligned} x &= 100 \\\\ x &= -20 \\text{ (loại)} \\end{aligned} \\right.$\\\\\r\n\t\tBảng biến thiên:\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_5315b663f5_lg_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tDựa vào bảng biến thiên, lợi nhuận đạt giá trị lớn nhất khi công ty sản xuất $100$ máy xay sinh tố.\\\\\r\n\t\tChọn đáp án D."
+    },
+    {
+      "maBaoMat": "sol_5b13d603ef",
+      "dapAn": "C",
+      "loiGiaiHtml": "Ta có $\\vec{a} + \\vec{b} = (1 - 2; -2 + 1; 3 + 2) = (-1; -1; 5)$.\\\\\r\n\t\tTích vô hướng $(\\vec{a} + \\vec{b}) \\cdot \\vec{b} = (-1) \\cdot (-2) + (-1) \\cdot 1 + 5 \\cdot 2 = 2 - 1 + 10 = 11$.\\\\\r\n\t\tChọn đáp án C."
+    },
+    {
+      "maBaoMat": "sol_7a9cbc9f39",
+      "dapAn": "TFTT",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng số học sinh (cỡ mẫu) là $n = 4 + 13 + 16 + 17 = 50$.\\\\\r\n\t\t\\itemch Khoảng biến thiên của mẫu số liệu ghép nhóm là $R = 12 - 0 = 12$.\\\\\r\n\t\t\\itemch Vị trí của tứ phân vị thứ nhất $Q_1$ là $\\displaystyle \\frac{n}{4} = \\frac{50}{4} = 12,5$.\\\\\r\n\t\tVì $4 < 12,5 < 17$ nên $Q_1$ thuộc nhóm $[3; 6)$.\\\\\r\n\t\t\\itemch Giá trị trung bình $\\bar{X} = \\displaystyle \\frac{1,5 \\cdot 4 + 4,5 \\cdot 13 + 7,5 \\cdot 16 + 10,5 \\cdot 17}{50} = 7,26$.\\\\\r\n\t\tPhương sai $s^2 = \\displaystyle \\frac{1}{50} \\left[ 1,5^2 \\cdot 4 + 4,5^2 \\cdot 13 + 7,5^2 \\cdot 16 + 10,5^2 \\cdot 17 \\right] - (7,26)^2 = 8,2224 > 8$.\\\\\r\n\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_98ddec5e41",
+      "dapAn": "TTFF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Hình chiếu vuông góc của điểm $A(x; y; z)$ lên mặt phẳng $(Oyz)$ là $A'(0; y; z)$.\\\\\r\n\t\t\\itemch Với $A(5; 2; 1)$, hình chiếu lên $(Oyz)$ là $A'(0; 2; 1)$.\\\\\r\n\t\tTa có $\\vec{AB} = (4; -4; 2) \\Rightarrow AB = \\sqrt{4^2 + (-4)^2 + 2^2} = 6$.\\\\\r\n\t\t$\\vec{AC} = (-3; -1; 0) \\Rightarrow AC = \\sqrt{(-3)^2 + (-1)^2 + 0^2} = \\sqrt{10} \\Rightarrow AB + AC = 6 + \\sqrt{10}$.\\\\\r\n\t\t\\itemch Ta có $\\cos \\widehat{BAC} = \\displaystyle \\frac{\\vec{AB} \\cdot \\vec{AC}}{\\left|\\vec{AB}\\right| \\cdot \\left|\\vec{AC}\\right|} = \\frac{4 \\cdot (-3) + (-4) \\cdot (-1) + 2 \\cdot 0}{6 \\cdot \\sqrt{10}} = \\frac{-8}{6\\sqrt{10}} = -\\frac{2\\sqrt{10}}{15}$.\\\\\r\n\t\t\\itemch Gọi $M(x; 0; 0) \\in Ox$. Ta có $\\vec{MA} \\cdot \\vec{MB} = \\vec{MA} \\cdot \\vec{MC} \\Leftrightarrow \\vec{MA} \\cdot (\\vec{MB} - \\vec{MC}) = 0 \\Leftrightarrow \\vec{MA} \\cdot \\vec{CB} = 0$.\\\\\r\n\t\tVới $\\vec{MA} = (5-x; 2; 1)$ và $\\vec{CB} = (7; -3; 2)$, ta được $7(5-x) + 2(-3) + 1(2) = 0 \\Leftrightarrow x = \\displaystyle \\frac{31}{7} \\approx 4,43 < 5$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_fb575d34b8",
+      "dapAn": "TFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 3x^2 - 6x$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow 3x(x-2) = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$.\\\\\r\n\t\t\\itemch Dựa vào bảng biến thiên, hàm số đạt cực tiểu tại $x = 2$ và cực đại tại $x = 0$.\\\\\r\n\t\t\\itemch Trên đoạn $[0; 4]$, ta có $f(0) = 0, f(2) = -4, f(4) = 16 \\Rightarrow \\max_{[0; 4]} f(x) = 16$.\\\\\r\n\t\t\\itemch Ta có $\\displaystyle y = \\frac{x^3 - 3x^2}{(x-1)(x-3)^2} = \\frac{x^2(x-3)}{(x-1)(x-3)^2} = \\frac{x^2}{(x-1)(x-3)}$.\\\\\r\n\t\tĐồ thị hàm số có $2$ đường tiệm cận đứng là $x = 1$ và $x = 3$.\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a43df330ee",
+      "dapAn": "FFTF",
+      "loiGiaiHtml": "\\begin{itemchoice}\r\n\t\t\t\\itemch Với $Q = 160 \\Rightarrow \\sqrt{KL} = 160 \\Rightarrow KL = 160^2 \\Rightarrow L = \\displaystyle \\frac{160^2}{K}$.\\\\\\\\\\itemch Khi $K = 200 \\Rightarrow L = \\displaystyle \\frac{160^2}{200} = 128$.\\\\\\\\\\itemch Tổng chi phí là $F = 16 \\cdot 200 + 9 \\cdot 128 + 40 = 4392 < 4500$.\\\\\r\n\t\tThay $L = \\displaystyle \\frac{160^2}{K}$ vào biểu thức chi phí: $F = 16K + 9 \\cdot \\displaystyle \\frac{160^2}{K} + 40$.\\\\\\\\\\itemch Để chi phí tối thiểu, xét $F'(K) = 16 - 9 \\cdot \\displaystyle \\frac{160^2}{K^2} = 0 \\Leftrightarrow K = 120$.\\\\\r\n\t\tChi phí tối thiểu là $F(120) = 16 \\cdot 120 + 9 \\cdot \\displaystyle \\frac{160^2}{120} + 40 = 3880$ (nghìn USD).\\\\\r\n\t\t\\end{itemchoice}"
+    },
+    {
+      "maBaoMat": "sol_a3c6aa71cd",
+      "dapAn": "4,12",
+      "loiGiaiHtml": "Hợp lực tác động lên mô hình là:\\\\\r\n\t\t$\\vec{F} = \\vec{F_1} + \\vec{F_2} + \\vec{F_3} = \\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'}$.\\\\\r\n\t\tĐộ lớn (N) của hợp lực $\\vec{F}$ là:\\\\\r\n\t\t$\\left|\\vec{F}\\right| = \\left|\\vec{AC'}\\right| = AC' = \\sqrt{AB^2 + AA'^2 + AD^2} = \\sqrt{2^2 + 2^2 + 3^2} = \\sqrt{17} \\approx 4,12(\\text{N})$."
+    },
+    {
+      "maBaoMat": "sol_e808d69ff9",
+      "dapAn": "7",
+      "loiGiaiHtml": "Điểm $C$ nằm trên đoạn thẳng $AB$ thỏa mãn $BC=2AC \\Rightarrow AC = \\frac{BC}{2}$.\\\\\r\n\t\t$\\Rightarrow \\displaystyle \\frac{AB}{AC} = \\frac{AC+BC}{AC} = \\frac{AC+2AC}{AC} = 3 \\Rightarrow AB = 3AC$.\\\\\r\n\t\tMà $\\vec{AB}$ và $\\vec{AC}$ cùng hướng nên $\\vec{AB} = 3\\vec{AC} \\Leftrightarrow \\begin{cases} 6=3(1-x_A) \\\\ 3=3(1-y_A) \\\\ 0=3(2-z_A) \\end{cases} \\Leftrightarrow \\begin{cases} x_A=-1 \\\\ y_A=0 \\\\ z_A=2 \\end{cases}$.\\\\\r\n\t\t$\\Rightarrow A(-1;0;2) = (m;n;p)$.\\\\\r\n\t\t$\\Rightarrow m+3n+4p = -1 + 3.0 + 4.2 = 7$."
+    },
+    {
+      "maBaoMat": "sol_f24d4ce43b",
+      "dapAn": "5,17",
+      "loiGiaiHtml": "Ta có $\\displaystyle \\frac{n}{4} = 25; \\frac{3n}{4} = 75$ nên nhóm chứa tứ phân vị thứ nhất và thứ ba lần lượt là $[22;25)$ và $[28;31)$.\\\\\r\n\t\tSuy ra $Q_1 = 22 + \\displaystyle \\frac{25-10}{27}.3 = \\frac{71}{3}$.\\\\\r\n\t\t$Q_3 = 28 + \\displaystyle \\frac{75-68}{25}.3 = \\frac{721}{25}$.\\\\\r\n\t\tKhoảng tứ phân vị $\\Delta_Q = Q_3 - Q_1 = \\displaystyle \\frac{721}{25} - \\frac{71}{3} \\approx 5,17$."
+    },
+    {
+      "maBaoMat": "sol_9b1a08828e",
+      "dapAn": "392",
+      "loiGiaiHtml": "Ta có $y' = \\displaystyle \\frac{x^2-2x-48}{(x-1)^2}$.\\\\\r\n\t\t$y' = 0 \\Leftrightarrow x^2-2x-48=0 \\Leftrightarrow \\begin{cases} x=8 \\\\ x=-6 \\end{cases} \\Rightarrow A(8;16), B(-6;-12)$.\\\\\r\n\t\tChiều dài hình chữ nhật bằng $16+12=28$.\\\\\r\n\t\tChiều rộng hình chữ nhật bằng $8+6=14$.\\\\\r\n\t\tVậy diện tích hình chữ nhật bằng $28.14=392$."
+    },
+    {
+      "maBaoMat": "sol_e55a57b466",
+      "dapAn": "8196",
+      "loiGiaiHtml": "\\textbf{+ Xét trường hợp 1:}\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_e55a57b466_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\\\\Đặt hệ trục tọa độ $Oxy$ như hình vẽ, với gốc tọa độ $O$ là nơi Robot đứng, Hình chữ nhật $OBCN$ là nửa hình vuông $ABCD$. \\\\\r\n\t\tGọi $MN = k$. \\\\\r\n\t\tTa có: $\\Delta OJH$ đồng dạng với tam giác $OMN$, nên: $\\displaystyle \\frac{JH}{MN} = \\frac{OH}{ON} \\Rightarrow JH = \\frac{1}{5}k = MF$. \\\\\r\n\t\tÁp dụng Py-ta-go: $\\displaystyle OJ = EM = \\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2}$. \\\\\r\n\t\t$\\displaystyle JE = OM - 2EM = \\sqrt{200^2 + k^2} - 2\\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2}$. \\\\\r\n\t\tKhi đó thời gian đi từ $O$ đến $M$ là:\r\n\t\t$$\\displaystyle a = \\frac{S}{v} = \\frac{JE}{2} + 2 \\cdot \\frac{EM}{3} = \\frac{\\sqrt{200^2 + k^2} - 2\\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2}}{2} + 2 \\cdot \\frac{\\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2}}{3}$$\r\n\t\t$$\\displaystyle = -\\frac{1}{3}\\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2} + \\frac{1}{2}\\sqrt{200^2 + k^2}.$$\r\n\t\t$$\\displaystyle a' = -\\frac{1}{3} \\cdot \\frac{k}{25\\sqrt{1600 + \\frac{k^2}{25}}} + \\frac{1}{2} \\cdot \\frac{k}{\\sqrt{40000 + k^2}}.$$\r\n\t\t$$\\displaystyle a' = 0 \\Leftrightarrow \\frac{1}{3} \\cdot \\frac{k}{25\\sqrt{1600 + \\frac{k^2}{25}}} = \\frac{1}{2} \\cdot \\frac{k}{\\sqrt{40000 + k^2}} \\Leftrightarrow k = 0.$$\r\n\t\tKhi đó Robot đi thẳng từ $A$ đến $N$ và thời gian đi là $\\displaystyle a = \\frac{260}{3} \\approx 86,6$. \\\\\\\\Sử dụng máy tính cầm tay ta tìm được $a \\approx 81,96$. \\\\\r\n\t\tTrong 3 trường hợp trên thì thời gian đi ít nhất là $a \\approx 81,96$. \\\\\r\n\t\tVậy $100a \\approx 8196$.\\\\\\textbf{+ Xét trường hợp 2:}\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_e55a57b466_lg_tikz_2.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tĐường thẳng $OM$ đi qua $O$ và $L(160;40)$, nên phương trình đường thẳng $OM \\colon y = \\displaystyle \\frac{1}{4}x$.\\\\\r\n\t\tSuy ra $J(40;10)$, $L(160;40)$, $M(200;50)$.\\\\\r\n\t\tNên $JO = 10\\sqrt{17}, JL = 30\\sqrt{17}, LM = 10\\sqrt{17}$.\\\\\r\n\t\tKhi đó thời gian đi từ $O$ đến $M$ là\r\n\t\t$$\\displaystyle a = \\frac{S}{v} = \\frac{JL}{2} + 2 \\cdot \\frac{LM}{3} = \\frac{65\\sqrt{17}}{3} \\approx 89,33.$$\\\\\\textbf{+ Xét trường hợp 3:}\r\n\t\t\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_e55a57b466_lg_tikz_3.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\\\\Gọi $MN = k$, suy ra $MF = k - 40$. \\\\\r\n\t\tTheo trường hợp 1, ta cũng có $\\displaystyle JH = \\frac{k}{5}$. \\\\\r\n\t\tTa có: $\\Delta OJH$ đồng dạng với tam giác $\\Delta GMF$, nên:\r\n\t\t$$\\frac{OH}{GF} = \\frac{JH}{MF} \\Leftrightarrow \\frac{40}{GF} = \\frac{\\frac{k}{5}}{k - 40} \\Rightarrow GF = \\frac{200(k - 40)}{k}.$$\r\n\t\t$$\\displaystyle JO + GM = \\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2} + \\sqrt{\\left( \\frac{200(k - 40)}{k} \\right)^2 + (k - 40)^2}.$$\r\n\t\t$$\\displaystyle GJ = OM - (JO + GM) = \\sqrt{200^2 + k^2} - \\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2} - \\sqrt{\\left( \\frac{200(k - 40)}{k} \\right)^2 + (k - 40)^2}.$$\r\n\t\tKhi đó thời gian đi từ $O$ đến $M$ là\r\n\t\t$$\\displaystyle a = \\frac{S}{v} = \\frac{JG}{2} + \\frac{JO + GM}{3}$$\r\n\t\t$$\\displaystyle = \\frac{3\\sqrt{200^2 + k^2} - \\sqrt{40^2 + \\left(\\frac{k}{5}\\right)^2} - \\sqrt{\\left( \\frac{200(k - 40)}{k} \\right)^2 + (k - 40)^2}}{6}.$$\\\\\\vspace{0.3cm}\r\n\t\tSử dụng máy tính cầm tay ta tìm được $a \\approx 81,96$. \\\\\r\n\t\tTrong 3 trường hợp trên thì thời gian đi ít nhất là $a \\approx 81,96$. \\\\\r\n\t\tVậy $100a \\approx 8196$."
+    },
+    {
+      "maBaoMat": "sol_cd006cddcb",
+      "dapAn": "1,38",
+      "loiGiaiHtml": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_cd006cddcb_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGiả sử sau $t(\\text{h})$ xe đạp đi đến vị trí $D$ và khinh khí cầu bay lên vị trí $C$.\\\\\r\n\t\tTa có: $AD=15t, DO=30-15t, CO=10t$, suy ra:\\\\\r\n\t\t$CD^2 = (30-15t)^2 + (10t)^2 = 325t^2 - 900t + 900$.\\\\\r\n\t\tVì $CD^2$ là một hàm số bậc hai nên $CD$ đạt giá trị nhỏ nhất khi $t = \\displaystyle \\frac{900}{2.325} = \\frac{18}{13} \\approx 1,38$."
+    }
+  ]
+}
