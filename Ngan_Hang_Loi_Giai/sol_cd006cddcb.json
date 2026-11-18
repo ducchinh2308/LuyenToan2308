@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_cd006cddcb",
+  "dapAn": "1,38",
+  "loiGiai": "\\begin{center}\r\n\t\t\t<img src='HinhAnh/sol_cd006cddcb_lg_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\t\\end{center}\r\n\t\tGiả sử sau $t(\\text{h})$ xe đạp đi đến vị trí $D$ và khinh khí cầu bay lên vị trí $C$.\\\\\r\n\t\tTa có: $AD=15t, DO=30-15t, CO=10t$, suy ra:\\\\\r\n\t\t$CD^2 = (30-15t)^2 + (10t)^2 = 325t^2 - 900t + 900$.\\\\\r\n\t\tVì $CD^2$ là một hàm số bậc hai nên $CD$ đạt giá trị nhỏ nhất khi $t = \\displaystyle \\frac{900}{2.325} = \\frac{18}{13} \\approx 1,38$."
+}

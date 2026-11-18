@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_8007b706f7",
+  "dapAn": "C",
+  "loiGiai": "Thực hiện phép chia đa thức cho đa thức, ta có:\\\\\r\n\t\t$y = \\displaystyle \\frac{x^2+3x+5}{x+2} = \\frac{x(x+2) + (x+2) + 3}{x+2} = x + 1 + \\frac{3}{x+2}$.\\\\\r\n\t\tXét $\\displaystyle \\lim_{x \\to \\pm \\infty} [y - (x+1)] = \\lim_{x \\to \\pm \\infty} \\frac{3}{x+2} = 0$.\\\\\r\n\t\tVậy đường thẳng $y = x + 1$ là tiệm cận xiên của đồ thị hàm số.\\\\\r\n\t\t(Lưu ý: Trong lời giải của ảnh gốc có ghi nhận $y=x+2$ là tiệm cận xiên nhưng phép tính thực tế ra $y=x+1$, tôi đã chọn phương án sát với phép tính chuẩn).\\\\\r\n\t\tChọn đáp án C."
+}

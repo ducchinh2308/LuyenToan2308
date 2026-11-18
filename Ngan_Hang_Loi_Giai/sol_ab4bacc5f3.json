@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_ab4bacc5f3",
+  "dapAn": "D",
+  "loiGiai": "Ta có $\\vec{AM} = \\vec{AC} + \\vec{CM}$.\\\\\r\n\t\tVì $ABCD$ là hình bình hành nên $\\vec{AC} = \\vec{AB} + \\vec{AD}$.\\\\\r\n\t\tVì $M$ là trung điểm của $CC'$ và $\\vec{CC'} = \\vec{AA'}$ nên $\\vec{CM} = \\displaystyle \\frac{1}{2}\\vec{CC'} = \\frac{1}{2}\\vec{AA'}$.\\\\\r\n\t\tSuy ra $\\vec{AM} = \\vec{AB} + \\vec{AD} + \\displaystyle \\frac{1}{2}\\vec{AA'}$.\\\\\r\n\t\tChọn đáp án D."
+}

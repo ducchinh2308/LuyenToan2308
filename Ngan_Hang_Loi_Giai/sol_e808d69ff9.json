@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_e808d69ff9",
+  "dapAn": "7",
+  "loiGiai": "Điểm $C$ nằm trên đoạn thẳng $AB$ thỏa mãn $BC=2AC \\Rightarrow AC = \\frac{BC}{2}$.\\\\\r\n\t\t$\\Rightarrow \\displaystyle \\frac{AB}{AC} = \\frac{AC+BC}{AC} = \\frac{AC+2AC}{AC} = 3 \\Rightarrow AB = 3AC$.\\\\\r\n\t\tMà $\\vec{AB}$ và $\\vec{AC}$ cùng hướng nên $\\vec{AB} = 3\\vec{AC} \\Leftrightarrow \\begin{cases} 6=3(1-x_A) \\\\ 3=3(1-y_A) \\\\ 0=3(2-z_A) \\end{cases} \\Leftrightarrow \\begin{cases} x_A=-1 \\\\ y_A=0 \\\\ z_A=2 \\end{cases}$.\\\\\r\n\t\t$\\Rightarrow A(-1;0;2) = (m;n;p)$.\\\\\r\n\t\t$\\Rightarrow m+3n+4p = -1 + 3.0 + 4.2 = 7$."
+}

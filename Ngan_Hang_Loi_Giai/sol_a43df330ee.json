@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a43df330ee",
+  "dapAn": "FFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Với $Q = 160 \\Rightarrow \\sqrt{KL} = 160 \\Rightarrow KL = 160^2 \\Rightarrow L = \\displaystyle \\frac{160^2}{K}$.\\\\\\\\\\itemch Khi $K = 200 \\Rightarrow L = \\displaystyle \\frac{160^2}{200} = 128$.\\\\\\\\\\itemch Tổng chi phí là $F = 16 \\cdot 200 + 9 \\cdot 128 + 40 = 4392 < 4500$.\\\\\r\n\t\tThay $L = \\displaystyle \\frac{160^2}{K}$ vào biểu thức chi phí: $F = 16K + 9 \\cdot \\displaystyle \\frac{160^2}{K} + 40$.\\\\\\\\\\itemch Để chi phí tối thiểu, xét $F'(K) = 16 - 9 \\cdot \\displaystyle \\frac{160^2}{K^2} = 0 \\Leftrightarrow K = 120$.\\\\\r\n\t\tChi phí tối thiểu là $F(120) = 16 \\cdot 120 + 9 \\cdot \\displaystyle \\frac{160^2}{120} + 40 = 3880$ (nghìn USD).\\\\\r\n\t\t\\end{itemchoice}"
+}

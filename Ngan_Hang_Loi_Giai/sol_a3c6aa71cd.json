@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_a3c6aa71cd",
+  "dapAn": "4,12",
+  "loiGiai": "Hợp lực tác động lên mô hình là:\\\\\r\n\t\t$\\vec{F} = \\vec{F_1} + \\vec{F_2} + \\vec{F_3} = \\vec{AB} + \\vec{AA'} + \\vec{AD} = \\vec{AC'}$.\\\\\r\n\t\tĐộ lớn (N) của hợp lực $\\vec{F}$ là:\\\\\r\n\t\t$\\left|\\vec{F}\\right| = \\left|\\vec{AC'}\\right| = AC' = \\sqrt{AB^2 + AA'^2 + AD^2} = \\sqrt{2^2 + 2^2 + 3^2} = \\sqrt{17} \\approx 4,12(\\text{N})$."
+}

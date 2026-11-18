@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_fb575d34b8",
+  "dapAn": "TFTF",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Ta có $f'(x) = 3x^2 - 6x$.\\\\\r\n\t\t$f'(x) = 0 \\Leftrightarrow 3x(x-2) = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$.\\\\\r\n\t\t\\itemch Dựa vào bảng biến thiên, hàm số đạt cực tiểu tại $x = 2$ và cực đại tại $x = 0$.\\\\\r\n\t\t\\itemch Trên đoạn $[0; 4]$, ta có $f(0) = 0, f(2) = -4, f(4) = 16 \\Rightarrow \\max_{[0; 4]} f(x) = 16$.\\\\\r\n\t\t\\itemch Ta có $\\displaystyle y = \\frac{x^3 - 3x^2}{(x-1)(x-3)^2} = \\frac{x^2(x-3)}{(x-1)(x-3)^2} = \\frac{x^2}{(x-1)(x-3)}$.\\\\\r\n\t\tĐồ thị hàm số có $2$ đường tiệm cận đứng là $x = 1$ và $x = 3$.\\\\\r\n\t\t\\end{itemchoice}"
+}

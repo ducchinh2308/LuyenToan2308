@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_7a9cbc9f39",
+  "dapAn": "TFTT",
+  "loiGiai": "\\begin{itemchoice}\r\n\t\t\t\\itemch Tổng số học sinh (cỡ mẫu) là $n = 4 + 13 + 16 + 17 = 50$.\\\\\r\n\t\t\\itemch Khoảng biến thiên của mẫu số liệu ghép nhóm là $R = 12 - 0 = 12$.\\\\\r\n\t\t\\itemch Vị trí của tứ phân vị thứ nhất $Q_1$ là $\\displaystyle \\frac{n}{4} = \\frac{50}{4} = 12,5$.\\\\\r\n\t\tVì $4 < 12,5 < 17$ nên $Q_1$ thuộc nhóm $[3; 6)$.\\\\\r\n\t\t\\itemch Giá trị trung bình $\\bar{X} = \\displaystyle \\frac{1,5 \\cdot 4 + 4,5 \\cdot 13 + 7,5 \\cdot 16 + 10,5 \\cdot 17}{50} = 7,26$.\\\\\r\n\t\tPhương sai $s^2 = \\displaystyle \\frac{1}{50} \\left[ 1,5^2 \\cdot 4 + 4,5^2 \\cdot 13 + 7,5^2 \\cdot 16 + 10,5^2 \\cdot 17 \\right] - (7,26)^2 = 8,2224 > 8$.\\\\\r\n\t\\end{itemchoice}"
+}

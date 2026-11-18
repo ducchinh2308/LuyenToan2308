@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_dee4e103b3",
+  "dapAn": "C",
+  "loiGiai": "Đồ thị hàm số có dạng $y = ax^3 + bx^2 + cx + d$ với $a > 0$ (do nhánh cuối đi lên).\\\\\r\n\t\tĐồ thị đi qua điểm $(0; 1)$ nên hệ số tự do là $1$.\\\\\r\n\t\tHàm số có hai điểm cực trị trái dấu (tại $x = 1$ và $x = -1$).\\\\\r\n\t\tKiểm tra hàm số $y = x^3 - 3x + 1$: khi $x = 1 \\Rightarrow y = -1$; khi $x = -1 \\Rightarrow y = 3$.\\\\\r\n\t\tĐiều này khớp hoàn toàn với đồ thị đã cho.\\\\\r\n\t\tChọn đáp án C."
+}

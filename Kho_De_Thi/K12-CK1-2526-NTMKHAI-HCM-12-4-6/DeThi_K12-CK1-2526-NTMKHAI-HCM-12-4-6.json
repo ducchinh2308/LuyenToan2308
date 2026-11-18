@@ -1,0 +1,225 @@
+{
+  "maDe": "K12-CK1-2526-NTMKHAI-HCM-12-4-6",
+  "tenDe": "K12-CK1-2526-NTMKHAI-HCM-12-4-6",
+  "thoiGian": 45,
+  "danhSachCauHoi": [
+    {
+      "id_Cau": "[2D1N1-2]",
+      "maCau": "q_3c6eaa3c2c",
+      "ma_goc": "2603-551",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3c6eaa3c2c_cd_tikz_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tHàm số $y = f(x)$ đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "paA": "$(-1; +\\infty)$",
+      "paB": "$(-5; +\\infty)$",
+      "paC": "$(-5; -1)$",
+      "paD": "$(-\\infty; -1)$"
+    },
+    {
+      "id_Cau": "[2D3N1-2]",
+      "maCau": "q_6066f3c0cd",
+      "ma_goc": "2603-552",
+      "kieuCau": "TN",
+      "cauDan": "Trong kì thi chọn học sinh giỏi của trường THPT X, môn Toán có $25$ học sinh tham gia thi. Kết quả điểm bài thi của học sinh được thể hiện trong bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6066f3c0cd_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tKhoảng biến thiên của mẫu số liệu ghép nhóm trên là",
+      "paA": "$8$",
+      "paB": "$18,5$",
+      "paC": "$10$",
+      "paD": "$5$"
+    },
+    {
+      "id_Cau": "[2D1N5-1]",
+      "maCau": "q_6a23dfeca3",
+      "ma_goc": "2603-553",
+      "kieuCau": "TN",
+      "cauDan": "Đường cong trong hình vẽ bên là đồ thị của một trong bốn hàm số dưới đây, hỏi đó là hàm số nào?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6a23dfeca3_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$y = -x^3 + 3x + 1$",
+      "paB": "$y = -x^3 - 3x + 1$",
+      "paC": "$y = x^3 - 3x + 1$",
+      "paD": "$y = x^3 + 3x + 1$"
+    },
+    {
+      "id_Cau": "[2H2N2-2]",
+      "maCau": "q_52f2ca12ff",
+      "ma_goc": "2603-554",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho điểm $A(1; 2; -3)$ và điểm $B(5; -12; 17)$. Trung điểm của đoạn thẳng $AB$ là điểm có tọa độ",
+      "paA": "$(2; -7; 10)$",
+      "paB": "$(6; -10; 14)$",
+      "paC": "$(3; -5; 7)$",
+      "paD": "$(-2; 7; -10)$"
+    },
+    {
+      "id_Cau": "[2H2N2-3]",
+      "maCau": "q_c1db413f1d",
+      "ma_goc": "2603-555",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a} = (2; 3; 2)$ và $\\vec{b} = (1; 1; -1)$. Khi đó vectơ $\\vec{a} + \\vec{b}$ có tọa độ là",
+      "paA": "$(1; 2; 3)$",
+      "paB": "$(3; 4; 1)$",
+      "paC": "$(3; 5; 1)$",
+      "paD": "$(-1; -2; 3)$"
+    },
+    {
+      "id_Cau": "[2D1N2-2]",
+      "maCau": "q_6277e6e48d",
+      "ma_goc": "2603-556",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Điểm cực tiểu của đồ thị hàm số đã cho là\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6277e6e48d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(1; 0)$",
+      "paB": "$(-1; 0)$",
+      "paC": "$(2; 0)$",
+      "paD": "$(1; -4)$"
+    },
+    {
+      "id_Cau": "[2D1N4-1]",
+      "maCau": "q_ae81a82663",
+      "ma_goc": "2603-557",
+      "kieuCau": "TN",
+      "cauDan": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R} \\setminus \\{0\\}$, có đồ thị như hình vẽ bên dưới. Hàm số đã cho đồng biến trên khoảng nào dưới đây?\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_ae81a82663_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "$(0; 1)$",
+      "paB": "$(-\\infty; -1)$",
+      "paC": "$(-\\infty; 0)$",
+      "paD": "$(0; +\\infty)$"
+    },
+    {
+      "id_Cau": "[2D1H4-3]",
+      "maCau": "q_b74016f6e6",
+      "ma_goc": "2603-558",
+      "kieuCau": "TN",
+      "cauDan": "Tiệm cận xiên của đồ thị hàm số $y = \\displaystyle \\frac{x^2+3x+5}{x+2}$ là",
+      "paA": "$y = x + 3$",
+      "paB": "$y = x + 1$",
+      "paC": "$y = x + 2$",
+      "paD": "$y = x$"
+    },
+    {
+      "id_Cau": "[2H2H2-2]",
+      "maCau": "q_8b3d132cf7",
+      "ma_goc": "2603-559",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho tam giác $ABC$ với $A(1; 2; 1)$, $B(-3; 0; 3)$, $C(2; 4; -1)$. Tìm tọa độ điểm $D$ sao cho tứ giác $ABCD$ là hình bình hành.",
+      "paA": "$D(6; -6; -3)$",
+      "paB": "$D(6; 6; 3)$",
+      "paC": "$D(6; 6; -3)$",
+      "paD": "$D(6; -6; 3)$"
+    },
+    {
+      "id_Cau": "[2H2H1-2]",
+      "maCau": "q_9ecbcb40b7",
+      "ma_goc": "2603-560",
+      "kieuCau": "TN",
+      "cauDan": "Cho hình hộp $ABCD.A'B'C'D'$. Gọi $M$ là trung điểm của đoạn thẳng $CC'$. Đẳng thức nào sau đây là đúng?",
+      "paA": "$\\vec{AM} = \\vec{AB} + \\vec{AD} + \\vec{AA'}$",
+      "paB": "$\\vec{AM} = \\displaystyle \\frac{1}{2}\\vec{AB} + \\vec{AD} + \\vec{AA'}$",
+      "paC": "$\\vec{AM} = \\vec{AB} + \\displaystyle \\frac{1}{2}\\vec{AD} + \\displaystyle \\frac{1}{2}\\vec{AA'}$",
+      "paD": "$\\vec{AM} = \\vec{AB} + \\vec{AD} + \\displaystyle \\frac{1}{2}\\vec{AA'}$"
+    },
+    {
+      "id_Cau": "[2D1H3-6]",
+      "maCau": "q_c5482f78ff",
+      "ma_goc": "2603-561",
+      "kieuCau": "TN",
+      "cauDan": "Một nhà phân tích thị trường làm việc cho một công ty sản xuất thiết bị gia dụng cho rằng nếu công ty sản xuất và bán $x$ chiếc máy xay sinh tố hàng tháng thì lợi nhuận thu được (nghìn đồng) có thể được tính bằng công thức $P(x) = -0,3x^3 + 36x^2 + 1800x - 48000$. Để có lợi nhuận lớn nhất, công ty cần sản xuất bao nhiêu chiếc máy xay sinh tố mỗi tháng?",
+      "paA": "$110$",
+      "paB": "$90$",
+      "paC": "$120$",
+      "paD": "$100$"
+    },
+    {
+      "id_Cau": "[2H2H2-4]",
+      "maCau": "q_52a019bc4c",
+      "ma_goc": "2603-562",
+      "kieuCau": "TN",
+      "cauDan": "Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}(1; -2; 3)$ và $\\vec{b}(-2; 1; 2)$. Khi đó, tích vô hướng $(\\vec{a} + \\vec{b}) \\cdot \\vec{b}$ bằng",
+      "paA": "$12$",
+      "paB": "$10$",
+      "paC": "$11$",
+      "paD": "$2$"
+    },
+    {
+      "id_Cau": "[2D3H2-3]",
+      "maCau": "q_01324f4053",
+      "ma_goc": "2603-563",
+      "kieuCau": "DS",
+      "cauDan": "Cô Ngọc thống kê số giờ chơi thể thao trong $1$ tuần của học sinh lớp 12B ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_01324f4053_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}",
+      "paA": "Cỡ mẫu của mẫu số liệu ghép nhóm trên là: $n = 50$",
+      "paB": "Khoảng biến thiên của mẫu số liệu ghép nhóm trên là: $9$",
+      "paC": "Tứ phân vị thứ nhất của mẫu số liệu ghép nhóm trên thuộc nhóm: $[3; 6)$",
+      "paD": "Phương sai của mẫu số liệu ghép nhóm trên là một giá trị lớn hơn $8$"
+    },
+    {
+      "id_Cau": "[2H2V2-4]",
+      "maCau": "q_3ce322d9d7",
+      "ma_goc": "2603-564",
+      "kieuCau": "DS",
+      "cauDan": "Trong không gian $Oxyz$, cho $A(5; 2; 1), B(9; -2; 3), C(2; 1; 1)$.",
+      "paA": "Hình chiếu của điểm $A$ lên mặt phẳng $(Oyz)$ có tọa độ là $(0; 2; 1)$",
+      "paB": "$AB + AC = 6 + \\sqrt{10}$",
+      "paC": "$\\cos \\widehat{BAC} = \\displaystyle \\frac{2\\sqrt{10}}{15}$",
+      "paD": "Điểm $M \\in Ox$ thỏa mãn $\\vec{MA} \\cdot \\vec{MB} = \\vec{MA} \\cdot \\vec{MC}$ có hoành độ lớn hơn $5$"
+    },
+    {
+      "id_Cau": "[2D1C4-1]",
+      "maCau": "q_c0f59feb40",
+      "ma_goc": "2603-565",
+      "kieuCau": "DS",
+      "cauDan": "Cho hàm số $f(x) = x^3 - 3x^2$.",
+      "paA": "$f'(x) = 3x^2 - 6x$",
+      "paB": "Hàm số đã cho đạt cực tiểu tại điểm $x = 0$",
+      "paC": "Giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[0; 4]$ bằng $16$",
+      "paD": "Số đường tiệm cận đứng của đồ thị hàm số $\\displaystyle y = \\frac{f(x)}{(x-1)(x^2-6x+9)}$ là $1$"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_7e7b864f7f",
+      "ma_goc": "2603-566",
+      "kieuCau": "DS",
+      "cauDan": "Một hãng chế tác đồng hồ có quy trình sản xuất theo công thức $Q = \\sqrt{KL}$ (gọi là công thức Cobb-Douglas), trong đó $Q$ là số chiếc đồng hồ chế tác ra được, $K$ là số đơn vị vốn (máy móc, thiết bị), $L$ là số đơn vị lao động (thợ chế tác) mà hãng đó thuê được. Khi đó biểu thức $F = 16K + 9L + 40$ mô tả chi phí mà hãng đó phải bỏ ra (đơn vị: nghìn USD). Năm 2025, để kỷ niệm 160 năm thành lập, hãng quyết định chế tác $160$ chiếc đồng hồ phiên bản giới hạn toàn cầu.",
+      "paA": "$L = \\displaystyle \\frac{160}{K}$",
+      "paB": "Khi thuê $200$ đơn vị vốn để chế tác $160$ chiếc đồng hồ thì tổng chi phí bỏ ra lớn hơn $4500$ (nghìn USD)",
+      "paC": "$F = 16K + 9 \\cdot \\displaystyle \\frac{160^2}{K} + 40$",
+      "paD": "Tổng chi phí tối thiểu để chế tác $160$ chiếc đồng hồ là $3840$ (nghìn USD)"
+    },
+    {
+      "id_Cau": "[2H2V1-4]",
+      "maCau": "q_6b9509390d",
+      "ma_goc": "2603-567",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, đặt một mô hình đồ chơi tại đỉnh $A$ của hình hộp chữ nhật $ABCD.A'B'C'D'$ như hình vẽ. Tác động vào mô hình đó bởi các lực $\\vec{F_1}, \\vec{F_2}, \\vec{F_3}$ có giá lần lượt nằm trên các cạnh $AB, AA', AD$ và $\\left|\\vec{F_1}\\right|=2\\text{N}, \\left|\\vec{F_2}\\right|=2\\text{N}, \\left|\\vec{F_3}\\right|=3\\text{N}$. Hãy xác định độ lớn (N) của hợp lực $\\vec{F}$ tác động lên mô hình đó (làm tròn kết quả đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_6b9509390d_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2H2V2-2]",
+      "maCau": "q_ce2cf9bf91",
+      "ma_goc": "2603-568",
+      "kieuCau": "TLN",
+      "cauDan": "Trong không gian $Oxyz$, cho vectơ $\\vec{AB}=(6;3;0)$ và điểm $C(1;1;2)$. Biết điểm $C$ nằm trên đoạn thẳng $AB$ thỏa mãn $BC=2AC$. Nếu điểm $A$ có tọa độ là $(m;n;p)$ thì giá trị của $m+3n+4p$ bằng bao nhiêu?"
+    },
+    {
+      "id_Cau": "[2D3H1-3]",
+      "maCau": "q_3f9eb1ad4a",
+      "ma_goc": "2603-569",
+      "kieuCau": "TLN",
+      "cauDan": "Kết quả khảo sát về độ tuổi kết hôn của 100 người phụ nữ vừa lập gia đình của xã $A$ được cho ở bảng sau:\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_3f9eb1ad4a_cd_tab_1.png' style='max-width: 100%; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}\r\n\tTìm khoảng tứ phân vị của mẫu số liệu trên (làm tròn kết quả đến hàng phần trăm)."
+    },
+    {
+      "id_Cau": "[2D1H2-1]",
+      "maCau": "q_0d4075955f",
+      "ma_goc": "2603-570",
+      "kieuCau": "TLN",
+      "cauDan": "Cho đồ thị hàm số $y = \\displaystyle \\frac{x^2+48}{x-1}$ có hai điểm cực trị là $A, B$ như hình vẽ bên. Diện tích hình chữ nhật tô đậm có giá trị bằng bao nhiêu?\r\n\t\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_0d4075955f_cd_img_1.png' style='max-width: 100%; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1C3-6]",
+      "maCau": "q_bd72b54200",
+      "ma_goc": "2603-571",
+      "kieuCau": "TLN",
+      "cauDan": "Trên một khu đất hình vuông $ABCD$ có độ dài cạnh $200\\,\\text{m}$ đang diễn ra một cuộc thi. Mỗi đội thi sẽ điều khiển con robot mà ban tổ chức cung cấp, xuất phát từ chính giữa cạnh $AB$, đi theo một đường thẳng và đến đích là một điểm bất kỳ trên cạnh $CD$. Ở chính giữa khu đất là một bãi cát hình chữ nhật có chiều dài $120\\,\\text{m}$ và chiều rộng $80\\,\\text{m}$. Vận tốc của robot khi đi trên mặt đất là $3\\,\\text{m/s}$ còn khi đi trên cát là $2\\,\\text{m/s}$. Gọi $a$ là thời gian (tính theo giây) ngắn nhất mà robot đi đến đích. Khi đó giá trị $100a$ bằng bao nhiêu? (làm tròn kết quả đến hàng đơn vị)\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_bd72b54200_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    },
+    {
+      "id_Cau": "[2D1V3-6]",
+      "maCau": "q_a0e1ee48cd",
+      "ma_goc": "2603-572",
+      "kieuCau": "TLN",
+      "cauDan": "Xét trên đoạn đường thẳng $OA$ dài $30\\text{km}$, cùng một lúc, $A$ có một người đi xe đạp đi về $O$ với vận tốc $15\\text{ km/h}$, đồng thời tại $O$ có một chiếc khinh khí cầu bay lên với vận tốc $10\\text{ km/h}$. Gọi $t$ (đơn vị: giờ, $t \\ge 0$) là thời gian kể từ lúc người đi xe đạp và khinh khí cầu bắt đầu di chuyển. Khoảng cách ngắn nhất giữa người đi xe đạp và khinh khí cầu đạt được khi $t$ bằng bao nhiêu? (làm tròn kết quả đến hàng phần trăm).\r\n\t\\begin{center}\r\n\t\t<img src='HinhAnh/q_a0e1ee48cd_cd_tikz_1.png' style='max-width: 400px; height: auto; display: block; margin: 10px auto;' />\r\n\t\\end{center}"
+    }
+  ]
+}

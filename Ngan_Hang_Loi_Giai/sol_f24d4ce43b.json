@@ -1,0 +1,5 @@
+{
+  "maBaoMat": "sol_f24d4ce43b",
+  "dapAn": "5,17",
+  "loiGiai": "Ta có $\\displaystyle \\frac{n}{4} = 25; \\frac{3n}{4} = 75$ nên nhóm chứa tứ phân vị thứ nhất và thứ ba lần lượt là $[22;25)$ và $[28;31)$.\\\\\r\n\t\tSuy ra $Q_1 = 22 + \\displaystyle \\frac{25-10}{27}.3 = \\frac{71}{3}$.\\\\\r\n\t\t$Q_3 = 28 + \\displaystyle \\frac{75-68}{25}.3 = \\frac{721}{25}$.\\\\\r\n\t\tKhoảng tứ phân vị $\\Delta_Q = Q_3 - Q_1 = \\displaystyle \\frac{721}{25} - \\frac{71}{3} \\approx 5,17$."
+}
